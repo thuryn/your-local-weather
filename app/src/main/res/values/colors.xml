@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#009688</color>
+    <color name="colorPrimaryDark">#007065</color>
+    <color name="textColorPrimary">#FFFFFF</color>
+    <color name="textColorHint">#d4d4d4</color>
+    <color name="colorAccent">#de454e</color>
+    <color name="colorAccentDark">#d84315</color>
+    <color name="windowBackground">#4db6ac</color>
+    <color name="swipe_red">#df5e65</color>
+    <color name="swipe_green">#42c25e</color>
+    <color name="swipe_blue">#4447da</color>
+    <color name="text_color">#302c2c</color>
+    <color name="settings_content_color">#000000</color>
+    <color name="divider_light">#ccc</color>
+    <color name="link_color">#0000FF</color>
+
+    <color name="widget_darkTheme_colorBackground">#fa202020</color>
+    <color name="widget_darkTheme_textColorPrimary">#FFFFFF</color>
+    <color name="widget_darkTheme_window_colorBackground">#009688</color>
+    
+    <color name="widget_lightTheme_colorBackground">#f5e7e7e7</color>
+    <color name="widget_lightTheme_textColorPrimary">#000000</color>
+    <color name="widget_lightTheme_window_colorBackground">#009688</color>
+    
+    <color name="widget_transparentTheme_colorBackground">#00e7e7e7</color>
+    <color name="widget_transparentTheme_textColorPrimary">#FFFFFF</color>
+    <color name="widget_transparentTheme_window_colorBackground">#00e7e7e7</color>
+</resources>

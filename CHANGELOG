@@ -1,0 +1,6 @@
+v1.0
+- version based on good-weather app v4.4
+- Added accelerometer based updates
+- Added 3rd widget
+- Added Mozilla location provider
+- Added Nominatim address resolver

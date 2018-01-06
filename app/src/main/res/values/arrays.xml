@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_temperature_entries" translatable="false">
+        <item>°C</item>
+        <item>°F</item>
+    </string-array>
+    <string-array name="pref_temperature_values" translatable="false">
+        <item>metric</item>
+        <item>imperial</item>
+    </string-array>
+
+    <string-array name="notification_refresh_intervals_entries">
+        <item>@string/update_period_15min</item>
+        <item>@string/update_period_30min</item>
+        <item>@string/update_period_1hour</item>
+        <item>@string/update_period_3hours</item>
+        <item>@string/update_period_6hours</item>
+        <item>@string/update_period_12hours</item>
+        <item>@string/update_period_24hours</item>
+    </string-array>
+    <string-array name="notification_refresh_interval_values" translatable="false">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>720</item>
+        <item>1440</item>
+    </string-array>
+
+    <string-array name="widget_update_period_entries">
+        <item>@string/update_period_by_sensors</item>
+        <item>@string/update_period_15min</item>
+        <item>@string/update_period_30min</item>
+        <item>@string/update_period_1hour</item>
+        <item>@string/update_period_3hours</item>
+        <item>@string/update_period_6hours</item>
+        <item>@string/update_period_12hours</item>
+        <item>@string/update_period_24hours</item>
+    </string-array>
+    <string-array name="widget_update_period_values" translatable="false">
+        <item>0</item>
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>720</item>
+        <item>1440</item>
+    </string-array>
+    
+    <string-array name="location_geocoder_source_entries">
+        <item>@string/location_geocoder_local</item>
+        <item>@string/location_geocoder_system</item>
+        <item>@string/location_geocoder_unifiednlp</item>
+    </string-array>
+    <string-array name="location_geocoder_source_values">
+        <item>location_geocoder_local</item>
+        <item>location_geocoder_system</item>
+        <item>location_geocoder_unifiednlp</item>
+    </string-array>
+    
+    <string-array name="preference_display_update_entries">
+        <item>@string/preference_display_update_nothing</item>
+        <item>@string/preference_display_update_value</item>
+        <item>@string/preference_display_update_location_source</item>
+    </string-array>
+    <string-array name="preference_display_update_values">
+        <item>preference_display_update_nothing</item>
+        <item>preference_display_update_value</item>
+        <item>preference_display_update_location_source</item>
+    </string-array>
+    
+    <string-array name="widget_theme_entries">
+        <item>@string/theme_dark</item>
+        <item>@string/theme_light</item>
+        <item>@string/theme_transparent</item>
+    </string-array>
+    <string-array name="widget_theme_values" translatable="false">
+        <item>dark</item>
+        <item>light</item>
+        <item>transparent</item>
+    </string-array>
+
+    <!-- Wind directions array -->
+    <string-array name="wind_directions">
+        <item>@string/wind_direction_north</item>
+        <item>@string/wind_direction_north_east</item>
+        <item>@string/wind_direction_east</item>
+        <item>@string/wind_direction_south_east</item>
+        <item>@string/wind_direction_south</item>
+        <item>@string/wind_direction_south_west</item>
+        <item>@string/wind_direction_west</item>
+        <item>@string/wind_direction_north_west</item>
+    </string-array>
+    <string-array name="wind_direction_arrows" translatable="false">
+        <item name="n">&#xf058;</item>
+        <item name="ne">&#xf057;</item>
+        <item name="e">&#xf04d;</item>
+        <item name="se">&#xf088;</item>
+        <item name="s">&#xf044;</item>
+        <item name="sw">&#xf043;</item>
+        <item name="w">&#xf048;</item>
+        <item name="nw">&#xf087;</item>
+    </string-array>
+
+    <!-- Languages array -->
+    <string-array name="language_entries">
+        <item name="default">@string/pref_language_default</item>
+        <item name="english">English</item>
+        <item name="basque">Euskara (Basque)</item>
+        <item name="belarusian">Беларуская (Belarusian)</item>
+        <item name="catalan">Català (Catalan)</item>
+        <item name="czech">Čeština (Czech)</item>
+        <item name="french">Français (French)</item>
+        <item name="italian">Italiano (Italian)</item>
+        <item name="german">Deutsch (German)</item>
+        <item name="spanish">Español (Spanish)</item>
+        <item name="japanese">日本語 (Japanese)</item>
+        <item name="polish">Polski (Polish)</item>
+        <item name="russian">Русский (Russian)</item>
+        <item name="turkish">Türkçe (Turkish)</item>
+    </string-array>
+    <string-array name="language_values">
+        <item name="default"></item>
+        <item name="english">en</item>
+        <item name="basque">eu</item>
+        <item name="belarusian">be</item>
+        <item name="catalan">ca</item>
+        <item name="czech">cs</item>
+        <item name="french">fr</item>
+        <item name="italian">it</item>
+        <item name="german">de</item>
+        <item name="spanish">es</item>
+        <item name="japanese">ja</item>
+        <item name="polish">pl</item>
+        <item name="russian">ru</item>
+        <item name="turkish">tr</item>
+    </string-array>
+
+    <!-- Themes array -->
+    <string-array name="theme_entries">
+        <item name="light">@string/theme_light</item>
+        <item name="dark">@string/theme_dark</item>
+    </string-array>
+
+    <string-array name="wake_up_strategy_entries">
+        <item>@string/nowakeup_label</item>
+        <item>@string/wakeuppartial_label</item>
+        <item>@string/wakeupfull_label</item>
+    </string-array>
+    <string-array name="wake_up_strategy_values">
+        <item>nowakeup</item>
+        <item>wakeuppartial</item>
+        <item>wakeupfull</item>
+    </string-array>
+    <string-array name="location_cache_lasting_entries">
+        <item>@string/location_cache_12_label</item>
+        <item>@string/location_cache_24_label</item>
+        <item>@string/location_cache_168_label</item>
+        <item>@string/location_cache_720_label</item>
+        <item>@string/location_cache_2190_label</item>
+        <item>@string/location_cache_4380_label</item>
+        <item>@string/location_cache_8760_label</item>
+        <item>@string/location_cache_88888_label</item>
+    </string-array>
+    <string-array name="location_cache_lasting_values">
+        <item>12</item>
+        <item>24</item>
+        <item>168</item>
+        <item>720</item>
+        <item>2190</item>
+        <item>4380</item>
+        <item>8760</item>
+        <item>88888</item>
+    </string-array>
+</resources>

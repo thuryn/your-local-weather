@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+    <string name="enter_city_hint">Hiria idatzi</string>
+    <string name="label_current_city">Uneko hiria</string>
+    <string name="label_choose_city">Hiria hautatu</string>
+    <string name="alertDialog_gps_message">GPSa ez dago gaituta. Ezarpenen menura joan nahi duzu?</string>
+    <string name="alertDialog_gps_positiveButton">Ezarpenak</string>
+    <string name="alertDialog_gps_negativeButton">Utzi</string>
+    <string name="progressDialog_gps_locate">Uneko kokapena aurkitu</string>
+    <string name="load_progress">Kargatzen…</string>
+
+    <!-- Activity names -->
+    <string name="title_activity_search">Kokapena bilatu</string>
+    <string name="label_activity_main">Uneko eguraldia</string>
+    <string name="label_activity_weather_forecast">Eguneroko iragarpena</string>
+    <string name="label_activity_graphs">Eguraldiaren grafikoak</string>
+    <string name="title_activity_license">%s(e)rako lizentzia</string>
+
+    <!-- Toolbar menu -->
+    <string name="toolbar_menu_refresh">Eguneratu</string>
+    <string name="toolbar_menu_search_city">Hiria bilatu</string>
+    <string name="toolbar_menu_detect_location">Kokapena detektatu</string>
+    <string name="menu_action_toggle_values">Balioak alderantzikatu</string>
+    <string name="menu_action_toggle_yaxis">Y ardatza alderantzikatu</string>
+
+    <!-- Navigation drawer -->
+    <string name="nav_menu_current_weather">Uneko eguraldia</string>
+    <string name="nav_menu_daily_forecast">Eguneroko iragarpena</string>
+    <string name="nav_menu_graphs">Grafikoak</string>
+    <string name="nav_menu_settings">Ezarpenak</string>
+    <string name="nav_feedback">Iritzia</string>
+    <string name="nav_menu_bitcoin_donation">Bitcoinak eman</string>
+
+    <!-- Toast messages -->
+    <string name="connection_not_found">Egiaztatu zure interneteko konexioa</string>
+    <string name="toast_parse_error">Akats bat gertatu da. Saiatu beranduago</string>
+
+    <!-- Units and Measurement-->
+    <string name="pressure_measurement">hPa</string>
+    <string name="wind_speed_meters">m/s</string>
+    <string name="wind_speed_miles">m/o</string>
+    <string name="millimetre_label">mm</string>
+
+    <!-- Search Screen strings -->
+    <string name="hint_activity_search">Kokapena bilatu</string>
+
+    <!-- Preference Screen strings -->
+    <string name="title_activity_settings">Ezarpenak</string>
+    <string name="pref_title_temperature">Tenperatura</string>
+    <string name="preference_hide_desc">Eguraldiaren deskribapena ezkutatu</string>
+    <string name="pref_title_category_notification">Jakinarazpenak</string>
+    <string name="pref_title_notification">Jakinarazpenak gaitu</string>
+    <string name="pref_title_notification_refresh_interval">Freskatze tartea</string>
+    <string name="update_period_15min">15 minutu</string>
+    <string name="update_period_30min">30 minutu</string>
+    <string name="update_period_1hour">Orduro</string>
+    <string name="update_period_3hours">3 ordu</string>
+    <string name="update_period_6hours">6 ordu</string>
+    <string name="update_period_12hours">12 ordu</string>
+    <string name="update_period_24hours">24 ordu</string>
+    <string name="pref_title_vibrate">Dardaratu</string>
+    <string name="preference_widget_title_update_period">Eguneratzeko aldia</string>
+    <string name="preference_title_activity_general">Ezarpen orokorrak</string>
+    <string name="preference_title_activity_widget">Widgetaren ezarpenak</string>
+
+    <!-- Preference Screen About -->
+    <string name="preference_title_activity_about">Honi buruz</string>
+    <string name="about_version_pref_title">Bertsioa</string>
+    <string name="about_source_code_pref_title">Iturburu kodea</string>
+    <string name="about_app_license_pref_title">Lizentzia</string>
+    <string name="about_open_source_licenses_pref_title">Iturri irekiko lizentziak</string>
+
+    <!-- Weather conditions label strings -->
+    <string name="wind_label">Haizea: %1$s %2$s</string>
+    <string name="rain_label">Euria: %1$s %2$s</string>
+    <string name="snow_label">Elurra: %1$s %2$s</string>
+    <string name="humidity_label">Hezetasuna: %1$s%2$s</string>
+    <string name="pressure_label">Presioa: %1$s %2$s</string>
+    <string name="cloudiness_label">Hodeiak: %1$s%2$s</string>
+    <string name="last_update_label">Azken eguneraketa: %s</string>
+    <string name="sunrise_label">Egunsentia: %s</string>
+    <string name="sunset_label">Ilunabarra: %s</string>
+    <string name="temperature_morning_title">Goiza</string>
+    <string name="temperature_day_title">Eguna</string>
+    <string name="temperature_evening_title">Arratsaldea</string>
+    <string name="temperature_night_title">Gaua</string>
+    <string name="label_temperature">Tenperatura</string>
+    <string name="label_wind">Haizea</string>
+    <string name="label_rain">Euria</string>
+    <string name="label_snow">Elurra</string>
+
+    <!-- Widgets strings -->
+    <string name="widget_weather_icon_description">Uneko eguraldi ikonoa</string>
+    <string name="widget_refresh_button">Widgetean freskatze botoia</string>
+
+    <!-- Donation Bitcoin dialog -->
+    <string name="donation_bitcoin_qr_description">Bitcoinak emateko QR kodea</string>
+    <string name="donation_bitcoin_copy_button">Bitcoin helbidea kopiatu</string>
+    <string name="donation_bitcoin_open_app">Bitcoin aplikazioa ireki</string>
+    <string name="donation_bitcoin_copy_message">Bitcoin helbidea arbelera kopiatu da</string>
+
+    <!-- Wind directions -->
+    <string name="wind_direction_north">I</string>
+    <string name="wind_direction_north_east">IE</string>
+    <string name="wind_direction_east">E</string>
+    <string name="wind_direction_south_east">HE</string>
+    <string name="wind_direction_south">H</string>
+    <string name="wind_direction_south_west">HM</string>
+    <string name="wind_direction_west">M</string>
+    <string name="wind_direction_north_west">IM</string>
+
+    <!-- Permission strings -->
+    <string name="permission_location_rationale">Kokapen baimenak behar dira uneko hiria zehazteko</string>
+    <string name="permission_not_granted">Baimenak ez dira eman!</string>
+    <string name="permission_available_location">Kokapen baimenak eman dira</string>
+    <string name="pref_language_default">System Default</string>
+    <string name="pref_title_language">Hizkuntza</string>
+    <string name="preference_title_category_display">Erakutsi</string>
+    <string name="restart_dialog_message">Berrabiarazi aplikazioaren ezarpen berriak aplikatzeko</string>
+<string name="preference_widget_update_location">Kokapena eguneratu</string>
+    <string name="preference_widget_use_geocoder">Geokokapena erabili erakusteko</string>
+    <string name="preference_widget_theme_title">Widgetaren gaia</string>
+    <string name="theme_dark">Iluna</string>
+    <string name="theme_light">Argia</string>
+    <string name="theme_transparent">Gardena</string>
+    <string name="pref_title_theme">Gaia</string>
+    
+    <string name="permission_location_need">Kokapen baimenak eman behar dituzu</string>
+
+    </resources>

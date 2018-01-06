@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:defaultValue="metric"
+        android:dialogTitle="@string/pref_title_temperature"
+        android:entries="@array/pref_temperature_entries"
+        android:entryValues="@array/pref_temperature_values"
+        android:key="temperature_pref_key"
+        android:title="@string/pref_title_temperature"/>
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="hide_desc_pref_key"
+        android:title="@string/preference_hide_desc"/>
+    <PreferenceCategory
+        android:key="display_category_pref_key"
+        android:title="@string/preference_title_category_display">
+        <ListPreference
+            android:key="language_pref_key"
+            android:dialogTitle="@string/pref_title_language"
+            android:title="@string/pref_title_language"
+            android:entries="@array/language_entries"
+            android:entryValues="@array/language_values"/>
+        <ListPreference
+            android:key="theme_pref_key"
+            android:dialogTitle="@string/pref_title_theme"
+            android:title="@string/pref_title_theme"
+            android:entries="@array/theme_entries"
+            android:entryValues="@array/theme_values"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="notification_category_pref_key"
+        android:title="@string/pref_title_category_notification">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="notification_pref_key"
+            android:title="@string/pref_title_notification"/>
+        <ListPreference
+            android:defaultValue="60"
+            android:dependency="notification_pref_key"
+            android:dialogTitle="@string/pref_title_notification_refresh_interval"
+            android:entries="@array/notification_refresh_intervals_entries"
+            android:entryValues="@array/notification_refresh_interval_values"
+            android:key="notification_interval_pref_key"
+            android:title="@string/pref_title_notification_refresh_interval"/>
+        <SwitchPreference
+            android:defaultValue="false"
+            android:dependency="notification_pref_key"
+            android:key="notification_vibrate_pref_key"
+            android:title="@string/pref_title_vibrate"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/db_header"
+        android:key="db_header">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="location.cache.enabled"
+            android:summaryOff="Found locations is not cached"
+            android:summaryOn="Found locations is cached"
+            android:title="Cache locations" />
+        <ListPreference
+            android:defaultValue="720"
+            android:entries="@array/location_cache_lasting_entries"
+            android:entryValues="@array/location_cache_lasting_values"
+            android:key="location.cache.lasting"
+            android:summary="@string/location_cache_lasting_summary"
+            android:title="@string/location_cache_lasting_title"/>
+        <Preference android:title="@string/clear_cache_button"
+            android:key="clear_cache_button" />
+        <Preference android:title="@string/db_info"
+            android:key="db_info" />
+    </PreferenceCategory>
+</PreferenceScreen>
