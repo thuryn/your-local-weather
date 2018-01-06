@@ -1,5 +1,5 @@
-[![Build Status](https://travis-ci.org/qqq3/good-weather.svg?branch=master)](https://travis-ci.org/thuryn/your-local-weather)
-[![Release](https://img.shields.io/github/release/qqq3/good-weather.svg)](https://github.com/thuryn/your-local-weather/releases)
+[![Build Status](https://travis-ci.org/thuryn/your-local-weather.svg?branch=master)](https://travis-ci.org/thuryn/your-local-weather)
+[![Release](https://img.shields.io/github/release/thuryn/your-local-weather.svg)](https://github.com/thuryn/your-local-weather/releases)
 [![License](https://img.shields.io/badge/license-GNU_GPLv3-orange.svg)](https://raw.githubusercontent.com/thuryn/your-local-weather/HEAD/LICENSE)
 
 # Your local weather
