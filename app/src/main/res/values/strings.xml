@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">Your local weather</string>
     <string name="enter_city_hint">Enter city</string>
     <string name="label_current_city">Current city</string>
@@ -11,7 +11,7 @@
     <string name="alertDialog_gps_negativeButton">Cancel</string>
     <string name="progressDialog_gps_locate">Find current location</string>
     <string name="load_progress">Loading…</string>
-    <string name="location_not_found">Location not found</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Location not found</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Search Location</string>
@@ -21,11 +21,11 @@
     <string name="title_activity_license">License for %s</string>
 
     <!-- Toolbar menu -->
-    <string name="toolbar_menu_refresh">Update</string>
-    <string name="toolbar_menu_search_city">Search City</string>
-    <string name="toolbar_menu_detect_location">Detect Location</string>
-    <string name="menu_action_toggle_values">Toggle Values</string>
-    <string name="menu_action_toggle_yaxis">Toggle Y-Axis</string>
+    <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Update</string>
+    <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Search City</string>
+    <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Detect Location</string>
+    <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Toggle Values</string>
+    <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Toggle Y-Axis</string>
 
     <!-- Navigation drawer -->
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
@@ -80,56 +80,56 @@
     <string name="pref_title_category_notification">Notifications</string>
     <string name="pref_title_notification">Enable Notifications</string>
     <string name="pref_title_notification_refresh_interval">Refresh Interval</string>
-    <string name="update_period_by_sensors">By accelerometer</string>
-    <string name="update_period_15min">15 minutes</string>
-    <string name="update_period_30min">30 minutes</string>
-    <string name="update_period_1hour">Every hour</string>
-    <string name="update_period_3hours">3 hours</string>
-    <string name="update_period_6hours">6 hours</string>
-    <string name="update_period_12hours">12 hours</string>
-    <string name="update_period_24hours">24 hours</string>
-    <string name="pref_title_vibrate">Vibrate</string>
-    <string name="preference_widget_title_update_period">Update Period</string>
-    <string name="preference_title_activity_general">General settings</string>
-    <string name="preference_title_activity_widget">Widget settings</string>
-    <string name="preference_widget_update_location">Update location</string>
-    <string name="preference_widget_use_geocoder">Use geolocation for displaying</string>
-    <string name="preference_widget_theme_title">Widget theme</string>
-    <string name="theme_dark">Dark</string>
-    <string name="theme_light">Light</string>
-    <string name="theme_transparent">Transparent</string>
-    <string name="preference_title_category_display">Display</string>
-    <string name="pref_title_language">Language</string>
-    <string name="pref_language_default">System Default</string>
-    <string name="location_geocoder_title">Location and address source</string>
-    <string name="location_geocoder_local">Local MLS and Nominatim</string>
-    <string name="location_geocoder_system">System</string>
-    <string name="location_geocoder_unifiednlp">UnifiedNLP</string>
-    <string name="pref_title_theme">Theme</string>
-    <string name="preference_display_update_title">Display update summary</string>
-    <string name="preference_display_update_nothing">Nothing</string>
-    <string name="preference_display_update_value">Just updated value</string>
-    <string name="preference_display_update_location_source">Updated value with location source</string>
-    <string name="preference_display_update_value_info">W - weather only updated\nL - location only updated\nG - location from GPS and weather updated\nN - location from network and weather updated</string>
-    <string name="preference_display_update_location_source_info">W - weather only updated\nL - location only updated\nG - location from GPS and weather updated\nN - location from network and weather updated\nNc - location from cell network and weather updated\nNw - location from wifi networks and weather updated\nNcw - location from wifi and cell networks, weather updated</string>
-    <string name="wake_up_strategy_summary">When location stucks when phone sleeps you can try to wake up phone when cell is looked for</string>
-    <string name="wake_up_strategy_title">Wake up strategy</string>
-    <string name="nowakeup_label">No wake up</string>
-    <string name="wakeuppartial_label">Wake up CPU only</string>
-    <string name="wakeupfull_label">Wake up with display</string>
-    <string name="clear_cache_button">Clear cache</string>
-    <string name="db_info">Information about cache</string>
-    <string name="db_header">Address cache database</string>
-    <string name="location_cache_lasting_summary">After specified number of time cached values will be removed</string>
-    <string name="location_cache_lasting_title">The age of cached values</string>
-    <string name="location_cache_12_label">12 hours</string>
-    <string name="location_cache_24_label">a day</string>
-    <string name="location_cache_168_label">a week</string>
-    <string name="location_cache_720_label">a month</string>
-    <string name="location_cache_2190_label">three months</string>
-    <string name="location_cache_4380_label">six months</string>
-    <string name="location_cache_8760_label">a year</string>
-    <string name="location_cache_88888_label">never</string>
+    <string name="update_period_by_sensors" tools:ignore="MissingTranslation">By accelerometer</string>
+    <string name="update_period_15min" tools:ignore="MissingTranslation">15 minutes</string>
+    <string name="update_period_30min" tools:ignore="MissingTranslation">30 minutes</string>
+    <string name="update_period_1hour" tools:ignore="MissingTranslation">Every hour</string>
+    <string name="update_period_3hours" tools:ignore="MissingTranslation">3 hours</string>
+    <string name="update_period_6hours" tools:ignore="MissingTranslation">6 hours</string>
+    <string name="update_period_12hours" tools:ignore="MissingTranslation">12 hours</string>
+    <string name="update_period_24hours" tools:ignore="MissingTranslation">24 hours</string>
+    <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Vibrate</string>
+    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Update Period</string>
+    <string name="preference_title_activity_general" tools:ignore="MissingTranslation">General settings</string>
+    <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Widget settings</string>
+    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Update location</string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Use geolocation for displaying</string>
+    <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Widget theme</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">Dark</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">Light</string>
+    <string name="theme_transparent" tools:ignore="MissingTranslation">Transparent</string>
+    <string name="preference_title_category_display" tools:ignore="MissingTranslation">Display</string>
+    <string name="pref_title_language" tools:ignore="MissingTranslation">Language</string>
+    <string name="pref_language_default" tools:ignore="MissingTranslation">System Default</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Location and address source</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Local MLS and Nominatim</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">System</string>
+    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">Theme</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Display update summary</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Nothing</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Just updated value</string>
+    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Updated value with location source</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - weather only updated\nL - location only updated\nG - location from GPS and weather updated\nN - location from network and weather updated</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - weather only updated\nL - location only updated\nG - location from GPS and weather updated\nN - location from network and weather updated\nNc - location from cell network and weather updated\nNw - location from wifi networks and weather updated\nNcw - location from wifi and cell networks, weather updated</string>
+    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">When location stucks when phone sleeps you can try to wake up phone when cell is looked for</string>
+    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Wake up strategy</string>
+    <string name="nowakeup_label" tools:ignore="MissingTranslation">No wake up</string>
+    <string name="wakeuppartial_label" tools:ignore="MissingTranslation">Wake up CPU only</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">Wake up with display</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Clear cache</string>
+    <string name="db_info" tools:ignore="MissingTranslation">Information about cache</string>
+    <string name="db_header" tools:ignore="MissingTranslation">Address cache database</string>
+    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">After specified number of time cached values will be removed</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">The age of cached values</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 hours</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">a day</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">a week</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">a month</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">three months</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">six months</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">a year</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">never</string>
     
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">About</string>
@@ -141,34 +141,28 @@
     <string name="about_open_source_licenses_pref_title">Open Source licenses</string>
 
     <!-- Weather conditions label strings -->
-    <string name="wind_label">Wind: %1$s %2$s</string>
-    <string name="rain_label">Rain: %1$s %2$s</string>
-    <string name="snow_label">Snow: %1$s %2$s</string>
-    <string name="humidity_label">Humidity: %1$s%2$s</string>
-    <string name="pressure_label">Pressure: %1$s %2$s</string>
-    <string name="cloudiness_label">Cloudiness: %1$s%2$s</string>
-    <string name="last_update_label">Last update: %s</string>
-    <string name="sunrise_label">Sunrise: %s</string>
-    <string name="sunset_label">Sunset: %s</string>
-    <string name="temperature_morning_title">Morning</string>
-    <string name="temperature_day_title">Day</string>
-    <string name="temperature_evening_title">Evening</string>
-    <string name="temperature_night_title">Night</string>
+    <string name="wind_label" tools:ignore="MissingTranslation">Wind: %1$s %2$s</string>
+    <string name="rain_label" tools:ignore="MissingTranslation">Rain: %1$s %2$s</string>
+    <string name="snow_label" tools:ignore="MissingTranslation">Snow: %1$s %2$s</string>
+    <string name="humidity_label" tools:ignore="MissingTranslation">Humidity: %1$s%2$s</string>
+    <string name="pressure_label" tools:ignore="MissingTranslation">Pressure: %1$s %2$s</string>
+    <string name="cloudiness_label" tools:ignore="MissingTranslation">Cloudiness: %1$s%2$s</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">Last update: %s</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">Sunrise: %s</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">Sunset: %s</string>
+    <string name="temperature_morning_title" tools:ignore="MissingTranslation">Morning</string>
+    <string name="temperature_day_title" tools:ignore="MissingTranslation">Day</string>
+    <string name="temperature_evening_title" tools:ignore="MissingTranslation">Evening</string>
+    <string name="temperature_night_title" tools:ignore="MissingTranslation">Night</string>
     <string name="temperature_and_scale_label" translatable="false">%1$s%2$s</string>
-    <string name="label_temperature">Temperature</string>
-    <string name="label_wind">Wind</string>
-    <string name="label_rain">Rain</string>
-    <string name="label_snow">Snow</string>
+    <string name="label_temperature" tools:ignore="MissingTranslation">Temperature</string>
+    <string name="label_wind" tools:ignore="MissingTranslation">Wind</string>
+    <string name="label_rain" tools:ignore="MissingTranslation">Rain</string>
+    <string name="label_snow" tools:ignore="MissingTranslation">Snow</string>
 
     <!-- Widgets strings -->
-    <string name="widget_weather_icon_description">Current weather icon</string>
-    <string name="widget_refresh_button">Widget refresh button</string>
-
-    <!-- Donation Bitcoin dialog -->
-    <string name="donation_bitcoin_qr_description">Donation Bitcoin QR code</string>
-    <string name="donation_bitcoin_copy_button">Copy Bitcoin Address</string>
-    <string name="donation_bitcoin_open_app">Open Bitcoin App</string>
-    <string name="donation_bitcoin_copy_message">Bitcoin address was copied to the clipboard</string>
+    <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Current weather icon</string>
+    <string name="widget_refresh_button" tools:ignore="MissingTranslation">Widget refresh button</string>
 
     <!-- Wind directions -->
     <string name="wind_direction_north">N</string>
@@ -183,23 +177,23 @@
     <string name="default_daily_forecast" translatable="false">[{"cloudiness":"6","windSpeed":"1.5","description":"Clear","humidity":"45","icon":"10d","pressure":"1000","windDegree":"303","temperatureEvening":"14.63","dateTime":"1471673520","temperatureMin":"10.38","temperatureMorning":"15.9","temperatureNight":"10.38","temperatureDay":"15.9","temperatureMax":"16.52","rain":"2","snow":"5"}]</string>
 
     <!-- Permission strings -->
-    <string name="permission_location_rationale">Location Permissions are needed to determine the current city</string>
-    <string name="permission_not_granted">Permissions were not granted!</string>
-    <string name="permission_available_location">Location Permissions have been granted</string>
-    <string name="permission_location_need">You must grant Location Permissions</string>
+    <string name="permission_location_rationale" tools:ignore="MissingTranslation">Location Permissions are needed to determine the current city</string>
+    <string name="permission_not_granted" tools:ignore="MissingTranslation">Permissions were not granted!</string>
+    <string name="permission_available_location" tools:ignore="MissingTranslation">Location Permissions have been granted</string>
+    <string name="permission_location_need" tools:ignore="MissingTranslation">You must grant Location Permissions</string>
 
     <!-- Dialog strings -->
-    <string name="restart_dialog_message">Please restart application to apply new settings</string>
+    <string name="restart_dialog_message" tools:ignore="MissingTranslation">Please restart application to apply new settings</string>
 
     <!-- Debug strings -->
-    <string name="debug_choose_file">Select directory for logging</string>
-    <string name="debug_category_title">Debug options</string>
-    <string name="log_file_lasting_summary">After specified number of time log file will recreated</string>
-    <string name="log_file_lasting_title">Rotation of the log file</string>
-    <string name="log_file_12_label">12 hours</string>
-    <string name="log_file_24_label">a day</string>
-    <string name="log_file_48_label">two days</string>
-    <string name="log_file_72_label">three days</string>
-    <string name="log_file_168_label">a week</string>
-    <string name="log_file_720_label">a month</string>
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">Select directory for logging</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">Debug options</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">After specified number of time log file will recreated</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Rotation of the log file</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 hours</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">a day</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">two days</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">three days</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">a week</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">a month</string>
 </resources>

@@ -54,7 +54,7 @@
         <item>@string/location_geocoder_system</item>
         <item>@string/location_geocoder_unifiednlp</item>
     </string-array>
-    <string-array name="location_geocoder_source_values">
+    <string-array name="location_geocoder_source_values" translatable="false">
         <item>location_geocoder_local</item>
         <item>location_geocoder_system</item>
         <item>location_geocoder_unifiednlp</item>
@@ -65,7 +65,7 @@
         <item>@string/preference_display_update_value</item>
         <item>@string/preference_display_update_location_source</item>
     </string-array>
-    <string-array name="preference_display_update_values">
+    <string-array name="preference_display_update_values" translatable="false">
         <item>preference_display_update_nothing</item>
         <item>preference_display_update_value</item>
         <item>preference_display_update_location_source</item>
@@ -105,7 +105,7 @@
     </string-array>
 
     <!-- Languages array -->
-    <string-array name="language_entries">
+    <string-array name="language_entries" translatable="false">
         <item name="default">@string/pref_language_default</item>
         <item name="english">English</item>
         <item name="basque">Euskara (Basque)</item>
@@ -121,7 +121,7 @@
         <item name="russian">Русский (Russian)</item>
         <item name="turkish">Türkçe (Turkish)</item>
     </string-array>
-    <string-array name="language_values">
+    <string-array name="language_values" translatable="false">
         <item name="default"></item>
         <item name="english">en</item>
         <item name="basque">eu</item>
@@ -149,7 +149,7 @@
         <item>@string/wakeuppartial_label</item>
         <item>@string/wakeupfull_label</item>
     </string-array>
-    <string-array name="wake_up_strategy_values">
+    <string-array name="wake_up_strategy_values" translatable="false">
         <item>nowakeup</item>
         <item>wakeuppartial</item>
         <item>wakeupfull</item>
@@ -164,7 +164,7 @@
         <item>@string/location_cache_8760_label</item>
         <item>@string/location_cache_88888_label</item>
     </string-array>
-    <string-array name="location_cache_lasting_values">
+    <string-array name="location_cache_lasting_values" translatable="false">
         <item>12</item>
         <item>24</item>
         <item>168</item>

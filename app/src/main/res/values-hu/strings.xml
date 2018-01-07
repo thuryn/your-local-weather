@@ -92,11 +92,6 @@
     <string name="widget_weather_icon_description">Aktuális időjárás ikon</string>
     <string name="widget_refresh_button">\"Widget frissítés\" gomb</string>
 
-    <string name="donation_bitcoin_qr_description">Bitcoin adomány QR kód</string>
-    <string name="donation_bitcoin_copy_button">Bitcoin cím másolása</string>
-    <string name="donation_bitcoin_open_app">Bitcoin alkalmazás megnyitása</string>
-    <string name="donation_bitcoin_copy_message">Bitcoin cím a vágólapra másolva</string>
-
     <string name="wind_direction_north">É</string>
     <string name="wind_direction_north_east">ÉK</string>
     <string name="wind_direction_east">K</string>

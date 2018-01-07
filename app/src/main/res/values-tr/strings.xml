@@ -106,10 +106,6 @@
     <string name="widget_refresh_button">Widget yenileme düğmesi</string>
 
     <!-- Donation Bitcoin dialog -->
-    <string name="donation_bitcoin_qr_description">Bağış Bitcoin QR kodu</string>
-    <string name="donation_bitcoin_copy_button">Bitcoin Adresini Kopyala</string>
-    <string name="donation_bitcoin_open_app">Bitcoin Uygulamasını Aç</string>
-    <string name="donation_bitcoin_copy_message">Bitcoin adresi panoya kopyalandı</string>
 
     <!-- Wind directions -->
     <string name="wind_direction_north">K</string>

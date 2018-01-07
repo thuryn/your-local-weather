@@ -92,10 +92,6 @@
     <string name="widget_refresh_button">Кнопка абнаўлення</string>
 
     <!-- Donation Bitcoin dialog -->
-    <string name="donation_bitcoin_qr_description">Bitcoin QR-код</string>
-    <string name="donation_bitcoin_copy_button">Скапіяваць Bitcoin-адрас</string>
-    <string name="donation_bitcoin_open_app">Адкрыць Bitcoin-дадатак</string>
-    <string name="donation_bitcoin_copy_message">Bitcoin-адрас быў скапіяваны ў буфер абмену</string>
 
     <!-- Wind directions -->
     <string name="wind_direction_north">Пн</string>

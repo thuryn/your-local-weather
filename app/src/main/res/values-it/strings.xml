@@ -103,10 +103,6 @@
     <string name="widget_refresh_button">Pulsante di aggiornamento del widget</string>
 
     <!-- Donation Bitcoin dialog -->
-    <string name="donation_bitcoin_qr_description">QR code donazione Bitcoin</string>
-    <string name="donation_bitcoin_copy_button">Copia indirizzo Bitcoin</string>
-    <string name="donation_bitcoin_open_app">Apri applicazione Bitcoin</string>
-    <string name="donation_bitcoin_copy_message">L\'indirizzo Bitcoin è stato copiato negli appunti</string>
 
     <!-- Wind directions -->
     <string name="wind_direction_north">N</string>

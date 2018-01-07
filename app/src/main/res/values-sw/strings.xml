@@ -92,11 +92,6 @@
     <string name="widget_weather_icon_description">Current weather icon</string>
     <string name="widget_refresh_button">Widget refresh button</string>
 
-    <string name="donation_bitcoin_qr_description">Donation Bitcoin QR code</string>
-    <string name="donation_bitcoin_copy_button">Copy Bitcoin Address</string>
-    <string name="donation_bitcoin_open_app">Open Bitcoin App</string>
-    <string name="donation_bitcoin_copy_message">Bitcoin address was copied to the clipboard</string>
-
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_east">NE</string>
     <string name="wind_direction_east">E</string>

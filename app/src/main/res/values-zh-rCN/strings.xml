@@ -92,11 +92,6 @@
     <string name="widget_weather_icon_description">当前天气图标</string>
     <string name="widget_refresh_button">小部件刷新按钮</string>
 
-    <string name="donation_bitcoin_qr_description">捐赠比特币的二维码</string>
-    <string name="donation_bitcoin_copy_button">复制比特币地址</string>
-    <string name="donation_bitcoin_open_app">打开比特币应用程序</string>
-    <string name="donation_bitcoin_copy_message">比特币地址已经复制到剪贴板</string>
-
     <string name="wind_direction_north">北</string>
     <string name="wind_direction_north_east">东北</string>
     <string name="wind_direction_east">东</string>

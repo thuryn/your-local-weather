@@ -108,10 +108,6 @@
     <string name="widget_refresh_button">Tlačítko obnovení ve widgetu</string>
 
     <!-- Donation Bitcoin dialog -->
-    <string name="donation_bitcoin_qr_description">Příspěvek Bitcoinem QR kód</string>
-    <string name="donation_bitcoin_copy_button">Kopírovat adresu Bitcoinu</string>
-    <string name="donation_bitcoin_open_app">Otevřít aplikaci Bitcoin</string>
-    <string name="donation_bitcoin_copy_message">Adresa Bitcoinu byla zkopírována do schránky</string>
 
     <!-- Wind directions -->
     <string name="wind_direction_north">S</string>

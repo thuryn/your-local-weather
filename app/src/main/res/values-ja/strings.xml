@@ -93,10 +93,6 @@
     <string name="widget_refresh_button">ウィジェット リフレッシュ ボタン</string>
 
     <!-- Donation Bitcoin dialog -->
-    <string name="donation_bitcoin_qr_description">寄付の Bitcoin QR コード</string>
-    <string name="donation_bitcoin_copy_button">Bitcoin アドレスをコピー</string>
-    <string name="donation_bitcoin_open_app">Bitcoin アプリを開く</string>
-    <string name="donation_bitcoin_copy_message">Bitcoin アドレスをクリップボードにコピーしました</string>
 
     <!-- Wind directions -->
     <string name="wind_direction_north">北</string>

@@ -94,10 +94,6 @@
     <string name="widget_refresh_button">Widgetean freskatze botoia</string>
 
     <!-- Donation Bitcoin dialog -->
-    <string name="donation_bitcoin_qr_description">Bitcoinak emateko QR kodea</string>
-    <string name="donation_bitcoin_copy_button">Bitcoin helbidea kopiatu</string>
-    <string name="donation_bitcoin_open_app">Bitcoin aplikazioa ireki</string>
-    <string name="donation_bitcoin_copy_message">Bitcoin helbidea arbelera kopiatu da</string>
 
     <!-- Wind directions -->
     <string name="wind_direction_north">I</string>

@@ -94,10 +94,6 @@
     <string name="widget_refresh_button">Botó d\'actualització del giny</string>
 
     <!-- Donation Bitcoin dialog -->
-    <string name="donation_bitcoin_qr_description">Codi QR de donació de Bitcoin</string>
-    <string name="donation_bitcoin_copy_button">Copiar direcció de Bitcoin</string>
-    <string name="donation_bitcoin_open_app">Obrir aplicació de Bitcoin</string>
-    <string name="donation_bitcoin_copy_message">La direcció de Bitcoin s\'ha copiat en el porta-retalls</string>
 
     <!-- Wind directions -->
     <string name="wind_direction_north">N</string>

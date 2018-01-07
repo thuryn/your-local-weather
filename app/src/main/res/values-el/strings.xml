@@ -100,11 +100,6 @@
     <string name="preference_widget_use_geocoder">Χρήση γεωντοπισμού για την προβολή</string>
     <string name="about_open_source_licenses_pref_title">Άδειες Ανοιχτού Κώδικα</string>
 
-    <string name="donation_bitcoin_qr_description">QR κώδικας για δωρεά σε Μπιτκόνια</string>
-    <string name="donation_bitcoin_copy_button">Αντιγραφή της Μπιτκοϊνικής Διεύθυνσης</string>
-    <string name="donation_bitcoin_open_app">Άνοιγμα της Μπιτκοϊνικής Εφαρμογής</string>
-    <string name="donation_bitcoin_copy_message">Η Μπιτκοϊνική διεύθυνση αντιγράφτηκε στο πρόχειρο</string>
-
     <string name="nav_feedback">Γνώμη</string>
     <string name="preference_widget_theme_title">Θέμα Γραφικού Στοιχείου</string>
     <string name="pref_title_theme">Θέμα</string>

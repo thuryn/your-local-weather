@@ -93,13 +93,12 @@
     <string name="widget_weather_icon_description">Momentanes Wetter Icon</string>
     <string name="widget_refresh_button">\"Widget aktualisieren\" Button</string>
 
-    <!-- Donation Bitcoin dialog -->
-    <string name="donation_bitcoin_qr_description">Donation Bitcoin QR-Code</string>
-    <string name="donation_bitcoin_copy_button">Bitcoin-Adresse kopieren</string>
-    <string name="donation_bitcoin_open_app">Bitcoin App öffnen</string>
-    <string name="donation_bitcoin_copy_message">Bitcoin-Adresse wurde in die Zwischenablage kopiert</string>
+    <!-- Donation Bitcoin dialog --><![CDATA[
 
-    !-- Wind directions --&gt;
+
+    !-- Wind directions -->
+
+    ]]>
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_east">NO</string>
     <string name="wind_direction_east">O</string>

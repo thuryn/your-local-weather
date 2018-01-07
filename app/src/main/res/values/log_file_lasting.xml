@@ -8,7 +8,7 @@
         <item>@string/log_file_168_label</item>
         <item>@string/log_file_720_label</item>
     </string-array>
-    <string-array name="log_file_lasting_values">
+    <string-array name="log_file_lasting_values" translatable="false">
         <item>12</item>
         <item>24</item>
         <item>48</item>
