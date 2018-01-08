@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Location;
 import android.net.wifi.ScanResult;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -52,7 +53,7 @@ public class MozillaLocationService {
     private Location lastResponse = null;
 
     public synchronized void getLocationFromCellsAndWifis(final Context context,
-                                                          List<CellBackendHelper.Cell> cells,
+                                                          List<Cell> cells,
                                                           List<ScanResult> wiFis,
                                                           final String destinationPackageName,
                                                           final boolean resolveAddress) {
@@ -146,32 +147,31 @@ public class MozillaLocationService {
         context.startService(sendIntent);
     }
 
-    private static String createRequest(List<CellBackendHelper.Cell> cells, List<ScanResult> wiFis) throws JSONException {
+    private static String createRequest(List<Cell> cells, List<ScanResult> wiFis) throws JSONException {
         JSONObject jsonObject = new JSONObject();
         JSONArray cellTowers = new JSONArray();
 
         if (cells != null) {
-            CellBackendHelper.Cell.CellType lastType = null;
-            for (CellBackendHelper.Cell cell : cells) {
-                if (cell.getType() == CellBackendHelper.Cell.CellType.CDMA) {
-                    jsonObject.put("radioType", "cdma");
-                } else if (lastType != null && lastType != cell.getType()) {
+            String lastType = null;
+            for (Cell cell : cells) {
+                String networkType = getRadioType(cell);
+                if (lastType != null && lastType.equals(networkType)) {
                     // We can't contribute if different cell types are mixed.
                     jsonObject.put("radioType", null);
                 } else {
                     jsonObject.put("radioType", getRadioType(cell));
                 }
-                lastType = cell.getType();
+                lastType = networkType;
                 JSONObject cellTower = new JSONObject();
                 cellTower.put("radioType", getRadioType(cell));
-                cellTower.put("mobileCountryCode", cell.getMcc());
-                cellTower.put("mobileNetworkCode", cell.getMnc());
-                cellTower.put("locationAreaCode", cell.getLac());
-                cellTower.put("cellId", cell.getCid());
-                cellTower.put("signalStrength", cell.getSignal());
-                if (cell.getPsc() != -1)
-                    cellTower.put("psc", cell.getPsc());
-                cellTower.put("asu", calculateAsu(cell));
+                cellTower.put("mobileCountryCode", cell.mcc);
+                cellTower.put("mobileNetworkCode", cell.mnc);
+                cellTower.put("locationAreaCode", cell.area);
+                cellTower.put("cellId", cell.cellId);
+                cellTower.put("signalStrength", cell.signal);
+                if (cell.psc != -1)
+                    cellTower.put("psc", cell.psc);
+                cellTower.put("asu", calculateAsu(networkType, cell.signal));
                 cellTowers.put(cellTower);
             }
         }
@@ -199,16 +199,15 @@ public class MozillaLocationService {
      * see https://mozilla-ichnaea.readthedocs.org/en/latest/cell.html
      */
     @SuppressWarnings("MagicNumber")
-    private static int calculateAsu(CellBackendHelper.Cell cell) {
-        switch (cell.getType()) {
-            case GSM:
-                return Math.max(0, Math.min(31, (cell.getSignal() + 113) / 2));
-            case UMTS:
-                return Math.max(-5, Math.max(91, cell.getSignal() + 116));
-            case LTE:
-                return Math.max(0, Math.min(95, cell.getSignal() + 140));
-            case CDMA:
-                int signal = cell.getSignal();
+    private static int calculateAsu(String networkType, int signal) {
+        switch (networkType) {
+            case "gsm":
+                return Math.max(0, Math.min(31, (signal + 113) / 2));
+            case "wcdma":
+                return Math.max(-5, Math.max(91, signal + 116));
+            case "lte":
+                return Math.max(0, Math.min(95, signal + 140));
+            case "cdma":
                 if (signal >= -75) {
                     return 16;
                 }
@@ -229,16 +228,25 @@ public class MozillaLocationService {
         return 0;
     }
 
-
-    private static String getRadioType(CellBackendHelper.Cell cell) {
-        switch (cell.getType()) {
-            case CDMA:
-                return "cdma";
-            case LTE:
-                return "lte";
-            case UMTS:
+    private static String getRadioType(Cell cell) {
+        switch (cell.technology) {
+            case TelephonyManager.NETWORK_TYPE_UMTS:
+            case TelephonyManager.NETWORK_TYPE_HSDPA:
+            case TelephonyManager.NETWORK_TYPE_HSUPA:
+            case TelephonyManager.NETWORK_TYPE_HSPA:
+            case TelephonyManager.NETWORK_TYPE_HSPAP:
                 return "wcdma";
-            case GSM:
+            case TelephonyManager.NETWORK_TYPE_LTE:
+                return "lte";
+            case TelephonyManager.NETWORK_TYPE_EVDO_0:
+            case TelephonyManager.NETWORK_TYPE_EVDO_A:
+            case TelephonyManager.NETWORK_TYPE_EVDO_B:
+            case TelephonyManager.NETWORK_TYPE_1xRTT:
+            case TelephonyManager.NETWORK_TYPE_EHRPD:
+            case TelephonyManager.NETWORK_TYPE_IDEN:
+                return "cdma";
+            case TelephonyManager.NETWORK_TYPE_GPRS:
+            case TelephonyManager.NETWORK_TYPE_EDGE:
             default:
                 return "gsm";
         }
