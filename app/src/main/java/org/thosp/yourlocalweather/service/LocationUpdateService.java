@@ -545,7 +545,7 @@ public class LocationUpdateService extends Service implements LocationListener {
 
     private boolean checkLocationProviderPermission() {
         if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             return false;
         }
