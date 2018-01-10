@@ -15,6 +15,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.widget.ImageView;
+import android.widget.RemoteViews;
+
 import java.io.IOException;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.Weather;
@@ -126,7 +129,29 @@ public class Utils {
 
         return icon;
     }
-    
+
+    public static void setWeatherIcon(ImageView imageView, Context context) {
+        if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
+            imageView.setImageBitmap(createWeatherIcon(context, getStrIcon(context)));
+        } else {
+            SharedPreferences weatherPref = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
+                    Context.MODE_PRIVATE);
+            imageView.setImageResource(Utils.getWeatherResourceIcon(weatherPref));
+        }
+    }
+
+
+    public static void setWeatherIcon(RemoteViews remoteViews, Context context) {
+        if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
+            remoteViews.setImageViewBitmap(R.id.widget_icon,
+                    createWeatherIcon(context, getStrIcon(context)));
+        } else {
+            SharedPreferences weatherPref = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
+                    Context.MODE_PRIVATE);
+            remoteViews.setImageViewResource(R.id.widget_icon, Utils.getWeatherResourceIcon(weatherPref));
+        }
+    }
+
     public static int getWeatherResourceIcon(SharedPreferences weatherPref) {
         Set<String> weatherIds = weatherPref.getStringSet(Constants.WEATHER_DATA_WEATHER_ID, new HashSet<String>());
         if (weatherIds.isEmpty()) {

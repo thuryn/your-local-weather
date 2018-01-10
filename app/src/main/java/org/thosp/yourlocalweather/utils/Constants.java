@@ -39,6 +39,7 @@ public class Constants {
     public static final String KEY_PREF_WIDGET_UPDATE_PERIOD = "widget_update_period_pref_key";
     public static final String PREF_LANGUAGE = "language_pref_key";
     public static final String KEY_PREF_LOCATION_GEOCODER_SOURCE = "location_geocoder_source";
+    public static final String KEY_PREF_WEATHER_ICON_SET = "weather_icon_set_pref_key";
     public static final String KEY_PREF_UPDATE_DETAIL = "widget_update_details_pref_key";
     public static final String PREF_THEME = "theme_pref_key";
     public static final String KEY_DEBUG_FILE = "debug.log.file";

@@ -61,8 +61,7 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
         remoteViews.setTextViewText(R.id.widget_humidity, humidity);
         remoteViews.setTextViewText(R.id.widget_pressure, pressure);
         remoteViews.setTextViewText(R.id.widget_clouds, cloudiness);
-        remoteViews.setImageViewBitmap(R.id.widget_icon,
-                                       Utils.createWeatherIcon(context, weatherIcon));
+        Utils.setWeatherIcon(remoteViews, context);
         remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
     }
 

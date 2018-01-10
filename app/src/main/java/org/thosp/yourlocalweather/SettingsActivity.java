@@ -130,6 +130,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 Constants.KEY_PREF_INTERVAL_NOTIFICATION,
                 Constants.PREF_LANGUAGE,
                 Constants.PREF_THEME,
+                Constants.KEY_PREF_WEATHER_ICON_SET
         };
 
         @Override
@@ -209,6 +210,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         restartApp(getActivity());
                     }
                     break;
+                case Constants.KEY_PREF_WEATHER_ICON_SET:
+                    entrySummary(key);
             }
         }
 

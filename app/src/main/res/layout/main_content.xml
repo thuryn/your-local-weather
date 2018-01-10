@@ -52,16 +52,14 @@
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <TextView
+                        <ImageView
                             android:id="@+id/main.weather_icon"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:gravity="center"
                             android:textAlignment="center"
-                            android:textColor="@color/textColorPrimary"
-                            android:textSize="52sp"
-                            tools:text="Icon"/>
+                            android:textColor="@color/textColorPrimary" />
 
                         <TextView
                             android:id="@+id/main.temperature"

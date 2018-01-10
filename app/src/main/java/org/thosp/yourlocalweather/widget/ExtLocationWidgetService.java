@@ -72,9 +72,7 @@ public class ExtLocationWidgetService extends IntentService {
             remoteViews.setTextViewText(R.id.widget_humidity, humidity);
             remoteViews.setTextViewText(R.id.widget_sunrise, sunrise);
             remoteViews.setTextViewText(R.id.widget_sunset, sunset);
-            SharedPreferences weatherPref = this.getSharedPreferences(Constants.PREF_WEATHER_NAME,
-                    Context.MODE_PRIVATE);
-            remoteViews.setImageViewResource(R.id.widget_icon, Utils.getWeatherResourceIcon(weatherPref));
+            Utils.setWeatherIcon(remoteViews, this);
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
 
             widgetManager.updateAppWidget(appWidgetId, remoteViews);

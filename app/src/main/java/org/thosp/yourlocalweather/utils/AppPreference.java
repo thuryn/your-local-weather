@@ -125,6 +125,11 @@ public class AppPreference {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE, "location_geocoder_local");
     }
+
+    public static String getIconSet(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_WEATHER_ICON_SET, "weather_icon_set_merlin_the_red");
+    }
     
     public static String getUpdateSource(Context context) {
         String updateDetailLevel = PreferenceManager.getDefaultSharedPreferences(context).getString(

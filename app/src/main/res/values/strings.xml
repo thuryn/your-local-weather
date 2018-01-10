@@ -196,4 +196,9 @@
     <string name="log_file_72_label" tools:ignore="MissingTranslation">three days</string>
     <string name="log_file_168_label" tools:ignore="MissingTranslation">a week</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">a month</string>
+
+    <!-- Icon preference strings -->
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Icon set</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Font based icons</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin the red icons</string>
 </resources>

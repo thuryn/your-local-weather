@@ -58,7 +58,7 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
         remoteViews.setTextViewText(R.id.widget_humidity, humidity);
         remoteViews.setTextViewText(R.id.widget_sunrise, sunrise);
         remoteViews.setTextViewText(R.id.widget_sunset, sunset);
-        remoteViews.setImageViewResource(R.id.widget_icon, Utils.getWeatherResourceIcon(weatherPref));
+        Utils.setWeatherIcon(remoteViews, context);
         remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
     }
 

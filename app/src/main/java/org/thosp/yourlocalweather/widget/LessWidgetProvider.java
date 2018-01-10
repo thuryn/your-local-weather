@@ -32,8 +32,7 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
         remoteViews.setTextViewText(R.id.widget_temperature,
                                     temperature + temperatureScale);
         remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context));
-        remoteViews.setImageViewBitmap(R.id.widget_icon,
-                                       Utils.createWeatherIcon(context, weatherIcon));
+        Utils.setWeatherIcon(remoteViews, context);
         remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
     }
 

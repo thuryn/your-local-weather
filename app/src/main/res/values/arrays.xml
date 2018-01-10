@@ -52,12 +52,10 @@
     <string-array name="location_geocoder_source_entries">
         <item>@string/location_geocoder_local</item>
         <item>@string/location_geocoder_system</item>
-        <item>@string/location_geocoder_unifiednlp</item>
     </string-array>
     <string-array name="location_geocoder_source_values" translatable="false">
         <item>location_geocoder_local</item>
         <item>location_geocoder_system</item>
-        <item>location_geocoder_unifiednlp</item>
     </string-array>
     
     <string-array name="preference_display_update_entries">
@@ -173,5 +171,14 @@
         <item>4380</item>
         <item>8760</item>
         <item>88888</item>
+    </string-array>
+
+    <string-array name="weather_icon_set_entries">
+        <item>@string/weather_icon_set_fontbased</item>
+        <item>@string/weather_icon_set_merlin_the_red</item>
+    </string-array>
+    <string-array name="weather_icon_set_values" translatable="false">
+        <item>weather_icon_set_fontbased</item>
+        <item>weather_icon_set_merlinTheRed</item>
     </string-array>
 </resources>

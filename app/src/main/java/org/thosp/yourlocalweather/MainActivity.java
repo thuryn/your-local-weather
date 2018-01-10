@@ -34,6 +34,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,7 +58,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
     private static final long LOCATION_TIMEOUT_IN_MS = 30000L;
 
-    private TextView mIconWeatherView;
+    private ImageView mIconWeatherView;
     private TextView mTemperatureView;
     private TextView mDescriptionView;
     private TextView mHumidityView;
@@ -168,8 +169,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         String sunrise = Utils.unixTimeToFormatTime(MainActivity.this, mWeather.sys.getSunrise());
         String sunset = Utils.unixTimeToFormatTime(MainActivity.this, mWeather.sys.getSunset());
 
-        mIconWeatherView.setText(
-                Utils.getStrIcon(MainActivity.this, mWeather.getCurrentWeathers().iterator().next().getIdIcon()));
+        Utils.setWeatherIcon(mIconWeatherView, this);
         mTemperatureView.setText(getString(R.string.temperature_with_degree, temperature));
         mDescriptionView.setText(Utils.getWeatherDescription(this, mWeather));
         mHumidityView.setText(getString(R.string.humidity_label,
@@ -344,7 +344,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         String sunrise = Utils.unixTimeToFormatTime(this, sunrisePref);
         String sunset = Utils.unixTimeToFormatTime(this, sunsetPref);
 
-        mIconWeatherView.setText(Utils.getStrIcon(this));
+        Utils.setWeatherIcon(mIconWeatherView, this);
         mTemperatureView.setText(getString(R.string.temperature_with_degree, temperature));
         mDescriptionView.setText(Utils.getWeatherDescription(this));
         mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
@@ -378,7 +378,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         Typeface robotoLight = Typeface.createFromAsset(this.getAssets(),
                 "fonts/Roboto-Light.ttf");
 
-        mIconWeatherView = (TextView) findViewById(R.id.main_weather_icon);
+        mIconWeatherView = (ImageView) findViewById(R.id.main_weather_icon);
         mTemperatureView = (TextView) findViewById(R.id.main_temperature);
         mDescriptionView = (TextView) findViewById(R.id.main_description);
         mPressureView = (TextView) findViewById(R.id.main_pressure);
@@ -390,7 +390,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mSunsetView = (TextView) findViewById(R.id.main_sunset);
         mAppBarLayout = (AppBarLayout) findViewById(R.id.main_app_bar);
 
-        mIconWeatherView.setTypeface(weatherFontIcon);
         mTemperatureView.setTypeface(robotoThin);
         mWindSpeedView.setTypeface(robotoLight);
         mHumidityView.setTypeface(robotoLight);
