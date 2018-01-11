@@ -58,13 +58,7 @@ public class AppPreference {
             currentWeatherIconIds.add(currentWeather.getIdIcon());
         }
         editor.putStringSet(Constants.WEATHER_DATA_WEATHER_ID, currentWeatherIds);
-
-        if(!hideDescription(context)) {
-            editor.putStringSet(Constants.WEATHER_DATA_DESCRIPTION,
-                    currentWeatherDescriptions);
-        } else {
-            editor.putString(Constants.WEATHER_DATA_DESCRIPTION, " ");
-        }
+        editor.putStringSet(Constants.WEATHER_DATA_DESCRIPTION, currentWeatherDescriptions);
         editor.putStringSet(Constants.WEATHER_DATA_ICON, currentWeatherIconIds);
         editor.putFloat(Constants.WEATHER_DATA_TEMPERATURE, weather.temperature.getTemp());
         editor.putFloat(Constants.WEATHER_DATA_PRESSURE, weather.currentCondition.getPressure());
@@ -91,7 +85,13 @@ public class AppPreference {
         Iterator<String> currentWeatherDescriptions = preferences.getStringSet(Constants.WEATHER_DATA_DESCRIPTION, new HashSet<String>()).iterator();
         Iterator<String> currentWeatherIconIds = preferences.getStringSet(Constants.WEATHER_DATA_ICON, new HashSet<String>()).iterator();
         while (currentWeatherIds.hasNext()) {
-            weather.addCurrentWeather(Integer.parseInt(currentWeatherIds.next()), hideDescription(context)?"":currentWeatherDescriptions.next(), currentWeatherIconIds.next());
+            int weatherId = Integer.parseInt(currentWeatherIds.next());
+            String weatherDescription = "";
+            if (!hideDescription(context) && currentWeatherDescriptions.hasNext()) {
+                weatherDescription = currentWeatherDescriptions.next();
+            }
+            String weatherIconId = (currentWeatherIconIds.hasNext())?currentWeatherIconIds.next():"";
+            weather.addCurrentWeather(weatherId, weatherDescription, weatherIconId);
         }
         weather.sys.setSunset(preferences.getLong(Constants.WEATHER_DATA_SUNSET, 0));
         weather.sys.setSunrise(preferences.getLong(Constants.WEATHER_DATA_SUNRISE, 0));
