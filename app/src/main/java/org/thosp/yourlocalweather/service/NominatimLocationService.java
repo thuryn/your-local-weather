@@ -14,6 +14,7 @@ import org.thosp.yourlocalweather.model.ReverseGeocodingCacheDbHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.microg.address.Formatter;
+import org.thosp.yourlocalweather.utils.Constants;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -165,7 +166,7 @@ public class NominatimLocationService {
     }
 
     private List<Address> retrieveLocationFromCache(Context context, ReverseGeocodingCacheDbHelper mDbHelper, double latitude, double longitude, String locale) {
-        boolean useCache = true; //PreferenceManager.getDefaultSharedPreferences(this).getBoolean(SettingsActivity.LOCATION_CACHE_ENABLED, true);
+        boolean useCache = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(Constants.APP_SETTINGS_LOCATION_CACHE_ENABLED, false);
 
         if (!useCache) {
             return null;
@@ -183,7 +184,7 @@ public class NominatimLocationService {
 
     private void storeAddressToCache(Context context, ReverseGeocodingCacheDbHelper mDbHelper, double latitude, double longitude, String locale, Address address) {
 
-        boolean useCache = true; //PreferenceManager.getDefaultSharedPreferences(this).getBoolean(SettingsActivity.LOCATION_CACHE_ENABLED, true);
+        boolean useCache = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(Constants.APP_SETTINGS_LOCATION_CACHE_ENABLED, false);
 
         if (!useCache) {
             return;
