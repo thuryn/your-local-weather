@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import static org.thosp.yourlocalweather.R.string.title_activity_license;
+
 public class LicenseActivity extends AppCompatActivity {
 
     @Override
@@ -26,7 +28,7 @@ public class LicenseActivity extends AppCompatActivity {
 
         final String path = getIntent().getData().getPath();
 
-        setTitle(getString(R.string.title_activity_license, path.substring(24)));
+        setTitle(getString(title_activity_license).replace("%s", path.substring(24)));
 
         try {
             TextView licenseTextView = (TextView) findViewById(R.id.license_license_text);
