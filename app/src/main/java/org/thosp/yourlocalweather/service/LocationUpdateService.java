@@ -77,6 +77,8 @@ public class LocationUpdateService extends Service implements LocationListener {
     private volatile boolean noLocationFound;
     private float gravity[] = new float[3];
     private MoveVector lastMovement;
+    private boolean isGPSEnabled;
+    private boolean isNetworkEnabled;
 
     private SensorEventListener sensorListener = new SensorEventListener() {
 
@@ -219,13 +221,19 @@ public class LocationUpdateService extends Service implements LocationListener {
         }
 
         if ("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE".equals(intent.getAction()) && (intent.getExtras() != null)) {
+
+            isGPSEnabled = locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
+                    && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
+                    && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
             String currentUpdateSource = intent.getExtras().getString("updateSource");
             if (!TextUtils.isEmpty(currentUpdateSource)) {
                 updateSource = currentUpdateSource;
             }
             locationSource = "-";
             wakeUp();
-            if (AppPreference.isUpdateLocationEnabled(this)) {
+            if (AppPreference.isUpdateLocationEnabled(this, updateSource) && (isGPSEnabled || isNetworkEnabled)) {
                 String geocoder = AppPreference.getLocationGeocoderSource(this);
                 if ("location_geocoder_unifiednlp".equals(geocoder) || "location_geocoder_local".equals(geocoder)) {
                     appendLog(getBaseContext(), TAG, "Widget calls to update location");
@@ -399,8 +407,8 @@ public class LocationUpdateService extends Service implements LocationListener {
         removeUpdates(this);
     }
 
-    public void gpsRequestLocation() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+    private void gpsRequestLocation() {
+        if (isGPSEnabled && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             Looper locationLooper = Looper.myLooper();
             appendLog(getBaseContext(), TAG, "get location from GPS");
             timerHandlerGpsLocation.postDelayed(timerRunnableGpsLocation, GPS_LOCATION_TIMEOUT_IN_MS);
@@ -486,7 +494,7 @@ public class LocationUpdateService extends Service implements LocationListener {
 
     private boolean updateNetworkLocation(boolean bylastLocationOnly) {
 
-        if (!checkLocationProviderPermission()) {
+        if (!checkLocationProviderPermission() || !isNetworkEnabled) {
             return false;
         }
         wakeUp();
@@ -568,7 +576,7 @@ public class LocationUpdateService extends Service implements LocationListener {
     }
 
     private void detectLocation() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (isNetworkEnabled && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             final Looper locationLooper = Looper.myLooper();
             locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, locationLooper);
             final LocationListener locationListener = this;

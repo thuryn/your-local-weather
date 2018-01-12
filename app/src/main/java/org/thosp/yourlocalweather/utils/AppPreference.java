@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.location.LocationManager;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 
@@ -116,7 +117,10 @@ public class AppPreference {
                 Constants.KEY_PREF_WIDGET_USE_GEOCODER, false);
     }
     
-    public static boolean isUpdateLocationEnabled(Context context) {
+    public static boolean isUpdateLocationEnabled(Context context, String updateSource) {
+        if ("MAIN".equals(updateSource)) {
+            return true;
+        }
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 Constants.KEY_PREF_WIDGET_UPDATE_LOCATION, false);
     }

@@ -46,6 +46,7 @@ import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
 import org.thosp.yourlocalweather.utils.Utils;
+import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.util.Locale;
 
@@ -79,7 +80,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private ConnectionDetector connectionDetector;
     private Boolean isNetworkAvailable;
     public static ProgressDialog mProgressDialog;
-    private LocationManager locationManager;
     private SwipeRefreshLayout mSwipeRefresh;
     private Menu mToolbarMenu;
     private BroadcastReceiver mWeatherUpdateReceiver;
@@ -104,7 +104,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private static final String[] PERMISSIONS_LOCATION = {Manifest.permission.ACCESS_COARSE_LOCATION,
                                                           Manifest.permission.ACCESS_FINE_LOCATION};
     public Context storedContext;
-    private Geocoder geocoder;
         
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -120,16 +119,11 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         initializeWeatherReceiver();
 
         connectionDetector = new ConnectionDetector(MainActivity.this);
-        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         mPrefWeather = getSharedPreferences(Constants.PREF_WEATHER_NAME, Context.MODE_PRIVATE);
         mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
                 Context.MODE_PRIVATE);
-        String city = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
-        if(AppPreference.isGeocoderEnabled(this)) {
-            city = mSharedPreferences.getString(Constants.APP_SETTINGS_GEO_CITY, "London");
-        }
-        setTitle(city);
+        setTitle( Utils.getCityAndCountry(this));
 
         /**
          * Configure SwipeRefreshLayout
@@ -147,7 +141,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         this.storedContext = this;
         fab.setOnClickListener(fabListener);
-        geocoder = new Geocoder(this, Locale.getDefault());
         PermissionUtil.checkAllPermissions(this);
     }
 
@@ -184,12 +177,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
         mSunriseView.setText(getString(R.string.sunrise_label, sunrise));
         mSunsetView.setText(getString(R.string.sunset_label, sunset));
-        if(AppPreference.isGeocoderEnabled(this)) {
-            setTitle(mSharedPreferences.getString(Constants.APP_SETTINGS_GEO_CITY, "London"));
-        } else {
-            setTitle(mWeather.location.getCityName());
-            
-        }
+        setTitle(Utils.getCityAndCountry(this));
         configEditor.putString(Constants.APP_SETTINGS_CITY, mWeather.location.getCityName());
         configEditor.putString(Constants.APP_SETTINGS_COUNTRY_CODE,
                 mWeather.location.getCountryCode());
@@ -253,62 +241,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         return super.onOptionsItemSelected(item);
     }
 
-    private LocationListener mLocationListener = new LocationListener() {
-        
-        @Override
-        public void onLocationChanged(Location location) {
-            onLocationChanged(location, null);
-        }
-    
-        public void onLocationChanged(Location location, Address address) {
-            mProgressDialog.cancel();
-            String latitude = String.format("%1$.2f", location.getLatitude());
-            String longitude = String.format("%1$.2f", location.getLongitude());
-
-            if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                locationManager.removeUpdates(mLocationListener);
-            }
-
-            connectionDetector = new ConnectionDetector(MainActivity.this);
-            isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
-
-            mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
-                    Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = mSharedPreferences.edit();
-            editor.putString(Constants.APP_SETTINGS_LATITUDE, latitude);
-            editor.putString(Constants.APP_SETTINGS_LONGITUDE, longitude);
-            editor.putLong(Constants.LAST_LOCATION_UPDATE_TIME_IN_MS, location.getTime());
-            editor.apply();
-            appendLog(getBaseContext(), TAG, "put new location from main activity, latitude=" + latitude + ", longitude=" + longitude);
-            boolean resolveAddressByOS = !"location_geocoder_unifiednlp".equals(AppPreference.getLocationGeocoderSource(storedContext));
-            Utils.getAndWriteAddressFromGeocoder(geocoder, address, latitude, longitude, resolveAddressByOS, getBaseContext());
-            editor.apply();
-
-            if (isNetworkAvailable) {
-                startService(new Intent(MainActivity.this, CurrentWeatherService.class));
-                sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
-            } else {
-                Toast.makeText(MainActivity.this, R.string.connection_not_found, Toast.LENGTH_SHORT)
-                        .show();
-            }
-        }
-
-        @Override
-        public void onStatusChanged(String provider, int status, Bundle extras) {
-
-        }
-
-        @Override
-        public void onProviderEnabled(String provider) {
-
-        }
-
-        @Override
-        public void onProviderDisabled(String provider) {
-
-        }
-    };
-
     private SwipeRefreshLayout.OnRefreshListener swipeRefreshListener =
             new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
@@ -360,11 +292,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 mPercentSign));
         mSunriseView.setText(getString(R.string.sunrise_label, sunrise));
         mSunsetView.setText(getString(R.string.sunset_label, sunset));
-        String title = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
-        if(AppPreference.isGeocoderEnabled(this)) {
-            title = Utils.getCityAndCountry(this);
-        }
-        setTitle(title);
+        setTitle( Utils.getCityAndCountry(this));
     }
 
     private void initializeTextView() {
@@ -518,38 +446,17 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     };
 
     private void detectLocation() {
-        boolean isGPSEnabled = locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
-                && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
-                && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
+        if (WidgetRefreshIconService.isRotationActive) {
+            return;
+        }
         mProgressDialog = new ProgressDialog(MainActivity.this);
         mProgressDialog.setMessage(getString(R.string.progressDialog_gps_locate));
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setCancelable(false);
-        mProgressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                try {
-                    locationManager.removeUpdates(mLocationListener);
-                } catch (SecurityException e) {
-                    Log.e(TAG, "Cancellation error", e);
-                }
-            }
-        });
-
-        if (isNetworkEnabled) {
-            networkRequestLocation();
-            mProgressDialog.show();
-        } else {
-            if (isGPSEnabled) {
-                gpsRequestLocation();
-                mProgressDialog.show();
-            } else {
-                showSettingsAlert();
-            }
-        }
+        updateNetworkLocation();
+        mProgressDialog.show();
+        WidgetRefreshIconService.mProgressDialog = mProgressDialog;
     }
 
     public void showSettingsAlert() {
@@ -576,58 +483,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 });
 
         settingsAlert.show();
-    }
-
-    public void gpsRequestLocation() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            Looper locationLooper = Looper.myLooper();
-            locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, mLocationListener, locationLooper);
-            final Handler locationHandler = new Handler(locationLooper);
-            locationHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    locationManager.removeUpdates(mLocationListener);
-                    if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                        Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                        if (lastLocation != null) {
-                            mLocationListener.onLocationChanged(lastLocation);
-                        } else {
-                            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, mLocationListener);
-                        }
-                    }
-                }
-            }, LOCATION_TIMEOUT_IN_MS);
-        }
-    }
-
-    public void networkRequestLocation() {
-        if("location_geocoder_unifiednlp".equals(AppPreference.getLocationGeocoderSource(this))) {
-                updateNetworkLocation();
-        } else {
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                Looper locationLooper = Looper.myLooper();
-                locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, mLocationListener, locationLooper);
-                final Handler locationHandler = new Handler(locationLooper);
-                locationHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        locationManager.removeUpdates(mLocationListener);
-                        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-                            Location lastNetworkLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                            Location lastGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-
-                            if ((lastGpsLocation == null) && (lastNetworkLocation != null)) {
-                                mLocationListener.onLocationChanged(lastNetworkLocation);
-                            } else if ((lastGpsLocation != null) && (lastNetworkLocation == null)) {
-                                mLocationListener.onLocationChanged(lastGpsLocation);
-                            } else {
-                                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, mLocationListener);
-                            }
-                        }
-                    }
-                }, LOCATION_TIMEOUT_IN_MS);
-            }
-        }
     }
 
     private void updateNetworkLocation() {

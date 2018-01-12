@@ -59,7 +59,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                 break;
             case Constants.ACTION_FORCED_APPWIDGET_UPDATE:
                 if (!WidgetRefreshIconService.isRotationActive) {
-                    if (AppPreference.isUpdateLocationEnabled(context)) {
+                    if (AppPreference.isUpdateLocationEnabled(context, getWidgetName())) {
                         Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
                         startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
                         startLocationUpdateIntent.putExtra("updateSource", getWidgetName());
@@ -132,7 +132,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             return;
         }
         lastUpdatedWeather = now;
-        if(AppPreference.isUpdateLocationEnabled(context)) {
+        if(AppPreference.isUpdateLocationEnabled(context, getWidgetName())) {
             Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
             startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
             startLocationUpdateIntent.putExtra("updateSource", getWidgetName());

@@ -88,7 +88,7 @@ public class AppWidgetProviderAlarm {
     }
 
     private PendingIntent getPendingIntent(Class<?> cls) {
-        if(AppPreference.isUpdateLocationEnabled(mContext)) {
+        if(AppPreference.isUpdateLocationEnabled(mContext, "")) {
             Intent intent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
             intent.setPackage("org.thosp.yourlocalweather");
             if (cls.getCanonicalName().equals(LessWidgetProvider.class.getCanonicalName())) {
