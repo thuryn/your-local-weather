@@ -233,7 +233,7 @@ public class LocationUpdateService extends Service implements LocationListener {
             }
             locationSource = "-";
             wakeUp();
-            if (AppPreference.isUpdateLocationEnabled(this, updateSource) && (isGPSEnabled || isNetworkEnabled)) {
+            if (AppPreference.isUpdateLocationEnabled(this) && (isGPSEnabled || isNetworkEnabled)) {
                 String geocoder = AppPreference.getLocationGeocoderSource(this);
                 if ("location_geocoder_unifiednlp".equals(geocoder) || "location_geocoder_local".equals(geocoder)) {
                     appendLog(getBaseContext(), TAG, "Widget calls to update location");

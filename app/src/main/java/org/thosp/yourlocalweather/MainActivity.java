@@ -11,14 +11,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
-import android.location.Address;
-import android.location.Geocoder;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -29,7 +22,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -51,7 +43,6 @@ import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 import java.util.Locale;
 
 import static org.thosp.yourlocalweather.utils.AppPreference.getLastUpdateTimeMillis;
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetChangedListener {
 
@@ -178,9 +169,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mSunriseView.setText(getString(R.string.sunrise_label, sunrise));
         mSunsetView.setText(getString(R.string.sunset_label, sunset));
         setTitle(Utils.getCityAndCountry(this));
-        configEditor.putString(Constants.APP_SETTINGS_CITY, mWeather.location.getCityName());
-        configEditor.putString(Constants.APP_SETTINGS_COUNTRY_CODE,
-                mWeather.location.getCountryCode());
         configEditor.apply();
     }
 
@@ -212,6 +200,11 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.activity_main_menu, menu);
 
+        if (AppPreference.isUpdateLocationEnabled(getBaseContext())) {
+            menu.findItem(R.id.main_menu_search_city).setVisible(false);
+        } else {
+            menu.findItem(R.id.main_menu_detect_location).setVisible(false);
+        }
         return true;
     }
 
@@ -413,12 +406,11 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             String sunrise;
             String sunset;
             city = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
-            if(AppPreference.isGeocoderEnabled(storedContext)) {
+            if(AppPreference.isUpdateLocationEnabled(storedContext)) {
                 city = mSharedPreferences.getString(Constants.APP_SETTINGS_GEO_CITY, "London");
             }
             temperature = String.format(Locale.getDefault(), "%d", Math.round(mPrefWeather.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0)));
-            description = mPrefWeather.getString(Constants.WEATHER_DATA_DESCRIPTION,
-                    "clear sky");
+            description = Utils.getWeatherDescription(MainActivity.this);
             wind = String.format(Locale.getDefault(), "%.1f",
                     mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
             sunrise = Utils.unixTimeToFormatTime(MainActivity.this, mPrefWeather

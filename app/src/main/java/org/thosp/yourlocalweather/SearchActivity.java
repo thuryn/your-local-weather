@@ -24,7 +24,6 @@ import android.widget.TextView;
 
 import org.thosp.yourlocalweather.model.CitySearch;
 import org.thosp.yourlocalweather.utils.CityParser;
-import org.thosp.yourlocalweather.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -118,7 +117,7 @@ public class SearchActivity extends AppCompatActivity {
         public void onClick(View v) {
             v.setBackgroundColor(Color.rgb(227, 227, 227));
             setCity(mCity);
-            sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
+            sendBroadcast(new Intent("android.appwidget.action.APPWIDGET_UPDATE"));
             setResult(RESULT_OK);
             finish();
         }

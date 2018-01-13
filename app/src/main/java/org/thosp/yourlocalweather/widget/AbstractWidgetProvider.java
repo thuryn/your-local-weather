@@ -1,24 +1,16 @@
 package org.thosp.yourlocalweather.widget;
 
-import android.Manifest;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
-import android.support.v4.content.ContextCompat;
-import android.view.animation.Animation;
-import android.view.animation.RotateAnimation;
-import android.widget.ImageView;
 import android.widget.RemoteViews;
 
 import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.R;
-import org.thosp.yourlocalweather.service.LocationUpdateService;
+import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.AppWidgetProviderAlarm;
 import org.thosp.yourlocalweather.utils.Constants;
@@ -48,25 +40,34 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        appendLog(context, TAG, "intent:" + intent);
+        appendLog(context, TAG, "intent:" + intent + ", widget:" + getWidgetClass());
         switch (intent.getAction()) {
+            case "org.thosp.yourlocalweather.action.WEATHER_UPDATE_RESULT":
             case "android.appwidget.action.APPWIDGET_UPDATE":
                 super.onReceive(context, intent);
                 if (!servicesStarted) {
                     onEnabled(context);
                     servicesStarted = true;
                 }
+
+                AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
+                ComponentName widgetComponent = new ComponentName(context, getWidgetClass());
+
+                int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
+                onUpdate(context, widgetManager, widgetIds);
                 break;
             case Constants.ACTION_FORCED_APPWIDGET_UPDATE:
                 if (!WidgetRefreshIconService.isRotationActive) {
-                    if (AppPreference.isUpdateLocationEnabled(context, getWidgetName())) {
+                    if (AppPreference.isUpdateLocationEnabled(context)) {
                         Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
                         startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
                         startLocationUpdateIntent.putExtra("updateSource", getWidgetName());
                         context.startService(startLocationUpdateIntent);
                         appendLog(context, TAG, "send intent START_LOCATION_UPDATE:" + startLocationUpdateIntent);
                     } else {
-                        context.startService(new Intent(context, getWidgetClass()));
+                        Intent intentToCheckWeather = new Intent(context, CurrentWeatherService.class);
+                        intentToCheckWeather.putExtra("updateSource", getWidgetName());
+                        context.startService(intentToCheckWeather);
                     }
                 }
                 break;
@@ -132,7 +133,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             return;
         }
         lastUpdatedWeather = now;
-        if(AppPreference.isUpdateLocationEnabled(context, getWidgetName())) {
+        if(AppPreference.isUpdateLocationEnabled(context)) {
             Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
             startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
             startLocationUpdateIntent.putExtra("updateSource", getWidgetName());

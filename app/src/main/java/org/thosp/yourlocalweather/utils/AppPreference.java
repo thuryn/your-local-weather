@@ -112,15 +112,7 @@ public class AppPreference {
         return result;
     }
 
-    public static boolean isGeocoderEnabled(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
-                Constants.KEY_PREF_WIDGET_USE_GEOCODER, false);
-    }
-    
-    public static boolean isUpdateLocationEnabled(Context context, String updateSource) {
-        if ("MAIN".equals(updateSource)) {
-            return true;
-        }
+    public static boolean isUpdateLocationEnabled(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 Constants.KEY_PREF_WIDGET_UPDATE_LOCATION, false);
     }
