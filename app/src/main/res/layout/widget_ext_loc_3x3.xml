@@ -94,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:lines="1"
+                android:maxLines="2"
                 android:textSize="@dimen/widget_3x3_text_size"/>
 
             <TextView
@@ -102,7 +102,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:lines="1"
+                android:maxLines="2"
                 android:textSize="@dimen/widget_3x3_text_size"/>
         </LinearLayout>
 
