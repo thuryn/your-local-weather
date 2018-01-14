@@ -33,7 +33,6 @@ public class WidgetRefreshIconService extends IntentService {
     private final int[] refreshIcons = new int[8];
     private volatile int currentRotationIndex;
     public volatile static boolean isRotationActive = false;
-    public static ProgressDialog mProgressDialog;
 
     private final Map<ComponentName, Integer> widgetTypes = new HashMap<>();
 
@@ -98,10 +97,6 @@ public class WidgetRefreshIconService extends IntentService {
         rotationLock.lock();
         try {
             isRotationActive = false;
-            if (mProgressDialog != null) {
-                mProgressDialog.hide();
-                mProgressDialog = null;
-            }
             timerRotateIconHandler.removeCallbacksAndMessages(null);
         } finally {
             rotationLock.unlock();

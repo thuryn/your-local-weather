@@ -12,6 +12,8 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -95,6 +97,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private static final String[] PERMISSIONS_LOCATION = {Manifest.permission.ACCESS_COARSE_LOCATION,
                                                           Manifest.permission.ACCESS_FINE_LOCATION};
     public Context storedContext;
+    private Handler refreshDialogHandler;
         
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -375,6 +378,13 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                     case CurrentWeatherService.ACTION_WEATHER_UPDATE_OK:
                         mSwipeRefresh.setRefreshing(false);
                         setUpdateButtonState(false);
+                        if (mProgressDialog != null) {
+                            refreshDialogHandler.post(new Runnable() {
+                                public void run() {
+                                    mProgressDialog.hide();
+                                }
+                            });
+                        }
                         updateCurrentWeather();
                         break;
                     case CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL:
@@ -448,7 +458,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mProgressDialog.setCancelable(false);
         updateNetworkLocation();
         mProgressDialog.show();
-        WidgetRefreshIconService.mProgressDialog = mProgressDialog;
+        refreshDialogHandler = new Handler(Looper.getMainLooper());
     }
 
     public void showSettingsAlert() {
