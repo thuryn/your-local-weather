@@ -126,7 +126,12 @@ public class AppPreference {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_WEATHER_ICON_SET, "weather_icon_set_merlin_the_red");
     }
-    
+
+    public static boolean showLabelsOnWidget(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean(Constants.KEY_PREF_WIDGET_SHOW_LABELS, false);
+    }
+
     public static String getUpdateSource(Context context) {
         String updateDetailLevel = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_UPDATE_DETAIL, "preference_display_update_nothing");

@@ -13,6 +13,8 @@ import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.Utils;
+import org.thosp.yourlocalweather.utils.WidgetUtils;
+
 import java.util.Locale;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -34,26 +36,10 @@ public class MoreWidgetService extends IntentService {
         int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
         for (int appWidgetId : widgetIds) {
             String temperatureScale = Utils.getTemperatureScale(this);
-            String speedScale = Utils.getSpeedScale(this);
-            String percentSign = getString(R.string.percent_sign);
-            String pressureMeasurement = getString(R.string.pressure_measurement);
 
             String temperature = String.format(Locale.getDefault(), "%d",
                     Math.round(weather.temperature.getTemp()));
-            String wind = getString(R.string.wind_label, String.format(Locale.getDefault(),
-                                                                       "%.1f",
-                                                                       weather.wind.getSpeed()),
-                                    speedScale);
-            String humidity = getString(R.string.humidity_label,
-                                        String.valueOf(weather.currentCondition.getHumidity()),
-                                        percentSign);
-            String pressure = getString(R.string.pressure_label,
-                                        String.format(Locale.getDefault(), "%.1f",
-                                                      weather.currentCondition.getPressure()),
-                                        pressureMeasurement);
-            String cloudiness = getString(R.string.cloudiness_label,
-                                          String.valueOf(weather.cloud.getClouds()),
-                                          percentSign);
+
             String lastUpdate = Utils.setLastUpdateTime(this, AppPreference
                     .getLastUpdateTimeMillis(this));
 
@@ -64,10 +50,10 @@ public class MoreWidgetService extends IntentService {
             if(!AppPreference.hideDescription(this))
                 remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, weather));
             else remoteViews.setTextViewText(R.id.widget_description, " ");
-            remoteViews.setTextViewText(R.id.widget_wind, wind);
-            remoteViews.setTextViewText(R.id.widget_humidity, humidity);
-            remoteViews.setTextViewText(R.id.widget_pressure, pressure);
-            remoteViews.setTextViewText(R.id.widget_clouds, cloudiness);
+            WidgetUtils.setWind(getBaseContext(), remoteViews, weather.wind.getSpeed());
+            WidgetUtils.setHumidity(getBaseContext(), remoteViews, weather.currentCondition.getHumidity());
+            WidgetUtils.setPressure(getBaseContext(), remoteViews, weather.currentCondition.getPressure());
+            WidgetUtils.setClouds(getBaseContext(), remoteViews, weather.cloud.getClouds());
             Utils.setWeatherIcon(remoteViews, this);
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
 

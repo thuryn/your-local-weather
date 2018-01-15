@@ -73,37 +73,78 @@
                 android:ellipsize="end"
                 android:lines="1"
                 android:textSize="30sp"/>
-            <TextView
-                android:id="@+id/widget_wind"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:lines="1"
-                android:textSize="@dimen/widget_3x3_text_size"/>
 
-            <TextView
-                android:id="@+id/widget_humidity"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:lines="1"
-                android:textSize="@dimen/widget_3x3_text_size"/>
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/widget_wind_icon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="3dp" />
 
-            <TextView
-                android:id="@+id/widget_sunrise"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:textSize="@dimen/widget_3x3_text_size"/>
+                <TextView
+                    android:id="@+id/widget_wind"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textSize="@dimen/widget_3x3_text_size"/>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/widget_sunset"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:textSize="@dimen/widget_3x3_text_size"/>
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/widget_humidity_icon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="3dp" />
+
+                <TextView
+                    android:id="@+id/widget_humidity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textSize="@dimen/widget_3x3_text_size"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/widget_sunrise_icon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="3dp" />
+
+                <TextView
+                    android:id="@+id/widget_sunrise"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textSize="@dimen/widget_3x3_text_size"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/widget_sunset_icon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginTop="3dp" />
+
+                <TextView
+                    android:id="@+id/widget_sunset"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textSize="@dimen/widget_3x3_text_size"/>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout

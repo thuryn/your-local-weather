@@ -34,7 +34,7 @@ public class Constants {
     public static final String KEY_PREF_INTERVAL_NOTIFICATION = "notification_interval_pref_key";
     public static final String KEY_PREF_VIBRATE = "notification_vibrate_pref_key";
     public static final String KEY_PREF_WIDGET_UPDATE_LOCATION = "widget_update_location_pref_key";
-    public static final String KEY_PREF_WIDGET_USE_GEOCODER = "widget_use_geocoder_pref_key";
+    public static final String KEY_PREF_WIDGET_SHOW_LABELS = "widget_show_labels_pref_key";
     public static final String KEY_PREF_WIDGET_THEME = "widget_theme_pref_key";
     public static final String KEY_PREF_WIDGET_UPDATE_PERIOD = "widget_update_period_pref_key";
     public static final String PREF_LANGUAGE = "language_pref_key";

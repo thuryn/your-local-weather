@@ -461,6 +461,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         updateLocation.setChecked(false);
                     }
                     break;
+                case Constants.KEY_PREF_WIDGET_SHOW_LABELS:
+                    getActivity().sendBroadcast(new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED));
+                    break;
                 case Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE:
                     setSummary(Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE);
                     break;

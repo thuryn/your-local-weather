@@ -1,4 +1,5 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="MissingTranslation">Vaše místní počasí</string>
     <string name="enter_city_hint">Zadejte město</string>
     <string name="label_current_city">Aktuální město</string>
     <string name="label_choose_city">Vyberte město</string>
@@ -64,6 +65,7 @@
     <string name="preference_title_activity_general">Obecná nastavení</string>
     <string name="preference_title_activity_widget">Nastavení widgetu</string>
     <string name="preference_widget_update_location">Aktualizace pozice</string>
+    <string name="preference_widget_show_labels">Zobrazit popisek ve widgetu</string>
     <string name="preference_widget_use_geocoder">Použít geolokaci pro zobrazení</string>
     <string name="preference_widget_theme_title">Téma widgetu</string>
     <string name="theme_dark">Tmavé</string>

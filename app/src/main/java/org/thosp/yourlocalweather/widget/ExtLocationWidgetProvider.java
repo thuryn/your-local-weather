@@ -3,11 +3,13 @@ package org.thosp.yourlocalweather.widget;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.RemoteViews;
+import android.widget.TextView;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.Utils;
+import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,27 +28,7 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
         SharedPreferences weatherPref = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
                 Context.MODE_PRIVATE);
         String temperatureScale = Utils.getTemperatureScale(context);
-        String speedScale = Utils.getSpeedScale(context);
-        String percentSign = context.getString(R.string.percent_sign);
-        String pressureMeasurement = context.getString(R.string.pressure_measurement);
-
         String temperature = String.format(Locale.getDefault(), "%d", Math.round(weatherPref.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0)));
-        String wind = context.getString(R.string.wind_label,
-                String.format(Locale.getDefault(), "%.0f", weatherPref
-                        .getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0)),
-                speedScale);
-        String humidity =
-                context.getString(R.string.humidity_label,
-                        String.valueOf(
-                                weatherPref.getInt(Constants.WEATHER_DATA_HUMIDITY, 0)),
-                        percentSign);
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(1000 * weatherPref.getLong(Constants.WEATHER_DATA_SUNRISE, 0));
-        String sunrise = context.getString(R.string.sunrise_label,
-                sdf.format(calendar.getTime()));
-        calendar.setTimeInMillis(1000 * weatherPref.getLong(Constants.WEATHER_DATA_SUNSET, 0));
-        String sunset = context.getString(R.string.sunset_label, sdf.format(calendar.getTime()));
 
         String lastUpdate = Utils.setLastUpdateTime(context,
                 AppPreference.getLastUpdateTimeMillis(context));
@@ -54,10 +36,16 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
         remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context));
         remoteViews.setTextViewText(R.id.widget_temperature, temperature + temperatureScale);
         remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context));
-        remoteViews.setTextViewText(R.id.widget_wind, wind);
-        remoteViews.setTextViewText(R.id.widget_humidity, humidity);
-        remoteViews.setTextViewText(R.id.widget_sunrise, sunrise);
-        remoteViews.setTextViewText(R.id.widget_sunset, sunset);
+
+        WidgetUtils.setWind(context, remoteViews, weatherPref
+                .getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
+        WidgetUtils.setHumidity(context, remoteViews, weatherPref.getInt(Constants.WEATHER_DATA_HUMIDITY, 0));
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(1000 * weatherPref.getLong(Constants.WEATHER_DATA_SUNRISE, 0));
+        WidgetUtils.setSunrise(context, remoteViews, sdf.format(calendar.getTime()));
+        calendar.setTimeInMillis(1000 * weatherPref.getLong(Constants.WEATHER_DATA_SUNSET, 0));
+        WidgetUtils.setSunset(context, remoteViews, sdf.format(calendar.getTime()));
+
         Utils.setWeatherIcon(remoteViews, context);
         remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
     }

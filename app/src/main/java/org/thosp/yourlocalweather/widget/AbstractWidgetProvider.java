@@ -71,11 +71,9 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                     }
                 }
                 break;
-            case Intent.ACTION_LOCALE_CHANGED:
-                context.startService(new Intent(context, getWidgetClass()));
-                break;
             case Intent.ACTION_SCREEN_ON:
                 updateWather(context);
+            case Intent.ACTION_LOCALE_CHANGED:
             case Constants.ACTION_APPWIDGET_THEME_CHANGED:
                 AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
                 ComponentName componentName = new ComponentName(context, getWidgetClass());
