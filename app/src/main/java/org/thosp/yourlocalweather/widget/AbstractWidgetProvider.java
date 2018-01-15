@@ -112,8 +112,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
             appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
         }
-
-        context.startService(new Intent(context, getWidgetClass()));
     }
 
     @Override
