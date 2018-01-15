@@ -83,10 +83,10 @@ public class Constants {
     public static final String SOURCE_CODE_URI = "https://github.com/thuryn/your-local-weather";
     public static final String GOOGLE_PLAY_APP_URI = "market://details?id=%s";
     public static final String GOOGLE_PLAY_WEB_URI =
-            "http://play.google.com/store/apps/details?id=%s";
+            "https://play.google.com/store/apps/details?id=%s";
     public static final String F_DROID_WEB_URI = "https://f-droid.org/repository/browse/?fdid=%s";
-    public static final String WEATHER_ENDPOINT = "http://api.openweathermap.org/data/2.5/weather";
-    public static final String WEATHER_FORECAST_ENDPOINT = "http://api.openweathermap.org/data/2.5/forecast/daily";
+    public static final String WEATHER_ENDPOINT = "https://api.openweathermap.org/data/2.5/weather";
+    public static final String WEATHER_FORECAST_ENDPOINT = "https://api.openweathermap.org/data/2.5/forecast/daily";
 
     public static final int PARSE_RESULT_SUCCESS = 0;
     public static final int TASK_RESULT_ERROR = -1;
