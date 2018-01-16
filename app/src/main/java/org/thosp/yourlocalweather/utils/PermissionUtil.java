@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 
@@ -50,6 +51,10 @@ public class PermissionUtil {
     }
 
     public static boolean checkAllPermissions(Context context) {
+        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+                Constants.KEY_PREF_WIDGET_UPDATE_LOCATION, false)) {
+            return false;
+        }
         List<String> permissions = getAllPermissions(context);
         if (!permissions.isEmpty()) {
             if (!(context instanceof Activity)) {
