@@ -12,16 +12,15 @@ import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
-import android.os.Build;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
 
-import java.io.IOException;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.Weather;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
@@ -436,7 +435,6 @@ public class Utils {
 
     public static String getCityAndCountry(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
-        
         if(AppPreference.isUpdateLocationEnabled(context)) {
             return getCityAndCountryFromGeolocation(preferences);
         } else {

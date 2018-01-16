@@ -7,6 +7,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.R;
@@ -31,12 +32,17 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     @Override
     public void onEnabled(Context context) {
         super.onEnabled(context);
-        PermissionUtil.checkAllPermissions(context);
+        if (PermissionUtil.areAllPermissionsGranted(context)) {
+            Toast.makeText(context,
+                    R.string.permissions_not_granted,
+                    Toast.LENGTH_LONG).show();
+        }
         AppWidgetProviderAlarm appWidgetProviderAlarm =
                 new AppWidgetProviderAlarm(context, getWidgetClass());
         appWidgetProviderAlarm.cancelAlarm();
         appWidgetProviderAlarm.setAlarm();
     }
+
 
     @Override
     public void onReceive(Context context, Intent intent) {

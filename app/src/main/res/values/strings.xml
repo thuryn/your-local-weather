@@ -12,6 +12,7 @@
     <string name="progressDialog_gps_locate">Find current location</string>
     <string name="load_progress">Loading…</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Location not found</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Permissions are not granted - go to application and click on location symbol</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Search Location</string>

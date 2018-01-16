@@ -14,6 +14,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -135,7 +136,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         this.storedContext = this;
         fab.setOnClickListener(fabListener);
-        PermissionUtil.checkAllPermissions(this);
     }
 
     private void updateCurrentWeather() {
@@ -203,7 +203,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.activity_main_menu, menu);
 
-        if (AppPreference.isUpdateLocationEnabled(getBaseContext())) {
+        if (PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getBoolean(
+                Constants.KEY_PREF_WIDGET_UPDATE_LOCATION, true)) {
             menu.findItem(R.id.main_menu_search_city).setVisible(false);
         } else {
             menu.findItem(R.id.main_menu_detect_location).setVisible(false);
@@ -495,25 +496,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     }
     
     private void requestLocation() {
-        int fineLocationPermission = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION);
-        if (fineLocationPermission != PackageManager.PERMISSION_GRANTED) {
-            requestLocationPermission();
-        } else {
+        if (PermissionUtil.checkAllPermissions(this)) {
             detectLocation();
-        }
-    }
-
-    private void requestLocationPermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-            Snackbar.make(findViewById(android.R.id.content), R.string.permission_location_rationale, Snackbar.LENGTH_LONG)
-                    .setAction(android.R.string.ok, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            ActivityCompat.requestPermissions(MainActivity.this, PERMISSIONS_LOCATION, REQUEST_LOCATION);
-                        }
-                    }).show();
-        } else {
-            ActivityCompat.requestPermissions(this, PERMISSIONS_LOCATION, REQUEST_LOCATION);
         }
     }
 

@@ -9,6 +9,7 @@
     <string name="progressDialog_gps_locate">Najít aktuální polohu</string>
     <string name="load_progress">Nahrávám&#8230;</string>
     <string name="location_not_found">Poloha nenalezena</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Oprávnění nejsou udělena. Přejděte do hlavní aplikace klikněte na ikonu polohy.</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Najít pozici</string>

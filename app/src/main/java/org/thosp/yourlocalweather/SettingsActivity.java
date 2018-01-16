@@ -48,6 +48,7 @@ import org.thosp.yourlocalweather.model.ReverseGeocodingCacheDbHelper;
 import org.thosp.yourlocalweather.service.NotificationService;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.LogToFile;
+import org.thosp.yourlocalweather.utils.PermissionUtil;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -454,9 +455,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     setSummary(Constants.KEY_PREF_WIDGET_UPDATE_PERIOD);
                     break;
                 case Constants.KEY_PREF_WIDGET_UPDATE_LOCATION:
-                    int fineLocationPermission = ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION);
-                    if (fineLocationPermission != PackageManager.PERMISSION_GRANTED) {
-                        Snackbar.make(getActivity().findViewById(android.R.id.content), R.string.permission_location_need, Snackbar.LENGTH_SHORT).show();
+                    if (!PermissionUtil.checkAllPermissions(getActivity())) {
                         CheckBoxPreference updateLocation = (CheckBoxPreference) findPreference(key);
                         updateLocation.setChecked(false);
                     }

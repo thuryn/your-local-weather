@@ -113,7 +113,8 @@ public class AppPreference {
     }
 
     public static boolean isUpdateLocationEnabled(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+        return PermissionUtil.areAllPermissionsGranted(context) &&
+                PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 Constants.KEY_PREF_WIDGET_UPDATE_LOCATION, false);
     }
         
