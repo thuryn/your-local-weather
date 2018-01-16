@@ -217,7 +217,9 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         switch (item.getItemId()) {
             case R.id.main_menu_refresh:
                 if (connectionDetector.isNetworkAvailableAndConnected()) {
-                    startService(new Intent(this, CurrentWeatherService.class));
+                    Intent intent = new Intent(this, CurrentWeatherService.class);
+                    intent.putExtra("updateSource", "MAIN");
+                    startService(intent);
                     setUpdateButtonState(true);
                 } else {
                     Toast.makeText(MainActivity.this,
@@ -244,7 +246,9 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 public void onRefresh() {
                     isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
                     if (isNetworkAvailable) {
-                        startService(new Intent(MainActivity.this, CurrentWeatherService.class));
+                        Intent intent = new Intent(MainActivity.this, CurrentWeatherService.class);
+                        intent.putExtra("updateSource", "MAIN");
+                        startService(intent);
                     } else {
                         Toast.makeText(MainActivity.this,
                                 R.string.connection_not_found,
@@ -379,7 +383,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                     case CurrentWeatherService.ACTION_WEATHER_UPDATE_OK:
                         mSwipeRefresh.setRefreshing(false);
                         setUpdateButtonState(false);
-                        if (mProgressDialog != null) {
+                        if ((mProgressDialog != null) && (refreshDialogHandler != null)) {
                             refreshDialogHandler.post(new Runnable() {
                                 public void run() {
                                     mProgressDialog.hide();
