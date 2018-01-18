@@ -27,6 +27,7 @@ public class Constants {
     public static final String APP_SETTINGS_LOCATION_CACHE_ENABLED = "location.cache.enabled";
     public static final String LAST_UPDATE_TIME_IN_MS = "last_update";
     public static final String LAST_LOCATION_UPDATE_TIME_IN_MS = "last_location_update";
+    public static final String LAST_WEATHER_UPDATE_TIME_IN_MS = "last_weather_update";
     
     public static final String KEY_PREF_IS_NOTIFICATION_ENABLED = "notification_pref_key";
     public static final String KEY_PREF_TEMPERATURE = "temperature_pref_key";

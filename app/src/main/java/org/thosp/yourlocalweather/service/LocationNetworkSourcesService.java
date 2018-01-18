@@ -131,6 +131,9 @@ public class LocationNetworkSourcesService {
                                      TelephonyManager mTelephonyManager,
                                      List<CellInfo> cellInfoList,
                                      List<Cell> cells) {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            return;
+        }
         for (CellInfo c : cellInfoList) {
             Cell cell = new Cell();
             if (c instanceof CellInfoGsm) {

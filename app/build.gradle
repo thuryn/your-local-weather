@@ -4,10 +4,10 @@ android {
     compileSdkVersion 25
     defaultConfig {
         applicationId "org.thosp.yourlocalweather"
-        minSdkVersion 19
+        minSdkVersion 14
         targetSdkVersion 25
-        versionCode 9
-        versionName "1.7"
+        versionCode 10
+        versionName "1.7.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }

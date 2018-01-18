@@ -39,7 +39,6 @@ import org.thosp.yourlocalweather.widget.LessWidgetService;
 import org.thosp.yourlocalweather.widget.MoreWidgetService;
 
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
@@ -55,6 +54,7 @@ public class LocationUpdateService extends Service implements LocationListener {
     private static final float LENGTH_UPDATE_LOCATION_SECOND_LIMIT = 30000;
     private static final float LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION = 200;
     private static final long UPDATE_WEATHER_ONLY_TIMEOUT = 900000; //15 min
+    private static final long REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT = 180000; //3 min
     private static final long ACCELEROMETER_UPDATE_TIME_SPAN = 900000000000l; //15 min
     private static final long ACCELEROMETER_UPDATE_TIME_SECOND_SPAN = 300000000000l; //5 min
     private static final long ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION = 300000000000l; //5 min
@@ -77,8 +77,6 @@ public class LocationUpdateService extends Service implements LocationListener {
     private volatile boolean noLocationFound;
     private float gravity[] = new float[3];
     private MoveVector lastMovement;
-    private boolean isGPSEnabled;
-    private boolean isNetworkEnabled;
 
     private SensorEventListener sensorListener = new SensorEventListener() {
 
@@ -105,10 +103,17 @@ public class LocationUpdateService extends Service implements LocationListener {
         @Override
         public void onReceive(Context context, Intent intent) {
             appendLog(context, TAG, "receive intent: " + intent);
+
+            long storedWeatherTime = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getLong(Constants.LAST_WEATHER_UPDATE_TIME_IN_MS, 0);
             long now = Calendar.getInstance().getTimeInMillis();
-            appendLog(context, TAG, "SCREEN_ON called, lastUpdate=" + lastUpdatedWeather + ", now=" + now);
-            if (now < (lastUpdatedWeather + UPDATE_WEATHER_ONLY_TIMEOUT)) {
-                timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT - (now - lastUpdatedWeather));
+            appendLog(context, TAG, "SCREEN_ON called, lastUpdate=" +
+                    lastUpdatedWeather +
+                    ", now=" +
+                    now +
+                    ", storedWeatherTime=" +
+                    storedWeatherTime);
+            if (now < (storedWeatherTime + UPDATE_WEATHER_ONLY_TIMEOUT) || (now < (lastUpdatedWeather + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
+                timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT - (now - storedWeatherTime));
                 return;
             }
             locationSource = "-";
@@ -133,6 +138,19 @@ public class LocationUpdateService extends Service implements LocationListener {
         @Override
         public void run() {
             if (!powerManager.isScreenOn()) {
+                return;
+            }
+            long storedWeatherTime = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getLong(Constants.LAST_WEATHER_UPDATE_TIME_IN_MS, 0);
+            long now = Calendar.getInstance().getTimeInMillis();
+            appendLog(getBaseContext(), TAG, "SCREEN_ON called, lastUpdate=" +
+                    lastUpdatedWeather +
+                    ", now=" +
+                    now +
+                    ", storedWeatherTime=" +
+                    storedWeatherTime);
+
+            if (now < (storedWeatherTime + UPDATE_WEATHER_ONLY_TIMEOUT) || (now < (lastUpdatedWeather + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
+                timerScreenOnHandler.postDelayed(timerScreenOnRunnable, REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT);
                 return;
             }
             locationSource = "-";
@@ -222,9 +240,9 @@ public class LocationUpdateService extends Service implements LocationListener {
 
         if ("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE".equals(intent.getAction()) && (intent.getExtras() != null)) {
 
-            isGPSEnabled = locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
+            boolean isGPSEnabled = locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
                     && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-            isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
+            boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
                     && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
             String currentUpdateSource = intent.getExtras().getString("updateSource");
@@ -262,7 +280,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         removeUpdates(this);
 
         float storedLocationAccuracy = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getFloat(Constants.APP_SETTINGS_LOCATION_ACCURACY, 0);
-        float storedLocationTime = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getLong(Constants.LAST_LOCATION_UPDATE_TIME_IN_MS, 0);
+        long storedLocationTime = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getLong(Constants.LAST_LOCATION_UPDATE_TIME_IN_MS, 0);
 
         Calendar now = Calendar.getInstance();
         now.add(Calendar.MILLISECOND, -300000);
@@ -372,7 +390,11 @@ public class LocationUpdateService extends Service implements LocationListener {
             locationManager.removeUpdates(gpsLocationListener);
             timerHandlerGpsLocation.removeCallbacksAndMessages(null);
             Intent sendIntent = new Intent("android.intent.action.START_LOCATION_UPDATE");
-            sendIntent.setPackage("org.microg.nlp");
+            if ("location_geocoder_unifiednlp".equals(AppPreference.getLocationGeocoderSource(getBaseContext()))) {
+                sendIntent.setPackage("org.microg.nlp");
+            } else {
+                sendIntent.setPackage("org.thosp.yourlocalweather");
+            }
             sendIntent.putExtra("destinationPackageName", "org.thosp.yourlocalweather");
             sendIntent.putExtra("location", location);
             sendIntent.putExtra("resolveAddress", true);
@@ -408,6 +430,8 @@ public class LocationUpdateService extends Service implements LocationListener {
     }
 
     private void gpsRequestLocation() {
+        boolean isGPSEnabled = locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
+                && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         if (isGPSEnabled && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             Looper locationLooper = Looper.myLooper();
             appendLog(getBaseContext(), TAG, "get location from GPS");
@@ -494,7 +518,12 @@ public class LocationUpdateService extends Service implements LocationListener {
 
     private boolean updateNetworkLocation(boolean bylastLocationOnly) {
 
+        boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
+                && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
         if (!checkLocationProviderPermission() || !isNetworkEnabled) {
+            appendLog(getBaseContext(), TAG, "updateNetworkLocation, isNetworkEnabled=" +
+                    isNetworkEnabled + ", checkLocationProviderPermission()=" + checkLocationProviderPermission());
             return false;
         }
         wakeUp();
@@ -576,6 +605,8 @@ public class LocationUpdateService extends Service implements LocationListener {
     }
 
     private void detectLocation() {
+        boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
+                && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
         if (isNetworkEnabled && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             final Looper locationLooper = Looper.myLooper();
             locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, locationLooper);
@@ -622,6 +653,8 @@ public class LocationUpdateService extends Service implements LocationListener {
     private void requestWeatherCheck() {
         startRefreshRotation();
         boolean updateLocationInProcess = updateNetworkLocation(true);
+        appendLog(getBaseContext(), TAG, "requestWeatherCheck, updateLocationInProcess=" +
+                updateLocationInProcess);
         if (updateLocationInProcess) {
             return;
         }

@@ -84,10 +84,6 @@ public class CurrentWeatherService extends Service {
             appendLog(getBaseContext(), TAG, "newUpdateState:" + newUpdateState);
             editor.putString(Constants.APP_SETTINGS_UPDATE_SOURCE, newUpdateState);
             editor.apply();
-            
-            Utils.setLastUpdateTime(getBaseContext(), AppPreference
-                    .saveLastUpdateTimeMillis(getBaseContext()));
-            
             sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
         }
     };
@@ -140,7 +136,6 @@ public class CurrentWeatherService extends Service {
                     gettingWeatherStarted = false;
                     timerHandler.removeCallbacksAndMessages(null);
 
-                    AppPreference.saveLastUpdateTimeMillis(context);
                     SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
                             Context.MODE_PRIVATE);
                     String updateSource = mSharedPreferences.getString(Constants.APP_SETTINGS_UPDATE_SOURCE, "-");

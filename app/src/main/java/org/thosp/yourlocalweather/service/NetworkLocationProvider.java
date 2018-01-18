@@ -10,6 +10,7 @@ import android.content.IntentFilter;
 import android.location.Location;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.telephony.TelephonyManager;
@@ -119,9 +120,15 @@ public class NetworkLocationProvider extends Service {
             nextScanningAllowedFrom.add(Calendar.MINUTE, 1);
         }
         final PendingIntent intentToCancel = getIntentToGetCellsOnly();
-        alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime() + 8000,
-                intentToCancel);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + 8000,
+                    intentToCancel);
+        } else {
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + 8000,
+                    intentToCancel);
+        }
         appendLog(getBaseContext(), TAG, "update():alarm set");
         if (mWifiScanResults == null) {
             mWifiScanResults = new WifiScanCallback() {

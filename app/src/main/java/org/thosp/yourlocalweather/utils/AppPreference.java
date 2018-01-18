@@ -5,7 +5,6 @@ import com.google.gson.reflect.TypeToken;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.location.LocationManager;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 
@@ -73,6 +72,9 @@ public class AppPreference {
                 Context.MODE_PRIVATE);
         editor = mSharedPreferences.edit();
         editor.putString(Constants.APP_SETTINGS_UPDATE_SOURCE, updateSource);
+        long now = System.currentTimeMillis();
+        editor.putLong(Constants.LAST_UPDATE_TIME_IN_MS, now);
+        editor.putLong(Constants.LAST_WEATHER_UPDATE_TIME_IN_MS, now);
         editor.apply();
     }
     
