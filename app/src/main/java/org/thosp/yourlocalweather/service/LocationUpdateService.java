@@ -104,7 +104,8 @@ public class LocationUpdateService extends Service implements LocationListener {
         public void onReceive(Context context, Intent intent) {
             appendLog(context, TAG, "receive intent: " + intent);
 
-            long storedWeatherTime = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getLong(Constants.LAST_WEATHER_UPDATE_TIME_IN_MS, 0);
+            long storedWeatherTime = getBaseContext()
+                    .getSharedPreferences(Constants.APP_SETTINGS_NAME, Context.MODE_PRIVATE).getLong(Constants.LAST_WEATHER_UPDATE_TIME_IN_MS, 0);
             long now = Calendar.getInstance().getTimeInMillis();
             appendLog(context, TAG, "SCREEN_ON called, lastUpdate=" +
                     lastUpdatedWeather +
@@ -112,7 +113,7 @@ public class LocationUpdateService extends Service implements LocationListener {
                     now +
                     ", storedWeatherTime=" +
                     storedWeatherTime);
-            if (now < (storedWeatherTime + UPDATE_WEATHER_ONLY_TIMEOUT) || (now < (lastUpdatedWeather + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
+            if ((now < (storedWeatherTime + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now < (lastUpdatedWeather + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
                 timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT - (now - storedWeatherTime));
                 return;
             }
@@ -140,7 +141,8 @@ public class LocationUpdateService extends Service implements LocationListener {
             if (!powerManager.isScreenOn()) {
                 return;
             }
-            long storedWeatherTime = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getLong(Constants.LAST_WEATHER_UPDATE_TIME_IN_MS, 0);
+            long storedWeatherTime = getBaseContext()
+                    .getSharedPreferences(Constants.APP_SETTINGS_NAME, Context.MODE_PRIVATE).getLong(Constants.LAST_WEATHER_UPDATE_TIME_IN_MS, 0);
             long now = Calendar.getInstance().getTimeInMillis();
             appendLog(getBaseContext(), TAG, "SCREEN_ON called, lastUpdate=" +
                     lastUpdatedWeather +
@@ -149,7 +151,7 @@ public class LocationUpdateService extends Service implements LocationListener {
                     ", storedWeatherTime=" +
                     storedWeatherTime);
 
-            if (now < (storedWeatherTime + UPDATE_WEATHER_ONLY_TIMEOUT) || (now < (lastUpdatedWeather + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
+            if ((now < (storedWeatherTime + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now < (lastUpdatedWeather + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
                 timerScreenOnHandler.postDelayed(timerScreenOnRunnable, REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT);
                 return;
             }
