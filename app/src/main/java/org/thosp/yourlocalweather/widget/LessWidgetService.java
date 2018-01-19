@@ -34,6 +34,10 @@ public class LessWidgetService extends IntentService {
         for (int appWidgetId : widgetIds) {
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),
                                                       R.layout.widget_less_3x1);
+
+            LessWidgetProvider.setWidgetTheme(this, remoteViews);
+            LessWidgetProvider.setWidgetIntents(this, remoteViews, LessWidgetProvider.class);
+
             String lastUpdate = Utils.setLastUpdateTime(this, AppPreference
                     .getLastUpdateTimeMillis(this));
             String temperatureScale = Utils.getTemperatureScale(this);

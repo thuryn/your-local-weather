@@ -31,6 +31,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onEnabled(Context context) {
+        appendLog(context, TAG, "onEnabled:start");
         super.onEnabled(context);
         if (PermissionUtil.areAllPermissionsGranted(context)) {
             Toast.makeText(context,
@@ -41,6 +42,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                 new AppWidgetProviderAlarm(context, getWidgetClass());
         appWidgetProviderAlarm.cancelAlarm();
         appWidgetProviderAlarm.setAlarm();
+        appendLog(context, TAG, "onEnabled:end");
     }
 
 
@@ -96,28 +98,26 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        appendLog(context, TAG, "onUpdate:start");
         super.onUpdate(context, appWidgetManager, appWidgetIds);
 
         for (int appWidgetId : appWidgetIds) {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
                     getWidgetLayout());
 
-            setWidgetTheme(context, remoteViews);
+            if (ExtLocationWidgetProvider.class.equals(getWidgetClass())) {
+                ExtLocationWidgetProvider.setWidgetTheme(context, remoteViews);
+            } else if (MoreWidgetProvider.class.equals(getWidgetClass())) {
+                MoreWidgetProvider.setWidgetTheme(context, remoteViews);
+            } else if (LessWidgetProvider.class.equals(getWidgetClass())) {
+                LessWidgetProvider.setWidgetTheme(context, remoteViews);
+            }
+            setWidgetIntents(context, remoteViews, getWidgetClass());
             preLoadWeather(context, remoteViews);
-
-            Intent intentRefreshService = new Intent(context, getWidgetClass());
-            intentRefreshService.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
-                    intentRefreshService, 0);
-            remoteViews.setOnClickPendingIntent(R.id.widget_button_refresh, pendingIntent);
-
-            Intent intentStartActivity = new Intent(context, MainActivity.class);
-            PendingIntent pendingIntent2 = PendingIntent.getActivity(context, 0,
-                    intentStartActivity, 0);
-            remoteViews.setOnClickPendingIntent(R.id.widget_root, pendingIntent2);
 
             appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
         }
+        appendLog(context, TAG, "onUpdate:end");
     }
 
     @Override
@@ -145,9 +145,20 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         }
     }
 
-    protected abstract void preLoadWeather(Context context, RemoteViews remoteViews);
+    public static void setWidgetIntents(Context context, RemoteViews remoteViews, Class<?>  widgetClass) {
+        Intent intentRefreshService = new Intent(context, widgetClass);
+        intentRefreshService.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
+                intentRefreshService, 0);
+        remoteViews.setOnClickPendingIntent(R.id.widget_button_refresh, pendingIntent);
 
-    protected abstract void setWidgetTheme(Context context, RemoteViews remoteViews);
+        Intent intentStartActivity = new Intent(context, MainActivity.class);
+        PendingIntent pendingIntent2 = PendingIntent.getActivity(context, 0,
+                intentStartActivity, 0);
+        remoteViews.setOnClickPendingIntent(R.id.widget_root, pendingIntent2);
+    }
+
+    protected abstract void preLoadWeather(Context context, RemoteViews remoteViews);
 
     protected abstract Class<?> getWidgetClass();
 

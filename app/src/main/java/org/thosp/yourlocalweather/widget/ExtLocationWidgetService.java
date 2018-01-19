@@ -49,6 +49,10 @@ public class ExtLocationWidgetService extends IntentService {
 
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),
                     R.layout.widget_ext_loc_3x3);
+
+            ExtLocationWidgetProvider.setWidgetTheme(this, remoteViews);
+            ExtLocationWidgetProvider.setWidgetIntents(this, remoteViews, ExtLocationWidgetProvider.class);
+
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(this));
             remoteViews.setTextViewText(R.id.widget_temperature, temperature + temperatureScale);
             remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, weather));

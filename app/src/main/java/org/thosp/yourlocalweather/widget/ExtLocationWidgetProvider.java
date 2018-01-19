@@ -15,6 +15,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
 
     private static final String TAG = "WidgetExtLocInfo";
@@ -25,6 +27,7 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
 
     @Override
     protected void preLoadWeather(Context context, RemoteViews remoteViews) {
+        appendLog(context, TAG, "preLoadWeather:start");
         SharedPreferences weatherPref = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
                 Context.MODE_PRIVATE);
         String temperatureScale = Utils.getTemperatureScale(context);
@@ -48,10 +51,11 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
 
         Utils.setWeatherIcon(remoteViews, context);
         remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
+        appendLog(context, TAG, "preLoadWeather:end");
     }
 
-    @Override
-    protected void setWidgetTheme(Context context, RemoteViews remoteViews) {
+    public static void setWidgetTheme(Context context, RemoteViews remoteViews) {
+        appendLog(context, TAG, "setWidgetTheme:start");
         int textColorId = AppPreference.getTextColor(context);
         int backgroundColorId = AppPreference.getBackgroundColor(context);
         int windowHeaderBackgroundColorId = AppPreference.getWindowHeaderBackgroundColorId(context);
@@ -65,6 +69,7 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
         remoteViews.setTextColor(R.id.widget_sunrise, textColorId);
         remoteViews.setTextColor(R.id.widget_sunset, textColorId);
         remoteViews.setInt(R.id.header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
+        appendLog(context, TAG, "setWidgetTheme:end");
     }
 
     @Override

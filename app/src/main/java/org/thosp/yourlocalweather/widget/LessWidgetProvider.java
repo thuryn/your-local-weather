@@ -36,8 +36,7 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
         remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
     }
 
-    @Override
-    protected void setWidgetTheme(Context context, RemoteViews remoteViews) {
+    public static void setWidgetTheme(Context context, RemoteViews remoteViews) {
 
         int textColorId = AppPreference.getTextColor(context);
         int backgroundColorId = AppPreference.getBackgroundColor(context);
