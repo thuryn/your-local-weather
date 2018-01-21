@@ -34,13 +34,13 @@ public class Constants {
     public static final String KEY_PREF_HIDE_DESCRIPTION = "hide_desc_pref_key";
     public static final String KEY_PREF_INTERVAL_NOTIFICATION = "notification_interval_pref_key";
     public static final String KEY_PREF_VIBRATE = "notification_vibrate_pref_key";
-    public static final String KEY_PREF_WIDGET_UPDATE_LOCATION = "widget_update_location_pref_key";
     public static final String KEY_PREF_WIDGET_SHOW_LABELS = "widget_show_labels_pref_key";
     public static final String KEY_PREF_WIDGET_THEME = "widget_theme_pref_key";
     public static final String KEY_PREF_WIDGET_UPDATE_PERIOD = "widget_update_period_pref_key";
     public static final String PREF_LANGUAGE = "language_pref_key";
     public static final String KEY_PREF_LOCATION_GEOCODER_SOURCE = "location_geocoder_source";
     public static final String KEY_PREF_WEATHER_ICON_SET = "weather_icon_set_pref_key";
+    public static final String KEY_PREF_LOCATION_UPDATE_STRATEGY = "location_update_strategy";
     public static final String KEY_PREF_UPDATE_DETAIL = "widget_update_details_pref_key";
     public static final String PREF_THEME = "theme_pref_key";
     public static final String KEY_DEBUG_FILE = "debug.log.file";

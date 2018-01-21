@@ -203,8 +203,9 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.activity_main_menu, menu);
 
-        if (PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getBoolean(
-                Constants.KEY_PREF_WIDGET_UPDATE_LOCATION, true)) {
+        String locationUpdateStrategy = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getString(
+                Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY, "update_location_full");
+        if (!"update_location_none".equals(locationUpdateStrategy)) {
             menu.findItem(R.id.main_menu_search_city).setVisible(false);
         } else {
             menu.findItem(R.id.main_menu_detect_location).setVisible(false);

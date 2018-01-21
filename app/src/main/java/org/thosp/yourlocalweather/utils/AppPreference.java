@@ -115,14 +115,19 @@ public class AppPreference {
     }
 
     public static boolean isUpdateLocationEnabled(Context context) {
-        return PermissionUtil.areAllPermissionsGranted(context) &&
-                PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
-                Constants.KEY_PREF_WIDGET_UPDATE_LOCATION, false);
+        String locationUpdateStrategy = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY, "update_location_full");
+        return !"update_location_none".equals(locationUpdateStrategy);
     }
         
     public static String getLocationGeocoderSource(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE, "location_geocoder_local");
+    }
+
+    public static boolean isGpsEnabledByPreferences(Context context) {
+        return "update_location_full".equals(PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY, "update_location_full"));
     }
 
     public static String getIconSet(Context context) {

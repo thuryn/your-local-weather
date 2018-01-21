@@ -81,6 +81,10 @@
     <string name="pref_title_category_notification">Notifications</string>
     <string name="pref_title_notification">Enable Notifications</string>
     <string name="pref_title_notification_refresh_interval">Refresh Interval</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Location update setting</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">Don\'t update location</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">Update location</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">Update location without GPS</string>
     <string name="update_period_by_sensors" tools:ignore="MissingTranslation">By accelerometer</string>
     <string name="update_period_15min" tools:ignore="MissingTranslation">15 minutes</string>
     <string name="update_period_30min" tools:ignore="MissingTranslation">30 minutes</string>

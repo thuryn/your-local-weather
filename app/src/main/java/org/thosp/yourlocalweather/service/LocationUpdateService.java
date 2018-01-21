@@ -242,7 +242,8 @@ public class LocationUpdateService extends Service implements LocationListener {
 
         if ("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE".equals(intent.getAction()) && (intent.getExtras() != null)) {
 
-            boolean isGPSEnabled = locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
+            boolean isGPSEnabled = AppPreference.isGpsEnabledByPreferences(this) &&
+                    locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
                     && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
             boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
                     && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
@@ -432,7 +433,8 @@ public class LocationUpdateService extends Service implements LocationListener {
     }
 
     private void gpsRequestLocation() {
-        boolean isGPSEnabled = locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
+        boolean isGPSEnabled = AppPreference.isGpsEnabledByPreferences(getBaseContext()) &&
+                locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
                 && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         if (isGPSEnabled && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             Looper locationLooper = Looper.myLooper();
@@ -523,10 +525,18 @@ public class LocationUpdateService extends Service implements LocationListener {
         boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
                 && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-        if (!checkLocationProviderPermission() || !isNetworkEnabled) {
+        if (!checkLocationProviderPermission()) {
             appendLog(getBaseContext(), TAG, "updateNetworkLocation, isNetworkEnabled=" +
                     isNetworkEnabled + ", checkLocationProviderPermission()=" + checkLocationProviderPermission());
             return false;
+        }
+        boolean isGPSEnabled = AppPreference.isGpsEnabledByPreferences(getBaseContext()) &&
+                locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
+                && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if (!isNetworkEnabled && isGPSEnabled && (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
+            startRefreshRotation();
+            gpsRequestLocation();
+            return true;
         }
         wakeUp();
         startRefreshRotation();
@@ -631,7 +641,7 @@ public class LocationUpdateService extends Service implements LocationListener {
                         } else if ((lastGpsLocation != null) && (lastNetworkLocation == null)) {
                             locationSource = "G";
                             locationListener.onLocationChanged(lastGpsLocation);
-                        } else {
+                        } else if (AppPreference.isGpsEnabledByPreferences(getBaseContext())){
                             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
                             new CountDownTimer(30000, 10000) {
                                 @Override

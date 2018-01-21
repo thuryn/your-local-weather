@@ -131,7 +131,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 Constants.KEY_PREF_INTERVAL_NOTIFICATION,
                 Constants.PREF_LANGUAGE,
                 Constants.PREF_THEME,
-                Constants.KEY_PREF_WEATHER_ICON_SET
+                Constants.KEY_PREF_WEATHER_ICON_SET,
+                Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY,
+                Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE
         };
 
         @Override
@@ -213,6 +215,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     break;
                 case Constants.KEY_PREF_WEATHER_ICON_SET:
                     entrySummary(key);
+                case Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY:
+                    entrySummary(key);
+                case Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE:
+                    entrySummary(key);
+                    break;
             }
         }
 
@@ -454,17 +461,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     getActivity().sendBroadcast(intent1);
                     setSummary(Constants.KEY_PREF_WIDGET_UPDATE_PERIOD);
                     break;
-                case Constants.KEY_PREF_WIDGET_UPDATE_LOCATION:
-                    if (!PermissionUtil.checkAllPermissions(getActivity())) {
-                        CheckBoxPreference updateLocation = (CheckBoxPreference) findPreference(key);
-                        updateLocation.setChecked(false);
-                    }
+                case Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY:
+                    PermissionUtil.checkAllPermissions(getActivity());
                     break;
                 case Constants.KEY_PREF_WIDGET_SHOW_LABELS:
                     getActivity().sendBroadcast(new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED));
-                    break;
-                case Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE:
-                    setSummary(Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE);
                     break;
                 case Constants.KEY_PREF_UPDATE_DETAIL:
                     getActivity().sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
@@ -480,7 +481,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                                  .registerOnSharedPreferenceChangeListener(this);
             setSummary(Constants.KEY_PREF_WIDGET_UPDATE_PERIOD);
             setSummary(Constants.KEY_PREF_WIDGET_THEME);
-            setSummary(Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE);
             setDetailedSummary(Constants.KEY_PREF_UPDATE_DETAIL);
         }
 

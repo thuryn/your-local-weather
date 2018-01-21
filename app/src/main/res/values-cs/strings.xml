@@ -53,6 +53,10 @@
     <string name="pref_title_category_notification">Upozornění</string>
     <string name="pref_title_notification">Povolit upozornění</string>
     <string name="pref_title_notification_refresh_interval">Interval obnovení</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Nastavení aktualizace polohy</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">Neaktualizovat polohu</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">Aktualizovat polohu</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">Aktualizovat polohu bez použití GPS</string>
     <string name="update_period_by_sensors">Dle accelerometru</string>
     <string name="update_period_15min">15 minut</string>
     <string name="update_period_30min">30 minut</string>
