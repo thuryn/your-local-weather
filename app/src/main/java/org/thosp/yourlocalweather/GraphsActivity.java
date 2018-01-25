@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -113,6 +115,11 @@ public class GraphsActivity extends BaseActivity {
                 }
             }
         };
+
+        ScrollView mRecyclerView = (ScrollView) findViewById(R.id.graph_scroll_view);
+        mRecyclerView.setOnTouchListener(new ActivityTransitionTouchListener(
+                WeatherForecastActivity.class,
+                null, this));
     }
 
     private void setTemperatureChart() {

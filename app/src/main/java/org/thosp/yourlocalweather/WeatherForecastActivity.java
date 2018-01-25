@@ -4,7 +4,9 @@ import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.NavUtils;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -85,6 +87,10 @@ public class WeatherForecastActivity extends BaseActivity {
                 }
             }
         };
+
+        mRecyclerView.setOnTouchListener(new ActivityTransitionTouchListener(
+                MainActivity.class,
+                GraphsActivity.class, this));
     }
 
     private void updateUI() {

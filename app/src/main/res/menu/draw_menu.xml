@@ -6,13 +6,13 @@
             android:icon="@drawable/ic_current_weather_black_24dp"
             android:title="@string/nav_menu_current_weather"/>
         <item
-            android:id="@+id/nav_menu_graphs"
-            android:icon="@drawable/ic_graphs_black_32dp"
-            android:title="@string/nav_menu_graphs"/>
-        <item
             android:id="@+id/nav_menu_weather_forecast"
             android:icon="@drawable/ic_daily_forecast_dark_24dp"
             android:title="@string/nav_menu_daily_forecast"/>
+        <item
+            android:id="@+id/nav_menu_graphs"
+            android:icon="@drawable/ic_graphs_black_32dp"
+            android:title="@string/nav_menu_graphs"/>
     </group>
     <group
         android:id="@+id/nav_menu_communication"

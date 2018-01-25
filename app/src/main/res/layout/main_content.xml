@@ -134,6 +134,7 @@
             app:srcCompat="@drawable/ic_share"/>
 
         <android.support.v4.widget.NestedScrollView
+            android:id="@+id/main_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="@dimen/activity_vertical_margin"

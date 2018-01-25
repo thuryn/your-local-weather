@@ -1,6 +1,8 @@
 package org.thosp.yourlocalweather;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -11,6 +13,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -23,12 +26,19 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -129,6 +139,11 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mSwipeRefresh.setColorSchemeResources(R.color.swipe_red, R.color.swipe_green,
                 R.color.swipe_blue);
         mSwipeRefresh.setOnRefreshListener(swipeRefreshListener);
+
+        NestedScrollView main_scroll_view = (NestedScrollView) findViewById(R.id.main_scroll_view);
+        main_scroll_view.setOnTouchListener(new ActivityTransitionTouchListener(
+                null,
+                WeatherForecastActivity.class, this));
 
         /**
          * Share weather fab
