@@ -33,27 +33,18 @@ public class LogToFile {
     public static Boolean logToFileEnabled;
     public static int logFileHoursOfLasting;
     private static Calendar logFileAtTheEndOfLive;
+    private static Calendar nextCheckPreferencesCheck;
 
     public static void appendLog(Context context, String tag, String text) {
         appendLog(context, tag, text, null);
     }
 
     public static void appendLog(Context context, String tag, String text, Throwable throwable) {
-
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-
-        if (logToFileEnabled == null) {
-            logFilePathname = sharedPreferences.getString(SettingsActivity.KEY_DEBUG_FILE,"");
-            logToFileEnabled = sharedPreferences.getBoolean(SettingsActivity.KEY_DEBUG_TO_FILE, false);
-            logFileHoursOfLasting = Integer.valueOf(sharedPreferences.getString(SettingsActivity.KEY_DEBUG_FILE_LASTING_HOURS, "24"));
-        }
-
+        checkPreferences(context);
         if (!logToFileEnabled || (logFilePathname == null)) {
             return;
         }
-
         File logFile = new File(logFilePathname);
-
         Date now = new Date();
         try {
             if (logFile.exists()) {
@@ -122,5 +113,23 @@ public class LogToFile {
     private static void createNewLogFile(File logFile, Date dateOfCreation) throws IOException {
         logFile.createNewFile();
         initEndOfLive(dateOfCreation);
+    }
+
+    private static void checkPreferences(Context context) {
+        if (nextCheckPreferencesCheck != null) {
+            Calendar now = Calendar.getInstance();
+            if (nextCheckPreferencesCheck.after(now)) {
+                return;
+            }
+        }
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+
+        if (logToFileEnabled == null) {
+            logFilePathname = sharedPreferences.getString(SettingsActivity.KEY_DEBUG_FILE,"");
+            logToFileEnabled = sharedPreferences.getBoolean(SettingsActivity.KEY_DEBUG_TO_FILE, false);
+            logFileHoursOfLasting = Integer.valueOf(sharedPreferences.getString(SettingsActivity.KEY_DEBUG_FILE_LASTING_HOURS, "24"));
+        }
+        nextCheckPreferencesCheck = Calendar.getInstance();
+        nextCheckPreferencesCheck.add(Calendar.MINUTE, 5);
     }
 }
