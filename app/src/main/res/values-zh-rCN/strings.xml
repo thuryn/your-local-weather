@@ -2,9 +2,9 @@
 <resources><string name="enter_city_hint">输入城市</string>
     <string name="label_current_city">当前城市</string>
     <string name="label_choose_city">请选择城市</string>
-    <string name="alertDialog_gps_message">不启用 GPS。你想要转到设置菜单？</string>
-    <string name="alertDialog_gps_positiveButton">设置</string>
-    <string name="alertDialog_gps_negativeButton">取消</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">不启用 GPS。你想要转到设置菜单？</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">设置</string>
+    <string name="alertDialog_location_permission_negativeButton">取消</string>
     <string name="progressDialog_gps_locate">查找当前位置</string>
     <string name="load_progress">正在加载…</string>
 

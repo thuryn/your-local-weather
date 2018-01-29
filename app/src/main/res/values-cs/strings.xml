@@ -3,9 +3,14 @@
     <string name="enter_city_hint">Zadejte město</string>
     <string name="label_current_city">Aktuální město</string>
     <string name="label_choose_city">Vyberte město</string>
-    <string name="alertDialog_gps_message">GPS není povoleno. Chcete zobrazit menu nastavení?</string>
-    <string name="alertDialog_gps_positiveButton">Nastavení</string>
-    <string name="alertDialog_gps_negativeButton">Zpět</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Nastavení polohy a oprávnění</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">Aplikace má nastavenu aktualizaci polohy. Aby aktualizace mohla fungovat, je třeba povolit přístup k poloze. Přejděte, prosím, do nastavení a povolte přístup k poloze nebo vypněte aktualizaci polohy v aplikaci.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission">Pro aktualizaci polohy pomocí GPS je třeba oprávnění pro přístup GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission">Pro aktualizaci polohy pomocí WIFI a GSM sítě je třeba oprávnění pro přístup poloze.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission">Pro aktualizaci polohy pomocí WIFI a GSM sítě je třeba oprávnění pro čtení informací o telefonu. Aplikaci vyžaduje toto oprávnění pro přístup k právě připojeným základnovým stanicím GSM sítě.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Nastavení telefonu</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions">Vyžádat oprávnění</string>
+    <string name="alertDialog_location_permission_negativeButton">Zpět</string>
     <string name="progressDialog_gps_locate">Najít aktuální polohu</string>
     <string name="load_progress">Nahrávám&#8230;</string>
     <string name="location_not_found">Poloha nenalezena</string>

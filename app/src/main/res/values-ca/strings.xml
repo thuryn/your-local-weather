@@ -3,9 +3,9 @@
     <string name="enter_city_hint">Introdueix ciutat</string>
     <string name="label_current_city">Ciutat actual</string>
     <string name="label_choose_city">Escull ciutat</string>
-    <string name="alertDialog_gps_message">El GPS no està habilitat. ¿Vols anar al menú de configuració?</string>
-    <string name="alertDialog_gps_positiveButton">Paràmetres</string>
-    <string name="alertDialog_gps_negativeButton">Cancel\·lar</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">El GPS no està habilitat. ¿Vols anar al menú de configuració?</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Paràmetres</string>
+    <string name="alertDialog_location_permission_negativeButton">Cancel\·lar</string>
     <string name="progressDialog_gps_locate">Trobar l\'ubicació actual</string>
     <string name="load_progress">Càrrega…</string>
 

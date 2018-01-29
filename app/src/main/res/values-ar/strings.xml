@@ -2,9 +2,9 @@
 <resources><string name="enter_city_hint">أدخل اسم المدينة</string>
     <string name="label_current_city">المدينة الحالية</string>
     <string name="label_choose_city">اختر المدينة</string>
-    <string name="alertDialog_gps_message">نظام التموضع العالمي غير مفعل. هل تريد أن تذهب إلى قائمة الإعدادات؟</string>
-    <string name="alertDialog_gps_positiveButton">الإعدادات</string>
-    <string name="alertDialog_gps_negativeButton">إلغاء</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">نظام التموضع العالمي غير مفعل. هل تريد أن تذهب إلى قائمة الإعدادات؟</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">الإعدادات</string>
+    <string name="alertDialog_location_permission_negativeButton">إلغاء</string>
     <string name="progressDialog_gps_locate">البحث عن الموقع الحالي</string>
     <string name="load_progress">جار التحميل…</string>
 

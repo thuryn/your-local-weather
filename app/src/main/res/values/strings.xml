@@ -5,10 +5,14 @@
     <string name="label_current_city">Current city</string>
     <string name="label_choose_city">Choose city</string>
     <string name="feedback_email" translatable="false">thuryn1@gmail.com</string>
-    <string name="alertDialog_gps_title" translatable="false">GPS is settings</string>
-    <string name="alertDialog_gps_message">GPS is not enabled. Do you want to go to settings menu?</string>
-    <string name="alertDialog_gps_positiveButton">Settings</string>
-    <string name="alertDialog_gps_negativeButton">Cancel</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Location and permission settings</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Application is set to update a location. Access to location should be enabled to get location update to work. Go to phone settings, please, and switch the location on or switch update of location to off in the application.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Application needs a permission to update the location by GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Application needs a permission to update location by WIFI and GSM networks.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Application needs permission to read information from phone. This permission is needed to update location by WIFI and GSM networks. Application uses this permission to get information about GSM base stations connected to phone.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Phone settings</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Request permissions</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Cancel</string>
     <string name="progressDialog_gps_locate">Find current location</string>
     <string name="load_progress">Loading…</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Location not found</string>
@@ -65,7 +69,7 @@
 
     <!-- Units and Measurement-->
     <string name="percent_sign" translatable="false">\u0025</string>
-    <string name="temperature_with_degree" translatable="false">%s\u00B0</string>
+    <string name="temperature_with_degree" translatable="false">%s</string>
     <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
     <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
     <string name="wind_speed_miles" tools:ignore="MissingTranslation">mph</string>

@@ -2,9 +2,9 @@
 <resources><string name="enter_city_hint">Εισαγωγή Πόλης</string>
     <string name="label_current_city">Τωρινή Πόλη</string>
     <string name="label_choose_city">Επέλεξε Πόλη</string>
-    <string name="alertDialog_gps_message">Δεν είναι ενεργοποιημένο το GPS. Θέλεις να μεταβείς στην επιλογή των ρυθμίσεων;</string>
-    <string name="alertDialog_gps_positiveButton">Ρυθμίσεις</string>
-    <string name="alertDialog_gps_negativeButton">Ακύρωση</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">Δεν είναι ενεργοποιημένο το GPS. Θέλεις να μεταβείς στην επιλογή των ρυθμίσεων;</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Ρυθμίσεις</string>
+    <string name="alertDialog_location_permission_negativeButton">Ακύρωση</string>
     <string name="progressDialog_gps_locate">Εύρεση τωρινής τοποθεσίας</string>
     <string name="load_progress">Φορτώνεται…</string>
 

@@ -1,8 +1,7 @@
 package org.thosp.yourlocalweather;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.app.ActivityOptions;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -13,7 +12,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
-import android.os.Build;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -26,19 +25,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.TranslateAnimation;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -54,6 +47,8 @@ import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WindWithUnit;
 import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import static org.thosp.yourlocalweather.utils.AppPreference.getLastUpdateTimeMillis;
@@ -152,6 +147,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         this.storedContext = this;
         fab.setOnClickListener(fabListener);
+        checkPermissionsSettingsAndShowAlert();
     }
 
     private void updateCurrentWeather() {
@@ -161,8 +157,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         SharedPreferences.Editor configEditor = mSharedPreferences.edit();
 
         windWithUnit = AppPreference.getWindWithUnit(MainActivity.this, mWeather.wind.getSpeed());
-        String temperature = String.format(Locale.getDefault(), "%.0f",
-                mWeather.temperature.getTemp());
         String pressure = String.format(Locale.getDefault(), "%.1f",
                 mWeather.currentCondition.getPressure());
 
@@ -172,7 +166,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         String sunset = Utils.unixTimeToFormatTime(MainActivity.this, mWeather.sys.getSunset());
 
         Utils.setWeatherIcon(mIconWeatherView, this);
-        mTemperatureView.setText(getString(R.string.temperature_with_degree, temperature));
+        mTemperatureView.setText(getString(R.string.temperature_with_degree, AppPreference.getTemperatureWithUnit(getBaseContext(), mWeather.temperature.getTemp())));
         mDescriptionView.setText(Utils.getWeatherDescription(this, mWeather));
         mHumidityView.setText(getString(R.string.humidity_label,
                 String.valueOf(mWeather.currentCondition.getHumidity()),
@@ -195,6 +189,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     @Override
     public void onResume() {
         super.onResume();
+        checkPermissionsSettingsAndShowAlert();
         preLoadWeather();
         mAppBarLayout.addOnOffsetChangedListener(this);
         LocalBroadcastManager.getInstance(this).registerReceiver(mWeatherUpdateReceiver,
@@ -485,30 +480,86 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         refreshDialogHandler = new Handler(Looper.getMainLooper());
     }
 
-    public void showSettingsAlert() {
+    private boolean permissionsAndSettingsRequested = false;
+
+    public boolean checkPermissionsSettingsAndShowAlert() {
+        if (permissionsAndSettingsRequested) {
+            return true;
+        }
+        permissionsAndSettingsRequested = true;
+        String locationUpdateStrategy = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getString(
+                Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY, "update_location_full");
+        if ("update_location_none".equals(locationUpdateStrategy)) {
+            return true;
+        }
         AlertDialog.Builder settingsAlert = new AlertDialog.Builder(MainActivity.this);
-        settingsAlert.setTitle(R.string.alertDialog_gps_title);
-        settingsAlert.setMessage(R.string.alertDialog_gps_message);
+        settingsAlert.setTitle(R.string.alertDialog_location_permission_title);
 
-        settingsAlert.setPositiveButton(R.string.alertDialog_gps_positiveButton,
+        LocationManager locationManager = (LocationManager) getBaseContext().getSystemService(Context.LOCATION_SERVICE);
+        boolean isGPSEnabled = locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
+                && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
+                && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+        if (!isGPSEnabled && !isNetworkEnabled) {
+            settingsAlert.setMessage(R.string.alertDialog_location_permission_message_location_phone_settings);
+            settingsAlert.setPositiveButton(R.string.alertDialog_location_permission_positiveButton_settings,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            permissionsAndSettingsRequested = false;
+                            Intent goToSettings = new Intent(
+                                    Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                            startActivity(goToSettings);
+                        }
+                    });
+        } else {
+            String geocoder = AppPreference.getLocationGeocoderSource(getBaseContext());
+            List<String> permissions = new ArrayList<>();
+            StringBuilder notificationMessage = new StringBuilder();
+            if (AppPreference.isGpsEnabledByPreferences(getBaseContext()) &&
+                    isGPSEnabled &&
+                    ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                notificationMessage.append(R.string.alertDialog_location_permission_message_location_phone_settings + "\n\n");
+                permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+            }
+            if (isNetworkEnabled) {
+                if ("location_geocoder_local".equals(geocoder) && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                    notificationMessage.append(R.string.alertDialog_location_permission_message_location_phone_permission);
+                    permissions.add(Manifest.permission.READ_PHONE_STATE);
+                } else if ("location_geocoder_system".equals(geocoder) && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    notificationMessage.append(R.string.alertDialog_location_permission_message_location_network_permission);
+                    permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+                }
+            }
+            if (permissions.isEmpty()) {
+                return true;
+            }
+            settingsAlert.setMessage(notificationMessage.toString());
+            final String[] permissionsArray = permissions.toArray(new String[permissions.size()]);
+            final Activity mainActivity = this;
+            settingsAlert.setPositiveButton(R.string.alertDialog_location_permission_positiveButton_permissions,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(mainActivity,
+                                    permissionsArray,
+                                    123);
+                        }
+                    });
+        }
+
+        settingsAlert.setNegativeButton(R.string.alertDialog_location_permission_negativeButton,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent goToSettings = new Intent(
-                                Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                        startActivity(goToSettings);
-                    }
-                });
-
-        settingsAlert.setNegativeButton(R.string.alertDialog_gps_negativeButton,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                        permissionsAndSettingsRequested = false;
                         dialog.cancel();
                     }
                 });
 
         settingsAlert.show();
+        return false;
     }
 
     private void updateNetworkLocation() {
@@ -519,7 +570,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     }
     
     private void requestLocation() {
-        if (PermissionUtil.checkAllPermissions(this)) {
+        if (checkPermissionsSettingsAndShowAlert()) {
             detectLocation();
         }
     }

@@ -2,9 +2,9 @@
     <string name="enter_city_hint">Inserisci città</string>
     <string name="label_current_city">Città corrente</string>
     <string name="label_choose_city">Scegli la città</string>
-    <string name="alertDialog_gps_message">Il GPS non è abilitato. Vuoi andare al menu delle impostazioni?</string>
-    <string name="alertDialog_gps_positiveButton">Impostazioni</string>
-    <string name="alertDialog_gps_negativeButton">Annulla</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">Il GPS non è abilitato. Vuoi andare al menu delle impostazioni?</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Impostazioni</string>
+    <string name="alertDialog_location_permission_negativeButton">Annulla</string>
     <string name="progressDialog_gps_locate">Trova la posizione corrente</string>
     <string name="load_progress">Caricamento in corso&#8230;</string>
 

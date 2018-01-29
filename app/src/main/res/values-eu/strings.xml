@@ -3,9 +3,9 @@
     <string name="enter_city_hint">Hiria idatzi</string>
     <string name="label_current_city">Uneko hiria</string>
     <string name="label_choose_city">Hiria hautatu</string>
-    <string name="alertDialog_gps_message">GPSa ez dago gaituta. Ezarpenen menura joan nahi duzu?</string>
-    <string name="alertDialog_gps_positiveButton">Ezarpenak</string>
-    <string name="alertDialog_gps_negativeButton">Utzi</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">GPSa ez dago gaituta. Ezarpenen menura joan nahi duzu?</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Ezarpenak</string>
+    <string name="alertDialog_location_permission_negativeButton">Utzi</string>
     <string name="progressDialog_gps_locate">Uneko kokapena aurkitu</string>
     <string name="load_progress">Kargatzen…</string>
 

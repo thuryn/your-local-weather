@@ -2,9 +2,9 @@
 <resources><string name="enter_city_hint">Shyiramo umujyi</string>
     <string name="label_current_city">Aho uhehererye ubu</string>
     <string name="label_choose_city">Hitamo umujyi</string>
-    <string name="alertDialog_gps_message">GPS ntago iri gukora. ushaka kuyemeza?</string>
-    <string name="alertDialog_gps_positiveButton">Gushyira k\'umurongo</string>
-    <string name="alertDialog_gps_negativeButton">Bireke</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">GPS ntago iri gukora. ushaka kuyemeza?</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Gushyira k\'umurongo</string>
+    <string name="alertDialog_location_permission_negativeButton">Bireke</string>
     <string name="progressDialog_gps_locate">Shaka aho mperereye</string>
     <string name="load_progress">Birigukorwa.....</string>
 

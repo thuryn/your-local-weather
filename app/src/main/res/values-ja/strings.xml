@@ -3,9 +3,9 @@
     <string name="enter_city_hint">都市を入力</string>
     <string name="label_current_city">現在の都市</string>
     <string name="label_choose_city">都市を選択</string>
-    <string name="alertDialog_gps_message">GPS が有効ではありません。設定メニューに移動しますか?</string>
-    <string name="alertDialog_gps_positiveButton">設定</string>
-    <string name="alertDialog_gps_negativeButton">キャンセル</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">GPS が有効ではありません。設定メニューに移動しますか?</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">設定</string>
+    <string name="alertDialog_location_permission_negativeButton">キャンセル</string>
     <string name="progressDialog_gps_locate">現在の場所を検索</string>
     <string name="load_progress">ロード中…</string>
 

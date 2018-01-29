@@ -2,9 +2,9 @@
 <resources><string name="enter_city_hint">Város megadása</string>
     <string name="label_current_city">Jelenlegi város</string>
     <string name="label_choose_city">Város választása</string>
-    <string name="alertDialog_gps_message">A GPS nincs bekapcsolva. Szeretné a beállításokat megnyitni?</string>
-    <string name="alertDialog_gps_positiveButton">Beállítások</string>
-    <string name="alertDialog_gps_negativeButton">Mégsem</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">A GPS nincs bekapcsolva. Szeretné a beállításokat megnyitni?</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Beállítások</string>
+    <string name="alertDialog_location_permission_negativeButton">Mégsem</string>
     <string name="progressDialog_gps_locate">Jelenlegi pozíció megkeresése</string>
     <string name="load_progress">Betöltés…</string>
 

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="nav_menu_settings">Ustawienia</string>
-    <string name="alertDialog_gps_message">GPS nie jest włączony. Czy chcesz, aby przejść do menu ustawień?</string>
-    <string name="alertDialog_gps_negativeButton">Anulować</string>
-    <string name="alertDialog_gps_positiveButton">Ustawienia</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">GPS nie jest włączony. Czy chcesz, aby przejść do menu ustawień?</string>
+    <string name="alertDialog_location_permission_negativeButton">Anulować</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Ustawienia</string>
     <string name="connection_not_found"> Sprawdź swoje połączenie z internetem</string>
     <string name="enter_city_hint">Wpisz miasto</string>
     <string name="label_choose_city">Wybierz miasto</string>

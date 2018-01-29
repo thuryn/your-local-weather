@@ -51,21 +51,13 @@ public class ForecastBottomSheetDialogFragment extends BottomSheetDialogFragment
 
         String description = mWeather.getDescription();
         String temperatureMorningStr = getActivity().getString(R.string.temperature_with_degree,
-                                                               String.format(Locale.getDefault(),
-                                                                             "%.0f",
-                                                                             temperatureMorning));
+                AppPreference.getTemperatureWithUnit(getActivity(), temperatureMorning));
         String temperatureDayStr = getActivity().getString(R.string.temperature_with_degree,
-                                                           String.format(Locale.getDefault(),
-                                                                         "%.0f",
-                                                                         temperatureDay));
+                AppPreference.getTemperatureWithUnit(getActivity(), temperatureDay));
         String temperatureEveningStr = getActivity().getString(R.string.temperature_with_degree,
-                                                               String.format(Locale.getDefault(),
-                                                                             "%.0f",
-                                                                             temperatureEvening));
+                AppPreference.getTemperatureWithUnit(getActivity(), temperatureEvening));
         String temperatureNightStr = getActivity().getString(R.string.temperature_with_degree,
-                                                             String.format(Locale.getDefault(),
-                                                                           "%.0f",
-                                                                           temperatureNight));
+                AppPreference.getTemperatureWithUnit(getActivity(), temperatureNight));
         String wind = getActivity().getString(R.string.wind_label,
                 windWithUnit.getWindSpeed(1),
                 windWithUnit.getWindUnit());

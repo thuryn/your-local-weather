@@ -10,6 +10,7 @@ import android.widget.TextView;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.fragment.ForecastBottomSheetDialogFragment;
 import org.thosp.yourlocalweather.model.WeatherForecast;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Utils;
 
 import java.text.SimpleDateFormat;
@@ -51,11 +52,9 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder implement
         SimpleDateFormat format = new SimpleDateFormat("EEE, dd MMMM", Locale.getDefault());
         Date date = new Date(weather.getDateTime() * 1000);
         String temperatureMin = mContext.getString(R.string.temperature_with_degree,
-                                                   String.format(Locale.getDefault(), "%.0f",
-                                                                 weather.getTemperatureMin()));
+                AppPreference.getTemperatureWithUnit(mContext, weather.getTemperatureMin()));
         String temperatureMax = mContext.getString(R.string.temperature_with_degree,
-                                                   String.format(Locale.getDefault(), "%.0f",
-                                                                 weather.getTemperatureMax()));
+                AppPreference.getTemperatureWithUnit(mContext, weather.getTemperatureMax()));
 
         mDateTime.setText(format.format(date));
         mIcon.setTypeface(typeface);

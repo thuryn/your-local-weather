@@ -52,7 +52,7 @@ public class PermissionUtil {
 
         boolean gsmWifiBasedNetworkLocationProvider = false;
         String geocoder = AppPreference.getLocationGeocoderSource(context);
-        if ("location_geocoder_unifiednlp".equals(geocoder) || "location_geocoder_local".equals(geocoder)) {
+        if ("location_geocoder_system".equals(geocoder) || "location_geocoder_local".equals(geocoder)) {
             gsmWifiBasedNetworkLocationProvider = true;
         }
 
@@ -69,25 +69,5 @@ public class PermissionUtil {
             }
         }
         return permissions;
-    }
-
-    public static boolean checkAllPermissions(Context context) {
-        String locationUpdateStrategy = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY, "update_location_full");
-        if ("update_location_none".equals(locationUpdateStrategy)) {
-            return false;
-        }
-        List<String> permissions = getAllPermissions(context);
-        if (!permissions.isEmpty()) {
-            if (!(context instanceof Activity)) {
-                return false;
-            }
-            ActivityCompat.requestPermissions((Activity) context,
-                    permissions.toArray(new String[permissions.size()]),
-                    123);
-            return false;
-        } else {
-            return true;
-        }
     }
 }

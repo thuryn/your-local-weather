@@ -465,7 +465,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     setSummary(Constants.KEY_PREF_WIDGET_UPDATE_PERIOD);
                     break;
                 case Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY:
-                    PermissionUtil.checkAllPermissions(getActivity());
                     break;
                 case Constants.KEY_PREF_WIDGET_SHOW_LABELS:
                     getActivity().sendBroadcast(new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED));

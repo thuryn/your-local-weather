@@ -3,9 +3,9 @@
     <string name="enter_city_hint">Stadt betreten</string>
     <string name="label_current_city">Aktuelle Stadt</string>
     <string name="label_choose_city">Wähle Stadt</string>
-    <string name="alertDialog_gps_message">GPS ist nicht aktiviert. Wollen Sie zu den Einstellungen?</string>
-    <string name="alertDialog_gps_positiveButton">Einstellungen</string>
-    <string name="alertDialog_gps_negativeButton">Abbrechen</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">GPS ist nicht aktiviert. Wollen Sie zu den Einstellungen?</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Einstellungen</string>
+    <string name="alertDialog_location_permission_negativeButton">Abbrechen</string>
     <string name="progressDialog_gps_locate">Aktuelle Position wird gesucht</string>
     <string name="load_progress">Laden…</string>
 
