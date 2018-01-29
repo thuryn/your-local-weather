@@ -15,13 +15,93 @@ import org.thosp.yourlocalweather.model.WeatherForecast;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 public class AppPreference {
 
+    public static String getTemperatureWithUnit(Context context, float value) {
+        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_UNITS, "celsius_m_per_second");
+        if (unitsFromPreferences.contains("fahrenheit") ) {
+            float fahrenheitValue = (value * 1.8f) + 32;
+            return String.format(Locale.getDefault(), "%d",
+                    Math.round(fahrenheitValue)) + "°F";
+        } else {
+            return String.format(Locale.getDefault(), "%d",
+                    Math.round(value)) + "°C";
+        }
+    }
+
     public static String getTemperatureUnit(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE, "metric");
+        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_UNITS, "celsius_m_per_second");
+        if (unitsFromPreferences.contains("fahrenheit") ) {
+            return "°F";
+        } else {
+            return "°C";
+        }
+    }
+
+    public static float getTemperature(Context context, String value) {
+        return getTemperature(context, Float.parseFloat(value.replace(",", ".")));
+    }
+
+    public static float getTemperature(Context context, float value) {
+        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_UNITS, "celsius_m_per_second");
+        if (unitsFromPreferences.contains("fahrenheit") ) {
+            return (value * 1.8f) + 32;
+        } else {
+            return value;
+        }
+    }
+
+    public static WindWithUnit getWindWithUnit(Context context, String value) {
+        return getWindWithUnit(context, Float.parseFloat(value.replace(",", ".")));
+    }
+
+    public static WindWithUnit getWindWithUnit(Context context, float value) {
+        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_UNITS, "celsius_m_per_second");
+        if (unitsFromPreferences.contains("km_per_hour") ) {
+            float kmhValue = 3.6f * value;
+            return new WindWithUnit(kmhValue, context.getString(R.string.wind_speed_kilometers));
+        } else if (unitsFromPreferences.contains("miles_per_hour") ) {
+            float mhValue = 2.2369f * value;
+            return new WindWithUnit(mhValue, context.getString(R.string.wind_speed_miles));
+        } else {
+            return new WindWithUnit(value, context.getString(R.string.wind_speed_meters));
+        }
+    }
+
+    public static String getWindInString(Context context, String stringValue) {
+        return String.format(Locale.getDefault(), "%.1f", getWind(context, stringValue));
+    }
+
+    public static float getWind(Context context, String stringValue) {
+        float value = Float.parseFloat(stringValue.replace(",", "."));
+        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_UNITS, "celsius_m_per_second");
+        if (unitsFromPreferences.contains("km_per_hour") ) {
+            return 3.6f * value;
+        } else if (unitsFromPreferences.contains("miles_per_hour") ) {
+            return 2.2369f * value;
+        } else {
+            return value;
+        }
+    }
+
+    public static String getWindUnit(Context context) {
+        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_UNITS, "celsius_m_per_second");
+        if (unitsFromPreferences.contains("km_per_hour") ) {
+            return context.getString(R.string.wind_speed_kilometers);
+        } else if (unitsFromPreferences.contains("miles_per_hour") ) {
+            return context.getString(R.string.wind_speed_miles);
+        } else {
+            return context.getString(R.string.wind_speed_meters);
+        }
     }
 
     public static boolean hideDescription(Context context) {

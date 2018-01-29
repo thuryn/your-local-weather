@@ -24,6 +24,7 @@ import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.json.JSONException;
+import org.thosp.yourlocalweather.utils.WindWithUnit;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -49,11 +50,10 @@ public class NotificationService extends IntentService {
         String latitude = preferences.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
         String longitude = preferences.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
         String locale = LanguageUtil.getLanguageName(PreferenceUtil.getLanguage(this));
-        String units = AppPreference.getTemperatureUnit(this);
 
         Weather weather;
         try {
-            String weatherRaw = new WeatherRequest().getItems(latitude, longitude, units, locale, getBaseContext());
+            String weatherRaw = new WeatherRequest().getItems(latitude, longitude, "metric", locale, getBaseContext());
             weather = WeatherJSONParser.getWeather(weatherRaw);
 
             AppPreference.saveLastUpdateTimeMillis(this);
@@ -92,16 +92,12 @@ public class NotificationService extends IntentService {
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent launchIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
-        String temperatureScale = Utils.getTemperatureScale(this);
-        String speedScale = Utils.getSpeedScale(this);
+        String temperatureWithUnit = AppPreference.getTemperatureWithUnit(this, weather.temperature.getTemp());
+        WindWithUnit speedScale = AppPreference.getWindWithUnit(this, weather.wind.getSpeed());
 
-        String temperature = String.format(Locale.getDefault(), "%.1f",
-                                           weather.temperature.getTemp());
-
-        String wind = getString(R.string.wind_label, String.format(Locale.getDefault(),
-                                                                   "%.1f",
-                                                                   weather.wind.getSpeed()),
-                                speedScale);
+        String wind = getString(R.string.wind_label,
+                                speedScale.getWindSpeed(1),
+                                speedScale.getWindUnit());
         String humidity = getString(R.string.humidity_label,
                                     String.valueOf(weather.currentCondition.getHumidity()),
                                     getString(R.string.percent_sign));
@@ -124,14 +120,12 @@ public class NotificationService extends IntentService {
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentIntent(launchIntent)
                 .setSmallIcon(R.drawable.small_icon)
-                .setTicker(temperature
-                                   + temperatureScale
+                .setTicker(temperatureWithUnit
                                    + "  "
                                    + weather.location.getCityName()
                                    + ", "
                                    + weather.location.getCountryCode())
-                .setContentTitle(temperature
-                                         + temperatureScale
+                .setContentTitle(temperatureWithUnit
                                          + "  "
                                          + Utils.getWeatherDescription(this, weather))
                 .setContentText(notificationText)

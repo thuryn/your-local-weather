@@ -40,10 +40,6 @@ public class ExtLocationWidgetService extends IntentService {
 
         int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
         for (int appWidgetId : widgetIds) {
-            String temperatureScale = Utils.getTemperatureScale(this);
-            String temperature = String.format(Locale.getDefault(), "%d",
-                    Math.round(weather.temperature.getTemp()));
-
             String lastUpdate = Utils.setLastUpdateTime(this, AppPreference
                     .getLastUpdateTimeMillis(this));
 
@@ -54,7 +50,9 @@ public class ExtLocationWidgetService extends IntentService {
             ExtLocationWidgetProvider.setWidgetIntents(this, remoteViews, ExtLocationWidgetProvider.class);
 
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(this));
-            remoteViews.setTextViewText(R.id.widget_temperature, temperature + temperatureScale);
+            remoteViews.setTextViewText(R.id.widget_temperature, AppPreference.getTemperatureWithUnit(
+                    this,
+                    weather.temperature.getTemp()));
             remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, weather));
             WidgetUtils.setWind(getBaseContext(), remoteViews, weather.wind.getSpeed());
             WidgetUtils.setHumidity(getBaseContext(), remoteViews, weather.currentCondition.getHumidity());

@@ -30,14 +30,13 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
         appendLog(context, TAG, "preLoadWeather:start");
         SharedPreferences weatherPref = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
                 Context.MODE_PRIVATE);
-        String temperatureScale = Utils.getTemperatureScale(context);
-        String temperature = String.format(Locale.getDefault(), "%d", Math.round(weatherPref.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0)));
-
         String lastUpdate = Utils.setLastUpdateTime(context,
                 AppPreference.getLastUpdateTimeMillis(context));
 
         remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context));
-        remoteViews.setTextViewText(R.id.widget_temperature, temperature + temperatureScale);
+        remoteViews.setTextViewText(R.id.widget_temperature, AppPreference.getTemperatureWithUnit(
+                context,
+                weatherPref.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0)));
         remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context));
 
         WidgetUtils.setWind(context, remoteViews, weatherPref

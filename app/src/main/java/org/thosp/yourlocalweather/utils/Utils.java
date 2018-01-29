@@ -305,21 +305,6 @@ public class Utils {
         }
     }
 
-    public static String getTemperatureScale(Context context) {
-        String[] temperatureScaleArray = context.getResources().getStringArray(
-                R.array.pref_temperature_entries);
-        String unitPref = AppPreference.getTemperatureUnit(context);
-        return unitPref.equals("metric") ?
-                temperatureScaleArray[0] : temperatureScaleArray[1];
-    }
-
-    public static String getSpeedScale(Context context) {
-        String unitPref = AppPreference.getTemperatureUnit(context);
-        return unitPref.equals("metric") ?
-                context.getString(R.string.wind_speed_meters) :
-                context.getString(R.string.wind_speed_miles);
-    }
-
     public static String setLastUpdateTime(Context context, long lastUpdate) {
         Date lastUpdateTime = new Date(lastUpdate);
         return DateFormat.getTimeFormat(context).format(lastUpdateTime) + " " + AppPreference.getUpdateSource(context);

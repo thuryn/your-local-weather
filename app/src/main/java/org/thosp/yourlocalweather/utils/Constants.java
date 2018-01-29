@@ -30,7 +30,7 @@ public class Constants {
     public static final String LAST_WEATHER_UPDATE_TIME_IN_MS = "last_weather_update";
     
     public static final String KEY_PREF_IS_NOTIFICATION_ENABLED = "notification_pref_key";
-    public static final String KEY_PREF_TEMPERATURE = "temperature_pref_key";
+    public static final String KEY_PREF_UNITS = "units_pref_key";
     public static final String KEY_PREF_HIDE_DESCRIPTION = "hide_desc_pref_key";
     public static final String KEY_PREF_INTERVAL_NOTIFICATION = "notification_interval_pref_key";
     public static final String KEY_PREF_VIBRATE = "notification_vibrate_pref_key";

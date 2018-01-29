@@ -51,6 +51,7 @@ import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
 import org.thosp.yourlocalweather.utils.Utils;
+import org.thosp.yourlocalweather.utils.WindWithUnit;
 import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.util.Locale;
@@ -88,7 +89,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private Menu mToolbarMenu;
     private BroadcastReceiver mWeatherUpdateReceiver;
 
-    private String mSpeedScale;
+    private WindWithUnit windWithUnit;
     private String mIconWind;
     private String mIconHumidity;
     private String mIconPressure;
@@ -159,12 +160,11 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor configEditor = mSharedPreferences.edit();
 
-        mSpeedScale = Utils.getSpeedScale(MainActivity.this);
+        windWithUnit = AppPreference.getWindWithUnit(MainActivity.this, mWeather.wind.getSpeed());
         String temperature = String.format(Locale.getDefault(), "%.0f",
                 mWeather.temperature.getTemp());
         String pressure = String.format(Locale.getDefault(), "%.1f",
                 mWeather.currentCondition.getPressure());
-        String wind = String.format(Locale.getDefault(), "%.1f", mWeather.wind.getSpeed());
 
         String lastUpdate = Utils.setLastUpdateTime(MainActivity.this,
                 getLastUpdateTimeMillis(MainActivity.this));
@@ -179,7 +179,9 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 mPercentSign));
         mPressureView.setText(getString(R.string.pressure_label, pressure,
                 mPressureMeasurement));
-        mWindSpeedView.setText(getString(R.string.wind_label, wind, mSpeedScale));
+        mWindSpeedView.setText(getString(R.string.wind_label,
+                                windWithUnit.getWindSpeed(1),
+                                windWithUnit.getWindUnit()));
         mCloudinessView.setText(getString(R.string.cloudiness_label,
                 String.valueOf(mWeather.cloud.getClouds()),
                 mPercentSign));
@@ -275,7 +277,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             };
 
     private void preLoadWeather() {
-        mSpeedScale = Utils.getSpeedScale(this);
         String lastUpdate = Utils.setLastUpdateTime(this,
                 AppPreference.getLastUpdateTimeMillis(this));
 
@@ -287,14 +288,14 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         long sunrisePref = mPrefWeather.getLong(Constants.WEATHER_DATA_SUNRISE, -1);
         long sunsetPref = mPrefWeather.getLong(Constants.WEATHER_DATA_SUNSET, -1);
 
-        String temperature = String.format(Locale.getDefault(), "%d", Math.round(temperaturePref));
+        windWithUnit = AppPreference.getWindWithUnit(this, windPref);
         String pressure = String.format(Locale.getDefault(), "%.1f", pressurePref);
-        String wind = String.format(Locale.getDefault(), "%.1f", windPref);
         String sunrise = Utils.unixTimeToFormatTime(this, sunrisePref);
         String sunset = Utils.unixTimeToFormatTime(this, sunsetPref);
 
         Utils.setWeatherIcon(mIconWeatherView, this);
-        mTemperatureView.setText(getString(R.string.temperature_with_degree, temperature));
+        mTemperatureView.setText(getString(R.string.temperature_with_degree,
+                AppPreference.getTemperatureWithUnit(this, temperaturePref)));
         mDescriptionView.setText(Utils.getWeatherDescription(this));
         mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
         mHumidityView.setText(getString(R.string.humidity_label,
@@ -303,7 +304,9 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mPressureView.setText(getString(R.string.pressure_label,
                 pressure,
                 mPressureMeasurement));
-        mWindSpeedView.setText(getString(R.string.wind_label, wind, mSpeedScale));
+        mWindSpeedView.setText(getString(R.string.wind_label,
+                                         windWithUnit.getWindSpeed(1),
+                                         windWithUnit.getWindUnit()));
         mCloudinessView.setText(getString(R.string.cloudiness_label,
                 String.valueOf(clouds),
                 mPercentSign));
@@ -427,11 +430,14 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     FloatingActionButton.OnClickListener fabListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            String temperatureScale = Utils.getTemperatureScale(MainActivity.this);
-            mSpeedScale = Utils.getSpeedScale(MainActivity.this);
+            String temperatureWithUnit = AppPreference.getTemperatureWithUnit(
+                    MainActivity.this,
+                    Math.round(mPrefWeather.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0)));
+            windWithUnit = AppPreference.getWindWithUnit(
+                    MainActivity.this,
+                    mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
             String weather;
             String city;
-            String temperature;
             String description;
             String wind;
             String sunrise;
@@ -440,18 +446,15 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             if(AppPreference.isUpdateLocationEnabled(storedContext)) {
                 city = mSharedPreferences.getString(Constants.APP_SETTINGS_GEO_CITY, "London");
             }
-            temperature = String.format(Locale.getDefault(), "%d", Math.round(mPrefWeather.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0)));
             description = Utils.getWeatherDescription(MainActivity.this);
-            wind = String.format(Locale.getDefault(), "%.1f",
-                    mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
             sunrise = Utils.unixTimeToFormatTime(MainActivity.this, mPrefWeather
                     .getLong(Constants.WEATHER_DATA_SUNRISE, -1));
             sunset = Utils.unixTimeToFormatTime(MainActivity.this, mPrefWeather
                     .getLong(Constants.WEATHER_DATA_SUNSET, -1));
             weather = "City: " + city +
-                    "\nTemperature: " + temperature + temperatureScale +
+                    "\nTemperature: " + temperatureWithUnit +
                     "\nDescription: " + description +
-                    "\nWind: " + wind + " " + mSpeedScale +
+                    "\nWind: " + windWithUnit.getWindSpeed(1) + " " + windWithUnit.getWindUnit() +
                     "\nSunrise: " + sunrise +
                     "\nSunset: " + sunset;
             Intent shareIntent = new Intent(Intent.ACTION_SEND);

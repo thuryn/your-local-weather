@@ -22,15 +22,13 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
     protected void preLoadWeather(Context context, RemoteViews remoteViews) {
         SharedPreferences weatherPref = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
                                                                      Context.MODE_PRIVATE);
-        String temperatureScale = Utils.getTemperatureScale(context);
-
-        String temperature = String.format(Locale.getDefault(), "%d", Math.round(weatherPref.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0)));
-        String weatherIcon = Utils.getStrIcon(context);
         String lastUpdate = Utils.setLastUpdateTime(context,
                                                     AppPreference.getLastUpdateTimeMillis(context));
         remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context));
         remoteViews.setTextViewText(R.id.widget_temperature,
-                                    temperature + temperatureScale);
+                AppPreference.getTemperatureWithUnit(
+                        context,
+                        weatherPref.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0)));
         remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context));
         Utils.setWeatherIcon(remoteViews, context);
         remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);

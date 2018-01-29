@@ -160,12 +160,11 @@ public class WeatherForecastActivity extends BaseActivity {
                 String latitude = pref.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
                 String longitude = pref.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
                 String locale = LanguageUtil.getLanguageName(PreferenceUtil.getLanguage(WeatherForecastActivity.this));
-                String units = AppPreference.getTemperatureUnit(WeatherForecastActivity.this);
 
                 String requestResult = "";
                 HttpURLConnection connection = null;
                 try {
-                    URL url = getWeatherForecastUrl(Constants.WEATHER_FORECAST_ENDPOINT, latitude, longitude, units, locale);
+                    URL url = getWeatherForecastUrl(Constants.WEATHER_FORECAST_ENDPOINT, latitude, longitude, "metric", locale);
                     connection = (HttpURLConnection) url.openConnection();
 
                     if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
@@ -211,7 +210,9 @@ public class WeatherForecastActivity extends BaseActivity {
                 weatherForecast.setDateTime(resultObject.getLong("dt"));
                 weatherForecast.setPressure(resultObject.getString("pressure"));
                 weatherForecast.setHumidity(resultObject.getString("humidity"));
-                weatherForecast.setWindSpeed(resultObject.getString("speed"));
+                weatherForecast.setWindSpeed(AppPreference.getWindInString(
+                        getBaseContext(),
+                        resultObject.getString("speed")));
                 weatherForecast.setWindDegree(resultObject.getString("deg"));
                 weatherForecast.setCloudiness(resultObject.getString("clouds"));
                 if (resultObject.has("rain")) {
@@ -226,17 +227,17 @@ public class WeatherForecastActivity extends BaseActivity {
                 }
                 JSONObject temperatureObject = resultObject.getJSONObject("temp");
                 weatherForecast.setTemperatureMin(
-                        Float.parseFloat(temperatureObject.getString("min")));
+                        AppPreference.getTemperature(getBaseContext(), temperatureObject.getString("min")));
                 weatherForecast.setTemperatureMax(
-                        Float.parseFloat(temperatureObject.getString("max")));
+                        AppPreference.getTemperature(getBaseContext(), temperatureObject.getString("max")));
                 weatherForecast.setTemperatureMorning(
-                        Float.parseFloat(temperatureObject.getString("morn")));
+                        AppPreference.getTemperature(getBaseContext(), temperatureObject.getString("morn")));
                 weatherForecast.setTemperatureDay(
-                        Float.parseFloat(temperatureObject.getString("day")));
+                        AppPreference.getTemperature(getBaseContext(), temperatureObject.getString("day")));
                 weatherForecast.setTemperatureEvening(
-                        Float.parseFloat(temperatureObject.getString("eve")));
+                        AppPreference.getTemperature(getBaseContext(), temperatureObject.getString("eve")));
                 weatherForecast.setTemperatureNight(
-                        Float.parseFloat(temperatureObject.getString("night")));
+                        AppPreference.getTemperature(getBaseContext(), temperatureObject.getString("night")));
                 JSONArray weatherArray = resultObject.getJSONArray("weather");
                 JSONObject weatherObject = weatherArray.getJSONObject(0);
                 weatherForecast.setDescription(weatherObject.getString("description"));

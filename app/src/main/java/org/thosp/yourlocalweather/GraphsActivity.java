@@ -80,9 +80,9 @@ public class GraphsActivity extends BaseActivity {
         TextView temperatureLabel = (TextView) findViewById(R.id.graphs_temperature_label);
         temperatureLabel.setText(getString(R.string.label_temperature) +
                                          ", " +
-                                         Utils.getTemperatureScale(this));
+                                         AppPreference.getTemperatureUnit(this));
         TextView windLabel = (TextView) findViewById(R.id.graphs_wind_label);
-        windLabel.setText(getString(R.string.label_wind) + ", " + Utils.getSpeedScale(this));
+        windLabel.setText(getString(R.string.label_wind) + ", " + AppPreference.getWindUnit(this));
         TextView rainLabel = (TextView) findViewById(R.id.graphs_rain_label);
         rainLabel.setText(getString(R.string.label_rain) + ", " + getString(R.string.millimetre_label));
         TextView snowLabel = (TextView) findViewById(R.id.graphs_snow_label);
@@ -152,7 +152,7 @@ public class GraphsActivity extends BaseActivity {
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < mForecastList.size(); i++) {
-            float temperatureDay = mForecastList.get(i).getTemperatureDay();
+            float temperatureDay = AppPreference.getTemperature(this, mForecastList.get(i).getTemperatureDay());
             entries.add(new Entry(i, temperatureDay));
         }
 
@@ -221,7 +221,7 @@ public class GraphsActivity extends BaseActivity {
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < mForecastList.size(); i++) {
-            float wind = Float.parseFloat(mForecastList.get(i).getWindSpeed());
+            float wind = AppPreference.getWind(this, mForecastList.get(i).getWindSpeed());
             entries.add(new Entry(i, wind));
         }
 
@@ -498,12 +498,11 @@ public class GraphsActivity extends BaseActivity {
                 String latitude = pref.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
                 String longitude = pref.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
                 String locale = LanguageUtil.getLanguageName(PreferenceUtil.getLanguage(GraphsActivity.this));
-                String units = AppPreference.getTemperatureUnit(GraphsActivity.this);
 
                 String requestResult = "";
                 HttpURLConnection connection = null;
                 try {
-                    URL url = getWeatherForecastUrl(Constants.WEATHER_FORECAST_ENDPOINT, latitude, longitude, units, locale);
+                    URL url = getWeatherForecastUrl(Constants.WEATHER_FORECAST_ENDPOINT, latitude, longitude, "metric", locale);
                     connection = (HttpURLConnection) url.openConnection();
 
                     if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {

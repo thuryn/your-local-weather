@@ -53,15 +53,15 @@ public class WidgetUtils {
     }
 
     public static void setWind(Context context, RemoteViews remoteViews, float value) {
-        String speedScale = Utils.getSpeedScale(context);
+        WindWithUnit windWithUnit = AppPreference.getWindWithUnit(context, value);
         if (AppPreference.showLabelsOnWidget(context)) {
             String wind = context.getString(R.string.wind_label,
-                    String.format(Locale.getDefault(), "%.0f", value),
-                    speedScale);
+                            windWithUnit.getWindSpeed(0),
+                            windWithUnit.getWindUnit());
             remoteViews.setTextViewText(R.id.widget_wind, wind);
             remoteViews.setViewVisibility(R.id.widget_wind_icon, TextView.GONE);
         } else {
-            String wind = ": " + String.format(Locale.getDefault(), "%.0f", value) + " " + speedScale;
+            String wind = ": " + windWithUnit.getWindSpeed(0) + " " + windWithUnit.getWindUnit();
             remoteViews.setImageViewBitmap(R.id.widget_wind_icon, Utils.createWeatherIcon(context, context.getString(R.string.icon_wind)));
             remoteViews.setViewVisibility(R.id.widget_wind_icon, TextView.VISIBLE);
             remoteViews.setTextViewText(R.id.widget_wind, wind);

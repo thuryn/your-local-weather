@@ -11,7 +11,9 @@ import android.widget.TextView;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.WeatherForecast;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Utils;
+import org.thosp.yourlocalweather.utils.WindWithUnit;
 
 import java.util.Locale;
 
@@ -37,15 +39,15 @@ public class ForecastBottomSheetDialogFragment extends BottomSheetDialogFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup parent, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_forecast_bottom_sheet, parent, false);
 
-        String speedScale = Utils.getSpeedScale(getActivity());
+        WindWithUnit windWithUnit = AppPreference.getWindWithUnit(getActivity(), mWeather.getWindSpeed());
         String percentSign = getActivity().getString(R.string.percent_sign);
         String pressureMeasurement = getActivity().getString(R.string.pressure_measurement);
         String mmLabel = getString(R.string.millimetre_label);
 
-        Float temperatureMorning = mWeather.getTemperatureMorning();
-        Float temperatureDay = mWeather.getTemperatureDay();
-        Float temperatureEvening = mWeather.getTemperatureEvening();
-        Float temperatureNight = mWeather.getTemperatureNight();
+        Float temperatureMorning = AppPreference.getTemperature(getActivity(), mWeather.getTemperatureMorning());
+        Float temperatureDay = AppPreference.getTemperature(getActivity(), mWeather.getTemperatureDay());
+        Float temperatureEvening = AppPreference.getTemperature(getActivity(), mWeather.getTemperatureEvening());
+        Float temperatureNight = AppPreference.getTemperature(getActivity(), mWeather.getTemperatureNight());
 
         String description = mWeather.getDescription();
         String temperatureMorningStr = getActivity().getString(R.string.temperature_with_degree,
@@ -64,7 +66,9 @@ public class ForecastBottomSheetDialogFragment extends BottomSheetDialogFragment
                                                              String.format(Locale.getDefault(),
                                                                            "%.0f",
                                                                            temperatureNight));
-        String wind = getActivity().getString(R.string.wind_label, mWeather.getWindSpeed(), speedScale);
+        String wind = getActivity().getString(R.string.wind_label,
+                windWithUnit.getWindSpeed(1),
+                windWithUnit.getWindUnit());
         String windDegree = mWeather.getWindDegree();
         String windDirection = Utils.windDegreeToDirections(getActivity(),
                                                             Double.parseDouble(windDegree));

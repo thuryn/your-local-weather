@@ -40,12 +40,10 @@ public class LessWidgetService extends IntentService {
 
             String lastUpdate = Utils.setLastUpdateTime(this, AppPreference
                     .getLastUpdateTimeMillis(this));
-            String temperatureScale = Utils.getTemperatureScale(this);
-            String temperature = String.format(Locale.getDefault(), "%d",
-                    Math.round(weather.temperature.getTemp()));
-
             remoteViews.setTextViewText(R.id.widget_temperature,
-                                        temperature + temperatureScale);
+                    AppPreference.getTemperatureWithUnit(
+                            this,
+                            weather.temperature.getTemp()));
             remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, weather));
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(this));
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);

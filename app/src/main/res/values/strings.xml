@@ -66,10 +66,11 @@
     <!-- Units and Measurement-->
     <string name="percent_sign" translatable="false">\u0025</string>
     <string name="temperature_with_degree" translatable="false">%s\u00B0</string>
-    <string name="pressure_measurement">hPa</string>
-    <string name="wind_speed_meters">m/s</string>
-    <string name="wind_speed_miles">mph</string>
-    <string name="millimetre_label">mm</string>
+    <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
+    <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
+    <string name="wind_speed_miles" tools:ignore="MissingTranslation">mph</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
+    <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
 
     <!-- Search Screen strings -->
     <string name="hint_activity_search">Search location</string>

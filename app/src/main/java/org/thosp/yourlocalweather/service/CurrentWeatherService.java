@@ -122,13 +122,12 @@ public class CurrentWeatherService extends Service {
                     String latitude = preferences.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
                     String longitude = preferences.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
                     String locale = LanguageUtil.getLanguageName(PreferenceUtil.getLanguage(context));
-                    String units = AppPreference.getTemperatureUnit(context);
                     float latInPref = Float.parseFloat(latitude.replace(",", "."));
                     float lonInPref = Float.parseFloat(longitude.replace(",", "."));
 
                     appendLog(context, TAG, "weather get params: latitude:" + latitude + ", longitude" + longitude);
 
-                    String weatherRaw = new WeatherRequest().getItems(latitude, longitude, units,
+                    String weatherRaw = new WeatherRequest().getItems(latitude, longitude, "metric",
                                                                       locale, context);
                     appendLog(context, TAG, "weather got, result:" + weatherRaw);
         

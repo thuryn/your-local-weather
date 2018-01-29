@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <ListPreference
-        android:defaultValue="metric"
+        android:defaultValue="celsius_m_per_second"
         android:dialogTitle="@string/pref_title_temperature"
-        android:entries="@array/pref_temperature_entries"
-        android:entryValues="@array/pref_temperature_values"
-        android:key="temperature_pref_key"
+        android:entries="@array/pref_units_entries"
+        android:entryValues="@array/pref_units_values"
+        android:key="units_pref_key"
         android:title="@string/pref_title_temperature"/>
     <CheckBoxPreference
         android:defaultValue="false"

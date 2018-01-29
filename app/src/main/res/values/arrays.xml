@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="pref_temperature_entries" translatable="false">
-        <item>°C</item>
-        <item>°F</item>
+    <string-array name="pref_units_entries" translatable="false">
+        <item>°C - m/s</item>
+        <item>°F - m/s</item>
+        <item>°C - km/s</item>
+        <item>°F - km/s</item>
     </string-array>
-    <string-array name="pref_temperature_values" translatable="false">
-        <item>metric</item>
-        <item>imperial</item>
+    <string-array name="pref_units_values" translatable="false">
+        <item>celsius_m_per_second</item>
+        <item>fahrenheit_m_per_second</item>
+        <item>celsius_km_per_hour</item>
+        <item>fahrenheit_km_per_hour</item>
+        <item>celsius_miles_per_hour</item>
+        <item>fahrenheit_miles_per_hour</item>
     </string-array>
 
     <string-array name="location_update_strategy">

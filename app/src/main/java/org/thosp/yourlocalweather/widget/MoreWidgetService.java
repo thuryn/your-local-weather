@@ -35,11 +35,6 @@ public class MoreWidgetService extends IntentService {
 
         int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
         for (int appWidgetId : widgetIds) {
-            String temperatureScale = Utils.getTemperatureScale(this);
-
-            String temperature = String.format(Locale.getDefault(), "%d",
-                    Math.round(weather.temperature.getTemp()));
-
             String lastUpdate = Utils.setLastUpdateTime(this, AppPreference
                     .getLastUpdateTimeMillis(this));
 
@@ -50,7 +45,9 @@ public class MoreWidgetService extends IntentService {
             MoreWidgetProvider.setWidgetIntents(this, remoteViews, MoreWidgetProvider.class);
 
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(this));
-            remoteViews.setTextViewText(R.id.widget_temperature, temperature + temperatureScale);
+            remoteViews.setTextViewText(R.id.widget_temperature, AppPreference.getTemperatureWithUnit(
+                    this,
+                    weather.temperature.getTemp()));
             if(!AppPreference.hideDescription(this))
                 remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, weather));
             else remoteViews.setTextViewText(R.id.widget_description, " ");
