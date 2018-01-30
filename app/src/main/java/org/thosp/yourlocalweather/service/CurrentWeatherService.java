@@ -1,22 +1,17 @@
 package org.thosp.yourlocalweather.service;
 
 import android.app.Service;
-import android.appwidget.AppWidgetManager;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.PowerManager;
-import android.os.PowerManager.WakeLock;
+import android.os.Looper;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
-import android.util.Log;
-import android.widget.RemoteViews;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.thosp.yourlocalweather.ConnectionDetector;
 import org.thosp.yourlocalweather.utils.AppPreference;
@@ -24,22 +19,19 @@ import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.Utils;
-import org.thosp.yourlocalweather.widget.ExtLocationWidgetProvider;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
 import org.json.JSONException;
 
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import static org.thosp.yourlocalweather.MainActivity.mWeather;
-import org.thosp.yourlocalweather.R;
+
 import org.thosp.yourlocalweather.WeatherJSONParser;
-import org.thosp.yourlocalweather.WeatherRequest;
 import org.thosp.yourlocalweather.model.Weather;
-import org.thosp.yourlocalweather.widget.LessWidgetProvider;
 import org.thosp.yourlocalweather.widget.LessWidgetService;
 import org.thosp.yourlocalweather.widget.MoreWidgetService;
+
+import java.net.MalformedURLException;
+
+import cz.msebera.android.httpclient.Header;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -50,7 +42,9 @@ public class CurrentWeatherService extends Service {
     public static final String ACTION_WEATHER_UPDATE_OK = "org.thosp.yourlocalweather.action.WEATHER_UPDATE_OK";
     public static final String ACTION_WEATHER_UPDATE_FAIL = "org.thosp.yourlocalweather.action.WEATHER_UPDATE_FAIL";
     public static final String ACTION_WEATHER_UPDATE_RESULT = "org.thosp.yourlocalweather.action.WEATHER_UPDATE_RESULT";
-    
+
+    private static AsyncHttpClient client = new AsyncHttpClient();
+
     private String updateSource;
     private boolean gettingWeatherStarted;
     
@@ -112,55 +106,79 @@ public class CurrentWeatherService extends Service {
         timerHandler.postDelayed(timerRunnable, 20000);
         final Context context = this;
         startRefreshRotation();
-        new Thread(new Runnable(){
-
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+        Runnable myRunnable = new Runnable() {
             @Override
             public void run() {
-                String requestResult = "";
+                SharedPreferences preferences = getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
+                final String latitude = preferences.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
+                final String longitude = preferences.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
+                final String locale = LanguageUtil.getLanguageName(PreferenceUtil.getLanguage(context));
+                final float latInPref = Float.parseFloat(latitude.replace(",", "."));
+                final float lonInPref = Float.parseFloat(longitude.replace(",", "."));
+
+                appendLog(context, TAG, "weather get params: latitude:" + latitude + ", longitude" + longitude);
                 try {
-                    SharedPreferences preferences = getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
-                    String latitude = preferences.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
-                    String longitude = preferences.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
-                    String locale = LanguageUtil.getLanguageName(PreferenceUtil.getLanguage(context));
-                    float latInPref = Float.parseFloat(latitude.replace(",", "."));
-                    float lonInPref = Float.parseFloat(longitude.replace(",", "."));
+                    client.get(Utils.getWeatherForecastUrl(Constants.WEATHER_ENDPOINT,
+                            latitude.replace(',', '.'),
+                            longitude.replace(',', '.'),
+                            "metric",
+                            locale).toString(), null, new AsyncHttpResponseHandler() {
 
-                    appendLog(context, TAG, "weather get params: latitude:" + latitude + ", longitude" + longitude);
+                        @Override
+                        public void onStart() {
+                            // called before request is started
+                        }
 
-                    String weatherRaw = new WeatherRequest().getItems(latitude, longitude, "metric",
-                                                                      locale, context);
-                    appendLog(context, TAG, "weather got, result:" + weatherRaw);
-        
-                    Weather weather = WeatherJSONParser.getWeather(weatherRaw);
-                    gettingWeatherStarted = false;
-                    timerHandler.removeCallbacksAndMessages(null);
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                            try {
+                                String weatherRaw = new String(response);
+                                appendLog(context, TAG, "weather got, result:" + weatherRaw);
 
-                    SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
-                            Context.MODE_PRIVATE);
-                    String updateSource = mSharedPreferences.getString(Constants.APP_SETTINGS_UPDATE_SOURCE, "-");
-                    if ("-".equals(updateSource)) {
-                        updateSource = "W";
-                    }
-                    if ((Math.abs(latInPref - weather.coord.getLat()) < 0.01) &&
-                            (Math.abs(lonInPref - weather.coord.getLon()) < 0.01))   {
-                        AppPreference.saveWeather(context, weather, updateSource);
-                        sendResult(ACTION_WEATHER_UPDATE_OK, weather);
-                    } else {
-                        appendLog(context, TAG, "Weather not saved because of difference in coord:" +
-                                (latInPref - weather.coord.getLat()) + ", " + (latInPref - weather.coord.getLat()));
-                        sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
-                    }
-               } catch (JSONException e) {
-                    appendLog(context, TAG, "JSONException:" + e + ", requestResult" + requestResult);
-                    Log.e(TAG, "JSONException: " + requestResult);
-                    sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
-                } catch (IOException ioe) {
-                    appendLog(context, TAG, "IOException:" + ioe + ", requestResult" + requestResult);
-                    Log.e(TAG, "IOException: " + requestResult);
+                                Weather weather = WeatherJSONParser.getWeather(weatherRaw);
+                                gettingWeatherStarted = false;
+                                timerHandler.removeCallbacksAndMessages(null);
+
+                                SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
+                                        Context.MODE_PRIVATE);
+                                String updateSource = mSharedPreferences.getString(Constants.APP_SETTINGS_UPDATE_SOURCE, "-");
+                                if ("-".equals(updateSource)) {
+                                    updateSource = "W";
+                                }
+                                if ((Math.abs(latInPref - weather.coord.getLat()) < 0.01) &&
+                                        (Math.abs(lonInPref - weather.coord.getLon()) < 0.01)) {
+                                    AppPreference.saveWeather(context, weather, updateSource);
+                                    sendResult(ACTION_WEATHER_UPDATE_OK, weather);
+                                } else {
+                                    appendLog(context, TAG, "Weather not saved because of difference in coord:" +
+                                            (latInPref - weather.coord.getLat()) + ", " + (latInPref - weather.coord.getLat()));
+                                    sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
+                                }
+                            } catch (JSONException e) {
+                                appendLog(context, TAG, "JSONException:" + e);
+                                sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                            appendLog(context, TAG, "onFailure:" + statusCode);
+                            sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
+                        }
+
+                        @Override
+                        public void onRetry(int retryNo) {
+                            // called when request is retried
+                        }
+                    });
+                } catch (MalformedURLException mue) {
+                    appendLog(context, TAG, "MalformedURLException:" + mue);
                     sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
                 }
             }
-        }).start();
+        };
+        mainHandler.post(myRunnable);
         return ret;
     }
 
@@ -175,6 +193,7 @@ public class CurrentWeatherService extends Service {
             case "LESS_WIDGET" : startService(new Intent(getBaseContext(), LessWidgetService.class));break;
             case "MORE_WIDGET" : startService(new Intent(getBaseContext(), MoreWidgetService.class));break;
             case "EXT_LOC_WIDGET" : startService(new Intent(getBaseContext(), ExtLocationWidgetService.class));break;
+            case "NOTIFICATION" : startService(new Intent(getBaseContext(), NotificationService.class));break;
         }
     }
     

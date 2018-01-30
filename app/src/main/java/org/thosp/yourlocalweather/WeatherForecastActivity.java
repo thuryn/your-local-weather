@@ -4,12 +4,10 @@ import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.CoordinatorLayout;
+import android.os.Looper;
 import android.support.v4.app.NavUtils;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,29 +15,34 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.thosp.yourlocalweather.adapter.WeatherForecastAdapter;
 import org.thosp.yourlocalweather.model.WeatherForecast;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
+import cz.msebera.android.httpclient.Header;
+
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 import static org.thosp.yourlocalweather.utils.Utils.getWeatherForecastUrl;
 
 public class WeatherForecastActivity extends BaseActivity {
 
     private final String TAG = "WeatherForecastActivity";
+
+    private static AsyncHttpClient client = new AsyncHttpClient();
 
     private List<WeatherForecast> mWeatherForecastList;
     private ConnectionDetector mConnectionDetector;
@@ -153,45 +156,46 @@ public class WeatherForecastActivity extends BaseActivity {
     }
 
     private void getWeather() {
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences pref = getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
-                String latitude = pref.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
-                String longitude = pref.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
-                String locale = LanguageUtil.getLanguageName(PreferenceUtil.getLanguage(WeatherForecastActivity.this));
+        SharedPreferences pref = getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
+        String latitude = pref.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
+        String longitude = pref.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
+        String locale = LanguageUtil.getLanguageName(PreferenceUtil.getLanguage(WeatherForecastActivity.this));
+        try {
+            final URL url = getWeatherForecastUrl(Constants.WEATHER_FORECAST_ENDPOINT, latitude, longitude, "metric", locale);
+            Handler mainHandler = new Handler(Looper.getMainLooper());
+            Runnable myRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    client.get(url.toString(), null, new AsyncHttpResponseHandler() {
 
-                String requestResult = "";
-                HttpURLConnection connection = null;
-                try {
-                    URL url = getWeatherForecastUrl(Constants.WEATHER_FORECAST_ENDPOINT, latitude, longitude, "metric", locale);
-                    connection = (HttpURLConnection) url.openConnection();
-
-                    if (connection.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                        ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-                        InputStream inputStream = connection.getInputStream();
-
-                        int bytesRead;
-                        byte[] buffer = new byte[1024];
-                        while ((bytesRead = inputStream.read(buffer)) > 0) {
-                            byteArray.write(buffer, 0, bytesRead);
+                        @Override
+                        public void onStart() {
+                            // called before request is started
                         }
-                        byteArray.close();
-                        requestResult = byteArray.toString();
-                        AppPreference.saveLastUpdateTimeMillis(WeatherForecastActivity.this);
-                    }
-                } catch (IOException e) {
-                    mHandler.sendEmptyMessage(Constants.TASK_RESULT_ERROR);
-                    Log.e(TAG, "IOException: " + requestResult);
-                } finally {
-                    if (connection != null) {
-                        connection.disconnect();
-                    }
+
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                            parseWeatherForecast(new String(response));
+                            AppPreference.saveLastUpdateTimeMillis(WeatherForecastActivity.this);
+                        }
+
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                            appendLog(getBaseContext(), TAG, "onFailure:" + statusCode);
+                        }
+
+                        @Override
+                        public void onRetry(int retryNo) {
+                            // called when request is retried
+                        }
+                    });
                 }
-                parseWeatherForecast(requestResult);
-            }
-        });
-        t.start();
+            };
+            mainHandler.post(myRunnable);
+        } catch (MalformedURLException mue) {
+            appendLog(getBaseContext(), TAG, "MalformedURLException:" + mue);
+            return;
+        }
     }
 
     private void parseWeatherForecast(String data) {

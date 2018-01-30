@@ -6,8 +6,8 @@ android {
         applicationId "org.thosp.yourlocalweather"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 15
-        versionName "2.1"
+        versionCode 16
+        versionName "2.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -44,6 +44,7 @@ dependencies {
     compile 'org.microg:address-formatter:0.2.1'
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.obsez.android.lib.filechooser:filechooser:1.1.5'
+    compile 'com.loopj.android:android-async-http:1.4.9'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

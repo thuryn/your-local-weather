@@ -5,22 +5,22 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.Parcel;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import org.thosp.yourlocalweather.model.ReverseGeocodingCacheContract;
-import org.thosp.yourlocalweather.model.ReverseGeocodingCacheDbHelper;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.microg.address.Formatter;
+import org.thosp.yourlocalweather.model.ReverseGeocodingCacheDbHelper;
 import org.thosp.yourlocalweather.utils.Constants;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -29,16 +29,19 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
+
+import cz.msebera.android.httpclient.Header;
 
 import static android.os.Build.VERSION.RELEASE;
 import static org.thosp.yourlocalweather.BuildConfig.VERSION_NAME;
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 import static org.thosp.yourlocalweather.model.ReverseGeocodingCacheContract.LocationAddressCache;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class NominatimLocationService {
 
     public static final String TAG = "NominatimLocationServ";
+
+    private static AsyncHttpClient client = new AsyncHttpClient();
 
     private static NominatimLocationService instance;
 
@@ -53,6 +56,7 @@ public class NominatimLocationService {
             } catch (IOException e) {
                 Log.w(TAG, "Could not initialize address formatter", e);
             }
+            client.addHeader("User-Agent", String.format("YourLocalWeather/%s (Linux; Android %s)", VERSION_NAME, RELEASE));
         }
         return instance;
     }
@@ -75,39 +79,68 @@ public class NominatimLocationService {
     private static final String WIRE_COUNTRYCODE = "country_code";
     private static Formatter formatter;
 
-    protected List<Address> getFromLocation(Context context,
-                                            double latitude,
-                                            double longitude,
+    protected void getFromLocation(final Context context,
+                                            final double latitude,
+                                            final double longitude,
                                             int maxResults,
-                                            String locale) {
+                                            final String locale,
+                                            final MozillaLocationService.ProcessResultFromAddressResolution processResultFromAddressResolution) {
 
         appendLog(context, TAG, "getFromLocation:" + latitude + ", " + longitude + ", " + locale);
-        ReverseGeocodingCacheDbHelper mDbHelper = new ReverseGeocodingCacheDbHelper(context);
+        final ReverseGeocodingCacheDbHelper mDbHelper = new ReverseGeocodingCacheDbHelper(context);
 
         List<Address> addressesFromCache = retrieveLocationFromCache(context, mDbHelper, latitude, longitude, locale);
         if (addressesFromCache != null) {
-            return addressesFromCache;
+            processResultFromAddressResolution.processAddresses(addressesFromCache);
+            return;
         }
 
-        String url = String.format(Locale.US, REVERSE_GEOCODE_URL, SERVICE_URL_OSM, "",
+        final String url = String.format(Locale.US, REVERSE_GEOCODE_URL, SERVICE_URL_OSM, "",
                 locale.split("_")[0], latitude, longitude);
         appendLog(context, TAG, "Constructed URL " + url);
-        try {
-            JSONObject result = new JSONObject(new AsyncGetRequest(context,
-                    url).asyncStart().retrieveString());
-            appendLog(context, TAG, "result from nominatim server:" + result);
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+        Runnable myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                client.get(url, null, new AsyncHttpResponseHandler() {
 
-            Address address = parseResponse(localeFromLocaleString(locale), result);
-            if (address != null) {
-                List<Address> addresses = new ArrayList<>();
-                addresses.add(address);
-                storeAddressToCache(context, mDbHelper, latitude, longitude, locale, address);
-                return addresses;
+                    @Override
+                    public void onStart() {
+                        // called before request is started
+                    }
+
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                        try {
+                            JSONObject result = new JSONObject(new String(response));
+                            appendLog(context, TAG, "result from nominatim server:" + result);
+
+                            Address address = parseResponse(localeFromLocaleString(locale), result);
+                            if (address != null) {
+                                List<Address> addresses = new ArrayList<>();
+                                addresses.add(address);
+                                storeAddressToCache(context, mDbHelper, latitude, longitude, locale, address);
+                                processResultFromAddressResolution.processAddresses(addresses);
+                            }
+                        } catch (JSONException jsonException) {
+                            appendLog(context, TAG, "jsonException:" + jsonException);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                        appendLog(context, TAG, "onFailure:" + statusCode);
+                        processResultFromAddressResolution.processAddresses(null);
+                    }
+
+                    @Override
+                    public void onRetry(int retryNo) {
+                        // called when request is retried
+                    }
+                });
             }
-        } catch (Exception e) {
-            appendLog(context, TAG, e.getMessage(), e);
-        }
-        return null;
+        };
+        mainHandler.post(myRunnable);
     }
 
     private Address parseResponse(Locale locale, JSONObject result) throws JSONException {
@@ -313,85 +346,6 @@ public class NominatimLocationService {
                 }
             }
             cursor.close();
-        }
-    }
-
-    class AsyncGetRequest extends Thread {
-        static final String USER_AGENT = "User-Agent";
-        static final String USER_AGENT_TEMPLATE = "UnifiedNlp/%s (Linux; Android %s)";
-        private final AtomicBoolean done = new AtomicBoolean(false);
-        private final Context context;
-        private final String url;
-        private byte[] result;
-
-        public AsyncGetRequest(Context context, String url) {
-            this.context = context;
-            this.url = url;
-        }
-
-        @Override
-        public void run() {
-            appendLog(context, TAG, "Sync key (done)" + done);
-            synchronized (done) {
-                try {
-                    appendLog(context, TAG, "Requesting " + url);
-                    HttpURLConnection connection = (HttpURLConnection) new URL(url).openConnection();
-                    appendLog(context, TAG, "Connection opened");
-                    connection.setRequestProperty(USER_AGENT, String.format(USER_AGENT_TEMPLATE, VERSION_NAME, RELEASE));
-                    connection.setConnectTimeout(30000);
-                    connection.setReadTimeout(30000);
-                    connection.setDoInput(true);
-                    appendLog(context, TAG, "Getting input stream");
-                    InputStream inputStream = connection.getInputStream();
-                    appendLog(context, TAG, "Reading input stream");
-                    result = readStreamToEnd(inputStream);
-                    appendLog(context, TAG, "Input stream read");
-                } catch (Exception e) {
-                    appendLog(context, TAG, e.getMessage(), e);
-                }
-                done.set(true);
-                done.notifyAll();
-            }
-        }
-
-        public AsyncGetRequest asyncStart() {
-            start();
-            return this;
-        }
-
-        byte[] retrieveAllBytes() {
-            if (!done.get()) {
-                synchronized (done) {
-                    while (!done.get()) {
-                        try {
-                            done.wait();
-                        } catch (InterruptedException e) {
-                            break;
-                        }
-                    }
-                }
-            }
-            return result;
-        }
-
-        String retrieveString() {
-            return new String(retrieveAllBytes());
-        }
-
-        private byte[] readStreamToEnd(InputStream is) throws IOException {
-            ByteArrayOutputStream bos = new ByteArrayOutputStream();
-            if (is != null) {
-                byte[] buff = new byte[1024];
-                while (true) {
-                    int nb = is.read(buff);
-                    if (nb < 0) {
-                        break;
-                    }
-                    bos.write(buff, 0, nb);
-                }
-                is.close();
-            }
-            return bos.toByteArray();
         }
     }
 

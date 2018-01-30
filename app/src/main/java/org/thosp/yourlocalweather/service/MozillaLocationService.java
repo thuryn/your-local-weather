@@ -5,31 +5,31 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Location;
 import android.net.wifi.ScanResult;
+import android.os.Handler;
+import android.os.Looper;
 import android.telephony.TelephonyManager;
 import android.util.Log;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.microg.address.Formatter;
-import org.microg.nlp.api.CellBackendHelper;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.atomic.AtomicBoolean;
 
-import static android.os.Build.VERSION.RELEASE;
-import static org.thosp.yourlocalweather.BuildConfig.VERSION_NAME;
+import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.entity.StringEntity;
+
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class MozillaLocationService {
 
     public static final String TAG = "MozillaLocationService";
+
+    private static AsyncHttpClient client = new AsyncHttpClient();
 
     private static MozillaLocationService instance;
 
@@ -46,11 +46,6 @@ public class MozillaLocationService {
     private static final String SERVICE_URL = "https://location.services.mozilla.com/v1/geolocate?key=%s";
     private static final String API_KEY = "3693d51230c04a34af807fbefd1caebb";
     private static final String PROVIDER = "ichnaea";
-    private Thread thread;
-    private boolean running = false;
-    private boolean replay = false;
-    private String lastRequest = null;
-    private Location lastResponse = null;
 
     public synchronized void getLocationFromCellsAndWifis(final Context context,
                                                           List<Cell> cells,
@@ -59,62 +54,60 @@ public class MozillaLocationService {
                                                           final boolean resolveAddress) {
         appendLog(context, TAG, "getLocationFromCellsAndWifis:wifi=" + ((wiFis != null)?wiFis.size():"null") +
                     ", cells=" + ((cells != null)?cells.size():"null"));
-        if (thread != null) return;
         if ((cells == null || cells.isEmpty()) && (wiFis == null || wiFis.size() < 2)) {
             processUpdateOfLocation(context, null, destinationPackageName, false);
             return;
         }
         try {
             final String request = createRequest(cells, wiFis);
-            if (request.equals(lastRequest)) {
-                if (replay) {
-                    appendLog(context, TAG, "No data changes, replaying location " + lastResponse);
-                    lastResponse = create(PROVIDER, lastResponse.getLatitude(), lastResponse.getLongitude(), lastResponse.getAccuracy());
-                    processUpdateOfLocation(context, lastResponse, destinationPackageName, resolveAddress);
-                }
-                return;
-            }
-            replay = false;
-            thread = new Thread(new Runnable() {
+            final StringEntity entity = new StringEntity(request);
+            Handler mainHandler = new Handler(Looper.getMainLooper());
+            Runnable myRunnable = new Runnable() {
                 @Override
                 public void run() {
-                    HttpURLConnection conn = null;
-                    Location response = null;
-                    try {
-                        conn = (HttpURLConnection) new URL(String.format(SERVICE_URL, API_KEY)).openConnection();
-                        conn.setDoOutput(true);
-                        conn.setDoInput(true);
-                        //appendLog(context, TAG, "request: " + request);
-                        conn.getOutputStream().write(request.getBytes());
-                        String r = new String(readStreamToEnd(conn.getInputStream()));
-                        appendLog(context, TAG, "response: " + r);
-                        JSONObject responseJson = new JSONObject(r);
-                        double lat = responseJson.getJSONObject("location").getDouble("lat");
-                        double lon = responseJson.getJSONObject("location").getDouble("lng");
-                        double acc = responseJson.getDouble("accuracy");
-                        response = create(PROVIDER, lat, lon, (float) acc);
-                        processUpdateOfLocation(context, response, destinationPackageName, resolveAddress);
-                    } catch (IOException | JSONException e) {
-                        if (conn != null) {
-                            InputStream is = conn.getErrorStream();
-                            if (is != null) {
-                                try {
-                                    String error = new String(readStreamToEnd(is));
-                                    appendLog(context, TAG, "Error: " + error);
-                                } catch (Exception ignored) {
-                                }
+                    client.post(context,
+                                String.format(SERVICE_URL, API_KEY),
+                                entity,
+                                "application/json",
+                                new AsyncHttpResponseHandler() {
+
+                        @Override
+                        public void onStart() {
+                            // called before request is started
+                        }
+
+                        @Override
+                        public void onSuccess(int statusCode, Header[] headers, byte[] httpResponse) {
+                            Location response = null;
+                            try {
+                                String result = new String(httpResponse);
+                                appendLog(context, TAG, "response: " + result);
+                                JSONObject responseJson = new JSONObject(result);
+                                double lat = responseJson.getJSONObject("location").getDouble("lat");
+                                double lon = responseJson.getJSONObject("location").getDouble("lng");
+                                double acc = responseJson.getDouble("accuracy");
+                                response = create(PROVIDER, lat, lon, (float) acc);
+                                processUpdateOfLocation(context, response, destinationPackageName, resolveAddress);
+                            } catch (JSONException e) {
+                                appendLog(context, TAG, e.toString());
+                                processUpdateOfLocation(context, null, destinationPackageName, resolveAddress);
                             }
                         }
-                        appendLog(context, TAG, e.toString());
-                        processUpdateOfLocation(context, null, destinationPackageName, resolveAddress);
-                    }
 
-                    lastRequest = request;
-                    lastResponse = response;
-                    thread = null;
+                        @Override
+                        public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                            appendLog(context, TAG, "onFailure:" + statusCode);
+                            processUpdateOfLocation(context, null, destinationPackageName, resolveAddress);
+                        }
+
+                        @Override
+                        public void onRetry(int retryNo) {
+                            // called when request is retried
+                        }
+                    });
                 }
-            });
-            thread.start();
+            };
+            mainHandler.post(myRunnable);
         } catch (Exception e) {
             Log.w(TAG, e);
         }
@@ -124,27 +117,37 @@ public class MozillaLocationService {
                                          Location location,
                                          String destinationPackageName,
                                          boolean resolveAddress) {
-        /*appendLog(getBaseContext(), TAG, "processUpdateOfLocation:location:" + location + ":destinationPackageName:" + destinationPackageName + ":" + locationListener);
-        if ((destinationPackageName == null) || ("".equals(destinationPackageName))) {
-            if (locationListener != null) {
-                locationListener.onLocationChanged(location);
-            }
-            return;
-        }*/
         Intent sendIntent = new Intent("android.intent.action.LOCATION_UPDATE");
         sendIntent.setPackage(destinationPackageName);
         sendIntent.putExtra("location", location);
         appendLog(context, TAG, "processUpdateOfLocation:resolveAddress:" + resolveAddress);
         if (resolveAddress && (location != null)) {
             appendLog(context, TAG, "processUpdateOfLocation:location:" + location.getLatitude() + ", " + location.getLongitude() + ", " + Locale.getDefault().getLanguage());
-            List<Address> addresses = NominatimLocationService.getInstance().getFromLocation(context, location.getLatitude(), location.getLongitude(), 1, Locale.getDefault().getLanguage());
+            NominatimLocationService.getInstance().getFromLocation(context, location.getLatitude(), location.getLongitude(), 1, Locale.getDefault().getLanguage(), new ProcessResultFromAddressResolution(context, sendIntent));
+            return;
+        }
+        appendLog(context, TAG, "processUpdateOfLocation:sendIntent:" + sendIntent);
+        context.startService(sendIntent);
+    }
+
+    public class ProcessResultFromAddressResolution {
+
+        private Context context;
+        private Intent sendIntent;
+
+        public ProcessResultFromAddressResolution(Context context, Intent sendIntent) {
+            this.context = context;
+            this.sendIntent = sendIntent;
+        }
+
+        public void processAddresses(List<Address> addresses) {
             appendLog(context, TAG, "processUpdateOfLocation:addresses:" + addresses);
             if ((addresses != null) && (addresses.size() > 0)) {
                 sendIntent.putExtra("addresses", addresses.get(0));
             }
+            appendLog(context, TAG, "processUpdateOfLocation:sendIntent:" + sendIntent);
+            context.startService(sendIntent);
         }
-        appendLog(context, TAG, "processUpdateOfLocation:sendIntent:" + sendIntent);
-        context.startService(sendIntent);
     }
 
     private static String createRequest(List<Cell> cells, List<ScanResult> wiFis) throws JSONException {
@@ -261,22 +264,6 @@ public class MozillaLocationService {
         } else {
             return -1;
         }
-    }
-
-    private static byte[] readStreamToEnd(InputStream is) throws IOException {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        if (is != null) {
-            byte[] buff = new byte[1024];
-            while (true) {
-                int nb = is.read(buff);
-                if (nb < 0) {
-                    break;
-                }
-                bos.write(buff, 0, nb);
-            }
-            is.close();
-        }
-        return bos.toByteArray();
     }
 
     public Location create(String source, double latitude, double longitude, float accuracy) {
