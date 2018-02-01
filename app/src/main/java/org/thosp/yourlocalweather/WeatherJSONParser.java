@@ -12,10 +12,8 @@ public class WeatherJSONParser {
 
     public static Weather getWeather(String data) throws JSONException {
         Weather weather = new Weather();
-        CitySearch location = new CitySearch();
 
         JSONObject weatherData = new JSONObject(data);
-
         JSONArray weatherArray = weatherData.getJSONArray("weather");
 
         for (int weatherCounter = 0; weatherCounter < weatherArray.length(); weatherCounter++) {
@@ -59,18 +57,10 @@ public class WeatherJSONParser {
             weather.cloud.setClouds(cloudsObj.getInt("all"));
         }
 
-        if (weatherData.has("name")) {
-            location.setCityName(weatherData.getString("name"));
-        }
-
         JSONObject sysObj = weatherData.getJSONObject("sys");
-        if (sysObj.has("country")) {
-            location.setCountryCode(sysObj.getString("country"));
-        }
+
         weather.sys.setSunrise(sysObj.getLong("sunrise"));
         weather.sys.setSunset(sysObj.getLong("sunset"));
-
-        weather.location = location;
 
         JSONObject coordObj = weatherData.getJSONObject("coord");
         if (coordObj.has("lon")) {

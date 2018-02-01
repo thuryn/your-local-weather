@@ -5,7 +5,6 @@ import java.util.List;
 
 public class Weather {
 
-    public CitySearch location;
     public Temperature temperature = new Temperature();
     public Wind wind = new Wind();
     private List<CurrentWeather> currentWeathers = new ArrayList<>();

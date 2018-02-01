@@ -66,6 +66,9 @@ public class Utils {
     }
 
     public static String getStrIcon(Context context, String iconId) {
+        if (iconId == null) {
+            return "";
+        }
         String icon;
         switch (iconId) {
             case "01d":
