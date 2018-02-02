@@ -520,15 +520,15 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             if (AppPreference.isGpsEnabledByPreferences(getBaseContext()) &&
                     isGPSEnabled &&
                     ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                notificationMessage.append(R.string.alertDialog_location_permission_message_location_phone_settings + "\n\n");
+                notificationMessage.append(getString(R.string.alertDialog_location_permission_message_location_phone_settings) + "\n\n");
                 permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
             }
             if (isNetworkEnabled) {
                 if ("location_geocoder_local".equals(geocoder) && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-                    notificationMessage.append(R.string.alertDialog_location_permission_message_location_phone_permission);
+                    notificationMessage.append(getString(R.string.alertDialog_location_permission_message_location_phone_permission));
                     permissions.add(Manifest.permission.READ_PHONE_STATE);
                 } else if ("location_geocoder_system".equals(geocoder) && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    notificationMessage.append(R.string.alertDialog_location_permission_message_location_network_permission);
+                    notificationMessage.append(getString(R.string.alertDialog_location_permission_message_location_network_permission));
                     permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
                 }
             }
