@@ -30,6 +30,20 @@
     <string name="menu_action_toggle_values">Přepnout hodnoty</string>
     <string name="menu_action_toggle_yaxis">Přepnout osu Y</string>
 
+    <!-- Weather forecast -->
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Nastavení sloupců</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Zobrazení sloupců</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikona</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Popis</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Teplota</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Vítr</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Déšť/Sníh</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Vlhkost</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Tlak</string>
+    <string name="ok" tools:ignore="MissingTranslation">OK</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Cancel</string>
+
+
     <!-- Navigation drawer -->
     <string name="nav_menu_current_weather">Aktuální počasí</string>
     <string name="nav_menu_daily_forecast">Denní předpověd</string>

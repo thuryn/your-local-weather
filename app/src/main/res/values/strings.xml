@@ -32,6 +32,19 @@
     <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Toggle Values</string>
     <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Toggle Y-Axis</string>
 
+    <!-- Weather forecast -->
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Column setting</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Columns to show</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Icon</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Description</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperature</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Wind</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Rain/Snow</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Humidity</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Pressure</string>
+    <string name="ok" tools:ignore="MissingTranslation">OK</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Cancel</string>
+
     <!-- Navigation drawer -->
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>

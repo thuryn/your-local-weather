@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:paddingTop="10dp">
+
+    <LinearLayout
+        android:id="@+id/forecast.item.detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/forecast.time"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left|center"
+        android:gravity="left|center"
+        android:paddingLeft="?attr/listPreferredItemPaddingLeft"
+        android:paddingStart="?attr/listPreferredItemPaddingLeft"
+        tools:text="Wed, 31 September"/>
+
+    <TextView
+        android:id="@+id/forecast.icon"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        tools:text="Clear"/>
+
+    <TextView
+        android:id="@+id/forecast.description"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:maxLines="2"
+        android:layout_gravity="left|center"
+        android:gravity="left|center"
+        tools:text="Sky is clear"/>
+
+    <TextView
+        android:id="@+id/forecast.temperature"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        tools:text="Sky is clear"/>
+
+    <TextView
+        android:id="@+id/forecast.wind"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        tools:text="Wind: 3 m/s NW"/>
+
+    <TextView
+        android:id="@+id/forecast.rainsnow"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:maxLines="2"
+        tools:text="Rain 3mm"/>
+
+    <TextView
+        android:id="@+id/forecast.humidity"
+        android:layout_width="40dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        tools:text="Humidity: 99%"/>
+
+    <TextView
+        android:id="@+id/forecast.pressure"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        tools:text="Pressure: 1970 hPa"/>
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

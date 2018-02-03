@@ -26,6 +26,7 @@ public class Constants {
     public static final String APP_SETTINGS_LOCATION_CACHE_LASTING_HOURS = "location.cache.lasting";
     public static final String APP_SETTINGS_LOCATION_CACHE_ENABLED = "location.cache.enabled";
     public static final String LAST_UPDATE_TIME_IN_MS = "last_update";
+    public static final String LAST_FORECAST_UPDATE_TIME_IN_MS = "last_forecast_update";
     public static final String LAST_LOCATION_UPDATE_TIME_IN_MS = "last_location_update";
     public static final String LAST_WEATHER_UPDATE_TIME_IN_MS = "last_weather_update";
     
@@ -47,6 +48,7 @@ public class Constants {
     public static final String KEY_DEBUG_TO_FILE = "debug.to.file";
     public static final String KEY_DEBUG_FILE_LASTING_HOURS = "debug.file.lasting.hours";
     public static final String KEY_WAKE_UP_STRATEGY = "wake.up.strategy";
+    public static final String KEY_PREF_FORECAST_ACTIVITY_COLUMNS = "forecast_activity_columns_pref_key";
 
     /**
      * About preference screen constants
@@ -87,7 +89,8 @@ public class Constants {
             "https://play.google.com/store/apps/details?id=%s";
     public static final String F_DROID_WEB_URI = "https://f-droid.org/repository/browse/?fdid=%s";
     public static final String WEATHER_ENDPOINT = "https://api.openweathermap.org/data/2.5/weather";
-    public static final String WEATHER_FORECAST_ENDPOINT = "https://api.openweathermap.org/data/2.5/forecast/daily";
+    public static final String WEATHER_FORECAST_ENDPOINT_DAILY = "https://api.openweathermap.org/data/2.5/forecast/daily";
+    public static final String WEATHER_FORECAST_ENDPOINT = "https://api.openweathermap.org/data/2.5/forecast";
 
     public static final int PARSE_RESULT_SUCCESS = 0;
     public static final int TASK_RESULT_ERROR = -1;

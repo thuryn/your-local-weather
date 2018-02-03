@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.WeatherForecast;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -19,9 +20,9 @@ import java.util.Locale;
 
 public class ForecastBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
-    private WeatherForecast mWeather;
+    private DetailedWeatherForecast mWeather;
 
-    public ForecastBottomSheetDialogFragment newInstance(WeatherForecast weather) {
+    public ForecastBottomSheetDialogFragment newInstance(DetailedWeatherForecast weather) {
         ForecastBottomSheetDialogFragment fragment = new ForecastBottomSheetDialogFragment();
         Bundle args = new Bundle();
         args.putSerializable("weatherForecast", weather);
@@ -32,7 +33,7 @@ public class ForecastBottomSheetDialogFragment extends BottomSheetDialogFragment
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mWeather = (WeatherForecast) getArguments().getSerializable("weatherForecast");
+        mWeather = (DetailedWeatherForecast) getArguments().getSerializable("weatherForecast");
     }
 
     @Override
@@ -44,12 +45,12 @@ public class ForecastBottomSheetDialogFragment extends BottomSheetDialogFragment
         String pressureMeasurement = getActivity().getString(R.string.pressure_measurement);
         String mmLabel = getString(R.string.millimetre_label);
 
-        Float temperatureMorning = AppPreference.getTemperature(getActivity(), mWeather.getTemperatureMorning());
-        Float temperatureDay = AppPreference.getTemperature(getActivity(), mWeather.getTemperatureDay());
-        Float temperatureEvening = AppPreference.getTemperature(getActivity(), mWeather.getTemperatureEvening());
-        Float temperatureNight = AppPreference.getTemperature(getActivity(), mWeather.getTemperatureNight());
+        double temperatureMorning = AppPreference.getTemperature(getActivity(), mWeather.getTemperature());
+        double temperatureDay = AppPreference.getTemperature(getActivity(), mWeather.getTemperature());
+        double temperatureEvening = AppPreference.getTemperature(getActivity(), mWeather.getTemperatureMin());
+        double temperatureNight = AppPreference.getTemperature(getActivity(), mWeather.getTemperatureMax());
 
-        String description = mWeather.getDescription();
+        String description = mWeather.getFirstWeatherCondition().getDescription();
         String temperatureMorningStr = getActivity().getString(R.string.temperature_with_degree,
                 AppPreference.getTemperatureWithUnit(getActivity(), temperatureMorning));
         String temperatureDayStr = getActivity().getString(R.string.temperature_with_degree,
@@ -61,13 +62,13 @@ public class ForecastBottomSheetDialogFragment extends BottomSheetDialogFragment
         String wind = getActivity().getString(R.string.wind_label,
                 windWithUnit.getWindSpeed(1),
                 windWithUnit.getWindUnit());
-        String windDegree = mWeather.getWindDegree();
+        double windDegree = mWeather.getWindDegree();
         String windDirection = Utils.windDegreeToDirections(getActivity(),
-                                                            Double.parseDouble(windDegree));
-        String rain = getString(R.string.rain_label, mWeather.getRain(), mmLabel);
-        String snow = getString(R.string.snow_label, mWeather.getSnow(), mmLabel);
-        String pressure = getActivity().getString(R.string.pressure_label, mWeather.getPressure(), pressureMeasurement);
-        String humidity = getActivity().getString(R.string.humidity_label, mWeather.getHumidity(), percentSign);
+                                                            windDegree);
+        String rain = getString(R.string.rain_label, String.valueOf(mWeather.getRain()), mmLabel);
+        String snow = getString(R.string.snow_label, String.valueOf(mWeather.getSnow()), mmLabel);
+        String pressure = getActivity().getString(R.string.pressure_label, String.valueOf(mWeather.getPressure()), pressureMeasurement);
+        String humidity = getActivity().getString(R.string.humidity_label, String.valueOf(mWeather.getHumidity()), percentSign);
 
         TextView descriptionView = (TextView) v.findViewById(R.id.forecast_description);
         TextView windView = (TextView) v.findViewById(R.id.forecast_wind);

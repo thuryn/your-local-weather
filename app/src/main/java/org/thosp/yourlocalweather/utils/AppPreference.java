@@ -4,14 +4,17 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecast;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -20,11 +23,11 @@ import java.util.Set;
 
 public class AppPreference {
 
-    public static String getTemperatureWithUnit(Context context, float value) {
+    public static String getTemperatureWithUnit(Context context, double value) {
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_UNITS, "celsius_m_per_second");
         if (unitsFromPreferences.contains("fahrenheit") ) {
-            float fahrenheitValue = (value * 1.8f) + 32;
+            double fahrenheitValue = (value * 1.8f) + 32;
             return String.format(Locale.getDefault(), "%d",
                     Math.round(fahrenheitValue)) + "°F";
         } else {
@@ -43,15 +46,15 @@ public class AppPreference {
         }
     }
 
-    public static float getTemperature(Context context, String value) {
-        return getTemperature(context, Float.parseFloat(value.replace(",", ".")));
+    public static double getTemperature(Context context, String value) {
+        return getTemperature(context, Double.parseDouble(value.replace(",", ".")));
     }
 
-    public static float getTemperature(Context context, float value) {
+    public static double getTemperature(Context context, double value) {
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_UNITS, "celsius_m_per_second");
         if (unitsFromPreferences.contains("fahrenheit") ) {
-            return (value * 1.8f) + 32;
+            return (value * 1.8d) + 32;
         } else {
             return value;
         }
@@ -61,34 +64,38 @@ public class AppPreference {
         return getWindWithUnit(context, Float.parseFloat(value.replace(",", ".")));
     }
 
-    public static WindWithUnit getWindWithUnit(Context context, float value) {
+    public static WindWithUnit getWindWithUnit(Context context, double value) {
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_UNITS, "celsius_m_per_second");
         if (unitsFromPreferences.contains("km_per_hour") ) {
-            float kmhValue = 3.6f * value;
+            double kmhValue = 3.6d * value;
             return new WindWithUnit(kmhValue, context.getString(R.string.wind_speed_kilometers));
         } else if (unitsFromPreferences.contains("miles_per_hour") ) {
-            float mhValue = 2.2369f * value;
+            double mhValue = 2.2369d * value;
             return new WindWithUnit(mhValue, context.getString(R.string.wind_speed_miles));
         } else {
             return new WindWithUnit(value, context.getString(R.string.wind_speed_meters));
         }
     }
 
-    public static String getWindInString(Context context, String stringValue) {
+    public static String getWindInString(Context context, double stringValue) {
         return String.format(Locale.getDefault(), "%.1f", getWind(context, stringValue));
     }
 
-    public static float getWind(Context context, String stringValue) {
-        float value = Float.parseFloat(stringValue.replace(",", "."));
+    public static double getWind(Context context, String stringValue) {
+        double value = Double.parseDouble(stringValue.replace(",", "."));
+        return getWind(context, value);
+    }
+
+    public static double getWind(Context context, double windSpeed) {
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_UNITS, "celsius_m_per_second");
         if (unitsFromPreferences.contains("km_per_hour") ) {
-            return 3.6f * value;
+            return 3.6d * windSpeed;
         } else if (unitsFromPreferences.contains("miles_per_hour") ) {
-            return 2.2369f * value;
+            return 2.2369d * windSpeed;
         } else {
-            return value;
+            return windSpeed;
         }
     }
 
@@ -238,6 +245,30 @@ public class AppPreference {
                 Constants.KEY_PREF_WIDGET_THEME, "dark");
     }
 
+    public static Set<Integer> getForecastActivityColumns(Context context) {
+        Set<String> defaultVisibleColumns = new HashSet<>();
+        defaultVisibleColumns.add("1");
+        defaultVisibleColumns.add("2");
+        defaultVisibleColumns.add("3");
+        defaultVisibleColumns.add("4");
+        Set<String> visibleColumns = PreferenceManager.getDefaultSharedPreferences(context).getStringSet(
+                Constants.KEY_PREF_FORECAST_ACTIVITY_COLUMNS, defaultVisibleColumns);
+        Set<Integer> result = new HashSet<>();
+        for (String visibleColumn: visibleColumns) {
+            result.add(Integer.valueOf(visibleColumn));
+        }
+        return result;
+    }
+
+    public static void setForecastActivityColumns(Context context, Set<Integer> visibleColumns) {
+        Set<String> columnsToStore = new HashSet<>();
+        for (Integer visibleColumn: visibleColumns) {
+            columnsToStore.add(String.valueOf(visibleColumn));
+        }
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(
+                Constants.KEY_PREF_FORECAST_ACTIVITY_COLUMNS, columnsToStore).apply();
+    }
+
     public static int getTextColor(Context context) {
         String theme = getTheme(context);
         if (null == theme) {
@@ -302,12 +333,26 @@ public class AppPreference {
         return sp.getLong(Constants.LAST_UPDATE_TIME_IN_MS, 0);
     }
 
+    public static long saveLastForecastUpdateTimeMillis(Context context) {
+        SharedPreferences sp = context.getSharedPreferences(Constants.APP_SETTINGS_NAME,
+                Context.MODE_PRIVATE);
+        long now = System.currentTimeMillis();
+        sp.edit().putLong(Constants.LAST_FORECAST_UPDATE_TIME_IN_MS, now).apply();
+        return now;
+    }
+
+    public static long getLastForecastUpdateTimeMillis(Context context) {
+        SharedPreferences sp = context.getSharedPreferences(Constants.APP_SETTINGS_NAME,
+                Context.MODE_PRIVATE);
+        return sp.getLong(Constants.LAST_FORECAST_UPDATE_TIME_IN_MS, 0);
+    }
+
     public static String getWidgetUpdatePeriod(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_WIDGET_UPDATE_PERIOD, "60");
     }
 
-    public static void saveWeatherForecast(Context context, List<WeatherForecast> forecastList) {
+    public static void saveWeatherForecast(Context context, List<DetailedWeatherForecast> forecastList) {
         SharedPreferences preferences = context.getSharedPreferences(Constants.PREF_FORECAST_NAME,
                                                                      Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
@@ -316,13 +361,17 @@ public class AppPreference {
         editor.apply();
     }
 
-    public static List<WeatherForecast> loadWeatherForecast(Context context) {
+    public static List<DetailedWeatherForecast> loadWeatherForecast(Context context) {
         SharedPreferences preferences = context.getSharedPreferences(Constants.PREF_FORECAST_NAME,
                                                                      Context.MODE_PRIVATE);
-        String weather = preferences.getString("daily_forecast",
-                                               context.getString(R.string.default_daily_forecast));
-        return new Gson().fromJson(weather,
-                                   new TypeToken<List<WeatherForecast>>() {
-                                   }.getType());
+        try {
+            String weather = preferences.getString("daily_forecast",
+                    context.getString(R.string.default_daily_forecast));
+            return new Gson().fromJson(weather,
+                    new TypeToken<List<DetailedWeatherForecast>>() {
+                    }.getType());
+        } catch (Exception e) {
+            return new ArrayList<>();
+        }
     }
 }

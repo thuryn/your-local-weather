@@ -8,38 +8,61 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.thosp.yourlocalweather.R;
-import org.thosp.yourlocalweather.model.WeatherForecast;
+import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecastViewHolder> {
 
     private Context mContext;
-    private List<WeatherForecast> mWeatherList;
-    private FragmentManager mFragmentManager;
+    private Set<Integer> visibleColumns;
+    private Map<Integer, List<DetailedWeatherForecast>> mWeatherList;
+    private List<Integer> keys;
 
-    public WeatherForecastAdapter(Context context, List<WeatherForecast> weather, FragmentManager fragmentManager) {
+    private Calendar lastDay;
+
+    public WeatherForecastAdapter(Context context,
+                                  List<DetailedWeatherForecast> weatherForecastList,
+                                  Set<Integer> visibleColumns) {
         mContext = context;
-        mWeatherList = weather;
-        mFragmentManager = fragmentManager;
+        this.visibleColumns = visibleColumns;
+
+        mWeatherList = new HashMap<>();
+        keys = new ArrayList<>();
+        Calendar forecastCalendar = Calendar.getInstance();
+        for (DetailedWeatherForecast forecast: weatherForecastList) {
+            forecastCalendar.setTimeInMillis(forecast.getDateTime() * 1000);
+            int forecastDay = forecastCalendar.get(Calendar.DAY_OF_YEAR);
+            if (!mWeatherList.keySet().contains(forecastDay)) {
+                List<DetailedWeatherForecast> dayForecastList = new ArrayList<>();
+                mWeatherList.put(forecastDay, dayForecastList);
+                keys.add(forecastDay);
+            }
+            mWeatherList.get(forecastDay).add(forecast);
+        }
     }
 
     @Override
     public WeatherForecastViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.forecast_item, parent, false);
-        return new WeatherForecastViewHolder(v, mContext, mFragmentManager);
+        return new WeatherForecastViewHolder(v, mContext, visibleColumns);
     }
 
     @Override
     public void onBindViewHolder(WeatherForecastViewHolder holder, int position) {
-        WeatherForecast weather = mWeatherList.get(position);
+        List<DetailedWeatherForecast> weather = mWeatherList.get(keys.get(position));
         holder.bindWeather(weather);
     }
 
     @Override
     public int getItemCount() {
-        return (mWeatherList != null ? mWeatherList.size() : 0);
+        return (mWeatherList != null ? mWeatherList.keySet().size() : 0);
     }
 }
 

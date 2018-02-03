@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.Locale;
 
 public class WindWithUnit implements Serializable {
-    private float windSpeed;
+    private double windSpeed;
     private String windUnit;
 
-    public WindWithUnit(float windSpeed, String windUnit) {
+    public WindWithUnit(double windSpeed, String windUnit) {
         this.windSpeed = windSpeed;
         this.windUnit = windUnit;
     }
@@ -16,7 +16,7 @@ public class WindWithUnit implements Serializable {
         return windUnit;
     }
 
-    public float getWindSpeed() {
+    public double getWindSpeed() {
         return windSpeed;
     }
 

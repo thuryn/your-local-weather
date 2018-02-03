@@ -28,12 +28,15 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.WeatherForecast;
+import org.thosp.yourlocalweather.model.WeatherForecastResultHandler;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.CustomValueFormatter;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
+import org.thosp.yourlocalweather.utils.WeatherForecastUtil;
 import org.thosp.yourlocalweather.utils.XAxisValueFormatter;
 import org.thosp.yourlocalweather.utils.YAxisValueFormatter;
 
@@ -58,7 +61,7 @@ public class GraphsActivity extends BaseActivity {
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     private ConnectionDetector mConnectionDetector;
-    public List<WeatherForecast> mForecastList;
+    public List<DetailedWeatherForecast> mForecastList;
     private LineChart mTemperatureChart;
     private LineChart mWindChart;
     private LineChart mRainChart;
@@ -157,8 +160,8 @@ public class GraphsActivity extends BaseActivity {
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < mForecastList.size(); i++) {
-            float temperatureDay = AppPreference.getTemperature(this, mForecastList.get(i).getTemperatureDay());
-            entries.add(new Entry(i, temperatureDay));
+            double temperatureDay = AppPreference.getTemperature(this, mForecastList.get(i).getTemperature());
+            entries.add(new Entry(i, (float) temperatureDay));
         }
 
         LineDataSet set;
@@ -226,8 +229,8 @@ public class GraphsActivity extends BaseActivity {
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < mForecastList.size(); i++) {
-            float wind = AppPreference.getWind(this, mForecastList.get(i).getWindSpeed());
-            entries.add(new Entry(i, wind));
+            double wind = AppPreference.getWind(this, mForecastList.get(i).getWindSpeed());
+            entries.add(new Entry(i, (float) wind));
         }
 
         LineDataSet set;
@@ -295,8 +298,7 @@ public class GraphsActivity extends BaseActivity {
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < mForecastList.size(); i++) {
-            float values = Float.parseFloat(mForecastList.get(i).getRain());
-            entries.add(new Entry(i, values));
+            entries.add(new Entry(i, (float) mForecastList.get(i).getRain()));
         }
 
         LineDataSet set;
@@ -364,8 +366,7 @@ public class GraphsActivity extends BaseActivity {
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < mForecastList.size(); i++) {
-            float values = Float.parseFloat(mForecastList.get(i).getSnow());
-            entries.add(new Entry(i, values));
+            entries.add(new Entry(i, (float) mForecastList.get(i).getSnow()));
         }
 
         LineDataSet set;
@@ -429,7 +430,7 @@ public class GraphsActivity extends BaseActivity {
         switch (item.getItemId()) {
             case R.id.action_refresh:
                 if (mConnectionDetector.isNetworkAvailableAndConnected()) {
-                    getWeather();
+                    WeatherForecastUtil.getWeather(GraphsActivity.this, new GraphsWeatherForecastResultHandler());
                     setVisibleUpdating(true);
                 } else {
                     Toast.makeText(this,
@@ -495,102 +496,15 @@ public class GraphsActivity extends BaseActivity {
         }
     }
 
-    private void getWeather() {
-        SharedPreferences pref = getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
-        String latitude = pref.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
-        String longitude = pref.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
-        String locale = LanguageUtil.getLanguageName(PreferenceUtil.getLanguage(GraphsActivity.this));
-        try {
-            final URL url = getWeatherForecastUrl(Constants.WEATHER_FORECAST_ENDPOINT, latitude, longitude, "metric", locale);
-            Handler mainHandler = new Handler(Looper.getMainLooper());
-            Runnable myRunnable = new Runnable() {
-                @Override
-                public void run() {
-                    client.get(url.toString(), null, new AsyncHttpResponseHandler() {
-
-                        @Override
-                        public void onStart() {
-                            // called before request is started
-                        }
-
-                        @Override
-                        public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-                            parseWeatherForecast(new String(response));
-                            AppPreference.saveLastUpdateTimeMillis(GraphsActivity.this);
-                        }
-
-                        @Override
-                        public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                            appendLog(getBaseContext(), TAG, "onFailure:" + statusCode);
-                        }
-
-                        @Override
-                        public void onRetry(int retryNo) {
-                            // called when request is retried
-                        }
-                    });
-                }
-            };
-            mainHandler.post(myRunnable);
-        } catch (MalformedURLException mue) {
-            appendLog(getBaseContext(), TAG, "MalformedURLException:" + mue);
-            return;
+    public class GraphsWeatherForecastResultHandler implements WeatherForecastResultHandler {
+        public void processResources(List<DetailedWeatherForecast> weatherForecastList) {
+            mForecastList = weatherForecastList;
+            mHandler.sendEmptyMessage(Constants.PARSE_RESULT_SUCCESS);
         }
-    }
 
-    private void parseWeatherForecast(String data) {
-        try {
-            if (!mForecastList.isEmpty()) {
-                mForecastList.clear();
-            }
-
-            JSONObject jsonObject = new JSONObject(data);
-            JSONArray listArray = jsonObject.getJSONArray("list");
-
-            int listArrayCount = listArray.length();
-            for (int i = 0; i < listArrayCount; i++) {
-                WeatherForecast weatherForecast = new WeatherForecast();
-                JSONObject resultObject = listArray.getJSONObject(i);
-                weatherForecast.setDateTime(resultObject.getLong("dt"));
-                weatherForecast.setPressure(resultObject.getString("pressure"));
-                weatherForecast.setHumidity(resultObject.getString("humidity"));
-                weatherForecast.setWindSpeed(resultObject.getString("speed"));
-                weatherForecast.setWindDegree(resultObject.getString("deg"));
-                weatherForecast.setCloudiness(resultObject.getString("clouds"));
-                if (resultObject.has("rain")) {
-                    weatherForecast.setRain(resultObject.getString("rain"));
-                } else {
-                    weatherForecast.setRain("0");
-                }
-                if (resultObject.has("snow")) {
-                    weatherForecast.setSnow(resultObject.getString("snow"));
-                } else {
-                    weatherForecast.setSnow("0");
-                }
-                JSONObject temperatureObject = resultObject.getJSONObject("temp");
-                weatherForecast.setTemperatureMin(
-                        Float.parseFloat(temperatureObject.getString("min")));
-                weatherForecast.setTemperatureMax(
-                        Float.parseFloat(temperatureObject.getString("max")));
-                weatherForecast.setTemperatureMorning(
-                        Float.parseFloat(temperatureObject.getString("morn")));
-                weatherForecast.setTemperatureDay(
-                        Float.parseFloat(temperatureObject.getString("day")));
-                weatherForecast.setTemperatureEvening(
-                        Float.parseFloat(temperatureObject.getString("eve")));
-                weatherForecast.setTemperatureNight(
-                        Float.parseFloat(temperatureObject.getString("night")));
-                JSONArray weatherArray = resultObject.getJSONArray("weather");
-                JSONObject weatherObject = weatherArray.getJSONObject(0);
-                weatherForecast.setDescription(weatherObject.getString("description"));
-                weatherForecast.setIcon(weatherObject.getString("icon"));
-
-                mForecastList.add(weatherForecast);
-                mHandler.sendEmptyMessage(Constants.PARSE_RESULT_SUCCESS);
-            }
-        } catch (JSONException e) {
+        public void processError(Exception e) {
             mHandler.sendEmptyMessage(Constants.TASK_RESULT_ERROR);
-            e.printStackTrace();
+            appendLog(getBaseContext(), TAG, "JSONException:", e);
         }
     }
 
