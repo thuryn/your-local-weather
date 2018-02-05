@@ -1,0 +1,22 @@
+Aplikace využívá mobilní síť, WIFI sítě a případně GPS pro získání Vaší polohy a zobrazení počasí v místě, kde se právě nacházíte.
+Pokud využijete widget na svém telefonu nebo tabletu, uvidíte Vaší polohu a aktuální počasí na své hlavní obrazovce. Aktualizace polohy může být nastavena dle zadané periody (například každou hodinu) nebo aplikace může využívat akcelerometr u detekci pohybu. Aktualizaci polohy je možné vypnout - pak se bude aktualizovat jen počasí.
+
+Aktualizace dle zadané periody:
+Aplikace po zadané periodě provede aktualizaci polohy a načtení aktuálního počasí. Například můžete nastavit aktualizaci na každou hodinu.
+
+Aktualizace dle akcelerometru:
+Poloha bude aktualizována dle načtené vzdálenosti měřené akcelerometrem. Pokud naměřená vzdálenost bude větší než prahová hodnota, dojde k načtení aktuální polohy. Naměřená hodnota závisí na způsobu pohybu - pokud máte telefon v kapse, naměřená vzdálenost bude přibývat rychleji - telefon se pohybuje sem a tam v rytmu chůze. Po každé aktualizaci polohy bude též aktualizováno počasí. Počasí bude aktualizováno též při každém rozsvícení displeje - avšak ne častěji, než jednou za 15 minut (pokud nebyla během posledních 15 minut aktualizována poloha).
+
+K získání polohy je nejprve využita informace z mobilní sítě (BTS) a WIFI sítí přítomných v dané lokalitě. Z těchto informací jsou pomocí služby Mozilla location service získány souřadnice. Pokud souřadnice nejsou dostupné, pokusí se aplikace získat polohu z GPS. Získané souřadnice jsou pomocí služby Nominatim převedena na adresu, která je zobrazena v aplikaci nebo widgetu.
+
+K získání aktuálního počasí je využita služba OpenWeatherMap.org.
+
+Další vlastnosti
+
+    Přeloženo do: čeština, angličtina, francouština, němčina, japonština, španělština, polština, ruština
+    Aktuální počasí
+    7-denní předpověď
+    Mnoho lokalit
+    Upozornění
+    Podpora různých jednotek
+    Bez reklam

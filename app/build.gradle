@@ -1,6 +1,17 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.github.triplet.play'
 
 android {
+    playAccountConfigs {
+        defaultAccountConfig {
+            jsonFile = file('../../your-local-weather-addons/keys.json')
+        }
+    }
+    play {
+        track = 'production'
+        untrackOld = true
+        uploadImages = true
+    }
     compileSdkVersion 25
     defaultConfig {
         applicationId "org.thosp.yourlocalweather"
@@ -10,6 +21,7 @@ android {
         versionName "2.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
+        playAccountConfig = playAccountConfigs.defaultAccountConfig
     }
     buildTypes {
         release {
