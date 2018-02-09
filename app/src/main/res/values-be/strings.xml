@@ -3,7 +3,7 @@
     <string name="enter_city_hint">Увядзіце горад</string>
     <string name="label_current_city">Цяперашні горад</string>
     <string name="label_choose_city">Выбраць горад</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings">Служба GPS не актыўная. Жадаеце перайсці ў меню налад?</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">Служба GPS неактыўная. Жадаеце перайсці ў меню налад?</string>
     <string name="alertDialog_location_permission_positiveButton_settings">Налады</string>
     <string name="alertDialog_location_permission_negativeButton">Адмяніць</string>
     <string name="progressDialog_gps_locate">Вызначаем цяперашняе месцазнаходжанне</string>
