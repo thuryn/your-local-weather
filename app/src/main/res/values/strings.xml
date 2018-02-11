@@ -5,18 +5,18 @@
     <string name="label_current_city">Current city</string>
     <string name="label_choose_city">Choose city</string>
     <string name="feedback_email" translatable="false">thuryn1@gmail.com</string>
-    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Location and permission settings</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Application is set to update a location. Access to location should be enabled to get location update to work. Go to phone settings, please, and switch the location on or switch update of location to off in the application.</string>
-    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Application needs a permission to update the location by GPS.</string>
-    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Application needs a permission to update location by WIFI and GSM networks.</string>
-    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Application needs permission to read information from phone. This permission is needed to update location by WIFI and GSM networks. Application uses this permission to get information about GSM base stations connected to phone.</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Location and Permission Settings</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">The app is set to update a location. Access to location should be enabled to get location update to work. Go to phone settings, please, and switch the location on or switch update of location to off in the app.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">The app needs a permission to update the location by GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">The app needs a permission to update location by Wi-Fi and cellular networks.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">The app needs permission to read information from phone. This permission is needed to update location by Wi-Fi and cellular networks. The app uses this permission to get information about cellular base stations connected to the phone.</string>
     <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Phone settings</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Request permissions</string>
     <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Cancel</string>
     <string name="progressDialog_gps_locate">Find current location</string>
     <string name="load_progress">Loading…</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Location not found</string>
-    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Permissions are not granted - go to application and click on location symbol</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Permissions are not granted - click the location symbol in the app</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Search Location</string>
@@ -53,10 +53,10 @@
     <string name="nav_menu_graphs">Graphs</string>
     <string name="nav_menu_settings">Settings</string>
     <string name="nav_feedback">Feedback</string>
-    <string name="nav_menu_bitcoin_donation">Donate Bitcoin</string>
+    <string name="nav_menu_bitcoin_donation">Donate bitcoin</string>
 
     <!-- Toast messages -->
-    <string name="connection_not_found">Check your internet connection</string>
+    <string name="connection_not_found">Check your Internet connection</string>
     <string name="toast_parse_error">An error has occurred. Try later!</string>
 
     <!-- Weather icons -->
@@ -99,7 +99,7 @@
     <string name="pref_title_category_notification">Notifications</string>
     <string name="pref_title_notification">Enable Notifications</string>
     <string name="pref_title_notification_refresh_interval">Refresh Interval</string>
-    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Location update setting</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Location Update Setting</string>
     <string name="update_location_none" tools:ignore="MissingTranslation">Don\'t update location</string>
     <string name="update_location_full" tools:ignore="MissingTranslation">Update location</string>
     <string name="update_location_network_only" tools:ignore="MissingTranslation">Update location without GPS</string>
@@ -113,39 +113,39 @@
     <string name="update_period_24hours" tools:ignore="MissingTranslation">24 hours</string>
     <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Vibrate</string>
     <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Update Period</string>
-    <string name="preference_title_activity_general" tools:ignore="MissingTranslation">General settings</string>
-    <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Widget settings</string>
+    <string name="preference_title_activity_general" tools:ignore="MissingTranslation">General Settings</string>
+    <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Widget Settings</string>
     <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Update location</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Show labels in widget</string>
     <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Use geolocation for displaying</string>
-    <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Widget theme</string>
+    <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Widget Theme</string>
     <string name="theme_dark" tools:ignore="MissingTranslation">Dark</string>
     <string name="theme_light" tools:ignore="MissingTranslation">Light</string>
     <string name="theme_transparent" tools:ignore="MissingTranslation">Transparent</string>
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Display</string>
     <string name="pref_title_language" tools:ignore="MissingTranslation">Language</string>
     <string name="pref_language_default" tools:ignore="MissingTranslation">System Default</string>
-    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Location and address source</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Location and Address Source</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Local MLS and Nominatim</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">System</string>
     <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
     <string name="pref_title_theme" tools:ignore="MissingTranslation">Theme</string>
-    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Display update summary</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Display Update Summary</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Nothing</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Just updated value</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Updated value with location source</string>
     <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - weather only updated\nL - location only updated\nG - location from GPS and weather updated\nN - location from network and weather updated</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - weather only updated\nL - location only updated\nG - location from GPS and weather updated\nN - location from network and weather updated\nNc - location from cell network and weather updated\nNw - location from wifi networks and weather updated\nNcw - location from wifi and cell networks, weather updated</string>
-    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">When location stucks when phone sleeps you can try to wake up phone when cell is looked for</string>
-    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Wake up strategy</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - weather only updated\nL - location only updated\nG - location from GPS and weather updated\nN - location from network and weather updated\nNc - location from cellular network and weather updated\nNw - location from Wi-Fi networks and weather updated\nNcw - location from Wi-Fi and cellular networks, weather updated</string>
+    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">When the device goes to sleep and the location is stuck, try to wake up phone when cell is locked for</string>
+    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Wake Up Strategy</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">No wake up</string>
     <string name="wakeuppartial_label" tools:ignore="MissingTranslation">Wake up CPU only</string>
     <string name="wakeupfull_label" tools:ignore="MissingTranslation">Wake up with display</string>
     <string name="clear_cache_button" tools:ignore="MissingTranslation">Clear cache</string>
     <string name="db_info" tools:ignore="MissingTranslation">Information about cache</string>
     <string name="db_header" tools:ignore="MissingTranslation">Address cache database</string>
-    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">After specified number of time cached values will be removed</string>
-    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">The age of cached values</string>
+    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">After specified amount of time cached values will be removed</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Age of Cached Values</string>
     <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 hours</string>
     <string name="location_cache_24_label" tools:ignore="MissingTranslation">a day</string>
     <string name="location_cache_168_label" tools:ignore="MissingTranslation">a week</string>
@@ -158,11 +158,11 @@
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">About</string>
     <string name="about_version_pref_title">Version</string>
-    <string name="about_source_code_pref_title">Source code</string>
+    <string name="about_source_code_pref_title">Source Code</string>
     <string name="about_app_license_pref_title">License</string>
     <string name="about_f_droid_pref_title" translatable="false">F-Droid</string>
     <string name="about_google_play_pref_title" translatable="false">Google Play</string>
-    <string name="about_open_source_licenses_pref_title">Open Source licenses</string>
+    <string name="about_open_source_licenses_pref_title">Libre Software licenses</string>
 
     <!-- Weather conditions label strings -->
     <string name="wind_label" tools:ignore="MissingTranslation">Wind: %1$s %2$s</string>
@@ -189,31 +189,31 @@
     <string name="widget_refresh_button" tools:ignore="MissingTranslation">Widget refresh button</string>
 
     <!-- Wind directions -->
-    <string name="wind_direction_north">N</string>
-    <string name="wind_direction_north_east">NE</string>
-    <string name="wind_direction_east">E</string>
-    <string name="wind_direction_south_east">SE</string>
-    <string name="wind_direction_south">S</string>
-    <string name="wind_direction_south_west">SW</string>
-    <string name="wind_direction_west">W</string>
-    <string name="wind_direction_north_west">NW</string>
+    <string name="wind_direction_north">N↓</string>
+    <string name="wind_direction_north_east">NE↙</string>
+    <string name="wind_direction_east">E←</string>
+    <string name="wind_direction_south_east">SE↖</string>
+    <string name="wind_direction_south">S↑</string>
+    <string name="wind_direction_south_west">SW↗</string>
+    <string name="wind_direction_west">W→</string>
+    <string name="wind_direction_north_west">NW↘</string>
 
     <string name="default_daily_forecast" translatable="false">[{"cloudiness":"6","windSpeed":"1.5","description":"Clear","humidity":"45","icon":"10d","pressure":"1000","windDegree":"303","temperatureEvening":"14.63","dateTime":"1471673520","temperatureMin":"10.38","temperatureMorning":"15.9","temperatureNight":"10.38","temperatureDay":"15.9","temperatureMax":"16.52","rain":"2","snow":"5"}]</string>
 
     <!-- Permission strings -->
-    <string name="permission_location_rationale" tools:ignore="MissingTranslation">Location Permissions are needed to determine the current city</string>
-    <string name="permission_not_granted" tools:ignore="MissingTranslation">Permissions were not granted!</string>
-    <string name="permission_available_location" tools:ignore="MissingTranslation">Location Permissions have been granted</string>
-    <string name="permission_location_need" tools:ignore="MissingTranslation">You must grant Location Permissions</string>
+    <string name="permission_location_rationale" tools:ignore="MissingTranslation">Location permissions needed to determine city</string>
+    <string name="permission_not_granted" tools:ignore="MissingTranslation">Missing permissions!</string>
+    <string name="permission_available_location" tools:ignore="MissingTranslation">Location permissions granted</string>
+    <string name="permission_location_need" tools:ignore="MissingTranslation">Grant location permissions</string>
 
     <!-- Dialog strings -->
-    <string name="restart_dialog_message" tools:ignore="MissingTranslation">Please restart application to apply new settings</string>
+    <string name="restart_dialog_message" tools:ignore="MissingTranslation">Please restart app to apply new settings</string>
 
     <!-- Debug strings -->
-    <string name="debug_choose_file" tools:ignore="MissingTranslation">Select directory for logging</string>
-    <string name="debug_category_title" tools:ignore="MissingTranslation">Debug options</string>
-    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">After specified number of time log file will recreated</string>
-    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Rotation of the log file</string>
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">Select log directory</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">Debug Options</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">After a specified amount of time the log file will recreated</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Rotation of Log File</string>
     <string name="log_file_12_label" tools:ignore="MissingTranslation">12 hours</string>
     <string name="log_file_24_label" tools:ignore="MissingTranslation">a day</string>
     <string name="log_file_48_label" tools:ignore="MissingTranslation">two days</string>
@@ -222,7 +222,7 @@
     <string name="log_file_720_label" tools:ignore="MissingTranslation">a month</string>
 
     <!-- Icon preference strings -->
-    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Icon set</string>
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Icon Set</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Font based icons</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin the red icons</string>
 </resources>
