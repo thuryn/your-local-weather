@@ -195,4 +195,9 @@
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Sada ikon</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Jednoduché ikony</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">"Ikony Merlin the red "</string>
-</resources>
+<string name="initial_guide_close" tools:ignore="MissingTranslation">Úvodní průvodce a nápověda</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Další</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Předchozí</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Ukončit</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Průvodce prvotním nastavením</string>
+    </resources>
