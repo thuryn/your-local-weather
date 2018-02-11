@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" tools:ignore="MissingTranslation">Vaše místní počasí</string>
     <string name="enter_city_hint">Zadejte město</string>
@@ -12,7 +13,7 @@
     <string name="alertDialog_location_permission_positiveButton_permissions">Vyžádat oprávnění</string>
     <string name="alertDialog_location_permission_negativeButton">Zpět</string>
     <string name="progressDialog_gps_locate">Najít aktuální polohu</string>
-    <string name="load_progress">Nahrávám&#8230;</string>
+    <string name="load_progress">Nahrávám…</string>
     <string name="location_not_found">Poloha nenalezena</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Oprávnění nejsou udělena. Přejděte do hlavní aplikace klikněte na ikonu polohy.</string>
 
@@ -149,4 +150,49 @@
     <string name="permission_location_rationale">Oprávnění pro získání polohy je třeba pro nalezení aktuálního města</string>
     <string name="permission_not_granted">Oprávnění nejsou udělena!</string>
     <string name="permission_available_location">Bylo uděleno oprávnění pro získání polohy.</string>
+<string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
+    <string name="preference_title_category_display" tools:ignore="MissingTranslation">Displej</string>
+    <string name="pref_title_language" tools:ignore="MissingTranslation">Jazyk</string>
+    <string name="pref_language_default" tools:ignore="MissingTranslation">Dle systému</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Místní MLS a Nominatim</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">Systémový</string>
+    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">Téma</string>
+    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Pokud se zasekne aktualizace polohy, když telefon spí, můžete zkusit vzbudit telefon, když právě prohledává mobilní síť</string>
+    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Strategie probouzení</string>
+    <string name="nowakeup_label" tools:ignore="MissingTranslation">Neprobouzet</string>
+    <string name="wakeuppartial_label" tools:ignore="MissingTranslation">Vzbudit pouze procesor (CPU)</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">Vzbudit s dislejem</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Vymazat vyrovnávací paměť</string>
+    <string name="db_info" tools:ignore="MissingTranslation">Informace o vyrovnávací paměti</string>
+    <string name="db_header" tools:ignore="MissingTranslation">Vyrovnávací paměť adres</string>
+    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Záznamy vyrovnávací paměti budou smazány po nastaveném čase</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Životnost záznamů ve vyrovnávací paměti</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 hodin</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">den</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">týden</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">měsíc</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">tři měsíce</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">šest měsíců</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">rok</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">nikdy</string>
+    
+    <string name="permission_location_need" tools:ignore="MissingTranslation">Je třeba udělit oprávnění pro získání polohy</string>
+
+    <string name="restart_dialog_message" tools:ignore="MissingTranslation">Pro aplikaci změn je třeba restarovat aplikaci</string>
+
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">Vybrat adresář pro logování</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">Volby pro ladění</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Po nastaveném čase bude soubor s logy znovu vytvořen</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Rotace souboru s logy</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 hodin</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">den</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">dva dny</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">tři dny</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">týden</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">měsíc</string>
+
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Sada ikon</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Jednoduché ikony</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">"Ikony Merlin the red "</string>
 </resources>
