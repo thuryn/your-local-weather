@@ -15,7 +15,7 @@
     <string name="progressDialog_gps_locate">Najít aktuální polohu</string>
     <string name="load_progress">Nahrávám…</string>
     <string name="location_not_found">Poloha nenalezena</string>
-    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Oprávnění nejsou udělena. Přejděte do hlavní aplikace klikněte na ikonu polohy.</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Oprávnění nejsou udělena - přejděte do hlavní aplikace klikněte na ikonu polohy</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Najít pozici</string>
@@ -27,7 +27,7 @@
     <!-- Toolbar menu -->
     <string name="toolbar_menu_refresh">Aktualizace</string>
     <string name="toolbar_menu_search_city">Najít město</string>
-    <string name="toolbar_menu_detect_location">Detect Location</string>
+    <string name="toolbar_menu_detect_location">Zjistit lokalitu</string>
     <string name="menu_action_toggle_values">Přepnout hodnoty</string>
     <string name="menu_action_toggle_yaxis">Přepnout osu Y</string>
 
@@ -42,7 +42,7 @@
     <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Vlhkost</string>
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Tlak</string>
     <string name="ok" tools:ignore="MissingTranslation">OK</string>
-    <string name="cancel" tools:ignore="MissingTranslation">Cancel</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Zrušit</string>
 
 
     <!-- Navigation drawer -->
@@ -149,14 +149,14 @@
     <!-- Permission strings -->
     <string name="permission_location_rationale">Oprávnění pro získání polohy je třeba pro nalezení aktuálního města</string>
     <string name="permission_not_granted">Oprávnění nejsou udělena!</string>
-    <string name="permission_available_location">Bylo uděleno oprávnění pro získání polohy.</string>
+    <string name="permission_available_location">Bylo uděleno oprávnění pro získání polohy</string>
 <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Displej</string>
     <string name="pref_title_language" tools:ignore="MissingTranslation">Jazyk</string>
     <string name="pref_language_default" tools:ignore="MissingTranslation">Dle systému</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Místní MLS a Nominatim</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Systémový</string>
-    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
+    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">Unified NLP</string>
     <string name="pref_title_theme" tools:ignore="MissingTranslation">Téma</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Pokud se zasekne aktualizace polohy, když telefon spí, můžete zkusit vzbudit telefon, když právě prohledává mobilní síť</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Strategie probouzení</string>
