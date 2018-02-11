@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="enter_city_hint">Şehir girin</string>
-    <string name="label_current_city">Geçerli şehir</string>
+    <string name="label_current_city">Şu anki şehir</string>
     <string name="label_choose_city">Şehir seçin</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings">GPS etkin değil. Ayarlar menüsüne gitmek istiyor musunuz?</string>
-    <string name="alertDialog_location_permission_positiveButton_settings">Ayarlar</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">Uygulama konumu güncellemeye ayarlı. Konuma erişim, konum güncellemesinin çalışması için etkinleştirilmelidir. Telefon ayarlarına gidin, ve konumu açın veya uygulamadan konumun güncellenmesini kapatın.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Telefon ayarları</string>
     <string name="alertDialog_location_permission_negativeButton">İptal</string>
-    <string name="progressDialog_gps_locate">Şimdiki konumu bul</string>
+    <string name="progressDialog_gps_locate">Şu anki konumu bul</string>
     <string name="load_progress">Yükleniyor…</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Konum Ara</string>
-    <string name="label_activity_main">Şimdiki Hava</string>
+    <string name="label_activity_main">Şu Anki Hava</string>
     <string name="label_activity_weather_forecast">Günlük Tahmin</string>
     <string name="label_activity_graphs">Hava Grafikleri</string>
     <string name="title_activity_license">%s için Lisans</string>
@@ -24,7 +24,7 @@
     <string name="menu_action_toggle_yaxis">Y-Eksenini Aç/Kapa</string>
 
     <!-- Navigation drawer -->
-    <string name="nav_menu_current_weather">Şimdiki Hava</string>
+    <string name="nav_menu_current_weather">Şu Anki Hava</string>
     <string name="nav_menu_daily_forecast">Günlük Tahmin</string>
     <string name="nav_menu_graphs">Grafikler</string>
     <string name="nav_menu_settings">Ayarlar</string>
@@ -32,7 +32,7 @@
     <string name="nav_menu_bitcoin_donation">Bitcoin Bağışla</string>
 
     <!-- Toast messages -->
-    <string name="connection_not_found">İnternet bağlantınızı kontrol edin</string>
+    <string name="connection_not_found">İnternet bağlantınızı doğrulayın</string>
     <string name="toast_parse_error">Bir hata oluştu. Daha sonra deneyin!</string>
 
     <!-- Weather icons -->
@@ -69,10 +69,10 @@
     <string name="preference_widget_theme_title">Widget teması</string>
     <string name="theme_dark">Koyu</string>
     <string name="theme_light">Açık</string>
-    <string name="theme_transparent">Şeffaf</string>
+    <string name="theme_transparent">Geçirgen</string>
     <string name="preference_title_category_display">Ekran</string>
     <string name="pref_title_language">Dil</string>
-    <string name="pref_language_default">Sistem Dili</string>
+    <string name="pref_language_default">Sistem Öntanımlı</string>
     <string name="pref_title_theme">Tema</string>
     
     <!-- Preference Screen About -->
@@ -102,7 +102,7 @@
     <string name="label_snow">Kar</string>
 
     <!-- Widgets strings -->
-    <string name="widget_weather_icon_description">Geçerli hava simgesi</string>
+    <string name="widget_weather_icon_description">Şu anki hava simgesi</string>
     <string name="widget_refresh_button">Widget yenileme düğmesi</string>
 
     <!-- Donation Bitcoin dialog -->
@@ -118,11 +118,91 @@
     <string name="wind_direction_north_west">KB</string>
 
     <!-- Permission strings -->
-    <string name="permission_location_rationale">Şimdiki şehiri belirlemek için Konum İzinleri gerekli</string>
-    <string name="permission_not_granted">İzinler verilmedi!</string>
-    <string name="permission_available_location">Konum İzinleri verildi</string>
-    <string name="permission_location_need">Konum İzinlerini vermelisiziniz</string>
+    <string name="permission_location_rationale">Şu anki şehri belirlemek için Konum İzni gerekli</string>
+    <string name="permission_not_granted">İzin verilmedi!</string>
+    <string name="permission_available_location">Konum İzni verildi</string>
+    <string name="permission_location_need">Konum İzni vermelisiziniz</string>
 
     <!-- Dialog strings -->
     <string name="restart_dialog_message">Lütfen yeni ayarları uygulamak için uygulamayı tekrar başlatın</string>
+<string name="app_name" tools:ignore="MissingTranslation">Yerel havanız</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Konum ve izin ayarları</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Uygulamaya, GPS ile konumu güncellemesi için bir izin gerekli.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Uygulamaya, WIFI ve GSM ağları ile konumu güncellemesi için bir izin gerekli.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Uygulamaya telefondan bilgi okuması için izin gerekli. Bu izin konumu WIFI ve GSM ağları ile güncellemek için gerekli. Uygulama bu izni telefona bağlı GSM baz istasyonlarıyla ilgili bilgi almak için kullanır.</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">İzin iste</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Konum bulunmadı</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">İzin verilmedi - uygulamaya gidin ve konum simgesine tıklayın</string>
+
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Kolon ayarı</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Gösterilecek kolonlar</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Simge</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Açıklama</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Sıcaklık</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Rüzgar</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Yağmur/Kar</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Nem</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Basınç</string>
+    <string name="ok" tools:ignore="MissingTranslation">Tamam</string>
+    <string name="cancel" tools:ignore="MissingTranslation">İptal</string>
+
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/s</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Konum güncelleme ayarı</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">Konumu güncelleme</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">Konumu güncelle</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">Konumu GPS olmadan güncelle</string>
+    <string name="update_period_by_sensors" tools:ignore="MissingTranslation">İvme ölçerle</string>
+    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Widget\'ta etiketleri göster</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Konum ve adres kaynağı</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Yerel MLS ve Nominatim</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistem</string>
+    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Güncelleme özetini göster</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Yok</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Değer şimdi güncellendi</string>
+    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Konum kaynağıyla güncellenmiş değer</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - yalnızca hava güncellenir
+\nL - yalnızca konum güncellenir
+\nG - GPS\'ten konum ve hava güncellenir
+\nN - ağdan konum ve hava güncellenir</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - yalnızca hava güncellenir
+\nL - yalnızca konum güncellenir
+\nG - GPS\'ten konum ve hava güncellenir
+\nN - ağdan konum ve hava güncellenir
+\nNc - hücre ağından konum ve hava güncellenir
+\nNw - wifi ağlarından konum ve hava güncellenir
+\nNcw - wifi ve hücre ağlarında konum ve hava güncellenir</string>
+    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Telefon uyurken konum takılırsa, hücre arandığında telefonu uyandırabilirsiniz</string>
+    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Uyanma stratejisi</string>
+    <string name="nowakeup_label" tools:ignore="MissingTranslation">Uyanma yok</string>
+    <string name="wakeuppartial_label" tools:ignore="MissingTranslation">Yalnızca işlemciyi uyandır</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">Ekran ile uyan</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Önbelleği Temizle</string>
+    <string name="db_info" tools:ignore="MissingTranslation">Önbellek hakkında bilgi</string>
+    <string name="db_header" tools:ignore="MissingTranslation">Adres önbellek veritabanı</string>
+    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">"Belirli bir süre sonunda, önbellekteki değerler kaldırılır "</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Önbellekteki değerlerin yaşı</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 saat</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">bir gün</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">bir hafta</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">bir ay</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">üç ay</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">altı ay</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">bir yıl</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">asla</string>
+    
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">Günlük için dizin seçin</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">Hata ayıklama seçenekleri</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Belirli bir süre sonunda, günlük dosyası yeniden oluşturulur</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">"Günlük dosyası döndürme "</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 saat</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">bir gün</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">iki gün</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">üç gün</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">bir hafta</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">bir ay</string>
+
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Simge seti</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Yazı temelli simgeler</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin kırmızı simgeler</string>
 </resources>
