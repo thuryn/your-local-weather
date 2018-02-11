@@ -74,6 +74,11 @@
         <item>720</item>
         <item>1440</item>
     </string-array>
+
+    <string-array name="location_cache_entries">
+        <item>@string/location_cache_enable_off</item>
+        <item>@string/location_cache_enable_on</item>
+    </string-array>
     
     <string-array name="location_geocoder_source_entries">
         <item>@string/location_geocoder_local</item>

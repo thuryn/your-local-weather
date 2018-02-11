@@ -22,8 +22,12 @@
             android:icon="@drawable/ic_menu_settings"
             android:title="@string/nav_menu_settings"/>
         <item
-            android:id="@+id/nav_feedback"
+            android:id="@+id/nav_menu_help"
             android:icon="@drawable/ic_feedback"
+            android:title="@string/nav_menu_help"/>
+        <item
+            android:id="@+id/nav_feedback"
+            android:icon="@drawable/ic_thumb_up_black_24dp"
             android:title="@string/nav_feedback"/>
     </group>
 </menu>

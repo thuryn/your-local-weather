@@ -76,9 +76,9 @@
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="location.cache.enabled"
-            android:summaryOff="Found locations is not cached"
-            android:summaryOn="Found locations is cached"
-            android:title="Cache locations" />
+            android:summaryOff="@string/location_cache_enable_off"
+            android:summaryOn="@string/location_cache_enable_on"
+            android:title="@string/location_cache_enable_label" />
         <ListPreference
             android:defaultValue="720"
             android:entries="@array/location_cache_lasting_entries"

@@ -48,8 +48,10 @@ import org.thosp.yourlocalweather.utils.WindWithUnit;
 import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 import static org.thosp.yourlocalweather.utils.AppPreference.getLastUpdateTimeMillis;
 
@@ -147,7 +149,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         this.storedContext = this;
         fab.setOnClickListener(fabListener);
-        checkPermissionsSettingsAndShowAlert();
+        checkSettingsAndPermisions();
     }
 
     private void updateCurrentWeather() {
@@ -189,7 +191,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     @Override
     public void onResume() {
         super.onResume();
-        checkPermissionsSettingsAndShowAlert();
+        checkSettingsAndPermisions();
         preLoadWeather();
         mAppBarLayout.addOnOffsetChangedListener(this);
         LocalBroadcastManager.getInstance(this).registerReceiver(mWeatherUpdateReceiver,
@@ -200,12 +202,20 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     @Override
     protected void onPause() {
         super.onPause();
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
+            mProgressDialog = null;
+        }
         mAppBarLayout.removeOnOffsetChangedListener(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
+            mProgressDialog = null;
+        }
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mWeatherUpdateReceiver);
     }
 
@@ -400,7 +410,10 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                         if ((mProgressDialog != null) && (refreshDialogHandler != null)) {
                             refreshDialogHandler.post(new Runnable() {
                                 public void run() {
-                                    mProgressDialog.hide();
+                                    if (mProgressDialog != null) {
+                                        mProgressDialog.dismiss();
+                                        mProgressDialog = null;
+                                    }
                                 }
                             });
                         }
@@ -480,7 +493,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         refreshDialogHandler = new Handler(Looper.getMainLooper());
     }
 
-    private boolean permissionsAndSettingsRequested = false;
+    private volatile boolean permissionsAndSettingsRequested = false;
 
     public boolean checkPermissionsSettingsAndShowAlert() {
         if (permissionsAndSettingsRequested) {
@@ -560,6 +573,199 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
         settingsAlert.show();
         return false;
+    }
+
+    private volatile boolean initialGuideCompleted;
+    private volatile int initialGuidePage;
+    private int selectedUpdateLocationStrategy;
+    private int selectedLocationAndAddressSourceStrategy;
+    private int selectedWakeupStrategyStrategy;
+    private int selectedCacheLocationStrategy;
+
+    private void checkSettingsAndPermisions() {
+        if (!initialGuideCompleted) {
+            checkAndShowInitialGuide();
+            return;
+        }
+        checkPermissionsSettingsAndShowAlert();
+    }
+
+    private void checkAndShowInitialGuide() {
+        int initialGuideVersion = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
+                .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
+        if (initialGuideVersion > 0) {
+            initialGuideCompleted = true;
+            return;
+        }
+        if (initialGuidePage > 0) {
+            return;
+        }
+        initialGuidePage = 1;
+        showInitialGuidePage(initialGuidePage);
+    }
+
+    private void showInitialGuidePage(int pageNumber) {
+        final AlertDialog.Builder settingsAlert = new AlertDialog.Builder(MainActivity.this);
+        switch (pageNumber) {
+            case 1:
+                settingsAlert.setTitle(R.string.initial_guide_title_1);
+                settingsAlert.setMessage(R.string.initial_guide_paragraph_1);
+                setNextButton(settingsAlert, R.string.initial_guide_next);
+                setPreviousButton(settingsAlert, R.string.initial_guide_close);
+                break;
+            case 2:
+                settingsAlert.setTitle(R.string.initial_guide_title_2);
+                selectedUpdateLocationStrategy = 1;
+                settingsAlert.setSingleChoiceItems(R.array.location_update_strategy, selectedUpdateLocationStrategy,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int selectedOption) {
+                                selectedUpdateLocationStrategy = selectedOption;
+                                if (selectedOption == 0) {
+                                    initialGuidePage = 8; //skip to the last page
+                                }
+                            }
+                        });
+                setNextButton(settingsAlert, R.string.initial_guide_next);
+                setPreviousButton(settingsAlert, R.string.initial_guide_previous);
+                break;
+            case 3:
+                settingsAlert.setTitle(R.string.initial_guide_title_3);
+                settingsAlert.setMessage(R.string.initial_guide_paragraph_3);
+                setNextButton(settingsAlert, R.string.initial_guide_next);
+                setPreviousButton(settingsAlert, R.string.initial_guide_previous);
+                break;
+            case 4:
+                settingsAlert.setTitle(R.string.initial_guide_title_4);
+                selectedLocationAndAddressSourceStrategy = 0;
+                settingsAlert.setSingleChoiceItems(R.array.location_geocoder_source_entries, selectedLocationAndAddressSourceStrategy,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int selectedOption) {
+                                selectedLocationAndAddressSourceStrategy = selectedOption;
+                            }
+                        });
+                setNextButton(settingsAlert, R.string.initial_guide_next);
+                setPreviousButton(settingsAlert, R.string.initial_guide_previous);
+                break;
+            case 5:
+                settingsAlert.setTitle(R.string.initial_guide_title_5);
+                settingsAlert.setMessage(R.string.initial_guide_paragraph_5);
+                setNextButton(settingsAlert, R.string.initial_guide_next);
+                setPreviousButton(settingsAlert, R.string.initial_guide_previous);
+                break;
+            case 6:
+                settingsAlert.setTitle(R.string.initial_guide_title_6);
+                selectedWakeupStrategyStrategy = 2;
+                settingsAlert.setSingleChoiceItems(R.array.wake_up_strategy_entries, selectedWakeupStrategyStrategy,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int selectedOption) {
+                                selectedWakeupStrategyStrategy = selectedOption;
+                            }
+                        });
+                setNextButton(settingsAlert, R.string.initial_guide_next);
+                setPreviousButton(settingsAlert, R.string.initial_guide_previous);
+                break;
+            case 7:
+                settingsAlert.setTitle(R.string.initial_guide_title_7);
+                settingsAlert.setMessage(R.string.initial_guide_paragraph_7);
+                setNextButton(settingsAlert, R.string.initial_guide_next);
+                setPreviousButton(settingsAlert, R.string.initial_guide_previous);
+                break;
+            case 8:
+                settingsAlert.setTitle(R.string.initial_guide_title_8);
+                selectedCacheLocationStrategy = 1;
+                settingsAlert.setSingleChoiceItems(R.array.location_cache_entries, selectedCacheLocationStrategy,
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int selectedOption) {
+                                selectedCacheLocationStrategy = selectedOption;
+                            }
+                        });
+                setNextButton(settingsAlert, R.string.initial_guide_next);
+                setPreviousButton(settingsAlert, R.string.initial_guide_previous);
+                break;
+            case 9:
+                settingsAlert.setTitle(R.string.initial_guide_title_9);
+                settingsAlert.setMessage(R.string.initial_guide_paragraph_9);
+                setNextButton(settingsAlert, R.string.initial_guide_finish);
+                setPreviousButton(settingsAlert, R.string.initial_guide_previous);
+                break;
+        }
+        settingsAlert.show();
+    }
+
+    private void setNextButton(AlertDialog.Builder settingsAlert, int labelId) {
+        settingsAlert.setPositiveButton(labelId,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        initialGuidePage++;
+                        if (initialGuidePage > 9) {
+                            initialGuideCompleted = true;
+                            permissionsAndSettingsRequested = false;
+                            saveInitialPreferences();
+                            checkPermissionsSettingsAndShowAlert();
+                        } else {
+                            showInitialGuidePage(initialGuidePage);
+                        }
+                    }
+                });
+    }
+
+    private void setPreviousButton(AlertDialog.Builder settingsAlert, final int labelId) {
+        settingsAlert.setNegativeButton(labelId,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                        if (labelId == R.string.initial_guide_close) {
+                            permissionsAndSettingsRequested = false;
+                        } else {
+                            initialGuidePage--;
+                            showInitialGuidePage(initialGuidePage);
+                        }
+                    }
+                });
+    }
+
+    private void saveInitialPreferences() {
+        SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(this).edit();
+
+        String selectedUpdateLocationStrategyString = "update_location_full";
+        switch (selectedUpdateLocationStrategy) {
+            case 0: selectedUpdateLocationStrategyString = "update_location_none"; break;
+            case 1: selectedUpdateLocationStrategyString = "update_location_full"; break;
+            case 2: selectedUpdateLocationStrategyString = "update_location_network_only"; break;
+        }
+        preferences.putString(Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY, selectedUpdateLocationStrategyString);
+
+        String selectedWakeupStrategyStrategyString = "nowakeup";
+        switch (selectedWakeupStrategyStrategy) {
+            case 0: selectedWakeupStrategyStrategyString = "nowakeup"; break;
+            case 1: selectedWakeupStrategyStrategyString = "wakeuppartial"; break;
+            case 2: selectedWakeupStrategyStrategyString = "wakeupfull"; break;
+        }
+        preferences.putString(Constants.KEY_WAKE_UP_STRATEGY, selectedWakeupStrategyStrategyString);
+
+        String selectedLocationAndAddressSourceStrategyString = "location_geocoder_local";
+        switch (selectedLocationAndAddressSourceStrategy) {
+            case 0: selectedLocationAndAddressSourceStrategyString = "location_geocoder_local"; break;
+            case 1: selectedLocationAndAddressSourceStrategyString = "location_geocoder_system"; break;
+        }
+        preferences.putString(Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE, selectedLocationAndAddressSourceStrategyString);
+
+        boolean selectedCacheLocationStrategyBoolean = false;
+        switch (selectedCacheLocationStrategy) {
+            case 0: selectedCacheLocationStrategyBoolean = false; break;
+            case 1: selectedCacheLocationStrategyBoolean = true; break;
+        }
+        preferences.putBoolean(Constants.APP_SETTINGS_LOCATION_CACHE_ENABLED, selectedCacheLocationStrategyBoolean);
+
+        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 1);
+        preferences.apply();
     }
 
     private void updateNetworkLocation() {

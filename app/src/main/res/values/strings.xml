@@ -18,11 +18,65 @@
     <string name="location_not_found" tools:ignore="MissingTranslation">Location not found</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Permissions are not granted - go to application and click on location symbol</string>
 
+    <!-- Initial guide and help -->
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Close</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Next</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Previous</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Finish</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Initial configuration guide</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">This guide helps you set the application according your needs. You can choose update strategy on the next page.\nApplication updates just the weather when you select Don\'t select location option.\nThe update of location is one of the best feature of this application. So Update location is the recommended value and is preselected.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Initial configuration guide</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Location source option</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">You can choose the location source - the system one uses google services to get the location by networks (cell and wifi networks). The Local MLS and Nominatim option uses Mozilla location service to get location coordinates and Nominatim service to get location names. The second option requires manage phone calls permission to get information about cell network. The preferred option is preselected.</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Location and address source</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Wakeup strategy option</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Some phone models does not report connected cells correctly unless the display is set on. The preferred option (with display switched on) has disadvantage that the phone switch the display on for a several seconds. This has a small (really) impact on battery life. You can start with the recommended option and later on to try to switch this option off and watch location update behavior.</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Wakeup strategy</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Cache resolved address option</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">You can save network traffic by cashing found locations. You have to accept the fact that the locations are stored in the application. The locations are not send or stored in some other place in a network.</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Cache resolved address</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Congratulation</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">You\'ve finished the basic setting. You can find other settings in the Settings menu (for example language, units etc.).\nThe next page will give you explanation about requested permissions and give you the option to request them.\n\nEnjoy the application.</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">General</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Application uses cell network, WIFI and GPS to get your location and show you weather on the place where you are actually. if you use widget on your phone or tablet, you can see your location and current weather on the main screen. Update of location could be used by some specific period (ex. hourly) or application can use accelerometer to detect movement. You can switch update of location off - weather only is updated in this case. Update by specific period of time: Application update the location and weather by specified amount of time. For example, you can set update period to one hour o\'clock. Update by accelerometer: Location is updated by a distance counted by accelerometer. When distance is longer then minimal value for update, application update your location. Distance derived by accelerometer depends on the way how you carry your phone - when you carry your phone in a pocket the distance is increases faster - the phone is moving back and forth as you go. The weather is updated immediately after the update of location. The weather is updated when screen goes on too - but not more often then once per 15 minutes (and when weather is not updated in the last 15 minutes). To get the location, cell network (BTS) and WIFIs available on the place are used. These information are used to get location coordinates by Mozilla location service. Application try to use GPS when location is not available from cell network and WIFIs. Location coordinates are used to get address by Nominatim service. The address is used in the application or widget. Application uses OpenWeatherMap.org service to get current weather.</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Main application</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Main application contains overview for the current weather. You can update the weather by refresh button in the app panel or by sliding down. You can find update/search location button next to the refresh weather button. Update location button is available when you have selected update location in the settings menu. Search location button is available when you have selected update weather only option in the settings menu.</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">You can find weather forecast on the next screen (select the next screen in menu or swipe left to right). Weather forecast is updated by update button or when you enter the screen (but not more than one update per hour).</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">The third screen contains weather forecast displayed by graphs.</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Widgets</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">Application have three widgets. Widgets contains some common values of the current weather (for example temperature). Some values are unique for the specific widget (for example sunset). There is a time of the last update on right corner of every widget. You can see what has been updated last time (when you have enabled this option in the settings menu). You can find update button next to the last updated time. When you press this button, the weather (and the location when selected update location option) is updated unconditionally.</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">General settings</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">This options has influence on the whole application.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Temperature and wind</b> - You can select temperature and wind speed units. Values are recalculated regarding this option.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Hide weather description</b> - the description of current weather is hidden. You can see the current weather by icon only.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Location update setting</b>\nYou can select whether update weather only. When you select this option you can find search button in the main application. You can search the location you want to see. Application does not look for location in this case.</string>
+    <string name="help_page_3_content_hide_update_location_2" tools:ignore="MissingTranslation">When you select <b>update of location</b> option, application try to find location by system or by Mozilla location service. Application also turns GPS on when application is not able to detect location by cell or wifi networks. So the application does it\'s best to guess you location.</string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">When you select <b>update of location without GPS</b> option, application try to find location just by cell or wifi networks. Application never turns GPS on to get the location.</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Location and address source</b>\nYou can select where the location and the address gets from.</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"><b>Local MLS and Nominatim</b> - The application gets location by Mozilla location serivces. Application uses cell network - information about current active and available network base stations. Make phone calls permission is needed to get this information. Application uses wifi networks around to guess your location more precisely. Application gets geographical coordinates from Mozilla location service. Application uses Nominatim services to get address from coordinates. When you want to get location more precisely from Mozilla location service you can contribute by Mozilla Stumbler application (available at https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler).</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"><b>System</b> - The application gets location and address by system services in Android (usually with Google location services).</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">These menu options sets the <b>language</b>, <b>theme</b> of main application and <b>icon set</b> used in the application and widgets.</string>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"><b>Notifications</b>\nWhen you selects notifications option, application updates current weather periodically. Current weather is put into notifications area then. You can enable notifications also - application vibrate when updated.</string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">To save network traffic and speed-up location update you can switch <b>Cache locations</b> on. This cache stores a network coordinates and an address. Application have to call network resolution service regardless of this setting. But the call to Nominatim address resolution is take place just in the case the address is not in cache. When you switch the Cache locations option on you have to accept the fact that addresses you\'ve visited are stored in the application. No information from the cache are send outside of the application.</string>
+    <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Next to cache location option (checkox) there is setting for <b>The age of cached values</b>. Every stored address has a timestamp. When the timestamp is older then value set in The age of cached values application calls Nominatim to refresh the record.</string>
+    <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">You can clear the cache of addresses by the <b>Clear cache</b> button.</string>
+    <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">You can see several last rows of the cached values in the <b>Information about cache</b> section. You can see total number of rows also.</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">Widget settings</string>
+    <string name="help_page_4_content" tools:ignore="MissingTranslation">Widget settings contains configuration options for all widgets.</string>
+    <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">When you check the option <b>Show labels in widget</b> on you can see labels instead of icons for weather condition values.</string>
+    <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">You can control the widget background by the <b>Widget theme option</b>.</string>
+    <string name="help_page_4_content_update_period" tools:ignore="MissingTranslation">The application updates location (if set) and the current weather regarding the <b>Update period</b> option. The update is performed periodically by the selected interval. When you select update <i>By accelerometer</i> option application uses accelerometer to detect movement. When movement is detected application counts the distance. When the limit for distance is reached and the last update occurs at least 15 minutes ago update of location and current weather is performed. When application is not able to get location you can see unknown location label in the widget. When application has got no location state update of location is performed in 5 minutes again.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">The <b>Wake up strategy</b> option is there to overcome buggy implementation of android service by different vendors. When you select <i>No wake up</i> option and the location is updated properly you\'ve got correct implementation. When the location is not updated properly you can try <i>Wake up CPU only</i>. This option wake the CPU on and try to read state of the cell and wifi network. The last option <i>Wake up with display</i> is the option which switch the screen for several seconds. On some android phones this is the only option to get the correct information about cell and wifi networks. This option consumes some amount of battery - but the impact on battery life is really small.</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">When update of location and current weather is performed you can see status of update next to the update time in widget. You can control what is displayed by the <b>Display update summary</b> option. The explanation of the most advanced option follows:</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">Debug options</string>
+    <string name="help_page_5_content" tools:ignore="MissingTranslation">There are options to enable debugging into log file. This option is useful when there is some trouble with application.</string>
+
     <!-- Activity names -->
     <string name="title_activity_search">Search Location</string>
     <string name="label_activity_main">Current Weather</string>
     <string name="label_activity_weather_forecast">Daily Forecast</string>
     <string name="label_activity_graphs">Graphs Weather</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Help</string>
     <string name="title_activity_license">License for %s</string>
 
     <!-- Toolbar menu -->
@@ -54,6 +108,7 @@
     <string name="nav_menu_settings">Settings</string>
     <string name="nav_feedback">Feedback</string>
     <string name="nav_menu_bitcoin_donation">Donate Bitcoin</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Help</string>
 
     <!-- Toast messages -->
     <string name="connection_not_found">Check your internet connection</string>
@@ -94,14 +149,14 @@
 
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Settings</string>
-    <string name="pref_title_temperature">Temperature</string>
+    <string name="pref_title_temperature">Temperature and wind</string>
     <string name="preference_hide_desc">Hide weather description</string>
     <string name="pref_title_category_notification">Notifications</string>
     <string name="pref_title_notification">Enable Notifications</string>
     <string name="pref_title_notification_refresh_interval">Refresh Interval</string>
     <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Location update setting</string>
     <string name="update_location_none" tools:ignore="MissingTranslation">Don\'t update location</string>
-    <string name="update_location_full" tools:ignore="MissingTranslation">Update location</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">Update location (recommended)</string>
     <string name="update_location_network_only" tools:ignore="MissingTranslation">Update location without GPS</string>
     <string name="update_period_by_sensors" tools:ignore="MissingTranslation">By accelerometer</string>
     <string name="update_period_15min" tools:ignore="MissingTranslation">15 minutes</string>
@@ -126,7 +181,7 @@
     <string name="pref_title_language" tools:ignore="MissingTranslation">Language</string>
     <string name="pref_language_default" tools:ignore="MissingTranslation">System Default</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Location and address source</string>
-    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Local MLS and Nominatim</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Local MLS and Nominatim (recommended)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">System</string>
     <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
     <string name="pref_title_theme" tools:ignore="MissingTranslation">Theme</string>
@@ -135,7 +190,7 @@
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Just updated value</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Updated value with location source</string>
     <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - weather only updated\nL - location only updated\nG - location from GPS and weather updated\nN - location from network and weather updated</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - weather only updated\nL - location only updated\nG - location from GPS and weather updated\nN - location from network and weather updated\nNc - location from cell network and weather updated\nNw - location from wifi networks and weather updated\nNcw - location from wifi and cell networks, weather updated</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - weather only updated\nL - location only updated\nG - location from GPS and weather updated\nN - location from network and weather updated\nNi - location from cell network and weather updated, location discovered by Mozilla location service</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">When location stucks when phone sleeps you can try to wake up phone when cell is looked for</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Wake up strategy</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">No wake up</string>
@@ -154,6 +209,9 @@
     <string name="location_cache_4380_label" tools:ignore="MissingTranslation">six months</string>
     <string name="location_cache_8760_label" tools:ignore="MissingTranslation">a year</string>
     <string name="location_cache_88888_label" tools:ignore="MissingTranslation">never</string>
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Cache locations</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Found locations is cached</string>
+    <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Found locations is not cached</string>
     
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">About</string>

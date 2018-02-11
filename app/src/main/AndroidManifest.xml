@@ -87,6 +87,11 @@
                     android:scheme="file"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name="org.thosp.yourlocalweather.help.HelpActivity"
+            android:label="@string/label_activity_help"
+            android:parentActivityName=".MainActivity" >
+        </activity>
 
         <receiver android:name=".receiver.StartupReceiver">
             <intent-filter>

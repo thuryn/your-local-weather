@@ -682,7 +682,8 @@ public class LocationUpdateService extends Service implements LocationListener {
         startService(intentToCheckWeather);
         if ("MAIN".equals(updateSource)) {
             if (MainActivity.mProgressDialog != null) {
-                MainActivity.mProgressDialog.cancel();
+                MainActivity.mProgressDialog.dismiss();
+                MainActivity.mProgressDialog = null;
             }
         }
     }

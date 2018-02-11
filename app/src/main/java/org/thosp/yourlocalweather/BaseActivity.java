@@ -21,6 +21,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.thosp.yourlocalweather.help.HelpActivity;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.utils.Utils;
 
@@ -115,6 +116,10 @@ public class BaseActivity extends AppCompatActivity {
                         case R.id.nav_settings:
                             createBackStack(new Intent(BaseActivity.this,
                                                        SettingsActivity.class));
+                            break;
+                        case R.id.nav_menu_help:
+                            createBackStack(new Intent(BaseActivity.this,
+                                    HelpActivity.class));
                             break;
                         case R.id.nav_feedback:
                             Intent sendMessage = new Intent(Intent.ACTION_SEND);
