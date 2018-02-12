@@ -14,7 +14,7 @@
     <string name="alertDialog_location_permission_positiveButton_settings">Настройки телефона</string>
     <string name="alertDialog_location_permission_message_location_phone_settings">Приложение настроено на обновление местоположения. Для обновления местоположения, доступ должен быть включён. В настройках телефона, включите определение местоположения или переключите обновление местоположения в приложении.</string>
     <string name="hint_activity_search">Поиск</string>
-    <string name="pref_title_temperature">Температура</string>
+    <string name="pref_title_temperature">Температура и ветер</string>
     <string name="title_activity_settings">Настройки</string>
     <string name="title_activity_search">Поиск</string>
     <string name="cloudiness_label">Облачность: %1$s%2$s</string>
@@ -76,7 +76,7 @@
     <string name="label_wind">Ветер</string>
     <string name="menu_action_toggle_values">Переключение значений</string>
     <string name="menu_action_toggle_yaxis">Переключение оси Y</string>
-    <string name="sunset_label">Заход: %s</string>
+    <string name="sunset_label">Закат: %s</string>
     <string name="sunrise_label">Восход: %s</string>
     <string name="title_activity_license">Лицензия на %s</string>
     <string name="preference_hide_desc">Убрать описание погоды</string>
@@ -111,4 +111,37 @@
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Вы можете выбрать источник местоположения - система использует службы google для получения местоположения по сетям (сотовые и Wi-Fi-сети). Параметр Local MLS и Nominatim использует службу определения местоположения Mozilla, чтобы получить координаты местоположения и службу Nominatim, чтобы получить имена мест. Второй вариант требует разрешения на телефонные звонки для получения информации о сотовой сети. Предпочтительный вариант предварительно выбран.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Местонахождение и адрес источника</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Вариант стратегии пробуждения</string>
-    </resources>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Некоторые модели телефонов не могут отображать корректное подключение к сотам, если включен экран. Предпочтительный вариант (с включенным дисплеем) имеет недостаток в том, что телефон включает дисплей на несколько секунд. Это не имеет большого (значимого) влияния на время автономной работы. Вы можете начать с рекомендуемых опций, а затем попытаться отключить этот параметр и посмотреть поведение обновления местоположения.</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Стратегия пробуждения</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Параметр разрешенного адреса кэша</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Вы можете сохранить сетевой трафик, сохранив в кэше найденные местоположения. Вы должны принять тот факт, что местоположения хранятся в приложении. Данные о вашем местонахождении не отправляются и не хранятся в каком-либо другом месте в сети.</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Параметр разрешенного адреса кэша</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Поздравляем</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Вы закончили базовую настройку. Другие настройки можно найти в меню «Настройки» (например, язык, единицы измерения и т. п.).
+\nНа следующей странице вы получите объяснение о запрошенных разрешениях и дана возможность изменять/запрашивать их.
+\nНаслаждайтесь приложением.</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Главное</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Приложение использует сотовую сеть, WiFi и GPS, чтобы получить ваше местоположение и показать вам погоду в том месте, где вы находитесь. если вы используете виджет на своем телефоне или планшете, вы можете увидеть свое местоположение и текущую погоду на главном экране. Обновление местоположения может быть использовано в определенный период (например, каждый час), или приложение может использовать акселерометр для обнаружения движения. В любом случае вы можете отключить обновление и узнавать текущую погоду по возникшей необходимости. Обновление по конкретному периоду времени: приложение обновляет местоположение и погоду на определенный промежуток времени. Например, вы можете установить период обновления: каждый час. Обновление акселерометром: местоположение обновляется при изменении расстояние, отсчитываемое акселерометром. Когда расстояние больше, чем минимальное значение для обновления, приложение обновляет ваше местоположение. Расстояние, производимое акселерометром, зависит от того, как вы переносите свой телефон - когда вы перевозите свой телефон в карман, расстояние увеличивается быстрее - телефон движется вперед и назад по ходу движения. Погода обновляется сразу после обновления местоположения. Погода обновляется, когда экран включён, но не чаще, чем один раз в 15 минут (и когда погода не обновляется за последние 15 минут). Для получения местоположения используются доступные: сотовая сеть (BTS) и WiFi. Эти данные используются для получения координат местоположения службой определения местоположения Mozilla. Приложение пытается использовать GPS, когда местоположение недоступно в сотовой сети и WIFI. Координаты местоположения используются для получения адреса службой Nominatim. Адрес используется в приложении или виджетах. Приложение использует службу OpenWeatherMap.org для получения текущей погоды.
+\n</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Основное приложение</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Основное приложение содержит обзор текущей погоды. Вы можете обновить погоду, нажав кнопку обновления на панели приложений или потянув вниз. Кнопка обновления/поиск находится рядом с кнопкой обновления погоды. Кнопка обновления местоположения, доступна когда вы выбрали местоположение обновления в меню настроек. Кнопка поиска местоположения доступна, когда вы выбрали опцию обновления погоды только в меню настроек.</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Вы можете найти прогноз погоды на следующем экране (выберите следующий экран в меню или проведите по экрану слева направо). Прогноз погоды обновляется кнопкой обновления или при входе в экран (но не более одного обновления в час).</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Третий экран содержит прогноз погоды, отображаемый на графиках.</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Виджеты</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">Приложение имеет три виджета. Виджеты содержат средние значения текущей погоды (например, температуры). Некоторые значения уникальны для конкретного виджета (например, закат). Время последнего обновления в правом углу каждого виджета. Вы можете увидеть, что было обновлено в последний раз (когда вы включили эту опцию в меню настроек). Вы можете найти кнопку обновления рядом с последним обновленным временем. Когда вы нажимаете эту кнопку, погода (и местоположение в выбранном месте местоположения обновления) обновляется безоговорочно.</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Главные настройки</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Эти параметры влияют на всё приложение.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Температура и ветер</b> - Выберите единицы измерения температуры и ветра. Значения будут пересчитаны.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Убрать подробное описание погоды</b> - описание погоды скрыто. Вы сможете видеть текущую погоду только по значкам.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Настройка обновления положения</b>
+\nВы можете сами обновлять данные о погоде. Когда вы выбираете эту опцию, вы можете найти кнопку поиска в главном меню. Вы можете сами выбрать место, погоду в котором хотите видеть. В этом случае приложение не ищет местоположение самостоятельно.</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 часов</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">день</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">2 дней</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">3 дней</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">неделя</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">месяц</string>
+
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Настройка иконок</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Красные иконки Merlin</string>
+</resources>
