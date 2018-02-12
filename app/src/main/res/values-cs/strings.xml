@@ -200,4 +200,61 @@
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Předchozí</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Ukončit</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Průvodce prvotním nastavením</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Tento průvodce Vám pomůže nastavit aplikaci dle Vašich potřeb. Na následující obrazovce si můžete vybrat strategii aktualizace.
+\nPokud vyberete <i>Neaktualizovat polohu</i>, aplikace provede jen aktualizaci počasí.
+\nAvšak aktualizace polohy je jedna ze nejlepších vlastností této aplikace. A proto je volba <i>Aktualizovat polohu</i> doporučenou volbou a je i zároveň předvybrána.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Průvodce počátečním nastavením</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Volba zdroje polohy</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Můžete vybrat zdroj polohy - volba <i>Systém</i> využívá služeb operačního systému (služby Google) pro získání polohy pomocí sítí (mobilní a wifi sítě). Volba <i>Místní MLS a Nominatim</i> využívá služby pro získání souřadníc polohy společnosti Mozilla a službu Nominatim pro získání adresy. Druhá volba vyžaduje oprávnění pro ovládání telefonních hovorů pro získání informací o mobilní síti. Preferovaná volba je předvybrána.</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Zdroj polohy a adresy</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Volba strategie aktivace</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Některé modely telefonů nehlásí právě připojené buňky sítě správně dokud není zapnutý displej. Preferovaná volba (se zapnutým displejem má tu nevýhodu, že telefon rozsvítí displej na několik vteřin. Toto má malý (skutečně) vliv na životnost baterie. Můžete začít s touto doporučenou volbou a později zkusit tuto volbu vypnout a sledovat, jestli se poloha aktualizuje správně.</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Strategie aktivace</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Volba získat adresu z vyrovnávací paměti</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Pomocí ukládání polohy do vyrovnávací paměti můžete ušetřit na provozu po síti. Avšak je třeba, aby jste akceptovali fakt, že poloha je do aplikace ukládána. Ukládané polohy nejsou odesílána ani ukládána na jiném místě v síti.</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Ukládání polohy do vyrovnávací paměti</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Gratulujeme</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Právě jste dokončili základní nastavení. Další volby můžete najít v menu Nastavení (např. jazyk, jednotky etc.).
+\nNásledující obrazovce naleznete vysvětlení k požadovaným oprávněním a dále zde budete mít možnost o tato oprávnění požádat. 
+\n
+\nUžijte si aplikaci.</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Obecné</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Aplikace využívá mobilní síť, WIFI sítě a případně GPS pro získání Vaší polohy a zobrazení počasí v místě, kde se právě nacházíte.
+\nPokud využijete widget na svém telefonu nebo tabletu, uvidíte Vaší polohu a aktuální počasí na své hlavní obrazovce. Aktualizace polohy může být nastavena dle zadané periody (například každou hodinu) nebo aplikace může využívat akcelerometr u detekci pohybu. Aktualizaci polohy je možné vypnout - pak se bude aktualizovat jen počasí.
+\n
+\nAktualizace dle zadané periody:
+\nAplikace po zadané periodě provede aktualizaci polohy a načtení aktuálního počasí. Například můžete nastavit aktualizaci na každou hodinu.
+\n
+\nAktualizace dle akcelerometru:
+\nPoloha bude aktualizována dle načtené vzdálenosti měřené akcelerometrem. Pokud naměřená vzdálenost bude větší než prahová hodnota, dojde k načtení aktuální polohy. Naměřená hodnota závisí na způsobu pohybu - pokud máte telefon v kapse, naměřená vzdálenost bude přibývat rychleji - telefon se pohybuje sem a tam v rytmu chůze. Po každé aktualizaci polohy bude též aktualizováno počasí. Počasí bude aktualizováno též při každém rozsvícení displeje - avšak ne častěji, než jednou za 15 minut (pokud nebyla během posledních 15 minut aktualizována poloha).
+\n
+\nK získání polohy je nejprve využita informace z mobilní sítě (BTS) a WIFI sítí přítomných v dané lokalitě. Z těchto informací jsou pomocí služby Mozilla location service získány souřadnice. Pokud souřadnice nejsou dostupné, pokusí se aplikace získat polohu z GPS. Získané souřadnice jsou pomocí služby Nominatim převedena na adresu, která je zobrazena v aplikaci nebo widgetu.
+\n
+\nK získání aktuálního počasí je využita služba OpenWeatherMap.org.</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Hlavní aplikace</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Hlavní aplikace obsahuje přehled aktuálního počasí. Pomocí tlačítka pro aktualizaci počasí nebo gestem tažením dolů, můžete provést aktualizaci momentálního stavu počasí. Tlačítko aktualizace se nachází v horním panelu aplikace. Vedle tlačítka pro aktualizaci počasí se nachází tlačítko pro aktualizaci/vyhledání polohy. Tlačítko pro aktualizaci polohy je dostupné, pokud byla vybrána volba Aktualizovat polohu v Nastavení. Tlačítko pro vyhledání polohy je dostupné jen pokud bylo vybrána volba Neaktualizovat polohu v menu Nastavení.</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Na následující obrazovce je možné najít předpověď počasí (následující stranu je možné vybrat v menu nebo gestem tažení vpravo/vlevo). Předpověď je aktualizována pomocí tlačítka pro aktualizaci nebo pokud právě vstoupíte na tuto obrazovku (avšak ne častěji než jednou za hodinu).</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Třetí obrazovka obsahuje předpověď počasí v grafech.</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Widgety</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">Aplikace obsahuje tři widgety. Widgety obsahují některé společné hodnoty aktuálního počasí (např. teplotu). Některé hodnoty jsou pro daný widget unikátní (např. západ slunce). V pravém horním rohu každého widgetu je čas poslední aktualizace. Dále můžete vidět, co bylo naposledy aktualizováno (pokud máte tuto volbu povolenu v menu Nastavení). Vedle času poslední aktualizace se nachází tlačítko pro aktualizaci. Pokud je tlačítko aktualizace stisknuto, aktuální počasí (a případně poloha, pokud byla nastavena tato volba) je bezpodmínečně aktualizována.</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Obecná nastavení</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Tato nastavení mají vliv na celou aplikaci.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Teplota a vítr</b> - Zde je možné vybrat jednotky pro teplotu a rychlost větru. Hodnoty jsou přepočítány dle tohoto nastavení.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Skrýt popis počasí</b> - popis počasí se nebude zobrazovat. Aktuální počasí je zřejmé jen z ikony.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Nastavení aktualizace polohy</b>
+\nZde je možné nastavit jen aktualizaci počasí. Pokud nastavíte tuto volbu, v hlavní aplikaci se objeví tlačítko pro vyhledání polohy. Pomocí tohoto tlačítka můžete nastavit polohu, kterou chcete vidět. Aplikace pak polohu během aktualizace nevyhledává.</string>
+    <string name="help_page_3_content_hide_update_location_2" tools:ignore="MissingTranslation">Pokud zvolíte volbu <b>Aktualizovat polohu</b>, aplikace se pokusí najít polohu pomocí systémových služeb nebo pomocí služeb zjišťování polohy společnosti Mozilla. Pokud aplikace není schopna zjistit polohu pomocí mobilní a wifi sítě, zapíná na několik vteřin vyhledávání podle satelitů (GPS). Aplikace tedy dělá, co může, aby zjistila Vaší polohu.</string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Pokud zvolíte volbu <b>Aktualizace polohy bez GPS</b>, aplikace se pokusí najít polohu jen pomocí mobilní a wifi sítě. Aplikace tedy nikdy nezapne GPS pro vyhledání polohy.</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Zdroj polohy a adresy</b>
+\nZde je možné vybrat, pomocí které služby bude vyhledávána poloha a adresa.</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"><b>Místní MLS a Nominatim</b> - aplikace získává polohu pomocí služby polohy společnosti Mozilla. Aplikace využívá informace z mobilních sítí - aktivní a dostupné základnové stanice. Pro získání těchto informací je třeba oprávnění pro ovládání telefonních hovorů. Dále aplikace využívá wifi sítě v okolí pro upřesnění Vaší polohy. Služby polohy společnosti Mozilla jsou pak využity pro získání geografických souřadnic. Dále aplikace využívá služby Nominatim pro získání adresy z geografických souřadnic. Pokud chcete přispívat do služby zjišťování polohy Mozilla (pro zpřesnění vyhledávání polohy), nainstalujte si aplikaci Mozilla Stumbler (dostupná zde https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler).</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"><b>Systém</b> - aplikace získává polohu a adresu pomocí systémových služeb v Androidu (obvykle služby společnosti Google).</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Tyto volby nastavují <b>Jazyk</b>, <b>Téma</b> pro hlavní aplikaci a <b>Sada ikon</b>, která se využívá v hlavní aplikaci i ve widgetech.</string>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"><b>Upozornění</b>
+\nPokud vyberete volbu upozornění, aplikace aktualizuje polohu po uplynutí nastaveného času. Aktuální počasí je vloženo do oblasti pro upozornění (notifikace). Dále můžete nastavit vibraci po aktualizaci.</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">Nastavení widgetů</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">Volby pro ladění</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Nápověda</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Nápověda</string>
+
     </resources>
