@@ -48,7 +48,7 @@
 
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Ayarlar</string>
-    <string name="pref_title_temperature">Sıcaklık</string>
+    <string name="pref_title_temperature">Sıcaklık ve rüzgar</string>
     <string name="preference_hide_desc">Hava açıklamasını gizle</string>
     <string name="pref_title_category_notification">Bildirimler</string>
     <string name="pref_title_notification">Bildirimleri Etkinleştir</string>
@@ -149,12 +149,12 @@
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/s</string>
     <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Konum güncelleme ayarı</string>
     <string name="update_location_none" tools:ignore="MissingTranslation">Konumu güncelleme</string>
-    <string name="update_location_full" tools:ignore="MissingTranslation">Konumu güncelle</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">Konumu güncelle (önerilen)</string>
     <string name="update_location_network_only" tools:ignore="MissingTranslation">Konumu GPS olmadan güncelle</string>
     <string name="update_period_by_sensors" tools:ignore="MissingTranslation">İvme ölçerle</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Widget\'ta etiketleri göster</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Konum ve adres kaynağı</string>
-    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Yerel MLS ve Nominatim</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Yerel MLS ve Nominatim (önerilen)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistem</string>
     <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Güncelleme özetini göster</string>
@@ -205,4 +205,35 @@
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Simge seti</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Yazı temelli simgeler</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin kırmızı simgeler</string>
-</resources>
+<string name="initial_guide_close" tools:ignore="MissingTranslation">Kapat</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">İleri</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Önceki</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Bitir</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">İlk yapılandırma rehberi</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">İlk yapılandırma rehberi</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Konum kaynağı seçeneği</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Konum ve adres kaynağı</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Uyandırma strateji seçeneği</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Uyandırma stratejisi</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Çözümlenen adresi önbellekleme seçeneği</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Çözümlenen adresi önbellekle</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Tebrikler</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Genel</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Ana uygulama</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Üçüncü ekranda grafiklerle gösterilen hava tahmini içerir.</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Widget\'lar</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Genel ayarlar</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Bu seçenek tüm uygulama üzerinde etkilidir.</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">Widget ayarları</string>
+    <string name="help_page_4_content" tools:ignore="MissingTranslation">Widget ayarları tüm widget\'lar için yapılandırma seçenekleri içerir.</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">Hata ayıklama seçenekleri</string>
+    <string name="help_page_5_content" tools:ignore="MissingTranslation">Günlük dosyasına hata ayıklamayı etkinleştirmek için seçenekler vardır. Uygulama ile ilgili bir sorun olduğunda bu seçenek kullanışlıdır.</string>
+
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Yardım</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Yardım</string>
+
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Konumları önbellekte sakla</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Bulunan konumlar önbellekte saklanır</string>
+    <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Bulunan konumlar önbellekte saklanmaz</string>
+    
+    </resources>
