@@ -68,7 +68,7 @@
 
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Nastavení</string>
-    <string name="pref_title_temperature">Teplota</string>
+    <string name="pref_title_temperature">Teplota a vítr</string>
     <string name="preference_hide_desc">Skrýt popis počasí</string>
     <string name="pref_title_category_notification">Upozornění</string>
     <string name="pref_title_notification">Povolit upozornění</string>
@@ -102,7 +102,11 @@
     <string name="preference_display_update_value">Jen aktualizované hodnoty</string>
     <string name="preference_display_update_location_source">Aktualizované hodnoty včetně zdroje pozice</string>
     <string name="preference_display_update_value_info">W - aktualizovnáno jen počasí\nL - aktualizována jen poloha\nG - aktualizována poloha z GPS a počasí\nN - aktualizována poloha ze sítě a počasí</string>
-    <string name="preference_display_update_location_source_info">W - aktualizovnáno jen počasí\nL - aktualizována jen poloha\nG - aktualizována poloha z GPS a počasí\nN - aktualizována poloha ze sítě a počasí\nNc - aktualizována poloha z GSM sítě a počasí\nNw - aktualizována poloha z wifi sítí a počasí\nNcw - aktualizována poloha z GSM a wifi sítí, počasí</string>
+    <string name="preference_display_update_location_source_info">W - aktualizovnáno jen počasí
+\nL - aktualizována jen poloha
+\nG - aktualizována poloha z GPS a počasí
+\nN - aktualizována poloha ze sítě a počasí
+\nNi - aktualizována poloha z GSM sítě a počasí</string>
 
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">O aplikaci</string>
@@ -154,7 +158,7 @@
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Displej</string>
     <string name="pref_title_language" tools:ignore="MissingTranslation">Jazyk</string>
     <string name="pref_language_default" tools:ignore="MissingTranslation">Dle systému</string>
-    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Místní MLS a Nominatim</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Místní MLS a Nominatim (doporučené)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Systémový</string>
     <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">Unified NLP</string>
     <string name="pref_title_theme" tools:ignore="MissingTranslation">Téma</string>
@@ -257,4 +261,20 @@
     <string name="label_activity_help" tools:ignore="MissingTranslation">Nápověda</string>
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Nápověda</string>
 
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">Pro úsporu připojení k síti a zrychlení aktualizace polohy můžete zapnout volbu <b>Ukládání polohy do vyrovnávací paměti</b>. Tato vyrovnávací paměť ukládá geografické souřadnice a adresu. Aplikace musí volat službu pro získání geografických souřadnic bez ohledu na tomto nastavení. Avšak volání služby Nominatim pro získání adresy se provede pouze v případě, že adresa není uložena ve vyrovnávací paměti. Pokud zapnete volbu pro ukládání polohy, musíte akceptovat fakt, že adresy, které jste navštívili, jsou ukládány do aplikace. Avšak žádné informace o uložené adrese není posílána mimo aplikaci.</string>
+    <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Vedle volby pro ukládání adresy do vyrovnávací paměti (zaškrtávací políčko) je nastavení <b>Doba platnosti uložených hodnot</b>. Každá uložená adresa má časové razítko. Pokud časová značka je starší než hodnota nastavená volbou Doba platnosti uložených hodnot, aplikace získá adresu ze služby Nominatim a uložený záznam aktualizuje.</string>
+    <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Pomocí tlačítka <b>Vymazat vyrovnávací paměť</b> je možné smazat všechny uložené záznamy ve vyrovnávací paměti adres.</string>
+    <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">V sekci <b>Informace o vyrovnávací paměti</b> můžete vidět několik posledních záznamů vyrovnávací paměti. Také je zde vidět celkový počet záznamů.</string>
+    <string name="help_page_4_content" tools:ignore="MissingTranslation">Nastavení widgetů obsahuje volby nastavení pro všechny widgety.</string>
+    <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Pokud zaškrtnete volbu <b>Zobrazit popisky ve widgetu</b>, vlastnosti počasí ve widgetu budou zobrazeny s popisky.</string>
+    <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Pomocí volby <b>Volba tématu widgetu</b> můžete nastavit pozadí widgetu.</string>
+    <string name="help_page_4_content_update_period" tools:ignore="MissingTranslation">Aplikace aktualizuje polohu (pokud je nastaveno) a aktuální počasí dle nastavení <b>Interval aktualizace</b>. Aktualizace je prováděna periodicky dle nastaveného intervalu. Pokud vyberete aktualizaci <i>Dle akcelerometru</i>, aplikace používá akcelerometr pro detekci pohybu. Pokud je zaznamenán pohyb, aplikace počítá vzdálenost. Pokud je překročen limit délky a poslední aktualizace byla provedena za déle než 15 minut, aplikace provede aktualizaci polohy a aktuálního počasí. Pokud aplikace není schopna zjistit polohu, zobrazí se nápis Neznámá poloha ve widgetu. Pokud se aplikace nachází ve stavu s nezjištěnou polohou, další aktualizace se provede již za 5 minut.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">Volba <b>Strategie aktivace</b> slouží pro překonání problémů s chybnou implementací služeb v Androidu od různých výrobců. Pokud zvolíte <i>Neaktivovat</i> a poloha je aktualizována správně, máte funkční implementaci. Pokud však poloha není aktualizována správně, můžete zkusit volbu <i>Aktivovat jen CPU</i>. Tato volba způsobí jen aktivaci mikroprocesoru (CPU) a pak se pokusí získat stav mobilní a wifi sítě. Poslední volba <i>Aktivace se zapnutým displejem</i> způsobí, že displej se během aktualizace polohy zapne na několik vteřin. Na některých modelech telefonu je toto jediná volba, během které je aplikace schopna zjistit skutečný stav mobilní a wifi sítí. Tato volba spotřebuje nějaké množství baterie, avšak vliv na životnost baterie je skutečně velice malý.</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Po aktualizaci polohy a aktuálního počasí je možné vidět stav po aktualizaci vedle času poslední aktualizace ve widgetu. Pomocí volby <b>Zobrazení přehledu aktualizace</b> můžete ovlivnit, jak se přehled zobrazuje. Zde je vysvětlivka, pokud zvolíte nejpopisnější volbu:</string>
+    <string name="help_page_5_content" tools:ignore="MissingTranslation">Zde se nacházejí volby pro ladění aplikace. Tato volba je užitečná, pokud nastanou s aplikací problémy.</string>
+
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Ukládání polohy do vyrovnávací paměti</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Nalezené polohy jsou ukládány</string>
+    <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Nalezené polohy nejsou ukládány</string>
+    
     </resources>
