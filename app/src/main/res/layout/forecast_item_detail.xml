@@ -35,7 +35,7 @@
 
     <TextView
         android:id="@+id/forecast.description"
-        android:layout_width="60dp"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
         android:maxLines="2"
         android:layout_gravity="left|center"
