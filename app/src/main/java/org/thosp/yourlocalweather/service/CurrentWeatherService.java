@@ -184,16 +184,18 @@ public class CurrentWeatherService extends Service {
 
     public void sendResult(String result, Weather weather) {
         stopRefreshRotation();
-        if (updateSource == null) {
-            return;
-        }
-        
-        switch (updateSource) {
-            case "MAIN" : sendIntentToMain(result, weather);break;
-            case "LESS_WIDGET" : startService(new Intent(getBaseContext(), LessWidgetService.class));break;
-            case "MORE_WIDGET" : startService(new Intent(getBaseContext(), MoreWidgetService.class));break;
-            case "EXT_LOC_WIDGET" : startService(new Intent(getBaseContext(), ExtLocationWidgetService.class));break;
-            case "NOTIFICATION" : startService(new Intent(getBaseContext(), NotificationService.class));break;
+        startService(new Intent(getBaseContext(), LessWidgetService.class));
+        startService(new Intent(getBaseContext(), MoreWidgetService.class));
+        startService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
+        if (updateSource != null) {
+            switch (updateSource) {
+                case "MAIN":
+                    sendIntentToMain(result, weather);
+                    break;
+                case "NOTIFICATION":
+                    startService(new Intent(getBaseContext(), NotificationService.class));
+                    break;
+            }
         }
     }
     

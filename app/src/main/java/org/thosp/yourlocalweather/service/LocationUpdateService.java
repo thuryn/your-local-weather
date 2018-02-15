@@ -30,7 +30,6 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
@@ -609,6 +608,7 @@ public class LocationUpdateService extends Service implements LocationListener {
 
     private void detectLocation() {
         if (!PermissionUtil.checkPermissionsAndSettings(this)) {
+            updateWidgets();
             stopSelf();
             return;
         }
@@ -663,6 +663,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         appendLog(getBaseContext(), TAG, "requestWeatherCheck, updateLocationInProcess=" +
                 updateLocationInProcess);
         if (updateLocationInProcess) {
+            updateWidgets();
             return;
         }
         SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
@@ -675,25 +676,22 @@ public class LocationUpdateService extends Service implements LocationListener {
         Intent intentToCheckWeather = new Intent(getBaseContext(), CurrentWeatherService.class);
         intentToCheckWeather.putExtra("updateSource", updateSource);
         startService(intentToCheckWeather);
-        if ("MAIN".equals(updateSource)) {
-            if (MainActivity.mProgressDialog != null) {
-                MainActivity.mProgressDialog.dismiss();
-                MainActivity.mProgressDialog = null;
-            }
-        }
     }
     
     private void updateWidgets() {
         stopRefreshRotation();
-        if (updateSource == null) {
-            return;
-        }
-        
-        switch (updateSource) {
-            case "MAIN" : sendIntentToMain();break;
-            case "LESS_WIDGET" : startService(new Intent(getBaseContext(), LessWidgetService.class));break;
-            case "MORE_WIDGET" : startService(new Intent(getBaseContext(), MoreWidgetService.class));break;
-            case "EXT_LOC_WIDGET" : startService(new Intent(getBaseContext(), ExtLocationWidgetService.class));break;
+        startService(new Intent(getBaseContext(), LessWidgetService.class));
+        startService(new Intent(getBaseContext(), MoreWidgetService.class));
+        startService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
+        if (updateSource != null) {
+            switch (updateSource) {
+                case "MAIN":
+                    sendIntentToMain();
+                    break;
+                case "NOTIFICATION":
+                    startService(new Intent(getBaseContext(), NotificationService.class));
+                    break;
+            }
         }
     }
     

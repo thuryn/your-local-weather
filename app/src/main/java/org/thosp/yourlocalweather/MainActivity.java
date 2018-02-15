@@ -48,11 +48,10 @@ import org.thosp.yourlocalweather.utils.WindWithUnit;
 import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 import static org.thosp.yourlocalweather.utils.AppPreference.getLastUpdateTimeMillis;
 
 public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetChangedListener {
@@ -153,11 +152,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     }
 
     private void updateCurrentWeather() {
-        AppPreference.saveWeather(MainActivity.this, mWeather, "W");
-        mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
-                Context.MODE_PRIVATE);
-        SharedPreferences.Editor configEditor = mSharedPreferences.edit();
-
         windWithUnit = AppPreference.getWindWithUnit(MainActivity.this, mWeather.wind.getSpeed());
         String pressure = String.format(Locale.getDefault(), "%.1f",
                 mWeather.currentCondition.getPressure());
@@ -185,7 +179,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mSunriseView.setText(getString(R.string.sunrise_label, sunrise));
         mSunsetView.setText(getString(R.string.sunset_label, sunset));
         setTitle(Utils.getCityAndCountry(this));
-        configEditor.apply();
     }
 
     @Override
@@ -240,6 +233,9 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         switch (item.getItemId()) {
             case R.id.main_menu_refresh:
                 if (connectionDetector.isNetworkAvailableAndConnected()) {
+                    SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
+                            Context.MODE_PRIVATE);
+                    mSharedPreferences.edit().putString(Constants.APP_SETTINGS_UPDATE_SOURCE, "-").apply();
                     Intent intent = new Intent(this, CurrentWeatherService.class);
                     intent.putExtra("updateSource", "MAIN");
                     startService(intent);
@@ -269,6 +265,9 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 public void onRefresh() {
                     isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
                     if (isNetworkAvailable) {
+                        SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
+                                Context.MODE_PRIVATE);
+                        mSharedPreferences.edit().putString(Constants.APP_SETTINGS_UPDATE_SOURCE, "-").apply();
                         Intent intent = new Intent(MainActivity.this, CurrentWeatherService.class);
                         intent.putExtra("updateSource", "MAIN");
                         startService(intent);
@@ -403,20 +402,20 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mWeatherUpdateReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+                if ((mProgressDialog != null) && (refreshDialogHandler != null)) {
+                    refreshDialogHandler.post(new Runnable() {
+                        public void run() {
+                            if (mProgressDialog != null) {
+                                mProgressDialog.dismiss();
+                                mProgressDialog = null;
+                            }
+                        }
+                    });
+                }
                 switch (intent.getStringExtra(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT)) {
                     case CurrentWeatherService.ACTION_WEATHER_UPDATE_OK:
                         mSwipeRefresh.setRefreshing(false);
                         setUpdateButtonState(false);
-                        if ((mProgressDialog != null) && (refreshDialogHandler != null)) {
-                            refreshDialogHandler.post(new Runnable() {
-                                public void run() {
-                                    if (mProgressDialog != null) {
-                                        mProgressDialog.dismiss();
-                                        mProgressDialog = null;
-                                    }
-                                }
-                            });
-                        }
                         updateCurrentWeather();
                         break;
                     case CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL:
@@ -488,6 +487,17 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         mProgressDialog.setIndeterminate(true);
         mProgressDialog.setCancelable(false);
+        mProgressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                try {
+                    dialog.dismiss();
+                } catch (SecurityException e) {
+                    appendLog(MainActivity.this, TAG, "Cancellation error", e);
+                }
+            }
+        });
+
         updateNetworkLocation();
         mProgressDialog.show();
         refreshDialogHandler = new Handler(Looper.getMainLooper());
