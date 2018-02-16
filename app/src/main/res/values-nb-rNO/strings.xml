@@ -143,4 +143,39 @@
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Velg loggføringsmappe</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Feilrettingsvalg</string>
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Ikon-sett</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Lukk</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Neste</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Forrige</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Fullfør</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Førstegangsoppsettsveiledning</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Valg for oppvåkningsstrategi</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Oppvåkningsstrategi</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Gratulerer</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Hovedinnstillinger</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Hovedprogram</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Miniprogrammer</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Dette valget har innvirkning på hele programmet.</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">Miniprogramsinnstillinger</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Hjelp</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Hjelp</string>
+
+    <string name="preference_title_category_display" tools:ignore="MissingTranslation">Vis</string>
+    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 timer</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">en dag</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">ei uke</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">en måned</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">tre måneder</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">seks måneder</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">ett år</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">aldri</string>
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Hurtiglagerplasseringer</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 timer</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">en dag</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">to dager</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">tre dager</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">ei uke</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">en måned</string>
+
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Skriftbaserte ikoner</string>
     </resources>
