@@ -98,7 +98,7 @@
 
                 <TextView
                     android:id="@+id/forecast.header.presure"
-                    android:layout_width="40dp"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
@@ -172,7 +172,7 @@
 
             <TextView
                 android:id="@+id/forecast.header.presure_unit"
-                android:layout_width="40dp"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"

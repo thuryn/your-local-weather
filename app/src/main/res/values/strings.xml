@@ -145,6 +145,7 @@
     <string name="percent_sign" translatable="false">\u0025</string>
     <string name="temperature_with_degree" translatable="false">%s</string>
     <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
     <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
     <string name="wind_speed_miles" tools:ignore="MissingTranslation">mph</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
@@ -155,7 +156,9 @@
 
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Settings</string>
-    <string name="pref_title_temperature">Temperature and wind</string>
+    <string name="pref_title_temperature">Temperature</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">Wind</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Pressure</string>
     <string name="preference_hide_desc">Hide weather description</string>
     <string name="pref_title_category_notification">Notifications</string>
     <string name="pref_title_notification">Enable Notifications</string>

@@ -9,19 +9,31 @@
         <item>@string/forecast_settings_column_humidity</item>
         <item>@string/forecast_settings_column_pressure</item>
     </string-array>
-    <string-array name="pref_units_entries" translatable="false">
-        <item>°C - m/s</item>
-        <item>°F - m/s</item>
-        <item>°C - km/s</item>
-        <item>°F - km/s</item>
+    <string-array name="pref_temperature_units_entries" translatable="false">
+        <item>°C</item>
+        <item>°F</item>
     </string-array>
-    <string-array name="pref_units_values" translatable="false">
-        <item>celsius_m_per_second</item>
-        <item>fahrenheit_m_per_second</item>
-        <item>celsius_km_per_hour</item>
-        <item>fahrenheit_km_per_hour</item>
-        <item>celsius_miles_per_hour</item>
-        <item>fahrenheit_miles_per_hour</item>
+    <string-array name="pref_temperature_units_values" translatable="false">
+        <item>celsius</item>
+        <item>fahrenheit</item>
+    </string-array>
+    <string-array name="pref_wind_units_entries" translatable="false">
+        <item>m/s</item>
+        <item>km/h</item>
+        <item>mph</item>
+    </string-array>
+    <string-array name="pref_wind_units_values" translatable="false">
+        <item>m_per_second</item>
+        <item>km_per_hour</item>
+        <item>miles_per_hour</item>
+    </string-array>
+    <string-array name="pref_pressure_units_entries" translatable="false">
+        <item>hPa</item>
+        <item>mmHg</item>
+    </string-array>
+    <string-array name="pref_pressure_units_values" translatable="false">
+        <item>hpa</item>
+        <item>mmhg</item>
     </string-array>
 
     <string-array name="location_update_strategy">

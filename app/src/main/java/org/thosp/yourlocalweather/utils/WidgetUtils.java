@@ -69,18 +69,16 @@ public class WidgetUtils {
     }
 
     public static void setPressure(Context context, RemoteViews remoteViews, float value) {
-        String pressureMeasurement = context.getString(R.string.pressure_measurement);
+        WindWithUnit windWithUnit = AppPreference.getPressureWithUnit(context, value);
         if (AppPreference.showLabelsOnWidget(context)) {
             String pressure =
                     context.getString(R.string.pressure_label,
-                            String.format(Locale.getDefault(),
-                                    "%.1f",
-                                    value),
-                            pressureMeasurement);
+                            windWithUnit.getWindSpeed(0),
+                            windWithUnit.getWindUnit());
             remoteViews.setTextViewText(R.id.widget_pressure, pressure);
             remoteViews.setViewVisibility(R.id.widget_pressure_icon, TextView.GONE);
         } else {
-            String pressure = ": " + String.format(Locale.getDefault(), "%.0f", value) + " " + pressureMeasurement;
+            String pressure = ": " + windWithUnit.getWindSpeed(0) + " " + windWithUnit.getWindUnit();
             remoteViews.setImageViewBitmap(R.id.widget_pressure_icon, Utils.createWeatherIcon(context, context.getString(R.string.icon_barometer)));
             remoteViews.setViewVisibility(R.id.widget_pressure_icon, TextView.VISIBLE);
             remoteViews.setTextViewText(R.id.widget_pressure, pressure);
