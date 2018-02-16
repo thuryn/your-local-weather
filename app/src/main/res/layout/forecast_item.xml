@@ -58,7 +58,7 @@
 
                 <TextView
                     android:id="@+id/forecast.header.description"
-                    android:layout_width="60dp"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
@@ -132,7 +132,7 @@
 
             <TextView
                 android:id="@+id/forecast.header.description_unit"
-                android:layout_width="60dp"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"

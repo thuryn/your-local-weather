@@ -81,7 +81,7 @@
     <string name="title_activity_search">Search Location</string>
     <string name="label_activity_main">Current Weather</string>
     <string name="label_activity_weather_forecast">Daily Forecast</string>
-    <string name="label_activity_graphs">Graphs Weather</string>
+    <string name="label_activity_graphs" tools:ignore="MissingTranslation">Graphs Weather</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">Help</string>
     <string name="title_activity_license">License for %s</string>
 
@@ -110,7 +110,7 @@
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="nav_menu_current_weather">Current Weather</string>
     <string name="nav_menu_daily_forecast">Daily Forecast</string>
-    <string name="nav_menu_graphs">Graphs</string>
+    <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Graphs</string>
     <string name="nav_menu_settings">Settings</string>
     <string name="nav_feedback">Feedback</string>
     <string name="nav_menu_bitcoin_donation">Donate Bitcoin</string>

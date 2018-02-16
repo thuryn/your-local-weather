@@ -30,9 +30,9 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 
-import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.PermissionUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
 import org.thosp.yourlocalweather.widget.LessWidgetService;
@@ -254,13 +254,20 @@ public class LocationUpdateService extends Service implements LocationListener {
             }
             locationSource = "-";
             wakeUp();
-            if (AppPreference.isUpdateLocationEnabled(this) && (isGPSEnabled || isNetworkEnabled)) {
+            boolean isUpdateOfLocationEnabled = AppPreference.isUpdateLocationEnabled(this);
+            appendLog(this, TAG, "START_LOCATION_AND_WEATHER_UPDATE, isUpdateOfLocationEnabled=" +
+                                                isUpdateOfLocationEnabled +
+                                                ", isGPSEnabled=" +
+                                                isGPSEnabled +
+                                                ", isNetworkEnabled=" +
+                                                isNetworkEnabled);
+            if (isUpdateOfLocationEnabled && (isGPSEnabled || isNetworkEnabled)) {
                 String geocoder = AppPreference.getLocationGeocoderSource(this);
+                appendLog(getBaseContext(), TAG, "Widget calls to update location, geocoder = " + geocoder);
                 if ("location_geocoder_unifiednlp".equals(geocoder) || "location_geocoder_local".equals(geocoder)) {
-                    appendLog(getBaseContext(), TAG, "Widget calls to update location");
                     updateNetworkLocation(false);
                 } else {
-                    requestLocation();
+                    detectLocation();
                 }
             } else {
                 requestWeatherCheck();
@@ -522,18 +529,15 @@ public class LocationUpdateService extends Service implements LocationListener {
 
     private boolean updateNetworkLocation(boolean bylastLocationOnly) {
 
-        boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
-                && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
-        if (!checkLocationProviderPermission()) {
-            appendLog(getBaseContext(), TAG, "updateNetworkLocation, isNetworkEnabled=" +
-                    isNetworkEnabled + ", checkLocationProviderPermission()=" + checkLocationProviderPermission());
+        if (!PermissionUtil.checkPermissionsAndSettings(this)) {
             return false;
         }
+        boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
+                && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
         boolean isGPSEnabled = AppPreference.isGpsEnabledByPreferences(getBaseContext()) &&
                 locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
                 && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        if (!isNetworkEnabled && isGPSEnabled && (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
+        if (!isNetworkEnabled && isGPSEnabled) {
             startRefreshRotation();
             gpsRequestLocation();
             return true;
@@ -541,9 +545,13 @@ public class LocationUpdateService extends Service implements LocationListener {
         wakeUp();
         startRefreshRotation();
         try {
-            lastKnownLocationTimerHandler.postDelayed(lastKnownLocationTimerRunnable, LOCATION_TIMEOUT_IN_MS);
-            Location lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            lastKnownLocationTimerHandler.removeCallbacksAndMessages(null);
+
+            Location lastLocation = null;
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                lastKnownLocationTimerHandler.postDelayed(lastKnownLocationTimerRunnable, LOCATION_TIMEOUT_IN_MS);
+                lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                lastKnownLocationTimerHandler.removeCallbacksAndMessages(null);
+            }
             return updateNetworkLocationByNetwork(lastLocation, bylastLocationOnly);
         } catch (Exception e) {
             appendLog(getBaseContext(), TAG, "Exception during update of network location", e);
@@ -592,34 +600,21 @@ public class LocationUpdateService extends Service implements LocationListener {
         return true;
     }
 
-    private boolean checkLocationProviderPermission() {
-        if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            return false;
-        }
-        return true;
-    }
-
     private void removeUpdates(LocationListener locationListener) {
         if("location_geocoder_system".equals(AppPreference.getLocationGeocoderSource(this))) {
             locationManager.removeUpdates(locationListener);
         }
     }
-    
-    private void requestLocation() {
-        int fineLocationPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
-        if (fineLocationPermission != PackageManager.PERMISSION_GRANTED) {
-            stopSelf();
-        } else {
-            detectLocation();
-        }
-    }
 
     private void detectLocation() {
+        if (!PermissionUtil.checkPermissionsAndSettings(this)) {
+            updateWidgets();
+            stopSelf();
+            return;
+        }
         boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
                 && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-        if (isNetworkEnabled && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (isNetworkEnabled && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             final Looper locationLooper = Looper.myLooper();
             locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, locationLooper);
             final LocationListener locationListener = this;
@@ -668,6 +663,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         appendLog(getBaseContext(), TAG, "requestWeatherCheck, updateLocationInProcess=" +
                 updateLocationInProcess);
         if (updateLocationInProcess) {
+            updateWidgets();
             return;
         }
         SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
@@ -680,25 +676,22 @@ public class LocationUpdateService extends Service implements LocationListener {
         Intent intentToCheckWeather = new Intent(getBaseContext(), CurrentWeatherService.class);
         intentToCheckWeather.putExtra("updateSource", updateSource);
         startService(intentToCheckWeather);
-        if ("MAIN".equals(updateSource)) {
-            if (MainActivity.mProgressDialog != null) {
-                MainActivity.mProgressDialog.dismiss();
-                MainActivity.mProgressDialog = null;
-            }
-        }
     }
     
     private void updateWidgets() {
         stopRefreshRotation();
-        if (updateSource == null) {
-            return;
-        }
-        
-        switch (updateSource) {
-            case "MAIN" : sendIntentToMain();break;
-            case "LESS_WIDGET" : startService(new Intent(getBaseContext(), LessWidgetService.class));break;
-            case "MORE_WIDGET" : startService(new Intent(getBaseContext(), MoreWidgetService.class));break;
-            case "EXT_LOC_WIDGET" : startService(new Intent(getBaseContext(), ExtLocationWidgetService.class));break;
+        startService(new Intent(getBaseContext(), LessWidgetService.class));
+        startService(new Intent(getBaseContext(), MoreWidgetService.class));
+        startService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
+        if (updateSource != null) {
+            switch (updateSource) {
+                case "MAIN":
+                    sendIntentToMain();
+                    break;
+                case "NOTIFICATION":
+                    startService(new Intent(getBaseContext(), NotificationService.class));
+                    break;
+            }
         }
     }
     

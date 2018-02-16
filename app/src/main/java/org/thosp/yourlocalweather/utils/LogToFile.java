@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class LogToFile {
 
@@ -34,6 +35,18 @@ public class LogToFile {
     public static int logFileHoursOfLasting;
     private static Calendar logFileAtTheEndOfLive;
     private static Calendar nextCheckPreferencesCheck;
+
+    public static void appendLogWithParams(Context context, String tag, String text, List<String> params) {
+        if (!logToFileEnabled || (logFilePathname == null)) {
+            return;
+        }
+        StringBuilder paramDescription = new StringBuilder();
+        for (String param: params) {
+            paramDescription.append(param);
+            paramDescription.append(":");
+        }
+        appendLog(context, tag, text + paramDescription.toString(), null);
+    }
 
     public static void appendLog(Context context, String tag, String text) {
         appendLog(context, tag, text, null);
