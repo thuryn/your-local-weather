@@ -178,4 +178,23 @@
     <string name="log_file_720_label" tools:ignore="MissingTranslation">en måned</string>
 
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Skriftbaserte ikoner</string>
-    </resources>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Programmet er satt til å oppdatere en plassering. For å få det til å virke, gå til \"Telefoninnstillinger\" og skru på plasseringstjenester, eller skru det av i programmet.</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Denne veiledningen hjelper deg å sette opp programmet etter eget ønske. Du kan velge oppdateringsstrategi på neste skjerm. 
+\nProgrammet oppdaterer kun været når du velger <i>Ikke oppdater plassering</i> option. 
+\nOppdatering av plassering er én av de beste funksjonene i programmet. Så <i>Oppdater plassering</i> er anbefalt og forvalgt verdi.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Veiledning for førstegangsoppsett</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Plasseringskilde-valg</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Du kan velge plasseringskilden, <i>System</i>-varianten bruker Google-tjenester til å hente plasseringen fra nettverk (telefon- og Wi-Fi -nettverk). <i>Lokal MLS og Nominatim</i>-valget bruker Mozilla plasseringstjeneste for å hente plasseringskoordinater og Nominatim-tjenesten til å hente plasseringsnavn. Det andre valget krever tilgang til behandling av telefonsamtaler for å hente informasjon om mobilnettverket. Foretrukket valg er forvalgt.</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Plassering- og adresse-kilde</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Noen telefonmodeller rapporterer ikke tilkoblede tårn rett, med mindre skjermen er påslått. Forvalget (med skjermen slått av), har bakdelen med at telefonen skrur på skjermen på i flere sekunder. Dette har en liten innvirkning på batteritiden. Du kan starte med anbefalt valg og skru dette valget av senere og holde oppsyn med plasseringsoppdateringene.</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">Feilrettingsvalg</string>
+    <string name="help_page_5_content" tools:ignore="MissingTranslation">Dette valget skriver feilrettingsinformasjon til loggfila. Dette valget er nyttig hvis det oppstår et problem med programmet.</string>
+
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Alderen på hurtiglagrede verdier</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Funnede plasseringer hurtiglagret</string>
+    <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Funnede plasseringer ikke hurtiglagret</string>
+    
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Etter angitt tid vil loggfilen overskrives</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Rotasjon for loggfila</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlins røde ikoner</string>
+</resources>
