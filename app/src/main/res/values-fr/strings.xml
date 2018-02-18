@@ -1,4 +1,5 @@
-<resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="enter_city_hint">Entrer la ville</string>
     <string name="label_current_city">Ville actuelle</string>
     <string name="label_choose_city">Choisir la ville</string>
@@ -6,7 +7,7 @@
     <string name="alertDialog_location_permission_positiveButton_settings">Paramètres</string>
     <string name="alertDialog_location_permission_negativeButton">Annuler</string>
     <string name="progressDialog_gps_locate">Trouver la localisation actuelle</string>
-    <string name="load_progress">Chargement&#8230;</string>
+    <string name="load_progress">Chargement…</string>
 
     <!-- Activity names -->
     <string name="title_activity_search">Chercher la Localisation</string>
@@ -112,4 +113,16 @@
     <string name="pref_title_language">La langue</string>
     <string name="preference_title_category_display">Affichage</string>
     <string name="restart_dialog_message">Redémarrez l\'application pour appliquer de nouveaux paramètres</string>
-</resources>
+<string name="app_name" tools:ignore="MissingTranslation">Votre météo locale</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Paramètres de localisation et de permissions</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">L\'application nécessite une autorisation pour mettre à jour la localisation par GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">L\'application nécessite une autorisation pour mettre à jour la localisation par réseaux WIFI et GSM.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">L\'application nécessite une autorisation pour lire les informations depuis le téléphone. Cette autorisation est nécessaire pour mettre à jour la localisation par les réseaux WIFI et GSM. L\'application utilise cette autorisation pour recevoir des informations sur les stations de base GSM connectées au téléphone.</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Demande d\'autorisations</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Localisation non trouvée</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Fermer</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Suivant</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Précédent</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Terminer</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Guide de configuration initial</string>
+    </resources>
