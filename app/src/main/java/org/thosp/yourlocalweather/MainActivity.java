@@ -93,7 +93,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private String mIconSunrise;
     private String mIconSunset;
     private String mPercentSign;
-    private String mPressureMeasurement;
 
     private SharedPreferences mPrefWeather;
     private SharedPreferences mSharedPreferences;
@@ -153,8 +152,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
     private void updateCurrentWeather() {
         windWithUnit = AppPreference.getWindWithUnit(MainActivity.this, mWeather.wind.getSpeed());
-        String pressure = String.format(Locale.getDefault(), "%.1f",
-                mWeather.currentCondition.getPressure());
+        WindWithUnit pressure = AppPreference.getPressureWithUnit(MainActivity.this, mWeather.currentCondition.getPressure());
 
         String lastUpdate = Utils.setLastUpdateTime(MainActivity.this,
                 getLastUpdateTimeMillis(MainActivity.this));
@@ -167,8 +165,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mHumidityView.setText(getString(R.string.humidity_label,
                 String.valueOf(mWeather.currentCondition.getHumidity()),
                 mPercentSign));
-        mPressureView.setText(getString(R.string.pressure_label, pressure,
-                mPressureMeasurement));
+        mPressureView.setText(getString(R.string.pressure_label, pressure.getWindSpeed(0),
+                pressure.getWindUnit()));
         mWindSpeedView.setText(getString(R.string.wind_label,
                                 windWithUnit.getWindSpeed(1),
                                 windWithUnit.getWindUnit()));
@@ -293,7 +291,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         long sunsetPref = mPrefWeather.getLong(Constants.WEATHER_DATA_SUNSET, -1);
 
         windWithUnit = AppPreference.getWindWithUnit(this, windPref);
-        String pressure = String.format(Locale.getDefault(), "%.1f", pressurePref);
+        WindWithUnit pressure = AppPreference.getPressureWithUnit(this, pressurePref);
         String sunrise = Utils.unixTimeToFormatTime(this, sunrisePref);
         String sunset = Utils.unixTimeToFormatTime(this, sunsetPref);
 
@@ -306,8 +304,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 String.valueOf(humidity),
                 mPercentSign));
         mPressureView.setText(getString(R.string.pressure_label,
-                pressure,
-                mPressureMeasurement));
+                pressure.getWindSpeed(0),
+                pressure.getWindUnit()));
         mWindSpeedView.setText(getString(R.string.wind_label,
                                          windWithUnit.getWindSpeed(1),
                                          windWithUnit.getWindUnit()));
@@ -379,7 +377,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mIconPressure = getString(R.string.icon_barometer);
         mIconCloudiness = getString(R.string.icon_cloudiness);
         mPercentSign = getString(R.string.percent_sign);
-        mPressureMeasurement = getString(R.string.pressure_measurement);
         mIconSunrise = getString(R.string.icon_sunrise);
         mIconSunset = getString(R.string.icon_sunset);
     }

@@ -126,7 +126,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             SharedPreferences.OnSharedPreferenceChangeListener {
 
         private final String[] SUMMARIES_TO_UPDATE = {
-                Constants.KEY_PREF_UNITS,
+                Constants.KEY_PREF_TEMPERATURE_UNITS,
+                Constants.KEY_PREF_WIND_UNITS,
+                Constants.KEY_PREF_PRESSURE_UNITS,
                 Constants.KEY_PREF_HIDE_DESCRIPTION,
                 Constants.KEY_PREF_INTERVAL_NOTIFICATION,
                 Constants.PREF_LANGUAGE,
@@ -182,7 +184,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
         private void updateSummary(String key, boolean changing) {
             switch (key) {
-                case Constants.KEY_PREF_UNITS:
+                case Constants.KEY_PREF_TEMPERATURE_UNITS:
+                case Constants.KEY_PREF_WIND_UNITS:
+                case Constants.KEY_PREF_PRESSURE_UNITS:
                     entrySummary(key);
                     if (changing) {
                         getActivity().sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));

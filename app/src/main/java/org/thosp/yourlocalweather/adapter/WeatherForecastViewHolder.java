@@ -156,7 +156,7 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
             headerPressure.setTypeface(typeface);
             headerPressure.setText(String.valueOf((char) 0xf079));
             headerPressureUnit.setVisibility(View.VISIBLE);
-            headerPressureUnit.setText(R.string.pressure_measurement);
+            headerPressureUnit.setText(AppPreference.getPressureUnit(mContext));
         } else {
             headerPressure.setVisibility(View.GONE);
             headerPressureUnit.setVisibility(View.GONE);

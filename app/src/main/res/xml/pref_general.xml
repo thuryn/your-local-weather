@@ -1,12 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <ListPreference
-        android:defaultValue="celsius_m_per_second"
+        android:defaultValue="celsius"
         android:dialogTitle="@string/pref_title_temperature"
-        android:entries="@array/pref_units_entries"
-        android:entryValues="@array/pref_units_values"
-        android:key="units_pref_key"
+        android:entries="@array/pref_temperature_units_entries"
+        android:entryValues="@array/pref_temperature_units_values"
+        android:key="temperature_units_pref_key"
         android:title="@string/pref_title_temperature"/>
+    <ListPreference
+        android:defaultValue="ms"
+        android:dialogTitle="@string/pref_title_wind"
+        android:entries="@array/pref_wind_units_entries"
+        android:entryValues="@array/pref_wind_units_values"
+        android:key="wind_units_pref_key"
+        android:title="@string/pref_title_wind"/>
+    <ListPreference
+        android:defaultValue="hpa"
+        android:dialogTitle="@string/pref_title_pressure"
+        android:entries="@array/pref_pressure_units_entries"
+        android:entryValues="@array/pref_pressure_units_values"
+        android:key="pressure_units_pref_key"
+        android:title="@string/pref_title_pressure"/>
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="hide_desc_pref_key"

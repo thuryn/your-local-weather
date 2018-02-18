@@ -129,7 +129,7 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
         }
         if (visibleColumns.contains(8)) {
             mPressure.setVisibility(View.VISIBLE);
-            mPressure.setText(String.format(Locale.getDefault(), "%.0f", weather.getPressure()));
+            mPressure.setText(AppPreference.getPressureInString(mContext, weather.getPressure()));
         } else {
             mPressure.setVisibility(View.GONE);
         }
