@@ -45,7 +45,7 @@
 
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Налады</string>
-    <string name="pref_title_temperature">Тэмпература і вецер</string>
+    <string name="pref_title_temperature">Тэмпература</string>
     <string name="pref_title_category_notification">Апавяшчэнні</string>
     <string name="pref_title_notification">Уключыць апавяшчэнні</string>
     <string name="pref_title_notification_refresh_interval">Інтэрвал абнаўлення</string>
@@ -151,4 +151,32 @@
     <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Вы можаце зберагчы сеткавы трафік захоўваючы ў кэшы атрыманае месцазнаходжанне. Вы павінны прыняць той факт, што месцы захоўваюцца ў прыкладанні. Месцы не перадаюцца і не захоўваюцца ў якім-небудзь іншым месцы ў сетцы.</string>
     <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Кэшавання атрыманых адрасоў</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Віншуем</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Асноўнае</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Асноўнае прыкладанне</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Віджэты</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Асноўныя налады</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">Налады віджэтаў</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">Параметры адладкі</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Дапамога</string>
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Налада слупка</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Слупкі для паказу</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Значка</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Апісанне</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Тэмпература</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Вецер</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Дождж/Снег</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Вільготнасць</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Ціск</string>
+    <string name="ok" tools:ignore="MissingTranslation">Добра</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Адмяніць</string>
+
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Дапамога</string>
+
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">мм рт. сл.</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">км/г</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">Вецер</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Ціск</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Налады абноўлення месцазнаходжання</string>
+    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Паказаць меткі ў віджыце</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">Сістэмная</string>
     </resources>
