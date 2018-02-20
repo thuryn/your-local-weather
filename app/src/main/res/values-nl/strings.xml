@@ -1,2 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Uw lokale weer</string>
+    <string name="enter_city_hint">Stadsnaam invoeren</string>
+    <string name="label_current_city">Huidige stad</string>
+    <string name="label_choose_city">Stad kiezen</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Locatie- en toegangsrechteninstellingen</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Standaard werkt de applicatie de locatie automatisch bij. Locatietoegang moet worden ingeschakeld om dit te laten werken. Ga naar de telefooninstellingen en schakel uw locatie in of schakel automatische locatiedetectie uit in de app-instellingen.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">De applicatie heeft toegang nodig om de locatie bij te werken via GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">De applicatie heeft toegang nodig om de locatie bij te werken via WiFi- en GSM-netwerken.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">De applicatie heeft toestemming nodig om informatie uit te lezen van de telefoon. Dit is nodig om de locatie bij te kunnen werken via WiFi- en GSM-netwerken. De applicatie gebruikt dit om informatie te verkrijgen over GSM-zendmasten die verbonden zijn met de telefoon.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Telefooninstellingen</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Machtigingsverzoeken</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Annuleren</string>
+    <string name="progressDialog_gps_locate">Huidige locatie opvragen</string>
+    <string name="load_progress">Bezig met laden…</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Locatie niet gevonden</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Machtigingen niet toegekend - ga naar de applicatie en klik op het locatiepictogram</string>
+
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Sluiten</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Volgende</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Vorige</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Afronden</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Eerste instelwizard</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Deze wizard helpt u om de applicatie in te stellen naar wens. Op het volgende scherm kunt u de bijwerkmethode kiezen.
+\nDe applicatie werkt alleen het weer bij als u <i>Locatie niet bijwerken</i> selecteert.
+\nHet bijwerken van de locatie is één van de beste functies van deze applicatie. Daarom is <i>Locatie bijwerken</i> de aanbevolen waarde en standaard geselecteerd.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Eerste instelwizard</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Locatiebron-optie</string>
+    </resources>
