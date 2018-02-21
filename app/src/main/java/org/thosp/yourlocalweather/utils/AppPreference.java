@@ -374,7 +374,7 @@ public class AppPreference {
 
     public static String getWidgetUpdatePeriod(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_WIDGET_UPDATE_PERIOD, "60");
+                Constants.KEY_PREF_WIDGET_UPDATE_PERIOD, "0");
     }
 
     public static void saveWeatherForecast(Context context, List<DetailedWeatherForecast> forecastList) {

@@ -602,6 +602,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
         if (initialGuideVersion > 0) {
             initialGuideCompleted = true;
+            checkPermissionsSettingsAndShowAlert();
             return;
         }
         if (initialGuidePage > 0) {
@@ -729,13 +730,22 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                         if (labelId == R.string.initial_guide_close) {
-                            permissionsAndSettingsRequested = false;
+                            closeInitialGuideAndCheckPermission();
                         } else {
                             initialGuidePage--;
                             showInitialGuidePage(initialGuidePage);
                         }
                     }
                 });
+    }
+
+    private void closeInitialGuideAndCheckPermission() {
+        permissionsAndSettingsRequested = false;
+        SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 1);
+        preferences.apply();
+        initialGuideCompleted = true;
+        checkPermissionsSettingsAndShowAlert();
     }
 
     private void saveInitialPreferences() {
