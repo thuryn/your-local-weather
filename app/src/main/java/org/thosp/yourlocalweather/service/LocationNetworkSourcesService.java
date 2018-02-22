@@ -58,7 +58,12 @@ public class LocationNetworkSourcesService {
             return null;
         }
 
-        CellLocation cellLocation = mTelephonyManager.getCellLocation();
+        CellLocation cellLocation = null;
+        try {
+            cellLocation = mTelephonyManager.getCellLocation();
+        } catch (SecurityException securityException) {
+            appendLog(context, TAG, "SecurityException when getCellLocation is called ", securityException);
+        }
 
         appendLog(context, TAG, "getCells():cellLocation:" + cellLocation);
 
@@ -82,7 +87,12 @@ public class LocationNetworkSourcesService {
             appendLog(context, TAG, "getCellLocation returned null");
         }
 
-        List<NeighboringCellInfo> neighboringCells = mTelephonyManager.getNeighboringCellInfo();
+        List<NeighboringCellInfo> neighboringCells = null;
+        try {
+            neighboringCells = mTelephonyManager.getNeighboringCellInfo();
+        } catch (SecurityException securityException) {
+            appendLog(context, TAG, "SecurityException when getCellLocation is called ", securityException);
+        }
         appendLog(context, TAG, "getCells():neighboringCells:" + neighboringCells);
         if (neighboringCells != null) {
             appendLog(context, TAG, "getCells():neighboringCells.size:" + neighboringCells.size());
@@ -107,7 +117,12 @@ public class LocationNetworkSourcesService {
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            List<CellInfo> cellsRawList = mTelephonyManager.getAllCellInfo();
+            List<CellInfo> cellsRawList = null;
+            try {
+                cellsRawList = mTelephonyManager.getAllCellInfo();
+            } catch (SecurityException securityException) {
+                appendLog(context, TAG, "SecurityException when getCellLocation is called ", securityException);
+            }
             appendLog(context, TAG, "getCells():getAllCellInfo:cellsRawList:" + cellsRawList);
             if (cellsRawList != null) {
                 appendLog(context, TAG, "getCells():cellsRawList.size:" + cellsRawList.size());
