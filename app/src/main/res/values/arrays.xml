@@ -148,35 +148,53 @@
     <!-- Languages array -->
     <string-array name="language_entries" translatable="false">
         <item name="default">@string/pref_language_default</item>
+        <item name="arabic">@string/pref_language_ar</item>
         <item name="english">English</item>
         <item name="basque">Euskara (Basque)</item>
         <item name="belarusian">Беларуская (Belarusian)</item>
         <item name="catalan">Català (Catalan)</item>
         <item name="czech">Čeština (Czech)</item>
+        <item name="greek">@string/pref_language_el</item>
+        <item name="spanish">@string/pref_language_es</item>
         <item name="french">Français (French)</item>
+        <item name="hungarian">@string/pref_language_hu</item>
         <item name="italian">Italiano (Italian)</item>
         <item name="german">Deutsch (German)</item>
         <item name="spanish">Español (Spanish)</item>
         <item name="japanese">日本語 (Japanese)</item>
+        <item name="norwegian">@string/pref_language_nb_rNO</item>
+        <item name="dutch">@string/pref_language_nl</item>
+        <item name="nyanja">@string/pref_language_ny</item>
         <item name="polish">Polski (Polish)</item>
         <item name="russian">Русский (Russian)</item>
+        <item name="swahili">@string/pref_language_sw</item>
         <item name="turkish">Türkçe (Turkish)</item>
+        <item name="chinese">@string/pref_language_zh_rcn</item>
     </string-array>
     <string-array name="language_values" translatable="false">
         <item name="default"></item>
+        <item name="arabic">ar</item>
         <item name="english">en</item>
         <item name="basque">eu</item>
         <item name="belarusian">be</item>
         <item name="catalan">ca</item>
         <item name="czech">cs</item>
+        <item name="greek">el</item>
+        <item name="spanish">es</item>
         <item name="french">fr</item>
+        <item name="hungarian">hu</item>
         <item name="italian">it</item>
         <item name="german">de</item>
         <item name="spanish">es</item>
         <item name="japanese">ja</item>
+        <item name="norwegian">nb-rNO</item>
+        <item name="dutch">nl</item>
+        <item name="nyanja">ny</item>
         <item name="polish">pl</item>
         <item name="russian">ru</item>
+        <item name="swahili">sw</item>
         <item name="turkish">tr</item>
+        <item name="chinese">zh-rCN</item>
     </string-array>
 
     <!-- Themes array -->

@@ -22,7 +22,13 @@ public class LanguageUtil {
         if (TextUtils.isEmpty(locale)) {
             sLocale = Locale.getDefault();
         } else {
-            String[] localeParts = locale.split("_");
+            String[] localeParts = locale.split("-");
+            StringBuilder s = new StringBuilder();
+            for (String pa: localeParts) {
+                s.append(pa);
+                s.append(":");
+            }
+            LogToFile.appendLog(contextWrapper, "LanguageUtil", "locale.split(\"_-\"):" + s.toString() + ":locale:" + locale);
             if (localeParts.length > 1) {
                 sLocale = new Locale(localeParts[0], localeParts[1]);
             } else {
@@ -58,8 +64,8 @@ public class LanguageUtil {
         if (TextUtils.isEmpty(locale)) {
             locale = Locale.getDefault().toString();
         }
-        if (locale.contains("_")) {
-            return locale.split("_")[0];
+        if (locale.contains("-")) {
+            return locale.split("-")[0];
         }
         return locale;
     }
