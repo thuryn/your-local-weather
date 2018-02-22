@@ -537,7 +537,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         boolean isGPSEnabled = AppPreference.isGpsEnabledByPreferences(getBaseContext()) &&
                 locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
                 && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        if (!isNetworkEnabled && isGPSEnabled) {
+        if (!isNetworkEnabled && isGPSEnabled && !bylastLocationOnly) {
             startRefreshRotation();
             gpsRequestLocation();
             return true;
