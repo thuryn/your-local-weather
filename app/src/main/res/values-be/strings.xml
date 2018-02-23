@@ -179,4 +179,8 @@
     <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Налады абноўлення месцазнаходжання</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Паказаць меткі ў віджыце</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Сістэмная</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Вы скончылі асноўныя налады. Вы можаце знайсці іншыя параметры ў меню налад (напрыклад, мова, адзінкі вымярэння і г.д.).
+\nНаступны экран дасць вам тлумачэнне аб запытаных дазволах і даць вам магчымасць дазволіць іх.
+\n 
+\nАтрымлівайце асалоду ад прыкладання.</string>
     </resources>
