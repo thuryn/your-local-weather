@@ -253,4 +253,6 @@
     <string name="wakeupfull_label" tools:ignore="MissingTranslation">Vekk opp med skjerm</string>
     <string name="db_header" tools:ignore="MissingTranslation">Adressehurtiglagringsdatabase</string>
     <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Etter angitt tid vil hurtiglagrede enheter bli fjernet</string>
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Åpne navigasjonsskuff</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Lukk navigasjonsskuff</string>
     </resources>
