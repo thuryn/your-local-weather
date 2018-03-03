@@ -12,7 +12,7 @@
     <string name="progressDialog_gps_locate">Определить текущее местоположение</string>
     <string name="alertDialog_location_permission_negativeButton">Отмена</string>
     <string name="alertDialog_location_permission_positiveButton_settings">Настройки телефона</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings">Приложение настроено на обновление местоположения. Для обновления местоположения, доступ должен быть включён. В настройках телефона, включите определение местоположения или переключите обновление местоположения в приложении.</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">Приложение настроено на обновление местоположения. Для обновления местоположения, доступ должен быть включён. В настройках телефона, включите определение местоположения или выключите обновление местоположения в приложении.</string>
     <string name="hint_activity_search">Поиск местоположения</string>
     <string name="pref_title_temperature">Температура</string>
     <string name="title_activity_settings">Настройки</string>
@@ -65,7 +65,7 @@
     <string name="wind_direction_west">З</string>
     <string name="label_activity_graphs">Диаграммы Погоды</string>
     <string name="label_activity_main">Текущая погода</string>
-    <string name="label_activity_weather_forecast">Актуальная погода</string>
+    <string name="label_activity_weather_forecast">Ежедневный прогноз</string>
     <string name="nav_menu_graphs">Диаграммы</string>
     <string name="load_progress">Загрузка…</string>
     <string name="millimetre_label">мм</string>
@@ -85,9 +85,9 @@
     <string name="permission_location_rationale">Разрешения "Получение местонахождения" необходимы для определения текущего города</string>
     <string name="permission_not_granted">Разрешения не предоставлены!</string>
     <string name="permission_available_location">Разрешения Получение местонахождения были предоставлены</string>
-    <string name="pref_language_default">System Default</string>
+    <string name="pref_language_default">Язык системы</string>
     <string name="pref_title_language">Язык</string>
-    <string name="preference_title_category_display">Вид</string>
+    <string name="preference_title_category_display">Отображение</string>
     <string name="restart_dialog_message">Пожалуйста, перезапустите приложение, чтобы применить новые настройки</string>
 <string name="app_name" tools:ignore="MissingTranslation">Местная погода</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Положение и установка разрешений</string>
@@ -117,12 +117,12 @@
     <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Вы можете сохранить сетевой трафик, сохранив в кэше найденные местоположения. Вы должны принять тот факт, что местоположения хранятся в приложении. Данные о вашем местонахождении не отправляются и не хранятся в каком-либо другом месте в сети.</string>
     <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Параметр разрешенного адреса кэша</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Поздравляем</string>
-    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Вы закончили базовую настройку. Другие настройки можно найти в меню «Настройки» (например, язык, единицы измерения и т. п.).
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Вы закончили базовую настройку. Другие настройки можно найти в меню «Настройки» (например, язык, единицы измерения и т. п.). 
 \nНа следующей странице вы получите объяснение о запрошенных разрешениях и дана возможность изменять/запрашивать их.
+\n
 \nНаслаждайтесь приложением.</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Главное</string>
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">Приложение использует сотовую сеть, WiFi и GPS, чтобы получить ваше местоположение и показать вам погоду в том месте, где вы находитесь. если вы используете виджет на своем телефоне или планшете, вы можете увидеть свое местоположение и текущую погоду на главном экране. Обновление местоположения может быть использовано в определенный период (например, каждый час), или приложение может использовать акселерометр для обнаружения движения. В любом случае вы можете отключить обновление и узнавать текущую погоду по возникшей необходимости. Обновление по конкретному периоду времени: приложение обновляет местоположение и погоду на определенный промежуток времени. Например, вы можете установить период обновления: каждый час. Обновление акселерометром: местоположение обновляется при изменении расстояние, отсчитываемое акселерометром. Когда расстояние больше, чем минимальное значение для обновления, приложение обновляет ваше местоположение. Расстояние, производимое акселерометром, зависит от того, как вы переносите свой телефон - когда вы перевозите свой телефон в карман, расстояние увеличивается быстрее - телефон движется вперед и назад по ходу движения. Погода обновляется сразу после обновления местоположения. Погода обновляется, когда экран включён, но не чаще, чем один раз в 15 минут (и когда погода не обновляется за последние 15 минут). Для получения местоположения используются доступные: сотовая сеть (BTS) и WiFi. Эти данные используются для получения координат местоположения службой определения местоположения Mozilla. Приложение пытается использовать GPS, когда местоположение недоступно в сотовой сети и WIFI. Координаты местоположения используются для получения адреса службой Nominatim. Адрес используется в приложении или виджетах. Приложение использует службу OpenWeatherMap.org для получения текущей погоды.
-\n</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Приложение использует сотовую сеть, WiFi и GPS, чтобы получить ваше местоположение и показать вам погоду в том месте, где вы находитесь. если вы используете виджет на своем телефоне или планшете, вы можете увидеть свое местоположение и текущую погоду на главном экране. Обновление местоположения может быть использовано в определенный период (например, каждый час) или приложение может использовать акселерометр для обнаружения движения. В любом случае вы можете отключить обновление и узнавать текущую погоду по возникшей необходимости. Обновление по конкретному периоду времени: приложение обновляет местоположение и погоду на определенный промежуток времени. Например, вы можете установить период обновления: каждый час. Обновление акселерометром: местоположение обновляется при изменении расстояние, отсчитываемое акселерометром. Когда расстояние больше, чем минимальное значение для обновления, приложение обновляет ваше местоположение. Расстояние, производимое акселерометром, зависит от того, как вы переносите свой телефон - когда вы перевозите свой телефон в карман, расстояние увеличивается быстрее - телефон движется вперед и назад по ходу движения. Погода обновляется сразу после обновления местоположения. Погода обновляется, когда экран включён, но не чаще, чем один раз в 15 минут (и когда погода не обновляется за последние 15 минут). Для получения местоположения используются доступные: сотовая сеть (BTS) и WiFi. Эти данные используются для получения координат местоположения службой определения местоположения Mozilla. Приложение пытается использовать GPS, когда местоположение недоступно в сотовой сети и WIFI. Координаты местоположения используются для получения адреса службой Nominatim. Адрес используется в приложении или виджетах. Приложение использует службу OpenWeatherMap.org для получения текущей погоды.</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Основное приложение</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Основное приложение содержит обзор текущей погоды. Вы можете обновить погоду, нажав кнопку обновления на панели приложений или потянув вниз. Кнопка обновления/поиск находится рядом с кнопкой обновления погоды. Кнопка обновления местоположения, доступна когда вы выбрали местоположение обновления в меню настроек. Кнопка поиска местоположения доступна, когда вы выбрали опцию обновления погоды только в меню настроек.</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Вы можете найти прогноз погоды на следующем экране (выберите следующий экран в меню или проведите по экрану слева направо). Прогноз погоды обновляется кнопкой обновления или при входе в экран (но не более одного обновления в час).</string>
@@ -182,7 +182,7 @@
 
     <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Выпадающее меню</string>
     <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Закрыть выпадающее меню</string>
-    <string name="nav_menu_help" tools:ignore="MissingTranslation">Пособие</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Помощь</string>
 
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">мм рт.ст.</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">км/ч</string>
@@ -227,4 +227,33 @@
     <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">После уточнения количества файлов журнала времени произойдёт обновление</string>
     <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Ротация файлов журнала</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Иконки на основе шрифтов</string>
+    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Обновить местоположение</string>
+    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Показывать надписи в виджете</string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Использовать геолокацию для отображения</string>
+    <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Тема виджета</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">Тёмная</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">Светлая</string>
+    <string name="theme_transparent" tools:ignore="MissingTranslation">Прозрачная</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chinese (Chinese)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Swahili (Swahili)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norwegian (Norwegian)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Dutch (Dutch)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Hungarian (Hungarian)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Spanish (Spanish)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Greek (Greek)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabic (Arabic)</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Источник местоположения и адресов</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Local MLS и Nominatim (рекомендуется)</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">Система</string>
+    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">Тема</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Показать сводку обновлений</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Ничего</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Обновлены только значения</string>
+    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Обновленное значение и источника местоположения</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - обновлена только погода
+\nL - обновлено только местоположение
+\nG - местоположение от GPS и обновлена погода
+\nN - местоположение по сетям и обновлена погода</string>
     </resources>
