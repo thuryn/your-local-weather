@@ -27,7 +27,7 @@
     <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">This guide helps you set the application according to your needs. You can choose an update strategy on the next screen. 
 \nApplication updates just the weather when you select <i>Don\'t update location</i> option. 
 \nThe update of location is one of the best feature of this application. So <i>Update location</i> is the recommended value and preselected.</string>
-    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Initial configuration guide</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Update location setting</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Location source option</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">You can choose the location source - the <i>System</i> one uses Google services to get the location by networks (cell and wifi networks). The <i>Local MLS and Nominatim</i> option uses Mozilla location service to get location coordinates and Nominatim service to get location names. The second option requires manage phone calls permission to get information about cell network. The preferred option is preselected.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Location and address source</string>
@@ -85,6 +85,7 @@
     <string name="label_activity_graphs" tools:ignore="MissingTranslation">Graphs Weather</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">Help</string>
     <string name="title_activity_license" tools:ignore="MissingTranslation">License for %s</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Locations</string>
 
     <!-- Toolbar menu -->
     <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Update</string>
@@ -168,7 +169,9 @@
     <string name="update_location_none" tools:ignore="MissingTranslation">Don\'t update location</string>
     <string name="update_location_full" tools:ignore="MissingTranslation">Update location (recommended)</string>
     <string name="update_location_network_only" tools:ignore="MissingTranslation">Update location without GPS</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Switch GPS on when necessary</string>
     <string name="update_period_by_sensors" tools:ignore="MissingTranslation">By accelerometer</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">Manual only</string>
     <string name="update_period_15min" tools:ignore="MissingTranslation">15 minutes</string>
     <string name="update_period_30min" tools:ignore="MissingTranslation">30 minutes</string>
     <string name="update_period_1hour" tools:ignore="MissingTranslation">Every hour</string>
@@ -177,7 +180,8 @@
     <string name="update_period_12hours" tools:ignore="MissingTranslation">12 hours</string>
     <string name="update_period_24hours" tools:ignore="MissingTranslation">24 hours</string>
     <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Vibrate</string>
-    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Update Period</string>
+    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Update period for weather (Location 1,2,3...)</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Update period for location (Location 0)</string>
     <string name="preference_title_activity_general" tools:ignore="MissingTranslation">General settings</string>
     <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Widget settings</string>
     <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Update location</string>
@@ -188,6 +192,7 @@
     <string name="theme_light" tools:ignore="MissingTranslation">Light</string>
     <string name="theme_transparent" tools:ignore="MissingTranslation">Transparent</string>
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Display</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Update location and weather</string>
     <string name="pref_title_language" tools:ignore="MissingTranslation">Language</string>
     <string name="pref_language_default" tools:ignore="MissingTranslation">System Default</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chinese (Chinese)</string>
@@ -231,6 +236,13 @@
     <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Cache locations</string>
     <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Found locations are cached</string>
     <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Found locations are not cached</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Delete</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Disable</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Enable</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">Automatically discovered</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Disabled</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Add</string>
+    <string name="search_location_info" tools:ignore="MissingTranslation">Tap on map to get desired location and wait to get address resolved.</string>
     
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about" tools:ignore="MissingTranslation">About</string>

@@ -6,6 +6,11 @@ import android.widget.RemoteViews;
 import android.widget.TextView;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
+import org.thosp.yourlocalweather.model.Location;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.model.Weather;
+import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -26,30 +31,49 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
     private static final String WIDGET_NAME = "EXT_LOC_WIDGET";
 
     @Override
-    protected void preLoadWeather(Context context, RemoteViews remoteViews) {
+    protected void preLoadWeather(Context context, RemoteViews remoteViews, int appWidgetId) {
         appendLog(context, TAG, "preLoadWeather:start");
-        SharedPreferences weatherPref = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
-                Context.MODE_PRIVATE);
-        String lastUpdate = Utils.setLastUpdateTime(context,
-                AppPreference.getLastUpdateTimeMillis(context));
+        final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
+        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
+        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
 
-        remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context));
-        remoteViews.setTextViewText(R.id.widget_temperature, AppPreference.getTemperatureWithUnit(
-                context,
-                weatherPref.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0)));
-        remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context));
+        Long locationId = widgetSettingsDbHelper.getParamLong(appWidgetId, "locationId");
 
-        WidgetUtils.setWind(context, remoteViews, weatherPref
-                .getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
-        WidgetUtils.setHumidity(context, remoteViews, weatherPref.getInt(Constants.WEATHER_DATA_HUMIDITY, 0));
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(1000 * weatherPref.getLong(Constants.WEATHER_DATA_SUNRISE, 0));
-        WidgetUtils.setSunrise(context, remoteViews, sdf.format(calendar.getTime()));
-        calendar.setTimeInMillis(1000 * weatherPref.getLong(Constants.WEATHER_DATA_SUNSET, 0));
-        WidgetUtils.setSunset(context, remoteViews, sdf.format(calendar.getTime()));
+        Location location;
+        if (locationId == null) {
+            location = locationsDbHelper.getLocationByOrderId(0);
+        } else {
+            location = locationsDbHelper.getLocationById(locationId);
+        }
 
-        Utils.setWeatherIcon(remoteViews, context);
-        remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
+        if (location == null) {
+            return;
+        }
+
+        CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(location.getId());
+
+        if (weatherRecord != null) {
+            Weather weather = weatherRecord.getWeather();
+
+            String lastUpdate = Utils.setLastUpdateTime(context, weatherRecord.getLastUpdatedTime(), location.getLocationSource());
+
+            remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context, location.getOrderId()));
+            remoteViews.setTextViewText(R.id.widget_temperature, AppPreference.getTemperatureWithUnit(
+                    context,
+                    weather.getTemperature()));
+            remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, weather));
+
+            WidgetUtils.setWind(context, remoteViews, weather.getWindSpeed());
+            WidgetUtils.setHumidity(context, remoteViews, weather.getHumidity());
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(1000 * weather.getSunrise());
+            WidgetUtils.setSunrise(context, remoteViews, sdf.format(calendar.getTime()));
+            calendar.setTimeInMillis(1000 * weather.getSunset());
+            WidgetUtils.setSunset(context, remoteViews, sdf.format(calendar.getTime()));
+
+            Utils.setWeatherIcon(remoteViews, context, weatherRecord);
+            remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
+        }
         appendLog(context, TAG, "preLoadWeather:end");
     }
 

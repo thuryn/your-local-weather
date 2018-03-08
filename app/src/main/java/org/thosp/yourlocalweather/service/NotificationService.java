@@ -12,6 +12,9 @@ import android.support.v4.app.NotificationManagerCompat;
 
 import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
+import org.thosp.yourlocalweather.model.Location;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -31,7 +34,17 @@ public class NotificationService extends IntentService {
 
     @Override
     protected void onHandleIntent(Intent intent) {
-        weatherNotification(AppPreference.getWeather(this));
+        final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(this);
+        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
+        Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
+        if (!currentLocation.isEnabled()) {
+            currentLocation = locationsDbHelper.getLocationByOrderId(1);
+        }
+        if (currentLocation == null) {
+            return;
+        }
+        CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
+        weatherNotification(weatherRecord);
     }
 
     public static void setNotificationServiceAlarm(Context context,
@@ -55,22 +68,23 @@ public class NotificationService extends IntentService {
         }
     }
 
-    private void weatherNotification(Weather weather) {
+    private void weatherNotification(CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
+        Weather weather = weatherRecord.getWeather();
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent launchIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
-        String temperatureWithUnit = AppPreference.getTemperatureWithUnit(this, weather.temperature.getTemp());
+        String temperatureWithUnit = AppPreference.getTemperatureWithUnit(this, weather.getTemperature());
 
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentIntent(launchIntent)
                 .setSmallIcon(R.drawable.small_icon)
                 .setTicker(temperatureWithUnit
                                    + "  "
-                                   + Utils.getCityAndCountry(this))
+                                   + Utils.getCityAndCountry(this, 0))
                 .setContentTitle(temperatureWithUnit +
                                  "  " +
                                  Utils.getWeatherDescription(this, weather))
-                .setContentText(Utils.getCityAndCountry(this))
+                .setContentText(Utils.getCityAndCountry(this, 0))
                 .setVibrate(isVibrateEnabled())
                 .setAutoCancel(true)
                 .build();

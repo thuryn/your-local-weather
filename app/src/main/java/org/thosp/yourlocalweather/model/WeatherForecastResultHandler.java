@@ -1,8 +1,6 @@
 package org.thosp.yourlocalweather.model;
 
-import java.util.List;
-
 public interface WeatherForecastResultHandler {
-    void processResources(List<DetailedWeatherForecast> weatherForecastList);
+    void processResources(CompleteWeatherForecast completeWeatherForecast, long lastUpdate);
     void processError(Exception e);
 }

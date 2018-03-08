@@ -6,14 +6,18 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
+import org.thosp.yourlocalweather.model.Location;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.AppWidgetProviderAlarm;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
 
@@ -25,58 +29,73 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     private static String TAG = "AbstractWidgetProvider";
 
-    volatile long lastUpdatedWeather = 0;
-
+    protected Location currentLocation;
     volatile boolean servicesStarted = false;
 
     @Override
     public void onEnabled(Context context) {
         appendLog(context, TAG, "onEnabled:start");
         super.onEnabled(context);
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
+        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
         if (PermissionUtil.areAllPermissionsGranted(context)) {
             Toast.makeText(context,
                     R.string.permissions_not_granted,
                     Toast.LENGTH_LONG).show();
         }
-        AppWidgetProviderAlarm appWidgetProviderAlarm =
-                new AppWidgetProviderAlarm(context, getWidgetClass());
-        appWidgetProviderAlarm.cancelAlarm();
-        appWidgetProviderAlarm.setAlarm();
+        ComponentName widgetComponent = new ComponentName(context, getWidgetClass());
+
+        AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
+        int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
+        int currentWidget = widgetIds[0];
+        Long locationId = widgetSettingsDbHelper.getParamLong(currentWidget, "locationId");
+        if (locationId == null) {
+            currentLocation = locationsDbHelper.getLocationByOrderId(0);
+        } else {
+            currentLocation = locationsDbHelper.getLocationById(locationId);
+        }
+        onUpdate(context, widgetManager, widgetIds);
         appendLog(context, TAG, "onEnabled:end");
     }
-
 
     @Override
     public void onReceive(Context context, Intent intent) {
         appendLog(context, TAG, "intent:" + intent + ", widget:" + getWidgetClass());
+        super.onReceive(context, intent);
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
+        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
+        AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
+
+        int widgetId;
+        ComponentName widgetComponent = new ComponentName(context, getWidgetClass());
+
+        if (intent.hasExtra("widgetId")) {
+            widgetId = intent.getIntExtra("widgetId", 0);
+        } else {
+            int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
+            if (widgetIds.length == 0) {
+                return;
+            }
+            widgetId = widgetIds[0];
+        }
+        Long locationId = widgetSettingsDbHelper.getParamLong(widgetId, "locationId");
+        if (locationId == null) {
+            currentLocation = locationsDbHelper.getLocationByOrderId(0);
+        } else {
+            currentLocation = locationsDbHelper.getLocationById(locationId);
+        }
         switch (intent.getAction()) {
             case "org.thosp.yourlocalweather.action.WEATHER_UPDATE_RESULT":
             case "android.appwidget.action.APPWIDGET_UPDATE":
-                super.onReceive(context, intent);
                 if (!servicesStarted) {
                     onEnabled(context);
                     servicesStarted = true;
                 }
-
-                AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
-                ComponentName widgetComponent = new ComponentName(context, getWidgetClass());
-
-                int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
-                onUpdate(context, widgetManager, widgetIds);
+                onUpdate(context, widgetManager, new int[] {widgetId});
                 break;
             case Constants.ACTION_FORCED_APPWIDGET_UPDATE:
                 if (!WidgetRefreshIconService.isRotationActive) {
-                    if (AppPreference.isUpdateLocationEnabled(context)) {
-                        Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
-                        startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
-                        startLocationUpdateIntent.putExtra("updateSource", getWidgetName());
-                        context.startService(startLocationUpdateIntent);
-                        appendLog(context, TAG, "send intent START_LOCATION_UPDATE:" + startLocationUpdateIntent);
-                    } else {
-                        Intent intentToCheckWeather = new Intent(context, CurrentWeatherService.class);
-                        intentToCheckWeather.putExtra("updateSource", getWidgetName());
-                        context.startService(intentToCheckWeather);
-                    }
+                    sendWeatherUpdate(context);
                 }
                 break;
             case Intent.ACTION_SCREEN_ON:
@@ -91,14 +110,27 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             case Constants.ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED:
                 onEnabled(context);
                 break;
-            default:
-                super.onReceive(context, intent);
+            case Constants.ACTION_APPWIDGET_CHANGE_LOCATION:
+                changeLocation(widgetId, locationsDbHelper, widgetSettingsDbHelper);
+
+                onUpdate(context, widgetManager, new int[]{ widgetId});
+                /*Intent intentRefreshService = new Intent(context, getWidgetClass());
+                intentRefreshService.setAction("android.appwidget.action.APPWIDGET_UPDATE");
+                intentRefreshService.putExtra("widgetId", widgetId);
+                context.sendBroadcast(intentRefreshService);*/
+                break;
         }
     }
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         appendLog(context, TAG, "onUpdate:start");
+        StringBuilder widgetIdsText = new StringBuilder();
+        for (int widgetId: appWidgetIds) {
+            widgetIdsText.append(widgetId);
+            widgetIdsText.append(",");
+        }
+        appendLog(context, TAG, "onUpdate:widgetids:" + widgetIdsText.toString());
         super.onUpdate(context, appWidgetManager, appWidgetIds);
 
         for (int appWidgetId : appWidgetIds) {
@@ -112,42 +144,55 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             } else if (LessWidgetProvider.class.equals(getWidgetClass())) {
                 LessWidgetProvider.setWidgetTheme(context, remoteViews);
             }
-            setWidgetIntents(context, remoteViews, getWidgetClass());
-            preLoadWeather(context, remoteViews);
+            setWidgetIntents(context, remoteViews, getWidgetClass(), appWidgetId);
+            preLoadWeather(context, remoteViews, appWidgetId);
 
-            appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+            appWidgetManager.updateAppWidget(new ComponentName(context, getWidgetClass()), remoteViews);
         }
         appendLog(context, TAG, "onUpdate:end");
     }
 
     @Override
-    public void onDisabled(Context context) {
-        super.onDisabled(context);
-        AppWidgetProviderAlarm appWidgetProviderAlarm =
-                new AppWidgetProviderAlarm(context, getWidgetClass());
-        appWidgetProviderAlarm.cancelAlarm();
+    public void onDeleted(Context context, int[] appWidgetIds) {
+        super.onDeleted(context, appWidgetIds);
+        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
+        for (int widgetId: appWidgetIds) {
+            widgetSettingsDbHelper.deleteRecordFromTable(widgetId);
+        }
     }
 
     private void updateWather(Context context) {
         long now = Calendar.getInstance().getTimeInMillis();
+        CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
+        CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
+        long lastUpdatedWeather = weatherRecord.getLastUpdatedTime();
         appendLog(context, TAG, "SCREEN_ON called, lastUpdate=" + lastUpdatedWeather + ", now=" + now);
         if (now < (lastUpdatedWeather + 900000)) {
             return;
         }
-        lastUpdatedWeather = now;
-        if(AppPreference.isUpdateLocationEnabled(context)) {
+        currentWeatherDbHelper.updateLastUpdatedTime(currentLocation.getId(), now);
+        sendWeatherUpdate(context);
+    }
+
+    private void sendWeatherUpdate(Context context) {
+        if ((currentLocation.getOrderId() == 0) && currentLocation.isEnabled()) {
             Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
             startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
-            startLocationUpdateIntent.putExtra("updateSource", getWidgetName());
+            startLocationUpdateIntent.putExtra("location", currentLocation);
             context.startService(startLocationUpdateIntent);
-        } else {
-            context.startService(new Intent(context, getWidgetClass()));
+            appendLog(context, TAG, "send intent START_LOCATION_UPDATE:" + startLocationUpdateIntent);
+        } else if (currentLocation.getOrderId() != 0) {
+            Intent intentToCheckWeather = new Intent(context, CurrentWeatherService.class);
+            intentToCheckWeather.putExtra("location", currentLocation);
+            context.startService(intentToCheckWeather);
         }
     }
 
-    public static void setWidgetIntents(Context context, RemoteViews remoteViews, Class<?>  widgetClass) {
+    public static void setWidgetIntents(Context context, RemoteViews remoteViews, Class<?>  widgetClass, int widgetId) {
+        appendLog(context, TAG, "setWidgetIntents:widgetid:" + widgetId);
         Intent intentRefreshService = new Intent(context, widgetClass);
         intentRefreshService.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
+        intentRefreshService.putExtra("widgetId", widgetId);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
                 intentRefreshService, 0);
         remoteViews.setOnClickPendingIntent(R.id.widget_button_refresh, pendingIntent);
@@ -155,14 +200,32 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         Intent intentStartActivity = new Intent(context, MainActivity.class);
         PendingIntent pendingIntent2 = PendingIntent.getActivity(context, 0,
                 intentStartActivity, 0);
-        remoteViews.setOnClickPendingIntent(R.id.widget_root, pendingIntent2);
+        remoteViews.setOnClickPendingIntent(R.id.widget_icon, pendingIntent2);
+
+        Intent intentSwitchLocality = new Intent(context, widgetClass);
+        intentSwitchLocality.setAction(Constants.ACTION_APPWIDGET_CHANGE_LOCATION);
+        intentSwitchLocality.putExtra("widgetId", widgetId);
+        PendingIntent pendingSwitchLocalityIntent = PendingIntent.getBroadcast(context, 0,
+                intentSwitchLocality, 0);
+        remoteViews.setOnClickPendingIntent(R.id.widget_city, pendingSwitchLocalityIntent);
     }
 
-    protected abstract void preLoadWeather(Context context, RemoteViews remoteViews);
+    protected abstract void preLoadWeather(Context context, RemoteViews remoteViews, int widgetId);
 
     protected abstract Class<?> getWidgetClass();
 
     protected abstract String getWidgetName();
 
     protected abstract int getWidgetLayout();
+
+    private void changeLocation(int widgetId,
+                                LocationsDbHelper locationsDbHelper,
+                                WidgetSettingsDbHelper widgetSettingsDbHelper) {
+        int newOrderId = 1 + currentLocation.getOrderId();
+        currentLocation = locationsDbHelper.getLocationByOrderId(newOrderId);
+        if (currentLocation == null) {
+            currentLocation = locationsDbHelper.getLocationByOrderId(0);
+        }
+        widgetSettingsDbHelper.saveParamLong(widgetId, "locationId", currentLocation.getId());
+    }
 }

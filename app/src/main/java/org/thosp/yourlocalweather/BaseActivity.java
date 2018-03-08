@@ -22,6 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thosp.yourlocalweather.help.HelpActivity;
+import org.thosp.yourlocalweather.model.Location;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.utils.Utils;
 
@@ -34,6 +36,7 @@ public class BaseActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mDrawerToggle;
     private Toolbar mToolbar;
     private TextView mHeaderCity;
+    protected LocationsDbHelper locationsDbHelper;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -94,7 +97,7 @@ public class BaseActivity extends AppCompatActivity {
 
         View headerLayout = navigationView.getHeaderView(0);
         mHeaderCity = (TextView) headerLayout.findViewById(R.id.nav_header_city);
-        mHeaderCity.setText(Utils.getCityAndCountry(this));
+        //mHeaderCity.setText(Utils.getCityAndCountry(this));
     }
 
     private NavigationView.OnNavigationItemSelectedListener navigationViewListener =
@@ -197,7 +200,7 @@ public class BaseActivity extends AppCompatActivity {
             case PICK_CITY:
                 ConnectionDetector connectionDetector = new ConnectionDetector(this);
                 if (resultCode == RESULT_OK) {
-                    mHeaderCity.setText(Utils.getCityAndCountry(this));
+                    //mHeaderCity.setText(Utils.getCityAndCountry(this));
 
                     if (connectionDetector.isNetworkAvailableAndConnected()) {
                         startService(new Intent(this, CurrentWeatherService.class));

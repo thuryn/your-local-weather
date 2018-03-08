@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
+import org.thosp.yourlocalweather.model.WeatherCondition;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Utils;
 
@@ -26,7 +27,6 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
 
     private DetailedWeatherForecast mWeatherForecast;
 
-    private RecyclerView mRecyclerView;
     private Context mContext;
 
     private TextView mTime;
@@ -57,7 +57,7 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
 
         Typeface typeface = Typeface.createFromAsset(mContext.getAssets(),
                 "fonts/weathericons-regular-webfont.ttf");
-        DetailedWeatherForecast.WeatherCondition weatherCondition = weather.getFirstWeatherCondition();
+        WeatherCondition weatherCondition = weather.getFirstWeatherCondition();
 
         if (visibleColumns.contains(1)) {
             mTime.setVisibility(View.VISIBLE);

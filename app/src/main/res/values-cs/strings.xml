@@ -22,7 +22,8 @@
     <string name="label_activity_main">Aktuální počasí</string>
     <string name="label_activity_weather_forecast">Denní předpověd</string>
     <string name="label_activity_graphs">Počasí v grafech</string>
-    <string name="title_activity_license">Lecence pro %s</string>
+    <string name="title_activity_license">Licence pro %s</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Místa</string>
 
     <!-- Toolbar menu -->
     <string name="toolbar_menu_refresh">Aktualizace</string>
@@ -77,7 +78,9 @@
     <string name="update_location_none" tools:ignore="MissingTranslation">Neaktualizovat polohu</string>
     <string name="update_location_full" tools:ignore="MissingTranslation">Aktualizovat polohu (doporučené)</string>
     <string name="update_location_network_only" tools:ignore="MissingTranslation">Aktualizovat polohu bez použití GPS</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Zapnout GPS pokud je to nezbytné</string>
     <string name="update_period_by_sensors">Dle accelerometru</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">Jen ručně</string>
     <string name="update_period_15min">15 minut</string>
     <string name="update_period_30min">30 minut</string>
     <string name="update_period_1hour">Každou hodinu</string>
@@ -86,7 +89,8 @@
     <string name="update_period_12hours">12 hodin</string>
     <string name="update_period_24hours">24 hodin</string>
     <string name="pref_title_vibrate">Vibrovat</string>
-    <string name="preference_widget_title_update_period">Interval aktualizace</string>
+    <string name="preference_widget_title_update_period">Interval aktualizace počasí (Poloha 1,2,3...)</string>
+    <string name="preference_widget_title_update_auto_period">Interval aktualizace polohy (Poloha 0)</string>
     <string name="preference_title_activity_general">Obecná nastavení</string>
     <string name="preference_title_activity_widget">Nastavení widgetu</string>
     <string name="preference_widget_update_location">Aktualizace pozice</string>
@@ -156,6 +160,7 @@
     <string name="permission_available_location">Bylo uděleno oprávnění pro získání polohy</string>
 <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Displej</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Aktualizace polohy a počasí</string>
     <string name="pref_title_language" tools:ignore="MissingTranslation">Jazyk</string>
     <string name="pref_language_default" tools:ignore="MissingTranslation">Dle systému</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Místní MLS a Nominatim (doporučené)</string>
@@ -207,7 +212,7 @@
     <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Tento průvodce Vám pomůže nastavit aplikaci dle Vašich potřeb. Na následující obrazovce si můžete vybrat strategii aktualizace.
 \nPokud vyberete <i>Neaktualizovat polohu</i>, aplikace provede jen aktualizaci počasí.
 \nAvšak aktualizace polohy je jedna ze nejlepších vlastností této aplikace. A proto je volba <i>Aktualizovat polohu</i> doporučenou volbou a je i zároveň předvybrána.</string>
-    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Průvodce počátečním nastavením</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Nastavení aktualizace polohy</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Volba zdroje polohy</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Můžete vybrat zdroj polohy - volba <i>Systém</i> využívá služeb operačního systému (služby Google) pro získání polohy pomocí sítí (mobilní a wifi sítě). Volba <i>Místní MLS a Nominatim</i> využívá služby pro získání souřadníc polohy společnosti Mozilla a službu Nominatim pro získání adresy. Druhá volba vyžaduje oprávnění pro ovládání telefonních hovorů pro získání informací o mobilní síti. Preferovaná volba je předvybrána.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Zdroj polohy a adresy</string>
@@ -276,5 +281,12 @@
     <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Ukládání polohy do vyrovnávací paměti</string>
     <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Nalezené polohy jsou ukládány</string>
     <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Nalezené polohy nejsou ukládány</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Smazat</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Vypnout</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Zapnout</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">Automaticky rozpoznaná adresa</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Vypnuto</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Přidat</string>
+    <string name="search_location_info" tools:ignore="MissingTranslation">Dotekem na mapě vyberete požadovanou polohu a pak vyčkejte na rozpoznání adresy.</string>
     
     </resources>

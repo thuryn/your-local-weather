@@ -5,6 +5,11 @@ import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
+import org.thosp.yourlocalweather.model.Location;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.model.Weather;
+import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -21,26 +26,45 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
     private static final String WIDGET_NAME = "MORE_WIDGET";
 
     @Override
-    protected void preLoadWeather(Context context, RemoteViews remoteViews) {
-        SharedPreferences weatherPref = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
-                                                                     Context.MODE_PRIVATE);
-        String lastUpdate = Utils.setLastUpdateTime(context,
-                                                    AppPreference.getLastUpdateTimeMillis(context));
+    protected void preLoadWeather(Context context, RemoteViews remoteViews, int appWidgetId) {
+        final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
+        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
+        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
 
-        remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context));
-        remoteViews.setTextViewText(R.id.widget_temperature, AppPreference.getTemperatureWithUnit(
-                context,
-                weatherPref.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0)));
-        remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context));
+        Long locationId = widgetSettingsDbHelper.getParamLong(appWidgetId, "locationId");
 
-        WidgetUtils.setWind(context, remoteViews, weatherPref
-                .getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
-        WidgetUtils.setHumidity(context, remoteViews, weatherPref.getInt(Constants.WEATHER_DATA_HUMIDITY, 0));
-        WidgetUtils.setPressure(context, remoteViews, weatherPref.getFloat(Constants.WEATHER_DATA_PRESSURE,0));
-        WidgetUtils.setClouds(context, remoteViews, weatherPref.getInt(Constants.WEATHER_DATA_CLOUDS, 0));
+        Location location;
+        if (locationId == null) {
+            location = locationsDbHelper.getLocationByOrderId(0);
+        } else {
+            location = locationsDbHelper.getLocationById(locationId);
+        }
 
-        Utils.setWeatherIcon(remoteViews, context);
-        remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
+        if (location == null) {
+            return;
+        }
+
+        CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(location.getId());
+
+        if (weatherRecord != null) {
+            Weather weather = weatherRecord.getWeather();
+
+            String lastUpdate = Utils.setLastUpdateTime(context, weatherRecord.getLastUpdatedTime(), location.getLocationSource());
+
+            remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context, location.getOrderId()));
+            remoteViews.setTextViewText(R.id.widget_temperature, AppPreference.getTemperatureWithUnit(
+                    context,
+                    weather.getTemperature()));
+            remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, weather));
+
+            WidgetUtils.setWind(context, remoteViews, weather.getWindSpeed());
+            WidgetUtils.setHumidity(context, remoteViews, weather.getHumidity());
+            WidgetUtils.setPressure(context, remoteViews, weather.getPressure());
+            WidgetUtils.setClouds(context, remoteViews, weather.getClouds());
+
+            Utils.setWeatherIcon(remoteViews, context, weatherRecord);
+            remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
+        }
     }
 
     public static void setWidgetTheme(Context context, RemoteViews remoteViews) {

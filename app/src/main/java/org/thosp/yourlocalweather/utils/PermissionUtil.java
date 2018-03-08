@@ -7,6 +7,9 @@ import android.location.LocationManager;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 
+import org.thosp.yourlocalweather.model.Location;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,9 +72,9 @@ public class PermissionUtil {
     }
 
     public static boolean checkPermissionsAndSettings(Context context) {
-        String locationUpdateStrategy = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY, "update_location_full");
-        if ("update_location_none".equals(locationUpdateStrategy)) {
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
+        Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
+        if (!autoLocation.isEnabled()) {
             appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS, "locationUpdateStrategy is set to update_location_none, return false");
             return false;
         }

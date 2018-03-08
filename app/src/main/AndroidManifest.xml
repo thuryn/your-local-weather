@@ -45,18 +45,24 @@
         <activity
             android:name=".SearchActivity"
             android:label="@string/title_activity_search"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".LocationsActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
+                <action android:name="org.thosp.yourlocalweather.action.ADDRESS_RESOLUTION_RESULT" />
             </intent-filter>
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity"/>
+                android:value=".LocationsActivity"/>
+        </activity>
+        <activity
+            android:name=".LocationsActivity"
+            android:label="@string/title_activity_locations"
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
         </activity>
         <activity
             android:name=".WeatherForecastActivity"
@@ -105,6 +111,7 @@
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.WEATHER_UPDATE_RESULT"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
             </intent-filter>
 
             <meta-data
@@ -119,6 +126,7 @@
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.WEATHER_UPDATE_RESULT"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
             </intent-filter>
 
             <meta-data
@@ -133,6 +141,7 @@
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.WEATHER_UPDATE_RESULT"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
             </intent-filter>
 
             <meta-data
@@ -151,6 +160,12 @@
         <service android:name=".widget.MoreWidgetService"/>
         <service android:name=".widget.ExtLocationWidgetService"/>
         <service android:name=".service.CurrentWeatherService"/>
+        <service android:name=".service.AppAlarmService" >
+            <intent-filter>
+                <action android:name="org.thosp.yourlocalweather.action.START_ALARM_SERVICE" />
+                <action android:name="org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM" />
+            </intent-filter>
+        </service>
         <service android:name=".service.LocationUpdateService" >
             <intent-filter>
                 <action android:name="android.intent.action.LOCATION_UPDATE" />

@@ -26,13 +26,6 @@
         android:key="hide_desc_pref_key"
         android:title="@string/preference_hide_desc"/>
     <ListPreference
-        android:defaultValue="update_location_full"
-        android:dialogTitle="@string/location_update_strategy_title"
-        android:entries="@array/location_update_strategy"
-        android:entryValues="@array/location_update_strategy_values"
-        android:key="location_update_strategy"
-        android:title="@string/location_update_strategy_title"/>
-    <ListPreference
         android:defaultValue="location_geocoder_local"
         android:dialogTitle="@string/location_geocoder_title"
         android:entries="@array/location_geocoder_source_entries"
@@ -82,6 +75,33 @@
             android:dependency="notification_pref_key"
             android:key="notification_vibrate_pref_key"
             android:title="@string/pref_title_vibrate"/>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="update_location_weather_category_pref_key"
+        android:title="@string/preference_title_category_location_weather">
+        <ListPreference
+            android:dialogTitle="@string/preference_widget_title_update_auto_period"
+            android:entries="@array/location_auto_update_period_entries"
+            android:entryValues="@array/location_auto_update_period_values"
+            android:key="location_auto_update_period_pref_key"
+            android:title="@string/preference_widget_title_update_auto_period"/>
+        <ListPreference
+            android:dialogTitle="@string/preference_widget_title_update_period"
+            android:entries="@array/location_update_period_entries"
+            android:entryValues="@array/location_update_period_values"
+            android:key="location_update_period_pref_key"
+            android:title="@string/preference_widget_title_update_period"/>
+        <ListPreference
+            android:defaultValue="nowakeup"
+            android:entries="@array/wake_up_strategy_entries"
+            android:entryValues="@array/wake_up_strategy_values"
+            android:key="wake.up.strategy"
+            android:summary="@string/wake_up_strategy_summary"
+            android:title="@string/wake_up_strategy_title"/>
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="location_gps_enabled"
+            android:title="@string/update_location_gps_enabled"/>
     </PreferenceCategory>
     <PreferenceCategory
         android:title="@string/db_header"

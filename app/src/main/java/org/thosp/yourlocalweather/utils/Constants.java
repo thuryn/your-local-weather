@@ -30,6 +30,7 @@ public class Constants {
     public static final String LAST_FORECAST_UPDATE_TIME_IN_MS = "last_forecast_update";
     public static final String LAST_LOCATION_UPDATE_TIME_IN_MS = "last_location_update";
     public static final String LAST_WEATHER_UPDATE_TIME_IN_MS = "last_weather_update";
+    public static final String CURRENT_LOCATION_ID = "current_location_id";
     
     public static final String KEY_PREF_IS_NOTIFICATION_ENABLED = "notification_pref_key";
     public static final String KEY_PREF_TEMPERATURE_UNITS = "temperature_units_pref_key";
@@ -40,11 +41,13 @@ public class Constants {
     public static final String KEY_PREF_VIBRATE = "notification_vibrate_pref_key";
     public static final String KEY_PREF_WIDGET_SHOW_LABELS = "widget_show_labels_pref_key";
     public static final String KEY_PREF_WIDGET_THEME = "widget_theme_pref_key";
-    public static final String KEY_PREF_WIDGET_UPDATE_PERIOD = "widget_update_period_pref_key";
+    public static final String KEY_PREF_LOCATION_UPDATE_PERIOD = "location_update_period_pref_key";
+    public static final String KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD = "location_auto_update_period_pref_key";
     public static final String PREF_LANGUAGE = "language_pref_key";
     public static final String KEY_PREF_LOCATION_GEOCODER_SOURCE = "location_geocoder_source";
     public static final String KEY_PREF_WEATHER_ICON_SET = "weather_icon_set_pref_key";
     public static final String KEY_PREF_LOCATION_UPDATE_STRATEGY = "location_update_strategy";
+    public static final String KEY_PREF_LOCATION_GPS_ENABLED = "location_gps_enabled";
     public static final String KEY_PREF_UPDATE_DETAIL = "widget_update_details_pref_key";
     public static final String PREF_THEME = "theme_pref_key";
     public static final String KEY_DEBUG_FILE = "debug.log.file";
@@ -82,6 +85,8 @@ public class Constants {
             "org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED";
     public static final String ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED =
             "org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED";
+    public static final String ACTION_APPWIDGET_CHANGE_LOCATION =
+            "org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION";
 
     /**
      * URIs constants

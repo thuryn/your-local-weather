@@ -16,9 +16,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import org.json.JSONException;
 import org.thosp.yourlocalweather.adapter.WeatherForecastAdapter;
+import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
+import org.thosp.yourlocalweather.model.Location;
+import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastResultHandler;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
@@ -38,9 +40,10 @@ public class WeatherForecastActivity extends BaseActivity {
 
     private final String TAG = "WeatherForecastActivity";
 
-    private long AUTO_FORECAST_UPDATE_TIME_MILIS = 3600000; // 1h
+    public static long AUTO_FORECAST_UPDATE_TIME_MILIS = 3600000; // 1h
 
-    private List<DetailedWeatherForecast> mWeatherForecastList;
+    private Map<Long, List<DetailedWeatherForecast>> weatherForecastList = new HashMap<>();
+    private Map<Long, Long> locationWeatherForecastLastUpdate = new HashMap<>();
     private ConnectionDetector mConnectionDetector;
     private RecyclerView mRecyclerView;
     private static Handler mHandler;
@@ -54,7 +57,6 @@ public class WeatherForecastActivity extends BaseActivity {
         setContentView(R.layout.activity_weather_forecast);
 
         mConnectionDetector = new ConnectionDetector(this);
-        mWeatherForecastList = new ArrayList<>();
         mGetWeatherProgress = getProgressDialog();
 
         mRecyclerView = (RecyclerView) findViewById(R.id.forecast_recycler_view);
@@ -80,10 +82,6 @@ public class WeatherForecastActivity extends BaseActivity {
                     case Constants.PARSE_RESULT_SUCCESS:
                         setVisibleUpdating(false);
                         updateUI();
-                        if (!mWeatherForecastList.isEmpty()) {
-                            AppPreference.saveWeatherForecast(WeatherForecastActivity.this,
-                                                              mWeatherForecastList);
-                        }
                         break;
                 }
             }
@@ -95,18 +93,20 @@ public class WeatherForecastActivity extends BaseActivity {
     }
 
     private void updateUI() {
-
-        long lastUpdate = AppPreference.getLastForecastUpdateTimeMillis(this);
-
-        if (mWeatherForecastList.isEmpty() || (lastUpdate == 0)) {
-            mWeatherForecastList = AppPreference.loadWeatherForecast(this);
+        WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
+        long locationId = AppPreference.getCurrentLocationId(this);
+        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
+        if (weatherForecastRecord != null) {
+            weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
+            locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());
         }
-        if ((lastUpdate + AUTO_FORECAST_UPDATE_TIME_MILIS) <  Calendar.getInstance().getTimeInMillis()) {
+        if ((weatherForecastRecord == null) || (locationWeatherForecastLastUpdate.get(locationId) + AUTO_FORECAST_UPDATE_TIME_MILIS) <  Calendar.getInstance().getTimeInMillis()) {
             updateWeatherForecastFromNetwork();
+            return;
         }
 
         ImageView android = (ImageView) findViewById(R.id.android);
-        if (mWeatherForecastList.size() < 5) {
+        if (weatherForecastList.isEmpty()) {
             mRecyclerView.setVisibility(View.INVISIBLE);
             android.setVisibility(View.VISIBLE);
         } else {
@@ -114,7 +114,7 @@ public class WeatherForecastActivity extends BaseActivity {
             android.setVisibility(View.GONE);
         }
         WeatherForecastAdapter adapter = new WeatherForecastAdapter(this,
-                                                                    mWeatherForecastList,
+                                                                    weatherForecastList.get(locationId),
                                                                     visibleColumns);
         mRecyclerView.setAdapter(adapter);
     }
@@ -199,7 +199,7 @@ public class WeatherForecastActivity extends BaseActivity {
 
     private void updateWeatherForecastFromNetwork() {
         if (mConnectionDetector.isNetworkAvailableAndConnected()) {
-            WeatherForecastUtil.getWeather(WeatherForecastActivity.this, new ForecastActivityWeatherForecastResultHandler());
+            WeatherForecastUtil.getWeather(WeatherForecastActivity.this, new ForecastActivityWeatherForecastResultHandler(this));
             setVisibleUpdating(true);
         } else {
             Toast.makeText(WeatherForecastActivity.this,
@@ -217,8 +217,16 @@ public class WeatherForecastActivity extends BaseActivity {
     }
 
     public class ForecastActivityWeatherForecastResultHandler implements WeatherForecastResultHandler {
-        public void processResources(List<DetailedWeatherForecast> weatherForecastList) {
-            mWeatherForecastList = weatherForecastList;
+        private Context context;
+
+        public ForecastActivityWeatherForecastResultHandler(Context context) {
+            this.context = context;
+        }
+
+        public void processResources(CompleteWeatherForecast completeWeatherForecast, long lastUpdate) {
+            long locationId = AppPreference.getCurrentLocationId(context);
+            weatherForecastList.put(locationId, completeWeatherForecast.getWeatherForecastList());
+            locationWeatherForecastLastUpdate.put(locationId, lastUpdate);
             mHandler.sendEmptyMessage(Constants.PARSE_RESULT_SUCCESS);
         }
 

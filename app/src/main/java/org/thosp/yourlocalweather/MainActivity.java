@@ -37,7 +37,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.thosp.yourlocalweather.model.CitySearch;
+import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
+import org.thosp.yourlocalweather.model.Location;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.utils.AppPreference;
@@ -49,17 +51,14 @@ import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
-import static org.thosp.yourlocalweather.utils.AppPreference.getLastUpdateTimeMillis;
 
 public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetChangedListener {
 
     private static final String TAG = "MainActivity";
 
-    private static final long LOCATION_TIMEOUT_IN_MS = 30000L;
-
+    private TextView localityView;
     private ImageView mIconWeatherView;
     private TextView mTemperatureView;
     private TextView mDescriptionView;
@@ -94,37 +93,24 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private String mIconSunset;
     private String mPercentSign;
 
-    private SharedPreferences mPrefWeather;
-    private SharedPreferences mSharedPreferences;
-
-    public static Weather mWeather;
-    public static CitySearch mCitySearch;
-
     private static final int REQUEST_LOCATION = 0;
-    private static final String[] PERMISSIONS_LOCATION = {Manifest.permission.ACCESS_COARSE_LOCATION,
-                                                          Manifest.permission.ACCESS_FINE_LOCATION};
     public Context storedContext;
     private Handler refreshDialogHandler;
+    private Location currentLocation;
         
     @Override
     public void onCreate(Bundle savedInstanceState) {
         ((YourLocalWeather) getApplication()).applyTheme(this);
         super.onCreate(savedInstanceState);
+        locationsDbHelper = LocationsDbHelper.getInstance(this);
         setContentView(R.layout.activity_main);
-
-        mWeather = new Weather();
-        mCitySearch = new CitySearch();
 
         weatherConditionsIcons();
         initializeTextView();
         initializeWeatherReceiver();
 
         connectionDetector = new ConnectionDetector(MainActivity.this);
-
-        mPrefWeather = getSharedPreferences(Constants.PREF_WEATHER_NAME, Context.MODE_PRIVATE);
-        mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
-                Context.MODE_PRIVATE);
-        setTitle( Utils.getCityAndCountry(this));
+        setTitle( R.string.label_activity_main);
 
         /**
          * Configure SwipeRefreshLayout
@@ -148,40 +134,19 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         this.storedContext = this;
         fab.setOnClickListener(fabListener);
         checkSettingsAndPermisions();
-    }
-
-    private void updateCurrentWeather() {
-        windWithUnit = AppPreference.getWindWithUnit(MainActivity.this, mWeather.wind.getSpeed());
-        WindWithUnit pressure = AppPreference.getPressureWithUnit(MainActivity.this, mWeather.currentCondition.getPressure());
-
-        String lastUpdate = Utils.setLastUpdateTime(MainActivity.this,
-                getLastUpdateTimeMillis(MainActivity.this));
-        String sunrise = Utils.unixTimeToFormatTime(MainActivity.this, mWeather.sys.getSunrise());
-        String sunset = Utils.unixTimeToFormatTime(MainActivity.this, mWeather.sys.getSunset());
-
-        Utils.setWeatherIcon(mIconWeatherView, this);
-        mTemperatureView.setText(getString(R.string.temperature_with_degree, AppPreference.getTemperatureWithUnit(getBaseContext(), mWeather.temperature.getTemp())));
-        mDescriptionView.setText(Utils.getWeatherDescription(this, mWeather));
-        mHumidityView.setText(getString(R.string.humidity_label,
-                String.valueOf(mWeather.currentCondition.getHumidity()),
-                mPercentSign));
-        mPressureView.setText(getString(R.string.pressure_label, pressure.getWindSpeed(0),
-                pressure.getWindUnit()));
-        mWindSpeedView.setText(getString(R.string.wind_label,
-                                windWithUnit.getWindSpeed(1),
-                                windWithUnit.getWindUnit()));
-        mCloudinessView.setText(getString(R.string.cloudiness_label,
-                String.valueOf(mWeather.cloud.getClouds()),
-                mPercentSign));
-        mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
-        mSunriseView.setText(getString(R.string.sunrise_label, sunrise));
-        mSunsetView.setText(getString(R.string.sunset_label, sunset));
-        setTitle(Utils.getCityAndCountry(this));
+        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_ALARM_SERVICE");
+        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        startService(intentToStartUpdate);
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        currentLocation = locationsDbHelper.getLocationById(AppPreference.getCurrentLocationId(this));
+        if (currentLocation == null) {
+            currentLocation = locationsDbHelper.getLocationByOrderId(0);
+        }
+        AppPreference.setCurrentLocationId(this, currentLocation.getId());
         checkSettingsAndPermisions();
         preLoadWeather();
         mAppBarLayout.addOnOffsetChangedListener(this);
@@ -215,14 +180,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         this.mToolbarMenu = menu;
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.activity_main_menu, menu);
-
-        String locationUpdateStrategy = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getString(
-                Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY, "update_location_full");
-        if (!"update_location_none".equals(locationUpdateStrategy)) {
-            menu.findItem(R.id.main_menu_search_city).setVisible(false);
-        } else {
-            menu.findItem(R.id.main_menu_detect_location).setVisible(false);
-        }
         return true;
     }
 
@@ -231,11 +188,14 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         switch (item.getItemId()) {
             case R.id.main_menu_refresh:
                 if (connectionDetector.isNetworkAvailableAndConnected()) {
-                    SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
-                            Context.MODE_PRIVATE);
-                    mSharedPreferences.edit().putString(Constants.APP_SETTINGS_UPDATE_SOURCE, "-").apply();
+                    locationsDbHelper.updateLastUpdatedAndLocationSource(
+                            currentLocation.getId(),
+                            System.currentTimeMillis(),
+                            "-");
+                    currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
                     Intent intent = new Intent(this, CurrentWeatherService.class);
                     intent.putExtra("updateSource", "MAIN");
+                    intent.putExtra("location", currentLocation);
                     startService(intent);
                     setUpdateButtonState(true);
                 } else {
@@ -249,12 +209,26 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 requestLocation();
                 return true;
             case R.id.main_menu_search_city:
-                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
-                startActivityForResult(intent, PICK_CITY);
+                Intent intent = new Intent(MainActivity.this, LocationsActivity.class);
+                startActivity(intent);
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void switchLocation(View arg0) {
+        int newLocationOrderId = 1 + currentLocation.getOrderId();
+        currentLocation = locationsDbHelper.getLocationByOrderId(newLocationOrderId);
+
+        if (currentLocation == null) {
+            newLocationOrderId = 0;
+            currentLocation = locationsDbHelper.getLocationByOrderId(newLocationOrderId);
+        }
+
+        AppPreference.setCurrentLocationId(this, currentLocation.getId());
+        localityView.setText(Utils.getCityAndCountry(this, newLocationOrderId));
+        preLoadWeather();
     }
 
     private SwipeRefreshLayout.OnRefreshListener swipeRefreshListener =
@@ -263,11 +237,14 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 public void onRefresh() {
                     isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
                     if (isNetworkAvailable) {
-                        SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
-                                Context.MODE_PRIVATE);
-                        mSharedPreferences.edit().putString(Constants.APP_SETTINGS_UPDATE_SOURCE, "-").apply();
+                        locationsDbHelper.updateLastUpdatedAndLocationSource(
+                                currentLocation.getId(),
+                                System.currentTimeMillis(),
+                                "-");
+                        currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
                         Intent intent = new Intent(MainActivity.this, CurrentWeatherService.class);
                         intent.putExtra("updateSource", "MAIN");
+                        intent.putExtra("location", currentLocation);
                         startService(intent);
                     } else {
                         Toast.makeText(MainActivity.this,
@@ -279,29 +256,50 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             };
 
     private void preLoadWeather() {
-        String lastUpdate = Utils.setLastUpdateTime(this,
-                AppPreference.getLastUpdateTimeMillis(this));
+        final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(this);
 
-        float temperaturePref = mPrefWeather.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0);
-        int humidity = mPrefWeather.getInt(Constants.WEATHER_DATA_HUMIDITY, 0);
-        float pressurePref = mPrefWeather.getFloat(Constants.WEATHER_DATA_PRESSURE, 0);
-        float windPref = mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0);
-        int clouds = mPrefWeather.getInt(Constants.WEATHER_DATA_CLOUDS, 0);
-        long sunrisePref = mPrefWeather.getLong(Constants.WEATHER_DATA_SUNRISE, -1);
-        long sunsetPref = mPrefWeather.getLong(Constants.WEATHER_DATA_SUNSET, -1);
+        if (currentLocation == null) {
+            return;
+        }
 
-        windWithUnit = AppPreference.getWindWithUnit(this, windPref);
-        WindWithUnit pressure = AppPreference.getPressureWithUnit(this, pressurePref);
-        String sunrise = Utils.unixTimeToFormatTime(this, sunrisePref);
-        String sunset = Utils.unixTimeToFormatTime(this, sunsetPref);
+        CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
 
-        Utils.setWeatherIcon(mIconWeatherView, this);
+        if (weatherRecord == null) {
+            mTemperatureView.setText(getString(R.string.temperature_with_degree,""));
+            mDescriptionView.setText(R.string.location_not_found);
+            mLastUpdateView.setText(getString(R.string.last_update_label, ""));
+            mHumidityView.setText(getString(R.string.humidity_label,
+                    "",
+                    ""));
+            mPressureView.setText(getString(R.string.pressure_label,
+                    "",
+                    ""));
+            mWindSpeedView.setText(getString(R.string.wind_label,
+                    "",
+                    ""));
+            mCloudinessView.setText(getString(R.string.cloudiness_label,
+                    "",
+                    ""));
+            mSunriseView.setText(getString(R.string.sunrise_label, ""));
+            mSunsetView.setText(getString(R.string.sunset_label, ""));
+            return;
+        }
+
+        Weather weather = weatherRecord.getWeather();
+
+        String lastUpdate = Utils.setLastUpdateTime(this, weatherRecord.getLastUpdatedTime(), currentLocation.getLocationSource());
+        windWithUnit = AppPreference.getWindWithUnit(this, weather.getWindSpeed());
+        WindWithUnit pressure = AppPreference.getPressureWithUnit(this, weather.getPressure());
+        String sunrise = Utils.unixTimeToFormatTime(this, weather.getSunrise());
+        String sunset = Utils.unixTimeToFormatTime(this, weather.getSunset());
+
+        Utils.setWeatherIcon(mIconWeatherView, this, weatherRecord);
         mTemperatureView.setText(getString(R.string.temperature_with_degree,
-                AppPreference.getTemperatureWithUnit(this, temperaturePref)));
-        mDescriptionView.setText(Utils.getWeatherDescription(this));
+                AppPreference.getTemperatureWithUnit(this, weather.getTemperature())));
+        mDescriptionView.setText(Utils.getWeatherDescription(this, weather));
         mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
         mHumidityView.setText(getString(R.string.humidity_label,
-                String.valueOf(humidity),
+                String.valueOf(weather.getHumidity()),
                 mPercentSign));
         mPressureView.setText(getString(R.string.pressure_label,
                 pressure.getWindSpeed(0),
@@ -310,11 +308,11 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                                          windWithUnit.getWindSpeed(1),
                                          windWithUnit.getWindUnit()));
         mCloudinessView.setText(getString(R.string.cloudiness_label,
-                String.valueOf(clouds),
+                String.valueOf(weather.getClouds()),
                 mPercentSign));
         mSunriseView.setText(getString(R.string.sunrise_label, sunrise));
         mSunsetView.setText(getString(R.string.sunset_label, sunset));
-        setTitle( Utils.getCityAndCountry(this));
+        localityView.setText(Utils.getCityAndCountry(this, currentLocation.getOrderId()));
     }
 
     private void initializeTextView() {
@@ -339,6 +337,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mSunriseView = (TextView) findViewById(R.id.main_sunrise);
         mSunsetView = (TextView) findViewById(R.id.main_sunset);
         mAppBarLayout = (AppBarLayout) findViewById(R.id.main_app_bar);
+        localityView = (TextView) findViewById(R.id.main_locality);
 
         mTemperatureView.setTypeface(robotoThin);
         mWindSpeedView.setTypeface(robotoLight);
@@ -413,7 +412,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                     case CurrentWeatherService.ACTION_WEATHER_UPDATE_OK:
                         mSwipeRefresh.setRefreshing(false);
                         setUpdateButtonState(false);
-                        updateCurrentWeather();
+                        preLoadWeather();
                         break;
                     case CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL:
                         mSwipeRefresh.setRefreshing(false);
@@ -434,28 +433,23 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     FloatingActionButton.OnClickListener fabListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+            CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(MainActivity.this);
+            CurrentWeatherDbHelper.WeatherRecord currentWeatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
+            Weather weather = currentWeatherRecord.getWeather();
+
             String temperatureWithUnit = AppPreference.getTemperatureWithUnit(
                     MainActivity.this,
-                    Math.round(mPrefWeather.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0)));
+                    weather.getTemperature());
             windWithUnit = AppPreference.getWindWithUnit(
                     MainActivity.this,
-                    mPrefWeather.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0));
-            String weather;
-            String city;
+                    weather.getWindSpeed());
             String description;
-            String wind;
             String sunrise;
             String sunset;
-            city = mSharedPreferences.getString(Constants.APP_SETTINGS_CITY, "London");
-            if(AppPreference.isUpdateLocationEnabled(storedContext)) {
-                city = mSharedPreferences.getString(Constants.APP_SETTINGS_GEO_CITY, "London");
-            }
-            description = Utils.getWeatherDescription(MainActivity.this);
-            sunrise = Utils.unixTimeToFormatTime(MainActivity.this, mPrefWeather
-                    .getLong(Constants.WEATHER_DATA_SUNRISE, -1));
-            sunset = Utils.unixTimeToFormatTime(MainActivity.this, mPrefWeather
-                    .getLong(Constants.WEATHER_DATA_SUNSET, -1));
-            weather = "City: " + city +
+            description = Utils.getWeatherDescription(MainActivity.this, weather);
+            sunrise = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunrise());
+            sunset = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunset());
+            String weatherDescription = "City: " + currentLocation.getAddress().getLocality() +
                     "\nTemperature: " + temperatureWithUnit +
                     "\nDescription: " + description +
                     "\nWind: " + windWithUnit.getWindSpeed(1) + " " + windWithUnit.getWindUnit() +
@@ -463,7 +457,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                     "\nSunset: " + sunset;
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");
-            shareIntent.putExtra(Intent.EXTRA_TEXT, weather);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, weatherDescription);
             shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             try {
                 startActivity(Intent.createChooser(shareIntent, "Share Weather"));
@@ -507,9 +501,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             return true;
         }
         permissionsAndSettingsRequested = true;
-        String locationUpdateStrategy = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).getString(
-                Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY, "update_location_full");
-        if ("update_location_none".equals(locationUpdateStrategy)) {
+        Location autoUpdateLocation = locationsDbHelper.getLocationByOrderId(0);
+        if (!autoUpdateLocation.isEnabled()) {
             return true;
         }
         AlertDialog.Builder settingsAlert = new AlertDialog.Builder(MainActivity.this);
@@ -751,13 +744,17 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private void saveInitialPreferences() {
         SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(this).edit();
 
-        String selectedUpdateLocationStrategyString = "update_location_full";
+        boolean gpsEnabled = true;
+        boolean locationUpdateEnabled = true;
         switch (selectedUpdateLocationStrategy) {
-            case 0: selectedUpdateLocationStrategyString = "update_location_none"; break;
-            case 1: selectedUpdateLocationStrategyString = "update_location_full"; break;
-            case 2: selectedUpdateLocationStrategyString = "update_location_network_only"; break;
+            case 0: locationUpdateEnabled = false; gpsEnabled = false; break;
+            case 1: locationUpdateEnabled = true; gpsEnabled = true; break;
+            case 2: locationUpdateEnabled = true; gpsEnabled = false; break;
         }
-        preferences.putString(Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY, selectedUpdateLocationStrategyString);
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
+        Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
+        locationsDbHelper.updateEnabled(autoLocation.getId(), locationUpdateEnabled);
+        preferences.putBoolean(Constants.KEY_PREF_LOCATION_GPS_ENABLED, gpsEnabled);
 
         String selectedWakeupStrategyStrategyString = "nowakeup";
         switch (selectedWakeupStrategyStrategy) {
@@ -789,6 +786,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
         startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
         startLocationUpdateIntent.putExtra("updateSource", "MAIN");
+        startLocationUpdateIntent.putExtra("location", currentLocation);
         storedContext.startService(startLocationUpdateIntent);
     }
     

@@ -3,8 +3,10 @@ package org.thosp.yourlocalweather.utils;
 import android.app.AlarmManager;
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -12,12 +14,20 @@ import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.model.CurrentWeather;
+import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
+import org.thosp.yourlocalweather.model.Location;
+import org.thosp.yourlocalweather.model.LocationsContract;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.model.ReverseGeocodingCacheContract;
+import org.thosp.yourlocalweather.model.ReverseGeocodingCacheDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 
 import java.io.IOException;
@@ -49,16 +59,6 @@ public class Utils {
         paint.setTextAlign(Paint.Align.CENTER);
         canvas.drawText(text, 128, 200, paint);
         return bitmap;
-    }
-
-    public static String getStrIcon(Context context) {
-        SharedPreferences weatherPref = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
-                Context.MODE_PRIVATE);
-        Set<String> weatherDataIcons = weatherPref.getStringSet(Constants.WEATHER_DATA_ICON, new HashSet<String>());
-        if (weatherDataIcons.isEmpty()) {
-            return "";
-        }
-        return getStrIcon(context, weatherDataIcons.iterator().next());
     }
 
     public static String getStrIcon(Context context, Weather weather) {
@@ -132,46 +132,41 @@ public class Utils {
         return icon;
     }
 
-    public static void setWeatherIcon(ImageView imageView, Context context) {
+    public static void setWeatherIcon(ImageView imageView,
+                                      Context context,
+                                      CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
         if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
-            imageView.setImageBitmap(createWeatherIcon(context, getStrIcon(context)));
+            imageView.setImageBitmap(createWeatherIcon(context, getStrIcon(context, weatherRecord.getWeather())));
         } else {
-            SharedPreferences weatherPref = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
-                    Context.MODE_PRIVATE);
-            imageView.setImageResource(Utils.getWeatherResourceIcon(weatherPref));
+            imageView.setImageResource(Utils.getWeatherResourceIcon(weatherRecord));
         }
     }
 
 
-    public static void setWeatherIcon(RemoteViews remoteViews, Context context) {
+    public static void setWeatherIcon(RemoteViews remoteViews,
+                                      Context context,
+                                      CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
         if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
             remoteViews.setImageViewBitmap(R.id.widget_icon,
-                    createWeatherIcon(context, getStrIcon(context)));
+                    createWeatherIcon(context, getStrIcon(context, weatherRecord.getWeather())));
         } else {
-            SharedPreferences weatherPref = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
-                    Context.MODE_PRIVATE);
-            remoteViews.setImageViewResource(R.id.widget_icon, Utils.getWeatherResourceIcon(weatherPref));
+            remoteViews.setImageViewResource(R.id.widget_icon, Utils.getWeatherResourceIcon(weatherRecord));
         }
     }
 
-    public static int getWeatherResourceIcon(SharedPreferences weatherPref) {
-        Set<String> weatherIds = weatherPref.getStringSet(Constants.WEATHER_DATA_WEATHER_ID, new HashSet<String>());
-        if (weatherIds.isEmpty()) {
+    public static int getWeatherResourceIcon(CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
+        Weather weather = weatherRecord.getWeather();
+        if ((weather.getCurrentWeathers() == null) || weather.getCurrentWeathers().isEmpty()) {
             return R.drawable.ic_weather_set_1_31;
         }
-        int weatherId = Integer.parseInt(weatherIds.iterator().next());
-        float temperature = weatherPref.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0);
-        float wind = weatherPref.getFloat(Constants.WEATHER_DATA_WIND_SPEED, 0);
-        long sunrise = weatherPref.getLong(Constants.WEATHER_DATA_SUNRISE, 0);
-        long sunset = weatherPref.getLong(Constants.WEATHER_DATA_SUNSET, 0);
-        boolean strongWind = wind > 5;
-        Calendar now = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        long timeNow = now.getTimeInMillis() / 1000;
-        boolean day = (sunrise < timeNow) && (timeNow < sunset);
+        int weatherId = weather.getCurrentWeathers().iterator().next().getWeatherId();
+        boolean strongWind = weather.getWindSpeed() > 5;
+        long timeNow = weatherRecord.getLastUpdatedTime() / 1000;
+        boolean day = (weather.getSunrise() < timeNow) && (timeNow < weather.getSunset());
         switch (weatherId) {
             case 800:
                 if (day) {
-                    if (temperature > 30) {
+                    if (weather.getTemperature() > 30) {
                         return R.drawable.ic_weather_set_1_36;
                     } else {
                         return R.drawable.ic_weather_set_1_32;
@@ -308,9 +303,9 @@ public class Utils {
         }
     }
 
-    public static String setLastUpdateTime(Context context, long lastUpdate) {
+    public static String setLastUpdateTime(Context context, long lastUpdate, String locationSource) {
         Date lastUpdateTime = new Date(lastUpdate);
-        return DateFormat.getTimeFormat(context).format(lastUpdateTime) + " " + AppPreference.getUpdateSource(context);
+        return DateFormat.getTimeFormat(context).format(lastUpdateTime) + " " + getUpdateSource(context, locationSource);
     }
 
     public static long intervalMillisForAlarm(String intervalMinutes) {
@@ -328,6 +323,20 @@ public class Utils {
                 return AlarmManager.INTERVAL_DAY;
             default:
                 return interval * 60 * 1000;
+        }
+    }
+
+
+    public static String getUpdateSource(Context context, String locationSource) {
+        String updateDetailLevel = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_UPDATE_DETAIL, "preference_display_update_nothing");
+        switch (updateDetailLevel) {
+            case "preference_display_update_value":
+            case "preference_display_update_location_source":
+                return locationSource;
+            case "preference_display_update_nothing":
+            default:
+                return "";
         }
     }
 
@@ -351,13 +360,13 @@ public class Utils {
         return directions[index] + " " + arrows[index];
     }
 
-    public static URL getWeatherForecastUrl(String endpoint, String lat, String lon, String units, String lang) throws
+    public static URL getWeatherForecastUrl(String endpoint, double lat, double lon, String units, String lang) throws
                                                                                          MalformedURLException {
         String url = Uri.parse(endpoint)
                         .buildUpon()
                         .appendQueryParameter("appid", ApiKeys.OPEN_WEATHER_MAP_API_KEY)
-                        .appendQueryParameter("lat", lat)
-                        .appendQueryParameter("lon", lon)
+                        .appendQueryParameter("lat", String.valueOf(lat).replace(",", "."))
+                        .appendQueryParameter("lon", String.valueOf(lon).replace(",", "."))
                         .appendQueryParameter("units", units)
                         .appendQueryParameter("lang", "cs".equalsIgnoreCase(lang)?"cz":lang)
                         .build()
@@ -367,67 +376,35 @@ public class Utils {
     
     public static void getAndWriteAddressFromGeocoder(Geocoder geocoder,
                                                       Address address,
-                                                      String latitude,
-                                                      String longitude,
+                                                      double latitude,
+                                                      double longitude,
                                                       boolean resolveAddressByOS,
                                                       Context context) {
         try {
-            String latitudeEn = latitude.replace(",", ".");
-            String longitudeEn = longitude.replace(",", ".");
+            final LocationsDbHelper locationDbHelper = LocationsDbHelper.getInstance(context);
             if (resolveAddressByOS) {
-                List<Address> addresses = geocoder.getFromLocation(Double.parseDouble(latitudeEn), Double.parseDouble(longitudeEn), 1);
+                List<Address> addresses = geocoder.getFromLocation(latitude, longitude, 1);
                 if((addresses != null) && (addresses.size() > 0)) {
                     address = addresses.get(0);
                 }
             }
             if(address != null) {
-                SharedPreferences mSharedPreferences = context.getSharedPreferences(Constants.APP_SETTINGS_NAME,
-                        Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = mSharedPreferences.edit();
-                editor.putBoolean(Constants.APP_SETTINGS_ADDRESS_FOUND, true);
-                if((address.getLocality() != null) && !"".equals(address.getLocality())) {
-                    editor.putString(Constants.APP_SETTINGS_GEO_CITY, address.getLocality());
-                } else {
-                    editor.putString(Constants.APP_SETTINGS_GEO_CITY, address.getSubAdminArea());
-                }
-                editor.putString(Constants.APP_SETTINGS_GEO_COUNTRY_NAME, address.getCountryName());
-                if(address.getAdminArea() != null) {
-                    editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_COUNTRY, address.getAdminArea());
-                } else {
-                    editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_COUNTRY, null);
-                }
-                editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_CITY, address.getSubLocality());
-                editor.apply();
+                locationDbHelper.updateAutoLocationAddress(PreferenceUtil.getLanguage(context), address);
             } else {
-                setNoLocationFound(context);
+                locationDbHelper.setNoLocationFound(context);
             }
         } catch (IOException | NumberFormatException ex) {
             Log.e(Utils.class.getName(), "Unable to get address from latitude and longitude", ex);
         }
     }
 
-    public static void setNoLocationFound(Context context) {
-        SharedPreferences mSharedPreferences = context.getSharedPreferences(Constants.APP_SETTINGS_NAME,
-                Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putBoolean(Constants.APP_SETTINGS_ADDRESS_FOUND, false);
-        editor.putString(Constants.APP_SETTINGS_GEO_CITY, context.getString(R.string.location_not_found));
-        editor.putString(Constants.APP_SETTINGS_GEO_COUNTRY_NAME, "");
-        editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_COUNTRY, "");
-        editor.putString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_CITY, "");
-        long now = System.currentTimeMillis();
-        editor.putLong(Constants.LAST_UPDATE_TIME_IN_MS, now);
-        //editor.putLong(Constants.LAST_LOCATION_UPDATE_TIME_IN_MS, now); don't set this time because of other resource
-        editor.apply();
-    }
-
-    public static String getCityAndCountry(Context context) {
-        SharedPreferences preferences = context.getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
-        if(AppPreference.isUpdateLocationEnabled(context)) {
-            return getCityAndCountryFromGeolocation(preferences);
-        } else {
-            return getCityAndCountryFromPreference(context);
+    public static String getCityAndCountry(Context context, int locationOrderId) {
+        final LocationsDbHelper locationDbHelper = LocationsDbHelper.getInstance(context);
+        Location foundLocation = locationDbHelper.getLocationByOrderId(locationOrderId);
+        if ((foundLocation == null) || !foundLocation.isAddressFound()) {
+            return context.getString(R.string.location_not_found);
         }
+        return getCityAndCountryFromAddress(foundLocation.getAddress());
     }
 
     public static String getWeatherDescription(Context context, Weather weather) {
@@ -436,30 +413,11 @@ public class Utils {
         }
         StringBuilder currentWeatherDescription = new StringBuilder();
         boolean first = true;
-        for (Weather.CurrentWeather currentWeather: weather.getCurrentWeathers()) {
+        for (CurrentWeather currentWeather: weather.getCurrentWeathers()) {
             if (!first) {
                 currentWeatherDescription.append(", ");
             }
             currentWeatherDescription.append(capitalizeFirstLetter(currentWeather.getDescription()));
-            first = false;
-        }
-        return currentWeatherDescription.toString();
-    }
-
-    public static String getWeatherDescription(Context context) {
-        if(AppPreference.hideDescription(context)) {
-            return " ";
-        }
-        SharedPreferences weatherPref = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
-                Context.MODE_PRIVATE);
-        Set<String> weatherDescriptions = weatherPref.getStringSet(Constants.WEATHER_DATA_DESCRIPTION, new HashSet<String>());
-        StringBuilder currentWeatherDescription = new StringBuilder();
-        boolean first = true;
-        for (Iterator<String> weatherIterator = weatherDescriptions.iterator(); weatherIterator.hasNext(); ) {
-            if (!first) {
-                currentWeatherDescription.append(", ");
-            }
-            currentWeatherDescription.append(capitalizeFirstLetter(weatherIterator.next()));
             first = false;
         }
         return currentWeatherDescription.toString();
@@ -472,12 +430,23 @@ public class Utils {
         return input.substring(0, 1).toUpperCase() + input.substring(1);
     }
 
-    private static String getCityAndCountryFromGeolocation(SharedPreferences preferences) {
-        String geoCountryName = preferences.getString(Constants.APP_SETTINGS_GEO_COUNTRY_NAME, "");
-        String geoCity = preferences.getString(Constants.APP_SETTINGS_GEO_CITY, "");
-        String geoDistrictOfCity = preferences.getString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_CITY, "");
+    public static String getCityAndCountryFromAddress(Address address) {
+        if (address == null) {
+            return "";
+        }
+        String geoCity;
+        if((address.getLocality() != null) && !"".equals(address.getLocality())) {
+            geoCity = address.getLocality();
+        } else {
+            geoCity = address.getSubAdminArea();
+        }
+        String geoCountryDistrict = null;
+        if(address.getAdminArea() != null) {
+            geoCountryDistrict = address.getAdminArea();
+        }
+        String geoDistrictOfCity = address.getSubLocality();
+        String geoCountryName = address.getCountryName();
         if ("".equals(geoDistrictOfCity) || geoCity.equalsIgnoreCase(geoDistrictOfCity)) {
-            String geoCountryDistrict = preferences.getString(Constants.APP_SETTINGS_GEO_DISTRICT_OF_COUNTRY, "");
             if ((geoCountryDistrict == null) || "".equals(geoCountryDistrict) || geoCity.equals(geoCountryDistrict)) {
                 return formatLocalityToTwoLines((("".equals(geoCity))?"":(geoCity)) + (("".equals(geoCountryName))?"":(", " + geoCountryName)));
             }
@@ -485,7 +454,7 @@ public class Utils {
         }
         return formatLocalityToTwoLines((("".equals(geoCity))?"":(geoCity + " - ")) + geoDistrictOfCity + (("".equals(geoCountryName))?"":(", " + geoCountryName)));
     }
-    
+
     private static String formatLocalityToTwoLines(String inputLocation) {
         if (inputLocation.length() < 30) {
             return inputLocation;
@@ -494,10 +463,5 @@ public class Utils {
             inputLocation.replaceFirst(", ", "\n");
         }
         return inputLocation;
-    }
-    
-    private static String getCityAndCountryFromPreference(Context context) {
-        String[] cityAndCountryArray = AppPreference.getCityAndCode(context);
-        return cityAndCountryArray[0] + ", " + cityAndCountryArray[1];
     }
 }

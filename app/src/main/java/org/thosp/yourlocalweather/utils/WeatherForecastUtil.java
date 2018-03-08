@@ -11,7 +11,11 @@ import com.loopj.android.http.JsonHttpResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
+import org.thosp.yourlocalweather.model.Location;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastResultHandler;
 
 import java.net.MalformedURLException;
@@ -32,12 +36,18 @@ public class WeatherForecastUtil {
 
     public static void getWeather(final Context context,
                                   final WeatherForecastResultHandler weatherForecastResultHandler) {
-        SharedPreferences pref = context.getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
-        String latitude = pref.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
-        String longitude = pref.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
-        String locale = LanguageUtil.getLanguageName(PreferenceUtil.getLanguage(context));
+
+        long locationId = AppPreference.getCurrentLocationId(context);
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
+        Location location = locationsDbHelper.getLocationById(locationId);
+
         try {
-            final URL url = getWeatherForecastUrl(Constants.WEATHER_FORECAST_ENDPOINT, latitude, longitude, "metric", locale);
+            final URL url = getWeatherForecastUrl(
+                    Constants.WEATHER_FORECAST_ENDPOINT,
+                    location.getLatitude(),
+                    location.getLongitude(),
+                    "metric",
+                    location.getLocale());
             Handler mainHandler = new Handler(Looper.getMainLooper());
             Runnable myRunnable = new Runnable() {
                 @Override
@@ -51,8 +61,7 @@ public class WeatherForecastUtil {
 
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, JSONObject weatherForecastResponse) {
-                            parseWeatherForecast(weatherForecastResponse, weatherForecastResultHandler);
-                            AppPreference.saveLastForecastUpdateTimeMillis(context);
+                            parseWeatherForecast(context, weatherForecastResponse, weatherForecastResultHandler);
                         }
 
                         @Override
@@ -75,10 +84,11 @@ public class WeatherForecastUtil {
         }
     }
 
-    private static void parseWeatherForecast(JSONObject weatherForecastResponse,
+    private static void parseWeatherForecast(Context context,
+                                             JSONObject weatherForecastResponse,
                                              WeatherForecastResultHandler weatherForecastResultHandler) {
+        CompleteWeatherForecast completeWeatherForecast = new CompleteWeatherForecast();
         try {
-            List<DetailedWeatherForecast> mWeatherForecastList = new ArrayList<>();
             JSONArray weatherForecastList = weatherForecastResponse.getJSONArray("list");
             for (int weatherForecastCounter = 0; weatherForecastCounter < weatherForecastList.length(); weatherForecastCounter++) {
                 DetailedWeatherForecast weatherForecast = new DetailedWeatherForecast();
@@ -118,11 +128,17 @@ public class WeatherForecastUtil {
                     weatherForecast.addWeatherCondition(weatherCondition.getString("icon"), weatherCondition.getString("description"));
                 }
 
-                mWeatherForecastList.add(weatherForecast);
+                completeWeatherForecast.addDetailedWeatherForecast(weatherForecast);
             }
-            weatherForecastResultHandler.processResources(mWeatherForecastList);
         } catch (JSONException e) {
             weatherForecastResultHandler.processError(e);
         }
+        WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
+        long lastUpdate = System.currentTimeMillis();
+        long locationId = AppPreference.getCurrentLocationId(context);
+        weatherForecastDbHelper.saveWeatherForecast(locationId,
+                                                    lastUpdate,
+                                                    completeWeatherForecast);
+        weatherForecastResultHandler.processResources(completeWeatherForecast, lastUpdate);
     }
 }

@@ -79,15 +79,15 @@ public class NominatimLocationService {
     private static final String WIRE_COUNTRYCODE = "country_code";
     private static Formatter formatter;
 
-    protected void getFromLocation(final Context context,
+    public void getFromLocation(final Context context,
                                             final double latitude,
                                             final double longitude,
                                             int maxResults,
                                             final String locale,
-                                            final MozillaLocationService.ProcessResultFromAddressResolution processResultFromAddressResolution) {
+                                            final ProcessResultFromAddressResolution processResultFromAddressResolution) {
 
         appendLog(context, TAG, "getFromLocation:" + latitude + ", " + longitude + ", " + locale);
-        final ReverseGeocodingCacheDbHelper mDbHelper = new ReverseGeocodingCacheDbHelper(context);
+        final ReverseGeocodingCacheDbHelper mDbHelper = ReverseGeocodingCacheDbHelper.getInstance(context);
 
         List<Address> addressesFromCache = retrieveLocationFromCache(context, mDbHelper, latitude, longitude, locale);
         if (addressesFromCache != null) {

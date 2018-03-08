@@ -34,6 +34,7 @@ public class NetworkLocationProvider extends Service {
     private volatile Calendar nextScanningAllowedFrom;
     private volatile WifiScanCallback mWifiScanResults;
     private AlarmManager alarmManager;
+    private org.thosp.yourlocalweather.model.Location currentLocation;
 
     /**
      * Receives location updates as well as wifi scan result updates
@@ -94,7 +95,8 @@ public class NetworkLocationProvider extends Service {
                 if (intent.getExtras() != null) {
                     destinationPackageName = intent.getExtras().getString("destinationPackageName");
                     resolveAddress = intent.getExtras().getBoolean("resolveAddress");
-                    inputLocation = intent.getExtras().getParcelable("location");
+                    inputLocation = intent.getExtras().getParcelable("inputLocation");
+                    currentLocation = intent.getExtras().getParcelable("location");
                 }
                 break;
             default:
@@ -157,6 +159,7 @@ public class NetworkLocationProvider extends Service {
     private void getLocationFromWifisAndCells(List<ScanResult> scans) {
         appendLog(getBaseContext(), TAG, "getLocationFromWifisAndCells(), scans=" + ((scans != null)?scans.size():"null"));
         MozillaLocationService.getInstance().getLocationFromCellsAndWifis(getBaseContext(),
+                                                                          currentLocation,
                                                                           LocationNetworkSourcesService.getInstance().getCells(getBaseContext(),
                                                                           mTelephonyManager),
                                                                           scans,

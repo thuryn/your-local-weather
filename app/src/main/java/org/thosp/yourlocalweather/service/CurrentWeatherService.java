@@ -1,5 +1,7 @@
 package org.thosp.yourlocalweather.service;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 
@@ -14,6 +17,10 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.thosp.yourlocalweather.ConnectionDetector;
+import org.thosp.yourlocalweather.model.CurrentWeather;
+import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
+import org.thosp.yourlocalweather.model.Location;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
@@ -22,14 +29,14 @@ import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
 import org.json.JSONException;
 
-import static org.thosp.yourlocalweather.MainActivity.mWeather;
-
 import org.thosp.yourlocalweather.WeatherJSONParser;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.widget.LessWidgetService;
 import org.thosp.yourlocalweather.widget.MoreWidgetService;
 
 import java.net.MalformedURLException;
+import java.util.HashSet;
+import java.util.Set;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -46,7 +53,8 @@ public class CurrentWeatherService extends Service {
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     private String updateSource;
-    private boolean gettingWeatherStarted;
+    private volatile boolean gettingWeatherStarted;
+    private Location currentLocation;
     
     @Override
     public IBinder onBind(Intent intent) {
@@ -62,11 +70,8 @@ public class CurrentWeatherService extends Service {
             if (!gettingWeatherStarted) {
                 return;
             }
-            
-            SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
-                Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = mSharedPreferences.edit();
-            String originalUpdateState = mSharedPreferences.getString(Constants.APP_SETTINGS_UPDATE_SOURCE, "-");
+
+            String originalUpdateState = currentLocation.getLocationSource();
             appendLog(getBaseContext(), TAG, "originalUpdateState:" + originalUpdateState);
             String newUpdateState = originalUpdateState;
             if (originalUpdateState.contains("N")) {
@@ -75,9 +80,12 @@ public class CurrentWeatherService extends Service {
             } else if (originalUpdateState.contains("G")) {
                 newUpdateState = "L";
             }
-            appendLog(getBaseContext(), TAG, "newUpdateState:" + newUpdateState);
-            editor.putString(Constants.APP_SETTINGS_UPDATE_SOURCE, newUpdateState);
-            editor.apply();
+            appendLog(getBaseContext(), TAG, "currentLocation:" + currentLocation + ", newUpdateState:" + newUpdateState);
+            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+            if (currentLocation != null) {
+                locationsDbHelper.updateLocationSource(currentLocation.getId(), newUpdateState);
+                currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
+            }
             sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
         }
     };
@@ -85,7 +93,7 @@ public class CurrentWeatherService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
-        
+
         if (intent == null) {
             return ret;
         }
@@ -95,11 +103,22 @@ public class CurrentWeatherService extends Service {
             if(!TextUtils.isEmpty(currentUpdateSource)) {
                 updateSource = currentUpdateSource;
             }
+            currentLocation = intent.getExtras().getParcelable("location");
         }
-        
+
         ConnectionDetector connectionDetector = new ConnectionDetector(this);
         if (!connectionDetector.isNetworkAvailableAndConnected()) {
             return ret;
+        }
+
+        if (gettingWeatherStarted) {
+            AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
+                    0,
+                    intent,
+                    PendingIntent.FLAG_CANCEL_CURRENT);
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                            SystemClock.elapsedRealtime() + 10000, pendingIntent);
         }
 
         gettingWeatherStarted = true;
@@ -110,18 +129,17 @@ public class CurrentWeatherService extends Service {
         Runnable myRunnable = new Runnable() {
             @Override
             public void run() {
-                SharedPreferences preferences = getSharedPreferences(Constants.APP_SETTINGS_NAME, 0);
-                final String latitude = preferences.getString(Constants.APP_SETTINGS_LATITUDE, "51.51");
-                final String longitude = preferences.getString(Constants.APP_SETTINGS_LONGITUDE, "-0.13");
-                final String locale = LanguageUtil.getLanguageName(PreferenceUtil.getLanguage(context));
-                final float latInPref = Float.parseFloat(latitude.replace(",", "."));
-                final float lonInPref = Float.parseFloat(longitude.replace(",", "."));
-
-                appendLog(context, TAG, "weather get params: latitude:" + latitude + ", longitude" + longitude);
+                final String locale = currentLocation.getLocale();
+                appendLog(context,
+                        TAG,
+                        "weather get params: latitude:" +
+                        currentLocation.getLatitude() +
+                        ", longitude" +
+                        currentLocation.getLongitude());
                 try {
                     client.get(Utils.getWeatherForecastUrl(Constants.WEATHER_ENDPOINT,
-                            latitude.replace(',', '.'),
-                            longitude.replace(',', '.'),
+                            currentLocation.getLatitude(),
+                            currentLocation.getLongitude(),
                             "metric",
                             locale).toString(), null, new AsyncHttpResponseHandler() {
 
@@ -137,22 +155,26 @@ public class CurrentWeatherService extends Service {
                                 appendLog(context, TAG, "weather got, result:" + weatherRaw);
 
                                 Weather weather = WeatherJSONParser.getWeather(weatherRaw);
-                                gettingWeatherStarted = false;
                                 timerHandler.removeCallbacksAndMessages(null);
 
-                                SharedPreferences mSharedPreferences = getSharedPreferences(Constants.APP_SETTINGS_NAME,
-                                        Context.MODE_PRIVATE);
-                                String updateSource = mSharedPreferences.getString(Constants.APP_SETTINGS_UPDATE_SOURCE, "-");
-                                if ("-".equals(updateSource)) {
-                                    updateSource = "W";
+                                String locationSource = currentLocation.getLocationSource();
+                                appendLog(context,
+                                        TAG,
+                                        "Location source is:" + locationSource);
+                                if ("-".equals(locationSource)) {
+                                    locationSource = "W";
                                 }
-                                if ((Math.abs(latInPref - weather.coord.getLat()) < 0.01) &&
-                                        (Math.abs(lonInPref - weather.coord.getLon()) < 0.01)) {
-                                    AppPreference.saveWeather(context, weather, updateSource);
+                                if ((Math.abs(currentLocation.getLatitude() - weather.getLat()) < 0.01) &&
+                                        (Math.abs(currentLocation.getLongitude() - weather.getLon()) < 0.01)) {
+                                    saveWeather(context, weather, locationSource);
                                     sendResult(ACTION_WEATHER_UPDATE_OK, weather);
                                 } else {
-                                    appendLog(context, TAG, "Weather not saved because of difference in coord:" +
-                                            (latInPref - weather.coord.getLat()) + ", " + (latInPref - weather.coord.getLat()));
+                                    appendLog(context,
+                                            TAG,
+                                            "Weather not saved because of difference in coord:" +
+                                            (currentLocation.getLatitude() - weather.getLat()) +
+                                                    ", " +
+                                                    (currentLocation.getLongitude() - weather.getLon()));
                                     sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
                                 }
                             } catch (JSONException e) {
@@ -184,6 +206,7 @@ public class CurrentWeatherService extends Service {
 
     public void sendResult(String result, Weather weather) {
         stopRefreshRotation();
+        gettingWeatherStarted = false;
         startService(new Intent(getBaseContext(), LessWidgetService.class));
         startService(new Intent(getBaseContext(), MoreWidgetService.class));
         startService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
@@ -198,9 +221,17 @@ public class CurrentWeatherService extends Service {
             }
         }
     }
+
+    private void saveWeather(Context context, Weather weather, String updateSource) {
+        final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
+        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
+        long now = System.currentTimeMillis();
+        currentWeatherDbHelper.saveWeather(currentLocation.getId(), now, weather);
+        locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(), now, updateSource);
+        currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
+    }
     
     private void sendIntentToMain(String result, Weather weather) {
-        mWeather = weather;
         Intent intent = new Intent(ACTION_WEATHER_UPDATE_RESULT);
         if (result.equals(ACTION_WEATHER_UPDATE_OK)) {
             intent.putExtra(ACTION_WEATHER_UPDATE_RESULT, ACTION_WEATHER_UPDATE_OK);

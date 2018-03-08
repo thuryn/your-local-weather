@@ -5,6 +5,10 @@ import android.content.SharedPreferences;
 import android.widget.RemoteViews;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
+import org.thosp.yourlocalweather.model.Location;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -19,19 +23,38 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
     private static final String WIDGET_NAME = "MORE_WIDGET";
 
     @Override
-    protected void preLoadWeather(Context context, RemoteViews remoteViews) {
-        SharedPreferences weatherPref = context.getSharedPreferences(Constants.PREF_WEATHER_NAME,
-                                                                     Context.MODE_PRIVATE);
-        String lastUpdate = Utils.setLastUpdateTime(context,
-                                                    AppPreference.getLastUpdateTimeMillis(context));
-        remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context));
-        remoteViews.setTextViewText(R.id.widget_temperature,
-                AppPreference.getTemperatureWithUnit(
-                        context,
-                        weatherPref.getFloat(Constants.WEATHER_DATA_TEMPERATURE, 0)));
-        remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context));
-        Utils.setWeatherIcon(remoteViews, context);
-        remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
+    protected void preLoadWeather(Context context, RemoteViews remoteViews, int appWidgetId) {
+        final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
+        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
+        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
+
+        Long locationId = widgetSettingsDbHelper.getParamLong(appWidgetId, "locationId");
+
+        Location location;
+        if (locationId == null) {
+            location = locationsDbHelper.getLocationByOrderId(0);
+        } else {
+            location = locationsDbHelper.getLocationById(locationId);
+        }
+
+        if (location == null) {
+            return;
+        }
+
+        CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(location.getId());
+
+        if (weatherRecord != null) {
+            String lastUpdate = Utils.setLastUpdateTime(context, weatherRecord.getLastUpdatedTime(), location.getLocationSource());
+
+            remoteViews.setTextViewText(R.id.widget_temperature,
+                    AppPreference.getTemperatureWithUnit(
+                            context,
+                            weatherRecord.getWeather().getTemperature()));
+            remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context, location.getOrderId()));
+            remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, weatherRecord.getWeather()));
+            Utils.setWeatherIcon(remoteViews, context, weatherRecord);
+            remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
+        }
     }
 
     public static void setWidgetTheme(Context context, RemoteViews remoteViews) {

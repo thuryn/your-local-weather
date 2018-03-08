@@ -43,6 +43,7 @@ import android.widget.TextView;
 
 import com.obsez.android.lib.filechooser.ChooserDialog;
 
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.ReverseGeocodingCacheContract;
 import org.thosp.yourlocalweather.model.ReverseGeocodingCacheDbHelper;
 import org.thosp.yourlocalweather.service.NotificationService;
@@ -134,8 +135,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 Constants.PREF_LANGUAGE,
                 Constants.PREF_THEME,
                 Constants.KEY_PREF_WEATHER_ICON_SET,
-                Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY,
-                Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE
+                Constants.KEY_PREF_LOCATION_GPS_ENABLED,
+                Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE,
+                Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD,
+                Constants.KEY_PREF_LOCATION_UPDATE_PERIOD
         };
 
         @Override
@@ -148,6 +151,40 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             notificationSwitch.setOnPreferenceChangeListener(notificationListener);
 
             initLocationCache();
+
+            SensorManager senSensorManager  = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+            Sensor senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+            boolean deviceHasAccelerometer = senSensorManager.registerListener(sensorListener, senAccelerometer , SensorManager.SENSOR_DELAY_FASTEST);
+            senSensorManager.unregisterListener(sensorListener);
+
+            Preference updateWidgetUpdatePref = findPreference(Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD);
+            ListPreference updateListPref = (ListPreference) updateWidgetUpdatePref;
+            int accIndex = updateListPref.findIndexOfValue("0");
+
+            if (!deviceHasAccelerometer) {
+                CharSequence[] entries = updateListPref.getEntries();
+                CharSequence[] newEntries = new CharSequence[entries.length - 1];
+                int i = 0;
+                int j = 0;
+                for (CharSequence entry : entries) {
+                    if (i != accIndex) {
+                        newEntries[j] = entries[i];
+                        j++;
+                    }
+                    i++;
+                }
+                updateListPref.setEntries(newEntries);
+                if (updateListPref.getValue() == null) {
+                    updateListPref.setValueIndex(updateListPref.findIndexOfValue("60") - 1);
+                }
+            } else if (updateListPref.getValue() == null) {
+                updateListPref.setValueIndex(accIndex);
+            }
+            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getActivity());
+            ListPreference locationAutoPreference = (ListPreference) findPreference("location_auto_update_period_pref_key");
+            locationAutoPreference.setEnabled(locationsDbHelper.getLocationByOrderId(0).isEnabled());
+
+            initWakeUpStrategy();
         }
 
         @Override
@@ -222,7 +259,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     break;
                 case Constants.KEY_PREF_WEATHER_ICON_SET:
                     entrySummary(key);
-                case Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY:
+                case Constants.KEY_PREF_LOCATION_UPDATE_PERIOD:
+                case Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD:
                     entrySummary(key);
                 case Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE:
                     entrySummary(key);
@@ -290,7 +328,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(Preference preference) {
-                    ReverseGeocodingCacheDbHelper mDbHelper = new ReverseGeocodingCacheDbHelper(preference.getContext());
+                    ReverseGeocodingCacheDbHelper mDbHelper = ReverseGeocodingCacheDbHelper.getInstance(preference.getContext());
                     SQLiteDatabase db = mDbHelper.getWritableDatabase();
                     mDbHelper.onUpgrade(db, 0, 0);
                     return true;
@@ -333,9 +371,43 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             return locationLastingLastingId;
         }
 
+        private void initWakeUpStrategy() {
+            Preference wakeUpStrategy = findPreference(Constants.KEY_WAKE_UP_STRATEGY);
+            wakeUpStrategy.setSummary(
+                    getWakeUpStrategyLabel(
+                            PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(Constants.KEY_WAKE_UP_STRATEGY, "nowakeup")
+                    )
+            );
+            wakeUpStrategy.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference wakeUpStrategy, Object value) {
+                    String wakeUpStrategyValue = (String) value;
+                    wakeUpStrategy.setSummary(getString(getWakeUpStrategyLabel(wakeUpStrategyValue)));
+                    return true;
+                }
+            });
+        }
+
+        private int getWakeUpStrategyLabel(String wakeUpStrategyValue) {
+            int wakeUpStrategyId;
+            switch (wakeUpStrategyValue) {
+                case "wakeuppartial":
+                    wakeUpStrategyId = R.string.wakeuppartial_label;
+                    break;
+                case "wakeupfull":
+                    wakeUpStrategyId = R.string.wakeupfull_label;
+                    break;
+                case "nowakeup":
+                default:
+                    wakeUpStrategyId = R.string.nowakeup_label;
+                    break;
+            }
+            return wakeUpStrategyId;
+        }
+
         private String getDataFromCacheDB() {
 
-            ReverseGeocodingCacheDbHelper mDbHelper = new ReverseGeocodingCacheDbHelper(getActivity());
+            ReverseGeocodingCacheDbHelper mDbHelper = ReverseGeocodingCacheDbHelper.getInstance(getActivity());
             SQLiteDatabase db = mDbHelper.getReadableDatabase();
             long numberOfRowsInAddress = DatabaseUtils.queryNumEntries(db, ReverseGeocodingCacheContract.LocationAddressCache.TABLE_NAME);
 
@@ -401,6 +473,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             return lastRowsFromDB.toString();
         }
+
+        private SensorEventListener sensorListener = new SensorEventListener() {
+
+            @Override
+            public void onSensorChanged(SensorEvent sensorEvent) {
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int i) {
+            }
+        };
     }
 
     public static class WidgetPreferenceFragment extends PreferenceFragment implements
@@ -410,36 +493,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_widget);
-
-            SensorManager senSensorManager  = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
-            Sensor senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-            boolean deviceHasAccelerometer = senSensorManager.registerListener(sensorListener, senAccelerometer , SensorManager.SENSOR_DELAY_FASTEST);
-            senSensorManager.unregisterListener(sensorListener);
-
-            Preference updateWidgetUpdatePref = findPreference(Constants.KEY_PREF_WIDGET_UPDATE_PERIOD);
-            ListPreference updateListPref = (ListPreference) updateWidgetUpdatePref;
-            int accIndex = updateListPref.findIndexOfValue("0");
-
-            if (!deviceHasAccelerometer) {
-                CharSequence[] entries = updateListPref.getEntries();
-                CharSequence[] newEntries = new CharSequence[entries.length - 1];
-                int i = 0;
-                int j = 0;
-                for (CharSequence entry : entries) {
-                    if (i != accIndex) {
-                        newEntries[j] = entries[i];
-                        j++;
-                    }
-                    i++;
-                }
-                updateListPref.setEntries(newEntries);
-                if (updateListPref.getValue() == null) {
-                    updateListPref.setValueIndex(updateListPref.findIndexOfValue("60") - 1);
-                }
-            } else if (updateListPref.getValue() == null) {
-                updateListPref.setValueIndex(accIndex);
-            }
-            initWakeUpStrategy();
         }
 
         @Override
@@ -463,12 +516,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     getActivity().sendBroadcast(intent);
                     setSummary(Constants.KEY_PREF_WIDGET_THEME);
                     break;
-                case Constants.KEY_PREF_WIDGET_UPDATE_PERIOD:
-                    Intent intent1 = new Intent(Constants.ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED);
-                    getActivity().sendBroadcast(intent1);
-                    setSummary(Constants.KEY_PREF_WIDGET_UPDATE_PERIOD);
-                    break;
-                case Constants.KEY_PREF_LOCATION_UPDATE_STRATEGY:
+                case Constants.KEY_PREF_LOCATION_GPS_ENABLED:
                     break;
                 case Constants.KEY_PREF_WIDGET_SHOW_LABELS:
                     getActivity().sendBroadcast(new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED));
@@ -485,7 +533,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onResume();
             getPreferenceScreen().getSharedPreferences()
                                  .registerOnSharedPreferenceChangeListener(this);
-            setSummary(Constants.KEY_PREF_WIDGET_UPDATE_PERIOD);
             setSummary(Constants.KEY_PREF_WIDGET_THEME);
             setDetailedSummary(Constants.KEY_PREF_UPDATE_DETAIL);
         }
@@ -518,51 +565,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             Preference updatePref = findPreference(prefKey);
             ListPreference updateListPref = (ListPreference) updatePref;
             updatePref.setSummary(updateListPref.getEntry());
-        }
-
-        private SensorEventListener sensorListener = new SensorEventListener() {
-
-            @Override
-            public void onSensorChanged(SensorEvent sensorEvent) {
-            }
-
-            @Override
-            public void onAccuracyChanged(Sensor sensor, int i) {
-            }
-        };
-
-        private void initWakeUpStrategy() {
-            Preference wakeUpStrategy = findPreference(Constants.KEY_WAKE_UP_STRATEGY);
-            wakeUpStrategy.setSummary(
-                    getWakeUpStrategyLabel(
-                            PreferenceManager.getDefaultSharedPreferences(getActivity()).getString(Constants.KEY_WAKE_UP_STRATEGY, "nowakeup")
-                    )
-            );
-            wakeUpStrategy.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
-                @Override
-                public boolean onPreferenceChange(Preference wakeUpStrategy, Object value) {
-                    String wakeUpStrategyValue = (String) value;
-                    wakeUpStrategy.setSummary(getString(getWakeUpStrategyLabel(wakeUpStrategyValue)));
-                    return true;
-                }
-            });
-        }
-
-        private int getWakeUpStrategyLabel(String wakeUpStrategyValue) {
-            int wakeUpStrategyId;
-            switch (wakeUpStrategyValue) {
-                case "wakeuppartial":
-                    wakeUpStrategyId = R.string.wakeuppartial_label;
-                    break;
-                case "wakeupfull":
-                    wakeUpStrategyId = R.string.wakeupfull_label;
-                    break;
-                case "nowakeup":
-                default:
-                    wakeUpStrategyId = R.string.nowakeup_label;
-                    break;
-            }
-            return wakeUpStrategyId;
         }
     }
 

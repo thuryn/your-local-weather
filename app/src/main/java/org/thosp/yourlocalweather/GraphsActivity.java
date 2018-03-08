@@ -1,6 +1,7 @@
 package org.thosp.yourlocalweather;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -28,8 +29,11 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
+import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.WeatherForecast;
+import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastResultHandler;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
@@ -44,9 +48,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -61,7 +68,8 @@ public class GraphsActivity extends BaseActivity {
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     private ConnectionDetector mConnectionDetector;
-    public List<DetailedWeatherForecast> mForecastList;
+    private Map<Long, List<DetailedWeatherForecast>> weatherForecastList = new HashMap<>();
+    private Map<Long, Long> locationWeatherForecastLastUpdate = new HashMap<>();
     private LineChart mTemperatureChart;
     private LineChart mWindChart;
     private LineChart mRainChart;
@@ -77,7 +85,6 @@ public class GraphsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graphs);
         mConnectionDetector = new ConnectionDetector(this);
-        mForecastList = new ArrayList<>();
         mGetWeatherProgress = getProgressDialog();
         mValueFormatter = new CustomValueFormatter();
         mYAxisFormatter = new YAxisValueFormatter();
@@ -115,10 +122,6 @@ public class GraphsActivity extends BaseActivity {
                     case Constants.PARSE_RESULT_SUCCESS:
                         setVisibleUpdating(false);
                         updateUI();
-                        if (!mForecastList.isEmpty()) {
-                            AppPreference.saveWeatherForecast(GraphsActivity.this,
-                                                              mForecastList);
-                        }
                         break;
                 }
             }
@@ -130,7 +133,7 @@ public class GraphsActivity extends BaseActivity {
                 null, this));
     }
 
-    private void setTemperatureChart() {
+    private void setTemperatureChart(long locationId) {
         mTemperatureChart.setDescription("");
         mTemperatureChart.setDrawGridBackground(false);
         mTemperatureChart.setTouchEnabled(true);
@@ -139,7 +142,7 @@ public class GraphsActivity extends BaseActivity {
         mTemperatureChart.setPinchZoom(true);
         mTemperatureChart.getLegend().setEnabled(false);
 
-        formatDate();
+        formatDate(locationId);
         XAxis x = mTemperatureChart.getXAxis();
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -159,8 +162,8 @@ public class GraphsActivity extends BaseActivity {
         mTemperatureChart.getAxisRight().setEnabled(false);
 
         List<Entry> entries = new ArrayList<>();
-        for (int i = 0; i < mForecastList.size(); i++) {
-            double temperatureDay = AppPreference.getTemperature(this, mForecastList.get(i).getTemperature());
+        for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
+            double temperatureDay = AppPreference.getTemperature(this, weatherForecastList.get(locationId).get(i).getTemperature());
             entries.add(new Entry(i, (float) temperatureDay));
         }
 
@@ -199,7 +202,7 @@ public class GraphsActivity extends BaseActivity {
         mTemperatureChart.invalidate();
     }
     
-    private void setWindChart() {
+    private void setWindChart(long locationId) {
         mWindChart.setDescription("");
         mWindChart.setDrawGridBackground(false);
         mWindChart.setTouchEnabled(true);
@@ -208,7 +211,7 @@ public class GraphsActivity extends BaseActivity {
         mWindChart.setPinchZoom(true);
         mWindChart.getLegend().setEnabled(false);
 
-        formatDate();
+        formatDate(locationId);
         XAxis x = mWindChart.getXAxis();
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -228,8 +231,8 @@ public class GraphsActivity extends BaseActivity {
         mWindChart.getAxisRight().setEnabled(false);
 
         List<Entry> entries = new ArrayList<>();
-        for (int i = 0; i < mForecastList.size(); i++) {
-            double wind = AppPreference.getWind(this, mForecastList.get(i).getWindSpeed());
+        for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
+            double wind = AppPreference.getWind(this, weatherForecastList.get(locationId).get(i).getWindSpeed());
             entries.add(new Entry(i, (float) wind));
         }
 
@@ -268,7 +271,7 @@ public class GraphsActivity extends BaseActivity {
         mWindChart.invalidate();
     }
 
-    private void setRainChart() {
+    private void setRainChart(long locationId) {
         mRainChart.setDescription("");
         mRainChart.setDrawGridBackground(false);
         mRainChart.setTouchEnabled(true);
@@ -277,7 +280,7 @@ public class GraphsActivity extends BaseActivity {
         mRainChart.setPinchZoom(true);
         mRainChart.getLegend().setEnabled(false);
 
-        formatDate();
+        formatDate(locationId);
         XAxis x = mRainChart.getXAxis();
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -297,8 +300,8 @@ public class GraphsActivity extends BaseActivity {
         mRainChart.getAxisRight().setEnabled(false);
 
         List<Entry> entries = new ArrayList<>();
-        for (int i = 0; i < mForecastList.size(); i++) {
-            entries.add(new Entry(i, (float) mForecastList.get(i).getRain()));
+        for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
+            entries.add(new Entry(i, (float) weatherForecastList.get(locationId).get(i).getRain()));
         }
 
         LineDataSet set;
@@ -336,7 +339,7 @@ public class GraphsActivity extends BaseActivity {
         mRainChart.invalidate();
     }
 
-    private void setSnowChart() {
+    private void setSnowChart(long locationId) {
         mSnowChart.setDescription("");
         mSnowChart.setDrawGridBackground(false);
         mSnowChart.setTouchEnabled(true);
@@ -345,7 +348,7 @@ public class GraphsActivity extends BaseActivity {
         mSnowChart.setPinchZoom(true);
         mSnowChart.getLegend().setEnabled(false);
 
-        formatDate();
+        formatDate(locationId);
         XAxis x = mSnowChart.getXAxis();
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -365,8 +368,8 @@ public class GraphsActivity extends BaseActivity {
         mSnowChart.getAxisRight().setEnabled(false);
 
         List<Entry> entries = new ArrayList<>();
-        for (int i = 0; i < mForecastList.size(); i++) {
-            entries.add(new Entry(i, (float) mForecastList.get(i).getSnow()));
+        for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
+            entries.add(new Entry(i, (float) weatherForecastList.get(locationId).get(i).getSnow()));
         }
 
         LineDataSet set;
@@ -404,14 +407,14 @@ public class GraphsActivity extends BaseActivity {
         mSnowChart.invalidate();
     }
 
-    private void formatDate() {
+    private void formatDate(long locationId) {
         SimpleDateFormat format = new SimpleDateFormat("EEE", Locale.getDefault());
-        if (mForecastList != null) {
-            int mSize = mForecastList.size();
+        if (weatherForecastList.get(locationId) != null) {
+            int mSize = weatherForecastList.get(locationId).size();
             mDatesArray = new String[mSize];
 
             for (int i = 0; i < mSize; i++) {
-                Date date = new Date(mForecastList.get(i).getDateTime() * 1000);
+                Date date = new Date(weatherForecastList.get(locationId).get(i).getDateTime() * 1000);
                 String day = format.format(date);
                 mDatesArray[i] = day;
             }
@@ -430,7 +433,7 @@ public class GraphsActivity extends BaseActivity {
         switch (item.getItemId()) {
             case R.id.action_refresh:
                 if (mConnectionDetector.isNetworkAvailableAndConnected()) {
-                    WeatherForecastUtil.getWeather(GraphsActivity.this, new GraphsWeatherForecastResultHandler());
+                    WeatherForecastUtil.getWeather(GraphsActivity.this, new GraphsWeatherForecastResultHandler(this));
                     setVisibleUpdating(true);
                 } else {
                     Toast.makeText(this,
@@ -484,7 +487,6 @@ public class GraphsActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mForecastList = AppPreference.loadWeatherForecast(this);
         updateUI();
     }
 
@@ -497,8 +499,17 @@ public class GraphsActivity extends BaseActivity {
     }
 
     public class GraphsWeatherForecastResultHandler implements WeatherForecastResultHandler {
-        public void processResources(List<DetailedWeatherForecast> weatherForecastList) {
-            mForecastList = weatherForecastList;
+
+        private Context context;
+
+        public GraphsWeatherForecastResultHandler(Context context) {
+            this.context = context;
+        }
+
+        public void processResources(CompleteWeatherForecast completeWeatherForecast, long lastUpdate) {
+            long locationId = AppPreference.getCurrentLocationId(context);
+            weatherForecastList.put(locationId, completeWeatherForecast.getWeatherForecastList());
+            locationWeatherForecastLastUpdate.put(locationId, lastUpdate);
             mHandler.sendEmptyMessage(Constants.PARSE_RESULT_SUCCESS);
         }
 
@@ -509,9 +520,21 @@ public class GraphsActivity extends BaseActivity {
     }
 
     private void updateUI() {
-        setTemperatureChart();
-        setWindChart();
-        setRainChart();
-        setSnowChart();
+        WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
+        long locationId = AppPreference.getCurrentLocationId(this);
+        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
+        if (weatherForecastRecord != null) {
+            weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
+            locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());
+        }
+        if ((weatherForecastRecord == null) || (locationWeatherForecastLastUpdate.get(locationId) + WeatherForecastActivity.AUTO_FORECAST_UPDATE_TIME_MILIS) <  Calendar.getInstance().getTimeInMillis()) {
+            WeatherForecastUtil.getWeather(GraphsActivity.this, new GraphsWeatherForecastResultHandler(this));
+            return;
+        }
+
+        setTemperatureChart(locationId);
+        setWindChart(locationId);
+        setRainChart(locationId);
+        setSnowChart(locationId);
     }
 }

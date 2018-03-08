@@ -1,10 +1,13 @@
 package org.thosp.yourlocalweather.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailedWeatherForecast implements Serializable {
+public class DetailedWeatherForecast implements Parcelable {
 
     private long dateTime;
     private double temperatureMin;
@@ -18,6 +21,10 @@ public class DetailedWeatherForecast implements Serializable {
     private double rain;
     private double snow;
     private List<WeatherCondition> weatherConditions = new ArrayList<>();
+
+    public DetailedWeatherForecast() {
+        super();
+    }
 
     public long getDateTime() {
         return dateTime;
@@ -118,21 +125,50 @@ public class DetailedWeatherForecast implements Serializable {
         return weatherConditions.get(0);
     }
 
-    public class WeatherCondition {
-        private String icon;
-        private String description;
+    @Override
+    public int describeContents() {
+        return 0;
+    }
 
-        public WeatherCondition(String icon, String description) {
-            this.icon = icon;
-            this.description = description;
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeLong(dateTime);
+        parcel.writeDouble(temperatureMin);
+        parcel.writeDouble(temperatureMax);
+        parcel.writeDouble(temperature);
+        parcel.writeDouble(pressure);
+        parcel.writeInt(humidity);
+        parcel.writeDouble(windSpeed);
+        parcel.writeDouble(windDegree);
+        parcel.writeInt(cloudiness);
+        parcel.writeDouble(rain);
+        parcel.writeDouble(snow);
+        parcel.writeTypedList(weatherConditions);
+    }
+
+    public static final Parcelable.Creator<DetailedWeatherForecast> CREATOR
+            = new Parcelable.Creator<DetailedWeatherForecast>() {
+        public DetailedWeatherForecast createFromParcel(Parcel in) {
+            return new DetailedWeatherForecast(in);
         }
 
-        public String getIcon() {
-            return icon;
+        public DetailedWeatherForecast[] newArray(int size) {
+            return new DetailedWeatherForecast[size];
         }
+    };
 
-        public String getDescription() {
-            return description;
-        }
+    private DetailedWeatherForecast(Parcel in) {
+        dateTime = in.readLong();
+        temperatureMin = in.readDouble();
+        temperatureMax = in.readDouble();
+        temperature = in.readDouble();
+        pressure = in.readDouble();
+        humidity = in.readInt();
+        windSpeed = in.readDouble();
+        windDegree = in.readDouble();
+        cloudiness = in.readInt();
+        rain = in.readDouble();
+        snow = in.readDouble();
+        in.readTypedList(weatherConditions, WeatherCondition.CREATOR);
     }
 }

@@ -1,17 +1,28 @@
 package org.thosp.yourlocalweather.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Weather {
+public class Weather implements Parcelable {
 
-    public Temperature temperature = new Temperature();
-    public Wind wind = new Wind();
+    private float temperature;
+    private float lon;
+    private float lat;
+    private float windSpeed;
+    private float windDirection;
+    private float pressure;
+    private int humidity;
+    private int clouds;
+    private long sunrise;
+    private long sunset;
     private List<CurrentWeather> currentWeathers = new ArrayList<>();
-    public CurrentCondition currentCondition = new CurrentCondition();
-    public Cloud cloud = new Cloud();
-    public Sys sys = new Sys();
-    public Coord coord = new Coord();
+
+    public Weather() {
+        super();
+    }
 
     public void addCurrentWeather(Integer id, String description, String iconId) {
         currentWeathers.add(new CurrentWeather(id, description, iconId));
@@ -21,154 +32,128 @@ public class Weather {
         return currentWeathers;
     }
 
-    public class Coord {
-
-        private float lon;
-        private float lat;
-
-        public float getLon() {
-            return lon;
-        }
-
-        public void setLon(float lon) {
-            this.lon = lon;
-        }
-
-        public float getLat() {
-            return lat;
-        }
-
-        public void setLat(float lat) {
-            this.lat = lat;
-        }
+    public float getTemperature() {
+        return temperature;
     }
 
-    public class Temperature {
-
-        private float mTemp;
-
-        public float getTemp() {
-            return mTemp;
-        }
-
-        public void setTemp(float temp) {
-            mTemp = temp;
-        }
+    public void setTemperature(float temperature) {
+        this.temperature = temperature;
     }
 
-    public class Wind {
-
-        private float mSpeed;
-        private float mDirection;
-
-        public float getSpeed() {
-            return mSpeed;
-        }
-
-        public void setSpeed(float speed) {
-            mSpeed = speed;
-        }
-
-        public float getDirection() {
-            return mDirection;
-        }
-
-        public void setDirection(float direction) {
-            mDirection = direction;
-        }
+    public float getLon() {
+        return lon;
     }
 
-    public class CurrentWeather {
-
-        private String mDescription;
-        private String mIdIcon;
-        private Integer mWeatherId;
-
-        public CurrentWeather(Integer id, String description, String iconId) {
-            this.mWeatherId = id;
-            this.mDescription = description;
-            this.mIdIcon = iconId;
-        }
-
-        public String getDescription() {
-            return mDescription;
-        }
-
-        public void setDescription(String description) {
-            mDescription = description.substring(0, 1).toUpperCase() + description.substring(1);
-        }
-
-        public String getIdIcon() {
-            return mIdIcon;
-        }
-
-        public void setIdIcon(String idIcon) {
-            mIdIcon = idIcon;
-        }
-
-        public Integer getWeatherId() {
-            return mWeatherId;
-        }
-
-        public void setWeatherId(Integer mWeatherId) {
-            this.mWeatherId = mWeatherId;
-        }
+    public void setLon(float lon) {
+        this.lon = lon;
     }
 
-    public class CurrentCondition {
-
-        private float mPressure;
-        private int mHumidity;
-
-        public float getPressure() {
-            return mPressure;
-        }
-
-        public void setPressure(float pressure) {
-            mPressure = pressure;
-        }
-
-        public int getHumidity() {
-            return mHumidity;
-        }
-
-        public void setHumidity(int humidity) {
-            mHumidity = humidity;
-        }
+    public float getLat() {
+        return lat;
     }
 
-    public class Cloud {
-
-        private int mClouds;
-
-        public int getClouds() {
-            return mClouds;
-        }
-
-        public void setClouds(int clouds) {
-            mClouds = clouds;
-        }
+    public void setLat(float lat) {
+        this.lat = lat;
     }
 
-    public class Sys {
+    public float getWindSpeed() {
+        return windSpeed;
+    }
 
-        private long mSunrise;
-        private long mSunset;
+    public void setWindSpeed(float windSpeed) {
+        this.windSpeed = windSpeed;
+    }
 
-        public long getSunrise() {
-            return mSunrise;
+    public float getWindDirection() {
+        return windDirection;
+    }
+
+    public void setWindDirection(float windDirection) {
+        this.windDirection = windDirection;
+    }
+
+    public float getPressure() {
+        return pressure;
+    }
+
+    public void setPressure(float pressure) {
+        this.pressure = pressure;
+    }
+
+    public int getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(int humidity) {
+        this.humidity = humidity;
+    }
+
+    public int getClouds() {
+        return clouds;
+    }
+
+    public void setClouds(int clouds) {
+        this.clouds = clouds;
+    }
+
+    public long getSunrise() {
+        return sunrise;
+    }
+
+    public void setSunrise(long sunrise) {
+        this.sunrise = sunrise;
+    }
+
+    public long getSunset() {
+        return sunset;
+    }
+
+    public void setSunset(long sunset) {
+        this.sunset = sunset;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeFloat(temperature);
+        parcel.writeFloat(lon);
+        parcel.writeFloat(lat);
+        parcel.writeFloat(windSpeed);
+        parcel.writeFloat(windDirection);
+        parcel.writeFloat(pressure);
+        parcel.writeInt(humidity);
+        parcel.writeInt(clouds);
+        parcel.writeLong(sunrise);
+        parcel.writeLong(sunset);
+        parcel.writeTypedList(currentWeathers);
+    }
+
+    public static final Parcelable.Creator<Weather> CREATOR
+            = new Parcelable.Creator<Weather>() {
+        public Weather createFromParcel(Parcel in) {
+            return new Weather(in);
         }
 
-        public void setSunrise(long sunrise) {
-            mSunrise = sunrise;
+        public Weather[] newArray(int size) {
+            return new Weather[size];
         }
+    };
 
-        public long getSunset() {
-            return mSunset;
-        }
-
-        public void setSunset(long sunset) {
-            mSunset = sunset;
-        }
+    private Weather(Parcel in) {
+        temperature = in.readFloat();
+        lon = in.readFloat();
+        lat = in.readFloat();
+        windSpeed = in.readFloat();
+        windDirection = in.readFloat();
+        pressure = in.readFloat();
+        humidity = in.readInt();
+        clouds = in.readInt();
+        sunrise = in.readLong();
+        sunset = in.readLong();
+        in.readTypedList(currentWeathers, CurrentWeather.CREATOR);
     }
 }

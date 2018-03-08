@@ -32,6 +32,7 @@ public class MozillaLocationService {
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     private static MozillaLocationService instance;
+    private org.thosp.yourlocalweather.model.Location currentLocation;
 
     private MozillaLocationService() {
     }
@@ -48,10 +49,12 @@ public class MozillaLocationService {
     private static final String PROVIDER = "ichnaea";
 
     public synchronized void getLocationFromCellsAndWifis(final Context context,
+                                                          org.thosp.yourlocalweather.model.Location currentLocation,
                                                           List<Cell> cells,
                                                           List<ScanResult> wiFis,
                                                           final String destinationPackageName,
                                                           final boolean resolveAddress) {
+        this.currentLocation = currentLocation;
         appendLog(context, TAG, "getLocationFromCellsAndWifis:wifi=" + ((wiFis != null)?wiFis.size():"null") +
                     ", cells=" + ((cells != null)?cells.size():"null"));
         if ((cells == null || cells.isEmpty()) && (wiFis == null || wiFis.size() < 2)) {
@@ -119,35 +122,22 @@ public class MozillaLocationService {
                                          boolean resolveAddress) {
         Intent sendIntent = new Intent("android.intent.action.LOCATION_UPDATE");
         sendIntent.setPackage(destinationPackageName);
-        sendIntent.putExtra("location", location);
+        sendIntent.putExtra("inputLocation", location);
+        sendIntent.putExtra("location", currentLocation);
         appendLog(context, TAG, "processUpdateOfLocation:resolveAddress:" + resolveAddress);
         if (resolveAddress && (location != null)) {
             appendLog(context, TAG, "processUpdateOfLocation:location:" + location.getLatitude() + ", " + location.getLongitude() + ", " + Locale.getDefault().getLanguage());
-            NominatimLocationService.getInstance().getFromLocation(context, location.getLatitude(), location.getLongitude(), 1, Locale.getDefault().getLanguage(), new ProcessResultFromAddressResolution(context, sendIntent));
+            NominatimLocationService.getInstance().getFromLocation(
+                    context,
+                    location.getLatitude(),
+                    location.getLongitude(),
+                    1,
+                    Locale.getDefault().getLanguage(),
+                    new MozillaProcessResultFromAddressResolution(context, sendIntent));
             return;
         }
         appendLog(context, TAG, "processUpdateOfLocation:sendIntent:" + sendIntent);
         context.startService(sendIntent);
-    }
-
-    public class ProcessResultFromAddressResolution {
-
-        private Context context;
-        private Intent sendIntent;
-
-        public ProcessResultFromAddressResolution(Context context, Intent sendIntent) {
-            this.context = context;
-            this.sendIntent = sendIntent;
-        }
-
-        public void processAddresses(List<Address> addresses) {
-            appendLog(context, TAG, "processUpdateOfLocation:addresses:" + addresses);
-            if ((addresses != null) && (addresses.size() > 0)) {
-                sendIntent.putExtra("addresses", addresses.get(0));
-            }
-            appendLog(context, TAG, "processUpdateOfLocation:sendIntent:" + sendIntent);
-            context.startService(sendIntent);
-        }
     }
 
     private static String createRequest(List<Cell> cells, List<ScanResult> wiFis) throws JSONException {

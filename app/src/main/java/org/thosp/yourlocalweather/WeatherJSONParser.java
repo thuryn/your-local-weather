@@ -35,39 +35,39 @@ public class WeatherJSONParser {
 
         JSONObject mainObj = weatherData.getJSONObject("main");
         if (mainObj.has("temp")) {
-            weather.temperature.setTemp(Float.parseFloat(mainObj.getString("temp")));
+            weather.setTemperature(Float.parseFloat(mainObj.getString("temp")));
         }
         if (mainObj.has("pressure")) {
-            weather.currentCondition.setPressure(Float.parseFloat(mainObj.getString("pressure")));
+            weather.setPressure(Float.parseFloat(mainObj.getString("pressure")));
         }
         if (mainObj.has("humidity")) {
-            weather.currentCondition.setHumidity(mainObj.getInt("humidity"));
+            weather.setHumidity(mainObj.getInt("humidity"));
         }
 
         JSONObject windObj = weatherData.getJSONObject("wind");
         if (windObj.has("speed")) {
-            weather.wind.setSpeed(Float.parseFloat(windObj.getString("speed")));
+            weather.setWindSpeed(Float.parseFloat(windObj.getString("speed")));
         }
         if (windObj.has("deg")) {
-            weather.wind.setDirection(Float.parseFloat(windObj.getString("deg")));
+            weather.setWindDirection(Float.parseFloat(windObj.getString("deg")));
         }
 
         JSONObject cloudsObj = weatherData.getJSONObject("clouds");
         if (cloudsObj.has("all")) {
-            weather.cloud.setClouds(cloudsObj.getInt("all"));
+            weather.setClouds(cloudsObj.getInt("all"));
         }
 
         JSONObject sysObj = weatherData.getJSONObject("sys");
 
-        weather.sys.setSunrise(sysObj.getLong("sunrise"));
-        weather.sys.setSunset(sysObj.getLong("sunset"));
+        weather.setSunrise(sysObj.getLong("sunrise"));
+        weather.setSunset(sysObj.getLong("sunset"));
 
         JSONObject coordObj = weatherData.getJSONObject("coord");
         if (coordObj.has("lon")) {
-            weather.coord.setLon(Float.parseFloat(coordObj.getString("lon")));
+            weather.setLon(Float.parseFloat(coordObj.getString("lon")));
         }
         if (coordObj.has("lat")) {
-            weather.coord.setLat(Float.parseFloat(coordObj.getString("lat")));
+            weather.setLat(Float.parseFloat(coordObj.getString("lat")));
         }
 
         return weather;
