@@ -69,7 +69,7 @@
 
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Nastavení</string>
-    <string name="pref_title_temperature">Teplota a vítr</string>
+    <string name="pref_title_temperature">Teplota</string>
     <string name="preference_hide_desc">Skrýt popis počasí</string>
     <string name="pref_title_category_notification">Upozornění</string>
     <string name="pref_title_notification">Povolit upozornění</string>
@@ -289,4 +289,18 @@
     <string name="search_location_add" tools:ignore="MissingTranslation">Přidat</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Dotekem na mapě vyberete požadovanou polohu a pak vyčkejte na rozpoznání adresy.</string>
     
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Otevřít navigační panel</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Zavřít navigační panel</string>
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">Vítr</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Tlak</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Čínština (Chinese)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Svahilština (Swahili)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norština (Norwegian)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Holandština (Dutch)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Maďarština (Hungarian)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Španělština (Spanish)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Řečtina (Greek)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabština (Arabic)</string>
     </resources>
