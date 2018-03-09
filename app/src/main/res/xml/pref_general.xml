@@ -25,13 +25,6 @@
         android:defaultValue="false"
         android:key="hide_desc_pref_key"
         android:title="@string/preference_hide_desc"/>
-    <ListPreference
-        android:defaultValue="location_geocoder_local"
-        android:dialogTitle="@string/location_geocoder_title"
-        android:entries="@array/location_geocoder_source_entries"
-        android:entryValues="@array/location_geocoder_source_values"
-        android:key="location_geocoder_source"
-        android:title="@string/location_geocoder_title"/>
     <PreferenceCategory
         android:key="display_category_pref_key"
         android:title="@string/preference_title_category_display">
@@ -91,6 +84,13 @@
             android:entryValues="@array/location_update_period_values"
             android:key="location_update_period_pref_key"
             android:title="@string/preference_widget_title_update_period"/>
+        <ListPreference
+            android:defaultValue="location_geocoder_local"
+            android:dialogTitle="@string/location_geocoder_title"
+            android:entries="@array/location_geocoder_source_entries"
+            android:entryValues="@array/location_geocoder_source_values"
+            android:key="location_geocoder_source"
+            android:title="@string/location_geocoder_title"/>
         <ListPreference
             android:defaultValue="nowakeup"
             android:entries="@array/wake_up_strategy_entries"

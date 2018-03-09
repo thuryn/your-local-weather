@@ -124,27 +124,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/help_page_3_content_hide_description" />
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/help_page_3_content_display" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/help_page_3_content_notifications" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/help_page_3_content_hide_update_location_1" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/help_page_3_content_hide_update_location_2" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/help_page_3_content_hide_update_location_3" />
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/help_page_3_content_location_address_source" />
-
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -156,11 +151,11 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/help_page_3_content_display" />
+                    android:text="@string/help_page_4_content_wake_up_strategy" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/help_page_3_content_notifications" />
+                    android:text="@string/help_page_3_content_hide_update_location_3" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -198,14 +193,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/help_page_4_content_widget_theme" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/help_page_4_content_update_period" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/help_page_4_content_wake_up_strategy" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
