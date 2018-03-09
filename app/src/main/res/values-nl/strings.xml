@@ -53,7 +53,6 @@
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Weersomschrijving verbergen</b> - de omschrijving van het huidige weer wordt verborgen. U kunt het huidige weer alleen herkennen aan het pictogram.</string>
     <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Locatie bijwerken</b>
 \nU kunt selecteren om alleen het weer bij te werken. Als u dit doet, dan kunt u de zoekknop vinden in de hoofdapplicatie, waar u kunt zoeken naar de locatie die u wilt weergeven; de applicatie zoekt dan niet naar uw locatie.</string>
-    <string name="help_page_3_content_hide_update_location_2" tools:ignore="MissingTranslation">Als u <b>locatie bijwerken</b> selecteert, dan probeert de applicatie om uw locatie te vinden via de locatiedienst van het systeem of die van Mozilla. De applicatie schakelt GPS in als de locatie niet kan worden gedetecteerd d.m.v. mobiele of Wi-Fi-netwerken. De applicatie doet er alles aan om uw locatie te vinden.</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Als u <b>locatie bijwerken zonder GPS</b> selecteert, dan probeert de applicatie alleen om uw locatie te vinden via mobiele en Wi-Fi-netwerken. De applicatie schakelt dan nooit GPS in.</string>
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Locatie- en adresbron</b>
 \nU kunt selecteren waar de applicatie de locatie en het adres moet verkrijgen.</string>

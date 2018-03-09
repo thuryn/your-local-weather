@@ -252,7 +252,6 @@
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Skrýt popis počasí</b> - popis počasí se nebude zobrazovat. Aktuální počasí je zřejmé jen z ikony.</string>
     <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Nastavení aktualizace polohy</b>
 \nZde je možné nastavit jen aktualizaci počasí. Pokud nastavíte tuto volbu, v hlavní aplikaci se objeví tlačítko pro vyhledání polohy. Pomocí tohoto tlačítka můžete nastavit polohu, kterou chcete vidět. Aplikace pak polohu během aktualizace nevyhledává.</string>
-    <string name="help_page_3_content_hide_update_location_2" tools:ignore="MissingTranslation">Pokud zvolíte volbu <b>Aktualizovat polohu</b>, aplikace se pokusí najít polohu pomocí systémových služeb nebo pomocí služeb zjišťování polohy společnosti Mozilla. Pokud aplikace není schopna zjistit polohu pomocí mobilní a wifi sítě, zapíná na několik vteřin vyhledávání podle satelitů (GPS). Aplikace tedy dělá, co může, aby zjistila Vaší polohu.</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Pokud zvolíte volbu <b>Aktualizace polohy bez GPS</b>, aplikace se pokusí najít polohu jen pomocí mobilní a wifi sítě. Aplikace tedy nikdy nezapne GPS pro vyhledání polohy.</string>
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Zdroj polohy a adresy</b>
 \nZde je možné vybrat, pomocí které služby bude vyhledávána poloha a adresa.</string>

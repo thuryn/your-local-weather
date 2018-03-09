@@ -144,7 +144,6 @@
 
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Настройка иконок</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Красные иконки Merlin</string>
-<string name="help_page_3_content_hide_update_location_2" tools:ignore="MissingTranslation">Когда вы выбираете <b>обновить местоположение</b> опцию, приложение попытается определить геоположение через систему или с помощью геосервиса от Mozilla. Приложение также может подключиться к данным GPS в случае невозможности определения по сотовой сети или WiFi. Приложение попытается определить лучший метод для определения положения.</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Когда вы выбираете <b>определить местоположение без GPS</b> опцию, приложение попытается определить ваше положение только по сотовой сети или сети WiFi. Приложение никогда не будет задействовать GPS позиционирование.</string>
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Геоположение и по адресу</b> 
 \nВы можете выбрать для приложения источники определения местоположения.</string>

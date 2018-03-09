@@ -250,7 +250,6 @@
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Hava açıklamasını gizle</b> - O anki havanın açıklamasını gizler. O anki havayı yalnızca simge olarak görebilirsiniz.</string>
     <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Konum güncelleme ayarı</b>
 \nYalnızca havayı güncellemeyi seçebilirsiniz. Bu seçeneği seçtiğinizde, ana uygulamada arama düğmesini bulabilirsiniz. Görmek istediğiniz konumu arayabilirsiniz. Bu durumda uygulama konum için bakmaz.</string>
-    <string name="help_page_3_content_hide_update_location_2" tools:ignore="MissingTranslation"><b>Konumun güncellenmesi</b> seçeneğini seçtiğinizde, uygulama konumu sistemle veya Mozilla konum hizmetiyle bulmayı dener. Uygulama konumu hücre veya wifi ağları ile algılayamadında GPS\'i de açar. Yani uygulama konumunuzu algılamak için elinden gelenin en iyisini yapar.</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation"><b>GPS olmadan konumun güncellenmesi</b> seçeneğini seçtiğinizde, uygulama yalnızca hücre ve wifi ağlarıyla konumu bulmaya çalışır. Uygulama asla konumu almak için GPS\'i açmaz.</string>
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Konum ve adres kaynağı</b>
 \nUygulamanın konumu ve adresi nereden alacağını seçebilirsiniz.</string>
