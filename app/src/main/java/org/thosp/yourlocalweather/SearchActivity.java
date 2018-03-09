@@ -1,8 +1,10 @@
 package org.thosp.yourlocalweather;
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -36,6 +38,8 @@ import org.thosp.yourlocalweather.utils.Utils;
 import java.util.List;
 import java.util.Locale;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 public class SearchActivity extends BaseActivity {
 
     public static final String TAG = "SearchActivity";
@@ -51,6 +55,7 @@ public class SearchActivity extends BaseActivity {
     private Address address;
     private String locale;
     private Button addLocatonButton;
+    private ProgressDialog mProgressDialog;
 
     private void initializeWeatherReceiver() {
         mWeatherUpdateReceiver = new BroadcastReceiver() {
@@ -94,7 +99,12 @@ public class SearchActivity extends BaseActivity {
 
         IMapController mapController = map.getController();
         mapController.setZoom(11);
-        GeoPoint startPoint = new GeoPoint(lastLocation.getLatitude(), lastLocation.getLongitude());
+        GeoPoint startPoint;
+        if ((lastLocation.getLongitude() == 0) && (lastLocation.getLatitude() == 0)) {
+            startPoint = new GeoPoint(51.5072, -0.1267);
+        } else {
+            startPoint = new GeoPoint(lastLocation.getLatitude(), lastLocation.getLongitude());
+        }
         mapController.setCenter(startPoint);
 
         resolvedLocationAddress = (TextView) findViewById(R.id.resolved_location_address);
@@ -104,6 +114,25 @@ public class SearchActivity extends BaseActivity {
         MapEventsReceiver mReceive = new MapEventsReceiver() {
             @Override
             public boolean singleTapConfirmedHelper(GeoPoint p) {
+
+                mProgressDialog = new ProgressDialog(SearchActivity.this);
+                mProgressDialog.setMessage(getString(R.string.progressDialog_gps_locate));
+                mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                mProgressDialog.setIndeterminate(true);
+                mProgressDialog.setCancelable(false);
+                mProgressDialog.setButton(DialogInterface.BUTTON_NEGATIVE, getString(android.R.string.cancel), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        try {
+                            dialog.dismiss();
+                        } catch (SecurityException e) {
+                            appendLog(SearchActivity.this, TAG, "Cancellation error", e);
+                        }
+                    }
+                });
+
+                mProgressDialog.show();
+
                 latitude = p.getLatitude();
                 longitude = p.getLongitude();
                 locale = Locale.getDefault().getLanguage();
@@ -115,7 +144,7 @@ public class SearchActivity extends BaseActivity {
                         p.getLongitude(),
                         1,
                         locale,
-                        new SearchActivityProcessResultFromAddressResolution(mContext, resultionResult));
+                        new SearchActivityProcessResultFromAddressResolution(mContext, resultionResult, mProgressDialog));
                 return false;
             }
 
@@ -141,12 +170,20 @@ public class SearchActivity extends BaseActivity {
 
     public void onPause(){
         super.onPause();
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
+            mProgressDialog = null;
+        }
         map.onPause();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (mProgressDialog != null) {
+            mProgressDialog.dismiss();
+            mProgressDialog = null;
+        }
         LocalBroadcastManager.getInstance(this).unregisterReceiver(mWeatherUpdateReceiver);
     }
 
