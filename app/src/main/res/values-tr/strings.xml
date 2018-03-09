@@ -61,7 +61,7 @@
     <string name="update_period_12hours">12 saat</string>
     <string name="update_period_24hours">24 saat</string>
     <string name="pref_title_vibrate">Titret</string>
-    <string name="preference_widget_title_update_period">Güncelleme Sıklığı</string>
+    <string name="preference_widget_title_update_period">Hava için güncelleme sıklığı (Konum 1,2,3,...)</string>
     <string name="preference_title_activity_general">Genel ayarlar</string>
     <string name="preference_title_activity_widget">Widget ayarları</string>
     <string name="preference_widget_update_location">Konumu güncelle</string>
@@ -210,7 +210,7 @@
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Önceki</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Bitir</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">İlk yapılandırma rehberi</string>
-    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">İlk yapılandırma rehberi</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Konum güncelleme ayarı</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Konum kaynağı seçeneği</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Konum ve adres kaynağı</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Uyandırma strateji seçeneği</string>
@@ -284,4 +284,18 @@
     <string name="pref_language_es" tools:ignore="MissingTranslation">Spanish (İspanyolca)</string>
     <string name="pref_language_el" tools:ignore="MissingTranslation">Greek (Yunanca)</string>
     <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabic (Arapça)</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Konumlar</string>
+
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Gerektiğinde GPS\'i aç</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">Yalnız elle</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Konum için güncelleme sıklığı (Konum 0)</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Konumu ve havayı güncelle</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Sil</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Devreden Çıkar</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Etkinleştir</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">Kendiliğinden tanıma</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Devre dışı</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Ekle</string>
+    <string name="search_location_info" tools:ignore="MissingTranslation">"İstediğiniz konum için haritaya dokunun  ve adresin çözümlenmesini bekleyin."</string>
+    
     </resources>
