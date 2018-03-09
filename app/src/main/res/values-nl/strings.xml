@@ -24,7 +24,7 @@
     <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Deze wizard helpt u om de applicatie in te stellen naar wens. Op het volgende scherm kunt u de bijwerkmethode kiezen.
 \nDe applicatie werkt alleen het weer bij als u <i>Locatie niet bijwerken</i> selecteert.
 \nHet bijwerken van de locatie is één van de beste functies van deze applicatie. Daarom is <i>Locatie bijwerken</i> de aanbevolen waarde en standaard geselecteerd.</string>
-    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Eerste instelwizard</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Locatie bijwerken-instelling</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Locatiebron-optie</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">U kunt de locatiebron kiezen. De <i>Systeem</i>-bron gebruikt Google-diensten om de locatie te verkrijgen via netwerken (mobiele en Wi-Fi-netwerken); de <i>Lokale MLS en Nominatim</i>-optie gebruikt de Mozilla-locatiedienst om de locatiecoördinaten te verkrijgen en de Nominatim-dienst om de locatienamen te verkrijgen. De tweede optie vereist de machtiging om oproepen te beheren om informatie te verkrijgen over het mobiele netwerk. De voorkeursoptie is reeds geselecteerd.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Locatie- en adresbron</string>
@@ -144,7 +144,7 @@
     <string name="update_period_12hours" tools:ignore="MissingTranslation">12 uur</string>
     <string name="update_period_24hours" tools:ignore="MissingTranslation">24 uur</string>
     <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Trillen</string>
-    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Bijwerkperiode</string>
+    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Bijwerkperiode voor weer (locatie 1, 2, 3...)</string>
     <string name="preference_title_activity_general" tools:ignore="MissingTranslation">Algemene instellingen</string>
     <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Widget-instellingen</string>
     <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Locatie bijwerken</string>
@@ -263,4 +263,18 @@
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Pictogramset</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Lettertype-gebaseerde pictogrammen</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlijn de Rode-pictogrammen</string>
-</resources>
+<string name="title_activity_locations" tools:ignore="MissingTranslation">Locaties</string>
+
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Indien nodig GPS inschakelen</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">Alleen handmatig</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Bijwerkperiode voor locatie (locatie 0)</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Locatie en weer bijwerken</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Verwijderen</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Uitschakelen</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Inschakelen</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">Automatisch gevonden</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Uitgeschakeld</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Toevoegen</string>
+    <string name="search_location_info" tools:ignore="MissingTranslation">Druk op de kaart om de gewenste locatie op te vragen en wacht totdat het adres is verwerkt.</string>
+    
+    </resources>
