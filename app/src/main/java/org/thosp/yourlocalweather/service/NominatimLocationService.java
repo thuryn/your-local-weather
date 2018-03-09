@@ -45,6 +45,8 @@ public class NominatimLocationService {
 
     private static NominatimLocationService instance;
 
+    private volatile long nextAlowedRequestTimestamp;
+
     private NominatimLocationService() {
     }
 
@@ -95,6 +97,15 @@ public class NominatimLocationService {
             return;
         }
 
+        long now = System.currentTimeMillis();
+        if (nextAlowedRequestTimestamp > now) {
+            appendLog(context, TAG, "request to nominatim in less than 1.4s - nextAlowedRequestTimestamp=" +
+                    nextAlowedRequestTimestamp + ", now=" + now);
+            processResultFromAddressResolution.processAddresses(null);
+            return;
+        }
+
+        nextAlowedRequestTimestamp = 1400 + now;
         final String url = String.format(Locale.US, REVERSE_GEOCODE_URL, SERVICE_URL_OSM, "",
                 locale.split("_")[0], latitude, longitude);
         appendLog(context, TAG, "Constructed URL " + url);
