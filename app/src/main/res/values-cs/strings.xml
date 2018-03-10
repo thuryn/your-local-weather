@@ -241,7 +241,7 @@
 \n
 \nK získání aktuálního počasí je využita služba OpenWeatherMap.org.</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Hlavní aplikace</string>
-    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Hlavní aplikace obsahuje přehled aktuálního počasí. Pomocí tlačítka pro aktualizaci počasí nebo gestem tažením dolů, můžete provést aktualizaci momentálního stavu počasí. Tlačítko aktualizace se nachází v horním panelu aplikace. Vedle tlačítka pro aktualizaci počasí se nachází tlačítko pro aktualizaci polohy. Tlačítko pro aktualizaci polohy je dostupné, pokud je povolena poloha 0 (poloha 0 je určena pro automatickou aktualizaci polohy. Vedle tlačítka pro pro vyhledání polohy je tlačítko pro správu poloh (tlačítko lupy).</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Hlavní aplikace obsahuje přehled aktuálního počasí. Pomocí tlačítka pro aktualizaci počasí nebo gestem tažením dolů, můžete provést aktualizaci momentálního stavu počasí. Tlačítko aktualizace se nachází v horním panelu aplikace. Vedle tlačítka pro aktualizaci počasí se nachází tlačítko pro aktualizaci polohy. Tlačítko pro aktualizaci polohy je dostupné, pokud je povolena poloha 0 (poloha 0 je určena pro automatickou aktualizaci polohy.</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Na následující obrazovce je možné najít předpověď počasí (následující stranu je možné vybrat v menu nebo gestem tažení vpravo/vlevo). Předpověď je aktualizována pomocí tlačítka pro aktualizaci nebo pokud právě vstoupíte na tuto obrazovku (avšak ne častěji než jednou za hodinu).</string>
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Třetí obrazovka obsahuje předpověď počasí v grafech.</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">Widgety</string>
@@ -300,4 +300,5 @@
     <string name="pref_language_es" tools:ignore="MissingTranslation">Španělština (Spanish)</string>
     <string name="pref_language_el" tools:ignore="MissingTranslation">Řečtina (Greek)</string>
     <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabština (Arabic)</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Vedle tlačítka pro pro vyhledání polohy je tlačítko pro správu poloh (tlačítko lupy). Na obrazovce pro správu poloh je vždy přítomna jedna poloha (Poloha 0) - tato poloha je určena pro automatické rozpoznávání polohy. Pokud tuto polohu posunete doleva, objeví se tlačítko pro povolení/zakázání automatické aktualizace polohy. Pomocí tlačítka \"+\" můžete přidat polohu ručně pomocí mapy. Pokud budete chtít takto nalezenou polohu smazat, opět posunete polohu doleva a tlačítkem Smazat polohu odstraníte.</string>
     </resources>
