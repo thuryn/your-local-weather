@@ -262,6 +262,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 case Constants.KEY_PREF_LOCATION_UPDATE_PERIOD:
                 case Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD:
                     entrySummary(key);
+                    if (changing) {
+                        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_ALARM_SERVICE");
+                        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+                        getActivity().startService(intentToStartUpdate);
+                    }
                 case Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE:
                     entrySummary(key);
                     break;
