@@ -72,7 +72,9 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
 
         String sortOrder = LocationsContract.Locations.COLUMN_NAME_ORDER_ID;
 
-        Cursor cursor = db.query(
+        Cursor cursor = null;
+        try {
+            cursor = db.query(
                 LocationsContract.Locations.TABLE_NAME,
                 projection,
                 LocationsContract.Locations.COLUMN_NAME_ORDER_ID + ">" + deletedOrderId,
@@ -80,14 +82,19 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 sortOrder
-        );
+            );
 
-        while (cursor.moveToNext()) {
-            long itemId = cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations._ID));
-            int orderId = cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ORDER_ID));
-            ContentValues values = new ContentValues();
-            values.put(LocationsContract.Locations.COLUMN_NAME_ORDER_ID, orderId - 1);
-            db.update(LocationsContract.Locations.TABLE_NAME,values,LocationsContract.Locations._ID +"=" + itemId,null);
+            while (cursor.moveToNext()) {
+                long itemId = cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations._ID));
+                int orderId = cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ORDER_ID));
+                ContentValues values = new ContentValues();
+                values.put(LocationsContract.Locations.COLUMN_NAME_ORDER_ID, orderId - 1);
+                db.update(LocationsContract.Locations.TABLE_NAME,values,LocationsContract.Locations._ID +"=" + itemId,null);
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
     }
 
@@ -111,7 +118,10 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
     public int getMaxOrderId() {
         SQLiteDatabase db = getReadableDatabase();
 
-        Cursor cursor = db.query(
+        int maxOrderId = 0;
+        Cursor cursor = null;
+        try {
+            cursor = db.query(
                 LocationsContract.Locations.TABLE_NAME,
                 new String[]{"MAX(order_id)"},
                 null,
@@ -120,10 +130,13 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 null,
                 null);
 
-        int maxOrderId = 0;
-        cursor.moveToNext();
-        maxOrderId = cursor.getInt(0);
-        cursor.close();
+            cursor.moveToNext();
+            maxOrderId = cursor.getInt(0);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
         return maxOrderId;
     }
 
@@ -150,7 +163,9 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
 
         String sortOrder = LocationsContract.Locations.COLUMN_NAME_ORDER_ID;
 
-        Cursor cursor = db.query(
+        Cursor cursor = null;
+        try {
+            cursor = db.query(
                 LocationsContract.Locations.TABLE_NAME,
                 projection,
                 null,
@@ -158,42 +173,47 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 sortOrder
-        );
+            );
 
-        while (cursor.moveToNext()) {
+            while (cursor.moveToNext()) {
 
-            byte[] cachedAddressBytes = cursor.getBlob(
-                    cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ADDRESS));
-            Address address = null;
-            if (cachedAddressBytes != null) {
-                address = getAddressFromBytes(cachedAddressBytes);
+                byte[] cachedAddressBytes = cursor.getBlob(
+                        cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ADDRESS));
+                Address address = null;
+                if (cachedAddressBytes != null) {
+                    address = getAddressFromBytes(cachedAddressBytes);
+                }
+
+                long itemId = cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations._ID));
+                double longitude = cursor.getDouble(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LONGITUDE));
+                double latitude = cursor.getDouble(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LATITUDE));
+                int orderId = cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ORDER_ID));
+                String locale = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCALE));
+                String nickname = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_NICKNAME));
+                float accuracy = cursor.getFloat(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_ACCURACY));
+                long locationUpdateTime = cursor.getLong(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS));
+                String locationSource = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE));
+                boolean addressFound = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND));
+                boolean enabled = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ENABLED));
+
+                result.add(new Location(
+                        itemId,
+                        orderId,
+                        nickname,
+                        locale,
+                        longitude,
+                        latitude,
+                        accuracy,
+                        locationSource,
+                        locationUpdateTime,
+                        addressFound,
+                        enabled,
+                        address));
             }
-
-            long itemId = cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations._ID));
-            double longitude = cursor.getDouble(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LONGITUDE));
-            double latitude = cursor.getDouble(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LATITUDE));
-            int orderId = cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ORDER_ID));
-            String locale = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCALE));
-            String nickname = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_NICKNAME));
-            float accuracy = cursor.getFloat(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_ACCURACY));
-            long locationUpdateTime = cursor.getLong(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS));
-            String locationSource = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE));
-            boolean addressFound = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND));
-            boolean enabled = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ENABLED));
-
-            result.add(new Location(
-                    itemId,
-                    orderId,
-                    nickname,
-                    locale,
-                    longitude,
-                    latitude,
-                    accuracy,
-                    locationSource,
-                    locationUpdateTime,
-                    addressFound,
-                    enabled,
-                    address));
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
         return result;
     }
@@ -215,7 +235,9 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND
         };
 
-        Cursor cursor = db.query(
+        Cursor cursor = null;
+        try {
+            cursor = db.query(
                 LocationsContract.Locations.TABLE_NAME,
                 projection,
                 LocationsContract.Locations.COLUMN_NAME_ORDER_ID + "=" + orderId,
@@ -223,43 +245,48 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 null
-        );
+            );
 
-        if (!cursor.moveToNext()) {
-            return null;
+            if (!cursor.moveToNext()) {
+                return null;
+            }
+
+            byte[] cachedAddressBytes = cursor.getBlob(
+                    cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ADDRESS));
+            Address address = null;
+            if (cachedAddressBytes != null) {
+                address = getAddressFromBytes(cachedAddressBytes);
+            }
+
+            int itemId = cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations._ID));
+            double longitude = cursor.getDouble(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LONGITUDE));
+            double latitude = cursor.getDouble(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LATITUDE));
+            String locale = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCALE));
+            String nickname = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_NICKNAME));
+            float accuracy = cursor.getFloat(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_ACCURACY));
+            long locationUpdateTime = cursor.getLong(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS));
+            String locationSource = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE));
+            boolean addressFound = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND));
+            boolean enabled = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ENABLED));
+
+            return new Location(
+                    itemId,
+                    orderId,
+                    nickname,
+                    locale,
+                    longitude,
+                    latitude,
+                    accuracy,
+                    locationSource,
+                    locationUpdateTime,
+                    addressFound,
+                    enabled,
+                    address);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
-
-        byte[] cachedAddressBytes = cursor.getBlob(
-                cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ADDRESS));
-        Address address = null;
-        if (cachedAddressBytes != null) {
-            address = getAddressFromBytes(cachedAddressBytes);
-        }
-
-        int itemId = cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations._ID));
-        double longitude = cursor.getDouble(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LONGITUDE));
-        double latitude = cursor.getDouble(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LATITUDE));
-        String locale = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCALE));
-        String nickname = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_NICKNAME));
-        float accuracy = cursor.getFloat(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_ACCURACY));
-        long locationUpdateTime = cursor.getLong(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS));
-        String locationSource = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE));
-        boolean addressFound = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND));
-        boolean enabled = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ENABLED));
-
-        return new Location(
-                itemId,
-                orderId,
-                nickname,
-                locale,
-                longitude,
-                latitude,
-                accuracy,
-                locationSource,
-                locationUpdateTime,
-                addressFound,
-                enabled,
-                address);
     }
 
     public Location getLocationById(long id) {
@@ -279,7 +306,9 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND
         };
 
-        Cursor cursor = db.query(
+        Cursor cursor = null;
+        try {
+            cursor = db.query(
                 LocationsContract.Locations.TABLE_NAME,
                 projection,
                 LocationsContract.Locations._ID + "=" + id,
@@ -287,43 +316,48 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 null
-        );
+            );
 
-        if (!cursor.moveToNext()) {
-            return null;
+            if (!cursor.moveToNext()) {
+                return null;
+            }
+
+            byte[] cachedAddressBytes = cursor.getBlob(
+                    cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ADDRESS));
+            Address address = null;
+            if (cachedAddressBytes != null) {
+                address = getAddressFromBytes(cachedAddressBytes);
+            }
+
+            int orderId = cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ORDER_ID));
+            double longitude = cursor.getDouble(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LONGITUDE));
+            double latitude = cursor.getDouble(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LATITUDE));
+            String locale = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCALE));
+            String nickname = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_NICKNAME));
+            float accuracy = cursor.getFloat(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_ACCURACY));
+            long locationUpdateTime = cursor.getLong(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS));
+            String locationSource = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE));
+            boolean addressFound = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND));
+            boolean enabled = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ENABLED));
+
+            return new Location(
+                    id,
+                    orderId,
+                    nickname,
+                    locale,
+                    longitude,
+                    latitude,
+                    accuracy,
+                    locationSource,
+                    locationUpdateTime,
+                    addressFound,
+                    enabled,
+                    address);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
-
-        byte[] cachedAddressBytes = cursor.getBlob(
-                cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ADDRESS));
-        Address address = null;
-        if (cachedAddressBytes != null) {
-            address = getAddressFromBytes(cachedAddressBytes);
-        }
-
-        int orderId = cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ORDER_ID));
-        double longitude = cursor.getDouble(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LONGITUDE));
-        double latitude = cursor.getDouble(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LATITUDE));
-        String locale = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCALE));
-        String nickname = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_NICKNAME));
-        float accuracy = cursor.getFloat(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_ACCURACY));
-        long locationUpdateTime = cursor.getLong(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS));
-        String locationSource = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE));
-        boolean addressFound = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND));
-        boolean enabled = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ENABLED));
-
-        return new Location(
-                id,
-                orderId,
-                nickname,
-                locale,
-                longitude,
-                latitude,
-                accuracy,
-                locationSource,
-                locationUpdateTime,
-                addressFound,
-                enabled,
-                address);
     }
 
     public void updateNickname(int locationOrderId, String locationNickname) {
@@ -399,7 +433,9 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS
         };
 
-        Cursor cursor = db.query(
+        Cursor cursor = null;
+        try {
+            cursor = db.query(
                 LocationsContract.Locations.TABLE_NAME,
                 projection,
                 LocationsContract.Locations.COLUMN_NAME_ORDER_ID + "=0",
@@ -407,12 +443,17 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 null
-        );
+            );
 
-        if (cursor.moveToNext()) {
-            return cursor.getLong(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS));
-        } else {
-            return 0;
+            if (cursor.moveToNext()) {
+                return cursor.getLong(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS));
+            } else {
+                return 0;
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
     }
 }

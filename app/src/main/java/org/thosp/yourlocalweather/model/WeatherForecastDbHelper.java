@@ -50,13 +50,9 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
 
     public void deleteRecordFromTable(Integer recordId) {
         SQLiteDatabase db = getWritableDatabase();
-        try {
-            String selection = WeatherForecastContract.WeatherForecast._ID + " = ?";
-            String[] selectionArgs = {recordId.toString()};
-            db.delete(WeatherForecastContract.WeatherForecast.TABLE_NAME, selection, selectionArgs);
-        } finally {
-            db.close();
-        }
+        String selection = WeatherForecastContract.WeatherForecast._ID + " = ?";
+        String[] selectionArgs = {recordId.toString()};
+        db.delete(WeatherForecastContract.WeatherForecast.TABLE_NAME, selection, selectionArgs);
     }
 
     public void saveWeatherForecast(long locationId, long weatherUpdateTime, CompleteWeatherForecast completeWeatherForecast) {
@@ -87,7 +83,9 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
                 WeatherForecastContract.WeatherForecast.COLUMN_NAME_LAST_UPDATED_IN_MS
         };
 
-        Cursor cursor = db.query(
+        Cursor cursor = null;
+        try {
+            cursor = db.query(
                 WeatherForecastContract.WeatherForecast.TABLE_NAME,
                 projection,
                 WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + "=" + locationId,
@@ -95,16 +93,21 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 null
-        );
+            );
 
-        if (cursor.moveToNext()) {
-            CompleteWeatherForecast completeWeatherForecast = getCompleteWeatherForecastFromBytes(
-                    cursor.getBlob(cursor.getColumnIndexOrThrow(WeatherForecastContract.WeatherForecast.COLUMN_NAME_WEATHER_FORECAST)));
-            return new WeatherForecastRecord(
-                    cursor.getLong(cursor.getColumnIndexOrThrow(WeatherForecastContract.WeatherForecast.COLUMN_NAME_LAST_UPDATED_IN_MS)),
-                    completeWeatherForecast);
-        } else {
-            return null;
+            if (cursor.moveToNext()) {
+                CompleteWeatherForecast completeWeatherForecast = getCompleteWeatherForecastFromBytes(
+                        cursor.getBlob(cursor.getColumnIndexOrThrow(WeatherForecastContract.WeatherForecast.COLUMN_NAME_WEATHER_FORECAST)));
+                return new WeatherForecastRecord(
+                        cursor.getLong(cursor.getColumnIndexOrThrow(WeatherForecastContract.WeatherForecast.COLUMN_NAME_LAST_UPDATED_IN_MS)),
+                        completeWeatherForecast);
+            } else {
+                return null;
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
     }
 

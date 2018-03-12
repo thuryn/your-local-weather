@@ -1,10 +1,9 @@
 package org.thosp.yourlocalweather;
 
-import org.thosp.yourlocalweather.model.CitySearch;
-import org.thosp.yourlocalweather.model.Weather;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.thosp.yourlocalweather.model.Weather;
 
 public class WeatherJSONParser {
 
