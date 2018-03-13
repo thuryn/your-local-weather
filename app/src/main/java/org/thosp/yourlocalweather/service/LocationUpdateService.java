@@ -2,13 +2,10 @@ package org.thosp.yourlocalweather.service;
 
 import android.Manifest;
 import android.app.Service;
-import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -26,33 +23,23 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.PowerManager;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.content.res.TypedArrayUtils;
-import android.text.TextUtils;
-import android.util.Log;
 
-import org.thosp.yourlocalweather.model.CurrentWeather;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.Utils;
-import org.thosp.yourlocalweather.widget.ExtLocationWidgetProvider;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
-import org.thosp.yourlocalweather.widget.LessWidgetProvider;
 import org.thosp.yourlocalweather.widget.LessWidgetService;
-import org.thosp.yourlocalweather.widget.MoreWidgetProvider;
 import org.thosp.yourlocalweather.widget.MoreWidgetService;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Locale;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
@@ -117,17 +104,17 @@ public class LocationUpdateService extends Service implements LocationListener {
 
             CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-            CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(locationsDbHelper.getLocationByOrderId(0).getId());
+            org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
+            CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
             long storedWeatherTime = weatherRecord.getLastUpdatedTime();
             long now = System.currentTimeMillis();
-            org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
             appendLog(context, TAG, "SCREEN_ON called, lastUpdate=" +
                     currentLocation.getLastLocationUpdate() +
                     ", now=" +
                     now +
                     ", storedWeatherTime=" +
                     storedWeatherTime);
-            if ((now < (storedWeatherTime + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now < (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
+            if ((now <= (storedWeatherTime + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now <= (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
                 timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT - (now - storedWeatherTime));
                 return;
             }
@@ -139,10 +126,7 @@ public class LocationUpdateService extends Service implements LocationListener {
     private BroadcastReceiver screenOffReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
             appendLog(context, TAG, "receive intent: " + intent);
-            long now = System.currentTimeMillis();
-            appendLog(context, TAG, "SCREEN_OFF called, lastUpdate=" + locationsDbHelper.getLocationByOrderId(0).getLastLocationUpdate() + ", now=" + now);
             timerScreenOnHandler.removeCallbacksAndMessages(null);
         }
     };
@@ -162,14 +146,14 @@ public class LocationUpdateService extends Service implements LocationListener {
             long storedWeatherTime = weatherRecord.getLastUpdatedTime();
             long now = System.currentTimeMillis();
 
-            appendLog(getBaseContext(), TAG, "SCREEN_ON called, lastUpdate=" +
+            appendLog(getBaseContext(), TAG, "screen timer called, lastUpdate=" +
                     currentLocation.getLastLocationUpdate() +
                     ", now=" +
                     now +
                     ", storedWeatherTime=" +
                     storedWeatherTime);
 
-            if ((now < (storedWeatherTime + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now < (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
+            if ((now <= (storedWeatherTime + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now <= (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
                 timerScreenOnHandler.postDelayed(timerScreenOnRunnable, REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT);
                 return;
             }
@@ -363,17 +347,21 @@ public class LocationUpdateService extends Service implements LocationListener {
         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
         locationsDbHelper.updateAutoLocationGeoLocation(location.getLatitude(), location.getLongitude(), currentLocation.getLocationSource(), location.getAccuracy(), getLocationTimeInMilis(location));
         appendLog(getBaseContext(), TAG, "put new location from location update service, latitude=" + location.getLatitude() + ", longitude=" + location.getLongitude());
-        String geocoder = AppPreference.getLocationGeocoderSource(this);
-        boolean resolveAddressByOS = !("location_geocoder_unifiednlp".equals(geocoder)  || "location_geocoder_local".equals(geocoder));
-        locationsDbHelper.setNoLocationFound(getBaseContext());
-        Utils.getAndWriteAddressFromGeocoder(new Geocoder(this, new Locale(PreferenceUtil.getLanguage(this))),
-                                             address,
-                                            location.getLatitude(),
-                                            location.getLongitude(),
-                                             resolveAddressByOS,
-                                             this);
+        if (address != null) {
+            locationsDbHelper.updateAutoLocationAddress(PreferenceUtil.getLanguage(getBaseContext()), address);
+        } else {
+            String geocoder = AppPreference.getLocationGeocoderSource(this);
+            boolean resolveAddressByOS = !("location_geocoder_unifiednlp".equals(geocoder) || "location_geocoder_local".equals(geocoder));
+            locationsDbHelper.setNoLocationFound(getBaseContext());
+            Utils.getAndWriteAddressFromGeocoder(new Geocoder(this, new Locale(PreferenceUtil.getLanguage(this))),
+                    address,
+                    location.getLatitude(),
+                    location.getLongitude(),
+                    resolveAddressByOS,
+                    this);
+        }
         appendLog(getBaseContext(), TAG, "send intent to get weather, updateSource " + currentLocation.getLocationSource());
-        requestWeatherCheck(null);
+        sendIntentToGetWeather(currentLocation);
     }
 
     Handler lastKnownLocationTimerHandler = new Handler();
@@ -600,7 +588,12 @@ public class LocationUpdateService extends Service implements LocationListener {
             sendIntent.setPackage("org.thosp.yourlocalweather");
         }
 
-        if ((lastLocation != null) && getLocationTimeInMilis(lastLocation) > lastLocationUpdate) {
+        long gpsLastLocationTime = getLocationTimeInMilis(lastLocation);
+        appendLog(getBaseContext(), TAG, "Comparison of last location from GPS time = " +
+                gpsLastLocationTime +
+                ", and location last update time = " +
+                lastLocationUpdate);
+        if ((lastLocation != null) && gpsLastLocationTime > lastLocationUpdate) {
             sendIntent.putExtra("inputLocation", lastLocation);
             org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
             locationsDbHelper.updateLocationSource(currentLocation.getId(), "G");
@@ -673,7 +666,7 @@ public class LocationUpdateService extends Service implements LocationListener {
             }, LOCATION_TIMEOUT_IN_MS);
         }
     }
-    
+
     private void requestWeatherCheck(String locationSource) {
         startRefreshRotation();
         boolean updateLocationInProcess = updateNetworkLocation(true);
@@ -689,6 +682,11 @@ public class LocationUpdateService extends Service implements LocationListener {
             locationsDbHelper.updateLocationSource(currentLocation.getId(), "-");
             currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
         }
+        sendIntentToGetWeather(currentLocation);
+    }
+
+    private void sendIntentToGetWeather(org.thosp.yourlocalweather.model.Location currentLocation) {
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
         currentWeatherDbHelper.updateLastUpdatedTime(currentLocation.getId(), System.currentTimeMillis());
         Intent intentToCheckWeather = new Intent(getBaseContext(), CurrentWeatherService.class);
@@ -819,7 +817,9 @@ public class LocationUpdateService extends Service implements LocationListener {
 
     private long getLocationTimeInMilis(Location location) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            return 1000000*location.getElapsedRealtimeNanos();
+             return System.currentTimeMillis()
+                - SystemClock.elapsedRealtime()
+                + (location.getElapsedRealtimeNanos() / 1000000);
         } else {
             return location.getTime();
         }
