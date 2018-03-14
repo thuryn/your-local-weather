@@ -276,26 +276,31 @@ public class NominatimLocationService {
                 String.valueOf(latitudeLow),
                 locale };
 
-        Cursor cursor = db.query(
-                LocationAddressCache.TABLE_NAME,
-                projection,
-                selection,
-                selectionArgs,
-                null,
-                null,
-                null
-        );
+        Cursor cursor = null;
+        try {
+            cursor = db.query(
+                    LocationAddressCache.TABLE_NAME,
+                    projection,
+                    selection,
+                    selectionArgs,
+                    null,
+                    null,
+                    null
+            );
 
-        if (!cursor.moveToNext()) {
-            cursor.close();
-            return null;
+            if (!cursor.moveToNext()) {
+                cursor.close();
+                return null;
+            }
+
+            byte[] cachedAddressBytes = cursor.getBlob(
+                    cursor.getColumnIndexOrThrow(LocationAddressCache.COLUMN_NAME_ADDRESS));
+            return ReverseGeocodingCacheDbHelper.getAddressFromBytes(cachedAddressBytes);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
-
-        byte[] cachedAddressBytes = cursor.getBlob(
-                cursor.getColumnIndexOrThrow(LocationAddressCache.COLUMN_NAME_ADDRESS));
-        cursor.close();
-
-        return ReverseGeocodingCacheDbHelper.getAddressFromBytes(cachedAddressBytes);
     }
 
     private boolean recordDateIsNotValidOrIsTooOld(long recordCreatedinMilis) {
@@ -335,7 +340,9 @@ public class NominatimLocationService {
                     LocationAddressCache._ID
             };
 
-            Cursor cursor = db.query(
+            Cursor cursor = null;
+            try {
+                cursor = db.query(
                     LocationAddressCache.TABLE_NAME,
                     projection,
                     null,
@@ -343,20 +350,24 @@ public class NominatimLocationService {
                     null,
                     null,
                     null
-            );
+                );
 
-            while (cursor.moveToNext()) {
-                Integer recordId = cursor.getInt(
-                        cursor.getColumnIndexOrThrow(LocationAddressCache._ID));
+                while (cursor.moveToNext()) {
+                    Integer recordId = cursor.getInt(
+                            cursor.getColumnIndexOrThrow(LocationAddressCache._ID));
 
-                long recordCreatedInMilis = cursor.getLong(
-                        cursor.getColumnIndexOrThrow(LocationAddressCache.COLUMN_NAME_CREATED));
+                    long recordCreatedInMilis = cursor.getLong(
+                            cursor.getColumnIndexOrThrow(LocationAddressCache.COLUMN_NAME_CREATED));
 
-                if (recordDateIsNotValidOrIsTooOld(recordCreatedInMilis)) {
-                    mDbHelper.deleteRecordFromTable(recordId);
+                    if (recordDateIsNotValidOrIsTooOld(recordCreatedInMilis)) {
+                        mDbHelper.deleteRecordFromTable(recordId);
+                    }
+                }
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
                 }
             }
-            cursor.close();
         }
     }
 

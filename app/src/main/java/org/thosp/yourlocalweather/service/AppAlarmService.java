@@ -67,7 +67,6 @@ public class AppAlarmService extends Service {
                 startService(intentToStartUpdate);
                 return ret;
             }
-            AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
             int startUpdateOffset = 0;
             for (Location location: locationsDbHelper.getAllRows()) {
                 if (location.getOrderId() == 0) {

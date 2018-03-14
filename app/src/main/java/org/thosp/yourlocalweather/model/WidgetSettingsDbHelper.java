@@ -79,8 +79,9 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
                 WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_LONG
         };
 
+        Cursor cursor = null;
         try {
-            Cursor cursor = db.query(
+            cursor = db.query(
                     WidgetSettingsContract.WidgetSettings.TABLE_NAME,
                     projection,
                     WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId,
@@ -96,6 +97,9 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
                 return null;
             }
         } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
         }
     }
 }

@@ -29,6 +29,7 @@ public class ReverseGeocodingCacheDbHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_TABLE_LOCATION_ADDRESS_CACHE);
     }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_TABLE_LOCATION_ADDRESS_CACHE);

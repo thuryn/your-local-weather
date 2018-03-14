@@ -112,12 +112,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                 break;
             case Constants.ACTION_APPWIDGET_CHANGE_LOCATION:
                 changeLocation(widgetId, locationsDbHelper, widgetSettingsDbHelper);
-
                 onUpdate(context, widgetManager, new int[]{ widgetId});
-                /*Intent intentRefreshService = new Intent(context, getWidgetClass());
-                intentRefreshService.setAction("android.appwidget.action.APPWIDGET_UPDATE");
-                intentRefreshService.putExtra("widgetId", widgetId);
-                context.sendBroadcast(intentRefreshService);*/
                 break;
         }
     }
@@ -125,12 +120,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         appendLog(context, TAG, "onUpdate:start");
-        StringBuilder widgetIdsText = new StringBuilder();
-        for (int widgetId: appWidgetIds) {
-            widgetIdsText.append(widgetId);
-            widgetIdsText.append(",");
-        }
-        appendLog(context, TAG, "onUpdate:widgetids:" + widgetIdsText.toString());
         super.onUpdate(context, appWidgetManager, appWidgetIds);
 
         for (int appWidgetId : appWidgetIds) {
