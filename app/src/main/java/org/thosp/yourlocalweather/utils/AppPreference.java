@@ -76,6 +76,9 @@ public class AppPreference {
         } else if (unitsFromPreferences.contains("miles_per_hour") ) {
             double mhValue = 2.2369d * value;
             return new WindWithUnit(mhValue, context.getString(R.string.wind_speed_miles));
+        } else if (unitsFromPreferences.contains("knots") ) {
+            double knotsValue = 1.9438445d * value;
+            return new WindWithUnit(knotsValue, context.getString(R.string.wind_speed_knots));
         } else {
             return new WindWithUnit(value, context.getString(R.string.wind_speed_meters));
         }
@@ -97,6 +100,8 @@ public class AppPreference {
             return 3.6d * windSpeed;
         } else if (unitsFromPreferences.contains("miles_per_hour") ) {
             return 2.2369d * windSpeed;
+        } else if (unitsFromPreferences.contains("knots") ) {
+            return 1.9438445d * windSpeed;
         } else {
             return windSpeed;
         }
@@ -109,6 +114,8 @@ public class AppPreference {
             return context.getString(R.string.wind_speed_kilometers);
         } else if (unitsFromPreferences.contains("miles_per_hour") ) {
             return context.getString(R.string.wind_speed_miles);
+        } else if (unitsFromPreferences.contains("knots") ) {
+            return context.getString(R.string.wind_speed_knots);
         } else {
             return context.getString(R.string.wind_speed_meters);
         }

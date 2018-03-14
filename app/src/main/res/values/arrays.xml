@@ -20,12 +20,14 @@
     <string-array name="pref_wind_units_entries" translatable="false">
         <item>m/s</item>
         <item>km/h</item>
-        <item>mph</item>
+        <item>@string/wind_speed_miles</item>
+        <item>@string/wind_speed_knots</item>
     </string-array>
     <string-array name="pref_wind_units_values" translatable="false">
         <item>m_per_second</item>
         <item>km_per_hour</item>
         <item>miles_per_hour</item>
+        <item>knots</item>
     </string-array>
     <string-array name="pref_pressure_units_entries" translatable="false">
         <item>hPa</item>

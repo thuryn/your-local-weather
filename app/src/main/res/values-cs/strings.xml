@@ -62,6 +62,7 @@
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
     <string name="wind_speed_miles">mph</string>
+    <string name="wind_speed_knots">uzly</string>
     <string name="millimetre_label">mm</string>
 
     <!-- Search Screen strings -->

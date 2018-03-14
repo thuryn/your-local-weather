@@ -149,6 +149,7 @@
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
     <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
     <string name="wind_speed_miles" tools:ignore="MissingTranslation">mph</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">knots</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
     <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
 
