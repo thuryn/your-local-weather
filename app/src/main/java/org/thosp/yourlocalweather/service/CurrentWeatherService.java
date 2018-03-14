@@ -22,6 +22,7 @@ import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.AppWakeUpManager;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
@@ -137,6 +138,7 @@ public class CurrentWeatherService extends Service {
                         ", longitude" +
                         currentLocation.getLongitude());
                 try {
+                    AppWakeUpManager.getInstance(getBaseContext()).wakeUp();
                     client.get(Utils.getWeatherForecastUrl(Constants.WEATHER_ENDPOINT,
                             currentLocation.getLatitude(),
                             currentLocation.getLongitude(),
@@ -151,6 +153,7 @@ public class CurrentWeatherService extends Service {
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                             try {
+                                AppWakeUpManager.getInstance(getBaseContext()).wakeDown();
                                 String weatherRaw = new String(response);
                                 appendLog(context, TAG, "weather got, result:" + weatherRaw);
 
@@ -164,19 +167,7 @@ public class CurrentWeatherService extends Service {
                                 if ("-".equals(locationSource)) {
                                     locationSource = "W";
                                 }
-                                if ((Math.abs(currentLocation.getLatitude() - weather.getLat()) < 0.01) &&
-                                        (Math.abs(currentLocation.getLongitude() - weather.getLon()) < 0.01)) {
-                                    saveWeather(context, weather, locationSource);
-                                    sendResult(ACTION_WEATHER_UPDATE_OK, weather);
-                                } else {
-                                    appendLog(context,
-                                            TAG,
-                                            "Weather not saved because of difference in coord:" +
-                                            (currentLocation.getLatitude() - weather.getLat()) +
-                                                    ", " +
-                                                    (currentLocation.getLongitude() - weather.getLon()));
-                                    sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
-                                }
+                                saveWeatherAndSendResult(context, weather, locationSource);
                             } catch (JSONException e) {
                                 appendLog(context, TAG, "JSONException:" + e);
                                 sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
@@ -185,6 +176,7 @@ public class CurrentWeatherService extends Service {
 
                         @Override
                         public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                            AppWakeUpManager.getInstance(getBaseContext()).wakeDown();
                             appendLog(context, TAG, "onFailure:" + statusCode);
                             sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
                         }
@@ -222,13 +214,24 @@ public class CurrentWeatherService extends Service {
         }
     }
 
-    private void saveWeather(Context context, Weather weather, String updateSource) {
+    private void saveWeatherAndSendResult(Context context, Weather weather, String updateSource) {
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
         final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
+        Long locationId = locationsDbHelper.getLocationIdByCoordinates(weather.getLat(), weather.getLon());
+        if (locationId == null) {
+            appendLog(context,
+                    TAG,
+                    "Weather not saved because there is no location with coordinates:" +
+                            weather.getLat() +
+                            ", " +
+                            weather.getLon());
+            sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
+        }
         long now = System.currentTimeMillis();
-        currentWeatherDbHelper.saveWeather(currentLocation.getId(), now, weather);
-        locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(), now, updateSource);
-        currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
+        currentWeatherDbHelper.saveWeather(locationId, now, weather);
+        locationsDbHelper.updateLastUpdatedAndLocationSource(locationId, now, updateSource);
+        currentLocation = locationsDbHelper.getLocationById(locationId);
+        sendResult(ACTION_WEATHER_UPDATE_OK, weather);
     }
     
     private void sendIntentToMain(String result, Weather weather) {
