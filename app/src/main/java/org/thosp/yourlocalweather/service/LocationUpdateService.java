@@ -247,8 +247,8 @@ public class LocationUpdateService extends Service implements LocationListener {
                                                 isGPSEnabled +
                                                 ", isNetworkEnabled=" +
                                                 isNetworkEnabled);
-            if (isUpdateOfLocationEnabled && (isGPSEnabled || isNetworkEnabled)) {
-                String geocoder = AppPreference.getLocationGeocoderSource(this);
+            String geocoder = AppPreference.getLocationGeocoderSource(this);
+            if (isUpdateOfLocationEnabled && (isGPSEnabled || isNetworkEnabled || !"location_geocoder_system".equals(geocoder))) {
                 appendLog(getBaseContext(), TAG, "Widget calls to update location, geocoder = " + geocoder);
                 if ("location_geocoder_unifiednlp".equals(geocoder) || "location_geocoder_local".equals(geocoder)) {
                     updateNetworkLocation(false);
@@ -380,6 +380,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         public void run() {
             locationManager.removeUpdates(gpsLocationListener);
             setNoLocationFound();
+            stopRefreshRotation();
         }
     };
 
@@ -464,7 +465,10 @@ public class LocationUpdateService extends Service implements LocationListener {
         boolean isGPSEnabled = AppPreference.isGpsEnabledByPreferences(getBaseContext()) &&
                 locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
                 && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        if (!isNetworkEnabled && isGPSEnabled && !bylastLocationOnly) {
+        String geocoder = AppPreference.getLocationGeocoderSource(getBaseContext());
+        boolean networkNotEnabled = !isNetworkEnabled && "location_geocoder_system".equals(geocoder);
+
+        if (networkNotEnabled && isGPSEnabled && !bylastLocationOnly) {
             startRefreshRotation();
             gpsRequestLocation();
             return true;
