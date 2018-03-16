@@ -31,6 +31,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.AppWakeUpManager;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
@@ -48,7 +49,6 @@ public class LocationUpdateService extends Service implements LocationListener {
 
     private static final String TAG = "LocationUpdateService";
 
-    private static final long WAKEUP_TIMEOUT_IN_MS = 30000L;
     private static final long LOCATION_TIMEOUT_IN_MS = 30000L;
     private static final long GPS_LOCATION_TIMEOUT_IN_MS = 30000L;
     private static final float LENGTH_UPDATE_LOCATION_LIMIT = 1500;
@@ -65,7 +65,6 @@ public class LocationUpdateService extends Service implements LocationListener {
     private SensorManager senSensorManager;
     private Sensor senAccelerometer;
 
-    private PowerManager.WakeLock wakeLock;
     private String updateSource;
 
     private long lastLocationUpdateTime;
@@ -162,15 +161,6 @@ public class LocationUpdateService extends Service implements LocationListener {
         }
     };
 
-    Handler timerWakeUpHandler = new Handler();
-    Runnable timerWakeUpRunnable = new Runnable() {
-
-        @Override
-        public void run() {
-            wakeDown();
-        }
-    };
-
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -248,7 +238,7 @@ public class LocationUpdateService extends Service implements LocationListener {
             updateSource = intent.getStringExtra("updateSource");
             org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
             locationsDbHelper.updateLocationSource(currentLocation.getId(), "-");
-            wakeUp();
+            AppWakeUpManager.getInstance(getBaseContext()).wakeUp();
 
             boolean isUpdateOfLocationEnabled = AppPreference.isUpdateLocationEnabled(this, currentLocation);
             appendLog(this, TAG, "START_LOCATION_AND_WEATHER_UPDATE, isUpdateOfLocationEnabled=" +
@@ -257,8 +247,8 @@ public class LocationUpdateService extends Service implements LocationListener {
                                                 isGPSEnabled +
                                                 ", isNetworkEnabled=" +
                                                 isNetworkEnabled);
-            if (isUpdateOfLocationEnabled && (isGPSEnabled || isNetworkEnabled)) {
-                String geocoder = AppPreference.getLocationGeocoderSource(this);
+            String geocoder = AppPreference.getLocationGeocoderSource(this);
+            if (isUpdateOfLocationEnabled && (isGPSEnabled || isNetworkEnabled || !"location_geocoder_system".equals(geocoder))) {
                 appendLog(getBaseContext(), TAG, "Widget calls to update location, geocoder = " + geocoder);
                 if ("location_geocoder_unifiednlp".equals(geocoder) || "location_geocoder_local".equals(geocoder)) {
                     updateNetworkLocation(false);
@@ -282,7 +272,7 @@ public class LocationUpdateService extends Service implements LocationListener {
     }
     
     public void onLocationChanged(Location location, Address address) {
-        wakeDown();
+        AppWakeUpManager.getInstance(getBaseContext()).wakeDown();
         lastLocationUpdateTime = System.currentTimeMillis();
         timerHandler.removeCallbacksAndMessages(null);
         removeUpdates(this);
@@ -390,6 +380,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         public void run() {
             locationManager.removeUpdates(gpsLocationListener);
             setNoLocationFound();
+            stopRefreshRotation();
         }
     };
 
@@ -452,69 +443,6 @@ public class LocationUpdateService extends Service implements LocationListener {
         }
     }
 
-    private void wakeDown() {
-        timerWakeUpHandler.removeCallbacksAndMessages(null);
-        if (wakeLock != null) {
-            try {
-                wakeLock.release();
-                appendLog(getBaseContext(), TAG, "wakeLock released");
-            } catch (Throwable th) {
-                // ignoring this exception, probably wakeLock was already released
-            }
-        }
-    }
-
-    private void wakeUp() {
-        appendLog(getBaseContext(), TAG, "powerManager:" + powerManager);
-
-        boolean isInUse;
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            isInUse = powerManager.isInteractive();
-        } else {
-            isInUse = powerManager.isScreenOn();
-        }
-
-        if (isInUse || ((wakeLock != null) && wakeLock.isHeld())) {
-            return;
-        }
-
-        timerWakeUpHandler.postDelayed(timerWakeUpRunnable, WAKEUP_TIMEOUT_IN_MS);
-
-        String wakeUpStrategy = PreferenceManager.getDefaultSharedPreferences(this).getString(Constants.KEY_WAKE_UP_STRATEGY, "nowakeup");
-
-        appendLog(getBaseContext(), TAG, "wakeLock:wakeUpStrategy:" + wakeUpStrategy);
-
-        if (wakeLock != null) {
-            try {
-                wakeLock.release();
-            } catch (Throwable th) {
-                // ignoring this exception, probably wakeLock was already released
-            }
-        }
-
-        if ("nowakeup".equals(wakeUpStrategy)) {
-            return;
-        }
-
-        int powerLockID;
-
-        if ("wakeupfull".equals(wakeUpStrategy)) {
-            powerLockID = PowerManager.SCREEN_BRIGHT_WAKE_LOCK | PowerManager.ACQUIRE_CAUSES_WAKEUP;
-        } else {
-            powerLockID = PowerManager.PARTIAL_WAKE_LOCK;
-        }
-
-        appendLog(getBaseContext(), TAG, "wakeLock:powerLockID:" + powerLockID);
-
-        wakeLock = powerManager.newWakeLock(powerLockID, TAG);
-        appendLog(getBaseContext(), TAG, "wakeLock:" + wakeLock + ":" + wakeLock.isHeld());
-        if (!wakeLock.isHeld()) {
-            wakeLock.acquire();
-        }
-        appendLog(getBaseContext(), TAG, "wakeLock acquired");
-    }
-
     private void setNoLocationFound() {
         final LocationsDbHelper locationDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         long lastLocationUpdate = locationDbHelper.getLastUpdateLocationTime();
@@ -537,12 +465,15 @@ public class LocationUpdateService extends Service implements LocationListener {
         boolean isGPSEnabled = AppPreference.isGpsEnabledByPreferences(getBaseContext()) &&
                 locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
                 && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-        if (!isNetworkEnabled && isGPSEnabled && !bylastLocationOnly) {
+        String geocoder = AppPreference.getLocationGeocoderSource(getBaseContext());
+        boolean networkNotEnabled = !isNetworkEnabled && "location_geocoder_system".equals(geocoder);
+
+        if (networkNotEnabled && isGPSEnabled && !bylastLocationOnly) {
             startRefreshRotation();
             gpsRequestLocation();
             return true;
         }
-        wakeUp();
+        AppWakeUpManager.getInstance(getBaseContext()).wakeUp();
         startRefreshRotation();
         try {
 

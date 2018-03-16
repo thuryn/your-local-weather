@@ -214,5 +214,11 @@ public class SearchActivity extends BaseActivity {
         values.put(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND, 1);
 
         long newLocationRowId = db.insert(LocationsContract.Locations.TABLE_NAME, null, values);
+
+        if (currentMaxOrderId == 0) {
+            Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");
+            intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+            this.startService(intentToStartUpdate);
+        }
     }
 }

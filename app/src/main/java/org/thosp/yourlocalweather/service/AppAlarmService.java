@@ -45,6 +45,9 @@ public class AppAlarmService extends Service {
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():" + intent.getAction());
         if ("org.thosp.yourlocalweather.action.START_ALARM_SERVICE".equals(intent.getAction())) {
             setAlarm();
+        } else if ("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE".equals(intent.getAction())) {
+            alarmStarted = false;
+            setAlarm();
         } else if ("org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM".equals(intent.getAction())) {
             boolean autoLocation = intent.getBooleanExtra("autoLocation", false);
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
@@ -56,7 +59,7 @@ public class AppAlarmService extends Service {
             if (autoLocation && !"0".equals(updateAutoPeriodStr)) {
                 long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
                 scheduleNextRegularAlarm(true, updateAutoPeriodMills);
-            } else {
+            } else if (!"0".equals(updatePeriodStr) && (locationsDbHelper.getAllRows().size() > 1)) {
                 scheduleNextRegularAlarm(false, updatePeriodMills);
             }
 
@@ -87,6 +90,7 @@ public class AppAlarmService extends Service {
         alarmStarted = true;
         cancelAlarm(true);
         cancelAlarm(false);
+        sendSensorStopIntent();
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         String updatePeriodStr = AppPreference.getLocationUpdatePeriod(getBaseContext());
         String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
@@ -105,7 +109,7 @@ public class AppAlarmService extends Service {
                 scheduleNextRegularAlarm(true, updateAutoPeriodMills);
             }
         }
-        if (!"0".equals(updatePeriodStr) && locationsDbHelper.getAllRows().size() > 1) {
+        if (!"0".equals(updatePeriodStr) && (locationsDbHelper.getAllRows().size() > 1)) {
             scheduleNextRegularAlarm(false, updatePeriodMills);
         }
     }
@@ -154,6 +158,9 @@ public class AppAlarmService extends Service {
         Intent sendIntent = new Intent("android.intent.action.STOP_SENSOR_BASED_UPDATES");
         sendIntent.setPackage("org.thosp.yourlocalweather");
         startService(sendIntent);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.cancel(getPendingSensorStartIntent());
+        getPendingSensorStartIntent().cancel();
         appendLog(getBaseContext(), TAG, "sendIntent:" + sendIntent);
     }
 

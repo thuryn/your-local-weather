@@ -517,8 +517,12 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
                 && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        String geocoder = AppPreference.getLocationGeocoderSource(getBaseContext());
 
-        if (!isGPSEnabled && !isNetworkEnabled) {
+        boolean gpsNotEnabled = !isGPSEnabled && AppPreference.isGpsEnabledByPreferences(getBaseContext());
+        boolean networkNotEnabled = !isNetworkEnabled && "location_geocoder_system".equals(geocoder);
+
+        if (gpsNotEnabled || networkNotEnabled) {
             settingsAlert.setMessage(R.string.alertDialog_location_permission_message_location_phone_settings);
             settingsAlert.setPositiveButton(R.string.alertDialog_location_permission_positiveButton_settings,
                     new DialogInterface.OnClickListener() {
@@ -531,7 +535,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                         }
                     });
         } else {
-            String geocoder = AppPreference.getLocationGeocoderSource(getBaseContext());
             List<String> permissions = new ArrayList<>();
             StringBuilder notificationMessage = new StringBuilder();
             if (AppPreference.isGpsEnabledByPreferences(getBaseContext()) &&
@@ -540,14 +543,12 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 notificationMessage.append(getString(R.string.alertDialog_location_permission_message_location_phone_settings) + "\n\n");
                 permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
             }
-            if (isNetworkEnabled) {
-                if ("location_geocoder_local".equals(geocoder) && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-                    notificationMessage.append(getString(R.string.alertDialog_location_permission_message_location_phone_permission));
-                    permissions.add(Manifest.permission.READ_PHONE_STATE);
-                } else if ("location_geocoder_system".equals(geocoder) && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    notificationMessage.append(getString(R.string.alertDialog_location_permission_message_location_network_permission));
-                    permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
-                }
+            if ("location_geocoder_local".equals(geocoder) && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                notificationMessage.append(getString(R.string.alertDialog_location_permission_message_location_phone_permission));
+                permissions.add(Manifest.permission.READ_PHONE_STATE);
+            } else if (isNetworkEnabled && "location_geocoder_system".equals(geocoder) && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                notificationMessage.append(getString(R.string.alertDialog_location_permission_message_location_network_permission));
+                permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
             }
             if (permissions.isEmpty()) {
                 return true;
@@ -587,11 +588,10 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private int selectedCacheLocationStrategy;
 
     private void checkSettingsAndPermisions() {
-        if (!initialGuideCompleted) {
-            checkAndShowInitialGuide();
+        if (initialGuideCompleted) {
             return;
         }
-        checkPermissionsSettingsAndShowAlert();
+        checkAndShowInitialGuide();
     }
 
     private void checkAndShowInitialGuide() {
@@ -599,7 +599,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
         if (initialGuideVersion > 0) {
             initialGuideCompleted = true;
-            checkPermissionsSettingsAndShowAlert();
             return;
         }
         if (initialGuidePage > 0) {
