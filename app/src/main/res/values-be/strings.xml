@@ -57,7 +57,7 @@
     <string name="update_period_12hours">12 гадзін</string>
     <string name="update_period_24hours">24 гадзіны</string>
     <string name="pref_title_vibrate">Вібрацыя</string>
-    <string name="preference_widget_title_update_period">Інтэрвал абнаўлення</string>
+    <string name="preference_widget_title_update_period">Інтэрвал абнаўлення надвор\'я (мясціна 1, 2, 3, …)</string>
     <string name="preference_title_activity_general">Галоўныя налады</string>
     <string name="preference_title_activity_widget">Налады віджэтаў</string>
 
@@ -140,7 +140,7 @@
     <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Гэта кіраўніцтва дапаможа вам наладзіць прыкладанне ў адпаведнасці з вашымі патрэбамі. Вы можаце выбраць стратэгію абнаўлення на наступным экране.
 \nПрыкладанне абнаўляе толькі надвор\'е, калі вы выбіраеце <i>Не абнаўляць месцазнаходжанне</i>.
 \nАбнаўленне месцазнаходжання з\'яўляецца адной з лепшых асаблівасцяў гэтага прыкладання. Так што, <i>Абнавіць месцазнаходжанне</i> — гэта рэкамендуемае значэнне і абранае загадзя.</string>
-    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Кіраўніцтва па пачатковай канфігурацыі</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Абнавіць налады месцазнаходжання</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Крыніцы месцазнаходжання</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Вы можаце абраць крыніцу месцазнаходжання. <i>Сістэма</i> — выкарыстоўваць сервісы Google для атрымання месцазнаходжання па сеткам (сотавам ці WI-FI). <i>Лакальны MLS і Nominatim</i> — выкарыстоўваць сервіс месцазнаходжання Mozilla для атрымання каардынат і сервіс Nominatim для атрымання назвай мясцін. Другі варыянт патрабуе дазвол на кіраванне тэлефоннымі выклікамі, каб атрымаць інфармацыю аб сотавай сетцы. Пажаданы варыянт абраны загадзя.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Крыніца месцазнаходжання і адраса</string>

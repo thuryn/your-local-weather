@@ -276,4 +276,5 @@
     <string name="search_location_info" tools:ignore="MissingTranslation">Druk op de kaart om de gewenste locatie op te vragen en wacht totdat het adres is verwerkt.</string>
     
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Naast de bijwerk-knop bevindt zich de locatiebeheer-knop (vergrootglas). U kunt locaties beheren in de app en widgets. Standaard is er één locatie (locatie 0) beschikbaar. Deze locatie is bestemd voor het automatisch bijwerken van de locatie. U kunt de knop inschakelen/uitschakelen vinden door de locatie naar links te vegen. U kunt ook handmatig een locatie toevoegen. Als u op de +-knop drukt, dan kunt u een locatie uitkiezen. U kunt de locatie verwijderen door te drukken op de knop Verwijderen, te vinden door de locatie naar links te vegen.</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">knopen</string>
     </resources>
