@@ -105,7 +105,7 @@ public class LocationUpdateService extends Service implements LocationListener {
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
             org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
             CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
-            long storedWeatherTime = weatherRecord.getLastUpdatedTime();
+            long storedWeatherTime = (weatherRecord != null)?weatherRecord.getLastUpdatedTime():0;
             long now = System.currentTimeMillis();
             appendLog(context, TAG, "SCREEN_ON called, lastUpdate=" +
                     currentLocation.getLastLocationUpdate() +
