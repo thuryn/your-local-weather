@@ -107,6 +107,13 @@ public class CurrentWeatherService extends Service {
             currentLocation = intent.getExtras().getParcelable("location");
         }
 
+        if (currentLocation == null) {
+            appendLog(getBaseContext(),
+                    TAG,
+                    "current location is null");
+            return ret;
+        }
+
         ConnectionDetector connectionDetector = new ConnectionDetector(this);
         if (!connectionDetector.isNetworkAvailableAndConnected()) {
             return ret;
@@ -215,7 +222,6 @@ public class CurrentWeatherService extends Service {
     }
 
     private void saveWeatherAndSendResult(Context context, Weather weather, String updateSource) {
-        final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
         final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
         Long locationId = locationsDbHelper.getLocationIdByCoordinates(weather.getLat(), weather.getLon());
         if (locationId == null) {
@@ -228,6 +234,7 @@ public class CurrentWeatherService extends Service {
             sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
         }
         long now = System.currentTimeMillis();
+        final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
         currentWeatherDbHelper.saveWeather(locationId, now, weather);
         locationsDbHelper.updateLastUpdatedAndLocationSource(locationId, now, updateSource);
         currentLocation = locationsDbHelper.getLocationById(locationId);

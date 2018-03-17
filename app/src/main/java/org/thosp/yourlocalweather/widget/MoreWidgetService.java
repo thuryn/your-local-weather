@@ -58,6 +58,10 @@ public class MoreWidgetService extends IntentService {
             CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
             Weather weather = weatherRecord.getWeather();
 
+            if (weatherRecord == null) {
+                continue;
+            }
+
             String lastUpdate = Utils.setLastUpdateTime(this, weatherRecord.getLastUpdatedTime(), currentLocation.getLocationSource());
 
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),

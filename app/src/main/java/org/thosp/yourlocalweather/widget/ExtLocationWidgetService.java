@@ -61,6 +61,11 @@ public class ExtLocationWidgetService extends IntentService {
             }
 
             CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
+
+            if (weatherRecord == null) {
+                continue;
+            }
+
             Weather weather = weatherRecord.getWeather();
 
             String lastUpdate = Utils.setLastUpdateTime(this, weatherRecord.getLastUpdatedTime(), currentLocation.getLocationSource());
