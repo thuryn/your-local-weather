@@ -232,6 +232,7 @@ public class CurrentWeatherService extends Service {
                             ", " +
                             weather.getLon());
             sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
+            return;
         }
         long now = System.currentTimeMillis();
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
