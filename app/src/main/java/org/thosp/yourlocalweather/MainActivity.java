@@ -146,6 +146,22 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         if (currentLocation == null) {
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
         }
+        if (!currentLocation.isEnabled() && (locationsDbHelper.getAllRows().size() > 1)) {
+            currentLocation = locationsDbHelper.getLocationByOrderId(1);
+        }
+        if (mToolbarMenu != null) {
+            if ((currentLocation.getOrderId() == 0) && !currentLocation.isEnabled()) {
+                mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible(false);
+            } else {
+                mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible(true);
+            }
+            Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
+            if (!autoLocation.isEnabled()) {
+                mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(false);
+            } else {
+                mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(true);
+            }
+        }
         AppPreference.setCurrentLocationId(this, currentLocation.getId());
         checkSettingsAndPermisions();
         preLoadWeather();
@@ -228,6 +244,10 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         if (currentLocation == null) {
             newLocationOrderId = 0;
             currentLocation = locationsDbHelper.getLocationByOrderId(newLocationOrderId);
+            if ((currentLocation.getOrderId() == 0) && !currentLocation.isEnabled() && (locationsDbHelper.getAllRows().size() > 1)) {
+                newLocationOrderId++;
+                currentLocation = locationsDbHelper.getLocationByOrderId(newLocationOrderId);
+            }
         }
 
         AppPreference.setCurrentLocationId(this, currentLocation.getId());
@@ -439,6 +459,14 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         public void onClick(View view) {
             CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(MainActivity.this);
             CurrentWeatherDbHelper.WeatherRecord currentWeatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
+
+            if (currentWeatherRecord == null) {
+                Toast.makeText(MainActivity.this,
+                        getString(R.string.current_weather_has_not_been_fetched),
+                        Toast.LENGTH_LONG).show();
+                return;
+            }
+
             Weather weather = currentWeatherRecord.getWeather();
 
             String temperatureWithUnit = AppPreference.getTemperatureWithUnit(

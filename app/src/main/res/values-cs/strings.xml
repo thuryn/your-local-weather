@@ -286,6 +286,7 @@
     <string name="locations_disabled" tools:ignore="MissingTranslation">Vypnuto</string>
     <string name="search_location_add" tools:ignore="MissingTranslation">Přidat</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Dotekem na mapě vyberete požadovanou polohu a pak vyčkejte na rozpoznání adresy.</string>
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Aktuální počasí nebylo ještě načteno. Proveďte, prosím, nejprve aktualizaci počasí pomocí tlačítka v horní části obrazovky.</string>
     
     <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Otevřít navigační panel</string>
     <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Zavřít navigační panel</string>
