@@ -253,4 +253,13 @@
     <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Etter angitt tid vil hurtiglagrede enheter bli fjernet</string>
     <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Åpne navigasjonsskuff</string>
     <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Lukk navigasjonsskuff</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">knop</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Skru på GPS ved behov</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Kinesisk (Chinese)</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Slett</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Skru av</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Skru på</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">Automatisk oppdaget</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Avskrudd</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Legg til</string>
     </resources>

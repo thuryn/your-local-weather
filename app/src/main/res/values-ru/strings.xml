@@ -106,7 +106,7 @@
     <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Это руководство поможет вам настроить приложение в соответствии с вашими потребностями. Вы можете выбрать стратегию обновления на следующей странице. 
 \nПриложение обновляет только погоду, когда вы выбираете <i>Не обновлять местоположение</i> опцию.
 \nОбновление местоположения является одной из лучших особенностей этого приложения. Таким образом <i>Обновление местоположения</i> является рекомендуемым значением и предварительно выбирается.</string>
-    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Руководство по настройке</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Обновить настройки местоположения</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Источники местоположения</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Вы можете выбрать источник местоположения - <i>Система</i>"  использует службы Google для получения местоположения по сетям (сотовые и Wi-Fi-сети). Параметр "<i>Local MLS и Nominatim</i> использует службу определения местоположения Mozilla, чтобы получить координаты местоположения и службу Nominatim, чтобы получить имена мест. Второй вариант требует разрешения на телефонные звонки для получения информации о сотовой сети. Предпочтительный вариант предварительно выбран.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Местонахождение и адрес источника</string>
@@ -254,4 +254,6 @@
 \nL - обновлено только местоположение
 \nG - местоположение от GPS и обновлена погода
 \nN - местоположение по сетям и обновлена погода</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Местоположение</string>
+
     </resources>
