@@ -262,4 +262,20 @@
     <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">Automatisk oppdaget</string>
     <string name="locations_disabled" tools:ignore="MissingTranslation">Avskrudd</string>
     <string name="search_location_add" tools:ignore="MissingTranslation">Legg til</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Ved siden av knappen for oppdatering av plassering er et en knapp for plasseringsbehandling (forstørrelsesikon). Du kan behandle plasseringer tilgjengelig i programmet og miniprogrammer. Det er én plassering (Plassering 0) tilgjengelig som forvalg - denne plasseringen er tiltenkt automatisk oppdatering av plassering. Du kan finne/skru av knappen når du drar denne plasseringen til venstre. Du kan også legge til plassering manuelt. Når du klikker +knappen kan du hente plasseringen din på kartet. Du kan også slette plasseringen med \"Slett\"-knappen - som er tilgjengelig når du drar plasseringen til venstre.</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Plasseringer</string>
+
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">Kun manuell</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Oppdateringsperiode for plassering (Plassering 0)</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Oppdater plassering og vær</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Swahili (Swahili)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk bokmål (Norwegian Bokmål)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Hollandsk (Dutch)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Chichewa (Nyanja)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Ungarsk (Hungarian)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Spansk (Spanish)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Gresk (Greek)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabisk (Arabic)</string>
+    <string name="search_location_info" tools:ignore="MissingTranslation">Trykk på kartet for å hente valgt plassering og vent på utledning av adresse.</string>
+    
     </resources>
