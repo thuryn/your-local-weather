@@ -168,7 +168,7 @@ public class LocationsSwipeController extends Callback {
         RectF rightButton;
         if (locationHolder.getLocation().getOrderId() == 0) {
             rightButton = new RectF(itemView.getRight() - buttonWidthWithoutPadding, itemView.getTop(), itemView.getRight(), itemView.getBottom());
-            p.setColor(Color.GREEN);
+            p.setColor(Color.rgb(85, 170, 0));
             c.drawRoundRect(rightButton, corners, corners, p);
             if (locationHolder.getLocation().isEnabled()) {
                 drawText(context.getString(R.string.locations_disable_location), c, rightButton, p);
