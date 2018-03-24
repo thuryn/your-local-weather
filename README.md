@@ -31,6 +31,8 @@ Additional features include:
 * Support different measuring units
 * Ad-free
 
+Would you like to help with translation? Follow this link: https://hosted.weblate.org/projects/your-local-weather/strings
+
 ## List of contributors of the original app (good-weather)
 [qqq3](https://github.com/qqq3) (author of the good-weather app), [berian](https://github.com/beriain), [mahula](https://github.com/mahula), [naofum](https://github.com/naofum), 
 [thuryn](https://github.com/thuryn), [monolifed](https://github.com/monolifed), [marcoM32](https://github.com/marcoM32),
