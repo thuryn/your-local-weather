@@ -176,7 +176,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         super.onPause();
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
-            mProgressDialog = null;
         }
         mAppBarLayout.removeOnOffsetChangedListener(this);
     }
@@ -427,7 +426,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                         public void run() {
                             if (mProgressDialog != null) {
                                 mProgressDialog.dismiss();
-                                mProgressDialog = null;
                             }
                         }
                     });
