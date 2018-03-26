@@ -17,7 +17,7 @@
 
     <TextView
         android:id="@+id/forecast.time"
-        android:layout_width="60sp"
+        android:layout_width="65sp"
         android:layout_height="wrap_content"
         android:layout_gravity="left|center"
         android:gravity="left|center"

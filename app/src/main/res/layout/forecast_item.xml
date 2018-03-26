@@ -40,7 +40,7 @@
 
                 <TextView
                     android:id="@+id/forecast.header.time"
-                    android:layout_width="60sp"
+                    android:layout_width="65sp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
@@ -114,7 +114,7 @@
 
             <TextView
                 android:id="@+id/forecast.header.time_unit"
-                android:layout_width="60sp"
+                android:layout_width="65sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
