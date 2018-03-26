@@ -69,6 +69,7 @@
     </string-array>
 
     <string-array name="location_auto_update_period_entries">
+        <item>@string/update_period_nothing</item>
         <item>@string/update_period_by_sensors</item>
         <item>@string/update_period_15min</item>
         <item>@string/update_period_30min</item>
@@ -79,6 +80,7 @@
         <item>@string/update_period_24hours</item>
     </string-array>
     <string-array name="location_auto_update_period_values" translatable="false">
+        <item>OFF</item>
         <item>0</item>
         <item>15</item>
         <item>30</item>
