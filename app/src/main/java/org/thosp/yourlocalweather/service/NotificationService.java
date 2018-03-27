@@ -43,8 +43,7 @@ public class NotificationService extends IntentService {
         if (currentLocation == null) {
             return;
         }
-        CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
-        weatherNotification(weatherRecord);
+        weatherNotification(currentWeatherDbHelper.getWeather(currentLocation.getId()));
     }
 
     public static void setNotificationServiceAlarm(Context context,
@@ -69,6 +68,9 @@ public class NotificationService extends IntentService {
     }
 
     private void weatherNotification(CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
+        if (weatherRecord == null) {
+            return;
+        }
         Weather weather = weatherRecord.getWeather();
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent launchIntent = PendingIntent.getActivity(this, 0, intent, 0);

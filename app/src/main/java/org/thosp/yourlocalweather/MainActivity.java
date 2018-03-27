@@ -479,7 +479,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             description = Utils.getWeatherDescription(MainActivity.this, weather);
             sunrise = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunrise());
             sunset = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunset());
-            String weatherDescription = "City: " + currentLocation.getAddress().getLocality() +
+            String weatherDescription = "City: " + getCityNameFromAddress() +
                     "\nTemperature: " + temperatureWithUnit +
                     "\nDescription: " + description +
                     "\nWind: " + windWithUnit.getWindSpeed(1) + " " + windWithUnit.getWindUnit() +
@@ -498,6 +498,10 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             }
         }
     };
+
+    private String getCityNameFromAddress() {
+        return (currentLocation.getAddress() != null)?currentLocation.getAddress().getLocality():getString(R.string.location_not_found);
+    }
 
     private void detectLocation() {
         if (WidgetRefreshIconService.isRotationActive) {
