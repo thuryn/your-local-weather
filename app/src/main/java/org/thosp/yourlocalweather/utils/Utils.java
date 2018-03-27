@@ -35,6 +35,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -161,8 +162,10 @@ public class Utils {
         }
         int weatherId = weather.getCurrentWeathers().iterator().next().getWeatherId();
         boolean strongWind = weather.getWindSpeed() > 5;
-        long timeNow = weatherRecord.getLastUpdatedTime() / 1000;
-        boolean day = (weather.getSunrise() < timeNow) && (timeNow < weather.getSunset());
+        Calendar timeNow = getLocalTimeWithoutDate(weatherRecord.getLastUpdatedTime());
+        Calendar sunrise = getLocalTimeWithoutDate(weather.getSunrise() * 1000);
+        Calendar sunset = getLocalTimeWithoutDate(weather.getSunset() * 1000);
+        boolean day = sunrise.before(timeNow) && timeNow.before(sunset);
         switch (weatherId) {
             case 800:
                 if (day) {
@@ -421,6 +424,15 @@ public class Utils {
             first = false;
         }
         return currentWeatherDescription.toString();
+    }
+
+    private static Calendar getLocalTimeWithoutDate(long timeInMilis) {
+        Calendar calendar = GregorianCalendar.getInstance(TimeZone.getDefault());
+        calendar.setTimeInMillis(timeInMilis);
+        calendar.set(Calendar.DAY_OF_YEAR, 1);
+        calendar.set(Calendar.MONTH, 0);
+        calendar.set(Calendar.YEAR, 1970);
+        return calendar;
     }
 
     private static String capitalizeFirstLetter(String input) {
