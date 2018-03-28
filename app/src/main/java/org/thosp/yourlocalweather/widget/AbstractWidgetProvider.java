@@ -47,6 +47,9 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
         AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
         int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
+        if (widgetIds.length == 0) {
+            return;
+        }
         int currentWidget = widgetIds[0];
         Long locationId = widgetSettingsDbHelper.getParamLong(currentWidget, "locationId");
         if (locationId == null) {

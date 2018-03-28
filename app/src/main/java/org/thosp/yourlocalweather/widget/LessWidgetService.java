@@ -54,11 +54,12 @@ public class LessWidgetService extends IntentService {
             }
 
             CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
-            Weather weather = weatherRecord.getWeather();
 
             if (weatherRecord == null) {
-                continue;
+                return;
             }
+
+            Weather weather = weatherRecord.getWeather();
 
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),
                                                       R.layout.widget_less_3x1);
