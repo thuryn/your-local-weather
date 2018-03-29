@@ -8,7 +8,7 @@
         android:key="temperature_units_pref_key"
         android:title="@string/pref_title_temperature"/>
     <ListPreference
-        android:defaultValue="ms"
+        android:defaultValue="m_per_second"
         android:dialogTitle="@string/pref_title_wind"
         android:entries="@array/pref_wind_units_entries"
         android:entryValues="@array/pref_wind_units_values"
@@ -29,19 +29,21 @@
         android:key="display_category_pref_key"
         android:title="@string/preference_title_category_display">
         <ListPreference
+            android:defaultValue="default"
             android:key="language_pref_key"
             android:dialogTitle="@string/pref_title_language"
             android:title="@string/pref_title_language"
             android:entries="@array/language_entries"
             android:entryValues="@array/language_values"/>
         <ListPreference
+            android:defaultValue="light"
             android:key="theme_pref_key"
             android:dialogTitle="@string/pref_title_theme"
             android:title="@string/pref_title_theme"
             android:entries="@array/theme_entries"
             android:entryValues="@array/theme_values"/>
         <ListPreference
-            android:defaultValue="weather_icon_set_merlin_the_red"
+            android:defaultValue="weather_icon_set_merlinTheRed"
             android:dialogTitle="@string/preference_weather_icon_set_title"
             android:entries="@array/weather_icon_set_entries"
             android:entryValues="@array/weather_icon_set_values"
@@ -73,12 +75,14 @@
         android:key="update_location_weather_category_pref_key"
         android:title="@string/preference_title_category_location_weather">
         <ListPreference
+            android:defaultValue="60"
             android:dialogTitle="@string/preference_widget_title_update_auto_period"
             android:entries="@array/location_auto_update_period_entries"
             android:entryValues="@array/location_auto_update_period_values"
             android:key="location_auto_update_period_pref_key"
             android:title="@string/preference_widget_title_update_auto_period"/>
         <ListPreference
+            android:defaultValue="60"
             android:dialogTitle="@string/preference_widget_title_update_period"
             android:entries="@array/location_update_period_entries"
             android:entryValues="@array/location_update_period_values"

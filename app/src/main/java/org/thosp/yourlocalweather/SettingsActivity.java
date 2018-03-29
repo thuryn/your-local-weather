@@ -55,6 +55,7 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -283,10 +284,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onResume();
             getPreferenceScreen().getSharedPreferences()
                                  .registerOnSharedPreferenceChangeListener(this);
-
-            for (String key : SUMMARIES_TO_UPDATE) {
-                updateSummary(key, false);
-            }
+            updateSummaries();
         }
 
         @Override
@@ -294,6 +292,20 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onPause();
             getPreferenceScreen().getSharedPreferences()
                                  .unregisterOnSharedPreferenceChangeListener(this);
+        }
+
+        private void setDefaultValues() {
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            if (!preferences.contains(Constants.PREF_LANGUAGE)) {
+                preferences.edit().putString(Constants.PREF_LANGUAGE, Locale.getDefault().getLanguage()).apply();
+                entrySummary(Constants.PREF_LANGUAGE);
+            }
+        }
+
+        private void updateSummaries() {
+            for (String key : SUMMARIES_TO_UPDATE) {
+                updateSummary(key, false);
+            }
         }
 
         private void initLocationCache() {

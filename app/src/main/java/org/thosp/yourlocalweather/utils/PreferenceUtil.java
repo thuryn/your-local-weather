@@ -22,7 +22,11 @@ public class PreferenceUtil {
     }
 
     public static String getLanguage(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getString(Constants.PREF_LANGUAGE, Locale.getDefault().getLanguage());
+        String language = PreferenceManager.getDefaultSharedPreferences(context).getString(Constants.PREF_LANGUAGE, Locale.getDefault().getLanguage());
+        if ("default".equals(language)) {
+            language = Locale.getDefault().getLanguage();
+        }
+        return language;
     }
 
     public static Theme getTheme(Context context) {

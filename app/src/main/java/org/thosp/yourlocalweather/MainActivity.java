@@ -146,9 +146,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         if (currentLocation == null) {
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
         }
-        if (!currentLocation.isEnabled() && (locationsDbHelper.getAllRows().size() > 1)) {
-            currentLocation = locationsDbHelper.getLocationByOrderId(1);
-        }
+        switchToNextLocationWhenCurrentIsAutoAndIsDisabled();
         if (mToolbarMenu != null) {
             if ((currentLocation.getOrderId() == 0) && !currentLocation.isEnabled()) {
                 mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible(false);
@@ -277,6 +275,12 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                     }
                 }
             };
+
+    private void switchToNextLocationWhenCurrentIsAutoAndIsDisabled() {
+        if ((currentLocation.getOrderId() == 0) && !currentLocation.isEnabled() && (locationsDbHelper.getAllRows().size() > 1)) {
+            currentLocation = locationsDbHelper.getLocationByOrderId(1);
+        }
+    }
 
     private void preLoadWeather() {
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(this);

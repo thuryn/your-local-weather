@@ -197,7 +197,7 @@
         <item name="chinese">@string/pref_language_zh_rcn</item>
     </string-array>
     <string-array name="language_values" translatable="false">
-        <item name="default"></item>
+        <item name="default">default</item>
         <item name="arabic">ar</item>
         <item name="english">en</item>
         <item name="basque">eu</item>
