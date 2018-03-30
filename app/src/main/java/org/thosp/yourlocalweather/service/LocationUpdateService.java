@@ -59,6 +59,7 @@ public class LocationUpdateService extends Service implements LocationListener {
     private static final long ACCELEROMETER_UPDATE_TIME_SPAN = 900000000000l; //15 min
     private static final long ACCELEROMETER_UPDATE_TIME_SECOND_SPAN = 300000000000l; //5 min
     private static final long ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION = 300000000000l; //5 min
+    private static final long REFRESH_LOCATION_FROM_DB_TIMEOUT = 300000000000l; //5 min
 
     private PowerManager powerManager;
     private LocationManager locationManager;
@@ -74,6 +75,8 @@ public class LocationUpdateService extends Service implements LocationListener {
     private float currentLengthLowPassed = 0;
     private float gravity[] = new float[3];
     private MoveVector lastMovement;
+    private org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent;
+    private long nextFetchOfCurrentLocationForSensorEvent;
 
     private SensorEventListener sensorListener = new SensorEventListener() {
 
@@ -629,6 +632,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         currentWeatherDbHelper.updateLastUpdatedTime(currentLocation.getId(), System.currentTimeMillis());
         Intent intentToCheckWeather = new Intent(getBaseContext(), CurrentWeatherService.class);
         intentToCheckWeather.putExtra("location", locationsDbHelper.getLocationById(currentLocation.getId()));
+        intentToCheckWeather.putExtra("updateSource", updateSource);
         startService(intentToCheckWeather);
     }
     
@@ -693,12 +697,15 @@ public class LocationUpdateService extends Service implements LocationListener {
             }
             float absCurrentLength = Math.abs(currentLength);
 
-            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-            org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
+            if ((currentLocationForSensorEvent == null) || (now > nextFetchOfCurrentLocationForSensorEvent)) {
+                LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+                currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
+                nextFetchOfCurrentLocationForSensorEvent = now + REFRESH_LOCATION_FROM_DB_TIMEOUT;
+            }
 
             if (((lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SPAN)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT))
                     && ((lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SECOND_SPAN)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_SECOND_LIMIT))
-                    && (currentLocation.isAddressFound() || (lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION))) {
+                    && (currentLocationForSensorEvent.isAddressFound() || (lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION))) {
                 return;
             }
 
@@ -716,8 +723,8 @@ public class LocationUpdateService extends Service implements LocationListener {
         currentLength = 0;
         currentLengthLowPassed = 0;
 
-        org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
-        locationsDbHelper.updateLocationSource(currentLocation.getId(), "-");
+        currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
+        locationsDbHelper.updateLocationSource(currentLocationForSensorEvent.getId(), "-");
         updateNetworkLocation(false);
     }
 
@@ -754,6 +761,9 @@ public class LocationUpdateService extends Service implements LocationListener {
     }
 
     private long getLocationTimeInMilis(Location location) {
+        if (location == null) {
+            return 0;
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
              return System.currentTimeMillis()
                 - SystemClock.elapsedRealtime()

@@ -40,7 +40,7 @@
 
                 <TextView
                     android:id="@+id/forecast.header.time"
-                    android:layout_width="60dp"
+                    android:layout_width="65sp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
@@ -50,7 +50,7 @@
 
                 <TextView
                     android:id="@+id/forecast.header.icon"
-                    android:layout_width="40dp"
+                    android:layout_width="40sp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
@@ -58,7 +58,7 @@
 
                 <TextView
                     android:id="@+id/forecast.header.description"
-                    android:layout_width="70dp"
+                    android:layout_width="70sp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
@@ -66,7 +66,7 @@
 
                 <TextView
                     android:id="@+id/forecast.header.temperature"
-                    android:layout_width="50dp"
+                    android:layout_width="50sp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
@@ -74,7 +74,7 @@
 
                 <TextView
                     android:id="@+id/forecast.header.wind"
-                    android:layout_width="40dp"
+                    android:layout_width="40sp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
@@ -82,7 +82,7 @@
 
                 <TextView
                     android:id="@+id/forecast.header.rainsnow"
-                    android:layout_width="40dp"
+                    android:layout_width="40sp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
@@ -90,7 +90,7 @@
 
                 <TextView
                     android:id="@+id/forecast.header.humidity"
-                    android:layout_width="40dp"
+                    android:layout_width="40sp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
@@ -98,7 +98,7 @@
 
                 <TextView
                     android:id="@+id/forecast.header.presure"
-                    android:layout_width="50dp"
+                    android:layout_width="50sp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
@@ -114,7 +114,7 @@
 
             <TextView
                 android:id="@+id/forecast.header.time_unit"
-                android:layout_width="60dp"
+                android:layout_width="65sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -124,7 +124,7 @@
 
             <TextView
                 android:id="@+id/forecast.header.icon_unit"
-                android:layout_width="40dp"
+                android:layout_width="40sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -132,7 +132,7 @@
 
             <TextView
                 android:id="@+id/forecast.header.description_unit"
-                android:layout_width="70dp"
+                android:layout_width="70sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -140,7 +140,7 @@
 
             <TextView
                 android:id="@+id/forecast.header.temperature_unit"
-                android:layout_width="50dp"
+                android:layout_width="50sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -148,7 +148,7 @@
 
             <TextView
                 android:id="@+id/forecast.header.wind_unit"
-                android:layout_width="40dp"
+                android:layout_width="40sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -156,7 +156,7 @@
 
             <TextView
                 android:id="@+id/forecast.header.rainsnow_unit"
-                android:layout_width="40dp"
+                android:layout_width="40sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -164,7 +164,7 @@
 
             <TextView
                 android:id="@+id/forecast.header.humidity_unit"
-                android:layout_width="40dp"
+                android:layout_width="40sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -172,7 +172,7 @@
 
             <TextView
                 android:id="@+id/forecast.header.presure_unit"
-                android:layout_width="50dp"
+                android:layout_width="50sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"

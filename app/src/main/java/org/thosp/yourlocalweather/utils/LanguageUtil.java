@@ -19,7 +19,7 @@ public class LanguageUtil {
     @SuppressWarnings("deprecation")
     public static void setLanguage(final ContextWrapper contextWrapper, String locale) {
         Locale sLocale;
-        if (TextUtils.isEmpty(locale)) {
+        if (TextUtils.isEmpty(locale) || "default".equals(locale)) {
             sLocale = Locale.getDefault();
         } else {
             String[] localeParts = locale.split("-");

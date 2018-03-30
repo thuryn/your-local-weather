@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
@@ -39,6 +40,7 @@ import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.CustomValueFormatter;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
+import org.thosp.yourlocalweather.utils.PermissionUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.WeatherForecastUtil;
 import org.thosp.yourlocalweather.utils.XAxisValueFormatter;
@@ -134,19 +136,24 @@ public class GraphsActivity extends BaseActivity {
     }
 
     private void setTemperatureChart(long locationId) {
-        mTemperatureChart.setDescription("");
+        Description graphDescription = new Description();
+        graphDescription.setText("");
+        mTemperatureChart.setDescription(graphDescription);
         mTemperatureChart.setDrawGridBackground(false);
         mTemperatureChart.setTouchEnabled(true);
         mTemperatureChart.setDragEnabled(true);
         mTemperatureChart.setMaxHighlightDistance(300);
         mTemperatureChart.setPinchZoom(true);
         mTemperatureChart.getLegend().setEnabled(false);
+        mTemperatureChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
+        mTemperatureChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
         formatDate(locationId);
         XAxis x = mTemperatureChart.getXAxis();
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
         x.setDrawGridLines(false);
+        x.setTextColor(PreferenceUtil.getTextColor(this));
         x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
 
         YAxis yLeft = mTemperatureChart.getAxisLeft();
@@ -155,7 +162,8 @@ public class GraphsActivity extends BaseActivity {
         yLeft.setDrawAxisLine(false);
         yLeft.setDrawGridLines(true);
         yLeft.enableGridDashedLine(5f, 10f, 0f);
-        yLeft.setGridColor(Color.parseColor("#333333"));
+        yLeft.setTextColor(PreferenceUtil.getTextColor(this));
+        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this));
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(mYAxisFormatter);
 
@@ -203,18 +211,23 @@ public class GraphsActivity extends BaseActivity {
     }
     
     private void setWindChart(long locationId) {
-        mWindChart.setDescription("");
+        Description graphDescription = new Description();
+        graphDescription.setText("");
+        mWindChart.setDescription(graphDescription);
         mWindChart.setDrawGridBackground(false);
         mWindChart.setTouchEnabled(true);
         mWindChart.setDragEnabled(true);
         mWindChart.setMaxHighlightDistance(300);
         mWindChart.setPinchZoom(true);
         mWindChart.getLegend().setEnabled(false);
+        mWindChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
+        mWindChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
         formatDate(locationId);
         XAxis x = mWindChart.getXAxis();
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
+        x.setTextColor(PreferenceUtil.getTextColor(this));
         x.setDrawGridLines(false);
         x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
 
@@ -224,7 +237,8 @@ public class GraphsActivity extends BaseActivity {
         yLeft.setDrawAxisLine(false);
         yLeft.setDrawGridLines(true);
         yLeft.enableGridDashedLine(5f, 10f, 0f);
-        yLeft.setGridColor(Color.parseColor("#333333"));
+        yLeft.setTextColor(PreferenceUtil.getTextColor(this));
+        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this));
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(mYAxisFormatter);
 
@@ -272,18 +286,23 @@ public class GraphsActivity extends BaseActivity {
     }
 
     private void setRainChart(long locationId) {
-        mRainChart.setDescription("");
+        Description graphDescription = new Description();
+        graphDescription.setText("");
+        mRainChart.setDescription(graphDescription);
         mRainChart.setDrawGridBackground(false);
         mRainChart.setTouchEnabled(true);
         mRainChart.setDragEnabled(true);
         mRainChart.setMaxHighlightDistance(300);
         mRainChart.setPinchZoom(true);
         mRainChart.getLegend().setEnabled(false);
+        mRainChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
+        mRainChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
         formatDate(locationId);
         XAxis x = mRainChart.getXAxis();
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
+        x.setTextColor(PreferenceUtil.getTextColor(this));
         x.setDrawGridLines(false);
         x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
 
@@ -293,7 +312,8 @@ public class GraphsActivity extends BaseActivity {
         yLeft.setDrawAxisLine(false);
         yLeft.setDrawGridLines(true);
         yLeft.enableGridDashedLine(5f, 10f, 0f);
-        yLeft.setGridColor(Color.parseColor("#333333"));
+        yLeft.setTextColor(PreferenceUtil.getTextColor(this));
+        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this));
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(mYAxisFormatter);
 
@@ -340,18 +360,23 @@ public class GraphsActivity extends BaseActivity {
     }
 
     private void setSnowChart(long locationId) {
-        mSnowChart.setDescription("");
+        Description graphDescription = new Description();
+        graphDescription.setText("");
+        mSnowChart.setDescription(graphDescription);
         mSnowChart.setDrawGridBackground(false);
         mSnowChart.setTouchEnabled(true);
         mSnowChart.setDragEnabled(true);
         mSnowChart.setMaxHighlightDistance(300);
         mSnowChart.setPinchZoom(true);
         mSnowChart.getLegend().setEnabled(false);
+        mSnowChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
+        mSnowChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
         formatDate(locationId);
         XAxis x = mSnowChart.getXAxis();
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
+        x.setTextColor(PreferenceUtil.getTextColor(this));
         x.setDrawGridLines(false);
         x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
 
@@ -361,7 +386,8 @@ public class GraphsActivity extends BaseActivity {
         yLeft.setDrawAxisLine(false);
         yLeft.setDrawGridLines(true);
         yLeft.enableGridDashedLine(5f, 10f, 0f);
-        yLeft.setGridColor(Color.parseColor("#333333"));
+        yLeft.setTextColor(PreferenceUtil.getTextColor(this));
+        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this));
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(mYAxisFormatter);
 
@@ -531,6 +557,19 @@ public class GraphsActivity extends BaseActivity {
             WeatherForecastUtil.getWeather(GraphsActivity.this, new GraphsWeatherForecastResultHandler(this));
             return;
         }
+
+        TextView temperatureLabel = (TextView) findViewById(R.id.graphs_temperature_label);
+        temperatureLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
+        temperatureLabel.setTextColor(PreferenceUtil.getTextColor(this));
+        TextView windLabel = (TextView) findViewById(R.id.graphs_wind_label);
+        windLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
+        windLabel.setTextColor(PreferenceUtil.getTextColor(this));
+        TextView rainLabel = (TextView) findViewById(R.id.graphs_rain_label);
+        rainLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
+        rainLabel.setTextColor(PreferenceUtil.getTextColor(this));
+        TextView snowLabel = (TextView) findViewById(R.id.graphs_snow_label);
+        snowLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
+        snowLabel.setTextColor(PreferenceUtil.getTextColor(this));
 
         setTemperatureChart(locationId);
         setWindChart(locationId);

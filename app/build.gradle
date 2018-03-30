@@ -17,8 +17,8 @@ android {
         applicationId "org.thosp.yourlocalweather"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 33
-        versionName "3.0.7"
+        versionCode 39
+        versionName "3.0.13"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         playAccountConfig = playAccountConfigs.defaultAccountConfig
@@ -47,7 +47,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.github.PhilJay:MPAndroidChart:v3.0.0-beta1'
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.3'
     compile 'com.android.support:appcompat-v7:25.4.0'
     compile 'com.android.support:design:25.4.0'
     compile 'com.android.support:cardview-v7:25.4.0'

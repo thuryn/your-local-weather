@@ -1,9 +1,9 @@
 package org.thosp.yourlocalweather.utils;
 
 import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.formatter.AxisValueFormatter;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
-public class XAxisValueFormatter implements AxisValueFormatter {
+public class XAxisValueFormatter implements IAxisValueFormatter {
 
     private String[] mValues;
 
@@ -14,10 +14,5 @@ public class XAxisValueFormatter implements AxisValueFormatter {
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
         return mValues[(int) value];
-    }
-
-    @Override
-    public int getDecimalDigits() {
-        return 0;
     }
 }

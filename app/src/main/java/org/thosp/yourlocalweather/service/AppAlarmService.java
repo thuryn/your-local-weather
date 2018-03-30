@@ -56,7 +56,7 @@ public class AppAlarmService extends Service {
             String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
             long updatePeriodMills = Utils.intervalMillisForAlarm(updatePeriodStr);
 
-            if (autoLocation && !"0".equals(updateAutoPeriodStr)) {
+            if (autoLocation && !"0".equals(updateAutoPeriodStr) && !"OFF".equals(updateAutoPeriodStr)) {
                 long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
                 scheduleNextRegularAlarm(true, updateAutoPeriodMills);
             } else if (!"0".equals(updatePeriodStr) && (locationsDbHelper.getAllRows().size() > 1)) {
@@ -104,7 +104,7 @@ public class AppAlarmService extends Service {
                         SystemClock.elapsedRealtime() + START_SENSORS_CHECK_PERIOD,
                         START_SENSORS_CHECK_PERIOD,
                         getPendingSensorStartIntent());
-            } else {
+            } else if (!"OFF".equals(updateAutoPeriodStr)) {
                 long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
                 scheduleNextRegularAlarm(true, updateAutoPeriodMills);
             }

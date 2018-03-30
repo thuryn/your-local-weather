@@ -17,7 +17,7 @@
 
     <TextView
         android:id="@+id/forecast.time"
-        android:layout_width="60dp"
+        android:layout_width="65sp"
         android:layout_height="wrap_content"
         android:layout_gravity="left|center"
         android:gravity="left|center"
@@ -27,7 +27,7 @@
 
     <TextView
         android:id="@+id/forecast.icon"
-        android:layout_width="40dp"
+        android:layout_width="40sp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
@@ -35,7 +35,7 @@
 
     <TextView
         android:id="@+id/forecast.description"
-        android:layout_width="70dp"
+        android:layout_width="70sp"
         android:layout_height="wrap_content"
         android:maxLines="2"
         android:layout_gravity="left|center"
@@ -44,7 +44,7 @@
 
     <TextView
         android:id="@+id/forecast.temperature"
-        android:layout_width="50dp"
+        android:layout_width="50sp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
@@ -52,7 +52,7 @@
 
     <TextView
         android:id="@+id/forecast.wind"
-        android:layout_width="40dp"
+        android:layout_width="40sp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
@@ -60,7 +60,7 @@
 
     <TextView
         android:id="@+id/forecast.rainsnow"
-        android:layout_width="40dp"
+        android:layout_width="40sp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
@@ -69,7 +69,7 @@
 
     <TextView
         android:id="@+id/forecast.humidity"
-        android:layout_width="40dp"
+        android:layout_width="40sp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
@@ -77,7 +77,7 @@
 
     <TextView
         android:id="@+id/forecast.pressure"
-        android:layout_width="50dp"
+        android:layout_width="50sp"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"

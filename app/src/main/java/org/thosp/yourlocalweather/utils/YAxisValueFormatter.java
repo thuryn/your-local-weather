@@ -1,11 +1,11 @@
 package org.thosp.yourlocalweather.utils;
 
 import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.formatter.AxisValueFormatter;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import java.text.DecimalFormat;
 
-public class YAxisValueFormatter implements AxisValueFormatter {
+public class YAxisValueFormatter implements IAxisValueFormatter {
 
     private DecimalFormat mFormat;
 
@@ -16,10 +16,5 @@ public class YAxisValueFormatter implements AxisValueFormatter {
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
         return mFormat.format(value);
-    }
-
-    @Override
-    public int getDecimalDigits() {
-        return 1;
     }
 }
