@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="enter_city_hint">Stadt betreten</string>
+    <string name="enter_city_hint">Stadt eingeben</string>
     <string name="label_current_city">Aktuelle Stadt</string>
-    <string name="label_choose_city">Wähle Stadt</string>
+    <string name="label_choose_city">Stadt auswählen</string>
     <string name="alertDialog_location_permission_message_location_phone_settings">GPS ist nicht aktiviert. Wollen Sie zu den Einstellungen?</string>
     <string name="alertDialog_location_permission_positiveButton_settings">Einstellungen</string>
     <string name="alertDialog_location_permission_negativeButton">Abbrechen</string>
@@ -126,8 +126,8 @@
     
     <string name="permission_location_need">Standortberechtigungen muss gewährt werden</string>
 
-    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Anwendung benötigt Erlaubnis um Standort per GPS bestimmen zu können.</string>
-    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Anwendung benötigt Erlaubnis um den Standort via WIFI und GSM aktualisieren zu können.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Die Anwendung benötigt die Berechtigung zur Standortbestimmung über GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Die Anwendung benötigt die Berechtigung zur Standortbestimmung über WLAN- und Mobilfunknetze.</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Standort nicht gefunden</string>
     <string name="help_page_general_content" tools:ignore="MissingTranslation">Die Anwendung nutzt Mobilfunknetz, WLAN und GPS, um Ihren Standort zu bestimmen und Ihnen Wetterdaten zu dem Ort anzuzeigen, an dem Sie sich gerade befinden. Wenn Sie Widgets auf Ihrem Telefon oder Tablet verwenden, können Sie Ihren Standort und das aktuelle Wetter auf dem Startbildschirm sehen. Die Standortaktualisierung kann in einem bestimmten Intervall (z. B. stündlich) geschehen, oder die Anwendung kann den Beschleunigungsmesser nutzen, um Bewegungen zu erkennen. Sie können die Standortaktualisierung ausschalten - in diesem Fall werden nur die Wetterdaten aktualisiert. Aktualisierung nach festgelegten Zeitintervallen: Die Anwendung aktualisiert den Standort und das Wetter nach einer bestimmten Zeitdauer. Zum Beispiel können Sie eine Aktualisierung zu jeder vollen Stunde festlegen. Aktualisierung nach Beschleunigungsmesser: Der Standort wird nach einer vom Beschleunigungsmesser ermittelten Entfernung aktualisiert. Wenn die Entfernung länger als der Minimalwert für die Aktualisierung ist, aktualisiert die Anwendung Ihren Standort. Die vom Beschleunigungsmesser bestimmte Entfernung hängt davon ab, wie Sie Ihr Gerät tragen - wenn Ihr Gerät in einer Tasche getragen wird, erhöht sich die Entfernung schneller - das Gerät bewegt sich vor und zurück, wenn Sie gehen. Das Wetter wird unmittelbar nach der Standortaktualisierung aktualisiert. Das Wetter wird auch aktualisiert, wenn der Bildschirm angeht - aber nicht öfter als alle 15 Minuten (und wenn das Wetter in den letzten 15 Minuten nicht aktualisiert wurde). Zur Standortbestimmung werden die am Ort verfügbaren Mobilfunk- und WLAN-Netzdaten genutzt. Diese Informationen werden verwendet, um Standortkoordinaten über den Mozilla-Standortdienst zu erhalten. Die Anwendung versucht das GPS zu verwenden, wenn keine Mobilfunk- oder WLAN-Netze zur Verfügung stehen. Die Standortkoordinaten werden verwendet, um Adressen über den Nominatim-Dienst zu beziehen. Die Adresse wird in der Anwendung oder dem Widget verwendet. Die Anwendung nutzt den Dienst von OpenWeatherMap.org, um aktuelle Wetterdaten zu erhalten.</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Standorteinstellungen und Berechtigungen</string>
@@ -219,5 +219,44 @@
     <string name="location_cache_8760_label" tools:ignore="MissingTranslation">ein Jahr</string>
     <string name="location_cache_88888_label" tools:ignore="MissingTranslation">nie</string>
     <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Standorte zwischenspeichern</string>
-    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Gefundene Standorte gespeichert</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Gefundene Standorte werden gespeichert</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Die Hauptanwendung beinhaltet eine Übersicht zum aktuellen Wetter. Die Wetterdaten können über den \"Aktualisieren\"-Schalter in der App-Leiste oder durch Herunterziehen aktualisiert werden. Rechts von dieser Schaltfläche finden Sie eine weitere zur Aktualisierung des Standortes. Dieser Schalter steht nur in der Einstellung \"Standort 0\" zur Verfügung (Standort 0 ist für die automatische Standortaktualisierung vorgesehen).</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Neben dem Schalter zur Standortaktualisierung befindet sich die Schaltfläche zur Standortverwaltung (Lupensymbol). Über ihn können die Standorte bestimmt werden, die in der App und in den Widgets abrufbar sein sollen. Standardmäßig steht ein Standort (Standort 0) zur Verfügung, der mit der automatischen Standorterkennung verknüpft ist. Sie finden die Schaltfläche zum Ein-/Ausschalten dieser Funktion, wenn Sie diesen Eintrag nach links schieben. Wenn Sie das + anklicken, können Sie auf einer Karte einen Ort auswählen und so auch manuell Standorte hinzufügen. Die Standorte können über den \"Löschen\"-Schalter entfernt werden - die Schaltfläche wird sichtbar, wenn Sie den Eintrag nach links schieben.</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Auf dem nächsten Bildschirm finden Sie die Wettervorhersage (wählen Sie die Vorhersage über das Menü oder wischen Sie nach rechts). Die Aktualisierung der Wettervorhersage erfolgt über den \"Aktualisieren\"-Schalter oder wenn der Bildschirm geöffnet wird (aber nicht öfter als ein Mal in der Stunde).</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Zusammenfassung zur Aktualisierung anzeigen</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Keine Anzeige</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Gerade aktualisierte Werte</string>
+    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Aktualisierte Werte mit Standortquelle</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - nur Wetter aktualisiert
+\nL - nur Standort aktualisiert
+\nG - Standort über GPS und Wetter aktualisiert
+\nN - Standort über Netz und Wetter aktualisiert</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - nur Wetter aktualisiert
+\nL - nur Standort aktualisiert
+\nG - Standort über GPS und Wetter aktualisiert
+\nN - Standort über Netz und Wetter aktualisiert
+\nNi - Standort über Mobilfunknetz und Wetter aktualisiert, Standortbestimmung über Mozilla Location Service</string>
+    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Gespeicherte Werte werden nach der festgelegten Zeit entfernt</string>
+    <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Gefundene Standorte werden nicht gespeichert</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Löschen</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Ausschalten</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Einschalten</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">Automatisch ermittelt</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Ausgeschaltet</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Hinzufügen</string>
+    <string name="search_location_info" tools:ignore="MissingTranslation">Auf Karte tippen, um gewünschten Standort zu bestimmen, und warten bis die Adresse ermittelt wurde.</string>
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Momentanes Wetter wurde noch nicht aktualisiert. Bitte Wetterdaten über den \"Aktualisieren\"-Schalter abrufen.</string>
+
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">Verzeichnis für Protokolldatei wählen</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">Optionen zur Fehlersuche</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Protokolldatei wird nach der festgelegten Zeit neu erstellt</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Protokoll erneuern nach</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 Stunden</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">einem Tag</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">zwei Tagen</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">drei Tagen</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">einer Woche</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">einem Monat</string>
+
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Symbolsatz</string>
     </resources>
