@@ -166,4 +166,7 @@
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Hilfe</string>
 
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Wenn Sie die Option <b>GPS wenn nötig einschalten</b> markieren, wird die Anwendung versuchen, den Standort über Mobilfunk- oder WLAN-Netze zu finden. Kann der Standort über Netzwerkdienste nicht gefunden werden, schaltet die Anwendung für einige Sekunden das GPS an, um den Standort zu bestimmen.</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Standort- und Adressenbezugsquelle</b> 
+\nSie können wählen, woher die Anwendung den Standort und die Adresse erhält.</string>
     </resources>
