@@ -135,4 +135,15 @@
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Keine Berechtigungen gewährt - öffnen Sie die Anwendung und klicken Sie auf das Standortsymbol</string>
 
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Standortbezugsquelle</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Schließen</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Weiter</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Zurück</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Abschließen</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Anleitung zur Erstkonfiguration</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Diese Anleitung hilft Ihnen dabei, die Anwendung nach Ihren Bedürfnissen einzustellen. Auf dem nächsten Bildschirm können Sie eine Aktualisierungsstrategie auswählen. 
+\nDie Anwendung aktualisiert nur das Wetter, wenn Sie die Einstellung <i>Standort nicht aktualisieren</i> wählen. 
+\nDie Standortaktualisierung ist eine der besten Eigenschaften dieser App. Somit ist <i>Standort aktualisieren</i> die empfohlene und vorgewählte Einstellung.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Einstellung der Standortaktualisierung</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Sie können die Standortbezugsquelle auswählen - das <i>System</i> verwendet Google-Dienste, um den Standort über Netzwerke (Mobilfunk- und WLAN-Netze) zu beziehen. Die Alternative <i>Local MLS and Nominatim</i> verwendet Mozilla\'s Standortdienst, um Standortkoordinaten zu erhalten und den Nominatim-Dienst, um Standortnamen zu ermitteln. Die zweite Option erfordert die Berechtigung auf Telefoninformationen zuzugreifen, um Informationen zum Mobilfunknetz zu erhalten. Die bevorzugte Option ist vorgewählt.</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Standort- und Adressbezugsquelle</string>
     </resources>
