@@ -185,5 +185,18 @@
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Standort- und Adressenbezugsquelle</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Lokaler MLS und Nominatim (empfohlen)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">System</string>
-    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Berechtigungsanfrage</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Berechtigungen abfragen</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Diese Menüoptionen bestimmen die <b>Sprache</b>, das <b>Motiv</b> der Hauptanwendung und den <b>Symbolsatz</b>, der in der Anwendung und in den Widgets verwendet wird.</string>
+    <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Sie können den Adressenzwischenspeicher über die Schaltfläche <b>Zwischenspeicher löschen</b> bereinigen.</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">Widget-Einstellungen</string>
+    <string name="help_page_4_content" tools:ignore="MissingTranslation">Die Widget-Einstellungen enthalten Konfigurationsmöglichkeiten für alle Widgets.</string>
+    <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Wenn Sie die Option <b>Beschriftungen im Widget anzeigen</b> markieren, werden Beschriftungen anstelle von Symbolen für die Wetterwerte angezeigt.</string>
+    <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Sie können den Widget-Hintergrund über die <b>Widget-Motiveinstellung</b> steuern.</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Hilfe</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Standorte</string>
+
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Symbol</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Beschreibung</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperatur</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Wind</string>
     </resources>
