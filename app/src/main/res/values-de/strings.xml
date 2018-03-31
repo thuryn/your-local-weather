@@ -145,5 +145,5 @@
 \nDie Standortaktualisierung ist eine der besten Eigenschaften dieser App. Somit ist <i>Standort aktualisieren</i> die empfohlene und vorgewählte Einstellung.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Einstellung der Standortaktualisierung</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Sie können die Standortbezugsquelle auswählen - das <i>System</i> verwendet Google-Dienste, um den Standort über Netzwerke (Mobilfunk- und WLAN-Netze) zu beziehen. Die Alternative <i>Local MLS and Nominatim</i> verwendet Mozilla\'s Standortdienst, um Standortkoordinaten zu erhalten und den Nominatim-Dienst, um Standortnamen zu ermitteln. Die zweite Option erfordert die Berechtigung auf Telefoninformationen zuzugreifen, um Informationen zum Mobilfunknetz zu erhalten. Die bevorzugte Option ist vorgewählt.</string>
-    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Standort- und Adressbezugsquelle</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Standort- und Adressenbezugsquelle</string>
     </resources>
