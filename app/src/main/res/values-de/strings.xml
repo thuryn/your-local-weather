@@ -199,4 +199,25 @@
     <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Beschreibung</string>
     <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperatur</string>
     <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Wind</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Regen/Schnee</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Luftfeuchte</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Luftdruck</string>
+    <string name="ok" tools:ignore="MissingTranslation">OK</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Abbrechen</string>
+
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Standortaktualisierungen</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Zwischenspeicher löschen</string>
+    <string name="db_info" tools:ignore="MissingTranslation">Zwischenspeicherinformationen</string>
+    <string name="db_header" tools:ignore="MissingTranslation">Adressenbestand im Zwischenspeicher</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Alter zwischengespeicherter Werte</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 Stunden</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">ein Tag</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">eine Woche</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">ein Monat</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">drei Monate</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">sechs Monate</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">ein Jahr</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">nie</string>
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Standorte zwischenspeichern</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Gefundene Standorte gespeichert</string>
     </resources>
