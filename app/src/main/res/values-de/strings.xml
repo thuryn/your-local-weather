@@ -185,4 +185,5 @@
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Standort- und Adressenbezugsquelle</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Lokaler MLS und Nominatim (empfohlen)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">System</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Berechtigungsanfrage</string>
     </resources>
