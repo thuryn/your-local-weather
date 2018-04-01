@@ -3,7 +3,7 @@
     <string name="enter_city_hint">Stadt eingeben</string>
     <string name="label_current_city">Aktuelle Stadt</string>
     <string name="label_choose_city">Stadt auswählen</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings">GPS ist nicht aktiviert. Wollen Sie zu den Einstellungen?</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">In der Anwendung ist die Standortaktualisierung eingestellt. Damit diese funktioniert, muss der Standortzugriff möglich sein. Öffnen Sie die Geräteeinstellungen und schalten Sie den Standort ein oder deaktivieren Sie die Standortaktualisierung in der App.</string>
     <string name="alertDialog_location_permission_positiveButton_settings">Einstellungen</string>
     <string name="alertDialog_location_permission_negativeButton">Abbrechen</string>
     <string name="progressDialog_gps_locate">Aktuelle Position wird gesucht</string>
@@ -26,14 +26,14 @@
     <!-- Navigation drawer -->
     <string name="nav_menu_current_weather">Aktuelles Wetter</string>
     <string name="nav_menu_daily_forecast">Tagesvorhersage</string>
-    <string name="nav_menu_graphs">Graphen</string>
+    <string name="nav_menu_graphs">Diagramme</string>
     <string name="nav_menu_settings">Einstellungen</string>
     <string name="nav_feedback">Feedback</string>
     <string name="nav_menu_bitcoin_donation">Bitcoin spenden</string>
 
     <!-- Toast messages -->
     <string name="connection_not_found"> Überprüfen Sie Ihre Internetverbindung</string>
-    <string name="toast_parse_error">Ein Fehler ist aufgetreten. Versuche es später nochmal!</string>
+    <string name="toast_parse_error">Ein Fehler ist aufgetreten. Bitte später versuchen!</string>
 
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
@@ -222,7 +222,7 @@
     <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Gefundene Standorte werden gespeichert</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Die Hauptanwendung beinhaltet eine Übersicht zum aktuellen Wetter. Die Wetterdaten können über den \"Aktualisieren\"-Schalter in der App-Leiste oder durch Herunterziehen aktualisiert werden. Rechts von dieser Schaltfläche finden Sie eine weitere zur Aktualisierung des Standortes. Dieser Schalter steht nur in der Einstellung \"Standort 0\" zur Verfügung (Standort 0 ist für die automatische Standortaktualisierung vorgesehen).</string>
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Neben dem Schalter zur Standortaktualisierung befindet sich die Schaltfläche zur Standortverwaltung (Lupensymbol). Über ihn können die Standorte bestimmt werden, die in der App und in den Widgets abrufbar sein sollen. Standardmäßig steht ein Standort (Standort 0) zur Verfügung, der mit der automatischen Standorterkennung verknüpft ist. Sie finden die Schaltfläche zum Ein-/Ausschalten dieser Funktion, wenn Sie diesen Eintrag nach links schieben. Wenn Sie das + anklicken, können Sie auf einer Karte einen Ort auswählen und so auch manuell Standorte hinzufügen. Die Standorte können über den \"Löschen\"-Schalter entfernt werden - die Schaltfläche wird sichtbar, wenn Sie den Eintrag nach links schieben.</string>
-    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Auf dem nächsten Bildschirm finden Sie die Wettervorhersage (wählen Sie die Vorhersage über das Menü oder wischen Sie nach rechts). Die Aktualisierung der Wettervorhersage erfolgt über den \"Aktualisieren\"-Schalter oder wenn der Bildschirm geöffnet wird (aber nicht öfter als ein Mal in der Stunde).</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Auf dem nächsten Bildschirm finden Sie die Wettervorhersage (wählen Sie die Vorhersage über das Menü oder wischen Sie nach rechts). Die Aktualisierung der Wettervorhersage erfolgt über den \"Aktualisieren\"-Schalter oder wenn der Bildschirm geöffnet wird (aber nicht öfter als einmal in der Stunde).</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Zusammenfassung zur Aktualisierung anzeigen</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Keine Anzeige</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Gerade aktualisierte Werte</string>
@@ -259,4 +259,27 @@
     <string name="log_file_720_label" tools:ignore="MissingTranslation">einem Monat</string>
 
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Symbolsatz</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Aufweckverhalten</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Der dritte Bildschirm zeigt Diagramme zum Wetterverlauf.</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"><b>Lokaler MLS und Nominatim</b> - Die Anwendung bezieht Standorte über den Mozilla Location Service. Sie nutzt dafür das Mobilfunknetz - Informationen über die momentan aktive und abrufbare Mobilfunkstation. Um diese Informationen zu erhalten, ist die Zugriffsberechtigung für Telefonfunktionen nötig. Die Anwendung nutzt umliegende WLAN-Netze, um Ihren Standort genauer einordnen zu können. Der Mozilla-Standortdienst liefert geographische Koordinaten, aus denen der Nominatim-Dienst Adressdaten ermittelt. Sie können zur Verbesserung des Mozilla Location Service beitragen, indem Sie die Mozilla Stumbler App installieren (abrufbar auf https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler), um künftig genauere Standortdaten zu erhalten.</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"><b>System</b> - Die Anwendung bezieht Standort und Adressen über die Android-Systemdienste (für gewöhnlich über den Google-Standortdienst).</string>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"><b>Benachrichtigungen</b> 
+\nWenn Sie die Benachrichtigungen einschalten, wird das Wetter regelmäßig aktualisiert. Aktuelle Wetterdaten werden dann in den Benachrichtigungen angezeigt. Es kann auch ein Vibrationsalarm bei Aktualisierung aktiviert werden.</string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">Um Datenvolumen zu sparen und die Standortaktualisierung zu beschleunigen können Sie <b>Standorte zwischenspeichern</b> einschalten. Geografische Koordinaten und Adressen werden im Zwischenspeicher abgelegt. Die Anwendung muss unabhängig von dieser Einstellung weiterhin die Koordinaten über das Netz ermitteln. Aber der Abruf der Adresse über Nominatim findet nur für den Fall statt, dass sie nicht im Zwischenspeicher enthalten sind. Aktivieren Sie die Standortspeicherung, müssen Sie damit einverstanden sein, dass von Ihnen besuchte Adressen in der App gespeichert werden. Es werden keine Informationen aus dem Zwischenspeicher nach draußen versendet.</string>
+    <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Unter der Zwischenspeicher-Einstellung (Markierfeld) befindet sich die Einstellung für das <b>Alter der gespeicherten Werte</b>. Jede gespeicherte Adresse besitzt einen Zeitstempel. Ist der Zeitstempel älter als der hier festgelegte Wert, ruft die Anwendung Nominatim auf, um die Einträge zu aktualisieren.</string>
+    <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">Sie sehen einige der zuletzt gespeicherten Werte im Abschnitt <b>Zwischenspeicherinformation</b> wie auch die Gesamtzahl der Einträge.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">Die Einstellung zum <b>Aufweckverhalten</b> gibt es, um die von verschiedenen Herstellern verursachte, fehlerhafte Ausführung von Android-Diensten zu bewältigen. Funktioniert die Standortaktualisierung in der Einstellung <i>Kein Aufwecken</i>, werden sie korrekt ausgeführt. Aktualisiert sich der Standort nicht ordnungsgemäß, können Sie <i>nur CPU aufwecken</i> versuchen. Diese Einstellung weckt den Prozessor und versucht dann, den Mobilfunk- und WLAN-Netzstatus abzurufen. Die letzte Möglichkeit ist die Einstellung <i>mit Bildschirm aufwecken</i>, wodurch während der Standortbestimmung für einige Sekunden der Bildschirm angeht. Auf einigen Android-Geräten ist das die einzige Möglichkeit, die Informationen über das Mobilfunk-/WLAN-Netz zu erhalten. Diese Einstellung verursacht einen gewissen Stromverbrauch - die Auswirkungen auf die Akkulaufzeit sind aber wirklich gering.</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Nach Aktualisierung von Standort und Wetter können Sie den Aktualisierungsstand neben der Aktualisierungszeit im Widget ablesen. Was angezeigt wird, kann über die Einstellung <b>Zusammenfassung zur Aktualisierung anzeigen</b> geregelt werden. Erklärung zu den erweiterten Optionen:</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">Optionen zur Fehlersuche</string>
+    <string name="help_page_5_content" tools:ignore="MissingTranslation">Hier befinden sich Einstellungen zur Aktivierung eines Fehlerprotokolls. Diese Option ist hifreich, wenn es Probleme mit der Anwendung gibt.</string>
+
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Spalteneinstellungen</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Anzuzeigende Spalten</string>
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">App-Navigation öffnen</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">App-Navigation schließen</string>
+    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Wenn die Standortbestimmung im Standby-Modus nicht funktioniert, versuchen Sie das Gerät für die Mobilfunkzellensuche aufzuwecken</string>
+    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Aufweckverhalten</string>
+    <string name="nowakeup_label" tools:ignore="MissingTranslation">Kein Aufwecken</string>
+    <string name="wakeuppartial_label" tools:ignore="MissingTranslation">nur CPU aufwecken</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">mit Bildschirm aufwecken</string>
     </resources>
