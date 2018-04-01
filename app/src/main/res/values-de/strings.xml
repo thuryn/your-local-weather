@@ -282,4 +282,6 @@
     <string name="nowakeup_label" tools:ignore="MissingTranslation">Kein Aufwecken</string>
     <string name="wakeuppartial_label" tools:ignore="MissingTranslation">nur CPU aufwecken</string>
     <string name="wakeupfull_label" tools:ignore="MissingTranslation">mit Bildschirm aufwecken</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Aufweckverhalten</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Allgemeines</string>
     </resources>
