@@ -68,15 +68,14 @@ public class LocationUpdateService extends Service implements LocationListener {
 
     private String updateSource;
 
-    private long lastLocationUpdateTime;
-    private long lastUpdatedPossition = 0;
-    private long lastUpdate = 0;
-    private float currentLength = 0;
+    private volatile long lastLocationUpdateTime;
+    private volatile long lastUpdatedPossition = 0;
+    private volatile long lastUpdate = 0;
+    private volatile float currentLength = 0;
     private float currentLengthLowPassed = 0;
     private float gravity[] = new float[3];
     private MoveVector lastMovement;
-    private org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent;
-    private long nextFetchOfCurrentLocationForSensorEvent;
+    public static volatile boolean autolocationForSensorEventAddressFound;
 
     private SensorEventListener sensorListener = new SensorEventListener() {
 
@@ -204,6 +203,13 @@ public class LocationUpdateService extends Service implements LocationListener {
             if (senSensorManager != null) {
                 return ret;
             }
+
+            org.thosp.yourlocalweather.model.Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
+            if (!autoLocation.isEnabled()) {
+                return ret;
+            }
+            autolocationForSensorEventAddressFound = autoLocation.isAddressFound();
+
             appendLog(getBaseContext(), TAG, "START_SENSOR_BASED_UPDATES recieved");
             senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
             senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -697,15 +703,9 @@ public class LocationUpdateService extends Service implements LocationListener {
             }
             float absCurrentLength = Math.abs(currentLength);
 
-            if ((currentLocationForSensorEvent == null) || (now > nextFetchOfCurrentLocationForSensorEvent)) {
-                LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-                currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
-                nextFetchOfCurrentLocationForSensorEvent = now + REFRESH_LOCATION_FROM_DB_TIMEOUT;
-            }
-
             if (((lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SPAN)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT))
                     && ((lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SECOND_SPAN)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_SECOND_LIMIT))
-                    && (currentLocationForSensorEvent.isAddressFound() || (lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION))) {
+                    && (autolocationForSensorEventAddressFound || (lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION))) {
                 return;
             }
 
@@ -723,7 +723,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         currentLength = 0;
         currentLengthLowPassed = 0;
 
-        currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
+        org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
         locationsDbHelper.updateLocationSource(currentLocationForSensorEvent.getId(), "-");
         updateNetworkLocation(false);
     }

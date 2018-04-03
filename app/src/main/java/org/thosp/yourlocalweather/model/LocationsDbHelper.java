@@ -9,6 +9,7 @@ import android.location.Address;
 import android.os.Parcel;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.service.LocationUpdateService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -99,6 +100,9 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
     }
 
     public Address getAddressFromBytes(byte[] addressBytes) {
+        if ((addressBytes == null) || (addressBytes.length == 0)) {
+            return null;
+        }
         final Parcel parcel = Parcel.obtain();
         parcel.unmarshall(addressBytes, 0, addressBytes.length);
         parcel.setDataPosition(0);
@@ -108,6 +112,9 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
     }
 
     public byte[] getAddressAsBytes(Address address) {
+        if (address == null) {
+            return null;
+        }
         final Parcel parcel = Parcel.obtain();
         address.writeToParcel(parcel, 0);
         byte[] addressBytes = parcel.marshall();
@@ -426,6 +433,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         values.put(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND, 1);
         values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, System.currentTimeMillis());
         db.update(LocationsContract.Locations.TABLE_NAME,values,LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",null);
+        LocationUpdateService.autolocationForSensorEventAddressFound = true;
     }
 
     public void updateAutoLocationGeoLocation(double latitude, double longitude, String locationSource, float accuracy, long locationTime) {
@@ -446,6 +454,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, System.currentTimeMillis());
 
         db.update(LocationsContract.Locations.TABLE_NAME,values,LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",null);
+        LocationUpdateService.autolocationForSensorEventAddressFound = false;
     }
 
     public void updateLocationSource(long locationId, String updateSource) {
