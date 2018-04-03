@@ -243,7 +243,7 @@ public class CurrentWeatherService extends Service {
         long now = System.currentTimeMillis();
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
         currentWeatherDbHelper.saveWeather(locationId, now, weather);
-        locationsDbHelper.updateLastUpdatedAndLocationSource(locationId, now, updateSource);
+        locationsDbHelper.updateLastUpdatedAndLocationSource(locationId, now, locationSource);
         currentLocation = locationsDbHelper.getLocationById(locationId);
         sendResult(ACTION_WEATHER_UPDATE_OK, weather);
     }
