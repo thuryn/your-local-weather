@@ -90,7 +90,7 @@
     <string name="label_snow">Schnee</string>
 
     <!-- Widgets strings -->
-    <string name="widget_weather_icon_description">Symbol für aktuelles Wetter</string>
+    <string name="widget_weather_icon_description">Symbol für momentanes Wetter</string>
     <string name="widget_refresh_button">\"Widget aktualisieren\" Button</string>
 
     <!-- Donation Bitcoin dialog --><![CDATA[
@@ -209,7 +209,7 @@
     <string name="clear_cache_button" tools:ignore="MissingTranslation">Zwischenspeicher löschen</string>
     <string name="db_info" tools:ignore="MissingTranslation">Zwischenspeicherinformationen</string>
     <string name="db_header" tools:ignore="MissingTranslation">Adressenbestand im Zwischenspeicher</string>
-    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Alter zwischengespeicherter Werte</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Alter gespeicherter Werte</string>
     <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 Stunden</string>
     <string name="location_cache_24_label" tools:ignore="MissingTranslation">ein Tag</string>
     <string name="location_cache_168_label" tools:ignore="MissingTranslation">eine Woche</string>
@@ -284,4 +284,5 @@
     <string name="wakeupfull_label" tools:ignore="MissingTranslation">mit Bildschirm aufwecken</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Aufweckverhalten</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Allgemeines</string>
+    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
     </resources>
