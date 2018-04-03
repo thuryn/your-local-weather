@@ -90,7 +90,7 @@
     <string name="label_snow">Schnee</string>
 
     <!-- Widgets strings -->
-    <string name="widget_weather_icon_description">Momentanes Wetter Icon</string>
+    <string name="widget_weather_icon_description">Symbol für aktuelles Wetter</string>
     <string name="widget_refresh_button">\"Widget aktualisieren\" Button</string>
 
     <!-- Donation Bitcoin dialog --><![CDATA[
@@ -111,7 +111,7 @@
     <!-- Permission strings -->
     <string name="permission_location_rationale">Standortberechtigungen werden benötigt, um die aktuelle Stadt zu ermitteln</string>
     <string name="permission_not_granted">Berechtigungen wurden nicht gewährt!</string>
-    <string name="permission_available_location">Standort Berechtigungen wurden erteilt</string>
+    <string name="permission_available_location">Standortberechtigungen wurden erteilt</string>
     <string name="pref_language_default">Systemstandard</string>
     <string name="pref_title_language">Sprache</string>
     <string name="preference_title_category_display">Anzeige</string>
@@ -124,7 +124,7 @@
     <string name="theme_transparent">Transparent</string>
     <string name="pref_title_theme">Motiv</string>
     
-    <string name="permission_location_need">Standortberechtigungen muss gewährt werden</string>
+    <string name="permission_location_need">Standortberechtigungen müssen gewährt werden</string>
 
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Die Anwendung benötigt die Berechtigung zur Standortbestimmung über GPS.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Die Anwendung benötigt die Berechtigung zur Standortbestimmung über WLAN- und Mobilfunknetze.</string>
