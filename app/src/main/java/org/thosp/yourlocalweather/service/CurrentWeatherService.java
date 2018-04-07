@@ -72,6 +72,11 @@ public class CurrentWeatherService extends Service {
                 return;
             }
 
+            if (currentLocation == null) {
+                appendLog(getBaseContext(), TAG, "timerRunnable, currentLocation is null");
+                return;
+            }
+
             String originalUpdateState = currentLocation.getLocationSource();
             appendLog(getBaseContext(), TAG, "originalUpdateState:" + originalUpdateState);
             String newUpdateState = originalUpdateState;
@@ -166,15 +171,7 @@ public class CurrentWeatherService extends Service {
 
                                 Weather weather = WeatherJSONParser.getWeather(weatherRaw);
                                 timerHandler.removeCallbacksAndMessages(null);
-
-                                String locationSource = currentLocation.getLocationSource();
-                                appendLog(context,
-                                        TAG,
-                                        "Location source is:" + locationSource);
-                                if ("-".equals(locationSource)) {
-                                    locationSource = "W";
-                                }
-                                saveWeatherAndSendResult(context, weather, locationSource);
+                                saveWeatherAndSendResult(context, weather);
                             } catch (JSONException e) {
                                 appendLog(context, TAG, "JSONException:" + e);
                                 sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
@@ -221,7 +218,7 @@ public class CurrentWeatherService extends Service {
         }
     }
 
-    private void saveWeatherAndSendResult(Context context, Weather weather, String updateSource) {
+    private void saveWeatherAndSendResult(Context context, Weather weather) {
         final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
         Long locationId = locationsDbHelper.getLocationIdByCoordinates(weather.getLat(), weather.getLon());
         if (locationId == null) {
@@ -234,10 +231,19 @@ public class CurrentWeatherService extends Service {
             sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
             return;
         }
+        currentLocation = locationsDbHelper.getLocationById(locationId);
+        String locationSource = currentLocation.getLocationSource();
+        if ((locationSource == null) || "-".equals(locationSource)) {
+            locationSource = "W";
+        }
+        appendLog(context,
+                TAG,
+                "Location source is:" + locationSource);
+
         long now = System.currentTimeMillis();
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
         currentWeatherDbHelper.saveWeather(locationId, now, weather);
-        locationsDbHelper.updateLastUpdatedAndLocationSource(locationId, now, updateSource);
+        locationsDbHelper.updateLastUpdatedAndLocationSource(locationId, now, locationSource);
         currentLocation = locationsDbHelper.getLocationById(locationId);
         sendResult(ACTION_WEATHER_UPDATE_OK, weather);
     }

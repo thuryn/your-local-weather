@@ -85,6 +85,7 @@ public class GraphsActivity extends BaseActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ((YourLocalWeather) getApplication()).applyTheme(this);
         setContentView(R.layout.activity_graphs);
         mConnectionDetector = new ConnectionDetector(this);
         mGetWeatherProgress = getProgressDialog();
