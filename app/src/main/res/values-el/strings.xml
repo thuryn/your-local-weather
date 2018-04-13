@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="enter_city_hint">Εισαγωγή Πόλης</string>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="enter_city_hint">Εισαγωγή Πόλης</string>
     <string name="label_current_city">Τωρινή Πόλη</string>
     <string name="label_choose_city">Επέλεξε Πόλη</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings">Δεν είναι ενεργοποιημένο το GPS. Θέλεις να μεταβείς στην επιλογή των ρυθμίσεων;</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">Η εφαρμογή είναι ρυθμισμένη να ενημερώνει την τοποθεσία. Η πρόσβαση στην τοποθεσία πρέπει να ενεργοποιηθεί για να λειτουργήσει η ενημέρωση. Πήγαινε στις ρυθμίσεις του τηλεφώνου και ενεργοποίηση την τοποθεσία ή απενεργοποίησε την ενημέρωση της τοποθεσίας στην εφαρμογή.</string>
     <string name="alertDialog_location_permission_positiveButton_settings">Ρυθμίσεις</string>
     <string name="alertDialog_location_permission_negativeButton">Ακύρωση</string>
     <string name="progressDialog_gps_locate">Εύρεση τωρινής τοποθεσίας</string>
@@ -107,4 +107,9 @@
     <string name="widget_weather_icon_description">Εικονίδιο τωρινού καιρού</string>
     <string name="widget_refresh_button">Πλήκτρο ανανέωσης του γραφικού στοιχείου</string>
 
+    <string name="app_name" tools:ignore="MissingTranslation">Ο καιρός τοπικά</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Ρυθμίσεις τοποθεσίας και αδειών</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Η εφαρμογή χρειάζεται άδεια για να ενημερώσει την τοποθεσία μέσω GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Η εφαρμογή χρειάζεται άδεια για να ενημερώσει την τοποθεσία μέσω WIFI και δικτύων GSM.</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Η τοποθεσία δε βρέθηκε</string>
     </resources>
