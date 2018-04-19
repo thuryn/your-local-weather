@@ -192,91 +192,17 @@ public class LocationUpdateService extends Service implements LocationListener {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
-        
         if (intent == null) {
             return ret;
         }
-
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():" + intent.getAction());
-        if ("android.intent.action.START_SENSOR_BASED_UPDATES".equals(intent.getAction())) {
-            if (senSensorManager != null) {
-                return ret;
-            }
-
-            org.thosp.yourlocalweather.model.Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
-            if (!autoLocation.isEnabled()) {
-                return ret;
-            }
-            autolocationForSensorEventAddressFound = autoLocation.isAddressFound();
-
-            appendLog(getBaseContext(), TAG, "START_SENSOR_BASED_UPDATES recieved");
-            senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-            senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-            appendLog(getBaseContext(), TAG, "Selected accelerometer sensor:" + senAccelerometer);
-            senSensorManager.registerListener(sensorListener, senAccelerometer , SensorManager.SENSOR_DELAY_FASTEST);
-            IntentFilter filterScreenOn = new IntentFilter(Intent.ACTION_SCREEN_ON);
-            IntentFilter filterScreenOff = new IntentFilter(Intent.ACTION_SCREEN_OFF);
-            getApplication().registerReceiver(screenOnReceiver, filterScreenOn);
-            getApplication().registerReceiver(screenOffReceiver, filterScreenOff);
-            return START_STICKY;
+        switch (intent.getAction()) {
+            case "android.intent.action.START_SENSOR_BASED_UPDATES": return startSensorBasedUpdates(ret);
+            case "android.intent.action.STOP_SENSOR_BASED_UPDATES": stopSensorBasedUpdates(); return ret;
+            case "android.intent.action.LOCATION_UPDATE": startLocationUpdateOnly(intent); return ret;
+            case "android.intent.action.START_LOCATION_AND_WEATHER_UPDATE": startLocationAndWeatherUpdate(intent); return ret;
+            default: return ret;
         }
-
-        if ("android.intent.action.STOP_SENSOR_BASED_UPDATES".equals(intent.getAction())) {
-            if (senSensorManager == null) {
-                return ret;
-            }
-            appendLog(getBaseContext(), TAG, "STOP_SENSOR_BASED_UPDATES recieved");
-            getApplication().unregisterReceiver(screenOnReceiver);
-            getApplication().unregisterReceiver(screenOffReceiver);
-            senSensorManager.unregisterListener(sensorListener);
-            senSensorManager = null;
-            senAccelerometer = null;
-            return ret;
-        }
-
-        if ("android.intent.action.LOCATION_UPDATE".equals(intent.getAction()) && (intent.getExtras() != null)) {
-            Location inputLocation = (Location) intent.getExtras().getParcelable("inputLocation");
-            Address addresses = (Address) intent.getExtras().getParcelable("addresses");
-            appendLog(getBaseContext(), TAG, "LOCATION_UPDATE recieved:" + inputLocation + ":" + addresses);
-            onLocationChanged(inputLocation, addresses);
-            return ret;
-        }
-
-        if ("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE".equals(intent.getAction()) && (intent.getExtras() != null)) {
-
-            boolean isGPSEnabled = AppPreference.isGpsEnabledByPreferences(this) &&
-                    locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
-                    && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
-            boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
-                    && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
-
-            updateSource = intent.getStringExtra("updateSource");
-            org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
-            locationsDbHelper.updateLocationSource(currentLocation.getId(), "-");
-            AppWakeUpManager.getInstance(getBaseContext()).wakeUp();
-
-            boolean isUpdateOfLocationEnabled = AppPreference.isUpdateLocationEnabled(this, currentLocation);
-            appendLog(this, TAG, "START_LOCATION_AND_WEATHER_UPDATE, isUpdateOfLocationEnabled=" +
-                                                isUpdateOfLocationEnabled +
-                                                ", isGPSEnabled=" +
-                                                isGPSEnabled +
-                                                ", isNetworkEnabled=" +
-                                                isNetworkEnabled);
-            String geocoder = AppPreference.getLocationGeocoderSource(this);
-            if (isUpdateOfLocationEnabled && (isGPSEnabled || isNetworkEnabled || !"location_geocoder_system".equals(geocoder))) {
-                appendLog(getBaseContext(), TAG, "Widget calls to update location, geocoder = " + geocoder);
-                if ("location_geocoder_unifiednlp".equals(geocoder) || "location_geocoder_local".equals(geocoder)) {
-                    updateNetworkLocation(false);
-                } else {
-                    detectLocation();
-                }
-            } else {
-                requestWeatherCheck("-");
-            }
-        }
-        
-        return ret;
     }
 
     @Override
@@ -445,6 +371,98 @@ public class LocationUpdateService extends Service implements LocationListener {
     @Override
     public void onProviderDisabled(String provider) {
         removeUpdates(this);
+    }
+
+    private void startLocationUpdateOnly(Intent intent) {
+        if (intent.getExtras() == null) {
+            return;
+        }
+        Location inputLocation = (Location) intent.getExtras().getParcelable("inputLocation");
+        Address addresses = (Address) intent.getExtras().getParcelable("addresses");
+        appendLog(getBaseContext(), TAG, "LOCATION_UPDATE recieved:" + inputLocation + ":" + addresses);
+        onLocationChanged(inputLocation, addresses);
+    }
+
+    private void startLocationAndWeatherUpdate(Intent intent) {
+        if (intent.getExtras() == null) {
+            return;
+        }
+        boolean isGPSEnabled = AppPreference.isGpsEnabledByPreferences(this) &&
+                locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
+                && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
+                && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+        updateSource = intent.getStringExtra("updateSource");
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+        org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
+        locationsDbHelper.updateLocationSource(currentLocation.getId(), "-");
+        AppWakeUpManager.getInstance(getBaseContext()).wakeUp();
+
+        boolean isUpdateOfLocationEnabled = AppPreference.isUpdateLocationEnabled(this, currentLocation);
+        appendLog(this, TAG, "START_LOCATION_AND_WEATHER_UPDATE, isUpdateOfLocationEnabled=" +
+                isUpdateOfLocationEnabled +
+                ", isGPSEnabled=" +
+                isGPSEnabled +
+                ", isNetworkEnabled=" +
+                isNetworkEnabled);
+        String geocoder = AppPreference.getLocationGeocoderSource(this);
+        if (isUpdateOfLocationEnabled && (isGPSEnabled || isNetworkEnabled || !"location_geocoder_system".equals(geocoder))) {
+            appendLog(getBaseContext(), TAG, "Widget calls to update location, geocoder = " + geocoder);
+            if ("location_geocoder_unifiednlp".equals(geocoder) || "location_geocoder_local".equals(geocoder)) {
+                updateNetworkLocation(false);
+            } else {
+                detectLocation();
+            }
+        } else {
+            requestWeatherCheck("-");
+        }
+    }
+
+    private void stopSensorBasedUpdates() {
+        if (senSensorManager == null) {
+            return;
+        }
+        appendLog(getBaseContext(), TAG, "STOP_SENSOR_BASED_UPDATES recieved");
+        getApplication().unregisterReceiver(screenOnReceiver);
+        getApplication().unregisterReceiver(screenOffReceiver);
+        senSensorManager.unregisterListener(sensorListener);
+        senSensorManager = null;
+        senAccelerometer = null;
+    }
+
+    private int startSensorBasedUpdates(int initialReturnValue) {
+        if (senSensorManager != null) {
+            return initialReturnValue;
+        }
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+        org.thosp.yourlocalweather.model.Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
+        if (!autoLocation.isEnabled()) {
+            return initialReturnValue;
+        }
+        autolocationForSensorEventAddressFound = autoLocation.isAddressFound();
+        registerSensorListener();
+        registerScreenListeners();
+        return START_STICKY;
+    }
+
+    private void registerSensorListener() {
+        appendLog(getBaseContext(), TAG, "START_SENSOR_BASED_UPDATES recieved");
+        senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        appendLog(getBaseContext(), TAG, "Selected accelerometer sensor:" + senAccelerometer);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            senSensorManager.registerListener(sensorListener, senAccelerometer , 300000000, 600000000);
+        } else {
+            senSensorManager.registerListener(sensorListener, senAccelerometer , 300000000);
+        }
+    }
+
+    private void registerScreenListeners() {
+        IntentFilter filterScreenOn = new IntentFilter(Intent.ACTION_SCREEN_ON);
+        IntentFilter filterScreenOff = new IntentFilter(Intent.ACTION_SCREEN_OFF);
+        getApplication().registerReceiver(screenOnReceiver, filterScreenOn);
+        getApplication().registerReceiver(screenOffReceiver, filterScreenOff);
     }
 
     private void gpsRequestLocation() {
