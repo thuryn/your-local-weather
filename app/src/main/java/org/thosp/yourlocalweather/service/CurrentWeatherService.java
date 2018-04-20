@@ -92,7 +92,7 @@ public class CurrentWeatherService extends Service {
                 locationsDbHelper.updateLocationSource(currentLocation.getId(), newUpdateState);
                 currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
             }
-            sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
+            sendResult(ACTION_WEATHER_UPDATE_FAIL, null, getBaseContext());
         }
     };
     
@@ -174,7 +174,7 @@ public class CurrentWeatherService extends Service {
                                 saveWeatherAndSendResult(context, weather);
                             } catch (JSONException e) {
                                 appendLog(context, TAG, "JSONException:" + e);
-                                sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
+                                sendResult(ACTION_WEATHER_UPDATE_FAIL, null, context);
                             }
                         }
 
@@ -182,7 +182,7 @@ public class CurrentWeatherService extends Service {
                         public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                             AppWakeUpManager.getInstance(getBaseContext()).wakeDown();
                             appendLog(context, TAG, "onFailure:" + statusCode);
-                            sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
+                            sendResult(ACTION_WEATHER_UPDATE_FAIL, null, context);
                         }
 
                         @Override
@@ -192,7 +192,7 @@ public class CurrentWeatherService extends Service {
                     });
                 } catch (MalformedURLException mue) {
                     appendLog(context, TAG, "MalformedURLException:" + mue);
-                    sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
+                    sendResult(ACTION_WEATHER_UPDATE_FAIL, null, context);
                 }
             }
         };
@@ -200,21 +200,25 @@ public class CurrentWeatherService extends Service {
         return ret;
     }
 
-    public void sendResult(String result, Weather weather) {
+    private void sendResult(String result, Weather weather, Context context) {
         stopRefreshRotation();
         gettingWeatherStarted = false;
-        startService(new Intent(getBaseContext(), LessWidgetService.class));
-        startService(new Intent(getBaseContext(), MoreWidgetService.class));
-        startService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
-        if (updateSource != null) {
-            switch (updateSource) {
-                case "MAIN":
-                    sendIntentToMain(result, weather);
-                    break;
-                case "NOTIFICATION":
-                    startService(new Intent(getBaseContext(), NotificationService.class));
-                    break;
+        try {
+            startService(new Intent(getBaseContext(), LessWidgetService.class));
+            startService(new Intent(getBaseContext(), MoreWidgetService.class));
+            startService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
+            if (updateSource != null) {
+                switch (updateSource) {
+                    case "MAIN":
+                        sendIntentToMain(result, weather);
+                        break;
+                    case "NOTIFICATION":
+                        startService(new Intent(getBaseContext(), NotificationService.class));
+                        break;
+                }
             }
+        } catch (Throwable exception) {
+            appendLog(context, TAG, "Exception occured when starting the service:", exception);
         }
     }
 
@@ -228,7 +232,7 @@ public class CurrentWeatherService extends Service {
                             weather.getLat() +
                             ", " +
                             weather.getLon());
-            sendResult(ACTION_WEATHER_UPDATE_FAIL, null);
+            sendResult(ACTION_WEATHER_UPDATE_FAIL, null, context);
             return;
         }
         currentLocation = locationsDbHelper.getLocationById(locationId);
@@ -245,7 +249,7 @@ public class CurrentWeatherService extends Service {
         currentWeatherDbHelper.saveWeather(locationId, now, weather);
         locationsDbHelper.updateLastUpdatedAndLocationSource(locationId, now, locationSource);
         currentLocation = locationsDbHelper.getLocationById(locationId);
-        sendResult(ACTION_WEATHER_UPDATE_OK, weather);
+        sendResult(ACTION_WEATHER_UPDATE_OK, weather, context);
     }
     
     private void sendIntentToMain(String result, Weather weather) {

@@ -142,9 +142,12 @@ public class NetworkLocationProvider extends Service {
                     intentToCancel.cancel();
                     alarmManager.cancel(intentToCancel);
                     if (scanning) {
-                        // TODO pass wifi signal strength to geocoder
-                        List<ScanResult> scans = wifiManager.getScanResults();
-
+                        List<ScanResult> scans = null;
+                        try {
+                            scans = wifiManager.getScanResults();
+                        } catch (Throwable exception) {
+                            appendLog(getBaseContext(), TAG, "Exception occured getting wifi results:", exception);
+                        }
                         if (scans == null) {
                             appendLog(getBaseContext(), TAG, "WifiManager.getScanResults returned null");
                         }

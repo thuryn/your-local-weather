@@ -17,8 +17,8 @@ android {
         applicationId "org.thosp.yourlocalweather"
         minSdkVersion 14
         targetSdkVersion 25
-        versionCode 41
-        versionName "3.0.15"
+        versionCode 43
+        versionName "3.0.17"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         playAccountConfig = playAccountConfigs.defaultAccountConfig
@@ -47,17 +47,17 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.github.PhilJay:MPAndroidChart:v3.0.3'
-    compile 'com.android.support:appcompat-v7:25.4.0'
-    compile 'com.android.support:design:25.4.0'
-    compile 'com.android.support:cardview-v7:25.4.0'
-    compile 'com.android.support:support-v4:25.4.0'
-    compile 'org.microg:unifiednlp-api:1.5.6'
-    compile 'org.microg:address-formatter:0.2.1'
-    compile 'com.google.code.gson:gson:2.8.0'
-    compile 'com.obsez.android.lib.filechooser:filechooser:1.1.5'
-    compile 'com.loopj.android:android-async-http:1.4.9'
-    compile 'org.osmdroid:osmdroid-android:6.0.1'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    implementation 'com.android.support:appcompat-v7:25.4.0'
+    implementation 'com.android.support:design:25.4.0'
+    implementation 'com.android.support:cardview-v7:25.4.0'
+    implementation 'com.android.support:support-v4:25.4.0'
+    implementation 'org.microg:unifiednlp-api:1.5.6'
+    implementation 'org.microg:address-formatter:0.2.1'
+    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.obsez.android.lib.filechooser:filechooser:1.1.5'
+    implementation 'com.loopj.android:android-async-http:1.4.9'
+    implementation 'org.osmdroid:osmdroid-android:6.0.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'

@@ -149,17 +149,30 @@
                 android:resource="@xml/widget_provider_ext_loc"/>
         </receiver>
 
-        <service android:name=".service.NotificationService"/>
-        <service android:name=".widget.WidgetRefreshIconService" >
+        <service
+            android:name=".service.NotificationService"
+            android:process=":NotificationService" />
+        <service
+            android:name=".widget.WidgetRefreshIconService"
+            android:process=":WidgetRefreshIconService" >
             <intent-filter>
                 <action android:name="android.intent.action.START_ROTATING_UPDATE" />
                 <action android:name="android.intent.action.STOP_ROTATING_UPDATE" />
             </intent-filter>
         </service>
-        <service android:name=".widget.LessWidgetService"/>
-        <service android:name=".widget.MoreWidgetService"/>
-        <service android:name=".widget.ExtLocationWidgetService"/>
-        <service android:name=".service.CurrentWeatherService"/>
+        <service
+            android:name=".widget.LessWidgetService"
+            android:process=":LessWidgetService" />
+        <service
+            android:name=".widget.MoreWidgetService"
+            android:process=":MoreWidgetService" />
+        <service
+            android:name=".widget.ExtLocationWidgetService"
+            android:process=":ExtLocationWidgetService" />
+        <service
+            android:name=".service.CurrentWeatherService"
+            android:process=":CurrentWeatherService"
+            />
         <service android:name=".service.AppAlarmService" >
             <intent-filter>
                 <action android:name="org.thosp.yourlocalweather.action.START_ALARM_SERVICE" />
@@ -167,7 +180,9 @@
                 <action android:name="org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE" />
             </intent-filter>
         </service>
-        <service android:name=".service.LocationUpdateService" >
+        <service
+            android:name=".service.LocationUpdateService"
+            android:process=":LocationUpdateService" >
             <intent-filter>
                 <action android:name="android.intent.action.LOCATION_UPDATE" />
                 <action android:name="android.intent.action.START_SENSOR_BASED_UPDATES" />
@@ -177,7 +192,8 @@
         </service>
         <service
             android:name="org.thosp.yourlocalweather.service.NetworkLocationProvider"
-            android:permission="android.permission.ACCESS_COARSE_LOCATION">
+            android:permission="android.permission.ACCESS_COARSE_LOCATION"
+            android:process=":NetworkLocationProvider" >
             <intent-filter>
                 <action android:name="android.intent.action.START_LOCATION_UPDATE" />
                 <action android:name="org.openbmap.unifiedNlp.LOCATION_UPDATE_CELLS_ONLY" />

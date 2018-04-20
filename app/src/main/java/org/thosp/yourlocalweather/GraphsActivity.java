@@ -2,11 +2,9 @@ package org.thosp.yourlocalweather;
 
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
@@ -25,29 +23,19 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
-import org.thosp.yourlocalweather.model.Location;
-import org.thosp.yourlocalweather.model.WeatherForecast;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastResultHandler;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.CustomValueFormatter;
-import org.thosp.yourlocalweather.utils.LanguageUtil;
-import org.thosp.yourlocalweather.utils.PermissionUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.WeatherForecastUtil;
 import org.thosp.yourlocalweather.utils.XAxisValueFormatter;
 import org.thosp.yourlocalweather.utils.YAxisValueFormatter;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -57,10 +45,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import cz.msebera.android.httpclient.Header;
-
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
-import static org.thosp.yourlocalweather.utils.Utils.getWeatherForecastUrl;
 
 
 public class GraphsActivity extends BaseActivity {
@@ -190,6 +175,7 @@ public class GraphsActivity extends BaseActivity {
             set.setColor(Color.parseColor("#E84E40"));
             set.setHighlightEnabled(false);
             set.setValueFormatter(mValueFormatter);
+            set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
             mTemperatureChart.setData(data);
@@ -204,6 +190,7 @@ public class GraphsActivity extends BaseActivity {
             set.setColor(Color.parseColor("#E84E40"));
             set.setHighlightEnabled(false);
             set.setValueFormatter(mValueFormatter);
+            set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
             mTemperatureChart.setData(data);
@@ -265,6 +252,7 @@ public class GraphsActivity extends BaseActivity {
             set.setColor(Color.parseColor("#00BCD4"));
             set.setHighlightEnabled(false);
             set.setValueFormatter(mValueFormatter);
+            set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
             mWindChart.setData(data);
@@ -279,6 +267,7 @@ public class GraphsActivity extends BaseActivity {
             set.setColor(Color.parseColor("#00BCD4"));
             set.setHighlightEnabled(false);
             set.setValueFormatter(mValueFormatter);
+            set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
             mWindChart.setData(data);
@@ -339,6 +328,7 @@ public class GraphsActivity extends BaseActivity {
             set.setColor(Color.parseColor("#5677FC"));
             set.setHighlightEnabled(false);
             set.setValueFormatter(mValueFormatter);
+            set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
             mRainChart.setData(data);
@@ -353,6 +343,7 @@ public class GraphsActivity extends BaseActivity {
             set.setColor(Color.parseColor("#5677FC"));
             set.setHighlightEnabled(false);
             set.setValueFormatter(mValueFormatter);
+            set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
             mRainChart.setData(data);
@@ -413,6 +404,7 @@ public class GraphsActivity extends BaseActivity {
             set.setColor(Color.parseColor("#009688"));
             set.setHighlightEnabled(false);
             set.setValueFormatter(mValueFormatter);
+            set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
             mSnowChart.setData(data);
@@ -427,6 +419,7 @@ public class GraphsActivity extends BaseActivity {
             set.setColor(Color.parseColor("#009688"));
             set.setHighlightEnabled(false);
             set.setValueFormatter(mValueFormatter);
+            set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
             mSnowChart.setData(data);
