@@ -32,6 +32,7 @@ import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.CustomValueFormatter;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
+import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.WeatherForecastUtil;
 import org.thosp.yourlocalweather.utils.XAxisValueFormatter;
 import org.thosp.yourlocalweather.utils.YAxisValueFormatter;
@@ -83,7 +84,7 @@ public class GraphsActivity extends BaseActivity {
         TextView temperatureLabel = (TextView) findViewById(R.id.graphs_temperature_label);
         temperatureLabel.setText(getString(R.string.label_temperature) +
                                          ", " +
-                                         AppPreference.getTemperatureUnit(this));
+                                        TemperatureUtil.getTemperatureUnit(this));
         TextView windLabel = (TextView) findViewById(R.id.graphs_wind_label);
         windLabel.setText(getString(R.string.label_wind) + ", " + AppPreference.getWindUnit(this));
         TextView rainLabel = (TextView) findViewById(R.id.graphs_rain_label);
@@ -157,7 +158,7 @@ public class GraphsActivity extends BaseActivity {
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
-            double temperatureDay = AppPreference.getTemperature(this, weatherForecastList.get(locationId).get(i).getTemperature());
+            double temperatureDay = TemperatureUtil.getTemperature(this, weatherForecastList.get(locationId).get(i));
             entries.add(new Entry(i, (float) temperatureDay));
         }
 

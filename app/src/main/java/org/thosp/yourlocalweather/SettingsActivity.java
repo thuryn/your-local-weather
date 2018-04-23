@@ -128,6 +128,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             SharedPreferences.OnSharedPreferenceChangeListener {
 
         private final String[] SUMMARIES_TO_UPDATE = {
+                Constants.KEY_PREF_TEMPERATURE_TYPE,
                 Constants.KEY_PREF_TEMPERATURE_UNITS,
                 Constants.KEY_PREF_WIND_UNITS,
                 Constants.KEY_PREF_PRESSURE_UNITS,
@@ -222,6 +223,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
         private void updateSummary(String key, boolean changing) {
             switch (key) {
+                case Constants.KEY_PREF_TEMPERATURE_TYPE:
                 case Constants.KEY_PREF_TEMPERATURE_UNITS:
                 case Constants.KEY_PREF_WIND_UNITS:
                 case Constants.KEY_PREF_PRESSURE_UNITS:

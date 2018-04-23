@@ -54,10 +54,12 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         Long locationId = widgetSettingsDbHelper.getParamLong(currentWidget, "locationId");
         if (locationId == null) {
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
+            if (!currentLocation.isEnabled()) {
+                currentLocation = locationsDbHelper.getLocationByOrderId(1);
+            }
         } else {
             currentLocation = locationsDbHelper.getLocationById(locationId);
         }
-        onUpdate(context, widgetManager, widgetIds);
         appendLog(context, TAG, "onEnabled:end");
     }
 
@@ -69,12 +71,16 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
         AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
 
-        int widgetId;
+        Integer widgetId = null;
         ComponentName widgetComponent = new ComponentName(context, getWidgetClass());
 
         if (intent.hasExtra("widgetId")) {
             widgetId = intent.getIntExtra("widgetId", 0);
-        } else {
+            if (widgetId == 0) {
+                widgetId = null;
+            }
+        }
+        if (widgetId == null) {
             int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
             if (widgetIds.length == 0) {
                 return;
@@ -84,6 +90,9 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         Long locationId = widgetSettingsDbHelper.getParamLong(widgetId, "locationId");
         if (locationId == null) {
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
+            if (!currentLocation.isEnabled()) {
+                currentLocation = locationsDbHelper.getLocationByOrderId(1);
+            }
         } else {
             currentLocation = locationsDbHelper.getLocationById(locationId);
         }
@@ -97,18 +106,16 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                 onUpdate(context, widgetManager, new int[] {widgetId});
                 break;
             case Constants.ACTION_FORCED_APPWIDGET_UPDATE:
-                if (!WidgetRefreshIconService.isRotationActive) {
+                //if (!WidgetRefreshIconService.isRotationActive) {
                     sendWeatherUpdate(context);
-                }
+                //}
+                onUpdate(context, widgetManager, new int[]{ widgetId});
                 break;
             case Intent.ACTION_SCREEN_ON:
                 updateWather(context);
             case Intent.ACTION_LOCALE_CHANGED:
             case Constants.ACTION_APPWIDGET_THEME_CHANGED:
-                AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
-                ComponentName componentName = new ComponentName(context, getWidgetClass());
-                int[] appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
-                onUpdate(context, appWidgetManager, appWidgetIds);
+                refreshWidgetValues(context);
                 break;
             case Constants.ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED:
                 onEnabled(context);
@@ -151,6 +158,13 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         for (int widgetId: appWidgetIds) {
             widgetSettingsDbHelper.deleteRecordFromTable(widgetId);
         }
+    }
+
+    private void refreshWidgetValues(Context context) {
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        ComponentName componentName = new ComponentName(context, getWidgetClass());
+        int[] appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
+        onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
     private void updateWather(Context context) {

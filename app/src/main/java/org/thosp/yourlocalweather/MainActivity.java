@@ -45,6 +45,7 @@ import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
+import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WindWithUnit;
 import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
@@ -61,6 +62,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private TextView localityView;
     private ImageView mIconWeatherView;
     private TextView mTemperatureView;
+    private TextView secondTemperatureView;
     private TextView mDescriptionView;
     private TextView mHumidityView;
     private TextView mWindSpeedView;
@@ -70,6 +72,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private TextView mSunriseView;
     private TextView mSunsetView;
     private AppBarLayout mAppBarLayout;
+    private TextView iconSecondTemperatureView;
     private TextView mIconWindView;
     private TextView mIconHumidityView;
     private TextView mIconPressureView;
@@ -85,6 +88,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private BroadcastReceiver mWeatherUpdateReceiver;
 
     private WindWithUnit windWithUnit;
+    private String iconSecondTemperature;
     private String mIconWind;
     private String mIconHumidity;
     private String mIconPressure;
@@ -293,6 +297,17 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
         if (weatherRecord == null) {
             mTemperatureView.setText(getString(R.string.temperature_with_degree,""));
+            String temperatureTypeFromPreferences = PreferenceManager.getDefaultSharedPreferences(this).getString(
+                    Constants.KEY_PREF_TEMPERATURE_TYPE, "measured_only");
+            if ("measured_only".equals(temperatureTypeFromPreferences) ||
+                    "appearance_only".equals(temperatureTypeFromPreferences)) {
+                secondTemperatureView.setVisibility(View.GONE);
+                iconSecondTemperatureView.setVisibility(View.GONE);
+            } else {
+                secondTemperatureView.setVisibility(View.VISIBLE);
+                iconSecondTemperatureView.setVisibility(View.VISIBLE);
+                secondTemperatureView.setText(getString(R.string.label_apparent_temperature,""));
+            }
             mDescriptionView.setText(R.string.location_not_found);
             mLastUpdateView.setText(getString(R.string.last_update_label, ""));
             mHumidityView.setText(getString(R.string.humidity_label,
@@ -322,7 +337,16 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
         Utils.setWeatherIcon(mIconWeatherView, this, weatherRecord);
         mTemperatureView.setText(getString(R.string.temperature_with_degree,
-                AppPreference.getTemperatureWithUnit(this, weather.getTemperature())));
+                TemperatureUtil.getTemperatureWithUnit(this, weather)));
+        String secondTemperature = TemperatureUtil.getSecondTemperatureWithLabel(this, weather);
+        if (secondTemperature != null) {
+            secondTemperatureView.setText(secondTemperature);
+            secondTemperatureView.setVisibility(View.VISIBLE);
+            iconSecondTemperatureView.setVisibility(View.VISIBLE);
+        } else {
+            secondTemperatureView.setVisibility(View.GONE);
+            iconSecondTemperatureView.setVisibility(View.GONE);
+        }
         mDescriptionView.setText(Utils.getWeatherDescription(this, weather));
         mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
         mHumidityView.setText(getString(R.string.humidity_label,
@@ -355,6 +379,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
         mIconWeatherView = (ImageView) findViewById(R.id.main_weather_icon);
         mTemperatureView = (TextView) findViewById(R.id.main_temperature);
+        secondTemperatureView = (TextView) findViewById(R.id.main_second_temperature);
         mDescriptionView = (TextView) findViewById(R.id.main_description);
         mPressureView = (TextView) findViewById(R.id.main_pressure);
         mHumidityView = (TextView) findViewById(R.id.main_humidity);
@@ -367,6 +392,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         localityView = (TextView) findViewById(R.id.main_locality);
 
         mTemperatureView.setTypeface(robotoThin);
+        secondTemperatureView.setTypeface(robotoLight);
         mWindSpeedView.setTypeface(robotoLight);
         mHumidityView.setTypeface(robotoLight);
         mPressureView.setTypeface(robotoLight);
@@ -377,6 +403,9 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         /**
          * Initialize and configure weather icons
          */
+        iconSecondTemperatureView = (TextView) findViewById(R.id.main_second_temperature_icon);
+        iconSecondTemperatureView.setTypeface(weatherFontIcon);
+        iconSecondTemperatureView.setText(iconSecondTemperature);
         mIconWindView = (TextView) findViewById(R.id.main_wind_icon);
         mIconWindView.setTypeface(weatherFontIcon);
         mIconWindView.setText(mIconWind);
@@ -405,6 +434,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mPercentSign = getString(R.string.percent_sign);
         mIconSunrise = getString(R.string.icon_sunrise);
         mIconSunset = getString(R.string.icon_sunset);
+        iconSecondTemperature = getString(R.string.icon_thermometer);
     }
 
     private void setUpdateButtonState(boolean isUpdate) {
@@ -471,9 +501,9 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
             Weather weather = currentWeatherRecord.getWeather();
 
-            String temperatureWithUnit = AppPreference.getTemperatureWithUnit(
+            String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
                     MainActivity.this,
-                    weather.getTemperature());
+                    weather);
             windWithUnit = AppPreference.getWindWithUnit(
                     MainActivity.this,
                     weather.getWindSpeed());

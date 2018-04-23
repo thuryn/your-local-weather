@@ -178,6 +178,26 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:id="@+id/main.second.temperature_icon"
+                        style="@style/MainIcon"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"/>
+
+                    <TextView
+                        android:id="@+id/main.second.temperature"
+                        style="@style/MainConditions"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:maxLines="3" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/MainLinearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
                         android:id="@+id/main.wind_icon"
                         style="@style/MainIcon"
                         android:layout_width="32dp"
