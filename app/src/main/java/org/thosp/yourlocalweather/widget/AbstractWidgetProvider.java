@@ -181,6 +181,12 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     }
 
     private void sendWeatherUpdate(Context context) {
+        if (currentLocation == null) {
+            appendLog(context,
+                    TAG,
+                    "currentLocation is null");
+            return;
+        }
         if ((currentLocation.getOrderId() == 0) && currentLocation.isEnabled()) {
             Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
             startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
@@ -227,6 +233,15 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     private void changeLocation(int widgetId,
                                 LocationsDbHelper locationsDbHelper,
                                 WidgetSettingsDbHelper widgetSettingsDbHelper) {
+        if (currentLocation == null) {
+            currentLocation = locationsDbHelper.getLocationByOrderId(0);
+            if (!currentLocation.isEnabled()) {
+                currentLocation = locationsDbHelper.getLocationByOrderId(1);
+            }
+            if (currentLocation == null) {
+                return;
+            }
+        }
         int newOrderId = 1 + currentLocation.getOrderId();
         currentLocation = locationsDbHelper.getLocationByOrderId(newOrderId);
         if (currentLocation == null) {
