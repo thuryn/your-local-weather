@@ -79,41 +79,52 @@ public class WidgetRefreshIconService extends IntentService {
     private void startRotatingUpdateIcon() {
         appendLog(getBaseContext(), TAG, "startRotatingUpdateIcon");
         rotationLock.lock();
+        appendLog(getBaseContext(), TAG, "startRotatingUpdateIcon:lockAcquired");
         try {
             if (isRotationActive || isThereRotationSchedule()) {
+                appendLog(getBaseContext(), TAG,
+                        "startRotatingUpdateIcon:endOnCondition:isRotationActive=" +
+                        isRotationActive + ":isThereRotationSchedule=" +
+                        isThereRotationSchedule());
                 return;
             }
             isRotationActive = true;
             currentRotationIndex = 0;
             rotateRefreshButtonOneStep();
+            appendLog(getBaseContext(), TAG,
+                    "startRotatingUpdateIcon:setIsRotationActive=" +
+                            isRotationActive + ":postingNewSchedule");
             timerRotateIconHandler.postDelayed(timerRotateIconRunnable, ROTATE_UPDATE_ICON_MILIS);
         } finally {
             rotationLock.unlock();
+            appendLog(getBaseContext(), TAG,
+                    "startRotatingUpdateIcon:lockReleased");
         }
     }
 
     private void stopRotatingUpdateIcon() {
         appendLog(getBaseContext(), TAG, "stopRotatingUpdateIcon");
         rotationLock.lock();
+        appendLog(getBaseContext(), TAG, "stopRotatingUpdateIcon:lockAcquired");
         try {
             isRotationActive = false;
+            appendLog(getBaseContext(), TAG,
+                    "stopRotatingUpdateIcon:setIsRotationActive=" +
+                            isRotationActive + ":postingNewSchedule");
             timerRotateIconHandler.removeCallbacksAndMessages(null);
         } finally {
             rotationLock.unlock();
+            appendLog(getBaseContext(), TAG,
+                    "stopRotatingUpdateIcon:lockReleased");
         }
     }
 
-    public static boolean isRotationActive() {
+    private static boolean isRotationActive() {
         return isRotationActive;
     }
 
     public static boolean isThereRotationSchedule() {
-        rotationLock.lock();
-        try {
-            return timerRotateIconHandler.hasMessages(0);
-        } finally {
-            rotationLock.unlock();
-        }
+        return timerRotateIconHandler.hasMessages(0);
     }
 
     private boolean isScreenOn() {
