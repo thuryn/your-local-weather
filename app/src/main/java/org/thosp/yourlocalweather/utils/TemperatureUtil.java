@@ -11,12 +11,20 @@ import java.util.Locale;
 
 public class TemperatureUtil {
     public static float getApparentTemperature(double dryBulbTemperature, int humidity, double windSpeed) {
-        double e = humidity / 100 * 6.105 * Math.exp(17.27*dryBulbTemperature / (237.7 + dryBulbTemperature));
-        double apparentTemperature = dryBulbTemperature + 0.33*e-0.70*windSpeed-4.00;
+        double e = (humidity / 100) * 6.105 * Math.exp((17.27*dryBulbTemperature) / (237.7 + dryBulbTemperature));
+        double apparentTemperature = dryBulbTemperature + (0.33*e)-(0.70*windSpeed)-4.00;
         return (float)apparentTemperature;
     }
 
+    public static float getCanadianStandardTemperature(double dryBulbTemperature, double windSpeed) {
+        double windWithPow = Math.pow(windSpeed, 0.16);
+        return (float) (13.12 + (0.6215 * dryBulbTemperature) - (13.37 * windWithPow) + (0.486 * dryBulbTemperature * windWithPow));
+    }
+
     public static String getSecondTemperatureWithLabel(Context context, Weather weather) {
+        if (weather == null) {
+            return null;
+        }
         String temperatureTypeFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_TEMPERATURE_TYPE, "measured_only");
         if ("measured_only".equals(temperatureTypeFromPreferences) || "appearance_only".equals(temperatureTypeFromPreferences)) {
@@ -123,6 +131,9 @@ public class TemperatureUtil {
     }
 
     public static double getTemperature(Context context, DetailedWeatherForecast weather) {
+        if (weather == null) {
+            return 0;
+        }
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
         String temperatureTypeFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
