@@ -5,39 +5,30 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.SystemClock;
-import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import org.json.JSONException;
 import org.thosp.yourlocalweather.ConnectionDetector;
-import org.thosp.yourlocalweather.model.CurrentWeather;
+import org.thosp.yourlocalweather.WeatherJSONParser;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.utils.AppWakeUpManager;
 import org.thosp.yourlocalweather.utils.Constants;
-import org.thosp.yourlocalweather.utils.LanguageUtil;
-import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
-import org.json.JSONException;
-
-import org.thosp.yourlocalweather.WeatherJSONParser;
-import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.widget.LessWidgetService;
 import org.thosp.yourlocalweather.widget.MoreWidgetService;
 
 import java.net.MalformedURLException;
-import java.util.HashSet;
-import java.util.Set;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -265,7 +256,7 @@ public class CurrentWeatherService extends Service {
         } else if (result.equals(ACTION_WEATHER_UPDATE_FAIL)) {
             intent.putExtra(ACTION_WEATHER_UPDATE_RESULT, ACTION_WEATHER_UPDATE_FAIL);
         }
-        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+        sendBroadcast(intent);
     }
 
     private void startRefreshRotation() {
