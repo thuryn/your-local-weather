@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
-import android.support.v4.content.LocalBroadcastManager;
 
 import java.util.List;
 
@@ -36,6 +35,6 @@ public class SearchActivityProcessResultFromAddressResolution implements Process
             sendIntent.putExtra("addresses", addresses.get(0));
         }
         appendLog(context, TAG, "processUpdateOfLocation:sendIntent:" + sendIntent);
-        LocalBroadcastManager.getInstance(context).sendBroadcast(sendIntent);
+        context.sendBroadcast(sendIntent);
     }
 }

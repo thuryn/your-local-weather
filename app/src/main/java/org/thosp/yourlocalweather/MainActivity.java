@@ -24,7 +24,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.widget.NestedScrollView;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AlertDialog;
@@ -168,7 +167,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         checkSettingsAndPermisions();
         preLoadWeather();
         mAppBarLayout.addOnOffsetChangedListener(this);
-        LocalBroadcastManager.getInstance(this).registerReceiver(mWeatherUpdateReceiver,
+        registerReceiver(mWeatherUpdateReceiver,
                 new IntentFilter(
                         CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT));
     }
@@ -180,6 +179,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             mProgressDialog.dismiss();
         }
         mAppBarLayout.removeOnOffsetChangedListener(this);
+        unregisterReceiver(mWeatherUpdateReceiver);
     }
 
     @Override
@@ -189,7 +189,6 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             mProgressDialog.dismiss();
             mProgressDialog = null;
         }
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mWeatherUpdateReceiver);
     }
 
     @Override
@@ -329,6 +328,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
         Weather weather = weatherRecord.getWeather();
 
+        currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
         String lastUpdate = Utils.setLastUpdateTime(this, weatherRecord.getLastUpdatedTime(), currentLocation.getLocationSource());
         windWithUnit = AppPreference.getWindWithUnit(this, weather.getWindSpeed());
         WindWithUnit pressure = AppPreference.getPressureWithUnit(this, weather.getPressure());
@@ -455,6 +455,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         mWeatherUpdateReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+                appendLog(context, TAG, "BroadcastReceiver:" + intent);
                 if ((mProgressDialog != null) && (refreshDialogHandler != null)) {
                     refreshDialogHandler.post(new Runnable() {
                         public void run() {
@@ -468,6 +469,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                     case CurrentWeatherService.ACTION_WEATHER_UPDATE_OK:
                         mSwipeRefresh.setRefreshing(false);
                         setUpdateButtonState(false);
+
                         preLoadWeather();
                         break;
                     case CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL:

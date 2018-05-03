@@ -26,7 +26,6 @@ import android.os.PowerManager;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.LocalBroadcastManager;
 
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
@@ -680,7 +679,7 @@ public class LocationUpdateService extends Service implements LocationListener {
     private void sendIntentToMain() {
         Intent intent = new Intent(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT);
         intent.putExtra(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT, CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL);
-        LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
+        sendBroadcast(intent);
     }
 
     private void processSensorEvent(SensorEvent sensorEvent) {

@@ -13,7 +13,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
@@ -166,7 +165,7 @@ public class SearchActivity extends BaseActivity {
 
     public void onResume(){
         super.onResume();
-        LocalBroadcastManager.getInstance(this).registerReceiver(mWeatherUpdateReceiver,
+        registerReceiver(mWeatherUpdateReceiver,
                 new IntentFilter(ACTION_ADDRESS_RESOLUTION_RESULT));
         map.onResume();
     }
@@ -187,7 +186,7 @@ public class SearchActivity extends BaseActivity {
             mProgressDialog.dismiss();
             mProgressDialog = null;
         }
-        LocalBroadcastManager.getInstance(this).unregisterReceiver(mWeatherUpdateReceiver);
+        unregisterReceiver(mWeatherUpdateReceiver);
     }
 
     private void setupActionBar() {
