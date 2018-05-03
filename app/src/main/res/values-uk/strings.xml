@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Місцевого погода</string>
-    <string name="enter_city_hint">Введіть місто</string>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Your local weather</string>
+    <string name="enter_city_hint">Уведіть місто</string>
     <string name="label_current_city">Поточне місто</string>
     <string name="label_choose_city">Оберіть місто</string>
-    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Параметри розташування і дозволів</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Розташування та налаштування дозволів</string>
     <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">"Налаштування телефону "</string>
     <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Скасувати</string>
     <string name="progressDialog_gps_locate">Знайти поточне місце розташування</string>
     <string name="load_progress">Завантаження…</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Розташування не знайдено</string>
-    <string name="permissions_not_granted" tools:ignore="MissingTranslation">"Дозволи не видаються - зайти в програму і натиснути на символ розташування "</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">"Дозволи не надані - зайдіть до застосунку та натисніть на символ розташування "</string>
 
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Закрити</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Далі</string>
