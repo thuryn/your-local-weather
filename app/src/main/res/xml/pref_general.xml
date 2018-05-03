@@ -8,6 +8,13 @@
         android:key="temperature_units_pref_key"
         android:title="@string/pref_title_temperature"/>
     <ListPreference
+        android:defaultValue="measured_only"
+        android:dialogTitle="@string/pref_title_temperature_type"
+        android:entries="@array/pref_temperature_type_entries"
+        android:entryValues="@array/pref_temperature_type_values"
+        android:key="temperature_type_pref_key"
+        android:title="@string/pref_title_temperature_type"/>
+    <ListPreference
         android:defaultValue="m_per_second"
         android:dialogTitle="@string/pref_title_wind"
         android:entries="@array/pref_wind_units_entries"

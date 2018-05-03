@@ -11,6 +11,7 @@ import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.WeatherCondition;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 
 import java.text.SimpleDateFormat;
@@ -87,10 +88,7 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
         if (visibleColumns.contains(4)) {
             mTemperature.setVisibility(View.VISIBLE);
             String temperature = mContext.getString(R.string.temperature_with_degree,
-                    AppPreference.getTemperatureWithUnit(mContext, weather.getTemperature()));
-            if (weather.getTemperature() > 0) {
-                temperature = "+" + temperature;
-            }
+                    TemperatureUtil.getForecastedTemperatureWithUnit(mContext, weather));
             mTemperature.setText(temperature);
         } else {
             mTemperature.setVisibility(View.GONE);

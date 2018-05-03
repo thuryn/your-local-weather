@@ -17,6 +17,7 @@ import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WindWithUnit;
 
@@ -75,7 +76,7 @@ public class NotificationService extends IntentService {
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent launchIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
-        String temperatureWithUnit = AppPreference.getTemperatureWithUnit(this, weather.getTemperature());
+        String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(this, weather);
 
         Notification notification = new NotificationCompat.Builder(this)
                 .setContentIntent(launchIntent)

@@ -27,43 +27,6 @@ import java.util.Set;
 
 public class AppPreference {
 
-    public static String getTemperatureWithUnit(Context context, double value) {
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
-        if (unitsFromPreferences.contains("fahrenheit") ) {
-            double fahrenheitValue = (value * 1.8f) + 32;
-            return String.format(Locale.getDefault(), "%d",
-                    Math.round(fahrenheitValue)) + "°F";
-        } else {
-            return String.format(Locale.getDefault(), "%d",
-                    Math.round(value)) + "°C";
-        }
-    }
-
-    public static String getTemperatureUnit(Context context) {
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
-        if (unitsFromPreferences.contains("fahrenheit") ) {
-            return "°F";
-        } else {
-            return "°C";
-        }
-    }
-
-    public static double getTemperature(Context context, String value) {
-        return getTemperature(context, Double.parseDouble(value.replace(",", ".")));
-    }
-
-    public static double getTemperature(Context context, double value) {
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
-        if (unitsFromPreferences.contains("fahrenheit") ) {
-            return (value * 1.8d) + 32;
-        } else {
-            return value;
-        }
-    }
-
     public static WindWithUnit getWindWithUnit(Context context, String value) {
         return getWindWithUnit(context, Float.parseFloat(value.replace(",", ".")));
     }

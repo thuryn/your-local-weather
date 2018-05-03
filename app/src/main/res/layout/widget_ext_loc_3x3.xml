@@ -66,13 +66,25 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.7"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/widget_temperature"
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:lines="1"
-                android:textSize="30sp"/>
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/widget_temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textSize="30sp"/>
+                <TextView
+                    android:id="@+id/widget_second_temperature"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:lines="1"
+                    android:textSize="@dimen/widget_3x3_text_size"
+                    android:paddingLeft="8sp"/>
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

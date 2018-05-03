@@ -2,6 +2,7 @@ package org.thosp.yourlocalweather.widget;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import org.thosp.yourlocalweather.R;
@@ -12,6 +13,7 @@ import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
@@ -36,6 +38,9 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
         Location location;
         if (locationId == null) {
             location = locationsDbHelper.getLocationByOrderId(0);
+            if (!location.isEnabled()) {
+                location = locationsDbHelper.getLocationByOrderId(1);
+            }
         } else {
             location = locationsDbHelper.getLocationById(locationId);
         }
@@ -52,9 +57,18 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
             String lastUpdate = Utils.setLastUpdateTime(context, weatherRecord.getLastUpdatedTime(), location.getLocationSource());
 
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context, location.getOrderId()));
-            remoteViews.setTextViewText(R.id.widget_temperature, AppPreference.getTemperatureWithUnit(
+            remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     context,
-                    weather.getTemperature()));
+                    weather));
+            String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
+                    context,
+                    weather);
+            if (secondTemperature != null) {
+                remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
+                remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
+            } else {
+                remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
+            }
             remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, weather));
 
             WidgetUtils.setWind(context, remoteViews, weather.getWindSpeed());
@@ -64,6 +78,23 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
 
             Utils.setWeatherIcon(remoteViews, context, weatherRecord);
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
+        } else {
+            remoteViews.setTextViewText(R.id.widget_city, context.getString(R.string.location_not_found));
+            remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
+                    context,
+                    null));
+            remoteViews.setTextViewText(R.id.widget_second_temperature, TemperatureUtil.getTemperatureWithUnit(
+                    context,
+                    null));
+            remoteViews.setTextViewText(R.id.widget_description, "");
+
+            WidgetUtils.setWind(context, remoteViews, 0);
+            WidgetUtils.setHumidity(context, remoteViews, 0);
+            WidgetUtils.setPressure(context, remoteViews, 0);
+            WidgetUtils.setClouds(context, remoteViews, 0);
+
+            Utils.setWeatherIcon(remoteViews, context, weatherRecord);
+            remoteViews.setTextViewText(R.id.widget_last_update, "");
         }
     }
 
@@ -74,6 +105,7 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
 
         remoteViews.setInt(R.id.widget_root, "setBackgroundColor", backgroundColorId);
         remoteViews.setTextColor(R.id.widget_temperature, textColorId);
+        remoteViews.setTextColor(R.id.widget_second_temperature, textColorId);
         remoteViews.setTextColor(R.id.widget_description, textColorId);
         remoteViews.setTextColor(R.id.widget_description, textColorId);
         remoteViews.setTextColor(R.id.widget_wind, textColorId);

@@ -62,13 +62,16 @@ public class Utils {
         return bitmap;
     }
 
-    public static String getStrIcon(Context context, Weather weather) {
-        return getStrIcon(context, weather.getCurrentWeathers().iterator().next().getIdIcon());
+    public static String getStrIcon(Context context, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
+        if (weatherRecord == null) {
+            return context.getString(R.string.icon_clear_sky_day);
+        }
+        return getStrIcon(context, weatherRecord.getWeather().getCurrentWeathers().iterator().next().getIdIcon());
     }
 
     public static String getStrIcon(Context context, String iconId) {
         if (iconId == null) {
-            return "";
+            return context.getString(R.string.icon_clear_sky_day);
         }
         String icon;
         switch (iconId) {
@@ -137,7 +140,7 @@ public class Utils {
                                       Context context,
                                       CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
         if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
-            imageView.setImageBitmap(createWeatherIcon(context, getStrIcon(context, weatherRecord.getWeather())));
+            imageView.setImageBitmap(createWeatherIcon(context, getStrIcon(context, weatherRecord)));
         } else {
             imageView.setImageResource(Utils.getWeatherResourceIcon(weatherRecord));
         }
@@ -149,13 +152,16 @@ public class Utils {
                                       CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
         if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
             remoteViews.setImageViewBitmap(R.id.widget_icon,
-                    createWeatherIcon(context, getStrIcon(context, weatherRecord.getWeather())));
+                    createWeatherIcon(context, getStrIcon(context, weatherRecord)));
         } else {
             remoteViews.setImageViewResource(R.id.widget_icon, Utils.getWeatherResourceIcon(weatherRecord));
         }
     }
 
     public static int getWeatherResourceIcon(CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
+        if (weatherRecord == null) {
+            return R.drawable.ic_weather_set_1_31;
+        }
         Weather weather = weatherRecord.getWeather();
         if ((weather.getCurrentWeathers() == null) || weather.getCurrentWeathers().isEmpty()) {
             return R.drawable.ic_weather_set_1_31;

@@ -2,6 +2,7 @@ package org.thosp.yourlocalweather.widget;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 
@@ -13,6 +14,7 @@ import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
@@ -42,6 +44,9 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
         Location location;
         if (locationId == null) {
             location = locationsDbHelper.getLocationByOrderId(0);
+            if (!location.isEnabled()) {
+                location = locationsDbHelper.getLocationByOrderId(1);
+            }
         } else {
             location = locationsDbHelper.getLocationById(locationId);
         }
@@ -58,9 +63,18 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
             String lastUpdate = Utils.setLastUpdateTime(context, weatherRecord.getLastUpdatedTime(), location.getLocationSource());
 
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context, location.getOrderId()));
-            remoteViews.setTextViewText(R.id.widget_temperature, AppPreference.getTemperatureWithUnit(
+            remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     context,
-                    weather.getTemperature()));
+                    weather));
+            String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
+                    context,
+                    weather);
+            if (secondTemperature != null) {
+                remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
+                remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
+            } else {
+                remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
+            }
             remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, weather));
 
             WidgetUtils.setWind(context, remoteViews, weather.getWindSpeed());
@@ -73,6 +87,29 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
 
             Utils.setWeatherIcon(remoteViews, context, weatherRecord);
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
+        } else {
+            remoteViews.setTextViewText(R.id.widget_city, context.getString(R.string.location_not_found));
+            remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
+                    context,
+                    null));
+            String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
+                    context,
+                    null);
+            if (secondTemperature != null) {
+                remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
+                remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
+            } else {
+                remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
+            }
+            remoteViews.setTextViewText(R.id.widget_description, "");
+
+            WidgetUtils.setWind(context, remoteViews, 0);
+            WidgetUtils.setHumidity(context, remoteViews, 0);
+            WidgetUtils.setSunrise(context, remoteViews, "");
+            WidgetUtils.setSunset(context, remoteViews, "");
+
+            Utils.setWeatherIcon(remoteViews, context, weatherRecord);
+            remoteViews.setTextViewText(R.id.widget_last_update, "");
         }
         appendLog(context, TAG, "preLoadWeather:end");
     }
@@ -91,6 +128,7 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
         remoteViews.setTextColor(R.id.widget_humidity, textColorId);
         remoteViews.setTextColor(R.id.widget_sunrise, textColorId);
         remoteViews.setTextColor(R.id.widget_sunset, textColorId);
+        remoteViews.setTextColor(R.id.widget_second_temperature, textColorId);
         remoteViews.setInt(R.id.header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
         appendLog(context, TAG, "setWidgetTheme:end");
     }

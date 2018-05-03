@@ -21,6 +21,7 @@ public class StartupReceiver extends BroadcastReceiver {
         Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_ALARM_SERVICE");
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
         context.startService(intentToStartUpdate);
+        context.sendBroadcast(new Intent("android.appwidget.action.APPWIDGET_UPDATE"));
     }
 
     private void removeOldPreferences(Context context) {

@@ -6,6 +6,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import org.thosp.yourlocalweather.R;
@@ -16,6 +17,7 @@ import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
@@ -72,9 +74,18 @@ public class MoreWidgetService extends IntentService {
             MoreWidgetProvider.setWidgetIntents(this, remoteViews, MoreWidgetProvider.class, appWidgetId);
 
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(this, currentLocation.getOrderId()));
-            remoteViews.setTextViewText(R.id.widget_temperature, AppPreference.getTemperatureWithUnit(
+            remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     this,
-                    weather.getTemperature()));
+                    weather));
+            String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
+                    this,
+                    weather);
+            if (secondTemperature != null) {
+                remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
+                remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
+            } else {
+                remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
+            }
             if(!AppPreference.hideDescription(this))
                 remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, weather));
             else remoteViews.setTextViewText(R.id.widget_description, " ");

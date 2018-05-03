@@ -142,6 +142,12 @@ public class CurrentWeatherService extends Service {
         Runnable myRunnable = new Runnable() {
             @Override
             public void run() {
+                if (currentLocation == null) {
+                    appendLog(context,
+                            TAG,
+                            "currentLocation is null");
+                    return;
+                }
                 final String locale = currentLocation.getLocale();
                 appendLog(context,
                         TAG,
@@ -197,7 +203,7 @@ public class CurrentWeatherService extends Service {
             }
         };
         mainHandler.post(myRunnable);
-        return ret;
+        return START_STICKY;
     }
 
     private void sendResult(String result, Weather weather, Context context) {

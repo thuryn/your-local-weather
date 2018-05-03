@@ -17,6 +17,18 @@
         <item>celsius</item>
         <item>fahrenheit</item>
     </string-array>
+    <string-array name="pref_temperature_type_entries" translatable="false">
+        <item>@string/measured_only</item>
+        <item>@string/measured_appearance_primary_measured</item>
+        <item>@string/measured_appearance_primary_appearance</item>
+        <item>@string/appearance_only</item>
+    </string-array>
+    <string-array name="pref_temperature_type_values" translatable="false">
+        <item>measured_only</item>
+        <item>measured_appearance_primary_measured</item>
+        <item>measured_appearance_primary_appearance</item>
+        <item>appearance_only</item>
+    </string-array>
     <string-array name="pref_wind_units_entries" translatable="false">
         <item>m/s</item>
         <item>km/h</item>

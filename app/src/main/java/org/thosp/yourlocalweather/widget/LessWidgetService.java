@@ -5,6 +5,7 @@ import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.RemoteViews;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
@@ -13,6 +14,7 @@ import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 
 import java.util.Locale;
@@ -68,10 +70,18 @@ public class LessWidgetService extends IntentService {
             LessWidgetProvider.setWidgetIntents(this, remoteViews, LessWidgetProvider.class, appWidgetId);
 
             String lastUpdate = Utils.setLastUpdateTime(this, weatherRecord.getLastUpdatedTime(), currentLocation.getLocationSource());
-            remoteViews.setTextViewText(R.id.widget_temperature,
-                    AppPreference.getTemperatureWithUnit(
-                            this,
-                            weather.getTemperature()));
+            remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
+                    this,
+                    weather));
+            String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
+                    this,
+                    weather);
+            if (secondTemperature != null) {
+                remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
+                remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
+            } else {
+                remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
+            }
             remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, weather));
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(this, currentLocation.getOrderId()));
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
