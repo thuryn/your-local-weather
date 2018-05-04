@@ -1,34 +1,34 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="enter_city_hint">输入城市</string>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="enter_city_hint">输入城市</string>
     <string name="label_current_city">当前城市</string>
     <string name="label_choose_city">请选择城市</string>
     <string name="alertDialog_location_permission_message_location_phone_settings">不启用 GPS。你想要转到设置菜单？</string>
-    <string name="alertDialog_location_permission_positiveButton_settings">设置</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">电话设置</string>
     <string name="alertDialog_location_permission_negativeButton">取消</string>
     <string name="progressDialog_gps_locate">查找当前位置</string>
-    <string name="load_progress">正在加载…</string>
+    <string name="load_progress">正在加载……</string>
 
     <string name="title_activity_search">搜索位置</string>
     <string name="label_activity_main">当前天气</string>
     <string name="label_activity_weather_forecast">每日预报</string>
     <string name="label_activity_graphs">天气图</string>
-    <string name="title_activity_license">%s 的许可证</string>
+    <string name="title_activity_license">%s的许可证</string>
 
     <string name="toolbar_menu_refresh">更新</string>
     <string name="toolbar_menu_search_city">搜索城市</string>
     <string name="toolbar_menu_detect_location">检测位置</string>
     <string name="menu_action_toggle_values">切换值</string>
-    <string name="menu_action_toggle_yaxis">切换 Y 轴</string>
+    <string name="menu_action_toggle_yaxis">切换Y轴</string>
 
     <string name="nav_menu_current_weather">当前天气</string>
     <string name="nav_menu_daily_forecast">每日预报</string>
-    <string name="nav_menu_graphs">图</string>
+    <string name="nav_menu_graphs">天气图</string>
     <string name="nav_menu_settings">设置</string>
     <string name="nav_feedback">反馈</string>
     <string name="nav_menu_bitcoin_donation">捐出比特币</string>
 
     <string name="connection_not_found">请检查您的互联网连接</string>
-    <string name="toast_parse_error">发生错误。请重试！</string>
+    <string name="toast_parse_error">发生问题。请重试！</string>
 
     <string name="pressure_measurement">百帕</string>
     <string name="wind_speed_meters">m/s</string>
@@ -39,23 +39,23 @@
 
     <string name="title_activity_settings">设置</string>
     <string name="pref_title_temperature">温度</string>
-    <string name="preference_hide_desc">隐藏的天气描述</string>
+    <string name="preference_hide_desc">隐藏天气说明</string>
     <string name="pref_title_category_notification">通知</string>
     <string name="pref_title_notification">启用通知</string>
-    <string name="pref_title_notification_refresh_interval">刷新间隔</string>
-    <string name="update_period_15min">15 分钟</string>
-    <string name="update_period_30min">30 分钟</string>
+    <string name="pref_title_notification_refresh_interval">刷新频率</string>
+    <string name="update_period_15min">15分钟</string>
+    <string name="update_period_30min">30分钟</string>
     <string name="update_period_1hour">每小时</string>
     <string name="update_period_3hours">3小时</string>
-    <string name="update_period_6hours">6 小时</string>
+    <string name="update_period_6hours">6小时</string>
     <string name="update_period_12hours">12小时</string>
-    <string name="update_period_24hours">24 小时</string>
+    <string name="update_period_24hours">24小时</string>
     <string name="pref_title_vibrate">震动</string>
-    <string name="preference_widget_title_update_period">更新周期</string>
-    <string name="preference_title_activity_general">常规设置</string>
+    <string name="preference_widget_title_update_period">天气更新频率（位置1、2、3……）</string>
+    <string name="preference_title_activity_general">一般设置</string>
     <string name="preference_title_activity_widget">小部件设置</string>
     <string name="preference_widget_update_location">更新位置</string>
-    <string name="preference_widget_use_geocoder">使用地理位置显示</string>
+    <string name="preference_widget_use_geocoder">显示地理位置</string>
     <string name="preference_widget_theme_title">小部件主题</string>
     <string name="theme_dark">黑暗</string>
     <string name="theme_light">明亮</string>
@@ -107,4 +107,74 @@
     <string name="permission_location_need">你必须授予位置权限</string>
 
     <string name="restart_dialog_message">请重新启动应用程序以应用新的设置</string>
-</resources>
+<string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">位置及权限设置</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">应用需要通过GPS更新位置的权限。</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">应用需要通过Wi-Fi和GSM网络更新位置的权限。</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">应用需要读取电话信息的权限，从电话连接的讯号基站取得信息，以通过Wi-Fi和GSM网络更新位置。</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">权限请求</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">无法定位</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">无法取得权限，请在应用按下位置标志</string>
+
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">关闭</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">下一步</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">上一步</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">完成</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">首次设置</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">本指南帮助您根据您的需要设置此应用。您可以在下一个屏幕选择更新模式。
+\n当您选择<i>不更新位置</i>的选项，应用只会更新天气信息。
+\n更新位置是本应用的特点，所以我们建议您选择<i>更新位置</i>选项。</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">更新位置设置</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">位置来源选项</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">位置及地址来源</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">恭喜您</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">一般</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">主应用</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">小工具</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">一般设置</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">这些设置影响整个应用。</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>温度</b>：您可以选择温度的单位；<b>风速</b>：您可以选择风速的单位；<b>气压</b> ：您可以选择气压的单位。这些数值会因应单位而改变。</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>隐藏天气说明</b>：选项将藏起当前天气的说明，您将只会看见天气图标。</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation"></string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">除错选项</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">帮助</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">位置</string>
+
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">图标</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">说明</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">温度</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">风速</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">雨、雪</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">湿度</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">气压</string>
+    <string name="ok" tools:ignore="MissingTranslation">确定</string>
+    <string name="cancel" tools:ignore="MissingTranslation">取消</string>
+
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">打开浏览栏</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">收起浏览栏</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">帮助</string>
+
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">毫米汞柱</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">节</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">千米/小时</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">风速</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">气压</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">位置更新设置</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">不更新位置</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">更新位置（建议）</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">不通过GPS更新位置</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">必要时使用GPS</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">位置的更新频率（位置0）</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">更新位置及天气</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili（斯瓦希里语）</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk（挪威语）</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Nederlands（荷兰语）</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja（尼扬贾语）</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">magyar（匈牙利语）</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Español（西班牙语）</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Ελληνικά（希腊语）</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">العَرَبِيَّة‎（阿拉伯语）</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">位置及地址来源</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">系统</string>
+    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
+    </resources>

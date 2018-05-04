@@ -279,4 +279,12 @@
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">knopen</string>
     <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Het huidige weer is nog niet bijgewerkt. Werk het bij door te drukken op de verversknop.</string>
 
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Gevoelstemperatuur: %s</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Gemeten temperatuur: %s</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">Alleen gemeten waarde</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Beide, maar gemeten temperatuur eerst</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Beide, maar gevoelstemperatuur eerst</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">Alleen gevoelstemperatuur</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Temperatuurweergave</string>
+
     </resources>

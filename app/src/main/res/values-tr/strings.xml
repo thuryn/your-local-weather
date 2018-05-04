@@ -301,4 +301,12 @@
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">knot</string>
     <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Şu anki hava henüz güncellenmedi. Lütfen ilk olarak yenile düğmesine basarak şu anki havayı güncelleyin.</string>
 
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Hissedilen sıcaklık: %s</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Ölçülen sıcaklık: %s</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">Yalnızca ölçülen değer</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">İkisi de, ölçülen önce</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">İkisi de, hissedilen önce</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">Yalnızca hissedilen değer</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Sıcaklık göster:</string>
+
     </resources>
