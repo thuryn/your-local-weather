@@ -1,6 +1,8 @@
 package org.thosp.yourlocalweather.service;
 
 import android.Manifest;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -27,6 +29,7 @@ import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 
+import org.thosp.yourlocalweather.ConnectionDetector;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
@@ -301,7 +304,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         @Override
         public void run() {
             appendLog(getBaseContext(), TAG, "send update source to N - update location by network, lastKnownLocation timeouted");
-            updateNetworkLocationByNetwork(null, false);
+            updateNetworkLocationByNetwork(null, false, null);
         }
     };
 
@@ -409,7 +412,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         if (isUpdateOfLocationEnabled && (isGPSEnabled || isNetworkEnabled || !"location_geocoder_system".equals(geocoder))) {
             appendLog(getBaseContext(), TAG, "Widget calls to update location, geocoder = " + geocoder);
             if ("location_geocoder_unifiednlp".equals(geocoder) || "location_geocoder_local".equals(geocoder)) {
-                updateNetworkLocation(false);
+                updateNetworkLocation(false, intent);
             } else {
                 detectLocation();
             }
@@ -488,7 +491,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         updateWidgets();
     }
 
-    private boolean updateNetworkLocation(boolean bylastLocationOnly) {
+    private boolean updateNetworkLocation(boolean bylastLocationOnly, Intent originalIntent) {
 
         if (!PermissionUtil.checkPermissionsAndSettings(this)) {
             return false;
@@ -516,7 +519,7 @@ public class LocationUpdateService extends Service implements LocationListener {
                 lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 lastKnownLocationTimerHandler.removeCallbacksAndMessages(null);
             }
-            return updateNetworkLocationByNetwork(lastLocation, bylastLocationOnly);
+            return updateNetworkLocationByNetwork(lastLocation, bylastLocationOnly, originalIntent);
         } catch (Exception e) {
             appendLog(getBaseContext(), TAG, "Exception during update of network location", e);
         }
@@ -536,7 +539,21 @@ public class LocationUpdateService extends Service implements LocationListener {
     }
 
     private boolean updateNetworkLocationByNetwork(Location lastLocation,
-                                                   boolean bylastLocationOnly) {
+                                                   boolean bylastLocationOnly,
+                                                   Intent originalIntent) {
+        ConnectionDetector connectionDetector = new ConnectionDetector(this);
+        if (!connectionDetector.isNetworkAvailableAndConnected()) {
+            if (originalIntent == null) {
+                return false;
+            }
+            int numberOfAttempts = originalIntent.getIntExtra("attempts", 0);
+            if (numberOfAttempts > 2) {
+                return false;
+            }
+            originalIntent.putExtra("attempts", ++numberOfAttempts);
+            resendTheIntentInSeveralSeconds(20, originalIntent);
+            return false;
+        }
         Intent sendIntent = new Intent("android.intent.action.START_LOCATION_UPDATE");
         sendIntent.putExtra("destinationPackageName", "org.thosp.yourlocalweather");
 
@@ -633,7 +650,7 @@ public class LocationUpdateService extends Service implements LocationListener {
 
     private void requestWeatherCheck(String locationSource) {
         startRefreshRotation();
-        boolean updateLocationInProcess = updateNetworkLocation(true);
+        boolean updateLocationInProcess = updateNetworkLocation(true, null);
         appendLog(getBaseContext(), TAG, "requestWeatherCheck, updateLocationInProcess=" +
                 updateLocationInProcess);
         if (updateLocationInProcess) {
@@ -736,13 +753,19 @@ public class LocationUpdateService extends Service implements LocationListener {
         gravity[0] = 0;
         gravity[1] = 0;
         gravity[2] = 0;
+
+        ConnectionDetector connectionDetector = new ConnectionDetector(this);
+        if (!connectionDetector.isNetworkAvailableAndConnected()) {
+            return;
+        }
+
         lastUpdatedPossition = lastUpdate;
         currentLength = 0;
         currentLengthLowPassed = 0;
 
         org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
         locationsDbHelper.updateLocationSource(currentLocationForSensorEvent.getId(), "-");
-        updateNetworkLocation(false);
+        updateNetworkLocation(false, null);
     }
 
     private MoveVector highPassFilter(SensorEvent sensorEvent) {
@@ -789,5 +812,15 @@ public class LocationUpdateService extends Service implements LocationListener {
             return location.getTime();
         }
 
+    }
+
+    private void resendTheIntentInSeveralSeconds(int seconds, Intent intent) {
+        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
+                0,
+                intent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime() + (1000 + seconds), pendingIntent);
     }
 }
