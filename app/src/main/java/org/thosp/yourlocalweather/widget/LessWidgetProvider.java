@@ -54,10 +54,14 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
 
             remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     context,
-                    weatherRecord.getWeather()));
+                    weatherRecord.getWeather(),
+                    location.getLatitude(),
+                    weatherRecord.getLastUpdatedTime()));
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     context,
-                    weatherRecord.getWeather());
+                    weatherRecord.getWeather(),
+                    location.getLatitude(),
+                    weatherRecord.getLastUpdatedTime());
             if (secondTemperature != null) {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
                 remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
@@ -71,10 +75,14 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
         } else {
             remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     context,
-                    null));
+                    null,
+                    location.getLatitude(),
+                    0));
             remoteViews.setTextViewText(R.id.widget_second_temperature, TemperatureUtil.getTemperatureWithUnit(
                     context,
-                    null));
+                    null,
+                    location.getLatitude(),
+                    0));
             remoteViews.setTextViewText(R.id.widget_description, "");
 
             Utils.setWeatherIcon(remoteViews, context, weatherRecord);

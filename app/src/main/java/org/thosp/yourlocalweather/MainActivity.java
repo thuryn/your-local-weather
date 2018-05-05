@@ -337,8 +337,14 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
         Utils.setWeatherIcon(mIconWeatherView, this, weatherRecord);
         mTemperatureView.setText(getString(R.string.temperature_with_degree,
-                TemperatureUtil.getTemperatureWithUnit(this, weather)));
-        String secondTemperature = TemperatureUtil.getSecondTemperatureWithLabel(this, weather);
+                TemperatureUtil.getTemperatureWithUnit(this,
+                        weather,
+                        currentLocation.getLatitude(),
+                        weatherRecord.getLastUpdatedTime())));
+        String secondTemperature = TemperatureUtil.getSecondTemperatureWithLabel(this,
+                weather,
+                currentLocation.getLatitude(),
+                weatherRecord.getLastUpdatedTime());
         if (secondTemperature != null) {
             secondTemperatureView.setText(secondTemperature);
             secondTemperatureView.setVisibility(View.VISIBLE);
@@ -505,7 +511,9 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
             String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
                     MainActivity.this,
-                    weather);
+                    weather,
+                    currentLocation.getLatitude(),
+                    currentWeatherRecord.getLastUpdatedTime());
             windWithUnit = AppPreference.getWindWithUnit(
                     MainActivity.this,
                     weather.getWindSpeed());

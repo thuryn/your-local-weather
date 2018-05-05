@@ -59,10 +59,14 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context, location.getOrderId()));
             remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     context,
-                    weather));
+                    weather,
+                    location.getLatitude(),
+                    weatherRecord.getLastUpdatedTime()));
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     context,
-                    weather);
+                    weather,
+                    location.getLatitude(),
+                    weatherRecord.getLastUpdatedTime());
             if (secondTemperature != null) {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
                 remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
@@ -82,10 +86,14 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
             remoteViews.setTextViewText(R.id.widget_city, context.getString(R.string.location_not_found));
             remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     context,
-                    null));
+                    null,
+                    location.getLatitude(),
+                    0));
             remoteViews.setTextViewText(R.id.widget_second_temperature, TemperatureUtil.getTemperatureWithUnit(
                     context,
-                    null));
+                    null,
+                    location.getLatitude(),
+                    0));
             remoteViews.setTextViewText(R.id.widget_description, "");
 
             WidgetUtils.setWind(context, remoteViews, 0);
