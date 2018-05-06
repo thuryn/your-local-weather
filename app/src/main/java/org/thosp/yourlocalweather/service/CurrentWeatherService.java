@@ -86,7 +86,7 @@ public class CurrentWeatherService extends Service {
             sendResult(ACTION_WEATHER_UPDATE_FAIL, null, getBaseContext());
         }
     };
-    
+
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
@@ -112,17 +112,17 @@ public class CurrentWeatherService extends Service {
 
         ConnectionDetector connectionDetector = new ConnectionDetector(this);
         if (!connectionDetector.isNetworkAvailableAndConnected()) {
+            int numberOfAttempts = intent.getIntExtra("attempts", 0);
+            if (numberOfAttempts > 2) {
+                return ret;
+            }
+            intent.putExtra("attempts", ++numberOfAttempts);
+            resendTheIntentInSeveralSeconds(20, intent);
             return ret;
         }
 
         if (gettingWeatherStarted) {
-            AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
-                    0,
-                    intent,
-                    PendingIntent.FLAG_CANCEL_CURRENT);
-            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                            SystemClock.elapsedRealtime() + 10000, pendingIntent);
+            resendTheIntentInSeveralSeconds(10, intent);
         }
 
         gettingWeatherStarted = true;
@@ -269,5 +269,15 @@ public class CurrentWeatherService extends Service {
         Intent sendIntent = new Intent("android.intent.action.STOP_ROTATING_UPDATE");
         sendIntent.setPackage("org.thosp.yourlocalweather");
         startService(sendIntent);
+    }
+
+    private void resendTheIntentInSeveralSeconds(int seconds, Intent intent) {
+        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
+                0,
+                intent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime() + (1000 + seconds), pendingIntent);
     }
 }

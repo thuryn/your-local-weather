@@ -81,10 +81,14 @@ public class ExtLocationWidgetService extends IntentService {
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(this, currentLocation.getOrderId()));
             remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     this,
-                    weather));
+                    weather,
+                    currentLocation.getLatitude(),
+                    weatherRecord.getLastUpdatedTime()));
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     this,
-                    weather);
+                    weather,
+                    currentLocation.getLatitude(),
+                    weatherRecord.getLastUpdatedTime());
             if (secondTemperature != null) {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
                 remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
