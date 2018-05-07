@@ -56,7 +56,7 @@
     <string name="nav_menu_bitcoin_donation">Donate bitcoin</string>
 
     <!-- Toast messages -->
-    <string name="connection_not_found">Check your Internet connection</string>
+    <string name="connection_not_found">Check your network connection</string>
     <string name="toast_parse_error">An error has occurred. Try later!</string>
 
     <!-- Weather icons -->
