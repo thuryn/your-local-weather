@@ -278,4 +278,14 @@
     <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabisk (Arabic)</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Trykk på kartet for å hente valgt plassering og vent på utledning av adresse.</string>
     
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Nåværende vær har ikke blitt oppdatert enda. Oppdater nåværende vær med gjenoppfriskingsknappen først.</string>
+
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Følt temperatur: %s</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Målt temperatur: %s</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">Kun målt temperatur</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Begge, målt først</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Begge, følt først</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">Kun følt temperatur</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Vis temperatur som</string>
+
     </resources>
