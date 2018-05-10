@@ -13,7 +13,7 @@ import java.util.Locale;
 
 public class TemperatureUtil {
 
-    private static double G0 = 1395; // solar constant (w/m2)
+    private static double SOLAR_CONSTANT = 1395; // solar constant (w/m2)
     private static double transmissionCoefficientClearDay = 0.81;
     private static double transmissionCoefficientCloudy = 0.62;
 
@@ -23,38 +23,40 @@ public class TemperatureUtil {
                                                int cloudiness,
                                                double latitude,
                                                long timestamp) {
-        return getApparentTemperatureWithoutSolarIrradiation(dryBulbTemperature, humidity, windSpeed);
+        return getApparentTemperatureWithSolarIrradiation(dryBulbTemperature, humidity, windSpeed, cloudiness, latitude, timestamp);
     }
 
     public static float getApparentTemperatureWithoutSolarIrradiation(double dryBulbTemperature, int humidity, double windSpeed) {
-        double e = (humidity / 100) * 6.105 * Math.exp((17.27*dryBulbTemperature) / (237.7 + dryBulbTemperature));
+        double e = (humidity / 100f) * 6.105 * Math.exp((17.27*dryBulbTemperature) / (237.7 + dryBulbTemperature));
         double apparentTemperature = dryBulbTemperature + (0.33*e)-(0.70*windSpeed)-4.00;
         return (float)apparentTemperature;
     }
 
-    public static float getApparentTemperatureWithSolarIrradiation2(double dryBulbTemperature,
+    public static float getApparentTemperatureWithSolarIrradiation(double dryBulbTemperature,
                                                                    int humidity,
                                                                    double windSpeed,
                                                                    int cloudiness,
                                                                    double latitude,
                                                                    long timestamp) {
-        double e = (humidity / 100) * 6.105 * Math.exp((17.27*dryBulbTemperature) / (237.7 + dryBulbTemperature));
-        double zenithAngle = getZenithAngle(latitude, timestamp);
-        double cosOfZenithAngle = Math.cos(zenithAngle);
+        double e = (humidity / 100f) * 6.105 * Math.exp((17.27*dryBulbTemperature / (237.7 + dryBulbTemperature)));
+        double cosOfZenithAngle = getCosOfZenithAngle(Math.toRadians(latitude), timestamp);
         double secOfZenithAngle = 1/cosOfZenithAngle;
-        double transmissionCoefficient = transmissionCoefficientCloudy +
-                (transmissionCoefficientClearDay - transmissionCoefficientCloudy) * cloudiness;
-        double Q = (G0*Math.cos(zenithAngle)*Math.pow(transmissionCoefficient, secOfZenithAngle))/16;
-        double apparentTemperature = dryBulbTemperature + (0.348*e)-(0.70*windSpeed) + ((0.70*Math.abs(Q))/(windSpeed + 10)) - 4.25;
+        double transmissionCoefficient = transmissionCoefficientClearDay -
+                (transmissionCoefficientClearDay - transmissionCoefficientCloudy) * (cloudiness/100f);
+        double calculatedIrradiation = 0;
+        if (cosOfZenithAngle > 0) {
+            calculatedIrradiation = (SOLAR_CONSTANT * cosOfZenithAngle*Math.pow(transmissionCoefficient, secOfZenithAngle))/10;
+        }
+        double apparentTemperature = dryBulbTemperature + (0.348 * e) - (0.70 * windSpeed) + ((0.70 * calculatedIrradiation)/(windSpeed + 10)) - 4.25;
         return (float)apparentTemperature;
     }
 
-    private static double getZenithAngle(double latitude, long timestamp) {
+    private static double getCosOfZenithAngle(double latitude, long timestamp) {
         Calendar measuredTime = Calendar.getInstance();
         measuredTime.setTimeInMillis(timestamp);
-        double declination = -23.44 * Math.cos(360/365 * (9 + measuredTime.get(Calendar.DAY_OF_YEAR)));
-        double hourAngle = measuredTime.get(Calendar.HOUR_OF_DAY)*(360/24) + (measuredTime.get(Calendar.MINUTE) * (360/1440));
-        return Math.acos(Math.sin(latitude)*Math.sin(declination)) + (Math.cos(latitude) * Math.cos(declination) + Math.cos(hourAngle));
+        double declination = Math.toRadians(-23.44 * Math.cos(Math.toRadians((360f/365f) * (9 + measuredTime.get(Calendar.DAY_OF_YEAR)))));
+        double hourAngle = ((12 * 60) - (60 * measuredTime.get(Calendar.HOUR_OF_DAY) + measuredTime.get(Calendar.MINUTE))) * 0.25;
+        return Math.sin(latitude)*Math.sin(declination) + (Math.cos(latitude) * Math.cos(declination) * Math.cos(Math.toRadians(hourAngle)));
     }
 
     public static float getCanadianStandardTemperature(double dryBulbTemperature, double windSpeed) {
