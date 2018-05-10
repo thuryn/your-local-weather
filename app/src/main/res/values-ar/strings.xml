@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="enter_city_hint">أدخل اسم المدينة</string>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="enter_city_hint">أدخل اسم المدينة</string>
     <string name="label_current_city">المدينة الحالية</string>
     <string name="label_choose_city">اختر المدينة</string>
     <string name="alertDialog_location_permission_message_location_phone_settings">نظام التموضع العالمي غير مفعل. هل تريد أن تذهب إلى قائمة الإعدادات؟</string>
@@ -86,4 +86,8 @@
     <string name="theme_light">فاتح</string>
     <string name="pref_language_default">النظام الافتراضي</string>
     <string name="about_version_pref_title">الإصدار</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">إغلاق</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">التالي</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">السابق</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">إنتهاء</string>
     </resources>
