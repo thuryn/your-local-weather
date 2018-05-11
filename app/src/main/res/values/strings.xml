@@ -99,6 +99,7 @@
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Icon</string>
     <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Description</string>
     <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperature</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Apparent temperature</string>
     <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Wind</string>
     <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Rain/Snow</string>
     <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Humidity</string>

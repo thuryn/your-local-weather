@@ -33,6 +33,7 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
     private TextView mTime;
     private TextView mIcon;
     private TextView mTemperature;
+    private TextView mApparentTemperature;
     private TextView mWind;
     private TextView mHumidity;
     private TextView mPressure;
@@ -46,6 +47,7 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
         mTime = (TextView) itemView.findViewById(R.id.forecast_time);
         mIcon = (TextView) itemView.findViewById(R.id.forecast_icon);
         mTemperature = (TextView) itemView.findViewById(R.id.forecast_temperature);
+        mApparentTemperature = (TextView) itemView.findViewById(R.id.forecast_apparent_temperature);
         mWind = (TextView) itemView.findViewById(R.id.forecast_wind);
         mHumidity = (TextView) itemView.findViewById(R.id.forecast_humidity);
         mPressure = (TextView) itemView.findViewById(R.id.forecast_pressure);
@@ -53,7 +55,7 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
         mDescription = (TextView) itemView.findViewById(R.id.forecast_description);
     }
 
-    void bindWeather(DetailedWeatherForecast weather, Set<Integer> visibleColumns) {
+    void bindWeather(double latitude, DetailedWeatherForecast weather, Set<Integer> visibleColumns) {
         mWeatherForecast = weather;
 
         Typeface typeface = Typeface.createFromAsset(mContext.getAssets(),
@@ -94,12 +96,20 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
             mTemperature.setVisibility(View.GONE);
         }
         if (visibleColumns.contains(5)) {
+            mApparentTemperature.setVisibility(View.VISIBLE);
+            String apparentTemperature = mContext.getString(R.string.temperature_with_degree,
+                    TemperatureUtil.getForecastedApparentTemperatureWithUnit(mContext, latitude, weather));
+            mApparentTemperature.setText(apparentTemperature);
+        } else {
+            mApparentTemperature.setVisibility(View.GONE);
+        }
+        if (visibleColumns.contains(6)) {
             mWind.setVisibility(View.VISIBLE);
             mWind.setText(AppPreference.getWindInString(mContext, weather.getWindSpeed()));
         } else {
             mWind.setVisibility(View.GONE);
         }
-        if (visibleColumns.contains(6)) {
+        if (visibleColumns.contains(7)) {
             mRainSnow.setVisibility(View.VISIBLE);
             boolean noRain = weather.getRain() < 0.1;
             boolean noSnow = weather.getSnow() < 0.1;
@@ -119,13 +129,13 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
         } else {
             mRainSnow.setVisibility(View.GONE);
         }
-        if (visibleColumns.contains(7)) {
+        if (visibleColumns.contains(8)) {
             mHumidity.setVisibility(View.VISIBLE);
             mHumidity.setText(String.format(Locale.getDefault(), "%d", weather.getHumidity()));
         } else {
             mHumidity.setVisibility(View.GONE);
         }
-        if (visibleColumns.contains(8)) {
+        if (visibleColumns.contains(9)) {
             mPressure.setVisibility(View.VISIBLE);
             mPressure.setText(AppPreference.getPressureInString(mContext, weather.getPressure()));
         } else {

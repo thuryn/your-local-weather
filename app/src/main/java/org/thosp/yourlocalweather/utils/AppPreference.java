@@ -170,7 +170,7 @@ public class AppPreference {
         defaultVisibleColumns.add("1");
         defaultVisibleColumns.add("2");
         defaultVisibleColumns.add("3");
-        defaultVisibleColumns.add("4");
+        defaultVisibleColumns.add("5");
         Set<String> visibleColumns = PreferenceManager.getDefaultSharedPreferences(context).getStringSet(
                 Constants.KEY_PREF_FORECAST_ACTIVITY_COLUMNS, defaultVisibleColumns);
         Set<Integer> result = new HashSet<>();

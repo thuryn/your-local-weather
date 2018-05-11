@@ -73,6 +73,14 @@
                     tools:text="Clear"/>
 
                 <TextView
+                    android:id="@+id/forecast.header.apparent.temperature"
+                    android:layout_width="50sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    tools:text="Clear"/>
+
+                <TextView
                     android:id="@+id/forecast.header.wind"
                     android:layout_width="40sp"
                     android:layout_height="wrap_content"
@@ -140,6 +148,14 @@
 
             <TextView
                 android:id="@+id/forecast.header.temperature_unit"
+                android:layout_width="50sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                tools:text="Clear"/>
+
+            <TextView
+                android:id="@+id/forecast.header.apparent.temperature_unit"
                 android:layout_width="50sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

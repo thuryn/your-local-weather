@@ -18,15 +18,16 @@ public class WeatherForecastItemAdapter extends RecyclerView.Adapter<WeatherFore
     private Context mContext;
     private Set<Integer> visibleColumns;
     private List<DetailedWeatherForecast> mWeatherList;
-
-    private Calendar lastDay;
+    private double latitude;
 
     public WeatherForecastItemAdapter(Context context,
                                       List<DetailedWeatherForecast> weather,
+                                      double latitude,
                                       Set<Integer> visibleColumns) {
         mContext = context;
         mWeatherList = weather;
         this.visibleColumns = visibleColumns;
+        this.latitude = latitude;
     }
 
     @Override
@@ -39,7 +40,7 @@ public class WeatherForecastItemAdapter extends RecyclerView.Adapter<WeatherFore
     @Override
     public void onBindViewHolder(WeatherForecastItemViewHolder holder, int position) {
         DetailedWeatherForecast weather = mWeatherList.get(position);
-        holder.bindWeather(weather, visibleColumns);
+        holder.bindWeather(latitude, weather, visibleColumns);
     }
 
     @Override

@@ -4,6 +4,7 @@
         <item>@string/forecast_settings_column_icon</item>
         <item>@string/forecast_settings_column_description</item>
         <item>@string/forecast_settings_column_temperature</item>
+        <item>@string/forecast_settings_column_apparent_temperature</item>
         <item>@string/forecast_settings_column_wind</item>
         <item>@string/forecast_settings_column_rainsnow</item>
         <item>@string/forecast_settings_column_humidity</item>

@@ -51,6 +51,14 @@
         tools:text="Sky is clear"/>
 
     <TextView
+        android:id="@+id/forecast.apparent.temperature"
+        android:layout_width="50sp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        tools:text="Sky is clear"/>
+
+    <TextView
         android:id="@+id/forecast.wind"
         android:layout_width="40sp"
         android:layout_height="match_parent"

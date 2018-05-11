@@ -20,6 +20,7 @@ import org.thosp.yourlocalweather.adapter.WeatherForecastAdapter;
 import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.Location;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastResultHandler;
 import org.thosp.yourlocalweather.utils.AppPreference;
@@ -56,6 +57,7 @@ public class WeatherForecastActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_forecast);
 
+        locationsDbHelper = LocationsDbHelper.getInstance(this);
         mConnectionDetector = new ConnectionDetector(this);
         mGetWeatherProgress = getProgressDialog();
 
@@ -95,6 +97,7 @@ public class WeatherForecastActivity extends BaseActivity {
     private void updateUI() {
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
         long locationId = AppPreference.getCurrentLocationId(this);
+        Location location = locationsDbHelper.getLocationById(locationId);
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
         if (weatherForecastRecord != null) {
             weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
@@ -115,6 +118,7 @@ public class WeatherForecastActivity extends BaseActivity {
         }
         WeatherForecastAdapter adapter = new WeatherForecastAdapter(this,
                                                                     weatherForecastList.get(locationId),
+                                                                    location.getLatitude(),
                                                                     visibleColumns);
         mRecyclerView.setAdapter(adapter);
     }

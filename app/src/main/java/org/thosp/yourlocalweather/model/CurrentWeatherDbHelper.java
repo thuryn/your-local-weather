@@ -87,10 +87,11 @@ public class CurrentWeatherDbHelper extends SQLiteOpenHelper {
         if (oldWeather == null) {
             db.insert(CurrentWeatherContract.CurrentWeather.TABLE_NAME, null, values);
         } else {
-            db.update(CurrentWeatherContract.CurrentWeather.TABLE_NAME,
+            db.updateWithOnConflict(CurrentWeatherContract.CurrentWeather.TABLE_NAME,
                     values,
                     CurrentWeatherContract.CurrentWeather.COLUMN_NAME_LOCATION_ID + "=" + locationId,
-                    null);
+                    null,
+                    SQLiteDatabase.CONFLICT_IGNORE);
         }
     }
 
@@ -99,7 +100,12 @@ public class CurrentWeatherDbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(CurrentWeatherContract.CurrentWeather.COLUMN_NAME_LAST_UPDATED_IN_MS, weatherUpdateTime);
 
-        db.update(CurrentWeatherContract.CurrentWeather.TABLE_NAME,values,CurrentWeatherContract.CurrentWeather.COLUMN_NAME_LOCATION_ID + "=" + locationId,null);
+        db.updateWithOnConflict(
+                CurrentWeatherContract.CurrentWeather.TABLE_NAME,
+                values,
+                CurrentWeatherContract.CurrentWeather.COLUMN_NAME_LOCATION_ID + "=" + locationId,
+                null,
+                SQLiteDatabase.CONFLICT_IGNORE);
     }
 
     public WeatherRecord getWeather(long locationId) {

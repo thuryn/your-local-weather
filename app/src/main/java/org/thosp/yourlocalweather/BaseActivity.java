@@ -22,10 +22,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thosp.yourlocalweather.help.HelpActivity;
-import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
-import org.thosp.yourlocalweather.utils.Utils;
 
 public class BaseActivity extends AppCompatActivity {
 
