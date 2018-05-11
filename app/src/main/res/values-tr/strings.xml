@@ -80,7 +80,7 @@
     <string name="about_version_pref_title">Sürüm</string>
     <string name="about_source_code_pref_title">Kaynak kodu</string>
     <string name="about_app_license_pref_title">Lisans</string>
-    <string name="about_open_source_licenses_pref_title">Açık Kaynak lisansları</string>
+    <string name="about_open_source_licenses_pref_title">Özgür yazılım Lisansları</string>
 
     <!-- Weather conditions label strings -->
     <string name="wind_label">Rüzgar: %1$s %2$s</string>
@@ -121,12 +121,12 @@
     <string name="permission_location_rationale">Şu anki şehri belirlemek için Konum İzni gerekli</string>
     <string name="permission_not_granted">İzin verilmedi!</string>
     <string name="permission_available_location">Konum İzni verildi</string>
-    <string name="permission_location_need">Konum İzni vermelisiziniz</string>
+    <string name="permission_location_need">Konum İzni Ver</string>
 
     <!-- Dialog strings -->
     <string name="restart_dialog_message">Lütfen yeni ayarları uygulamak için uygulamayı tekrar başlatın</string>
 <string name="app_name" tools:ignore="MissingTranslation">Yerel havanız</string>
-    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Konum ve izin ayarları</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Konum ve İzin Ayarları</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Uygulamaya, GPS ile konumu güncellemesi için bir izin gerekli.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Uygulamaya, WIFI ve GSM ağları ile konumu güncellemesi için bir izin gerekli.</string>
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Uygulamaya telefondan bilgi okuması için izin gerekli. Bu izin konumu WIFI ve GSM ağları ile güncellemek için gerekli. Uygulama bu izni telefona bağlı GSM baz istasyonlarıyla ilgili bilgi almak için kullanır.</string>
@@ -191,10 +191,10 @@
     <string name="location_cache_8760_label" tools:ignore="MissingTranslation">bir yıl</string>
     <string name="location_cache_88888_label" tools:ignore="MissingTranslation">asla</string>
     
-    <string name="debug_choose_file" tools:ignore="MissingTranslation">Günlük için dizin seçin</string>
-    <string name="debug_category_title" tools:ignore="MissingTranslation">Hata ayıklama seçenekleri</string>
-    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Belirli bir süre sonunda, günlük dosyası yeniden oluşturulur</string>
-    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">"Günlük dosyası döndürme "</string>
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">Günlük klasörünü seçin</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">Hata Ayıklama Seçenekleri</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Belirli bir süre sonunda, günlük dosyası yeniden oluşturulacak</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Günlük dosyasının dönüşü</string>
     <string name="log_file_12_label" tools:ignore="MissingTranslation">12 saat</string>
     <string name="log_file_24_label" tools:ignore="MissingTranslation">bir gün</string>
     <string name="log_file_48_label" tools:ignore="MissingTranslation">iki gün</string>
@@ -202,7 +202,7 @@
     <string name="log_file_168_label" tools:ignore="MissingTranslation">bir hafta</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">bir ay</string>
 
-    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Simge seti</string>
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Simge Seti</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Yazı temelli simgeler</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin kırmızı simgeler</string>
 <string name="initial_guide_close" tools:ignore="MissingTranslation">Kapat</string>
