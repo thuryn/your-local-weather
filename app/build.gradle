@@ -12,13 +12,13 @@ android {
         untrackOld = true
         uploadImages = true
     }
-    compileSdkVersion 25
+    compileSdkVersion 26
     defaultConfig {
         applicationId "org.thosp.yourlocalweather"
         minSdkVersion 14
-        targetSdkVersion 25
-        versionCode 48
-        versionName "3.1.4"
+        targetSdkVersion 26
+        versionCode 49
+        versionName "3.1.5"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         playAccountConfig = playAccountConfigs.defaultAccountConfig
@@ -48,10 +48,10 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
-    implementation 'com.android.support:appcompat-v7:25.4.0'
-    implementation 'com.android.support:design:25.4.0'
-    implementation 'com.android.support:cardview-v7:25.4.0'
-    implementation 'com.android.support:support-v4:25.4.0'
+    implementation 'com.android.support:appcompat-v7:26.+'
+    implementation 'com.android.support:design:26.+'
+    implementation 'com.android.support:cardview-v7:26.+'
+    implementation 'com.android.support:support-v4:26.+'
     implementation 'org.microg:unifiednlp-api:1.5.6'
     implementation 'org.microg:address-formatter:0.2.1'
     implementation 'com.google.code.gson:gson:2.8.0'
