@@ -68,10 +68,11 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
         if (oldWeatherForecast == null) {
             db.insert(WeatherForecastContract.WeatherForecast.TABLE_NAME, null, values);
         } else {
-            db.update(WeatherForecastContract.WeatherForecast.TABLE_NAME,
+            db.updateWithOnConflict(WeatherForecastContract.WeatherForecast.TABLE_NAME,
                     values,
                     WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + "=" + locationId,
-                    null);
+                    null,
+                    SQLiteDatabase.CONFLICT_IGNORE);
         }
     }
 

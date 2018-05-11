@@ -63,10 +63,11 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
                 values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID, widgetId);
                 db.insert(WidgetSettingsContract.WidgetSettings.TABLE_NAME, null, values);
             } else {
-                db.update(WidgetSettingsContract.WidgetSettings.TABLE_NAME,
+                db.updateWithOnConflict(WidgetSettingsContract.WidgetSettings.TABLE_NAME,
                         values,
                         WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId,
-                        null);
+                        null,
+                        SQLiteDatabase.CONFLICT_IGNORE);
             }
         } finally {
         }

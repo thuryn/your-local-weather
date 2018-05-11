@@ -90,7 +90,12 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 int orderId = cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ORDER_ID));
                 ContentValues values = new ContentValues();
                 values.put(LocationsContract.Locations.COLUMN_NAME_ORDER_ID, orderId - 1);
-                db.update(LocationsContract.Locations.TABLE_NAME,values,LocationsContract.Locations._ID +"=" + itemId,null);
+                db.updateWithOnConflict(
+                        LocationsContract.Locations.TABLE_NAME,
+                        values,
+                        LocationsContract.Locations._ID +"=" + itemId,
+                        null,
+                        SQLiteDatabase.CONFLICT_IGNORE);
             }
         } finally {
             if (cursor != null) {
@@ -418,11 +423,12 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_NICKNAME, locationNickname);
-        db.update(
+        db.updateWithOnConflict(
                 LocationsContract.Locations.TABLE_NAME,
                 values,
                 LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=" + locationOrderId,
-                null);
+                null,
+                SQLiteDatabase.CONFLICT_IGNORE);
     }
 
     public void updateAutoLocationAddress(String locale, Address address) {
@@ -432,7 +438,11 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         values.put(LocationsContract.Locations.COLUMN_NAME_LOCALE, locale);
         values.put(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND, 1);
         values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, System.currentTimeMillis());
-        db.update(LocationsContract.Locations.TABLE_NAME,values,LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",null);
+        db.updateWithOnConflict(
+                LocationsContract.Locations.TABLE_NAME,values,
+                LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",
+                null,
+                SQLiteDatabase.CONFLICT_IGNORE);
         LocationUpdateService.autolocationForSensorEventAddressFound = true;
     }
 
@@ -444,7 +454,11 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, locationSource);
         values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_ACCURACY, accuracy);
         values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, locationTime);
-        db.update(LocationsContract.Locations.TABLE_NAME,values,LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",null);
+        db.updateWithOnConflict(
+                LocationsContract.Locations.TABLE_NAME,values,
+                LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",
+                null,
+                SQLiteDatabase.CONFLICT_IGNORE);
     }
 
     public void setNoLocationFound(Context context) {
@@ -453,7 +467,11 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         values.put(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND, 0);
         values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, System.currentTimeMillis());
 
-        db.update(LocationsContract.Locations.TABLE_NAME,values,LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",null);
+        db.updateWithOnConflict(
+                LocationsContract.Locations.TABLE_NAME,values,
+                LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",
+                null,
+                SQLiteDatabase.CONFLICT_IGNORE);
         LocationUpdateService.autolocationForSensorEventAddressFound = false;
     }
 
@@ -462,7 +480,12 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, updateSource);
 
-        db.update(LocationsContract.Locations.TABLE_NAME, values, LocationsContract.Locations._ID + "=" + locationId, null);
+        db.updateWithOnConflict(
+                LocationsContract.Locations.TABLE_NAME,
+                values,
+                LocationsContract.Locations._ID + "=" + locationId,
+                null,
+                SQLiteDatabase.CONFLICT_IGNORE);
     }
 
     public void updateEnabled(long locationId, boolean enabled) {
@@ -470,7 +493,11 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(LocationsContract.Locations.COLUMN_NAME_ENABLED, enabled);
 
-        db.update(LocationsContract.Locations.TABLE_NAME, values, LocationsContract.Locations._ID + "=" + locationId, null);
+        db.updateWithOnConflict(
+                LocationsContract.Locations.TABLE_NAME, values,
+                LocationsContract.Locations._ID + "=" + locationId,
+                null,
+                SQLiteDatabase.CONFLICT_IGNORE);
     }
 
     public void updateLastUpdatedAndLocationSource(long locationId, long updateTime, String updateSource) {
@@ -479,7 +506,12 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, updateSource);
         values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, updateTime);
 
-        db.update(LocationsContract.Locations.TABLE_NAME, values, LocationsContract.Locations._ID + "=" + locationId, null);
+        db.updateWithOnConflict(
+                LocationsContract.Locations.TABLE_NAME,
+                values,
+                LocationsContract.Locations._ID + "=" + locationId,
+                null,
+                SQLiteDatabase.CONFLICT_IGNORE);
     }
 
     public long getLastUpdateLocationTime() {
