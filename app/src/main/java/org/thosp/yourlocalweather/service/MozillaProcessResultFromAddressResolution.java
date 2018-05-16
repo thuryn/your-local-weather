@@ -1,8 +1,11 @@
 package org.thosp.yourlocalweather.service;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
+import android.os.SystemClock;
 
 import java.util.List;
 
@@ -26,6 +29,17 @@ public class MozillaProcessResultFromAddressResolution implements ProcessResultF
             sendIntent.putExtra("addresses", addresses.get(0));
         }
         appendLog(context, TAG, "processUpdateOfLocation:sendIntent:" + sendIntent);
-        context.startService(sendIntent);
+        startBackgroundService(context, sendIntent);
+    }
+
+    private void startBackgroundService(Context context, Intent intent) {
+        PendingIntent pendingIntent = PendingIntent.getService(context,
+                0,
+                intent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime(),
+                pendingIntent);
     }
 }

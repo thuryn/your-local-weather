@@ -159,6 +159,9 @@ public class WidgetRefreshIconService extends IntentService {
                     return;
                 }
                 rotateRefreshButtonOneStep();
+                /*if (currentRotationIndex == 0) {
+                    return;
+                }*/
                 timerRotateIconHandler.postDelayed(timerRotateIconRunnable, ROTATE_UPDATE_ICON_MILIS);
             } finally {
                 rotationLock.unlock();

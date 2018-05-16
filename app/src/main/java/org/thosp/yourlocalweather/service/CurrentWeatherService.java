@@ -100,7 +100,8 @@ public class CurrentWeatherService extends Service {
             if(!TextUtils.isEmpty(currentUpdateSource)) {
                 updateSource = currentUpdateSource;
             }
-            currentLocation = intent.getExtras().getParcelable("location");
+            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+            currentLocation = locationsDbHelper.getLocationById(intent.getExtras().getLong("locationId"));
         }
 
         if (currentLocation == null) {
@@ -201,16 +202,16 @@ public class CurrentWeatherService extends Service {
         stopRefreshRotation();
         gettingWeatherStarted = false;
         try {
-            startService(new Intent(getBaseContext(), LessWidgetService.class));
-            startService(new Intent(getBaseContext(), MoreWidgetService.class));
-            startService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
+            startBackgroundService(new Intent(getBaseContext(), LessWidgetService.class));
+            startBackgroundService(new Intent(getBaseContext(), MoreWidgetService.class));
+            startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
             if (updateSource != null) {
                 switch (updateSource) {
                     case "MAIN":
                         sendIntentToMain(result, weather);
                         break;
                     case "NOTIFICATION":
-                        startService(new Intent(getBaseContext(), NotificationService.class));
+                        startBackgroundService(new Intent(getBaseContext(), NotificationService.class));
                         break;
                 }
             }
@@ -262,13 +263,24 @@ public class CurrentWeatherService extends Service {
     private void startRefreshRotation() {
         Intent sendIntent = new Intent("android.intent.action.START_ROTATING_UPDATE");
         sendIntent.setPackage("org.thosp.yourlocalweather");
-        startService(sendIntent);
+        startBackgroundService(sendIntent);
     }
 
     private void stopRefreshRotation() {
         Intent sendIntent = new Intent("android.intent.action.STOP_ROTATING_UPDATE");
         sendIntent.setPackage("org.thosp.yourlocalweather");
-        startService(sendIntent);
+        startBackgroundService(sendIntent);
+    }
+
+    private void startBackgroundService(Intent intent) {
+        PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(),
+                0,
+                intent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime(),
+                pendingIntent);
     }
 
     private void resendTheIntentInSeveralSeconds(int seconds, Intent intent) {

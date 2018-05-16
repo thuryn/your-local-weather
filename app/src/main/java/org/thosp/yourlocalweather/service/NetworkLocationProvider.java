@@ -15,6 +15,8 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.telephony.TelephonyManager;
 
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -96,7 +98,8 @@ public class NetworkLocationProvider extends Service {
                     destinationPackageName = intent.getExtras().getString("destinationPackageName");
                     resolveAddress = intent.getExtras().getBoolean("resolveAddress");
                     inputLocation = intent.getExtras().getParcelable("inputLocation");
-                    currentLocation = intent.getExtras().getParcelable("location");
+                    LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
+                    currentLocation = locationsDbHelper.getLocationById(intent.getExtras().getLong("locationId"));
                 }
                 break;
             default:

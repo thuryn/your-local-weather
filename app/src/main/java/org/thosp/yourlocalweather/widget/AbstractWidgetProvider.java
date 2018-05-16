@@ -1,12 +1,13 @@
 package org.thosp.yourlocalweather.widget;
 
+import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
+import android.os.SystemClock;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -17,7 +18,6 @@ import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
-import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
 
@@ -190,13 +190,13 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         if ((currentLocation.getOrderId() == 0) && currentLocation.isEnabled()) {
             Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
             startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
-            startLocationUpdateIntent.putExtra("location", currentLocation);
-            context.startService(startLocationUpdateIntent);
+            startLocationUpdateIntent.putExtra("locationId", currentLocation.getId());
+            startBackgroundService(context, startLocationUpdateIntent);
             appendLog(context, TAG, "send intent START_LOCATION_UPDATE:" + startLocationUpdateIntent);
         } else if (currentLocation.getOrderId() != 0) {
             Intent intentToCheckWeather = new Intent(context, CurrentWeatherService.class);
-            intentToCheckWeather.putExtra("location", currentLocation);
-            context.startService(intentToCheckWeather);
+            intentToCheckWeather.putExtra("locationId", currentLocation.getId());
+            startBackgroundService(context, intentToCheckWeather);
         }
     }
 
@@ -229,6 +229,17 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     protected abstract String getWidgetName();
 
     protected abstract int getWidgetLayout();
+
+    private void startBackgroundService(Context context, Intent intent) {
+        PendingIntent pendingIntent = PendingIntent.getService(context,
+                0,
+                intent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime(),
+                pendingIntent);
+    }
 
     private void changeLocation(int widgetId,
                                 LocationsDbHelper locationsDbHelper,

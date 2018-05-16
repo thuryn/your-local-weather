@@ -1,5 +1,7 @@
 package org.thosp.yourlocalweather.service;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
@@ -7,6 +9,7 @@ import android.location.Location;
 import android.net.wifi.ScanResult;
 import android.os.Handler;
 import android.os.Looper;
+import android.os.SystemClock;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -123,7 +126,7 @@ public class MozillaLocationService {
         Intent sendIntent = new Intent("android.intent.action.LOCATION_UPDATE");
         sendIntent.setPackage(destinationPackageName);
         sendIntent.putExtra("inputLocation", location);
-        sendIntent.putExtra("location", currentLocation);
+        sendIntent.putExtra("locationId", (currentLocation != null)?currentLocation.getId():null);
         appendLog(context, TAG, "processUpdateOfLocation:resolveAddress:" + resolveAddress);
         if (resolveAddress && (location != null)) {
             appendLog(context, TAG, "processUpdateOfLocation:location:" + location.getLatitude() + ", " + location.getLongitude() + ", " + Locale.getDefault().getLanguage());
@@ -137,7 +140,18 @@ public class MozillaLocationService {
             return;
         }
         appendLog(context, TAG, "processUpdateOfLocation:sendIntent:" + sendIntent);
-        context.startService(sendIntent);
+        startBackgroundService(context, sendIntent);
+    }
+
+    private void startBackgroundService(Context context, Intent intent) {
+        PendingIntent pendingIntent = PendingIntent.getService(context,
+                0,
+                intent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime(),
+                pendingIntent);
     }
 
     private static String createRequest(List<Cell> cells, List<ScanResult> wiFis) throws JSONException {

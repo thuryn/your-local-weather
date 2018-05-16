@@ -342,7 +342,7 @@ public class LocationUpdateService extends Service implements LocationListener {
             sendIntent.putExtra("destinationPackageName", "org.thosp.yourlocalweather");
             sendIntent.putExtra("inputLocation", location);
             sendIntent.putExtra("resolveAddress", true);
-            startService(sendIntent);
+            startBackgroundService(sendIntent);
             appendLog(getBaseContext(), TAG, "send intent START_LOCATION_UPDATE:locationSource G:" + sendIntent);
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
             org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
@@ -529,13 +529,13 @@ public class LocationUpdateService extends Service implements LocationListener {
     private void startRefreshRotation() {
         Intent sendIntent = new Intent("android.intent.action.START_ROTATING_UPDATE");
         sendIntent.setPackage("org.thosp.yourlocalweather");
-        startService(sendIntent);
+        startBackgroundService(sendIntent);
     }
 
     private void stopRefreshRotation() {
         Intent sendIntent = new Intent("android.intent.action.STOP_ROTATING_UPDATE");
         sendIntent.setPackage("org.thosp.yourlocalweather");
-        startService(sendIntent);
+        startBackgroundService(sendIntent);
     }
 
     private boolean updateNetworkLocationByNetwork(Location lastLocation,
@@ -583,7 +583,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         }
 
         sendIntent.putExtra("resolveAddress", true);
-        startService(sendIntent);
+        startBackgroundService(sendIntent);
         appendLog(getBaseContext(), TAG, "send intent START_LOCATION_UPDATE:updatesource is N or G:" + sendIntent);
         timerHandler.postDelayed(timerRunnable, LOCATION_TIMEOUT_IN_MS);
         return true;
@@ -667,36 +667,46 @@ public class LocationUpdateService extends Service implements LocationListener {
     }
 
     private void sendIntentToGetWeather(org.thosp.yourlocalweather.model.Location currentLocation) {
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
         currentWeatherDbHelper.updateLastUpdatedTime(currentLocation.getId(), System.currentTimeMillis());
         Intent intentToCheckWeather = new Intent(getBaseContext(), CurrentWeatherService.class);
-        intentToCheckWeather.putExtra("location", locationsDbHelper.getLocationById(currentLocation.getId()));
+        intentToCheckWeather.putExtra("locationId", currentLocation.getId());
         intentToCheckWeather.putExtra("updateSource", updateSource);
-        startService(intentToCheckWeather);
+        startBackgroundService(intentToCheckWeather);
     }
     
     private void updateWidgets() {
         stopRefreshRotation();
-        startService(new Intent(getBaseContext(), LessWidgetService.class));
-        startService(new Intent(getBaseContext(), MoreWidgetService.class));
-        startService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
+        startBackgroundService(new Intent(getBaseContext(), LessWidgetService.class));
+        startBackgroundService(new Intent(getBaseContext(), MoreWidgetService.class));
+        startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
         if (updateSource != null) {
             switch (updateSource) {
                 case "MAIN":
                     sendIntentToMain();
                     break;
                 case "NOTIFICATION":
-                    startService(new Intent(getBaseContext(), NotificationService.class));
+                    startBackgroundService(new Intent(getBaseContext(), NotificationService.class));
                     break;
             }
         }
     }
-    
+
+    private void startBackgroundService(Intent intent) {
+        PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(),
+                0,
+                intent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime(),
+                pendingIntent);
+    }
+
     private void sendIntentToMain() {
         Intent intent = new Intent(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT);
         intent.putExtra(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT, CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL);
-        sendBroadcast(intent);
+        startBackgroundService(intent);
     }
 
     private void processSensorEvent(SensorEvent sensorEvent) {

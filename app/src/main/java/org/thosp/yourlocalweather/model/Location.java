@@ -1,8 +1,10 @@
 package org.thosp.yourlocalweather.model;
 
 import android.location.Address;
+import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.PersistableBundle;
 
 public class Location implements Parcelable {
 
@@ -134,5 +136,39 @@ public class Location implements Parcelable {
         locationSource = in.readString();
         lastLocationUpdate = in.readLong();
         address = in.readParcelable(Address.class.getClassLoader());
+    }
+
+    public Location(PersistableBundle persistentBundle) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            id = persistentBundle.getLong("id");
+            latitude = persistentBundle.getDouble("latitude");
+            longitude = persistentBundle.getDouble("longitude");
+            orderId = persistentBundle.getInt("orderId");
+            locale = persistentBundle.getString("locale");
+            nickname = persistentBundle.getString("nickname");;
+            accuracy = new Double(persistentBundle.getDouble("accuracy")).floatValue();
+            locationSource = persistentBundle.getString("locationSource");
+            lastLocationUpdate = persistentBundle.getLong("lastLocationUpdate");
+            address = PersistableBundleBuilder.toAddress(persistentBundle.getPersistableBundle("address"));
+        }
+    }
+
+    public PersistableBundle getPersistableBundle() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            PersistableBundle persistableBundle = new PersistableBundle();
+            persistableBundle.putLong("id", id);
+            persistableBundle.putDouble("latitude", latitude);
+            persistableBundle.putDouble("longitude", longitude);
+            persistableBundle.putInt("orderId", orderId);
+            persistableBundle.putString("locale", locale);
+            persistableBundle.putString("nickname", nickname);
+            persistableBundle.putDouble("accuracy", new Double(accuracy));
+            persistableBundle.putString("locationSource", locationSource);
+            persistableBundle.putLong("lastLocationUpdate", lastLocationUpdate);
+            persistableBundle.putPersistableBundle("address", PersistableBundleBuilder.fromAddress(address));
+            return persistableBundle;
+        } else {
+            return null;
+        }
     }
 }

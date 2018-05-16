@@ -215,7 +215,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                     currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
                     Intent intent = new Intent(this, CurrentWeatherService.class);
                     intent.putExtra("updateSource", "MAIN");
-                    intent.putExtra("location", currentLocation);
+                    intent.putExtra("locationId", currentLocation.getId());
                     startService(intent);
                     setUpdateButtonState(true);
                 } else {
@@ -268,7 +268,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
                         Intent intent = new Intent(MainActivity.this, CurrentWeatherService.class);
                         intent.putExtra("updateSource", "MAIN");
-                        intent.putExtra("location", currentLocation);
+                        intent.putExtra("locationId", currentLocation.getId());
                         startService(intent);
                     } else {
                         Toast.makeText(MainActivity.this,
@@ -863,7 +863,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
         startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
         startLocationUpdateIntent.putExtra("updateSource", "MAIN");
-        startLocationUpdateIntent.putExtra("location", currentLocation);
+        startLocationUpdateIntent.putExtra("locationId", currentLocation.getId());
         storedContext.startService(startLocationUpdateIntent);
     }
     

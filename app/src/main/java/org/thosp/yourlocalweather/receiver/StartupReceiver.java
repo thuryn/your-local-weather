@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 
+import org.thosp.yourlocalweather.service.AppAlarmService;
 import org.thosp.yourlocalweather.service.NotificationService;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 public class StartupReceiver extends BroadcastReceiver {
 
@@ -18,9 +20,7 @@ public class StartupReceiver extends BroadcastReceiver {
         removeOldPreferences(context);
         boolean isNotificationEnabled = AppPreference.isNotificationEnabled(context);
         NotificationService.setNotificationServiceAlarm(context, isNotificationEnabled);
-        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_ALARM_SERVICE");
-        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
-        context.startService(intentToStartUpdate);
+        AppAlarmService.scheduleStart(context);
         context.sendBroadcast(new Intent("android.appwidget.action.APPWIDGET_UPDATE"));
     }
 
