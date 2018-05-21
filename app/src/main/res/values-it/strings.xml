@@ -143,4 +143,55 @@
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Opzioni di risveglio</string>
     <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Opzioni di risveglio</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Congratulazioni</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Opzione di memorizzazione degli indirizzi trovati</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">È possibile ridurre il traffico dati memorizzando le posizioni trovate. Le posizioni sono memorizzate nell’app. Non sono inviate o contenute in altri posti nella rete.</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Memorizza gli indirizzi trovati</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">La guida è conclusa. È possibile trovare altre impostazioni nel menù delle Impostazioni (ad esempio lingua, unità, etc.).
+\nLa prossima schermata spiega i permessi richiesti e l’opzione per richiederli.
+\n
+\nDivertiti con l’app.</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Generale</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">App principale</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Widget</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Impostazioni generali</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">Impostazioni del widget</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">Opzioni di debug</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Guida</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Icona</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Descrizione</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Vento</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Pioggia/Neve</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Umidità</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Pressione</string>
+    <string name="ok" tools:ignore="MissingTranslation">OK</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Annulla</string>
+
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Guida</string>
+
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">nodi</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">Vento</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Pressione</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Impostazione dell’aggiornamento della posizione</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">Non aggiornare la posizione</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">Aggiorna la posizione (consigliato)</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">Aggiorna la posizione senza GPS</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Attiva il GPS quando è necessario</string>
+    <string name="update_period_by_sensors" tools:ignore="MissingTranslation">Usa l’accelerometro</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">Solo manuale</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Periodo di aggiornamento della posizione (posizione 0)</string>
+    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Mostra etichette nel widget</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Aggiorna la posizione e il meteo</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Cinese (Cinese)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Swahili (Swahili)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norvegese (Norvegese)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Olandese (Olandese)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Ungherese (Ungherese)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Spagnolo (Spagnolo)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Greco (Greco)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabo (Arabo)</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Fonte della posizione e dell’indirizzo</string>
     </resources>
