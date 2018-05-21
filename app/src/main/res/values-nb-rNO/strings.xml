@@ -288,4 +288,5 @@
     <string name="appearance_only" tools:ignore="MissingTranslation">Kun følt temperatur</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Vis temperatur som</string>
 
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Følt temperatur</string>
     </resources>
