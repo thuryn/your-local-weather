@@ -458,6 +458,9 @@ public class Utils {
         } else {
             geoCity = address.getSubAdminArea();
         }
+        if (geoCity == null) {
+            geoCity = "";
+        }
         String geoCountryDistrict = null;
         if(address.getAdminArea() != null) {
             geoCountryDistrict = address.getAdminArea();

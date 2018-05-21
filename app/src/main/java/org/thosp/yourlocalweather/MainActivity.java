@@ -145,7 +145,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     @Override
     public void onResume() {
         super.onResume();
-        currentLocation = locationsDbHelper.getLocationById(AppPreference.getCurrentLocationId(this));
+        currentLocation = locationsDbHelper.getLocationById(AppPreference.getCurrentLocationId(getApplicationContext()));
         if (currentLocation == null) {
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
         }

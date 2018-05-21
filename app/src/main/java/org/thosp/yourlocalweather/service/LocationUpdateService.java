@@ -199,7 +199,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         }
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():" + intent.getAction());
         switch (intent.getAction()) {
-            case "android.intent.action.START_SENSOR_BASED_UPDATES": return startSensorBasedUpdates(ret);
+            case "android.intent.action.START_SENSOR_BASED_UPDATES": return startSensorBasedUpdates(ret, intent);
             case "android.intent.action.STOP_SENSOR_BASED_UPDATES": stopSensorBasedUpdates(); return ret;
             case "android.intent.action.LOCATION_UPDATE": startLocationUpdateOnly(intent); return ret;
             case "android.intent.action.START_LOCATION_AND_WEATHER_UPDATE": startLocationAndWeatherUpdate(intent); return ret;
@@ -433,7 +433,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         senAccelerometer = null;
     }
 
-    private int startSensorBasedUpdates(int initialReturnValue) {
+    private int startSensorBasedUpdates(int initialReturnValue, Intent intent) {
         if (senSensorManager != null) {
             return initialReturnValue;
         }
@@ -699,7 +699,7 @@ public class LocationUpdateService extends Service implements LocationListener {
                 PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime(),
+                SystemClock.elapsedRealtime() + 10,
                 pendingIntent);
     }
 
@@ -753,18 +753,20 @@ public class LocationUpdateService extends Service implements LocationListener {
                 return;
             }
 
-            appendLog(getBaseContext(), TAG, "end currentLength = " + String.format("%.8f", absCurrentLength) + ", currentLengthLowPassed = " + String.format("%.8f", currentLengthLowPassed));
+            appendLog(getBaseContext(), TAG, "end currentLength = " + String.format("%.8f", absCurrentLength) +
+                    ", currentLengthLowPassed = " + String.format("%.8f", currentLengthLowPassed) +
+                    ", lastUpdate=" + lastUpdate + ", lastUpdatePosition=" + lastUpdatedPossition);
         } catch (Exception e) {
             appendLog(getBaseContext(), TAG, "Exception when processSensorQueue", e);
             return;
         }
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getApplicationContext());
         locationsDbHelper.setNoLocationFound(getBaseContext());
         gravity[0] = 0;
         gravity[1] = 0;
         gravity[2] = 0;
 
-        ConnectionDetector connectionDetector = new ConnectionDetector(this);
+        ConnectionDetector connectionDetector = new ConnectionDetector(getApplicationContext());
         if (!connectionDetector.isNetworkAvailableAndConnected()) {
             return;
         }

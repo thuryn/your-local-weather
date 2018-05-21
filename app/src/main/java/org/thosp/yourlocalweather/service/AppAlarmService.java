@@ -27,7 +27,7 @@ public class AppAlarmService extends Service {
 
     private static final String TAG = "AppAlarmService";
 
-    private static final long START_SENSORS_CHECK_PERIOD = 3600000; //1 hour
+    public static final long START_SENSORS_CHECK_PERIOD = 3600000; //1 hour
     private volatile boolean alarmStarted;
 
     @Override
@@ -73,7 +73,7 @@ public class AppAlarmService extends Service {
                 Intent intentToStartUpdate = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
                 intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
                 intentToStartUpdate.putExtra("locationId", locationsDbHelper.getLocationByOrderId(0).getId());
-                startService(intentToStartUpdate);
+                startBackgroundService(intentToStartUpdate);
                 return ret;
             }
             int startUpdateOffset = 0;
@@ -90,13 +90,12 @@ public class AppAlarmService extends Service {
     }
 
     public void setAlarm() {
-        if (alarmStarted) {
+        /*if (alarmStarted) {
             return;
-        }
+        }*/
         alarmStarted = true;
         cancelAlarm(true);
         cancelAlarm(false);
-        sendSensorStopIntent();
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         String updatePeriodStr = AppPreference.getLocationUpdatePeriod(getBaseContext());
         String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
@@ -111,8 +110,11 @@ public class AppAlarmService extends Service {
                         START_SENSORS_CHECK_PERIOD,
                         getPendingSensorStartIntent(getBaseContext()));
             } else if (!"OFF".equals(updateAutoPeriodStr)) {
+                sendSensorStopIntent();
                 long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
                 scheduleNextRegularAlarm(getBaseContext(), true, updateAutoPeriodMills);
+            } else {
+                sendSensorStopIntent();
             }
         }
         if (!"0".equals(updatePeriodStr) && (locationsDbHelper.getAllRows().size() > 1)) {
@@ -156,17 +158,7 @@ public class AppAlarmService extends Service {
     private void sendSensorStartIntent() {
         Intent sendIntent = new Intent("android.intent.action.START_SENSOR_BASED_UPDATES");
         sendIntent.setPackage("org.thosp.yourlocalweather");
-        startService(sendIntent);
-        appendLog(getBaseContext(), TAG, "sendIntent:" + sendIntent);
-    }
-
-    private void sendSensorStopIntent() {
-        Intent sendIntent = new Intent("android.intent.action.STOP_SENSOR_BASED_UPDATES");
-        sendIntent.setPackage("org.thosp.yourlocalweather");
-        startService(sendIntent);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmManager.cancel(getPendingSensorStartIntent(getBaseContext()));
-        getPendingSensorStartIntent(getBaseContext()).cancel();
+        startBackgroundService(sendIntent);
         appendLog(getBaseContext(), TAG, "sendIntent:" + sendIntent);
     }
 
@@ -179,6 +171,16 @@ public class AppAlarmService extends Service {
                 PendingIntent.FLAG_CANCEL_CURRENT);
     }
 
+    private void sendSensorStopIntent() {
+        Intent sendIntent = new Intent("android.intent.action.STOP_SENSOR_BASED_UPDATES");
+        sendIntent.setPackage("org.thosp.yourlocalweather");
+        startService(sendIntent);
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarmManager.cancel(getPendingSensorStartIntent(getBaseContext()));
+        getPendingSensorStartIntent(getBaseContext()).cancel();
+        appendLog(getBaseContext(), TAG, "sendIntent:" + sendIntent);
+    }
+
     private static PendingIntent getPendingIntent(Context context, boolean autoLocation) {
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM");
         intent.setPackage("org.thosp.yourlocalweather");
@@ -189,10 +191,21 @@ public class AppAlarmService extends Service {
                 PendingIntent.FLAG_CANCEL_CURRENT);
     }
 
+    private void startBackgroundService(Intent intent) {
+        PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(),
+                1,
+                intent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime()+10,
+                pendingIntent);
+    }
+
     private PendingIntent startWeatherUpdate(Location currentLocation) {
         Intent intentToCheckWeather = new Intent(this, CurrentWeatherService.class);
         intentToCheckWeather.putExtra("locationId", currentLocation.getId());
-        startService(intentToCheckWeather);
+        startBackgroundService(intentToCheckWeather);
         return PendingIntent.getBroadcast(getBaseContext(),
                                           0,
                                             intentToCheckWeather,
@@ -210,6 +223,7 @@ public class AppAlarmService extends Service {
     }
 
     public static void scheduleStart(Context context) {
+        appendLog(context, TAG, "scheduleStart at boot");
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
         String updatePeriodStr = AppPreference.getLocationUpdatePeriod(context);
         String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(context);
@@ -219,7 +233,7 @@ public class AppAlarmService extends Service {
         if (locationsDbHelper.getLocationByOrderId(0).isEnabled()) {
             if ("0".equals(updateAutoPeriodStr)) {
                 alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                        SystemClock.elapsedRealtime() + 1000,
+                        SystemClock.elapsedRealtime() + 10,
                         getPendingSensorStartIntent(context));
                 alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                         SystemClock.elapsedRealtime() + START_SENSORS_CHECK_PERIOD,

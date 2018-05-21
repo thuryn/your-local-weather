@@ -237,7 +237,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                 PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime(),
+                SystemClock.elapsedRealtime() + 10,
                 pendingIntent);
     }
 

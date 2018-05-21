@@ -34,9 +34,37 @@ public class NetworkLocationProvider extends Service {
     private WifiManager wifiManager;
     private volatile boolean scanning;
     private volatile Calendar nextScanningAllowedFrom;
-    private volatile WifiScanCallback mWifiScanResults;
+    private volatile PendingIntent intentToCancel;
     private AlarmManager alarmManager;
     private org.thosp.yourlocalweather.model.Location currentLocation;
+
+    private WifiScanCallback mWifiScanResults = new WifiScanCallback() {
+
+        @Override
+        public void onWifiResultsAvailable() {
+            appendLog(getBaseContext(), TAG, "Wifi results are available now");
+            if (!scanning) {
+                return;
+            }
+            nextScanningAllowedFrom = null;
+            scanning = false;
+            if (intentToCancel != null) {
+                intentToCancel.cancel();
+                alarmManager.cancel(intentToCancel);
+            }
+            List<ScanResult> scans = null;
+            try {
+                appendLog(getBaseContext(), TAG, "Wifi results are available now - going to get wifi results");
+                scans = wifiManager.getScanResults();
+            } catch (Throwable exception) {
+                appendLog(getBaseContext(), TAG, "Exception occured getting wifi results:", exception);
+            }
+            if (scans == null) {
+                appendLog(getBaseContext(), TAG, "WifiManager.getScanResults returned null");
+            }
+            getLocationFromWifisAndCells(scans);
+        }
+    };
 
     /**
      * Receives location updates as well as wifi scan result updates
@@ -46,11 +74,7 @@ public class NetworkLocationProvider extends Service {
         @Override
         public void onReceive(final Context context, final Intent intent) {
             if (WifiManager.SCAN_RESULTS_AVAILABLE_ACTION.equals(intent.getAction())) {
-                if (mWifiScanResults != null) {
-                    mWifiScanResults.onWifiResultsAvailable();
-                } else {
-                    appendLog(getBaseContext(), TAG, "Scan Callback is null, skipping message");
-                }
+                mWifiScanResults.onWifiResultsAvailable();
             }
         }
     };
@@ -91,6 +115,7 @@ public class NetworkLocationProvider extends Service {
                     return ret;
                 }
                 nextScanningAllowedFrom = null;
+                scanning = false;
                 getLocationFromWifisAndCells(null);
                 return ret;
             case "android.intent.action.START_LOCATION_UPDATE":
@@ -109,6 +134,12 @@ public class NetworkLocationProvider extends Service {
         appendLog(getBaseContext(), TAG, "onStartCommand:" + intent);
         appendLog(getBaseContext(), TAG, "onStartCommand:inputLocation:" + inputLocation);
         appendLog(getBaseContext(), TAG, "onStartCommand:destinationPackageName:" + destinationPackageName);
+        if (nextScanningAllowedFrom != null) {
+            Calendar now = Calendar.getInstance();
+            if (now.before(nextScanningAllowedFrom)) {
+                return ret;
+            }
+        }
         if (inputLocation != null) {
             MozillaLocationService.getInstance().processUpdateOfLocation(getBaseContext(), inputLocation, destinationPackageName, resolveAddress);
         } else {
@@ -121,10 +152,12 @@ public class NetworkLocationProvider extends Service {
         appendLog(getBaseContext(), TAG, "update():nextScanningAllowedFrom:" + ((nextScanningAllowedFrom != null)?nextScanningAllowedFrom.getTimeInMillis():"null"));
         if(nextScanningAllowedFrom == null) {
             scanning = wifiManager.startScan();
-            nextScanningAllowedFrom = Calendar.getInstance();
-            nextScanningAllowedFrom.add(Calendar.MINUTE, 1);
+            if (scanning) {
+                nextScanningAllowedFrom = Calendar.getInstance();
+                nextScanningAllowedFrom.add(Calendar.MINUTE, 15);
+            }
         }
-        final PendingIntent intentToCancel = getIntentToGetCellsOnly();
+        intentToCancel = getIntentToGetCellsOnly();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + 8000,
@@ -135,31 +168,6 @@ public class NetworkLocationProvider extends Service {
                     intentToCancel);
         }
         appendLog(getBaseContext(), TAG, "update():alarm set");
-        if (mWifiScanResults == null) {
-            mWifiScanResults = new WifiScanCallback() {
-
-                @Override
-                public void onWifiResultsAvailable() {
-                    appendLog(getBaseContext(), TAG, "Wifi results are available now.");
-                    nextScanningAllowedFrom = null;
-                    intentToCancel.cancel();
-                    alarmManager.cancel(intentToCancel);
-                    if (scanning) {
-                        List<ScanResult> scans = null;
-                        try {
-                            scans = wifiManager.getScanResults();
-                        } catch (Throwable exception) {
-                            appendLog(getBaseContext(), TAG, "Exception occured getting wifi results:", exception);
-                        }
-                        if (scans == null) {
-                            appendLog(getBaseContext(), TAG, "WifiManager.getScanResults returned null");
-                        }
-                        getLocationFromWifisAndCells(scans);
-                    }
-                    scanning = false;
-                }
-            };
-        }
     }
 
     private void getLocationFromWifisAndCells(List<ScanResult> scans) {

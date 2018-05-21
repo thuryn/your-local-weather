@@ -279,7 +279,7 @@ public class CurrentWeatherService extends Service {
                 PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime(),
+                SystemClock.elapsedRealtime()+10,
                 pendingIntent);
     }
 
