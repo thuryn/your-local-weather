@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources><string name="enter_city_hint">Város megadása</string>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="enter_city_hint">Város megadása</string>
     <string name="label_current_city">Jelenlegi város</string>
     <string name="label_choose_city">Város választása</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings">A GPS nincs bekapcsolva. Szeretné a beállításokat megnyitni?</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">Az app-nak a helyszín frissítéséhez szüksége van hozzáférésre. Menj az eszköz beállításokba, kapcsold be GPS-t.</string>
     <string name="alertDialog_location_permission_positiveButton_settings">Beállítások</string>
     <string name="alertDialog_location_permission_negativeButton">Mégsem</string>
     <string name="progressDialog_gps_locate">Jelenlegi pozíció megkeresése</string>
@@ -107,4 +107,7 @@
     <string name="permission_location_need">Kérem, adja meg az engedélyt a helymeghatározáshoz</string>
 
     <string name="restart_dialog_message">Indítsa újra az alkalmazást, hogy az új beállítások aktiválódjanak</string>
-</resources>
+<string name="app_name" tools:ignore="MissingTranslation">Helyi időjárás</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Hely és engedélyek beállítása</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Az app-nak szüksége van a GPS-re.</string>
+    </resources>
