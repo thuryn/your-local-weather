@@ -147,6 +147,7 @@ public class LocationUpdateService extends Service implements LocationListener {
             org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
             CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
 
+            appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:weatherRecord=" + weatherRecord);
             if (weatherRecord == null) {
                 requestWeatherCheck("-");
                 timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
@@ -167,6 +168,7 @@ public class LocationUpdateService extends Service implements LocationListener {
                 timerScreenOnHandler.postDelayed(timerScreenOnRunnable, REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT);
                 return;
             }
+            appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:requestWeatherCheck");
             requestWeatherCheck("-");
             timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
         }
@@ -313,6 +315,7 @@ public class LocationUpdateService extends Service implements LocationListener {
 
         @Override
         public void run() {
+            appendLog(getBaseContext(), TAG, "timerRunnable:requestWeatherCheck");
             requestWeatherCheck("-");
         }
     };
@@ -386,6 +389,7 @@ public class LocationUpdateService extends Service implements LocationListener {
     }
 
     private void startLocationAndWeatherUpdate(Intent intent) {
+        appendLog(getBaseContext(), TAG, "startLocationAndWeatherUpdate:" + intent);
         if (intent.getExtras() == null) {
             return;
         }
@@ -395,6 +399,8 @@ public class LocationUpdateService extends Service implements LocationListener {
         boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
                 && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
+        appendLog(getBaseContext(), TAG, "startLocationAndWeatherUpdate:isGPSEnabled=" +
+                                        isGPSEnabled + ", isNetworkEnabled=" + isNetworkEnabled);
         updateSource = intent.getStringExtra("updateSource");
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
@@ -417,6 +423,7 @@ public class LocationUpdateService extends Service implements LocationListener {
                 detectLocation();
             }
         } else {
+            appendLog(getBaseContext(), TAG, "startLocationAndWeatherUpdate:requestWeatherCheck");
             requestWeatherCheck("-");
         }
     }
@@ -493,7 +500,9 @@ public class LocationUpdateService extends Service implements LocationListener {
 
     private boolean updateNetworkLocation(boolean bylastLocationOnly, Intent originalIntent) {
 
-        if (!PermissionUtil.checkPermissionsAndSettings(this)) {
+        boolean permissionsGranted = PermissionUtil.checkPermissionsAndSettings(this);
+        appendLog(getBaseContext(), TAG, "updateNetworkLocation:" + permissionsGranted);
+        if (!permissionsGranted) {
             return false;
         }
         boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
@@ -504,12 +513,17 @@ public class LocationUpdateService extends Service implements LocationListener {
         String geocoder = AppPreference.getLocationGeocoderSource(getBaseContext());
         boolean networkNotEnabled = !isNetworkEnabled && "location_geocoder_system".equals(geocoder);
 
+        appendLog(getBaseContext(), TAG, "updateNetworkLocation:networkNotEnabled=" + networkNotEnabled +
+                                        ", isGPSEnabled=" + isGPSEnabled + ", bylastLocationOnly=" + bylastLocationOnly +
+                                        ", isNetworkEnabled=" + isNetworkEnabled);
         if (networkNotEnabled && isGPSEnabled && !bylastLocationOnly) {
+            appendLog(getBaseContext(), TAG, "updateNetworkLocation:request GPS and start rotation");
             startRefreshRotation();
             gpsRequestLocation();
             return true;
         }
         AppWakeUpManager.getInstance(getBaseContext()).wakeUp();
+        appendLog(getBaseContext(), TAG, "updateNetworkLocation:wakeup and start rotation");
         startRefreshRotation();
         try {
 
@@ -603,7 +617,9 @@ public class LocationUpdateService extends Service implements LocationListener {
         }
         boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
                 && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        appendLog(getBaseContext(), TAG, "detectLocation:isNetworkEnabled=" + isNetworkEnabled);
         if (isNetworkEnabled && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            appendLog(getBaseContext(), TAG, "detectLocation:afterCheckSelfPermission");
             final Looper locationLooper = Looper.myLooper();
             locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, locationLooper);
             final LocationListener locationListener = this;
@@ -612,6 +628,7 @@ public class LocationUpdateService extends Service implements LocationListener {
                 @Override
                 public void run() {
                     locationManager.removeUpdates(locationListener);
+                    appendLog(getBaseContext(), TAG, "detectLocation:lastLocationUpdateTime=" + lastLocationUpdateTime);
                     if ((System.currentTimeMillis() - (2 * LOCATION_TIMEOUT_IN_MS)) < lastLocationUpdateTime) {
                         return;
                     }
@@ -642,6 +659,7 @@ public class LocationUpdateService extends Service implements LocationListener {
                             }.start();
                         }
                     }
+                    appendLog(getBaseContext(), TAG, "detectLocation:requestWeatherCheck");
                     requestWeatherCheck(null);
                 }
             }, LOCATION_TIMEOUT_IN_MS);
@@ -649,6 +667,7 @@ public class LocationUpdateService extends Service implements LocationListener {
     }
 
     private void requestWeatherCheck(String locationSource) {
+        appendLog(getBaseContext(), TAG, "startRefreshRotation");
         startRefreshRotation();
         boolean updateLocationInProcess = updateNetworkLocation(true, null);
         appendLog(getBaseContext(), TAG, "requestWeatherCheck, updateLocationInProcess=" +
@@ -674,6 +693,14 @@ public class LocationUpdateService extends Service implements LocationListener {
         intentToCheckWeather.putExtra("updateSource", updateSource);
         startBackgroundService(intentToCheckWeather);
     }
+
+    private boolean isInteractive() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+            return powerManager.isInteractive();
+        } else {
+            return powerManager.isScreenOn();
+        }
+    }
     
     private void updateWidgets() {
         stopRefreshRotation();
@@ -693,14 +720,18 @@ public class LocationUpdateService extends Service implements LocationListener {
     }
 
     private void startBackgroundService(Intent intent) {
-        PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(),
-                0,
-                intent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime() + 10,
-                pendingIntent);
+        if (isInteractive()) {
+            getBaseContext().startService(intent);
+        } else {
+            PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(),
+                    0,
+                    intent,
+                    PendingIntent.FLAG_CANCEL_CURRENT);
+            AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + 10,
+                    pendingIntent);
+        }
     }
 
     private void sendIntentToMain() {

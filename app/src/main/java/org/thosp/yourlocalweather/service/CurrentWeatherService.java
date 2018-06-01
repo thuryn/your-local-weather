@@ -5,9 +5,12 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.location.LocationManager;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.PowerManager;
 import android.os.SystemClock;
 import android.text.TextUtils;
 
@@ -44,6 +47,7 @@ public class CurrentWeatherService extends Service {
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
+    private PowerManager powerManager;
     private String updateSource;
     private volatile boolean gettingWeatherStarted;
     private Location currentLocation;
@@ -51,6 +55,12 @@ public class CurrentWeatherService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         return null;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
     }
 
     Handler timerHandler = new Handler();
@@ -90,6 +100,7 @@ public class CurrentWeatherService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
+        appendLog(getBaseContext(), TAG, "onStartCommand:" + intent);
 
         if (intent == null) {
             return ret;
@@ -103,6 +114,7 @@ public class CurrentWeatherService extends Service {
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
             currentLocation = locationsDbHelper.getLocationById(intent.getExtras().getLong("locationId"));
         }
+        appendLog(getBaseContext(), TAG, "currentLocation=" + currentLocation + ", updateSource=" + updateSource);
 
         if (currentLocation == null) {
             appendLog(getBaseContext(),
@@ -112,8 +124,11 @@ public class CurrentWeatherService extends Service {
         }
 
         ConnectionDetector connectionDetector = new ConnectionDetector(this);
-        if (!connectionDetector.isNetworkAvailableAndConnected()) {
+        boolean networkAvailableAndConnected = connectionDetector.isNetworkAvailableAndConnected();
+        appendLog(getBaseContext(), TAG, "networkAvailableAndConnected=" + networkAvailableAndConnected);
+        if (!networkAvailableAndConnected) {
             int numberOfAttempts = intent.getIntExtra("attempts", 0);
+            appendLog(getBaseContext(), TAG, "numberOfAttempts=" + numberOfAttempts);
             if (numberOfAttempts > 2) {
                 return ret;
             }
@@ -129,6 +144,7 @@ public class CurrentWeatherService extends Service {
         gettingWeatherStarted = true;
         timerHandler.postDelayed(timerRunnable, 20000);
         final Context context = this;
+        appendLog(getBaseContext(), TAG, "startRefreshRotation");
         startRefreshRotation();
         Handler mainHandler = new Handler(Looper.getMainLooper());
         Runnable myRunnable = new Runnable() {
@@ -260,6 +276,14 @@ public class CurrentWeatherService extends Service {
         sendBroadcast(intent);
     }
 
+    private boolean isInteractive() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+            return powerManager.isInteractive();
+        } else {
+            return powerManager.isScreenOn();
+        }
+    }
+
     private void startRefreshRotation() {
         Intent sendIntent = new Intent("android.intent.action.START_ROTATING_UPDATE");
         sendIntent.setPackage("org.thosp.yourlocalweather");
@@ -273,14 +297,18 @@ public class CurrentWeatherService extends Service {
     }
 
     private void startBackgroundService(Intent intent) {
-        PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(),
-                0,
-                intent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime()+10,
-                pendingIntent);
+        if (isInteractive()) {
+            getBaseContext().startService(intent);
+        } else {
+            PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(),
+                    0,
+                    intent,
+                    PendingIntent.FLAG_CANCEL_CURRENT);
+            AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + 10,
+                    pendingIntent);
+        }
     }
 
     private void resendTheIntentInSeveralSeconds(int seconds, Intent intent) {

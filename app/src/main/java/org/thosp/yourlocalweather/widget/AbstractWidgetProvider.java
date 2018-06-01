@@ -106,9 +106,9 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                 onUpdate(context, widgetManager, new int[] {widgetId});
                 break;
             case Constants.ACTION_FORCED_APPWIDGET_UPDATE:
-                //if (!WidgetRefreshIconService.isRotationActive) {
+                if (!WidgetRefreshIconService.isRotationActive) {
                     sendWeatherUpdate(context);
-                //}
+                }
                 onUpdate(context, widgetManager, new int[]{ widgetId});
                 break;
             case Intent.ACTION_SCREEN_ON:
@@ -191,12 +191,12 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
             startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
             startLocationUpdateIntent.putExtra("locationId", currentLocation.getId());
-            startBackgroundService(context, startLocationUpdateIntent);
+            context.startService(startLocationUpdateIntent);
             appendLog(context, TAG, "send intent START_LOCATION_UPDATE:" + startLocationUpdateIntent);
         } else if (currentLocation.getOrderId() != 0) {
             Intent intentToCheckWeather = new Intent(context, CurrentWeatherService.class);
             intentToCheckWeather.putExtra("locationId", currentLocation.getId());
-            startBackgroundService(context, intentToCheckWeather);
+            context.startService(intentToCheckWeather);
         }
     }
 

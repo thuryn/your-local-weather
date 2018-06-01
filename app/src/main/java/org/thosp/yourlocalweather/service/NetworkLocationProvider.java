@@ -42,7 +42,7 @@ public class NetworkLocationProvider extends Service {
 
         @Override
         public void onWifiResultsAvailable() {
-            appendLog(getBaseContext(), TAG, "Wifi results are available now");
+            appendLog(getBaseContext(), TAG, "Wifi results are available now:" + scanning);
             if (!scanning) {
                 return;
             }
