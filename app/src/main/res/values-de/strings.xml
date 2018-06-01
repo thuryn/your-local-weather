@@ -291,6 +291,7 @@
     <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Beide, gemessener zuerst</string>
     <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Beide, gefühlter zuerst</string>
     <string name="appearance_only" tools:ignore="MissingTranslation">Gefühlter Wert allein</string>
-    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Temperaturanzeige</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Zeige Temperatur als</string>
 
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Gefühlte Temperatur</string>
     </resources>

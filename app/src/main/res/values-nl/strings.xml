@@ -3,10 +3,10 @@
     <string name="enter_city_hint">Stadsnaam invoeren</string>
     <string name="label_current_city">Huidige stad</string>
     <string name="label_choose_city">Stad kiezen</string>
-    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Locatie- en toegangsrechteninstellingen</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Standaard werkt de applicatie de locatie automatisch bij. Locatietoegang moet worden ingeschakeld om dit te laten werken. Ga naar de telefooninstellingen en schakel uw locatie in of schakel automatische locatiedetectie uit in de app-instellingen.</string>
-    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">De applicatie heeft toegang nodig om de locatie bij te werken via GPS.</string>
-    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">De applicatie heeft toegang nodig om de locatie bij te werken via WiFi- en GSM-netwerken.</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Locatie- en machtigingsinstellingen</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Standaard werkt de app de locatie automatisch bij; hiervoor moet toegang worden gegeven. Ga naar de apparaatinstellingen en schakel uw locatie in of schakel automatische locatiedetectie uit.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">De app heeft een machtiging nodig om de locatie bij te werken via GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">De app heeft een machtiging nodig om de locatie bij te werken via WiFi- en GSM-netwerken.</string>
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">De applicatie heeft toestemming nodig om informatie uit te lezen van de telefoon. Dit is nodig om de locatie bij te kunnen werken via WiFi- en GSM-netwerken. De applicatie gebruikt dit om informatie te verkrijgen over GSM-zendmasten die verbonden zijn met de telefoon.</string>
     <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Telefooninstellingen</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Machtigingsverzoeken</string>
@@ -287,4 +287,5 @@
     <string name="appearance_only" tools:ignore="MissingTranslation">Alleen gevoelstemperatuur</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Temperatuurweergave</string>
 
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Gevoelstemperatuur</string>
     </resources>
