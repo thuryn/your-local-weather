@@ -111,8 +111,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                 }
                 onUpdate(context, widgetManager, new int[]{ widgetId});
                 break;
-            case Intent.ACTION_SCREEN_ON:
-                updateWather(context);
             case Intent.ACTION_LOCALE_CHANGED:
             case Constants.ACTION_APPWIDGET_THEME_CHANGED:
                 refreshWidgetValues(context);
@@ -167,19 +165,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
-    private void updateWather(Context context) {
-        long now = Calendar.getInstance().getTimeInMillis();
-        CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
-        CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
-        long lastUpdatedWeather = weatherRecord.getLastUpdatedTime();
-        appendLog(context, TAG, "SCREEN_ON called, lastUpdate=" + lastUpdatedWeather + ", now=" + now);
-        if (now < (lastUpdatedWeather + 900000)) {
-            return;
-        }
-        currentWeatherDbHelper.updateLastUpdatedTime(currentLocation.getId(), now);
-        sendWeatherUpdate(context);
-    }
-
     private void sendWeatherUpdate(Context context) {
         if (currentLocation == null) {
             appendLog(context,
@@ -191,11 +176,13 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
             startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
             startLocationUpdateIntent.putExtra("locationId", currentLocation.getId());
+            startLocationUpdateIntent.putExtra("isInteractive", true);
             context.startService(startLocationUpdateIntent);
             appendLog(context, TAG, "send intent START_LOCATION_UPDATE:" + startLocationUpdateIntent);
         } else if (currentLocation.getOrderId() != 0) {
             Intent intentToCheckWeather = new Intent(context, CurrentWeatherService.class);
             intentToCheckWeather.putExtra("locationId", currentLocation.getId());
+            intentToCheckWeather.putExtra("isInteractive", true);
             context.startService(intentToCheckWeather);
         }
     }

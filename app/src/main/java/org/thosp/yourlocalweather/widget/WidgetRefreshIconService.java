@@ -1,8 +1,6 @@
 package org.thosp.yourlocalweather.widget;
 
 import android.app.IntentService;
-import android.app.ProgressDialog;
-import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -15,11 +13,8 @@ import android.widget.RemoteViews;
 
 import org.thosp.yourlocalweather.R;
 
-import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -29,7 +24,6 @@ public class WidgetRefreshIconService extends IntentService {
 
     private static long ROTATE_UPDATE_ICON_MILIS = 100;
 
-    private volatile static Lock rotationLock = new ReentrantLock();
     private final int[] refreshIcons = new int[8];
     private volatile int currentRotationIndex;
     public volatile static boolean isRotationActive = false;
@@ -78,45 +72,29 @@ public class WidgetRefreshIconService extends IntentService {
 
     private void startRotatingUpdateIcon() {
         appendLog(getBaseContext(), TAG, "startRotatingUpdateIcon");
-        rotationLock.lock();
-        appendLog(getBaseContext(), TAG, "startRotatingUpdateIcon:lockAcquired");
-        try {
-            if (isRotationActive || isThereRotationSchedule()) {
-                appendLog(getBaseContext(), TAG,
-                        "startRotatingUpdateIcon:endOnCondition:isRotationActive=" +
-                        isRotationActive + ":isThereRotationSchedule=" +
-                        isThereRotationSchedule());
-                return;
-            }
-            isRotationActive = true;
-            currentRotationIndex = 0;
-            rotateRefreshButtonOneStep();
+        if (isRotationActive || isThereRotationSchedule()) {
             appendLog(getBaseContext(), TAG,
-                    "startRotatingUpdateIcon:setIsRotationActive=" +
-                            isRotationActive + ":postingNewSchedule");
-            timerRotateIconHandler.postDelayed(timerRotateIconRunnable, ROTATE_UPDATE_ICON_MILIS);
-        } finally {
-            rotationLock.unlock();
-            appendLog(getBaseContext(), TAG,
-                    "startRotatingUpdateIcon:lockReleased");
+                    "startRotatingUpdateIcon:endOnCondition:isRotationActive=" +
+                    isRotationActive + ":isThereRotationSchedule=" +
+                    isThereRotationSchedule());
+            return;
         }
+        isRotationActive = true;
+        currentRotationIndex = 0;
+        rotateRefreshButtonOneStep();
+        appendLog(getBaseContext(), TAG,
+                "startRotatingUpdateIcon:setIsRotationActive=" +
+                        isRotationActive + ":postingNewSchedule");
+        timerRotateIconHandler.postDelayed(timerRotateIconRunnable, ROTATE_UPDATE_ICON_MILIS);
     }
 
     private void stopRotatingUpdateIcon() {
         appendLog(getBaseContext(), TAG, "stopRotatingUpdateIcon");
-        rotationLock.lock();
-        appendLog(getBaseContext(), TAG, "stopRotatingUpdateIcon:lockAcquired");
-        try {
-            isRotationActive = false;
-            appendLog(getBaseContext(), TAG,
-                    "stopRotatingUpdateIcon:setIsRotationActive=" +
-                            isRotationActive + ":postingNewSchedule");
-            timerRotateIconHandler.removeCallbacksAndMessages(null);
-        } finally {
-            rotationLock.unlock();
-            appendLog(getBaseContext(), TAG,
-                    "stopRotatingUpdateIcon:lockReleased");
-        }
+        isRotationActive = false;
+        appendLog(getBaseContext(), TAG,
+                "stopRotatingUpdateIcon:setIsRotationActive=" +
+                        isRotationActive + ":postingNewSchedule");
+        timerRotateIconHandler.removeCallbacksAndMessages(null);
     }
 
     private static boolean isRotationActive() {
@@ -153,32 +131,22 @@ public class WidgetRefreshIconService extends IntentService {
 
         @Override
         public void run() {
-            rotationLock.lock();
-            try {
-                if (!isScreenOn() || !isRotationActive() || isThereRotationSchedule()) {
-                    return;
-                }
-                rotateRefreshButtonOneStep();
-                timerRotateIconHandler.postDelayed(timerRotateIconRunnable, ROTATE_UPDATE_ICON_MILIS);
-            } finally {
-                rotationLock.unlock();
+            if (!isScreenOn() || !isRotationActive() || isThereRotationSchedule()) {
+                return;
             }
+            rotateRefreshButtonOneStep();
+            timerRotateIconHandler.postDelayed(timerRotateIconRunnable, ROTATE_UPDATE_ICON_MILIS);
         }
     };
 
     private BroadcastReceiver screenOnReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            rotationLock.lock();
-            try {
-                if (!isRotationActive() || isThereRotationSchedule()) {
-                    return;
-                }
-                rotateRefreshButtonOneStep();
-                timerRotateIconHandler.postDelayed(timerRotateIconRunnable, ROTATE_UPDATE_ICON_MILIS);
-            } finally {
-                rotationLock.unlock();
+            if (!isRotationActive() || isThereRotationSchedule()) {
+                return;
             }
+            rotateRefreshButtonOneStep();
+            timerRotateIconHandler.postDelayed(timerRotateIconRunnable, ROTATE_UPDATE_ICON_MILIS);
         }
     };
 }

@@ -47,20 +47,14 @@ public class CurrentWeatherService extends Service {
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
-    private PowerManager powerManager;
     private String updateSource;
     private volatile boolean gettingWeatherStarted;
     private Location currentLocation;
+    private boolean isInteractive;
     
     @Override
     public IBinder onBind(Intent intent) {
         return null;
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
     }
 
     Handler timerHandler = new Handler();
@@ -107,6 +101,7 @@ public class CurrentWeatherService extends Service {
         }
         
         if (intent.getExtras() != null) {
+            isInteractive = intent.getBooleanExtra("isInteractive", false);
             String currentUpdateSource = intent.getExtras().getString("updateSource");
             if(!TextUtils.isEmpty(currentUpdateSource)) {
                 updateSource = currentUpdateSource;
@@ -276,14 +271,6 @@ public class CurrentWeatherService extends Service {
         sendBroadcast(intent);
     }
 
-    private boolean isInteractive() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            return powerManager.isInteractive();
-        } else {
-            return powerManager.isScreenOn();
-        }
-    }
-
     private void startRefreshRotation() {
         Intent sendIntent = new Intent("android.intent.action.START_ROTATING_UPDATE");
         sendIntent.setPackage("org.thosp.yourlocalweather");
@@ -297,7 +284,7 @@ public class CurrentWeatherService extends Service {
     }
 
     private void startBackgroundService(Intent intent) {
-        if (isInteractive()) {
+        if (isInteractive) {
             getBaseContext().startService(intent);
         } else {
             PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(),
