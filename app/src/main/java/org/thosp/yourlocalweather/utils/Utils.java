@@ -400,7 +400,7 @@ public class Utils {
             if(address != null) {
                 locationDbHelper.updateAutoLocationAddress(PreferenceUtil.getLanguage(context), address);
             } else {
-                locationDbHelper.setNoLocationFound(context);
+                locationDbHelper.setNoLocationFound();
             }
         } catch (IOException | NumberFormatException ex) {
             Log.e(Utils.class.getName(), "Unable to get address from latitude and longitude", ex);

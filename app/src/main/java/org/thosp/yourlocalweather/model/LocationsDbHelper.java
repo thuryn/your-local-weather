@@ -27,7 +27,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
     private Context context;
     private static LocationsDbHelper instance;
 
-    public static LocationsDbHelper getInstance(Context ctx) {
+    public synchronized static LocationsDbHelper getInstance(Context ctx) {
         if (instance == null) {
             instance = new LocationsDbHelper(ctx.getApplicationContext());
         }
@@ -473,10 +473,13 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         }).start();
     }
 
-    public void setNoLocationFound(Context context) {
+    public void setNoLocationFound() {
+        appendLog(context, TAG, "setNoLocationFound:entered");
         new Thread(new Runnable() {
             public void run() {
+                appendLog(context, TAG, "setNoLocationFound:run");
                 SQLiteDatabase db = getWritableDatabase();
+                appendLog(context, TAG, "setNoLocationFound:writableDB");
                 ContentValues values = new ContentValues();
                 values.put(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND, 0);
                 values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, System.currentTimeMillis());
@@ -486,15 +489,20 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                         LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",
                         null,
                         SQLiteDatabase.CONFLICT_IGNORE);
+                appendLog(context, TAG, "setNoLocationFound:updated");
                 LocationUpdateService.autolocationForSensorEventAddressFound = false;
+                appendLog(context, TAG, "setNoLocationFound:finished");
             }
         }).start();
     }
 
     public void updateLocationSource(final long locationId, final String updateSource) {
+        appendLog(context, TAG, "updateLocationSource:entered:" + locationId + ":" + updateSource);
         new Thread(new Runnable() {
             public void run() {
+                appendLog(context, TAG, "updateLocationSource:run");
                 SQLiteDatabase db = getWritableDatabase();
+                appendLog(context, TAG, "updateLocationSource:writableDB");
                 ContentValues values = new ContentValues();
                 values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, updateSource);
 
@@ -504,6 +512,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                         LocationsContract.Locations._ID + "=" + locationId,
                         null,
                         SQLiteDatabase.CONFLICT_IGNORE);
+                appendLog(context, TAG, "updateLocationSource:updated");
             }
         }).start();
     }

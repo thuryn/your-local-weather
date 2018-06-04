@@ -177,13 +177,13 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
             startLocationUpdateIntent.putExtra("locationId", currentLocation.getId());
             startLocationUpdateIntent.putExtra("isInteractive", true);
-            context.startService(startLocationUpdateIntent);
+            startServiceWithCheck(context, startLocationUpdateIntent);
             appendLog(context, TAG, "send intent START_LOCATION_UPDATE:" + startLocationUpdateIntent);
         } else if (currentLocation.getOrderId() != 0) {
             Intent intentToCheckWeather = new Intent(context, CurrentWeatherService.class);
             intentToCheckWeather.putExtra("locationId", currentLocation.getId());
             intentToCheckWeather.putExtra("isInteractive", true);
-            context.startService(intentToCheckWeather);
+            startServiceWithCheck(context, intentToCheckWeather);
         }
     }
 
@@ -246,5 +246,22 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
         }
         widgetSettingsDbHelper.saveParamLong(widgetId, "locationId", currentLocation.getId());
+    }
+
+    private void startServiceWithCheck(Context context, Intent intent) {
+        try {
+            context.startService(intent);
+        } catch (IllegalStateException ise) {
+            intent.putExtra("isInteractive", false);
+            PendingIntent pendingIntent = PendingIntent.getService(context,
+                    0,
+                    intent,
+                    PendingIntent.FLAG_CANCEL_CURRENT);
+            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + 10,
+                    pendingIntent);
+        }
+
     }
 }

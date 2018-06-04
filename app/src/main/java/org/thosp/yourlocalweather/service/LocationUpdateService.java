@@ -274,21 +274,20 @@ public class LocationUpdateService extends Service implements LocationListener {
             if (!additionalSourceSetted) {
                 networkSourceBuilder.append(location.getProvider().substring(0, 1));
             }
-            String updateSource = networkSourceBuilder.toString();
+            updateSource = networkSourceBuilder.toString();
             appendLog(getBaseContext(), TAG, "send update source to " + updateSource);
-            locationsDbHelper.updateLocationSource(currentLocation.getId(), updateSource);
         } else if ("-".equals(currentLocation.getLocationSource())) {
-            locationsDbHelper.updateLocationSource(currentLocation.getId(), "N");
+            updateSource = "N";
         }
         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
-        locationsDbHelper.updateAutoLocationGeoLocation(location.getLatitude(), location.getLongitude(), currentLocation.getLocationSource(), location.getAccuracy(), getLocationTimeInMilis(location));
+        locationsDbHelper.updateAutoLocationGeoLocation(location.getLatitude(), location.getLongitude(), updateSource, location.getAccuracy(), getLocationTimeInMilis(location));
         appendLog(getBaseContext(), TAG, "put new location from location update service, latitude=" + location.getLatitude() + ", longitude=" + location.getLongitude());
         if (address != null) {
             locationsDbHelper.updateAutoLocationAddress(PreferenceUtil.getLanguage(getBaseContext()), address);
         } else {
             String geocoder = AppPreference.getLocationGeocoderSource(this);
             boolean resolveAddressByOS = !("location_geocoder_unifiednlp".equals(geocoder) || "location_geocoder_local".equals(geocoder));
-            locationsDbHelper.setNoLocationFound(getBaseContext());
+            locationsDbHelper.setNoLocationFound();
             Utils.getAndWriteAddressFromGeocoder(new Geocoder(this, new Locale(PreferenceUtil.getLanguage(this))),
                     address,
                     location.getLatitude(),
@@ -296,7 +295,7 @@ public class LocationUpdateService extends Service implements LocationListener {
                     resolveAddressByOS,
                     this);
         }
-        appendLog(getBaseContext(), TAG, "send intent to get weather, updateSource " + currentLocation.getLocationSource());
+        appendLog(getBaseContext(), TAG, "send intent to get weather, updateSource " + updateSource);
         sendIntentToGetWeather(currentLocation, false);
     }
 
@@ -495,7 +494,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         if (lastLocationUpdate > now.getTimeInMillis()) {
             return;
         }
-        locationDbHelper.setNoLocationFound(this);
+        locationDbHelper.setNoLocationFound();
         updateWidgets(isInteractive);
     }
 
@@ -724,18 +723,22 @@ public class LocationUpdateService extends Service implements LocationListener {
     }
 
     private void startBackgroundService(Intent intent, boolean isInteractive) {
-        if (isInteractive) {
-            getBaseContext().startService(intent);
-        } else {
-            PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(),
-                    0,
-                    intent,
-                    PendingIntent.FLAG_CANCEL_CURRENT);
-            AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + 10,
-                    pendingIntent);
+        try {
+            if (isInteractive) {
+                getBaseContext().startService(intent);
+                return;
+            }
+        } catch (IllegalStateException ise) {
+            //
         }
+        PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(),
+                0,
+                intent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime() + 10,
+                pendingIntent);
     }
 
     private void sendIntentToMain(boolean isInteractive) {
@@ -796,7 +799,7 @@ public class LocationUpdateService extends Service implements LocationListener {
             return;
         }
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getApplicationContext());
-        locationsDbHelper.setNoLocationFound(getBaseContext());
+        locationsDbHelper.setNoLocationFound();
         gravity[0] = 0;
         gravity[1] = 0;
         gravity[2] = 0;

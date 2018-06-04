@@ -20,7 +20,7 @@ public class CurrentWeatherDbHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "CurrentWeather.db";
     private static CurrentWeatherDbHelper instance;
 
-    public static CurrentWeatherDbHelper getInstance(Context ctx) {
+    public synchronized static CurrentWeatherDbHelper getInstance(Context ctx) {
         if (instance == null) {
             instance = new CurrentWeatherDbHelper(ctx.getApplicationContext());
         }

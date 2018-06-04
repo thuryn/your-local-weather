@@ -15,7 +15,7 @@ public class ReverseGeocodingCacheDbHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "ReverseGeocodingCache.db";
     private static ReverseGeocodingCacheDbHelper instance;
 
-    public static ReverseGeocodingCacheDbHelper getInstance(Context ctx) {
+    public synchronized static ReverseGeocodingCacheDbHelper getInstance(Context ctx) {
         if (instance == null) {
             instance = new ReverseGeocodingCacheDbHelper(ctx.getApplicationContext());
         }
