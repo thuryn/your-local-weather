@@ -736,9 +736,15 @@ public class LocationUpdateService extends Service implements LocationListener {
                 intent,
                 PendingIntent.FLAG_CANCEL_CURRENT);
         AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime() + 10,
-                pendingIntent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + 10,
+                    pendingIntent);
+        } else {
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + 10,
+                    pendingIntent);
+        }
     }
 
     private void sendIntentToMain(boolean isInteractive) {
@@ -798,8 +804,6 @@ public class LocationUpdateService extends Service implements LocationListener {
             appendLog(getBaseContext(), TAG, "Exception when processSensorQueue", e);
             return;
         }
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getApplicationContext());
-        locationsDbHelper.setNoLocationFound();
         gravity[0] = 0;
         gravity[1] = 0;
         gravity[2] = 0;
@@ -813,6 +817,7 @@ public class LocationUpdateService extends Service implements LocationListener {
         currentLength = 0;
         currentLengthLowPassed = 0;
 
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getApplicationContext());
         org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
         locationsDbHelper.updateLocationSource(currentLocationForSensorEvent.getId(), "-");
         updateNetworkLocation(false, null, false);

@@ -73,6 +73,9 @@ public class CurrentWeatherService extends Service {
             }
 
             String originalUpdateState = currentLocation.getLocationSource();
+            if (originalUpdateState == null) {
+                originalUpdateState = "-";
+            }
             appendLog(getBaseContext(), TAG, "originalUpdateState:" + originalUpdateState);
             String newUpdateState = originalUpdateState;
             if (originalUpdateState.contains("N")) {
@@ -292,9 +295,15 @@ public class CurrentWeatherService extends Service {
                     intent,
                     PendingIntent.FLAG_CANCEL_CURRENT);
             AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + 10,
-                    pendingIntent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + 10,
+                        pendingIntent);
+            } else {
+                alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + 10,
+                        pendingIntent);
+            }
         }
     }
 
