@@ -24,7 +24,7 @@
     <string name="menu_action_toggle_yaxis">Basculer l\'Axe des Y</string>
 
     <!-- Navigation drawer -->
-    <string name="nav_menu_current_weather">Météo Actuell</string>
+    <string name="nav_menu_current_weather">Météo Actuelle</string>
     <string name="nav_menu_daily_forecast">Prévisions Quotidiennes</string>
     <string name="nav_menu_graphs">Graphiques</string>
     <string name="nav_menu_settings">Réglages</string>
@@ -116,7 +116,7 @@
 <string name="app_name" tools:ignore="MissingTranslation">Votre météo locale</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Paramètres de localisation et de permissions</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">L\'application nécessite une autorisation pour mettre à jour la localisation par GPS.</string>
-    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">L\'application nécessite une autorisation pour mettre à jour la localisation par réseaux WIFI et GSM.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">L\'application nécessite une autorisation pour mettre à jour la localisation par réseaux Wi-Fi et GSM.</string>
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">L\'application nécessite une autorisation pour lire les informations depuis le téléphone. Cette autorisation est nécessaire pour mettre à jour la localisation par les réseaux WIFI et GSM. L\'application utilise cette autorisation pour recevoir des informations sur les stations de base GSM connectées au téléphone.</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Demande d\'autorisations</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Localisation non trouvée</string>
@@ -125,4 +125,27 @@
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Précédent</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Terminer</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Guide de configuration initial</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Général</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Température</b> - Vous pouvez sélectionner l\'unité de température, <b>Vent</b> - Vous pouvez sélectionner l\'unité de vitesse du vent et <b>Pression</b> - Vous pouvez sélectionner l\'unité de pression. Les valeurs sont recalculées avec ces options.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Cacher la description météo</b> - la description de la météo actuelle est cachée. Vous pouvez seulement voir la météo par l\'icône qui change.</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Aide</string>
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Modifier les colonnes</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Colonnes à afficher</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Icône</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Description</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Température</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Température ressentie</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Vent</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Pluie/Neige</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Humidité</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Pression</string>
+    <string name="ok" tools:ignore="MissingTranslation">OK</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Annuler</string>
+
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Aide</string>
+
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">nœuds</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">Vent</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Pression</string>
     </resources>
