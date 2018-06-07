@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources>
-    <string name="enter_city_hint">Hiria idatzi</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="enter_city_hint">Idatzi hiria</string>
     <string name="label_current_city">Uneko hiria</string>
-    <string name="label_choose_city">Hiria hautatu</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings">GPSa ez dago gaituta. Ezarpenen menura joan nahi duzu?</string>
-    <string name="alertDialog_location_permission_positiveButton_settings">Ezarpenak</string>
+    <string name="label_choose_city">Hautatu hiria</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">Aplikazioa kokalekua eguneratzeko ezarri da. Atzitzeko baimena behar da. Joan gailuaren ezarpenetara eta aktibatu kokapena edo desaktibatu aplikazioak kokalekuaren eguneraketa.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Gailuaren ezarpenak</string>
     <string name="alertDialog_location_permission_negativeButton">Utzi</string>
-    <string name="progressDialog_gps_locate">Uneko kokapena aurkitu</string>
+    <string name="progressDialog_gps_locate">Aurkitu uneko kokapena</string>
     <string name="load_progress">Kargatzen…</string>
 
     <!-- Activity names -->
@@ -29,11 +29,11 @@
     <string name="nav_menu_graphs">Grafikoak</string>
     <string name="nav_menu_settings">Ezarpenak</string>
     <string name="nav_feedback">Iritzia</string>
-    <string name="nav_menu_bitcoin_donation">Bitcoinak eman</string>
+    <string name="nav_menu_bitcoin_donation">Bitcoin dohaintza</string>
 
     <!-- Toast messages -->
-    <string name="connection_not_found">Egiaztatu zure interneteko konexioa</string>
-    <string name="toast_parse_error">Akats bat gertatu da. Saiatu beranduago</string>
+    <string name="connection_not_found">Egiaztatu zure Internet konexioa</string>
+    <string name="toast_parse_error">Errore bat gertatu da. Saiatu geroago!</string>
 
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
@@ -59,9 +59,9 @@
     <string name="update_period_12hours">12 ordu</string>
     <string name="update_period_24hours">24 ordu</string>
     <string name="pref_title_vibrate">Dardaratu</string>
-    <string name="preference_widget_title_update_period">Eguneratzeko aldia</string>
+    <string name="preference_widget_title_update_period">Eguraldia eguneratzeko tartea (Kokalekua 1,2,3...)</string>
     <string name="preference_title_activity_general">Ezarpen orokorrak</string>
-    <string name="preference_title_activity_widget">Widgetaren ezarpenak</string>
+    <string name="preference_title_activity_widget">Trepetaren ezarpenak</string>
 
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">Honi buruz</string>
@@ -91,19 +91,19 @@
 
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description">Uneko eguraldi ikonoa</string>
-    <string name="widget_refresh_button">Widgetean freskatze botoia</string>
+    <string name="widget_refresh_button">Trepeta freskatzeko botoia</string>
 
     <!-- Donation Bitcoin dialog -->
 
     <!-- Wind directions -->
-    <string name="wind_direction_north">I</string>
-    <string name="wind_direction_north_east">IE</string>
-    <string name="wind_direction_east">E</string>
-    <string name="wind_direction_south_east">HE</string>
-    <string name="wind_direction_south">H</string>
-    <string name="wind_direction_south_west">HM</string>
-    <string name="wind_direction_west">M</string>
-    <string name="wind_direction_north_west">IM</string>
+    <string name="wind_direction_north">I↓</string>
+    <string name="wind_direction_north_east">IE↙</string>
+    <string name="wind_direction_east">E←</string>
+    <string name="wind_direction_south_east">HE↖</string>
+    <string name="wind_direction_south">H↑</string>
+    <string name="wind_direction_south_west">HM↗</string>
+    <string name="wind_direction_west">M→</string>
+    <string name="wind_direction_north_west">IM↘</string>
 
     <!-- Permission strings -->
     <string name="permission_location_rationale">Kokapen baimenak behar dira uneko hiria zehazteko</string>
@@ -112,15 +112,93 @@
     <string name="pref_language_default">System Default</string>
     <string name="pref_title_language">Hizkuntza</string>
     <string name="preference_title_category_display">Erakutsi</string>
-    <string name="restart_dialog_message">Berrabiarazi aplikazioaren ezarpen berriak aplikatzeko</string>
-<string name="preference_widget_update_location">Kokapena eguneratu</string>
+    <string name="restart_dialog_message">Berrabiarazi aplikazioa ezarpen berriak aplikatzeko</string>
+<string name="preference_widget_update_location">Eguneratu kokalekua</string>
     <string name="preference_widget_use_geocoder">Geokokapena erabili erakusteko</string>
-    <string name="preference_widget_theme_title">Widgetaren gaia</string>
+    <string name="preference_widget_theme_title">Trepetaren gaia</string>
     <string name="theme_dark">Iluna</string>
     <string name="theme_light">Argia</string>
     <string name="theme_transparent">Gardena</string>
     <string name="pref_title_theme">Gaia</string>
     
-    <string name="permission_location_need">Kokapen baimenak eman behar dituzu</string>
+    <string name="permission_location_need">Eman kokapen baimenak</string>
 
-    </resources>
+    <string name="app_name" tools:ignore="MissingTranslation">Zure tokiko eguraldia</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Kokaleku eta baimenen ezarpenak</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Aplikazioak GPS bidez kokalekua eguneratzeko baimena behar du.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Aplikazioak Wi-Fi eta GSM sareen bidez kokalekua eguneratzeko baimena behar du.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Gailutik irakurtzeko baimena behar da kokalekua Wi-Fi eta GSM sareen bidez eguneratzeko. Gailuak darabiltzan GSM base estazioei buruzko informazioa jasotzen du.</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Eskatu baimenak</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Kokalekua ez da aurkitu</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Ez dira oraindik baimenak eman - Sakatu kokalekuaren sinboloa aplikazioan</string>
+
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Itxi</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Hurrengoa</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Aurrekoa</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Amaitu</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Hasierako konfigurazioaren gida</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Gida honek aplikazioa zure beharretara doitzen lagunduko dizu. Hautatu eguneratzeko estrategia hurrengo pantailan.
+\n<i>Ez eguneratu kokalekua</i> aukeratuz gero eguraldia besterik ez da eguneratuko.
+\nHau oso erabilgarria denez,<i>Eguneratu kokalekua</i> aurrez aktibatuta dago.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Eguneratu kokapenaren ezarpena</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Kokalekuaren iturburuaren aukera</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Kokapen metodoa aukeratu dezakezu <i>Sistema</i> metodoak Google zerbitzual darabiltza kokalekua sareen bidez eskuratzeko (zelularrak eta Wi-Fiak). <i>MLS lokala eta Nominatim</i> aukerak Mozilla-ren kokapen zerbitzua darabil kokalekuaren koordenatuak eskuratzeko eta Nominatim kokalekuen izenak eskuratzeko. Bigarren aukera telefono deien baimena behar du sare zelularren informazioa jasotzeko. Hobetsitako aukera aurrez ezarri da.</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Kokaleku eta helbideen iturburua</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Esnatzeko estrategiaren aukera</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Telefono modelo batzuek ez dituzte konektatutako zelulak ongi adierazten pantaila piztuta ez badago. Hobetsitako aukera (pantaila piztuta) desabantaila bat du, telefonoak pantaila hainbat segundoz pizten du. Honek eragin txiki bat du bateria kontsumoan. Hasi hau piztuta duzula, eta saiatu itzaltzen kokalekua oraindik ere eguneratzen den egiaztatzeko.</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Esnatzeko estrategia</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Cache bidez ebatzitako helbidearen aukera</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Sareko trafikoa aurreztu dezakezu aurkitutako tokiak cache-an gordez gero. Kokalekuak aplikazioan gordeko dira. Ez dira sareko inongo tokira bidaltzen edo gordetzen.</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Cache bidez ebatzitako helbideak</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Zorionak</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Honekin gida amaitzen da. Beste ezarpen batzuk aurkitu ditzakezu ezarpenen menuan (adibidez hizkuntza, unitateak eta abar).
+\nHurrengo pantailak behar diren baimenak azalduko ditu eta hauek eskatzeko aukera eman.
+\n
+\nGozatu aplikazioa.</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Orokorra</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Aplikazioak zure kokalekua antzematen du sare zelularra (BTS), Wi-Fia, eta hauek kale egitekotan GPS-a erabiliz zuri tokiko eguraldia erakusteko, bueltan koordenatuak jasotzen ditu Mozilaren kokapen zerbitzutik. Zure telefono edo tabletan trepeta erabiltzean zure uneko kokalekua eta eguraldia ikusi ditzakezu pantaila nagusian. Kokalekuaren eguneraketak aldizkakoak izan daitezke (adib. orduero) edo aplikazioak zure azlerometroa erabili dezake mugimendua antzemateko balio zehatz beteko distantziatik aurrera. Poltsikoan badaramazu distantzia azkarrago hazten da. Kokalekuaren eguneraketak desgaitu ditzakezu, eta eguraldia besterik ez da eguneratuko. Aplikazioak kokalekua eta eguraldia zehaztutako epeetan tarteetan ditu. Eguneratze tarte hori ordu batean ezarri dezakezu adibidez. Eguraldia kokalekua edo pantaila aktibatzean berehala eguneratzen da, baina ez 15 minutuero behin baino maizago (azken 15 minutuetan eguraldia eguneratu ez bada). Informazio hauek kokalekua Mozillaren kokapen zerbitzutik koordenatuak eskuratzeko erabiltzen da. Aplikazioa GPS-a erabiltzen saiatzen da kokalekua ez badago eskuragarri sare zelularra eta Wifia erabiliz, Kokalekuaren koordenatuak helbidea Nominatim zerbitzutik eskuratzeko erabiltzen dira, Helbidea aplikazioan eta trepetan erabiltzen da. Aplikazioak OpenWeatherMap.org zerbitzua erabiltzen du uneko eguraldia eskuratzeko.</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Aplikazio nagusia</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Aplikazio nagusian uneko eguraldiaren gainbegirada bat du. Eguraldia eguneratu dezakezu aplikazioaren paneleko freskatu botoia erabiliz edo behera hatza pasatuz. Kokalekua eguneratzeko botoia eguraldia freskatzeko botoiaren ondoan aurkitu dezakezu. Botoi hau 0 kokalekua gaituta dagoenean besterik ez dago eskuragarri (0 kokalekua kokalekuaren eguneraketa automatikorako erabiltzen da).</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Kokalekua eguneratzeko botoiaren ondoan, kokalekua kudeatzeko botoia dago (luparen ikonoa). Aplikazioan eta trepetetan eskuragarri dauden kokalekuak kudeatu ditzakezu. Bada kokaleku berezi bat lehenetsita eskuragarri (0 kokalekua), hau kokalekuaren eguneraketa automatikorako da. Gaitu/desgaitu botoia aurkituko duzu kokaleku hau ezkerrera hatzarekin pasatzean. Kokalekua eskuz gehitu dezakezu ere. + botoia sakatzean mapatik aukeratu dezakezu kokalekua. Kokalekua ezabatu dezakezu ere - botoiarekin, kokalekua hatzarekin ezkerrera pasatzean ageri da botoi hau.</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Hirugarren pantailak diagrametan bistaratutako eguraldiaren iragarpena du.</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Trepetak</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Ezarpen orokorrak</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Aukera honek aplikazio osoan du eragina.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Ezkutatu eguraldiaren deskripzioa</b> - oraingo eguraldiaren deskripzioa ezkutatuta dago. Oraingo eguraldia ikono aldakorraren bidez besterik ezin duzu ikusi.</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Kokaleku eta helbideen iturburua</b>
+\nAplikazioak kokalekua eta helbidea nondik hartzen duen aukeratu dezakezu.</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"><b>Sistema</b>" - Aplikazioak kokalekua  eta helbidea Android sistemako zerbitzuen bidez eskuratzen du (Gehienetan Google kokapen zerbitzuak dira)."</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Presioa</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Kokalekua eguneratzeko ezarpena</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">Ez eguneratu kokalekua</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">Eguneratu kokalekua (aholkatutakoa)</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">Eguneratu kokalekua GPS-a erabiliz</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Piztu GPS-a behar denean</string>
+    <string name="update_period_by_sensors" tools:ignore="MissingTranslation">Azelerometroaren bidez</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">Eskuz besterik ez</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Eguneraketa tartea kokalekuarentzat (0 kokalekua)</string>
+    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Erakutsi etiketak trepetan</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Eguneratu kokalekua eta eguraldia</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Txinera</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Swahilia</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norvegiera</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Nederlandera</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Hungariera</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Espainiera</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Greziera</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabiera</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Kokaleku eta helbideen iturburua</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">MLS lokala eta Nominatim (aholkatutakoa)</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistema</string>
+    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Erakutsi eguneraketaren laburpena</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Ezer ez</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Balioa oraintxe eguneratu da</string>
+    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Balioa eguneratu da kokalekuaren iturburuarekin</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">hilabete bat</string>
+
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Ikono multzoa</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Tipografian oinarrituko ikonoak</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin gorria ikonoak</string>
+</resources>
