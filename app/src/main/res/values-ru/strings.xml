@@ -88,7 +88,6 @@
     <string name="pref_language_default">Язык системы</string>
     <string name="pref_title_language">Язык</string>
     <string name="preference_title_category_display">Отображение</string>
-    <string name="restart_dialog_message">Пожалуйста, перезапустите приложение, чтобы применить новые настройки</string>
 <string name="app_name" tools:ignore="MissingTranslation">Местная погода</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Положение и установка разрешений</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Приложению требуется разрешения для обновления данных от GPS.</string>

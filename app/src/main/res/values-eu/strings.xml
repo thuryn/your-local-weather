@@ -112,7 +112,6 @@
     <string name="pref_language_default">System Default</string>
     <string name="pref_title_language">Hizkuntza</string>
     <string name="preference_title_category_display">Erakutsi</string>
-    <string name="restart_dialog_message">Berrabiarazi aplikazioaren ezarpen berriak aplikatzeko</string>
 <string name="preference_widget_update_location">Kokapena eguneratu</string>
     <string name="preference_widget_use_geocoder">Geokokapena erabili erakusteko</string>
     <string name="preference_widget_theme_title">Widgetaren gaia</string>

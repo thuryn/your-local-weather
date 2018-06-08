@@ -106,7 +106,6 @@
     <string name="permission_available_location">Helymeghatározási engedély megadva</string>
     <string name="permission_location_need">Kérem, adja meg az engedélyt a helymeghatározáshoz</string>
 
-    <string name="restart_dialog_message">Indítsa újra az alkalmazást, hogy az új beállítások aktiválódjanak</string>
 <string name="app_name" tools:ignore="MissingTranslation">Helyi időjárás</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Hely és engedélyek beállítása</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Az app-nak szüksége van a GPS-re.</string>

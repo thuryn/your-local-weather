@@ -122,7 +122,6 @@
     <string name="permission_location_need">È necessario concedere le autorizzazioni di geolocalizzazione</string>
 
     <!-- Dialog strings -->
-    <string name="restart_dialog_message">Riavviare l\'applicazione per applicare le nuove impostazioni</string>
 <string name="app_name" tools:ignore="MissingTranslation">Meteo locale</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Impostazioni posizione e permessi</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">L\'applicazione necessita di un\'autorizzazione per aggiornare la posizione tramite GPS.</string>

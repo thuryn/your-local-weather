@@ -310,7 +310,7 @@
     <string name="permission_location_need" tools:ignore="MissingTranslation">Grant Location Permissions</string>
 
     <!-- Dialog strings -->
-    <string name="restart_dialog_message" tools:ignore="MissingTranslation">Please restart the app to apply new settings</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Locale of the current weather description and the address will be updated by regular update or you can force it manually</string>
 
     <!-- Debug strings -->
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Select log folder</string>

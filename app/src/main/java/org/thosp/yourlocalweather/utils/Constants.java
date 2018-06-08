@@ -45,6 +45,7 @@ public class Constants {
     public static final String KEY_PREF_LOCATION_UPDATE_PERIOD = "location_update_period_pref_key";
     public static final String KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD = "location_auto_update_period_pref_key";
     public static final String PREF_LANGUAGE = "language_pref_key";
+    public static final String PREF_OS_LANGUAGE = "os_language_pref_key";
     public static final String KEY_PREF_LOCATION_GEOCODER_SOURCE = "location_geocoder_source";
     public static final String KEY_PREF_WEATHER_ICON_SET = "weather_icon_set_pref_key";
     public static final String KEY_PREF_LOCATION_UPDATE_STRATEGY = "location_update_strategy";

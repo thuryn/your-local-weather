@@ -190,7 +190,7 @@
     
     <string name="permission_location_need" tools:ignore="MissingTranslation">Je třeba udělit oprávnění pro získání polohy</string>
 
-    <string name="restart_dialog_message" tools:ignore="MissingTranslation">Pro aplikaci změn je třeba restarovat aplikaci</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Pro aplikaci změn vyčkejte na automatickou aktualizaci počasí a polohy nebo tuto aktualizaci proveďte ručně</string>
 
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Vybrat adresář pro logování</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Volby pro ladění</string>

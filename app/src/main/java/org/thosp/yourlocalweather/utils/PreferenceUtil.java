@@ -1,10 +1,13 @@
 package org.thosp.yourlocalweather.utils;
 
+import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.LocaleList;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.os.LocaleListCompat;
 
 import org.thosp.yourlocalweather.R;
 
@@ -24,7 +27,7 @@ public class PreferenceUtil {
     public static String getLanguage(Context context) {
         String language = PreferenceManager.getDefaultSharedPreferences(context).getString(Constants.PREF_LANGUAGE, Locale.getDefault().getLanguage());
         if ("default".equals(language)) {
-            language = Locale.getDefault().getLanguage();
+            language = PreferenceManager.getDefaultSharedPreferences(context).getString(Constants.PREF_OS_LANGUAGE, Locale.getDefault().getLanguage());
         }
         return language;
     }

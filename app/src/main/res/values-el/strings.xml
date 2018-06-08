@@ -91,7 +91,6 @@
     <string name="wind_direction_west">Δ</string>
     <string name="wind_direction_north_west">ΒΔ</string>
 
-    <string name="restart_dialog_message">Παρακαλώ, επανεκκίνησε την εφαρμογή, ώστε να έχουν εφαρμογή οι νέες ρυθμίσεις.</string>
 <string name="permission_location_rationale">Απαιτούνται Δικαιώματα Εντοπισμού της Τοποθεσίας, για να προσδιοριστεί η τωρινή πόλη.</string>
     <string name="permission_not_granted">Τα Δικαιώματα δεν δόθηκαν.</string>
     <string name="permission_available_location">Δόθηκαν Δικαιώματα Εντοπισμού της Τοποθεσίας</string>

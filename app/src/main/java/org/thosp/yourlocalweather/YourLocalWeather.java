@@ -3,10 +3,14 @@ package org.thosp.yourlocalweather;
 import android.app.Activity;
 import android.app.Application;
 import android.content.res.Configuration;
+import android.preference.PreferenceManager;
 
+import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil.Theme;
+
+import java.util.Locale;
 
 public class YourLocalWeather extends Application {
 
@@ -17,6 +21,10 @@ public class YourLocalWeather extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .edit()
+                .putString(Constants.PREF_OS_LANGUAGE, Locale.getDefault().getLanguage())
+                .apply();
         LanguageUtil.setLanguage(this, PreferenceUtil.getLanguage(this));
 
         sTheme = PreferenceUtil.getTheme(this);
@@ -25,6 +33,10 @@ public class YourLocalWeather extends Application {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .edit()
+                .putString(Constants.PREF_OS_LANGUAGE, Locale.getDefault().getLanguage())
+                .apply();
         LanguageUtil.setLanguage(this, PreferenceUtil.getLanguage(this));
     }
 

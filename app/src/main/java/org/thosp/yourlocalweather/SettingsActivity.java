@@ -2,9 +2,12 @@ package org.thosp.yourlocalweather;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -19,14 +22,13 @@ import android.location.Address;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
+import android.os.SystemClock;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
@@ -43,21 +45,22 @@ import android.widget.TextView;
 
 import com.obsez.android.lib.filechooser.ChooserDialog;
 
+import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.ReverseGeocodingCacheContract;
 import org.thosp.yourlocalweather.model.ReverseGeocodingCacheDbHelper;
+import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.service.NotificationService;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.LogToFile;
-import org.thosp.yourlocalweather.utils.PermissionUtil;
+import org.thosp.yourlocalweather.utils.PreferenceUtil;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
@@ -247,7 +250,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 case Constants.PREF_LANGUAGE:
                     entrySummary(key);
                     if (changing) {
-                        DialogFragment dialog = new SettingsAlertDialog().newInstance(R.string.restart_dialog_message);
+                        String newLocale = PreferenceUtil.getLanguage(getActivity().getApplicationContext());
+                        LanguageUtil.setLanguage(getActivity().getApplication(), newLocale);
+                        updateLocationsLocale(newLocale);
+                        DialogFragment dialog = new SettingsAlertDialog().newInstance(R.string.update_locale_dialog_message);
                         dialog.show(getActivity().getFragmentManager(), "restartApp");
                     }
                     break;
@@ -294,6 +300,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onPause();
             getPreferenceScreen().getSharedPreferences()
                                  .unregisterOnSharedPreferenceChangeListener(this);
+        }
+
+        private void updateLocationsLocale(String newLocale) {
+            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getActivity());
+            for (Location location: locationsDbHelper.getAllRows()) {
+                locationsDbHelper.updateLocale(location.getId(), newLocale);
+            }
         }
 
         private void setDefaultValues() {
@@ -838,7 +851,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             int messageResId = getArguments().getInt(ARG_MESSAGE_RES_ID);
             AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             builder.setMessage(messageResId);
-            builder.setPositiveButton(android.R.string.ok, null);
+            builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent returnToMainActivity = new Intent(getActivity().getApplicationContext(), MainActivity.class);
+                    startActivity(returnToMainActivity);
+                }
+            });
             return builder.create();
         }
     }

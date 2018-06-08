@@ -112,7 +112,6 @@
     <string name="pref_language_default">Per defecte</string>
     <string name="pref_title_language">Idioma</string>
     <string name="preference_title_category_display">Mostrar</string>
-    <string name="restart_dialog_message">Reiniciï l\'aplicació per aplicar la nova configuració</string>
 <string name="preference_widget_update_location">Actualitza localització</string>
     <string name="preference_widget_use_geocoder">Utiliza la ubicació mostrada</string>
     <string name="preference_widget_theme_title">Tema del giny</string>

@@ -106,7 +106,6 @@
     <string name="permission_available_location">位置权限</string>
     <string name="permission_location_need">你必须授予位置权限</string>
 
-    <string name="restart_dialog_message">请重新启动应用程序以应用新的设置</string>
 <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">位置及权限设置</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">应用需要通过GPS更新位置的权限。</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">应用需要通过Wi-Fi和GSM网络更新位置的权限。</string>

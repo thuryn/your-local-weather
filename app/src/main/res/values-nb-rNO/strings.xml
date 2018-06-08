@@ -138,8 +138,6 @@
     <string name="permission_available_location" tools:ignore="MissingTranslation">Plasseringstilganger innvilget</string>
     <string name="permission_location_need" tools:ignore="MissingTranslation">Du må innvilge plasseringstilganger</string>
 
-    <string name="restart_dialog_message" tools:ignore="MissingTranslation">Start programmet på nytt for å legge til nye innstillinger</string>
-
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Velg loggføringsmappe</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Feilrettingsvalg</string>
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Ikon-sett</string>

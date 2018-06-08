@@ -105,6 +105,4 @@
     <string name="permission_not_granted">uburengazira ntibwejwe</string>
     <string name="permission_available_location">uburengazira bwemejwe</string>
     <string name="permission_location_need">ukobwa kwemeza aho uri</string>
-
-    <string name="restart_dialog_message">tangiza programu mukweza ibyo ukoze</string>
 </resources>

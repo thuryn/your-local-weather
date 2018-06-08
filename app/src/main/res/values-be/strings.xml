@@ -112,7 +112,6 @@
     <string name="pref_language_default">System Default</string>
     <string name="pref_title_language">Мова</string>
     <string name="preference_title_category_display">Выгляд</string>
-    <string name="restart_dialog_message">Калі ласка, перазапусціце праграму, каб скарыстацца новымі наладамі</string>
 <string name="theme_dark">Цёмная</string>
     <string name="theme_light">Светлая</string>
     <string name="theme_transparent">Празрыстая</string>

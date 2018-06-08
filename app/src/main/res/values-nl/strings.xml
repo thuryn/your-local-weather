@@ -245,8 +245,6 @@
     <string name="permission_available_location" tools:ignore="MissingTranslation">De locatiemachtiging is afgegeven</string>
     <string name="permission_location_need" tools:ignore="MissingTranslation">U dient de locatiemachtiging af te geven</string>
 
-    <string name="restart_dialog_message" tools:ignore="MissingTranslation">Herstart de app om de nieuwe instellingen toe te passen</string>
-
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Selecteer de logmap</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Foutopsporingsopties</string>
     <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Het logbestand zal opnieuw worden gecreëerd na de opgegeven tijd</string>

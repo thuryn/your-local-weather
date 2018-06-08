@@ -69,7 +69,6 @@
     <string name="wind_direction_west">الغرب</string>
     <string name="wind_direction_north_west">شمال غرب</string>
 
-    <string name="restart_dialog_message">الرجاء إعادة تشغيل التطبيق قصد تثبيت الإعدادات الجديدة</string>
 <string name="wind_speed_meters">متر في الثانية</string>
     <string name="wind_speed_miles">ميل في الساعة</string>
     <string name="millimetre_label">ميليمتر</string>
