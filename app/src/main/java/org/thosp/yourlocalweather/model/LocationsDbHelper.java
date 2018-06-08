@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteDatabaseLockedException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Address;
 import android.os.Parcel;
@@ -24,6 +25,8 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
 
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "Locations.db";
+    private static int GET_READABLE_DATABASE_RETRIES = 3;
+    private static int GET_READABLE_DATABASE_WAIT_TIME_MS = 500;
     private Context context;
     private static LocationsDbHelper instance;
 
@@ -57,6 +60,29 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
+    }
+
+    @Override
+    public SQLiteDatabase getReadableDatabase() {
+        int retryCounter = 0;
+        SQLiteDatabaseLockedException finalLockException;
+        do {
+            try {
+                return super.getReadableDatabase();
+            } catch (SQLiteDatabaseLockedException dbLockException) {
+                finalLockException = dbLockException;
+                retryCounter++;
+                if (retryCounter > GET_READABLE_DATABASE_RETRIES) {
+                    throw dbLockException;
+                }
+                try {
+                    Thread.currentThread().sleep(GET_READABLE_DATABASE_WAIT_TIME_MS);
+                } catch (InterruptedException e) {
+                    //
+                }
+            }
+        } while (retryCounter <= GET_READABLE_DATABASE_RETRIES);
+        throw finalLockException;
     }
 
     public void deleteRecordFromTable(Location location) {

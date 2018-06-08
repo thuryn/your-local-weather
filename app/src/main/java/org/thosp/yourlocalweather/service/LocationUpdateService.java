@@ -728,7 +728,7 @@ public class LocationUpdateService extends Service implements LocationListener {
                 getBaseContext().startService(intent);
                 return;
             }
-        } catch (IllegalStateException ise) {
+        } catch (Exception ise) {
             //
         }
         PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(),
