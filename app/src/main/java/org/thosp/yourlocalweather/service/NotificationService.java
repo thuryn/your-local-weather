@@ -3,6 +3,8 @@ package org.thosp.yourlocalweather.service;
 import android.app.AlarmManager;
 import android.app.IntentService;
 import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -73,30 +75,42 @@ public class NotificationService extends IntentService {
             return;
         }
         Weather weather = weatherRecord.getWeather();
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent launchIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
         String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
                 this,
                 weather,
                 currentLocation.getLatitude(),
                 weatherRecord.getLastUpdatedTime());
 
-        Notification notification = new NotificationCompat.Builder(this)
+        showNotification(temperatureWithUnit, weather);
+    }
+
+    private void showNotification(String temperatureWithUnit, Weather weather) {
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("default",
+                    "Your local weather",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription("Your local weather notifications");
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent launchIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+        Notification notification = new NotificationCompat.Builder(this, "default")
                 .setContentIntent(launchIntent)
                 .setSmallIcon(R.drawable.small_icon)
                 .setTicker(temperatureWithUnit
-                                   + "  "
-                                   + Utils.getCityAndCountry(this, 0))
+                        + "  "
+                        + Utils.getCityAndCountry(this, 0))
                 .setContentTitle(temperatureWithUnit +
-                                 "  " +
-                                 Utils.getWeatherDescription(this, weather))
+                        "  " +
+                        Utils.getWeatherDescription(this, weather))
                 .setContentText(Utils.getCityAndCountry(this, 0))
                 .setVibrate(isVibrateEnabled())
                 .setAutoCancel(true)
                 .build();
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
         notificationManager.notify(0, notification);
     }
 
