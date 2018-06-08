@@ -155,4 +155,5 @@
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Paramètres de sortie de veille</string>
     <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Certains téléphones ne rapportent pas correctement la connexion aux antennes tant que l\'écran n\'est pas allumé. Le paramètre par défaut (avec écran allumé) à le désavantage d\'allumer l\'écran du téléphone quelques secondes. Ce qui a un léger impacte sur l\'autonomie. Commencer avec puis essayer sans et vérifier la localisation se met toujours à jour.</string>
     <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Paramètres de sortie de veille</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Vous pouvez économiser votre forfait en mettant en cache les endroits trouvés. Les endroits sont stockés dans l\'appli. Ils ne sont pas envoyés ou stockés autre part dans le réseau.</string>
     </resources>
