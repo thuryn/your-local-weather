@@ -201,4 +201,5 @@
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Ikono multzoa</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Tipografian oinarrituko ikonoak</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin gorria ikonoak</string>
-</resources>
+<string name="help_page_1_content_2" tools:ignore="MissingTranslation">Eguraldi iragarpena aurkituko duzu hurrengo pantailan (hautatu hurrengo pantaila menuan edo pasatu hatza ezkerretik eskuinera). Eguraldi iragarpena eguneratu botoiarekin edo pantailara sartzean eguneratzen da (baina ez onduan behin baino sarriago).</string>
+    </resources>
