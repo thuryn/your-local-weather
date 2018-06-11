@@ -18,10 +18,10 @@
 
     <!-- Toolbar menu -->
     <string name="toolbar_menu_refresh">Eguneratu</string>
-    <string name="toolbar_menu_search_city">Hiria bilatu</string>
-    <string name="toolbar_menu_detect_location">Kokapena detektatu</string>
-    <string name="menu_action_toggle_values">Balioak alderantzikatu</string>
-    <string name="menu_action_toggle_yaxis">Y ardatza alderantzikatu</string>
+    <string name="toolbar_menu_search_city">Bilatu hiria</string>
+    <string name="toolbar_menu_detect_location">Antzeman kokalekua</string>
+    <string name="menu_action_toggle_values">Alderantzikatu balioak</string>
+    <string name="menu_action_toggle_yaxis">Alderantzikatu Y ardatza</string>
 
     <!-- Navigation drawer -->
     <string name="nav_menu_current_weather">Uneko eguraldia</string>
@@ -42,18 +42,18 @@
     <string name="millimetre_label">mm</string>
 
     <!-- Search Screen strings -->
-    <string name="hint_activity_search">Kokapena bilatu</string>
+    <string name="hint_activity_search">Bilatu kokalekua</string>
 
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Ezarpenak</string>
     <string name="pref_title_temperature">Tenperatura</string>
-    <string name="preference_hide_desc">Eguraldiaren deskribapena ezkutatu</string>
+    <string name="preference_hide_desc">Ezkutatu eguraldiaren deskripzioa</string>
     <string name="pref_title_category_notification">Jakinarazpenak</string>
-    <string name="pref_title_notification">Jakinarazpenak gaitu</string>
+    <string name="pref_title_notification">Gaitu jakinarazpenak</string>
     <string name="pref_title_notification_refresh_interval">Freskatze tartea</string>
     <string name="update_period_15min">15 minutu</string>
     <string name="update_period_30min">30 minutu</string>
-    <string name="update_period_1hour">Orduro</string>
+    <string name="update_period_1hour">Orduero</string>
     <string name="update_period_3hours">3 ordu</string>
     <string name="update_period_6hours">6 ordu</string>
     <string name="update_period_12hours">12 ordu</string>
@@ -109,12 +109,12 @@
     <string name="permission_location_rationale">Kokapen baimenak behar dira uneko hiria zehazteko</string>
     <string name="permission_not_granted">Baimenak ez dira eman!</string>
     <string name="permission_available_location">Kokapen baimenak eman dira</string>
-    <string name="pref_language_default">System Default</string>
+    <string name="pref_language_default">Sisteman lehenetsia</string>
     <string name="pref_title_language">Hizkuntza</string>
     <string name="preference_title_category_display">Erakutsi</string>
     <string name="restart_dialog_message">Berrabiarazi aplikazioa ezarpen berriak aplikatzeko</string>
 <string name="preference_widget_update_location">Eguneratu kokalekua</string>
-    <string name="preference_widget_use_geocoder">Geokokapena erabili erakusteko</string>
+    <string name="preference_widget_use_geocoder">Erabili geokokapena erakusteko</string>
     <string name="preference_widget_theme_title">Trepetaren gaia</string>
     <string name="theme_dark">Iluna</string>
     <string name="theme_light">Argia</string>
@@ -202,4 +202,60 @@
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Tipografian oinarrituko ikonoak</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin gorria ikonoak</string>
 <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Eguraldi iragarpena aurkituko duzu hurrengo pantailan (hautatu hurrengo pantaila menuan edo pasatu hatza ezkerretik eskuinera). Eguraldi iragarpena eguneratu botoiarekin edo pantailara sartzean eguneratzen da (baina ez onduan behin baino sarriago).</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Tenperatura</b> - Tenperaturaren unitatea aukeratu dezakezu, <b>Haizea</b> - Haizearen abiaduraren unitatea aukeratu dezakezu eta <b>Presioa</b>- Presioaren unitatea aukeratu dezakezu. Balioak aukera hauek erabiliz birkalkulatuko dira.</string>
+    <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Helbideen cachea ezabatu dezakezu <b>Garbitu cachea</b> botoiarekin.</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">Trepeten ezarpenak</string>
+    <string name="help_page_4_content" tools:ignore="MissingTranslation">Trepeten ezarpenak atalean trepeta guztien konfigurazio aukerak daude.</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">Arazketa aukerak</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Laguntza</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Kokalekuak</string>
+
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Zutabearen ezarpenak</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Erakutsi beharreko zutabeak</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikonoa</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Deskripzioa</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Tenperatura</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Tenperatura sentsazioa</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Haizea</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Euria/elurra</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Hezetasuna</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Presioa</string>
+    <string name="ok" tools:ignore="MissingTranslation">Ados</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Utzi</string>
+
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Ireki nabigazioaren tiradera</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Itxi nabigazioaren tiradera</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Laguntza</string>
+
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">korapilo</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">Haizea</string>
+    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Esnatzeko estrategia</string>
+    <string name="nowakeup_label" tools:ignore="MissingTranslation">Ez esnatu</string>
+    <string name="wakeuppartial_label" tools:ignore="MissingTranslation">Esnatu PUZ besterik ez</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">Esnatu pantaila barne</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Garbitu cachea</string>
+    <string name="db_info" tools:ignore="MissingTranslation">Cacheari buruzko informazioa</string>
+    <string name="db_header" tools:ignore="MissingTranslation">Helbideen cachearen datu-basea</string>
+    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Zehaztutako denbora eta gero cacheko balioak kenduko dira</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Cacheko balioen adina</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 ordu</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">egun bat</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">aste bat</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">hilabete bat</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">hiru hilabete</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">sei hilabete</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">urte bat</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">inoiz ez</string>
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Gorde cachean kokalekuak</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Aurkitutako kokalekuak cachean gordetzen dira</string>
+    <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Aurkitutako kokalekuak ez dira cachean gordetzen</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Ezabatu</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Desgaitu</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Gaitu</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">Automatikoki aurkitua</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Desgaituta</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Gehitu</string>
+    <string name="search_location_info" tools:ignore="MissingTranslation">Sakatu mapan nahi duzn kokalekua eskuratzeko eta itxaron helbidea ebatzi arte.</string>
     </resources>
