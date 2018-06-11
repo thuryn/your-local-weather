@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block header %}
+{% block title %}{% trans "Page not found" %}{% endblock %}
+{% endblock %}
+{% block description %}
+{% block headline %}
+{% trans "Weblate is a free web-based translation management system." %}
+{% endblock %}
+{% endblock %}
+
+{% block content %}
+
+<p class="error">
+{% trans "The page you are looking for was not found." %}
+</p>
+
+{% endblock %}

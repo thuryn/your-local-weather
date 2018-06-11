@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Donate to Weblate" %}{% endblock %}
+{% block header %}{% trans "Donate to Weblate" %}{% endblock %}
+{% block description %}
+{% block headline %}{% trans "Weblate is free, but welcomes donations." %}{% endblock %}
+{% endblock %}
+{% block extrajumbo %}
+<p>
+<a href="https://liberapay.com/Weblate/" class="btn btn-primary btn-lg">
+<i class="fa fa-money"></i>
+{% trans "Donate using Liberapay" %}
+</a>
+</p>
+{% endblock %}
+{% block content %}
+
+<h2>{% trans "Use our hosting" %}</h2>
+
+<p>
+{% url 'hosting' as hosting_url %}
+{% blocktrans %}Host your commercial translations on <a href="{{ hosting_url }}">Hosted Weblate</a> and you will be supporting Weblate development automatically.{% endblocktrans %}
+</p>
+
+<h2>{% trans "Regular donations" %}</h2>
+
+<p>
+{% blocktrans %}Regular donations allow sustainability of Weblate development and help to fund free hosting for free software. You don't have to spend big money, every penny counts.{% endblocktrans %}
+</p>
+
+<a href="https://salt.bountysource.com/teams/weblate" class="btn btn-primary">
+<i class="fa fa-money"></i>
+{% trans "Fund on Bountysource" %}
+</a>
+
+<p>
+{% trans "You can send a monthly donation using a credit card. You can also get rewards for higher donations, for example a logo placement on our website." %}
+</p>
+
+
+<a href="https://liberapay.com/Weblate/" class="btn btn-primary">
+<i class="fa fa-money"></i>
+{% trans "Donate using Liberapay" %}
+</a>
+
+<p>
+{% blocktrans %}Liberapay is a recurrent donations platform where you send weekly amount to fund projects you use. You can use credit card, bank transfer or direct debit to top up the account.{% endblocktrans %}
+</p>
+
+<h2>{% trans "Fund features" %}</h2>
+
+<a href="https://www.bountysource.com/teams/weblate/issues" class="btn btn-primary">
+<i class="fa fa-money"></i>
+{% trans "Fund on Bountysource" %}
+</a>
+
+<p>
+{% trans "Bountysource allows you to fund individual features which are reported on our issue tracker." %}
+</p>
+
+<h2>{% trans "Donate" %}</h2>
+
+<p>
+{% blocktrans %}If you like Weblate you can support its further development by donating.{% endblocktrans %}
+</p>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick" />
+<input type="hidden" name="hosted_button_id" value="AXN88S8GX5MQ4" />
+<button class="btn btn-primary" type="submit">
+<i class="fa fa-paypal"></i>
+{% trans "Donate using PayPal" %}
+</button>
+</form>
+
+<p>
+{% trans "PayPal allows you to send money from credit card, PayPal balance or a bank account." %}
+</p>
+
+<h2 id="crypto">{% trans "Cryptocurrencies" %}</h2>
+
+<p>
+{% blocktrans with "https://shop.trezor.io?a=572b241135e1" as url %}Thanks to <a href="{{ url }}">Trezor</a>, we will gladly accept donations in several cryptocurrencies. You can use the addresses in table below.{% endblocktrans %}
+</p>
+
+<table class="table table-striped">
+<thead>
+<tr><th>{% trans "Currency" %}</th><th>{% trans "Payment link" %}</th><th>{% trans "Payment address" %}</th></tr>
+</thead>
+<tbody>
+<tr><th>Bitcoin</th><td><a href="bitcoin:36pK1Yso2ZYv5xLR36wgUzQ7AHDk7i6hwU">{% trans "Donate" %}</a></td><td>36pK1Yso2ZYv5xLR36wgUzQ7AHDk7i6hwU</td></tr>
+<tr><th>Litecoin</th><td><a href="litecoin:MTYACnktCc32n3GRhQDfdDyzqSDnQr2tzy">{% trans "Donate" %}</a></td><td>MTYACnktCc32n3GRhQDfdDyzqSDnQr2tzy</td></tr>
+<tr><th>DASH</th><td><a href="dash:XoXrWTmZf7ar9P9tpXHm2JuvpvAwSbbgNh">{% trans "Donate" %}</a></td><td>XoXrWTmZf7ar9P9tpXHm2JuvpvAwSbbgNh</td></tr>
+<tr><th>Zcash</th><td><a href="zcash:t1PSe8FpKfnRJk6XTHkJKCwx4tseSxHr3Z5">{% trans "Donate" %}</a></td><td>t1PSe8FpKfnRJk6XTHkJKCwx4tseSxHr3Z5</td></tr>
+<tr><th>Ethereum</th><td><a href="ethereum:0xE5cd6Fe38af85f68B377AEBCF97Fea2C9683ee0c">{% trans "Donate" %}</a></td><td>0xE5cd6Fe38af85f68B377AEBCF97Fea2C9683ee0c</td></tr>
+<tr><th>Monero</th></td><a href="monero:89A8YoXSErG6X3aTGf96tfCXTJv2kmUUQJucmS8WWuz8S1ftZGAiBKuW66qbV8KDqBSyK8eQBu76PUBi3QUmhY7VFpQ9gbi">{% trans "Donate" %}</a></td><td>89A8YoXSErG6X3aTGf96tfCXTJv2kmUUQJucmS8WWuz8S1ftZGAiBKuW66qbV8KDqBSyK8eQBu76PUBi3QUmhY7VFpQ9gbi</td></tr>
+</tbody>
+</table>
+
+{% endblock %}

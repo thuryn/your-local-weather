@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Try Weblate" %}{% endblock %}
+{% block header %}{% trans "Try Weblate" %}{% endblock %}
+{% block description %}
+{% block headline %}{% trans "Weblate is easy to deploy as an appliance." %}{% endblock %}
+{% endblock %}
+
+
+{% block extrajumbo %}
+<p>
+<a class="btn btn-primary btn-lg" href="https://demo.weblate.org/" role="button"><i class="fa fa-search"></i> {% trans "Try our demo" %}</a>
+</p>
+{% endblock %}
+
+{% block content %}
+{% url 'download' as download_url %}
+
+<h2>{% trans "Demo server" %}</h2>
+
+<p>
+{% blocktrans %}Try Weblate on the <a href="https://demo.weblate.org">demo server</a>. Register there and work under your username, or just use username: <code>demo</code> with password: <code>demo</code>.{% endblocktrans %}
+</p>
+
+<p>{% trans "To test the review workflow there, log in with username: <code>review</code>, and password: <code>review</code>." %}</p>
+
+<h2>{% trans "Appliances" %}</h2>
+
+<p>
+{% blocktrans %}Check out the <a href="{{ download_url }}">download page</a> for appliances, providing an easy way to deploy Weblate in the cloud.{% endblocktrans %}
+</p>
+
+{% endblock %}
+

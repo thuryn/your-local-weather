@@ -1,0 +1,12 @@
+python-targets:
+  - 2
+pep8:
+  full: true
+test-warnings: true
+strictness: veryhigh
+max-line-length: 79
+uses:
+  - django
+autodetect: yes
+ignore-patterns:
+  - /settings_.*\.py

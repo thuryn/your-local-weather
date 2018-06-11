@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Weblate - web-based translation" %}{% endblock %}
+{% block header %}Weblate{% endblock %}
+{% block description %}
+{% block headline %}
+{% trans "Weblate is a free web-based translation management system." %}
+{% endblock %}
+{% endblock %}
+
+
+{% block extrajumbo %}
+<p>
+<a class="btn btn-primary btn-lg" href="https://demo.weblate.org/" role="button"><i class="fa fa-search"></i> {% trans "Try our demo" %}</a>
+<a class="btn btn-primary btn-lg" href="{% url 'hosting' %}" role="button"><i class="fa fa-server"></i> {% trans "View hosting plans" %}</a>
+<a class="btn btn-primary btn-lg" href="{% url 'download' %}" role="button"><i class="fa fa-download"></i> {% trans "Downloads" %}</a>
+</p>
+{% endblock %}
+
+
+{% block content %}
+
+
+<p class="description">
+{% blocktrans %}Weblate is a free web-based translation tool with tight version control integration. It features simple and clean user interface, propagation of translations across components, quality checks and automatic linking to source files.{% endblocktrans %}
+</p>
+
+<a href="{% url 'tour' %}" class="trailer">
+<img src="/media/background.png" class="img-responsive" alt="{% trans "Weblate screenshot" %}">
+</a>
+
+<div class="row">
+
+{% include "base-features.html" %}
+
+</div>
+
+<p><a class="btn btn-primary" href="{% url 'features' %}">{% trans "See more features…"%}</a></p>
+
+
+{% endblock %}
+
+{% block bottom %}
+<div class="jumbotron userlogos" id="users">
+  <div class="container">
+    <h2>
+    {% trans "See who is using Weblate and join them!" %}
+    </h2>
+    <div class="row">
+
+    <div class="col-sm-3 userlogo">
+    <a href="https://hosted.weblate.org/engage/osmand/">
+    <img src="/media/logos/osmand.png" alt="OsmAnd" />
+    </a>
+    </div>
+
+    <div class="col-sm-3 userlogo">
+    <a href="https://hosted.weblate.org/engage/phpmyadmin/">
+    <img src="/media/logos/phpmyadmin.png" alt="phpMyAdmin" />
+    </a>
+    </div>
+
+    <div class="col-sm-3 userlogo">
+    <a href="https://hosted.weblate.org/engage/turris/">
+    <img src="/media/logos/turris-logo.svg" alt="Turris" />
+    </a>
+    </div>
+
+    <div class="col-sm-3 userlogo">
+    <a href="https://hosted.weblate.org/engage/mypaint/">
+    <img src="/media/logos/mypaint.png" alt="MyPaint" />
+    </a>
+    </div>
+
+    <div class="col-sm-3 userlogo">
+    <a href="https://hosted.weblate.org/engage/freedombox/">
+    <img src="/media/logos/freedombox.png" alt="FreedomBox" />
+    </a>
+    </div>
+
+    <div class="col-sm-3 userlogo">
+    <a href="https://hosted.weblate.org/engage/sonic-pi/">
+    <img src="/media/logos/sonic-pi.png" alt="Sonic Pi" />
+    </a>
+    </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% block extrafooter %}<li>Thanks for the support of <a href="https://www.webhostingsecretrevealed.net/">Web Hosting Secret Revealed</a>.</li>{% endblock %}

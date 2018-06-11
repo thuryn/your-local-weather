@@ -1,0 +1,1860 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
+"POT-Creation-Date: 2018-05-21 13:24+0200\n"
+"PO-Revision-Date: 2018-01-11 14:36+0000\n"
+"Last-Translator: Vangelis Skarmoutsos <skarmoutsosv@gmail.com>\n"
+"Language-Team: Greek <https://hosted.weblate.org/projects/weblate/website/el/"
+">\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2.19-dev\n"
+
+#: weblate_web/data.py:33
+msgid "Overview of own translations at main page."
+msgstr "Επισκόπηση των δικών σας μεταφράσεων στην κεντρική σελίδα."
+
+#: weblate_web/data.py:34
+msgid "Own translations"
+msgstr "Οι δικές σας μεταφράσεις"
+
+#: weblate_web/data.py:39 weblate_web/templates/features.html:64
+msgid ""
+"Translator can always see important context information like comments or "
+"corresponding source code."
+msgstr ""
+"Ο μεταφραστής μπορεί να βλέπει σημαντικές πληροφορίες πλαισίου, όπως σχόλια "
+"ή αντίστοιχο πηγαίο κώδικα."
+
+#: weblate_web/data.py:42 weblate_web/templates/features.html:63
+msgid "Translation context"
+msgstr "Συνοδευτικά μετάφρασης"
+
+#: weblate_web/data.py:47
+msgid ""
+"Project page gives you detailed information about project translation status."
+msgstr ""
+"Η σελίδα του έργου σας δίνει λεπτομερείς πληροφορίες για την κατάσταση "
+"μετάφρασης του έργου."
+
+#: weblate_web/data.py:50
+msgid "Project overview"
+msgstr "Επισκόπηση έργου"
+
+#: weblate_web/data.py:55 weblate_web/templates/features.html:72
+msgid ""
+"Translators can define their own glossary to stay consistent in frequently "
+"used terminology."
+msgstr ""
+"Οι μεταφραστές μπορούν να καθορίσουν το δικό τους γλωσσάριο ώστε να μείνουν "
+"συνεπείς στην ορολογία που χρησιμοποιείται συχνά."
+
+#: weblate_web/data.py:58 weblate_web/templates/features.html:71
+#: weblate_web/templates/hosting.html:141
+msgid "Glossary"
+msgstr "Γλωσσάρι"
+
+#: weblate_web/data.py:63 weblate_web/templates/base-features.html:15
+msgid ""
+"Customizable quality checks will help you in improving quality of "
+"translations."
+msgstr ""
+"Προσαρμοσμένοι έλεγχοι ποιότητας θα σας βοηθήσουν να βελτιώσετε την ποιότητα "
+"των μεταφράσεων."
+
+#: weblate_web/data.py:66 weblate_web/templates/base-features.html:14
+#: weblate_web/templates/hosting.html:123
+msgid "Quality checks"
+msgstr "Έλεγχοι ποιότητας"
+
+#: weblate_web/data.py:71 weblate_web/templates/features.html:128
+msgid "Weblate provides you various ways to promote your translation project."
+msgstr ""
+"Το Weblate σας παρέχει διάφορους τρόπους για την προώθηση του δικού σας "
+"μεταφραστικού έργου."
+
+#: weblate_web/data.py:74 weblate_web/templates/features.html:127
+msgid "Promotion"
+msgstr "Προώθηση"
+
+#: weblate_web/templates/404.html:4
+msgid "Page not found"
+msgstr "Η σελίδα δεν βρέθηκε"
+
+#: weblate_web/templates/404.html:8 weblate_web/templates/500.html:8
+#: weblate_web/templates/index.html:7
+msgid "Weblate is a free web-based translation management system."
+msgstr ""
+"Το Weblate είναι ένα δωρεάν σύστημα διαχείρισης διαδικτυακής μετάφρασης."
+
+#: weblate_web/templates/404.html:15
+msgid "The page you are looking for was not found."
+msgstr "Η σελίδα που αναζητάτε δεν βρέθηκε."
+
+#: weblate_web/templates/500.html:4
+msgid "Server error"
+msgstr "Σφάλμα διακομιστή"
+
+#: weblate_web/templates/500.html:15
+msgid ""
+"The server had serious problems while serving your request. We've just sent "
+"our trained monkeys to fix the issue."
+msgstr ""
+"Ο διακομιστής είχε σοβαρά προβλήματα να εξυπηρετήσει το αίτημά σας. Στείλαμε "
+"τους τεχνικούς μας να διορθώσουν το θέμα."
+
+#: weblate_web/templates/base-features.html:6
+#: weblate_web/templates/hosting.html:42
+msgid "Continuous translation"
+msgstr "Συνεχής μετάφραση"
+
+#: weblate_web/templates/base-features.html:7
+msgid ""
+"Automated translation process can closely follow development of your project."
+msgstr ""
+"Η αυτοματοποιημένη διαδικασία μετάφρασης μπορεί να ακολουθεί την ανάπτυξη "
+"του έργου σας από κοντά."
+
+#: weblate_web/templates/base-features.html:22
+msgid "Attribution"
+msgstr "Απόδοση"
+
+#: weblate_web/templates/base-features.html:23
+msgid ""
+"All your translators will be properly credited in the version control system."
+msgstr ""
+"Όλοι οι μεταφραστές σας θα λαμβάνουν τα πνευματικά δικαιώματα σωστά στο "
+"σύστημα ελέγχου εκδόσεων."
+
+#: weblate_web/templates/base-features.html:30
+#: weblate_web/templates/hosting.html:17
+msgid "Hosting plans"
+msgstr "Σχέδια φιλοξενίας"
+
+#: weblate_web/templates/base-features.html:31
+msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
+msgstr ""
+"Τα σχέδια φιλοξενίας για χρήση του Weblate ως υπηρεσία ξεκινούν από τα 19€."
+
+#: weblate_web/templates/base-features.html:38
+msgid "Ready for cloud"
+msgstr "Έτοιμο για τα σύννεφα"
+
+#: weblate_web/templates/base-features.html:39
+msgid "Weblate comes with appliances, which are ready to deploy in your cloud."
+msgstr ""
+"Το Weblate έρχεται με εφαρμογές, οι οποίες είναι έτοιμες να προσαρμοστούν "
+"στο σύννεφό σας."
+
+#: weblate_web/templates/base-features.html:46
+msgid "Free software"
+msgstr "Ελεύθερο λογισμικό"
+
+#: weblate_web/templates/base-features.html:47
+msgid "Weblate is free software, you can run your own instance of it."
+msgstr ""
+"Το Weblate είναι δωρεάν λογισμικό, μπορείτε που να εκτελείτε το δικό σας."
+
+#: weblate_web/templates/base.html:12
+msgctxt "Keyword"
+msgid "translate"
+msgstr "μεταφράζω"
+
+#: weblate_web/templates/base.html:66
+msgid "Toggle navigation"
+msgstr "Εναλλαγή πλοήγησης"
+
+#: weblate_web/templates/base.html:72
+msgid "Weblate logo"
+msgstr "Λογότυπο του Weblate"
+
+#: weblate_web/templates/base.html:78
+msgid "Blog"
+msgstr "Ιστολόγιο"
+
+#: weblate_web/templates/base.html:79
+msgid "Try"
+msgstr "Δοκιμή"
+
+#: weblate_web/templates/base.html:80
+msgid "Features"
+msgstr "Χαρακτηριστικά"
+
+#: weblate_web/templates/base.html:81
+msgid "Docs"
+msgstr "Έγγραφα"
+
+#: weblate_web/templates/base.html:82 weblate_web/templates/download.html:17
+msgid "Download"
+msgstr "Λήψη"
+
+#: weblate_web/templates/base.html:83
+msgid "Hosting"
+msgstr "Φιλοξενία"
+
+#: weblate_web/templates/base.html:84
+msgid "Develop"
+msgstr "Δημιουργία"
+
+#: weblate_web/templates/base.html:85 weblate_web/templates/donate.html:61
+#: weblate_web/templates/donate.html:91 weblate_web/templates/donate.html:92
+#: weblate_web/templates/donate.html:93 weblate_web/templates/donate.html:94
+#: weblate_web/templates/donate.html:95 weblate_web/templates/donate.html:96
+msgid "Donate"
+msgstr "Δωρεά"
+
+#: weblate_web/templates/base.html:86
+msgid "Support"
+msgstr "Υποστήριξη"
+
+#: weblate_web/templates/base.html:87
+msgid "Tour"
+msgstr "Περιοδεία"
+
+#: weblate_web/templates/base.html:88
+msgid "Thanks"
+msgstr "Ευχαριστίες"
+
+#: weblate_web/templates/base.html:103
+msgid "Help with translations!"
+msgstr "Βοήθεια με μεταφράσεις!"
+
+#: weblate_web/templates/base.html:140
+#, python-format
+msgid ""
+"Weblate is <a href=\"%(github_url)s\">free software</a> and welcomes <a href="
+"\"%(donate_url)s\">donations</a>."
+msgstr ""
+"Το Weblate είναι <a href=\"%(github_url)s\">δωρεάν λογισμικό</a> και <a href="
+"\"%(donate_url)s\">δωρεές</a> είναι καλοδεχούμενες."
+
+#: weblate_web/templates/contribute.html:3
+#: weblate_web/templates/contribute.html:4
+msgid "Contribute to Weblate"
+msgstr "Συνεισφορά στο Weblate"
+
+#: weblate_web/templates/contribute.html:6
+msgid "Weblate is being developed by an open community."
+msgstr "To Weblate έχει αναπτυχθεί από μια ανοιχτή κοινότητα."
+
+#: weblate_web/templates/contribute.html:10
+#: weblate_web/templates/download.html:12
+msgid "View sources"
+msgstr "Προβολή προελεύσεων"
+
+#: weblate_web/templates/contribute.html:11
+#: weblate_web/templates/contribute.html:38
+msgid "Translate"
+msgstr "Μετάφραση"
+
+#: weblate_web/templates/contribute.html:17
+msgid ""
+"You can find more detailed information about this topic in <a href=\"https://"
+"docs.weblate.org/en/latest/contributing.html\">Contributing chapter</a> of "
+"the documentation."
+msgstr ""
+"Μπορείτε να βρείτε περισσότερες πληροφορίες σχετικά με αυτό το θέμα στο <a "
+"href=\"https://docs.weblate.org/en/latest/contributing.html\">κεφάλαιο "
+"Συνεισφορά</a> της τεκμηρίωσης."
+
+#: weblate_web/templates/contribute.html:20
+#: weblate_web/templates/download.html:69
+msgid "Code"
+msgstr "Κώδικας"
+
+#: weblate_web/templates/contribute.html:23
+#, python-format
+msgid ""
+"Weblate is being developed on <a href=\"%(url)s\">GitHub</a>, you can fork "
+"it there or just:"
+msgstr ""
+"Το Weblate αναπτύσσεται στο <a href=\"%(url)s\">GitHub</a>, μπορείτε να "
+"δημιουργήσετε διακλάδωση ή απλά:"
+
+#: weblate_web/templates/contribute.html:31
+#, python-format
+msgid "This website is stored on <a href=\"%(url)s\">GitHub</a> as well:"
+msgstr ""
+"Αυτή η ιστοσελίδα είναι αποθυκευμένη στο <a href=\"%(url)s\">GitHub</a> "
+"καθώς και στο:"
+
+#: weblate_web/templates/contribute.html:41
+msgid ""
+"You can translate Weblate at <a href=\"https://hosted.weblate.org/engage/"
+"weblate/\">hosted.weblate.org</a>."
+msgstr ""
+"Μπορείτε να μεταφράσετε το Weblate στο <a href=\"https://hosted.weblate.org/"
+"engage/weblate/\">hosted.weblate.org</a>."
+
+#: weblate_web/templates/contribute.html:46
+msgid "Translation status"
+msgstr "Kaτάσταση μετάφρασης"
+
+#: weblate_web/templates/donate.html:3 weblate_web/templates/donate.html:4
+msgid "Donate to Weblate"
+msgstr "Δωρεά στο Weblate"
+
+#: weblate_web/templates/donate.html:6
+msgid "Weblate is free, but welcomes donations."
+msgstr "Το Weblate είναι δωρεάν οι δωρεές είναι καλοδεχούμενες."
+
+#: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:43
+msgid "Donate using Liberapay"
+msgstr "Δωρεάν με χρήση Liberapay"
+
+#: weblate_web/templates/donate.html:18
+msgid "Use our hosting"
+msgstr "Χρήση της φιλοξενίας σας"
+
+#: weblate_web/templates/donate.html:22
+#, python-format
+msgid ""
+"Host your commercial translations on <a href=\"%(hosting_url)s\">Hosted "
+"Weblate</a> and you will be supporting Weblate development automatically."
+msgstr ""
+"Φιλοξενήστε τις εμπορικές μεταφράσεις σας στο <a href=\"%(hosting_url)s"
+"\">Φιλόξενο Weblate</a> και θα υποστηρίζεται την ανάπτυξη του Weblate "
+"αυτόματα."
+
+#: weblate_web/templates/donate.html:25
+msgid "Regular donations"
+msgstr "Τακτικές δωρεές"
+
+#: weblate_web/templates/donate.html:28
+msgid ""
+"Regular donations allow sustainability of Weblate development and help to "
+"fund free hosting for free software. You don't have to spend big money, "
+"every penny counts."
+msgstr ""
+"Οι τακτικές δωρέες επιτρέπουν τη διατήρηση της ανάπτυξης του Weblate και "
+"βοηθούν τη χρηματοδότηση της δωρεάν φιλοξενίας για δωρεάν λογισμικό. Δεν "
+"χρειάζονται πολλά χρήματα, κάθε συνεισφορά μετράει."
+
+#: weblate_web/templates/donate.html:33 weblate_web/templates/donate.html:54
+#: weblate_web/templates/thanks.html:12
+msgid "Fund on Bountysource"
+msgstr "Ταμείο στο Bountysource"
+
+#: weblate_web/templates/donate.html:37
+msgid ""
+"You can send a monthly donation using a credit card. You can also get "
+"rewards for higher donations, for example a logo placement on our website."
+msgstr ""
+"Μπορείτε να στέλνετε μια μηνιαία δωρεά με πιστωτική κάρτα. Μπορείτε, επίσης, "
+"να λάβετε βραβεία για υψηλότερες δωρεές, για παράδειγμα μια τοποθέτηση "
+"λογοτύπου στην ιστοσελίδα μας."
+
+#: weblate_web/templates/donate.html:47
+msgid ""
+"Liberapay is a recurrent donations platform where you send weekly amount to "
+"fund projects you use. You can use credit card, bank transfer or direct "
+"debit to top up the account."
+msgstr ""
+
+#: weblate_web/templates/donate.html:50
+msgid "Fund features"
+msgstr "Χαρακτηριστικά χρηματοδότησης"
+
+#: weblate_web/templates/donate.html:58
+msgid ""
+"Bountysource allows you to fund individual features which are reported on "
+"our issue tracker."
+msgstr ""
+"Το Bountysource σας επιτρέπει να χρηματοδοτήσετε μεμονομένα χαρακτηριστικά, "
+"τα οποία αναφέρονται στον ιχνηλάτη θεμάτων."
+
+#: weblate_web/templates/donate.html:64
+msgid ""
+"If you like Weblate you can support its further development by donating."
+msgstr ""
+"Αν σας αρέσει το Weblate μπορείτε να υποστηρίξετε την περαιτέρω ανάπτυξη "
+"κάνοντας μια δωρεά."
+
+#: weblate_web/templates/donate.html:72
+msgid "Donate using PayPal"
+msgstr "Δωρεά με χρήση PayPal"
+
+#: weblate_web/templates/donate.html:77
+msgid ""
+"PayPal allows you to send money from credit card, PayPal balance or a bank "
+"account."
+msgstr ""
+"Το PayPal σας επιτρέπει να στείλετε χρήματα από πιστωτική κάρτα, από PayPal "
+"balance ή τραπεζικό λογαριασμό."
+
+#: weblate_web/templates/donate.html:80
+msgid "Cryptocurrencies"
+msgstr "Κρυπτονομίσματα"
+
+#: weblate_web/templates/donate.html:83
+#, python-format
+msgid ""
+"Thanks to <a href=\"%(url)s\">Trezor</a>, we will gladly accept donations in "
+"several cryptocurrencies. You can use the addresses in table below."
+msgstr ""
+"Χάρη στο <a href=\"%(url)s\">Trezor</a>, θα δεχτούμε με ευχαρίστηση δωρεές "
+"σε διάφορα κρυπτονομίσματα. Μπορείτε να χρησιμοποιήσετε τις διευθύνσεις στον "
+"παρακάτω πίνακα."
+
+#: weblate_web/templates/donate.html:88
+msgid "Currency"
+msgstr "Νόμισμα"
+
+#: weblate_web/templates/donate.html:88
+msgid "Payment link"
+msgstr "Σύνδεσμος πληρωμής"
+
+#: weblate_web/templates/donate.html:88
+msgid "Payment address"
+msgstr "Διεύθυνση πληρωμής"
+
+#: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
+msgid "Download Weblate"
+msgstr "Λήψη του Weblate"
+
+#: weblate_web/templates/download.html:7
+msgid "Weblate comes with complete source code."
+msgstr "Το Weblate έρχεται με πλήρη πηγαίο κώδικα."
+
+#: weblate_web/templates/download.html:20
+msgid "You can download latest release here:"
+msgstr "Μπορείτε να κατεβάσετε την τελευταία έκδοση εδώ:"
+
+#: weblate_web/templates/download.html:29
+#: weblate_web/templates/download.html:45
+msgid "You can also install using packages for following Linux distributions:"
+msgstr ""
+"Μπορείτε να κάνετε εγκατάσταση με χρήση πακέτων από τις ακόλουθες διανομές "
+"Linux:"
+
+#: weblate_web/templates/download.html:35
+msgid "Weblate command line client"
+msgstr "Πελάτης γραμμής εντολών του Weblate"
+
+#: weblate_web/templates/download.html:38
+#, python-format
+msgid ""
+"You can control Weblate remotely using <a href=\"%(url)s\">wlc</a>, it can "
+"be installed by using Python PIP:"
+msgstr ""
+"Μπορείτε να ελέγχετε το Weblate από μακριά χρησιμοποιώντας το <a href="
+"\"%(url)s\">wic</a>. Μπορεί να εγκατασταθεί χρησιμοποιώντας το Python PIP:"
+
+#: weblate_web/templates/download.html:53
+msgid "Cloud or virtualization images"
+msgstr "Εικόνες σύννεφου ή εξομοίωσης"
+
+#: weblate_web/templates/download.html:55
+msgid ""
+"Weblate can be run in any cloud or virtualization environment. Following "
+"links will show you information about some of these:"
+msgstr ""
+"To Weblate μπορεί να εκτελείται σε οποιοδήποτε περιβάλλον σύννεφου ή "
+"εξομοίωσης. Οι ακόλουθοι σύνδεσμοι θα σας δώσουν πληροφορίες για ορισμένα "
+"από αυτά:"
+
+#: weblate_web/templates/download.html:58
+msgid "Running Weblate in a Docker container"
+msgstr "Εκτέλεση του Weblate σε έναν περιέκτη Docker"
+
+#: weblate_web/templates/download.html:59
+msgid "Running Weblate on OpenShift platform"
+msgstr "Εκτέλεση του Weblate σε μια πλατφόρμα OpenShift"
+
+#: weblate_web/templates/download.html:60
+msgid ""
+"BitNami Weblate stack providing native installation for most platforms as "
+"well as support for many public cloud providers"
+msgstr ""
+"Η δέσμη BitNami Weblate που παρέχει γνήσια εγκατάσταση για τις περισσότερες "
+"πλατφόρμες καθώς και υποστήριξη για πολλούς δημόσιους παρόχους σύννεφου"
+
+#: weblate_web/templates/download.html:72
+msgid ""
+"Weblate is being developed on <a href=\"https://github.com/WeblateOrg/weblate"
+"\">GitHub</a>, you can fork it there or just:"
+msgstr ""
+"Το Weblate αναπτύσσεται στο <a href=\"https://github.com/WeblateOrg/weblate"
+"\">GitHub</a>, μπορείτε να δημιουργήσετε διακλάδωση ή απλά:"
+
+#: weblate_web/templates/features.html:3 weblate_web/templates/features.html:4
+msgid "Weblate features"
+msgstr "Χαρακτηριστικά του Weblate"
+
+#: weblate_web/templates/features.html:6
+msgid "Weblate is a feature rich computer aided translation tool."
+msgstr ""
+"Το Weblate είναι ένα υπολογιστικό εργαλείο πλούσιο σε χαρακτηριστικά "
+"υποβοήθησης μετάφρασης."
+
+#: weblate_web/templates/features.html:11
+msgid "View documentation"
+msgstr "Προβολή τεκμηρίωσης"
+
+#: weblate_web/templates/features.html:23
+msgid "Access control"
+msgstr "Έλεγχος πρόσβασης"
+
+#: weblate_web/templates/features.html:24
+msgid "Access rights can be fine tuned depending on your environment."
+msgstr ""
+"Τα δικαιώματα πρόσβασης μπορεί να είναι ορθά συντονισμένα ανάλογα με το "
+"περιβάλλον σας."
+
+#: weblate_web/templates/features.html:31
+msgid "Notifications"
+msgstr "Ειδοποιήσεις"
+
+#: weblate_web/templates/features.html:32
+msgid ""
+"Translators can be notified on new strings to translate or other events."
+msgstr ""
+"Ο μεταφραστές μπορούν να ειδοποιηθούν για νέα κείμενα για μετάφραση ή άλλα "
+"συμβάντα."
+
+#: weblate_web/templates/features.html:39
+msgid "Integration API"
+msgstr "Ενσωματώση API"
+
+#: weblate_web/templates/features.html:40
+msgid "Thanks to the API you can integrate Weblate with third party services."
+msgstr "Χάρη στην API μπορείτε να ενσωματώσετε το Weblate με υπηρεσίες τρίτων."
+
+#: weblate_web/templates/features.html:47
+msgid "File formats"
+msgstr "Μορφές αρχείων"
+
+#: weblate_web/templates/features.html:48
+msgid ""
+"Weblate supports all widely used file formats for localisation like Gettext, "
+"JSON, XLIFF or resource strings."
+msgstr ""
+"Το Weblate υποστηρίζει όλες τις ευρέως χρησιμοποιούμενες μορφές αρχείων, "
+"όπως τα Gettext, JSON, XLIFF ή κείμενα πηγαίου κώδικα."
+
+#: weblate_web/templates/features.html:55
+msgid "Branches support"
+msgstr "Υποστήριξη διακλαδώσεων"
+
+#: weblate_web/templates/features.html:56
+msgid ""
+"Weblate can handle different versions of the translation by pushing them to "
+"different branches automatically."
+msgstr ""
+"Το Weblate μπορεί να χειριστεί διαφορετικές εκδόσεις της μετάφρασης "
+"μεταφέροντάς τες σε διαφορετικούς κλάδους αυτόματα."
+
+#: weblate_web/templates/features.html:79
+msgid "Acquiring feedback"
+msgstr "Λειτουργία αναφοράς προβλημάτων"
+
+#: weblate_web/templates/features.html:80
+msgid ""
+"You can also use Weblate to acquire feedback on source strings and thus "
+"improve them."
+msgstr ""
+"Μπορείτε να χρησιμοποιήσετε το Weblate για λήψη αναφορών για τα κείμενα "
+"προέλευσης ώστε να βελτιωθούν."
+
+#: weblate_web/templates/features.html:87
+msgid "Export and import"
+msgstr "Εξαγωγή και εισαγωγή"
+
+#: weblate_web/templates/features.html:88
+msgid "Translations can be downloaded for offline translation and merged back."
+msgstr ""
+"Οι μεταφράσεις μπορούν να ληφθούν για μετάφραση εκτός σύνδεσης και να "
+"ενωθούν μετά."
+
+#: weblate_web/templates/features.html:95
+msgid "Integrated"
+msgstr "Ενσωματώθηκε"
+
+#: weblate_web/templates/features.html:96
+msgid "Translations are managed within same version control system as code."
+msgstr ""
+"Όλες οι μεταφράσεις διαχειρίζονται εντός του ίδιου συστήματος ελέγχου "
+"έκδοσης όπως ο κώδικας."
+
+#: weblate_web/templates/features.html:103
+msgid "Documentation"
+msgstr "Τεκμηρίωση"
+
+#: weblate_web/templates/features.html:104
+msgid ""
+"Weblate comes with comprehensive documentation covering both setup and usage."
+msgstr ""
+"ΤΟ Weblate έρχεται με πλήρη τεκμηρίωση που θα καλύπτει τόσο την εγκατάσταση "
+"όσο και τη χρήση."
+
+#: weblate_web/templates/features.html:111
+msgid "Review"
+msgstr "Έλεγχος"
+
+#: weblate_web/templates/features.html:112
+msgid "Translators have several options to review contributions made by peers."
+msgstr ""
+"Οι μεταφραστές έχουν αρκετές επιλογές για ανασκόπηση άλλων διανομών "
+"φτιαγμένων από χρήστες."
+
+#: weblate_web/templates/features.html:119
+msgid "Languages"
+msgstr "Γλώσσες"
+
+#: weblate_web/templates/features.html:120
+msgid ""
+"Weblate supports over 150 languages out of the box, others can be defined by "
+"administrator."
+msgstr ""
+"Το Weblate υποστηρίζει πάνω από 150 γλώσσες, άλλες μπορούν να οριστούν από "
+"τον διαχειριστή."
+
+#: weblate_web/templates/features.html:135
+msgid "Reporting"
+msgstr "Αναφορά"
+
+#: weblate_web/templates/features.html:136
+msgid ""
+"Weblate generates various reports to provide information about project "
+"activity."
+msgstr ""
+"Το Weblate διάφορες αναφορές για την παροχή πληροφοριών για τη δραστηριότητα "
+"του έργου."
+
+#: weblate_web/templates/features.html:144
+msgid "Version control"
+msgstr "Έλεγχος έκδοσης"
+
+#: weblate_web/templates/features.html:145
+msgid ""
+"Weblate talks directly with your version control system, currently Git and "
+"Mercurial are supported."
+msgstr ""
+"Το Weblate μιλά άμεσα με το σύστημα ελέγχου έκδοσης, τα Git και Mercurial "
+"υποστηρίζονται μέχρι στιγμής."
+
+#: weblate_web/templates/features.html:152
+msgid "Collaboration sites"
+msgstr "Συνεργαζόμενες ιστοσελίδες"
+
+#: weblate_web/templates/features.html:153
+msgid ""
+"Weblate has native support for many software development sites such as "
+"GitHub, Bitbucket or Gitlab."
+msgstr ""
+"Το Weblate έχει εγγενή υποστήριξη για πολλές ιστοσελίδες υποστήριξης "
+"ανάπτυξης λογισμικού όπως τα GitHub, Bitbucket ή Gitlab."
+
+#: weblate_web/templates/features.html:160
+msgid "Responsive UI"
+msgstr "Αποκριτικό Περιβάλλον Εργασίας"
+
+#: weblate_web/templates/features.html:161
+#, fuzzy
+#| msgid ""
+#| "Weblate has responsible UI which will work nicely on your desktop, tablet "
+#| "or phone."
+msgid ""
+"Weblate has responsive UI which will work nicely on your desktop, tablet or "
+"phone."
+msgstr ""
+"Το Weblate έχει αποκριτικό Περιβάλλον Εργασίας που θα λειτουργεί καλά στον "
+"επιτραπέζιο Η/Υ, στην ταμπλέτα ή το τηλέφωνό σας."
+
+#: weblate_web/templates/hosting-ordered.html:3
+#: weblate_web/templates/hosting-ordered.html:4
+#: weblate_web/templates/hosting.html:3 weblate_web/templates/hosting.html:4
+msgid "Hosting Weblate"
+msgstr "Φιλοξενία Weblate"
+
+#: weblate_web/templates/hosting-ordered.html:6
+msgid "Thank you for ordering hosting!"
+msgstr "Ευχαριστούμε που παραγγειλατε φιλοξενία!"
+
+#: weblate_web/templates/hosting-ordered.html:11
+msgid "Next steps"
+msgstr "Επόμενα βήματα"
+
+#: weblate_web/templates/hosting-ordered.html:13
+msgid ""
+"The project setup is currently manual. If you haven't done so already, "
+"please get in touch with us and send us details about your repository setup."
+msgstr ""
+"Η εγκατάσταση του έργου είναι προς το παρόν χειροκίνητη. Αν δεν το έχετε "
+"κάνει ήδη, επικοινωνήστε μαζί μας και στείλτε μας λεπτομέριες για την "
+"εγκατάσταση του αποθετηρίου σας."
+
+#: weblate_web/templates/hosting-ordered.html:15
+msgid "Usually following information is needed:"
+msgstr "Συνήθως οι ακόλουθες πληροφορίες είναι απαραίτητες:"
+
+#: weblate_web/templates/hosting-ordered.html:18
+#: weblate_web/templates/hosting.html:307
+msgid "URL of repository with translations."
+msgstr "URL του αποθετηρίου με μεταφράσεις."
+
+#: weblate_web/templates/hosting-ordered.html:19
+#: weblate_web/templates/hosting.html:308
+msgid "Path to translations within the repository."
+msgstr "Διαδρομή για τις μεταφράσεις εντός του αποθετηρίου."
+
+#: weblate_web/templates/hosting-ordered.html:22
+msgid ""
+"You have to allow Weblate to access your repository. This can be done by "
+"adding Weblate user to your project (on GitHub, Bitbucket or GitLab) or "
+"adding SSH key we will provide you."
+msgstr ""
+"Πρέπει να επιτρέψετε στο Weblate να έχει πρόσβαση στο αποθετήριό σας. Αυτό "
+"μπορεί να γίνει προσθέτοντας το όνομα χρήστη του Weblate στο έργο σας (στο "
+"GitHub, Bitbucket ή GitLab) ή προσθέτοντας το κλειδί SSH που θα σας δώσουμε."
+
+#: weblate_web/templates/hosting.html:6
+msgid "Free continuous translation hosting for free software."
+msgstr "Δωρεάν συνεχής φιλοξενία μετάφραση για δωρεάν λογισμικό."
+
+#: weblate_web/templates/hosting.html:11
+msgid "Ask for hosting"
+msgstr "Ερώτημα για φιλοξενία"
+
+#: weblate_web/templates/hosting.html:20
+msgid ""
+"Hosted Weblate allows you to use Weblate without any effort and with premium "
+"support backed by it's core developers."
+msgstr ""
+"Το Φιλόξενο Weblate σας επιτρέπει να χρησιμοποιήσετε το Weblate χωρίς καμιά "
+"προσπάθεια και με άριστη υποστήριξη από τους ίδους του δημιουργούς του "
+"πυρήνα του."
+
+#: weblate_web/templates/hosting.html:24
+#, python-format
+msgid ""
+"We can host translations for your commercial or free software projects. You "
+"can see summary of hosting plans below. Should you have any questions or "
+"look for hosting of bigger projects, don't hesitate to <a href=\"%(contact)s"
+"\">get in touch with us</a>."
+msgstr ""
+"Μπορούμε να φιλοξενήσουμε μεταφράσεις για τα έργας σας εμπορικού ή δωρεάν "
+"λογισμικού. Μπορείτε να δείτε περίληψη των σχεδίων φιλοξενίας παρακάτω. Αν "
+"έχετε ερωτήσεις ή αναζητείτε φιλοξενία μεγαλύτερων έργων, μη διστάσετε να <a "
+"href=\"%(contact)s\">επικοινωνήσετε μαζί μας</a>."
+
+#: weblate_web/templates/hosting.html:32
+msgctxt "Hosting plan"
+msgid "Free software"
+msgstr "Ελεύθερο λογισμικό"
+
+#: weblate_web/templates/hosting.html:33
+msgctxt "Hosting plan"
+msgid "Basic"
+msgstr "Βασικό"
+
+#: weblate_web/templates/hosting.html:34
+msgctxt "Hosting plan"
+msgid "Medium"
+msgstr "Μεσαίο"
+
+#: weblate_web/templates/hosting.html:35
+msgctxt "Hosting plan"
+msgid "Advanced"
+msgstr "Για προχωρημένους"
+
+#: weblate_web/templates/hosting.html:36
+msgctxt "Hosting plan"
+msgid "Enterprise"
+msgstr "Επιχειρησιακό"
+
+#: weblate_web/templates/hosting.html:37
+msgctxt "Hosting plan"
+msgid "Self hosted"
+msgstr "Αυτοφιλοξενούμενο"
+
+#: weblate_web/templates/hosting.html:51
+msgid ""
+"Text unit defined in a translation format, it can be word, sentence or a "
+"paragraph"
+msgstr ""
+"Μια μονάδα κειμένου ορισμένη σε μια μορφή μετάφρασης, όπως λέξη, φράση ή "
+"παράγραφος"
+
+#: weblate_web/templates/hosting.html:51
+msgid "Source strings"
+msgstr "Κείμενα προέλευσης"
+
+#: weblate_web/templates/hosting.html:52 weblate_web/templates/hosting.html:61
+#: weblate_web/templates/hosting.html:70
+msgid "Negotiable"
+msgstr "Διαπραγματεύσιμο"
+
+#: weblate_web/templates/hosting.html:57 weblate_web/templates/hosting.html:66
+#: weblate_web/templates/hosting.html:75 weblate_web/templates/hosting.html:82
+#: weblate_web/templates/hosting.html:83 weblate_web/templates/hosting.html:84
+#: weblate_web/templates/hosting.html:89 weblate_web/templates/hosting.html:90
+#: weblate_web/templates/hosting.html:91 weblate_web/templates/hosting.html:92
+#: weblate_web/templates/hosting.html:93 weblate_web/templates/hosting.html:97
+#: weblate_web/templates/hosting.html:98 weblate_web/templates/hosting.html:99
+#: weblate_web/templates/hosting.html:100
+#: weblate_web/templates/hosting.html:101
+#: weblate_web/templates/hosting.html:102
+msgid "Unlimited"
+msgstr "Απεριόριστο"
+
+#: weblate_web/templates/hosting.html:60
+msgid "Target languages"
+msgstr "Γλώσσες προορισμού"
+
+#: weblate_web/templates/hosting.html:69
+msgid "VCS repositories"
+msgstr "Αποθετήρια VCS"
+
+#: weblate_web/templates/hosting.html:78
+msgid "Translation projects"
+msgstr "Έργα μετάφρασης"
+
+#: weblate_web/templates/hosting.html:87
+msgid "Translation components"
+msgstr "Περιεχόμενα μετάφρασης"
+
+#: weblate_web/templates/hosting.html:96
+msgid "Number of translators"
+msgstr "Αριθμός μεταφραστών"
+
+#: weblate_web/templates/hosting.html:105
+#: weblate_web/templates/hosting.html:311
+msgid "User management"
+msgstr "Διαχείριση χρήστη"
+
+#: weblate_web/templates/hosting.html:114
+msgid "Supported file formats"
+msgstr "Υποστηριζόμενες μορφές αρχείων"
+
+#: weblate_web/templates/hosting.html:115
+#: weblate_web/templates/hosting.html:116
+#: weblate_web/templates/hosting.html:117
+#: weblate_web/templates/hosting.html:118
+#: weblate_web/templates/hosting.html:119
+#: weblate_web/templates/hosting.html:120
+msgid "All"
+msgstr "Όλα"
+
+#: weblate_web/templates/hosting.html:127
+#: weblate_web/templates/hosting.html:128
+#: weblate_web/templates/hosting.html:129
+#: weblate_web/templates/hosting.html:136
+#: weblate_web/templates/hosting.html:137
+#: weblate_web/templates/hosting.html:138
+msgid "Customizable"
+msgstr "Προσαρμόσιμο"
+
+#: weblate_web/templates/hosting.html:132
+#, fuzzy
+#| msgid "Translation status"
+msgid "Translation addons"
+msgstr "Kaτάσταση μετάφρασης"
+
+#: weblate_web/templates/hosting.html:150
+#, fuzzy
+#| msgid "Translation workflow"
+msgid "Translation memory"
+msgstr "Ροή εργασιών μετάφρασης"
+
+#: weblate_web/templates/hosting.html:159
+msgid "Priority email support"
+msgstr "Υποστήριξη ηλεκτρονικής αλληλογραφίας προτεραιότητας"
+
+#: weblate_web/templates/hosting.html:165
+#: weblate_web/templates/hosting.html:173
+msgid "Available on request"
+msgstr "Διαθέσιμο μετά από αίτημα"
+
+#: weblate_web/templates/hosting.html:168
+msgid "Custom domain name with SSL"
+msgstr "Προσαρμοσμένο όνομα domain με SSL"
+
+#: weblate_web/templates/hosting.html:168
+msgid "Own domain"
+msgstr "Το δικό μου domain"
+
+#: weblate_web/templates/hosting.html:170
+#: weblate_web/templates/hosting.html:171
+#: weblate_web/templates/hosting.html:172
+#, python-format
+msgid ""
+"Additional charge %(price)s EUR/year, only available with yearly billing"
+msgstr ""
+
+#: weblate_web/templates/hosting.html:179
+msgid "Monthly by PayPal"
+msgstr "Μηνιαίως από το PayPal"
+
+#: weblate_web/templates/hosting.html:181
+msgid "Contact us"
+msgstr "Επικοινωνήστε μαζί μας"
+
+#: weblate_web/templates/hosting.html:184
+#: weblate_web/templates/hosting.html:187
+#: weblate_web/templates/hosting.html:190
+#: weblate_web/templates/hosting.html:193
+#: weblate_web/templates/hosting.html:253
+#, python-format
+msgid "%(price)s EUR / month"
+msgstr "%(price)s Ευρώ / μήνα"
+
+#: weblate_web/templates/hosting.html:195
+msgid "See below for options"
+msgstr "Δείτε παρακάτω για επιλογές"
+
+#: weblate_web/templates/hosting.html:198
+#, python-format
+msgid "Yearly by invoice (save 15-20%%)"
+msgstr "Ετησίως με πάγια εντολή (εξοικονόμηση 20%%)"
+
+#: weblate_web/templates/hosting.html:200
+#: weblate_web/templates/hosting.html:203
+#: weblate_web/templates/hosting.html:206
+#: weblate_web/templates/hosting.html:209
+msgid "Ask us for yearly invoicing with discount."
+msgstr "Ρωτήστε μας για ετήσια συνδρομή με έκπτωση."
+
+#: weblate_web/templates/hosting.html:200
+#: weblate_web/templates/hosting.html:203
+#: weblate_web/templates/hosting.html:206
+#: weblate_web/templates/hosting.html:209
+#: weblate_web/templates/hosting.html:254
+#, python-format
+msgid "%(price)s EUR / year"
+msgstr "%(price)s Ευρώ / έτος"
+
+#: weblate_web/templates/hosting.html:217
+msgid ""
+"The pricing is based on number of source strings and number of target "
+"languages. The source string is a text unit defined in a translation format, "
+"it can be word, sentence or a paragraph."
+msgstr ""
+"Η κοστολόγηση βασίζεται στον αριθμό των κειμένων προέλευσης και τον αριθμό "
+"των γλωσσών προορισμού. Το κείμενο προέλευσης είναι μια μονάδα κειμένου "
+"ορισμένη σε μια μορφή μετάφρασης, όπως λέξη, φράση ή παράγραφος."
+
+#: weblate_web/templates/hosting.html:221
+msgid ""
+"The hosting setup is currently done manually, so you might want to get in "
+"touch with us prior to making subscription with your project details."
+msgstr ""
+"Η εγκατάστσαη φιλοξενίας γίνεται χειροκίνητα, για αυτό ίσως θελήσετε να "
+"επικοινωνήσετε μαζί μας πριν εγγραφείτε με τις λεπτομέρειες του έργου σας."
+
+#: weblate_web/templates/hosting.html:225
+msgid ""
+"Alternatively we can accept payments by wire transfer (preferably IBAN) or "
+"Bitcoin. Please get in touch for more details."
+msgstr ""
+"Εναλλακτικά, μπορούμε να δεχτούμε πληρωμές μέσω τράπεζας (κατά προτίμηση "
+"IBAN) ή Bitcoin. Επικοινωνήστε για περισσότερες πληροφορίες."
+
+#: weblate_web/templates/hosting.html:228
+msgid "Support for self hosted environments"
+msgstr "Υποστήριξη για αυτοφιλοξενούμενα περιβάλλοντα"
+
+#: weblate_web/templates/hosting.html:230
+msgid ""
+"Worried of putting your translations into cloud? You can self host Weblate "
+"and we can still provide you premium support for your setup."
+msgstr ""
+"Ανησυχείτε βάζοντας τις μεταφράσεις στο σύννεφο; Μπορείτε να φιλοξενήσετε "
+"μόνοι σας το Weblate και να έχετε άριστη υποστήριξη για την εγκατάστασή σας."
+
+#: weblate_web/templates/hosting.html:236
+msgid "Installation on your Linux server"
+msgstr "Εγκατάσταση στον Linux διακομιστή σας"
+
+#: weblate_web/templates/hosting.html:237
+#, python-format
+msgid "%(price)s EUR"
+msgstr "%(price)s Ευρώ"
+
+#: weblate_web/templates/hosting.html:242
+msgid "One time installation of Weblate"
+msgstr "Εγκατάσταση μιας φοράς του Weblate"
+
+#: weblate_web/templates/hosting.html:243
+msgid "Installation using virtualenv, uwsgi and nginx"
+msgstr "Εγκατάσταση με χρήση των virtualenv, uwsgi και nginx"
+
+#: weblate_web/templates/hosting.html:244
+msgid "Using PostgreSQL, MySQL or MariaDB as database backend"
+msgstr "Χρήση των PostgreSQL, MySQL ή MariaDB ως βάσεις δεδομένων παρασκηνίου"
+
+#: weblate_web/templates/hosting.html:245
+msgid "Requires root access or close cooperation of your admins"
+msgstr "Απαιτείται ριζική πρόσβαση ή στενή συνεργασία των διαχειριστών σας"
+
+#: weblate_web/templates/hosting.html:246
+msgid "Configuration customization"
+msgstr "Προσαρμογή ρύθμισης"
+
+#: weblate_web/templates/hosting.html:247
+msgid "Does not include custom code development"
+msgstr "Δεν περιλαμβάνει ανάπτυξη προσαρμοσμένου κώδικα"
+
+#: weblate_web/templates/hosting.html:252
+msgid "Basic support for self hosted Weblate"
+msgstr "Βασική υποστήριξη αυτοφιλοξενούμενου Weblate"
+
+#: weblate_web/templates/hosting.html:259
+msgid "Your Weblate will be upgraded to the latest version on every release."
+msgstr "To Weblate θα αναβαθμίζεται στην τελευταία έκδοση με κάθε δημοσίευση."
+
+#: weblate_web/templates/hosting.html:260
+msgid "We will fix issues that occur in your environment."
+msgstr "Θα διορθώσουμε θέματα που έλαβαν χώρα στον περιβάλλον σας."
+
+#: weblate_web/templates/hosting.html:261
+msgid "You will receive priority email support."
+msgstr "Θα λάβετε υποστήριξη ηλεκτρονικής αλληλογραφίας προτεραιότητας."
+
+#: weblate_web/templates/hosting.html:266
+msgid "Consulting services or custom development"
+msgstr "Υπηρεσίες συμβουλευτικής ή προσαρμοσμένη ανάπτυξη"
+
+#: weblate_web/templates/hosting.html:267
+#, python-format
+msgid "%(price)s EUR / hour"
+msgstr "%(price)s Ευρώ"
+
+#: weblate_web/templates/hosting.html:272
+msgid "Custom features development"
+msgstr "Ανάπτυξη προσαρμοσμένων χαρακτηριστικών"
+
+#: weblate_web/templates/hosting.html:273
+msgid "Integrating Weblate into your workflow"
+msgstr "Ενσωμάτωση του Weblate στη ροή εργασιών σας"
+
+#: weblate_web/templates/hosting.html:274
+msgid "Suggestions on the internationalization or localization process"
+msgstr "Προτάσεις για τη διαδικασία διεθνοποίησης ή τοπικοποίησης"
+
+#: weblate_web/templates/hosting.html:282
+msgid "Ask us for details about self hosted Weblate"
+msgstr "Ρωτήστε μας για λεπτομέρειες σχετικά με το αυτοφιλοξενούμενο Weblate"
+
+#: weblate_web/templates/hosting.html:284
+msgid "Hosting for free software"
+msgstr "Φιλοξενία για το ελεύθερο λογισμικό"
+
+#: weblate_web/templates/hosting.html:287
+msgid ""
+"If you are interested in using Weblate for your free software, you can ask "
+"us for hosting of your translations on <a href=\"https://hosted.weblate.org/"
+"\">hosted.weblate.org</a>. This will allow you to use Weblate without "
+"installing and maintaining it."
+msgstr ""
+"Αν σας ενδιαφέρει η χρήση του Weblate για το ελεύθερο λογισμικό σας, "
+"μπορείτε να ζητήσετε τη φιλοξενία των μεταφράσεων σας στο <a href=\"https://"
+"hosted.weblate.org/\">hosted.weblate.org</a>. Αυτό θα σας επιτρέψει να "
+"χρησιμοποιήσετε το Weblate χωρίς την εγκατάσταση και συντήρησή του."
+
+#: weblate_web/templates/hosting.html:290
+msgid "Conditions for free hosting"
+msgstr "Προϋποθέσεις για ελεύθερη φιλοξενία"
+
+#: weblate_web/templates/hosting.html:293
+msgid ""
+"Translated content has to be released under <a href=\"https://en.wikipedia."
+"org/wiki/Free_software_license\">free license</a>."
+msgstr ""
+"Το μεταφρασμένο περιεχόμενο πρέπει να δημοσιεύτεί υπό <a href=\"https://en."
+"wikipedia.org/wiki/Free_software_license\">άδεια ελεύθερης χρήσης</a>."
+
+#: weblate_web/templates/hosting.html:294
+msgid ""
+"Source code has to be publicly available in a supported version control "
+"system."
+msgstr ""
+"Ο πηγαίος κώδικας πρέπει να είναι διαθέσιμος στο κοινό στο υποστηριζόμενο "
+"σύστημα ελέγχου εκδόσεων."
+
+#: weblate_web/templates/hosting.html:295
+msgid "There is no guarantee for service availability or quality."
+msgstr ""
+"Δεν υπάρχει καμία εγγύηση για τη διαθεσιμότητα της υπηρεσίας ή την ποιότητα."
+
+#: weblate_web/templates/hosting.html:298
+msgid "Asking for hosting"
+msgstr "Ερώτημα για φιλοξενία"
+
+#: weblate_web/templates/hosting.html:301
+#, python-format
+msgid ""
+"Please use <a href=\"%(url)s\">contact form on Hosted Weblate</a> to request "
+"hosting. You will need following information:"
+msgstr ""
+"Χρήση της <a href=\"%(url)s\">φόρμας επικοινωνίας στο Hosted Weblate</a> για "
+"αίτημα φιλοξενίας. Θα χρειαστείτε τις ακόλουθες πληροφορίες:"
+
+#: weblate_web/templates/hosting.html:305
+msgid "Information about your project."
+msgstr "Πληροφορίες για το έργο σας."
+
+#: weblate_web/templates/hosting.html:306
+msgid "Project website."
+msgstr "Ιστοσελίδα έργου."
+
+#: weblate_web/templates/hosting.html:314
+msgid ""
+"The free plan does not allow you to change project visibility or to limit "
+"users which can contribute to the translation."
+msgstr ""
+
+#: weblate_web/templates/hosting.html:317
+msgid ""
+"This limitation can be lifted by purchasing the \"Basic\" hosting plan - you "
+"will still have free software limits, but you will get extended user "
+"management capabilities."
+msgstr ""
+
+#: weblate_web/templates/hosting.html:320
+msgid "Translation workflow"
+msgstr "Ροή εργασιών μετάφρασης"
+
+#: weblate_web/templates/hosting.html:323
+msgid ""
+"All translated repositories are available using https protocol with similar "
+"naming as on website - weblate/master translation is published as "
+"<code>https://hosted.weblate.org/git/weblate/master/</code>. You can figure "
+"out the URL on the component information tab."
+msgstr ""
+"Όλα τα μεταφραστικά αποθετήρια είναι διαθέσιμα με χρήση πρωτοκόλλου https με "
+"παρόμοια ονομασία όπως στην ιστοσελίδα weblate/γενική μετάφραση που έχει "
+"δημοσιευτεί ως <code>https://hosted.weblate.org/git/weblate/master/</code>. "
+"Μπορείτε να βρείτε το URL στην καρτέλα πληροφοριών περιεχομένου."
+
+#: weblate_web/templates/hosting.html:327
+#, python-format
+msgid ""
+"Weblate can automatically receive changes from major code hosting services, "
+"see our documentation for setup on <a href=\"%(github)s\">GitHub</a>, <a "
+"href=\"%(bitbucket)s\">Bitbucket</a> or <a href=\"%(gitlab)s\">GitLab</a>."
+msgstr ""
+"To Weblate μπορεί αυτόματα να λάβει αλλαγές για βασικές υπηρεσίες φιλοξενίας "
+"κώδικα, δείτε την τεκμηρίωση για εγκατάσταση στο <a href=\"%(github)s"
+"\">GitHub</a>, στο <a href=\"%(bitbucket)s\">Bitbucket</a> ή στο <a href="
+"\"%(gitlab)s\">GitLab</a>."
+
+#: weblate_web/templates/hosting.html:331
+#, python-format
+msgid ""
+"If you want Weblate to automatically push changes as well, add Weblate push "
+"user to collaborators and let us know you want to use this option. See <a "
+"href=\"%(docs)s\">documentation</a> for more detailed instructions."
+msgstr ""
+"Αν θέλετε το Weblate να προωθεί αυτόματα τις αλλαγές, προσθέστε το χρήστη "
+"προώθησης του Weblate push user στους συνεργάτες και ενημερώστε μας ότι "
+"θέλετε να χρησιμοποιήσετε αυτή την επιλογή. Δείτε την <a href=\"%(docs)s"
+"\">τεκμηρίωση</a> για περισσότερες λεπτομερείς οδηγίες."
+
+#: weblate_web/templates/hosting.html:334
+msgid "Support free hosting"
+msgstr "Υποστήριξη ελεύθερης φιλοξενίας"
+
+#: weblate_web/templates/hosting.html:338
+#, python-format
+msgid ""
+"The hosting is provided for free, but running the server and maintaining it "
+"costs some money, so you are welcome to use <a href=\"%(gittip_url)s"
+"\">Liberapay</a> or <a href=\"%(donate_url)s\">other ways to donate</a>."
+msgstr ""
+"Η φιλοξενία παρέχεται δωρεάν, αλλά η λειτουργία του διακομιστή και η "
+"συντήρησή του κοστίζουν, έτσι σας προτείνουμε να χρησιμοποιήσετε το <a href="
+"\"%(gittip_url)s\">Liberapay</a> ή <a href=\"%(donate_url)s\">άλλους τρόπους "
+"δωρεάς</a>."
+
+#: weblate_web/templates/hosting.html:342
+msgid "Self hosting"
+msgstr "Αυτοφιλοξενία"
+
+#: weblate_web/templates/hosting.html:346
+#, python-format
+msgid ""
+"You can also <a href=\"%(download_url)s\">download</a> Weblate sources and "
+"run it on your systems. There are also several options for deploying Weblate "
+"to the cloud."
+msgstr ""
+"Μπορείτε, επίσης, να <a href=\"%(download_url)s\">λάβετε</a> τον κώδικα του "
+"Weblate και να τον τρέξετε στο δίκο σας σύστημα. Υπάρχουν, επίσης, αρκετές "
+"επιλογές για να εφαρμόσετε το Weblate στο σύννεφο."
+
+#: weblate_web/templates/hosting.html:350
+#, python-format
+msgid ""
+"In case you need help with your self hosted solution, we're ready to help as "
+"well with consulting services tailored for your needs. Please contact <a "
+"href=\"%(contact_url)s\">Michal Čihař</a> for more details."
+msgstr ""
+"Σε περίπτωση που χρειάζεστε βοήθεια με τη λύση φιλοξενίας σας, είμαστε "
+"ετοιμοι να παρέχουμε υπηρεσίες βοήθειας και συμβουλευτικής σύμφωνα με τις "
+"ανάγκες σας. Επικοινωνήστε με τον <a href=\"%(contact_url)s\">Michal Čihař</"
+"a> για περισσότερες λεπτομέρειες."
+
+#: weblate_web/templates/hosting.html:353
+msgid ""
+"All prices exclude VAT, invoices for EU countries are issued as a reverse "
+"charge, invoices for Czech Republic will include additional VAT."
+msgstr ""
+"Όλες οι τιμές είναι χωρίς ΦΠΑ, τα τιμολόγια για χώρες της ΕΕ εκδίδονται ως "
+"αντίστροφης χρέωσης, τα τιμολόγια για την Δημοκρατία της Τσεχίας θα "
+"περιλαμβάνουν πρόσθετο ΦΠΑ."
+
+#: weblate_web/templates/index.html:3
+msgid "Weblate - web-based translation"
+msgstr "Weblate - διαδικτυακή μετάφραση"
+
+#: weblate_web/templates/index.html:14 weblate_web/templates/tour.html:11
+#: weblate_web/templates/try.html:12
+msgid "Try our demo"
+msgstr "Δοκιμάστε το demo μας"
+
+#: weblate_web/templates/index.html:15
+msgid "View hosting plans"
+msgstr "Προβολή σχεδίων φιλοξενίας"
+
+#: weblate_web/templates/index.html:16
+msgid "Downloads"
+msgstr "Λήψεις"
+
+#: weblate_web/templates/index.html:25
+msgid ""
+"Weblate is a free web-based translation tool with tight version control "
+"integration. It features simple and clean user interface, propagation of "
+"translations across components, quality checks and automatic linking to "
+"source files."
+msgstr ""
+"Το Weblate είναι ένα δωρεάν διαδικτυακό εργαλείο μετάφρασης με ενσωμάτωση "
+"ελέγχου έκδοσης. Διαθέτει καθαρό και απλό περιβάλλον χρήστη, διαμοιρασμός "
+"των μεταφράσεων μεταξύ περιεχομένων, ποιοτικού ελέγχους και αυτόματη σύνδεση "
+"με τα πηγαία αρχεία."
+
+#: weblate_web/templates/index.html:29
+msgid "Weblate screenshot"
+msgstr "Στιγμιότυπο του Weblate"
+
+#: weblate_web/templates/index.html:38
+msgid "See more features…"
+msgstr "Δείτε περισσότερα χαρακτηριστικά…"
+
+#: weblate_web/templates/index.html:47
+msgid "See who is using Weblate and join them!"
+msgstr "Δείτε πως χρησιμοποιούν το Weblate και μπείτε στην παρέα!"
+
+#: weblate_web/templates/support.html:3 weblate_web/templates/support.html:4
+msgid "Weblate support"
+msgstr "Υποστήριξη Weblate"
+
+#: weblate_web/templates/support.html:6
+msgid "Weblate is a free software with community support."
+msgstr "Το Weblate είναι ένα δωρεάν λογισμικό με υποστήριξη κοινότητας."
+
+#: weblate_web/templates/support.html:11
+msgid "Report issue"
+msgstr "Θέμα αναφοράς"
+
+#: weblate_web/templates/support.html:16
+msgid "Bugs or feature requests"
+msgstr "Σφάλματα ή αιτήσεις για χαρακτηριστικά"
+
+#: weblate_web/templates/support.html:19
+msgid ""
+"Have you found any issue with Weblate? Do you have idea how to improve it? "
+"Please report it to <a href=\"https://github.com/WeblateOrg/weblate/issues"
+"\">issue tracker on GitHub</a>."
+msgstr ""
+"Έχετε βρει κάποιο σφάλμα στο Weblate; Έχετε ιδέα πώς να το βελτιώσουμε; "
+"Αναφέρετέ το στη <a href=\"https://github.com/WeblateOrg/weblate/issues"
+"\">καταγραφή θεμάτων στο GitHub</a>."
+
+#: weblate_web/templates/support.html:22
+msgid "Security issues"
+msgstr "Θέματα ασφάλειας"
+
+#: weblate_web/templates/support.html:25
+#, python-format
+msgid ""
+"Should you find security issue within our code base, please report it to "
+"%(contact)s. More information on reporting security issues can be found in "
+"<a href=\"%(docs)s\">our documentation</a>."
+msgstr ""
+"Αν βρείτε θέμα ασφάλειας στη βάση του κώδικά μας, αναφέρετέ τη στο "
+"%(contact)s. Περισσότερες πληροφορίες για την αναφορά θεμάτων ασφάλειας "
+"μπορούν να βρεθούν στην <a href=\"%(docs)s\">τεκμηρίωσή μας</a>."
+
+#: weblate_web/templates/support.html:28
+msgid "Support for Hosted Weblate services"
+msgstr "Υποστήριξη για φιλοξενούμενες υπηρεσίες Weblate"
+
+#: weblate_web/templates/support.html:31
+#, python-format
+msgid ""
+"If you are using our hosting services, you can ask for support at "
+"%(contact)s."
+msgstr ""
+"Αν χρησιμοποιείτε τις υπηρεσίας φιλοξενίας μας, μπορείτε να ζητήσετε "
+"υποστήριξη στο %(contact)s."
+
+#: weblate_web/templates/support.html:34
+msgid "Mailing lists"
+msgstr "Λίστες αλληλογραφίας"
+
+#: weblate_web/templates/support.html:36
+msgid "Users and developers mailing list"
+msgstr "Λίστα αλληλογραφίας για χρήστες και προγραμματιστές"
+
+#: weblate_web/templates/support.html:38
+msgid ""
+"You can use mailing lists for discussions with other Weblate users and "
+"developers."
+msgstr ""
+"Μπορείτε να χρησιμοποιήσετε τις λίστες αλληλογραφίας για συζητήσεις με "
+"άλλους χρήστες και προγραμματιστές του Weblate."
+
+#: weblate_web/templates/support.html:39
+#, fuzzy
+msgid ""
+"You can post to it using <a href=\"mailto:weblate@lists.cihar.com"
+"\">weblate@lists.cihar.com</a> address."
+msgstr ""
+"Μπορείτε να αναρτήσετε μηνύματα σε αυτή, χρησιμοποιόντας την διεύθυνση <a "
+"href=\"mailto:weblate@lists.cihar.com\">weblate@lists.cihar.com</a>."
+
+#: weblate_web/templates/support.html:40 weblate_web/templates/support.html:56
+msgid "You can browse mailing list archives"
+msgstr "Μπιρείτε να πλοηγηθείτε στα αρχεία της λίστας αλληλογραφίας"
+
+#: weblate_web/templates/support.html:43 weblate_web/templates/support.html:59
+msgid "Enter your email"
+msgstr "Εισάγετε το email σας"
+
+#: weblate_web/templates/support.html:45 weblate_web/templates/support.html:61
+msgid "Subscribe"
+msgstr "Εγγραφείτε"
+
+#: weblate_web/templates/support.html:52
+msgid "Hosted Weblate Announcements mailing list"
+msgstr "Λίστα αλληλογραφίας Ανακοινώσεις Hosted Weblate"
+
+#: weblate_web/templates/support.html:54
+msgid ""
+"Low traffic mailing list with announcements about Hosted Weblate services."
+msgstr ""
+"Λίστα αλληλογραφίας μικρής κίνησης με ανακοινώσεις σχετικά με τις υπηρεσίες "
+"Hosted Weblate."
+
+#: weblate_web/templates/support.html:55
+msgid "This list is moderated, only selected users can post announcements."
+msgstr ""
+"Αυτή η λίστα είναι συντονιζόμενη, μόνο επιλεγμένοι χρήστες μπορούν να "
+"αναρτήσουν ανακοινώσεις."
+
+#: weblate_web/templates/support.html:68
+msgid "Stack Overflow"
+msgstr "Υπερχείλιση στοίβας"
+
+#: weblate_web/templates/support.html:70
+#, python-format
+msgid ""
+"You can also ask related questions on <a href=\"%(url)s\">Stack Overflow</a>."
+msgstr ""
+"Μπορείτε, επίσης, να ρωτήσετε σχετικές ερωτήσεις για την <a href=\"%(url)s"
+"\">Υπερχείλιση Στοίβας</a>."
+
+#: weblate_web/templates/support.html:72
+msgid "Consulting"
+msgstr "Συμβουλευτική"
+
+#: weblate_web/templates/support.html:74
+msgid "See our support offerings for self hosted Weblate instances"
+msgstr ""
+"Δείτε τις προσφορές υποστήριξης για περιπτώσεις αυτοφιλοξενούμενου Weblate"
+
+#: weblate_web/templates/support.html:77
+#, python-format
+msgid ""
+"You can also contact <a href=\"%(contact_link)s\">Michal Čihař</a>, who is "
+"author of Weblate for consulting services."
+msgstr ""
+"Μπορείτε επίσης να επικοινωνήσετε με τον <a href=\"%(contact_link)s\">Michal "
+"Čihař</a>, που είναι δημιουργός του Weblate για τις υπηρεσίες συμβουλευτικής."
+
+#: weblate_web/templates/thanks.html:3 weblate_web/templates/thanks.html:4
+msgid "Thanks from Weblate"
+msgstr "Ευχαριστούμε για το Weblate"
+
+#: weblate_web/templates/thanks.html:6
+msgid "Weblate is thankful for help from others."
+msgstr "Το Weblate είναι ευγνώμον για τη βοήθεια από άλλους."
+
+#: weblate_web/templates/thanks.html:20
+msgid "Technology"
+msgstr "Τεχνολογία"
+
+#: weblate_web/templates/thanks.html:22
+msgid "The development of Weblate is based on the following technologies:"
+msgstr "Η ανάπτυξη του Weblate βασίστηκε στις ακόλουθες τεχνολογίες:"
+
+#: weblate_web/templates/thanks.html:26
+msgid "GitHub provides hosting for our source code and issue tracker."
+msgstr ""
+"Το GitHub παρέχει φιλοξενία για τον πηγαίο μας κώδικα και τον ιχνηλάτη "
+"θεμάτων."
+
+#: weblate_web/templates/thanks.html:30
+msgid "Travis CI is our continuous integration platform."
+msgstr "Το Travis CI είναι η πλατφόρμα συνεχούς ενσωμάτωσης."
+
+#: weblate_web/templates/thanks.html:34
+msgid "Codecov helps us to monitor code coverage of our test suite."
+msgstr ""
+"Το Codecov μας βοηθάει να εποπτεύουμε την κάλυψη του κώδικα στη σουίτα "
+"ελέγχου μας."
+
+#: weblate_web/templates/thanks.html:38
+msgid "Sauce Labs is running our Selenium tests in real browsers."
+msgstr ""
+"Τα εργαστήρια Σάλτσα εκτελούν τις δοκιμές Σεληνίου μας σε πραγματικούς "
+"φυλλομετρητές."
+
+#: weblate_web/templates/thanks.html:42
+msgid "Rollbar helps us to collect and fix errors happening on Hosted Weblate."
+msgstr ""
+"Η γραμμή κύλισης μας βοηθάει να συλλέγουμε και διορθώνουμε σφάλματα που "
+"συμβαίνουν στο Hosted Weblate."
+
+#: weblate_web/templates/thanks.html:46
+msgid "Our translations are being done on Hosted Weblate."
+msgstr "Οι μεταφράσεις μας γίνονται στο Hosted Weblate."
+
+#: weblate_web/templates/thanks.html:50
+msgid "Supporters"
+msgstr "Υποστηρικτές"
+
+#: weblate_web/templates/thanks.html:52
+msgid ""
+"Free hosting for free software projects would be impossible without our "
+"sponsors."
+msgstr ""
+"Δωρεάν φιλοξενία για δωρεάν έργα λογισμικού θα ήταν αδύνατη χωρίς χορηγούς."
+
+#: weblate_web/templates/thanks.html:54
+msgid ""
+"Support our project on Bountysource Salt and get exclusive logo placement on "
+"this page."
+msgstr ""
+"Υποστηρίξτε το έργο μας στο Bountysource Salt και λάβετε αποκλειστική θέση "
+"λογοτύπου σε αυτή τη σελίδα."
+
+#: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
+msgid "Weblate tour"
+msgstr "Περιοδεία του Weblate"
+
+#: weblate_web/templates/tour.html:6
+msgid "Weblate has useful features for every crowdsourced translation."
+msgstr "Το Weblate έχει χρήσιμα χαρακτηριστικά για κάθε πολυπληθή μετάφραση."
+
+#: weblate_web/templates/try.html:3 weblate_web/templates/try.html:4
+msgid "Try Weblate"
+msgstr "Δοκιμάστε το Weblate"
+
+#: weblate_web/templates/try.html:6
+msgid "Weblate is easy to deploy as an appliance."
+msgstr "Το Weblate είναι εύκολο να ενσωματωθεί ως εφαρμογή."
+
+#: weblate_web/templates/try.html:19
+msgid "Demo server"
+msgstr "Διακομιστης δοκιμών"
+
+#: weblate_web/templates/try.html:22
+msgid ""
+"Try Weblate on the <a href=\"https://demo.weblate.org\">demo server</a>. "
+"Register there and work under your username, or just use username: "
+"<code>demo</code> with password: <code>demo</code>."
+msgstr ""
+"Δοκιμάσετε το Weblate στον <a href=\"https://demo.weblate.org\">εξυπηρετητή "
+"επίδειξης</a>. Εγγραφείτε εκεί και εργαστείτε κάτω από το δικό σας παρωνύμιο "
+"ή απλά χρησιμοποιήστε παρωνύμιο: <code>demo</code> με συνθηματικό: "
+"<code>demo</code>."
+
+#: weblate_web/templates/try.html:25
+msgid ""
+"To test the review workflow there, log in with username: <code>review</"
+"code>, and password: <code>review</code>."
+msgstr ""
+"Για να δοκιμάσετε την ροή εργασίας αναθεωρήσεων εκεί, συνδεθείτε με "
+"παρωνύμιο: <code>review</code>, και συνθηματικό: <code>review</code>."
+
+#: weblate_web/templates/try.html:27
+msgid "Appliances"
+msgstr "Εφαρμογές"
+
+#: weblate_web/templates/try.html:30
+#, python-format
+msgid ""
+"Check out the <a href=\"%(download_url)s\">download page</a> for appliances, "
+"providing an easy way to deploy Weblate in the cloud."
+msgstr ""
+"Ελέγξτε τη <a href=\"%(download_url)s\">σελίδα λήψης</a> για εφαρμογές που "
+"παρέχουν εύκολο τρόπο ενσωμάτωσης του Weblate σε σύννεφο."
+
+#: weblate_web/templatetags/downloads.py:40
+#, python-format
+msgid "%(size)d byte"
+msgid_plural "%(size)d bytes"
+msgstr[0] "%(size)d byte"
+msgstr[1] "%(size)d bytes"
+
+#: weblate_web/templatetags/downloads.py:45
+#, python-format
+msgid "%.1f KiB"
+msgstr "%.1f KB"
+
+#: weblate_web/templatetags/downloads.py:47
+#, python-format
+msgid "%.1f MiB"
+msgstr "%.1f MB"
+
+#: weblate_web/templatetags/downloads.py:48
+#, python-format
+msgid "%.1f GiB"
+msgstr "%.1f GB"
+
+#: weblate_web/templatetags/downloads.py:55
+msgid "Sources tarball, bzip2 compressed"
+msgstr "Προελεύσεις tarball, συμπιεσμένο bzip2"
+
+#: weblate_web/templatetags/downloads.py:57
+msgid "Sources tarball, gzip compressed"
+msgstr "Προελεύσεις tarball, συμπιεσμένο gzip"
+
+#: weblate_web/templatetags/downloads.py:59
+msgid "Sources tarball, xz compressed"
+msgstr "Προελεύσεις tarball, συμπιεσμένο xz"
+
+#: weblate_web/templatetags/downloads.py:61
+msgid "Sources, zip compressed"
+msgstr "Προελεύσεις, συμπιεσμένο zip"
+
+#~ msgid "Liberapay allows you to send a weekly amount using a credit card."
+#~ msgstr ""
+#~ "Το Liberapay σας επιτρέπει να στέλνετε εβδομαδιαία ποσό με χρήση "
+#~ "πιστωτικής κάρτας."
+
+#~ msgid "Translation processing"
+#~ msgstr "Εξέλιξη μετάφρασης"
+
+#~ msgid "Phone support"
+#~ msgstr "Υποστήριξη τηλεφώνου"
+
+#~ msgid "Minimal support for self hosted Weblate"
+#~ msgstr "Ελάχιστη υποστήριξη για αυτοφιλοξενούμενο Weblate"
+
+#~ msgid ""
+#~ "Your Weblate will be upgraded to the latest version at least every "
+#~ "%(count)s month."
+#~ msgid_plural ""
+#~ "Your Weblate will be upgraded to the latest version at least every "
+#~ "%(count)s months."
+#~ msgstr[0] ""
+#~ "To Weblate θα αναβαθμιζεται στην τελευταία έκδοση τουλάχιστον κάθε "
+#~ "%(count)s μήνα."
+#~ msgstr[1] ""
+#~ "To Weblate θα αναβαθμιζεται στην τελευταία έκδοση τουλάχιστον κάθε "
+#~ "%(count)s μήνες."
+
+#~ msgid ""
+#~ "Up to %(amount)s hour of consulting or support per month are included."
+#~ msgid_plural ""
+#~ "Up to %(amount)s hours of consulting or support per month are included."
+#~ msgstr[0] ""
+#~ "Μέχρι %(amount)s ώρα συμβουλευτική ή υποστήριξη ανά μήνα περιλαμβάνεται."
+#~ msgstr[1] ""
+#~ "Μέχρι %(amount)s ώρες συμβουλευτική ή υποστήριξη ανά μήνα περιλαμβάνονται."
+
+#~ msgid "Extended support for self hosted Weblate"
+#~ msgstr "Διευρημένη υποστήριξη αυτοφιλοξενούμενου Weblate"
+
+#~ msgid "SUSE Studio appliances"
+#~ msgstr "Συσκευές SUSE Studio"
+
+#~ msgid ""
+#~ "There is a mailing list <a href=\"mailto:weblate@lists.cihar.com"
+#~ "\">weblate@lists.cihar.com</a> where you can discuss various things about "
+#~ "Weblate. You can <a href=\"https://lists.cihar.com/cgi-bin/mailman/"
+#~ "listinfo/weblate\">subscribe</a> or <a href=\"https://lists.cihar.com/"
+#~ "pipermail/weblate/\">browse archives</a>."
+#~ msgstr ""
+#~ "Υπάρχει μια λίστα επικοινωνίας <a href=\"mailto:weblate@lists.cihar.com"
+#~ "\">weblate@lists.cihar.com</a> όπου μπορείτε να συζητήσετε για διάφορα "
+#~ "πράγματα σχετικά με το Weblate. Μπορείτε να <a href=\"https://lists.cihar."
+#~ "com/cgi-bin/mailman/listinfo/weblate\">εγγραφείτε</a> ή να <a href="
+#~ "\"https://lists.cihar.com/pipermail/weblate/\"> αναζητήστε τα αρχείo</a>."
+
+#~ msgid ""
+#~ "The mailing list is also available on <a href=\"https://dir.gmane.org/"
+#~ "gmane.comp.web.weblate\">Gmane</a> where you can browse archives or use "
+#~ "NNTP interface."
+#~ msgstr ""
+#~ "Η λίστα αλληλογραφίας είναι επίσης διαθέσιμη στο <a href=\"https://dir."
+#~ "gmane.org/gmane.comp.web.weblate\">Gmane</a> όπου μπορείτε να "
+#~ "περιηγηθείτε στο αρχείο ή να χρησιμοποιήσετε περιβάλλον NNTP."
+
+#~ msgid "IRC"
+#~ msgstr "IRC"
+
+#, fuzzy
+#~| msgid ""
+#~| "When some of interested people are online, you might also find help on "
+#~| "#weblate channel on <a href=\"https://freenode.net/\">freenode</a> "
+#~| "network. You can also use <a href=\"https://webchat.freenode.net?"
+#~| "channels=weblate\">webchat</a> there."
+#~ msgid ""
+#~ "You might also find help on #weblate channel on <a href=\"https://"
+#~ "freenode.net/\">freenode</a> network. You can also use <a href=\"https://"
+#~ "webchat.freenode.net?channels=weblate\">webchat</a> there."
+#~ msgstr ""
+#~ "Όταν ορισμένοι ενδιαφέροντες άνθρωποι είναι συνδεδεμένοι, μπορείτε να "
+#~ "βρείτε βοήθεια στο κανάλι #weblate στο δίκτυο <a href=\"https://freenode."
+#~ "net/\">freenode</a>. Μπορείτε επίσης να χρησιμοποιήσετε εκεί το <a href="
+#~ "\"https://webchat.freenode.net?channels=weblate\">webchat</a>."
+
+#~ msgid "Donate using Coinbase"
+#~ msgstr "Δωρεά με χρήση Conbase"
+
+#~ msgid "Coinbase allows you to send Bitcoins."
+#~ msgstr "Το Coinbase σας επιτρέπει να δίνετε Bitcoins."
+
+#, fuzzy
+#~| msgid ""
+#~| "You can also use <a href=\"https://www.bitcoin.org/\">Bitcoin is a peer-"
+#~| "to-peer network</a> and send me Bitcoins to <code>%(bitcoin_address)s</"
+#~| "code>."
+#~ msgid ""
+#~ "You can also use <a href=\"https://www.bitcoin.org/\">Bitcoin is a peer-"
+#~ "to-peer network</a> and send me Bitcoins to <code><a href=\"bitcoin:"
+#~ "%(address)s\">%(address)s</a></code>."
+#~ msgstr ""
+#~ "Mπορείτε, επίσης, να χρησιμοποιήσετε το <a href=\"https://www.bitcoin.org/"
+#~ "\">Bitcoin που είναι ένα δίκτυο peer-to-peer</a> και να μου στείλετε "
+#~ "Bitcoins στο <code>%(bitcoin_address)s</code>."
+
+#~ msgid ""
+#~ "For openSUSE/SLES users, there are binary packages available in the <a "
+#~ "href=\"https://software.opensuse.org/package/weblate/\">openSUSE "
+#~ "Buildservice</a>."
+#~ msgstr ""
+#~ "Για χρήστες openSUSE/SLES, υπάρχουν διαθέσιμα εκτελέσιμα πακέτα στο <a "
+#~ "href=\"https://software.opensuse.org/package/weblate/\"> openSUSE "
+#~ "Buildservice</a>."
+
+#~ msgid "Test repositories data, useful for offline tests"
+#~ msgstr "Δεδομένα αποθετηρίων ελέγχου, χρήσιμα για ελέγχους εκτός σύνδεσης"
+
+#~ msgid "Sponsors"
+#~ msgstr "Χορηγοί"
+
+#~ msgid "Monthly"
+#~ msgstr "Μηνιαίως"
+
+#~ msgid "Contact"
+#~ msgstr "Επικοινωνία"
+
+#~ msgid ""
+#~ "In case you want to run Weblate in your cloud or virtual server, you can "
+#~ "download appliance based on openSUSE 12.3 at <a href=\"%(url)s\">SUSE "
+#~ "Studio Gallery</a>."
+#~ msgstr ""
+#~ "Σε περίπτωση που θέλετε να εκτελέσετε το Weblate στο νέφος σας ή στο "
+#~ "διακομιστή σας, μπορείτε να πάρετε συσκευή που βασίζεται σε openSUSE 12.3 "
+#~ "στη <a href=\"%(url)s\">Συλλογή SUSE Studio</a>."
+
+#~ msgid ""
+#~ "Check <a href=\"%(url)s\">our documentation</a> for more information "
+#~ "about appliance setup."
+#~ msgstr ""
+#~ "Ελέγξτε την <a href=\"%(url)s\">τεκμηρίωση μας</a> για περισσότερες "
+#~ "πληροφορίες σχετικά με ρυθμίσεις εφαρμογής."
+
+#~ msgid ""
+#~ "Weblate is also available as <a href=\"https://bitnami.org/stack/weblate"
+#~ "\">BitNami stack</a>, that allows you native installation on Windows, "
+#~ "Linux or Mac OS X and provides virtual images for running Weblate."
+#~ msgstr ""
+#~ "Το Weblate είναι επίσης διαθέσιμο ως <a href=\"https://bitnami.org/stack/"
+#~ "weblate\">BitNami stack</a>, που σας επιτρέπει να το εγκαταστήσετε σε "
+#~ "Windows, Linux or Mac OS X αυτόνομα και παρέχει εικόνες για το δουλέψετε."
+
+#~ msgid "Commercial hosting"
+#~ msgstr "Εμπορική φιλοξενία"
+
+#~ msgid ""
+#~ "We can host translations for your commercial projects as well. All "
+#~ "hosting packages include following features:"
+#~ msgstr ""
+#~ "Μπορούμε να φιλοξενήσουμε μεταφράσεις για τα εμπορικά σας έργα επίσης. "
+#~ "Όλατ α φιλοξενούμενα πακέτα περιλαμβάνουν τα ακόλουθα χαρακτηριστικά:"
+
+#~ msgid "Unlimited number of contributors"
+#~ msgstr "Απεριόριστος αριθμός συνεισφερόντων"
+
+#~ msgid "Version control integration"
+#~ msgstr "Ενσωμάτωση ελέγχου έκδοσης"
+
+#~ msgid "All other Weblate features"
+#~ msgstr "Όλα τα άλλα χαρακτηριστικά του Weblate"
+
+#~ msgid "Up to 1000 source strings"
+#~ msgstr "Έως 1000 κείμενα προέλευσης"
+
+#~ msgid "One VCS repository"
+#~ msgstr "Ένα αποθετήριο VCS"
+
+#~ msgid "Up to 3000 source strings"
+#~ msgstr "Έως 3000 κείμενα προέλευσης"
+
+#~ msgid "Up to 30 target languages"
+#~ msgstr "Έως 30 γλώσσες προορισμού"
+
+#~ msgid "Up to 10000 source strings"
+#~ msgstr "Έως 10000 κείμενα προέλευσης"
+
+#~ msgid "Up to 60 target languages"
+#~ msgstr "Έως 60 γλώσσες προορισμού"
+
+#~ msgid "Up to 5 VCS repositories"
+#~ msgstr "Έως 5 αποθετήρια VCS"
+
+#~ msgid "Unlimited translation projects"
+#~ msgstr "Απεριόριστα έργα μετάφρασης"
+
+#~ msgid "Unlimited target languages"
+#~ msgstr "Απεριόριστες γλώσσες προορισμού"
+
+#~ msgid "Unlimited VCS repositories"
+#~ msgstr "Απεριόριστα αποθετήρια VCS"
+
+#~ msgid ""
+#~ "Please contact <a href=\"mailto:michal@cihar.com\">Michal Čihař</a> for "
+#~ "more details."
+#~ msgstr ""
+#~ "Επικοινωνήστε με τον <a href=\"mailto:michal@cihar.com\">Michal Čihař</"
+#~ "a>, για περισσότερες πληροφορίες."
+
+#~ msgid "Other options"
+#~ msgstr "Άλλες επιλογές"
+
+#~ msgid ""
+#~ "Commercial hosting is possible as well, our price starts at 19 EUR per "
+#~ "project and month, please get in touch with us for more details."
+#~ msgstr ""
+#~ "Η εμπορική φιλοξενία είναι δυνατή επίσης, η τιμή μας ξεκινά στα 19€ ανά "
+#~ "έργο και μήνα, επικοινωνήστε μαζί μας για περισσότερες λεπτομέρειες."
+
+#~ msgid ""
+#~ "Contact <a href=\"mailto:michal@cihar.com\">Michal Čihař</a> and include "
+#~ "at least following information:"
+#~ msgstr ""
+#~ "Επικοινωνήστε με τον <a href=\"mailto:michal@cihar.com\">Michal Čihař</a> "
+#~ "και συμπεριλάβετε τουλάχιστον τις ακόλουθες πληροφορίες:"
+
+#~ msgid "Home"
+#~ msgstr "Αρχική"
+
+#~ msgid "Visit us on Google+"
+#~ msgstr "Επισκευτείτε μας στο Google+"
+
+#~ msgid "Flattr Weblate"
+#~ msgstr "Flattr αυτό"
+
+#~ msgid ""
+#~ "Flattr is a micropayment site that allows you to give monthly small "
+#~ "amounts of money to various projects."
+#~ msgstr ""
+#~ "Το Flattr είναι ιστοσελίδα μικροπληρωμών, που σας επιτρέπει να δίνετε "
+#~ "μικρά μηνιαία ποσά χρημάτων σε διάφορα έργα."
+
+#~ msgid ""
+#~ "To enable automated workflow on GitHub, you need to enable Weblate "
+#~ "service hook in settings with <code>hosted.weblate.org</code> as URL. If "
+#~ "you want Weblate to automatically push changes as well, add Weblate user "
+#~ "to collaborators and let us know you want to use this option."
+#~ msgstr ""
+#~ "Για να ενεργοποιήσετε την αυτοματοποιημένη ροή εργασίας στο GitHub, "
+#~ "πρέπει να ενεργοποιήσετε το γάντζο υπηρεσίας Weblate στις ρυθμίσεις με "
+#~ "<code>hosted.weblate.org</code> ως διεύθυνση URL. Αν θέλετε το Weblate να "
+#~ "μεταφέρει αυτόματα τις αλλαγές, προσθέστε τον χρήστη Weblate στους "
+#~ "συνεργάτες και πείτε μας που θέλετε να χρησιμοποιήσετε αυτή την επιλογή."
+
+#~ msgid ""
+#~ "To enable automated workflow on Bitbucket, you need to add POST hook to "
+#~ "<code>https://hosted.weblate.org/hooks/bitbucket/</code> URL. If you want "
+#~ "Weblate to automatically push changes as well, give Weblate user write "
+#~ "permission to your repository and let us know you want to use this option."
+#~ msgstr ""
+#~ "Για να ενεργοποιήσετε την αυτοματοποιημένη ροή εργασίας στο Bitbucket, "
+#~ "πρέπει να προσθέσετε το γάντζο POST στο URL <code>https://hosted.weblate."
+#~ "org/hooks/bitbucket/</code>. Αν θέλετε το Weblate να μεταφέρει αυτόματα "
+#~ "τις αλλαγές, δώστε στον χρήστη Weblate δικαιώματα εγγραφής στο αποθετήριό "
+#~ "σας και πείτε μας που θέλετε να χρησιμοποιήσετε αυτή την επιλογή."
+
+#~ msgid ""
+#~ "You can place a bounty on individual features at <a href=\"%(url)s"
+#~ "\">Bountysource</a>."
+#~ msgstr ""
+#~ "Μπορείτε να τοποθετήσετε γενναιοδωρία σε μεμονωμένα χαρακτηριστικά "
+#~ "γνωρίσματα στο <a href=\"%(url)s\">Bountysource</a>."
+
+#~ msgid "Fund"
+#~ msgstr "Ταμείο"
+
+#~ msgid ""
+#~ "New <a href=\"%(url)s\">Weblate features</a> are also being <a href="
+#~ "\"%(url)s\">funded on Catincan</a>, you can support them there!"
+#~ msgstr ""
+#~ "Νέα <a href=\"%(url)s\">χαρακτηριστικά του Weblate</a> υποστηρίζονται <a "
+#~ "href=\"%(url)s\">οικονομικά στο Catincan</a>, μπορείτε να τους "
+#~ "υποστηρίξετε και εσείς!"
+
+#~ msgid ""
+#~ "Regular donations, which will support Weblate and it's free hosting in "
+#~ "the long term can be done on <a href=\"https://www.gittip.com/nijel/"
+#~ "\">Liberapay</a>."
+#~ msgstr ""
+#~ "Τακτικές δωρεές, που θα υποστηρίζουν το Weblate και τη δωρεάν φιλοξενία "
+#~ "του μακροπρόσθεσμα, μπορούν να γίνουν στο <a href=\"https://www.gittip."
+#~ "com/nijel/\">Liberapay</a>."
+
+#~ msgid "Contribute"
+#~ msgstr "Συνεισφορά"
+
+#~ msgid "0 bytes"
+#~ msgstr "0 bytes"
+
+#~ msgid "Sources tarball, lzma compressed"
+#~ msgstr "Προελεύσεις tarball, συμπιεσμένο LZMA"
+
+#~ msgid "Sources, 7zip compressed"
+#~ msgstr "Προελεύσεις, συμπιεσμένο 7zip"
+
+#~ msgid "Language:"
+#~ msgstr "Γλώσσα:"
+
+#~ msgid "Hosting for commercial products"
+#~ msgstr "Φιλοξενία για εμπορικά προϊόντα"
+
+#~| msgid "Try Weblate"
+#~ msgid "Weblate"
+#~ msgstr "Weblate"

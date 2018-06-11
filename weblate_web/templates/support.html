@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Weblate support" %}{% endblock %}
+{% block header %}{% trans "Weblate support" %}{% endblock %}
+{% block description %}
+{% block headline %}{% trans "Weblate is a free software with community support." %}{% endblock %}
+{% endblock %}
+
+{% block extrajumbo %}
+<p>
+<a class="btn btn-primary btn-lg" href="https://github.com/WeblateOrg/weblate/issues" role="button"><i class="fa fa-bug"></i> {% trans "Report issue" %}</a>
+</p>
+{% endblock %}
+{% block content %}
+
+<h2>{% trans "Bugs or feature requests" %}</h2>
+
+<p>
+{% blocktrans %}Have you found any issue with Weblate? Do you have idea how to improve it? Please report it to <a href="https://github.com/WeblateOrg/weblate/issues">issue tracker on GitHub</a>.{% endblocktrans %}
+</p>
+
+<h2>{% trans "Security issues" %}</h2>
+
+<p>
+{% blocktrans with '<a href="https://hackerone.com/weblate">HackerOne</a>' as contact and 'https://docs.weblate.org/en/latest/contributing.html#security' as docs %}Should you find security issue within our code base, please report it to {{ contact }}. More information on reporting security issues can be found in <a href="{{ docs }}">our documentation</a>.{% endblocktrans %}
+</p>
+
+<h2>{% trans "Support for Hosted Weblate services" %}</h2>
+
+<p>
+{% blocktrans with '<a href="mailto:support@weblate.org">support@weblate.org</a>' as contact %}If you are using our hosting services, you can ask for support at {{ contact }}.{% endblocktrans %}
+</p>
+
+<h2>{% trans "Mailing lists" %}</h2>
+
+<h3 id="list">{% trans "Users and developers mailing list" %}</h3>
+<ul>
+    <li>{% trans "You can use mailing lists for discussions with other Weblate users and developers." %}</li>
+    <li>{% blocktrans %}You can post to it using <a href="mailto:weblate@lists.cihar.com">weblate@lists.cihar.com</a> address.{% endblocktrans %}</li>
+    <li><a href="https://lists.cihar.com/pipermail/weblate/">{% trans "You can browse mailing list archives" %}</a></li>
+<li><form class="form-inline" action="https://lists.cihar.com/cgi-bin/mailman/subscribe/weblate" method="POST">
+    <div class="input-group">
+      <input type="email" name="email" class="form-control" placeholder="{% trans "Enter your email" %}">
+      <span class="input-group-btn">
+        <input type="submit" value="{% trans "Subscribe" %}" class="btn btn-default">
+      </span>
+    </div>
+</form>
+</li>
+</ul>
+
+<h3 id="announce">{% trans "Hosted Weblate Announcements mailing list" %}</h3>
+<ul>
+    <li>{% trans "Low traffic mailing list with announcements about Hosted Weblate services." %}</li>
+    <li>{% trans "This list is moderated, only selected users can post announcements." %}</li>
+    <li><a href="https://lists.cihar.com/pipermail/hosted-weblate-announce/">{% trans "You can browse mailing list archives" %}</a></li>
+<li><form class="form-inline" action="https://lists.cihar.com/cgi-bin/mailman/subscribe/hosted-weblate-announce" method="POST">
+    <div class="input-group">
+      <input type="email" name="email" class="form-control" placeholder="{% trans "Enter your email" %}">
+      <span class="input-group-btn">
+        <input type="submit" value="{% trans "Subscribe" %}" class="btn btn-default">
+      </span>
+    </div>
+</form>
+</li>
+</ul>
+
+<h2>{% trans "Stack Overflow" %}</h2>
+
+<p>{% blocktrans with "https://stackoverflow.com/tags/weblate/info" as url %}You can also ask related questions on <a href="{{ url }}">Stack Overflow</a>.{% endblocktrans %}</p>
+
+<h2>{% trans "Consulting" %}</h2>
+
+<p><a href="{% url 'hosting' %}#self" class="btn btn-primary btn-lg">{% trans "See our support offerings for self hosted Weblate instances" %}</a></p>
+
+<p>
+{% blocktrans with 'mailto:michal@cihar.com?subject=Weblate' as contact_link %}You can also contact <a href="{{ contact_link }}">Michal Čihař</a>, who is author of Weblate for consulting services.{% endblocktrans %}
+</p>
+
+{% endblock %}

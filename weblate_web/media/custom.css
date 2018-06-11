@@ -1,0 +1,55 @@
+.logo {
+    width: 1em;
+    height: 1em;
+}
+.navbar-brand > img {
+    display: inline-block;
+}
+.navbar {
+    margin-bottom: 0;
+}
+footer ul {
+    padding:0;
+    margin:1em;
+    max-width:none;
+    clear:both;
+}
+footer li{
+    font-size:small;
+    list-style:none;
+    float:left;
+    padding:1em;
+    color:gray;
+    border:none;
+}
+.dir-rtl footer > li {
+    float: right;
+}
+.feature {
+    text-align: center;
+    padding: 40px;
+    min-height: 18em;
+}
+.screenshot {
+    display: inline-block;
+    width: 300px;
+    margin: 10px;
+    text-align: center;
+}
+.table .price {
+    text-align: center;
+    vertical-align: middle;
+}
+.userlogos {
+    text-align: center;
+}
+.userlogo {
+    vertical-align: middle;
+    display: inline-block;
+    padding: 20px;
+    float: none;
+}
+
+pre {
+    direction: ltr;
+}
