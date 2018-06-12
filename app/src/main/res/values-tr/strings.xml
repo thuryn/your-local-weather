@@ -4,7 +4,7 @@
     <string name="label_current_city">Şu anki şehir</string>
     <string name="label_choose_city">Şehir seçin</string>
     <string name="alertDialog_location_permission_message_location_phone_settings">Uygulama konumu güncellemeye ayarlı. Konuma erişim, konum güncellemesinin çalışması için etkinleştirilmelidir. Telefon ayarlarına gidin, ve konumu açın veya uygulamadan konumun güncellenmesini kapatın.</string>
-    <string name="alertDialog_location_permission_positiveButton_settings">Telefon ayarları</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Aygıt ayarları</string>
     <string name="alertDialog_location_permission_negativeButton">İptal</string>
     <string name="progressDialog_gps_locate">Şu anki konumu bul</string>
     <string name="load_progress">Yükleniyor…</string>
@@ -29,10 +29,10 @@
     <string name="nav_menu_graphs">Grafikler</string>
     <string name="nav_menu_settings">Ayarlar</string>
     <string name="nav_feedback">Geri Bildirim</string>
-    <string name="nav_menu_bitcoin_donation">Bitcoin Bağışla</string>
+    <string name="nav_menu_bitcoin_donation">Bitcoin bağışla</string>
 
     <!-- Toast messages -->
-    <string name="connection_not_found">İnternet bağlantınızı doğrulayın</string>
+    <string name="connection_not_found">İnternet bağlantınızı denetleyin</string>
     <string name="toast_parse_error">Bir hata oluştu. Daha sonra deneyin!</string>
 
     <!-- Weather icons -->
@@ -62,9 +62,9 @@
     <string name="update_period_24hours">24 saat</string>
     <string name="pref_title_vibrate">Titret</string>
     <string name="preference_widget_title_update_period">Hava için güncelleme sıklığı (Konum 1,2,3,...)</string>
-    <string name="preference_title_activity_general">Genel ayarlar</string>
-    <string name="preference_title_activity_widget">Widget ayarları</string>
-    <string name="preference_widget_update_location">Konumu güncelle</string>
+    <string name="preference_title_activity_general">Genel Ayarlar</string>
+    <string name="preference_title_activity_widget">Widget Ayarları</string>
+    <string name="preference_widget_update_location">Konumu Güncelle</string>
     <string name="preference_widget_use_geocoder">Görüntüleme için konumu kullan</string>
     <string name="preference_widget_theme_title">Widget teması</string>
     <string name="theme_dark">Koyu</string>
@@ -78,7 +78,7 @@
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">Hakkında</string>
     <string name="about_version_pref_title">Sürüm</string>
-    <string name="about_source_code_pref_title">Kaynak kodu</string>
+    <string name="about_source_code_pref_title">Kaynak Kodu</string>
     <string name="about_app_license_pref_title">Lisans</string>
     <string name="about_open_source_licenses_pref_title">Özgür yazılım Lisansları</string>
 
@@ -108,14 +108,14 @@
     <!-- Donation Bitcoin dialog -->
 
     <!-- Wind directions -->
-    <string name="wind_direction_north">K</string>
-    <string name="wind_direction_north_east">KD</string>
-    <string name="wind_direction_east">D</string>
-    <string name="wind_direction_south_east">GD</string>
-    <string name="wind_direction_south">G</string>
-    <string name="wind_direction_south_west">GB</string>
-    <string name="wind_direction_west">B</string>
-    <string name="wind_direction_north_west">KB</string>
+    <string name="wind_direction_north">K↓</string>
+    <string name="wind_direction_north_east">KD↙</string>
+    <string name="wind_direction_east">D←</string>
+    <string name="wind_direction_south_east">GD↖</string>
+    <string name="wind_direction_south">G↑</string>
+    <string name="wind_direction_south_west">GB↗</string>
+    <string name="wind_direction_west">B→</string>
+    <string name="wind_direction_north_west">KB↘</string>
 
     <!-- Permission strings -->
     <string name="permission_location_rationale">Şu anki şehri belirlemek için Konum İzni gerekli</string>
@@ -124,7 +124,7 @@
     <string name="permission_location_need">Konum İzni Ver</string>
 
     <!-- Dialog strings -->
-    <string name="restart_dialog_message">Lütfen yeni ayarları uygulamak için uygulamayı tekrar başlatın</string>
+    <string name="restart_dialog_message">Lütfen yeni ayarları uygulamak için uygulamayı yeniden başlatın</string>
 <string name="app_name" tools:ignore="MissingTranslation">Yerel havanız</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Konum ve İzin Ayarları</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Uygulamaya, GPS ile konumu güncellemesi için bir izin gerekli.</string>
@@ -147,17 +147,17 @@
     <string name="cancel" tools:ignore="MissingTranslation">İptal</string>
 
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/s</string>
-    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Konum güncelleme ayarı</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Konum Güncelleme Ayarı</string>
     <string name="update_location_none" tools:ignore="MissingTranslation">Konumu güncelleme</string>
     <string name="update_location_full" tools:ignore="MissingTranslation">Konumu güncelle (önerilen)</string>
     <string name="update_location_network_only" tools:ignore="MissingTranslation">Konumu GPS olmadan güncelle</string>
     <string name="update_period_by_sensors" tools:ignore="MissingTranslation">İvme ölçerle</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Widget\'ta etiketleri göster</string>
-    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Konum ve adres kaynağı</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Konum ve Adres Kaynağı</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Yerel MLS ve Nominatim (önerilen)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistem</string>
     <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
-    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Güncelleme özetini göster</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Güncelleme Özetini Göster</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Yok</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Değer şimdi güncellendi</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Konum kaynağıyla güncellenmiş değer</string>
@@ -173,7 +173,7 @@
 \nNw - wifi ağlarından konum ve hava güncellenir
 \nNcw - wifi ve hücre ağlarında konum ve hava güncellenir</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Telefon uyurken konum takılırsa, hücre arandığında telefonu uyandırabilirsiniz</string>
-    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Uyanma stratejisi</string>
+    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Uyanma Stratejisi</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">Uyanma yok</string>
     <string name="wakeuppartial_label" tools:ignore="MissingTranslation">Yalnızca işlemciyi uyandır</string>
     <string name="wakeupfull_label" tools:ignore="MissingTranslation">Ekran ile uyan</string>
@@ -181,7 +181,7 @@
     <string name="db_info" tools:ignore="MissingTranslation">Önbellek hakkında bilgi</string>
     <string name="db_header" tools:ignore="MissingTranslation">Adres önbellek veritabanı</string>
     <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">"Belirli bir süre sonunda, önbellekteki değerler kaldırılır "</string>
-    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Önbellekteki değerlerin yaşı</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Önbellekteki Değerlerin Yaşı</string>
     <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 saat</string>
     <string name="location_cache_24_label" tools:ignore="MissingTranslation">bir gün</string>
     <string name="location_cache_168_label" tools:ignore="MissingTranslation">bir hafta</string>
@@ -209,7 +209,7 @@
     <string name="initial_guide_next" tools:ignore="MissingTranslation">İleri</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Önceki</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Bitir</string>
-    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">İlk yapılandırma rehberi</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">İlk yapılandırma kılavuzu</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Konum güncelleme ayarı</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Konum kaynağı seçeneği</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Konum ve adres kaynağı</string>
@@ -309,4 +309,5 @@
     <string name="appearance_only" tools:ignore="MissingTranslation">Yalnızca hissedilen değer</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Sıcaklık gösterme şekli</string>
 
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Hissedilen sıcaklık</string>
     </resources>
