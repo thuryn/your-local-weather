@@ -281,6 +281,7 @@
     <string name="label_wind" tools:ignore="MissingTranslation">Wind</string>
     <string name="label_rain" tools:ignore="MissingTranslation">Rain</string>
     <string name="label_snow" tools:ignore="MissingTranslation">Snow</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Pressure</string>
     <string name="measured_only" tools:ignore="MissingTranslation">Measured value only</string>
     <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Both, measured primary</string>
     <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Both, appearance primary</string>
