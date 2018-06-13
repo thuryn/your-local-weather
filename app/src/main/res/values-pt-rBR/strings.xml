@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Clima local</string>
+    <string name="enter_city_hint">Insira uma cidade</string>
+    <string name="label_current_city">Cidade atual</string>
+    <string name="label_choose_city">Escolha a cidade</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Localização e configuração das permissões</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">O aplicativo está configurado para atualizar a localização. Acesso a ela é necessário. Vá até as configurações e ative a localização ou desative as atualizações de local desse aplicativo.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">O aplicativo precisa de permissão para obter a sua localização pelo GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">O aplicativo precisa de uma permissão para obter a sua localização por redes WiFi e GSM (torres de celular).</string>
+    </resources>
