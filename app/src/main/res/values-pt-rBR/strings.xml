@@ -7,4 +7,18 @@
     <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">O aplicativo está configurado para atualizar a localização. Acesso a ela é necessário. Vá até as configurações e ative a localização ou desative as atualizações de local desse aplicativo.</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">O aplicativo precisa de permissão para obter a sua localização pelo GPS.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">O aplicativo precisa de uma permissão para obter a sua localização por redes WiFi e GSM (torres de celular).</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Permissão para ler informações do dispositivo é necessária para atualizar a localização usando redes WiFi e GSM (torres de celular). Isso dá ao aplicativo acesso a quais torres o dispositivo está conectado.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Configurações do dispositivo</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Pedir permissões</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Cancelar</string>
+    <string name="progressDialog_gps_locate">Achar localização atual</string>
+    <string name="load_progress">Carregando…</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Localização não encontrada</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">As permissões ainda não foram concedidas - toque no símbolo de localização no aplicativo</string>
+
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Guia inicial e ajuda</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Próximo</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Anterior</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Terminar</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Guia de configuração inicial</string>
     </resources>
