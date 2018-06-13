@@ -124,6 +124,7 @@
     <string name="permission_location_need">Konum İzni Ver</string>
 
     <!-- Dialog strings -->
+    <string name="restart_dialog_message">Lütfen yeni ayarları uygulamak için uygulamayı yeniden başlatın</string>
 <string name="app_name" tools:ignore="MissingTranslation">Yerel havanız</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Konum ve İzin Ayarları</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Uygulamaya, GPS ile konumu güncellemesi için bir izin gerekli.</string>
