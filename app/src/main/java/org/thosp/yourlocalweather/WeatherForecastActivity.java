@@ -105,7 +105,6 @@ public class WeatherForecastActivity extends BaseActivity {
         }
         if ((weatherForecastRecord == null) || (locationWeatherForecastLastUpdate.get(locationId) + AUTO_FORECAST_UPDATE_TIME_MILIS) <  Calendar.getInstance().getTimeInMillis()) {
             updateWeatherForecastFromNetwork();
-            return;
         }
 
         ImageView android = (ImageView) findViewById(R.id.android);
@@ -205,10 +204,6 @@ public class WeatherForecastActivity extends BaseActivity {
         if (mConnectionDetector.isNetworkAvailableAndConnected()) {
             WeatherForecastUtil.getWeather(WeatherForecastActivity.this, new ForecastActivityWeatherForecastResultHandler(this));
             setVisibleUpdating(true);
-        } else {
-            Toast.makeText(WeatherForecastActivity.this,
-                    R.string.connection_not_found,
-                    Toast.LENGTH_SHORT).show();
         }
     }
 
