@@ -112,7 +112,6 @@
     <string name="pref_language_default">System Default</string>
     <string name="pref_title_language">La langue</string>
     <string name="preference_title_category_display">Affichage</string>
-    <string name="restart_dialog_message">Redémarrez l\'application pour appliquer les nouveaux paramètres</string>
 <string name="app_name" tools:ignore="MissingTranslation">Votre météo locale</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Paramètres de Localisation et de Permissions</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">L\'application nécessite une autorisation pour mettre à jour la localisation par GPS.</string>
