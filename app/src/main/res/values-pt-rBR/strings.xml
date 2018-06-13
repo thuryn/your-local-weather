@@ -21,4 +21,8 @@
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Anterior</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Terminar</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Guia de configuração inicial</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Este guia ajudará você a ajustar o aplicativo às suas necessidades. Escolha a estratégia de atualização da localização na próxima tela.
+\nApenas o clima é atualizado quando você seleciona <i>Não atualizar localização</i>.
+\nPor padrão, <i>Atualizar localização</i> é pré-selecionada pra você.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Configuração de atualização da localização</string>
     </resources>
