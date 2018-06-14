@@ -25,4 +25,9 @@
 \nApenas o clima é atualizado quando você seleciona <i>Não atualizar localização</i>.
 \nPor padrão, <i>Atualizar localização</i> é pré-selecionada pra você.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Configuração de atualização da localização</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Opção de fonte da localização</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Você pode escolher o método de localização - o <i>Sistema</i> usa os serviços do Google e do Android para obter sua localização por redes (WiFi e GSM).
+\nA <i>MLS com Nomatim</i> usa os serviços da Mozilla para obter as suas coordenadas e o Nomatim para obter o nome do local.
+\nA segunda opção requere permissão para fazer ligação (para o aplicativo obter informações sobre a rede celular).
+\nA opção mais recomendada já foi selecionada para você.</string>
     </resources>
