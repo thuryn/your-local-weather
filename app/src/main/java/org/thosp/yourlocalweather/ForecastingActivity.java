@@ -28,7 +28,7 @@ public abstract class ForecastingActivity extends BaseActivity {
     protected Map<Long, Long> locationWeatherForecastLastUpdate = new HashMap<>();
     protected ConnectionDetector mConnectionDetector;
     private ProgressDialog mGetWeatherProgress;
-    private static Handler mHandler;
+    private Handler mHandler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
