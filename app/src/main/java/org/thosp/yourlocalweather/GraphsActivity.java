@@ -1,10 +1,7 @@
 package org.thosp.yourlocalweather;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
@@ -22,14 +19,9 @@ import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
-import com.loopj.android.http.AsyncHttpClient;
 
-import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
-import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
-import org.thosp.yourlocalweather.model.WeatherForecastResultHandler;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.CustomValueFormatter;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
@@ -41,41 +33,27 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 
-public class GraphsActivity extends BaseActivity {
+public class GraphsActivity extends ForecastingActivity {
 
     private static final String TAG = "GraphsActivity";
 
-    private static AsyncHttpClient client = new AsyncHttpClient();
-
-    private ConnectionDetector mConnectionDetector;
-    private Map<Long, List<DetailedWeatherForecast>> weatherForecastList = new HashMap<>();
-    private Map<Long, Long> locationWeatherForecastLastUpdate = new HashMap<>();
     private LineChart mTemperatureChart;
     private LineChart mWindChart;
     private LineChart mRainChart;
     private LineChart mSnowChart;
     private LineChart mPressureChart;
     private String[] mDatesArray;
-    private Handler mHandler;
-    private ProgressDialog mGetWeatherProgress;
     private CustomValueFormatter mValueFormatter;
     private YAxisValueFormatter mYAxisFormatter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ((YourLocalWeather) getApplication()).applyTheme(this);
         setContentView(R.layout.activity_graphs);
-        mConnectionDetector = new ConnectionDetector(this);
-        mGetWeatherProgress = getProgressDialog();
         mValueFormatter = new CustomValueFormatter();
         mYAxisFormatter = new YAxisValueFormatter();
         mTemperatureChart = (LineChart) findViewById(R.id.temperature_chart);
@@ -97,29 +75,6 @@ public class GraphsActivity extends BaseActivity {
         pressureLabel.setText(getString(R.string.label_pressure) + ", " + AppPreference.getPressureUnit(this));
 
         updateUI();
-        mHandler = new Handler() {
-            public void handleMessage(android.os.Message msg) {
-                switch (msg.what) {
-                    case Constants.TASK_RESULT_ERROR:
-                        Toast.makeText(GraphsActivity.this,
-                                       R.string.toast_parse_error,
-                                       Toast.LENGTH_SHORT).show();
-                        setVisibleUpdating(false);
-                        break;
-                    case Constants.PARSE_RESULT_ERROR:
-                        Toast.makeText(GraphsActivity.this,
-                                       R.string.toast_parse_error,
-                                       Toast.LENGTH_SHORT).show();
-                        setVisibleUpdating(false);
-                        break;
-                    case Constants.PARSE_RESULT_SUCCESS:
-                        setVisibleUpdating(false);
-                        updateUI();
-                        break;
-                }
-            }
-        };
-
         ScrollView mRecyclerView = (ScrollView) findViewById(R.id.graph_scroll_view);
         mRecyclerView.setOnTouchListener(new ActivityTransitionTouchListener(
                 WeatherForecastActivity.class,
@@ -538,7 +493,7 @@ public class GraphsActivity extends BaseActivity {
         switch (item.getItemId()) {
             case R.id.action_refresh:
                 if (mConnectionDetector.isNetworkAvailableAndConnected()) {
-                    WeatherForecastUtil.getWeather(GraphsActivity.this, new GraphsWeatherForecastResultHandler(this));
+                    WeatherForecastUtil.getWeather(GraphsActivity.this, new ForecastGraphsWeatherForecastResultHandler(this));
                     setVisibleUpdating(true);
                 } else {
                     Toast.makeText(this,
@@ -600,36 +555,7 @@ public class GraphsActivity extends BaseActivity {
         updateUI();
     }
 
-    private void setVisibleUpdating(boolean visible) {
-        if (visible) {
-            mGetWeatherProgress.show();
-        } else {
-            mGetWeatherProgress.cancel();
-        }
-    }
-
-    public class GraphsWeatherForecastResultHandler implements WeatherForecastResultHandler {
-
-        private Context context;
-
-        public GraphsWeatherForecastResultHandler(Context context) {
-            this.context = context;
-        }
-
-        public void processResources(CompleteWeatherForecast completeWeatherForecast, long lastUpdate) {
-            long locationId = AppPreference.getCurrentLocationId(context);
-            weatherForecastList.put(locationId, completeWeatherForecast.getWeatherForecastList());
-            locationWeatherForecastLastUpdate.put(locationId, lastUpdate);
-            mHandler.sendEmptyMessage(Constants.PARSE_RESULT_SUCCESS);
-        }
-
-        public void processError(Exception e) {
-            mHandler.sendEmptyMessage(Constants.TASK_RESULT_ERROR);
-            appendLog(getBaseContext(), TAG, "JSONException:", e);
-        }
-    }
-
-    private void updateUI() {
+    protected void updateUI() {
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
         long locationId = AppPreference.getCurrentLocationId(this);
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
@@ -659,11 +585,5 @@ public class GraphsActivity extends BaseActivity {
         setRainChart(locationId);
         setSnowChart(locationId);
         setPressureChart(locationId);
-    }
-
-    private void updateWeatherForecastFromNetwork() {
-        if (mConnectionDetector.isNetworkAvailableAndConnected()) {
-            WeatherForecastUtil.getWeather(GraphsActivity.this, new GraphsWeatherForecastResultHandler(this));
-        }
     }
 }

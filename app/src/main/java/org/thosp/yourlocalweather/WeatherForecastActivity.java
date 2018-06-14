@@ -37,64 +37,35 @@ import java.util.Set;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
-public class WeatherForecastActivity extends BaseActivity {
+public class WeatherForecastActivity extends ForecastingActivity {
 
     private final String TAG = "WeatherForecastActivity";
 
     public static long AUTO_FORECAST_UPDATE_TIME_MILIS = 3600000; // 1h
 
-    private Map<Long, List<DetailedWeatherForecast>> weatherForecastList = new HashMap<>();
     private Map<Long, Long> locationWeatherForecastLastUpdate = new HashMap<>();
-    private ConnectionDetector mConnectionDetector;
     private RecyclerView mRecyclerView;
-    private static Handler mHandler;
-    private ProgressDialog mGetWeatherProgress;
     private Set<Integer> visibleColumns = new HashSet<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ((YourLocalWeather) getApplication()).applyTheme(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather_forecast);
 
         locationsDbHelper = LocationsDbHelper.getInstance(this);
-        mConnectionDetector = new ConnectionDetector(this);
-        mGetWeatherProgress = getProgressDialog();
 
         mRecyclerView = (RecyclerView) findViewById(R.id.forecast_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         visibleColumns = AppPreference.getForecastActivityColumns(this);
         updateUI();
 
-        mHandler = new Handler() {
-            public void handleMessage(android.os.Message msg) {
-                switch (msg.what) {
-                    case Constants.TASK_RESULT_ERROR:
-                        Toast.makeText(WeatherForecastActivity.this,
-                                       R.string.toast_parse_error,
-                                       Toast.LENGTH_SHORT).show();
-                        setVisibleUpdating(false);
-                        break;
-                    case Constants.PARSE_RESULT_ERROR:
-                        Toast.makeText(WeatherForecastActivity.this,
-                                       R.string.toast_parse_error,
-                                       Toast.LENGTH_SHORT).show();
-                        setVisibleUpdating(false);
-                        break;
-                    case Constants.PARSE_RESULT_SUCCESS:
-                        setVisibleUpdating(false);
-                        updateUI();
-                        break;
-                }
-            }
-        };
 
         mRecyclerView.setOnTouchListener(new ActivityTransitionTouchListener(
                 MainActivity.class,
                 GraphsActivity.class, this));
     }
 
-    private void updateUI() {
+    protected void updateUI() {
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
         long locationId = AppPreference.getCurrentLocationId(this);
         Location location = locationsDbHelper.getLocationById(locationId);
@@ -198,40 +169,5 @@ public class WeatherForecastActivity extends BaseActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
-    }
-
-    private void updateWeatherForecastFromNetwork() {
-        if (mConnectionDetector.isNetworkAvailableAndConnected()) {
-            WeatherForecastUtil.getWeather(WeatherForecastActivity.this, new ForecastActivityWeatherForecastResultHandler(this));
-            setVisibleUpdating(true);
-        }
-    }
-
-    private void setVisibleUpdating(boolean visible) {
-        if (visible) {
-            mGetWeatherProgress.show();
-        } else {
-            mGetWeatherProgress.cancel();
-        }
-    }
-
-    public class ForecastActivityWeatherForecastResultHandler implements WeatherForecastResultHandler {
-        private Context context;
-
-        public ForecastActivityWeatherForecastResultHandler(Context context) {
-            this.context = context;
-        }
-
-        public void processResources(CompleteWeatherForecast completeWeatherForecast, long lastUpdate) {
-            long locationId = AppPreference.getCurrentLocationId(context);
-            weatherForecastList.put(locationId, completeWeatherForecast.getWeatherForecastList());
-            locationWeatherForecastLastUpdate.put(locationId, lastUpdate);
-            mHandler.sendEmptyMessage(Constants.PARSE_RESULT_SUCCESS);
-        }
-
-        public void processError(Exception e) {
-            mHandler.sendEmptyMessage(Constants.TASK_RESULT_ERROR);
-            appendLog(getBaseContext(), TAG, "JSONException:", e);
-        }
     }
 }
