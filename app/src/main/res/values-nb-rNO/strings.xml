@@ -287,4 +287,5 @@
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Vis temperatur som</string>
 
     <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Følt temperatur</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Lufttrykk</string>
     </resources>
