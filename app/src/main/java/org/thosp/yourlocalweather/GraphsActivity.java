@@ -565,6 +565,9 @@ public class GraphsActivity extends ForecastingActivity {
         }
         if ((weatherForecastRecord == null) || (locationWeatherForecastLastUpdate.get(locationId) + WeatherForecastActivity.AUTO_FORECAST_UPDATE_TIME_MILIS) <  Calendar.getInstance().getTimeInMillis()) {
             updateWeatherForecastFromNetwork();
+            if ((weatherForecastList == null) || (weatherForecastList.get(locationId) == null)) {
+                return;
+            }
         }
 
         TextView temperatureLabel = (TextView) findViewById(R.id.graphs_temperature_label);

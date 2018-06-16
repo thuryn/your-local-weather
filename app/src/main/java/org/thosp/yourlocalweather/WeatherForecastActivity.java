@@ -76,6 +76,9 @@ public class WeatherForecastActivity extends ForecastingActivity {
         }
         if ((weatherForecastRecord == null) || (locationWeatherForecastLastUpdate.get(locationId) + AUTO_FORECAST_UPDATE_TIME_MILIS) <  Calendar.getInstance().getTimeInMillis()) {
             updateWeatherForecastFromNetwork();
+            if ((weatherForecastList == null) || (weatherForecastList.get(locationId) == null)) {
+                return;
+            }
         }
 
         ImageView android = (ImageView) findViewById(R.id.android);
