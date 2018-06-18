@@ -209,7 +209,7 @@
     <string name="label_activity_help" tools:ignore="MissingTranslation">Laguntza</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Kokalekuak</string>
 
-    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Zutabearen ezarpenak</string>
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Zutabe-ezarpenak</string>
     <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Erakutsi beharreko zutabeak</string>
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikonoa</string>
     <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Deskripzioa</string>
