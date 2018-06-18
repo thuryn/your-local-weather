@@ -1,2 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Your local weather</string>
+    <string name="enter_city_hint">Introduza a cidade</string>
+    <string name="label_current_city">Cidade actual</string>
+    <string name="label_choose_city">Escolha a cidade</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Definições de localização e permissões</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">A aplicação necessita de permissão para actualizar a localização utilizando o GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">A aplicação necessita de permissão para actulizar a localização por redes Wi-Fi e GSM.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Definições do dispositivo</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Solicitar permissões</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Cancelar</string>
+    <string name="progressDialog_gps_locate">Procurar localização actual</string>
+    <string name="load_progress">A carregar…</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Localização não encontrada</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Ainda não estão garantidas as permissões - clique no símbolo de localização na aplicação</string>
+
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Fechar</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Seguinte</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Anterior</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Finalizar</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Guia de configuração inicial</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Actualizar definição de localização</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Isto conclui o guia. Pode encontrar outras definições no menu Definições (por exemplo linguagem, unidades, etc.).
+\nO ecrã seguinte explicará as permisssões requeridas e dará a opção de as requerer.
+\n 
+\nDesfrute o aplicativo.</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Geral</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">O terceiro ecrã contém a previsão da meteorologia exibida por gráficos.</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Widgets</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Definições gerais</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Estas opções têm influência em todo o aplicativo.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Temperatura</b> - Pode seleccionar a unidade de temperatura, <b>Vento</b>" -  Pode seleccionar a unidade de velocidade do tempo e "<b>Pressão atmosférica</b>" -  Pode seleccionar a unidade de pressão atmosférica. Os valores são recalculados utilizando estas opções."</string>
+    </resources>
