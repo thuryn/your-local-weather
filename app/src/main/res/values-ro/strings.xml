@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Vremea locală</string>
+    <string name="enter_city_hint">Introduceți orașul</string>
+    <string name="label_current_city">Oraș Actual</string>
+    <string name="label_choose_city">Alege orașul</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Locaţie şi setările de permisiune</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Aplicația este setată pentru a actualiza locaţia. Este necesar accesul la aceasta. Du-te la setările aparatului şi porniţi locația sau opriți actualizările locaţiei în aplicație.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Aplicația are nevoie de permisiunea de a actualiza locaţia cu ajutorul GPS.</string>
+    <string name="progressDialog_gps_locate">Găsiţi locaţia curentă</string>
+    <string name="load_progress">Se încarcă…</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Locaţia nu a fost găsită</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Închide</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Următorul</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Precedentul</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Sfârşit</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Ghid de configurare iniţială</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">trei zile</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">o săptămână</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">o lună</string>
+
+    </resources>

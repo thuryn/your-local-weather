@@ -257,4 +257,5 @@
     <string name="locations_disabled" tools:ignore="MissingTranslation">Desgaituta</string>
     <string name="search_location_add" tools:ignore="MissingTranslation">Gehitu</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Sakatu mapan nahi duzn kokalekua eskuratzeko eta itxaron helbidea ebatzi arte.</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">Aplikazio honek uneko eguraldiaren oinarrizko balioak (esaterako tenperatura) dituzten hiru trepeta ditu eskuragarri. Balio batzuk trepeta batean besterik ez dira agertzen (esaterako eguzki-sarrera). Trepeta bakoitzaren eskumako ertzean azken eguneraketa ordua agertzen da. Azken aldian zer eguneratu den ikusi dezakezu (ezarpenen menuan aukera hau gaitu baduzu). Eguneratzeko botoia azken eguneraketaren orduan aurkituko duzu. Botoi hau sakatzean, eguraldia eguneratuko da (eta kokalekua hau ere eguneratzea aukeratu baduzu). Trepeten azken aukera kokalekua aldatzea da, kokalekua sakatzen duzunean hurrengora aldatzen da.</string>
     </resources>
