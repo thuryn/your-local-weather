@@ -32,8 +32,8 @@ public abstract class ForecastingActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         ((YourLocalWeather) getApplication()).applyTheme(this);
+        super.onCreate(savedInstanceState);
         mConnectionDetector = new ConnectionDetector(this);
         mGetWeatherProgress = getProgressDialog();
 
