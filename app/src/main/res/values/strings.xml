@@ -206,6 +206,10 @@
     <string name="pref_language_es" tools:ignore="MissingTranslation">Spanish (Spanish)</string>
     <string name="pref_language_el" tools:ignore="MissingTranslation">Greek (Greek)</string>
     <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabic (Arabic)</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Ukrainian</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Romanian</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portuguese (Portugal)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portuguese (Brazil)</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Location and Address Source</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Local MLS and Nominatim (recommended)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">System</string>
