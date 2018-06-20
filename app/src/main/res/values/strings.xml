@@ -24,9 +24,8 @@
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Previous</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Finish</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Initial configuration guide</string>
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">This guide helps you adjust the app to your needs. Choose update strategy on the next screen. 
-\nOnly weather is updated when you select <i>Don\'t update location</i>. 
-\nAs it is a great feature, <i>Update location</i> is preselected.</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Adjusting the app to your needs, you can choose update strategy next. 
+\nDiverting from the default of updating when location changes, you can select <i>Don\'t update location</i>.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Update location setting</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Location source option</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">You can choose the location method - the <i>System</i> one uses Google services to get the location by networks (cell and Wi-Fi networks). The <i>Local MLS and Nominatim</i> option uses Mozilla location service to get location coordinates and Nominatim service to get location names. The second option requires phone calls permission to fetch info about cellular network. The preferred option is preselected.</string>
