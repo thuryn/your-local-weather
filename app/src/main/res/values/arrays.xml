@@ -208,6 +208,7 @@
         <item name="portuguese-portugal">@string/pref_language_pt_pt</item>
         <item name="romanian">@string/pref_language_ro</item>
         <item name="russian">Русский (Russian)</item>
+        <item name="slovenian">Slovenian</item>
         <item name="swahili">@string/pref_language_sw</item>
         <item name="turkish">Türkçe (Turkish)</item>
         <item name="ukrainian">@string/pref_language_uk</item>
@@ -237,6 +238,7 @@
         <item name="portuguese-portugal">pt_rPT</item>
         <item name="romanian">ro</item>
         <item name="russian">ru</item>
+        <item name="slovenian">sl</item>
         <item name="swahili">sw</item>
         <item name="turkish">tr</item>
         <item name="ukrainian">uk</item>
