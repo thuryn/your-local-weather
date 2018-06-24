@@ -65,10 +65,14 @@ public abstract class ForecastingActivity extends BaseActivity {
     protected abstract void updateUI();
 
     protected void setVisibleUpdating(boolean visible) {
-        if (visible) {
-            mGetWeatherProgress.show();
-        } else {
-            mGetWeatherProgress.cancel();
+        try {
+            if (visible) {
+                mGetWeatherProgress.show();
+            } else {
+                mGetWeatherProgress.cancel();
+            }
+        } catch (Exception e) {
+            appendLog(getBaseContext(), TAG, "Exception in setVisibleUpdating method:", e);
         }
     }
 

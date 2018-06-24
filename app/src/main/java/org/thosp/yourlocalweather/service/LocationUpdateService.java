@@ -557,13 +557,19 @@ public class LocationUpdateService extends Service implements LocationListener {
                                                    boolean bylastLocationOnly,
                                                    Intent originalIntent,
                                                    boolean isInteractive) {
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         ConnectionDetector connectionDetector = new ConnectionDetector(this);
+        org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
         if (!connectionDetector.isNetworkAvailableAndConnected()) {
             if (originalIntent == null) {
                 return false;
             }
             int numberOfAttempts = originalIntent.getIntExtra("attempts", 0);
             if (numberOfAttempts > 2) {
+                locationsDbHelper.updateLastUpdatedAndLocationSource(
+                        currentLocation.getId(),
+                        System.currentTimeMillis(),
+                        ".");
                 return false;
             }
             originalIntent.putExtra("attempts", ++numberOfAttempts);
@@ -576,7 +582,6 @@ public class LocationUpdateService extends Service implements LocationListener {
         Calendar now = Calendar.getInstance();
         now.add(Calendar.MINUTE, -5);
 
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         org.thosp.yourlocalweather.model.Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
         long lastLocationUpdate = autoLocation.getLastLocationUpdate();
         if ("location_geocoder_unifiednlp".equals(AppPreference.getLocationGeocoderSource(this))) {
@@ -592,7 +597,6 @@ public class LocationUpdateService extends Service implements LocationListener {
                 lastLocationUpdate);
         if ((lastLocation != null) && gpsLastLocationTime > lastLocationUpdate) {
             sendIntent.putExtra("inputLocation", lastLocation);
-            org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
             locationsDbHelper.updateLocationSource(currentLocation.getId(), "G");
         } else if (bylastLocationOnly) {
             return false;
@@ -809,7 +813,13 @@ public class LocationUpdateService extends Service implements LocationListener {
         gravity[2] = 0;
 
         ConnectionDetector connectionDetector = new ConnectionDetector(getApplicationContext());
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getApplicationContext());
+        org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
         if (!connectionDetector.isNetworkAvailableAndConnected()) {
+            locationsDbHelper.updateLastUpdatedAndLocationSource(
+                    currentLocationForSensorEvent.getId(),
+                    System.currentTimeMillis(),
+                    ".");
             return;
         }
 
@@ -817,8 +827,6 @@ public class LocationUpdateService extends Service implements LocationListener {
         currentLength = 0;
         currentLengthLowPassed = 0;
 
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getApplicationContext());
-        org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
         locationsDbHelper.updateLocationSource(currentLocationForSensorEvent.getId(), "-");
         updateNetworkLocation(false, null, false);
     }

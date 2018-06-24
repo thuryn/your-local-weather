@@ -102,14 +102,15 @@ public class CurrentWeatherService extends Service {
         if (intent == null) {
             return ret;
         }
-        
+
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+
         if (intent.getExtras() != null) {
             isInteractive = intent.getBooleanExtra("isInteractive", false);
             String currentUpdateSource = intent.getExtras().getString("updateSource");
             if(!TextUtils.isEmpty(currentUpdateSource)) {
                 updateSource = currentUpdateSource;
             }
-            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
             currentLocation = locationsDbHelper.getLocationById(intent.getExtras().getLong("locationId"));
         }
         appendLog(getBaseContext(), TAG, "currentLocation=" + currentLocation + ", updateSource=" + updateSource);
@@ -128,6 +129,10 @@ public class CurrentWeatherService extends Service {
             int numberOfAttempts = intent.getIntExtra("attempts", 0);
             appendLog(getBaseContext(), TAG, "numberOfAttempts=" + numberOfAttempts);
             if (numberOfAttempts > 2) {
+                locationsDbHelper.updateLastUpdatedAndLocationSource(
+                        currentLocation.getId(),
+                        System.currentTimeMillis(),
+                        ".");
                 return ret;
             }
             intent.putExtra("attempts", ++numberOfAttempts);
