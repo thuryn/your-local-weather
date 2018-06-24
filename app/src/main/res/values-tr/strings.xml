@@ -3,7 +3,7 @@
     <string name="enter_city_hint">Şehir girin</string>
     <string name="label_current_city">Şu anki şehir</string>
     <string name="label_choose_city">Şehir seçin</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings">Uygulama konumu güncellemeye ayarlı. Konuma erişim, konum güncellemesinin çalışması için etkinleştirilmelidir. Telefon ayarlarına gidin, ve konumu açın veya uygulamadan konumun güncellenmesini kapatın.</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">Uygulama, konumu güncellemeye ayarlı. Konuma erişim gereklidir. Aygıt ayarlarına gidip konumu açın veya uygulamanın konum güncellemelerini kapatın.</string>
     <string name="alertDialog_location_permission_positiveButton_settings">Aygıt ayarları</string>
     <string name="alertDialog_location_permission_negativeButton">İptal</string>
     <string name="progressDialog_gps_locate">Şu anki konumu bul</string>
@@ -118,7 +118,7 @@
     <string name="wind_direction_north_west">KB↘</string>
 
     <!-- Permission strings -->
-    <string name="permission_location_rationale">Şu anki şehri belirlemek için Konum İzni gerekli</string>
+    <string name="permission_location_rationale">Şehri belirlemek için konum izinleri gerekli</string>
     <string name="permission_not_granted">İzin verilmedi!</string>
     <string name="permission_available_location">Konum İzni verildi</string>
     <string name="permission_location_need">Konum İzni Ver</string>
@@ -126,12 +126,12 @@
     <!-- Dialog strings -->
 <string name="app_name" tools:ignore="MissingTranslation">Yerel havanız</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Konum ve İzin Ayarları</string>
-    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Uygulamaya, GPS ile konumu güncellemesi için bir izin gerekli.</string>
-    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Uygulamaya, WIFI ve GSM ağları ile konumu güncellemesi için bir izin gerekli.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Uygulamanın GPS ile konumu güncellemesi için izin gerekiyor.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Uygulamanın konumu Wi-Fi ve GSM ağlarıyla güncellemesi için izin gerekiyor.</string>
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Uygulamaya telefondan bilgi okuması için izin gerekli. Bu izin konumu WIFI ve GSM ağları ile güncellemek için gerekli. Uygulama bu izni telefona bağlı GSM baz istasyonlarıyla ilgili bilgi almak için kullanır.</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">İzin iste</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Konum bulunmadı</string>
-    <string name="permissions_not_granted" tools:ignore="MissingTranslation">İzin verilmedi - uygulamaya gidin ve konum simgesine tıklayın</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Henüz izin verilmedi - uygulamadaki konum simgesine tıklayın</string>
 
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Kolon ayarı</string>
     <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Gösterilecek kolonlar</string>
@@ -309,4 +309,9 @@
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Sıcaklık gösterme şekli</string>
 
     <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Hissedilen sıcaklık</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Ukraynaca</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Rumence</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portekizce (Portekiz)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portekizce (Brezilya)</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Basınç</string>
     </resources>
