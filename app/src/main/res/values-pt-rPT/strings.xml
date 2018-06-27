@@ -30,4 +30,142 @@
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Definições gerais</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">Estas opções têm influência em todo o aplicativo.</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Temperatura</b> - Pode seleccionar a unidade de temperatura, <b>Vento</b>" -  Pode seleccionar a unidade de velocidade do tempo e "<b>Pressão atmosférica</b>" -  Pode seleccionar a unidade de pressão atmosférica. Os valores são recalculados utilizando estas opções."</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">A aplicação está configurada para actualizar a localização. É necessário permissão. Vá às configurações do dispositivo e active a localização ou desactive as actualizações de localização na aplicação.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">É necessária permissão para ler informação do dispositivo para actualizar a localização utilizando as redes Wi-Fi e GSM. Isto pesquisa informação acerca das estações base GSM a que o dispositivo está conectado.</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">A ajustar a aplicação às suas necessidades, pode escolher a estratégia de actualização a seguir. 
+\nPara alterar o comportamento por defeito de actualizar quando a localização muda, pode escolher <i>Não actualizar localização</i>.</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Opção de fonte de localização</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Fonte de localização e morada</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Opção de estratégia de despertar</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Alguns modelos de telemóvel não reportam correctamente as células a que estão conectados a não ser que o ecrã esteja ligado. A opção preferível (com o ecrã ligado) tem a desvantagem do telemóvel ligar o ecrã por vários segundos. Isto tem um pequeno impacto na vida da bateria. Comece com a opção ligada e tente desligá-la e ver se a localização ainda actualiza.</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Estratégia de despertar</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Pode poupar tráfego de rede armazenando temporariamente as localizações encontradas. As localizações são depois guardadas na aplicação. Elas não são enviadas ou armazenadas em outros lugares da rede.</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Parabéns</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Aplicação principal</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Ajuda</string>
+    <string name="title_activity_license" tools:ignore="MissingTranslation">Licença para %s</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Localizações</string>
+
+    <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Actualizar</string>
+    <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Procurar cidade</string>
+    <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Detectar localização</string>
+    <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Alternar valores</string>
+    <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Alterar eixo Y</string>
+
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Configurações da coluna</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Colunas a mostrar</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ícone</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Descrição</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Temperatura aparente</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Vento</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Chuva/Neve</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Humidade</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Pressão atmosférica</string>
+    <string name="ok" tools:ignore="MissingTranslation">OK</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Cancelar</string>
+
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Abrir painel de navegação</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Fechar painel de navegação</string>
+    <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">Tempo actual</string>
+    <string name="nav_menu_daily_forecast" tools:ignore="MissingTranslation">Previsão diária</string>
+    <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Gráficos</string>
+    <string name="nav_menu_settings" tools:ignore="MissingTranslation">Configurações</string>
+    <string name="nav_feedback" tools:ignore="MissingTranslation">Comentários</string>
+    <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">Doar bitcoin</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Ajuda</string>
+
+    <string name="connection_not_found" tools:ignore="MissingTranslation">Verifique a sua ligação à internet</string>
+    <string name="toast_parse_error" tools:ignore="MissingTranslation">Ocorreu um erro. Tente mais tarde!</string>
+
+    <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">nós</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">Escuro</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">Claro</string>
+    <string name="theme_transparent" tools:ignore="MissingTranslation">Transparente</string>
+    <string name="preference_title_category_display" tools:ignore="MissingTranslation">Ecrã</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Actualizar localização e tempo</string>
+    <string name="pref_title_language" tools:ignore="MissingTranslation">Idioma</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chinês (Chinês)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Suaíli (Suaíli)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norueguês (Norueguês)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Holandês (Holandês)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Húngaro (Húngaro)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Espanhol (Espanhol)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Grego (Grego)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">Árabe (Árabe)</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Ucraniano (Ucraniano)</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Romeno</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Português (Portugal)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Português (Brasil)</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Fontes de localização e morada</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistema</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">Tema</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Nada</string>
+    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Estratégia de despertar</string>
+    <string name="nowakeup_label" tools:ignore="MissingTranslation">Sem despertar</string>
+    <string name="wakeuppartial_label" tools:ignore="MissingTranslation">Despertar apenas processador</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">Despertar com o ecrã</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Limpar memória</string>
+    <string name="db_info" tools:ignore="MissingTranslation">Informação sobre a memória</string>
+    <string name="db_header" tools:ignore="MissingTranslation">Base de dados de memória de moradas</string>
+    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Após um determinado tempo os valores memorizados serão removidos</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Idade dos valores em memória</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 horas</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">um dia</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">uma semana</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">um mês</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">três meses</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">seis meses</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">um ano</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">nunca</string>
+    <string name="pressure_label" tools:ignore="MissingTranslation">Pressão atmosférica: %1$s %2$s</string>
+    <string name="cloudiness_label" tools:ignore="MissingTranslation">Nebulosidade: %1$s%2$s</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">Última actualização: %s</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">Nascer do sol: %s</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">Pôr do sol: %s</string>
+    <string name="temperature_morning_title" tools:ignore="MissingTranslation">Manhã</string>
+    <string name="temperature_day_title" tools:ignore="MissingTranslation">Dia</string>
+    <string name="temperature_evening_title" tools:ignore="MissingTranslation">Tarde</string>
+    <string name="temperature_night_title" tools:ignore="MissingTranslation">Noite</string>
+    <string name="label_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Temperatura aparente: %s</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Temperatura medida: %s</string>
+    <string name="label_wind" tools:ignore="MissingTranslation">Vento</string>
+    <string name="label_rain" tools:ignore="MissingTranslation">Chuva</string>
+    <string name="label_snow" tools:ignore="MissingTranslation">Neve</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Pressão</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">Apenas valor medido</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Ambos, medido primário</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Ambos, aparente primário</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">Apenas valor aparente</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Mostrar temperatura como</string>
+
+    <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Ícone de temperatura actual</string>
+    <string name="wind_direction_north" tools:ignore="MissingTranslation">N↓</string>
+    <string name="wind_direction_north_east" tools:ignore="MissingTranslation">NE↙</string>
+    <string name="wind_direction_east" tools:ignore="MissingTranslation">E←</string>
+    <string name="wind_direction_south_east" tools:ignore="MissingTranslation">SE↖</string>
+    <string name="wind_direction_south" tools:ignore="MissingTranslation">S↑</string>
+    <string name="wind_direction_south_west" tools:ignore="MissingTranslation">SW↗</string>
+    <string name="wind_direction_west" tools:ignore="MissingTranslation">W→</string>
+    <string name="wind_direction_north_west" tools:ignore="MissingTranslation">NW↘</string>
+
+    <string name="permission_location_rationale" tools:ignore="MissingTranslation">Permissões de localização necessárias para determinar cidade</string>
+    <string name="permission_not_granted" tools:ignore="MissingTranslation">Permissões não concedidas!</string>
+    <string name="permission_available_location" tools:ignore="MissingTranslation">As permissões de localização foram concedidas</string>
+    <string name="permission_location_need" tools:ignore="MissingTranslation">Conceder permissões de localização</string>
+
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">Seleccionar pasta de registros</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">Opções de depuração</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Após um determinado período de tempo o ficheiro de registros será recriado</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Rotação do ficheiro de registros</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 horas</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">um dia</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">dois dias</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">três dias</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">uma semana</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">um mês</string>
+
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Ícones baseados na fonte</string>
     </resources>
