@@ -288,4 +288,10 @@
 
     <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Følt temperatur</string>
     <string name="label_pressure" tools:ignore="MissingTranslation">Lufttrykk</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Ukrainsk</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Rumensk</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portugisisk (Portugal)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portugisisk (Brasil)</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">"Lokalet for nåværende værbeskrivelse og addressen vil oppdateres ved vanlig oppdatering, eller du kan påtvinge den manuelt "</string>
+
     </resources>
