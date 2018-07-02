@@ -314,7 +314,7 @@
     <string name="permission_location_need" tools:ignore="MissingTranslation">Grant Location Permissions</string>
 
     <!-- Dialog strings -->
-    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Locale of the current weather description and the address will be updated by regular update or you can force it manually</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Current weather description language and the address will change next update, or you can be forced manually.</string>
 
     <!-- Debug strings -->
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Select log folder</string>
