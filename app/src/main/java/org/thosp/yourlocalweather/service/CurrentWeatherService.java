@@ -221,6 +221,7 @@ public class CurrentWeatherService extends Service {
         stopRefreshRotation();
         gettingWeatherStarted = false;
         try {
+            scheduleAlarmForNextLocation();
             startBackgroundService(new Intent(getBaseContext(), LessWidgetService.class));
             startBackgroundService(new Intent(getBaseContext(), MoreWidgetService.class));
             startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
@@ -254,7 +255,7 @@ public class CurrentWeatherService extends Service {
         }
         currentLocation = locationsDbHelper.getLocationById(locationId);
         String locationSource = currentLocation.getLocationSource();
-        if ((locationSource == null) || "-".equals(locationSource)) {
+        if ((currentLocation.getOrderId() > 1) || (locationSource == null) || "-".equals(locationSource)) {
             locationSource = "W";
         }
         appendLog(context,
@@ -266,6 +267,7 @@ public class CurrentWeatherService extends Service {
         currentWeatherDbHelper.saveWeather(locationId, now, weather);
         locationsDbHelper.updateLastUpdatedAndLocationSource(locationId, now, locationSource);
         currentLocation = locationsDbHelper.getLocationById(locationId);
+        scheduleAlarmForNextLocation();
         sendResult(ACTION_WEATHER_UPDATE_OK, weather, context);
     }
     
@@ -307,11 +309,11 @@ public class CurrentWeatherService extends Service {
         AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + 10,
+                    SystemClock.elapsedRealtime() + 500,
                     pendingIntent);
         } else {
             alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + 10,
+                    SystemClock.elapsedRealtime() + 500,
                     pendingIntent);
         }
     }
@@ -324,5 +326,42 @@ public class CurrentWeatherService extends Service {
                 PendingIntent.FLAG_CANCEL_CURRENT);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                 SystemClock.elapsedRealtime() + (1000 + seconds), pendingIntent);
+    }
+
+    private void scheduleAlarmForNextLocation() {
+        if (currentLocation.getOrderId() == 0) {
+            return;
+        }
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+        int nextLocationOrderId = currentLocation.getOrderId() + 1;
+        for (Location location: locationsDbHelper.getAllRows()) {
+            if (location.getOrderId() == nextLocationOrderId) {
+                scheduleNextLocationWeatherUpdate(location);
+                break;
+            }
+        }
+    }
+
+    private void scheduleNextLocationWeatherUpdate(Location location) {
+        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime(),
+                    startWeatherUpdate(location));
+        } else {
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime(),
+                    startWeatherUpdate(location));
+        }
+    }
+
+    private PendingIntent startWeatherUpdate(Location currentLocation) {
+        Intent intentToCheckWeather = new Intent(this, CurrentWeatherService.class);
+        intentToCheckWeather.putExtra("locationId", currentLocation.getId());
+        startBackgroundService(intentToCheckWeather);
+        return PendingIntent.getBroadcast(getBaseContext(),
+                0,
+                intentToCheckWeather,
+                PendingIntent.FLAG_CANCEL_CURRENT);
     }
 }

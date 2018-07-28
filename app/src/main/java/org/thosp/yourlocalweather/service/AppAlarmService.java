@@ -76,13 +76,12 @@ public class AppAlarmService extends Service {
                 startBackgroundService(intentToStartUpdate);
                 return ret;
             }
-            int startUpdateOffset = 0;
             for (Location location: locationsDbHelper.getAllRows()) {
                 if (location.getOrderId() == 0) {
                     continue;
                 } else {
-                    scheduleNextLocationWeatherUpdate(location, startUpdateOffset);
-                    startUpdateOffset++;
+                    scheduleNextLocationWeatherUpdate(location);
+                    break;
                 }
             }
         }
@@ -142,15 +141,15 @@ public class AppAlarmService extends Service {
         }
     }
 
-    private void scheduleNextLocationWeatherUpdate(Location location, int startUpdateOffset) {
+    private void scheduleNextLocationWeatherUpdate(Location location) {
         AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + (startUpdateOffset * 60000),
+                    SystemClock.elapsedRealtime(),
                     startWeatherUpdate(location));
         } else {
             alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + (startUpdateOffset * 60000),
+                    SystemClock.elapsedRealtime(),
                     startWeatherUpdate(location));
         }
     }
