@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="nav_menu_settings">Ustawienia</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings">GPS nie jest włączony. Czy chcesz, aby przejść do menu ustawień?</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">Aplikacja jest ustawiona na aktualizację lokalizacji. Potrzebny jest do tego dostęp. Przejdź do ustawień urządzenia i zmień lokalizację lub wyłącz aktualizacje lokalizacji aplikacji.</string>
     <string name="alertDialog_location_permission_negativeButton">Anulować</string>
-    <string name="alertDialog_location_permission_positiveButton_settings">Ustawienia</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Ustawienia urządzenia</string>
     <string name="connection_not_found"> Sprawdź swoje połączenie z internetem</string>
     <string name="enter_city_hint">Wpisz miasto</string>
     <string name="label_choose_city">Wybierz miasto</string>
@@ -35,17 +35,17 @@
     <string name="widget_refresh_button">Widget refresh button</string>
     <string name="preference_title_activity_about">O aplikacji</string>
     <string name="preference_title_activity_general">Ustawienia główne</string>
-    <string name="preference_title_activity_widget">Ustawienia Widget</string>
+    <string name="preference_title_activity_widget">Ustawienia widżetu</string>
     <string name="update_period_3hours">3 godziny</string>
     <string name="update_period_6hours">6 godzin</string>
-    <string name="preference_widget_title_update_period">Okres aktualizacji</string>
+    <string name="preference_widget_title_update_period">Zaktualizuj okres dla pogody (Lokalizacja 1,2,3 ...)</string>
     <string name="last_update_label">Ostatnia zmiana: %s</string>
     <string name="about_app_license_pref_title">Licencja</string>
-    <string name="about_open_source_licenses_pref_title">Licencje open source</string>
+    <string name="about_open_source_licenses_pref_title">Darmowe oprogramowanie licencyjne</string>
     <string name="about_source_code_pref_title">Kod źródłowy</string>
     <string name="about_version_pref_title">Wersja</string>
     <string name="toast_parse_error">Wystąpił błąd. Spróbuj później!</string>
-    <string name="nav_menu_bitcoin_donation">Wpłać Bitcoin</string>
+    <string name="nav_menu_bitcoin_donation">Przekaż bitcoin</string>
     <string name="toolbar_menu_detect_location">Wykrywanie Lokalizacja</string>
     <string name="toolbar_menu_refresh">Aktualizacja</string>
     <string name="toolbar_menu_search_city">Szukaj Miasto</string>
@@ -67,7 +67,7 @@
     <string name="label_activity_main">Aktualna pogoda</string>
     <string name="label_activity_weather_forecast">Dzienna prognoza</string>
     <string name="nav_menu_graphs">Wykresy</string>
-    <string name="load_progress">Załadunek&#8230;</string>
+    <string name="load_progress">Załadunek…</string>
     <string name="millimetre_label">mm</string>
     <string name="snow_label">Śnieg: %1$s %2$s</string>
     <string name="rain_label">Deszcz: %1$s %2$s</string>
@@ -88,4 +88,21 @@
     <string name="pref_language_default">System Default</string>
     <string name="pref_title_language">Język</string>
     <string name="preference_title_category_display">Widok</string>
-</resources>
+<string name="app_name" tools:ignore="MissingTranslation">Twoja lokalna pogoda</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Ustawienia lokalizacji i uprawnień</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Aplikacja potrzebuje uprawnień do aktualizacji lokalizacji za pomocą GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Aplikacja wymaga pozwolenia na aktualizację lokalizacji przez sieci Wi-Fi i GSM.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Zezwolenie na odczyt informacji z urządzenia jest potrzebne do aktualizacji lokalizacji przy użyciu sieci Wi-Fi i GSM. Spowoduje to pobranie informacji o stacjach bazowych GSM, do których podłączone jest urządzenie.</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Poproś o uprawnienia</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Nie znaleziono lokalizacji</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Uprawnienia nie zostały jeszcze przyznane - kliknij symbol lokalizacji w aplikacji</string>
+
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Zamknij</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Następny</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Poprzedni</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Zakończ</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Przewodnik po konfiguracji początkowej</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Zaktualizuj ustawienie lokalizacji</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Opcja źródła lokalizacji</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Źródło lokalizacji i adresu</string>
+    </resources>

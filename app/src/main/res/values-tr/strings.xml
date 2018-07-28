@@ -164,13 +164,11 @@
 \nL - yalnızca konum güncellenir
 \nG - GPS\'ten konum ve hava güncellenir
 \nN - ağdan konum ve hava güncellenir</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - yalnızca hava güncellenir
-\nL - yalnızca konum güncellenir
-\nG - GPS\'ten konum ve hava güncellenir
-\nN - ağdan konum ve hava güncellenir
-\nNc - hücre ağından konum ve hava güncellenir
-\nNw - wifi ağlarından konum ve hava güncellenir
-\nNcw - wifi ve hücre ağlarında konum ve hava güncellenir</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - yalnızca hava güncellenir 
+\nL - yalnızca konum güncellenir 
+\nG - GPS\'ten konum ve hava güncellenir 
+\nN - ağdan konum ve hava güncellenir 
+\nNc - hücre ağından konum ve hava güncellenir. Konumu Mozzila konum servisleri sayesinde keşfeder</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Telefon uyurken konum takılırsa, hücre arandığında telefonu uyandırabilirsiniz</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Uyanma Stratejisi</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">Uyanma yok</string>
@@ -235,14 +233,13 @@
     <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Bulunan konumlar önbellekte saklanır</string>
     <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Bulunan konumlar önbellekte saklanmaz</string>
     
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Bu kılavuz, uygulamayı ihtiyaçlarınıza göre ayarlamanıza yardımcı olur. Sonraki ekranda güncelleme stratejisini seçebilirsiniz.
-\nUygulama, <i>Konumu güncelleme</i> seçeneğini seçtiğinizde yalnızca hava durumunu günceller.
-\nKonum güncelleme bu uygulamanın en iyi özelliklerindendir. Bu yüzden <i>Konumu güncelle</i> önerilen değerdir ve önseçilidir.</string>
-    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Bazı telefon modelleri, ekran açık değilse bağlı hücreleri doğru bildirmez. Tercih edilen seçeneğin (ekranla birlikte) telefon ekranını birkaç saniye açması dezavantajı vardır. Bunun pil ömrüne (gerçekten) küçük bir etkisi vardır. Önerilen seçenek ile başlayıp daha sonra bu seçeneği kapatıp konum güncelleme davranışını izleyebilirsiniz.</string>
-    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Bulunan yerleri önbellekte saklayarak ağ trafiğini azaltabilirsiniz. Konumların uygulamada saklandığını gerçeğini kabul etmelisiniz. Konumlar başka bir ağın bir yerine saklanmaz veya gönderilmez.</string>
-    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Temel ayarları bitirdiniz. Ayarlar menüsünde diğer ayarları (örneğn dil, birimler vb) bulabilirsiniz.
-\nSonraki ekran size istenen izinlerle ilgili açıklamalar ve onları isteme seçeneği verecek.
-\n
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Bir sonraki ekranda güncelleme stratejisini seçebilirsiniz. 
+\nUygulama, varsayılan olarak konum güncelleme özelliği haricinde, <i>Konumu güncelleme</i> seçeneğini seçtiğinizde yalnızca hava durumunu günceller.</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Bazı telefon modelleri, ekran açık değilse bağlı hücreleri doğru bildirmez. Tercih edilen seçeneğin (ekranla birlikte) telefon ekranını birkaç saniye açması dezavantajı vardır. Bunun pil ömrüne (gerçekten) küçük bir etkisi vardır. Seçenek açık olarak başlayıp daha sonra bu seçeneği kapatıp konum güncelleme davranışını izleyebilirsiniz.</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Bulunan yerleri önbellekte saklayarak ağ trafiğini azaltabilirsiniz. Konumlar uygulamada saklanmaktadır. başka bir ağın bir yerine saklanmaz veya gönderilmez.</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Ayarları bitirdiniz. Ayarlar menüsünde diğer ayarları (örneğn dil, birimler vb) bulabilirsiniz. 
+\nSonraki ekran size istenen izinlerle ilgili açıklamalar ve onları isteme seçeneği verecek. 
+\n 
 \nUygulamanın keyfini çıkarın.</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Sonraki ekranda (menüden sonraki ekranı seçin veya soldan sağa kaydırın) hava tahminlerini bulabilirsiniz. Hava tahminleri güncelleme düğmesiyle ya da ekrana girdiğinizde (fakat saatte bir güncellemeden fazla değil) güncellenir.</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Sıcaklık</b> - Sıcaklık birimini seçebilirsiniz, <b>Rüzgar</b> - Rüzgar hızı birimini seçebilirsiniz ve <b>Basınç</b> - Basınç birimini seçebilirsiniz. Değerler, bu seçeneklere göre tekrar hesaplanır.</string>
@@ -314,4 +311,6 @@
     <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portekizce (Portekiz)</string>
     <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portekizce (Brezilya)</string>
     <string name="label_pressure" tools:ignore="MissingTranslation">Basınç</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Mevcut hava durumu açıklama dili ve adresiniz sonraki güncellemede değişecek, ya da şimdi de değiştirebilirsiniz.</string>
+
     </resources>

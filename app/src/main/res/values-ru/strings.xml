@@ -12,7 +12,7 @@
     <string name="progressDialog_gps_locate">Определить текущее местоположение</string>
     <string name="alertDialog_location_permission_negativeButton">Отмена</string>
     <string name="alertDialog_location_permission_positiveButton_settings">Настройки телефона</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings">Приложение настроено на обновление местоположения. Для обновления местоположения, доступ должен быть включён. В настройках телефона, включите определение местоположения или выключите обновление местоположения в приложении.</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">Приложение настроено на обновление местоположения. Для обновления местоположения, доступ должен быть включён. В настройках телефона включите определение местоположения или выключите обновление местоположения в приложении.</string>
     <string name="hint_activity_search">Поиск местоположения</string>
     <string name="pref_title_temperature">Температура</string>
     <string name="title_activity_settings">Настройки</string>
@@ -89,21 +89,21 @@
     <string name="pref_title_language">Язык</string>
     <string name="preference_title_category_display">Отображение</string>
 <string name="app_name" tools:ignore="MissingTranslation">Местная погода</string>
-    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Положение и установка разрешений</string>
-    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Приложению требуется разрешения для обновления данных от GPS.</string>
-    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Приложению требуется разрешения для обновления данных от WiFi и GSM сетей.</string>
-    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Приложению требуется разрешения для чтения информации от телефона. Доступ к этому разрешению позволит обновлять данные о местоположении от WiFi и GSM сетей. Приложение использует данное разрешение для сбора данных от базовых станций GSM.</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Положение и Настройка Разрешений</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Приложению требуется разрешения для обновления данных по GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Приложению требуется разрешения для обновления данных по WiFi и 3G.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Разрешение на чтение информации с устройства необходимо для обновления положения по Wi-Fi и 3G. Это позволяет узнать, к какой базовой станции сейчас подключено устройство.</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Запрос разрешений</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Местоположение не определено</string>
-    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Разрешения не подтверждены - в приложении нажмите на символ местоположения</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Разрешения пока не предоставлены - щелкните значок местоположения в приложении</string>
 
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Закрыть</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Далее</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Предыдущее</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Закончить</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Руководство по настройке</string>
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Это руководство поможет вам настроить приложение в соответствии с вашими потребностями. Вы можете выбрать стратегию обновления на следующей странице. 
-\nПриложение обновляет только погоду, когда вы выбираете <i>Не обновлять местоположение</i> опцию.
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Изменяя приложение по вашим потребностям, вы можете выбрать следующую стратегию обновления.
+\nЧтобы отклониться от значения местоположения по умолчанию, вы можете выбрать &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt; Не обновлять местоположение<i>Не обновлять местоположение</i> опцию.
 \nОбновление местоположения является одной из лучших особенностей этого приложения. Таким образом <i>Обновление местоположения</i> является рекомендуемым значением и предварительно выбирается.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Обновить настройки местоположения</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Источники местоположения</string>
