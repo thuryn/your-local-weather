@@ -9,8 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Address;
 import android.os.Parcel;
 
-import org.thosp.yourlocalweather.R;
-import org.thosp.yourlocalweather.service.LocationUpdateService;
+import org.thosp.yourlocalweather.service.SensorLocationUpdateService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -482,7 +481,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                         LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",
                         null,
                         SQLiteDatabase.CONFLICT_IGNORE);
-                LocationUpdateService.autolocationForSensorEventAddressFound = true;
+                SensorLocationUpdateService.autolocationForSensorEventAddressFound = true;
             }
         }).start();
     }
@@ -527,7 +526,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                         null,
                         SQLiteDatabase.CONFLICT_IGNORE);
                 appendLog(context, TAG, "setNoLocationFound:updated");
-                LocationUpdateService.autolocationForSensorEventAddressFound = false;
+                SensorLocationUpdateService.autolocationForSensorEventAddressFound = false;
                 appendLog(context, TAG, "setNoLocationFound:finished");
             }
         }).start();

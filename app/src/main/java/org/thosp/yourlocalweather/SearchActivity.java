@@ -28,7 +28,7 @@ import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsContract;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.service.LocationUpdateService;
+import org.thosp.yourlocalweather.service.SensorLocationUpdateService;
 import org.thosp.yourlocalweather.service.NominatimLocationService;
 import org.thosp.yourlocalweather.service.SearchActivityProcessResultFromAddressResolution;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -219,7 +219,7 @@ public class SearchActivity extends BaseActivity {
 
         long newLocationRowId = db.insert(LocationsContract.Locations.TABLE_NAME, null, values);
 
-        LocationUpdateService.autolocationForSensorEventAddressFound = true;
+        SensorLocationUpdateService.autolocationForSensorEventAddressFound = true;
 
         if (currentMaxOrderId == 0) {
             Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");

@@ -47,150 +47,22 @@ import java.util.Locale;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
-public class LocationUpdateService extends Service implements LocationListener {
+public class LocationUpdateService extends AbstractCommonService implements LocationListener {
 
     private static final String TAG = "LocationUpdateService";
 
     private static final long LOCATION_TIMEOUT_IN_MS = 30000L;
     private static final long GPS_LOCATION_TIMEOUT_IN_MS = 30000L;
-    private static final float LENGTH_UPDATE_LOCATION_LIMIT = 1500;
-    private static final float LENGTH_UPDATE_LOCATION_SECOND_LIMIT = 30000;
-    private static final float LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION = 200;
-    private static final long UPDATE_WEATHER_ONLY_TIMEOUT = 900000; //15 min
-    private static final long REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT = 180000; //3 min
-    private static final long ACCELEROMETER_UPDATE_TIME_SPAN = 900000000000l; //15 min
-    private static final long ACCELEROMETER_UPDATE_TIME_SECOND_SPAN = 300000000000l; //5 min
-    private static final long ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION = 300000000000l; //5 min
-    private static final long REFRESH_LOCATION_FROM_DB_TIMEOUT = 300000000000l; //5 min
 
-    private PowerManager powerManager;
     private LocationManager locationManager;
-    private SensorManager senSensorManager;
-    private Sensor senAccelerometer;
-
-    private String updateSource;
 
     private volatile long lastLocationUpdateTime;
-    private volatile long lastUpdatedPossition = 0;
-    private volatile long lastUpdate = 0;
-    private volatile float currentLength = 0;
-    private float currentLengthLowPassed = 0;
-    private float gravity[] = new float[3];
-    private MoveVector lastMovement;
-    public static volatile boolean autolocationForSensorEventAddressFound;
-
-    private SensorEventListener sensorListener = new SensorEventListener() {
-
-        @Override
-        public void onSensorChanged(SensorEvent sensorEvent) {
-            try {
-                Sensor mySensor = sensorEvent.sensor;
-
-                if (mySensor.getType() != Sensor.TYPE_ACCELEROMETER) {
-                    return;
-                }
-                processSensorEvent(sensorEvent);
-            } catch (Exception e) {
-                appendLog(getBaseContext(), TAG, "Exception on onSensorChanged", e);
-            }
-        }
-
-        @Override
-        public void onAccuracyChanged(Sensor sensor, int i) {
-        }
-    };
-
-    private BroadcastReceiver screenOnReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            appendLog(context, TAG, "receive intent: " + intent);
-
-            CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
-            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-            org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
-            CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
-            long storedWeatherTime = (weatherRecord != null)?weatherRecord.getLastUpdatedTime():0;
-            long now = System.currentTimeMillis();
-            appendLog(context, TAG, "SCREEN_ON called, lastUpdate=" +
-                    currentLocation.getLastLocationUpdate() +
-                    ", now=" +
-                    now +
-                    ", storedWeatherTime=" +
-                    storedWeatherTime);
-            if ((now <= (storedWeatherTime + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now <= (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
-                timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT - (now - storedWeatherTime));
-                return;
-            }
-            requestWeatherCheck("-", true);
-            timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
-        }
-    };
-
-    private BroadcastReceiver screenOffReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            appendLog(context, TAG, "receive intent: " + intent);
-            timerScreenOnHandler.removeCallbacksAndMessages(null);
-        }
-    };
-
-    Handler timerScreenOnHandler = new Handler();
-    Runnable timerScreenOnRunnable = new Runnable() {
-
-        @Override
-        public void run() {
-            if (!isInteractive()) {
-                return;
-            }
-            CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
-            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-            org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
-            CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
-
-            appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:weatherRecord=" + weatherRecord);
-            if (weatherRecord == null) {
-                requestWeatherCheck("-", true);
-                timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
-                return;
-            }
-
-            long storedWeatherTime = weatherRecord.getLastUpdatedTime();
-            long now = System.currentTimeMillis();
-
-            appendLog(getBaseContext(), TAG, "screen timer called, lastUpdate=" +
-                    currentLocation.getLastLocationUpdate() +
-                    ", now=" +
-                    now +
-                    ", storedWeatherTime=" +
-                    storedWeatherTime);
-
-            if ((now <= (storedWeatherTime + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now <= (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
-                timerScreenOnHandler.postDelayed(timerScreenOnRunnable, REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT);
-                return;
-            }
-            appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:requestWeatherCheck");
-            requestWeatherCheck("-", true);
-            timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
-        }
-    };
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
+    public static volatile boolean updateLocationInProcess;
 
     @Override
     public void onCreate() {
         super.onCreate();
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        currentLength = 0;
-        currentLengthLowPassed = 0;
-        lastUpdate = 0;
-        lastUpdatedPossition = 0;
-        gravity[0] = 0;
-        gravity[1] = 0;
-        gravity[2] = 0;
     }
 
     @Override
@@ -201,10 +73,9 @@ public class LocationUpdateService extends Service implements LocationListener {
         }
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():" + intent.getAction());
         switch (intent.getAction()) {
-            case "android.intent.action.START_SENSOR_BASED_UPDATES": return startSensorBasedUpdates(ret, intent);
-            case "android.intent.action.STOP_SENSOR_BASED_UPDATES": stopSensorBasedUpdates(); return ret;
             case "android.intent.action.LOCATION_UPDATE": startLocationUpdateOnly(intent); return ret;
             case "android.intent.action.START_LOCATION_AND_WEATHER_UPDATE": startLocationAndWeatherUpdate(intent); return ret;
+            case "android.intent.action.START_LOCATION_ONLY_UPDATE": updateNetworkLocation(intent); return ret;
             default: return ret;
         }
     }
@@ -296,6 +167,7 @@ public class LocationUpdateService extends Service implements LocationListener {
                     this);
         }
         appendLog(getBaseContext(), TAG, "send intent to get weather, updateSource " + updateSource);
+        updateLocationInProcess = false;
         sendIntentToGetWeather(currentLocation, false);
     }
 
@@ -428,52 +300,6 @@ public class LocationUpdateService extends Service implements LocationListener {
         }
     }
 
-    private void stopSensorBasedUpdates() {
-        if (senSensorManager == null) {
-            return;
-        }
-        appendLog(getBaseContext(), TAG, "STOP_SENSOR_BASED_UPDATES recieved");
-        getApplication().unregisterReceiver(screenOnReceiver);
-        getApplication().unregisterReceiver(screenOffReceiver);
-        senSensorManager.unregisterListener(sensorListener);
-        senSensorManager = null;
-        senAccelerometer = null;
-    }
-
-    private int startSensorBasedUpdates(int initialReturnValue, Intent intent) {
-        if (senSensorManager != null) {
-            return initialReturnValue;
-        }
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-        org.thosp.yourlocalweather.model.Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
-        if (!autoLocation.isEnabled()) {
-            return initialReturnValue;
-        }
-        autolocationForSensorEventAddressFound = autoLocation.isAddressFound();
-        registerSensorListener();
-        registerScreenListeners();
-        return START_STICKY;
-    }
-
-    private void registerSensorListener() {
-        appendLog(getBaseContext(), TAG, "START_SENSOR_BASED_UPDATES recieved");
-        senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        appendLog(getBaseContext(), TAG, "Selected accelerometer sensor:" + senAccelerometer);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            senSensorManager.registerListener(sensorListener, senAccelerometer , 300000000, 600000000);
-        } else {
-            senSensorManager.registerListener(sensorListener, senAccelerometer , 300000000);
-        }
-    }
-
-    private void registerScreenListeners() {
-        IntentFilter filterScreenOn = new IntentFilter(Intent.ACTION_SCREEN_ON);
-        IntentFilter filterScreenOff = new IntentFilter(Intent.ACTION_SCREEN_OFF);
-        getApplication().registerReceiver(screenOnReceiver, filterScreenOn);
-        getApplication().registerReceiver(screenOffReceiver, filterScreenOff);
-    }
-
     private void gpsRequestLocation() {
         boolean isGPSEnabled = AppPreference.isGpsEnabledByPreferences(getBaseContext()) &&
                 locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
@@ -498,13 +324,23 @@ public class LocationUpdateService extends Service implements LocationListener {
         updateWidgets(isInteractive);
     }
 
-    private boolean updateNetworkLocation(boolean bylastLocationOnly,
+    private void updateNetworkLocation(Intent intent) {
+        if (intent.getExtras() == null) {
+            return;
+        }
+        boolean byLastLocationOnly = intent.getExtras().getBoolean("byLastLocationOnly");
+        boolean isInteractive = intent.getExtras().getBoolean("isInteractive");
+        updateNetworkLocation(byLastLocationOnly, null, isInteractive);
+    }
+
+    private void updateNetworkLocation(boolean bylastLocationOnly,
                                           Intent originalIntent,
                                           boolean isInteractive) {
         boolean permissionsGranted = PermissionUtil.checkPermissionsAndSettings(this);
         appendLog(getBaseContext(), TAG, "updateNetworkLocation:" + permissionsGranted);
         if (!permissionsGranted) {
-            return false;
+            updateLocationInProcess = false;
+            return;
         }
         boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
                 && locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
@@ -521,7 +357,8 @@ public class LocationUpdateService extends Service implements LocationListener {
             appendLog(getBaseContext(), TAG, "updateNetworkLocation:request GPS and start rotation");
             startRefreshRotation(isInteractive);
             gpsRequestLocation();
-            return true;
+            updateLocationInProcess = true;
+            return;
         }
         AppWakeUpManager.getInstance(getBaseContext()).wakeUp();
         appendLog(getBaseContext(), TAG, "updateNetworkLocation:wakeup and start rotation");
@@ -534,35 +371,26 @@ public class LocationUpdateService extends Service implements LocationListener {
                 lastLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                 lastKnownLocationTimerHandler.removeCallbacksAndMessages(null);
             }
-            return updateNetworkLocationByNetwork(lastLocation, bylastLocationOnly, originalIntent, isInteractive);
+            updateNetworkLocationByNetwork(lastLocation, bylastLocationOnly, originalIntent, isInteractive);
         } catch (Exception e) {
             appendLog(getBaseContext(), TAG, "Exception during update of network location", e);
         }
-        return false;
+        stopRefreshRotation(isInteractive);
+        updateLocationInProcess = false;
     }
 
-    private void startRefreshRotation(boolean isInteractive) {
-        Intent sendIntent = new Intent("android.intent.action.START_ROTATING_UPDATE");
-        sendIntent.setPackage("org.thosp.yourlocalweather");
-        startBackgroundService(sendIntent, isInteractive);
-    }
-
-    private void stopRefreshRotation(boolean isInteractive) {
-        Intent sendIntent = new Intent("android.intent.action.STOP_ROTATING_UPDATE");
-        sendIntent.setPackage("org.thosp.yourlocalweather");
-        startBackgroundService(sendIntent, isInteractive);
-    }
-
-    private boolean updateNetworkLocationByNetwork(Location lastLocation,
+    private void updateNetworkLocationByNetwork(Location lastLocation,
                                                    boolean bylastLocationOnly,
                                                    Intent originalIntent,
                                                    boolean isInteractive) {
+        updateLocationInProcess = true;
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         ConnectionDetector connectionDetector = new ConnectionDetector(this);
         org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
         if (!connectionDetector.isNetworkAvailableAndConnected()) {
             if (originalIntent == null) {
-                return false;
+                updateLocationInProcess = false;
+                return;
             }
             int numberOfAttempts = originalIntent.getIntExtra("attempts", 0);
             if (numberOfAttempts > 2) {
@@ -570,11 +398,12 @@ public class LocationUpdateService extends Service implements LocationListener {
                         currentLocation.getId(),
                         System.currentTimeMillis(),
                         ".");
-                return false;
+                updateLocationInProcess = false;
+                return;
             }
             originalIntent.putExtra("attempts", ++numberOfAttempts);
             resendTheIntentInSeveralSeconds(20, originalIntent);
-            return false;
+            updateLocationInProcess = false;
         }
         Intent sendIntent = new Intent("android.intent.action.START_LOCATION_UPDATE");
         sendIntent.putExtra("destinationPackageName", "org.thosp.yourlocalweather");
@@ -599,14 +428,16 @@ public class LocationUpdateService extends Service implements LocationListener {
             sendIntent.putExtra("inputLocation", lastLocation);
             locationsDbHelper.updateLocationSource(currentLocation.getId(), "G");
         } else if (bylastLocationOnly) {
-            return false;
+            updateLocationInProcess = false;
+            stopRefreshRotation(isInteractive);
+            return;
         }
 
         sendIntent.putExtra("resolveAddress", true);
         startBackgroundService(sendIntent, isInteractive);
         appendLog(getBaseContext(), TAG, "send intent START_LOCATION_UPDATE:updatesource is N or G:" + sendIntent);
         timerHandler.postDelayed(timerRunnable, LOCATION_TIMEOUT_IN_MS);
-        return true;
+        updateLocationInProcess = true;
     }
 
     private void removeUpdates(LocationListener locationListener) {
@@ -669,197 +500,6 @@ public class LocationUpdateService extends Service implements LocationListener {
                     requestWeatherCheck(null, isInteractive);
                 }
             }, LOCATION_TIMEOUT_IN_MS);
-        }
-    }
-
-    private void requestWeatherCheck(String locationSource, boolean isInteractive) {
-        appendLog(getBaseContext(), TAG, "startRefreshRotation");
-        startRefreshRotation(isInteractive);
-        boolean updateLocationInProcess = updateNetworkLocation(true, null, isInteractive);
-        appendLog(getBaseContext(), TAG, "requestWeatherCheck, updateLocationInProcess=" +
-                updateLocationInProcess);
-        if (updateLocationInProcess) {
-            updateWidgets(isInteractive);
-            return;
-        }
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-        org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
-        if (locationSource != null) {
-            locationsDbHelper.updateLocationSource(currentLocation.getId(), "-");
-            currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
-        }
-        sendIntentToGetWeather(currentLocation, isInteractive);
-    }
-
-    private void sendIntentToGetWeather(org.thosp.yourlocalweather.model.Location currentLocation, boolean isInteractive) {
-        CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
-        currentWeatherDbHelper.updateLastUpdatedTime(currentLocation.getId(), System.currentTimeMillis());
-        Intent intentToCheckWeather = new Intent(getBaseContext(), CurrentWeatherService.class);
-        intentToCheckWeather.putExtra("locationId", currentLocation.getId());
-        intentToCheckWeather.putExtra("updateSource", updateSource);
-        intentToCheckWeather.putExtra("isInteractive", isInteractive);
-        startBackgroundService(intentToCheckWeather, isInteractive);
-    }
-
-    private boolean isInteractive() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            return powerManager.isInteractive();
-        } else {
-            return powerManager.isScreenOn();
-        }
-    }
-    
-    private void updateWidgets(boolean isInteractive) {
-        stopRefreshRotation(isInteractive);
-        startBackgroundService(new Intent(getBaseContext(), LessWidgetService.class), isInteractive);
-        startBackgroundService(new Intent(getBaseContext(), MoreWidgetService.class), isInteractive);
-        startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetService.class), isInteractive);
-        if (updateSource != null) {
-            switch (updateSource) {
-                case "MAIN":
-                    sendIntentToMain(isInteractive);
-                    break;
-                case "NOTIFICATION":
-                    startBackgroundService(new Intent(getBaseContext(), NotificationService.class), false);
-                    break;
-            }
-        }
-    }
-
-    private void startBackgroundService(Intent intent, boolean isInteractive) {
-        try {
-            if (isInteractive) {
-                getBaseContext().startService(intent);
-                return;
-            }
-        } catch (Exception ise) {
-            //
-        }
-        PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(),
-                0,
-                intent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + 10,
-                    pendingIntent);
-        } else {
-            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + 10,
-                    pendingIntent);
-        }
-    }
-
-    private void sendIntentToMain(boolean isInteractive) {
-        Intent intent = new Intent(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT);
-        intent.putExtra(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT, CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL);
-        startBackgroundService(intent, isInteractive);
-    }
-
-    private void processSensorEvent(SensorEvent sensorEvent) {
-        double countedtLength = 0;
-        double countedAcc = 0;
-        long now = sensorEvent.timestamp;
-        try {
-            final float dT = (float) (now - lastUpdate) / 1000000000.0f;
-            lastUpdate = now;
-
-            if (lastMovement != null) {
-                countedAcc = (float) Math.sqrt((lastMovement.getX() * lastMovement.getX()) + (lastMovement.getY() * lastMovement.getY()) + (lastMovement.getZ() * lastMovement.getZ()));
-                countedtLength = countedAcc * dT *dT;
-
-                float lowPassConst = 0.1f;
-
-                if (countedAcc < lowPassConst) {
-                    if (dT > 1.0f) {
-                        appendLog(getBaseContext(), TAG, "acc under limit, currentLength = " + String.format("%.8f", currentLength) +
-                                ":counted length = " + String.format("%.8f", countedtLength) + ":countedAcc = " + countedAcc +
-                                ", dT = " + String.format("%.8f", dT));
-                    }
-                    currentLengthLowPassed += countedtLength;
-                    lastMovement = highPassFilter(sensorEvent);
-                    return;
-                }
-                currentLength += countedtLength;
-            } else {
-                countedtLength = 0;
-                countedAcc = 0;
-            }
-            lastMovement = highPassFilter(sensorEvent);
-
-            if ((lastUpdate%1000 < 5) || (countedtLength > 10)) {
-                appendLog(getBaseContext(), TAG, "current currentLength = " + String.format("%.8f", currentLength) +
-                        ":counted length = " + String.format("%.8f", countedtLength) + ":countedAcc = " + countedAcc +
-                        ", dT = " + String.format("%.8f", dT));
-            }
-            float absCurrentLength = Math.abs(currentLength);
-
-            if (((lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SPAN)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT))
-                    && ((lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SECOND_SPAN)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_SECOND_LIMIT))
-                    && (autolocationForSensorEventAddressFound || (lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION))) {
-                return;
-            }
-
-            appendLog(getBaseContext(), TAG, "end currentLength = " + String.format("%.8f", absCurrentLength) +
-                    ", currentLengthLowPassed = " + String.format("%.8f", currentLengthLowPassed) +
-                    ", lastUpdate=" + lastUpdate + ", lastUpdatePosition=" + lastUpdatedPossition);
-        } catch (Exception e) {
-            appendLog(getBaseContext(), TAG, "Exception when processSensorQueue", e);
-            return;
-        }
-        gravity[0] = 0;
-        gravity[1] = 0;
-        gravity[2] = 0;
-
-        ConnectionDetector connectionDetector = new ConnectionDetector(getApplicationContext());
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getApplicationContext());
-        org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
-        if (!connectionDetector.isNetworkAvailableAndConnected()) {
-            locationsDbHelper.updateLastUpdatedAndLocationSource(
-                    currentLocationForSensorEvent.getId(),
-                    System.currentTimeMillis(),
-                    ".");
-            return;
-        }
-
-        lastUpdatedPossition = lastUpdate;
-        currentLength = 0;
-        currentLengthLowPassed = 0;
-
-        locationsDbHelper.updateLocationSource(currentLocationForSensorEvent.getId(), "-");
-        updateNetworkLocation(false, null, false);
-    }
-
-    private MoveVector highPassFilter(SensorEvent sensorEvent) {
-        final float alpha = 0.8f;
-
-        gravity[0] = alpha * gravity[0] + (1 - alpha) * sensorEvent.values[0];
-        gravity[1] = alpha * gravity[1] + (1 - alpha) * sensorEvent.values[1];
-        gravity[2] = alpha * gravity[2] + (1 - alpha) * sensorEvent.values[2];
-
-        return new MoveVector(sensorEvent.values[0] - gravity[0], sensorEvent.values[1] - gravity[1], sensorEvent.values[2] - gravity[2]);
-    }
-
-    private class MoveVector {
-        private final float x;
-        private final float y;
-        private final float z;
-
-        public MoveVector(float x, float y, float z) {
-            this.x = x;
-            this.y = y;
-            this.z = z;
-        }
-
-        public float getX() {
-            return x;
-        }
-        public float getY() {
-            return y;
-        }
-        public float getZ() {
-            return z;
         }
     }
 

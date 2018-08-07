@@ -181,13 +181,28 @@
             </intent-filter>
         </service>
         <service
+            android:name=".service.SensorLocationUpdateService"
+            android:process=":SensorLocationUpdateService" >
+            <intent-filter>
+                <action android:name="android.intent.action.START_SENSOR_BASED_UPDATES" />
+                <action android:name="android.intent.action.STOP_SENSOR_BASED_UPDATES" />
+            </intent-filter>
+        </service>
+        <service
+            android:name=".service.ScreenOnOffUpdateService"
+            android:process=":ScreenOnOffUpdateService" >
+            <intent-filter>
+                <action android:name="android.intent.action.START_SCREEN_BASED_UPDATES" />
+                <action android:name="android.intent.action.STOP_SCREEN_BASED_UPDATES" />
+            </intent-filter>
+        </service>
+        <service
             android:name=".service.LocationUpdateService"
             android:process=":LocationUpdateService" >
             <intent-filter>
                 <action android:name="android.intent.action.LOCATION_UPDATE" />
-                <action android:name="android.intent.action.START_SENSOR_BASED_UPDATES" />
-                <action android:name="android.intent.action.STOP_SENSOR_BASED_UPDATES" />
                 <action android:name="android.intent.action.START_LOCATION_AND_WEATHER_UPDATE" />
+                <action android:name="android.intent.action.START_LOCATION_ONLY_UPDATE" />
             </intent-filter>
         </service>
         <service

@@ -104,16 +104,21 @@ public class AppAlarmService extends Service {
         if (locationsDbHelper.getLocationByOrderId(0).isEnabled()) {
             if ("0".equals(updateAutoPeriodStr)) {
                 sendSensorStartIntent();
+                sendScreenStartIntent();
                 alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                         SystemClock.elapsedRealtime() + START_SENSORS_CHECK_PERIOD,
                         START_SENSORS_CHECK_PERIOD,
                         getPendingSensorStartIntent(getBaseContext()));
+                alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + START_SENSORS_CHECK_PERIOD,
+                        START_SENSORS_CHECK_PERIOD,
+                        getPendingScreenStartIntent(getBaseContext()));
             } else if (!"OFF".equals(updateAutoPeriodStr)) {
-                sendSensorStopIntent();
+                sendSensorAndScreenStopIntent();
                 long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
                 scheduleNextRegularAlarm(getBaseContext(), true, updateAutoPeriodMills);
             } else {
-                sendSensorStopIntent();
+                sendSensorAndScreenStopIntent();
             }
         }
         if (!"0".equals(updatePeriodStr) && (locationsDbHelper.getAllRows().size() > 1)) {
@@ -170,13 +175,34 @@ public class AppAlarmService extends Service {
                 PendingIntent.FLAG_CANCEL_CURRENT);
     }
 
-    private void sendSensorStopIntent() {
+    private void sendScreenStartIntent() {
+        Intent sendIntent = new Intent("android.intent.action.START_SCREEN_BASED_UPDATES");
+        sendIntent.setPackage("org.thosp.yourlocalweather");
+        startBackgroundService(sendIntent);
+        appendLog(getBaseContext(), TAG, "sendIntent:" + sendIntent);
+    }
+
+    private static PendingIntent getPendingScreenStartIntent(Context context) {
+        Intent sendIntent = new Intent("android.intent.action.START_SCREEN_BASED_UPDATES");
+        sendIntent.setPackage("org.thosp.yourlocalweather");
+        return PendingIntent.getService(context,
+                0,
+                sendIntent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+    }
+
+    private void sendSensorAndScreenStopIntent() {
         Intent sendIntent = new Intent("android.intent.action.STOP_SENSOR_BASED_UPDATES");
         sendIntent.setPackage("org.thosp.yourlocalweather");
         startService(sendIntent);
+        Intent sendStopScreenIntent = new Intent("android.intent.action.STOP_SCREEN_BASED_UPDATES");
+        sendStopScreenIntent.setPackage("org.thosp.yourlocalweather");
+        startService(sendStopScreenIntent);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(getPendingSensorStartIntent(getBaseContext()));
         getPendingSensorStartIntent(getBaseContext()).cancel();
+        alarmManager.cancel(getPendingScreenStartIntent(getBaseContext()));
+        getPendingScreenStartIntent(getBaseContext()).cancel();
         appendLog(getBaseContext(), TAG, "sendIntent:" + sendIntent);
     }
 
@@ -238,6 +264,13 @@ public class AppAlarmService extends Service {
                         SystemClock.elapsedRealtime() + START_SENSORS_CHECK_PERIOD,
                         START_SENSORS_CHECK_PERIOD,
                         getPendingSensorStartIntent(context));
+                alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + 10,
+                        getPendingScreenStartIntent(context));
+                alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + START_SENSORS_CHECK_PERIOD,
+                        START_SENSORS_CHECK_PERIOD,
+                        getPendingScreenStartIntent(context));
             } else if (!"OFF".equals(updateAutoPeriodStr)) {
                 long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
                 scheduleNextRegularAlarm(context, true, updateAutoPeriodMills);

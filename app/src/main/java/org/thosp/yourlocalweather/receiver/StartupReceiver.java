@@ -52,6 +52,13 @@ public class StartupReceiver extends BroadcastReceiver {
                         SystemClock.elapsedRealtime() + AppAlarmService.START_SENSORS_CHECK_PERIOD,
                         AppAlarmService.START_SENSORS_CHECK_PERIOD,
                         getPendingSensorStartIntent(context));
+                alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + 10,
+                        getPendingScreenStartIntent(context));
+                alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + AppAlarmService.START_SENSORS_CHECK_PERIOD,
+                        AppAlarmService.START_SENSORS_CHECK_PERIOD,
+                        getPendingScreenStartIntent(context));
             } else if (!"OFF".equals(updateAutoPeriodStr)) {
                 long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
                 scheduleNextRegularAlarm(context, true, updateAutoPeriodMills);
@@ -87,6 +94,15 @@ public class StartupReceiver extends BroadcastReceiver {
 
     private static PendingIntent getPendingSensorStartIntent(Context context) {
         Intent sendIntent = new Intent("android.intent.action.START_SENSOR_BASED_UPDATES");
+        sendIntent.setPackage("org.thosp.yourlocalweather");
+        return PendingIntent.getService(context,
+                0,
+                sendIntent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+    }
+
+    private static PendingIntent getPendingScreenStartIntent(Context context) {
+        Intent sendIntent = new Intent("android.intent.action.START_SCREEN_BASED_UPDATES");
         sendIntent.setPackage("org.thosp.yourlocalweather");
         return PendingIntent.getService(context,
                 0,
