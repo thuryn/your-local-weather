@@ -138,8 +138,12 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
     private void stopSensorBasedUpdates() {
         appendLog(getBaseContext(), TAG, "STOP_SENSOR_BASED_UPDATES recieved");
-        getApplication().unregisterReceiver(screenOnReceiver);
-        getApplication().unregisterReceiver(screenOffReceiver);
+        try {
+            getApplication().unregisterReceiver(screenOnReceiver);
+            getApplication().unregisterReceiver(screenOffReceiver);
+        } catch (Exception e) {
+            appendLog(getBaseContext(), TAG, "Error unregistering screen receivers - receivers was not registered", e);
+        }
     }
 
     private int startSensorBasedUpdates(int initialReturnValue, Intent intent) {

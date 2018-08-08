@@ -336,6 +336,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
     private void updateNetworkLocation(boolean bylastLocationOnly,
                                           Intent originalIntent,
                                           boolean isInteractive) {
+        updateLocationInProcess = true;
         boolean permissionsGranted = PermissionUtil.checkPermissionsAndSettings(this);
         appendLog(getBaseContext(), TAG, "updateNetworkLocation:" + permissionsGranted);
         if (!permissionsGranted) {
@@ -357,7 +358,6 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             appendLog(getBaseContext(), TAG, "updateNetworkLocation:request GPS and start rotation");
             startRefreshRotation(isInteractive);
             gpsRequestLocation();
-            updateLocationInProcess = true;
             return;
         }
         AppWakeUpManager.getInstance(getBaseContext()).wakeUp();
