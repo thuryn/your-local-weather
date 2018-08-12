@@ -4,19 +4,19 @@
     <string name="alertDialog_location_permission_message_location_phone_settings">Aplikacja jest ustawiona na aktualizację lokalizacji. Potrzebny jest do tego dostęp. Przejdź do ustawień urządzenia i zmień lokalizację lub wyłącz aktualizacje lokalizacji aplikacji.</string>
     <string name="alertDialog_location_permission_negativeButton">Anulować</string>
     <string name="alertDialog_location_permission_positiveButton_settings">Ustawienia urządzenia</string>
-    <string name="connection_not_found"> Sprawdź swoje połączenie z internetem</string>
+    <string name="connection_not_found">Sprawdź połączenie internetowe</string>
     <string name="enter_city_hint">Wpisz miasto</string>
     <string name="label_choose_city">Wybierz miasto</string>
     <string name="label_current_city">Aktualne miasto</string>
     <string name="label_temperature">Temperatura</string>
-    <string name="nav_feedback">Sprzężenie zwrotne</string>
+    <string name="nav_feedback">Informacja zwrotna</string>
     <string name="progressDialog_gps_locate"> Znajdź bieżącej lokalizacji</string>
-    <string name="wind_speed_miles">mil na godzinę</string>
-    <string name="wind_speed_meters">metrów na sekundę</string>
+    <string name="wind_speed_miles">mph</string>
+    <string name="wind_speed_meters">m/s</string>
     <string name="hint_activity_search">Szukanie</string>
     <string name="pref_title_temperature">Temperatura</string>
     <string name="title_activity_settings">Ustawienia</string>
-    <string name="title_activity_search">Szukanie</string>
+    <string name="title_activity_search">Szukanie Lokalizacji</string>
     <string name="cloudiness_label">Zmętnienie: %1$s%2$s</string>
     <string name="humidity_label">Wilgotność: %1$s%2$s</string>
     <string name="pressure_label">Ciśnienie: %1$s %2$s</string>
@@ -31,8 +31,8 @@
     <string name="update_period_1hour">Co godzinę</string>
     <string name="update_period_24hours">24 godziny</string>
     <string name="update_period_30min">30 minut</string>
-    <string name="widget_weather_icon_description">Current weather icon</string>
-    <string name="widget_refresh_button">Widget refresh button</string>
+    <string name="widget_weather_icon_description">Aktualna ikona pogody</string>
+    <string name="widget_refresh_button">Przycisk odświeżania widżetu</string>
     <string name="preference_title_activity_about">O aplikacji</string>
     <string name="preference_title_activity_general">Ustawienia główne</string>
     <string name="preference_title_activity_widget">Ustawienia widżetu</string>
@@ -41,16 +41,16 @@
     <string name="preference_widget_title_update_period">Zaktualizuj okres dla pogody (Lokalizacja 1,2,3 ...)</string>
     <string name="last_update_label">Ostatnia zmiana: %s</string>
     <string name="about_app_license_pref_title">Licencja</string>
-    <string name="about_open_source_licenses_pref_title">Darmowe oprogramowanie licencyjne</string>
+    <string name="about_open_source_licenses_pref_title">Licencja wolnego oprogramowania</string>
     <string name="about_source_code_pref_title">Kod źródłowy</string>
     <string name="about_version_pref_title">Wersja</string>
     <string name="toast_parse_error">Wystąpił błąd. Spróbuj później!</string>
     <string name="nav_menu_bitcoin_donation">Przekaż bitcoin</string>
-    <string name="toolbar_menu_detect_location">Wykrywanie Lokalizacja</string>
+    <string name="toolbar_menu_detect_location">Lokalizacja Wykrywanie</string>
     <string name="toolbar_menu_refresh">Aktualizacja</string>
-    <string name="toolbar_menu_search_city">Szukaj Miasto</string>
+    <string name="toolbar_menu_search_city">Wyszukaj miasto</string>
     <string name="nav_menu_current_weather">Aktualna pogoda</string>
-    <string name="nav_menu_daily_forecast">Dzienna prognoza</string>
+    <string name="nav_menu_daily_forecast">Prognoza dnia</string>
     <string name="temperature_day_title">Dzień</string>
     <string name="temperature_evening_title">Wieczór</string>
     <string name="temperature_morning_title">Ranek</string>
@@ -63,9 +63,9 @@
     <string name="wind_direction_south_east">SE</string>
     <string name="wind_direction_south_west">SW</string>
     <string name="wind_direction_west">W</string>
-    <string name="label_activity_graphs">wykresy pogody</string>
+    <string name="label_activity_graphs">Wykresy pogody</string>
     <string name="label_activity_main">Aktualna pogoda</string>
-    <string name="label_activity_weather_forecast">Dzienna prognoza</string>
+    <string name="label_activity_weather_forecast">Prognoza dnia</string>
     <string name="nav_menu_graphs">Wykresy</string>
     <string name="load_progress">Załadunek…</string>
     <string name="millimetre_label">mm</string>
@@ -75,7 +75,7 @@
     <string name="label_snow">Śnieg</string>
     <string name="label_wind">Wiatr</string>
     <string name="menu_action_toggle_values">Przełącz wartości</string>
-    <string name="menu_action_toggle_yaxis">Przegubowe Y-Axis</string>
+    <string name="menu_action_toggle_yaxis">Przełącznik Y-Axis</string>
     <string name="sunset_label">Zachód słońca: %s</string>
     <string name="sunrise_label">Wschód słońca: %s</string>
     <string name="title_activity_license">Licencja dla %s</string>
@@ -88,10 +88,10 @@
     <string name="pref_language_default">System Default</string>
     <string name="pref_title_language">Język</string>
     <string name="preference_title_category_display">Widok</string>
-<string name="app_name" tools:ignore="MissingTranslation">Twoja lokalna pogoda</string>
+<string name="app_name" tools:ignore="MissingTranslation">Twoja pogoda</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Ustawienia lokalizacji i uprawnień</string>
-    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Aplikacja potrzebuje uprawnień do aktualizacji lokalizacji za pomocą GPS.</string>
-    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Aplikacja wymaga pozwolenia na aktualizację lokalizacji przez sieci Wi-Fi i GSM.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Brak uprawnień do ustalenia lokalizacji z wykorzystaniem GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Aplikacja wymaga uprawnień w celu ustalenia lokalizacji przy użyciu sieci Wi-Fi oraz GSM.</string>
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Zezwolenie na odczyt informacji z urządzenia jest potrzebne do aktualizacji lokalizacji przy użyciu sieci Wi-Fi i GSM. Spowoduje to pobranie informacji o stacjach bazowych GSM, do których podłączone jest urządzenie.</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Poproś o uprawnienia</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Nie znaleziono lokalizacji</string>
@@ -105,4 +105,182 @@
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Zaktualizuj ustawienie lokalizacji</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Opcja źródła lokalizacji</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Źródło lokalizacji i adresu</string>
-    </resources>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Dostosowując aplikację do swoich potrzeb, możesz wybrać strategię aktualizacji następnej. 
+\nOdchylenie od domyślnej aktualizacji po zmianie lokalizacji, możesz wybrać <i>Nie aktualizuj lokalizacji</i>.</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Możesz wybrać metodę lokalizacji - <i>System</i> pierwsza korzysta z usług Google, aby uzyskać lokalizację według sieci (sieci komórkowej i Wi-Fi). Opcja <i>Lokalne MLS i Nominatim</i> wykorzystuje usługę lokalizacyjną Mozilla do uzyskania współrzędnych lokalizacji i usługi Nominatim w celu uzyskania nazw lokalizacji. Druga opcja wymaga zgody na połączenie telefoniczne w celu pobrania informacji o sieci komórkowej. Preferowana opcja jest wstępnie wybrana.</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Opcja strategii Wakeup</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Niektóre modele telefonów nie zgłaszają prawidłowo podłączonych komórek, chyba że wyświetlacz jest włączony. Preferowana opcja (z włączonym wyświetlaczem) ma tę wadę, że telefon włącza wyświetlacz na kilka sekund. Ma to niewielki wpływ na żywotność baterii. Zacznij od niego i spróbuj go wyłączyć, aby sprawdzić, czy lokalizacja jest nadal aktualizowana.</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Strategia wybudzania</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Opcja rozpoznanego adresu w pamięci podręcznej</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Możesz zapisać ruch sieciowy, buforując znalezione lokalizacje. Lokalizacje są następnie przechowywane w aplikacji. Nie są wysyłane ani przechowywane w innych miejscach w sieci.</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Adres rozpoznany w pamięci podręcznej</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Gratulacje</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">To koniec przewodnika. Inne ustawienia można znaleźć w menu Ustawienia (na przykład język, jednostki itp.). 
+\nNastępny ekran wyjaśni wymagane uprawnienia i da ci opcję ich żądania. 
+\n 
+\nCiesz się z aplikacji.</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Ogólne</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Aplikacja określa lokalizację za pomocą sieci komórkowej (BTS), Wi-Fi, a jeśli nie; GPS, aby pokazać lokalną pogodę, z kolei uzyskiwanie współrzędnych z usługi lokalizacyjnej Mozilla. Korzystając z widżetu na telefonie lub tablecie, możesz zobaczyć swoją lokalizację i aktualną pogodę na głównym ekranie. Aktualizacje lokalizacji mogą być okresowe (np. co godzinę) lub aplikacja może używać przyspieszeniomierza do wykrywania ruchu o większej odległości niż wartość. Trzymanie w kieszeni, odległość zwiększa się szybciej. Możesz wyłączyć aktualizacje lokalizacji - aktualizowana jest tylko pogoda. Aplikacja aktualizuje lokalizację i pogodę w określonych odstępach czasu. Można na przykład ustawić okres aktualizacji na godzinę. Pogoda jest aktualizowana natychmiast po lokalizacji lub po włączeniu ekranu, ale nie częściej niż raz na 15 minut (i gdy pogoda nie jest aktualizowana w ciągu ostatnich 15 minut). Informacje te służą do uzyskiwania współrzędnych lokalizacji przez usługę lokalizacyjną Mozilla. Aplikacja próbuje użyć GPS, gdy lokalizacja nie jest dostępna z sieci komórkowej i sieci Wi-Fi. Współrzędne lokalizacji służą do uzyskania adresu przez usługę Nominatim. Adres jest używany w aplikacji lub widżecie. Aby uzyskać aktualną pogodę aplikacja korzysta z usługi OpenWeatherMap.org.</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Główna aplikacja</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Główna aplikacja zawiera przegląd aktualnej pogody. Możesz zaktualizować pogodę, używając przycisku odświeżania w panelu aplikacji lub przesuwając w dół. Możesz znaleźć przycisk aktualizacji lokalizacji obok przycisku odświeżania pogody. Ten przycisk jest dostępny tylko wtedy, gdy włączona jest lokalizacja 0 (lokalizacja 0 jest przeznaczona do automatycznej aktualizacji lokalizacji).</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Obok przycisku lokalizacji aktualizacji znajduje się przycisk zarządzania lokalizacją (ikona lupy). Możesz zarządzać lokalizacjami dostępnymi w aplikacji i widżetach. Domyślnie dostępne jest jedno miejsce (Lokalizacja 0) - jest ono przeznaczone do automatycznych aktualizacji lokalizacji. Możesz znaleźć przycisk włączania/wyłączania po przesunięciu tej lokalizacji w lewo. Możesz również dodać lokalizację ręcznie. Po kliknięciu przycisku + możesz wybrać swoją lokalizację na mapie. Możesz również usunąć lokalizację za pomocą przycisku Usuń - dostępnego po przesunięciu lokalizacji w lewo.</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Możesz znaleźć prognozę pogody na następnym ekranie (wybierz następny ekran w menu lub przesuń palcem od lewej do prawej). Prognoza pogody jest aktualizowana za pomocą przycisku aktualizacji lub po wejściu do ekranu (ale nie więcej niż jedna aktualizacja na godzinę).</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Trzeci ekran zawiera prognozę pogody wyświetlaną na wykresach.</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Widżety</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">Aplikacja ma dostępne trzy widgety, zawierające niektóre wspólne wartości aktualnej pogody (np. Temperatura). Niektóre wartości są unikalne dla określonego widżetu (na przykład słońce). Jest czas ostatniej aktualizacji w prawym rogu każdego widżetu. Możesz zobaczyć, co zostało ostatnio zaktualizowane (po włączeniu tej opcji w menu ustawień). Możesz znaleźć przycisk aktualizacji obok ostatniej zaktualizowanej godziny. Po naciśnięciu tego przycisku pogoda (i lokalizacja po wybraniu opcji aktualizacji lokalizacji) jest aktualizowana bezwarunkowo. Ostatnią opcją w widżetach jest zmiana położenia - po naciśnięciu aktualnego tekstu lokalizacji zmiana lokalizacji na następną.</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Ustawienia główne</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Ta opcja ma wpływ na całą aplikację.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Temperatura</b> - Wybierz jednostkę temperatury, <b>Wiatr</b> - Wybierz jednostkę prędkości wiatru <b>Ciśnienie</b> - Wybierz jednostkę ciśnienia. Wartości są przeliczane ponownie za pomocą tych opcji.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Ukryj opis pogody</b> - opis aktualnej pogody jest ukryty. Aktualną pogodę możesz zobaczyć tylko za pomocą zmieniającej się ikony.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Okres aktualizacji dla lokalizacji (Lokalizacja 0)</b> - można ustawić okres aktualizacji dla lokalizacji 0 - lokalizacja 0 ma możliwość aktualizacji lokalizacji według komórki, sieci Wi-Fi i GPS. Po wybraniu aktualizacji <i>Przez akcelerometr</i> aplikacja używa opcji akcelerometru do wykrywania ruchu. Po wykryciu ruchu aplikacja zlicza odległość. Po osiągnięciu limitu odległości i ostatniej aktualizacji co najmniej 15 minut przeprowadzana jest aktualizacja lokalizacji i bieżącej pogody. Gdy aplikacja nie może uzyskać lokalizacji, w widżecie można zobaczyć nieznaną etykietę lokalizacji. Gdy aplikacja nie ma lokalizacji, stan aktualizacji lokalizacji jest wykonywany ponownie po 5 minutach. Możesz także wybrać aktualizację lokalizacji w oparciu o przedział czasu. Według opcji <b>Zaktualizuj okres dla pogody (Lokalizacja 1,2,3...)</b> -możesz ustawić aktualizację pogody dla ręcznie odkrytych lokalizacji.</string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Po zaznaczeniu opcji <b>Włącz GPS, gdy konieczne</b>aplikacja próbuje znaleźć lokalizację według sieci komórkowej lub sieci Wi-Fi. Gdy lokalizacja nie może zostać znaleziona przez aplikację usług sieciowych, włącza GPS na kilka sekund, aby uzyskać lokalizację.</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Źródło lokalizacji i adresu</b> 
+\nMożesz wybrać, skąd aplikacja otrzymuje lokalizację i adres.</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"><b>Lokalne MLS i Nominatim</b> - Aplikacja pobiera lokalizację przez usługi lokalizacyjne Mozilli. Aplikacja wykorzystuje sieć komórkową - informacje o aktualnie aktywnych i dostępnych stacjach baz sieci. Aby uzyskać te informacje, musisz uzyskać pozwolenie na połączenie telefoniczne. Aplikacja wykorzystuje sieci Wi-Fi do dokładniejszego odgadnięcia Twojej lokalizacji. Aplikacja pobiera współrzędne geograficzne z usługi lokalizacyjnej Mozilla. Aplikacja korzysta z usług Nominatim w celu uzyskania adresu ze współrzędnych. Jeśli chcesz uzyskać dokładniejszą lokalizację z usługi lokalizacyjnej Mozilli, możesz dodać ją za pomocą aplikacji Mozilla Stumbler (available at https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler).</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"><b>System</b> - Aplikacja pobiera lokalizację i adres przez usługi systemowe w systemie Android (zwykle z usługami lokalizacyjnymi Google).</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Te opcje menu określają <b>język</b>, <b>theme</b> głównej aplikacji i <b>icon set</b> używane w aplikacji i widżety.</string>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"><b>Powiadomienia</b> 
+\nPo wybraniu opcji powiadomień aplikacja okresowo aktualizuje bieżącą pogodę. Aktualna pogoda jest wtedy umieszczana w obszarze powiadomień. Możesz także włączyć wibracje - aplikacja wibruje po aktualizacji.</string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">Aby zaoszczędzić ruch w sieci i przyspieszyć aktualizację lokalizacji, możesz się przełączyć na <b>Lokalizacja pamięci podręcznej</b>. Pamięć podręczna przechowuje współrzędne geograficzne i adres. Aplikacja musi wywoływać usługę rozwiązywania sieci niezależnie od tego ustawienia. Jednak połączenie z rozwiązaniem adresu Nominatim ma miejsce w przypadku, gdy adres nie znajduje się w pamięci podręcznej. Po włączeniu opcji lokalizacji pamięci podręcznej musisz zaakceptować fakt, że adresy, które odwiedziłeś, są przechowywane w aplikacji. Żadne informacje z pamięci podręcznej nie są wysyłane poza aplikację.</string>
+    <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Obok opcji lokalizacji pamięci podręcznej (pole wyboru) dostępne jest ustawienie <b>Wiek buforowanych wartości</b>. Każdy zapisany adres ma znacznik czasu. Gdy znacznik czasu jest starszy, ustaw wartość w aplikacji Wiek epizodów buforowanych wywołuje Nominatim, aby odświeżyć rekord.</string>
+    <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Możesz wyczyścić pamięć podręczną adresów za pomocą przycisku <b>Wyczyść pamięć podręczną</b>.</string>
+    <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">Możesz zobaczyć kilka ostatnich wierszy buforowanych wartości w sekcji <b>Informacje o pamięci podręcznej</b> Widać również całkowitą liczbę wierszy.</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">Ustawienia widżetu</string>
+    <string name="help_page_4_content" tools:ignore="MissingTranslation">Ustawienia widgetu zawierają opcje konfiguracji dla wszystkich widżetów.</string>
+    <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Po zaznaczeniu opcji <b>Pokaż etykiety w widżecie</b> na etykiecie zamiast ikon znajdują się wartości warunków pogodowych.</string>
+    <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Możesz kontrolować tło widgetu przez <b>Opcje motywu widżetu</b>.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">Opcja <b>Wybudź się</b> ma na celu przezwyciężenie błędnej implementacji usługi Android przez różnych dostawców. Po wybraniu opcji <i>Bez przebudzenia</i>lokalizacja jest poprawnie aktualizowana, masz poprawną implementację. Gdy lokalizacja nie jest prawidłowo aktualizowana, możesz spróbować <i>Obudź tylko procesor</i>. Ta opcja uruchamia procesor i próbuje odczytać stan komórki i sieci Wi-Fi. Ostatnia opcja <i>Obudź się z wyświetlaczem</i> to opcja, która przełącza ekran na kilka sekund podczas aktualizacji lokalizacji. Na niektórych telefonach z systemem Android jest to jedyna opcja, aby uzyskać prawidłowe informacje o sieciach komórkowych i Wi-Fi. Ta opcja zużywa pewną ilość baterii - ale wpływ na żywotność baterii jest naprawdę niewielki.</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Po wykonaniu aktualizacji lokalizacji i bieżącej pogody można wyświetlić status aktualizacji obok czasu aktualizacji w widgecie. Możesz kontrolować, co jest wyświetlane w opcji <b>Wyświetl podsumowanie aktualizacji</b>. Poniżej wyjaśniono najbardziej zaawansowaną opcję:</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">Opcje debugowania</string>
+    <string name="help_page_5_content" tools:ignore="MissingTranslation">Istnieją opcje umożliwiające włączenie debugowania w pliku dziennika. Ta opcja jest przydatna, gdy występują problemy z aplikacją.</string>
+
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Pomoc</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Lokalizacja</string>
+
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Ustawienie kolumny</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Kolumny do pokazania</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikona</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Opis</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Temperatura otoczenia</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Wiatr</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Deszcz/Śnieg</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Wilgotność</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Ciśnienie</string>
+    <string name="ok" tools:ignore="MissingTranslation">OK</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Anuluj</string>
+
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Otwórz pasek nawigacji</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Zamknij pasek nawigacji</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Pomoc</string>
+
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">węzłów</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">Wiatr</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Ciśnienie</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Aktualizowanie lokalizacji-Ustawienia</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">Nie aktualizuj lokalizacji</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">Zaktualizuj lokalizację (zalecane)</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">Zaktualizuj lokalizację bez użycia GPS</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Włącz GPS jeśli wymagane</string>
+    <string name="update_period_by_sensors" tools:ignore="MissingTranslation">Przez akcelerometr</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">Tylko manualnie</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Okres aktualizacji dla lokalizacji (Lokalizacja 0)</string>
+    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Zaktualizuj lokalizację</string>
+    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Pokaż etykiety w widżecie</string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Użyj do wyświetlenia geolokacji</string>
+    <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Motyw widżetu</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">Ciemny</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">Jasny</string>
+    <string name="theme_transparent" tools:ignore="MissingTranslation">Przezroczysty</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Zaktualizuj lokalizację i pogodę</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chiński (Chinese)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Suahili (Swahili)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norweski (Norwegian)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Holenderski (Dutch)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Węgierski (Hungarian)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Hiszpański (Spanish)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Grecki (Greek)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabski (Arabic)</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Ukraiński</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Rumuński</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portugalski (Portugal)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portugalski (Brazil)</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Źródło adresu i lokalizacji</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Lokalne MLS i Nominatim (zalecane)</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">System</string>
+    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">Motyw</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Wyświetl podsumowanie aktualizacji</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Nic nie ma</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Zaktualizowano wartość</string>
+    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Zaktualizowano wartość ze źródłem lokalizacji</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - pogoda została zaktualizowana
+\nL - aktualizacja tylko lokalizacji
+\nG - lokalizacja z GPS i aktualna pogoda
+\nN - lokalizacja z sieci i prognoza pogody</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - zaktualizowana tylko pogoda 
+\nL - aktualizacja tylko lokalizacji 
+\nG - lokalizacja z GPS i aktualna pogoda 
+\nN - lokalizacja z sieci i prognoza pogody 
+\nNi - lokalizacja z sieci komórkowej i aktualna pogoda, lokalizacja odkryta przez usługę lokalizacyjną Mozilla</string>
+    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Gdy lokalizacja zawiesza się podczas uśpienia urządzenia, możesz spróbować obudzić go, gdy szuka sieci komórkowej</string>
+    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Strategia obudź się</string>
+    <string name="nowakeup_label" tools:ignore="MissingTranslation">Bez przebudzenia</string>
+    <string name="wakeuppartial_label" tools:ignore="MissingTranslation">Obudź tylko procesor</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">Obudź się z wyświetlaczem</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Wyczyść pamięć podręczną</string>
+    <string name="db_info" tools:ignore="MissingTranslation">Informacje o pamięci podręcznej</string>
+    <string name="db_header" tools:ignore="MissingTranslation">Baza danych pamięci podręcznej adresów</string>
+    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Po określonym czasie buforowane wartości zostaną usunięte</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Wiek zapamiętanych wartości</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 godzin</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">dzień</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">tydzień</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">miesiąc</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">trzy miesiące</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">sześć miesięcy</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">rok</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">nigdy</string>
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Lokalizacja pamięci podręcznej</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Znaleziono lokalizacje są buforowane</string>
+    <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Znalezione lokalizacje nie są buforowane</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Usuń</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Wyłącz</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Włącz</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">Automatyczne wykrywanie</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Wyłączony</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Dodaj</string>
+    <string name="search_location_info" tools:ignore="MissingTranslation">Dotknij mapy, aby uzyskać żądaną lokalizację i poczekaj, aż adres zostanie rozpoznany.</string>
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Aktualna pogoda nie została jeszcze zaktualizowana. Zaktualizuj aktualną pogodę naciskając przycisk odświeżania.</string>
+
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Temperatura otoczenia: %s</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Zmierzona temperatura: %s</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Ciśnienie</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">Tylko zmierzona wartość</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Obie, mierzone pierwotnie</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Obie, wygląd pierwotny</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">Tylko wartość wyglądu</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Pokaż temperaturę jako</string>
+
+    <string name="permission_location_need" tools:ignore="MissingTranslation">Przyznaj uprawnienia do lokalizacji</string>
+
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Aktualny język opisu pogody i adres zmienią kolejną aktualizację lub możesz zostać zmuszony ręcznie.</string>
+
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">Wybierz folder dziennika</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">Opcje debugowania</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Po upływie określonego czasu plik dziennika zostanie utworzony ponownie</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Rotacja pliku dziennika</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 godzin</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">dzień</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">dwa dni</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">trzy dni</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">tydzień</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">miesiąc</string>
+
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Zestaw ikon</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Ikony oparte na czcionkach</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin czerwone ikony</string>
+</resources>
