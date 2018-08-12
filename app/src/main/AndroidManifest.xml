@@ -173,6 +173,10 @@
             android:name=".service.CurrentWeatherService"
             android:process=":CurrentWeatherService"
             />
+        <service
+            android:name=".service.ForecastWeatherService"
+            android:process=":ForecastWeatherService"
+            />
         <service android:name=".service.AppAlarmService" >
             <intent-filter>
                 <action android:name="org.thosp.yourlocalweather.action.START_ALARM_SERVICE" />

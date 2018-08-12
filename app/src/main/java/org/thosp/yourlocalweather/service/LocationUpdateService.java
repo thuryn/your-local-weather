@@ -198,7 +198,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         public void run() {
             locationManager.removeUpdates(gpsLocationListener);
             setNoLocationFound(false);
-            stopRefreshRotation(false);
+            stopRefreshRotation();
         }
     };
 
@@ -216,7 +216,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             sendIntent.putExtra("destinationPackageName", "org.thosp.yourlocalweather");
             sendIntent.putExtra("inputLocation", location);
             sendIntent.putExtra("resolveAddress", true);
-            startBackgroundService(sendIntent, false);
+            startBackgroundService(sendIntent);
             appendLog(getBaseContext(), TAG, "send intent START_LOCATION_UPDATE:locationSource G:" + sendIntent);
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
             org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
@@ -321,7 +321,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             return;
         }
         locationDbHelper.setNoLocationFound();
-        updateWidgets(isInteractive);
+        updateWidgets();
     }
 
     private void updateNetworkLocation(Intent intent) {
@@ -356,13 +356,13 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                                         ", isNetworkEnabled=" + isNetworkEnabled);
         if (networkNotEnabled && isGPSEnabled && !bylastLocationOnly) {
             appendLog(getBaseContext(), TAG, "updateNetworkLocation:request GPS and start rotation");
-            startRefreshRotation(isInteractive);
+            startRefreshRotation();
             gpsRequestLocation();
             return;
         }
         AppWakeUpManager.getInstance(getBaseContext()).wakeUp();
         appendLog(getBaseContext(), TAG, "updateNetworkLocation:wakeup and start rotation");
-        startRefreshRotation(isInteractive);
+        startRefreshRotation();
         try {
 
             Location lastLocation = null;
@@ -375,7 +375,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         } catch (Exception e) {
             appendLog(getBaseContext(), TAG, "Exception during update of network location", e);
         }
-        stopRefreshRotation(isInteractive);
+        stopRefreshRotation();
         updateLocationInProcess = false;
     }
 
@@ -429,12 +429,12 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             locationsDbHelper.updateLocationSource(currentLocation.getId(), "G");
         } else if (bylastLocationOnly) {
             updateLocationInProcess = false;
-            stopRefreshRotation(isInteractive);
+            stopRefreshRotation();
             return;
         }
 
         sendIntent.putExtra("resolveAddress", true);
-        startBackgroundService(sendIntent, isInteractive);
+        startBackgroundService(sendIntent);
         appendLog(getBaseContext(), TAG, "send intent START_LOCATION_UPDATE:updatesource is N or G:" + sendIntent);
         timerHandler.postDelayed(timerRunnable, LOCATION_TIMEOUT_IN_MS);
         updateLocationInProcess = true;
@@ -448,7 +448,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
 
     private void detectLocation(final boolean isInteractive) {
         if (!PermissionUtil.checkPermissionsAndSettings(this)) {
-            updateWidgets(isInteractive);
+            updateWidgets();
             stopSelf();
             return;
         }

@@ -1,5 +1,6 @@
 package org.thosp.yourlocalweather;
 
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -9,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
@@ -21,11 +21,13 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
+import org.thosp.yourlocalweather.service.CurrentWeatherService;
+import org.thosp.yourlocalweather.service.ForecastWeatherService;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.CustomValueFormatter;
+import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
-import org.thosp.yourlocalweather.utils.WeatherForecastUtil;
 import org.thosp.yourlocalweather.utils.XAxisValueFormatter;
 import org.thosp.yourlocalweather.utils.YAxisValueFormatter;
 
@@ -53,6 +55,7 @@ public class GraphsActivity extends ForecastingActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initializeWeatherForecastReceiver(ForecastWeatherService.ACTION_GRAPHS_UPDATE_RESULT);
         setContentView(R.layout.activity_graphs);
         mValueFormatter = new CustomValueFormatter();
         mYAxisFormatter = new YAxisValueFormatter();
@@ -79,6 +82,15 @@ public class GraphsActivity extends ForecastingActivity {
         mRecyclerView.setOnTouchListener(new ActivityTransitionTouchListener(
                 WeatherForecastActivity.class,
                 null, this));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        registerReceiver(mWeatherUpdateReceiver,
+                new IntentFilter(
+                        ForecastWeatherService.ACTION_GRAPHS_UPDATE_RESULT));
+        updateUI();
     }
 
     private void setTemperatureChart(long locationId) {
@@ -492,14 +504,7 @@ public class GraphsActivity extends ForecastingActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                if (mConnectionDetector.isNetworkAvailableAndConnected()) {
-                    WeatherForecastUtil.getWeather(GraphsActivity.this, new ForecastGraphsWeatherForecastResultHandler(this));
-                    setVisibleUpdating(true);
-                } else {
-                    Toast.makeText(this,
-                                   R.string.connection_not_found,
-                                   Toast.LENGTH_SHORT).show();
-                }
+                updateWeatherForecastFromNetwork("GRAPHS", GraphsActivity.this);
                 return true;
             case R.id.action_toggle_values:
                 toggleValues();
@@ -549,25 +554,17 @@ public class GraphsActivity extends ForecastingActivity {
         mPressureChart.invalidate();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        updateUI();
-    }
-
     protected void updateUI() {
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
         long locationId = AppPreference.getCurrentLocationId(this);
+        location = locationsDbHelper.getLocationById(locationId);
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
         if (weatherForecastRecord != null) {
             weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
             locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());
-        }
-        if ((weatherForecastRecord == null) || (locationWeatherForecastLastUpdate.get(locationId) + WeatherForecastActivity.AUTO_FORECAST_UPDATE_TIME_MILIS) <  Calendar.getInstance().getTimeInMillis()) {
-            updateWeatherForecastFromNetwork();
-            if ((weatherForecastList == null) || (weatherForecastList.get(locationId) == null)) {
-                return;
-            }
+        } else if (ForecastUtil.shouldUpdateForecast(this, locationId)) {
+            updateWeatherForecastFromNetwork("GRAPHS", GraphsActivity.this);
+            return;
         }
 
         TextView temperatureLabel = (TextView) findViewById(R.id.graphs_temperature_label);

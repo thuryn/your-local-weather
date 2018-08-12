@@ -19,6 +19,7 @@ import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
@@ -70,10 +71,12 @@ public class AppAlarmService extends Service {
             }
 
             if (autoLocation) {
+                long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
                 Intent intentToStartUpdate = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
                 intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
-                intentToStartUpdate.putExtra("locationId", locationsDbHelper.getLocationByOrderId(0).getId());
+                intentToStartUpdate.putExtra("locationId", locationId);
                 startBackgroundService(intentToStartUpdate);
+                scheduleNextLocationWeatherForecastUpdate(locationId);
                 return ret;
             }
             for (Location location: locationsDbHelper.getAllRows()) {
@@ -81,6 +84,7 @@ public class AppAlarmService extends Service {
                     continue;
                 } else {
                     scheduleNextLocationWeatherUpdate(location);
+                    scheduleNextLocationWeatherForecastUpdate(location.getId());
                     break;
                 }
             }
@@ -156,6 +160,22 @@ public class AppAlarmService extends Service {
             alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime(),
                     startWeatherUpdate(location));
+        }
+    }
+
+    private void scheduleNextLocationWeatherForecastUpdate(long locationId) {
+        if (!ForecastUtil.shouldUpdateForecast(this, locationId)) {
+            return;
+        }
+        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime(),
+                    startWeatherForecastUpdate(locationId));
+        } else {
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime(),
+                    startWeatherForecastUpdate(locationId));
         }
     }
 
@@ -235,6 +255,16 @@ public class AppAlarmService extends Service {
                                           0,
                                             intentToCheckWeather,
                                           PendingIntent.FLAG_CANCEL_CURRENT);
+    }
+
+    private PendingIntent startWeatherForecastUpdate(long locationId) {
+        Intent intentToCheckWeather = new Intent(this, ForecastWeatherService.class);
+        intentToCheckWeather.putExtra("locationId", locationId);
+        startBackgroundService(intentToCheckWeather);
+        return PendingIntent.getBroadcast(getBaseContext(),
+                0,
+                intentToCheckWeather,
+                PendingIntent.FLAG_CANCEL_CURRENT);
     }
 
     public boolean isAlarmOff() {

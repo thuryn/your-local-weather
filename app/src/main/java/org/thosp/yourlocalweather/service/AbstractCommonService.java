@@ -14,6 +14,7 @@ import android.support.annotation.Nullable;
 
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
 import org.thosp.yourlocalweather.widget.LessWidgetService;
 import org.thosp.yourlocalweather.widget.MoreWidgetService;
@@ -41,44 +42,45 @@ public class AbstractCommonService extends Service {
 
     protected void updateNetworkLocation(boolean byLastLocationOnly,
                                          boolean isInteractive) {
+        startRefreshRotation();
         Intent sendIntent = new Intent("android.intent.action.START_LOCATION_ONLY_UPDATE");
         sendIntent.putExtra("destinationPackageName", "org.thosp.yourlocalweather");
         sendIntent.putExtra("byLastLocationOnly", byLastLocationOnly);
         sendIntent.putExtra("isInteractive", isInteractive);
-        startBackgroundService(sendIntent, false);
+        startBackgroundService(sendIntent);
     }
 
-    protected void updateWidgets(boolean isInteractive) {
-        stopRefreshRotation(isInteractive);
-        startBackgroundService(new Intent(getBaseContext(), LessWidgetService.class), isInteractive);
-        startBackgroundService(new Intent(getBaseContext(), MoreWidgetService.class), isInteractive);
-        startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetService.class), isInteractive);
+    protected void updateWidgets() {
+        stopRefreshRotation();
+        startBackgroundService(new Intent(getBaseContext(), LessWidgetService.class));
+        startBackgroundService(new Intent(getBaseContext(), MoreWidgetService.class));
+        startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
         if (updateSource != null) {
             switch (updateSource) {
                 case "MAIN":
-                    sendIntentToMain(isInteractive);
+                    sendIntentToMain();
                     break;
                 case "NOTIFICATION":
-                    startBackgroundService(new Intent(getBaseContext(), NotificationService.class), false);
+                    startBackgroundService(new Intent(getBaseContext(), NotificationService.class));
                     break;
             }
         }
     }
 
-    protected void sendIntentToMain(boolean isInteractive) {
+    protected void sendIntentToMain() {
         Intent intent = new Intent(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT);
         intent.putExtra(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT, CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL);
-        startBackgroundService(intent, isInteractive);
+        startBackgroundService(intent);
     }
 
     protected void requestWeatherCheck(String locationSource, boolean isInteractive) {
         appendLog(getBaseContext(), TAG, "startRefreshRotation");
-        startRefreshRotation(isInteractive);
+        startRefreshRotation();
         boolean updateLocationInProcess = LocationUpdateService.updateLocationInProcess;
         appendLog(getBaseContext(), TAG, "requestWeatherCheck, updateLocationInProcess=" +
                 updateLocationInProcess);
         if (updateLocationInProcess) {
-            updateWidgets(isInteractive);
+            updateWidgets();
             return;
         }
         updateNetworkLocation(true, isInteractive);
@@ -98,19 +100,29 @@ public class AbstractCommonService extends Service {
         intentToCheckWeather.putExtra("locationId", currentLocation.getId());
         intentToCheckWeather.putExtra("updateSource", updateSource);
         intentToCheckWeather.putExtra("isInteractive", isInteractive);
-        startBackgroundService(intentToCheckWeather, isInteractive);
+        startBackgroundService(intentToCheckWeather);
+        startWeatherForecastUpdate(currentLocation.getId());
     }
 
-    protected void startRefreshRotation(boolean isInteractive) {
+    private void startWeatherForecastUpdate(long locationId) {
+        if (!ForecastUtil.shouldUpdateForecast(this, locationId)) {
+            return;
+        }
+        Intent intentToCheckWeather = new Intent(this, ForecastWeatherService.class);
+        intentToCheckWeather.putExtra("locationId", locationId);
+        startBackgroundService(intentToCheckWeather);
+    }
+
+    protected void startRefreshRotation() {
         Intent sendIntent = new Intent("android.intent.action.START_ROTATING_UPDATE");
         sendIntent.setPackage("org.thosp.yourlocalweather");
-        startBackgroundService(sendIntent, isInteractive);
+        startBackgroundService(sendIntent);
     }
 
-    protected void stopRefreshRotation(boolean isInteractive) {
+    protected void stopRefreshRotation() {
         Intent sendIntent = new Intent("android.intent.action.STOP_ROTATING_UPDATE");
         sendIntent.setPackage("org.thosp.yourlocalweather");
-        startBackgroundService(sendIntent, isInteractive);
+        startBackgroundService(sendIntent);
     }
 
     protected boolean isInteractive() {
@@ -121,9 +133,9 @@ public class AbstractCommonService extends Service {
         }
     }
 
-    protected void startBackgroundService(Intent intent, boolean isInteractive) {
+    protected void startBackgroundService(Intent intent) {
         try {
-            if (isInteractive) {
+            if (isInteractive()) {
                 getBaseContext().startService(intent);
                 return;
             }
