@@ -53,6 +53,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
 
     private static final long LOCATION_TIMEOUT_IN_MS = 30000L;
     private static final long GPS_LOCATION_TIMEOUT_IN_MS = 30000L;
+    private static final long GPS_MAX_LOCATION_AGE_IN_MS = 350000L; //5min
 
     private LocationManager locationManager;
 
@@ -424,7 +425,9 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                 gpsLastLocationTime +
                 ", and location last update time = " +
                 lastLocationUpdate);
-        if ((lastLocation != null) && gpsLastLocationTime > lastLocationUpdate) {
+        if ((lastLocation != null) &&
+                (gpsLastLocationTime > (System.currentTimeMillis() - GPS_MAX_LOCATION_AGE_IN_MS)) &&
+                (gpsLastLocationTime > lastLocationUpdate)) {
             sendIntent.putExtra("inputLocation", lastLocation);
             locationsDbHelper.updateLocationSource(currentLocation.getId(), "G");
         } else if (bylastLocationOnly) {
