@@ -118,6 +118,7 @@
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Help</string>
 
     <!-- Toast messages -->
+    <string name="location_not_initialized" tools:ignore="MissingTranslation">Location is not initialized. Click on location circle first.</string>
     <string name="connection_not_found" tools:ignore="MissingTranslation">Check your Internet connection</string>
     <string name="toast_parse_error" tools:ignore="MissingTranslation">An error has occurred. Try later!</string>
 

@@ -212,6 +212,12 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                             currentLocation.getId(),
                             System.currentTimeMillis(),
                             "-");
+                    if ((currentLocation.getLatitude() == 0.0) && (currentLocation.getLongitude() == 0.0)) {
+                        Toast.makeText(MainActivity.this,
+                                R.string.location_not_initialized,
+                                Toast.LENGTH_LONG).show();
+                        return true;
+                    }
                     currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
                     Intent intent = new Intent(this, CurrentWeatherService.class);
                     intent.putExtra("updateSource", "MAIN");
