@@ -5,10 +5,25 @@ import android.widget.RemoteViews;
 import android.widget.TextView;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
+import org.thosp.yourlocalweather.model.WeatherCondition;
+import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class WidgetUtils {
+
+    private static final String TAG = "WidgetUtils";
+
+    private static final SimpleDateFormat sdfDayOfWeek = new SimpleDateFormat("EEEE");
 
     public static void setSunset(Context context, RemoteViews remoteViews, String value) {
         if (AppPreference.showLabelsOnWidget(context)) {
@@ -98,6 +113,166 @@ public class WidgetUtils {
             remoteViews.setImageViewBitmap(R.id.widget_clouds_icon, Utils.createWeatherIcon(context, context.getString(R.string.icon_cloudiness)));
             remoteViews.setViewVisibility(R.id.widget_clouds_icon, TextView.VISIBLE);
             remoteViews.setTextViewText(R.id.widget_clouds, cloudnes);
+        }
+    }
+
+    public static void updateWeatherForecast(Context context, long locationId, RemoteViews remoteViews) {
+        final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
+        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
+        //appendLog(context, TAG, "updateWeatherForecast:locationId=" + locationId + ", weatherForecastRecord=" + weatherForecastRecord);
+        if (weatherForecastRecord == null) {
+            return;
+        }
+        Integer firstDayOfYear = null;
+        Map<Integer, List<DetailedWeatherForecast>> weatherList = new HashMap<>();
+        Calendar forecastCalendar = Calendar.getInstance();
+        for (DetailedWeatherForecast detailedWeatherForecast : weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
+            forecastCalendar.setTimeInMillis(detailedWeatherForecast.getDateTime() * 1000);
+            int forecastDay = forecastCalendar.get(Calendar.DAY_OF_YEAR);
+            if (firstDayOfYear == null) {
+                firstDayOfYear = forecastDay;
+            }
+            if (!weatherList.keySet().contains(forecastDay)) {
+                List<DetailedWeatherForecast> dayForecastList = new ArrayList<>();
+                weatherList.put(forecastDay, dayForecastList);
+            }
+            //appendLog(context, TAG, "preLoadWeather:forecastDay=" + forecastDay + ":detailedWeatherForecast=" + detailedWeatherForecast);
+            weatherList.get(forecastDay).add(detailedWeatherForecast);
+        }
+        int dayCounter = 0;
+        int daysInList = firstDayOfYear + weatherList.keySet().size();
+        for (int dayInYear = firstDayOfYear; dayInYear < daysInList; dayInYear++) {
+            dayCounter++;
+            Map<Integer, Integer> weatherIdsInDay = new HashMap<>();
+            for (DetailedWeatherForecast weatherForecastForDay : weatherList.get(dayInYear)) {
+                WeatherCondition weatherCondition = weatherForecastForDay.getFirstWeatherCondition();
+                /*appendLog(context, TAG, "preLoadWeather:dayInYear=" + dayInYear + ":dayCounter=" + dayCounter +
+                        ":weatherCondition.getWeatherId()=" + weatherCondition.getWeatherId() +
+                        ":weatherIdsInDay.get(weatherCondition.getWeatherId())=" + weatherIdsInDay.get(weatherCondition.getWeatherId()));*/
+                if (weatherIdsInDay.get(weatherCondition.getWeatherId()) == null) {
+                    weatherIdsInDay.put(weatherCondition.getWeatherId(), 1);
+                } else {
+                    weatherIdsInDay.put(weatherCondition.getWeatherId(), 1 + weatherIdsInDay.get(weatherCondition.getWeatherId()));
+                }
+            }
+            Integer weatherIdForTheDay = 0;
+            int maxIconOccurrence = 0;
+            for (Integer weatherId : weatherIdsInDay.keySet()) {
+                int iconCount = weatherIdsInDay.get(weatherId);
+                if (iconCount > maxIconOccurrence) {
+                    weatherIdForTheDay = weatherId;
+                    maxIconOccurrence = iconCount;
+                }
+            }
+            String iconId = null;
+            double maxTemp = Double.MIN_VALUE;
+            double minTemp = Double.MAX_VALUE;
+            double maxWind = 0;
+            for (DetailedWeatherForecast weatherForecastForDay : weatherList.get(dayInYear)) {
+                WeatherCondition weatherCondition = weatherForecastForDay.getFirstWeatherCondition();
+                /*appendLog(context, TAG, "preLoadWeather:weatherIdForTheDay=" + weatherIdForTheDay +
+                        ":weatherForecastForDay.getTemperature()=" + weatherForecastForDay.getTemperature());*/
+                if (weatherCondition.getWeatherId().equals(weatherIdForTheDay)) {
+                    iconId = weatherCondition.getIcon();
+                    double currentTemp = weatherForecastForDay.getTemperature();
+                    if (maxTemp < currentTemp) {
+                        maxTemp = currentTemp;
+                    }
+                    if (minTemp > currentTemp) {
+                        minTemp = currentTemp;
+                    }
+                    if (maxWind < weatherForecastForDay.getWindSpeed()) {
+                        maxWind = weatherForecastForDay.getWindSpeed();
+                    }
+                }
+            }
+            switch (dayCounter) {
+                case 1:
+                    Utils.setForecastIcon(
+                            remoteViews,
+                            context,
+                            R.id.forecast_1_widget_icon,
+                            weatherIdForTheDay,
+                            iconId,
+                            maxTemp,
+                            maxWind);
+                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYear);
+                    remoteViews.setTextViewText(
+                            R.id.forecast_1_widget_day,
+                            sdfDayOfWeek.format(forecastCalendar.getTime()));
+                    remoteViews.setTextViewText(
+                            R.id.forecast_1_widget_temperatures,
+                            Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
+                    break;
+                case 2:
+                    Utils.setForecastIcon(
+                            remoteViews,
+                            context,
+                            R.id.forecast_2_widget_icon,
+                            weatherIdForTheDay,
+                            iconId,
+                            maxTemp,
+                            maxWind);
+                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYear);
+                    remoteViews.setTextViewText(
+                            R.id.forecast_2_widget_day,
+                            sdfDayOfWeek.format(forecastCalendar.getTime()));
+                    remoteViews.setTextViewText(
+                            R.id.forecast_2_widget_temperatures,
+                            Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
+                    break;
+                case 3:
+                    Utils.setForecastIcon(
+                            remoteViews,
+                            context,
+                            R.id.forecast_3_widget_icon,
+                            weatherIdForTheDay,
+                            iconId,
+                            maxTemp,
+                            maxWind);
+                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYear);
+                    remoteViews.setTextViewText(
+                            R.id.forecast_3_widget_day,
+                            sdfDayOfWeek.format(forecastCalendar.getTime()));
+                    remoteViews.setTextViewText(
+                            R.id.forecast_3_widget_temperatures,
+                            Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
+                    break;
+                case 4:
+                    Utils.setForecastIcon(
+                            remoteViews,
+                            context,
+                            R.id.forecast_4_widget_icon,
+                            weatherIdForTheDay,
+                            iconId,
+                            maxTemp,
+                            maxWind);
+                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYear);
+                    remoteViews.setTextViewText(
+                            R.id.forecast_4_widget_day,
+                            sdfDayOfWeek.format(forecastCalendar.getTime()));
+                    remoteViews.setTextViewText(
+                            R.id.forecast_4_widget_temperatures,
+                            Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
+                    break;
+                case 5:
+                    Utils.setForecastIcon(
+                            remoteViews,
+                            context,
+                            R.id.forecast_5_widget_icon,
+                            weatherIdForTheDay,
+                            iconId,
+                            maxTemp,
+                            maxWind);
+                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYear);
+                    remoteViews.setTextViewText(
+                            R.id.forecast_5_widget_day,
+                            sdfDayOfWeek.format(forecastCalendar.getTime()));
+                    remoteViews.setTextViewText(
+                            R.id.forecast_5_widget_temperatures,
+                            Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
+                    break;
+            }
         }
     }
 }

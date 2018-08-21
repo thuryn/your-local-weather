@@ -28,6 +28,7 @@ import org.thosp.yourlocalweather.utils.AppWakeUpManager;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
+import org.thosp.yourlocalweather.widget.ExtLocationWidgetWithForecastService;
 import org.thosp.yourlocalweather.widget.LessWidgetService;
 import org.thosp.yourlocalweather.widget.MoreWidgetService;
 
@@ -225,6 +226,7 @@ public class CurrentWeatherService extends Service {
             startBackgroundService(new Intent(getBaseContext(), LessWidgetService.class));
             startBackgroundService(new Intent(getBaseContext(), MoreWidgetService.class));
             startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
+            startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetWithForecastService.class));
             if (updateSource != null) {
                 switch (updateSource) {
                     case "MAIN":

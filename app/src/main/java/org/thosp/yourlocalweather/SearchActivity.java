@@ -220,6 +220,10 @@ public class SearchActivity extends BaseActivity {
         long newLocationRowId = db.insert(LocationsContract.Locations.TABLE_NAME, null, values);
 
         SensorLocationUpdateService.autolocationForSensorEventAddressFound = true;
+        appendLog(this,
+                TAG,
+                "autolocationForSensorEventAddressFound=" +
+                        SensorLocationUpdateService.autolocationForSensorEventAddressFound);
 
         if (currentMaxOrderId == 0) {
             Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");

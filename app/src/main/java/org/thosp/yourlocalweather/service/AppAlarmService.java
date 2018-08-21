@@ -11,12 +11,16 @@ import android.app.job.JobService;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
 
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
@@ -41,6 +45,23 @@ public class AppAlarmService extends Service {
         super.onCreate();
     }
 
+    private void checkVersionOfStoredForecastInDb() {
+
+        int initialGuideVersion = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
+                .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
+        if (initialGuideVersion > 1) {
+            return;
+        }
+        appendLog(getBaseContext(), TAG, "Old version of stored forecast, clearing forecast DB");
+        WeatherForecastDbHelper weatherForecastDbHelper =
+                WeatherForecastDbHelper.getInstance(getBaseContext());
+        SQLiteDatabase db = weatherForecastDbHelper.getWritableDatabase();
+        weatherForecastDbHelper.onUpgrade(db, 0, 1);
+        SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 2);
+        preferences.apply();
+    }
+
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
@@ -48,6 +69,7 @@ public class AppAlarmService extends Service {
         if (intent == null) {
             return ret;
         }
+        checkVersionOfStoredForecastInDb();
 
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():" + intent.getAction());
         if ("org.thosp.yourlocalweather.action.START_ALARM_SERVICE".equals(intent.getAction())) {

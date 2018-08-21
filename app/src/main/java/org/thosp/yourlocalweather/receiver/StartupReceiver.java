@@ -6,10 +6,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.os.SystemClock;
 
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.AppAlarmService;
 import org.thosp.yourlocalweather.service.NotificationService;
 import org.thosp.yourlocalweather.utils.AppPreference;

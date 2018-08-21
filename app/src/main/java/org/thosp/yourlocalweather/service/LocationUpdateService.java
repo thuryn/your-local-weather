@@ -155,7 +155,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         locationsDbHelper.updateAutoLocationGeoLocation(location.getLatitude(), location.getLongitude(), updateSource, location.getAccuracy(), getLocationTimeInMilis(location));
         appendLog(getBaseContext(), TAG, "put new location from location update service, latitude=" + location.getLatitude() + ", longitude=" + location.getLongitude());
         if (address != null) {
-            locationsDbHelper.updateAutoLocationAddress(PreferenceUtil.getLanguage(getBaseContext()), address);
+            locationsDbHelper.updateAutoLocationAddress(getBaseContext(), PreferenceUtil.getLanguage(getBaseContext()), address);
         } else {
             String geocoder = AppPreference.getLocationGeocoderSource(this);
             boolean resolveAddressByOS = !("location_geocoder_unifiednlp".equals(geocoder) || "location_geocoder_local".equals(geocoder));
@@ -338,6 +338,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                                           Intent originalIntent,
                                           boolean isInteractive) {
         updateLocationInProcess = true;
+        startRefreshRotation();
         boolean permissionsGranted = PermissionUtil.checkPermissionsAndSettings(this);
         appendLog(getBaseContext(), TAG, "updateNetworkLocation:" + permissionsGranted);
         if (!permissionsGranted) {
@@ -460,6 +461,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         appendLog(getBaseContext(), TAG, "detectLocation:isNetworkEnabled=" + isNetworkEnabled);
         if (isNetworkEnabled && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             appendLog(getBaseContext(), TAG, "detectLocation:afterCheckSelfPermission");
+            startRefreshRotation();
             final Looper locationLooper = Looper.myLooper();
             locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, locationLooper);
             final LocationListener locationListener = this;

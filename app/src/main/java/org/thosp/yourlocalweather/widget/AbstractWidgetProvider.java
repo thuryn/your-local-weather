@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.WeatherForecastActivity;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
@@ -140,6 +141,10 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                 MoreWidgetProvider.setWidgetTheme(context, remoteViews);
             } else if (LessWidgetProvider.class.equals(getWidgetClass())) {
                 LessWidgetProvider.setWidgetTheme(context, remoteViews);
+            } else if (ExtLocationWithForecastWidgetProvider.class.equals(getWidgetClass())) {
+                ExtLocationWithForecastWidgetProvider.setWidgetTheme(context, remoteViews);
+            } else if (WeatherForecastWidgetProvider.class.equals(getWidgetClass())) {
+                WeatherForecastWidgetProvider.setWidgetTheme(context, remoteViews);
             }
             setWidgetIntents(context, remoteViews, getWidgetClass(), appWidgetId);
             preLoadWeather(context, remoteViews, appWidgetId);
@@ -200,6 +205,11 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         PendingIntent pendingIntent2 = PendingIntent.getActivity(context, 0,
                 intentStartActivity, 0);
         remoteViews.setOnClickPendingIntent(R.id.widget_icon, pendingIntent2);
+
+        Intent intentWeatherForecastActivity = new Intent(context, WeatherForecastActivity.class);
+        PendingIntent pendingIntent3 = PendingIntent.getActivity(context, 0,
+                intentWeatherForecastActivity, 0);
+        remoteViews.setOnClickPendingIntent(R.id.forecast_layout, pendingIntent3);
 
         Intent intentSwitchLocality = new Intent(context, widgetClass);
         intentSwitchLocality.setAction(Constants.ACTION_APPWIDGET_CHANGE_LOCATION);

@@ -22,8 +22,6 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
 
     private final String TAG = "ForecastViewHolder";
 
-    private List<DetailedWeatherForecast> mWeatherForecast;
-
     private RecyclerView mRecyclerView;
     private Context mContext;
     private Set<Integer> visibleColumns;
@@ -82,8 +80,6 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
     }
 
     void bindWeather(double latitude, List<DetailedWeatherForecast> weather) {
-        mWeatherForecast = weather;
-
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMMM", Locale.getDefault());
         Date date = new Date(weather.get(0).getDateTime() * 1000);
         Calendar currentRowDate = Calendar.getInstance();

@@ -16,8 +16,10 @@ import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
+import org.thosp.yourlocalweather.widget.ExtLocationWidgetWithForecastService;
 import org.thosp.yourlocalweather.widget.LessWidgetService;
 import org.thosp.yourlocalweather.widget.MoreWidgetService;
+import org.thosp.yourlocalweather.widget.WeatherForecastWidgetService;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -55,6 +57,8 @@ public class AbstractCommonService extends Service {
         startBackgroundService(new Intent(getBaseContext(), LessWidgetService.class));
         startBackgroundService(new Intent(getBaseContext(), MoreWidgetService.class));
         startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
+        startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetWithForecastService.class));
+        startBackgroundService(new Intent(getBaseContext(), WeatherForecastWidgetService.class));
         if (updateSource != null) {
             switch (updateSource) {
                 case "MAIN":

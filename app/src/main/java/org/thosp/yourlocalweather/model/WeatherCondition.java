@@ -5,10 +5,12 @@ import android.os.Parcelable;
 
 public class WeatherCondition implements Parcelable {
 
+    private Integer weatherId;
     private String icon;
     private String description;
 
-    public WeatherCondition(String icon, String description) {
+    public WeatherCondition(Integer weatherId, String icon, String description) {
+        this.weatherId = weatherId;
         this.icon = icon;
         this.description = description;
     }
@@ -21,6 +23,10 @@ public class WeatherCondition implements Parcelable {
         return description;
     }
 
+    public Integer getWeatherId() {
+        return weatherId;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -28,6 +34,7 @@ public class WeatherCondition implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(weatherId);
         parcel.writeString(icon);
         parcel.writeString(description);
     }
@@ -44,6 +51,7 @@ public class WeatherCondition implements Parcelable {
     };
 
     private WeatherCondition(Parcel in) {
+        weatherId = in.readInt();
         icon = in.readString();
         description = in.readString();
     }

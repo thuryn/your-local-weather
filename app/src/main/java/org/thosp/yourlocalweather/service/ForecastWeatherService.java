@@ -26,8 +26,10 @@ import org.thosp.yourlocalweather.utils.AppWakeUpManager;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
+import org.thosp.yourlocalweather.widget.ExtLocationWidgetWithForecastService;
 import org.thosp.yourlocalweather.widget.LessWidgetService;
 import org.thosp.yourlocalweather.widget.MoreWidgetService;
+import org.thosp.yourlocalweather.widget.WeatherForecastWidgetService;
 
 import java.net.MalformedURLException;
 
@@ -103,13 +105,6 @@ public class ForecastWeatherService  extends Service {
         if (!networkAvailableAndConnected) {
             int numberOfAttempts = intent.getIntExtra("attempts", 0);
             appendLog(getBaseContext(), TAG, "numberOfAttempts=" + numberOfAttempts);
-            if (numberOfAttempts > 2) {
-                locationsDbHelper.updateLastUpdatedAndLocationSource(
-                        currentLocation.getId(),
-                        System.currentTimeMillis(),
-                        ".");
-                return ret;
-            }
             intent.putExtra("attempts", ++numberOfAttempts);
             resendTheIntentInSeveralSeconds(20, intent);
             return ret;
@@ -203,6 +198,8 @@ public class ForecastWeatherService  extends Service {
             startBackgroundService(new Intent(getBaseContext(), LessWidgetService.class));
             startBackgroundService(new Intent(getBaseContext(), MoreWidgetService.class));
             startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
+            startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetWithForecastService.class));
+            startBackgroundService(new Intent(getBaseContext(), WeatherForecastWidgetService.class));
             if (updateSource != null) {
                 switch (updateSource) {
                     case "FORECAST":
@@ -219,7 +216,6 @@ public class ForecastWeatherService  extends Service {
     }
 
     private void saveWeatherAndSendResult(Context context, CompleteWeatherForecast completeWeatherForecast) {
-        long now = System.currentTimeMillis();
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
         long lastUpdate = System.currentTimeMillis();
         weatherForecastDbHelper.saveWeatherForecast(currentLocation.getId(),

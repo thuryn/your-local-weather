@@ -114,8 +114,8 @@ public class DetailedWeatherForecast implements Parcelable {
         this.temperature = temperature;
     }
 
-    public void addWeatherCondition(String icon, String description) {
-        weatherConditions.add(new WeatherCondition(icon, description));
+    public void addWeatherCondition(Integer weatherId, String icon, String description) {
+        weatherConditions.add(new WeatherCondition(weatherId, icon, description));
     }
 
     public WeatherCondition getFirstWeatherCondition() {

@@ -121,7 +121,9 @@ public class WeatherJSONParser {
             JSONArray weatherConditionList = weatherForecastCase.getJSONArray("weather");
             for (int weatherConditionCounter = 0; weatherConditionCounter < weatherConditionList.length(); weatherConditionCounter++) {
                 JSONObject weatherCondition = weatherConditionList.getJSONObject(weatherConditionCounter);
-                weatherForecast.addWeatherCondition(weatherCondition.getString("icon"), weatherCondition.getString("description"));
+                weatherForecast.addWeatherCondition(weatherCondition.getInt("id"),
+                                                    weatherCondition.getString("icon"),
+                                                    weatherCondition.getString("description"));
             }
             completeWeatherForecast.addDetailedWeatherForecast(weatherForecast);
         }

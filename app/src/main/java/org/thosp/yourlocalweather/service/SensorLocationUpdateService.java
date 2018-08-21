@@ -141,7 +141,8 @@ public class SensorLocationUpdateService extends AbstractCommonService {
 
             appendLog(getBaseContext(), TAG, "end currentLength = " + String.format("%.8f", absCurrentLength) +
                     ", currentLengthLowPassed = " + String.format("%.8f", currentLengthLowPassed) +
-                    ", lastUpdate=" + lastUpdate + ", lastUpdatePosition=" + lastUpdatedPossition);
+                    ", lastUpdate=" + lastUpdate + ", lastUpdatePosition=" + lastUpdatedPossition +
+                    ", autolocationForSensorEventAddressFound=" + autolocationForSensorEventAddressFound);
         } catch (Exception e) {
             appendLog(getBaseContext(), TAG, "Exception when processSensorQueue", e);
             return;
@@ -195,6 +196,12 @@ public class SensorLocationUpdateService extends AbstractCommonService {
             return initialReturnValue;
         }
         autolocationForSensorEventAddressFound = autoLocation.isAddressFound();
+        appendLog(getBaseContext(),
+                  TAG,
+                 "autolocationForSensorEventAddressFound=" +
+                  autolocationForSensorEventAddressFound +
+                  "autoLocation.isAddressFound()=" +
+                         autoLocation.isAddressFound());
         registerSensorListener();
         return START_STICKY;
     }

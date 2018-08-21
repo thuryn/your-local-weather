@@ -467,7 +467,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 SQLiteDatabase.CONFLICT_IGNORE);
     }
 
-    public void updateAutoLocationAddress(final String locale, final Address address) {
+    public void updateAutoLocationAddress(final Context context, final String locale, final Address address) {
         new Thread(new Runnable() {
             public void run() {
                 SQLiteDatabase db = getWritableDatabase();
@@ -482,6 +482,10 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                         null,
                         SQLiteDatabase.CONFLICT_IGNORE);
                 SensorLocationUpdateService.autolocationForSensorEventAddressFound = true;
+                appendLog(context,
+                          TAG,
+                         "updateAutoLocationAddress:autolocationForSensorEventAddressFound=" +
+                                SensorLocationUpdateService.autolocationForSensorEventAddressFound);
             }
         }).start();
     }
@@ -527,7 +531,10 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                         SQLiteDatabase.CONFLICT_IGNORE);
                 appendLog(context, TAG, "setNoLocationFound:updated");
                 SensorLocationUpdateService.autolocationForSensorEventAddressFound = false;
-                appendLog(context, TAG, "setNoLocationFound:finished");
+                appendLog(context,
+                        TAG,
+                        "setNoLocationFound:autolocationForSensorEventAddressFound=" +
+                                SensorLocationUpdateService.autolocationForSensorEventAddressFound);
             }
         }).start();
     }
