@@ -2,20 +2,28 @@ package org.thosp.yourlocalweather.model;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Address;
 import android.os.Parcel;
+import android.preference.PreferenceManager;
+
+import org.thosp.yourlocalweather.utils.Constants;
 
 import static org.thosp.yourlocalweather.model.WeatherForecastContract.SQL_CREATE_TABLE_WEATHER_FORECAST;
 import static org.thosp.yourlocalweather.model.WeatherForecastContract.SQL_DELETE_TABLE_WEATHER_FORECAST;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class WeatherForecastDbHelper extends SQLiteOpenHelper {
+
+    private static final String TAG = "WeatherForecastDbHelper";
 
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "WeatherForecast.db";
     private static WeatherForecastDbHelper instance;
+    private Context context;
 
     public synchronized static WeatherForecastDbHelper getInstance(Context ctx) {
         if (instance == null) {
@@ -26,6 +34,7 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
 
     private WeatherForecastDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -77,6 +86,9 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
     }
 
     public WeatherForecastRecord getWeatherForecast(long locationId) {
+
+        checkVersionOfStoredForecastInDb();
+
         SQLiteDatabase db = getReadableDatabase();
 
         String[] projection = {
@@ -146,5 +158,20 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
         public CompleteWeatherForecast getCompleteWeatherForecast() {
             return completeWeatherForecast;
         }
+    }
+
+    private void checkVersionOfStoredForecastInDb() {
+
+        int initialGuideVersion = PreferenceManager.getDefaultSharedPreferences(context)
+                .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
+        if (initialGuideVersion != 1) {
+            return;
+        }
+        appendLog(context, TAG, "Old version of stored forecast, clearing forecast DB");
+        SQLiteDatabase db = getWritableDatabase();
+        onUpgrade(db, 0, 1);
+        SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(context).edit();
+        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 2);
+        preferences.apply();
     }
 }
