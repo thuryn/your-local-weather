@@ -30,6 +30,7 @@ import org.thosp.yourlocalweather.widget.ExtLocationWidgetWithForecastService;
 import org.thosp.yourlocalweather.widget.LessWidgetService;
 import org.thosp.yourlocalweather.widget.MoreWidgetService;
 import org.thosp.yourlocalweather.widget.WeatherForecastWidgetService;
+import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.net.MalformedURLException;
 
@@ -195,6 +196,9 @@ public class ForecastWeatherService  extends Service {
         stopRefreshRotation();
         gettingWeatherStarted = false;
         try {
+            if (WidgetRefreshIconService.isRotationActive) {
+                return;
+            }
             startBackgroundService(new Intent(getBaseContext(), LessWidgetService.class));
             startBackgroundService(new Intent(getBaseContext(), MoreWidgetService.class));
             startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
@@ -247,12 +251,14 @@ public class ForecastWeatherService  extends Service {
     private void startRefreshRotation() {
         Intent sendIntent = new Intent("android.intent.action.START_ROTATING_UPDATE");
         sendIntent.setPackage("org.thosp.yourlocalweather");
+        sendIntent.putExtra("rotationSource", 1);
         startBackgroundService(sendIntent);
     }
 
     private void stopRefreshRotation() {
         Intent sendIntent = new Intent("android.intent.action.STOP_ROTATING_UPDATE");
         sendIntent.setPackage("org.thosp.yourlocalweather");
+        sendIntent.putExtra("rotationSource", 1);
         startBackgroundService(sendIntent);
     }
 

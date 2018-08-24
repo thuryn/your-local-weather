@@ -5,7 +5,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.location.LocationManager;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.PowerManager;
@@ -20,6 +19,7 @@ import org.thosp.yourlocalweather.widget.ExtLocationWidgetWithForecastService;
 import org.thosp.yourlocalweather.widget.LessWidgetService;
 import org.thosp.yourlocalweather.widget.MoreWidgetService;
 import org.thosp.yourlocalweather.widget.WeatherForecastWidgetService;
+import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -54,6 +54,9 @@ public class AbstractCommonService extends Service {
 
     protected void updateWidgets() {
         stopRefreshRotation();
+        if (WidgetRefreshIconService.isRotationActive) {
+            return;
+        }
         startBackgroundService(new Intent(getBaseContext(), LessWidgetService.class));
         startBackgroundService(new Intent(getBaseContext(), MoreWidgetService.class));
         startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
@@ -79,7 +82,6 @@ public class AbstractCommonService extends Service {
 
     protected void requestWeatherCheck(String locationSource, boolean isInteractive) {
         appendLog(getBaseContext(), TAG, "startRefreshRotation");
-        startRefreshRotation();
         boolean updateLocationInProcess = LocationUpdateService.updateLocationInProcess;
         appendLog(getBaseContext(), TAG, "requestWeatherCheck, updateLocationInProcess=" +
                 updateLocationInProcess);
@@ -98,6 +100,7 @@ public class AbstractCommonService extends Service {
     }
 
     protected void sendIntentToGetWeather(org.thosp.yourlocalweather.model.Location currentLocation, boolean isInteractive) {
+        startRefreshRotation();
         CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
         currentWeatherDbHelper.updateLastUpdatedTime(currentLocation.getId(), System.currentTimeMillis());
         Intent intentToCheckWeather = new Intent(getBaseContext(), CurrentWeatherService.class);

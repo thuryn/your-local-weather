@@ -13,8 +13,12 @@ import android.widget.RemoteViews;
 
 import org.thosp.yourlocalweather.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -25,8 +29,10 @@ public class WidgetRefreshIconService extends IntentService {
     private static long ROTATE_UPDATE_ICON_MILIS = 100;
 
     private final int[] refreshIcons = new int[8];
-    private volatile int currentRotationIndex;
+    private volatile static Map<Integer, Integer> currentRotationIndexes = new HashMap<>();
     public volatile static boolean isRotationActive = false;
+    private static List<Integer> rotationSources = new ArrayList<>();
+    private Lock rotationSourcesLock = new ReentrantLock();
 
     private final Map<ComponentName, Integer> widgetTypes = new HashMap<>();
 
@@ -50,6 +56,8 @@ public class WidgetRefreshIconService extends IntentService {
         widgetTypes.put(new ComponentName(this, ExtLocationWidgetProvider.class), R.layout.widget_ext_loc_3x3);
         widgetTypes.put(new ComponentName(this, MoreWidgetProvider.class), R.layout.widget_more_3x3);
         widgetTypes.put(new ComponentName(this, LessWidgetProvider.class), R.layout.widget_less_3x1);
+        widgetTypes.put(new ComponentName(this, ExtLocationWithForecastWidgetProvider.class), R.layout.widget_less_3x1);
+        //widgetTypes.put(new ComponentName(this, WeatherForecastWidgetProvider.class), R.layout.widget_less_3x1);
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         IntentFilter filterScreenOn = new IntentFilter(Intent.ACTION_SCREEN_ON);
         getApplication().registerReceiver(screenOnReceiver, filterScreenOn);
@@ -61,47 +69,65 @@ public class WidgetRefreshIconService extends IntentService {
             return;
         }
         String action = intent.getAction();
+        int rotationSource = 0;
+        if (intent.hasExtra("rotationSource")) {
+            rotationSource = intent.getIntExtra("rotationSource", 0);
+        }
         switch (action) {
             case "android.intent.action.START_ROTATING_UPDATE":
-                startRotatingUpdateIcon();
+                startRotatingUpdateIcon(rotationSource);
                 break;
             case "android.intent.action.STOP_ROTATING_UPDATE":
-                stopRotatingUpdateIcon();
+                stopRotatingUpdateIcon(rotationSource);
         }
     }
 
-    private void startRotatingUpdateIcon() {
+    private void startRotatingUpdateIcon(int rotationSource) {
         appendLog(getBaseContext(), TAG, "startRotatingUpdateIcon");
-        if (isRotationActive || isThereRotationSchedule()) {
+        rotationSourcesLock.lock();
+        try {
+            if (!rotationSources.contains(rotationSource)) {
+                rotationSources.add(rotationSource);
+            }
+            if (WidgetRefreshIconService.isRotationActive || isThereRotationSchedule()) {
+                appendLog(getBaseContext(), TAG,
+                        "startRotatingUpdateIcon:endOnCondition:isRotationActive=" +
+                                WidgetRefreshIconService.isRotationActive + ":isThereRotationSchedule=" +
+                                isThereRotationSchedule());
+                return;
+            }
+            WidgetRefreshIconService.isRotationActive = true;
+            rotateRefreshButtonOneStep();
             appendLog(getBaseContext(), TAG,
-                    "startRotatingUpdateIcon:endOnCondition:isRotationActive=" +
-                    isRotationActive + ":isThereRotationSchedule=" +
-                    isThereRotationSchedule());
-            return;
+                    "startRotatingUpdateIcon:setIsRotationActive=" +
+                            WidgetRefreshIconService.isRotationActive + ":postingNewSchedule");
+            timerRotateIconHandler.postDelayed(timerRotateIconRunnable, ROTATE_UPDATE_ICON_MILIS);
+        } finally {
+            rotationSourcesLock.unlock();
         }
-        isRotationActive = true;
-        currentRotationIndex = 0;
-        rotateRefreshButtonOneStep();
-        appendLog(getBaseContext(), TAG,
-                "startRotatingUpdateIcon:setIsRotationActive=" +
-                        isRotationActive + ":postingNewSchedule");
-        timerRotateIconHandler.postDelayed(timerRotateIconRunnable, ROTATE_UPDATE_ICON_MILIS);
     }
 
-    private void stopRotatingUpdateIcon() {
+    private void stopRotatingUpdateIcon(int rotationSource) {
         appendLog(getBaseContext(), TAG, "stopRotatingUpdateIcon");
-        isRotationActive = false;
-        appendLog(getBaseContext(), TAG,
-                "stopRotatingUpdateIcon:setIsRotationActive=" +
-                        isRotationActive + ":postingNewSchedule");
-        timerRotateIconHandler.removeCallbacksAndMessages(null);
+        rotationSourcesLock.lock();
+        try {
+            if (rotationSources.contains(rotationSource)) {
+                rotationSources.remove(rotationSource);
+            }
+            if (!rotationSources.isEmpty()) {
+                return;
+            }
+            WidgetRefreshIconService.isRotationActive = false;
+            appendLog(getBaseContext(), TAG,
+                    "stopRotatingUpdateIcon:setIsRotationActive=" +
+                            WidgetRefreshIconService.isRotationActive + ":postingNewSchedule");
+            timerRotateIconHandler.removeCallbacksAndMessages(null);
+        } finally {
+            rotationSourcesLock.unlock();
+        }
     }
 
-    private static boolean isRotationActive() {
-        return isRotationActive;
-    }
-
-    public static boolean isThereRotationSchedule() {
+    public boolean isThereRotationSchedule() {
         return timerRotateIconHandler.hasMessages(0);
     }
 
@@ -116,13 +142,14 @@ public class WidgetRefreshIconService extends IntentService {
 
             int[] widgetIds = widgetManager.getAppWidgetIds(componentName);
             for (int appWidgetId : widgetIds) {
+                Integer currentRotationIndex = WidgetRefreshIconService.currentRotationIndexes.get(appWidgetId);
+                if ((currentRotationIndex == null) || (currentRotationIndex >= refreshIcons.length)) {
+                    currentRotationIndex = 0;
+                }
                 rv.setImageViewResource(R.id.widget_button_refresh, refreshIcons[currentRotationIndex]);
                 widgetManager.partiallyUpdateAppWidget(appWidgetId, rv);
+                WidgetRefreshIconService.currentRotationIndexes.put(appWidgetId, ++currentRotationIndex);
             }
-        }
-        currentRotationIndex++;
-        if (currentRotationIndex >= refreshIcons.length) {
-            currentRotationIndex = 0;
         }
     }
 
@@ -131,7 +158,7 @@ public class WidgetRefreshIconService extends IntentService {
 
         @Override
         public void run() {
-            if (!isScreenOn() || !isRotationActive() || isThereRotationSchedule()) {
+            if (!isScreenOn() || !WidgetRefreshIconService.isRotationActive || isThereRotationSchedule()) {
                 return;
             }
             rotateRefreshButtonOneStep();
@@ -142,7 +169,7 @@ public class WidgetRefreshIconService extends IntentService {
     private BroadcastReceiver screenOnReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (!isRotationActive() || isThereRotationSchedule()) {
+            if (!WidgetRefreshIconService.isRotationActive || isThereRotationSchedule()) {
                 return;
             }
             rotateRefreshButtonOneStep();
