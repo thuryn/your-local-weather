@@ -3,11 +3,16 @@ package org.thosp.yourlocalweather.service;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
 import android.os.PowerManager;
+import android.os.RemoteException;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 
@@ -21,6 +26,13 @@ import org.thosp.yourlocalweather.widget.MoreWidgetService;
 import org.thosp.yourlocalweather.widget.WeatherForecastWidgetService;
 import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class AbstractCommonService extends Service {
@@ -29,6 +41,9 @@ public class AbstractCommonService extends Service {
 
     protected PowerManager powerManager;
     protected String updateSource;
+    private Messenger widgetRefreshIconService;
+    private Queue<Message> unsentMessages = new LinkedList<>();
+    private Lock widgetRotationServiceLock = new ReentrantLock();
 
     @Nullable
     @Override
@@ -40,11 +55,22 @@ public class AbstractCommonService extends Service {
     public void onCreate() {
         super.onCreate();
         powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        bindWidgetRefreshIconService();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        try {
+            unbindWidgetRefreshIconService();
+        } catch (Throwable t) {
+            appendLog(getBaseContext(), TAG, t.getMessage(), t);
+        }
     }
 
     protected void updateNetworkLocation(boolean byLastLocationOnly,
                                          boolean isInteractive) {
-        startRefreshRotation();
+        startRefreshRotation("updateNetworkLocation", 3);
         Intent sendIntent = new Intent("android.intent.action.START_LOCATION_ONLY_UPDATE");
         sendIntent.putExtra("destinationPackageName", "org.thosp.yourlocalweather");
         sendIntent.putExtra("byLastLocationOnly", byLastLocationOnly);
@@ -53,7 +79,6 @@ public class AbstractCommonService extends Service {
     }
 
     protected void updateWidgets() {
-        stopRefreshRotation();
         if (WidgetRefreshIconService.isRotationActive) {
             return;
         }
@@ -100,7 +125,6 @@ public class AbstractCommonService extends Service {
     }
 
     protected void sendIntentToGetWeather(org.thosp.yourlocalweather.model.Location currentLocation, boolean isInteractive) {
-        startRefreshRotation();
         CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
         currentWeatherDbHelper.updateLastUpdatedTime(currentLocation.getId(), System.currentTimeMillis());
         Intent intentToCheckWeather = new Intent(getBaseContext(), CurrentWeatherService.class);
@@ -120,16 +144,32 @@ public class AbstractCommonService extends Service {
         startBackgroundService(intentToCheckWeather);
     }
 
-    protected void startRefreshRotation() {
-        Intent sendIntent = new Intent("android.intent.action.START_ROTATING_UPDATE");
-        sendIntent.setPackage("org.thosp.yourlocalweather");
-        startBackgroundService(sendIntent);
+    protected void startRefreshRotation(String where, int rotationSource) {
+        appendLog(getBaseContext(), TAG, "startRefreshRotation:" + where);
+        sendMessageToWidgetIconService(WidgetRefreshIconService.START_ROTATING_UPDATE, rotationSource);
     }
 
-    protected void stopRefreshRotation() {
-        Intent sendIntent = new Intent("android.intent.action.STOP_ROTATING_UPDATE");
-        sendIntent.setPackage("org.thosp.yourlocalweather");
-        startBackgroundService(sendIntent);
+    protected void stopRefreshRotation(String where, int rotationSource) {
+        appendLog(getBaseContext(), TAG, "stopRefreshRotation:" + where);
+        sendMessageToWidgetIconService(WidgetRefreshIconService.STOP_ROTATING_UPDATE, rotationSource);
+    }
+
+    protected void sendMessageToWidgetIconService(int action, int rotationsource) {
+        widgetRotationServiceLock.lock();
+        try {
+            Message msg = Message.obtain(null, action, rotationsource, 0);
+            if (checkIfWidgetIconServiceIsNotBound()) {
+                appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
+                unsentMessages.add(msg);
+                return;
+            }
+            appendLog(getBaseContext(), TAG, "sendMessageToService:");
+            widgetRefreshIconService.send(msg);
+        } catch (RemoteException e) {
+            appendLog(getBaseContext(), TAG, e.getMessage(), e);
+        } finally {
+            widgetRotationServiceLock.unlock();
+        }
     }
 
     protected boolean isInteractive() {
@@ -164,4 +204,50 @@ public class AbstractCommonService extends Service {
                     pendingIntent);
         }
     }
+
+    private boolean checkIfWidgetIconServiceIsNotBound() {
+        if (widgetRefreshIconService != null) {
+            return false;
+        }
+        try {
+            bindWidgetRefreshIconService();
+        } catch (Exception ie) {
+            appendLog(getBaseContext(), TAG, "checkIfWidgetIconServiceIsNotBound interrupted:", ie);
+        }
+        return (widgetRefreshIconService == null);
+    }
+
+    private void bindWidgetRefreshIconService() {
+        bindService(
+                new Intent(this, WidgetRefreshIconService.class),
+                widgetRefreshIconConnection,
+                Context.BIND_AUTO_CREATE);
+    }
+
+    private void unbindWidgetRefreshIconService() {
+        if (widgetRefreshIconService == null) {
+            return;
+        }
+        unbindService(widgetRefreshIconConnection);
+    }
+
+
+    private ServiceConnection widgetRefreshIconConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className, IBinder binderService) {
+            widgetRefreshIconService = new Messenger(binderService);
+            widgetRotationServiceLock.lock();
+            try {
+                while (!unsentMessages.isEmpty()) {
+                    widgetRefreshIconService.send(unsentMessages.peek());
+                }
+            } catch (RemoteException e) {
+                appendLog(getBaseContext(), TAG, e.getMessage(), e);
+            } finally {
+                widgetRotationServiceLock.unlock();
+            }
+        }
+        public void onServiceDisconnected(ComponentName className) {
+            widgetRefreshIconService = null;
+        }
+    };
 }

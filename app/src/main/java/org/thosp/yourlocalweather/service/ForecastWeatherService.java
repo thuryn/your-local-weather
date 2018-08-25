@@ -38,7 +38,7 @@ import cz.msebera.android.httpclient.Header;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
-public class ForecastWeatherService  extends Service {
+public class ForecastWeatherService  extends AbstractCommonService {
 
     private static final String TAG = "ForecastWeatherService";
 
@@ -52,7 +52,6 @@ public class ForecastWeatherService  extends Service {
     private String updateSource;
     private volatile boolean gettingWeatherStarted;
     private Location currentLocation;
-    private boolean isInteractive;
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -84,7 +83,6 @@ public class ForecastWeatherService  extends Service {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
 
         if (intent.getExtras() != null) {
-            isInteractive = intent.getBooleanExtra("isInteractive", false);
             String currentUpdateSource = intent.getExtras().getString("updateSource");
             if (!TextUtils.isEmpty(currentUpdateSource)) {
                 updateSource = currentUpdateSource;
@@ -119,7 +117,7 @@ public class ForecastWeatherService  extends Service {
         timerHandler.postDelayed(timerRunnable, 20000);
         final Context context = this;
         appendLog(getBaseContext(), TAG, "startRefreshRotation");
-        startRefreshRotation();
+        startRefreshRotation("START", 1);
         Handler mainHandler = new Handler(Looper.getMainLooper());
         Runnable myRunnable = new Runnable() {
             @Override
@@ -193,7 +191,7 @@ public class ForecastWeatherService  extends Service {
     }
 
     private void sendResult(String result, Context context) {
-        stopRefreshRotation();
+        stopRefreshRotation("STOP", 1);
         gettingWeatherStarted = false;
         try {
             if (WidgetRefreshIconService.isRotationActive) {
@@ -246,45 +244,6 @@ public class ForecastWeatherService  extends Service {
             intent.putExtra(ACTION_GRAPHS_UPDATE_RESULT, ACTION_WEATHER_UPDATE_FAIL);
         }
         sendBroadcast(intent);
-    }
-
-    private void startRefreshRotation() {
-        Intent sendIntent = new Intent("android.intent.action.START_ROTATING_UPDATE");
-        sendIntent.setPackage("org.thosp.yourlocalweather");
-        sendIntent.putExtra("rotationSource", 1);
-        startBackgroundService(sendIntent);
-    }
-
-    private void stopRefreshRotation() {
-        Intent sendIntent = new Intent("android.intent.action.STOP_ROTATING_UPDATE");
-        sendIntent.setPackage("org.thosp.yourlocalweather");
-        sendIntent.putExtra("rotationSource", 1);
-        startBackgroundService(sendIntent);
-    }
-
-    private void startBackgroundService(Intent intent) {
-        try {
-            if (isInteractive) {
-                getBaseContext().startService(intent);
-                return;
-            }
-        } catch (Exception ise) {
-            //
-        }
-        PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(),
-                0,
-                intent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + 500,
-                    pendingIntent);
-        } else {
-            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + 500,
-                    pendingIntent);
-        }
     }
 
     private void resendTheIntentInSeveralSeconds(int seconds, Intent intent) {

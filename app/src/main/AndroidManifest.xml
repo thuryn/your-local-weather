@@ -185,12 +185,7 @@
             android:process=":NotificationService" />
         <service
             android:name=".widget.WidgetRefreshIconService"
-            android:process=":WidgetRefreshIconService" >
-            <intent-filter>
-                <action android:name="android.intent.action.START_ROTATING_UPDATE" />
-                <action android:name="android.intent.action.STOP_ROTATING_UPDATE" />
-            </intent-filter>
-        </service>
+            android:process=":WidgetRefreshIconService" />
         <service
             android:name=".widget.LessWidgetService"
             android:process=":LessWidgetService" />

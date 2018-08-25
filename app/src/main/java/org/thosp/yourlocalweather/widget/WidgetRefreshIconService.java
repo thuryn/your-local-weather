@@ -1,14 +1,21 @@
 package org.thosp.yourlocalweather.widget;
 
-import android.app.IntentService;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.app.Service;
 import android.appwidget.AppWidgetManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
 import android.os.PowerManager;
+import android.os.SystemClock;
 import android.widget.RemoteViews;
 
 import org.thosp.yourlocalweather.R;
@@ -22,9 +29,12 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
-public class WidgetRefreshIconService extends IntentService {
+public class WidgetRefreshIconService extends Service {
 
     private static final String TAG = "WidgetRefreshIconService";
+
+    public static final int START_ROTATING_UPDATE = 1;
+    public static final int STOP_ROTATING_UPDATE = 2;
 
     private static long ROTATE_UPDATE_ICON_MILIS = 100;
 
@@ -37,9 +47,9 @@ public class WidgetRefreshIconService extends IntentService {
     private final Map<ComponentName, Integer> widgetTypes = new HashMap<>();
 
     private PowerManager powerManager;
+    final Messenger messenger = new Messenger(new RefreshIconMessageHandler());
 
     public WidgetRefreshIconService() {
-        super(TAG);
         refreshIcons[0] = R.drawable.ic_refresh_white_18dp;
         refreshIcons[1] = R.drawable.ic_refresh_white_18dp_1;
         refreshIcons[2] = R.drawable.ic_refresh_white_18dp_2;
@@ -64,31 +74,23 @@ public class WidgetRefreshIconService extends IntentService {
     }
 
     @Override
-    protected void onHandleIntent(Intent intent) {
-        if (intent.getAction() == null) {
-            return;
-        }
-        String action = intent.getAction();
-        int rotationSource = 0;
-        if (intent.hasExtra("rotationSource")) {
-            rotationSource = intent.getIntExtra("rotationSource", 0);
-        }
-        switch (action) {
-            case "android.intent.action.START_ROTATING_UPDATE":
-                startRotatingUpdateIcon(rotationSource);
-                break;
-            case "android.intent.action.STOP_ROTATING_UPDATE":
-                stopRotatingUpdateIcon(rotationSource);
-        }
+    public IBinder onBind(Intent intent) {
+        return messenger.getBinder();
     }
 
-    private void startRotatingUpdateIcon(int rotationSource) {
-        appendLog(getBaseContext(), TAG, "startRotatingUpdateIcon");
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return START_STICKY;
+    }
+
+    private void startRotatingUpdateIcon(Integer rotationSource) {
+        appendLog(getBaseContext(), TAG, "startRotatingUpdateIcon:" + rotationSource);
         rotationSourcesLock.lock();
         try {
             if (!rotationSources.contains(rotationSource)) {
                 rotationSources.add(rotationSource);
             }
+            printRotationSources();
             if (WidgetRefreshIconService.isRotationActive || isThereRotationSchedule()) {
                 appendLog(getBaseContext(), TAG,
                         "startRotatingUpdateIcon:endOnCondition:isRotationActive=" +
@@ -102,18 +104,22 @@ public class WidgetRefreshIconService extends IntentService {
                     "startRotatingUpdateIcon:setIsRotationActive=" +
                             WidgetRefreshIconService.isRotationActive + ":postingNewSchedule");
             timerRotateIconHandler.postDelayed(timerRotateIconRunnable, ROTATE_UPDATE_ICON_MILIS);
+        } catch (Exception e) {
+            appendLog(getBaseContext(), TAG, "Exception storting rotation:" + e.getMessage(), e);
         } finally {
             rotationSourcesLock.unlock();
         }
     }
 
-    private void stopRotatingUpdateIcon(int rotationSource) {
-        appendLog(getBaseContext(), TAG, "stopRotatingUpdateIcon");
+    private void stopRotatingUpdateIcon(Integer rotationSource) {
+        appendLog(getBaseContext(), TAG, "stopRotatingUpdateIcon:" + rotationSource);
         rotationSourcesLock.lock();
         try {
+            appendLog(getBaseContext(), TAG, "stopRotatingUpdateIcon:rotationSources.contains(rotationSource):" + rotationSources.contains(rotationSource));
             if (rotationSources.contains(rotationSource)) {
                 rotationSources.remove(rotationSource);
             }
+            printRotationSources();
             if (!rotationSources.isEmpty()) {
                 return;
             }
@@ -122,8 +128,17 @@ public class WidgetRefreshIconService extends IntentService {
                     "stopRotatingUpdateIcon:setIsRotationActive=" +
                             WidgetRefreshIconService.isRotationActive + ":postingNewSchedule");
             timerRotateIconHandler.removeCallbacksAndMessages(null);
+            refreshWidgets();
+        } catch (Exception e) {
+            appendLog(getBaseContext(), TAG, "Exception stoping rotation:" + e.getMessage(), e);
         } finally {
             rotationSourcesLock.unlock();
+        }
+    }
+
+    private void printRotationSources() {
+        for (int rotationSourceForLog: rotationSources) {
+            appendLog(getBaseContext(), TAG, "RotationSource:" + rotationSourceForLog);
         }
     }
 
@@ -176,4 +191,64 @@ public class WidgetRefreshIconService extends IntentService {
             timerRotateIconHandler.postDelayed(timerRotateIconRunnable, ROTATE_UPDATE_ICON_MILIS);
         }
     };
+
+    private void refreshWidgets() {
+        startBackgroundService(new Intent(getBaseContext(), LessWidgetService.class));
+        startBackgroundService(new Intent(getBaseContext(), MoreWidgetService.class));
+        startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
+        startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetWithForecastService.class));
+        startBackgroundService(new Intent(getBaseContext(), WeatherForecastWidgetService.class));
+    }
+
+    protected boolean isInteractive() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+            return powerManager.isInteractive();
+        } else {
+            return powerManager.isScreenOn();
+        }
+    }
+
+    protected void startBackgroundService(Intent intent) {
+        try {
+            if (isInteractive()) {
+                getBaseContext().startService(intent);
+                return;
+            }
+        } catch (Exception ise) {
+            //
+        }
+        PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(),
+                0,
+                intent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + 10,
+                    pendingIntent);
+        } else {
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + 10,
+                    pendingIntent);
+        }
+    }
+
+
+private class RefreshIconMessageHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            appendLog(getBaseContext(), TAG, "handleMessage:" + msg.what);
+            int rotationSource = msg.arg1;
+            switch (msg.what) {
+                case START_ROTATING_UPDATE:
+                    startRotatingUpdateIcon(rotationSource);
+                    break;
+                case STOP_ROTATING_UPDATE:
+                    stopRotatingUpdateIcon(rotationSource);
+                    break;
+                default:
+                    super.handleMessage(msg);
+            }
+        }
+    }
 }

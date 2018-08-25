@@ -3,16 +3,9 @@ package org.thosp.yourlocalweather.service;
 import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.app.Service;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -22,15 +15,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Looper;
-import android.os.PowerManager;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 
 import org.thosp.yourlocalweather.ConnectionDetector;
-import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.AppWakeUpManager;
@@ -38,9 +28,6 @@ import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.Utils;
-import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
-import org.thosp.yourlocalweather.widget.LessWidgetService;
-import org.thosp.yourlocalweather.widget.MoreWidgetService;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -169,7 +156,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         }
         appendLog(getBaseContext(), TAG, "send intent to get weather, updateSource " + updateSource);
         updateLocationInProcess = false;
-        stopRefreshRotation();
+        stopRefreshRotation("onLocationChanged",3);
         sendIntentToGetWeather(currentLocation, false);
     }
 
@@ -200,7 +187,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         public void run() {
             locationManager.removeUpdates(gpsLocationListener);
             setNoLocationFound(false);
-            stopRefreshRotation();
+            stopRefreshRotation("timerRunnableGpsLocation", 3);
         }
     };
 
@@ -311,7 +298,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             appendLog(getBaseContext(), TAG, "get location from GPS");
             timerHandlerGpsLocation.postDelayed(timerRunnableGpsLocation, GPS_LOCATION_TIMEOUT_IN_MS);
             locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, gpsLocationListener, locationLooper);
-            startRefreshRotation();
+            startRefreshRotation("gpsRequestLocation", 3);
         }
     }
 
@@ -324,7 +311,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             return;
         }
         locationDbHelper.setNoLocationFound();
-        stopRefreshRotation();
+        stopRefreshRotation("setNoLocationFound", 3);
         updateWidgets();
     }
 
@@ -341,12 +328,12 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                                           Intent originalIntent,
                                           boolean isInteractive) {
         updateLocationInProcess = true;
-        startRefreshRotation();
+        startRefreshRotation("updateNetworkLocation", 3);
         boolean permissionsGranted = PermissionUtil.checkPermissionsAndSettings(this);
         appendLog(getBaseContext(), TAG, "updateNetworkLocation:" + permissionsGranted);
         if (!permissionsGranted) {
             updateLocationInProcess = false;
-            stopRefreshRotation();
+            stopRefreshRotation("updateNetworkLocation", 3);
             return;
         }
         boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
@@ -386,14 +373,14 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                                                    Intent originalIntent,
                                                    boolean isInteractive) {
         updateLocationInProcess = true;
-        startRefreshRotation();
+        startRefreshRotation("updateNetworkLocationByNetwork", 3);
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         ConnectionDetector connectionDetector = new ConnectionDetector(this);
         org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
         if (!connectionDetector.isNetworkAvailableAndConnected()) {
             if (originalIntent == null) {
                 updateLocationInProcess = false;
-                stopRefreshRotation();
+                stopRefreshRotation("updateNetworkLocationByNetwork:1", 3);
                 return;
             }
             int numberOfAttempts = originalIntent.getIntExtra("attempts", 0);
@@ -403,7 +390,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                         System.currentTimeMillis(),
                         ".");
                 updateLocationInProcess = false;
-                stopRefreshRotation();
+                stopRefreshRotation("updateNetworkLocationByNetwork:2", 3);
                 return;
             }
             originalIntent.putExtra("attempts", ++numberOfAttempts);
@@ -435,7 +422,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             locationsDbHelper.updateLocationSource(currentLocation.getId(), "G");
         } else if (bylastLocationOnly) {
             updateLocationInProcess = false;
-            stopRefreshRotation();
+            stopRefreshRotation("updateNetworkLocationByNetwork:3", 3);
             return;
         }
 
@@ -462,7 +449,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         appendLog(getBaseContext(), TAG, "detectLocation:isNetworkEnabled=" + isNetworkEnabled);
         if (isNetworkEnabled && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             appendLog(getBaseContext(), TAG, "detectLocation:afterCheckSelfPermission");
-            startRefreshRotation();
+            startRefreshRotation("detectLocation", 3);
             final Looper locationLooper = Looper.myLooper();
             locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, locationLooper);
             final LocationListener locationListener = this;
