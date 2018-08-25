@@ -165,4 +165,5 @@
     <string name="help_page_4_title" tools:ignore="MissingTranslation">Paramètres des widgets</string>
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">La troisième page contient les prévisions météo en graphiques.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Paramètres généraux</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Emplacement et adresse source</string>
     </resources>
