@@ -17,7 +17,7 @@
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Fechar</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Seguinte</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Anterior</string>
-    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Finalizar</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Terminar</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Guia de configuração inicial</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Actualizar definição de localização</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Isto conclui o guia. Pode encontrar outras definições no menu Definições (por exemplo linguagem, unidades, etc.).
@@ -168,4 +168,64 @@
     <string name="log_file_720_label" tools:ignore="MissingTranslation">um mês</string>
 
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Ícones baseados na fonte</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Pode encontrar a previsão meteorológica no próximo ecrã (seleccione próximo ecrã no menu ou deslize da esquerda para a direita). A previsão meteorológica é actualizada pelo botão actualizar ou quando entra no ecrã (mas não mais que uma actualização por hora).</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Esconder a descrição do tempo</b>" - a descrição do tempo actual é escondida. Apenas pode ver o tempo actual  pelo ícone de mudança."</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Estas opções de menu definem <b>o idioma</b>, <b>o tema</b>" da aplicação principal e  "<b>o pacote de ícones</b> utilizado na aplicação e nos widgets.</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">Configurações do widget</string>
+    <string name="help_page_4_content" tools:ignore="MissingTranslation">As configurações do widget contêm as opções de configuração para todos os widgets.</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">Opções de depuração</string>
+    <string name="help_page_5_content" tools:ignore="MissingTranslation">Existem opções para habilitar a depuração para um ficheiro de registos. Esta opção é útil quando existe algum problema com a aplicação.</string>
+
+    <string name="title_activity_search" tools:ignore="MissingTranslation">Procurar localização</string>
+    <string name="label_activity_main" tools:ignore="MissingTranslation">Tempo actual</string>
+    <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Previsão diária</string>
+    <string name="label_activity_graphs" tools:ignore="MissingTranslation">Gráficos</string>
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mm/Hg</string>
+    <string name="hint_activity_search" tools:ignore="MissingTranslation">Procurar localização</string>
+
+    <string name="title_activity_settings" tools:ignore="MissingTranslation">Configurações</string>
+    <string name="pref_title_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">Vento</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Pressão atmosférica</string>
+    <string name="preference_hide_desc" tools:ignore="MissingTranslation">Esconder descrição de tempo</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Notificações</string>
+    <string name="pref_title_notification" tools:ignore="MissingTranslation">Activar notificações</string>
+    <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">Intervalo de actualização</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Configuração de actualização de localização</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">Não actualizar localização</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">Actualizar localização (recomendado)</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">Actualizar localização sem GPS</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Activar GPS quando necessário</string>
+    <string name="update_period_by_sensors" tools:ignore="MissingTranslation">Pelo acelerómetro</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">Apenas manual</string>
+    <string name="update_period_15min" tools:ignore="MissingTranslation">15 minutos</string>
+    <string name="update_period_30min" tools:ignore="MissingTranslation">30 minutos</string>
+    <string name="update_period_1hour" tools:ignore="MissingTranslation">Todas as horas</string>
+    <string name="update_period_3hours" tools:ignore="MissingTranslation">3 horas</string>
+    <string name="update_period_6hours" tools:ignore="MissingTranslation">6 horas</string>
+    <string name="update_period_12hours" tools:ignore="MissingTranslation">12 horas</string>
+    <string name="update_period_24hours" tools:ignore="MissingTranslation">24 horas</string>
+    <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Vibrar</string>
+    <string name="preference_title_activity_general" tools:ignore="MissingTranslation">Configurações gerais</string>
+    <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Configurações de widget</string>
+    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Actualizar localização</string>
+    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Mostrar legendas no widget</string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Usar geolocalização para exibir</string>
+    <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Tema do widget</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Exibir sumário de actualização</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Eliminar</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Desactivar</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Activar</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Inactivo</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Adicionar</string>
+    <string name="preference_title_activity_about" tools:ignore="MissingTranslation">Acerca</string>
+    <string name="about_version_pref_title" tools:ignore="MissingTranslation">Versão</string>
+    <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Código fonte</string>
+    <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Licença</string>
+    <string name="wind_label" tools:ignore="MissingTranslation">Vento: %1$s %2$s</string>
+    <string name="rain_label" tools:ignore="MissingTranslation">Chuva: %1$s %2$s</string>
+    <string name="snow_label" tools:ignore="MissingTranslation">Neve: %1$s %2$s</string>
+    <string name="humidity_label" tools:ignore="MissingTranslation">Humidade: %1$s%2$s</string>
+    <string name="widget_refresh_button" tools:ignore="MissingTranslation">Botão de actualização do widget</string>
+
     </resources>
