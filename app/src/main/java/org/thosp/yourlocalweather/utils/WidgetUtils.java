@@ -142,6 +142,9 @@ public class WidgetUtils {
         int dayCounter = 0;
         int daysInList = firstDayOfYear + weatherList.keySet().size();
         for (int dayInYear = firstDayOfYear; dayInYear < daysInList; dayInYear++) {
+            if ((weatherList.get(dayInYear) == null) || (weatherList.get(dayInYear).size() < 3)) {
+                continue;
+            }
             dayCounter++;
             Map<Integer, Integer> weatherIdsInDay = new HashMap<>();
             for (DetailedWeatherForecast weatherForecastForDay : weatherList.get(dayInYear)) {
@@ -174,16 +177,16 @@ public class WidgetUtils {
                         ":weatherForecastForDay.getTemperature()=" + weatherForecastForDay.getTemperature());*/
                 if (weatherCondition.getWeatherId().equals(weatherIdForTheDay)) {
                     iconId = weatherCondition.getIcon();
-                    double currentTemp = weatherForecastForDay.getTemperature();
-                    if (maxTemp < currentTemp) {
-                        maxTemp = currentTemp;
-                    }
-                    if (minTemp > currentTemp) {
-                        minTemp = currentTemp;
-                    }
-                    if (maxWind < weatherForecastForDay.getWindSpeed()) {
-                        maxWind = weatherForecastForDay.getWindSpeed();
-                    }
+                }
+                double currentTemp = weatherForecastForDay.getTemperature();
+                if (maxTemp < currentTemp) {
+                    maxTemp = currentTemp;
+                }
+                if (minTemp > currentTemp) {
+                    minTemp = currentTemp;
+                }
+                if (maxWind < weatherForecastForDay.getWindSpeed()) {
+                    maxWind = weatherForecastForDay.getWindSpeed();
                 }
             }
             switch (dayCounter) {

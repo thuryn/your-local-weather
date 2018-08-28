@@ -41,9 +41,9 @@ public class AbstractCommonService extends Service {
 
     protected PowerManager powerManager;
     protected String updateSource;
-    private Messenger widgetRefreshIconService;
-    private Queue<Message> unsentMessages = new LinkedList<>();
-    private Lock widgetRotationServiceLock = new ReentrantLock();
+    private static Messenger widgetRefreshIconService;
+    private static Queue<Message> unsentMessages = new LinkedList<>();
+    private static Lock widgetRotationServiceLock = new ReentrantLock();
 
     @Nullable
     @Override
