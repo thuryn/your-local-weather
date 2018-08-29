@@ -8,6 +8,7 @@ import android.os.Handler;
 
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -66,7 +67,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
         @Override
         public void run() {
-            if (!isInteractive()) {
+            if (!WidgetUtils.isInteractive(getBaseContext())) {
                 return;
             }
             CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());

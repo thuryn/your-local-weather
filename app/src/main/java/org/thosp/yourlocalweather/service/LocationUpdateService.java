@@ -28,6 +28,7 @@ import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.Utils;
+import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -205,7 +206,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             sendIntent.putExtra("destinationPackageName", "org.thosp.yourlocalweather");
             sendIntent.putExtra("inputLocation", location);
             sendIntent.putExtra("resolveAddress", true);
-            startBackgroundService(sendIntent);
+            WidgetUtils.startBackgroundService(getBaseContext(), sendIntent);
             appendLog(getBaseContext(), TAG, "send intent START_LOCATION_UPDATE:locationSource G:" + sendIntent);
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
             org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
@@ -427,7 +428,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         }
 
         sendIntent.putExtra("resolveAddress", true);
-        startBackgroundService(sendIntent);
+        WidgetUtils.startBackgroundService(getBaseContext(), sendIntent);
         appendLog(getBaseContext(), TAG, "send intent START_LOCATION_UPDATE:updatesource is N or G:" + sendIntent);
         timerHandler.postDelayed(timerRunnable, LOCATION_TIMEOUT_IN_MS);
     }

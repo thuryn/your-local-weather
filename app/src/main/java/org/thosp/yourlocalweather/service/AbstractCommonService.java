@@ -19,6 +19,7 @@ import android.support.annotation.Nullable;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
+import org.thosp.yourlocalweather.utils.WidgetUtils;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetWithForecastService;
 import org.thosp.yourlocalweather.widget.LessWidgetService;
@@ -39,7 +40,6 @@ public class AbstractCommonService extends Service {
 
     private static final String TAG = "AbstractCommonService";
 
-    protected PowerManager powerManager;
     protected String updateSource;
     private static Messenger widgetRefreshIconService;
     private static Queue<Message> unsentMessages = new LinkedList<>();
@@ -54,7 +54,6 @@ public class AbstractCommonService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         bindWidgetRefreshIconService();
     }
 
@@ -75,25 +74,23 @@ public class AbstractCommonService extends Service {
         sendIntent.putExtra("destinationPackageName", "org.thosp.yourlocalweather");
         sendIntent.putExtra("byLastLocationOnly", byLastLocationOnly);
         sendIntent.putExtra("isInteractive", isInteractive);
-        startBackgroundService(sendIntent);
+        WidgetUtils.startBackgroundService(getBaseContext(), sendIntent);
     }
 
     protected void updateWidgets() {
         if (WidgetRefreshIconService.isRotationActive) {
             return;
         }
-        startBackgroundService(new Intent(getBaseContext(), LessWidgetService.class));
-        startBackgroundService(new Intent(getBaseContext(), MoreWidgetService.class));
-        startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
-        startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetWithForecastService.class));
-        startBackgroundService(new Intent(getBaseContext(), WeatherForecastWidgetService.class));
+        WidgetUtils.updateWidgets(getBaseContext());
         if (updateSource != null) {
             switch (updateSource) {
                 case "MAIN":
                     sendIntentToMain();
                     break;
                 case "NOTIFICATION":
-                    startBackgroundService(new Intent(getBaseContext(), NotificationService.class));
+                    WidgetUtils.startBackgroundService(
+                            getBaseContext(),
+                            new Intent(getBaseContext(), NotificationService.class));
                     break;
             }
         }
@@ -102,7 +99,7 @@ public class AbstractCommonService extends Service {
     protected void sendIntentToMain() {
         Intent intent = new Intent(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT);
         intent.putExtra(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT, CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL);
-        startBackgroundService(intent);
+        WidgetUtils.startBackgroundService(getBaseContext(), intent);
     }
 
     protected void requestWeatherCheck(String locationSource, boolean isInteractive) {
@@ -131,7 +128,7 @@ public class AbstractCommonService extends Service {
         intentToCheckWeather.putExtra("locationId", currentLocation.getId());
         intentToCheckWeather.putExtra("updateSource", updateSource);
         intentToCheckWeather.putExtra("isInteractive", isInteractive);
-        startBackgroundService(intentToCheckWeather);
+        WidgetUtils.startBackgroundService(getBaseContext(), intentToCheckWeather);
         startWeatherForecastUpdate(currentLocation.getId());
     }
 
@@ -141,7 +138,7 @@ public class AbstractCommonService extends Service {
         }
         Intent intentToCheckWeather = new Intent(this, ForecastWeatherService.class);
         intentToCheckWeather.putExtra("locationId", locationId);
-        startBackgroundService(intentToCheckWeather);
+        WidgetUtils.startBackgroundService(getBaseContext(), intentToCheckWeather);
     }
 
     protected void startRefreshRotation(String where, int rotationSource) {
@@ -159,49 +156,16 @@ public class AbstractCommonService extends Service {
         try {
             Message msg = Message.obtain(null, action, rotationsource, 0);
             if (checkIfWidgetIconServiceIsNotBound()) {
-                appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
+                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
                 unsentMessages.add(msg);
                 return;
             }
-            appendLog(getBaseContext(), TAG, "sendMessageToService:");
+            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
             widgetRefreshIconService.send(msg);
         } catch (RemoteException e) {
             appendLog(getBaseContext(), TAG, e.getMessage(), e);
         } finally {
             widgetRotationServiceLock.unlock();
-        }
-    }
-
-    protected boolean isInteractive() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            return powerManager.isInteractive();
-        } else {
-            return powerManager.isScreenOn();
-        }
-    }
-
-    protected void startBackgroundService(Intent intent) {
-        try {
-            if (isInteractive()) {
-                getBaseContext().startService(intent);
-                return;
-            }
-        } catch (Exception ise) {
-            //
-        }
-        PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(),
-                0,
-                intent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + 10,
-                    pendingIntent);
-        } else {
-            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + 10,
-                    pendingIntent);
         }
     }
 

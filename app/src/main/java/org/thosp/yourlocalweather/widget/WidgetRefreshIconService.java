@@ -19,6 +19,7 @@ import android.os.SystemClock;
 import android.widget.RemoteViews;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -84,7 +85,7 @@ public class WidgetRefreshIconService extends Service {
     }
 
     private void startRotatingUpdateIcon(Integer rotationSource) {
-        appendLog(getBaseContext(), TAG, "startRotatingUpdateIcon:" + rotationSource);
+        //appendLog(getBaseContext(), TAG, "startRotatingUpdateIcon:" + rotationSource);
         rotationSourcesLock.lock();
         try {
             if (!rotationSources.contains(rotationSource)) {
@@ -112,10 +113,10 @@ public class WidgetRefreshIconService extends Service {
     }
 
     private void stopRotatingUpdateIcon(Integer rotationSource) {
-        appendLog(getBaseContext(), TAG, "stopRotatingUpdateIcon:" + rotationSource);
+        //appendLog(getBaseContext(), TAG, "stopRotatingUpdateIcon:" + rotationSource);
         rotationSourcesLock.lock();
         try {
-            appendLog(getBaseContext(), TAG, "stopRotatingUpdateIcon:rotationSources.contains(rotationSource):" + rotationSources.contains(rotationSource));
+            //appendLog(getBaseContext(), TAG, "stopRotatingUpdateIcon:rotationSources.contains(rotationSource):" + rotationSources.contains(rotationSource));
             if (rotationSources.contains(rotationSource)) {
                 rotationSources.remove(rotationSource);
             }
@@ -128,7 +129,7 @@ public class WidgetRefreshIconService extends Service {
                     "stopRotatingUpdateIcon:setIsRotationActive=" +
                             WidgetRefreshIconService.isRotationActive + ":postingNewSchedule");
             timerRotateIconHandler.removeCallbacksAndMessages(null);
-            refreshWidgets();
+            WidgetUtils.updateWidgets(getBaseContext());
         } catch (Exception e) {
             appendLog(getBaseContext(), TAG, "Exception stoping rotation:" + e.getMessage(), e);
         } finally {
@@ -191,14 +192,6 @@ public class WidgetRefreshIconService extends Service {
             timerRotateIconHandler.postDelayed(timerRotateIconRunnable, ROTATE_UPDATE_ICON_MILIS);
         }
     };
-
-    private void refreshWidgets() {
-        startBackgroundService(new Intent(getBaseContext(), LessWidgetService.class));
-        startBackgroundService(new Intent(getBaseContext(), MoreWidgetService.class));
-        startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
-        startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetWithForecastService.class));
-        startBackgroundService(new Intent(getBaseContext(), WeatherForecastWidgetService.class));
-    }
 
     protected boolean isInteractive() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {

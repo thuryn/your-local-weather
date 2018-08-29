@@ -25,6 +25,7 @@ import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.utils.AppWakeUpManager;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.Utils;
+import org.thosp.yourlocalweather.utils.WidgetUtils;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetWithForecastService;
 import org.thosp.yourlocalweather.widget.LessWidgetService;
@@ -197,11 +198,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
             if (WidgetRefreshIconService.isRotationActive) {
                 return;
             }
-            startBackgroundService(new Intent(getBaseContext(), LessWidgetService.class));
-            startBackgroundService(new Intent(getBaseContext(), MoreWidgetService.class));
-            startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
-            startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetWithForecastService.class));
-            startBackgroundService(new Intent(getBaseContext(), WeatherForecastWidgetService.class));
+            WidgetUtils.updateWidgets(getBaseContext());
             if (updateSource != null) {
                 switch (updateSource) {
                     case "FORECAST":

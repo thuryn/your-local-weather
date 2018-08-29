@@ -181,34 +181,25 @@
         </receiver>
 
         <service
-            android:name=".service.NotificationService"
-            android:process=":NotificationService" />
+            android:name=".service.ReconciliationDbService" />
         <service
-            android:name=".widget.WidgetRefreshIconService"
-            android:process=":WidgetRefreshIconService" />
+            android:name=".service.NotificationService" />
         <service
-            android:name=".widget.LessWidgetService"
-            android:process=":LessWidgetService" />
+            android:name=".widget.WidgetRefreshIconService" />
         <service
-            android:name=".widget.MoreWidgetService"
-            android:process=":MoreWidgetService" />
+            android:name=".widget.LessWidgetService" />
         <service
-            android:name=".widget.ExtLocationWidgetService"
-            android:process=":ExtLocationWidgetService" />
+            android:name=".widget.MoreWidgetService" />
         <service
-            android:name=".widget.ExtLocationWidgetWithForecastService"
-            android:process=":ExtLocationWidgetWithForecastService" />
+            android:name=".widget.ExtLocationWidgetService" />
         <service
-            android:name=".widget.WeatherForecastWidgetService"
-            android:process=":WeatherForecastWidgetService" />
+            android:name=".widget.ExtLocationWidgetWithForecastService" />
         <service
-            android:name=".service.CurrentWeatherService"
-            android:process=":CurrentWeatherService"
-            />
+            android:name=".widget.WeatherForecastWidgetService" />
         <service
-            android:name=".service.ForecastWeatherService"
-            android:process=":ForecastWeatherService"
-            />
+            android:name=".service.CurrentWeatherService" />
+        <service
+            android:name=".service.ForecastWeatherService" />
         <service android:name=".service.AppAlarmService" >
             <intent-filter>
                 <action android:name="org.thosp.yourlocalweather.action.START_ALARM_SERVICE" />
@@ -217,24 +208,21 @@
             </intent-filter>
         </service>
         <service
-            android:name=".service.SensorLocationUpdateService"
-            android:process=":SensorLocationUpdateService" >
+            android:name=".service.SensorLocationUpdateService" >
             <intent-filter>
                 <action android:name="android.intent.action.START_SENSOR_BASED_UPDATES" />
                 <action android:name="android.intent.action.STOP_SENSOR_BASED_UPDATES" />
             </intent-filter>
         </service>
         <service
-            android:name=".service.ScreenOnOffUpdateService"
-            android:process=":ScreenOnOffUpdateService" >
+            android:name=".service.ScreenOnOffUpdateService" >
             <intent-filter>
                 <action android:name="android.intent.action.START_SCREEN_BASED_UPDATES" />
                 <action android:name="android.intent.action.STOP_SCREEN_BASED_UPDATES" />
             </intent-filter>
         </service>
         <service
-            android:name=".service.LocationUpdateService"
-            android:process=":LocationUpdateService" >
+            android:name=".service.LocationUpdateService" >
             <intent-filter>
                 <action android:name="android.intent.action.LOCATION_UPDATE" />
                 <action android:name="android.intent.action.START_LOCATION_AND_WEATHER_UPDATE" />
@@ -243,8 +231,7 @@
         </service>
         <service
             android:name="org.thosp.yourlocalweather.service.NetworkLocationProvider"
-            android:permission="android.permission.ACCESS_COARSE_LOCATION"
-            android:process=":NetworkLocationProvider" >
+            android:permission="android.permission.ACCESS_COARSE_LOCATION" >
             <intent-filter>
                 <action android:name="android.intent.action.START_LOCATION_UPDATE" />
                 <action android:name="org.openbmap.unifiedNlp.LOCATION_UPDATE_CELLS_ONLY" />

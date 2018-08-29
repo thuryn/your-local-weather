@@ -2,9 +2,9 @@ package org.thosp.yourlocalweather.model;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabaseLockedException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Address;
 import android.os.Parcel;
@@ -23,9 +23,6 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
     private static final String TAG = "LocationsDbHelper";
 
     public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "Locations.db";
-    private static int GET_READABLE_DATABASE_RETRIES = 3;
-    private static int GET_READABLE_DATABASE_WAIT_TIME_MS = 500;
     private Context context;
     private static LocationsDbHelper instance;
 
@@ -37,17 +34,18 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
     }
 
     private LocationsDbHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, null, null, DATABASE_VERSION);
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL(SQL_CREATE_TABLE_LOCATIONS);
+        List<Location> locations = LocationsFileDbHelper.getInstance(context).getAllRows();
+        for (Location location: locations) {
+            createLocation(location);
+        }
         this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SQL_CREATE_TABLE_LOCATIONS);
-        ContentValues values = new ContentValues();
-        values.put(LocationsContract.Locations.COLUMN_NAME_ORDER_ID, 0);
-        values.put(LocationsContract.Locations.COLUMN_NAME_ENABLED, true);
-        db.insert(LocationsContract.Locations.TABLE_NAME, null, values);
     }
 
     @Override
@@ -61,27 +59,26 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
-    @Override
-    public SQLiteDatabase getReadableDatabase() {
-        int retryCounter = 0;
-        SQLiteDatabaseLockedException finalLockException;
-        do {
-            try {
-                return super.getReadableDatabase();
-            } catch (SQLiteDatabaseLockedException dbLockException) {
-                finalLockException = dbLockException;
-                retryCounter++;
-                if (retryCounter > GET_READABLE_DATABASE_RETRIES) {
-                    throw dbLockException;
-                }
-                try {
-                    Thread.currentThread().sleep(GET_READABLE_DATABASE_WAIT_TIME_MS);
-                } catch (InterruptedException e) {
-                    //
-                }
-            }
-        } while (retryCounter <= GET_READABLE_DATABASE_RETRIES);
-        throw finalLockException;
+    private void createLocation(Location location) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(LocationsContract.Locations.COLUMN_NAME_ADDRESS,
+                   LocationsDbHelper.getAddressAsBytes(location.getAddress()));
+        values.put(LocationsContract.Locations.COLUMN_NAME_LONGITUDE, location.getLongitude());
+        values.put(LocationsContract.Locations.COLUMN_NAME_LATITUDE, location.getLatitude());
+        values.put(LocationsContract.Locations.COLUMN_NAME_LOCALE, location.getLocale());
+        values.put(LocationsContract.Locations.COLUMN_NAME_ORDER_ID, location.getOrderId());
+        values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, location.getLocationSource());
+        values.put(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND, location.isAddressFound());
+        values.put(LocationsContract.Locations.COLUMN_NAME_ENABLED, location.isEnabled());
+        values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, location.getLastLocationUpdate());
+        values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_ACCURACY, location.getAccuracy());
+        values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_NICKNAME, location.getNickname());
+        values.put(LocationsContract.Locations._ID, location.getId());
+
+        long newLocationRowId = db.insert(LocationsContract.Locations.TABLE_NAME, null, values);
+        appendLog(context, TAG, "Location in memory created: " + newLocationRowId + ":" + location.getId());
     }
 
     public void deleteRecordFromTable(Location location) {
@@ -129,7 +126,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Address getAddressFromBytes(byte[] addressBytes) {
+    public static Address getAddressFromBytes(byte[] addressBytes) {
         if ((addressBytes == null) || (addressBytes.length == 0)) {
             return null;
         }
@@ -141,7 +138,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         return address;
     }
 
-    public byte[] getAddressAsBytes(Address address) {
+    public static byte[] getAddressAsBytes(Address address) {
         if (address == null) {
             return null;
         }
@@ -468,26 +465,22 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
     }
 
     public void updateAutoLocationAddress(final Context context, final String locale, final Address address) {
-        new Thread(new Runnable() {
-            public void run() {
-                SQLiteDatabase db = getWritableDatabase();
-                ContentValues values = new ContentValues();
-                values.put(LocationsContract.Locations.COLUMN_NAME_ADDRESS, getAddressAsBytes(address));
-                values.put(LocationsContract.Locations.COLUMN_NAME_LOCALE, locale);
-                values.put(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND, 1);
-                values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, System.currentTimeMillis());
-                db.updateWithOnConflict(
-                        LocationsContract.Locations.TABLE_NAME,values,
-                        LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",
-                        null,
-                        SQLiteDatabase.CONFLICT_IGNORE);
-                SensorLocationUpdateService.autolocationForSensorEventAddressFound = true;
-                appendLog(context,
-                          TAG,
-                         "updateAutoLocationAddress:autolocationForSensorEventAddressFound=" +
-                                SensorLocationUpdateService.autolocationForSensorEventAddressFound);
-            }
-        }).start();
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(LocationsContract.Locations.COLUMN_NAME_ADDRESS, getAddressAsBytes(address));
+        values.put(LocationsContract.Locations.COLUMN_NAME_LOCALE, locale);
+        values.put(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND, 1);
+        values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, System.currentTimeMillis());
+        db.updateWithOnConflict(
+                LocationsContract.Locations.TABLE_NAME,values,
+                LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",
+                null,
+                SQLiteDatabase.CONFLICT_IGNORE);
+        SensorLocationUpdateService.autolocationForSensorEventAddressFound = true;
+        appendLog(context,
+                  TAG,
+                 "updateAutoLocationAddress:autolocationForSensorEventAddressFound=" +
+                        SensorLocationUpdateService.autolocationForSensorEventAddressFound);
     }
 
     public void updateAutoLocationGeoLocation(final double latitude,
@@ -495,69 +488,57 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                                               final String locationSource,
                                               final float accuracy,
                                               final long locationTime) {
-        new Thread(new Runnable() {
-            public void run() {
-                SQLiteDatabase db = getWritableDatabase();
-                ContentValues values = new ContentValues();
-                values.put(LocationsContract.Locations.COLUMN_NAME_LONGITUDE, longitude);
-                values.put(LocationsContract.Locations.COLUMN_NAME_LATITUDE, latitude);
-                values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, locationSource);
-                values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_ACCURACY, accuracy);
-                values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, locationTime);
-                db.updateWithOnConflict(
-                        LocationsContract.Locations.TABLE_NAME,values,
-                        LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",
-                        null,
-                        SQLiteDatabase.CONFLICT_IGNORE);
-            }
-        }).start();
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(LocationsContract.Locations.COLUMN_NAME_LONGITUDE, longitude);
+        values.put(LocationsContract.Locations.COLUMN_NAME_LATITUDE, latitude);
+        values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, locationSource);
+        values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_ACCURACY, accuracy);
+        values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, locationTime);
+        db.updateWithOnConflict(
+                LocationsContract.Locations.TABLE_NAME,values,
+                LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",
+                null,
+                SQLiteDatabase.CONFLICT_IGNORE);
     }
 
     public void setNoLocationFound() {
         appendLog(context, TAG, "setNoLocationFound:entered");
-        new Thread(new Runnable() {
-            public void run() {
-                appendLog(context, TAG, "setNoLocationFound:run");
-                SQLiteDatabase db = getWritableDatabase();
-                appendLog(context, TAG, "setNoLocationFound:writableDB");
-                ContentValues values = new ContentValues();
-                values.put(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND, 0);
-                values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, System.currentTimeMillis());
+        appendLog(context, TAG, "setNoLocationFound:run");
+        SQLiteDatabase db = getWritableDatabase();
+        appendLog(context, TAG, "setNoLocationFound:writableDB");
+        ContentValues values = new ContentValues();
+        values.put(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND, 0);
+        values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, System.currentTimeMillis());
 
-                db.updateWithOnConflict(
-                        LocationsContract.Locations.TABLE_NAME,values,
-                        LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",
-                        null,
-                        SQLiteDatabase.CONFLICT_IGNORE);
-                appendLog(context, TAG, "setNoLocationFound:updated");
-                SensorLocationUpdateService.autolocationForSensorEventAddressFound = false;
-                appendLog(context,
-                        TAG,
-                        "setNoLocationFound:autolocationForSensorEventAddressFound=" +
-                                SensorLocationUpdateService.autolocationForSensorEventAddressFound);
-            }
-        }).start();
+        db.updateWithOnConflict(
+                LocationsContract.Locations.TABLE_NAME,values,
+                LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",
+                null,
+                SQLiteDatabase.CONFLICT_IGNORE);
+        appendLog(context, TAG, "setNoLocationFound:updated");
+        SensorLocationUpdateService.autolocationForSensorEventAddressFound = false;
+        appendLog(context,
+                TAG,
+                "setNoLocationFound:autolocationForSensorEventAddressFound=" +
+                        SensorLocationUpdateService.autolocationForSensorEventAddressFound);
     }
 
     public void updateLocationSource(final long locationId, final String updateSource) {
         appendLog(context, TAG, "updateLocationSource:entered:" + locationId + ":" + updateSource);
-        new Thread(new Runnable() {
-            public void run() {
-                appendLog(context, TAG, "updateLocationSource:run");
-                SQLiteDatabase db = getWritableDatabase();
-                appendLog(context, TAG, "updateLocationSource:writableDB");
-                ContentValues values = new ContentValues();
-                values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, updateSource);
+        appendLog(context, TAG, "updateLocationSource:run");
+        SQLiteDatabase db = getWritableDatabase();
+        appendLog(context, TAG, "updateLocationSource:writableDB");
+        ContentValues values = new ContentValues();
+        values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, updateSource);
 
-                db.updateWithOnConflict(
-                        LocationsContract.Locations.TABLE_NAME,
-                        values,
-                        LocationsContract.Locations._ID + "=" + locationId,
-                        null,
-                        SQLiteDatabase.CONFLICT_IGNORE);
-                appendLog(context, TAG, "updateLocationSource:updated");
-            }
-        }).start();
+        db.updateWithOnConflict(
+                LocationsContract.Locations.TABLE_NAME,
+                values,
+                LocationsContract.Locations._ID + "=" + locationId,
+                null,
+                SQLiteDatabase.CONFLICT_IGNORE);
+        appendLog(context, TAG, "updateLocationSource:updated");
     }
 
     public void updateEnabled(long locationId, boolean enabled) {
@@ -575,21 +556,17 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
     public void updateLastUpdatedAndLocationSource(final long locationId,
                                                    final long updateTime,
                                                    final String updateSource) {
-        new Thread(new Runnable() {
-            public void run() {
-                SQLiteDatabase db = getWritableDatabase();
-                ContentValues values = new ContentValues();
-                values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, updateSource);
-                values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, updateTime);
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, updateSource);
+        values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, updateTime);
 
-                db.updateWithOnConflict(
-                        LocationsContract.Locations.TABLE_NAME,
-                        values,
-                        LocationsContract.Locations._ID + "=" + locationId,
-                        null,
-                        SQLiteDatabase.CONFLICT_IGNORE);
-            }
-        }).start();
+        db.updateWithOnConflict(
+                LocationsContract.Locations.TABLE_NAME,
+                values,
+                LocationsContract.Locations._ID + "=" + locationId,
+                null,
+                SQLiteDatabase.CONFLICT_IGNORE);
     }
 
     public long getLastUpdateLocationTime() {

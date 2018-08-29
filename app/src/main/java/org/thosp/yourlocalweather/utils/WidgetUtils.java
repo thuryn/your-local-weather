@@ -1,6 +1,12 @@
 package org.thosp.yourlocalweather.utils;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.os.PowerManager;
+import android.os.SystemClock;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 
@@ -8,6 +14,12 @@ import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.WeatherCondition;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
+import org.thosp.yourlocalweather.service.ReconciliationDbService;
+import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
+import org.thosp.yourlocalweather.widget.ExtLocationWidgetWithForecastService;
+import org.thosp.yourlocalweather.widget.LessWidgetService;
+import org.thosp.yourlocalweather.widget.MoreWidgetService;
+import org.thosp.yourlocalweather.widget.WeatherForecastWidgetService;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -276,6 +288,64 @@ public class WidgetUtils {
                             Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
                     break;
             }
+        }
+    }
+
+    public static void updateWidgets(Context context) {
+        startBackgroundService(context, new Intent(context, LessWidgetService.class));
+        startBackgroundService(context, new Intent(context, MoreWidgetService.class));
+        startBackgroundService(context, new Intent(context, ExtLocationWidgetService.class));
+        startBackgroundService(context, new Intent(context, ExtLocationWidgetWithForecastService.class));
+        startBackgroundService(context, new Intent(context, WeatherForecastWidgetService.class));
+        startBackgroundService(context, new Intent(context, ReconciliationDbService.class));
+    }
+
+    public static void updateCurrentWeatherWidgets(Context context) {
+        startBackgroundService(context, new Intent(context, LessWidgetService.class));
+        startBackgroundService(context, new Intent(context, MoreWidgetService.class));
+        startBackgroundService(context, new Intent(context, ExtLocationWidgetService.class));
+        startBackgroundService(context, new Intent(context, ExtLocationWidgetWithForecastService.class));
+        startBackgroundService(context, new Intent(context, ReconciliationDbService.class));
+    }
+
+    public static void startBackgroundService(Context context,
+                                              Intent intent) {
+        try {
+            if (isInteractive(context)) {
+                context.startService(intent);
+                return;
+            }
+        } catch (Exception ise) {
+            //
+        }
+        startBackgroundService(context, intent, 10);
+    }
+
+    public static void startBackgroundService(Context context,
+                                              Intent intent,
+                                              long triggerInMillis ) {
+        PendingIntent pendingIntent = PendingIntent.getService(context,
+                0,
+                intent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + triggerInMillis,
+                    pendingIntent);
+        } else {
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + triggerInMillis,
+                    pendingIntent);
+        }
+    }
+
+    public static boolean isInteractive(Context context) {
+        PowerManager powerManager = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
+            return powerManager.isInteractive();
+        } else {
+            return powerManager.isScreenOn();
         }
     }
 }

@@ -27,6 +27,7 @@ import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.utils.AppWakeUpManager;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.Utils;
+import org.thosp.yourlocalweather.utils.WidgetUtils;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetWithForecastService;
 import org.thosp.yourlocalweather.widget.LessWidgetService;
@@ -225,17 +226,14 @@ public class CurrentWeatherService extends AbstractCommonService {
             if (WidgetRefreshIconService.isRotationActive) {
                 return;
             }
-            startBackgroundService(new Intent(getBaseContext(), LessWidgetService.class));
-            startBackgroundService(new Intent(getBaseContext(), MoreWidgetService.class));
-            startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetService.class));
-            startBackgroundService(new Intent(getBaseContext(), ExtLocationWidgetWithForecastService.class));
+            WidgetUtils.updateCurrentWeatherWidgets(context);
             if (updateSource != null) {
                 switch (updateSource) {
                     case "MAIN":
                         sendIntentToMain(result);
                         break;
                     case "NOTIFICATION":
-                        startBackgroundService(new Intent(getBaseContext(), NotificationService.class));
+                        WidgetUtils.startBackgroundService(getBaseContext(), new Intent(getBaseContext(), NotificationService.class));
                         break;
                 }
             }
@@ -325,7 +323,7 @@ public class CurrentWeatherService extends AbstractCommonService {
     private PendingIntent startWeatherUpdate(Location currentLocation) {
         Intent intentToCheckWeather = new Intent(this, CurrentWeatherService.class);
         intentToCheckWeather.putExtra("locationId", currentLocation.getId());
-        startBackgroundService(intentToCheckWeather);
+        WidgetUtils.startBackgroundService(getBaseContext(), intentToCheckWeather);
         return PendingIntent.getBroadcast(getBaseContext(),
                 0,
                 intentToCheckWeather,

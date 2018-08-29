@@ -28,10 +28,12 @@ import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsContract;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.service.SensorLocationUpdateService;
 import org.thosp.yourlocalweather.service.NominatimLocationService;
 import org.thosp.yourlocalweather.service.SearchActivityProcessResultFromAddressResolution;
 import org.thosp.yourlocalweather.utils.Utils;
+import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.List;
 import java.util.Locale;
@@ -203,7 +205,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     private void storeLocation() {
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this.getApplicationContext());
 
         int currentMaxOrderId = locationsDbHelper.getMaxOrderId();
         SQLiteDatabase db = locationsDbHelper.getWritableDatabase();
@@ -228,7 +230,12 @@ public class SearchActivity extends BaseActivity {
         if (currentMaxOrderId == 0) {
             Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");
             intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
-            this.startService(intentToStartUpdate);
+            startService(intentToStartUpdate);
         }
+        Intent reconciliationService = new Intent(this, ReconciliationDbService.class);
+        reconciliationService.putExtra("force", true);
+        WidgetUtils.startBackgroundService(
+                this,
+                reconciliationService);
     }
 }

@@ -23,7 +23,9 @@ import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
+import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.utils.Utils;
+import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.List;
 
@@ -112,6 +114,9 @@ public class LocationsActivity extends BaseActivity {
         List<Location> allLocations = locationsDbHelper.getAllRows();
         locationsAdapter = new LocationsAdapter(allLocations);
         recyclerView.setAdapter(locationsAdapter);
+        WidgetUtils.startBackgroundService(
+                getBaseContext(),
+                new Intent(getBaseContext(), ReconciliationDbService.class));
     }
 
     private void deleteLocation(int position) {
@@ -140,6 +145,11 @@ public class LocationsActivity extends BaseActivity {
         }
         locationsAdapter = new LocationsAdapter(allLocations);
         recyclerView.setAdapter(locationsAdapter);
+        Intent reconciliationService = new Intent(this, ReconciliationDbService.class);
+        reconciliationService.putExtra("force", true);
+        WidgetUtils.startBackgroundService(
+                this,
+                reconciliationService);
     }
 
     public class LocationHolder extends RecyclerView.ViewHolder {
