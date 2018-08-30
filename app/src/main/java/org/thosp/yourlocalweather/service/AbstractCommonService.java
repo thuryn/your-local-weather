@@ -202,7 +202,7 @@ public class AbstractCommonService extends Service {
             widgetRotationServiceLock.lock();
             try {
                 while (!unsentMessages.isEmpty()) {
-                    widgetRefreshIconService.send(unsentMessages.peek());
+                    widgetRefreshIconService.send(unsentMessages.poll());
                 }
             } catch (RemoteException e) {
                 appendLog(getBaseContext(), TAG, e.getMessage(), e);
