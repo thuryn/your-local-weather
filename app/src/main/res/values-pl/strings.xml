@@ -283,4 +283,5 @@
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Zestaw ikon</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Ikony oparte na czcionkach</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin czerwone ikony</string>
-</resources>
+<string name="location_not_initialized" tools:ignore="MissingTranslation">Lokalizacja nie jest zainicjalizowana. Kliknij najpierw koło lokalizacji.</string>
+    </resources>
