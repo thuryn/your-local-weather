@@ -261,4 +261,9 @@
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Menuko aukera hauek aplikazio nagusiaren <b>hizkuntza</b>, <b>itxura</b> eta aplikazio zein trepetetan erabilitako <b>ikonoak</b> ezartzen dituzte.</string>
     <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"><b>Jakinarazpenak</b>"
 \nJakinarazpenen aukera hartzean, aplikazioak uneko eguraldia aldiro eguneratzen du. Oraingo eguraldia jakinarazpenen tiraderan bistaratzen da. Bibrazioa gaitu dezakezu ere  eta aplikazioa eguneratzean gailuak dardar egingo du."</string>
+    <string name="location_not_initialized" tools:ignore="MissingTranslation">Kokatzea ez dago gaituta. Sakatu kokalekuaren zirkulua aurretik.</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Ukrainera</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Errumaniera</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portugesa (Portugal)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portugesa (Brasil)</string>
     </resources>
