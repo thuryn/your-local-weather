@@ -173,6 +173,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
                         public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                             AppWakeUpManager.getInstance(getBaseContext()).wakeDown();
                             appendLog(context, TAG, "onFailure:" + statusCode);
+                            timerHandler.removeCallbacksAndMessages(null);
                             sendResult(ACTION_WEATHER_UPDATE_FAIL, context);
                         }
 

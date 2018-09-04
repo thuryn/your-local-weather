@@ -551,9 +551,16 @@ public class Utils {
     public static String getCityAndCountry(Context context, int locationOrderId) {
         final LocationsDbHelper locationDbHelper = LocationsDbHelper.getInstance(context);
         Location foundLocation = locationDbHelper.getLocationByOrderId(locationOrderId);
-        if ((foundLocation == null) || !foundLocation.isAddressFound()) {
+        if (foundLocation == null) {
             return context.getString(R.string.location_not_found);
         }
+        if ("E".equals(foundLocation.getLocationSource())) {
+            return context.getString(R.string.subscription_expired);
+        }
+        if (!foundLocation.isAddressFound()) {
+            return context.getString(R.string.location_not_found);
+        }
+
         return getCityAndCountryFromAddress(foundLocation.getAddress());
     }
 

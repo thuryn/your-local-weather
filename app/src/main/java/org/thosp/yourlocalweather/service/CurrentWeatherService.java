@@ -105,7 +105,7 @@ public class CurrentWeatherService extends AbstractCommonService {
             return ret;
         }
 
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
 
         if (intent.getExtras() != null) {
             String currentUpdateSource = intent.getExtras().getString("updateSource");
@@ -200,6 +200,19 @@ public class CurrentWeatherService extends AbstractCommonService {
                         public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                             AppWakeUpManager.getInstance(getBaseContext()).wakeDown();
                             appendLog(context, TAG, "onFailure:" + statusCode);
+                            timerHandler.removeCallbacksAndMessages(null);
+                            if (statusCode == 401) {
+                                locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
+                                        System.currentTimeMillis(), "E");
+
+                            } else if (statusCode == 429) {
+                                locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
+                                        System.currentTimeMillis(), "B");
+
+                            } else {
+                                locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
+                                        System.currentTimeMillis(), "L");
+                            }
                             sendResult(ACTION_WEATHER_UPDATE_FAIL, context);
                         }
 
@@ -222,7 +235,9 @@ public class CurrentWeatherService extends AbstractCommonService {
         stopRefreshRotation("STOP", 2);
         gettingWeatherStarted = false;
         try {
-            scheduleAlarmForNextLocation();
+            if (ACTION_WEATHER_UPDATE_OK.equals(result)) {
+                scheduleAlarmForNextLocation();
+            }
             if (WidgetRefreshIconService.isRotationActive) {
                 return;
             }

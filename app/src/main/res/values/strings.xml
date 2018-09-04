@@ -17,6 +17,7 @@
     <string name="load_progress">Loading…</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Location not found</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Permissions are not yet granted - click the location symbol in the app</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Access expired. Upgrade the app, please.</string>
 
     <!-- Initial guide and help -->
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Close</string>
@@ -219,12 +220,13 @@
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Nothing</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Just updated value</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Updated value with location source</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - weather only updated\nL - location only updated\nG - location from GPS and weather updated\nN - location from network and weather updated</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - weather only updated\nL - location only updated\nG - location from GPS and weather updated\nN - location from network and weather updated\nB - access to Openweathermap.org service has been banned, try to update weather later, please\nE - the acceess token for Openweathermap.org serrvice has been expired. You need to upgrade the appliaction to get access again</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - only weather updated
 \nL - only location updated
 \nG - location from GPS and weather updated
 \nN - location from network and weather updated
-\nNi - location from cellular network and weather updated, location discovered by Mozilla location service</string>
+\nNi - location from cellular network and weather updated, location discovered by Mozilla location service
+    \nB - access to Openweathermap.org service has been banned, try to update weather later, please\nE - the acceess token for Openweathermap.org serrvice has been expired. You need to upgrade the appliaction to get access again</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">When location gets stuck during device sleep, you can try to wake it up when it is looking for a cellular network</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Wake-Up Strategy</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">No wake up</string>

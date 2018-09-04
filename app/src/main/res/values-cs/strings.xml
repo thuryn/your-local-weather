@@ -107,12 +107,14 @@
     <string name="preference_display_update_nothing">Nic</string>
     <string name="preference_display_update_value">Jen aktualizované hodnoty</string>
     <string name="preference_display_update_location_source">Aktualizované hodnoty včetně zdroje pozice</string>
-    <string name="preference_display_update_value_info">W - aktualizovnáno jen počasí\nL - aktualizována jen poloha\nG - aktualizována poloha z GPS a počasí\nN - aktualizována poloha ze sítě a počasí</string>
+    <string name="preference_display_update_value_info">W - aktualizovnáno jen počasí\nL - aktualizována jen poloha\nG - aktualizována poloha z GPS a počasí\nN - aktualizována poloha ze sítě a počasí\nB - přístup do služby Openweathermap.org byl zakázán, zkuste aktualizaci počasí později, prosím\nE - platnost přístupového kódu pro službu Openweathermap.org vypršela. Pro opětovné získání přístupu je třeba aktualizovat aplikaci na novější verzi.</string>
     <string name="preference_display_update_location_source_info">W - aktualizovnáno jen počasí
 \nL - aktualizována jen poloha
 \nG - aktualizována poloha z GPS a počasí
 \nN - aktualizována poloha ze sítě a počasí
-\nNi - aktualizována poloha z GSM sítě a počasí</string>
+\nNi - aktualizována poloha z GSM sítě a počasí
+        \nB - přístup do služby Openweathermap.org byl zakázán, zkuste aktualizaci počasí později, prosím
+        \nE - platnost přístupového kódu pro službu Openweathermap.org vypršela. Pro opětovné získání přístupu je třeba aktualizovat aplikaci na novější verzi.</string>
 
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">O aplikaci</string>
