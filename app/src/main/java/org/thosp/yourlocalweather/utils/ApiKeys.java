@@ -8,7 +8,7 @@ import org.thosp.yourlocalweather.R;
 public class ApiKeys {
 
     public static final String DEFAULT_OPEN_WEATHER_MAP_API_KEY =
-            "5662cfcc8ea8872ce813e33c156cb7d0";
+            "97878c1d0af280fe1bfc5441880d0c6f";
 
     public static String getOpenweathermapApiKey(Context context) {
         String openweathermapApiKey = PreferenceManager
