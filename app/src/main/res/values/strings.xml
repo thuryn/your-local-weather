@@ -18,6 +18,7 @@
     <string name="location_not_found" tools:ignore="MissingTranslation">Location not found</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Permissions are not yet granted - click the location symbol in the app</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Access expired. Upgrade the app, please.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Your OpenweathermapApiKey is not registered.</string>
 
     <!-- Initial guide and help -->
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Close</string>
@@ -196,6 +197,9 @@
     <string name="theme_transparent" tools:ignore="MissingTranslation">Transparent</string>
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Display</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Update location and weather</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">System settings</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API key</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Built-in</string>
     <string name="pref_title_language" tools:ignore="MissingTranslation">Language</string>
     <string name="pref_language_default" tools:ignore="MissingTranslation">System Default</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chinese (Chinese)</string>

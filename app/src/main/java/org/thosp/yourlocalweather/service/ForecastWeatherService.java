@@ -81,7 +81,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
             return ret;
         }
 
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
 
         if (intent.getExtras() != null) {
             String currentUpdateSource = intent.getExtras().getString("updateSource");
@@ -139,6 +139,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
                 try {
                     AppWakeUpManager.getInstance(getBaseContext()).wakeUp();
                     client.get(Utils.getWeatherForecastUrl(
+                            context,
                             Constants.WEATHER_FORECAST_ENDPOINT,
                             currentLocation.getLatitude(),
                             currentLocation.getLongitude(),
@@ -174,6 +175,15 @@ public class ForecastWeatherService  extends AbstractCommonService {
                             AppWakeUpManager.getInstance(getBaseContext()).wakeDown();
                             appendLog(context, TAG, "onFailure:" + statusCode);
                             timerHandler.removeCallbacksAndMessages(null);
+                            if (statusCode == 401) {
+                                locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
+                                        System.currentTimeMillis(), "E");
+
+                            } else if (statusCode == 429) {
+                                locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
+                                        System.currentTimeMillis(), "B");
+
+                            }
                             sendResult(ACTION_WEATHER_UPDATE_FAIL, context);
                         }
 
@@ -196,20 +206,26 @@ public class ForecastWeatherService  extends AbstractCommonService {
         stopRefreshRotation("STOP", 1);
         gettingWeatherStarted = false;
         try {
+            if (updateSource != null) {
+                switch (updateSource) {
+                    case "FORECAST":
+                        WidgetUtils.updateCurrentWeatherWidgets(context);
+                        sendIntentToForecast(result);
+                        break;
+                    case "GRAPHS":
+                        WidgetUtils.updateCurrentWeatherWidgets(context);
+                        sendIntentToGraphs(result);
+                        break;
+                    case "MAIN":
+                        WidgetUtils.updateCurrentWeatherWidgets(context);
+                        sendIntentToMain(result);
+                        break;
+                }
+            }
             if (WidgetRefreshIconService.isRotationActive) {
                 return;
             }
             WidgetUtils.updateWidgets(getBaseContext());
-            if (updateSource != null) {
-                switch (updateSource) {
-                    case "FORECAST":
-                        sendIntentToForecast(result);
-                        break;
-                    case "GRAPHS":
-                        sendIntentToGraphs(result);
-                        break;
-                }
-            }
         } catch (Throwable exception) {
             appendLog(context, TAG, "Exception occured when starting the service:", exception);
         }

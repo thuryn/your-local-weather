@@ -23,6 +23,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
@@ -51,6 +52,7 @@ import org.thosp.yourlocalweather.model.ReverseGeocodingCacheContract;
 import org.thosp.yourlocalweather.model.ReverseGeocodingCacheDbHelper;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.service.NotificationService;
+import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.LogToFile;
@@ -143,7 +145,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 Constants.KEY_PREF_LOCATION_GPS_ENABLED,
                 Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE,
                 Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD,
-                Constants.KEY_PREF_LOCATION_UPDATE_PERIOD
+                Constants.KEY_PREF_LOCATION_UPDATE_PERIOD,
+                Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY
         };
 
         @Override
@@ -157,9 +160,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             initLocationCache();
 
-            SensorManager senSensorManager  = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+            SensorManager senSensorManager  = (SensorManager) getActivity()
+                    .getSystemService(Context.SENSOR_SERVICE);
             Sensor senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-            boolean deviceHasAccelerometer = senSensorManager.registerListener(sensorListener, senAccelerometer , SensorManager.SENSOR_DELAY_FASTEST);
+            boolean deviceHasAccelerometer = senSensorManager.registerListener(
+                    sensorListener,
+                    senAccelerometer,
+                    SensorManager.SENSOR_DELAY_FASTEST);
             senSensorManager.unregisterListener(sensorListener);
 
             Preference updateWidgetUpdatePref = findPreference(Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD);
@@ -188,6 +195,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getActivity());
             ListPreference locationAutoPreference = (ListPreference) findPreference("location_auto_update_period_pref_key");
             locationAutoPreference.setEnabled(locationsDbHelper.getLocationByOrderId(0).isEnabled());
+
+            EditTextPreference openWeatherMapApiKey =
+                    (EditTextPreference) findPreference(Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY);
+            openWeatherMapApiKey.setSummary(ApiKeys.getOpenweathermapApiKeyForPreferences(getActivity()));
 
             initWakeUpStrategy();
         }
@@ -278,6 +289,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     }
                 case Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE:
                     entrySummary(key);
+                    break;
+                case Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY:
+                    findPreference(key).setSummary(ApiKeys.getOpenweathermapApiKeyForPreferences(getActivity()));
                     break;
             }
         }

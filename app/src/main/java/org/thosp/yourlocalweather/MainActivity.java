@@ -291,12 +291,26 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         }
     }
 
+    private void updateLocationCityTimeAndSource() {
+        if (currentLocation == null) {
+            return;
+        }
+        currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
+        String lastUpdate = Utils.setLastUpdateTime(
+                this,
+                currentLocation.getLastLocationUpdate(),
+                currentLocation.getLocationSource());
+        mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
+        localityView.setText(Utils.getCityAndCountry(this, currentLocation.getOrderId()));
+    }
+
     private void preLoadWeather() {
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(this);
 
         if (currentLocation == null) {
             return;
         }
+        currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
 
         CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
 
@@ -487,6 +501,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                     case CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL:
                         mSwipeRefresh.setRefreshing(false);
                         setUpdateButtonState(false);
+                        updateLocationCityTimeAndSource();
                         Toast.makeText(MainActivity.this,
                                 getString(R.string.toast_parse_error),
                                 Toast.LENGTH_SHORT).show();

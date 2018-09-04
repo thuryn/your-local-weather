@@ -510,11 +510,15 @@ public class Utils {
         return directions[index] + " " + arrows[index];
     }
 
-    public static URL getWeatherForecastUrl(String endpoint, double lat, double lon, String units, String lang) throws
-                                                                                         MalformedURLException {
+    public static URL getWeatherForecastUrl(Context context,
+                                            String endpoint,
+                                            double lat,
+                                            double lon,
+                                            String units,
+                                            String lang) throws MalformedURLException {
         String url = Uri.parse(endpoint)
                         .buildUpon()
-                        .appendQueryParameter("appid", ApiKeys.OPEN_WEATHER_MAP_API_KEY)
+                        .appendQueryParameter("appid", ApiKeys.getOpenweathermapApiKey(context))
                         .appendQueryParameter("lat", String.valueOf(lat).replace(",", "."))
                         .appendQueryParameter("lon", String.valueOf(lon).replace(",", "."))
                         .appendQueryParameter("units", units)
@@ -555,7 +559,11 @@ public class Utils {
             return context.getString(R.string.location_not_found);
         }
         if ("E".equals(foundLocation.getLocationSource())) {
-            return context.getString(R.string.subscription_expired);
+            if (ApiKeys.isDefaultOpenweatherApiKey(context)) {
+                return context.getString(R.string.subscription_expired);
+            } else {
+                return context.getString(R.string.subscription_is_wrong);
+            }
         }
         if (!foundLocation.isAddressFound()) {
             return context.getString(R.string.location_not_found);

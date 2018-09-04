@@ -169,7 +169,9 @@ public class CurrentWeatherService extends AbstractCommonService {
                         currentLocation.getLongitude());
                 try {
                     AppWakeUpManager.getInstance(getBaseContext()).wakeUp();
-                    client.get(Utils.getWeatherForecastUrl(Constants.WEATHER_ENDPOINT,
+                    client.get(Utils.getWeatherForecastUrl(
+                            context,
+                            Constants.WEATHER_ENDPOINT,
                             currentLocation.getLatitude(),
                             currentLocation.getLongitude(),
                             "metric",
@@ -238,13 +240,10 @@ public class CurrentWeatherService extends AbstractCommonService {
             if (ACTION_WEATHER_UPDATE_OK.equals(result)) {
                 scheduleAlarmForNextLocation();
             }
-            if (WidgetRefreshIconService.isRotationActive) {
-                return;
-            }
-            WidgetUtils.updateCurrentWeatherWidgets(context);
             if (updateSource != null) {
                 switch (updateSource) {
                     case "MAIN":
+                        WidgetUtils.updateCurrentWeatherWidgets(context);
                         sendIntentToMain(result);
                         break;
                     case "NOTIFICATION":
@@ -252,6 +251,10 @@ public class CurrentWeatherService extends AbstractCommonService {
                         break;
                 }
             }
+            if (WidgetRefreshIconService.isRotationActive) {
+                return;
+            }
+            WidgetUtils.updateCurrentWeatherWidgets(context);
         } catch (Throwable exception) {
             appendLog(context, TAG, "Exception occured when starting the service:", exception);
         }
@@ -286,16 +289,6 @@ public class CurrentWeatherService extends AbstractCommonService {
         currentLocation = locationsDbHelper.getLocationById(locationId);
         scheduleAlarmForNextLocation();
         sendResult(ACTION_WEATHER_UPDATE_OK, context);
-    }
-    
-    private void sendIntentToMain(String result) {
-        Intent intent = new Intent(ACTION_WEATHER_UPDATE_RESULT);
-        if (result.equals(ACTION_WEATHER_UPDATE_OK)) {
-            intent.putExtra(ACTION_WEATHER_UPDATE_RESULT, ACTION_WEATHER_UPDATE_OK);
-        } else if (result.equals(ACTION_WEATHER_UPDATE_FAIL)) {
-            intent.putExtra(ACTION_WEATHER_UPDATE_RESULT, ACTION_WEATHER_UPDATE_FAIL);
-        }
-        sendBroadcast(intent);
     }
 
     private void resendTheIntentInSeveralSeconds(int seconds, Intent intent) {
