@@ -44,7 +44,7 @@
     <string name="about_open_source_licenses_pref_title">Licencja wolnego oprogramowania</string>
     <string name="about_source_code_pref_title">Kod źródłowy</string>
     <string name="about_version_pref_title">Wersja</string>
-    <string name="toast_parse_error">Wystąpił błąd. Spróbuj później!</string>
+    <string name="toast_parse_error">Wystąpił błąd. Spróbuj później.</string>
     <string name="nav_menu_bitcoin_donation">Przekaż bitcoin</string>
     <string name="toolbar_menu_detect_location">Lokalizacja Wykrywanie</string>
     <string name="toolbar_menu_refresh">Aktualizacja</string>
@@ -197,7 +197,7 @@
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Zaktualizuj lokalizację i pogodę</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chiński (Chinese)</string>
     <string name="pref_language_sw" tools:ignore="MissingTranslation">Suahili (Swahili)</string>
-    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norweski (Norwegian)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norweski Bokmål (Norwegian Bokmål)</string>
     <string name="pref_language_nl" tools:ignore="MissingTranslation">Holenderski (Dutch)</string>
     <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
     <string name="pref_language_hu" tools:ignore="MissingTranslation">Węgierski (Hungarian)</string>
@@ -283,4 +283,5 @@
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Zestaw ikon</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Ikony oparte na czcionkach</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin czerwone ikony</string>
-</resources>
+<string name="location_not_initialized" tools:ignore="MissingTranslation">Lokalizacja nie jest zainicjalizowana. Kliknij najpierw koło lokalizacji.</string>
+    </resources>

@@ -66,13 +66,13 @@
     <string name="update_location_full" tools:ignore="MissingTranslation">Oppdater plassering</string>
     <string name="update_location_network_only" tools:ignore="MissingTranslation">Oppdater plassering uten GPS</string>
     <string name="update_period_by_sensors" tools:ignore="MissingTranslation">Med akselerometer</string>
-    <string name="update_period_15min" tools:ignore="MissingTranslation">et kvarter</string>
-    <string name="update_period_30min" tools:ignore="MissingTranslation">en halvtime</string>
-    <string name="update_period_1hour" tools:ignore="MissingTranslation">hver time</string>
-    <string name="update_period_3hours" tools:ignore="MissingTranslation">hver tredje time</string>
-    <string name="update_period_6hours" tools:ignore="MissingTranslation">hver sjette time</string>
-    <string name="update_period_12hours" tools:ignore="MissingTranslation">hver tolvte time</string>
-    <string name="update_period_24hours" tools:ignore="MissingTranslation">hvert døgn</string>
+    <string name="update_period_15min" tools:ignore="MissingTranslation">Et kvarter</string>
+    <string name="update_period_30min" tools:ignore="MissingTranslation">En halvtime</string>
+    <string name="update_period_1hour" tools:ignore="MissingTranslation">Hver time</string>
+    <string name="update_period_3hours" tools:ignore="MissingTranslation">Hver tredje time</string>
+    <string name="update_period_6hours" tools:ignore="MissingTranslation">Hver sjette time</string>
+    <string name="update_period_12hours" tools:ignore="MissingTranslation">Hver tolvte time</string>
+    <string name="update_period_24hours" tools:ignore="MissingTranslation">Hvert døgn</string>
     <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Vibrer</string>
     <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Oppdateringsperiode</string>
     <string name="preference_title_activity_general" tools:ignore="MissingTranslation">Hovedinnstillinger</string>
@@ -124,14 +124,14 @@
     <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Nåværende værikon</string>
     <string name="widget_refresh_button" tools:ignore="MissingTranslation">Oppdateringsknapp for miniprogram</string>
 
-    <string name="wind_direction_north">N</string>
-    <string name="wind_direction_north_east">NØ</string>
-    <string name="wind_direction_east">Ø</string>
-    <string name="wind_direction_south_east">SØ</string>
-    <string name="wind_direction_south">S</string>
-    <string name="wind_direction_south_west">SV</string>
-    <string name="wind_direction_west">V</string>
-    <string name="wind_direction_north_west">NV</string>
+    <string name="wind_direction_north">N↓</string>
+    <string name="wind_direction_north_east">NØ↙</string>
+    <string name="wind_direction_east">Ø←</string>
+    <string name="wind_direction_south_east">SØ↖</string>
+    <string name="wind_direction_south">S↑</string>
+    <string name="wind_direction_south_west">SV↗</string>
+    <string name="wind_direction_west">V→</string>
+    <string name="wind_direction_north_west">NV↘</string>
 
     <string name="permission_location_rationale" tools:ignore="MissingTranslation">Plasseringstilganger trengs for å bestemme nåværende by</string>
     <string name="permission_not_granted" tools:ignore="MissingTranslation">Tilganger ikke innvilget!</string>
@@ -160,26 +160,25 @@
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Vis</string>
     <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
     <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 timer</string>
-    <string name="location_cache_24_label" tools:ignore="MissingTranslation">en dag</string>
-    <string name="location_cache_168_label" tools:ignore="MissingTranslation">ei uke</string>
-    <string name="location_cache_720_label" tools:ignore="MissingTranslation">en måned</string>
-    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">tre måneder</string>
-    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">seks måneder</string>
-    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">ett år</string>
-    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">aldri</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">Én dag</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">Ei uke</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">Én måned</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">Tre måneder</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">Seks måneder</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">Ett år</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">Aldri</string>
     <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Hurtiglagerplasseringer</string>
     <string name="log_file_12_label" tools:ignore="MissingTranslation">12 timer</string>
-    <string name="log_file_24_label" tools:ignore="MissingTranslation">en dag</string>
-    <string name="log_file_48_label" tools:ignore="MissingTranslation">to dager</string>
-    <string name="log_file_72_label" tools:ignore="MissingTranslation">tre dager</string>
-    <string name="log_file_168_label" tools:ignore="MissingTranslation">ei uke</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">Én dag</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">To dager</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">Tre dager</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">Ei uke</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">en måned</string>
 
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Skriftbaserte ikoner</string>
     <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Programmet er satt til å oppdatere en plassering. For å få det til å virke, gå til \"Telefoninnstillinger\" og skru på plasseringstjenester, eller skru det av i programmet.</string>
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Denne veiledningen hjelper deg å sette opp programmet etter eget ønske. Du kan velge oppdateringsstrategi på neste skjerm. 
-\nProgrammet oppdaterer kun været når du velger <i>Ikke oppdater plassering</i> option. 
-\nOppdatering av plassering er én av de beste funksjonene i programmet. Så <i>Oppdater plassering</i> er anbefalt og forvalgt verdi.</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">I justeringen av programmet etter ønske, kan du nå velge oppdateringsstrategi.
+\nTil forskjell fra forvalget der plassering følger deg, kan du velge <i>Ikke oppdater plassering</i>.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Veiledning for førstegangsoppsett</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Plasseringskilde-valg</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Du kan velge plasseringskilden, <i>System</i>-varianten bruker Google-tjenester til å hente plasseringen fra nettverk (telefon- og Wi-Fi -nettverk). <i>Lokal MLS og Nominatim</i>-valget bruker Mozilla plasseringstjeneste for å hente plasseringskoordinater og Nominatim-tjenesten til å hente plasseringsnavn. Det andre valget krever tilgang til behandling av telefonsamtaler for å hente informasjon om mobilnettverket. Foretrukket valg er forvalgt.</string>
@@ -208,7 +207,7 @@
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Den tredje skjermen inneholder værmelding vist med grafer.</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">Programmet har tre miniprogrammer. Miniprogrammer inneholder noen delte verdier for nåværende vær (for eksempel temperatur). Noen verdier er unike for hver enkelt miniprogram (for eksempel solnedgang). Det er en tid for forrige oppdatering i høyre hjørne for hvert miniprogram. Du kan se hva som har blitt oppdatert sist gang (når du har valgt dette i innstillingsmenyen). Oppdateringsknappen er å finne ved siden av oppdatert tid. Når du trykker denne knappen, blir været, (og plasseringen når oppdatering av den er valgt) oppdatert uten videre plunder.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Hovedinnstillinger</string>
-    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Temperatur og vind</b> - Du kan velge enheter for vind og hastighet. Verdier regnes ut igjen i henhold til dette valget.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Temperatur</b> - Du kan velge temperaturenhet, <b>Vind</b> - Du kan velge vindhastighetsenhet og <b>Trykk</b> - Du kan velge enhet for trykk. Verdier regnes ut igjen ved bruk av disse valgene.</string>
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Skjul værbeskrivelse</b> - Beskrivelsen av nåværende vær er skjult. Du kan kun se hva nåværende vær er ved å se på ikonet.</string>
     <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Innstilling for plasseringsoppdatering</b>
 \nDu kan velge hvorvidt kun vær skal oppdateres. Når du velger dette kan du finne søkeknappen i hovedprogrammet. Du kan søke opp plasseringen du ønsker å se. Programmet søker ikke etter plassering i sådant fall.</string>
@@ -217,9 +216,9 @@
 \nDu kan velge hvor plasseringen og adressen blir hentet fra.</string>
     <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"><b xmlns:tools="https://schemas.android.com/tools">Lokal MLS og Nominatim</b> - Programmet henter plassering fra Mozillas plasseringstjenester. Programmet bruker mobilnettverket - informasjon om nåværende og tilgjengelige basestasjoner. Tilgang til å føre telefonsamtaler må innvilges for å få hente denne informasjonen. Programmet bruker Wi-Fi-nettverk rundt omring for å gjette plasseringen din mer presist. Programmet henter geografiske koordinater fra Mozillas plasseringstjeneste. Programmet bruker Nominatim-tjenester for å hente adresser fra koordinater. Når du ønsker å hente plassering mer presist fra Mozillas plasseringstjeneste kan du bidra til Mozilla Stumbler-programmet (tilgjengelig på https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler).</string>
     <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"><b xmlns:tools="https://schemas.android.com/tools">System</b> - Programmet henter plassering og adresser fra systemtjenester i Android (vanligvis ved bruk av Googles plasseringstjenester).</string>
-    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Disse menyvalgene setter <b>språk</b>, <b>theme</b> for hovedprogrammet og <b>ikonsettet</b> brukt i programmet og miniprogrammene.</string>
-    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"><b xmlns:tools="https://schemas.android.com/tools">Merknader</b>
-\nNår du velger merknadsvalget, vil programmet oppdatere nåværende være periodisk. Nåværende vær legges så inn i merkandsområdet. Du kan også skru på vibrering - da vil det vibrere ved oppdateringer.</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Disse menyvalgene setter <b>language</b>, <b>theme</b> for hovedprogrammet og <b>icon set</b> brukt i programmet og miniprogrammene.</string>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"><b xmlns:tools="https://schemas.android.com/tools">Merknader</b> 
+\nNår du velger merknadsvalget, vil programmet oppdatere nåværende være periodisk. Nåværende vær legges så inn i merknadsområdet. Du kan også skru på vibrering - da vil det vibrere ved oppdateringer.</string>
     <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">For å spare nettverkstrafikk og framskynde plasseringsoppdatering kan du skru på <b xmlns:tools="https://schemas.android.com/tools">Hurtiglagring av plasseringer</b>. Hurtiglageret lagrer geografiske koordinater og en adresse. Programmet må ringe til nettverksløsningstjenesten uavhengig av denne innstillingen. Samtalen til Nominatim finner kun sted hvis adressen ikke er å finne i hurtiglageret. Når du skrur på hurtiglagerplasseringer må du godta at adressene du besøker blir lagret i programmet. Ingen informasjon fra hurtiglageret sendes ut av programmet.</string>
     <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Ved siden av hurtiglagerløsningen (avkryssningsboks) finnes det en innstilling for <b xmlns:tools="https://schemas.android.com/tools">Alderen på hurtiglagrede verdier</b>. Hver lagret adresse har et tidsstempel. Når det er eldre enn verdien satt i alderen for hurtiglagrede verdier, ringer programmet til Nominatim for å oppdatere oppføringen.</string>
     <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Du kan tømme hurtiglagrede adresser ved å trykke på <b xmlns:tools="https://schemas.android.com/tools">Tøm hurtiglager</b>.</string>
@@ -294,4 +293,5 @@
     <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portugisisk (Brasil)</string>
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">"Lokalet for nåværende værbeskrivelse og addressen vil oppdateres ved vanlig oppdatering, eller du kan påtvinge den manuelt "</string>
 
+    <string name="location_not_initialized" tools:ignore="MissingTranslation">Plassering ikke igangsatt. Klikk på plasseringssirkelen først.</string>
     </resources>
