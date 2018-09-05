@@ -24,6 +24,7 @@ import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.ReconciliationDbService;
+import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
@@ -56,7 +57,7 @@ public class LocationsActivity extends BaseActivity {
     public void onResume(){
         super.onResume();
         List<Location> allLocations = locationsDbHelper.getAllRows();
-        if (allLocations.size() > 3) {
+        if (allLocations.size() >= ApiKeys.getAvailableLocations(this)) {
             addLocationButton.setVisibility(View.GONE);
         } else {
             addLocationButton.setVisibility(View.VISIBLE);
@@ -138,7 +139,7 @@ public class LocationsActivity extends BaseActivity {
         locationsAdapter.notifyItemRemoved(position);
         locationsAdapter.notifyItemRangeChanged(position, locationsAdapter.getItemCount());
         List<Location> allLocations = locationsDbHelper.getAllRows();
-        if (allLocations.size() > 3) {
+        if (allLocations.size() >= ApiKeys.getAvailableLocations(this)) {
             addLocationButton.setVisibility(View.GONE);
         } else {
             addLocationButton.setVisibility(View.VISIBLE);

@@ -52,11 +52,13 @@ import org.thosp.yourlocalweather.model.ReverseGeocodingCacheContract;
 import org.thosp.yourlocalweather.model.ReverseGeocodingCacheDbHelper;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.service.NotificationService;
+import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.LogToFile;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
+import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -292,6 +294,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     break;
                 case Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY:
                     findPreference(key).setSummary(ApiKeys.getOpenweathermapApiKeyForPreferences(getActivity()));
+                    checkAndDeleteLocations();
                     break;
             }
         }
@@ -335,6 +338,24 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             for (String key : SUMMARIES_TO_UPDATE) {
                 updateSummary(key, false);
             }
+        }
+
+        private void checkAndDeleteLocations() {
+            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getActivity());
+            List<Location> allLocations = locationsDbHelper.getAllRows();
+            if (allLocations.size() <= ApiKeys.getAvailableLocations(getActivity())) {
+                return;
+            }
+            for (Location location: allLocations) {
+                if (location.getOrderId() >= ApiKeys.getAvailableLocations(getActivity())) {
+                    locationsDbHelper.deleteRecordFromTable(location);
+                }
+            }
+            Intent reconciliationService = new Intent(getActivity(), ReconciliationDbService.class);
+            reconciliationService.putExtra("force", true);
+            WidgetUtils.startBackgroundService(
+                    getActivity(),
+                    reconciliationService);
         }
 
         private void initLocationCache() {

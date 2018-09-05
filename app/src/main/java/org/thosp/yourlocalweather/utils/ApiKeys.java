@@ -7,8 +7,11 @@ import org.thosp.yourlocalweather.R;
 
 public class ApiKeys {
 
+    public static final int DEFAULT_AVAILABLE_LOCATIONS = 2;
+    public static final int MAX_AVAILABLE_LOCATIONS = 20;
+
     public static final String DEFAULT_OPEN_WEATHER_MAP_API_KEY =
-            "97878c1d0af280fe1bfc5441880d0c6f";
+            "afdeb66cf78cb2c2dc61bdb93479f055";
 
     public static String getOpenweathermapApiKey(Context context) {
         String openweathermapApiKey = PreferenceManager
@@ -44,5 +47,13 @@ public class ApiKeys {
                         ""
                 );
         return ((openweathermapApiKey == null) || "".equals(openweathermapApiKey));
+    }
+
+    public static int getAvailableLocations(Context context) {
+        if (isDefaultOpenweatherApiKey(context)) {
+            return DEFAULT_AVAILABLE_LOCATIONS;
+        } else {
+            return MAX_AVAILABLE_LOCATIONS;
+        }
     }
 }

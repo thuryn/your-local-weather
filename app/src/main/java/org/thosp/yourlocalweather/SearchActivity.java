@@ -158,7 +158,6 @@ public class SearchActivity extends BaseActivity {
             }
         };
 
-
         MapEventsOverlay overlayEvents = new MapEventsOverlay(mReceive);
         map.getOverlays().add(overlayEvents);
 
