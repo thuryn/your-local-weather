@@ -110,7 +110,7 @@
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Hulp</string>
 
     <string name="connection_not_found" tools:ignore="MissingTranslation">Controleer je internetverbinding</string>
-    <string name="toast_parse_error" tools:ignore="MissingTranslation">Er is een fout opgetreden; probeer het later opnieuw!</string>
+    <string name="toast_parse_error" tools:ignore="MissingTranslation">Er is een fout opgetreden; probeer het later opnieuw.</string>
 
     <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
@@ -157,7 +157,7 @@
     <string name="pref_language_default" tools:ignore="MissingTranslation">Systeemstandaard</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chinees (China)</string>
     <string name="pref_language_sw" tools:ignore="MissingTranslation">Swahili (Swahili)</string>
-    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Noors (Noorwegen)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Noors (Noors Bokmål)</string>
     <string name="pref_language_nl" tools:ignore="MissingTranslation">Nederlands (Nederland)</string>
     <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
     <string name="pref_language_hu" tools:ignore="MissingTranslation">Hongaars (Hongarije)</string>
@@ -176,12 +176,16 @@
     <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - weer is bijgewerkt 
 \nL - locatie is bijgewerkt 
 \nG - locatie is bijgewerkt via GPS en weer is bijgewerkt 
-\nN - locatie is bijgewerkt via mobiel netwerk en weer is bijgewerkt</string>
+\nN - locatie is bijgewerkt via mobiel netwerk en weer is bijgewerkt
+\nB - toegang tot Openweathermap.org is verboden; probeer het later opnieuw
+\nE - de toegangssleutel voor Openweathermap.org is verlopen; werk de app bij om opnieuw toegang te krijgen</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - weer is bijgewerkt 
 \nL - locatie is bijgewerkt 
 \nG - locatie is bijgewerkt via GPS en weer is bijgewerkt 
 \nN - locatie is bijgewerkt via mobiel netwerk en weer is bijgewerkt 
-\nNi - locatie is bijgewerkt via mobiel netwerk en weer is bijgewerkt; locatie is gevonden via de Mozilla-locatiedienst</string>
+\nNi - locatie is bijgewerkt via mobiel netwerk en weer is bijgewerkt; locatie is gevonden via de Mozilla-locatiedienst
+\nB - toegang tot Openweathermap.org is verboden; probeer het later opnieuw
+\nE - de toegangssleutel voor Openweathermap.org is verlopen; werk de app bij om opnieuw toegang te krijgen</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Als de locatie niet wordt bijgewerkt terwijl de telefoon slaapt, dan kun je proberen om hem te ontwaken tijdens het zoeken naar een mobiel netwerk</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Ontwaakstrategie</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">Niet ontwaken</string>
@@ -293,4 +297,11 @@
     <string name="label_pressure" tools:ignore="MissingTranslation">Druk</string>
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">De actuele weersomschrijvingtaal en het adres worden bijgewerkt met de volgende geplande bijwerking, maar het bijwerken kan ook handmatig.</string>
 
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Toegang verlopen. Werk de app bij.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Je OpenWeatherMap API-sleutel is niet geregistreerd.</string>
+
+    <string name="location_not_initialized" tools:ignore="MissingTranslation">Geen locatie ingesteld. Druk op het locatiepictogram.</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Systeeminstellingen</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API-sleutel</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Ingebouwd</string>
     </resources>
