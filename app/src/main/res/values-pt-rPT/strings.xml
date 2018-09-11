@@ -76,7 +76,7 @@
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Ajuda</string>
 
     <string name="connection_not_found" tools:ignore="MissingTranslation">Verifique a sua ligação à internet</string>
-    <string name="toast_parse_error" tools:ignore="MissingTranslation">Ocorreu um erro. Tente mais tarde!</string>
+    <string name="toast_parse_error" tools:ignore="MissingTranslation">Ocorreu um erro. Tente mais tarde.</string>
 
     <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">nós</string>
@@ -88,7 +88,7 @@
     <string name="pref_title_language" tools:ignore="MissingTranslation">Idioma</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chinês (Chinês)</string>
     <string name="pref_language_sw" tools:ignore="MissingTranslation">Suaíli (Suaíli)</string>
-    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norueguês (Norueguês)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norueguês Bokmål (Norueguês Bokmål)</string>
     <string name="pref_language_nl" tools:ignore="MissingTranslation">Holandês (Holandês)</string>
     <string name="pref_language_hu" tools:ignore="MissingTranslation">Húngaro (Húngaro)</string>
     <string name="pref_language_es" tools:ignore="MissingTranslation">Espanhol (Espanhol)</string>
@@ -228,4 +228,7 @@
     <string name="humidity_label" tools:ignore="MissingTranslation">Humidade: %1$s%2$s</string>
     <string name="widget_refresh_button" tools:ignore="MissingTranslation">Botão de actualização do widget</string>
 
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Pode escolher a opção para o método de localização - a de <i>Sistema</i> apenas utiliza os serviços da Google para obter a localização por redes (celular e Wi-Fi). A opção <i>MLS local e Nominatim</i> utiliza o serviço de localização da Mozilla para obter as coordenadas de localização e o serviço Nominatim para obter os nomes das localizações. A segunda opção requer permissão de chamadas para ir buscar informação acerca da rede celular. A opção preferida é pré-selecionada.</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">A aplicação determina a localização utilizando a rede celular (BTS), Wi-Fi, e, se essas falharem, GPS para mostrar a meteorologia local, utilizando as coordenadas do serviço de localização da Mozilla. Utilizando o widget no seu telefone ou tablet, pode ver a sua localização e clima actual no ecrã principal. As actualizações da localização podem ser periódicas (ex. horárias), ou a aplicação pode utilizar o acelerómetro para detectar o movimento de distâncias maiores que um valor. Transportado no seu bolso, a distância aumenta mais rapidamente. Pode desactivar as actualizações de localização - nesse caso apenas o clima será actualizado. A aplicação actualiza a localização e o clima em intervalos específicos. Pode, por exemplo, especificar o período de actualização para uma hora. O clima é actualizado automaticamente após a localização o ser ou quando o ecrã é ligado - mas não mais do que uma vez a cada 15 minutos (e quando o clima não foi actualizado nos últimos 15 minutos). Esta informação é utilizada para obter as coordenadas de localização pelo serviço de localização da Mozilla. A aplicação tenta utilizar o GPS quando a localização não está disponível a partir da rede celular e redes Wi-Fi. As coordenadas de localização são utilizadas para obter endereços pelo serviço Nominatim. O endereço é utilizado na aplicação ou widget. A aplicação utiliza o serviço OpenWeatherMap.org para obter o clima actual.</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">A aplicação principal consiste numa visão geral do clima corrente. Pode actualizar o clima utilizando o botão actualizar no painel da aplicação ou deslizando para baixo. Pode encontrar o botão de actualização da localização ao pé do botão de actualizar o clima. Este botão apenas está disponível quando a localização 0 está activa (a localização 0 destina-se à atualização automática de localização).</string>
     </resources>
