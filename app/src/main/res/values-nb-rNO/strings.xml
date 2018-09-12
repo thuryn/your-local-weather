@@ -294,4 +294,10 @@
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">"Lokalet for nåværende værbeskrivelse og addressen vil oppdateres ved vanlig oppdatering, eller du kan påtvinge den manuelt "</string>
 
     <string name="location_not_initialized" tools:ignore="MissingTranslation">Plassering ikke igangsatt. Klikk på plasseringssirkelen først.</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Tilgangsutløp. Oppgrader programmet.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Din OpenweathermapApiKey er ikke registrert.</string>
+
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Systeminnstillinger</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org-API-nøkkel</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Innebygd</string>
     </resources>
