@@ -33,7 +33,7 @@
 
     <!-- Toast messages -->
     <string name="connection_not_found"> Überprüfen Sie Ihre Internetverbindung</string>
-    <string name="toast_parse_error">Ein Fehler ist aufgetreten. Bitte später versuchen!</string>
+    <string name="toast_parse_error">Ein Fehler ist aufgetreten. Bitte später versuchen.</string>
 
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
@@ -139,9 +139,8 @@
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Zurück</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Abschließen</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Anleitung zur Erstkonfiguration</string>
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Diese Anleitung hilft Ihnen dabei, die Anwendung nach Ihren Bedürfnissen einzustellen. Wählen Sie auf dem nächsten Bildschirm eine Aktualisierungsstrategie aus. 
-\nEs wird nur das Wetter aktualisiert, wenn Sie die Einstellung <i>Standort nicht aktualisieren</i> wählen. 
-\nDa es eine großartige Funktion ist, ist <i>Standort aktualisieren</i> voreingestellt.</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Nachdem Sie die App an Ihre Bedürfnisse angepasst haben, können Sie als nächstes die Update-Strategie festlegen.
+\nAbweichend von der Standardeinstellung zur Aktualisierung bei Ortsänderungen können Sie <i>Ort nicht aktualisieren</i> wählen.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Einstellung der Standortaktualisierung</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Sie können die Methode zur Standortbestimmung auswählen - das <i>System</i> verwendet Google-Dienste, um den Standort über Netzwerke (Mobilfunk- und WLAN-Netze) zu beziehen. Die Alternative <i>Lokaler MLS und Nominatim</i> verwendet Mozilla\'s Standortdienst, um Standortkoordinaten zu erhalten und den Nominatim-Dienst, um Standortnamen zu ermitteln. Die zweite Option erfordert die Berechtigung auf Telefoninformationen zuzugreifen, um Informationen zum Mobilfunknetz zu beziehen. Die bevorzugte Option ist vorgewählt.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Standort- und Adressenbezugsquelle</string>
@@ -298,4 +297,11 @@
     <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norwegisch (Norwegian)</string>
     <string name="pref_language_es" tools:ignore="MissingTranslation">Spanisch (Spanish)</string>
     <string name="pref_language_el" tools:ignore="MissingTranslation">Griechisch (Greek)</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Zugang abgelaufen. Bitte aktualisieren Sie die App.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Ihr OpenweathermapApiKey ist nicht registriert.</string>
+
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Systemeinstellungen</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API-Schlüssel</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Integriert</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Swahili (Suaheli)</string>
     </resources>
