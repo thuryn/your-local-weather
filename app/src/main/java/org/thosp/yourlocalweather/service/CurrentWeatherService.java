@@ -201,19 +201,22 @@ public class CurrentWeatherService extends AbstractCommonService {
                         @Override
                         public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                             AppWakeUpManager.getInstance(getBaseContext()).wakeDown();
-                            appendLog(context, TAG, "onFailure:" + statusCode);
+                            appendLog(context, TAG, "onFailure:" + statusCode + ":currentLocation=" + currentLocation);
                             timerHandler.removeCallbacksAndMessages(null);
-                            if (statusCode == 401) {
-                                locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
-                                        System.currentTimeMillis(), "E");
+                            if (currentLocation != null) {
+                                final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+                                if (statusCode == 401) {
+                                    locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
+                                            System.currentTimeMillis(), "E");
 
-                            } else if (statusCode == 429) {
-                                locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
-                                        System.currentTimeMillis(), "B");
+                                } else if (statusCode == 429) {
+                                    locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
+                                            System.currentTimeMillis(), "B");
 
-                            } else {
-                                locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
-                                        System.currentTimeMillis(), "L");
+                                } else {
+                                    locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
+                                            System.currentTimeMillis(), "L");
+                                }
                             }
                             sendResult(ACTION_WEATHER_UPDATE_FAIL, context);
                         }
