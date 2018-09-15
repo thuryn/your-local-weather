@@ -143,7 +143,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
             getApplication().unregisterReceiver(screenOnReceiver);
             getApplication().unregisterReceiver(screenOffReceiver);
         } catch (Exception e) {
-            appendLog(getBaseContext(), TAG, "Error unregistering screen receivers - receivers was not registered", e);
+            appendLog(getBaseContext(), TAG, "Error unregistering screen receivers - receivers was not registered");
         }
     }
 

@@ -145,25 +145,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     @Override
     public void onResume() {
         super.onResume();
-        currentLocation = locationsDbHelper.getLocationById(AppPreference.getCurrentLocationId(getApplicationContext()));
-        if (currentLocation == null) {
-            currentLocation = locationsDbHelper.getLocationByOrderId(0);
-        }
-        switchToNextLocationWhenCurrentIsAutoAndIsDisabled();
-        if (mToolbarMenu != null) {
-            if ((currentLocation.getOrderId() == 0) && !currentLocation.isEnabled()) {
-                mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible(false);
-            } else {
-                mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible(true);
-            }
-            Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
-            if (!autoLocation.isEnabled()) {
-                mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(false);
-            } else {
-                mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(true);
-            }
-        }
-        AppPreference.setCurrentLocationId(this, currentLocation.getId());
+        updateCurrentLocationAndButtonVisibility();
         checkSettingsAndPermisions();
         preLoadWeather();
         mAppBarLayout.addOnOffsetChangedListener(this);
@@ -809,6 +791,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                             initialGuideCompleted = true;
                             permissionsAndSettingsRequested = false;
                             saveInitialPreferences();
+                            updateCurrentLocationAndButtonVisibility();
                             checkPermissionsSettingsAndShowAlert();
                         } else {
                             showInitialGuidePage(initialGuidePage);
@@ -840,6 +823,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         preferences.apply();
         initialGuideCompleted = true;
         checkPermissionsSettingsAndShowAlert();
+        updateCurrentLocationAndButtonVisibility();
     }
 
     private void saveInitialPreferences() {
@@ -911,5 +895,27 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
                 break;
         }
+    }
+
+    private void updateCurrentLocationAndButtonVisibility() {
+        currentLocation = locationsDbHelper.getLocationById(AppPreference.getCurrentLocationId(getApplicationContext()));
+        if (currentLocation == null) {
+            currentLocation = locationsDbHelper.getLocationByOrderId(0);
+        }
+        switchToNextLocationWhenCurrentIsAutoAndIsDisabled();
+        if (mToolbarMenu != null) {
+            if ((currentLocation.getOrderId() == 0) && !currentLocation.isEnabled()) {
+                mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible(false);
+            } else {
+                mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible(true);
+            }
+            Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
+            if (!autoLocation.isEnabled()) {
+                mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(false);
+            } else {
+                mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(true);
+            }
+        }
+        AppPreference.setCurrentLocationId(this, currentLocation.getId());
     }
 }

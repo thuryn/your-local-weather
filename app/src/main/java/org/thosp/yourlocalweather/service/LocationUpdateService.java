@@ -111,6 +111,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
 
         org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
 
+        String currentLocationSource = currentLocation.getLocationSource();
         if ("gps".equals(location.getProvider())) {
             locationsDbHelper.updateLocationSource(currentLocation.getId(), "G");
         } else if (updateDetailLevel.equals("preference_display_update_location_source")) {
@@ -134,13 +135,13 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             if (!additionalSourceSetted) {
                 networkSourceBuilder.append(location.getProvider().substring(0, 1));
             }
-            updateSource = networkSourceBuilder.toString();
-            appendLog(getBaseContext(), TAG, "send update source to " + updateSource);
-        } else if ("-".equals(currentLocation.getLocationSource())) {
-            updateSource = "N";
+            currentLocationSource = networkSourceBuilder.toString();
+            appendLog(getBaseContext(), TAG, "send update source to " + currentLocationSource);
+        } else if ("-".equals(currentLocationSource)) {
+            currentLocationSource = "N";
         }
         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
-        locationsDbHelper.updateAutoLocationGeoLocation(location.getLatitude(), location.getLongitude(), updateSource, location.getAccuracy(), getLocationTimeInMilis(location));
+        locationsDbHelper.updateAutoLocationGeoLocation(location.getLatitude(), location.getLongitude(), currentLocationSource, location.getAccuracy(), getLocationTimeInMilis(location));
         appendLog(getBaseContext(), TAG, "put new location from location update service, latitude=" + location.getLatitude() + ", longitude=" + location.getLongitude());
         if (address != null) {
             locationsDbHelper.updateAutoLocationAddress(getBaseContext(), PreferenceUtil.getLanguage(getBaseContext()), address);
@@ -429,7 +430,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
 
         sendIntent.putExtra("resolveAddress", true);
         WidgetUtils.startBackgroundService(getBaseContext(), sendIntent);
-        appendLog(getBaseContext(), TAG, "send intent START_LOCATION_UPDATE:updatesource is N or G:" + sendIntent);
+        appendLog(getBaseContext(), TAG, "send intent START_LOCATION_UPDATE:locationsource is N or G:" + sendIntent);
         timerHandler.postDelayed(timerRunnable, LOCATION_TIMEOUT_IN_MS);
     }
 

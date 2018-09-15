@@ -524,13 +524,13 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                         SensorLocationUpdateService.autolocationForSensorEventAddressFound);
     }
 
-    public void updateLocationSource(final long locationId, final String updateSource) {
-        appendLog(context, TAG, "updateLocationSource:entered:" + locationId + ":" + updateSource);
+    public void updateLocationSource(final long locationId, final String locationSource) {
+        appendLog(context, TAG, "updateLocationSource:entered:" + locationId + ":" + locationSource);
         appendLog(context, TAG, "updateLocationSource:run");
         SQLiteDatabase db = getWritableDatabase();
         appendLog(context, TAG, "updateLocationSource:writableDB");
         ContentValues values = new ContentValues();
-        values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, updateSource);
+        values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, locationSource);
 
         db.updateWithOnConflict(
                 LocationsContract.Locations.TABLE_NAME,

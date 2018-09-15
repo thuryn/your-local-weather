@@ -106,8 +106,12 @@ public class AppAlarmService extends Service {
         String updatePeriodStr = AppPreference.getLocationUpdatePeriod(getBaseContext());
         String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
         long updatePeriodMills = Utils.intervalMillisForAlarm(updatePeriodStr);
-        appendLog(getBaseContext(), TAG, "setAlarm:" + updatePeriodStr);
+        appendLog(getBaseContext(), TAG, "setAlarm:" + updatePeriodStr + ":" + updateAutoPeriodStr);
         AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+        appendLog(getBaseContext(), TAG, "locationsDbHelper.getLocationByOrderId(0):"
+                + locationsDbHelper.getLocationByOrderId(0));
+        appendLog(getBaseContext(), TAG, "locationsDbHelper.getLocationByOrderId(0).isEnabled()"
+                + locationsDbHelper.getLocationByOrderId(0).isEnabled());
         if (locationsDbHelper.getLocationByOrderId(0).isEnabled()) {
             if ("0".equals(updateAutoPeriodStr)) {
                 sendSensorStartIntent();
@@ -123,6 +127,7 @@ public class AppAlarmService extends Service {
             } else if (!"OFF".equals(updateAutoPeriodStr)) {
                 sendSensorAndScreenStopIntent();
                 long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
+                appendLog(getBaseContext(), TAG, "next alarm:" + updateAutoPeriodMills);
                 scheduleNextRegularAlarm(getBaseContext(), true, updateAutoPeriodMills);
             } else {
                 sendSensorAndScreenStopIntent();
@@ -142,6 +147,7 @@ public class AppAlarmService extends Service {
 
     private static void scheduleNextRegularAlarm(Context context, boolean autoLocation, long updatePeriodMilis) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        appendLog(context, TAG, "Build.VERSION.SDK_INT:" + Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + updatePeriodMilis,
