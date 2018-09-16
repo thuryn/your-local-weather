@@ -1,2 +1,158 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="enter_city_hint">Indtast et bynavn</string>
+    <string name="label_current_city">Nuværende by</string>
+    <string name="label_choose_city">Vælg by</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Anmode om tilladelse</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Annuller</string>
+    <string name="progressDialog_gps_locate">Find aktuelle placering</string>
+    <string name="load_progress">Indlæser…</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Luk</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Næste</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Forrige</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Afslut</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Generelt</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Generelle indstillinger</string>
+    <string name="title_activity_search" tools:ignore="MissingTranslation">Søg efter placering</string>
+    <string name="label_activity_main" tools:ignore="MissingTranslation">Aktuelle Vejr</string>
+    <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Daglig vejrudsigt</string>
+    <string name="label_activity_graphs" tools:ignore="MissingTranslation">Vejrgrafer</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Hjælp</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Placeringer</string>
+
+    <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Opdater</string>
+    <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Søg efter by</string>
+    <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Skift værdier</string>
+    <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Skift Y-aksen</string>
+
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikon</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Beskrivelse</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperatur</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Vind</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Regn/sne</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Luftfugtighed</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Tryk</string>
+    <string name="ok" tools:ignore="MissingTranslation">OK</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Annuller</string>
+
+    <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">Aktuelle vejr</string>
+    <string name="nav_menu_daily_forecast" tools:ignore="MissingTranslation">Daglig vejrudsigt</string>
+    <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Grafer</string>
+    <string name="nav_menu_settings" tools:ignore="MissingTranslation">Indstillinger</string>
+    <string name="nav_feedback" tools:ignore="MissingTranslation">Tilbagemelding</string>
+    <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">Doner Bitcoin</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Hjælp</string>
+
+    <string name="toast_parse_error" tools:ignore="MissingTranslation">Der opstod en fejl. Prøv senere.</string>
+
+    <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
+    <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
+    <string name="wind_speed_miles" tools:ignore="MissingTranslation">mph</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">knob</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/t</string>
+    <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
+
+    <string name="hint_activity_search" tools:ignore="MissingTranslation">Søg efter placering</string>
+
+    <string name="title_activity_settings" tools:ignore="MissingTranslation">Indstillinger</string>
+    <string name="pref_title_temperature" tools:ignore="MissingTranslation">Temperatur</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">Vind</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Lufttryk</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Meddelelser</string>
+    <string name="pref_title_notification" tools:ignore="MissingTranslation">Aktiver meddelelser</string>
+    <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">Opdateringsinterval</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">Opdater placering (anbefales)</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">Opdater placering uden GPS</string>
+    <string name="update_period_15min" tools:ignore="MissingTranslation">15 minutter</string>
+    <string name="update_period_30min" tools:ignore="MissingTranslation">30 minutter</string>
+    <string name="update_period_1hour" tools:ignore="MissingTranslation">Hver time</string>
+    <string name="update_period_3hours" tools:ignore="MissingTranslation">3 timer</string>
+    <string name="update_period_6hours" tools:ignore="MissingTranslation">6 timer</string>
+    <string name="update_period_12hours" tools:ignore="MissingTranslation">12 timer</string>
+    <string name="update_period_24hours" tools:ignore="MissingTranslation">24 timer</string>
+    <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Vibrer</string>
+    <string name="preference_title_activity_general" tools:ignore="MissingTranslation">Generelle indstillinger</string>
+    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Opdater Placering</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">Mørk</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">Lys</string>
+    <string name="theme_transparent" tools:ignore="MissingTranslation">Gennemsigtig</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Opdater placering og vejr</string>
+    <string name="pref_title_language" tools:ignore="MissingTranslation">Sprog</string>
+    <string name="pref_language_default" tools:ignore="MissingTranslation">Systemstandard</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Kinesisk (kinesisk)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Swahili (Swahili)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk Bokmål (Norsk Bokmål)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Hollandsk (nederlandsk)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Ungarsk (Ungarsk)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Spanish (Spansk)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Græsk (Græsk)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabisk (Arabisk)</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Ukrainsk</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Rumænsk</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portugisisk (Portugal)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portugisisk (Brasilien)</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">System</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">Tema</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Ingenting</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Ryd cache</string>
+    <string name="db_info" tools:ignore="MissingTranslation">Oplysninger om cache</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 timer</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">en dag</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">en uge</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">en måned</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">tre måneder</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">seks måneder</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">et år</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">aldrig</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Slet</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Slå fra</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Aktiver</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">Automatisk opdaget</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Deaktiveret</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Tilføj</string>
+    <string name="preference_title_activity_about" tools:ignore="MissingTranslation">Om</string>
+    <string name="about_version_pref_title" tools:ignore="MissingTranslation">Version</string>
+    <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Kildekoden</string>
+    <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Licens</string>
+    <string name="wind_label" tools:ignore="MissingTranslation">Vind: %1$s %2$s</string>
+    <string name="rain_label" tools:ignore="MissingTranslation">Regn: %1$s %2$s</string>
+    <string name="snow_label" tools:ignore="MissingTranslation">Sne: %1$s %2$s</string>
+    <string name="humidity_label" tools:ignore="MissingTranslation">Luftfugtighed: %1$s%2$s</string>
+    <string name="pressure_label" tools:ignore="MissingTranslation">Lufttryk: %1$s %2%s</string>
+    <string name="cloudiness_label" tools:ignore="MissingTranslation">Skydække: %1$s%2$s</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">Sidst opdateret: %s</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">Solopgang: %s</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">Solnedgang: %s</string>
+    <string name="temperature_morning_title" tools:ignore="MissingTranslation">Morgen</string>
+    <string name="temperature_day_title" tools:ignore="MissingTranslation">Dag</string>
+    <string name="temperature_evening_title" tools:ignore="MissingTranslation">Aften</string>
+    <string name="temperature_night_title" tools:ignore="MissingTranslation">Nat</string>
+    <string name="label_temperature" tools:ignore="MissingTranslation">Temperatur</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Målt temperatur: %s</string>
+    <string name="label_wind" tools:ignore="MissingTranslation">Vind</string>
+    <string name="label_rain" tools:ignore="MissingTranslation">Regn</string>
+    <string name="label_snow" tools:ignore="MissingTranslation">Sne</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Lufttryk</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">Kun målt værdi</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Begge, målt primær</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Vis temperatur som</string>
+
+    <string name="wind_direction_north" tools:ignore="MissingTranslation">N↓</string>
+    <string name="wind_direction_north_east" tools:ignore="MissingTranslation">NØ↙</string>
+    <string name="wind_direction_east" tools:ignore="MissingTranslation">Ø←</string>
+    <string name="wind_direction_south_east" tools:ignore="MissingTranslation">SØ↖</string>
+    <string name="wind_direction_south" tools:ignore="MissingTranslation">S↑</string>
+    <string name="wind_direction_south_west" tools:ignore="MissingTranslation">SV↗</string>
+    <string name="wind_direction_west" tools:ignore="MissingTranslation">V→</string>
+    <string name="wind_direction_north_west" tools:ignore="MissingTranslation">NV↘</string>
+
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 timer</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">en dag</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">to dage</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">tre dage</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">en uge</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">en måned</string>
+
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Ikonsæt</string>
+    </resources>
