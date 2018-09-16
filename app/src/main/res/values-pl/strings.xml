@@ -217,15 +217,19 @@
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Nic nie ma</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Zaktualizowano wartość</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Zaktualizowano wartość ze źródłem lokalizacji</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - pogoda została zaktualizowana
-\nL - aktualizacja tylko lokalizacji
-\nG - lokalizacja z GPS i aktualna pogoda
-\nN - lokalizacja z sieci i prognoza pogody</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - pogoda została zaktualizowana 
+\nL - aktualizacja tylko lokalizacji 
+\nG - lokalizacja z GPS i aktualna pogoda 
+\nN - lokalizacja z sieci i prognoza pogody
+\nB - dostęp do serwisu Openweathermap.org został zbanowany, spróbuj zaktualizować pogodę później
+\nE - token dostępu dla serwisu Openweathermap.org wygasł. Musisz uaktualnić aplikację, aby uzyskać dostęp ponownie</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - zaktualizowana tylko pogoda 
 \nL - aktualizacja tylko lokalizacji 
 \nG - lokalizacja z GPS i aktualna pogoda 
 \nN - lokalizacja z sieci i prognoza pogody 
-\nNi - lokalizacja z sieci komórkowej i aktualna pogoda, lokalizacja odkryta przez usługę lokalizacyjną Mozilla</string>
+\nNi - lokalizacja z sieci komórkowej i aktualna pogoda, lokalizacja odkryta przez usługę lokalizacyjną Mozilla
+\nB - dostęp do serwisu Openweathermap.org został zbanowany, spróbuj zaktualizować pogodę później
+\nE - token dostępu dla serwisu Openweathermap.org wygasł. Musisz uaktualnić aplikację, aby uzyskać dostęp ponownie</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Gdy lokalizacja zawiesza się podczas uśpienia urządzenia, możesz spróbować obudzić go, gdy szuka sieci komórkowej</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Strategia obudź się</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">Bez przebudzenia</string>
@@ -284,4 +288,10 @@
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Ikony oparte na czcionkach</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin czerwone ikony</string>
 <string name="location_not_initialized" tools:ignore="MissingTranslation">Lokalizacja nie jest zainicjalizowana. Kliknij najpierw koło lokalizacji.</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Dostęp wygasł. Uaktualnij aplikację, proszę.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Twój OpenweathermapApiKey nie jest zarejestrowany.</string>
+
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Ustawienia systemu</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Klucz API Openweathermap.org</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Wbudowany</string>
     </resources>
