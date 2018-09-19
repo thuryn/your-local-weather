@@ -23,7 +23,6 @@ import android.support.v4.content.ContextCompat;
 import org.thosp.yourlocalweather.ConnectionDetector;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.AppWakeUpManager;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
@@ -45,6 +44,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
 
     private LocationManager locationManager;
 
+    private String updateSource;
     private volatile long lastLocationUpdateTime;
     public static volatile boolean updateLocationInProcess;
 
@@ -78,7 +78,10 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
     }
     
     public void onLocationChanged(Location location, Address address) {
-        AppWakeUpManager.getInstance(getBaseContext()).wakeDown();
+        sendMessageToWakeUpService(
+                AppWakeUpManager.FALL_DOWN,
+                AppWakeUpManager.SOURCE_LOCATION_UPDATE
+        );
         lastLocationUpdateTime = System.currentTimeMillis();
         timerHandler.removeCallbacksAndMessages(null);
         removeUpdates(this);
@@ -159,7 +162,8 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         appendLog(getBaseContext(), TAG, "send intent to get weather, updateSource " + updateSource);
         updateLocationInProcess = false;
         stopRefreshRotation("onLocationChanged",3);
-        sendIntentToGetWeather(currentLocation, false);
+        sendMessageToCurrentWeatherService(currentLocation, updateSource, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+        sendMessageToWeatherForecastService(currentLocation.getId(), updateSource);
     }
 
     Handler lastKnownLocationTimerHandler = new Handler();
@@ -178,7 +182,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         @Override
         public void run() {
             appendLog(getBaseContext(), TAG, "timerRunnable:requestWeatherCheck");
-            requestWeatherCheck("-", false);
+            requestWeatherCheck("-", false, updateSource, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
         }
     };
 
@@ -268,7 +272,10 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
         locationsDbHelper.updateLocationSource(currentLocation.getId(), "-");
-        AppWakeUpManager.getInstance(getBaseContext()).wakeUp();
+        sendMessageToWakeUpService(
+                AppWakeUpManager.WAKE_UP,
+                AppWakeUpManager.SOURCE_LOCATION_UPDATE
+        );
 
         boolean isUpdateOfLocationEnabled = AppPreference.isUpdateLocationEnabled(this, currentLocation);
         appendLog(this, TAG, "START_LOCATION_AND_WEATHER_UPDATE, isUpdateOfLocationEnabled=" +
@@ -287,7 +294,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             }
         } else {
             appendLog(getBaseContext(), TAG, "startLocationAndWeatherUpdate:requestWeatherCheck");
-            requestWeatherCheck("-", isInteractive);
+            requestWeatherCheck("-", isInteractive, updateSource, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
         }
     }
 
@@ -314,7 +321,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         }
         locationDbHelper.setNoLocationFound();
         stopRefreshRotation("setNoLocationFound", 3);
-        updateWidgets();
+        updateWidgets(updateSource);
     }
 
     private void updateNetworkLocation(Intent intent) {
@@ -354,7 +361,10 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             gpsRequestLocation();
             return;
         }
-        AppWakeUpManager.getInstance(getBaseContext()).wakeUp();
+        sendMessageToWakeUpService(
+                AppWakeUpManager.WAKE_UP,
+                AppWakeUpManager.SOURCE_LOCATION_UPDATE
+        );
         appendLog(getBaseContext(), TAG, "updateNetworkLocation:wakeup and start rotation");
         try {
 
@@ -442,7 +452,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
 
     private void detectLocation(final boolean isInteractive) {
         if (!PermissionUtil.checkPermissionsAndSettings(this)) {
-            updateWidgets();
+            updateWidgets(updateSource);
             stopSelf();
             return;
         }
@@ -492,7 +502,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                         }
                     }
                     appendLog(getBaseContext(), TAG, "detectLocation:requestWeatherCheck");
-                    requestWeatherCheck(null, isInteractive);
+                    requestWeatherCheck(null, isInteractive, updateSource, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
                 }
             }, LOCATION_TIMEOUT_IN_MS);
         }

@@ -226,8 +226,7 @@ public class WidgetRefreshIconService extends Service {
         }
     }
 
-
-private class RefreshIconMessageHandler extends Handler {
+    private class RefreshIconMessageHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             appendLog(getBaseContext(), TAG, "handleMessage:" + msg.what);

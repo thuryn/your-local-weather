@@ -94,10 +94,7 @@ public abstract class ForecastingActivity extends BaseActivity {
         boolean isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
         if (isNetworkAvailable) {
             setVisibleUpdating(true);
-            Intent intent = new Intent(context, ForecastWeatherService.class);
-            intent.putExtra("updateSource", updateSource);
-            intent.putExtra("locationId", location.getId());
-            startService(intent);
+            sendMessageToWeatherForecastService(location.getId(), updateSource);
         } else {
             Toast.makeText(this,
                     R.string.connection_not_found,

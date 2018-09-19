@@ -1,10 +1,17 @@
 package org.thosp.yourlocalweather;
 
 import android.app.ProgressDialog;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -24,17 +31,29 @@ import android.widget.Toast;
 import org.thosp.yourlocalweather.help.HelpActivity;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
+import org.thosp.yourlocalweather.service.ForecastWeatherService;
+import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
+import org.thosp.yourlocalweather.utils.ForecastUtil;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class BaseActivity extends AppCompatActivity {
 
     private final String TAG = "BaseActivity";
-    static final int PICK_CITY = 1;
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private Toolbar mToolbar;
     private TextView mHeaderCity;
     protected LocationsDbHelper locationsDbHelper;
+    private Messenger weatherForecastService;
+    private Lock weatherForecastServiceLock = new ReentrantLock();
+    private Queue<Message> weatherForecastUnsentMessages = new LinkedList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -191,20 +210,77 @@ public class BaseActivity extends AppCompatActivity {
         return dialog;
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case PICK_CITY:
-                ConnectionDetector connectionDetector = new ConnectionDetector(this);
-                if (resultCode == RESULT_OK) {
-                    //mHeaderCity.setText(Utils.getCityAndCountry(this));
+    protected void sendMessageToWeatherForecastService(Long locationId) {
+        sendMessageToWeatherForecastService(locationId, null);
+    }
 
-                    if (connectionDetector.isNetworkAvailableAndConnected()) {
-                        startService(new Intent(this, CurrentWeatherService.class));
-                    }
-                }
-                break;
+    protected void sendMessageToWeatherForecastService(Long locationId, String updateSource) {
+        if (!ForecastUtil.shouldUpdateForecast(this, locationId)) {
+            return;
+        }
+        weatherForecastServiceLock.lock();
+        try {
+            Message msg = Message.obtain(
+                    null,
+                    ForecastWeatherService.START_WEATHER_FORECAST_UPDATE,
+                    new WeatherRequestDataHolder(locationId, updateSource)
+            );
+            if (checkIfWeatherForecastServiceIsNotBound()) {
+                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
+                weatherForecastUnsentMessages.add(msg);
+                return;
+            }
+            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
+            weatherForecastService.send(msg);
+        } catch (RemoteException e) {
+            appendLog(getBaseContext(), TAG, e.getMessage(), e);
+        } finally {
+            weatherForecastServiceLock.unlock();
         }
     }
+
+    private boolean checkIfWeatherForecastServiceIsNotBound() {
+        if (weatherForecastService != null) {
+            return false;
+        }
+        try {
+            bindWeatherForecastService();
+        } catch (Exception ie) {
+            appendLog(getBaseContext(), TAG, "weatherForecastServiceIsNotBound interrupted:", ie);
+        }
+        return (weatherForecastService == null);
+    }
+
+    private void bindWeatherForecastService() {
+        bindService(
+                new Intent(this, ForecastWeatherService.class),
+                weatherForecastServiceConnection,
+                Context.BIND_AUTO_CREATE);
+    }
+
+    private void unbindWeatherForecastService() {
+        if (weatherForecastService == null) {
+            return;
+        }
+        unbindService(weatherForecastServiceConnection);
+    }
+
+    private ServiceConnection weatherForecastServiceConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className, IBinder binderService) {
+            weatherForecastService = new Messenger(binderService);
+            weatherForecastServiceLock.lock();
+            try {
+                while (!weatherForecastUnsentMessages.isEmpty()) {
+                    weatherForecastService.send(weatherForecastUnsentMessages.poll());
+                }
+            } catch (RemoteException e) {
+                appendLog(getBaseContext(), TAG, e.getMessage(), e);
+            } finally {
+                weatherForecastServiceLock.unlock();
+            }
+        }
+        public void onServiceDisconnected(ComponentName className) {
+            weatherForecastService = null;
+        }
+    };
 }

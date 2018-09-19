@@ -54,6 +54,7 @@ import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.service.NotificationService;
 import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.utils.ApiKeys;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.LogToFile;
@@ -195,6 +196,19 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 updateListPref.setValueIndex(accIndex);
             }
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getActivity());
+            List<Location> availableLocations = locationsDbHelper.getAllRows();
+            boolean oneNoautoLocationAvailable = false;
+            for (Location location: availableLocations) {
+                if (location.getOrderId() != 0) {
+                    oneNoautoLocationAvailable = true;
+                    break;
+                }
+            }
+            if (!oneNoautoLocationAvailable) {
+                ListPreference locationPreference = (ListPreference) findPreference("location_update_period_pref_key");
+                locationPreference.setEnabled(false);
+            }
+
             ListPreference locationAutoPreference = (ListPreference) findPreference("location_auto_update_period_pref_key");
             locationAutoPreference.setEnabled(locationsDbHelper.getLocationByOrderId(0).isEnabled());
 
@@ -223,8 +237,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     @Override
                     public boolean onPreferenceChange(Preference preference, Object o) {
                         boolean isEnabled = (boolean) o;
-                        NotificationService.setNotificationServiceAlarm(getActivity(),
-                                                                        isEnabled);
+                        AppPreference.setNotificationEnabled(getActivity(), isEnabled);
+                        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_NOTIFICATION_ALARM_SERVICE");
+                        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+                        getActivity().startService(intentToStartUpdate);
                         return true;
                     }
                 };
@@ -253,13 +269,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         getActivity().sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
                     }
                     break;
-                case Constants.KEY_PREF_INTERVAL_NOTIFICATION:
-                    entrySummary(key);
-                    if (changing) {
-                        Preference pref = findPreference(key);
-                        NotificationService.setNotificationServiceAlarm(getActivity(), pref.isEnabled());
-                    }
-                    break;
                 case Constants.PREF_LANGUAGE:
                     entrySummary(key);
                     if (changing) {
@@ -281,6 +290,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     break;
                 case Constants.KEY_PREF_WEATHER_ICON_SET:
                     entrySummary(key);
+                case Constants.KEY_PREF_INTERVAL_NOTIFICATION:
                 case Constants.KEY_PREF_LOCATION_UPDATE_PERIOD:
                 case Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD:
                     entrySummary(key);

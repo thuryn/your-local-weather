@@ -5,17 +5,23 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Looper;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -41,6 +47,7 @@ import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
+import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
@@ -50,7 +57,11 @@ import org.thosp.yourlocalweather.utils.WindWithUnit;
 import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -85,6 +96,9 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private SwipeRefreshLayout mSwipeRefresh;
     private Menu mToolbarMenu;
     private BroadcastReceiver mWeatherUpdateReceiver;
+    private Messenger currentWeatherService;
+    private Lock currentWeatherServiceLock = new ReentrantLock();
+    private Queue<Message> currentWeatherUnsentMessages = new LinkedList<>();
 
     private WindWithUnit windWithUnit;
     private String iconSecondTemperature;
@@ -201,10 +215,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                         return true;
                     }
                     currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
-                    Intent intent = new Intent(this, CurrentWeatherService.class);
-                    intent.putExtra("updateSource", "MAIN");
-                    intent.putExtra("locationId", currentLocation.getId());
-                    startService(intent);
+                    sendMessageToCurrentWeatherService(currentLocation, "MAIN");
                     setUpdateButtonState(true);
                 } else {
                     Toast.makeText(MainActivity.this,
@@ -254,10 +265,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                                 System.currentTimeMillis(),
                                 "-");
                         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
-                        Intent intent = new Intent(MainActivity.this, CurrentWeatherService.class);
-                        intent.putExtra("updateSource", "MAIN");
-                        intent.putExtra("locationId", currentLocation.getId());
-                        startService(intent);
+                        sendMessageToCurrentWeatherService(currentLocation, "MAIN");
                     } else {
                         Toast.makeText(MainActivity.this,
                                 R.string.connection_not_found,
@@ -918,4 +926,72 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         }
         AppPreference.setCurrentLocationId(this, currentLocation.getId());
     }
+
+    protected void sendMessageToCurrentWeatherService(Location location, String updateSource) {
+        currentWeatherServiceLock.lock();
+        try {
+            Message msg = Message.obtain(
+                    null,
+                    CurrentWeatherService.START_CURRENT_WEATHER_UPDATE,
+                    new WeatherRequestDataHolder(location.getId(), updateSource)
+            );
+            if (checkIfCurrentWeatherServiceIsNotBound()) {
+                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
+                currentWeatherUnsentMessages.add(msg);
+                return;
+            }
+            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
+            currentWeatherService.send(msg);
+        } catch (RemoteException e) {
+            appendLog(getBaseContext(), TAG, e.getMessage(), e);
+        } finally {
+            currentWeatherServiceLock.unlock();
+        }
+        sendMessageToWeatherForecastService(location.getId());
+    }
+
+    private boolean checkIfCurrentWeatherServiceIsNotBound() {
+        if (currentWeatherService != null) {
+            return false;
+        }
+        try {
+            bindCurrentWeatherService();
+        } catch (Exception ie) {
+            appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
+        }
+        return (currentWeatherService == null);
+    }
+
+    private void bindCurrentWeatherService() {
+        bindService(
+                new Intent(this, CurrentWeatherService.class),
+                currentWeatherServiceConnection,
+                Context.BIND_AUTO_CREATE);
+    }
+
+    private void unbindCurrentWeatherService() {
+        if (currentWeatherService == null) {
+            return;
+        }
+        unbindService(currentWeatherServiceConnection);
+    }
+
+    private ServiceConnection currentWeatherServiceConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className, IBinder binderService) {
+            currentWeatherService = new Messenger(binderService);
+            currentWeatherServiceLock.lock();
+            try {
+                while (!currentWeatherUnsentMessages.isEmpty()) {
+                    currentWeatherService.send(currentWeatherUnsentMessages.poll());
+                }
+            } catch (RemoteException e) {
+                appendLog(getBaseContext(), TAG, e.getMessage(), e);
+            } finally {
+                currentWeatherServiceLock.unlock();
+            }
+        }
+        public void onServiceDisconnected(ComponentName className) {
+            currentWeatherService = null;
+        }
+    };
 }

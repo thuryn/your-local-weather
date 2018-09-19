@@ -13,6 +13,7 @@ import android.os.SystemClock;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.AppAlarmService;
+import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.service.NotificationService;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
@@ -29,8 +30,6 @@ public class StartupReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         appendLog(context, TAG, "onReceive start");
         removeOldPreferences(context);
-        boolean isNotificationEnabled = AppPreference.isNotificationEnabled(context);
-        NotificationService.setNotificationServiceAlarm(context, isNotificationEnabled);
         appendLog(context, TAG, "scheduleStart start");
         scheduleStart(context);
         appendLog(context, TAG, "scheduleStart end");
@@ -69,6 +68,35 @@ public class StartupReceiver extends BroadcastReceiver {
         if (!"0".equals(updatePeriodStr) && (locationsDbHelper.getAllRows().size() > 1)) {
             scheduleNextRegularAlarm(context, false, updatePeriodMills);
         }
+        scheduleNextNotificationAlarm(context);
+    }
+
+    private void scheduleNextNotificationAlarm(Context context) {
+        boolean isNotificationEnabled = AppPreference.isNotificationEnabled(context);
+        if (!isNotificationEnabled) {
+            return;
+        }
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+        String intervalPref = AppPreference.getInterval(context);
+        long intervalMillis = Utils.intervalMillisForAlarm(intervalPref);
+        appendLog(context, TAG, "Build.VERSION.SDK_INT:" + Build.VERSION.SDK_INT);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + intervalMillis,
+                    getPendingIntentForNotifiation(context));
+        } else {
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + intervalMillis,
+                    getPendingIntentForNotifiation(context));
+        }
+    }
+
+    private PendingIntent getPendingIntentForNotifiation(Context context) {
+        Intent sendIntent = new Intent("android.intent.action.START_WEATHER_NOTIFICATION_UPDATE");
+        sendIntent.setPackage("org.thosp.yourlocalweather");
+        PendingIntent pendingIntent = PendingIntent.getService(context, 0, sendIntent,
+                PendingIntent.FLAG_CANCEL_CURRENT);
+        return pendingIntent;
     }
 
     private static void scheduleNextRegularAlarm(Context context, boolean autoLocation, long updatePeriodMilis) {

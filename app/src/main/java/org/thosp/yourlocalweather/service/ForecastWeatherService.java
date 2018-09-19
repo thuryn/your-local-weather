@@ -2,13 +2,13 @@ package org.thosp.yourlocalweather.service;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
+import android.os.Message;
+import android.os.Messenger;
 import android.os.SystemClock;
 import android.text.TextUtils;
 
@@ -22,18 +22,14 @@ import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
-import org.thosp.yourlocalweather.utils.AppWakeUpManager;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
-import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
-import org.thosp.yourlocalweather.widget.ExtLocationWidgetWithForecastService;
-import org.thosp.yourlocalweather.widget.LessWidgetService;
-import org.thosp.yourlocalweather.widget.MoreWidgetService;
-import org.thosp.yourlocalweather.widget.WeatherForecastWidgetService;
 import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.net.MalformedURLException;
+import java.util.LinkedList;
+import java.util.Queue;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -43,6 +39,8 @@ public class ForecastWeatherService  extends AbstractCommonService {
 
     private static final String TAG = "ForecastWeatherService";
 
+    public static final int START_WEATHER_FORECAST_UPDATE = 1;
+
     public static final String ACTION_WEATHER_UPDATE_OK = "org.thosp.yourlocalweather.action.WEATHER_UPDATE_OK";
     public static final String ACTION_WEATHER_UPDATE_FAIL = "org.thosp.yourlocalweather.action.WEATHER_UPDATE_FAIL";
     public static final String ACTION_FORECAST_UPDATE_RESULT = "org.thosp.yourlocalweather.action.FORECAST_UPDATE_RESULT";
@@ -50,13 +48,13 @@ public class ForecastWeatherService  extends AbstractCommonService {
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
-    private String updateSource;
     private volatile boolean gettingWeatherStarted;
-    private Location currentLocation;
+    private static Queue<WeatherRequestDataHolder> weatherForecastUpdateMessages = new LinkedList<>();
+    final Messenger messenger = new Messenger(new WeatherForecastMessageHandler());
 
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return messenger.getBinder();
     }
 
     Handler timerHandler = new Handler();
@@ -80,38 +78,49 @@ public class ForecastWeatherService  extends AbstractCommonService {
         if (intent == null) {
             return ret;
         }
+        startWeatherForecastUpdate(0);
+        return ret;
+    }
 
+    public void startWeatherForecastUpdate(long incommingMessageTimestamp) {
         final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+        WeatherRequestDataHolder updateRequest = weatherForecastUpdateMessages.peek();
 
-        if (intent.getExtras() != null) {
-            String currentUpdateSource = intent.getExtras().getString("updateSource");
-            if (!TextUtils.isEmpty(currentUpdateSource)) {
-                updateSource = currentUpdateSource;
-            }
-            currentLocation = locationsDbHelper.getLocationById(intent.getExtras().getLong("locationId"));
+        if ((updateRequest == null) || (updateRequest.getTimestamp() < incommingMessageTimestamp)) {
+            return;
         }
-        appendLog(getBaseContext(), TAG, "currentLocation=" + currentLocation + ", updateSource=" + updateSource);
+        final Location currentLocation = locationsDbHelper.getLocationById(updateRequest.getLocationId());
+        appendLog(getBaseContext(), TAG, "currentLocation=" + currentLocation + ", updateSource=" + updateRequest.getUpdateSource());
 
         if (currentLocation == null) {
             appendLog(getBaseContext(),
                     TAG,
                     "current location is null");
-            return ret;
+            weatherForecastUpdateMessages.poll();
+            return;
         }
 
         ConnectionDetector connectionDetector = new ConnectionDetector(this);
         boolean networkAvailableAndConnected = connectionDetector.isNetworkAvailableAndConnected();
         appendLog(getBaseContext(), TAG, "networkAvailableAndConnected=" + networkAvailableAndConnected);
         if (!networkAvailableAndConnected) {
-            int numberOfAttempts = intent.getIntExtra("attempts", 0);
+            int numberOfAttempts = updateRequest.getAttempts();
             appendLog(getBaseContext(), TAG, "numberOfAttempts=" + numberOfAttempts);
-            intent.putExtra("attempts", ++numberOfAttempts);
-            resendTheIntentInSeveralSeconds(20, intent);
-            return ret;
+            if (numberOfAttempts > 2) {
+                locationsDbHelper.updateLastUpdatedAndLocationSource(
+                        currentLocation.getId(),
+                        System.currentTimeMillis(),
+                        ".");
+                weatherForecastUpdateMessages.poll();
+                return;
+            }
+            updateRequest.increaseAttempts();
+            resendTheIntentInSeveralSeconds(20);
+            return;
         }
 
         if (gettingWeatherStarted) {
-            resendTheIntentInSeveralSeconds(10, intent);
+            resendTheIntentInSeveralSeconds(10);
         }
 
         gettingWeatherStarted = true;
@@ -137,7 +146,10 @@ public class ForecastWeatherService  extends AbstractCommonService {
                                 ", longitude" +
                                 currentLocation.getLongitude());
                 try {
-                    AppWakeUpManager.getInstance(getBaseContext()).wakeUp();
+                    sendMessageToWakeUpService(
+                            AppWakeUpManager.WAKE_UP,
+                            AppWakeUpManager.SOURCE_WEATHER_FORECAST
+                    );
                     client.get(Utils.getWeatherForecastUrl(
                             context,
                             Constants.WEATHER_FORECAST_ENDPOINT,
@@ -154,7 +166,6 @@ public class ForecastWeatherService  extends AbstractCommonService {
                         @Override
                         public void onSuccess(int statusCode, Header[] headers, byte[] weatherForecastResponse) {
                             try {
-                                AppWakeUpManager.getInstance(getBaseContext()).wakeDown();
                                 String weatherForecastRaw = new String(weatherForecastResponse);
                                 appendLog(context, TAG, "weather got, result:" + weatherForecastRaw);
 
@@ -172,7 +183,6 @@ public class ForecastWeatherService  extends AbstractCommonService {
 
                         @Override
                         public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                            AppWakeUpManager.getInstance(getBaseContext()).wakeDown();
                             appendLog(context, TAG, "onFailure:" + statusCode);
                             timerHandler.removeCallbacksAndMessages(null);
                             if (statusCode == 401) {
@@ -199,13 +209,21 @@ public class ForecastWeatherService  extends AbstractCommonService {
             }
         };
         mainHandler.post(myRunnable);
-        return START_STICKY;
     }
 
     private void sendResult(String result, Context context) {
         stopRefreshRotation("STOP", 1);
+        sendMessageToWakeUpService(
+                AppWakeUpManager.FALL_DOWN,
+                AppWakeUpManager.SOURCE_WEATHER_FORECAST
+        );
         gettingWeatherStarted = false;
+        WeatherRequestDataHolder updateRequest = weatherForecastUpdateMessages.poll();
         try {
+            if (ACTION_WEATHER_UPDATE_OK.equals(result)) {
+                startWeatherForecastUpdate(0);
+            }
+            String updateSource = updateRequest.getUpdateSource();
             if (updateSource != null) {
                 switch (updateSource) {
                     case "FORECAST":
@@ -234,7 +252,8 @@ public class ForecastWeatherService  extends AbstractCommonService {
     private void saveWeatherAndSendResult(Context context, CompleteWeatherForecast completeWeatherForecast) {
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
         long lastUpdate = System.currentTimeMillis();
-        weatherForecastDbHelper.saveWeatherForecast(currentLocation.getId(),
+        WeatherRequestDataHolder updateRequest = weatherForecastUpdateMessages.peek();
+        weatherForecastDbHelper.saveWeatherForecast(updateRequest.getLocationId(),
                 lastUpdate,
                 completeWeatherForecast);
         sendResult(ACTION_WEATHER_UPDATE_OK, context);
@@ -260,13 +279,29 @@ public class ForecastWeatherService  extends AbstractCommonService {
         sendBroadcast(intent);
     }
 
-    private void resendTheIntentInSeveralSeconds(int seconds, Intent intent) {
+    private void resendTheIntentInSeveralSeconds(int seconds) {
         AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
                 0,
-                intent,
+                new Intent(getBaseContext(), ForecastWeatherService.class),
                 PendingIntent.FLAG_CANCEL_CURRENT);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                 SystemClock.elapsedRealtime() + (1000 + seconds), pendingIntent);
+    }
+
+    private class WeatherForecastMessageHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            WeatherRequestDataHolder weatherRequestDataHolder = (WeatherRequestDataHolder) msg.obj;
+            appendLog(getBaseContext(), TAG, "handleMessage:" + msg.what + ":" + weatherRequestDataHolder);
+            switch (msg.what) {
+                case START_WEATHER_FORECAST_UPDATE:
+                    weatherForecastUpdateMessages.add(weatherRequestDataHolder);
+                    startWeatherForecastUpdate(weatherRequestDataHolder.getTimestamp());
+                    break;
+                default:
+                    super.handleMessage(msg);
+            }
+        }
     }
 }

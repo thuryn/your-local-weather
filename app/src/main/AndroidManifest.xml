@@ -183,7 +183,12 @@
         <service
             android:name=".service.ReconciliationDbService" />
         <service
-            android:name=".service.NotificationService" />
+            android:name=".service.NotificationService" >
+            <intent-filter>
+                <action android:name="android.intent.action.START_WEATHER_NOTIFICATION_UPDATE" />
+                <action android:name="android.intent.action.SHOW_WEATHER_NOTIFICATION" />
+            </intent-filter>
+        </service>
         <service
             android:name=".widget.WidgetRefreshIconService" />
         <service
@@ -197,14 +202,18 @@
         <service
             android:name=".widget.WeatherForecastWidgetService" />
         <service
+            android:name=".service.AppWakeUpManager" />
+        <service
             android:name=".service.CurrentWeatherService" />
         <service
             android:name=".service.ForecastWeatherService" />
         <service android:name=".service.AppAlarmService" >
             <intent-filter>
                 <action android:name="org.thosp.yourlocalweather.action.START_ALARM_SERVICE" />
-                <action android:name="org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM" />
+                <action android:name="org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM_AUTO" />
+                <action android:name="org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM_REGULAR" />
                 <action android:name="org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE" />
+                <action android:name="org.thosp.yourlocalweather.action.RESTART_NOTIFICATION_ALARM_SERVICE" />
             </intent-filter>
         </service>
         <service

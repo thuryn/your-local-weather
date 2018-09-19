@@ -49,7 +49,6 @@ public class NetworkLocationProvider extends Service {
             nextScanningAllowedFrom = null;
             scanning = false;
             if (intentToCancel != null) {
-                intentToCancel.cancel();
                 alarmManager.cancel(intentToCancel);
             }
             List<ScanResult> scans = null;

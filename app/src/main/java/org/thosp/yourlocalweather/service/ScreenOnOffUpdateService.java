@@ -77,7 +77,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
             appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:weatherRecord=" + weatherRecord);
             if (weatherRecord == null) {
-                requestWeatherCheck("-", true);
+                requestWeatherCheck("-", true, null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
                 timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
                 return;
             }
@@ -97,7 +97,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
                 return;
             }
             appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:requestWeatherCheck");
-            requestWeatherCheck("-", true);
+            requestWeatherCheck("-", true, null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
             timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
         }
     };
@@ -133,7 +133,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
             timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT - (now - storedWeatherTime));
             return;
         }
-        requestWeatherCheck("-", true);
+        requestWeatherCheck("-", true, null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
         timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
     }
 
