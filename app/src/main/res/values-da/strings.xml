@@ -119,7 +119,7 @@
     <string name="rain_label" tools:ignore="MissingTranslation">Regn: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Sne: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Luftfugtighed: %1$s%2$s</string>
-    <string name="pressure_label" tools:ignore="MissingTranslation">Lufttryk: %1$s %2%s</string>
+    <string name="pressure_label" tools:ignore="MissingTranslation">Lufttryk: %1$s %2$s</string>
     <string name="cloudiness_label" tools:ignore="MissingTranslation">Skydække: %1$s%2$s</string>
     <string name="last_update_label" tools:ignore="MissingTranslation">Sidst opdateret: %s</string>
     <string name="sunrise_label" tools:ignore="MissingTranslation">Solopgang: %s</string>
