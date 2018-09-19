@@ -253,6 +253,9 @@ public class ForecastWeatherService  extends AbstractCommonService {
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
         long lastUpdate = System.currentTimeMillis();
         WeatherRequestDataHolder updateRequest = weatherForecastUpdateMessages.peek();
+        if (updateRequest == null) {
+            return;
+        }
         weatherForecastDbHelper.saveWeatherForecast(updateRequest.getLocationId(),
                 lastUpdate,
                 completeWeatherForecast);
