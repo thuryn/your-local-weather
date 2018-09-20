@@ -30,4 +30,8 @@
 \nA <i>MLS com Nomatim</i> usa os serviços da Mozilla para obter as suas coordenadas e o Nomatim para obter o nome do local.
 \nA segunda opção requere permissão para fazer ligação (para o aplicativo obter informações sobre a rede celular).
 \nA opção mais recomendada já foi selecionada para você.</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Acesso expirado. Atualize o aplicativo, por favor.</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Fonte da localização de endereço</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Parabéns</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Geral</string>
     </resources>
