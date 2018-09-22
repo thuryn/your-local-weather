@@ -1,17 +1,17 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:tools="http://schemas.android.com/tools"><string name="enter_city_hint">Indtast et bynavn</string>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="enter_city_hint">Indtaste by</string>
     <string name="label_current_city">Nuværende by</string>
-    <string name="label_choose_city">Vælg by</string>
-    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Anmode om tilladelse</string>
-    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Annuller</string>
-    <string name="progressDialog_gps_locate">Find aktuelle placering</string>
+    <string name="label_choose_city">Vælge by</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Forespørge tilladelse</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Annullere</string>
+    <string name="progressDialog_gps_locate">Find nuværende placering</string>
     <string name="load_progress">Indlæser…</string>
-    <string name="initial_guide_close" tools:ignore="MissingTranslation">Luk</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Lukke</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Næste</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Forrige</string>
-    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Afslut</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Afslutte</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Generelt</string>
-    <string name="help_page_3_title" tools:ignore="MissingTranslation">Generelle indstillinger</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Generel opsætning</string>
     <string name="title_activity_search" tools:ignore="MissingTranslation">Søg efter placering</string>
     <string name="label_activity_main" tools:ignore="MissingTranslation">Aktuelle Vejr</string>
     <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Daglig vejrudsigt</string>
@@ -155,4 +155,15 @@
     <string name="log_file_720_label" tools:ignore="MissingTranslation">en måned</string>
 
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Ikonsæt</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Lokalt vejr</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Placering og tilladelse opsætning</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Enheds opsætning</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Placering ikke fundet</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Opdatere placering opsætning</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Placering kilde tilvalg</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Placering og adresse kilde</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Mellemlager bestemt adresse</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Tillykke</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Hoved program</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Kontroller</string>
     </resources>
