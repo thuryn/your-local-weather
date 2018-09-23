@@ -201,6 +201,8 @@ public class WidgetUtils {
                     maxWind = weatherForecastForDay.getWindSpeed();
                 }
             }
+            maxTemp = TemperatureUtil.getTemperatureInPreferredUnit(context, maxTemp);
+            minTemp = TemperatureUtil.getTemperatureInPreferredUnit(context, minTemp);
             switch (dayCounter) {
                 case 1:
                     Utils.setForecastIcon(
