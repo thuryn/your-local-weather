@@ -317,4 +317,5 @@
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Thème d\'icônes</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Icônes basés sur une police</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Icônes Merlin le rouge</string>
-</resources>
+<string name="help_page_3_content" tools:ignore="MissingTranslation">Ces options influencent toute l\'application.</string>
+    </resources>
