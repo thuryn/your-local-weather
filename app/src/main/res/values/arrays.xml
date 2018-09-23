@@ -43,12 +43,16 @@
         <item>knots</item>
     </string-array>
     <string-array name="pref_pressure_units_entries" translatable="false">
-        <item>hPa</item>
-        <item>mmHg</item>
+        <item>@string/pressure_measurement</item>
+        <item>@string/pressure_measurement_mmhg</item>
+        <item>@string/pressure_measurement_inhg</item>
+        <item>@string/pressure_measurement_mbar</item>
     </string-array>
     <string-array name="pref_pressure_units_values" translatable="false">
         <item>hpa</item>
         <item>mmhg</item>
+        <item>inhg</item>
+        <item>mbar</item>
     </string-array>
 
     <string-array name="location_update_strategy">

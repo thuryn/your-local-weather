@@ -151,6 +151,8 @@
     <string name="temperature_with_degree" translatable="false">%s</string>
     <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
     <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
     <string name="wind_speed_miles" tools:ignore="MissingTranslation">mph</string>
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">knots</string>

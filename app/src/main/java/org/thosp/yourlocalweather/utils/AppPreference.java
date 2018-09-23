@@ -88,10 +88,11 @@ public class AppPreference {
     public static String getPressureUnit(Context context) {
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_PRESSURE_UNITS, "hpa");
-        if (unitsFromPreferences.contains("mmhg") ) {
-            return context.getString(R.string.pressure_measurement_mmhg);
-        } else {
-            return context.getString(R.string.pressure_measurement);
+        switch (unitsFromPreferences) {
+            case "mmhg": return context.getString(R.string.pressure_measurement_mmhg);
+            case "inhg": return context.getString(R.string.pressure_measurement_inhg);
+            case "mbar": return context.getString(R.string.pressure_measurement_mbar);
+            default: return context.getString(R.string.pressure_measurement);
         }
     }
 
@@ -102,11 +103,14 @@ public class AppPreference {
     public static WindWithUnit getPressureWithUnit(Context context, double value) {
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_PRESSURE_UNITS, "hpa");
-        if (unitsFromPreferences.contains("mmhg") ) {
-            double mmhgValue = value / 1.33322387415f;
-            return new WindWithUnit(mmhgValue, context.getString(R.string.pressure_measurement_mmhg));
-        } else {
-            return new WindWithUnit(value, context.getString(R.string.pressure_measurement));
+        switch (unitsFromPreferences) {
+            case "mmhg": return new WindWithUnit(value * 0.75f,
+                                                 context.getString(R.string.pressure_measurement_mmhg));
+            case "inhg": return new WindWithUnit(value * 0.029529983071445f,
+                                                 context.getString(R.string.pressure_measurement_inhg));
+            case "mbar": return new WindWithUnit(value,
+                                                 context.getString(R.string.pressure_measurement_mbar));
+            default: return new WindWithUnit(value, context.getString(R.string.pressure_measurement));
         }
     }
 

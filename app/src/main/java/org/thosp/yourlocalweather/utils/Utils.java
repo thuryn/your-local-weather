@@ -17,6 +17,7 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.text.format.DateFormat;
 import android.util.Log;
+import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
 
@@ -640,5 +641,9 @@ public class Utils {
             inputLocation.replaceFirst(", ", "\n");
         }
         return inputLocation;
+    }
+
+    public static int spToPx(float sp, Context context) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics());
     }
 }
