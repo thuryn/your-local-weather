@@ -4,7 +4,10 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.thosp.yourlocalweather.R;
@@ -55,7 +58,10 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
         mDescription = (TextView) itemView.findViewById(R.id.forecast_description);
     }
 
-    void bindWeather(double latitude, DetailedWeatherForecast weather, Set<Integer> visibleColumns) {
+    void bindWeather(Context context,
+                     double latitude,
+                     DetailedWeatherForecast weather,
+                     Set<Integer> visibleColumns) {
         mWeatherForecast = weather;
 
         Typeface typeface = Typeface.createFromAsset(mContext.getAssets(),
@@ -64,9 +70,13 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
 
         if (visibleColumns.contains(1)) {
             mTime.setVisibility(View.VISIBLE);
-            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", Locale.getDefault());
             Date date = new Date(weather.getDateTime() * 1000);
-            mTime.setText(timeFormat.format(date));
+            mTime.setText(DateFormat.getTimeFormat(context).format(date));
+            if (!DateFormat.is24HourFormat(context)) {
+                ViewGroup.LayoutParams params=mTime.getLayoutParams();
+                params.width = Utils.spToPx(85, context);
+                mTime.setLayoutParams(params);
+            }
         } else {
             mTime.setVisibility(View.GONE);
         }

@@ -4,12 +4,15 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -79,7 +82,7 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
     }
 
-    void bindWeather(double latitude, List<DetailedWeatherForecast> weather) {
+    void bindWeather(Context context, double latitude, List<DetailedWeatherForecast> weather) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMMM", Locale.getDefault());
         Date date = new Date(weather.get(0).getDateTime() * 1000);
         Calendar currentRowDate = Calendar.getInstance();
@@ -94,6 +97,14 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
             headerTime.setTypeface(typeface);
             headerTime.setText(String.valueOf((char) 0xf08b));
             headerTimeUnit.setVisibility(View.VISIBLE);
+            if (!DateFormat.is24HourFormat(context)) {
+                ViewGroup.LayoutParams params=headerTime.getLayoutParams();
+                params.width= Utils.spToPx(85, context);
+                headerTime.setLayoutParams(params);
+                params=headerTimeUnit.getLayoutParams();
+                params.width= Utils.spToPx(85, context);
+                headerTimeUnit.setLayoutParams(params);
+            }
         } else {
             headerTime.setVisibility(View.GONE);
             headerTimeUnit.setVisibility(View.GONE);

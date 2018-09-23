@@ -40,7 +40,7 @@ public class WeatherForecastItemAdapter extends RecyclerView.Adapter<WeatherFore
     @Override
     public void onBindViewHolder(WeatherForecastItemViewHolder holder, int position) {
         DetailedWeatherForecast weather = mWeatherList.get(position);
-        holder.bindWeather(latitude, weather, visibleColumns);
+        holder.bindWeather(mContext, latitude, weather, visibleColumns);
     }
 
     @Override
