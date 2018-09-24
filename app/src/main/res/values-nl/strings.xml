@@ -304,4 +304,6 @@
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Systeeminstellingen</string>
     <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API-sleutel</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Ingebouwd</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
     </resources>
