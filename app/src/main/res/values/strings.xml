@@ -226,7 +226,12 @@
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Nothing</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Just updated value</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Updated value with location source</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - weather only updated\nL - location only updated\nG - location from GPS and weather updated\nN - location from network and weather updated\nB - access to Openweathermap.org service has been banned, try to update weather later, please\nE - the acceess token for Openweathermap.org serrvice has been expired. You need to upgrade the appliaction to get access again</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - weather only updated
+\nL - location only updated
+\nG - location from GPS and weather updated
+\nN - location from network and weather updated
+\nB - access to Openweathermap.org service has been banned, try to update weather later, please
+\nE - the access token for Openweathermap.org serrvice expired. You need to upgrade the application to get access again</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - only weather updated
 \nL - only location updated
 \nG - location from GPS and weather updated
