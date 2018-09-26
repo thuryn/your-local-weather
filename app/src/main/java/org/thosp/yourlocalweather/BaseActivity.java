@@ -211,13 +211,13 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     protected void sendMessageToWeatherForecastService(Long locationId) {
+        if (!ForecastUtil.shouldUpdateForecast(this, locationId)) {
+            return;
+        }
         sendMessageToWeatherForecastService(locationId, null);
     }
 
     protected void sendMessageToWeatherForecastService(Long locationId, String updateSource) {
-        if (!ForecastUtil.shouldUpdateForecast(this, locationId)) {
-            return;
-        }
         weatherForecastServiceLock.lock();
         try {
             Message msg = Message.obtain(
