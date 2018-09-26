@@ -36,7 +36,9 @@ import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
@@ -454,9 +456,36 @@ public class Utils {
         }
     }
 
-    public static String setLastUpdateTime(Context context, long lastUpdate, String locationSource) {
-        Date lastUpdateTime = new Date(lastUpdate);
-        return DateFormat.getTimeFormat(context).format(lastUpdateTime) + " " + getUpdateSource(context, locationSource);
+    public static String getLastUpdateTime(Context context, Location location) {
+        return getLastUpdateTime(context, null, null, location);
+    }
+
+    public static String getLastUpdateTime(Context context,
+                                           CurrentWeatherDbHelper.WeatherRecord weatherRecord,
+                                           Location location) {
+        return getLastUpdateTime(context, weatherRecord, null, location);
+    }
+
+    public static String getLastUpdateTime(Context context,
+                                           CurrentWeatherDbHelper.WeatherRecord weatherRecord,
+                                           WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord,
+                                           Location location) {
+        Date lastUpdateTime = new Date(getLastUpdateTimeInMilis(weatherRecord, weatherForecastRecord, location));
+        return DateFormat.getTimeFormat(context).format(lastUpdateTime)
+                + " "
+                + getUpdateSource(context, (location != null)?location.getLocationSource():"");
+    }
+
+    public static long getLastUpdateTimeInMilis(
+                                         CurrentWeatherDbHelper.WeatherRecord weatherRecord,
+                                         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord,
+                                         Location location) {
+        List<Long> lastUpdateTimes = new ArrayList<>();
+        lastUpdateTimes.add((weatherForecastRecord != null)?weatherForecastRecord.getLastUpdatedTime():0);
+        lastUpdateTimes.add((weatherRecord != null)?weatherRecord.getLastUpdatedTime():0);
+        lastUpdateTimes.add((location != null)?location.getLastLocationUpdate():0);
+
+        return Collections.max(lastUpdateTimes);
     }
 
     public static long intervalMillisForAlarm(String intervalMinutes) {

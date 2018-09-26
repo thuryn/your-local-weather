@@ -126,8 +126,8 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
             if (noRain && noSnow) {
                 mRainSnow.setText("");
             } else {
-                String rain = String.format(Locale.getDefault(), "%.1f", weather.getRain());
-                String snow = String.format(Locale.getDefault(), "%.1f", weather.getSnow());
+                String rain = AppPreference.getFormatedRainOrSnow(context, weather.getRain());
+                String snow = AppPreference.getFormatedRainOrSnow(context, weather.getSnow());
                 if (!noRain && !noSnow) {
                     mRainSnow.setText(rain + "/" + snow);
                 } else if (noSnow) {
@@ -136,6 +136,9 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
                     mRainSnow.setText(snow);
                 }
             }
+            ViewGroup.LayoutParams params=mRainSnow.getLayoutParams();
+            params.width = Utils.spToPx(AppPreference.getRainOrSnowForecastWeadherWidth(context), context);
+            mRainSnow.setLayoutParams(params);
         } else {
             mRainSnow.setVisibility(View.GONE);
         }

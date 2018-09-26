@@ -14,6 +14,7 @@ import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
+import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
@@ -70,8 +71,6 @@ public class WeatherForecastWidgetService extends IntentService {
 
             Weather weather = weatherRecord.getWeather();
 
-            String lastUpdate = Utils.setLastUpdateTime(this, weatherRecord.getLastUpdatedTime(), currentLocation.getLocationSource());
-
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),
                     R.layout.widget_weather_forecast_1x3);
 
@@ -104,13 +103,15 @@ public class WeatherForecastWidgetService extends IntentService {
             calendar.setTimeInMillis(1000 * weather.getSunset());
             WidgetUtils.setSunset(getBaseContext(), remoteViews, sdf.format(calendar.getTime()));
             Utils.setWeatherIcon(remoteViews, this, weatherRecord);
-            remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
 
+            WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;
             try {
-                WidgetUtils.updateWeatherForecast(getBaseContext(), currentLocation.getId(), remoteViews);
+                weatherForecastRecord = WidgetUtils.updateWeatherForecast(getBaseContext(), currentLocation.getId(), remoteViews);
             } catch (Exception e) {
                 appendLog(getBaseContext(), TAG, "preLoadWeather:error updating weather forecast", e);
             }
+            String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, weatherForecastRecord, currentLocation);
+            remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
             widgetManager.updateAppWidget(appWidgetId, remoteViews);
         }
         appendLog(this, TAG, "updateWidgetend");

@@ -157,7 +157,13 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
             headerRainSnow.setTypeface(typeface);
             headerRainSnow.setText(String.valueOf((char) 0xf01a) + "/" + String.valueOf((char) 0xf01b));
             headerRainSnowUnit.setVisibility(View.VISIBLE);
-            headerRainSnowUnit.setText(R.string.millimetre_label);
+            headerRainSnowUnit.setText(AppPreference.getRainOrSnowUnit(context));
+            ViewGroup.LayoutParams params=headerRainSnow.getLayoutParams();
+            params.width = Utils.spToPx(AppPreference.getRainOrSnowForecastWeadherWidth(context), context);
+            headerRainSnow.setLayoutParams(params);
+            params=headerRainSnowUnit.getLayoutParams();
+            params.width = Utils.spToPx(AppPreference.getRainOrSnowForecastWeadherWidth(context), context);
+            headerRainSnowUnit.setLayoutParams(params);
         } else {
             headerRainSnow.setVisibility(View.GONE);
             headerRainSnowUnit.setVisibility(View.GONE);

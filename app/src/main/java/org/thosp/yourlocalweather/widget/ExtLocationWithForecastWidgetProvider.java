@@ -67,8 +67,6 @@ public class ExtLocationWithForecastWidgetProvider extends AbstractWidgetProvide
         if (weatherRecord != null) {
             Weather weather = weatherRecord.getWeather();
 
-            String lastUpdate = Utils.setLastUpdateTime(context, weatherRecord.getLastUpdatedTime(), location.getLocationSource());
-
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context, location.getOrderId()));
             remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     context,
@@ -97,7 +95,6 @@ public class ExtLocationWithForecastWidgetProvider extends AbstractWidgetProvide
             WidgetUtils.setSunset(context, remoteViews, sdf.format(calendar.getTime()));
 
             Utils.setWeatherIcon(remoteViews, context, weatherRecord);
-            remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
         } else {
             remoteViews.setTextViewText(R.id.widget_city, context.getString(R.string.location_not_found));
             remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
@@ -124,13 +121,15 @@ public class ExtLocationWithForecastWidgetProvider extends AbstractWidgetProvide
             WidgetUtils.setSunset(context, remoteViews, "");
 
             Utils.setWeatherIcon(remoteViews, context, weatherRecord);
-            remoteViews.setTextViewText(R.id.widget_last_update, "");
         }
+        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;
         try {
-            WidgetUtils.updateWeatherForecast(context, location.getId(), remoteViews);
+            weatherForecastRecord = WidgetUtils.updateWeatherForecast(context, location.getId(), remoteViews);
         } catch (Exception e) {
             appendLog(context, TAG, "preLoadWeather:error updating weather forecast", e);
         }
+        String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, weatherForecastRecord, currentLocation);
+        remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
         appendLog(context, TAG, "preLoadWeather:end");
     }
 

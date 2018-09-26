@@ -70,8 +70,6 @@ public class ExtLocationWidgetService extends IntentService {
 
             Weather weather = weatherRecord.getWeather();
 
-            String lastUpdate = Utils.setLastUpdateTime(this, weatherRecord.getLastUpdatedTime(), currentLocation.getLocationSource());
-
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),
                     R.layout.widget_ext_loc_3x3);
 
@@ -104,6 +102,7 @@ public class ExtLocationWidgetService extends IntentService {
             calendar.setTimeInMillis(1000 * weather.getSunset());
             WidgetUtils.setSunset(getBaseContext(), remoteViews, sdf.format(calendar.getTime()));
             Utils.setWeatherIcon(remoteViews, this, weatherRecord);
+            String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, currentLocation);
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
 
             widgetManager.updateAppWidget(appWidgetId, remoteViews);

@@ -65,8 +65,6 @@ public class MoreWidgetService extends IntentService {
 
             Weather weather = weatherRecord.getWeather();
 
-            String lastUpdate = Utils.setLastUpdateTime(this, weatherRecord.getLastUpdatedTime(), currentLocation.getLocationSource());
-
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),
                                                       R.layout.widget_more_3x3);
 
@@ -98,6 +96,7 @@ public class MoreWidgetService extends IntentService {
             WidgetUtils.setPressure(getBaseContext(), remoteViews, weather.getPressure());
             WidgetUtils.setClouds(getBaseContext(), remoteViews, weather.getClouds());
             Utils.setWeatherIcon(remoteViews, this, weatherRecord);
+            String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, currentLocation);
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
 
             widgetManager.updateAppWidget(appWidgetId, remoteViews);

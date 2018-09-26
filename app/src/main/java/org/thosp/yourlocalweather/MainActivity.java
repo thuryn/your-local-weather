@@ -46,6 +46,7 @@ import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
+import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 import org.thosp.yourlocalweather.utils.AppPreference;
@@ -96,6 +97,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private SwipeRefreshLayout mSwipeRefresh;
     private Menu mToolbarMenu;
     private BroadcastReceiver mWeatherUpdateReceiver;
+    private CurrentWeatherDbHelper currentWeatherDbHelper;
+    private WeatherForecastDbHelper weatherForecastDbHelper;
     private Messenger currentWeatherService;
     private Lock currentWeatherServiceLock = new ReentrantLock();
     private Queue<Message> currentWeatherUnsentMessages = new LinkedList<>();
@@ -120,6 +123,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         ((YourLocalWeather) getApplication()).applyTheme(this);
         super.onCreate(savedInstanceState);
         locationsDbHelper = LocationsDbHelper.getInstance(this);
+        weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
+        currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(this);
         setContentView(R.layout.activity_main);
 
         weatherConditionsIcons();
@@ -289,23 +294,23 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             return;
         }
         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
-        String lastUpdate = Utils.setLastUpdateTime(
+        String lastUpdate = Utils.getLastUpdateTime(
                 this,
-                currentLocation.getLastLocationUpdate(),
-                currentLocation.getLocationSource());
+                currentWeatherDbHelper.getWeather(currentLocation.getId()),
+                weatherForecastDbHelper.getWeatherForecast(currentLocation.getId()),
+                currentLocation);
         mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
         localityView.setText(Utils.getCityAndCountry(this, currentLocation.getOrderId()));
     }
 
     private void preLoadWeather() {
-        final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(this);
-
         if (currentLocation == null) {
             return;
         }
         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
 
         CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
+        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
 
         if (weatherRecord == null) {
             mTemperatureView.setText(getString(R.string.temperature_with_degree,""));
@@ -342,7 +347,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         Weather weather = weatherRecord.getWeather();
 
         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
-        String lastUpdate = Utils.setLastUpdateTime(this, weatherRecord.getLastUpdatedTime(), currentLocation.getLocationSource());
+        String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, weatherForecastRecord, currentLocation);
         windWithUnit = AppPreference.getWindWithUnit(this, weather.getWindSpeed());
         WindWithUnit pressure = AppPreference.getPressureWithUnit(this, weather.getPressure());
         String sunrise = Utils.unixTimeToFormatTime(this, weather.getSunrise());

@@ -60,11 +60,53 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
         if (location == null) {
             return;
         }
+        final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
+        CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
+
+        if (weatherRecord == null) {
+            return;
+        }
+
+        Weather weather = weatherRecord.getWeather();
+
+        WeatherForecastWidgetProvider.setWidgetTheme(context, remoteViews);
+        WeatherForecastWidgetProvider.setWidgetIntents(context, remoteViews, WeatherForecastWidgetProvider.class, appWidgetId);
+
+        remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context, currentLocation.getOrderId()));
+        remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
+                context,
+                weather,
+                currentLocation.getLatitude(),
+                weatherRecord.getLastUpdatedTime()));
+        String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
+                context,
+                weather,
+                currentLocation.getLatitude(),
+                weatherRecord.getLastUpdatedTime());
+        if (secondTemperature != null) {
+            remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
+            remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
+        } else {
+            remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
+        }
+        remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, weather));
+        WidgetUtils.setWind(context, remoteViews, weather.getWindSpeed());
+        WidgetUtils.setHumidity(context, remoteViews, weather.getHumidity());
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(1000 * weather.getSunrise());
+        WidgetUtils.setSunrise(context, remoteViews, sdf.format(calendar.getTime()));
+        calendar.setTimeInMillis(1000 * weather.getSunset());
+        WidgetUtils.setSunset(context, remoteViews, sdf.format(calendar.getTime()));
+        Utils.setWeatherIcon(remoteViews, context, weatherRecord);
+
+        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;
         try {
-            WidgetUtils.updateWeatherForecast(context, location.getId(), remoteViews);
+            weatherForecastRecord = WidgetUtils.updateWeatherForecast(context, location.getId(), remoteViews);
         } catch (Exception e) {
             appendLog(context, TAG, "preLoadWeather:error updating weather forecast", e);
         }
+        String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, weatherForecastRecord, currentLocation);
+        remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
         appendLog(context, TAG, "preLoadWeather:end");
     }
 

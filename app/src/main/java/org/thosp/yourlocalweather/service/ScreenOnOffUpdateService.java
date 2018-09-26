@@ -8,6 +8,8 @@ import android.os.Handler;
 
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
+import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
@@ -71,6 +73,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
                 return;
             }
             CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
+            final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(getBaseContext());
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
             org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
             CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
@@ -81,18 +84,18 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
                 timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
                 return;
             }
-
-            long storedWeatherTime = weatherRecord.getLastUpdatedTime();
+            WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
+            long lastUpdateTimeInMilis = Utils.getLastUpdateTimeInMilis(weatherRecord, weatherForecastRecord, currentLocation);
             long now = System.currentTimeMillis();
 
             appendLog(getBaseContext(), TAG, "screen timer called, lastUpdate=" +
                     currentLocation.getLastLocationUpdate() +
                     ", now=" +
                     now +
-                    ", storedWeatherTime=" +
-                    storedWeatherTime);
+                    ", lastUpdateTimeInMilis=" +
+                    lastUpdateTimeInMilis);
 
-            if ((now <= (storedWeatherTime + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now <= (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
+            if ((now <= (lastUpdateTimeInMilis + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now <= (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
                 timerScreenOnHandler.postDelayed(timerScreenOnRunnable, REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT);
                 return;
             }
@@ -118,19 +121,21 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
     private void processScreenOn(Context context) {
         CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
+        final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
         CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
-        long storedWeatherTime = (weatherRecord != null) ? weatherRecord.getLastUpdatedTime() : 0;
+        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
+        long lastUpdateTimeInMilis = Utils.getLastUpdateTimeInMilis(weatherRecord, weatherForecastRecord, currentLocation);
         long now = System.currentTimeMillis();
         appendLog(context, TAG, "SCREEN_ON called, lastUpdate=" +
                 currentLocation.getLastLocationUpdate() +
                 ", now=" +
                 now +
-                ", storedWeatherTime=" +
-                storedWeatherTime);
-        if ((now <= (storedWeatherTime + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now <= (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
-            timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT - (now - storedWeatherTime));
+                ", lastUpdateTimeInMilis=" +
+                lastUpdateTimeInMilis);
+        if ((now <= (lastUpdateTimeInMilis + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now <= (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
+            timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT - (now - lastUpdateTimeInMilis));
             return;
         }
         requestWeatherCheck("-", true, null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);

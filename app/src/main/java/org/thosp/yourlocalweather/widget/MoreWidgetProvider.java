@@ -54,8 +54,6 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
         if (weatherRecord != null) {
             Weather weather = weatherRecord.getWeather();
 
-            String lastUpdate = Utils.setLastUpdateTime(context, weatherRecord.getLastUpdatedTime(), location.getLocationSource());
-
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context, location.getOrderId()));
             remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     context,
@@ -81,6 +79,7 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
             WidgetUtils.setClouds(context, remoteViews, weather.getClouds());
 
             Utils.setWeatherIcon(remoteViews, context, weatherRecord);
+            String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, currentLocation);
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
         } else {
             remoteViews.setTextViewText(R.id.widget_city, context.getString(R.string.location_not_found));

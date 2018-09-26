@@ -128,12 +128,12 @@ public class WidgetUtils {
         }
     }
 
-    public static void updateWeatherForecast(Context context, long locationId, RemoteViews remoteViews) {
+    public static WeatherForecastDbHelper.WeatherForecastRecord updateWeatherForecast(Context context, long locationId, RemoteViews remoteViews) {
         final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
         //appendLog(context, TAG, "updateWeatherForecast:locationId=" + locationId + ", weatherForecastRecord=" + weatherForecastRecord);
         if (weatherForecastRecord == null) {
-            return;
+            return null;
         }
         Integer firstDayOfYear = null;
         Map<Integer, List<DetailedWeatherForecast>> weatherList = new HashMap<>();
@@ -291,6 +291,7 @@ public class WidgetUtils {
                     break;
             }
         }
+        return weatherForecastRecord;
     }
 
     public static void updateWidgets(Context context) {

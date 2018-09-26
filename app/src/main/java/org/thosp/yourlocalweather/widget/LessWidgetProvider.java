@@ -50,8 +50,6 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
         CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(location.getId());
 
         if (weatherRecord != null) {
-            String lastUpdate = Utils.setLastUpdateTime(context, weatherRecord.getLastUpdatedTime(), location.getLocationSource());
-
             remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     context,
                     weatherRecord.getWeather(),
@@ -71,6 +69,7 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context, location.getOrderId()));
             remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, weatherRecord.getWeather()));
             Utils.setWeatherIcon(remoteViews, context, weatherRecord);
+            String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, currentLocation);
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
         } else {
             remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(

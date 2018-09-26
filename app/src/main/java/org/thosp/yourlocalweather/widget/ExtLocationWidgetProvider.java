@@ -60,8 +60,6 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
         if (weatherRecord != null) {
             Weather weather = weatherRecord.getWeather();
 
-            String lastUpdate = Utils.setLastUpdateTime(context, weatherRecord.getLastUpdatedTime(), location.getLocationSource());
-
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context, location.getOrderId()));
             remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     context,
@@ -90,6 +88,7 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
             WidgetUtils.setSunset(context, remoteViews, sdf.format(calendar.getTime()));
 
             Utils.setWeatherIcon(remoteViews, context, weatherRecord);
+            String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, currentLocation);
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
         } else {
             remoteViews.setTextViewText(R.id.widget_city, context.getString(R.string.location_not_found));

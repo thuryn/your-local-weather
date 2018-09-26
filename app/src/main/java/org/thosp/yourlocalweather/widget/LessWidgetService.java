@@ -69,7 +69,6 @@ public class LessWidgetService extends IntentService {
             LessWidgetProvider.setWidgetTheme(this, remoteViews);
             LessWidgetProvider.setWidgetIntents(this, remoteViews, LessWidgetProvider.class, appWidgetId);
 
-            String lastUpdate = Utils.setLastUpdateTime(this, weatherRecord.getLastUpdatedTime(), currentLocation.getLocationSource());
             remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     this,
                     weather,
@@ -88,6 +87,7 @@ public class LessWidgetService extends IntentService {
             }
             remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, weather));
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(this, currentLocation.getOrderId()));
+            String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, currentLocation);
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
             Utils.setWeatherIcon(remoteViews, this, weatherRecord);
             widgetManager.updateAppWidget(appWidgetId, remoteViews);
