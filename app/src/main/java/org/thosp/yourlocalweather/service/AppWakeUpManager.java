@@ -155,7 +155,7 @@ public class AppWakeUpManager extends Service {
             powerLockID = PowerManager.PARTIAL_WAKE_LOCK;
         }
         appendLog(getBaseContext(), TAG, "wakeLock:powerLockID:" + powerLockID);
-        wakeLock = powerManager.newWakeLock(powerLockID, TAG);
+        wakeLock = powerManager.newWakeLock(powerLockID, "YourLocalWeather:PowerLock");
         appendLog(getBaseContext(), TAG, "wakeLock:" + wakeLock + ":" + wakeLock.isHeld());
         if (!wakeLock.isHeld()) {
             wakeLock.acquire();
