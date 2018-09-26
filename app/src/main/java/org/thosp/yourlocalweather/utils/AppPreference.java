@@ -48,6 +48,58 @@ public class AppPreference {
         }
     }
 
+    public static double getRainOrSnow(Context context, double value) {
+        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_RAIN_SNOW_UNITS, "mm");
+        if (unitsFromPreferences.contains("inches") ) {
+            return 0.03937007874d * value;
+        } else {
+            return value;
+        }
+    }
+
+    public static String getGraphFormatterForRainOrSnow(Context context) {
+        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_RAIN_SNOW_UNITS, "mm");
+        if (unitsFromPreferences.contains("inches") ) {
+            return "#.###";
+        } else {
+            return "#.##";
+        }
+    }
+
+    public static String getFormatedRainOrSnow(Context context, double value) {
+        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_RAIN_SNOW_UNITS, "mm");
+        String format;
+        if (unitsFromPreferences.contains("inches") ) {
+            format = "%.3f";
+        } else {
+            format = "%.1f";
+        }
+        return String.format(Locale.getDefault(), format, getRainOrSnow(context, value));
+    }
+
+    public static int getRainOrSnowUnit(Context context) {
+        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_RAIN_SNOW_UNITS, "mm");
+        if (unitsFromPreferences.contains("inches") ) {
+            return R.string.inches_label;
+        } else {
+            return R.string.millimetre_label;
+        }
+    }
+
+    public static int getRainOrSnowForecastWeadherWidth(Context context) {
+        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_RAIN_SNOW_UNITS, "mm");
+        if (unitsFromPreferences.contains("inches") ) {
+            return 60;
+        } else {
+            return 40;
+        }
+    }
+
     public static String getWindInString(Context context, double stringValue) {
         return String.format(Locale.getDefault(), "%.1f", getWind(context, stringValue));
     }

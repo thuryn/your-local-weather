@@ -27,6 +27,7 @@ import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.CustomValueFormatter;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
+import org.thosp.yourlocalweather.utils.RainSnowYAxisValueFormatter;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.XAxisValueFormatter;
 import org.thosp.yourlocalweather.utils.YAxisValueFormatter;
@@ -51,6 +52,7 @@ public class GraphsActivity extends ForecastingActivity {
     private String[] mDatesArray;
     private CustomValueFormatter mValueFormatter;
     private YAxisValueFormatter mYAxisFormatter;
+    private RainSnowYAxisValueFormatter rainSnowYAxisValueFormatter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +61,7 @@ public class GraphsActivity extends ForecastingActivity {
         setContentView(R.layout.activity_graphs);
         mValueFormatter = new CustomValueFormatter();
         mYAxisFormatter = new YAxisValueFormatter();
+        rainSnowYAxisValueFormatter = new RainSnowYAxisValueFormatter(this);
         mTemperatureChart = (LineChart) findViewById(R.id.temperature_chart);
         mWindChart = (LineChart) findViewById(R.id.wind_chart);
         mRainChart = (LineChart) findViewById(R.id.rain_chart);
@@ -71,9 +74,9 @@ public class GraphsActivity extends ForecastingActivity {
         TextView windLabel = (TextView) findViewById(R.id.graphs_wind_label);
         windLabel.setText(getString(R.string.label_wind) + ", " + AppPreference.getWindUnit(this));
         TextView rainLabel = (TextView) findViewById(R.id.graphs_rain_label);
-        rainLabel.setText(getString(R.string.label_rain) + ", " + getString(R.string.millimetre_label));
+        rainLabel.setText(getString(R.string.label_rain) + ", " + getString(AppPreference.getRainOrSnowUnit(this)));
         TextView snowLabel = (TextView) findViewById(R.id.graphs_snow_label);
-        snowLabel.setText(getString(R.string.label_snow) + ", " + getString(R.string.millimetre_label));
+        snowLabel.setText(getString(R.string.label_snow) + ", " + getString(AppPreference.getRainOrSnowUnit(this)));
         TextView pressureLabel = (TextView) findViewById(R.id.graphs_pressure_label);
         pressureLabel.setText(getString(R.string.label_pressure) + ", " + AppPreference.getPressureUnit(this));
 
@@ -277,13 +280,19 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setTextColor(PreferenceUtil.getTextColor(this));
         yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this));
         yLeft.setXOffset(15);
-        yLeft.setValueFormatter(mYAxisFormatter);
+        yLeft.setValueFormatter(rainSnowYAxisValueFormatter);
 
         mRainChart.getAxisRight().setEnabled(false);
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
-            entries.add(new Entry(i, (float) weatherForecastList.get(locationId).get(i).getRain()));
+            entries.add(new Entry(
+                    i,
+                    (float) AppPreference.getRainOrSnow(
+                            this,
+                            weatherForecastList.get(locationId).get(i).getRain())
+                    )
+            );
         }
 
         LineDataSet set;
@@ -353,13 +362,19 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setTextColor(PreferenceUtil.getTextColor(this));
         yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this));
         yLeft.setXOffset(15);
-        yLeft.setValueFormatter(mYAxisFormatter);
+        yLeft.setValueFormatter(rainSnowYAxisValueFormatter);
 
         mSnowChart.getAxisRight().setEnabled(false);
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
-            entries.add(new Entry(i, (float) weatherForecastList.get(locationId).get(i).getSnow()));
+            entries.add(new Entry(
+                    i,
+                    (float) AppPreference.getRainOrSnow(
+                            this,
+                            weatherForecastList.get(locationId).get(i).getSnow())
+                    )
+            );
         }
 
         LineDataSet set;

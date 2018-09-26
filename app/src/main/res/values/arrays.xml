@@ -54,6 +54,14 @@
         <item>inhg</item>
         <item>mbar</item>
     </string-array>
+    <string-array name="pref_rain_snow_units_entries" translatable="false">
+        <item>@string/millimetre_label</item>
+        <item>@string/inches_label</item>
+    </string-array>
+    <string-array name="pref_rain_snow_units_values" translatable="false">
+        <item>mm</item>
+        <item>inches</item>
+    </string-array>
 
     <string-array name="location_update_strategy">
         <item>@string/update_location_none</item>

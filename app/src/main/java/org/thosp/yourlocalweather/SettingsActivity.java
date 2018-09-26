@@ -139,6 +139,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 Constants.KEY_PREF_TEMPERATURE_TYPE,
                 Constants.KEY_PREF_TEMPERATURE_UNITS,
                 Constants.KEY_PREF_WIND_UNITS,
+                Constants.KEY_PREF_RAIN_SNOW_UNITS,
                 Constants.KEY_PREF_PRESSURE_UNITS,
                 Constants.KEY_PREF_HIDE_DESCRIPTION,
                 Constants.KEY_PREF_INTERVAL_NOTIFICATION,
@@ -258,6 +259,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 case Constants.KEY_PREF_TEMPERATURE_TYPE:
                 case Constants.KEY_PREF_TEMPERATURE_UNITS:
                 case Constants.KEY_PREF_WIND_UNITS:
+                case Constants.KEY_PREF_RAIN_SNOW_UNITS:
                 case Constants.KEY_PREF_PRESSURE_UNITS:
                     entrySummary(key);
                     if (changing) {
