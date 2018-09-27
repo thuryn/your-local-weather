@@ -47,17 +47,16 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
 
         Long locationId = widgetSettingsDbHelper.getParamLong(appWidgetId, "locationId");
 
-        Location location;
         if (locationId == null) {
-            location = locationsDbHelper.getLocationByOrderId(0);
-            if (!location.isEnabled()) {
-                location = locationsDbHelper.getLocationByOrderId(1);
+            currentLocation = locationsDbHelper.getLocationByOrderId(0);
+            if (!currentLocation.isEnabled()) {
+                currentLocation = locationsDbHelper.getLocationByOrderId(1);
             }
         } else {
-            location = locationsDbHelper.getLocationById(locationId);
+            currentLocation = locationsDbHelper.getLocationById(locationId);
         }
 
-        if (location == null) {
+        if (currentLocation == null) {
             return;
         }
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
@@ -101,7 +100,7 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
 
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;
         try {
-            weatherForecastRecord = WidgetUtils.updateWeatherForecast(context, location.getId(), remoteViews);
+            weatherForecastRecord = WidgetUtils.updateWeatherForecast(context, currentLocation.getId(), remoteViews);
         } catch (Exception e) {
             appendLog(context, TAG, "preLoadWeather:error updating weather forecast", e);
         }

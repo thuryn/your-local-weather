@@ -41,35 +41,34 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
 
         Long locationId = widgetSettingsDbHelper.getParamLong(appWidgetId, "locationId");
 
-        Location location;
         if (locationId == null) {
-            location = locationsDbHelper.getLocationByOrderId(0);
-            if (!location.isEnabled()) {
-                location = locationsDbHelper.getLocationByOrderId(1);
+            currentLocation = locationsDbHelper.getLocationByOrderId(0);
+            if (!currentLocation.isEnabled()) {
+                currentLocation = locationsDbHelper.getLocationByOrderId(1);
             }
         } else {
-            location = locationsDbHelper.getLocationById(locationId);
+            currentLocation = locationsDbHelper.getLocationById(locationId);
         }
 
-        if (location == null) {
+        if (currentLocation == null) {
             return;
         }
 
-        CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(location.getId());
+        CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
 
         if (weatherRecord != null) {
             Weather weather = weatherRecord.getWeather();
 
-            remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context, location.getOrderId()));
+            remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context, currentLocation.getOrderId()));
             remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     context,
                     weather,
-                    location.getLatitude(),
+                    currentLocation.getLatitude(),
                     weatherRecord.getLastUpdatedTime()));
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     context,
                     weather,
-                    location.getLatitude(),
+                    currentLocation.getLatitude(),
                     weatherRecord.getLastUpdatedTime());
             if (secondTemperature != null) {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
@@ -95,12 +94,12 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
             remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     context,
                     null,
-                    location.getLatitude(),
+                    currentLocation.getLatitude(),
                     0));
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     context,
                     null,
-                    location.getLatitude(),
+                    currentLocation.getLatitude(),
                     0);
             if (secondTemperature != null) {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);

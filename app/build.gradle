@@ -17,8 +17,8 @@ android {
         applicationId "org.thosp.yourlocalweather"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 79
-        versionName "4.2.3"
+        versionCode 80
+        versionName "4.2.4"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         playAccountConfig = playAccountConfigs.defaultAccountConfig
