@@ -182,6 +182,11 @@
         </receiver>
 
         <service
+            android:name=".service.StartAppAlarmJob"
+            android:label="Start app alarm"
+            android:permission="android.permission.BIND_JOB_SERVICE" >
+        </service>
+        <service
             android:name=".service.ReconciliationDbService" />
         <service
             android:name=".service.NotificationService" >

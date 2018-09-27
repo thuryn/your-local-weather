@@ -1,10 +1,15 @@
 package org.thosp.yourlocalweather.receiver;
 
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 
+import org.thosp.yourlocalweather.service.StartAppAlarmJob;
 import org.thosp.yourlocalweather.utils.Constants;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
@@ -23,11 +28,20 @@ public class StartupReceiver extends BroadcastReceiver {
         context.sendBroadcast(new Intent("android.appwidget.action.APPWIDGET_UPDATE"));
     }
 
-    public void scheduleStart(Context context) {
-        appendLog(context, TAG, "scheduleStart at boot");
-        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_ALARM_SERVICE");
-        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
-        context.startService(intentToStartUpdate);
+    private void scheduleStart(Context context) {
+        appendLog(context, TAG, "scheduleStart at boot, SDK=" + Build.VERSION.SDK_INT);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
+            ComponentName serviceComponent = new ComponentName(context, StartAppAlarmJob.class);
+            JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
+            builder.setMinimumLatency(1 * 1000); // wait at least
+            builder.setOverrideDeadline(3 * 1000); // maximum delay
+            JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
+            jobScheduler.schedule(builder.build());
+        } else {
+            Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_ALARM_SERVICE");
+            intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+            context.startService(intentToStartUpdate);
+        }
     }
 
     private void removeOldPreferences(Context context) {
