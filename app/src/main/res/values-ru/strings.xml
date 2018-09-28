@@ -34,17 +34,17 @@
     <string name="widget_weather_icon_description">Иконка погоды</string>
     <string name="widget_refresh_button">Кнопка обновления виджета</string>
     <string name="preference_title_activity_about">О приложении</string>
-    <string name="preference_title_activity_general">Главные настройки</string>
-    <string name="preference_title_activity_widget">Настройки виджетов</string>
+    <string name="preference_title_activity_general">Основные Настройки</string>
+    <string name="preference_title_activity_widget">Настройки Виджета</string>
     <string name="update_period_3hours">3 часа</string>
     <string name="update_period_6hours">6 часов</string>
-    <string name="preference_widget_title_update_period">Интервал обновления</string>
+    <string name="preference_widget_title_update_period">Интервал обновления (Место 1,2,3…)</string>
     <string name="last_update_label">Последнее обновление: %s</string>
     <string name="about_app_license_pref_title">Лицензия</string>
-    <string name="about_source_code_pref_title">Исходный код</string>
+    <string name="about_source_code_pref_title">Исходный Код</string>
     <string name="about_version_pref_title">Версия</string>
     <string name="about_open_source_licenses_pref_title">Open Source лицензии</string>
-    <string name="toast_parse_error">Произошла ошибка. Попробуйте позже!</string>
+    <string name="toast_parse_error">Произошла ошибка. Попробуйте позже.</string>
     <string name="nav_menu_bitcoin_donation">Пожертвовать Bitcoin</string>
     <string name="toolbar_menu_detect_location">Определить местоположение</string>
     <string name="toolbar_menu_refresh">Обновить</string>
@@ -224,7 +224,7 @@
     <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">После уточнения количества файлов журнала времени произойдёт обновление</string>
     <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Ротация файлов журнала</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Иконки на основе шрифтов</string>
-    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Обновить местоположение</string>
+    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Обновить Местоположение</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Показывать надписи в виджете</string>
     <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Использовать геолокацию для отображения</string>
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Тема виджета</string>
@@ -240,12 +240,12 @@
     <string name="pref_language_es" tools:ignore="MissingTranslation">Spanish (Spanish)</string>
     <string name="pref_language_el" tools:ignore="MissingTranslation">Greek (Greek)</string>
     <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabic (Arabic)</string>
-    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Источник местоположения и адресов</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Источник Местоположения и Адресов</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Local MLS и Nominatim (рекомендуется)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Система</string>
     <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP(no GAPPS)</string>
     <string name="pref_title_theme" tools:ignore="MissingTranslation">Тема</string>
-    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Показать сводку обновлений</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Показать Сводку Обновлений</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Ничего</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Обновлены только значения</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Обновленное значение и источника местоположения</string>
@@ -254,5 +254,29 @@
 \nG - местоположение от GPS и обновлена погода
 \nN - местоположение по сетям и обновлена погода</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Местоположение</string>
+
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Ваш API ключ OpenWeatherMap не зарегистрирован.</string>
+
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">дюйм рт.ст.</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">мбар</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">узлы</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Включать GPS при необходимости</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Интервал обновлений (Место 0)</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Системные настройки</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">API ключ Openweathermap.org</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Ukrainian</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Romanian</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portuguese (Portugal)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portuguese (Brazil)</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Удалить</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Отключить</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Включить</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Отключено</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Добавить</string>
+    <string name="search_location_info" tools:ignore="MissingTranslation">Нажмите на карту, чтобы выбрать место и ожидайте определения адреса</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Ощущаемая температура: %s</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Измеренная температура: %s</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Давление</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Показывать температуру как</string>
 
     </resources>
