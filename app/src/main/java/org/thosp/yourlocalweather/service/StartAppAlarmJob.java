@@ -14,7 +14,11 @@ public class StartAppAlarmJob extends JobService {
     public boolean onStartJob(JobParameters params) {
         Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_ALARM_SERVICE");
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
-        getApplicationContext().startService(intentToStartUpdate);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
+            getApplicationContext().startForegroundService(intentToStartUpdate);
+        } else {
+            getApplicationContext().startService(intentToStartUpdate);
+        }
         return true;
     }
 
