@@ -294,4 +294,9 @@
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Ustawienia systemu</string>
     <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Klucz API Openweathermap.org</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Wbudowany</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">mmHg</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">hPa</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">cale</string>
+
+    <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Deszcz i śnieg</string>
     </resources>
