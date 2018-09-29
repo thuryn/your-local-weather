@@ -306,4 +306,7 @@
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Ingebouwd</string>
     <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
     <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">inches</string>
+
+    <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Regen en sneeuw</string>
     </resources>
