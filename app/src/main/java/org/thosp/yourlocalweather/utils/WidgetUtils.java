@@ -100,7 +100,7 @@ public class WidgetUtils {
         if (AppPreference.showLabelsOnWidget(context)) {
             String pressure =
                     context.getString(R.string.pressure_label,
-                            windWithUnit.getWindSpeed(0),
+                            windWithUnit.getWindSpeed(AppPreference.getPressureDecimalPlaces(context)),
                             windWithUnit.getWindUnit());
             remoteViews.setTextViewText(R.id.widget_pressure, pressure);
             remoteViews.setViewVisibility(R.id.widget_pressure_icon, TextView.GONE);

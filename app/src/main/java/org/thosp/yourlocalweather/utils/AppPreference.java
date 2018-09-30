@@ -148,8 +148,20 @@ public class AppPreference {
         }
     }
 
+    public static int getPressureDecimalPlaces(Context context) {
+        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_PRESSURE_UNITS, "hpa");
+        switch (unitsFromPreferences) {
+            case "mmhg": return 2;
+            case "inhg": return 2;
+            case "mbar": return 0;
+            default: return 0;
+        }
+    }
+
     public static String getPressureInString(Context context, double stringValue) {
-        return String.format(Locale.getDefault(), "%.0f", getPressureWithUnit(context, stringValue).getWindSpeed());
+        return String.format(Locale.getDefault(), "%." + getPressureDecimalPlaces(context)
+                + "f", getPressureWithUnit(context, stringValue).getWindSpeed());
     }
 
     public static WindWithUnit getPressureWithUnit(Context context, double value) {

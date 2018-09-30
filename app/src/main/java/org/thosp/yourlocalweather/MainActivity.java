@@ -377,7 +377,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 String.valueOf(weather.getHumidity()),
                 mPercentSign));
         mPressureView.setText(getString(R.string.pressure_label,
-                pressure.getWindSpeed(0),
+                pressure.getWindSpeed(AppPreference.getPressureDecimalPlaces(this)),
                 pressure.getWindUnit()));
         mWindSpeedView.setText(getString(R.string.wind_label,
                                          windWithUnit.getWindSpeed(1),
