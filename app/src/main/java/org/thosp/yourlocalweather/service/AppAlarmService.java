@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.Message;
@@ -44,17 +45,40 @@ public class AppAlarmService extends AbstractCommonService {
 
     private static final String TAG = "AppAlarmService";
 
+    private enum BindedServiceActions {
+        START_SCREEN, STOP_SCREEN, START_SENSOR, STOP_SENSOR
+    }
+
+    private final IBinder binder = new AppAlarmServiceBinder();
+    private static Queue<BindedServiceActions> screenOnOffUpdateServiceActions = new LinkedList<>();
+    private static Queue<BindedServiceActions> sensorLocationUpdateServiceActions = new LinkedList<>();
+    ScreenOnOffUpdateService screenOnOffUpdateService;
+    SensorLocationUpdateService sensorLocationUpdateService;
+    boolean bound = false;
+
     public static final long START_SENSORS_CHECK_PERIOD = 3600000; //1 hour
     private volatile boolean alarmStarted;
 
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return binder;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
+        Intent intent = new Intent(this, ScreenOnOffUpdateService.class);
+        bindService(intent, screenOnOffUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+        intent = new Intent(this, SensorLocationUpdateService.class);
+        bindService(intent, sensorLocationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        unbindService(screenOnOffUpdateServiceConnection);
+        unbindService(sensorLocationUpdateServiceConnection);
+        bound = false;
+        return super.onUnbind(intent);
     }
 
     @Override
@@ -205,10 +229,12 @@ public class AppAlarmService extends AbstractCommonService {
     }
 
     private void sendSensorStartIntent() {
-        Intent sendIntent = new Intent("android.intent.action.START_SENSOR_BASED_UPDATES");
-        sendIntent.setPackage("org.thosp.yourlocalweather");
-        startBackgroundService(sendIntent);
-        appendLog(getBaseContext(), TAG, "sendIntent:" + sendIntent);
+        appendLog(getBaseContext(), TAG, "sensorLocationUpdateService.startSensorBasedUpdates");
+        if (sensorLocationUpdateService == null) {
+            sensorLocationUpdateServiceActions.add(BindedServiceActions.START_SENSOR);
+            return;
+        }
+        sensorLocationUpdateService.startSensorBasedUpdates(0);
     }
 
     private static PendingIntent getPendingSensorStartIntent(Context context) {
@@ -221,10 +247,12 @@ public class AppAlarmService extends AbstractCommonService {
     }
 
     private void sendScreenStartIntent() {
-        Intent sendIntent = new Intent("android.intent.action.START_SCREEN_BASED_UPDATES");
-        sendIntent.setPackage("org.thosp.yourlocalweather");
-        startBackgroundService(sendIntent);
-        appendLog(getBaseContext(), TAG, "sendIntent:" + sendIntent);
+        appendLog(getBaseContext(), TAG, "screenOnOffUpdateService.startSensorBasedUpdates");
+        if (screenOnOffUpdateService == null) {
+            screenOnOffUpdateServiceActions.add(BindedServiceActions.START_SCREEN);
+            return;
+        }
+        screenOnOffUpdateService.startSensorBasedUpdates(0);
     }
 
     private static PendingIntent getPendingScreenStartIntent(Context context) {
@@ -237,16 +265,20 @@ public class AppAlarmService extends AbstractCommonService {
     }
 
     private void sendSensorAndScreenStopIntent() {
-        Intent sendIntent = new Intent("android.intent.action.STOP_SENSOR_BASED_UPDATES");
-        sendIntent.setPackage("org.thosp.yourlocalweather");
-        startService(sendIntent);
-        Intent sendStopScreenIntent = new Intent("android.intent.action.STOP_SCREEN_BASED_UPDATES");
-        sendStopScreenIntent.setPackage("org.thosp.yourlocalweather");
-        startService(sendStopScreenIntent);
+        appendLog(getBaseContext(), TAG, "sendSensorAndScreenStopIntent");
+        if (screenOnOffUpdateService == null) {
+            screenOnOffUpdateServiceActions.add(BindedServiceActions.STOP_SCREEN);
+        } else {
+            screenOnOffUpdateService.stopSensorBasedUpdates();
+        }
+        if (sensorLocationUpdateService == null) {
+            sensorLocationUpdateServiceActions.add(BindedServiceActions.STOP_SENSOR);
+        } else {
+            sensorLocationUpdateService.stopSensorBasedUpdates();
+        }
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(getPendingSensorStartIntent(getBaseContext()));
         alarmManager.cancel(getPendingScreenStartIntent(getBaseContext()));
-        appendLog(getBaseContext(), TAG, "sendIntent:" + sendIntent);
     }
 
     private static PendingIntent getPendingIntent(Context context, boolean autoLocation) {
@@ -282,5 +314,67 @@ public class AppAlarmService extends AbstractCommonService {
                                                                  intent,
                                                                  PendingIntent.FLAG_NO_CREATE);
         return pendingIntent == null;
+    }
+
+    private ServiceConnection screenOnOffUpdateServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            ScreenOnOffUpdateService.ScreenOnOffUpdateServiceBinder binder =
+                    (ScreenOnOffUpdateService.ScreenOnOffUpdateServiceBinder) service;
+            screenOnOffUpdateService = binder.getService();
+            BindedServiceActions bindedServiceActions;
+            while ((bindedServiceActions = screenOnOffUpdateServiceActions.poll()) != null) {
+                switch (bindedServiceActions) {
+                    case START_SCREEN:
+                        screenOnOffUpdateService.startSensorBasedUpdates(0);
+                        break;
+                    case STOP_SCREEN:
+                        screenOnOffUpdateService.stopSensorBasedUpdates();
+                        break;
+                }
+            }
+            bound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            bound = false;
+        }
+    };
+
+    private ServiceConnection sensorLocationUpdateServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            SensorLocationUpdateService.SensorLocationUpdateServiceBinder binder =
+                    (SensorLocationUpdateService.SensorLocationUpdateServiceBinder) service;
+            sensorLocationUpdateService = binder.getService();
+            BindedServiceActions bindedServiceActions;
+            while ((bindedServiceActions = sensorLocationUpdateServiceActions.poll()) != null) {
+                switch (bindedServiceActions) {
+                    case START_SENSOR:
+                        sensorLocationUpdateService.startSensorBasedUpdates(0);
+                        break;
+                    case STOP_SCREEN:
+                        sensorLocationUpdateService.stopSensorBasedUpdates();
+                        break;
+                }
+            }
+            bound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            bound = false;
+        }
+    };
+
+    public class AppAlarmServiceBinder extends Binder {
+        public AppAlarmService getService() {
+            return AppAlarmService.this;
+        }
     }
 }

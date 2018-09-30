@@ -9,6 +9,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
@@ -23,6 +24,8 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 public class SensorLocationUpdateService extends AbstractCommonService {
 
     private static final String TAG = "SensorLocationUpdateService";
+
+    private final IBinder binder = new SensorLocationUpdateServiceBinder();
 
     private static final float LENGTH_UPDATE_LOCATION_LIMIT = 1500;
     private static final float LENGTH_UPDATE_LOCATION_SECOND_LIMIT = 30000;
@@ -63,12 +66,6 @@ public class SensorLocationUpdateService extends AbstractCommonService {
         }
     };
 
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
-
     @Override
     public void onCreate() {
         super.onCreate();
@@ -82,6 +79,11 @@ public class SensorLocationUpdateService extends AbstractCommonService {
     }
 
     @Override
+    public IBinder onBind(Intent intent) {
+        return binder;
+    }
+
+    @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
         if (intent == null) {
@@ -89,7 +91,7 @@ public class SensorLocationUpdateService extends AbstractCommonService {
         }
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():" + intent.getAction());
         switch (intent.getAction()) {
-            case "android.intent.action.START_SENSOR_BASED_UPDATES": return startSensorBasedUpdates(ret, intent);
+            case "android.intent.action.START_SENSOR_BASED_UPDATES": return startSensorBasedUpdates(ret);
             case "android.intent.action.STOP_SENSOR_BASED_UPDATES": stopSensorBasedUpdates(); return ret;
         }
         return ret;
@@ -176,7 +178,7 @@ public class SensorLocationUpdateService extends AbstractCommonService {
         updateNetworkLocation(false, false);
     }
 
-    private void stopSensorBasedUpdates() {
+    public void stopSensorBasedUpdates() {
         if (senSensorManager == null) {
             return;
         }
@@ -186,7 +188,7 @@ public class SensorLocationUpdateService extends AbstractCommonService {
         senAccelerometer = null;
     }
 
-    private int startSensorBasedUpdates(int initialReturnValue, Intent intent) {
+    public int startSensorBasedUpdates(int initialReturnValue) {
         if (senSensorManager != null) {
             return initialReturnValue;
         }
@@ -247,6 +249,12 @@ public class SensorLocationUpdateService extends AbstractCommonService {
         }
         public float getZ() {
             return z;
+        }
+    }
+
+    public class SensorLocationUpdateServiceBinder extends Binder {
+        SensorLocationUpdateService getService() {
+            return SensorLocationUpdateService.this;
         }
     }
 }

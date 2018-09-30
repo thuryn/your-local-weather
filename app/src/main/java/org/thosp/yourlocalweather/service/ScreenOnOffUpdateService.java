@@ -4,7 +4,9 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Binder;
 import android.os.Handler;
+import android.os.IBinder;
 
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
@@ -17,6 +19,8 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 public class ScreenOnOffUpdateService extends AbstractCommonService {
 
     private static final String TAG = "ScreenOnOffUpdateService";
+
+    private final IBinder binder = new ScreenOnOffUpdateServiceBinder();
 
     private static final long UPDATE_WEATHER_ONLY_TIMEOUT = 900000; //15 min
     private static final long REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT = 180000; //3 min
@@ -106,6 +110,11 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     };
 
     @Override
+    public IBinder onBind(Intent intent) {
+        return binder;
+    }
+
+    @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
         if (intent == null) {
@@ -113,7 +122,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         }
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():" + intent.getAction());
         switch (intent.getAction()) {
-            case "android.intent.action.START_SCREEN_BASED_UPDATES": return startSensorBasedUpdates(ret, intent);
+            case "android.intent.action.START_SCREEN_BASED_UPDATES": return startSensorBasedUpdates(ret);
             case "android.intent.action.STOP_SCREEN_BASED_UPDATES": stopSensorBasedUpdates(); return ret;
             default: return ret;
         }
@@ -142,7 +151,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
     }
 
-    private void stopSensorBasedUpdates() {
+    public void stopSensorBasedUpdates() {
         appendLog(getBaseContext(), TAG, "STOP_SENSOR_BASED_UPDATES recieved");
         try {
             getApplication().unregisterReceiver(screenOnReceiver);
@@ -152,7 +161,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         }
     }
 
-    private int startSensorBasedUpdates(int initialReturnValue, Intent intent) {
+    public int startSensorBasedUpdates(int initialReturnValue) {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         org.thosp.yourlocalweather.model.Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
         if (!autoLocation.isEnabled()) {
@@ -167,5 +176,11 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         IntentFilter filterScreenOff = new IntentFilter(Intent.ACTION_SCREEN_OFF);
         getApplication().registerReceiver(screenOnReceiver, filterScreenOn);
         getApplication().registerReceiver(screenOffReceiver, filterScreenOff);
+    }
+
+    public class ScreenOnOffUpdateServiceBinder extends Binder {
+        ScreenOnOffUpdateService getService() {
+            return ScreenOnOffUpdateService.this;
+        }
     }
 }
