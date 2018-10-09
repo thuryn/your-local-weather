@@ -17,7 +17,7 @@
     <string name="pref_title_temperature">Temperatura</string>
     <string name="title_activity_settings">Ustawienia</string>
     <string name="title_activity_search">Szukanie Lokalizacji</string>
-    <string name="cloudiness_label">Zmętnienie: %1$s%2$s</string>
+    <string name="cloudiness_label">Zachmurzenie: %1$s%2$s</string>
     <string name="humidity_label">Wilgotność: %1$s%2$s</string>
     <string name="pressure_label">Ciśnienie: %1$s %2$s</string>
     <string name="wind_label">Wiatr: %1$s %2$s</string>
