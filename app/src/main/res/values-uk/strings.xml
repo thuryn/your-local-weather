@@ -1,19 +1,305 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Your local weather</string>
-    <string name="enter_city_hint">Уведіть місто</string>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Твоя місцева погода</string>
+    <string name="enter_city_hint">Введіть назву міста</string>
     <string name="label_current_city">Поточне місто</string>
-    <string name="label_choose_city">Оберіть місто</string>
-    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Розташування та налаштування дозволів</string>
-    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">"Налаштування телефону "</string>
+    <string name="label_choose_city">Обрати місто</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Налаштування розташування і дозволів</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Налаштування пристрою</string>
     <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Скасувати</string>
-    <string name="progressDialog_gps_locate">Знайти поточне місце розташування</string>
+    <string name="progressDialog_gps_locate">Знайти поточне місцезнаходження</string>
     <string name="load_progress">Завантаження…</string>
-    <string name="location_not_found" tools:ignore="MissingTranslation">Розташування не знайдено</string>
-    <string name="permissions_not_granted" tools:ignore="MissingTranslation">"Дозволи не надані - зайдіть до застосунку та натисніть на символ розташування "</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Місцезнаходження не знайдено</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Дозволи ще не надано - натисніть на символ місцезнаходження у додатку</string>
 
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Закрити</string>
-    <string name="initial_guide_next" tools:ignore="MissingTranslation">Далі</string>
-    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Назад</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Наступне</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Попереднє</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Завершити</string>
-    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Оновити параметр розташування</string>
-    </resources>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Налаштування оновлення місцезнаходження</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Додаток налаштовано оновлювати місцезнаходження, тому потрібен доступ до місцезнаходження. Перейдіть до налаштувань пристрою та увімкніть доступ до місцезнаходження або вимкніть оновлення місцезнаходження у додатку.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Додатку потрібен дозвіл для оновлення місцезнаходження за допомогою GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Додатку потрібен дозвіл для оновлення місцезнаходження за допомогою мереж Wi-Fi і GSM.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Для оновлення місцезнаходження за допомогою мереж Wi-Fi і GSM потрібен дозвіл на читання інформації з пристрою. Так отримується інформація про те, до яких базових станцій GSM підключений пристрій.</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Запит дозволів</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Доступ закінчився. Будь ласка, оновіть додаток.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Ваш API-ключ Openweathermap не зареєстрований.</string>
+
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Помічник з початкового налаштування</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Налаштовуючи додаток відповідно до ваших потреб, ви можете вибрати стратегію оновлення.
+\nЗамість стандартного оновлення при зміні місцезнаходження можна вибрати <i>Не оновлювати місцезнаходження</i>.</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Вибір джерела місцезнаходження</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Ви можете обрати метод визначення місцезнаходження - <i>Системний</i> використовує служби Google для отримання місцезнаходження за допомогою мереж (стільникові та Wi-Fi-мережі). Варіант <i>Місцевий MLS і Nominatim</i> використовує службу розташування Mozilla для отримання координат місцезнаходження і службу Nominatim для отримання місцевих назв. Другий варіант потребує дозволу на телефонні дзвінки для того, щоб отримувати інформацію про стільникову мережу. Попередньо вибрано рекомендований варіант.</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Джерело місцезнаходження та адреси</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Вибір стратегії пробудження</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Деякі моделі телефонів не повідомляють про підключені стільниці, якщо екран не ввімкнено. Бажаний варіант (з увімкненим екраном) має недолік: телефон вмикає екран всього на кілька секунд. Це зменшує вплив на розряд батареї. Увімкніть його і спробуйте вимкнути та перевірити, чи місцезнаходження все ще оновлюється.</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Стратегія пробудження</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Параметр кешування отриманої адреси</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Ви можете зменшити об\'єм мережевого трафіку шляхом кешування знайдених місцезнаходжень. Місцезнаходження записуються в додаток. Вони не надсилаються і не зберігаються в інших місцях мережі.</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Кешувати отриману адресу</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Вітаємо</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Помічник завершує роботу. Ви можете знайти інші налаштування в меню «Налаштування» (наприклад, мова, одиниці вимірювання тощо).
+\nНаступний екран пояснить запитувані дозволи та надасть вам можливість запитати їх.
+\n
+\nНасолоджуйтесь додатком.</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Загальне</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Додаток визначає місцезнаходження за допомогою стільникової мережі (BTS), Wi-Fi, а якщо вони не працюють, то за допомогою GPS, щоб показати місцеву погоду, у свою чергу отримуючи координати з служби місцезнаходження Mozilla. Використовуючи віджет на своєму телефоні чи планшеті, ви можете бачити своє місцезнаходження та поточну погоду на головному екрані. Оновлення місцезнаходження може бути періодичним (наприклад, погодинно) або додаток може використовувати акселерометр для виявлення руху на відстань більшу, ніж задано в «Налаштуваннях». Якщо пристрій у вашій кишені, відстань збільшується швидше. Ви можете вимкнути оновлення місцезнаходження, тоді буде оновлюватися лише погода. Додаток оновлює місцезнаходження та прогноз погоди через задані проміжки часу. Наприклад, можна встановити період оновлення рівним одній годині. Прогноз погоди оновлюється відразу після зміни розташування або коли екран увімкнено, але не частіше, ніж раз на 15 хвилин (і якщо погода не оновлювалася за останні 15 хвилин). Ця інформація використовується для отримання координат місцезнаходження за допомогою служби місцезнаходження Mozilla. Додаток намагається використовувати GPS, коли визначення місцезнаходження за мережами мобільного зв\'язку та Wi-Fi недоступне.</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Основний додаток</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Основний додаток містить огляд поточної погоди. Ви можете оновити погоду кнопкою оновлення на панелі додатку або свайпом вниз. Кнопка оновлення місцезнаходження знаходиться біля кнопки оновлення погоди. Ця кнопка доступна лише тоді, коли ввімкнено «Місцезнаходження 0» («Місцезнаходження 0» призначене для автоматичного оновлення місцезнаходження).</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Поруч із кнопкою оновлення місцезнаходження розташована кнопка керування місцезнаходженням (значок лупи). Ви можете керувати місцезнаходженнями, доступними у додатку та віджетах. За замовчуванням доступне одне місцезнаходження («Місцезнаходження 0») - воно призначене для автоматичного оновлення місцезнаходження. Ви можете знайти кнопку ввімкнення/вимкнення, коли ви зсунете це місцезнаходження ліворуч. Ви також можете додати місцезнаходження вручну. Коли ви натискаєте кнопку «+», ви можете вибрати своє місцезнаходження на мапі. Ви також можете видалити місцезнаходження за допомогою кнопки «Видалити» - вона стає доступною, коли ви зсуваєте місцезнаходження ліворуч.</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">На наступному екрані ви знайдете прогноз погоди (виберіть наступний екран у меню або проведіть пальцем зліва направо). Прогноз погоди оновлюється за допомогою кнопки оновлення або коли ви переходите на екран прогнозу погоди (але не більше одного оновлення на годину).</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Третій екран містить прогноз погоди, відображений на графіках.</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Віджети</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">У додатку доступні три віджети, що містять деякі загальні показники поточної погоди (наприклад, температура). Деякі значення унікальні для певного віджета (наприклад, захід сонця). Час останнього оновлення розташовано у правому куті кожного віджета. Ви можете бачити, що було оновлено останнього разу (якщо ви увімкнули цю опцію в меню налаштувань). Поряд з часом останнього оновлення розташовується кнопка ручного оновлення. Коли ви натискаєте цю кнопку, погода (а також місцезнаходження, якщо в налаштуваннях обрано відповідний параметр) оновлюється беззастережно. Останній параметр у віджеті - це зміна місцезнаходження: при натисканні на назву поточного місцезнаходження воно змінюється на наступне.</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Загальні налаштування</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Ці параметри впливають на весь додаток.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Температура</b> - ви можете вибрати одиниці вимірювання, <b>Вітер</b> - ви можете вибрати одиниці вимірювання швидкості вітру та <b>Тиск</b> - ви можете вибрати одиниці вимірювання тиску. Значення перераховуються з використанням цих параметрів.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Приховати опис погоди</b> - опис поточної погоди прихований. Ви можете бачити поточну погоду лише на змінній піктограмі.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Період оновлення для місцезнаходження («Місцезнаходження 0»)</b> - ви можете встановити період оновлення для «Місцезнаходження 0» - «Місцезнаходження 0» має можливість оновлювати місцезнаходження відповідно до стільниці, Wi-Fi-мереж і GPS. Якщо ви вибрали параметр оновлення <i>За акселерометром</i>, додаток використовує акселерометр для виявлення руху. При виявленні руху програма відстежує відстань. Коли досягнуто межу для відстані та останнє оновлення відбулося принаймні 15 хвилин тому, оновлюється місцезнаходження та поточна погода. Якщо додаток не може отримати місцезнаходження, ви побачите напис «Невідоме місцезнаходження» у віджеті. Якщо додаток не отримав місцезнаходження, оновлення місцезнаходження виконується повторно через 5 хвилин. Ви також можете вибрати оновлення місцезнаходження залежно від інтервалу часу. Параметром <b>Період оновлення погоди («Місцезнаходження 1, 2, 3...»)</b> можна встановити оновлення погоди для місцезнаходжень, введених вручну.</string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Якщо обрано параметр <b>Вмикати GPS за необхідності</b>, додаток намагається визначити місцезнаходження по стільнику або Wi-Fi-мережам. Коли місцезнаходження неможливо знайти за допомогою мережевих служб, додаток вмикає GPS на кілька секунд, щоб визначити місцезнаходження.</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Джерело місцезнаходження та адреси</b>
+\nВи можете вибрати, звідки додаток отримує місцезнаходження та адресу.</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"><b>Місцевий MLS і Nominatim</b> - Додаток отримує місцезнаходження через служби місцезнаходження Mozilla. Додаток використовує стільникову мережу - інформація про поточні активні та доступні мережеві базові станції. Для отримання цієї інформації позвіл на здійснення телефонних дзвінків. Додаток використовує Wi-Fi-мережі навколо для більш точного визначення вашого місцезнаходження. Додаток отримує географічні координати від служб місцезнаходження Mozilla. Додаток використовує служби Nominatim для визначення адреси за координатами. Ви можете сприяти покращенню служб місцезнаходження Mozilla, встановивши додаток Mozilla Stumbler (доступний на https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler), щоб отримувати більш точні місцезнаходження в майбутньому.</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"><b>Система</b> - Додаток отримує місцезнаходження та адресу за допомогою системних служб Android (зазвичай це служби місцезнаходження Google).</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Ці параметри встановлюють <b>мову</b>, <b>тему</b> основного додатку і <b>набір піктограм</b>, що використовуються в додатку і віджетах.</string>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"><b>Сповіщення</b>
+\nЯкщо вибрано параметр «Сповіщення», програма періодично оновлює поточну погоду і поміщає її в область сповіщень. Ви також можете увімкнути вібрацію - пристрій вібруватиме після оновлення погоди.</string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">Для зменшення об\'єму мережевого трафіку та прискорення оновлення місцезнаходження можна увімкнути <b>Кешування місцезнаходжень</b>. Цей кеш зберігає географічні координати та адресу. Додаток повинен запитувати службу мережевого вирішення незалежно від цього параметра. Але запит до служби вирішення адреси Nominatim відбувається тільки в тому випадку, якщо адреса не знаходиться в кеші. Якщо ви увімкнули параметр «Кешування місцезнаходжень», ви повинні погодитися з фактом, що відвідані вами адреси зберігаються в додатку. Жодна інформація з кешу не надсилається за межі додатку.</string>
+    <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Поряд з параметром кешування місцезнаходження (прапорець) знаходиться параметр <b>Вік кешованих даних</b>. Кожна збережена адреса має часову мітку. Коли часова мітка старіша за значення, встановлене у «Вік кешованих даних», додаток надсилає службі Nominatim запит на оновлення запису.</string>
+    <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Ви можете очистити кеш адрес кнопкою <b>Очистити кеш</b>.</string>
+    <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">Кілька останніх записів кешованих адрес відображаються в розділі <b>Інформація про кеш</b>. Там же можна переглянути загальну кількість записів.</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">Налаштування віджету</string>
+    <string name="help_page_4_content" tools:ignore="MissingTranslation">Налаштування віджету містять параметри конфігурації для всіх віджетів.</string>
+    <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Якщо увімкнено параметр <b>Показувати написи у віджеті</b>, для відображення погодних умов використовуватимуться текстові написи замість піктограм.</string>
+    <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Фон віджету можна налаштувати у розділі <b>Тема віджета</b>.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">Параметр <b>Стратегія пробудження</b> призначений для подолання помилкової реалізації служби Android різними виробниками. Якщо ви обрали варіант <i>Не пробуджувати</i> і місцезнаходження оновлюється як належить, у вас служба реалізована правильно. Якщо місцезнаходження не оновлюється як належить, ви можете спробувати <i>Пробуджувати лише процесор</i>. При цьому варіанті пробуджується лише процесор та виконується спроба отримати стан стільникової та Wi-Fi-мережі. Останній варіант <i>Вмикати екран</i> вмикає екран пристрою на кілька секунд протягом оновлення місцезнаходження. На деяких Android-телефонах це єдина можливість отримати коректну інформацію про стільникові та Wi-Fi-мережі. Цей варіант споживає певну кількість заряду батареї, але загальний вплив на тривалість її роботи дуже низький.</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Коли виконується оновлення місцезнаходження та поточної погоди, статус оновлення відображається поряд з часом оновлення у віджеті. Ви можете контролювати відображуване параметром <b>Показувати результат оновлення</b>. Пояснення найбільш розвинутого параметру:</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">Параметри налагодження</string>
+    <string name="help_page_5_content" tools:ignore="MissingTranslation">Існує параметр для увімкнення запису журналу налагодження у файл. Цей параметр корисний, якщо виникають проблеми з програмою.</string>
+
+    <string name="title_activity_search" tools:ignore="MissingTranslation">Пошук місцезнаходження</string>
+    <string name="label_activity_main" tools:ignore="MissingTranslation">Поточна погода</string>
+    <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Щоденний прогноз погоди</string>
+    <string name="label_activity_graphs" tools:ignore="MissingTranslation">Графіки погоди</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Допомога</string>
+    <string name="title_activity_license" tools:ignore="MissingTranslation">Ліцензія на %s</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Місцезнаходження</string>
+
+    <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Оновити</string>
+    <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Пошук міста</string>
+    <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Визначити місцезнаходження</string>
+    <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Перемкнути значення</string>
+    <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Перемкнути Y-вісь координат</string>
+
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Налаштування колонки</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Відображати колонки</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Піктограма</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Опис</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Температура</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Справжня температура</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Вітер</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Дощ/Сніг</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Вологість</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Тиск</string>
+    <string name="ok" tools:ignore="MissingTranslation">OK</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Скасувати</string>
+
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Відкрити навігаційне меню</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Закрити навігаційне меню</string>
+    <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">Поточна погода</string>
+    <string name="nav_menu_daily_forecast" tools:ignore="MissingTranslation">Щоденний прогноз</string>
+    <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Графіки</string>
+    <string name="nav_menu_settings" tools:ignore="MissingTranslation">Налаштування</string>
+    <string name="nav_feedback" tools:ignore="MissingTranslation">Зворотній зв\'язок</string>
+    <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">Пожертвувати біткоїн</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Допомога</string>
+
+    <string name="location_not_initialized" tools:ignore="MissingTranslation">Місцезнаходження не ініціалізовано. Спочатку клацніть на коло місцезнаходження.</string>
+    <string name="connection_not_found" tools:ignore="MissingTranslation">Перевірте з\'єднання з Інтернет</string>
+    <string name="toast_parse_error" tools:ignore="MissingTranslation">Сталася помилка. Спробуйте пізніше.</string>
+
+    <string name="pressure_measurement" tools:ignore="MissingTranslation">гПа</string>
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">мм рт.ст.</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">дюйм рт.ст.</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">мбар</string>
+    <string name="wind_speed_meters" tools:ignore="MissingTranslation">м/с</string>
+    <string name="wind_speed_miles" tools:ignore="MissingTranslation">миль/год</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">вузлів</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">км/год</string>
+    <string name="millimetre_label" tools:ignore="MissingTranslation">мм</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">дюймів</string>
+
+    <string name="hint_activity_search" tools:ignore="MissingTranslation">Пошук місцезнаходження</string>
+
+    <string name="title_activity_settings" tools:ignore="MissingTranslation">Налаштування</string>
+    <string name="pref_title_temperature" tools:ignore="MissingTranslation">Температура</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">Вітер</string>
+    <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Дощ і сніг</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Тиск</string>
+    <string name="preference_hide_desc" tools:ignore="MissingTranslation">Приховати опис погоди</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Сповіщення</string>
+    <string name="pref_title_notification" tools:ignore="MissingTranslation">Увімкнути сповіщення</string>
+    <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">Інтервал оновлення</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Налаштування оновлення місцезнаходження</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">Не оновлювати місцезнаходження</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">Оновлювати місцезнаходження (рекомендовано)</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">Оновлювати місцезнаходження без GPS</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Увімкнути GPS за необхідності</string>
+    <string name="update_period_by_sensors" tools:ignore="MissingTranslation">За допомогою акселерометра</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">Тільки вручну</string>
+    <string name="update_period_15min" tools:ignore="MissingTranslation">15 хвилин</string>
+    <string name="update_period_30min" tools:ignore="MissingTranslation">30 хвилин</string>
+    <string name="update_period_1hour" tools:ignore="MissingTranslation">Щогодини</string>
+    <string name="update_period_3hours" tools:ignore="MissingTranslation">3 години</string>
+    <string name="update_period_6hours" tools:ignore="MissingTranslation">6 годин</string>
+    <string name="update_period_12hours" tools:ignore="MissingTranslation">12 годин</string>
+    <string name="update_period_24hours" tools:ignore="MissingTranslation">24 години</string>
+    <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Вібрація</string>
+    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Період оновлення погоди («Місцезнаходження 1, 2, 3...»)</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Період оновлення місцезнаходження («Місцезнаходження 0»)</string>
+    <string name="preference_title_activity_general" tools:ignore="MissingTranslation">Загальні налаштування</string>
+    <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Налаштування віджету</string>
+    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Оновити місцезнаходження</string>
+    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Показувати написи в віджеті</string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Використовувати геолокацію для відображення</string>
+    <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Тема віджету</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">Темна</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">Світла</string>
+    <string name="theme_transparent" tools:ignore="MissingTranslation">Прозора</string>
+    <string name="preference_title_category_display" tools:ignore="MissingTranslation">Показати</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Оновити місцезнаходження і погоду</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Системні налаштування</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Ключ API Openweathermap.org</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Вбудований</string>
+    <string name="pref_title_language" tools:ignore="MissingTranslation">Мова</string>
+    <string name="pref_language_default" tools:ignore="MissingTranslation">Мова системи</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Китайська (Chinese)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Суахілі (Swahili)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Норвезький букмол (Norwegian Bokmål)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Голландська (Dutch)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Ньянджа (Nyanja)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Угорська (Hungarian)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Іспанська (Spanish)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Грецька (Greek)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">Арабська (Arabic)</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Українська (Ukrainian)</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Румунська (Romanian)</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Португальська (Portugal)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Португальська (Brazil)</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Джерело місцезнаходження і адреси</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Місцевий MLS і Nominatim (рекомендовано)</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">Система</string>
+    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP (без GAPPS)</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">Тема</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Показувати результат оновлення</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Нічого</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Щойно оновлене значення</string>
+    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Оновлене значення з джерелом місцезнаходження</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - оновлено тільки погоду
+\nL - оновлено тільки місцезнаходження
+\nG - місцезнаходження по GPS і погоду оновлено
+\nN - місцезнаходження по мережі і погоду оновлено
+\nB - доступ до служби Openweathermap.org був заборонений, спробуйте оновити погоду пізніше
+\nE - токен доступу до служби Openweathermap.org прострочений. Вам потрібно оновити додаток, щоб знову отримати доступ</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - оновлено тільки погоду
+\nL - оновлено тільки місцезнаходження
+\nG - місцезнаходження по GPS і погоду оновлено
+\nN - місцезнаходження по мережі і погоду оновлено
+\nNi - місцезнаходження по стільниковій мережі і погоду оновлено, місцезнаходження визначено через службу місцезнаходження Mozilla 
+\nB - доступ до служби Openweathermap.org був заборонений, спробуйте оновити погоду пізніше
+\nE - токен доступу до служби Openweathermap.org прострочений. Вам потрібно оновити додаток, щоб знову отримати доступ</string>
+    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Якщо місцезнаходження застряє під час сну пристрою, ви можете спробувати пробудити його, коли він шукає стільникову мережу</string>
+    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Стратегія пробудження</string>
+    <string name="nowakeup_label" tools:ignore="MissingTranslation">Не пробуджувати</string>
+    <string name="wakeuppartial_label" tools:ignore="MissingTranslation">Пробуджувати лише процесор</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">Вмикати екран</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Очистити кеш</string>
+    <string name="db_info" tools:ignore="MissingTranslation">Інформація про кеш</string>
+    <string name="db_header" tools:ignore="MissingTranslation">База даних кешу адрес</string>
+    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Кешовані значення будуть видалені після вказаної кількості часу</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Вік кешованих даних</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 годин</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">1 день</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">1 тиждень</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">1 місяць</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">3 місяці</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">6 місяців</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">1 рік</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">ніколи</string>
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Кешувати місцезнаходження</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Знайдені місцезнаходження закешовані</string>
+    <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Знайдені місцезнаходження не закешовані</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Видалити</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Вимкнути</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Увімкнути</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">Автоматично виявлені</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Вимкнено</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Додати</string>
+    <string name="search_location_info" tools:ignore="MissingTranslation">Торкніться мапи, щоб отримати бажане місцезнаходження, та зачекайте, поки буде отримана адреса.</string>
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Поточна погода ще не оновлювалася. Спочатку оновіть поточну погоду за допомогою кнопки оновлення.</string>
+
+    <string name="preference_title_activity_about" tools:ignore="MissingTranslation">Про додаток</string>
+    <string name="about_version_pref_title" tools:ignore="MissingTranslation">Версія</string>
+    <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Вихідний код</string>
+    <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Ліцензія</string>
+    <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Ліцензії Libre software</string>
+
+    <string name="wind_label" tools:ignore="MissingTranslation">Вітер: %1$s %2$s</string>
+    <string name="rain_label" tools:ignore="MissingTranslation">Дощ: %1$s %2$s</string>
+    <string name="snow_label" tools:ignore="MissingTranslation">Сніг: %1$s %2$s</string>
+    <string name="humidity_label" tools:ignore="MissingTranslation">Вологість: %1$s %2$s</string>
+    <string name="pressure_label" tools:ignore="MissingTranslation">Тиск: %1$s %2$s</string>
+    <string name="cloudiness_label" tools:ignore="MissingTranslation">Хмарність: %1$s %2$s</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">Останнє оновлення: %s</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">Схід сонця: %s</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">Захід сонця: %s</string>
+    <string name="temperature_morning_title" tools:ignore="MissingTranslation">Ранок</string>
+    <string name="temperature_day_title" tools:ignore="MissingTranslation">День</string>
+    <string name="temperature_evening_title" tools:ignore="MissingTranslation">Вечір</string>
+    <string name="temperature_night_title" tools:ignore="MissingTranslation">Ніч</string>
+    <string name="label_temperature" tools:ignore="MissingTranslation">Температура</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Справжня температура: %s</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Виміряна температура: %s</string>
+    <string name="label_wind" tools:ignore="MissingTranslation">Вітер</string>
+    <string name="label_rain" tools:ignore="MissingTranslation">Дощ</string>
+    <string name="label_snow" tools:ignore="MissingTranslation">Сніг</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Тиск</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">Тільки виміряне значення</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Обидва, виміряне переважає</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Обидва, реальне переважає</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">Тільки реальне значення</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Показувати температуру як</string>
+
+    <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Піктограма поточної погоди</string>
+    <string name="widget_refresh_button" tools:ignore="MissingTranslation">Кнопка оновлення віджету</string>
+
+    <string name="wind_direction_north" tools:ignore="MissingTranslation">Пн↓</string>
+    <string name="wind_direction_north_east" tools:ignore="MissingTranslation">ПнСх↙</string>
+    <string name="wind_direction_east" tools:ignore="MissingTranslation">Сх←</string>
+    <string name="wind_direction_south_east" tools:ignore="MissingTranslation">ПдСх↖</string>
+    <string name="wind_direction_south" tools:ignore="MissingTranslation">Пд↑</string>
+    <string name="wind_direction_south_west" tools:ignore="MissingTranslation">ПдЗх↗</string>
+    <string name="wind_direction_west" tools:ignore="MissingTranslation">Зх→</string>
+    <string name="wind_direction_north_west" tools:ignore="MissingTranslation">ПнЗх↘</string>
+
+    <string name="permission_location_rationale" tools:ignore="MissingTranslation">Для визначення міста потрібен дозвіл визначати місцезнаходження</string>
+    <string name="permission_not_granted" tools:ignore="MissingTranslation">Дозволи не надано!</string>
+    <string name="permission_available_location" tools:ignore="MissingTranslation">Дозвіл визначити місцезнаходження надано</string>
+    <string name="permission_location_need" tools:ignore="MissingTranslation">Надати дозвіл визначати місцезнаходження</string>
+
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Поточна мова опису погоди та адреси зміняться при наступному оновленні або ви можете примусово зробити це вручну.</string>
+
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">Обрати теку для журналів</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">Параметри налагодження</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Через зазначену кількість часу файл журналу буде створено заново</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Чергування файлу журналу</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 годин</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">1 день</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">2 дні</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">3 дні</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">1 тиждень</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">1 місяць</string>
+
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Набір піктограм</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Шрифтові піктограми</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Піктограми Merlin the red</string>
+</resources>
