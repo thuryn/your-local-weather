@@ -17,8 +17,8 @@
     <string name="toolbar_menu_refresh">更新</string>
     <string name="toolbar_menu_search_city">搜索城市</string>
     <string name="toolbar_menu_detect_location">检测位置</string>
-    <string name="menu_action_toggle_values">切换值</string>
-    <string name="menu_action_toggle_yaxis">切换 Y 轴</string>
+    <string name="menu_action_toggle_values">显示/隐藏数值</string>
+    <string name="menu_action_toggle_yaxis">显示/隐藏 Y 轴</string>
 
     <string name="nav_menu_current_weather">当前天气</string>
     <string name="nav_menu_daily_forecast">每日预报</string>
@@ -102,7 +102,7 @@
     <string name="wind_direction_north_west">西北↘</string>
 
     <string name="permission_location_rationale">确定城市需要位置权限</string>
-    <string name="permission_not_granted">未授予权限 ！</string>
+    <string name="permission_not_granted">未授予权限！</string>
     <string name="permission_available_location">位置权限已授予</string>
     <string name="permission_location_need">授予位置权限</string>
 
@@ -192,7 +192,7 @@
 \n享受这个应用吧。</string>
     <string name="help_page_general_content" tools:ignore="MissingTranslation">此应用使用蜂窝网络（BTS）、Wi-Fi 以及，如果以上方法失败，GPS 定位以显示当地天气，同时从 Mozilla 位置服务获取坐标。使用手机或平板电脑上的微件，您可以在主屏幕上看到您的位置和当前天气。位置更新可以是周期性的（例如每小时），或者应用可以使用加速度计检测距离大于一定值的移动。在你的口袋里，距离增加得更快。您可以关闭位置更新 - 仅更新天气。应用会以指定的时间间隔更新位置和天气。例如，您可以将更新周期设置为一小时。天气在更新位置后或屏幕打开时立即更新 - 但间隔不小于 15 分钟（且在过去的 15 分钟内未更新天气）。这些信息用于通过 Mozilla 位置服务获取位置坐标。当无法从蜂窝网络和 Wi-Fi 网络中获取位置时，应用程序将尝试使用 GPS。位置坐标用于通过 Nominatim 服务获取地址。该地址在应用或微件中使用。该应用程序使用 OpenWeatherMap.org 服务来获取当前天气。</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">主应用包括当前天气的概览。您可以用应用面板中的刷新按钮或下划更新天气。您可以在刷新天气按钮旁找到更新位置按钮。此按钮仅在位置 0 启用时可用（位置 0 用于自动更新位置）。</string>
-    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">在更新位置按钮旁边，有一个位置管理按钮（放大镜图标）。您可以管理应用和微件中的可用位置。默认情况下，有一个位置（位置 0）可用 - 这是用于自动位置更新的。当您向左滑动此位置时，可以找到 \"启用/禁用\" 按钮。您还可以手动添加位置。当您单击 + 按钮时，您可以在地图上拾取您的位置。您还可以使用 \"删除\" 按钮删除该位置 - 向左滑动位置可访问它。</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">在更新位置按钮旁边，有一个位置管理按钮（放大镜图标）。您可以管理应用和微件中的可用位置。默认情况下，有一个位置（位置 0）可用 - 这是用于自动位置更新的。当您向左滑动此位置时，可以找到启用/禁用按钮。您还可以手动添加位置。当您单击 + 按钮时，您可以在地图上拾取您的位置。您还可以使用删除按钮删除该位置 - 向左滑动位置可访问它。</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">您可以在下一个屏幕上找到天气预报（选择菜单中的下一个屏幕或从左向右滑动）。天气预报在点击更新按钮或者当您进入屏幕时更新（但每小时不超过一次更新）。</string>
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">第三个屏幕包含以图表显示的天气预报。</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">该应用有三个可用微件，包含当前天气的一些常用值（例如温度）。某些值对于特定的微件是唯一的（例如日落）。每个微件的右上角都有最后一次更新的时间。您可以查看上次更新的内容（在设置菜单中启用此选项时）。您可以在上次更新时间旁边找到更新按钮。点击此按钮时，将无条件更新天气（和选定更新位置选项时的位置）。微件中的最后一个选项是更改位置 - 当您点击当前位置时，位置将更改为下一项。</string>
@@ -240,14 +240,14 @@
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">无</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">刚刚更新的值</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">使用位置来源更新的值</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - 仅更新过天气
-\nL - 仅更新过位置 
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - 仅天气已更新
+\nL - 仅位置已更新 
 \nG - 位置来自 GPS 且天气已更新
 \nN - 位置来自网络且天气已更新 
 \nB - Openweathermap.org 服务访问已被禁止，请尝试稍后更新天气
 \nE - Openweathermap.org 服务访问令牌已过期。您需要更新应用以再次获取令牌</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - 仅更新过天气
-\nL - 仅更新过位置
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - 仅天气已更新
+\nL - 仅位置已更新 
 \nG - 位置来自 GPS 且天气已更新
 \nN - 位置来自网络且天气已更新
 \nNi - 位置来自蜂窝网络且天气已更新，位置发现来自 Mozilla 位置服务
