@@ -174,7 +174,6 @@
     <string name="pref_language_ar" tools:ignore="MissingTranslation">العَرَبِيَّة‎（阿拉伯语）</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">位置及地址来源</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">系统</string>
-    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
     <string name="app_name" tools:ignore="MissingTranslation">当地天气</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">访问权限已过期。请升级应用。</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">您的 OpenweathermapApiKey 未注册。</string>

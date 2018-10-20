@@ -158,7 +158,6 @@
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Hjelp</string>
 
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Vis</string>
-    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
     <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 timer</string>
     <string name="location_cache_24_label" tools:ignore="MissingTranslation">Én dag</string>
     <string name="location_cache_168_label" tools:ignore="MissingTranslation">Ei uke</string>

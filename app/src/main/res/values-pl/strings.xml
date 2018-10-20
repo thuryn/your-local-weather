@@ -211,7 +211,6 @@
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Źródło adresu i lokalizacji</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Lokalne MLS i Nominatim (zalecane)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">System</string>
-    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
     <string name="pref_title_theme" tools:ignore="MissingTranslation">Motyw</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Wyświetl podsumowanie aktualizacji</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Nic nie ma</string>

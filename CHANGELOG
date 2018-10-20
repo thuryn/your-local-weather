@@ -1,3 +1,244 @@
+v4.3.0
+Rewritten background services for faster and smoother updates
+
+v4.2.6
+Startup procedure redesigned to get it to work on Oreo
+
+v4.2.5
+Fix start of service on Oreo
+
+v4.2.4
+Fix forecast widget update when no location is selected
+
+v4.2.3
+Start services on boot by JobScheduler because of Android O
+
+v4.2.2
+Start services on boot by JobScheduler because of Android O
+
+v4.2.1
+Added inHg and mbars units, fixed temperature in the forecast widget
+
+v4.2.0
+Added inHg and mbars units, fixed temperature in the forecast widget
+
+v4.1.6
+Fix endless update of location window in main activity
+
+v4.1.5
+Limit the number of locations to 2 for default API key, 20 for custom one
+
+v4.1.4
+Implemented custom OWM api key feature
+
+v4.1.3
+Add handlers for error codes from Openweathermap, added new api key
+
+v4.1.2
+Fix error when in memory database is created
+
+v4.1.1
+Fix rotation icon behavior
+
+v4.1.0
+Process of location update improved to get it work on slow flashes also
+
+v4.0.3
+Rotation icon redesigned to get more stable behavior
+
+v4.0.2
+Rotation icon fixed and improved
+
+v4.0.1
+Check for stored forecast version moved to avoid cyclic weather checking
+
+v4.0.0
+Added two new widgets with weather forecast
+
+v3.2.6
+Fix update of weather when update of location is in process
+
+v3.2.5
+Location update services fixed and improved
+
+v3.2.4
+Fix update of additional locations
+
+v3.2.3
+Added new languages into preferences menu; better handling of connection outage
+
+v3.2.2
+Fix dark theme in the forecast activity
+
+v3.2.1
+Fix error when forecast is updated for the first time
+
+v3.2.0
+Added pressure graph in the Graph activity
+
+v3.1.13
+Show weather forecast even when network not available
+
+v3.1.12
+Fix notifications, language setting and service management
+
+v3.1.11
+Enhance starting of services
+
+v3.1.10
+Makes starting of services more durable
+
+v3.1.9
+Optimization of service management
+
+v3.1.8
+Fix update of databases, improved update when screen is on, added logging info
+
+v3.1.7
+Fixies related to changes for Android Oreo
+
+v3.1.6
+Fixies related to target Oreo
+
+v3.1.5
+Added apparent temperature into weather forecast
+
+v3.1.4
+Fixed calculation of apparent temperature
+
+v3.1.3
+Add reschedule mechanism to get update when connection is not yet ready
+
+v3.1.2
+Fix update of weather in the main application
+
+v3.1.1
+Several small fixies. Improved logging for a rotation icon.
+
+v3.1.0
+Implemented appearance temperature feature
+
+v3.0.17
+Make sensor updates less frequent to save battery life
+
+v3.0.16
+Fix color of values in graphs according the theme
+
+v3.0.15
+Fix null text as update source
+
+v3.0.14
+Fix theme in the graph screen
+
+v3.0.13
+Set default option in the settings for language and other options; fix location selection when entering main screen
+
+v3.0.12
+Make colors of graphs according theme
+
+v3.0.11
+Added checks for null values
+
+v3.0.10
+Fixed displaying of icon for weather according sunrise/sunset
+
+v3.0.9
+Make posible to update location 0 manually, make column fot time wider in the forecast screen; code optimizations
+
+v3.0.8
+Set column width for columns in the weather forecast activity according the font size
+
+v3.0.7
+Fix starting of sensors or regular updates when autolocation is disabled or enabled
+
+v3.0.6
+Fix several errors; hide update location button when autolocation is not enabled; redesign location rotation when autolocation is disabled
+
+v3.0.5
+Fix error when no location has been set
+
+v3.0.4
+Fix error when weather is not fetched
+
+v3.0.3
+Fix error when no weather fetched
+
+v3.0.2
+Fixed several issues
+
+v3.0.1
+Fixed manual update of weather; fixed change of update periods settings
+
+v3.0
+Added location management, search location screen redesigned, new wind unit - knots
+
+v2.5.2
+Add languages into menu, several small fixies
+
+v2.5.1
+Fix update of widget when permissions are not granted, call check permission when initial guide is closed
+
+v2.5
+Added mph and mmHg units
+
+v2.4.2
+Fix finding location dialog and value for updated source
+
+v2.4.1
+Fixed permission checking and layout in the main application
+
+v2.4
+Added help screen and initial configuration guide
+
+v2.3
+Redesigned weather forecast page
+
+v2.2.2
+Fix text messages when permissions are checked
+
+v2.2.1
+Fix notification service
+
+v2.2
+Improved durability to a weak network connection
+
+v2.1
+Better handling of location settings and permissions
+Fix displaying of temperature
+
+v2.0
+Added option to specify wind and temperature units more precisely
+
+v1.9
+Added switching of pages by swiping
+
+v1.8
+Added option to update location without GPS
+
+v1.7.2
+Fix update of weather when screen goes on
+Fix update of widget when screen is rotated
+
+v1.7.1
+Solving issues with location and weather updates
+
+v1.7
+Fix permission checking
+
+v1.6
+Add option to set labels/icons to widget weather properties
+Make calls to openweathermap.org by SSL
+
+v1.5
+
+v1.4
+
+v1.3
+
+v1.2
+
+v1.1
+
 v1.0
 - version based on good-weather app v4.4
 - Added accelerometer based updates

@@ -188,7 +188,6 @@
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Джерело місцезнаходження і адреси</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Місцевий MLS і Nominatim (рекомендовано)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Система</string>
-    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP (без GAPPS)</string>
     <string name="pref_title_theme" tools:ignore="MissingTranslation">Тема</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Показувати результат оновлення</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Нічого</string>

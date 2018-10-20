@@ -149,7 +149,6 @@
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Nastavitve lokacije in naslova</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Lokalni MLS in nominatim (priporočeno)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistem</string>
-    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
     <string name="pref_title_theme" tools:ignore="MissingTranslation">Tema</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Prikaži povzetek posodobitve</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Nič</string>

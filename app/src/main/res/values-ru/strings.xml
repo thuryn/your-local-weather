@@ -243,7 +243,6 @@
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Источник Местоположения и Адресов</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Local MLS и Nominatim (рекомендуется)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Система</string>
-    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP(no GAPPS)</string>
     <string name="pref_title_theme" tools:ignore="MissingTranslation">Тема</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Показать Сводку Обновлений</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Ничего</string>

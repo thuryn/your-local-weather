@@ -189,7 +189,6 @@
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Kokaleku eta helbideen iturburua</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">MLS lokala eta Nominatim (aholkatutakoa)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistema</string>
-    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Erakutsi eguneraketaren laburpena</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Ezer ez</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Balioa oraintxe eguneratu da</string>

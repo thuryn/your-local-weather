@@ -155,7 +155,6 @@
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Konum ve Adres Kaynağı</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Yerel MLS ve Nominatim (önerilen)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistem</string>
-    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Güncelleme Özetini Göster</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Yok</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Değer şimdi güncellendi</string>

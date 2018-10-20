@@ -282,7 +282,6 @@
     <string name="wakeupfull_label" tools:ignore="MissingTranslation">mit Bildschirm aufwecken</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Aufweckverhalten</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Allgemeines</string>
-    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">UnifiedNLP</string>
     <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Gefühlte Temperatur: %s</string>
     <string name="label_measured_temperature" tools:ignore="MissingTranslation">Gemessene Temperatur: %s</string>
     <string name="measured_only" tools:ignore="MissingTranslation">Gemessener Wert allein</string>
