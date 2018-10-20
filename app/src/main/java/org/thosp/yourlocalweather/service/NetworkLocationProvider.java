@@ -36,7 +36,6 @@ public class NetworkLocationProvider extends Service {
 
     private final IBinder binder = new NetworkLocationProviderBinder();
 
-    String destinationPackageName;
     boolean resolveAddress;
 
     public TelephonyManager mTelephonyManager;
@@ -47,7 +46,6 @@ public class NetworkLocationProvider extends Service {
     private volatile PendingIntent intentToCancel;
     private volatile Integer jobId;
     private AlarmManager alarmManager;
-    private org.thosp.yourlocalweather.model.Location currentLocation;
 
     private WifiScanCallback mWifiScanResults = new WifiScanCallback() {
 
@@ -145,8 +143,6 @@ public class NetworkLocationProvider extends Service {
 
     public void startLocationUpdate(Location inputLocation, boolean resolveAddress) {
         this.resolveAddress = resolveAddress;
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
-        currentLocation = locationsDbHelper.getLocationById(0);
         if (nextScanningAllowedFrom != null) {
             Calendar now = Calendar.getInstance();
             if (now.before(nextScanningAllowedFrom)) {
@@ -154,7 +150,7 @@ public class NetworkLocationProvider extends Service {
             }
         }
         if (inputLocation != null) {
-            MozillaLocationService.getInstance(getBaseContext()).processUpdateOfLocation(getBaseContext(), inputLocation, destinationPackageName, resolveAddress);
+            MozillaLocationService.getInstance(getBaseContext()).processUpdateOfLocation(getBaseContext(), inputLocation, resolveAddress);
         } else {
             sendUpdateToLocationBackends();
         }
@@ -200,7 +196,6 @@ public class NetworkLocationProvider extends Service {
                                                                           LocationNetworkSourcesService.getInstance().getCells(getBaseContext(),
                                                                           mTelephonyManager),
                                                                           scans,
-                                                                          destinationPackageName,
                                                                           resolveAddress);
     }
 

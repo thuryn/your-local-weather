@@ -62,7 +62,6 @@ public class MozillaLocationService {
     public synchronized void getLocationFromCellsAndWifis(final Context context,
                                                           List<Cell> cells,
                                                           List<ScanResult> wiFis,
-                                                          final String destinationPackageName,
                                                           final boolean resolveAddress) {
         appendLog(context, TAG, "getLocationFromCellsAndWifis:wifi=" + ((wiFis != null)?wiFis.size():"null") +
                     ", cells=" + ((cells != null)?cells.size():"null"));

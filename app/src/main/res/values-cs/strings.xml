@@ -107,7 +107,7 @@
     <string name="preference_display_update_nothing">Nic</string>
     <string name="preference_display_update_value">Jen aktualizované hodnoty</string>
     <string name="preference_display_update_location_source">Aktualizované hodnoty včetně zdroje pozice</string>
-    <string name="preference_display_update_value_info">W - aktualizovnáno jen počasí\nL - aktualizována jen poloha\nG - aktualizována poloha z GPS a počasí\nN - aktualizována poloha ze sítě a počasí\nB - přístup do služby Openweathermap.org byl zakázán, zkuste aktualizaci počasí později, prosím\nE - platnost přístupového kódu pro službu Openweathermap.org vypršela. Pro opětovné získání přístupu je třeba aktualizovat aplikaci na novější verzi.</string>
+    <string name="preference_display_update_value_info">- - probíhá aktualizace polohy a/nebo počasí\n. - polohu není možné najít, probíhá aktualizace počasí\nW - aktualizovnáno jen počasí\nL - aktualizována jen poloha\nG - aktualizována poloha z GPS a počasí\nN - aktualizována poloha ze sítě a počasí\nB - přístup do služby Openweathermap.org byl zakázán, zkuste aktualizaci počasí později, prosím\nE - platnost přístupového kódu pro službu Openweathermap.org vypršela. Pro opětovné získání přístupu je třeba aktualizovat aplikaci na novější verzi.</string>
     <string name="preference_display_update_location_source_info">W - aktualizovnáno jen počasí
 \nL - aktualizována jen poloha
 \nG - aktualizována poloha z GPS a počasí
@@ -169,7 +169,6 @@
     <string name="pref_language_default" tools:ignore="MissingTranslation">Dle systému</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Místní MLS a Nominatim (doporučené)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Systémový</string>
-    <string name="location_geocoder_unifiednlp" tools:ignore="MissingTranslation">Unified NLP</string>
     <string name="pref_title_theme" tools:ignore="MissingTranslation">Téma</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Pokud se zasekne aktualizace polohy, když telefon spí, můžete zkusit vzbudit telefon, když právě prohledává mobilní síť</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Strategie probouzení</string>
@@ -241,7 +240,7 @@
 \nAktualizace dle akcelerometru:
 \nPoloha bude aktualizována dle načtené vzdálenosti měřené akcelerometrem. Pokud naměřená vzdálenost bude větší než prahová hodnota, dojde k načtení aktuální polohy. Naměřená hodnota závisí na způsobu pohybu - pokud máte telefon v kapse, naměřená vzdálenost bude přibývat rychleji - telefon se pohybuje sem a tam v rytmu chůze. Po každé aktualizaci polohy bude též aktualizováno počasí. Počasí bude aktualizováno též při každém rozsvícení displeje - avšak ne častěji, než jednou za 15 minut (pokud nebyla během posledních 15 minut aktualizována poloha).
 \n
-\nK získání polohy je nejprve využita informace z mobilní sítě (BTS) a WIFI sítí přítomných v dané lokalitě. Z těchto informací jsou pomocí služby Mozilla location service získány souřadnice. Pokud souřadnice nejsou dostupné, pokusí se aplikace získat polohu z GPS. Získané souřadnice jsou pomocí služby Nominatim převedena na adresu, která je zobrazena v aplikaci nebo widgetu.
+\nK získání polohy je nejprve využita informace z mobilní sítě (BTS) a WIFI sítí přítomných v dané lokalitě. Z těchto informací jsou pomocí služby Mozilla location service získány souřadnice. Pro získání souřadnic je třeba alespoň jedna základnová stanice sítě GSM nebo alespoň 2 dostupné WIFI sítě nebo jakákoliv kombinace GSM a WIFI sítí. Pokud souřadnice nejsou dostupné, pokusí se aplikace získat polohu z GPS. Získané souřadnice jsou pomocí služby Nominatim převedena na adresu, která je zobrazena v aplikaci nebo widgetu.
 \n
 \nK získání aktuálního počasí je využita služba OpenWeatherMap.org.</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Hlavní aplikace</string>
