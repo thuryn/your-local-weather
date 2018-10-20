@@ -32,6 +32,7 @@ import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.service.SensorLocationUpdateService;
 import org.thosp.yourlocalweather.service.NominatimLocationService;
 import org.thosp.yourlocalweather.service.SearchActivityProcessResultFromAddressResolution;
+import org.thosp.yourlocalweather.service.SensorLocationUpdater;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
@@ -220,11 +221,11 @@ public class SearchActivity extends BaseActivity {
 
         long newLocationRowId = db.insert(LocationsContract.Locations.TABLE_NAME, null, values);
 
-        SensorLocationUpdateService.autolocationForSensorEventAddressFound = true;
+        SensorLocationUpdater.autolocationForSensorEventAddressFound = true;
         appendLog(this,
                 TAG,
                 "autolocationForSensorEventAddressFound=" +
-                        SensorLocationUpdateService.autolocationForSensorEventAddressFound);
+                        SensorLocationUpdater.autolocationForSensorEventAddressFound);
 
         if (currentMaxOrderId == 0) {
             Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");

@@ -111,6 +111,15 @@ public class CurrentWeatherService extends AbstractCommonService {
         WeatherRequestDataHolder updateRequest = currentWeatherUpdateMessages.peek();
 
         if ((updateRequest == null) || (updateRequest.getTimestamp() < incommingMessageTimestamp)) {
+            if (updateRequest != null) {
+                appendLog(getBaseContext(),
+                        TAG,
+                        "updateRequest is older than current");
+            } else {
+                appendLog(getBaseContext(),
+                        TAG,
+                        "updateRequest is null");
+            }
             return;
         }
 
@@ -268,7 +277,6 @@ public class CurrentWeatherService extends AbstractCommonService {
             if (WidgetRefreshIconService.isRotationActive) {
                 return;
             }
-            WidgetUtils.updateCurrentWeatherWidgets(context);
         } catch (Throwable exception) {
             appendLog(context, TAG, "Exception occured when starting the service:", exception);
         }
@@ -287,9 +295,14 @@ public class CurrentWeatherService extends AbstractCommonService {
             sendResult(ACTION_WEATHER_UPDATE_FAIL, context);
             return;
         }
+        appendLog(getBaseContext(), TAG, "saveWeatherAndSendResult:locationId:" + locationId);
         Location currentLocation = locationsDbHelper.getLocationById(locationId);
         String locationSource = currentLocation.getLocationSource();
-        if ((currentLocation.getOrderId() > 0) || (locationSource == null) || "-".equals(locationSource)) {
+        appendLog(getBaseContext(), TAG, "saveWeatherAndSendResult:locationSource by location:" + locationSource);
+        if ((currentLocation.getOrderId() > 0) ||
+            (locationSource == null) ||
+            "-".equals(locationSource) ||
+            ".".equals(locationSource)) {
             locationSource = "W";
         }
         appendLog(context,
@@ -310,7 +323,7 @@ public class CurrentWeatherService extends AbstractCommonService {
                 new Intent(getBaseContext(), CurrentWeatherService.class),
                 PendingIntent.FLAG_CANCEL_CURRENT);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime() + (1000 + seconds), pendingIntent);
+                SystemClock.elapsedRealtime() + (1000 * seconds), pendingIntent);
     }
 
     private class CurrentweatherMessageHandler extends Handler {

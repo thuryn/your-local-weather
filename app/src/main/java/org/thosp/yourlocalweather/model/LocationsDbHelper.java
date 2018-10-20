@@ -10,6 +10,7 @@ import android.location.Address;
 import android.os.Parcel;
 
 import org.thosp.yourlocalweather.service.SensorLocationUpdateService;
+import org.thosp.yourlocalweather.service.SensorLocationUpdater;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -476,11 +477,11 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 LocationsContract.Locations.COLUMN_NAME_ORDER_ID +"=0",
                 null,
                 SQLiteDatabase.CONFLICT_IGNORE);
-        SensorLocationUpdateService.autolocationForSensorEventAddressFound = true;
+        SensorLocationUpdater.autolocationForSensorEventAddressFound = true;
         appendLog(context,
                   TAG,
                  "updateAutoLocationAddress:autolocationForSensorEventAddressFound=" +
-                        SensorLocationUpdateService.autolocationForSensorEventAddressFound);
+                        SensorLocationUpdater.autolocationForSensorEventAddressFound);
     }
 
     public void updateAutoLocationGeoLocation(final double latitude,
@@ -488,6 +489,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                                               final String locationSource,
                                               final float accuracy,
                                               final long locationTime) {
+        appendLog(context, TAG, "updateLocationSource:entered:" + latitude + ":" + longitude + ":" + locationSource);
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(LocationsContract.Locations.COLUMN_NAME_LONGITUDE, longitude);
@@ -517,18 +519,16 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 null,
                 SQLiteDatabase.CONFLICT_IGNORE);
         appendLog(context, TAG, "setNoLocationFound:updated");
-        SensorLocationUpdateService.autolocationForSensorEventAddressFound = false;
+        SensorLocationUpdater.autolocationForSensorEventAddressFound = false;
         appendLog(context,
                 TAG,
                 "setNoLocationFound:autolocationForSensorEventAddressFound=" +
-                        SensorLocationUpdateService.autolocationForSensorEventAddressFound);
+                        SensorLocationUpdater.autolocationForSensorEventAddressFound);
     }
 
     public void updateLocationSource(final long locationId, final String locationSource) {
         appendLog(context, TAG, "updateLocationSource:entered:" + locationId + ":" + locationSource);
-        appendLog(context, TAG, "updateLocationSource:run");
         SQLiteDatabase db = getWritableDatabase();
-        appendLog(context, TAG, "updateLocationSource:writableDB");
         ContentValues values = new ContentValues();
         values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, locationSource);
 
@@ -555,10 +555,11 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
 
     public void updateLastUpdatedAndLocationSource(final long locationId,
                                                    final long updateTime,
-                                                   final String updateSource) {
+                                                   final String locationSource) {
+        appendLog(context, TAG, "updateLocationSource:entered:" + locationId + ":" + locationSource);
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, updateSource);
+        values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, locationSource);
         values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, updateTime);
 
         db.updateWithOnConflict(
@@ -567,6 +568,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 LocationsContract.Locations._ID + "=" + locationId,
                 null,
                 SQLiteDatabase.CONFLICT_IGNORE);
+        appendLog(context, TAG, "updateLocationSource:updated");
     }
 
     public long getLastUpdateLocationTime() {

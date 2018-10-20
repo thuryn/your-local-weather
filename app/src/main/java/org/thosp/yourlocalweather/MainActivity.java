@@ -3,6 +3,8 @@ package org.thosp.yourlocalweather;
 import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -15,6 +17,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
@@ -48,6 +51,7 @@ import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
+import org.thosp.yourlocalweather.service.StartAppAlarmJob;
 import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
@@ -156,9 +160,32 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         this.storedContext = this;
         fab.setOnClickListener(fabListener);
         checkSettingsAndPermisions();
-        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_ALARM_SERVICE");
-        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
-        startService(intentToStartUpdate);
+        startAlarms();
+    }
+
+    private void startAlarms() {
+        appendLog(this, TAG, "scheduleStart at boot, SDK=" + Build.VERSION.SDK_INT);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
+            JobScheduler jobScheduler = getSystemService(JobScheduler.class);
+            /*boolean scheduled = false;
+            for (JobInfo jobInfo: jobScheduler.getAllPendingJobs()) {
+                if ((jobInfo.getId() > 0) && (jobInfo.getId() < 5)) {
+                    scheduled = true;
+                }
+            }
+            if (!scheduled) {*/
+            jobScheduler.cancelAll();
+                ComponentName serviceComponent = new ComponentName(this, StartAppAlarmJob.class);
+                JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
+                builder.setMinimumLatency(1 * 1000); // wait at least
+                builder.setOverrideDeadline(3 * 1000); // maximum delay
+                jobScheduler.schedule(builder.build());
+            //}
+        } else {
+            Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_ALARM_SERVICE");
+            intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+            startService(intentToStartUpdate);
+        }
     }
 
     @Override

@@ -11,6 +11,7 @@ import android.os.IBinder;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
@@ -84,7 +85,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
             appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:weatherRecord=" + weatherRecord);
             if (weatherRecord == null) {
-                requestWeatherCheck("-", true, null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+                requestWeatherCheck(null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
                 timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
                 return;
             }
@@ -104,7 +105,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
                 return;
             }
             appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:requestWeatherCheck");
-            requestWeatherCheck("-", true, null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+            requestWeatherCheck(null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
             timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
         }
     };
@@ -129,9 +130,14 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     }
 
     private void processScreenOn(Context context) {
+        WidgetUtils.updateWidgets(context);
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+        String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
+        if (!locationsDbHelper.getLocationByOrderId(0).isEnabled() || !"0".equals(updateAutoPeriodStr)) {
+            return;
+        }
         CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
         final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
         CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
@@ -147,7 +153,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
             timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT - (now - lastUpdateTimeInMilis));
             return;
         }
-        requestWeatherCheck("-", true, null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+        requestWeatherCheck(null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
         timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
     }
 

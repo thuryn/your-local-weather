@@ -2,12 +2,15 @@ package org.thosp.yourlocalweather.service;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.location.Address;
 import android.location.Location;
 import android.net.wifi.ScanResult;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.Looper;
 import android.os.SystemClock;
 import android.telephony.TelephonyManager;
@@ -20,8 +23,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Queue;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
@@ -35,14 +40,17 @@ public class MozillaLocationService {
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     private static MozillaLocationService instance;
-    private org.thosp.yourlocalweather.model.Location currentLocation;
+    private LocationUpdateService locationUpdateService;
+    private static Queue<LocationAndAddressToUpdate> locationUpdateServiceActions = new LinkedList<>();
 
     private MozillaLocationService() {
     }
 
-    public static MozillaLocationService getInstance() {
+    public static MozillaLocationService getInstance(Context context) {
         if (instance == null) {
             instance = new MozillaLocationService();
+            Intent intent = new Intent(context, LocationUpdateService.class);
+            context.bindService(intent, instance.locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
         }
         return instance;
     }
@@ -52,16 +60,15 @@ public class MozillaLocationService {
     private static final String PROVIDER = "ichnaea";
 
     public synchronized void getLocationFromCellsAndWifis(final Context context,
-                                                          org.thosp.yourlocalweather.model.Location currentLocation,
                                                           List<Cell> cells,
                                                           List<ScanResult> wiFis,
                                                           final String destinationPackageName,
                                                           final boolean resolveAddress) {
-        this.currentLocation = currentLocation;
         appendLog(context, TAG, "getLocationFromCellsAndWifis:wifi=" + ((wiFis != null)?wiFis.size():"null") +
                     ", cells=" + ((cells != null)?cells.size():"null"));
         if ((cells == null || cells.isEmpty()) && (wiFis == null || wiFis.size() < 2)) {
-            processUpdateOfLocation(context, null, destinationPackageName, false);
+            appendLog(context, TAG, "THERE IS NO CELL AND JUST ONE WIFI NETWORK - THIS IS NOT ENOUGH FOR MLS TO GET THE LOCATION");
+            processUpdateOfLocation(context, null, false);
             return;
         }
         try {
@@ -93,17 +100,17 @@ public class MozillaLocationService {
                                 double lon = responseJson.getJSONObject("location").getDouble("lng");
                                 double acc = responseJson.getDouble("accuracy");
                                 response = create(PROVIDER, lat, lon, (float) acc);
-                                processUpdateOfLocation(context, response, destinationPackageName, resolveAddress);
+                                processUpdateOfLocation(context, response, resolveAddress);
                             } catch (JSONException e) {
                                 appendLog(context, TAG, e.toString());
-                                processUpdateOfLocation(context, null, destinationPackageName, resolveAddress);
+                                processUpdateOfLocation(context, null, resolveAddress);
                             }
                         }
 
                         @Override
                         public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                             appendLog(context, TAG, "onFailure:" + statusCode);
-                            processUpdateOfLocation(context, null, destinationPackageName, resolveAddress);
+                            processUpdateOfLocation(context, null, resolveAddress);
                         }
 
                         @Override
@@ -121,37 +128,21 @@ public class MozillaLocationService {
 
     public void processUpdateOfLocation(final Context context,
                                          Location location,
-                                         String destinationPackageName,
                                          boolean resolveAddress) {
-        Intent sendIntent = new Intent("android.intent.action.LOCATION_UPDATE");
-        sendIntent.setPackage(destinationPackageName);
-        sendIntent.putExtra("inputLocation", location);
-        sendIntent.putExtra("locationId", (currentLocation != null)?currentLocation.getId():null);
         appendLog(context, TAG, "processUpdateOfLocation:resolveAddress:" + resolveAddress);
         if (resolveAddress && (location != null)) {
-            appendLog(context, TAG, "processUpdateOfLocation:location:" + location.getLatitude() + ", " + location.getLongitude() + ", " + Locale.getDefault().getLanguage());
+            appendLog(context, TAG, "processUpdateOfLocation:location:" + location + ":" + location.getLatitude() + ", " + location.getLongitude() + ", " + Locale.getDefault().getLanguage());
             NominatimLocationService.getInstance().getFromLocation(
                     context,
                     location.getLatitude(),
                     location.getLongitude(),
                     1,
                     Locale.getDefault().getLanguage(),
-                    new MozillaProcessResultFromAddressResolution(context, sendIntent));
+                    new MozillaProcessResultFromAddressResolution(context, location, this));
             return;
         }
-        appendLog(context, TAG, "processUpdateOfLocation:sendIntent:" + sendIntent);
-        startBackgroundService(context, sendIntent);
-    }
-
-    private void startBackgroundService(Context context, Intent intent) {
-        PendingIntent pendingIntent = PendingIntent.getService(context,
-                0,
-                intent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime() + 10,
-                pendingIntent);
+        appendLog(context, TAG, "processUpdateOfLocation:reportNewLocation:" + location);
+        reportNewLocation(location, null);
     }
 
     private static String createRequest(List<Cell> cells, List<ScanResult> wiFis) throws JSONException {
@@ -277,5 +268,57 @@ public class MozillaLocationService {
         location.setLongitude(longitude);
         location.setAccuracy(accuracy);
         return location;
+    }
+
+    protected void reportNewLocation(Location location, Address address) {
+        if (locationUpdateService != null) {
+            locationUpdateService.onLocationChanged(
+                    location,
+                    address);
+        } else {
+            locationUpdateServiceActions.add(
+                    new LocationAndAddressToUpdate(
+                            location,
+                            address));
+        }
+    }
+
+    private ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            LocationUpdateService.LocationUpdateServiceBinder binder =
+                    (LocationUpdateService.LocationUpdateServiceBinder) service;
+            locationUpdateService = binder.getService();
+            LocationAndAddressToUpdate bindedServiceAction;
+            while ((bindedServiceAction = locationUpdateServiceActions.poll()) != null) {
+                locationUpdateService.onLocationChanged(
+                        bindedServiceAction.getLocation(),
+                        bindedServiceAction.getAddress());
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+        }
+    };
+
+    private class LocationAndAddressToUpdate {
+        Location location;
+        Address address;
+
+        public LocationAndAddressToUpdate(Location location, Address address) {
+            this.location = location;
+            this.address = address;
+        }
+
+        public Location getLocation() {
+            return location;
+        }
+
+        public Address getAddress() {
+            return address;
+        }
     }
 }

@@ -91,6 +91,9 @@ public abstract class ForecastingActivity extends BaseActivity {
     }
 
     protected void updateWeatherForecastFromNetwork(String updateSource, Context context) {
+        if (location == null) {
+            return;
+        }
         boolean isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
         if (isNetworkAvailable) {
             setVisibleUpdating(true);

@@ -112,7 +112,6 @@
                 <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
-                <action android:name="org.thosp.yourlocalweather.action.WEATHER_UPDATE_RESULT"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
             </intent-filter>
 
@@ -127,7 +126,6 @@
                 <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
-                <action android:name="org.thosp.yourlocalweather.action.WEATHER_UPDATE_RESULT"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
             </intent-filter>
 
@@ -142,7 +140,6 @@
                 <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
-                <action android:name="org.thosp.yourlocalweather.action.WEATHER_UPDATE_RESULT"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
             </intent-filter>
 
@@ -157,7 +154,6 @@
                 <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
-                <action android:name="org.thosp.yourlocalweather.action.WEATHER_UPDATE_RESULT"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
             </intent-filter>
 
@@ -172,7 +168,6 @@
                 <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
-                <action android:name="org.thosp.yourlocalweather.action.WEATHER_UPDATE_RESULT"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
             </intent-filter>
 
@@ -182,8 +177,33 @@
         </receiver>
 
         <service
+            android:name=".service.LocationUpdateServiceRetryJob"
+            android:label="Location update retry job"
+            android:permission="android.permission.BIND_JOB_SERVICE" >
+        </service>
+        <service
+            android:name=".service.NetworkLocationCellsOnlyJob"
+            android:label="Cells only scanning job"
+            android:permission="android.permission.BIND_JOB_SERVICE" >
+        </service>
+        <service
             android:name=".service.StartAppAlarmJob"
             android:label="Start app alarm"
+            android:permission="android.permission.BIND_JOB_SERVICE" >
+        </service>
+        <service
+            android:name=".service.StartAutoLocationJob"
+            android:label="Start auto location update"
+            android:permission="android.permission.BIND_JOB_SERVICE" >
+        </service>
+        <service
+            android:name=".service.StartRegularLocationJob"
+            android:label="Start regular location update"
+            android:permission="android.permission.BIND_JOB_SERVICE" >
+        </service>
+        <service
+            android:name=".service.StartNotificationJob"
+            android:label="Start notification"
             android:permission="android.permission.BIND_JOB_SERVICE" >
         </service>
         <service
@@ -239,16 +259,13 @@
         <service
             android:name=".service.LocationUpdateService" >
             <intent-filter>
-                <action android:name="android.intent.action.LOCATION_UPDATE" />
                 <action android:name="android.intent.action.START_LOCATION_AND_WEATHER_UPDATE" />
-                <action android:name="android.intent.action.START_LOCATION_ONLY_UPDATE" />
             </intent-filter>
         </service>
         <service
             android:name="org.thosp.yourlocalweather.service.NetworkLocationProvider"
             android:permission="android.permission.ACCESS_COARSE_LOCATION" >
             <intent-filter>
-                <action android:name="android.intent.action.START_LOCATION_UPDATE" />
                 <action android:name="org.openbmap.unifiedNlp.LOCATION_UPDATE_CELLS_ONLY" />
             </intent-filter>
         </service>

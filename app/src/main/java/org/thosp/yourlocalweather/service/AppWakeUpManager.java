@@ -73,6 +73,7 @@ public class AppWakeUpManager extends Service {
             if (!wakeUpSources.contains(wakeUpSource)) {
                 wakeUpSources.add(wakeUpSource);
             }
+            printWakeupSources("startWakeUp");
             if ((wakeLock != null) && wakeLock.isHeld()) {
                 appendLog(getBaseContext(), TAG,"wakeUp started");
                 return;
@@ -93,6 +94,7 @@ public class AppWakeUpManager extends Service {
                 wakeUpSources.remove(wakeUpSource);
             }
             appendLog(getBaseContext(), TAG, "wakeUpSources.size:" + wakeUpSources.size());
+            printWakeupSources("stopWakeUp");
             if (!wakeUpSources.isEmpty()) {
                 return;
             }
@@ -161,6 +163,17 @@ public class AppWakeUpManager extends Service {
             wakeLock.acquire();
         }
         appendLog(getBaseContext(), TAG, "wakeLock acquired");
+    }
+
+    private void printWakeupSources(String wakeupdown) {
+        StringBuilder wakeupSourcesList = new StringBuilder();
+        wakeupSourcesList.append(wakeupdown);
+        wakeupSourcesList.append(", WakeUp source list: ");
+        for (Integer wakeupSource: wakeUpSources) {
+            wakeupSourcesList.append(wakeupSource);
+            wakeupSourcesList.append(",");
+        }
+        appendLog(getBaseContext(), TAG, "wakeUpSources:" + wakeupSourcesList.toString());
     }
 
     private class PowerUpMessageHandler extends Handler {

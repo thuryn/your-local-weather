@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.location.Address;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
@@ -41,6 +42,9 @@ public class AbstractCommonService extends Service {
     private Lock wakeUpServiceLock = new ReentrantLock();
     private Queue<Message> wakeUpUnsentMessages = new LinkedList<>();
 
+    private static Queue<LocationUpdateServiceActionsWithParams> locationUpdateServiceActions = new LinkedList<>();
+    LocationUpdateService locationUpdateService;
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -50,27 +54,32 @@ public class AbstractCommonService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        bindWidgetRefreshIconService();
+        bindServices();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         try {
-            unbindWidgetRefreshIconService();
+            unbindServices();
         } catch (Throwable t) {
             appendLog(getBaseContext(), TAG, t.getMessage(), t);
         }
     }
 
-    protected void updateNetworkLocation(boolean byLastLocationOnly,
-                                         boolean isInteractive) {
+    protected void updateNetworkLocation(boolean byLastLocationOnly) {
         startRefreshRotation("updateNetworkLocation", 3);
-        Intent sendIntent = new Intent("android.intent.action.START_LOCATION_ONLY_UPDATE");
-        sendIntent.putExtra("destinationPackageName", "org.thosp.yourlocalweather");
-        sendIntent.putExtra("byLastLocationOnly", byLastLocationOnly);
-        sendIntent.putExtra("isInteractive", isInteractive);
-        WidgetUtils.startBackgroundService(getBaseContext(), sendIntent);
+        if (locationUpdateService != null) {
+            locationUpdateService.updateNetworkLocation(
+                    byLastLocationOnly,
+                    null,
+                    0);
+        } else {
+            locationUpdateServiceActions.add(
+                    new LocationUpdateServiceActionsWithParams(
+                            LocationUpdateService.LocationUpdateServiceActions.START_LOCATION_ONLY_UPDATE,
+                            byLastLocationOnly));
+        }
     }
 
     protected void updateWidgets(String updateSource) {
@@ -116,19 +125,18 @@ public class AbstractCommonService extends Service {
         sendBroadcast(intent);
     }
 
-    protected void requestWeatherCheck(String locationSource, boolean isInteractive, String updateSource, int wakeUpSource) {
+    protected void requestWeatherCheck(String updateSource, int wakeUpSource) {
         appendLog(getBaseContext(), TAG, "startRefreshRotation");
         boolean updateLocationInProcess = LocationUpdateService.updateLocationInProcess;
         appendLog(getBaseContext(), TAG, "requestWeatherCheck, updateLocationInProcess=" +
                 updateLocationInProcess);
         if (updateLocationInProcess) {
-            updateWidgets(updateSource);
             return;
         }
-        updateNetworkLocation(true, isInteractive);
+        updateNetworkLocation(true);
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
-        if (locationSource != null) {
+        if (currentLocation.getLocationSource() != null) {
             locationsDbHelper.updateLocationSource(currentLocation.getId(), "-");
             currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
         }
@@ -169,25 +177,29 @@ public class AbstractCommonService extends Service {
             return false;
         }
         try {
-            bindWidgetRefreshIconService();
+            bindServices();
         } catch (Exception ie) {
             appendLog(getBaseContext(), TAG, "checkIfWidgetIconServiceIsNotBound interrupted:", ie);
         }
         return (widgetRefreshIconService == null);
     }
 
-    private void bindWidgetRefreshIconService() {
+    private void bindServices() {
         bindService(
                 new Intent(this, WidgetRefreshIconService.class),
                 widgetRefreshIconConnection,
                 Context.BIND_AUTO_CREATE);
+        Intent intent = new Intent(this, LocationUpdateService.class);
+        bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
-    private void unbindWidgetRefreshIconService() {
-        if (widgetRefreshIconService == null) {
-            return;
+    private void unbindServices() {
+        if (widgetRefreshIconService != null) {
+            unbindService(widgetRefreshIconConnection);
         }
-        unbindService(widgetRefreshIconConnection);
+        if (locationUpdateServiceConnection != null) {
+            unbindService(locationUpdateServiceConnection);
+        }
     }
 
 
@@ -426,4 +438,79 @@ public class AbstractCommonService extends Service {
             wakeUpService = null;
         }
     };
+
+    private ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            LocationUpdateService.LocationUpdateServiceBinder binder =
+                    (LocationUpdateService.LocationUpdateServiceBinder) service;
+            locationUpdateService = binder.getService();
+            LocationUpdateServiceActionsWithParams bindedServiceAction;
+            while ((bindedServiceAction = locationUpdateServiceActions.poll()) != null) {
+                switch (bindedServiceAction.getLocationUpdateServiceAction()) {
+                    case START_LOCATION_AND_WEATHER_UPDATE:
+                        locationUpdateService.startLocationAndWeatherUpdate();
+                        break;
+                    case START_LOCATION_ONLY_UPDATE:
+                        locationUpdateService.updateNetworkLocation(
+                                bindedServiceAction.isByLastLocationOnly(),
+                                null,
+                                0);
+                        break;
+                    case LOCATION_UPDATE:
+                        locationUpdateService.onLocationChanged(
+                                bindedServiceAction.getInputLocation(),
+                                bindedServiceAction.getAddress());
+                        break;
+                }
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+        }
+    };
+
+    public class LocationUpdateServiceActionsWithParams {
+        LocationUpdateService.LocationUpdateServiceActions locationUpdateServiceAction;
+        boolean byLastLocationOnly;
+        android.location.Location inputLocation;
+        Address address;
+
+        public LocationUpdateServiceActionsWithParams(
+                LocationUpdateService.LocationUpdateServiceActions locationUpdateServiceAction,
+                boolean byLastLocationOnly) {
+            this.locationUpdateServiceAction = locationUpdateServiceAction;
+            this.byLastLocationOnly = byLastLocationOnly;
+        }
+
+        public LocationUpdateServiceActionsWithParams(
+                LocationUpdateService.LocationUpdateServiceActions locationUpdateServiceAction,
+                boolean byLastLocationOnly,
+                android.location.Location inputLocation,
+                Address address) {
+            this.locationUpdateServiceAction = locationUpdateServiceAction;
+            this.byLastLocationOnly = byLastLocationOnly;
+            this.address = address;
+            this.inputLocation = inputLocation;
+        }
+
+        public LocationUpdateService.LocationUpdateServiceActions getLocationUpdateServiceAction() {
+            return locationUpdateServiceAction;
+        }
+
+        public boolean isByLastLocationOnly() {
+            return byLastLocationOnly;
+        }
+
+        public android.location.Location getInputLocation() {
+            return inputLocation;
+        }
+
+        public Address getAddress() {
+            return address;
+        }
+    }
 }

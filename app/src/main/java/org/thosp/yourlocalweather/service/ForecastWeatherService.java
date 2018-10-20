@@ -93,10 +93,15 @@ public class ForecastWeatherService  extends AbstractCommonService {
         appendLog(getBaseContext(), TAG, "currentLocation=" + currentLocation + ", updateSource=" + updateRequest.getUpdateSource());
 
         if (currentLocation == null) {
-            appendLog(getBaseContext(),
-                    TAG,
-                    "current location is null");
-            weatherForecastUpdateMessages.poll();
+            if (updateRequest != null) {
+                appendLog(getBaseContext(),
+                        TAG,
+                        "updateRequest is older than current");
+            } else {
+                appendLog(getBaseContext(),
+                        TAG,
+                        "updateRequest is null");
+            }
             return;
         }
 
@@ -225,17 +230,15 @@ public class ForecastWeatherService  extends AbstractCommonService {
             }
             String updateSource = updateRequest.getUpdateSource();
             if (updateSource != null) {
+                WidgetUtils.updateWidgets(context);
                 switch (updateSource) {
                     case "FORECAST":
-                        WidgetUtils.updateCurrentWeatherWidgets(context);
                         sendIntentToForecast(result);
                         break;
                     case "GRAPHS":
-                        WidgetUtils.updateCurrentWeatherWidgets(context);
                         sendIntentToGraphs(result);
                         break;
                     case "MAIN":
-                        WidgetUtils.updateCurrentWeatherWidgets(context);
                         sendIntentToMain(result);
                         break;
                 }
@@ -289,7 +292,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
                 new Intent(getBaseContext(), ForecastWeatherService.class),
                 PendingIntent.FLAG_CANCEL_CURRENT);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime() + (1000 + seconds), pendingIntent);
+                SystemClock.elapsedRealtime() + (1000 * seconds), pendingIntent);
     }
 
     private class WeatherForecastMessageHandler extends Handler {

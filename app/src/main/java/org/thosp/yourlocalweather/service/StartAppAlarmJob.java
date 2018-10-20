@@ -2,7 +2,6 @@ package org.thosp.yourlocalweather.service;
 
 import android.annotation.TargetApi;
 import android.app.job.JobParameters;
-import android.app.job.JobService;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -10,14 +9,24 @@ import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.IBinder;
 
+import org.thosp.yourlocalweather.utils.AppPreference;
+
 @TargetApi(Build.VERSION_CODES.M)
-public class StartAppAlarmJob extends JobService {
-    private static final String TAG = "SyncService";
+public class StartAppAlarmJob extends AbstractAppJob {
+    private static final String TAG = "StartAppAlarmJob";
+
+    private JobParameters params;
 
     @Override
     public boolean onStartJob(JobParameters params) {
-        Intent intent = new Intent(this, AppAlarmService.class);
-        bindService(intent, appAlarmServiceConnection, Context.BIND_AUTO_CREATE);
+        this.params = params;
+        String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
+        reScheduleNextAlarm(1, updateAutoPeriodStr, StartAutoLocationJob.class);
+        String updatePeriodStr = AppPreference.getLocationUpdatePeriod(getBaseContext());
+        reScheduleNextAlarm(2, updatePeriodStr, StartRegularLocationJob.class);
+        reScheduleNextAlarm(3, AppPreference.getInterval(getBaseContext()), StartNotificationJob.class);
+        Intent intent = new Intent(this, ScreenOnOffUpdateService.class);
+        bindService(intent, screenOnOffUpdateServiceConnection, Context.BIND_AUTO_CREATE);
         return true;
     }
 
@@ -26,15 +35,16 @@ public class StartAppAlarmJob extends JobService {
         return true;
     }
 
-    private ServiceConnection appAlarmServiceConnection = new ServiceConnection() {
+    private ServiceConnection screenOnOffUpdateServiceConnection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName className,
                                        IBinder service) {
-            AppAlarmService.AppAlarmServiceBinder binder =
-                    (AppAlarmService.AppAlarmServiceBinder) service;
-            AppAlarmService appAlarmService = binder.getService();
-            appAlarmService.setAlarm();
+            ScreenOnOffUpdateService.ScreenOnOffUpdateServiceBinder binder =
+                    (ScreenOnOffUpdateService.ScreenOnOffUpdateServiceBinder) service;
+            ScreenOnOffUpdateService screenOnOffUpdateService = binder.getService();
+            screenOnOffUpdateService.startSensorBasedUpdates(0);
+            jobFinished(params, false);
         }
 
         @Override

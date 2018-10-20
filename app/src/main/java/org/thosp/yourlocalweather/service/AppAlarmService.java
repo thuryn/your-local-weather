@@ -109,7 +109,6 @@ public class AppAlarmService extends AbstractCommonService {
             intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
             intentToStartUpdate.putExtra("locationId", locationId);
             startBackgroundService(intentToStartUpdate);
-            scheduleNextLocationWeatherForecastUpdate(locationId);
         } else if ("org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM_REGULAR".equals(intent.getAction())) {
             String updatePeriodStr = AppPreference.getLocationUpdatePeriod(getBaseContext());
             long updatePeriodMills = Utils.intervalMillisForAlarm(updatePeriodStr);
@@ -136,6 +135,7 @@ public class AppAlarmService extends AbstractCommonService {
         alarmStarted = true;
         cancelAlarm(true);
         cancelAlarm(false);
+        sendScreenStartIntent();
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         String updatePeriodStr = AppPreference.getLocationUpdatePeriod(getBaseContext());
         String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
@@ -149,15 +149,14 @@ public class AppAlarmService extends AbstractCommonService {
         if (locationsDbHelper.getLocationByOrderId(0).isEnabled()) {
             if ("0".equals(updateAutoPeriodStr)) {
                 sendSensorStartIntent();
-                sendScreenStartIntent();
-                alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                /*alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                         SystemClock.elapsedRealtime() + START_SENSORS_CHECK_PERIOD,
                         START_SENSORS_CHECK_PERIOD,
                         getPendingSensorStartIntent(getBaseContext()));
                 alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                         SystemClock.elapsedRealtime() + START_SENSORS_CHECK_PERIOD,
                         START_SENSORS_CHECK_PERIOD,
-                        getPendingScreenStartIntent(getBaseContext()));
+                        getPendingScreenStartIntent(getBaseContext()));*/
             } else if (!"OFF".equals(updateAutoPeriodStr)) {
                 sendSensorAndScreenStopIntent();
                 long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
