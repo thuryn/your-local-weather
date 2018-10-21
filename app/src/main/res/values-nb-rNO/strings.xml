@@ -304,4 +304,8 @@
     <string name="inches_label" tools:ignore="MissingTranslation">tommer</string>
 
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Regn og snø</string>
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Vindretningsstil</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Avskrudd</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Forkortet N↓, NØ↙, …</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Grader fra nord</string>
     </resources>
