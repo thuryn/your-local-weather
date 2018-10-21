@@ -101,7 +101,7 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
             headerTime.setTypeface(typeface);
             headerTime.setText(String.valueOf((char) 0xf08b));
             headerTimeUnit.setVisibility(View.VISIBLE);
-            if (!DateFormat.is24HourFormat(context)) {
+            if (AppPreference.is12TimeStyle(context)) {
                 ViewGroup.LayoutParams params=headerTime.getLayoutParams();
                 params.width= Utils.spToPx(85, context);
                 headerTime.setLayoutParams(params);

@@ -162,6 +162,12 @@
     <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
     <string name="inches_label" tools:ignore="MissingTranslation">inches</string>
 
+    <!-- Time style setting -->
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">Time format</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">System</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12-hour AM/PM</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24-hour</string>
+
     <!-- Search Screen strings -->
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Search location</string>
 

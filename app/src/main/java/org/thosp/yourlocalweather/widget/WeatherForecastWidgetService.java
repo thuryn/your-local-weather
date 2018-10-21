@@ -32,8 +32,6 @@ public class WeatherForecastWidgetService extends IntentService {
 
     private static final String TAG = "WeatherForecastWidgetService";
 
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-
     public WeatherForecastWidgetService() {
         super(TAG);
     }
@@ -99,9 +97,9 @@ public class WeatherForecastWidgetService extends IntentService {
             WidgetUtils.setHumidity(getBaseContext(), remoteViews, weather.getHumidity());
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(1000 * weather.getSunrise());
-            WidgetUtils.setSunrise(getBaseContext(), remoteViews, sdf.format(calendar.getTime()));
+            WidgetUtils.setSunrise(getBaseContext(), remoteViews, AppPreference.getLocalizedTime(this, calendar.getTime()));
             calendar.setTimeInMillis(1000 * weather.getSunset());
-            WidgetUtils.setSunset(getBaseContext(), remoteViews, sdf.format(calendar.getTime()));
+            WidgetUtils.setSunset(getBaseContext(), remoteViews, AppPreference.getLocalizedTime(this, calendar.getTime()));
             Utils.setWeatherIcon(remoteViews, this, weatherRecord);
 
             WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;

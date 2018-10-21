@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
+import android.text.format.DateFormat;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.CurrentWeather;
@@ -18,7 +19,9 @@ import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -26,6 +29,33 @@ import java.util.Locale;
 import java.util.Set;
 
 public class AppPreference {
+
+    private static final SimpleDateFormat sdf_24 = new SimpleDateFormat("HH:mm");
+    private static final SimpleDateFormat sdf_12 = new SimpleDateFormat("hh:mm aaaa");
+
+    public static String getLocalizedTime(Context context, Date inputTime) {
+        String timeStylePreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_TIME_STYLE, "system");
+        if ("system".equals(timeStylePreferences)) {
+            return DateFormat.getTimeFormat(context).format(inputTime);
+        } else if ("12h".equals(timeStylePreferences)) {
+            return sdf_12.format(inputTime);
+        } else {
+            return sdf_24.format(inputTime);
+        }
+    }
+
+    public static boolean is12TimeStyle(Context context) {
+        String timeStylePreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_TIME_STYLE, "system");
+        if ("system".equals(timeStylePreferences)) {
+            return !DateFormat.is24HourFormat(context);
+        } else if ("12h".equals(timeStylePreferences)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public static WindWithUnit getWindWithUnit(Context context, float value, float direction) {
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(

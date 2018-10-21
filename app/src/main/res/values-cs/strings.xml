@@ -67,6 +67,12 @@
     <string name="wind_speed_knots">uzly</string>
     <string name="millimetre_label">mm</string>
 
+    <!-- Time style setting -->
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">Formát času</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">Dle systému</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12-hodinový</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24-hodinový</string>
+
     <!-- Search Screen strings -->
     <string name="hint_activity_search">Najít polohu</string>
 

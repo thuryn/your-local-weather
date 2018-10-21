@@ -35,8 +35,6 @@ public class ExtLocationWithForecastWidgetProvider extends AbstractWidgetProvide
 
     private static final String TAG = "ExtLocationWithForecastWidgetProvider";
 
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-
     private static final String WIDGET_NAME = "EXT_LOC_WITH_FORECAST_WIDGET";
 
     @Override
@@ -89,9 +87,9 @@ public class ExtLocationWithForecastWidgetProvider extends AbstractWidgetProvide
             WidgetUtils.setHumidity(context, remoteViews, weather.getHumidity());
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(1000 * weather.getSunrise());
-            WidgetUtils.setSunrise(context, remoteViews, sdf.format(calendar.getTime()));
+            WidgetUtils.setSunrise(context, remoteViews, AppPreference.getLocalizedTime(context, calendar.getTime()));
             calendar.setTimeInMillis(1000 * weather.getSunset());
-            WidgetUtils.setSunset(context, remoteViews, sdf.format(calendar.getTime()));
+            WidgetUtils.setSunset(context, remoteViews, AppPreference.getLocalizedTime(context, calendar.getTime()));
 
             Utils.setWeatherIcon(remoteViews, context, weatherRecord);
         } else {

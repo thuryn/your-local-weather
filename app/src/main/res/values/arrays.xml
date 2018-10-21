@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="pref_time_style_entries" translatable="false">
+        <item>@string/time_style_system</item>
+        <item>@string/time_style_12_h</item>
+        <item>@string/time_style_24_h</item>
+    </string-array>
+    <string-array name="pref_time_style_values" translatable="false">
+        <item>system</item>
+        <item>12h</item>
+        <item>24h</item>
+    </string-array>
     <string-array name="pref_forecast_columns" translatable="false">
         <item>@string/forecast_settings_column_icon</item>
         <item>@string/forecast_settings_column_description</item>

@@ -31,8 +31,6 @@ public class ExtLocationWidgetService extends IntentService {
 
     private static final String TAG = "UpdateExtLocWidgetService";
 
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-
     public ExtLocationWidgetService() {
         super(TAG);
     }
@@ -98,9 +96,9 @@ public class ExtLocationWidgetService extends IntentService {
             WidgetUtils.setHumidity(getBaseContext(), remoteViews, weather.getHumidity());
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(1000 * weather.getSunrise());
-            WidgetUtils.setSunrise(getBaseContext(), remoteViews, sdf.format(calendar.getTime()));
+            WidgetUtils.setSunrise(getBaseContext(), remoteViews, AppPreference.getLocalizedTime(this, calendar.getTime()));
             calendar.setTimeInMillis(1000 * weather.getSunset());
-            WidgetUtils.setSunset(getBaseContext(), remoteViews, sdf.format(calendar.getTime()));
+            WidgetUtils.setSunset(getBaseContext(), remoteViews, AppPreference.getLocalizedTime(this, calendar.getTime()));
             Utils.setWeatherIcon(remoteViews, this, weatherRecord);
             String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, currentLocation);
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);

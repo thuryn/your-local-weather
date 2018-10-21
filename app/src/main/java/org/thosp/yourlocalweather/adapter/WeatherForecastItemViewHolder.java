@@ -73,8 +73,8 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
         if (visibleColumns.contains(1)) {
             mTime.setVisibility(View.VISIBLE);
             Date date = new Date(weather.getDateTime() * 1000);
-            mTime.setText(DateFormat.getTimeFormat(context).format(date));
-            if (!DateFormat.is24HourFormat(context)) {
+            mTime.setText(AppPreference.getLocalizedTime(context, date));
+            if (AppPreference.is12TimeStyle(context)) {
                 ViewGroup.LayoutParams params=mTime.getLayoutParams();
                 params.width = Utils.spToPx(85, context);
                 mTime.setLayoutParams(params);

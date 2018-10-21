@@ -471,7 +471,7 @@ public class Utils {
                                            WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord,
                                            Location location) {
         Date lastUpdateTime = new Date(getLastUpdateTimeInMilis(weatherRecord, weatherForecastRecord, location));
-        return DateFormat.getTimeFormat(context).format(lastUpdateTime)
+        return AppPreference.getLocalizedTime(context, lastUpdateTime)
                 + " "
                 + getUpdateSource(context, (location != null)?location.getLocationSource():"");
     }
@@ -522,7 +522,7 @@ public class Utils {
 
     public static String unixTimeToFormatTime(Context context, long unixTime) {
         long unixTimeToMillis = unixTime * 1000;
-        return DateFormat.getTimeFormat(context).format(unixTimeToMillis);
+        return AppPreference.getLocalizedTime(context, new Date(unixTimeToMillis));
     }
 
     public static void copyToClipboard(Context context, String string) {

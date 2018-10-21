@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <ListPreference
+        android:defaultValue="system"
+        android:dialogTitle="@string/pref_title_time_style"
+        android:entries="@array/pref_time_style_entries"
+        android:entryValues="@array/pref_time_style_values"
+        android:key="time_style_pref_key"
+        android:title="@string/pref_title_time_style"/>
+    <ListPreference
         android:defaultValue="celsius"
         android:dialogTitle="@string/pref_title_temperature"
         android:entries="@array/pref_temperature_units_entries"
