@@ -308,4 +308,11 @@
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Avskrudd</string>
     <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Forkortet N↓, NØ↙, …</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Grader fra nord</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Vindretning</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">Tidsformat</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">System</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12-timersklokke AM/PM</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24-timersklokke</string>
+
     </resources>
