@@ -38,6 +38,7 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
     private TextView mTemperature;
     private TextView mApparentTemperature;
     private TextView mWind;
+    private TextView windDirection;
     private TextView mHumidity;
     private TextView mPressure;
     private TextView mRainSnow;
@@ -52,6 +53,7 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
         mTemperature = (TextView) itemView.findViewById(R.id.forecast_temperature);
         mApparentTemperature = (TextView) itemView.findViewById(R.id.forecast_apparent_temperature);
         mWind = (TextView) itemView.findViewById(R.id.forecast_wind);
+        windDirection = (TextView) itemView.findViewById(R.id.forecast_wind_direction);
         mHumidity = (TextView) itemView.findViewById(R.id.forecast_humidity);
         mPressure = (TextView) itemView.findViewById(R.id.forecast_pressure);
         mRainSnow = (TextView) itemView.findViewById(R.id.forecast_rainsnow);
@@ -120,6 +122,12 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
             mWind.setVisibility(View.GONE);
         }
         if (visibleColumns.contains(7)) {
+            windDirection.setVisibility(View.VISIBLE);
+            windDirection.setText(AppPreference.getWindDirection(mContext, weather.getWindDegree()));
+        } else {
+            windDirection.setVisibility(View.GONE);
+        }
+        if (visibleColumns.contains(8)) {
             mRainSnow.setVisibility(View.VISIBLE);
             boolean noRain = weather.getRain() < 0.1;
             boolean noSnow = weather.getSnow() < 0.1;
@@ -142,13 +150,13 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
         } else {
             mRainSnow.setVisibility(View.GONE);
         }
-        if (visibleColumns.contains(8)) {
+        if (visibleColumns.contains(9)) {
             mHumidity.setVisibility(View.VISIBLE);
             mHumidity.setText(String.format(Locale.getDefault(), "%d", weather.getHumidity()));
         } else {
             mHumidity.setVisibility(View.GONE);
         }
-        if (visibleColumns.contains(9)) {
+        if (visibleColumns.contains(10)) {
             mPressure.setVisibility(View.VISIBLE);
             mPressure.setText(AppPreference.getPressureInString(mContext, weather.getPressure()));
         } else {

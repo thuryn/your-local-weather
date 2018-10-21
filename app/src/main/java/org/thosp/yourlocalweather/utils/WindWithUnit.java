@@ -11,11 +11,18 @@ import java.util.Locale;
 public class WindWithUnit implements Serializable {
     private double windSpeed;
     private String windUnit;
-    private float windDirection;
+    private double windDirection;
     private Context context;
     private String directionTypeFromPreferences;
 
-    public WindWithUnit(Context context, double windSpeed, String windUnit, float windDirection) {
+    public WindWithUnit(Context context, double windDirection) {
+        this.windDirection = windDirection;
+        this.context = context;
+        directionTypeFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_WIND_DIRECTION, "abbreviation");
+    }
+
+    public WindWithUnit(Context context, double windSpeed, String windUnit, double windDirection) {
         this.windSpeed = windSpeed;
         this.windUnit = windUnit;
         this.windDirection = windDirection;

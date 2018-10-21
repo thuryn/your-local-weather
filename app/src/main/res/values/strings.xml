@@ -102,9 +102,11 @@
     <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperature</string>
     <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Apparent temperature</string>
     <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Wind</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Wind direction</string>
     <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Rain/Snow</string>
     <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Humidity</string>
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Pressure</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
     <string name="ok" tools:ignore="MissingTranslation">OK</string>
     <string name="cancel" tools:ignore="MissingTranslation">Cancel</string>
 

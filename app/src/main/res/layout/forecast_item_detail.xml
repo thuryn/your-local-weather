@@ -64,7 +64,15 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:gravity="center"
-        tools:text="Wind: 3 m/s NW"/>
+        tools:text="3 m/s"/>
+
+    <TextView
+        android:id="@+id/forecast.wind.direction"
+        android:layout_width="40sp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        tools:text="NW"/>
 
     <TextView
         android:id="@+id/forecast.rainsnow"

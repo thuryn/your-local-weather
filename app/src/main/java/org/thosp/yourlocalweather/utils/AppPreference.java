@@ -96,13 +96,12 @@ public class AppPreference {
         }
     }
 
-    public static String getWindInString(Context context, double stringValue) {
-        return String.format(Locale.getDefault(), "%.1f", getWind(context, stringValue));
+    public static String getWindDirection(Context context, double windDirection) {
+        return new WindWithUnit(context, windDirection).getWindDirection();
     }
 
-    public static double getWind(Context context, String stringValue) {
-        double value = Double.parseDouble(stringValue.replace(",", "."));
-        return getWind(context, value);
+    public static String getWindInString(Context context, double stringValue) {
+        return String.format(Locale.getDefault(), "%.1f", getWind(context, stringValue));
     }
 
     public static double getWind(Context context, double windSpeed) {

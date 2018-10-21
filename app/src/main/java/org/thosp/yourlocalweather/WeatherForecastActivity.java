@@ -117,7 +117,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
 
     private void showSettings() {
         final Set<Integer> mSelectedItems = new HashSet<>();
-        boolean[] checkedItems = new boolean[8];
+        boolean[] checkedItems = new boolean[9];
         for (Integer visibleColumn: visibleColumns) {
             if (visibleColumn == 1) {
                 continue;

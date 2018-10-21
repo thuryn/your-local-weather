@@ -89,6 +89,14 @@
                     tools:text="Clear"/>
 
                 <TextView
+                    android:id="@+id/forecast.header.wind.direction"
+                    android:layout_width="40sp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    tools:text="Wind direction"/>
+
+                <TextView
                     android:id="@+id/forecast.header.rainsnow"
                     android:layout_width="40sp"
                     android:layout_height="wrap_content"
@@ -168,7 +176,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                tools:text="Clear"/>
+                tools:text="m/s"/>
+
+            <TextView
+                android:id="@+id/forecast.header.wind.direction_unit"
+                android:layout_width="40sp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                tools:text="Wind direction unit"/>
 
             <TextView
                 android:id="@+id/forecast.header.rainsnow_unit"

@@ -40,6 +40,7 @@
     <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Teplota</string>
     <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Pocitová teplota</string>
     <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Vítr</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Směr větru</string>
     <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Déšť/Sníh</string>
     <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Vlhkost</string>
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Tlak</string>
