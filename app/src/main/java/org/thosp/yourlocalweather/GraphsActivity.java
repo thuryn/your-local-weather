@@ -454,7 +454,7 @@ public class GraphsActivity extends ForecastingActivity {
                     i,
                     (float) AppPreference.getPressureWithUnit(
                             this,
-                            weatherForecastList.get(locationId).get(i).getPressure()).getWindSpeed()));
+                            weatherForecastList.get(locationId).get(i).getPressure()).getPressure()));
         }
 
         LineDataSet set;

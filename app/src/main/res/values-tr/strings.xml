@@ -83,7 +83,7 @@
     <string name="about_open_source_licenses_pref_title">Özgür yazılım Lisansları</string>
 
     <!-- Weather conditions label strings -->
-    <string name="wind_label">Rüzgar: %1$s %2$s</string>
+    <string name="wind_label">Rüzgar: %1$s %2$s %3$s</string>
     <string name="rain_label">Yağmur: %1$s %2$s</string>
     <string name="snow_label">Kar: %1$s %2$s</string>
     <string name="humidity_label">Nem: %1$s%2$s</string>

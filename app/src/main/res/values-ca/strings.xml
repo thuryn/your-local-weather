@@ -71,7 +71,7 @@
     <string name="about_open_source_licenses_pref_title">Llicència de Codi Obert</string>
 
     <!-- Weather conditions label strings -->
-    <string name="wind_label">Vent: %1$s %2$s</string>
+    <string name="wind_label">Vent: %1$s %2$s %3$s</string>
     <string name="rain_label">Pluja: %1$s %2$s</string>
     <string name="snow_label">Neu: %1$s %2$s</string>
     <string name="humidity_label">Humitat: %1$s%2$s</string>

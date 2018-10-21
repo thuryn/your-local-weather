@@ -79,12 +79,13 @@ public class WidgetUtils {
         }
     }
 
-    public static void setWind(Context context, RemoteViews remoteViews, float value) {
-        WindWithUnit windWithUnit = AppPreference.getWindWithUnit(context, value);
+    public static void setWind(Context context, RemoteViews remoteViews, float value, float direction) {
+        WindWithUnit windWithUnit = AppPreference.getWindWithUnit(context, value, direction);
         if (AppPreference.showLabelsOnWidget(context)) {
             String wind = context.getString(R.string.wind_label,
                             windWithUnit.getWindSpeed(0),
-                            windWithUnit.getWindUnit());
+                            windWithUnit.getWindUnit(),
+                            windWithUnit.getWindDirection());
             remoteViews.setTextViewText(R.id.widget_wind, wind);
             remoteViews.setViewVisibility(R.id.widget_wind_icon, TextView.GONE);
         } else {
@@ -96,16 +97,16 @@ public class WidgetUtils {
     }
 
     public static void setPressure(Context context, RemoteViews remoteViews, float value) {
-        WindWithUnit windWithUnit = AppPreference.getPressureWithUnit(context, value);
+        PressureWithUnit pressureWithUnit = AppPreference.getPressureWithUnit(context, value);
         if (AppPreference.showLabelsOnWidget(context)) {
             String pressure =
                     context.getString(R.string.pressure_label,
-                            windWithUnit.getWindSpeed(AppPreference.getPressureDecimalPlaces(context)),
-                            windWithUnit.getWindUnit());
+                            pressureWithUnit.getPressure(AppPreference.getPressureDecimalPlaces(context)),
+                            pressureWithUnit.getPressureUnit());
             remoteViews.setTextViewText(R.id.widget_pressure, pressure);
             remoteViews.setViewVisibility(R.id.widget_pressure_icon, TextView.GONE);
         } else {
-            String pressure = ": " + windWithUnit.getWindSpeed(0) + " " + windWithUnit.getWindUnit();
+            String pressure = ": " + pressureWithUnit.getPressure(0) + " " + pressureWithUnit.getPressureUnit();
             remoteViews.setImageViewBitmap(R.id.widget_pressure_icon, Utils.createWeatherIcon(context, context.getString(R.string.icon_barometer)));
             remoteViews.setViewVisibility(R.id.widget_pressure_icon, TextView.VISIBLE);
             remoteViews.setTextViewText(R.id.widget_pressure, pressure);

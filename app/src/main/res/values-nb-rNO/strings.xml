@@ -103,7 +103,7 @@
     <string name="about_app_license_pref_title">Lisens</string>
     <string name="about_open_source_licenses_pref_title">Friproglisenser</string>
 
-    <string name="wind_label" tools:ignore="MissingTranslation">Vind: %1$s %2$s</string>
+    <string name="wind_label" tools:ignore="MissingTranslation">Vind: %1$s %2$s %3$s</string>
     <string name="rain_label" tools:ignore="MissingTranslation">Regn: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Snø: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Luftfuktighet: %1$s %2$s</string>

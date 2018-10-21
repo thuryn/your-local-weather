@@ -222,7 +222,7 @@
     <string name="about_version_pref_title" tools:ignore="MissingTranslation">Versão</string>
     <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Código fonte</string>
     <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Licença</string>
-    <string name="wind_label" tools:ignore="MissingTranslation">Vento: %1$s %2$s</string>
+    <string name="wind_label" tools:ignore="MissingTranslation">Vento: %1$s %2$s %3$s</string>
     <string name="rain_label" tools:ignore="MissingTranslation">Chuva: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Neve: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Humidade: %1$s%2$s</string>

@@ -124,7 +124,7 @@
     <string name="about_open_source_licenses_pref_title">Open Source licence</string>
 
     <!-- Weather conditions label strings -->
-    <string name="wind_label">Vítr: %1$s %2$s</string>
+    <string name="wind_label">Vítr: %1$s %2$s %3$s</string>
     <string name="rain_label">Déšť: %1$s %2$s</string>
     <string name="snow_label">Sníh: %1$s %2$s</string>
     <string name="humidity_label">Vlhkost: %1$s%2$s</string>
@@ -149,14 +149,17 @@
     <!-- Donation Bitcoin dialog -->
 
     <!-- Wind directions -->
-    <string name="wind_direction_north">S</string>
-    <string name="wind_direction_north_east">SV</string>
-    <string name="wind_direction_east">V</string>
-    <string name="wind_direction_south_east">JV</string>
-    <string name="wind_direction_south">J</string>
-    <string name="wind_direction_south_west">JZ</string>
-    <string name="wind_direction_west">Z</string>
-    <string name="wind_direction_north_west">SZ</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Nezobrazovat</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Zkratka S, SV, ...</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Stupeň od Severu</string>
+    <string name="wind_direction_north">S↑</string>
+    <string name="wind_direction_north_east">SV↗</string>
+    <string name="wind_direction_east">V→</string>
+    <string name="wind_direction_south_east">JV↘</string>
+    <string name="wind_direction_south">J↓</string>
+    <string name="wind_direction_south_west">JZ↙</string>
+    <string name="wind_direction_west">Z←</string>
+    <string name="wind_direction_north_west">SZ↖</string>
 
     <!-- Permission strings -->
     <string name="permission_location_rationale">Oprávnění pro získání polohy je třeba pro nalezení aktuálního města</string>
@@ -294,6 +297,7 @@
     <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Zavřít navigační panel</string>
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Vítr</string>
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Styl zobrazení směru větru</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Tlak</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Čínština (Chinese)</string>
     <string name="pref_language_sw" tools:ignore="MissingTranslation">Svahilština (Swahili)</string>

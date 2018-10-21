@@ -91,7 +91,7 @@ public class MoreWidgetService extends IntentService {
             if(!AppPreference.hideDescription(this))
                 remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, weather));
             else remoteViews.setTextViewText(R.id.widget_description, " ");
-            WidgetUtils.setWind(getBaseContext(), remoteViews, weather.getWindSpeed());
+            WidgetUtils.setWind(getBaseContext(), remoteViews, weather.getWindSpeed(), weather.getWindDirection());
             WidgetUtils.setHumidity(getBaseContext(), remoteViews, weather.getHumidity());
             WidgetUtils.setPressure(getBaseContext(), remoteViews, weather.getPressure());
             WidgetUtils.setClouds(getBaseContext(), remoteViews, weather.getClouds());

@@ -81,7 +81,7 @@
     <string name="about_open_source_licenses_pref_title">Licenze Open Source</string>
 
     <!-- Weather conditions label strings -->
-    <string name="wind_label">Vento: %1$s %2$s</string>
+    <string name="wind_label">Vento: %1$s %2$s %3$s</string>
     <string name="rain_label">Pioggia: %1$s %2$s</string>
     <string name="snow_label">Neve: %1$s %2$s</string>
     <string name="humidity_label">Umidità: %1$s%2$s</string>

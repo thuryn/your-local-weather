@@ -64,7 +64,7 @@
     <string name="about_version_pref_title">Έκδοση</string>
     <string name="about_source_code_pref_title">Πηγαίος Κώδικας</string>
     <string name="about_app_license_pref_title">Άδεια</string>
-    <string name="wind_label">Άνεμος: %1$s %2$s</string>
+    <string name="wind_label">Άνεμος: %1$s %2$s %3$s</string>
     <string name="rain_label">Βροχή: %1$s %2$s</string>
     <string name="snow_label">Χιόνι: %1$s %2$s</string>
     <string name="humidity_label">Υγρασία: %1$s%2$s</string>

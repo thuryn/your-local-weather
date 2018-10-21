@@ -56,6 +56,7 @@ import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
+import org.thosp.yourlocalweather.utils.PressureWithUnit;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WindWithUnit;
@@ -360,9 +361,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
             mPressureView.setText(getString(R.string.pressure_label,
                     "",
                     ""));
-            mWindSpeedView.setText(getString(R.string.wind_label,
-                    "",
-                    ""));
+            mWindSpeedView.setText(getString(R.string.wind_label,"", "", ""));
             mCloudinessView.setText(getString(R.string.cloudiness_label,
                     "",
                     ""));
@@ -375,8 +374,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
 
         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
         String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, weatherForecastRecord, currentLocation);
-        windWithUnit = AppPreference.getWindWithUnit(this, weather.getWindSpeed());
-        WindWithUnit pressure = AppPreference.getPressureWithUnit(this, weather.getPressure());
+        windWithUnit = AppPreference.getWindWithUnit(this, weather.getWindSpeed(), weather.getWindDirection());
+        PressureWithUnit pressure = AppPreference.getPressureWithUnit(this, weather.getPressure());
         String sunrise = Utils.unixTimeToFormatTime(this, weather.getSunrise());
         String sunset = Utils.unixTimeToFormatTime(this, weather.getSunset());
 
@@ -404,11 +403,12 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 String.valueOf(weather.getHumidity()),
                 mPercentSign));
         mPressureView.setText(getString(R.string.pressure_label,
-                pressure.getWindSpeed(AppPreference.getPressureDecimalPlaces(this)),
-                pressure.getWindUnit()));
+                pressure.getPressure(AppPreference.getPressureDecimalPlaces(this)),
+                pressure.getPressureUnit()));
         mWindSpeedView.setText(getString(R.string.wind_label,
                                          windWithUnit.getWindSpeed(1),
-                                         windWithUnit.getWindUnit()));
+                                         windWithUnit.getWindUnit(),
+                                         windWithUnit.getWindDirection()));
         mCloudinessView.setText(getString(R.string.cloudiness_label,
                 String.valueOf(weather.getClouds()),
                 mPercentSign));
@@ -562,7 +562,8 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                     currentWeatherRecord.getLastUpdatedTime());
             windWithUnit = AppPreference.getWindWithUnit(
                     MainActivity.this,
-                    weather.getWindSpeed());
+                    weather.getWindSpeed(),
+                    weather.getWindDirection());
             String description;
             String sunrise;
             String sunset;

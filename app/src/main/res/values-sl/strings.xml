@@ -199,7 +199,7 @@
     <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Licenca</string>
     <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Libre programske licence</string>
 
-    <string name="wind_label" tools:ignore="MissingTranslation">Vreme: %1$s %2$s</string>
+    <string name="wind_label" tools:ignore="MissingTranslation">Vreme: %1$s %2$s %3$s</string>
     <string name="rain_label" tools:ignore="MissingTranslation">"Dež: %1$s  %2$s"</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Sneg: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Vlažnost: %1$s%2$s</string>

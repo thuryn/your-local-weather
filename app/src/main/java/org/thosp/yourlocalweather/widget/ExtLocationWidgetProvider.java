@@ -78,7 +78,7 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
             }
             remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, weather));
 
-            WidgetUtils.setWind(context, remoteViews, weather.getWindSpeed());
+            WidgetUtils.setWind(context, remoteViews, weather.getWindSpeed(), weather.getWindDirection());
             WidgetUtils.setHumidity(context, remoteViews, weather.getHumidity());
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(1000 * weather.getSunrise());
@@ -109,7 +109,7 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
             }
             remoteViews.setTextViewText(R.id.widget_description, "");
 
-            WidgetUtils.setWind(context, remoteViews, 0);
+            WidgetUtils.setWind(context, remoteViews, 0, 0);
             WidgetUtils.setHumidity(context, remoteViews, 0);
             WidgetUtils.setSunrise(context, remoteViews, "");
             WidgetUtils.setSunset(context, remoteViews, "");

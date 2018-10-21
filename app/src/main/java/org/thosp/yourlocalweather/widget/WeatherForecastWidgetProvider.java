@@ -89,7 +89,7 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
             remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
         }
         remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, weather));
-        WidgetUtils.setWind(context, remoteViews, weather.getWindSpeed());
+        WidgetUtils.setWind(context, remoteViews, weather.getWindSpeed(), weather.getWindDirection());
         WidgetUtils.setHumidity(context, remoteViews, weather.getHumidity());
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(1000 * weather.getSunrise());

@@ -95,7 +95,7 @@ public class WeatherForecastWidgetService extends IntentService {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
             }
             remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, weather));
-            WidgetUtils.setWind(getBaseContext(), remoteViews, weather.getWindSpeed());
+            WidgetUtils.setWind(getBaseContext(), remoteViews, weather.getWindSpeed(), weather.getWindDirection());
             WidgetUtils.setHumidity(getBaseContext(), remoteViews, weather.getHumidity());
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(1000 * weather.getSunrise());

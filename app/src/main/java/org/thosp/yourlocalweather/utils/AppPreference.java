@@ -27,24 +27,20 @@ import java.util.Set;
 
 public class AppPreference {
 
-    public static WindWithUnit getWindWithUnit(Context context, String value) {
-        return getWindWithUnit(context, Float.parseFloat(value.replace(",", ".")));
-    }
-
-    public static WindWithUnit getWindWithUnit(Context context, float value) {
+    public static WindWithUnit getWindWithUnit(Context context, float value, float direction) {
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_WIND_UNITS, "m_per_second");
         if (unitsFromPreferences.contains("km_per_hour") ) {
             double kmhValue = 3.6d * value;
-            return new WindWithUnit(kmhValue, context.getString(R.string.wind_speed_kilometers));
+            return new WindWithUnit(context, kmhValue, context.getString(R.string.wind_speed_kilometers), direction);
         } else if (unitsFromPreferences.contains("miles_per_hour") ) {
             double mhValue = 2.2369d * value;
-            return new WindWithUnit(mhValue, context.getString(R.string.wind_speed_miles));
+            return new WindWithUnit(context, mhValue, context.getString(R.string.wind_speed_miles), direction);
         } else if (unitsFromPreferences.contains("knots") ) {
             double knotsValue = 1.9438445d * value;
-            return new WindWithUnit(knotsValue, context.getString(R.string.wind_speed_knots));
+            return new WindWithUnit(context, knotsValue, context.getString(R.string.wind_speed_knots), direction);
         } else {
-            return new WindWithUnit(value, context.getString(R.string.wind_speed_meters));
+            return new WindWithUnit(context, value, context.getString(R.string.wind_speed_meters), direction);
         }
     }
 
@@ -161,20 +157,20 @@ public class AppPreference {
 
     public static String getPressureInString(Context context, double stringValue) {
         return String.format(Locale.getDefault(), "%." + getPressureDecimalPlaces(context)
-                + "f", getPressureWithUnit(context, stringValue).getWindSpeed());
+                + "f", getPressureWithUnit(context, stringValue).getPressure());
     }
 
-    public static WindWithUnit getPressureWithUnit(Context context, double value) {
+    public static PressureWithUnit getPressureWithUnit(Context context, double value) {
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_PRESSURE_UNITS, "hpa");
         switch (unitsFromPreferences) {
-            case "mmhg": return new WindWithUnit(value * 0.75f,
+            case "mmhg": return new PressureWithUnit(value * 0.75f,
                                                  context.getString(R.string.pressure_measurement_mmhg));
-            case "inhg": return new WindWithUnit(value * 0.029529983071445f,
+            case "inhg": return new PressureWithUnit(value * 0.029529983071445f,
                                                  context.getString(R.string.pressure_measurement_inhg));
-            case "mbar": return new WindWithUnit(value,
+            case "mbar": return new PressureWithUnit(value,
                                                  context.getString(R.string.pressure_measurement_mbar));
-            default: return new WindWithUnit(value, context.getString(R.string.pressure_measurement));
+            default: return new PressureWithUnit(value, context.getString(R.string.pressure_measurement));
         }
     }
 

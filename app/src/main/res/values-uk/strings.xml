@@ -242,7 +242,7 @@
     <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Ліцензія</string>
     <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Ліцензії Libre software</string>
 
-    <string name="wind_label" tools:ignore="MissingTranslation">Вітер: %1$s %2$s</string>
+    <string name="wind_label" tools:ignore="MissingTranslation">Вітер: %1$s %2$s %3$s</string>
     <string name="rain_label" tools:ignore="MissingTranslation">Дощ: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Сніг: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Вологість: %1$s %2$s</string>

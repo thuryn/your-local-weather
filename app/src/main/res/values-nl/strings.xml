@@ -213,7 +213,7 @@
     <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Licentie</string>
     <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Open bron-licenties</string>
 
-    <string name="wind_label" tools:ignore="MissingTranslation">Wind: %1$s %2$s</string>
+    <string name="wind_label" tools:ignore="MissingTranslation">Wind: %1$s %2$s %3$s</string>
     <string name="rain_label" tools:ignore="MissingTranslation">Regen: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Sneeuw: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Luchtvochtigheid: %1$s%2$s</string>

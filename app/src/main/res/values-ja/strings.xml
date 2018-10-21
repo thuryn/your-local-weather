@@ -70,7 +70,7 @@
     <string name="about_open_source_licenses_pref_title">オープンソース ライセンス</string>
 
     <!-- Weather conditions label strings -->
-    <string name="wind_label">風: %1$s %2$s</string>
+    <string name="wind_label">風: %1$s %2$s %3$s</string>
     <string name="rain_label">雨: %1$s %2$s</string>
     <string name="snow_label">雪: %1$s %2$s</string>
     <string name="humidity_label">湿度: %1$s%2$s</string>

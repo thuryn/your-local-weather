@@ -42,6 +42,16 @@
         <item>miles_per_hour</item>
         <item>knots</item>
     </string-array>
+    <string-array name="pref_wind_direction_entries" translatable="false">
+        <item>@string/wind_direction_nothing</item>
+        <item>@string/wind_direction_abbreviation</item>
+        <item>@string/wind_direction_deg</item>
+    </string-array>
+    <string-array name="pref_wind_direction_values" translatable="false">
+        <item>nothing</item>
+        <item>abbreviation</item>
+        <item>deg</item>
+    </string-array>
     <string-array name="pref_pressure_units_entries" translatable="false">
         <item>@string/pressure_measurement</item>
         <item>@string/pressure_measurement_mmhg</item>

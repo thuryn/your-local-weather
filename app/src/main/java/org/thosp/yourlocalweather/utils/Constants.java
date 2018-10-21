@@ -37,6 +37,7 @@ public class Constants {
     public static final String KEY_PREF_TEMPERATURE_UNITS = "temperature_units_pref_key";
     public static final String KEY_PREF_TEMPERATURE_TYPE = "temperature_type_pref_key";
     public static final String KEY_PREF_WIND_UNITS = "wind_units_pref_key";
+    public static final String KEY_PREF_WIND_DIRECTION = "wind_direction_pref_key";
     public static final String KEY_PREF_RAIN_SNOW_UNITS = "rain_snow_units_pref_key";
     public static final String KEY_PREF_PRESSURE_UNITS = "pressure_units_pref_key";
     public static final String KEY_PREF_HIDE_DESCRIPTION = "hide_desc_pref_key";

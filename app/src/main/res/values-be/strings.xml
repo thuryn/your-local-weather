@@ -69,7 +69,7 @@
     <string name="about_open_source_licenses_pref_title">Вольныя праграмныя ліцэнзіі</string>
 
     <!-- Weather conditions label strings -->
-    <string name="wind_label">Вецер: %1$s %2$s</string>
+    <string name="wind_label">Вецер: %1$s %2$s %3$s</string>
     <string name="rain_label">Дождж: %1$s %2$s</string>
     <string name="snow_label">Снег: %1$s %2$s</string>
     <string name="humidity_label">Вільготнасць: %1$s%2$s</string>

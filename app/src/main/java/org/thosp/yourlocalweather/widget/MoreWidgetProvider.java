@@ -72,7 +72,7 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
             }
             remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, weather));
 
-            WidgetUtils.setWind(context, remoteViews, weather.getWindSpeed());
+            WidgetUtils.setWind(context, remoteViews, weather.getWindSpeed(), weather.getWindDirection());
             WidgetUtils.setHumidity(context, remoteViews, weather.getHumidity());
             WidgetUtils.setPressure(context, remoteViews, weather.getPressure());
             WidgetUtils.setClouds(context, remoteViews, weather.getClouds());
@@ -94,7 +94,7 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
                     0));
             remoteViews.setTextViewText(R.id.widget_description, "");
 
-            WidgetUtils.setWind(context, remoteViews, 0);
+            WidgetUtils.setWind(context, remoteViews, 0, 0);
             WidgetUtils.setHumidity(context, remoteViews, 0);
             WidgetUtils.setPressure(context, remoteViews, 0);
             WidgetUtils.setClouds(context, remoteViews, 0);
