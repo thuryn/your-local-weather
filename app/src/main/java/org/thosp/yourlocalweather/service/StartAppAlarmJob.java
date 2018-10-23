@@ -21,9 +21,13 @@ public class StartAppAlarmJob extends AbstractAppJob {
     public boolean onStartJob(JobParameters params) {
         this.params = params;
         String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
-        reScheduleNextAlarm(1, updateAutoPeriodStr, StartAutoLocationJob.class);
+        if (!"OFF".equals(updateAutoPeriodStr)) {
+            reScheduleNextAlarm(1, updateAutoPeriodStr, StartAutoLocationJob.class);
+        }
         String updatePeriodStr = AppPreference.getLocationUpdatePeriod(getBaseContext());
-        reScheduleNextAlarm(2, updatePeriodStr, StartRegularLocationJob.class);
+        if (!"0".equals(updateAutoPeriodStr)) {
+            reScheduleNextAlarm(2, updatePeriodStr, StartRegularLocationJob.class);
+        }
         reScheduleNextAlarm(3, AppPreference.getInterval(getBaseContext()), StartNotificationJob.class);
         Intent intent = new Intent(this, ScreenOnOffUpdateService.class);
         bindService(intent, screenOnOffUpdateServiceConnection, Context.BIND_AUTO_CREATE);

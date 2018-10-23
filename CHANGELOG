@@ -1,3 +1,6 @@
+v4.3.2
+Fixed start of servcies when auto location is OFF
+
 v4.3.1
 Added wind direction in the current weather and forecast. Added option for time format.
 
