@@ -324,13 +324,13 @@
     <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abbrev N, NE, ...</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Degrees from the North</string>
     <string name="wind_direction_north" tools:ignore="MissingTranslation">N↓</string>
-    <string name="wind_direction_north_east" tools:ignore="MissingTranslation">NE↘</string>
+    <string name="wind_direction_north_east" tools:ignore="MissingTranslation">NE↙</string>
     <string name="wind_direction_east" tools:ignore="MissingTranslation">E←</string>
     <string name="wind_direction_south_east" tools:ignore="MissingTranslation">SE↖</string>
     <string name="wind_direction_south" tools:ignore="MissingTranslation">S↑</string>
-    <string name="wind_direction_south_west" tools:ignore="MissingTranslation">SW↘</string>
+    <string name="wind_direction_south_west" tools:ignore="MissingTranslation">SW↗</string>
     <string name="wind_direction_west" tools:ignore="MissingTranslation">W→</string>
-    <string name="wind_direction_north_west" tools:ignore="MissingTranslation">NW↗</string>
+    <string name="wind_direction_north_west" tools:ignore="MissingTranslation">NW↘</string>
 
     <string name="default_daily_forecast" translatable="false">[{"cloudiness":"6","windSpeed":"1.5","description":"Clear","humidity":"45","icon":"10d","pressure":"1000","windDegree":"303","temperatureEvening":"14.63","dateTime":"1471673520","temperatureMin":"10.38","temperatureMorning":"15.9","temperatureNight":"10.38","temperatureDay":"15.9","temperatureMax":"16.52","rain":"2","snow":"5"}]</string>
 
