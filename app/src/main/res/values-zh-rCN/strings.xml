@@ -154,7 +154,7 @@
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">毫米汞柱</string>
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">节</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">千米/小时</string>
-    <string name="pref_title_wind" tools:ignore="MissingTranslation">风速</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">风</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">气压</string>
     <string name="location_update_strategy_title" tools:ignore="MissingTranslation">位置更新设置</string>
     <string name="update_location_none" tools:ignore="MissingTranslation">不更新位置</string>
@@ -189,7 +189,7 @@
 \n下一个屏幕将解释所请求的权限，并为您提供请求它们的选项。
 \n 
 \n享受这个应用吧。</string>
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">此应用使用蜂窝网络（BTS）、Wi-Fi 以及，如果以上方法失败，GPS 定位以显示当地天气，同时从 Mozilla 位置服务获取坐标。使用手机或平板电脑上的微件，您可以在主屏幕上看到您的位置和当前天气。位置更新可以是周期性的（例如每小时），或者应用可以使用加速度计检测距离大于一定值的移动。在你的口袋里，距离增加得更快。您可以关闭位置更新 - 仅更新天气。应用会以指定的时间间隔更新位置和天气。例如，您可以将更新周期设置为一小时。天气在更新位置后或屏幕打开时立即更新 - 但间隔不小于 15 分钟（且在过去的 15 分钟内未更新天气）。这些信息用于通过 Mozilla 位置服务获取位置坐标。当无法从蜂窝网络和 Wi-Fi 网络中获取位置时，应用程序将尝试使用 GPS。位置坐标用于通过 Nominatim 服务获取地址。该地址在应用或微件中使用。该应用程序使用 OpenWeatherMap.org 服务来获取当前天气。</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">此应用使用蜂窝网络（BTS）、Wi-Fi 以及，如果以上方法失败，GPS 定位以显示当地天气，同时从 Mozilla 位置服务获取坐标。此应用至少需要：一个 GMS 网络基站或两个可达 Wi-Fi 网络或任何 GMS 和 Wi-Fi 网络联合。使用手机或平板电脑上的微件，您可以在主屏幕上看到您的位置和当前天气。位置更新可以是周期性的（例如每小时），或者应用可以使用加速度计检测距离大于一定值的移动。在你的口袋里，距离增加得更快。您可以关闭位置更新 - 仅更新天气。应用会以指定的时间间隔更新位置和天气。例如，您可以将更新周期设置为一小时。天气在更新位置后或屏幕打开时立即更新 - 但间隔不小于 15 分钟（且在过去的 15 分钟内未更新天气）。这些信息用于通过 Mozilla 位置服务获取位置坐标。当无法从蜂窝网络和 Wi-Fi 网络中获取位置时，应用将尝试使用 GPS。位置坐标用于通过 Nominatim 服务获取地址。该地址在应用或微件中使用。此应用使用 OpenWeatherMap.org 服务来获取当前天气。</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">主应用包括当前天气的概览。您可以用应用面板中的刷新按钮或下划更新天气。您可以在刷新天气按钮旁找到更新位置按钮。此按钮仅在位置 0 启用时可用（位置 0 用于自动更新位置）。</string>
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">在更新位置按钮旁边，有一个位置管理按钮（放大镜图标）。您可以管理应用和微件中的可用位置。默认情况下，有一个位置（位置 0）可用 - 这是用于自动位置更新的。当您向左滑动此位置时，可以找到启用/禁用按钮。您还可以手动添加位置。当您单击 + 按钮时，您可以在地图上拾取您的位置。您还可以使用删除按钮删除该位置 - 向左滑动位置可访问它。</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">您可以在下一个屏幕上找到天气预报（选择菜单中的下一个屏幕或从左向右滑动）。天气预报在点击更新按钮或者当您进入屏幕时更新（但每小时不超过一次更新）。</string>
@@ -307,4 +307,15 @@
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">图标集</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">基于字体的图标</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin 红色图标</string>
-</resources>
+<string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">风向</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">时间格式</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">系统</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12 小时制 AM/PM</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24 小时制</string>
+
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">风向样式</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">禁用</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">缩写 N, NE, ...</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">与正北夹角</string>
+    </resources>
