@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" tools:ignore="MissingTranslation">Your local weather</string>
-    <string name="enter_city_hint">Enter city</string>
-    <string name="label_current_city">Current city</string>
-    <string name="label_choose_city">Choose city</string>
+    <string name="enter_city_hint" tools:ignore="MissingTranslation">Enter city</string>
+    <string name="label_current_city" tools:ignore="MissingTranslation">Current city</string>
+    <string name="label_choose_city" tools:ignore="MissingTranslation">Choose city</string>
     <string name="feedback_email" translatable="false">thuryn1@gmail.com</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Location and Permission Settings</string>
     <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">The app is set to update location. Access to it is needed. Go to device settings and switch the location on or switch app location updates off.</string>
@@ -13,8 +13,8 @@
     <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Device settings</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Request permissions</string>
     <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Cancel</string>
-    <string name="progressDialog_gps_locate">Find current location</string>
-    <string name="load_progress">Loading…</string>
+    <string name="progressDialog_gps_locate" tools:ignore="MissingTranslation">Find current location</string>
+    <string name="load_progress" tools:ignore="MissingTranslation">Loading…</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Location not found</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Permissions are not yet granted - click the location symbol in the app</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Access expired. Upgrade the app, please.</string>
