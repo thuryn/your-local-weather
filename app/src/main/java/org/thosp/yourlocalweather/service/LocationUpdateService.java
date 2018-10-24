@@ -81,7 +81,9 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
 
     @Override
     public boolean onUnbind(Intent intent) {
-        unbindService(networkLocationProviderConnection);
+        if (networkLocationProvider != null) {
+            unbindService(networkLocationProviderConnection);
+        }
         return super.onUnbind(intent);
     }
 
@@ -657,6 +659,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
 
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
+            networkLocationProvider = null;
         }
     };
 

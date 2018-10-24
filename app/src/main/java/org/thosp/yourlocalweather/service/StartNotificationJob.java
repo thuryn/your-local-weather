@@ -36,6 +36,7 @@ public class StartNotificationJob extends AbstractAppJob {
 
     @Override
     public boolean onStopJob(JobParameters params) {
+        unbindAllServices();
         return true;
     }
 

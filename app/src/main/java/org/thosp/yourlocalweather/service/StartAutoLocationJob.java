@@ -41,8 +41,11 @@ public class StartAutoLocationJob extends AbstractAppJob {
 
     @Override
     public boolean onStopJob(JobParameters params) {
-        unbindService(locationUpdateServiceConnection);
+        if (locationUpdateService != null) {
+            unbindService(locationUpdateServiceConnection);
+        }
         unbindService(sensorLocationUpdateServiceConnection);
+        unbindAllServices();
         return true;
     }
 
@@ -70,7 +73,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
 
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
-
+            locationUpdateService = null;
         }
     };
 

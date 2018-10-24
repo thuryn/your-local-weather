@@ -30,7 +30,7 @@ public class LocationNetworkSourcesService {
     private LocationNetworkSourcesService() {
     }
 
-    public static LocationNetworkSourcesService getInstance() {
+    public synchronized static LocationNetworkSourcesService getInstance() {
         if (instance == null) {
             instance = new LocationNetworkSourcesService();
         }

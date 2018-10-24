@@ -34,7 +34,9 @@ public class NetworkLocationCellsOnlyJob extends JobService {
 
     @Override
     public boolean onStopJob(JobParameters params) {
-        unbindService(networkLocationProviderConnection);
+        if (networkLocationProvider != null) {
+            unbindService(networkLocationProviderConnection);
+        }
         return true;
     }
 
@@ -52,6 +54,7 @@ public class NetworkLocationCellsOnlyJob extends JobService {
 
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
+            networkLocationProvider = null;
         }
     };
 }

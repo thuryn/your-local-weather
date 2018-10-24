@@ -214,6 +214,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        unbindCurrentWeatherService();
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
             mProgressDialog = null;

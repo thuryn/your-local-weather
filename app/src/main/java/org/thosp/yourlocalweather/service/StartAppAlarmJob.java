@@ -36,6 +36,8 @@ public class StartAppAlarmJob extends AbstractAppJob {
 
     @Override
     public boolean onStopJob(JobParameters params) {
+        unbindService(screenOnOffUpdateServiceConnection);
+        unbindAllServices();
         return true;
     }
 

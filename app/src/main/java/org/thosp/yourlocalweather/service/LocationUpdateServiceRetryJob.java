@@ -39,6 +39,7 @@ public class LocationUpdateServiceRetryJob extends AbstractAppJob {
     @Override
     public boolean onStopJob(JobParameters params) {
         unbindService(locationUpdateServiceConnection);
+        unbindAllServices();
         return true;
     }
 
@@ -59,6 +60,7 @@ public class LocationUpdateServiceRetryJob extends AbstractAppJob {
 
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
+            locationUpdateService = null;
         }
     };
 }

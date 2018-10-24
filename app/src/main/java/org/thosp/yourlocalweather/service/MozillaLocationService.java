@@ -41,16 +41,16 @@ public class MozillaLocationService {
 
     private static MozillaLocationService instance;
     private LocationUpdateService locationUpdateService;
-    private static Queue<LocationAndAddressToUpdate> locationUpdateServiceActions = new LinkedList<>();
+    private Context context;
+    private Queue<LocationAndAddressToUpdate> locationUpdateServiceActions = new LinkedList<>();
 
     private MozillaLocationService() {
     }
 
-    public static MozillaLocationService getInstance(Context context) {
+    public synchronized static MozillaLocationService getInstance(Context context) {
         if (instance == null) {
             instance = new MozillaLocationService();
-            Intent intent = new Intent(context, LocationUpdateService.class);
-            context.bindService(intent, instance.locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+            instance.context = context.getApplicationContext();
         }
         return instance;
     }
@@ -58,6 +58,14 @@ public class MozillaLocationService {
     private static final String SERVICE_URL = "https://location.services.mozilla.com/v1/geolocate?key=%s";
     private static final String API_KEY = "3693d51230c04a34af807fbefd1caebb";
     private static final String PROVIDER = "ichnaea";
+
+    @Override
+    protected void finalize() throws Throwable {
+        if (locationUpdateService != null) {
+            unbindLocationUpdateService();
+        }
+        super.finalize();
+    }
 
     public synchronized void getLocationFromCellsAndWifis(final Context context,
                                                           List<Cell> cells,
@@ -279,7 +287,20 @@ public class MozillaLocationService {
                     new LocationAndAddressToUpdate(
                             location,
                             address));
+            bindLocationUpdateService();
         }
+    }
+
+    private void bindLocationUpdateService() {
+        Intent intent = new Intent(context, LocationUpdateService.class);
+        context.bindService(intent, instance.locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    private void unbindLocationUpdateService() {
+        if (locationUpdateService == null) {
+            return;
+        }
+        context.unbindService(locationUpdateServiceConnection);
     }
 
     private ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {
@@ -300,6 +321,7 @@ public class MozillaLocationService {
 
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
+            locationUpdateService = null;
         }
     };
 

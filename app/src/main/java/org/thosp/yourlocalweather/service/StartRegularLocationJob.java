@@ -34,6 +34,7 @@ public class StartRegularLocationJob extends AbstractAppJob {
 
     @Override
     public boolean onStopJob(JobParameters params) {
+        unbindAllServices();
         return true;
     }
 

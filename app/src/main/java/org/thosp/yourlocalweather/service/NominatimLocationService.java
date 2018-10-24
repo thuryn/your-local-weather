@@ -50,7 +50,7 @@ public class NominatimLocationService {
     private NominatimLocationService() {
     }
 
-    public static NominatimLocationService getInstance() {
+    public synchronized static NominatimLocationService getInstance() {
         if (instance == null) {
             instance = new NominatimLocationService();
             try {

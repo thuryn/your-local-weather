@@ -58,13 +58,9 @@ public class AbstractCommonService extends Service {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        try {
-            unbindServices();
-        } catch (Throwable t) {
-            appendLog(getBaseContext(), TAG, t.getMessage(), t);
-        }
+    public boolean onUnbind(Intent intent) {
+        unbindServices();
+        return super.onUnbind(intent);
     }
 
     protected void updateNetworkLocation(boolean byLastLocationOnly) {
@@ -197,9 +193,12 @@ public class AbstractCommonService extends Service {
         if (widgetRefreshIconService != null) {
             unbindService(widgetRefreshIconConnection);
         }
-        if (locationUpdateServiceConnection != null) {
+        if (locationUpdateService != null) {
             unbindService(locationUpdateServiceConnection);
         }
+        unbindCurrentWeatherService();
+        unbindWeatherForecastService();
+        unbindwakeUpService();
     }
 
 
@@ -470,6 +469,7 @@ public class AbstractCommonService extends Service {
 
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
+            locationUpdateService = null;
         }
     };
 

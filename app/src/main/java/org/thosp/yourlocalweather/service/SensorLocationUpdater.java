@@ -58,10 +58,20 @@ public class SensorLocationUpdater implements SensorEventListener {
     public synchronized static SensorLocationUpdater getInstance(Context context) {
         if (instance == null) {
             instance = new SensorLocationUpdater(context);
-            Intent intent = new Intent(context, LocationUpdateService.class);
-            context.bindService(intent, instance.locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+            instance.context = context.getApplicationContext();
         }
         return instance;
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        if (locationUpdateService != null) {
+            unbindLocationUpdateService();
+        }
+        if (widgetRefreshIconService != null) {
+            unbindWidgetRefreshIconService();
+        }
+        super.finalize();
     }
 
     public SensorLocationUpdater(Context context) {
@@ -183,6 +193,7 @@ public class SensorLocationUpdater implements SensorEventListener {
         } else {
             locationUpdateServiceActions.add(
                     LocationUpdateService.LocationUpdateServiceActions.START_LOCATION_ONLY_UPDATE);
+            bindLocationUpdateService();
         }
     }
 
@@ -254,6 +265,38 @@ public class SensorLocationUpdater implements SensorEventListener {
         }
     };
 
+    private void bindLocationUpdateService() {
+        Intent intent = new Intent(context, LocationUpdateService.class);
+        context.bindService(intent, instance.locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    private void unbindLocationUpdateService() {
+        if (locationUpdateService == null) {
+            return;
+        }
+        context.unbindService(locationUpdateServiceConnection);
+    }
+
+    private ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            LocationUpdateService.LocationUpdateServiceBinder binder =
+                    (LocationUpdateService.LocationUpdateServiceBinder) service;
+            locationUpdateService = binder.getService();
+            LocationUpdateService.LocationUpdateServiceActions bindedServiceAction;
+            while ((bindedServiceAction = locationUpdateServiceActions.poll()) != null) {
+                locationUpdateService.updateNetworkLocation(false, null, 0);
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            locationUpdateService = null;
+        }
+    };
+
     private MoveVector highPassFilter(SensorEvent sensorEvent) {
         final float alpha = 0.8f;
 
@@ -285,23 +328,4 @@ public class SensorLocationUpdater implements SensorEventListener {
             return z;
         }
     }
-
-    private ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service) {
-            LocationUpdateService.LocationUpdateServiceBinder binder =
-                    (LocationUpdateService.LocationUpdateServiceBinder) service;
-            locationUpdateService = binder.getService();
-            LocationUpdateService.LocationUpdateServiceActions bindedServiceAction;
-            while ((bindedServiceAction = locationUpdateServiceActions.poll()) != null) {
-                locationUpdateService.updateNetworkLocation(false, null, 0);
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-        }
-    };
 }

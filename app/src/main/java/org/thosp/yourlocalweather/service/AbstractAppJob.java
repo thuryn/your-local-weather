@@ -80,6 +80,12 @@ public abstract class AbstractAppJob extends JobService {
         }
     }
 
+    protected void unbindAllServices() {
+        unbindCurrentWeatherService();
+        unbindWeatherForecastService();
+        unbindWakeUpService();
+    }
+
     private boolean checkIfWeatherForecastServiceIsNotBound() {
         if (weatherForecastService != null) {
             return false;
@@ -97,6 +103,13 @@ public abstract class AbstractAppJob extends JobService {
                 new Intent(this, ForecastWeatherService.class),
                 weatherForecastServiceConnection,
                 Context.BIND_AUTO_CREATE);
+    }
+
+    private void unbindWeatherForecastService() {
+        if (weatherForecastService == null) {
+            return;
+        }
+        unbindService(weatherForecastServiceConnection);
     }
 
     private ServiceConnection weatherForecastServiceConnection = new ServiceConnection() {
@@ -169,6 +182,13 @@ public abstract class AbstractAppJob extends JobService {
                 Context.BIND_AUTO_CREATE);
     }
 
+    private void unbindCurrentWeatherService() {
+        if (currentWeatherService == null) {
+            return;
+        }
+        unbindService(currentWeatherServiceConnection);
+    }
+
     private ServiceConnection currentWeatherServiceConnection = new ServiceConnection() {
         public void onServiceConnected(ComponentName className, IBinder binderService) {
             currentWeatherService = new Messenger(binderService);
@@ -226,6 +246,13 @@ public abstract class AbstractAppJob extends JobService {
                 new Intent(this, AppWakeUpManager.class),
                 wakeUpServiceConnection,
                 Context.BIND_AUTO_CREATE);
+    }
+
+    private void unbindWakeUpService() {
+        if (wakeUpService == null) {
+            return;
+        }
+        unbindService(wakeUpServiceConnection);
     }
 
     private ServiceConnection wakeUpServiceConnection = new ServiceConnection() {
