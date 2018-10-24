@@ -17,6 +17,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -24,6 +25,7 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Messenger;
+import android.os.PowerManager;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
@@ -40,6 +42,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -71,7 +74,9 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
-public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetChangedListener {
+public class MainActivity extends BaseActivity
+                          implements AppBarLayout.OnOffsetChangedListener,
+                                     ActivityCompat.OnRequestPermissionsResultCallback {
 
     private static final String TAG = "MainActivity";
 
@@ -107,6 +112,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private Messenger currentWeatherService;
     private Lock currentWeatherServiceLock = new ReentrantLock();
     private Queue<Message> currentWeatherUnsentMessages = new LinkedList<>();
+    private PowerManager powerManager;
 
     private WindWithUnit windWithUnit;
     private String iconSecondTemperature;
@@ -137,6 +143,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         initializeWeatherReceiver();
 
         connectionDetector = new ConnectionDetector(MainActivity.this);
+        powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         setTitle( R.string.label_activity_main);
 
         /**
@@ -697,9 +704,52 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                         dialog.cancel();
                     }
                 });
-
         settingsAlert.show();
         return false;
+    }
+
+    private void checkBatteryOptimization() {
+        int initialGuideVersion = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
+                .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
+        if (initialGuideVersion < 3) {
+            SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(this).edit();
+            preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 3);
+            preferences.apply();
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            return;
+        }
+        AlertDialog.Builder settingsAlert = new AlertDialog.Builder(MainActivity.this);
+        settingsAlert.setTitle(R.string.alertDialog_battery_optimization_title);
+        settingsAlert.setMessage(R.string.alertDialog_battery_optimization_message);
+        settingsAlert.setPositiveButton(R.string.alertDialog_battery_optimization_proceed,
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+                                return;
+                            }
+                            Intent intent = new Intent();
+                            String packageName = getPackageName();
+                            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+                            if (pm.isIgnoringBatteryOptimizations(packageName))
+                                intent.setAction(Settings.ACTION_IGNORE_BATTERY_OPTIMIZATION_SETTINGS);
+                            else {
+                                intent.setAction(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                                intent.setData(Uri.parse("package:" + packageName));
+                            }
+                            startActivity(intent);
+                        }
+                    });
+        settingsAlert.setNegativeButton(R.string.alertDialog_battery_optimization_cancel,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        permissionsAndSettingsRequested = false;
+                        dialog.cancel();
+                    }
+                });
+        settingsAlert.show();
     }
 
     private volatile boolean initialGuideCompleted;
@@ -721,6 +771,9 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
         if (initialGuideVersion > 0) {
             initialGuideCompleted = true;
+            if (initialGuideVersion < 3) {
+                checkBatteryOptimization();
+            }
             return;
         }
         if (initialGuidePage > 0) {
@@ -861,7 +914,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
     private void closeInitialGuideAndCheckPermission() {
         permissionsAndSettingsRequested = false;
         SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(this).edit();
-        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 2);
+        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 3);
         preferences.apply();
         initialGuideCompleted = true;
         checkPermissionsSettingsAndShowAlert();
@@ -905,7 +958,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
         }
         preferences.putBoolean(Constants.APP_SETTINGS_LOCATION_CACHE_ENABLED, selectedCacheLocationStrategyBoolean);
 
-        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 1);
+        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 3);
         preferences.apply();
     }
 
@@ -935,6 +988,7 @@ public class MainActivity extends BaseActivity implements AppBarLayout.OnOffsetC
                 break;
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+                checkBatteryOptimization();
                 break;
         }
     }

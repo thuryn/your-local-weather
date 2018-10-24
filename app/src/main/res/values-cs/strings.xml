@@ -4,6 +4,10 @@
     <string name="enter_city_hint">Zadejte město</string>
     <string name="label_current_city">Aktuální město</string>
     <string name="label_choose_city">Vyberte město</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Optimalizace baterie</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Aplikace spouští na pozadí procesy pro aktualizaci polohy, počasí nebo pro sledování polohy akcelerometrem. Aplikace Vás tedy požádá o vypnutí optimalizace baterie, aby byla schopna spouštět procesy na pozadí.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Pokračovat</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Zrušit</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Nastavení polohy a oprávnění</string>
     <string name="alertDialog_location_permission_message_location_phone_settings">Aplikace má nastavenu aktualizaci polohy. Aby aktualizace mohla fungovat, je třeba povolit přístup k poloze. Přejděte, prosím, do nastavení a povolte přístup k poloze nebo vypněte aktualizaci polohy v aplikaci.</string>
     <string name="alertDialog_location_permission_message_location_gps_permission">Pro aktualizaci polohy pomocí GPS je třeba oprávnění pro přístup GPS.</string>

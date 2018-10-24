@@ -58,7 +58,6 @@ public class SensorLocationUpdater implements SensorEventListener {
     public synchronized static SensorLocationUpdater getInstance(Context context) {
         if (instance == null) {
             instance = new SensorLocationUpdater(context);
-            instance.context = context.getApplicationContext();
         }
         return instance;
     }
@@ -267,7 +266,7 @@ public class SensorLocationUpdater implements SensorEventListener {
 
     private void bindLocationUpdateService() {
         Intent intent = new Intent(context, LocationUpdateService.class);
-        context.bindService(intent, instance.locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+        context.bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
     private void unbindLocationUpdateService() {

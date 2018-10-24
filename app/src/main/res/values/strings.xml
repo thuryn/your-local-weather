@@ -5,6 +5,10 @@
     <string name="label_current_city" tools:ignore="MissingTranslation">Current city</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">Choose city</string>
     <string name="feedback_email" translatable="false">thuryn1@gmail.com</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Battery optimization</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Application runs background processes to perform updates of location, weather or to track location by accelerometer. Therefore, application is going to ask you to switch the battery optimization off to run the background processes.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Proceed</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Cancel</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Location and Permission Settings</string>
     <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">The app is set to update location. Access to it is needed. Go to device settings and switch the location on or switch app location updates off.</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">The app needs permission to update location using GPS.</string>
