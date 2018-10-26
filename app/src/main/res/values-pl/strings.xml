@@ -120,7 +120,7 @@
 \n 
 \nCiesz się z aplikacji.</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Ogólne</string>
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">Aplikacja określa lokalizację za pomocą sieci komórkowej (BTS), Wi-Fi, a jeśli nie; GPS, aby pokazać lokalną pogodę, z kolei uzyskiwanie współrzędnych z usługi lokalizacyjnej Mozilla. Korzystając z widżetu na telefonie lub tablecie, możesz zobaczyć swoją lokalizację i aktualną pogodę na głównym ekranie. Aktualizacje lokalizacji mogą być okresowe (np. co godzinę) lub aplikacja może używać przyspieszeniomierza do wykrywania ruchu o większej odległości niż wartość. Trzymanie w kieszeni, odległość zwiększa się szybciej. Możesz wyłączyć aktualizacje lokalizacji - aktualizowana jest tylko pogoda. Aplikacja aktualizuje lokalizację i pogodę w określonych odstępach czasu. Można na przykład ustawić okres aktualizacji na godzinę. Pogoda jest aktualizowana natychmiast po lokalizacji lub po włączeniu ekranu, ale nie częściej niż raz na 15 minut (i gdy pogoda nie jest aktualizowana w ciągu ostatnich 15 minut). Informacje te służą do uzyskiwania współrzędnych lokalizacji przez usługę lokalizacyjną Mozilla. Aplikacja próbuje użyć GPS, gdy lokalizacja nie jest dostępna z sieci komórkowej i sieci Wi-Fi. Współrzędne lokalizacji służą do uzyskania adresu przez usługę Nominatim. Adres jest używany w aplikacji lub widżecie. Aby uzyskać aktualną pogodę aplikacja korzysta z usługi OpenWeatherMap.org.</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Aplikacja określa lokalizację za pomocą sieci komórkowej (BTS), Wi-Fi, a jeśli nie; GPS, aby pokazać lokalną pogodę współrzędne uzyskuje z usługi lokalizacyjnej Mozilla. Aplikacja wymaga co najmniej: jednej stacji bazowej sieci GSM lub dwóch osiągalnych sieci Wi-Fi lub dowolnej kombinacji sieci GSM i WIFI. Korzystając z widżetu na telefonie lub tablecie, możesz zobaczyć swoją lokalizację i aktualną pogodę na głównym ekranie. Aktualizacje lokalizacji mogą być okresowe (np. co godzinę) lub aplikacja może używać przyspieszeniomierza do wykrywania ruchu o większej odległości niż wartość. Trzymane w kieszeni, odległość zwiększa się szybciej. Możesz wyłączyć aktualizacje lokalizacji - aktualizowana jest tylko pogoda. Aplikacja aktualizuje lokalizację i pogodę w określonych odstępach czasu. Można na przykład ustawić okres aktualizacji na godzinę. Pogoda jest aktualizowana natychmiast po lokalizacji lub po włączeniu ekranu, ale nie częściej niż raz na 15 minut (i gdy pogoda nie jest aktualizowana w ciągu ostatnich 15 minut). Informacje te służą do uzyskiwania współrzędnych lokalizacji przez usługę lokalizacyjną Mozilla. Aplikacja próbuje użyć GPS, gdy lokalizacja nie jest dostępna z sieci komórkowej i sieci Wi-Fi. Współrzędne lokalizacji służą do uzyskania adresu przez usługę Nominatim. Adres jest używany w aplikacji lub widżecie. Aby uzyskać aktualną pogodę, aplikacja korzysta z usługi OpenWeatherMap.org.</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Główna aplikacja</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Główna aplikacja zawiera przegląd aktualnej pogody. Możesz zaktualizować pogodę, używając przycisku odświeżania w panelu aplikacji lub przesuwając w dół. Możesz znaleźć przycisk aktualizacji lokalizacji obok przycisku odświeżania pogody. Ten przycisk jest dostępny tylko wtedy, gdy włączona jest lokalizacja 0 (lokalizacja 0 jest przeznaczona do automatycznej aktualizacji lokalizacji).</string>
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Obok przycisku lokalizacji aktualizacji znajduje się przycisk zarządzania lokalizacją (ikona lupy). Możesz zarządzać lokalizacjami dostępnymi w aplikacji i widżetach. Domyślnie dostępne jest jedno miejsce (Lokalizacja 0) - jest ono przeznaczone do automatycznych aktualizacji lokalizacji. Możesz znaleźć przycisk włączania/wyłączania po przesunięciu tej lokalizacji w lewo. Możesz również dodać lokalizację ręcznie. Po kliknięciu przycisku + możesz wybrać swoją lokalizację na mapie. Możesz również usunąć lokalizację za pomocą przycisku Usuń - dostępnego po przesunięciu lokalizacji w lewo.</string>
@@ -216,11 +216,13 @@
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Nic nie ma</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Zaktualizowano wartość</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Zaktualizowano wartość ze źródłem lokalizacji</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - pogoda została zaktualizowana 
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - zaktualizuje lokalizację i / lub pogodę 
+\n. - lokalizacja jest nieosiągalna, zaktualizuje pogodę według ostatniej lokalizacji
+\nW - pogoda została zaktualizowana 
 \nL - aktualizacja tylko lokalizacji 
 \nG - lokalizacja z GPS i aktualna pogoda 
-\nN - lokalizacja z sieci i prognoza pogody
-\nB - dostęp do serwisu Openweathermap.org został zbanowany, spróbuj zaktualizować pogodę później
+\nN - lokalizacja z sieci i prognoza pogody 
+\nB - dostęp do serwisu Openweathermap.org został zbanowany, spróbuj zaktualizować pogodę później 
 \nE - token dostępu dla serwisu Openweathermap.org wygasł. Musisz uaktualnić aplikację, aby uzyskać dostęp ponownie</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - zaktualizowana tylko pogoda 
 \nL - aktualizacja tylko lokalizacji 
@@ -298,4 +300,15 @@
     <string name="inches_label" tools:ignore="MissingTranslation">cale</string>
 
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Deszcz i śnieg</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Kierunek wiatru</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">Format czasu</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">System</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12-godzinny</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24 godziny</string>
+
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Styl kierunku wiatru</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Wyłącz</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Skrót N, NE, ...</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Stopni na północ</string>
     </resources>
