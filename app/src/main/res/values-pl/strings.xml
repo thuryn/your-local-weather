@@ -311,4 +311,8 @@
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Wyłącz</string>
     <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Skrót N, NE, ...</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Stopni na północ</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Optymalizacja baterii</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Aplikacja uruchamia procesy w tle, aby wykonywać aktualizacje lokalizacji, pogody lub śledzić lokalizację za pomocą przyspieszeniomierza. Dlatego aplikacja poprosi o wyłączenie optymalizacji baterii, aby uruchomić procesy w tle.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Kontynuuj</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Anuluj</string>
     </resources>
