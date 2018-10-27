@@ -228,6 +228,7 @@
         <item name="greek">@string/pref_language_el</item>
         <item name="spanish">@string/pref_language_es</item>
         <item name="french">Français (French)</item>
+        <item name="hebrew">@string/pref_language_he</item>
         <item name="hungarian">@string/pref_language_hu</item>
         <item name="italian">Italiano (Italian)</item>
         <item name="german">Deutsch (German)</item>
@@ -243,6 +244,7 @@
         <item name="russian">Русский (Russian)</item>
         <item name="slovenian">Slovenian</item>
         <item name="swahili">@string/pref_language_sw</item>
+        <item name="swedish">@string/pref_language_sv</item>
         <item name="turkish">Türkçe (Turkish)</item>
         <item name="ukrainian">@string/pref_language_uk</item>
         <item name="chinese">@string/pref_language_zh_rcn</item>
@@ -258,6 +260,7 @@
         <item name="greek">el</item>
         <item name="spanish">es</item>
         <item name="french">fr</item>
+        <item name="hebrew">he</item>
         <item name="hungarian">hu</item>
         <item name="italian">it</item>
         <item name="german">de</item>
@@ -273,6 +276,7 @@
         <item name="russian">ru</item>
         <item name="slovenian">sl</item>
         <item name="swahili">sw</item>
+        <item name="swedish">sv</item>
         <item name="turkish">tr</item>
         <item name="ukrainian">uk</item>
         <item name="chinese">zh-rCN</item>

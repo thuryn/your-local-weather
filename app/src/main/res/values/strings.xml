@@ -221,6 +221,8 @@
     <string name="pref_language_default" tools:ignore="MissingTranslation">System Default</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chinese (Chinese)</string>
     <string name="pref_language_sw" tools:ignore="MissingTranslation">Swahili (Swahili)</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Swedish (Swedish)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">Hebrew (Hebrew)</string>
     <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norwegian Bokmål (Norwegian Bokmål)</string>
     <string name="pref_language_nl" tools:ignore="MissingTranslation">Dutch (Dutch)</string>
     <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
