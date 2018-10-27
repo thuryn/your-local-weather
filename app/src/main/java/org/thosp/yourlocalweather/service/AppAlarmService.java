@@ -149,14 +149,14 @@ public class AppAlarmService extends AbstractCommonService {
         if (locationsDbHelper.getLocationByOrderId(0).isEnabled()) {
             if ("0".equals(updateAutoPeriodStr)) {
                 sendSensorStartIntent();
-                /*alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                         SystemClock.elapsedRealtime() + START_SENSORS_CHECK_PERIOD,
                         START_SENSORS_CHECK_PERIOD,
                         getPendingSensorStartIntent(getBaseContext()));
                 alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                         SystemClock.elapsedRealtime() + START_SENSORS_CHECK_PERIOD,
                         START_SENSORS_CHECK_PERIOD,
-                        getPendingScreenStartIntent(getBaseContext()));*/
+                        getPendingScreenStartIntent(getBaseContext()));
             } else if (!"OFF".equals(updateAutoPeriodStr)) {
                 sendSensorAndScreenStopIntent();
                 long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updateAutoPeriodStr);

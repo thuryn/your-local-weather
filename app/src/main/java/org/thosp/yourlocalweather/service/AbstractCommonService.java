@@ -121,7 +121,7 @@ public class AbstractCommonService extends Service {
         sendBroadcast(intent);
     }
 
-    protected void requestWeatherCheck(String updateSource, int wakeUpSource) {
+    protected void requestWeatherCheck(long locationId, String updateSource, int wakeUpSource) {
         appendLog(getBaseContext(), TAG, "startRefreshRotation");
         boolean updateLocationInProcess = LocationUpdateService.updateLocationInProcess;
         appendLog(getBaseContext(), TAG, "requestWeatherCheck, updateLocationInProcess=" +
@@ -131,7 +131,7 @@ public class AbstractCommonService extends Service {
         }
         updateNetworkLocation(true);
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-        org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
+        org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationById(locationId);
         if (currentLocation.getLocationSource() != null) {
             locationsDbHelper.updateLocationSource(currentLocation.getId(), "-");
             currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());

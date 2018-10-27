@@ -17,6 +17,6 @@ public class ConnectionDetector {
                 = (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        return networkInfo != null && networkInfo.isAvailable();
+        return networkInfo != null && networkInfo.isConnected();
     }
 }

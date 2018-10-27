@@ -91,6 +91,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
                     "updateAutoPeriodStr:" + updateAutoPeriodStr);
             if ("0".equals(updateAutoPeriodStr)) {
                 sensorLocationUpdateService.startSensorBasedUpdates(0);
+                reScheduleNextAlarm(1, AppAlarmService.START_SENSORS_CHECK_PERIOD, StartAutoLocationJob.class);
             } else if ("OFF".equals(updateAutoPeriodStr)) {
                 sensorLocationUpdateService.stopSensorBasedUpdates();
             } else {

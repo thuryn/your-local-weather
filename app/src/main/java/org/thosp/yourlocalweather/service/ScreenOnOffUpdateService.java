@@ -4,16 +4,26 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.net.NetworkRequest;
 import android.os.Binder;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
+import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
+import org.thosp.yourlocalweather.receiver.StartupReceiver;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
+
+import java.util.List;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -85,7 +95,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
             appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:weatherRecord=" + weatherRecord);
             if (weatherRecord == null) {
-                requestWeatherCheck(null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+                requestWeatherCheck(currentLocation.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
                 timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
                 return;
             }
@@ -105,7 +115,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
                 return;
             }
             appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:requestWeatherCheck");
-            requestWeatherCheck(null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+            requestWeatherCheck(currentLocation.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
             timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
         }
     };
@@ -133,12 +143,14 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         WidgetUtils.updateWidgets(context);
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
-        if (!locationsDbHelper.getLocationByOrderId(0).isEnabled() || !"0".equals(updateAutoPeriodStr)) {
+
+        org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
+
+        if (!currentLocation.isEnabled() || !"0".equals(updateAutoPeriodStr)) {
             return;
         }
         CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
         final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
-        org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
         CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
         long lastUpdateTimeInMilis = Utils.getLastUpdateTimeInMilis(weatherRecord, weatherForecastRecord, currentLocation);
@@ -153,7 +165,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
             timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT - (now - lastUpdateTimeInMilis));
             return;
         }
-        requestWeatherCheck(null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+        requestWeatherCheck(currentLocation.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
         timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
     }
 
@@ -168,12 +180,8 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     }
 
     public int startSensorBasedUpdates(int initialReturnValue) {
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-        org.thosp.yourlocalweather.model.Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
-        if (!autoLocation.isEnabled()) {
-            return initialReturnValue;
-        }
         registerScreenListeners();
+        startNetworkConnectivityReceiver();
         return START_STICKY;
     }
 
@@ -184,9 +192,114 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         getApplication().registerReceiver(screenOffReceiver, filterScreenOff);
     }
 
+    private void startNetworkConnectivityReceiver() {
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            IntentFilter filterNetworkConnectivity = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+            getApplicationContext().registerReceiver(new NetworkConnectivityReceiver(), filterNetworkConnectivity);
+        } else {
+            ConnectivityManager connectivityManager
+                    = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+            connectivityManager.registerNetworkCallback(
+                    new NetworkRequest.Builder()
+                            .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET).build(),
+                    new ConnectivityManager.NetworkCallback() {
+                        @Override
+                        public void onAvailable(Network network) {
+                            super.onAvailable(network);
+                            if (networkIsOffline()) {
+                                return;
+                            }
+                            checkAndUpdateWeather();
+                        }
+                    });
+        }
+    }
+
+    public boolean networkIsOffline() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        appendLog(this, TAG, "networkIsOffline, networkInfo=" + networkInfo);
+        if (networkInfo == null) {
+            return true;
+        }
+        appendLog(this, TAG, "networkIsOffline, networkInfo.isConnectedOrConnecting()=" + networkInfo.isConnectedOrConnecting());
+        return !networkInfo.isConnectedOrConnecting();
+    }
+
+    private void checkAndUpdateWeather() {
+        CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(this);
+        final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
+
+        List<Location> locations = locationsDbHelper.getAllRows();
+
+        for (Location location: locations) {
+
+            if (!location.isEnabled()) {
+                continue;
+            }
+
+            CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(location.getId());
+
+            appendLog(this, TAG, "weatherRecord=" + weatherRecord);
+            if (weatherRecord == null) {
+                requestWeatherCheck(location.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+                continue;
+            }
+            WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(location.getId());
+            long lastUpdateTimeInMilis = Utils.getLastUpdateTimeInMilis(weatherRecord, weatherForecastRecord, location);
+            long now = System.currentTimeMillis();
+
+            appendLog(this, TAG, "network state changed, lastUpdate=" +
+                    location.getLastLocationUpdate() +
+                    ", now=" +
+                    now +
+                    ", lastUpdateTimeInMilis=" +
+                    lastUpdateTimeInMilis);
+
+            long updatePeriodForLocation;
+            if (location.getOrderId() == 0) {
+                String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(this);
+                updatePeriodForLocation = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
+            } else {
+                String updatePeriodStr = AppPreference.getLocationUpdatePeriod(this);
+                updatePeriodForLocation = Utils.intervalMillisForAlarm(updatePeriodStr);
+            }
+
+            if ((now <= (lastUpdateTimeInMilis + updatePeriodForLocation)) || (now <= (location.getLastLocationUpdate() + updatePeriodForLocation))) {
+                continue;
+            }
+            appendLog(this, TAG, "requestWeatherCheck");
+            if (location.getOrderId() != 0) {
+                requestWeatherCheck(location.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+            } else {
+                locationUpdateService.startLocationAndWeatherUpdate();
+            }
+        }
+    }
+
     public class ScreenOnOffUpdateServiceBinder extends Binder {
         ScreenOnOffUpdateService getService() {
             return ScreenOnOffUpdateService.this;
         }
+    }
+
+    public class NetworkConnectivityReceiver extends BroadcastReceiver {
+
+        private static final String TAG = "NetworkConnectivityReceiver";
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            appendLog(context, TAG, "onReceive start:" + intent);
+            if (networkIsOffline()) {
+                return;
+            }
+            checkAndUpdateWeather();
+        }
+
     }
 }

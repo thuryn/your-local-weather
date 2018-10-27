@@ -224,7 +224,9 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         @Override
         public void run() {
             appendLog(getBaseContext(), TAG, "timerRunnable:requestWeatherCheck");
-            requestWeatherCheck(updateSource, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+            org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
+            requestWeatherCheck(currentLocation.getId(), updateSource, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
         }
     };
 
@@ -342,7 +344,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             }
         } else {
             appendLog(getBaseContext(), TAG, "startLocationAndWeatherUpdate:requestWeatherCheck");
-            requestWeatherCheck(updateSource, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+            requestWeatherCheck(currentLocation.getId(), updateSource, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
         }
     }
 
@@ -597,7 +599,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                         }
                     }
                     appendLog(getBaseContext(), TAG, "detectLocation:requestWeatherCheck");
-                    requestWeatherCheck(updateSource, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+                    requestWeatherCheck(currentLocation.getId(), updateSource, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
                 }
             }, LOCATION_TIMEOUT_IN_MS);
         }
