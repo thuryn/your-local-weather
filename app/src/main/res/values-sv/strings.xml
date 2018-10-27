@@ -1,2 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Ditt lokala väder</string>
+    <string name="enter_city_hint" tools:ignore="MissingTranslation">Ange stad</string>
+    <string name="label_current_city" tools:ignore="MissingTranslation">Aktuell stad</string>
+    <string name="label_choose_city" tools:ignore="MissingTranslation">Välj stad</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Batterioptimering</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Applikationen kör bakgrundsprocesser för att utföra uppdateringar av plats, väder eller spåra plats genom accelerometer. Därför kommer applikationen att be dig att stänga av batterioptimeringen för att köra bakgrundsprocesserna.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Fortsätt</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Avbryt</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Plats- och behörighetsinställningar</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">"Appen är inställd på att uppdatera plats. Tillgång till det behövs. Gå till enhetsinställningar och slå på platsen eller slå av  platsuppdateringar."</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Appen behöver tillstånd att uppdatera platsen med hjälp av GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Appen behöver tillstånd att uppdatera platsen via Wi-Fi och GSM-nätverk.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Tillstånd att läsa information från enheten behövs för att uppdatera platsen med Wi-Fi och GSM-nätverk. Detta hämtar information om vilka GSM-basstationer enheten är ansluten till.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Enhetsinställningar</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Begär tillstånd</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Avbryt</string>
+    <string name="progressDialog_gps_locate" tools:ignore="MissingTranslation">Hitta aktuell plats</string>
+    <string name="load_progress" tools:ignore="MissingTranslation">Läser in…</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Platsen hittades inte</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Behörigheter har ännu inte beviljats - klicka på platssymbolen i appen</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Tillträdet har gått ut. Uppgradera appen.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Din OpenweathermapApiKey är inte registrerad.</string>
+
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Stäng</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Nästa</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Föregående</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Klar</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Initial konfigurationsguide</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Justera appen till dina behov kan du välja uppdatera strategi nästa.
+\nOmdirigering från standardvärdet för uppdatering när platsen ändras kan du välja <i>Uppdatera inte plats</i>.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Uppdatera platsinställning</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Plats källa inställning</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Du kan välja platsmetoden - <i>Systemet</i> använder Google-tjänster för att få platsen via nätverk (cell-och Wi-Fi-nätverk). <i>Lokala MLS och Nominatim</i> inställningen använder Mozilla-platsentjänst för att få koordinaterna för platsen och Nominatim-tjänst för att få platsnamn. Den andra inställningen kräver telefonsamtalstillstånd för att hämta information om mobilnätet. Den föredragna inställningen är förvald.</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Plats och adress källa</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Vissa telefonmodeller rapporterar inte anslutna celler korrekt om inte skärmen är på. Den föredragna inställninge (med skärm påslagen) har en nackdel att telefonen slår på skärmen i flera sekunder. Detta har en liten inverkan på batteriets livslängd. Börja med det på, och försök att stänga av det och se om platsen fortfarande uppdateras.</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Du kan spara nätverkstrafik genom att cacha hittade platser. Platser lagras sedan i appen. De skickas inte eller lagras på andra platser i nätverket.</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Grattis</string>
+    </resources>
