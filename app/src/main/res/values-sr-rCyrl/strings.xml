@@ -1,2 +1,320 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Твоји локални временски подаци</string>
+    <string name="enter_city_hint" tools:ignore="MissingTranslation">Унеси град</string>
+    <string name="label_current_city" tools:ignore="MissingTranslation">Тренутни град</string>
+    <string name="label_choose_city" tools:ignore="MissingTranslation">Изабери град</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Оптимизација батерије</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Апликација има процес у позадини који прати промене локације, временских услова или померање уређаја. Зато ће те апликација питати да искључиш оптимизацију батерије да би тај процес могао увек да ради када се уређај не користи.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Настави</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Откажи</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Подешавања локације и дозвола</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Апликација је подешена да ажурира локацију. За то је потребна дозвола. Отвори подешавања уређаја и укључи локацију или искључи ажурирања локације у овој апликацији.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Овој апликацији је потребна дозвола да ажурира локацију користећи GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Овој апликацији је потребна дозвола да ажурира локацију користећи Wi-Fi и GSM мреже.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Овој апликацији је потребна дозвола да за приступ подацима овог уређаја да би ажурирала локацију користећи Wi-Fi и GSM мреже путем GSM базних станица у околини уређаја.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Подешавања уређаја</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Затражи дозволу</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Откажи</string>
+    <string name="progressDialog_gps_locate" tools:ignore="MissingTranslation">Нађи тренутну локацију</string>
+    <string name="load_progress" tools:ignore="MissingTranslation">Учитавам…</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Локација није пронађена</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Још није дата дозвола - додирни симбол за локацију у апликацији ⌖</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Истекло је право приступа. Молим ажурирај апликацију.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Твој OpenweathermapApi кључ није регистрован.</string>
+
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Затвори</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Даље</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Назад</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Готово</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Водич за почетно подешавање</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">У зависности од твојих потреба, можеш одабрати како ће се ажурирати подаци.
+\nДа промениш првобитно подешавање да се ажурира када се промени локација, изабери <i>Не ажурирај локацију</i>.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Промени подешавање локације</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Изабери начин лоцирања</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Можеш одабрати начин лоцирања. <i>Системски</i> користи Гуглове услуге да сазна локацију на основу околних мобилних и бежичних мрежа. Опција <i>Локални</i> користи Мозилину локацијску услугу да сазна локацију и Номинатим услугу да сазна назив те локације. За другу опцију је потребна дозвола \"Телефонски позиви\" да би се приступило подацима о мобилној мрежи. Пожељнија опција је већ изабрана.</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Извор локације и адресе</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Опција буђења уређаја</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Неки модели телефона и таблета не пријављују околне базне станице све док се екран не укључи. Пожељнија опција (са укљученим екраном) има ману да уређај укључује екран на пар секунди. То има мали утицај на трајање батерије. Почни са укљученом опцијом, па покушај да је искључиш и видиш да ли се локација и даље ажурира када промениш место.</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Стратегија буђења</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Опција чувања откривене адресе</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Можеш уштедети потрошњу интернет података тако што ће апликација чувати резултате о називима места. Они се не шаљу нити чувају на Интернету.</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Сачувај препознате адресе</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Честитамо</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Овим је водич завршен. Можеш наћи остала подешавања у менију (језик, јединице мера, итд.).
+\nСледећи приказ ће објаснити затражене дозволе и даће ти могућност да их одобриш.
+\n
+\nУживај у апликацији.</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Опште</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Да би приказала локалне временске услове и прогнозу, ова апликација одређује тренутну локацију користећи базне станице мобилне мреже на основу којих добија координате од Мозилине локацијске услуге, а ако то не успе користи се GPS. Апликацији је потребна бар једна базна станица GSM мреже или две околне бежичне (WiFi) мреже. Апликација користи услуге OpenWeatherMap.org да би сазнала тренутне временске услове и прогнозу. Преко виџета на свом уређају можеш видети тренутну локацију и временске услове на главном екрану. Ажурирања локације могу бити периодична (на пример на сваки сат) или апликација може користити акцелерометар уређаја да би препознала померање уређаја за одређену удаљеност. Док се уређај креће, удаљеност расте. Можеш и искључити ажурирање локације. Тада се ажурирају само подаци о временским условима. Апликација у задатим интервалима ажурира локацију и временске услове. Можеш подесити период на један сат. Временски услови се ажурирају одмах након промене локације или када се укључи екран, али не чешће од једном у 15 минута (или када се нису ажурирали у последљих 15 минута).</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Главна апликација</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Главни приказ апликације садржи преглед тренутних временских услова. Можеш ажурирати податке користећи дугме Освежи или повлачењем прста надоле по екрану. Одмах поред дугмета за освежавање података о временским условима налази се дугме за ажурирање локације. Дугме је доступно само када је локација 0 укључена (локација 0 је намењена за аутомаски ажурирану локацију).</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Поред дугмета за ажурирање локације налази се дугме за управљање локацијама (сличица лупе). Можеш мењати које локакације су доступне у апликацији и виџетима. Једна локација (Локација 0) је доступна у почетку. Она је намењена за аутоматско ажурирање локације. Када превучеш ову локацију улево добићеш дугме за њено искључивање/укључивање. Такође можеш ручно додати локације притиском на дугме + и избором своје локације на мапи. Додате локације можеш обрисати дугметом Обриши које се појављује када превучеш додату локацију улево.</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">На следећем приказу (до којег се стиже преко менија или превлачењем прста по екрану са десна на лево) се налази временска прогноза у виду табеле која се ажурира када се отвори приказ (али не чешће од једном у сат времена).</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Трећи приказ садржи временску прогнозу представљену графиконима.</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Виџети</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">Апликација има више доступних виџета (сличице које се могу додати на главни екран уређаја, обично дугим држањем прста на главном екрану) који садрже опште податке тренутних временских услова (на пример, температура). Неке вредности су доступне само за одређени виџет (на пример, залазак сунца). У горњем десном углу је време последњег ажурирања. Дугме за ажурирање се налази до времена последњег ажурирања. Када пристиснеш ово дугме, временски подаци (и локација, ако је изабрано аутоматско мењање локације) се ажурирају безусловно. Последња могућност у виџетима је избор следеће локације (ако их је додато више) тиме што притиснеш назив тренутне локације.</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Општа подешавања</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Ова подешавања утичу на целу апликацију.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Температура</b> - избор јединице за температуру, <b>Ветар</b> - избор јединице за брзину ветра и <b>Притисак</b> - избор јединице ваздушног притиска.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Сакриј опис времена</b> - опис тренутих временских услова је сакривен. Тренутни временски услови представљени су променљивом иконом.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Период ажурирања локације (Локација 0)</b> - представља период за посебну локацију 0 која се мења у зависности од тренутне локације уређаја. Када изабереш опцију ажурирања <i>По акцелерометру</i>, апликација користи сензор убрзања да препозна померање уређаја. Када апликација препозна померање, мери се пређена удаљеност и када се пређе одређена удаљеност, а последње ажурирање се десило пре више од 15 минута, локација и временски подаци се ажурирају. Када апликација не може да утврди локацију, видећеш ознаку \"непозната локација\". Када није утврђена локација, ажурирање ће бити покушано поново за 5 минута. Такође можеш изабрати и ажурирање локације на задати интервал. Опцијом <b>Период ажурирања времена (Локације 1,2,3...)</b> можеш подесити период ажурирања података о временским условима за ручно подешене локације.</string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Када укључиш опцију <b>Укључи GPS ако је неопходно</b>, апликација прво покушава да утврди локацију на основу мобилне или бежичних мрежа. Ако не успе тако, апликација ће укључити GPS пријемник за неколико секунди да би сазнала локацију.</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Извор локације и адресе</b> 
+\nМожеш изабрати како ће апликација доћи до локације и адресе.</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"><b>Локални</b>" - апликација добија геогафске координате од Мозилиних локацијских услуга користећи податке о околним базним станицама мобилне телефоније. За то је потребна дозвола \"Телефонски позиви\". Апликација користи податке о доступним бежичним мрежама да би прецизније утврдила твоју локацију. Од Номинатим услуга апликација сазнаје адресу од координата. Ако желиш да добијеш прецизнију локацију од Мозилине локацијске услуге можеш послати податке користећи апликацију Mozilla Stumbler application (доступна на Гугл Плеј Продавници https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler и Ф-Дроиду  https://f-droid.org/wiki/page/org.mozilla.mozstumbler)."</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"><b>Системски</b> - апликација добија локацију и адресу од системких услуга (обично Гуглове локацијске услуге).</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Ове опције подешавају <b>језик</b>, <b>тему</b> апликације и <b>скуп икона</b> апликације и виџета.</string>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"><b>Обавештења</b>
+\nКада укључиш опцију обавештења, апликација периодично ажурира временске податке. Том приликом се тренутни временски услови појављују у обавештењу. Можеш такође укључити и вибрацију да апликација завибрира уређај када се подаци ажурирају.</string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">За уштеду интернет саобраћаја и убрзање ажурирања локације можеш укључити <b>Памћење адреса</b> којим се памте адресе откривених географских координата тако да следећи пут када си на запамћеној адреси не мора да се упути позив ка Номинатим услузи откривања адресе. Када укључиш памћење адреса, треба да прихватиш чињеницу да ће адресе које посетиш бити сачуване у апликацији. Ниједан запамћен податак неће бити послат ван апликације.</string>
+    <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Поред опције за памћење адреса налази се подешавање <b>Рок памћења адреса</b>. Свака сачувана адреса има временски печат. Када је временски печат старији од вредности задате као рок памћења адреса, апликација ће позвати Номинатим сервис да освежи запис.</string>
+    <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Можеш обрисати запамћене адресе дугметом <b>Обриши адресе</b>.</string>
+    <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">Можеш видети неколико последњих запамћених адреса у <b>Подацима о адресама</b>. Можеш видети и укупан број адреса.</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">Подешавања виџета</string>
+    <string name="help_page_4_content" tools:ignore="MissingTranslation">Подешавања виџета садрже опције за све виџете.</string>
+    <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Када укључиш опцију <b>Прикажи ознаке у виџету</b>, можеш видети описе уместо икона временских података.</string>
+    <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Можеш мењати позадину виџета помоћу опције <b>Тема виџета</b>.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">Опција <b>Стратегија буђења</b> постоји да би се превазишла грешка у имплементацији Андроид услуге од стране различитих добављача. Ако избереш опцију <i>Без буђења</i> и локације се исправно ажурира, онда имаш исправну имплементацију. Када се локација не ажурира исправно, можеш покушати са опцијом <i>Пробуди само процесор</i>. Ова опција буди само процесор и покушава да прочита стање мобилне и бежичне мреже. Последња опција <i>Пробуди са екраном</i> укључује и екран уређаја на неколико секунди док се локација ажурира. На неким телефонима ово је једини начин да се добије исправна информација о мобилним и бежичним мрежама. Ова опција троши више батерије, али утицај на век батерије је баш мали.</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Након ажурирања локације и временских услова, можеш видети стање ажурирања поред времена ажурирања у виџету. Можеш бирати шта је приказано помоћу опције <b>Прикажи сажетак ажурирања</b>. Ово је објашњење најнапредније опције:</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">Опције уклањања грешке</string>
+    <string name="help_page_5_content" tools:ignore="MissingTranslation">Постоји опција да се укључи дневник за отклањање грешака. Ова опција је корисна када неко има потешкоћа са апликацијом.</string>
+
+    <string name="title_activity_search" tools:ignore="MissingTranslation">Пронађи локацију</string>
+    <string name="label_activity_main" tools:ignore="MissingTranslation">Тренутно време</string>
+    <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Временска прогноза</string>
+    <string name="label_activity_graphs" tools:ignore="MissingTranslation">Графикони прогнозе</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Помоћ</string>
+    <string name="title_activity_license" tools:ignore="MissingTranslation">Лиценца за %s</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Локације</string>
+
+    <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Ажурирај</string>
+    <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Пронађи град</string>
+    <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Детектуј локацију</string>
+    <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Укљ./искљ. вредности</string>
+    <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Укљ./искљ. Y-осу</string>
+
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Избор колона</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Прикажи колоне</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Икона</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Опис</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Температура</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Субјективни осећај</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Јачина ветра</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Смер ветра</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Киша/снег</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Влажност</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Притисак</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">Смер ветра</string>
+    <string name="ok" tools:ignore="MissingTranslation">У реду</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Поништи</string>
+
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Отвори навигациону фиоку</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Затвори навигациону фиоку</string>
+    <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">Тренутно време</string>
+    <string name="nav_menu_daily_forecast" tools:ignore="MissingTranslation">Временска рогноза</string>
+    <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Графикони прогнозе</string>
+    <string name="nav_menu_settings" tools:ignore="MissingTranslation">Подешавања</string>
+    <string name="nav_feedback" tools:ignore="MissingTranslation">Повратне информације</string>
+    <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">Донирај биткоин</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Помоћ</string>
+
+    <string name="location_not_initialized" tools:ignore="MissingTranslation">Локација није подешена. Прво кликни кружић локације.</string>
+    <string name="connection_not_found" tools:ignore="MissingTranslation">Провери интернет везу</string>
+    <string name="toast_parse_error" tools:ignore="MissingTranslation">Дошло је до грешке. Покушај касније.</string>
+
+    <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
+    <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
+    <string name="wind_speed_miles" tools:ignore="MissingTranslation">mph</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">чворова</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
+    <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">инча</string>
+
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">Испис времена</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">Системски</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12-часовни AM/PM</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24-часовни</string>
+
+    <string name="hint_activity_search" tools:ignore="MissingTranslation">Пронађи локацију</string>
+
+    <string name="title_activity_settings" tools:ignore="MissingTranslation">Подешавања</string>
+    <string name="pref_title_temperature" tools:ignore="MissingTranslation">Температура</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">Ветар</string>
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Приказ смера ветра</string>
+    <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Киша и снег</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Притисак</string>
+    <string name="preference_hide_desc" tools:ignore="MissingTranslation">Сакриј опис времена</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Обавештења</string>
+    <string name="pref_title_notification" tools:ignore="MissingTranslation">Укључи обавештења</string>
+    <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">Интервал освежавања</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Подешавање ажурирања локације</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">Не ажурирај локацију</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">Ажурирај локацију (препоручено)</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">Ажурирај локацију без GPS</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Укључи GPS ако је неопходно</string>
+    <string name="update_period_by_sensors" tools:ignore="MissingTranslation">По акцелерометру</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">Само ручно</string>
+    <string name="update_period_15min" tools:ignore="MissingTranslation">15 минута</string>
+    <string name="update_period_30min" tools:ignore="MissingTranslation">30 минута</string>
+    <string name="update_period_1hour" tools:ignore="MissingTranslation">Сваког сата</string>
+    <string name="update_period_3hours" tools:ignore="MissingTranslation">3 сата</string>
+    <string name="update_period_6hours" tools:ignore="MissingTranslation">6 сати</string>
+    <string name="update_period_12hours" tools:ignore="MissingTranslation">12 сати</string>
+    <string name="update_period_24hours" tools:ignore="MissingTranslation">24 сата</string>
+    <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Вибрирај</string>
+    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Период ажурирања времена (Локације 1,2,3...)</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Период ажурирања локације (Локација 0)</string>
+    <string name="preference_title_activity_general" tools:ignore="MissingTranslation">Општа подешавања</string>
+    <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Подешавања виџета</string>
+    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Ажурирај локацију</string>
+    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Прикажи називе у виџету</string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Користи геолокацију за приказ</string>
+    <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Тема виџета</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">Тамна</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">Светла</string>
+    <string name="theme_transparent" tools:ignore="MissingTranslation">Провидна</string>
+    <string name="preference_title_category_display" tools:ignore="MissingTranslation">Приказ</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Ажурирање локације и времена</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Системска подешавања</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API кључ</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Уграђени</string>
+    <string name="pref_title_language" tools:ignore="MissingTranslation">Језик</string>
+    <string name="pref_language_default" tools:ignore="MissingTranslation">Подразумевани системски</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chinese (кинески)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Swahili (свахили)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norwegian Bokmål (норвешки)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Dutch (холандски)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (нијанџа)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Hungarian (мађарски)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Spanish (шпански)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Greek (грчки)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabic (арапски)</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Украјински</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Румунски (Romanian)</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Португалски (Португал) (Portuguese (Portugal))</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Португалски (Бразил) (Portuguese (Brazil))</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Извор локације и адресе</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Локални (препоручено)</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">Системски</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">Тема</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Прикажи сажетак ажурирања</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Ништа</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Само ажурирану вредност</string>
+    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Ажурирану вредност и извор локације</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - пре ажурирања времена/локације
+\n. - локација је непозната; приказани су временски подаци за последњу локацију
+\nW - ажурирано је само време
+\nL - ажурирана је само локација
+\nG - ажурирано је време и локација помоћу GPS
+\nN - ажурирано је време и локација помоћу мреже
+\nB - забрањен је приступ Openweathermap.org услугама, покушај касније да ажурираш
+\nE - приступни кључ за Openweathermap.org услуге је истекао. Треба да ажурираш апликацију за поновни приступ услугама</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - ажурирано је само време
+\nL - ажурирана је само локација
+\nG - ажурирано је време и локација помоћу GPS
+\nN - ажурирано је време и локација помоћу мреже
+\nNi - ажурирано је време и локација помоћу мобилне мреже, локација откривена помоћу Мозилине локацијске услуге
+\nB - забрањен је приступ Openweathermap.org услугама, покушај касније да ажурираш
+\nE - приступни кључ за Openweathermap.org услуге је истекао. Треба да ажурираш апликацију за поновни приступ услугама</string>
+    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Када локација остане непромењена док уређај спава, можеш покушати буђењем када тражи околне мобилне мреже</string>
+    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Стратегија буђења</string>
+    <string name="nowakeup_label" tools:ignore="MissingTranslation">Без буђења</string>
+    <string name="wakeuppartial_label" tools:ignore="MissingTranslation">Пробуди само процесор</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">Пробуди и екран</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Испразни сачуване адресе</string>
+    <string name="db_info" tools:ignore="MissingTranslation">Сачуване адресе</string>
+    <string name="db_header" tools:ignore="MissingTranslation">База сачуваних адреса</string>
+    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Сачуване адресе ће бити обрисане након задатог времена</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Рок чувања адреса</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 сати</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">дан</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">недељу дана</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">месец дана</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">три месеца</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">шест месеци</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">годину дана</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">заувек</string>
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Чувај адресе</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Откривене адресе се чувају</string>
+    <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Откривене адресе се не чувају</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Обриши</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Искључи</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Укључи</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">Аутоматски откривена</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Искључена</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Додај</string>
+    <string name="search_location_info" tools:ignore="MissingTranslation">Притисни на мапу да одредиш локацију и сачекај да се открије адреса.</string>
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Тренутно време још није ажурирано. Прво ажурирај временске податке дугметом \"освежи\".</string>
+
+    <string name="preference_title_activity_about" tools:ignore="MissingTranslation">О апликацији</string>
+    <string name="about_version_pref_title" tools:ignore="MissingTranslation">Верзија</string>
+    <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Изворни кôд</string>
+    <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Лиценца</string>
+    <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Лиценце слободног софтвера</string>
+
+    <string name="wind_label" tools:ignore="MissingTranslation">Ветар: %1$s %2$s %3$s</string>
+    <string name="rain_label" tools:ignore="MissingTranslation">Киша: %1$s %2$s</string>
+    <string name="snow_label" tools:ignore="MissingTranslation">Снег: %1$s %2$s</string>
+    <string name="humidity_label" tools:ignore="MissingTranslation">Влажност: %1$s%2$s</string>
+    <string name="pressure_label" tools:ignore="MissingTranslation">Притисак: %1$s %2$s</string>
+    <string name="cloudiness_label" tools:ignore="MissingTranslation">Облачност: %1$s%2$s</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">Последње ажурирање: %s</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">Излазак сунца: %s</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">Залазак сунца: %s</string>
+    <string name="temperature_morning_title" tools:ignore="MissingTranslation">Јутро</string>
+    <string name="temperature_day_title" tools:ignore="MissingTranslation">Дан</string>
+    <string name="temperature_evening_title" tools:ignore="MissingTranslation">Вече</string>
+    <string name="temperature_night_title" tools:ignore="MissingTranslation">Ноћ</string>
+    <string name="label_temperature" tools:ignore="MissingTranslation">Температура</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Субјективни осећај: %s</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Измерена температура: %s</string>
+    <string name="label_wind" tools:ignore="MissingTranslation">Ветар</string>
+    <string name="label_rain" tools:ignore="MissingTranslation">Киша</string>
+    <string name="label_snow" tools:ignore="MissingTranslation">Снег</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Притисак</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">Само измерена вредност</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Обе, прво измерена</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Обе, прво субјективни осећај</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">Само субјективни осећај</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Прикажи температуру као</string>
+
+    <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Икона тренутног времена</string>
+    <string name="widget_refresh_button" tools:ignore="MissingTranslation">Дугме освежавања виџета</string>
+
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Искључен</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Скраћен С, СИ, ...</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Степени од севера</string>
+    <string name="wind_direction_north" tools:ignore="MissingTranslation">С↓</string>
+    <string name="wind_direction_north_east" tools:ignore="MissingTranslation">СИ↙</string>
+    <string name="wind_direction_east" tools:ignore="MissingTranslation">И←</string>
+    <string name="wind_direction_south_east" tools:ignore="MissingTranslation">ЈИ↖</string>
+    <string name="wind_direction_south" tools:ignore="MissingTranslation">Ј↑</string>
+    <string name="wind_direction_south_west" tools:ignore="MissingTranslation">ЈЗ↗</string>
+    <string name="wind_direction_west" tools:ignore="MissingTranslation">З→</string>
+    <string name="wind_direction_north_west" tools:ignore="MissingTranslation">СЗ↘</string>
+
+    <string name="permission_location_rationale" tools:ignore="MissingTranslation">Локацијске дозволе потребне за одређивање места</string>
+    <string name="permission_not_granted" tools:ignore="MissingTranslation">Дозволе нису одобрене!</string>
+    <string name="permission_available_location" tools:ignore="MissingTranslation">Локацијске дозволе су одобрене</string>
+    <string name="permission_location_need" tools:ignore="MissingTranslation">Одобри локацијске дозволе</string>
+
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Језик тренутног описа времена и адресе ће се променити приликом следећег ажурирања које можеш и ручно покренути.</string>
+
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">Изабери директоријум за дневник</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">Подешавања дебаговања</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">После задатог времена, дневник ће бити обрисан и направљен испочетка</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Замена (ротирање) дневника</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 сати</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">дан</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">два дана</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">три дана</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">недељу дана</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">месец дана</string>
+
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Скуп икона</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Иконе засноване на фонту</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Иконе Мерлин црвени</string>
+</resources>
