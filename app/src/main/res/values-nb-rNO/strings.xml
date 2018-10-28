@@ -319,4 +319,6 @@
     <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Programmet kjører i bakgrunnen for å utføre plasseringsoppdateringer, vær, eller for å spore plassering med akselerometer. Derfor vil det spørre deg om å skru av batterioptimisering for å kjøre bakgrunnsprosesser.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Fortsett</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Avbryt</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Svensk (Swedish)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">Hebraisk (Hebrew)</string>
     </resources>
