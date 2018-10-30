@@ -315,4 +315,6 @@
     <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Aplikacja uruchamia procesy w tle, aby wykonywać aktualizacje lokalizacji, pogody lub śledzić lokalizację za pomocą przyspieszeniomierza. Dlatego aplikacja poprosi o wyłączenie optymalizacji baterii, aby uruchomić procesy w tle.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Kontynuuj</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Anuluj</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Szwedzki (Szwecja)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">Hebrajski (hebrajski)</string>
     </resources>
