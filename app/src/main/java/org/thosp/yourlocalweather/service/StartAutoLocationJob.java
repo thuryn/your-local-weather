@@ -50,11 +50,6 @@ public class StartAutoLocationJob extends AbstractAppJob {
     }
 
     private void performUpdateOfLocation() {
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-        Location location = locationsDbHelper.getLocationByOrderId(0);
-        if (location.isEnabled()) {
-            locationUpdateService.startLocationAndWeatherUpdate();
-        }
         Intent intent = new Intent(this, SensorLocationUpdateService.class);
         bindService(intent, sensorLocationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
     }

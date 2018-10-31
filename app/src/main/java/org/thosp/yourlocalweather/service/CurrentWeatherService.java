@@ -2,8 +2,12 @@ package org.thosp.yourlocalweather.service;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -40,6 +44,7 @@ public class CurrentWeatherService extends AbstractCommonService {
     private static final String TAG = "CurrentWeatherService";
 
     public static final int START_CURRENT_WEATHER_UPDATE = 1;
+    public static final int START_CURRENT_WEATHER_RETRY = 2;
     public static final String ACTION_WEATHER_UPDATE_OK = "org.thosp.yourlocalweather.action.WEATHER_UPDATE_OK";
     public static final String ACTION_WEATHER_UPDATE_FAIL = "org.thosp.yourlocalweather.action.WEATHER_UPDATE_FAIL";
     public static final String ACTION_WEATHER_UPDATE_RESULT = "org.thosp.yourlocalweather.action.WEATHER_UPDATE_RESULT";
@@ -139,9 +144,8 @@ public class CurrentWeatherService extends AbstractCommonService {
             int numberOfAttempts = updateRequest.getAttempts();
             appendLog(getBaseContext(), TAG, "numberOfAttempts=" + numberOfAttempts);
             if (numberOfAttempts > 2) {
-                locationsDbHelper.updateLastUpdatedAndLocationSource(
+                locationsDbHelper.updateLocationSource(
                         currentLocation.getId(),
-                        System.currentTimeMillis(),
                         ".");
                 currentWeatherUpdateMessages.poll();
                 return;
@@ -317,13 +321,22 @@ public class CurrentWeatherService extends AbstractCommonService {
     }
 
     private void resendTheIntentInSeveralSeconds(int seconds) {
-        AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
-                0,
-                new Intent(getBaseContext(), CurrentWeatherService.class),
-                PendingIntent.FLAG_CANCEL_CURRENT);
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime() + (1000 * seconds), pendingIntent);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
+            ComponentName serviceComponent = new ComponentName(this, CurrentWeatherResendJob.class);
+            JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
+            builder.setMinimumLatency(seconds * 1000); // wait at least
+            builder.setOverrideDeadline((3 + seconds) * 1000); // maximum delay
+            JobScheduler jobScheduler = getSystemService(JobScheduler.class);
+            jobScheduler.schedule(builder.build());
+        } else {
+            AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
+                    0,
+                    new Intent(getBaseContext(), CurrentWeatherService.class),
+                    PendingIntent.FLAG_CANCEL_CURRENT);
+            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + (1000 * seconds), pendingIntent);
+        }
     }
 
     private class CurrentweatherMessageHandler extends Handler {
@@ -336,6 +349,8 @@ public class CurrentWeatherService extends AbstractCommonService {
                     currentWeatherUpdateMessages.add(weatherRequestDataHolder);
                     startCurrentWeatherUpdate(weatherRequestDataHolder.getTimestamp());
                     break;
+                case START_CURRENT_WEATHER_RETRY:
+                    startCurrentWeatherUpdate(0);
                 default:
                     super.handleMessage(msg);
             }

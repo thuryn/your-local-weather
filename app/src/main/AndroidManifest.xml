@@ -178,6 +178,16 @@
         </receiver>
 
         <service
+            android:name=".service.WeatherForecastResendJob"
+            android:label="Weather forecast retry job"
+            android:permission="android.permission.BIND_JOB_SERVICE" >
+        </service>
+        <service
+            android:name=".service.CurrentWeatherResendJob"
+            android:label="Current weather retry job"
+            android:permission="android.permission.BIND_JOB_SERVICE" >
+        </service>
+        <service
             android:name=".service.LocationUpdateServiceRetryJob"
             android:label="Location update retry job"
             android:permission="android.permission.BIND_JOB_SERVICE" >

@@ -194,26 +194,16 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
     private void startNetworkConnectivityReceiver() {
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            IntentFilter filterNetworkConnectivity = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+            appendLog(getBaseContext(), TAG, "Start connectivity receiver with handler");
+            IntentFilter filterNetworkConnectivity = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
             getApplicationContext().registerReceiver(new NetworkConnectivityReceiver(), filterNetworkConnectivity);
         } else {
+            appendLog(getBaseContext(), TAG, "Start connectivity receiver with callback");
             ConnectivityManager connectivityManager
                     = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
-            connectivityManager.registerNetworkCallback(
-                    new NetworkRequest.Builder()
-                            .addCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET).build(),
-                    new ConnectivityManager.NetworkCallback() {
-                        @Override
-                        public void onAvailable(Network network) {
-                            super.onAvailable(network);
-                            if (networkIsOffline()) {
-                                return;
-                            }
-                            checkAndUpdateWeather();
-                        }
-                    });
+            connectivityManager.registerDefaultNetworkCallback(new NetworkConnectionReceiver(this));
         }
     }
 
@@ -230,7 +220,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         return !networkInfo.isConnectedOrConnecting();
     }
 
-    private void checkAndUpdateWeather() {
+    public void checkAndUpdateWeather() {
         CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(this);
         final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
@@ -254,13 +244,6 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
             long lastUpdateTimeInMilis = Utils.getLastUpdateTimeInMilis(weatherRecord, weatherForecastRecord, location);
             long now = System.currentTimeMillis();
 
-            appendLog(this, TAG, "network state changed, lastUpdate=" +
-                    location.getLastLocationUpdate() +
-                    ", now=" +
-                    now +
-                    ", lastUpdateTimeInMilis=" +
-                    lastUpdateTimeInMilis);
-
             long updatePeriodForLocation;
             if (location.getOrderId() == 0) {
                 String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(this);
@@ -270,7 +253,19 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
                 updatePeriodForLocation = Utils.intervalMillisForAlarm(updatePeriodStr);
             }
 
-            if ((now <= (lastUpdateTimeInMilis + updatePeriodForLocation)) || (now <= (location.getLastLocationUpdate() + updatePeriodForLocation))) {
+            appendLog(this, TAG, "network state changed, location.orderId=" +
+                    location.getOrderId() +
+                    ", updatePeriodForLocation=" +
+                    updatePeriodForLocation +
+                    ", now=" +
+                    now +
+                    ", lastUpdateTimeInMilis=" +
+                    lastUpdateTimeInMilis);
+
+            if (now <= (lastUpdateTimeInMilis + updatePeriodForLocation)) {
+                appendLog(this, TAG, "network state changed, location.orderId=" +
+                        location.getOrderId() +
+                        ", not going to update, because last update is recent enough.");
                 continue;
             }
             appendLog(this, TAG, "requestWeatherCheck");

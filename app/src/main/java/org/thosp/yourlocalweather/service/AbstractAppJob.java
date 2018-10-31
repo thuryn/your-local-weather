@@ -30,24 +30,23 @@ public abstract class AbstractAppJob extends JobService {
 
     private static final String TAG = "AbstractAppJob";
 
-    private Messenger currentWeatherService;
-    private Lock currentWeatherServiceLock = new ReentrantLock();
-    private Queue<Message> currentWeatherUnsentMessages = new LinkedList<>();
-    private Messenger weatherForecastService;
-    private Lock weatherForecastServiceLock = new ReentrantLock();
-    private Queue<Message> weatherForecastUnsentMessages = new LinkedList<>();
+    protected Messenger currentWeatherService;
+    protected Lock currentWeatherServiceLock = new ReentrantLock();
+    protected Queue<Message> currentWeatherUnsentMessages = new LinkedList<>();
+    protected Messenger weatherForecastService;
+    protected Lock weatherForecastServiceLock = new ReentrantLock();
+    protected Queue<Message> weatherForecastUnsentMessages = new LinkedList<>();
     private Messenger wakeUpService;
     private Lock wakeUpServiceLock = new ReentrantLock();
     private Queue<Message> wakeUpUnsentMessages = new LinkedList<>();
 
     protected void reScheduleNextAlarm(int jobId, String updatePeriodStr, Class serviceClass) {
         long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updatePeriodStr);
-        appendLog(getBaseContext(), TAG, "next alarm:" + updateAutoPeriodMills);
         reScheduleNextAlarm(jobId, updateAutoPeriodMills, serviceClass);
     }
 
     protected void reScheduleNextAlarm(int jobId, long updatePeriod, Class serviceClass) {
-        appendLog(getBaseContext(), TAG, "next alarm:" + updatePeriod);
+        appendLog(getBaseContext(), TAG, "next alarm:" + updatePeriod + ", serviceClass=" + serviceClass);
         ComponentName serviceComponent = new ComponentName(this, serviceClass);
         JobInfo.Builder builder = new JobInfo.Builder(jobId, serviceComponent);
         builder.setMinimumLatency(updatePeriod); // wait at least
@@ -91,7 +90,7 @@ public abstract class AbstractAppJob extends JobService {
         unbindWakeUpService();
     }
 
-    private boolean checkIfWeatherForecastServiceIsNotBound() {
+    protected boolean checkIfWeatherForecastServiceIsNotBound() {
         if (weatherForecastService != null) {
             return false;
         }
@@ -111,6 +110,26 @@ public abstract class AbstractAppJob extends JobService {
     }
 
     private void unbindWeatherForecastService() {
+        if (!weatherForecastUnsentMessages.isEmpty()) {
+            weatherForecastServiceLock.lock();
+            try {
+                while (weatherForecastService == null) {
+                    try {
+                        appendLog(getBaseContext(), TAG, "Wait for weatherForecastService=" + weatherForecastService);
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        appendLog(getBaseContext(), TAG, "weatherForecastService interrupted:", e);
+                    }
+                }
+                while (!weatherForecastUnsentMessages.isEmpty()) {
+                    weatherForecastService.send(weatherForecastUnsentMessages.poll());
+                }
+            } catch (RemoteException e) {
+                appendLog(getBaseContext(), TAG, e.getMessage(), e);
+            } finally {
+                weatherForecastServiceLock.unlock();
+            }
+        }
         if (weatherForecastService == null) {
             return;
         }
@@ -168,7 +187,7 @@ public abstract class AbstractAppJob extends JobService {
         }
     }
 
-    private boolean checkIfCurrentWeatherServiceIsNotBound() {
+    protected boolean checkIfCurrentWeatherServiceIsNotBound() {
         if (currentWeatherService != null) {
             return false;
         }
@@ -188,6 +207,26 @@ public abstract class AbstractAppJob extends JobService {
     }
 
     private void unbindCurrentWeatherService() {
+        if (!currentWeatherUnsentMessages.isEmpty()) {
+            currentWeatherServiceLock.lock();
+            try {
+                while (currentWeatherService == null) {
+                    try {
+                        appendLog(getBaseContext(), TAG, "Wait for currentWeatherService=" + currentWeatherService);
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        appendLog(getBaseContext(), TAG, "unbindCurrentWeatherService interrupted:", e);
+                    }
+                }
+                while (!currentWeatherUnsentMessages.isEmpty()) {
+                    currentWeatherService.send(currentWeatherUnsentMessages.poll());
+                }
+            } catch (RemoteException e) {
+                appendLog(getBaseContext(), TAG, e.getMessage(), e);
+            } finally {
+                currentWeatherServiceLock.unlock();
+            }
+        }
         if (currentWeatherService == null) {
             return;
         }
@@ -254,6 +293,26 @@ public abstract class AbstractAppJob extends JobService {
     }
 
     private void unbindWakeUpService() {
+        if (!wakeUpUnsentMessages.isEmpty()) {
+            wakeUpServiceLock.lock();
+            try {
+                while (wakeUpService == null) {
+                    try {
+                        appendLog(getBaseContext(), TAG, "Wait for wakeUpService=" + wakeUpService);
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        appendLog(getBaseContext(), TAG, "wakeUpService interrupted:", e);
+                    }
+                }
+                while (!wakeUpUnsentMessages.isEmpty()) {
+                    wakeUpService.send(wakeUpUnsentMessages.poll());
+                }
+            } catch (RemoteException e) {
+                appendLog(getBaseContext(), TAG, e.getMessage(), e);
+            } finally {
+                wakeUpServiceLock.unlock();
+            }
+        }
         if (wakeUpService == null) {
             return;
         }

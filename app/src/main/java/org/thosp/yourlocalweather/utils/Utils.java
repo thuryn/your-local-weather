@@ -489,20 +489,23 @@ public class Utils {
     }
 
     public static long intervalMillisForAlarm(String intervalMinutes) {
-        int interval = Integer.parseInt(intervalMinutes);
-        switch (interval) {
-            case 15:
+        switch (intervalMinutes) {
+            case "0":
                 return AlarmManager.INTERVAL_FIFTEEN_MINUTES;
-            case 30:
+            case "15":
+                return AlarmManager.INTERVAL_FIFTEEN_MINUTES;
+            case "30":
                 return AlarmManager.INTERVAL_HALF_HOUR;
-            case 60:
+            case "60":
                 return AlarmManager.INTERVAL_HOUR;
-            case 720:
+            case "720":
                 return AlarmManager.INTERVAL_HALF_DAY;
-            case 1440:
+            case "1440":
                 return AlarmManager.INTERVAL_DAY;
+            case "OFF":
+                return Long.MAX_VALUE;
             default:
-                return interval * 60 * 1000;
+                return Integer.parseInt(intervalMinutes) * 60 * 1000;
         }
     }
 

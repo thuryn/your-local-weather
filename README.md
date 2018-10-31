@@ -5,6 +5,7 @@
 # Your local weather
 Application displays current weather and location wherever you are.
 
+[<img src="https://cdn6.aptoide.com/includes/themes/2014/images/header/logo.svg" alt="Get it on Aptoide" height="80">](https://your-local-weather.en.aptoide.com)
 [<img src="https://f-droid.org/badge/get-it-on.png" alt="Get it on F-Droid" height="80">](https://f-droid.org/repository/browse/?fdid=org.thosp.yourlocalweather)
 [<img src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' alt='Get it on Google Play' width='210' heigh='80'>](https://play.google.com/store/apps/details?id=org.thosp.yourlocalweather)
 

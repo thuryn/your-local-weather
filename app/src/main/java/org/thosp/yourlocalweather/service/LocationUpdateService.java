@@ -508,16 +508,23 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         } else {
             updateLocationInProcess = false;
             stopRefreshRotation("updateNetworkLocationByNetwork:1", 3);
+            sendMessageToWakeUpService(
+                    AppWakeUpManager.FALL_DOWN,
+                    AppWakeUpManager.SOURCE_LOCATION_UPDATE
+            );
             return true;
         }
 
         if (numberOfAttempts > 2) {
-            locationsDbHelper.updateLastUpdatedAndLocationSource(
+            locationsDbHelper.updateLocationSource(
                     currentLocation.getId(),
-                    System.currentTimeMillis(),
                     ".");
             updateLocationInProcess = false;
             stopRefreshRotation("updateNetworkLocationByNetwork:2", 3);
+            sendMessageToWakeUpService(
+                    AppWakeUpManager.FALL_DOWN,
+                    AppWakeUpManager.SOURCE_LOCATION_UPDATE
+            );
             return true;
         }
 
@@ -538,6 +545,12 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             originalIntent.putExtra("attempts", numberOfAttempts);
             resendTheIntentInSeveralSeconds(LOCATION_UPDATE_RESEND_INTERVAL_IN_MS, originalIntent);
         }
+        updateLocationInProcess = false;
+        stopRefreshRotation("updateNetworkLocationByNetwork:2", 3);
+        sendMessageToWakeUpService(
+                AppWakeUpManager.FALL_DOWN,
+                AppWakeUpManager.SOURCE_LOCATION_UPDATE
+        );
         return true;
     }
 

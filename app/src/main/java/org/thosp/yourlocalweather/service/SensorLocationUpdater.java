@@ -38,7 +38,6 @@ public class SensorLocationUpdater implements SensorEventListener {
     private static final long ACCELEROMETER_UPDATE_TIME_SECOND_SPAN = 300000000000l; //5 min
     private static final long ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION = 300000000000l; //5 min
 
-    private volatile long lastUpdatedPossition = 0;
     private volatile long lastUpdate = 0;
     private volatile float currentLength = 0;
     private float currentLengthLowPassed = 0;
@@ -80,7 +79,6 @@ public class SensorLocationUpdater implements SensorEventListener {
         currentLength = 0;
         currentLengthLowPassed = 0;
         lastUpdate = 0;
-        lastUpdatedPossition = 0;
         gravity[0] = 0;
         gravity[1] = 0;
         gravity[2] = 0;
@@ -142,6 +140,8 @@ public class SensorLocationUpdater implements SensorEventListener {
             }
             float absCurrentLength = Math.abs(currentLength);
 
+            long lastUpdatedPossition = getLastPossitionUodateTime();
+
             if (((lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SPAN)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT))
                     && ((lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SECOND_SPAN)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_SECOND_LIMIT))
                     && (autolocationForSensorEventAddressFound || (lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION))) {
@@ -162,9 +162,8 @@ public class SensorLocationUpdater implements SensorEventListener {
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context.getApplicationContext());
             org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
             if (!connectionDetector.isNetworkAvailableAndConnected()) {
-                locationsDbHelper.updateLastUpdatedAndLocationSource(
+                locationsDbHelper.updateLocationSource(
                         currentLocationForSensorEvent.getId(),
-                        System.currentTimeMillis(),
                         ".");
                 return;
             }
@@ -178,7 +177,6 @@ public class SensorLocationUpdater implements SensorEventListener {
         gravity[0] = 0;
         gravity[1] = 0;
         gravity[2] = 0;
-        lastUpdatedPossition = lastUpdate;
         currentLength = 0;
         currentLengthLowPassed = 0;
 
@@ -217,6 +215,12 @@ public class SensorLocationUpdater implements SensorEventListener {
         } finally {
             widgetRotationServiceLock.unlock();
         }
+    }
+
+    private long getLastPossitionUodateTime() {
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context.getApplicationContext());
+        org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
+        return currentLocationForSensorEvent.getLastLocationUpdate();
     }
 
     private boolean checkIfWidgetIconServiceIsNotBound() {
