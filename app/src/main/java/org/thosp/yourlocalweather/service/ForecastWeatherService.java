@@ -23,10 +23,12 @@ import org.json.JSONException;
 import org.thosp.yourlocalweather.ConnectionDetector;
 import org.thosp.yourlocalweather.WeatherJSONParser;
 import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
+import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
@@ -79,10 +81,22 @@ public class ForecastWeatherService  extends AbstractCommonService {
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
         appendLog(getBaseContext(), TAG, "onStartCommand:" + intent);
-
         if (intent == null) {
             return ret;
         }
+        boolean forceUpdate = false;
+        Long locationId = null;
+        String updateSource = null;
+        if (intent.hasExtra("forceUpdate")) {
+            forceUpdate = intent.getBooleanExtra("forceUpdate", false);
+        }
+        if (intent.hasExtra("locationId")) {
+            locationId = intent.getLongExtra("forceUpdate", 0);
+        }
+        if (intent.hasExtra("updateSource")) {
+            updateSource = intent.getStringExtra("forceUpdate");
+        }
+        weatherForecastUpdateMessages.add(new WeatherRequestDataHolder(locationId, updateSource, forceUpdate));
         startWeatherForecastUpdate(0);
         return ret;
     }
@@ -92,21 +106,39 @@ public class ForecastWeatherService  extends AbstractCommonService {
         WeatherRequestDataHolder updateRequest = weatherForecastUpdateMessages.peek();
 
         if ((updateRequest == null) || (updateRequest.getTimestamp() < incommingMessageTimestamp)) {
+            if (updateRequest != null) {
+                appendLog(getBaseContext(),
+                        TAG,
+                        "updateRequest is older than current");
+                if (!gettingWeatherStarted) {
+                    resendTheIntentInSeveralSeconds(1);
+                }
+            } else {
+                appendLog(getBaseContext(),
+                        TAG,
+                        "updateRequest is null");
+            }
             return;
         }
         final Location currentLocation = locationsDbHelper.getLocationById(updateRequest.getLocationId());
         appendLog(getBaseContext(), TAG, "currentLocation=" + currentLocation + ", updateSource=" + updateRequest.getUpdateSource());
 
         if (currentLocation == null) {
-            if (updateRequest != null) {
-                appendLog(getBaseContext(),
-                        TAG,
-                        "updateRequest is older than current");
-            } else {
-                appendLog(getBaseContext(),
-                        TAG,
-                        "updateRequest is null");
-            }
+            appendLog(getBaseContext(),
+                    TAG,
+                    "current location is null");
+            weatherForecastUpdateMessages.poll();
+            return;
+        }
+
+        if (!updateRequest.isForceUpdate() &&
+                !ForecastUtil.shouldUpdateForecast(this, currentLocation.getId()) &&
+            (updateRequest.getUpdateSource() == null)) {
+            appendLog(getBaseContext(),
+                    TAG,
+                    "Weather forecast is recent enough");
+            weatherForecastUpdateMessages.poll();
+            updateResultInUI(this, ACTION_WEATHER_UPDATE_OK, updateRequest);
             return;
         }
 
@@ -120,7 +152,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
                 locationsDbHelper.updateLocationSource(
                         currentLocation.getId(),
                         ".");
-                weatherForecastUpdateMessages.poll();
+                sendResult(ACTION_WEATHER_UPDATE_FAIL, getBaseContext());
                 return;
             }
             updateRequest.increaseAttempts();
@@ -229,23 +261,9 @@ public class ForecastWeatherService  extends AbstractCommonService {
         gettingWeatherStarted = false;
         WeatherRequestDataHolder updateRequest = weatherForecastUpdateMessages.poll();
         try {
-            if (ACTION_WEATHER_UPDATE_OK.equals(result)) {
-                startWeatherForecastUpdate(0);
-            }
-            String updateSource = updateRequest.getUpdateSource();
-            if (updateSource != null) {
-                WidgetUtils.updateWidgets(context);
-                switch (updateSource) {
-                    case "FORECAST":
-                        sendIntentToForecast(result);
-                        break;
-                    case "GRAPHS":
-                        sendIntentToGraphs(result);
-                        break;
-                    case "MAIN":
-                        sendIntentToMain(result);
-                        break;
-                }
+            updateResultInUI(context, result, updateRequest);
+            if (!weatherForecastUpdateMessages.isEmpty()) {
+                resendTheIntentInSeveralSeconds(5);
             }
             if (WidgetRefreshIconService.isRotationActive) {
                 return;
@@ -253,6 +271,24 @@ public class ForecastWeatherService  extends AbstractCommonService {
             WidgetUtils.updateWidgets(getBaseContext());
         } catch (Throwable exception) {
             appendLog(context, TAG, "Exception occured when starting the service:", exception);
+        }
+    }
+
+    private void updateResultInUI(Context context, String result, WeatherRequestDataHolder updateRequest) {
+        String updateSource = updateRequest.getUpdateSource();
+        if (updateSource != null) {
+            WidgetUtils.updateWidgets(context);
+            switch (updateSource) {
+                case "FORECAST":
+                    sendIntentToForecast(result);
+                    break;
+                case "GRAPHS":
+                    sendIntentToGraphs(result);
+                    break;
+                case "MAIN":
+                    sendIntentToMain(result);
+                    break;
+            }
         }
     }
 

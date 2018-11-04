@@ -11,7 +11,7 @@ public class ApiKeys {
     public static final int MAX_AVAILABLE_LOCATIONS = 20;
 
     public static final String DEFAULT_OPEN_WEATHER_MAP_API_KEY =
-            "7664eb3c556fb862a325ec4af36872af";
+            "7a68cd643625263506e1e063d71b5b32";
 
     public static String getOpenweathermapApiKey(Context context) {
         String openweathermapApiKey = PreferenceManager

@@ -1,6 +1,7 @@
 package org.thosp.yourlocalweather.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -15,6 +16,8 @@ import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherCondition;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
+import org.thosp.yourlocalweather.service.CurrentWeatherService;
+import org.thosp.yourlocalweather.service.ForecastWeatherService;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
@@ -157,6 +160,23 @@ public class ExtLocationWithForecastWidgetProvider extends AbstractWidgetProvide
         remoteViews.setTextColor(R.id.forecast_5_widget_temperatures, textColorId);
         remoteViews.setInt(R.id.header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
         appendLog(context, TAG, "setWidgetTheme:end");
+    }
+
+    @Override
+    protected void sendWeatherUpdate(Context context) {
+        if (currentLocation == null) {
+            appendLog(context,
+                    TAG,
+                    "currentLocation is null");
+            return;
+        }
+        super.sendWeatherUpdate(context);
+        if (currentLocation.getOrderId() != 0) {
+            Intent intentToCheckWeather = new Intent(context, ForecastWeatherService.class);
+            intentToCheckWeather.putExtra("locationId", currentLocation.getId());
+            intentToCheckWeather.putExtra("forceUpdate", true);
+            startServiceWithCheck(context, intentToCheckWeather);
+        }
     }
 
     @Override

@@ -7,12 +7,22 @@ public class WeatherRequestDataHolder implements Serializable {
     private final String updateSource;
     private int attempts;
     private long timestamp;
+    private boolean forceUpdate;
 
     public WeatherRequestDataHolder(long locationId, String updateSource) {
         this.locationId = locationId;
         this.updateSource = updateSource;
         this.attempts = 0;
         this.timestamp = System.currentTimeMillis();
+        this.forceUpdate = false;
+    }
+
+    public WeatherRequestDataHolder(long locationId, String updateSource, boolean forceUpdate) {
+        this.locationId = locationId;
+        this.updateSource = updateSource;
+        this.attempts = 0;
+        this.timestamp = System.currentTimeMillis();
+        this.forceUpdate = forceUpdate;
     }
 
     public void increaseAttempts() {
@@ -35,9 +45,13 @@ public class WeatherRequestDataHolder implements Serializable {
         return timestamp;
     }
 
+    public boolean isForceUpdate() {
+        return forceUpdate;
+    }
+
     @Override
     public String toString() {
         return "WeatherRequestDataHolder:locationId=" + locationId + ", updateSource="
-                + updateSource + ", attempts=" + attempts;
+                + updateSource + ", attempts=" + attempts + ", forceUpdate=" + forceUpdate;
     }
 }

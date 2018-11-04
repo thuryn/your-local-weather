@@ -167,7 +167,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
-    private void sendWeatherUpdate(Context context) {
+    protected void sendWeatherUpdate(Context context) {
         if (currentLocation == null) {
             appendLog(context,
                     TAG,
@@ -178,12 +178,13 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
             startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
             startLocationUpdateIntent.putExtra("locationId", currentLocation.getId());
-            startLocationUpdateIntent.putExtra("isInteractive", true);
+            startLocationUpdateIntent.putExtra("forceUpdate", true);
             startServiceWithCheck(context, startLocationUpdateIntent);
             appendLog(context, TAG, "send intent START_LOCATION_UPDATE:" + startLocationUpdateIntent);
         } else if (currentLocation.getOrderId() != 0) {
             Intent intentToCheckWeather = new Intent(context, CurrentWeatherService.class);
             intentToCheckWeather.putExtra("locationId", currentLocation.getId());
+            intentToCheckWeather.putExtra("forceUpdate", true);
             startServiceWithCheck(context, intentToCheckWeather);
         }
     }
@@ -254,7 +255,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         widgetSettingsDbHelper.saveParamLong(widgetId, "locationId", currentLocation.getId());
     }
 
-    private void startServiceWithCheck(Context context, Intent intent) {
+    protected void startServiceWithCheck(Context context, Intent intent) {
         try {
             context.startService(intent);
         } catch (IllegalStateException ise) {

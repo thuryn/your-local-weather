@@ -58,9 +58,9 @@ public class LocationsActivity extends BaseActivity {
         super.onResume();
         List<Location> allLocations = locationsDbHelper.getAllRows();
         if (allLocations.size() >= ApiKeys.getAvailableLocations(this)) {
-            addLocationButton.setVisibility(View.GONE);
+            addLocationButton.hide();
         } else {
-            addLocationButton.setVisibility(View.VISIBLE);
+            addLocationButton.show();
         }
         locationsAdapter = new LocationsAdapter(allLocations);
         recyclerView.setAdapter(locationsAdapter);
@@ -140,9 +140,9 @@ public class LocationsActivity extends BaseActivity {
         locationsAdapter.notifyItemRangeChanged(position, locationsAdapter.getItemCount());
         List<Location> allLocations = locationsDbHelper.getAllRows();
         if (allLocations.size() >= ApiKeys.getAvailableLocations(this)) {
-            addLocationButton.setVisibility(View.GONE);
+            addLocationButton.hide();
         } else {
-            addLocationButton.setVisibility(View.VISIBLE);
+            addLocationButton.show();
         }
         locationsAdapter = new LocationsAdapter(allLocations);
         recyclerView.setAdapter(locationsAdapter);

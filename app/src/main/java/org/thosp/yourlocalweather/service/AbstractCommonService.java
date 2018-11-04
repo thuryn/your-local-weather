@@ -121,7 +121,7 @@ public class AbstractCommonService extends Service {
         sendBroadcast(intent);
     }
 
-    protected void requestWeatherCheck(long locationId, String updateSource, int wakeUpSource) {
+    protected void requestWeatherCheck(long locationId, String updateSource, int wakeUpSource, boolean forceUpdate) {
         appendLog(getBaseContext(), TAG, "startRefreshRotation");
         boolean updateLocationInProcess = LocationUpdateService.updateLocationInProcess;
         appendLog(getBaseContext(), TAG, "requestWeatherCheck, updateLocationInProcess=" +
@@ -136,8 +136,8 @@ public class AbstractCommonService extends Service {
             locationsDbHelper.updateLocationSource(currentLocation.getId(), "-");
             currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
         }
-        sendMessageToCurrentWeatherService(currentLocation, updateSource, wakeUpSource);
-        sendMessageToWeatherForecastService(currentLocation.getId(), updateSource);
+        sendMessageToCurrentWeatherService(currentLocation, updateSource, wakeUpSource, forceUpdate);
+        sendMessageToWeatherForecastService(currentLocation.getId(), updateSource, forceUpdate);
     }
 
     protected void startRefreshRotation(String where, int rotationSource) {
@@ -222,12 +222,13 @@ public class AbstractCommonService extends Service {
     };
 
     protected void sendMessageToCurrentWeatherService(Location location, int wakeUpSource) {
-        sendMessageToCurrentWeatherService(location, null, wakeUpSource);
+        sendMessageToCurrentWeatherService(location, null, wakeUpSource, false);
     }
 
     protected void sendMessageToCurrentWeatherService(Location location,
                                                       String updateSource,
-                                                      int wakeUpSource) {
+                                                      int wakeUpSource,
+                                                      boolean forceUpdate) {
         sendMessageToWakeUpService(
                 AppWakeUpManager.WAKE_UP,
                 wakeUpSource
@@ -237,7 +238,7 @@ public class AbstractCommonService extends Service {
             Message msg = Message.obtain(
                     null,
                     CurrentWeatherService.START_CURRENT_WEATHER_UPDATE,
-                    new WeatherRequestDataHolder(location.getId(), updateSource)
+                    new WeatherRequestDataHolder(location.getId(), updateSource, forceUpdate)
             );
             if (checkIfCurrentWeatherServiceIsNotBound()) {
                 //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
@@ -299,10 +300,10 @@ public class AbstractCommonService extends Service {
     };
 
     protected void sendMessageToWeatherForecastService(long locationId) {
-        sendMessageToWeatherForecastService(locationId, null);
+        sendMessageToWeatherForecastService(locationId, null, false);
     }
 
-    protected void sendMessageToWeatherForecastService(long locationId, String updateSource) {
+    protected void sendMessageToWeatherForecastService(long locationId, String updateSource, boolean forceUpdate) {
         if (!ForecastUtil.shouldUpdateForecast(this, locationId)) {
             return;
         }
@@ -311,7 +312,7 @@ public class AbstractCommonService extends Service {
             Message msg = Message.obtain(
                     null,
                     ForecastWeatherService.START_WEATHER_FORECAST_UPDATE,
-                    new WeatherRequestDataHolder(locationId, updateSource)
+                    new WeatherRequestDataHolder(locationId, updateSource, forceUpdate)
             );
             if (checkIfWeatherForecastServiceIsNotBound()) {
                 //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");

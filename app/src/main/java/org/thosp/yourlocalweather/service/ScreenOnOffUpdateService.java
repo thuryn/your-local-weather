@@ -95,7 +95,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
             appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:weatherRecord=" + weatherRecord);
             if (weatherRecord == null) {
-                requestWeatherCheck(currentLocation.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+                requestWeatherCheck(currentLocation.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER, false);
                 timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
                 return;
             }
@@ -115,7 +115,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
                 return;
             }
             appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:requestWeatherCheck");
-            requestWeatherCheck(currentLocation.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+            requestWeatherCheck(currentLocation.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER, false);
             timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
         }
     };
@@ -165,7 +165,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
             timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT - (now - lastUpdateTimeInMilis));
             return;
         }
-        requestWeatherCheck(currentLocation.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+        requestWeatherCheck(currentLocation.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER, false);
         timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
     }
 
@@ -237,7 +237,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
             appendLog(this, TAG, "weatherRecord=" + weatherRecord);
             if (weatherRecord == null) {
-                requestWeatherCheck(location.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+                requestWeatherCheck(location.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER, false);
                 continue;
             }
             WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(location.getId());
@@ -269,11 +269,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
                 continue;
             }
             appendLog(this, TAG, "requestWeatherCheck");
-            if (location.getOrderId() != 0) {
-                requestWeatherCheck(location.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
-            } else {
-                locationUpdateService.startLocationAndWeatherUpdate();
-            }
+            requestWeatherCheck(location.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER, false);
         }
     }
 
