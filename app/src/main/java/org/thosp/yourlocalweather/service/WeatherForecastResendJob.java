@@ -2,6 +2,7 @@ package org.thosp.yourlocalweather.service;
 
 import android.annotation.TargetApi;
 import android.app.job.JobParameters;
+import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.Message;
 import android.os.RemoteException;
@@ -12,10 +13,12 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 public class WeatherForecastResendJob extends AbstractAppJob {
     private static final String TAG = "WeatherForecastResendJob";
 
+    private JobParameters params;
+    int connectedServicesCounter;
+
     @Override
     public boolean onStartJob(JobParameters params) {
         sendRetryMessageToWeatherForecastService();
-        jobFinished(params, false);
         return true;
     }
 
@@ -23,6 +26,14 @@ public class WeatherForecastResendJob extends AbstractAppJob {
     public boolean onStopJob(JobParameters params) {
         unbindAllServices();
         return true;
+    }
+
+    @Override
+    protected void serviceConnected(ServiceConnection serviceConnection) {
+        connectedServicesCounter++;
+        if (connectedServicesCounter >= 3) {
+            jobFinished(params, false);
+        }
     }
 
     protected void sendRetryMessageToWeatherForecastService() {

@@ -110,26 +110,6 @@ public abstract class AbstractAppJob extends JobService {
     }
 
     private void unbindWeatherForecastService() {
-        if (!weatherForecastUnsentMessages.isEmpty()) {
-            weatherForecastServiceLock.lock();
-            try {
-                while (weatherForecastService == null) {
-                    try {
-                        appendLog(getBaseContext(), TAG, "Wait for weatherForecastService=" + weatherForecastService);
-                        Thread.sleep(10);
-                    } catch (InterruptedException e) {
-                        appendLog(getBaseContext(), TAG, "weatherForecastService interrupted:", e);
-                    }
-                }
-                while (!weatherForecastUnsentMessages.isEmpty()) {
-                    weatherForecastService.send(weatherForecastUnsentMessages.poll());
-                }
-            } catch (RemoteException e) {
-                appendLog(getBaseContext(), TAG, e.getMessage(), e);
-            } finally {
-                weatherForecastServiceLock.unlock();
-            }
-        }
         if (weatherForecastService == null) {
             return;
         }
@@ -149,6 +129,11 @@ public abstract class AbstractAppJob extends JobService {
             } finally {
                 weatherForecastServiceLock.unlock();
             }
+            new Thread(new Runnable() {
+                public void run() {
+                    serviceConnected(currentWeatherServiceConnection);
+                }
+            }).start();
         }
         public void onServiceDisconnected(ComponentName className) {
             weatherForecastService = null;
@@ -207,26 +192,6 @@ public abstract class AbstractAppJob extends JobService {
     }
 
     private void unbindCurrentWeatherService() {
-        if (!currentWeatherUnsentMessages.isEmpty()) {
-            currentWeatherServiceLock.lock();
-            try {
-                while (currentWeatherService == null) {
-                    try {
-                        appendLog(getBaseContext(), TAG, "Wait for currentWeatherService=" + currentWeatherService);
-                        Thread.sleep(10);
-                    } catch (InterruptedException e) {
-                        appendLog(getBaseContext(), TAG, "unbindCurrentWeatherService interrupted:", e);
-                    }
-                }
-                while (!currentWeatherUnsentMessages.isEmpty()) {
-                    currentWeatherService.send(currentWeatherUnsentMessages.poll());
-                }
-            } catch (RemoteException e) {
-                appendLog(getBaseContext(), TAG, e.getMessage(), e);
-            } finally {
-                currentWeatherServiceLock.unlock();
-            }
-        }
         if (currentWeatherService == null) {
             return;
         }
@@ -246,11 +211,18 @@ public abstract class AbstractAppJob extends JobService {
             } finally {
                 currentWeatherServiceLock.unlock();
             }
+            new Thread(new Runnable() {
+                public void run() {
+                    serviceConnected(currentWeatherServiceConnection);
+                }
+            }).start();
         }
         public void onServiceDisconnected(ComponentName className) {
             currentWeatherService = null;
         }
     };
+
+    protected abstract void serviceConnected(ServiceConnection serviceConnection);
 
     protected void sendMessageToWakeUpService(int wakeAction, int wakeupSource) {
         wakeUpServiceLock.lock();
@@ -293,26 +265,6 @@ public abstract class AbstractAppJob extends JobService {
     }
 
     private void unbindWakeUpService() {
-        if (!wakeUpUnsentMessages.isEmpty()) {
-            wakeUpServiceLock.lock();
-            try {
-                while (wakeUpService == null) {
-                    try {
-                        appendLog(getBaseContext(), TAG, "Wait for wakeUpService=" + wakeUpService);
-                        Thread.sleep(10);
-                    } catch (InterruptedException e) {
-                        appendLog(getBaseContext(), TAG, "wakeUpService interrupted:", e);
-                    }
-                }
-                while (!wakeUpUnsentMessages.isEmpty()) {
-                    wakeUpService.send(wakeUpUnsentMessages.poll());
-                }
-            } catch (RemoteException e) {
-                appendLog(getBaseContext(), TAG, e.getMessage(), e);
-            } finally {
-                wakeUpServiceLock.unlock();
-            }
-        }
         if (wakeUpService == null) {
             return;
         }
@@ -332,6 +284,11 @@ public abstract class AbstractAppJob extends JobService {
             } finally {
                 wakeUpServiceLock.unlock();
             }
+            new Thread(new Runnable() {
+                public void run() {
+                    serviceConnected(currentWeatherServiceConnection);
+                }
+            }).start();
         }
         public void onServiceDisconnected(ComponentName className) {
             wakeUpService = null;

@@ -16,8 +16,10 @@ public class LocationUpdateServiceRetryJob extends AbstractAppJob {
 
     private static final String TAG = "LocationUpdateServiceRetryJob";
 
-    LocationUpdateService locationUpdateService;
-    JobParameters params;
+    private LocationUpdateService locationUpdateService;
+    private JobParameters params;
+    int connectedServicesCounter;
+
 
     @Override
     public boolean onStartJob(JobParameters params) {
@@ -43,6 +45,14 @@ public class LocationUpdateServiceRetryJob extends AbstractAppJob {
         return true;
     }
 
+    @Override
+    protected void serviceConnected(ServiceConnection serviceConnection) {
+        connectedServicesCounter++;
+        if (connectedServicesCounter >= 4) {
+            jobFinished(params, false);
+        }
+    }
+
     private ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {
 
         @Override
@@ -55,7 +65,11 @@ public class LocationUpdateServiceRetryJob extends AbstractAppJob {
                     params.getExtras().getBoolean("byLastLocationOnly"),
                     null,
                     params.getExtras().getInt("attempts"));
-            jobFinished(params, false);
+            new Thread(new Runnable() {
+                public void run() {
+                    serviceConnected(locationUpdateServiceConnection);
+                }
+            }).start();
         }
 
         @Override

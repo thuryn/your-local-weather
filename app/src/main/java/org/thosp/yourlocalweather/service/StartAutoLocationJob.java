@@ -27,8 +27,9 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 public class StartAutoLocationJob extends AbstractAppJob {
     private static final String TAG = "StartAutoLocationJob";
 
-    LocationUpdateService locationUpdateService;
-    JobParameters params;
+    private LocationUpdateService locationUpdateService;
+    private JobParameters params;
+    int connectedServicesCounter;
 
     @Override
     public boolean onStartJob(JobParameters params) {
@@ -49,6 +50,14 @@ public class StartAutoLocationJob extends AbstractAppJob {
         return true;
     }
 
+    @Override
+    protected void serviceConnected(ServiceConnection serviceConnection) {
+        connectedServicesCounter++;
+        if (connectedServicesCounter >= 5) {
+            jobFinished(params, false);
+        }
+    }
+
     private void performUpdateOfLocation() {
         Intent intent = new Intent(this, SensorLocationUpdateService.class);
         bindService(intent, sensorLocationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
@@ -64,6 +73,11 @@ public class StartAutoLocationJob extends AbstractAppJob {
             locationUpdateService = binder.getService();
             appendLog(getBaseContext(), TAG, "got locationUpdateServiceConnection");
             performUpdateOfLocation();
+            new Thread(new Runnable() {
+                public void run() {
+                    serviceConnected(locationUpdateServiceConnection);
+                }
+            }).start();
         }
 
         @Override
@@ -92,7 +106,11 @@ public class StartAutoLocationJob extends AbstractAppJob {
             } else {
                 reScheduleNextAlarm(1, updateAutoPeriodStr, StartAutoLocationJob.class);
             }
-            jobFinished(params, false);
+            new Thread(new Runnable() {
+                public void run() {
+                    serviceConnected(sensorLocationUpdateServiceConnection);
+                }
+            }).start();
         }
 
         @Override

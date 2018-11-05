@@ -25,10 +25,12 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 public class StartRegularLocationJob extends AbstractAppJob {
     private static final String TAG = "StartRegularLocationJob";
 
+    private JobParameters params;
+    int connectedServicesCounter;
+
     @Override
     public boolean onStartJob(JobParameters params) {
         performUpdateOfWeather();
-        jobFinished(params, false);
         return true;
     }
 
@@ -36,6 +38,14 @@ public class StartRegularLocationJob extends AbstractAppJob {
     public boolean onStopJob(JobParameters params) {
         unbindAllServices();
         return true;
+    }
+
+    @Override
+    protected void serviceConnected(ServiceConnection serviceConnection) {
+        connectedServicesCounter++;
+        if (connectedServicesCounter >= 3) {
+            jobFinished(params, false);
+        }
     }
 
     private void performUpdateOfWeather() {

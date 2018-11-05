@@ -16,10 +16,12 @@ public class StartAppAlarmJob extends AbstractAppJob {
     private static final String TAG = "StartAppAlarmJob";
 
     private JobParameters params;
+    int connectedServicesCounter;
 
     @Override
     public boolean onStartJob(JobParameters params) {
         this.params = params;
+        connectedServicesCounter = 0;
         String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
         if (!"OFF".equals(updateAutoPeriodStr)) {
             reScheduleNextAlarm(1, updateAutoPeriodStr, StartAutoLocationJob.class);
@@ -41,6 +43,14 @@ public class StartAppAlarmJob extends AbstractAppJob {
         return true;
     }
 
+    @Override
+    protected void serviceConnected(ServiceConnection serviceConnection) {
+        connectedServicesCounter++;
+        if (connectedServicesCounter >= 4) {
+            jobFinished(params, false);
+        }
+    }
+
     private ServiceConnection screenOnOffUpdateServiceConnection = new ServiceConnection() {
 
         @Override
@@ -50,7 +60,11 @@ public class StartAppAlarmJob extends AbstractAppJob {
                     (ScreenOnOffUpdateService.ScreenOnOffUpdateServiceBinder) service;
             ScreenOnOffUpdateService screenOnOffUpdateService = binder.getService();
             screenOnOffUpdateService.startSensorBasedUpdates(0);
-            jobFinished(params, false);
+            new Thread(new Runnable() {
+                public void run() {
+                    serviceConnected(screenOnOffUpdateServiceConnection);
+                }
+            }).start();
         }
 
         @Override
