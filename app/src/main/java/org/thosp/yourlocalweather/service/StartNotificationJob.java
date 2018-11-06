@@ -32,6 +32,8 @@ public class StartNotificationJob extends AbstractAppJob {
 
     @Override
     public boolean onStartJob(JobParameters params) {
+        this.params = params;
+        connectedServicesCounter = 0;
         performNotification();
         return true;
     }

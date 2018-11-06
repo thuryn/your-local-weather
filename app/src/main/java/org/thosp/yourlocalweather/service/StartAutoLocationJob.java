@@ -34,6 +34,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
     @Override
     public boolean onStartJob(JobParameters params) {
         this.params = params;
+        connectedServicesCounter = 0;
         appendLog(this, TAG, "sending intent to get location update");
         Intent intent = new Intent(this, LocationUpdateService.class);
         bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);

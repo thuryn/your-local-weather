@@ -30,6 +30,8 @@ public class StartRegularLocationJob extends AbstractAppJob {
 
     @Override
     public boolean onStartJob(JobParameters params) {
+        this.params = params;
+        connectedServicesCounter = 0;
         performUpdateOfWeather();
         return true;
     }

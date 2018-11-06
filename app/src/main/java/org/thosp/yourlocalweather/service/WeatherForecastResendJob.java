@@ -18,6 +18,8 @@ public class WeatherForecastResendJob extends AbstractAppJob {
 
     @Override
     public boolean onStartJob(JobParameters params) {
+        this.params = params;
+        connectedServicesCounter = 0;
         sendRetryMessageToWeatherForecastService();
         return true;
     }

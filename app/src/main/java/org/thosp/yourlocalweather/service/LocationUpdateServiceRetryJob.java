@@ -24,6 +24,7 @@ public class LocationUpdateServiceRetryJob extends AbstractAppJob {
     @Override
     public boolean onStartJob(JobParameters params) {
         this.params = params;
+        connectedServicesCounter = 0;
         appendLog(this, TAG, "starting cells only location lookup");
         if (locationUpdateService == null) {
             Intent intent = new Intent(this, LocationUpdateService.class);
