@@ -1,3 +1,6 @@
+v4.4.2
+Fix finalization of services
+
 v4.4.1
 Fix unbinding of services in service jobs
 
