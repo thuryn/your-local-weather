@@ -46,7 +46,14 @@ public class StartAutoLocationJob extends AbstractAppJob {
         if (locationUpdateService != null) {
             unbindService(locationUpdateServiceConnection);
         }
-        unbindService(sensorLocationUpdateServiceConnection);
+        appendLog(this, TAG, "unbinding sensorLocationUpdate: " + sensorLocationUpdateServiceConnection);
+        if (sensorLocationUpdateServiceConnection !=null) {
+            try {
+                unbindService(sensorLocationUpdateServiceConnection);
+            } catch (Exception e) {
+                appendLog(this, TAG, e.getMessage(), e);
+            }
+        }
         unbindAllServices();
         return true;
     }

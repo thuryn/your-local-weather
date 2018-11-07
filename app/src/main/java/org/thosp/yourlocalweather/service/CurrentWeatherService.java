@@ -173,7 +173,7 @@ public class CurrentWeatherService extends AbstractCommonService {
         CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
         CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
 
-        long lastUpdateTimeInMilis = weatherRecord.getLastUpdatedTime();
+        long lastUpdateTimeInMilis = (weatherRecord != null)?weatherRecord.getLastUpdatedTime():0;
         long now = System.currentTimeMillis();
 
         long updatePeriodForLocation;

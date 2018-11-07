@@ -31,8 +31,8 @@ public class SensorLocationUpdater implements SensorEventListener {
 
     private static final String TAG = "SensorLocationUpdater";
 
-    private static final float LENGTH_UPDATE_LOCATION_LIMIT = 350000;
-    private static final float LENGTH_UPDATE_LOCATION_SECOND_LIMIT = 850000;
+    private static final float LENGTH_UPDATE_LOCATION_LIMIT = 10000;
+    private static final float LENGTH_UPDATE_LOCATION_SECOND_LIMIT = 200000;
     private static final float LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION = 200;
     private static final long ACCELEROMETER_UPDATE_TIME_SPAN = 900000000000l; //15 min
     private static final long ACCELEROMETER_UPDATE_TIME_SECOND_SPAN = 300000000000l; //5 min
@@ -120,7 +120,7 @@ public class SensorLocationUpdater implements SensorEventListener {
                     if (dT > 1.0f) {
                         appendLog(context, TAG, "acc under limit, currentLength = " + String.format("%.8f", currentLength) +
                                 ":counted length = " + String.format("%.8f", countedtLength) + ":countedAcc = " + countedAcc +
-                                ", dT = " + String.format("%.8f", dT));
+                                ", dT = " + String.format("%.8f", dT)+ ", provider=" + this);
                     }
                     currentLengthLowPassed += countedtLength;
                     lastMovement = highPassFilter(sensorEvent);
@@ -136,7 +136,7 @@ public class SensorLocationUpdater implements SensorEventListener {
             if ((lastUpdate%1000 < 5) || (countedtLength > 10)) {
                 appendLog(context, TAG, "current currentLength = " + String.format("%.8f", currentLength) +
                         ":counted length = " + String.format("%.8f", countedtLength) + ":countedAcc = " + countedAcc +
-                        ", dT = " + String.format("%.8f", dT));
+                        ", dT = " + String.format("%.8f", dT) + ", provider=" + this);
             }
             float absCurrentLength = Math.abs(currentLength);
 
