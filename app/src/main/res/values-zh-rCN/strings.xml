@@ -239,11 +239,13 @@
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">无</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">刚刚更新的值</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">使用位置来源更新的值</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - 仅天气已更新
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - 将要更新位置和/或天气 
+\n. - 位置无法访问，将按最后位置更新天气
+\nW - 仅天气已更新 
 \nL - 仅位置已更新 
-\nG - 位置来自 GPS 且天气已更新
+\nG - 位置来自 GPS 且天气已更新 
 \nN - 位置来自网络且天气已更新 
-\nB - Openweathermap.org 服务访问已被禁止，请尝试稍后更新天气
+\nB - Openweathermap.org 服务访问已被禁止，请尝试稍后更新天气 
 \nE - Openweathermap.org 服务访问令牌已过期。您需要更新应用以再次获取令牌</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - 仅天气已更新
 \nL - 仅位置已更新 
@@ -318,4 +320,10 @@
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">禁用</string>
     <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">缩写 N, NE, ...</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">与正北夹角</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">电池优化</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">应用运行后台进程以更新位置、天气或通过加速度计追踪位置。因此，应用将要求您关闭电池优化，以运行后台进程。</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">继续</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">取消</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Swedish (瑞典语)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">Hebrew (希伯来语)</string>
     </resources>

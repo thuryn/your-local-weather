@@ -174,7 +174,7 @@
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Vous pouvez choisir le moyen de localisation — la méthode <i>Système</i> utilise les services de Google pour récupérer la localisation par le réseau (Wi-Fi et cellulaire). La méthode <i>MLS local et Nominatim</i> utilise les services de localisation de Mozilla pour récupérer les coordonnées et le service Nominatim pour récupérer le nom associé. La deuxième option a besoin de la permission pour passer des appels téléphoniques pour récupérer des infos sur le réseau cellulaire. L\'option préférée est sélectionnée par défaut.</string>
     <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Option de mise en cache des adresses résolues</string>
     <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Mettre en cache les adresses résolues</string>
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">L\'appli détermine votre emplacement grâce aux réseaux cellulaire (BTS), Wi-Fi et si ces méthodes échouent, le GPS pour montrer votre météo locale, en récupérant les coordonnées par le service de localisation de Mozilla. Avec le widget sur votre téléphone ou votre tablette, vous pouvez voir votre localisation et votre météo actuelle sur l\'écran d\'accueil. Les mises à jour de la localisation sont périodique (p. ex. une fois par heure) et l\'appli peut utiliser l\'accéléromètre pour détecter des mouvements d\'une distance plus grande qu\'une certaine valeur. Dans votre poche, la distance augmente plus vite. Vous pouvez désactiver la mise à jour de la localisation — seul la météo est mise à jour. L\'appli met à jour la localisation et la météo à des intervalles spécifiés. Vous pouvez par exemple paramétrer la mise à jour tous les jours à treize heures. La météo est mise à jour immédiatement après la localisation ou lorsque l\'écran est allumé — mais pas plus d\'une fois toutes les 15 minutes (et lorsque la météo n\'a pas été mise à jour lors des 15 dernières minutes). Ces informations sont utilisées pour récupérer les coordonnées de votre emplacement par le service de localisation de Mozilla. L\'appli essaye d\'utiliser le GPS lorsque la localisation n\'est pas disponible depuis les réseaux cellulaire et Wi-Fi. Les coordonnées de votre emplacement sont utilisées pour récupérer l\'adresse avec le service Nominatim. L\'adresse est utilisée dans l\'appli ou le widget. L\'appli utilise le service OpenWeatherMap.org pour récupérer la météo actuelle.</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">L\'appli détermine votre emplacement grâce aux réseaux cellulaire (BTS), Wi-Fi et si ces méthodes échouent, le GPS pour montrer votre météo locale, en récupérant les coordonnées par le service de localisation de Mozilla. L\'application ncessite au moins : une station de base du réseau GSM ou deux réseaux wifi accessibles ou toute combinaison de réseaux GSM et WIFI. Avec le widget sur votre téléphone ou votre tablette, vous pouvez voir votre localisation et votre météo actuelle sur l\'écran d\'accueil. Les mises à jour de la localisation sont périodique (p. ex. une fois par heure) et l\'appli peut utiliser l\'accéléromètre pour détecter des mouvements d\'une distance plus grande qu\'une certaine valeur. Dans votre poche, la distance augmente plus vite. Vous pouvez désactiver la mise à jour de la localisation — seul la météo est mise à jour. L\'appli met à jour la localisation et la météo à des intervalles spécifiés. Vous pouvez par exemple paramétrer la mise à jour tous les jours à treize heures. La météo est mise à jour immédiatement après la localisation ou lorsque l\'écran est allumé — mais pas plus d\'une fois toutes les 15 minutes (et lorsque la météo n\'a pas été mise à jour lors des 15 dernières minutes). Ces informations sont utilisées pour récupérer les coordonnées de votre emplacement par le service de localisation de Mozilla. L\'appli essaye d\'utiliser le GPS lorsque la localisation n\'est pas disponible depuis les réseaux cellulaire et Wi-Fi. Les coordonnées de votre emplacement sont utilisées pour récupérer l\'adresse avec le service Nominatim. L\'adresse est utilisée dans l\'appli ou le widget. L\'appli utilise le service OpenWeatherMap.org pour récupérer la météo actuelle.</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">L\'appli principale consiste en une vue globale de la météo actuelle. Vous pouvez mettre à jour la météo avec le bouton de rafraîchissement ou en glissant vers le bas. Vous pouvez trouver le bouton de mise à jour de la localisation à côté du bouton de rafraîchissement de la météo. Ce bouton n\'est disponible que lorsque la localisation 0 est activée (la localisation 0 est conçue pour la mise à jour automatique de la localisation).</string>
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">À côté du bouton de mise à jour de la localisation se trouve le bouton de gestion de la localisation (l\'icône en forme de loupe). Vous pouvez gérer les emplacements dans l\'appli et les widgets. Il y a un emplacement (la localisation 0) disponible par défaut — elle est conçue pour les mises à jour automatiques. Vous pouvez trouver le bouton d\'activation et de désactivation en déplaçant cette localisation vers la gauche. Vous pouvez aussi ajouter un emplacement manuellement. Lorsque vous cliquez sur le bouton + vous pouvez choisir votre localisation sur une carte. Vous pouvez aussi supprimer la localisation avec le bouton Supprimer — qui est accessible en déplaçant la localisation vers la gauche.</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Vous pouvez trouver les prévisions météos sur l\'écran suivant (sélectionnez l\'écran suivant dans le menu ou glissez un doigts de la gauche vers la droite). Les prévisions sont mises à jour par le bouton de mise à jour où lorsque vous accéder à cet écran (mais pas plus d\'une fois par heure).</string>
@@ -246,19 +246,21 @@
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Rien</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Seulement la valeur mise à jour</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">La valeur mise à jour avec la source de localisation</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W — seule la météo a été mise à jour
-\nL — seul l\'emplacement a été mis à jour
-\nG — l\'emplacement et la météo ont été mis à jour par GPS
-\nN — l\'emplacement et la météo ont été mis à jour par le réseau
-\nB — l\'accès au service openweathermap.org a été banni, essayez de mettre à jour la météo plus tard
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - mise à jour de la localisation et/ou de la météo
+\n. - la localisation n\'est pas accessible, mise à jour de la météo à partir de la dernière localisation
+\nW — seule la météo a été mise à jour 
+\nL — seul l\'emplacement a été mis à jour 
+\nG — l\'emplacement et la météo ont été mis à jour par GPS 
+\nN — l\'emplacement et la météo ont été mis à jour par le réseau 
+\nB — l\'accès au service openweathermap.org a été banni, essayez de mettre à jour la météo plus tard 
 \nE — le jeton d\'accès au service openweathermap.org a expiré. Vous devez mettre à jour l\'application</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W — seule la météo a été mise à jour
-\nL — seul l\'emplacement a été mis à jour
-\nG — l\'emplacement et la météo ont été mis à jour par GPS
-\nN — l\'emplacement et la météo ont été mis à jour par le réseau
-\nNi — l\'emplacement et la météo ont été mis à jour par le réseau cellulaire, emplacement découvert par le service de Mozilla
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W — seule la météo a été mise à jour 
+\nL — seul l\'emplacement a été mis à jour 
+\nG — l\'emplacement et la météo ont été mis à jour par GPS 
+\nN — l\'emplacement et la météo ont été mis à jour par le réseau 
+\nNi — l\'emplacement et la météo ont été mis à jour par le réseau cellulaire, emplacement découvert par le service de Mozilla 
 \nB — l\'accès au service openweathermap.org a été banni, essayez de mettre à jour la météo plus tard
-\nE — le jeton d\'accès au service openweathermap.org a expiré. Vous devez mettre à jour l\'application</string>
+\nE — le jeton d\'accès au service openweathermap.org a expiré. Vous devez mettre à jour l\'application pour avoir l\'accès noueau</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Lorsque la localisation est bloquée lorsque l\'appareil est en veille, vous pouvez essayer de le réveiller lorsqu\'il cherche un réseau cellulaire</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Stratégie de réveil</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">Ne pas réveiller</string>
@@ -317,4 +319,26 @@
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Icônes basés sur une police</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Icônes Merlin le rouge</string>
 <string name="help_page_3_content" tools:ignore="MissingTranslation">Ces options influencent toute l\'application.</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Optimisation de la batterie</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">L\'application exécute des processus en arrière-plan pour effectuer des mises à jour de l\'emplacement, de la météo ou pour suivre l\'emplacement par accéléromètre. Par conséquent, l\'application va vous demander de désactiver l\'optimisation de la batterie pour exécuter les processus en arrière-plan.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Continuer</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Annuler</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Direction du vent</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">pouces</string>
+
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">Format de l\'heure</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">Système</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12 heures AM/PM</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24 heures</string>
+
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Style de direction du vent</string>
+    <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Pluie et neige</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Suédois (Suédois)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">Hébreu (Hébreu)</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Désactivées</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abrév N, NE, …</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Degrés à partir du Nord</string>
     </resources>
