@@ -128,7 +128,7 @@
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Die App benötigt die Berechtigung zur Standortbestimmung über GPS.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Die App benötigt die Berechtigung zur Standortbestimmung über WLAN- und Mobilfunknetze.</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Standort nicht gefunden</string>
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">Die App bestimmt den Standort durch Nutzung von Mobilfunknetz, WLAN und - falls diese ausfallen - GPS, um Wetterdaten zu diesem Ort anzuzeigen, zu dem wiederum Koordinaten vom Mozilla-Standortdienst bezogen werden. Bei Verwendung des Widgets auf Ihrem Telefon oder Tablet, können Sie Ihren Standort und das aktuelle Wetter auf dem Startbildschirm sehen. Die Standortaktualisierung kann in einem bestimmten Intervall (z. B. stündlich) geschehen, oder die App kann den Beschleunigungsmesser nutzen, um Bewegungen und damit Entfernungen zu erkennen, die einen bestimmten Wert übersteigen. Wird das Gerät in der Tasche getragen, nimmt die Entfernung schneller zu. Sie können die Standortaktualisierung ausschalten - dann werden nur die Wetterdaten aktualisiert. Die App aktualisiert Standort und Wetter nach festgelegten Intervallen. Zum Beispiel können Sie eine Aktualisierung zu jeder vollen Stunde festlegen. Das Wetter wird unmittelbar nach dem Standort aktualisiert, oder wenn der Bildschirm angeht - aber nicht öfter als einmal in 15 Minuten (und nicht wenn das Wetter in den letzten 15 Minuten aktualisiert wurde). Die Informationen werden verwendet, um Standortkoordinaten über den Mozilla-Standortdienst zu erhalten. Die App versucht, das GPS zu verwenden, wenn der Standort nicht über Mobilfunk- und WLAN-Netze abrufbar ist. Die Standortkoordinaten werden verwendet, um Adressen über den Nominatim-Dienst zu beziehen. Die Adresse wird in der Anwendung oder dem Widget verwendet. Die Anwendung nutzt den Dienst von OpenWeatherMap.org, um aktuelle Wetterdaten zu erhalten.</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Die App bestimmt den Standort durch Nutzung von Mobilfunknetz, WLAN und - falls diese ausfallen - GPS, um Wetterdaten zu diesem Ort anzuzeigen, zu dem wiederum Koordinaten vom Mozilla-Standortdienst bezogen werden. Die Anwendung benötigt mindestens: eine Basisstation des GSM-Netzes oder zwei erreichbare WLAN-Netze oder eine beliebige Kombination von GSM- und WIFI-Netzen. Bei Verwendung des Widgets auf Ihrem Telefon oder Tablet, können Sie Ihren Standort und das aktuelle Wetter auf dem Startbildschirm sehen. Die Standortaktualisierung kann in einem bestimmten Intervall (z. B. stündlich) geschehen, oder die App kann den Beschleunigungsmesser nutzen, um Bewegungen und damit Entfernungen zu erkennen, die einen bestimmten Wert übersteigen. Wird das Gerät in der Tasche getragen, nimmt die Entfernung schneller zu. Sie können die Standortaktualisierung ausschalten - dann werden nur die Wetterdaten aktualisiert. Die App aktualisiert Standort und Wetter nach festgelegten Intervallen. Zum Beispiel können Sie eine Aktualisierung zu jeder vollen Stunde festlegen. Das Wetter wird unmittelbar nach dem Standort aktualisiert, oder wenn der Bildschirm angeht - aber nicht öfter als einmal in 15 Minuten (und nicht wenn das Wetter in den letzten 15 Minuten aktualisiert wurde). Die Informationen werden verwendet, um Standortkoordinaten über den Mozilla-Standortdienst zu erhalten. Die App versucht, das GPS zu verwenden, wenn der Standort nicht über Mobilfunk- und WLAN-Netze abrufbar ist. Die Standortkoordinaten werden verwendet, um Adressen über den Nominatim-Dienst zu beziehen. Die Adresse wird in der Anwendung oder dem Widget verwendet. Die Anwendung nutzt den Dienst von OpenWeatherMap.org, um aktuelle Wetterdaten zu erhalten.</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Standort- und Berechtigungseinstellungen</string>
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Die Berechtigung zum Lesen der Geräteinformationen wird benötigt, um den Standort über WLAN- und GSM-Netze zu aktualisieren. Es werden so Informationen über die mit dem Gerät verbundene Mobilfunkstation bezogen.</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Noch keine Berechtigungen erteilt - klicken Sie auf das Standortsymbol in der App</string>
@@ -225,15 +225,21 @@
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Keine Anzeige</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Gerade aktualisierte Werte</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Aktualisierte Werte mit Standortquelle</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - nur Wetter aktualisiert
-\nL - nur Standort aktualisiert
-\nG - Standort über GPS und Wetter aktualisiert
-\nN - Standort über Netz und Wetter aktualisiert</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - nur Wetter aktualisiert
-\nL - nur Standort aktualisiert
-\nG - Standort über GPS und Wetter aktualisiert
-\nN - Standort über Netz und Wetter aktualisiert
-\nNi - Standort über Mobilfunknetz und Wetter aktualisiert, Standortbestimmung über Mozilla Location Service</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - wird Standort und/oder Wetter aktualisieren
+\n. - Standort ist nicht erreichbar, so dass das Wetter nach dem letzten Standort aktualisiert wird 
+\nW - Wetter nur aktualisiert
+\nL - Standort nur aktualisiert
+\nG - Position aus GPS und Wetter aktualisiert
+\nN - Standort aus dem Netzwerk und Wetter aktualisiert
+\nB - der Zugang zum Dienst Openweathermap.org wurde gesperrt, bitte versuchen Sie, das Wetter später zu aktualisieren 
+\nE - das Zugriffstoken für den Dienst Openweathermap.org ist abgelaufen. Sie müssen die Anwendung aktualisieren, um wieder Zugriff zu erhalten</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - nur Wetter aktualisiert 
+\nL - nur Standort aktualisiert 
+\nG - Standort über GPS und Wetter aktualisiert 
+\nN - Standort über Netz und Wetter aktualisiert 
+\nNi - Standort über Mobilfunknetz und Wetter aktualisiert, Standortbestimmung über Mozilla Location Service
+\nB - Der Zugang zum Dienst Openweathermap.org wurde gesperrt, versuchen Sie bitte, das Wetter später zu aktualisieren 
+\nE - das Zugriffstoken für den Dienst Openweathermap.org ist abgelaufen. Du musst die Anwendung aktualisieren, um wieder Zugriff zu erhalten</string>
     <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Gespeicherte Werte werden nach der festgelegten Zeit entfernt</string>
     <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Gefundene Standorte werden nicht gespeichert</string>
     <string name="locations_delete_location" tools:ignore="MissingTranslation">Löschen</string>
@@ -286,14 +292,14 @@
     <string name="label_measured_temperature" tools:ignore="MissingTranslation">Gemessene Temperatur: %s</string>
     <string name="measured_only" tools:ignore="MissingTranslation">Gemessener Wert allein</string>
     <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Beide, gemessener zuerst</string>
-    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Beide, gefühlter zuerst</string>
-    <string name="appearance_only" tools:ignore="MissingTranslation">Gefühlter Wert allein</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Beide, gefühlte zuerst</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">Nur gefühlter Wert</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Zeige Temperatur als</string>
 
     <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Gefühlte Temperatur</string>
     <string name="app_name" tools:ignore="MissingTranslation">Dein lokales Wetter</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chinesisch (Chinese)</string>
-    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norwegisch (Norwegian)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norwegisches Bokmål (Norwegisches Bokmål)</string>
     <string name="pref_language_es" tools:ignore="MissingTranslation">Spanisch (Spanish)</string>
     <string name="pref_language_el" tools:ignore="MissingTranslation">Griechisch (Greek)</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Zugang abgelaufen. Bitte aktualisieren Sie die App.</string>
@@ -303,4 +309,41 @@
     <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API-Schlüssel</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Integriert</string>
     <string name="pref_language_sw" tools:ignore="MissingTranslation">Swahili (Suaheli)</string>
-    </resources>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Batterieoptimierung</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Die Anwendung führt Hintergrundprozesse aus, um Aktualisierungen von Standort, Wetter oder die Verfolgung des Standorts mittels Beschleunigungssensor durchzuführen. Daher wird die Anwendung Sie bitten, die Batterieoptimierung auszuschalten, um die Hintergrundprozesse ausführen zu können.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Fortfahren</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Abbrechen</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Windrichtung</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="location_not_initialized" tools:ignore="MissingTranslation">Standort wurde noch nicht initialisiert.
+\nZur Lokalisierung auf den Kreis klicken.</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">Zoll</string>
+
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">Zeitformat</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">System</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12 Stunden AM/PM</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24 Stunden</string>
+
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Stil der Windrichtung</string>
+    <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Regen und Schnee</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Schwedisch (Schwedisch)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">Hebräisch (Hebräisch)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Niederländisch (Niederländisch)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Ungarisch (Ungarisch)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabisch (Arabisch)</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Ukrainisch</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Rumänisch</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portugiesisch (Portugal)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portugiesisch (Brasilien)</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Druck</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Deaktiviert</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abkürzung N, NE, ....</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Grad Abweichung von Norden</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Die aktuelle Wetterbeschreibungssprache und die Adresse ändern sich beim nächsten Update, oder Sie können manuell gezwungen werden.</string>
+
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Schriftartenbasierte Symbole</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin die roten Symbole</string>
+</resources>
