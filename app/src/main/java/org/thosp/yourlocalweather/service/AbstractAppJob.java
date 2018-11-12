@@ -2,6 +2,7 @@ package org.thosp.yourlocalweather.service;
 
 import android.annotation.TargetApi;
 import android.app.job.JobInfo;
+import android.app.job.JobParameters;
 import android.app.job.JobScheduler;
 import android.app.job.JobService;
 import android.content.ComponentName;
@@ -85,9 +86,14 @@ public abstract class AbstractAppJob extends JobService {
     }
 
     protected void unbindAllServices() {
-        unbindCurrentWeatherService();
-        unbindWeatherForecastService();
-        unbindWakeUpService();
+        try {
+            unbindCurrentWeatherService();
+            unbindWeatherForecastService();
+            unbindWakeUpService();
+        } catch (Exception e) {
+            appendLog(this, "TAG", e.getMessage(), e);
+        }
+
     }
 
     protected boolean checkIfWeatherForecastServiceIsNotBound() {

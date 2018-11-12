@@ -24,6 +24,8 @@ import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.List;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -37,6 +39,9 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     private static final long REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT = 180000; //3 min
     private static final long SCREEN_ON_RETRY_FIRST = 1000;
     private static final long SCREEN_ON_RETRY_NEXT = 1000;
+
+    private Lock receiversLock = new ReentrantLock();
+    private boolean receiversRegistered;
 
     private volatile int screenOnRetryCounter;
 
@@ -133,7 +138,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         }
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():" + intent.getAction());
         switch (intent.getAction()) {
-            case "android.intent.action.START_SCREEN_BASED_UPDATES": return startSensorBasedUpdates(ret);
+            case "android.intent.action.START_SCREEN_BASED_UPDATES": startSensorBasedUpdates(); return START_STICKY;
             case "android.intent.action.STOP_SCREEN_BASED_UPDATES": stopSensorBasedUpdates(); return ret;
             default: return ret;
         }
@@ -179,10 +184,18 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         }
     }
 
-    public int startSensorBasedUpdates(int initialReturnValue) {
-        registerScreenListeners();
-        startNetworkConnectivityReceiver();
-        return START_STICKY;
+    public void startSensorBasedUpdates() {
+        receiversLock.lock();
+        try {
+            if (receiversRegistered) {
+                return;
+            }
+            registerScreenListeners();
+            startNetworkConnectivityReceiver();
+            receiversRegistered = true;
+        } finally {
+            receiversLock.unlock();
+        }
     }
 
     private void registerScreenListeners() {
@@ -283,14 +296,19 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
         private static final String TAG = "NetworkConnectivityReceiver";
 
+        private boolean wasOffline;
+
         @Override
         public void onReceive(Context context, Intent intent) {
             appendLog(context, TAG, "onReceive start:" + intent);
             if (networkIsOffline()) {
+                wasOffline = true;
                 return;
             }
-            checkAndUpdateWeather();
+            if (wasOffline) {
+                checkAndUpdateWeather();
+            }
+            wasOffline = false;
         }
-
     }
 }

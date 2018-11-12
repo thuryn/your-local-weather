@@ -19,6 +19,7 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 @TargetApi(Build.VERSION_CODES.M)
 public class NetworkLocationCellsOnlyJob extends JobService {
     private static final String TAG = "NetworkLocationCellsOnlyJob";
+    public static final int JOB_ID = 47038763;
 
     NetworkLocationProvider networkLocationProvider;
     JobParameters params;

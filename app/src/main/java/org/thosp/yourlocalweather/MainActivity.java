@@ -184,7 +184,7 @@ public class MainActivity extends BaseActivity
             if (!scheduled) {*/
             jobScheduler.cancelAll();
                 ComponentName serviceComponent = new ComponentName(this, StartAppAlarmJob.class);
-                JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
+                JobInfo.Builder builder = new JobInfo.Builder(StartAppAlarmJob.JOB_ID, serviceComponent);
                 builder.setMinimumLatency(1 * 1000); // wait at least
                 builder.setOverrideDeadline(3 * 1000); // maximum delay
                 jobScheduler.schedule(builder.build());

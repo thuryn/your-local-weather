@@ -46,7 +46,7 @@ public class StartupReceiver extends BroadcastReceiver {
         appendLog(context, TAG, "scheduleStart at boot, SDK=" + Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
             ComponentName serviceComponent = new ComponentName(context, StartAppAlarmJob.class);
-            JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
+            JobInfo.Builder builder = new JobInfo.Builder(StartAppAlarmJob.JOB_ID, serviceComponent);
             builder.setMinimumLatency(1 * 1000); // wait at least
             builder.setOverrideDeadline(3 * 1000); // maximum delay
             JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);

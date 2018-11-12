@@ -168,7 +168,7 @@ public class NetworkLocationProvider extends Service {
         }
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
             ComponentName serviceComponent = new ComponentName(this, NetworkLocationCellsOnlyJob.class);
-            JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
+            JobInfo.Builder builder = new JobInfo.Builder(NetworkLocationCellsOnlyJob.JOB_ID, serviceComponent);
             builder.setMinimumLatency(8000); // wait at least
             builder.setOverrideDeadline(10000); // maximum delay
             JobInfo jobInfo = builder.build();

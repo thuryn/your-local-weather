@@ -26,8 +26,10 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 @TargetApi(Build.VERSION_CODES.M)
 public class StartAutoLocationJob extends AbstractAppJob {
     private static final String TAG = "StartAutoLocationJob";
+    public static final int JOB_ID = 1992056442;
 
     private LocationUpdateService locationUpdateService;
+    private ScreenOnOffUpdateService screenOnOffUpdateService;
     private JobParameters params;
     int connectedServicesCounter;
 
@@ -38,11 +40,16 @@ public class StartAutoLocationJob extends AbstractAppJob {
         appendLog(this, TAG, "sending intent to get location update");
         Intent intent = new Intent(this, LocationUpdateService.class);
         bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+        intent = new Intent(this, ScreenOnOffUpdateService.class);
+        bindService(intent, screenOnOffUpdateServiceConnection, Context.BIND_AUTO_CREATE);
         return true;
     }
 
     @Override
     public boolean onStopJob(JobParameters params) {
+        if (screenOnOffUpdateService != null) {
+            unbindService(screenOnOffUpdateServiceConnection);
+        }
         if (locationUpdateService != null) {
             unbindService(locationUpdateServiceConnection);
         }
@@ -61,7 +68,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
     @Override
     protected void serviceConnected(ServiceConnection serviceConnection) {
         connectedServicesCounter++;
-        if (connectedServicesCounter >= 5) {
+        if (connectedServicesCounter >= 6) {
             jobFinished(params, false);
         }
     }
@@ -108,15 +115,36 @@ public class StartAutoLocationJob extends AbstractAppJob {
                     "updateAutoPeriodStr:" + updateAutoPeriodStr);
             if ("0".equals(updateAutoPeriodStr)) {
                 sensorLocationUpdateService.startSensorBasedUpdates(0);
-                reScheduleNextAlarm(1, AppAlarmService.START_SENSORS_CHECK_PERIOD, StartAutoLocationJob.class);
+                reScheduleNextAlarm(JOB_ID, AppAlarmService.START_SENSORS_CHECK_PERIOD, StartAutoLocationJob.class);
             } else if ("OFF".equals(updateAutoPeriodStr)) {
                 sensorLocationUpdateService.stopSensorBasedUpdates();
             } else {
-                reScheduleNextAlarm(1, updateAutoPeriodStr, StartAutoLocationJob.class);
+                reScheduleNextAlarm(JOB_ID, updateAutoPeriodStr, StartAutoLocationJob.class);
             }
             new Thread(new Runnable() {
                 public void run() {
                     serviceConnected(sensorLocationUpdateServiceConnection);
+                }
+            }).start();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+        }
+    };
+
+    private ServiceConnection screenOnOffUpdateServiceConnection = new ServiceConnection() {
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            ScreenOnOffUpdateService.ScreenOnOffUpdateServiceBinder binder =
+                    (ScreenOnOffUpdateService.ScreenOnOffUpdateServiceBinder) service;
+            screenOnOffUpdateService = binder.getService();
+            screenOnOffUpdateService.startSensorBasedUpdates();
+            new Thread(new Runnable() {
+                public void run() {
+                    serviceConnected(screenOnOffUpdateServiceConnection);
                 }
             }).start();
         }

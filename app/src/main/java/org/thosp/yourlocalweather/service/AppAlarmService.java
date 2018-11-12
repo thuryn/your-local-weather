@@ -251,7 +251,7 @@ public class AppAlarmService extends AbstractCommonService {
             screenOnOffUpdateServiceActions.add(BindedServiceActions.START_SCREEN);
             return;
         }
-        screenOnOffUpdateService.startSensorBasedUpdates(0);
+        screenOnOffUpdateService.startSensorBasedUpdates();
     }
 
     private static PendingIntent getPendingScreenStartIntent(Context context) {
@@ -327,7 +327,7 @@ public class AppAlarmService extends AbstractCommonService {
             while ((bindedServiceActions = screenOnOffUpdateServiceActions.poll()) != null) {
                 switch (bindedServiceActions) {
                     case START_SCREEN:
-                        screenOnOffUpdateService.startSensorBasedUpdates(0);
+                        screenOnOffUpdateService.startSensorBasedUpdates();
                         break;
                     case STOP_SCREEN:
                         screenOnOffUpdateService.stopSensorBasedUpdates();

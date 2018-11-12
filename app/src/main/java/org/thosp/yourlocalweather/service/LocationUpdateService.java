@@ -539,7 +539,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             bundle.putBoolean("byLastLocationOnly", byLastLocationOnly);
             bundle.putInt("attempts", numberOfAttempts);
             ComponentName serviceComponent = new ComponentName(this, LocationUpdateServiceRetryJob.class);
-            JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
+            JobInfo.Builder builder = new JobInfo.Builder(LocationUpdateServiceRetryJob.JOB_ID, serviceComponent);
             builder.setMinimumLatency(LOCATION_UPDATE_RESEND_INTERVAL_IN_MS); // wait at least
             builder.setOverrideDeadline(LOCATION_UPDATE_RESEND_INTERVAL_IN_MS + (5 * 1000)); // maximum delay
             builder.setExtras(bundle);

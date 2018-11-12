@@ -19,6 +19,9 @@ import org.thosp.yourlocalweather.ConnectionDetector;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class SensorLocationUpdateService extends AbstractCommonService {
@@ -26,6 +29,9 @@ public class SensorLocationUpdateService extends AbstractCommonService {
     private static final String TAG = "SensorLocationUpdateService";
 
     private final IBinder binder = new SensorLocationUpdateServiceBinder();
+
+    private Lock receiversLock = new ReentrantLock();
+    private boolean receiversRegistered;
 
     private SensorManager senSensorManager;
     private Sensor senAccelerometer;
@@ -50,35 +56,50 @@ public class SensorLocationUpdateService extends AbstractCommonService {
     }
 
     public void stopSensorBasedUpdates() {
-        if (senSensorManager == null) {
-            return;
+        receiversLock.lock();
+        try {
+            if (!receiversRegistered || (senSensorManager == null)) {
+                return;
+            }
+            appendLog(getBaseContext(), TAG, "STOP_SENSOR_BASED_UPDATES recieved");
+            senSensorManager.unregisterListener(SensorLocationUpdater.getInstance(getBaseContext()));
+            senSensorManager = null;
+            senAccelerometer = null;
+            receiversRegistered = false;
+        } finally {
+            receiversLock.unlock();
         }
-        appendLog(getBaseContext(), TAG, "STOP_SENSOR_BASED_UPDATES recieved");
-        senSensorManager.unregisterListener(SensorLocationUpdater.getInstance(getBaseContext()));
-        senSensorManager = null;
-        senAccelerometer = null;
     }
 
     public int startSensorBasedUpdates(int initialReturnValue) {
-        appendLog(getBaseContext(),
-                TAG,
-                "startSensorBasedUpdates " + senSensorManager);
-        if (senSensorManager != null) {
-            return initialReturnValue;
+        receiversLock.lock();
+        try {
+            if (receiversRegistered) {
+                return initialReturnValue;
+            }
+            appendLog(getBaseContext(),
+                    TAG,
+                    "startSensorBasedUpdates " + senSensorManager);
+            if (senSensorManager != null) {
+                return initialReturnValue;
+            }
+            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+            org.thosp.yourlocalweather.model.Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
+            if (!autoLocation.isEnabled()) {
+                return initialReturnValue;
+            }
+            SensorLocationUpdater.autolocationForSensorEventAddressFound = autoLocation.isAddressFound();
+            appendLog(getBaseContext(),
+                    TAG,
+                    "autolocationForSensorEventAddressFound=" +
+                            SensorLocationUpdater.autolocationForSensorEventAddressFound +
+                            "autoLocation.isAddressFound()=" +
+                            autoLocation.isAddressFound());
+            registerSensorListener();
+            receiversRegistered = true;
+        } finally {
+            receiversLock.unlock();
         }
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-        org.thosp.yourlocalweather.model.Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
-        if (!autoLocation.isEnabled()) {
-            return initialReturnValue;
-        }
-        SensorLocationUpdater.autolocationForSensorEventAddressFound = autoLocation.isAddressFound();
-        appendLog(getBaseContext(),
-                  TAG,
-                 "autolocationForSensorEventAddressFound=" +
-                  SensorLocationUpdater.autolocationForSensorEventAddressFound +
-                  "autoLocation.isAddressFound()=" +
-                         autoLocation.isAddressFound());
-        registerSensorListener();
         return START_STICKY;
     }
 

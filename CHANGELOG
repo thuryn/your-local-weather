@@ -1,4 +1,7 @@
 v4.4.3
+Fix update of weather when weather is queried for the second time
+
+v4.4.3
 Fix update of weather for the first time
 
 v4.4.2

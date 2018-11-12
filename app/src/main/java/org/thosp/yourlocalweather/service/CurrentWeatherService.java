@@ -14,6 +14,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.SystemClock;
+import android.printservice.PrintService;
 import android.text.TextUtils;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -53,7 +54,7 @@ public class CurrentWeatherService extends AbstractCommonService {
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
-    private volatile boolean gettingWeatherStarted;
+    private static volatile boolean gettingWeatherStarted;
     private static Queue<WeatherRequestDataHolder> currentWeatherUpdateMessages = new LinkedList<>();
     final Messenger messenger = new Messenger(new CurrentweatherMessageHandler());
 
@@ -347,6 +348,9 @@ public class CurrentWeatherService extends AbstractCommonService {
     }
 
     private void updateResultInUI(Context context, String result, WeatherRequestDataHolder updateRequest) {
+        if (updateRequest == null) {
+            return;
+        }
         String updateSource = updateRequest.getUpdateSource();
         if (updateSource != null) {
             switch (updateSource) {
@@ -400,10 +404,10 @@ public class CurrentWeatherService extends AbstractCommonService {
     }
 
     private void resendTheIntentInSeveralSeconds(int seconds) {
-        appendLog(getBaseContext(), TAG, "resendTheIntentInSeveralSeconds:" +Build.VERSION.SDK_INT);
+        appendLog(getBaseContext(), TAG, "resendTheIntentInSeveralSeconds:SDK:" +Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             ComponentName serviceComponent = new ComponentName(this, CurrentWeatherResendJob.class);
-            JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
+            JobInfo.Builder builder = new JobInfo.Builder(CurrentWeatherResendJob.JOB_ID, serviceComponent);
             builder.setMinimumLatency(seconds * 1000); // wait at least
             builder.setOverrideDeadline((3 + seconds) * 1000); // maximum delay
             JobScheduler jobScheduler = getSystemService(JobScheduler.class);

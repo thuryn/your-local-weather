@@ -55,7 +55,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
-    private volatile boolean gettingWeatherStarted;
+    private volatile static boolean gettingWeatherStarted;
     private static Queue<WeatherRequestDataHolder> weatherForecastUpdateMessages = new LinkedList<>();
     final Messenger messenger = new Messenger(new WeatherForecastMessageHandler());
 
@@ -275,6 +275,9 @@ public class ForecastWeatherService  extends AbstractCommonService {
     }
 
     private void updateResultInUI(Context context, String result, WeatherRequestDataHolder updateRequest) {
+        if (updateRequest == null) {
+            return;
+        }
         String updateSource = updateRequest.getUpdateSource();
         if (updateSource != null) {
             WidgetUtils.updateWidgets(context);
@@ -328,7 +331,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
     private void resendTheIntentInSeveralSeconds(int seconds) {
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
             ComponentName serviceComponent = new ComponentName(this, WeatherForecastResendJob.class);
-            JobInfo.Builder builder = new JobInfo.Builder(0, serviceComponent);
+            JobInfo.Builder builder = new JobInfo.Builder(WeatherForecastResendJob.JOB_ID, serviceComponent);
             builder.setMinimumLatency(seconds * 1000); // wait at least
             builder.setOverrideDeadline((3 + seconds) * 1000); // maximum delay
             JobScheduler jobScheduler = getSystemService(JobScheduler.class);

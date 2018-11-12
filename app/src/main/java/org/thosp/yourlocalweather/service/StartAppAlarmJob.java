@@ -14,6 +14,7 @@ import org.thosp.yourlocalweather.utils.AppPreference;
 @TargetApi(Build.VERSION_CODES.M)
 public class StartAppAlarmJob extends AbstractAppJob {
     private static final String TAG = "StartAppAlarmJob";
+    public static final int JOB_ID = 439162570;
 
     private JobParameters params;
     int connectedServicesCounter;
@@ -22,23 +23,14 @@ public class StartAppAlarmJob extends AbstractAppJob {
     public boolean onStartJob(JobParameters params) {
         this.params = params;
         connectedServicesCounter = 0;
-        String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
-        if (!"OFF".equals(updateAutoPeriodStr)) {
-            reScheduleNextAlarm(1, updateAutoPeriodStr, StartAutoLocationJob.class);
-        }
-        String updatePeriodStr = AppPreference.getLocationUpdatePeriod(getBaseContext());
-        if (!"0".equals(updateAutoPeriodStr)) {
-            reScheduleNextAlarm(2, updatePeriodStr, StartRegularLocationJob.class);
-        }
-        reScheduleNextAlarm(3, AppPreference.getInterval(getBaseContext()), StartNotificationJob.class);
-        Intent intent = new Intent(this, ScreenOnOffUpdateService.class);
-        bindService(intent, screenOnOffUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+        reScheduleNextAlarm(StartAutoLocationJob.JOB_ID, 1000, StartAutoLocationJob.class);
+        reScheduleNextAlarm(StartRegularLocationJob.JOB_ID, 2000, StartRegularLocationJob.class);
+        reScheduleNextAlarm(StartNotificationJob.JOB_ID, 3000, StartNotificationJob.class);
         return true;
     }
 
     @Override
     public boolean onStopJob(JobParameters params) {
-        unbindService(screenOnOffUpdateServiceConnection);
         unbindAllServices();
         return true;
     }
@@ -46,29 +38,8 @@ public class StartAppAlarmJob extends AbstractAppJob {
     @Override
     protected void serviceConnected(ServiceConnection serviceConnection) {
         connectedServicesCounter++;
-        if (connectedServicesCounter >= 4) {
+        if (connectedServicesCounter >= 3) {
             jobFinished(params, false);
         }
     }
-
-    private ServiceConnection screenOnOffUpdateServiceConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service) {
-            ScreenOnOffUpdateService.ScreenOnOffUpdateServiceBinder binder =
-                    (ScreenOnOffUpdateService.ScreenOnOffUpdateServiceBinder) service;
-            ScreenOnOffUpdateService screenOnOffUpdateService = binder.getService();
-            screenOnOffUpdateService.startSensorBasedUpdates(0);
-            new Thread(new Runnable() {
-                public void run() {
-                    serviceConnected(screenOnOffUpdateServiceConnection);
-                }
-            }).start();
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-        }
-    };
 }

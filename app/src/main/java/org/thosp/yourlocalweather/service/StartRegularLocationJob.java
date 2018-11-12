@@ -24,6 +24,7 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 @TargetApi(Build.VERSION_CODES.M)
 public class StartRegularLocationJob extends AbstractAppJob {
     private static final String TAG = "StartRegularLocationJob";
+    public static final int JOB_ID = 894325273;
 
     private JobParameters params;
     int connectedServicesCounter;
@@ -54,7 +55,7 @@ public class StartRegularLocationJob extends AbstractAppJob {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         String updatePeriodStr = AppPreference.getLocationUpdatePeriod(getBaseContext());
         if (!"0".equals(updatePeriodStr) && (locationsDbHelper.getAllRows().size() > 1)) {
-            reScheduleNextAlarm(2, updatePeriodStr, StartRegularLocationJob.class);
+            reScheduleNextAlarm(JOB_ID, updatePeriodStr, StartRegularLocationJob.class);
         }
         List<Location> locations = locationsDbHelper.getAllRows();
         for (Location location: locations) {

@@ -26,6 +26,7 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 @TargetApi(Build.VERSION_CODES.M)
 public class StartNotificationJob extends AbstractAppJob {
     private static final String TAG = "StartNotificationJob";
+    public static final int JOB_ID = 1743815655;
 
     private JobParameters params;
     int connectedServicesCounter;
@@ -62,7 +63,7 @@ public class StartNotificationJob extends AbstractAppJob {
             return;
         }
         sendMessageToCurrentWeatherService(currentLocation, "NOTIFICATION", AppWakeUpManager.SOURCE_NOTIFICATION);
-        reScheduleNextAlarm(3, AppPreference.getInterval(getBaseContext()), StartNotificationJob.class);
+        reScheduleNextAlarm(JOB_ID, AppPreference.getInterval(getBaseContext()), StartNotificationJob.class);
     }
 
     private Location getLocationForNotification() {

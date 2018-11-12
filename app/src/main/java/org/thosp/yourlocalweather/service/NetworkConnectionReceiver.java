@@ -24,6 +24,7 @@ public class NetworkConnectionReceiver extends ConnectivityManager.NetworkCallba
     private static Queue<String> screenOnOffUpdateServiceActions = new LinkedList<>();
     private ScreenOnOffUpdateService screenOnOffUpdateService;
     private Context context;
+    private boolean wasOffline;
 
     public NetworkConnectionReceiver(Context context) {
         this.context = context.getApplicationContext();
@@ -32,11 +33,29 @@ public class NetworkConnectionReceiver extends ConnectivityManager.NetworkCallba
     @Override
     public void onAvailable(Network network) {
         super.onAvailable(network);
-        appendLog(context, TAG, "onAvailable, network=" + network);
+        appendLog(context, TAG, "onAvailable, network=" + network + ", wasOffline=" + wasOffline);
         if (networkIsOffline()) {
+            appendLog(context, TAG, "network is offline");
+            wasOffline = true;
             return;
         }
-        checkAndUpdateWeather();
+        appendLog(context, TAG, "network is online, wasOffline=" + wasOffline);
+        if (wasOffline) {
+            checkAndUpdateWeather();
+        }
+        wasOffline = false;
+    }
+
+    @Override
+    public void onLosing(Network network, int maxMsToLive) {
+        super.onLosing(network, maxMsToLive);
+        wasOffline = true;
+    }
+
+    @Override
+    public void onLost(Network network) {
+        super.onLost(network);
+        wasOffline = true;
     }
 
     private boolean networkIsOffline() {

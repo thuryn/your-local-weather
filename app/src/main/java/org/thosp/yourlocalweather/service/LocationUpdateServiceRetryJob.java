@@ -15,6 +15,7 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 public class LocationUpdateServiceRetryJob extends AbstractAppJob {
 
     private static final String TAG = "LocationUpdateServiceRetryJob";
+    public static final int JOB_ID = 1355064090;
 
     private LocationUpdateService locationUpdateService;
     private JobParameters params;
