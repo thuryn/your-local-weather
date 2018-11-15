@@ -86,14 +86,18 @@ public abstract class AbstractAppJob extends JobService {
     }
 
     protected void unbindAllServices() {
+        unbindCurrentWeatherService();
+        unbindWeatherForecastService();
+        unbindWakeUpService();
+    }
+
+    @Override
+    public void unbindService(ServiceConnection conn) {
         try {
-            unbindCurrentWeatherService();
-            unbindWeatherForecastService();
-            unbindWakeUpService();
+            super.unbindService(conn);
         } catch (Exception e) {
             appendLog(this, "TAG", e.getMessage(), e);
         }
-
     }
 
     protected boolean checkIfWeatherForecastServiceIsNotBound() {

@@ -1,4 +1,7 @@
-v4.4.3
+v4.4.5
+Added check when unbinding services
+
+v4.4.4
 Fix update of weather when weather is queried for the second time
 
 v4.4.3
