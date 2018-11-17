@@ -19,7 +19,7 @@
         android:id="@+id/forecast.date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="?android:attr/textColorPrimary"
+        android:textColor="#000000"
         android:textSize="16sp"
         android:background="#D3D3D3"
         android:paddingLeft="?attr/listPreferredItemPaddingLeft"
