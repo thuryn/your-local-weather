@@ -368,4 +368,60 @@
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Icon Set</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Font based icons</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin the red icons</string>
+
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">none</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">thunderstorm with light rain</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">thunderstorm with rain</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">thunderstorm with heavy rain</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">light thunderstorm</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">thunderstorm</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">heavy thunderstorm</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">ragged thunderstorm</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">thunderstorm with light drizzle</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">thunderstorm with drizzle</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">thunderstorm with heavy drizzle</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">light intensity drizzle</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">drizzle</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">heavy intensity drizzle</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">light intensity drizzle rain</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">drizzle rain</string>
+    <string name="weather_condition_description_312" tools:ignore="MissingTranslation">heavy intensity drizzle rain</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">shower rain and drizzle</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">heavy shower rain and drizzle</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">shower drizzle</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">light rain</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">moderate rain</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">heavy intensity rain</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">very heavy rain</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">extreme rain</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">freezing rain</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">light intensity shower rain</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">shower rain</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">heavy intensity shower rain</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">ragged shower rain</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">light snow</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">snow</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">heavy snow</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">sleet</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">shower sleet</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">light rain and snow</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">rain and snow</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">light shower snow</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">shower snow</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">heavy shower snow</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">mist</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">smoke</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">haze</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">sand, dust whirls</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">fog</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">sand</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">dust</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">volcanic ash</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">squalls</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">tornado</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">clear sky</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">few clouds</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">scattered clouds</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">broken clouds</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">overcast clouds</string>
 </resources>

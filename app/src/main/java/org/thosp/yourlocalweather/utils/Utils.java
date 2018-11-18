@@ -555,7 +555,7 @@ public class Utils {
                         .appendQueryParameter("lat", String.valueOf(lat).replace(",", "."))
                         .appendQueryParameter("lon", String.valueOf(lon).replace(",", "."))
                         .appendQueryParameter("units", units)
-                        .appendQueryParameter("lang", "cs".equalsIgnoreCase(lang)?"cz":lang)
+                        .appendQueryParameter("lang", OWMLanguages.getOwmLanguage(lang))
                         .build()
                         .toString();
         return new URL(url);

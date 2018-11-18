@@ -277,7 +277,8 @@ public class CurrentWeatherService extends AbstractCommonService {
                                 String weatherRaw = new String(response);
                                 appendLog(context, TAG, "weather got, result:" + weatherRaw);
 
-                                Weather weather = WeatherJSONParser.getWeather(weatherRaw);
+                                final String locale = currentLocation.getLocale();
+                                Weather weather = WeatherJSONParser.getWeather(context, weatherRaw, locale);
                                 timerHandler.removeCallbacksAndMessages(null);
                                 saveWeatherAndSendResult(context, weather);
                             } catch (JSONException e) {
