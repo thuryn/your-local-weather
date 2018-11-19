@@ -279,7 +279,7 @@
     <string name="pref_language_he" tools:ignore="MissingTranslation">Hebraico (Hebraico)</string>
     <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">MLS local e Nominatim (recomendado)</string>
-    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Valor mesmo atualizado</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Valor recentemente atualizado</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Valor atualizado com fonte de localização</string>
     <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - ir atualizar a localização e/ou o tempo
 \n. - localização não está acessível, ir atualizar o tempo por última localização
@@ -313,4 +313,8 @@
 
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Conjunto de ícones</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin os ícones vermelhos</string>
-</resources>
+<string name="initial_guide_title_7" tools:ignore="MissingTranslation">Opção de endereço de cache resolvido</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Endereço de cache resolvido</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">O aplicativo tem três widgets disponíveis, contendo alguns valores comuns do tempo atual (por exemplo, temperatura). Alguns valores são exclusivos para o widget específico (por exemplo, por do sol). Há um tempo da última atualização no canto direito de cada widget. Você pode ver o que foi atualizado desde a última vez (quando você ativou esta opção no menu de configurações). Você pode encontrar o botão de atualização ao lado do último tempo atualizado. Quando prime este botão, o tempo (e a localização quando seleccionada a opção de localização de atualização) é atualizado incondicionalmente. A última opção em widgets é mudar de localização - quando pressiona o texto do local atual o local muda para o próximo.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Período de atualização para localização (localização 0) </b> - você pode definir o período de atualização para o localização 0 - localização 0 tem a capacidade de atualizar o local de acordo com a célula, redes Wi-Fi e GPS. Quando você seleciona a atualização <i> por acelerômetro </i> aplicativo de opção usa acelerômetro para detectar o movimento. Quando o movimento é detectado, a aplicação conta a distância. Quando o limite para a distância é alcançado e a última actualização ocorreu pelo menos 15 minutos atrás, a actualização da posição e o tempo atual é executado. Quando a aplicação não é capaz de obter a localização, você pode ver a etiqueta de localização desconhecida no widget. Quando a aplicação não tem nenhuma atualização de estado local, uma atualização da localização é realizada novamente dentro de 5 minutos. Você pode selecionar a atualização do local com base no intervalo de tempo também. Por opção <b>período de atualização para o tempo (local 1, 2, 3...) </b> - você pode definir a atualização do tempo para os locais descobertos manualmente.</string>
+    </resources>
