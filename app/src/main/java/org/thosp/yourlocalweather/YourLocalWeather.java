@@ -2,6 +2,7 @@ package org.thosp.yourlocalweather;
 
 import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.preference.PreferenceManager;
 
@@ -38,6 +39,11 @@ public class YourLocalWeather extends Application {
                 .putString(Constants.PREF_OS_LANGUAGE, Locale.getDefault().getLanguage())
                 .apply();
         LanguageUtil.setLanguage(this, PreferenceUtil.getLanguage(this));
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LanguageUtil.setLanguage(base, PreferenceUtil.getLanguage(base)));
     }
 
     public void reloadTheme() {

@@ -33,7 +33,7 @@ public class WeatherJSONParser {
                 weatherIconId = weatherObj.getString("icon");
             }
             if (weatherObj.has("id")) {
-                weatherId = weatherObj.getInt("id");
+                weatherId = 200; //weatherObj.getInt("id");
             }
             if (weatherObj.has("description")) {
                 if (OWMLanguages.isLanguageSupportedByOWM(locale)) {

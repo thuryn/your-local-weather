@@ -34,6 +34,8 @@ import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.service.ForecastWeatherService;
 import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
+import org.thosp.yourlocalweather.utils.LanguageUtil;
+import org.thosp.yourlocalweather.utils.PreferenceUtil;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -80,6 +82,11 @@ public class BaseActivity extends AppCompatActivity {
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         setupNavDrawer();
+    }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LanguageUtil.setLanguage(base, PreferenceUtil.getLanguage(base)));
     }
 
     private void setupNavDrawer() {

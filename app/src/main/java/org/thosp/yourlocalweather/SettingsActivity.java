@@ -103,6 +103,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         return super.hasHeaders();
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LanguageUtil.setLanguage(base, PreferenceUtil.getLanguage(base)));
+    }
+
     private void setupActionBar() {
         getLayoutInflater().inflate(R.layout.activity_settings, (ViewGroup)findViewById(android.R.id.content));
         Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
