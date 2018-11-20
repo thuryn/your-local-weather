@@ -36,7 +36,7 @@
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Опција буђења уређаја</string>
     <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Неки модели телефона и таблета не пријављују околне базне станице све док се екран не укључи. Пожељнија опција (са укљученим екраном) има ману да уређај укључује екран на пар секунди. То има мали утицај на трајање батерије. Почни са укљученом опцијом, па покушај да је искључиш и видиш да ли се локација и даље ажурира када промениш место.</string>
     <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Стратегија буђења</string>
-    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Опција чувања откривене адресе</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Опција чувања препознате адресе</string>
     <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Можеш уштедети потрошњу интернет података тако што ће апликација чувати резултате о називима места. Они се не шаљу нити чувају на Интернету.</string>
     <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Сачувај препознате адресе</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Честитамо</string>
