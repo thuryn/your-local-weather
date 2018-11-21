@@ -92,14 +92,14 @@ public class WeatherForecastWidgetService extends IntentService {
             } else {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
             }
-            remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, weather));
+            remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, currentLocation.getLocale(), weather));
             WidgetUtils.setWind(getBaseContext(), remoteViews, weather.getWindSpeed(), weather.getWindDirection());
             WidgetUtils.setHumidity(getBaseContext(), remoteViews, weather.getHumidity());
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(1000 * weather.getSunrise());
-            WidgetUtils.setSunrise(getBaseContext(), remoteViews, AppPreference.getLocalizedTime(this, calendar.getTime()));
+            WidgetUtils.setSunrise(getBaseContext(), remoteViews, AppPreference.getLocalizedTime(this, calendar.getTime(), currentLocation.getLocale()));
             calendar.setTimeInMillis(1000 * weather.getSunset());
-            WidgetUtils.setSunset(getBaseContext(), remoteViews, AppPreference.getLocalizedTime(this, calendar.getTime()));
+            WidgetUtils.setSunset(getBaseContext(), remoteViews, AppPreference.getLocalizedTime(this, calendar.getTime(), currentLocation.getLocale()));
             Utils.setWeatherIcon(remoteViews, this, weatherRecord);
 
             WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;

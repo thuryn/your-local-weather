@@ -42,11 +42,18 @@ public enum OWMLanguages {
 
     String owmLanguage;
     String javaLanguage;
-    static Map<String, String> javaToOwmLanguages;
+    boolean translatedByResources;
+    static Map<String, OWMLanguages> javaToOwmLanguages;
 
     OWMLanguages(String owmLocale) {
         this.owmLanguage = owmLocale;
         this.javaLanguage = owmLanguage;
+    }
+
+    OWMLanguages(String owmLocale, boolean translatedByResources) {
+        this.owmLanguage = owmLocale;
+        this.javaLanguage = owmLanguage;
+        this.translatedByResources = translatedByResources;
     }
 
     OWMLanguages(String owmLocale, String javaLocale) {
@@ -55,19 +62,20 @@ public enum OWMLanguages {
     }
 
     public static String getOwmLanguage(String javaLanguage) {
-        String currentOwmLanguage = getOwmLanguageFromMap(javaLanguage);
-        return (currentOwmLanguage != null)?currentOwmLanguage:"en";
+        OWMLanguages currentOwmLanguage = getOwmLanguageFromMap(javaLanguage);
+        return (currentOwmLanguage != null)?currentOwmLanguage.owmLanguage:"en";
     }
 
-    public static boolean isLanguageSupportedByOWM(String javaLanguage) {
-        return getOwmLanguageFromMap(javaLanguage) != null;
+    public static boolean isLanguageSupportedByOWMAndNotTranslatedLocaly(String javaLanguage) {
+        OWMLanguages currentOwmLanguage = getOwmLanguageFromMap(javaLanguage);
+        return (currentOwmLanguage != null) && !currentOwmLanguage.translatedByResources;
     }
 
-    private static String getOwmLanguageFromMap(String javaLanguage) {
+    private static OWMLanguages getOwmLanguageFromMap(String javaLanguage) {
         if (javaToOwmLanguages == null) {
             javaToOwmLanguages = new HashMap<>();
             for (OWMLanguages language: values()) {
-                javaToOwmLanguages.put(language.javaLanguage, language.owmLanguage);
+                javaToOwmLanguages.put(language.javaLanguage, language);
             }
         }
         return javaToOwmLanguages.get(javaLanguage);

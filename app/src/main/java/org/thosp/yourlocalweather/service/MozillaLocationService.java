@@ -22,6 +22,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.thosp.yourlocalweather.utils.PreferenceUtil;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -138,13 +139,14 @@ public class MozillaLocationService {
                                          boolean resolveAddress) {
         appendLog(context, TAG, "processUpdateOfLocation:resolveAddress:" + resolveAddress);
         if (resolveAddress && (location != null)) {
-            appendLog(context, TAG, "processUpdateOfLocation:location:" + location + ":" + location.getLatitude() + ", " + location.getLongitude() + ", " + Locale.getDefault().getLanguage());
+            String locale = PreferenceUtil.getLanguage(context);
+            appendLog(context, TAG, "processUpdateOfLocation:location:" + location + ":" + location.getLatitude() + ", " + location.getLongitude() + ", " + locale);
             NominatimLocationService.getInstance().getFromLocation(
                     context,
                     location.getLatitude(),
                     location.getLongitude(),
                     1,
-                    Locale.getDefault().getLanguage(),
+                    locale,
                     new MozillaProcessResultFromAddressResolution(context, location, this));
             return;
         }

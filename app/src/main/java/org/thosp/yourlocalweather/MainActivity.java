@@ -384,8 +384,8 @@ public class MainActivity extends BaseActivity
         String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, weatherForecastRecord, currentLocation);
         windWithUnit = AppPreference.getWindWithUnit(this, weather.getWindSpeed(), weather.getWindDirection());
         PressureWithUnit pressure = AppPreference.getPressureWithUnit(this, weather.getPressure());
-        String sunrise = Utils.unixTimeToFormatTime(this, weather.getSunrise());
-        String sunset = Utils.unixTimeToFormatTime(this, weather.getSunset());
+        String sunrise = Utils.unixTimeToFormatTime(this, weather.getSunrise(), currentLocation.getLocale());
+        String sunset = Utils.unixTimeToFormatTime(this, weather.getSunset(), currentLocation.getLocale());
 
         Utils.setWeatherIcon(mIconWeatherView, this, weatherRecord);
         mTemperatureView.setText(getString(R.string.temperature_with_degree,
@@ -405,7 +405,7 @@ public class MainActivity extends BaseActivity
             secondTemperatureView.setVisibility(View.GONE);
             iconSecondTemperatureView.setVisibility(View.GONE);
         }
-        mDescriptionView.setText(Utils.getWeatherDescription(this, weather));
+        mDescriptionView.setText(Utils.getWeatherDescription(this, currentLocation.getLocale(), weather));
         mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
         mHumidityView.setText(getString(R.string.humidity_label,
                 String.valueOf(weather.getHumidity()),
@@ -575,9 +575,9 @@ public class MainActivity extends BaseActivity
             String description;
             String sunrise;
             String sunset;
-            description = Utils.getWeatherDescription(MainActivity.this, weather);
-            sunrise = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunrise());
-            sunset = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunset());
+            description = Utils.getWeatherDescription(MainActivity.this, currentLocation.getLocale(), weather);
+            sunrise = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunrise(), currentLocation.getLocale());
+            sunset = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunset(), currentLocation.getLocale());
             String weatherDescription = "City: " + getCityNameFromAddress() +
                     "\nTemperature: " + temperatureWithUnit +
                     "\nDescription: " + description +

@@ -79,6 +79,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
         WeatherForecastAdapter adapter = new WeatherForecastAdapter(this,
                                                                     weatherForecastList.get(locationId),
                                                                     location.getLatitude(),
+                                                                    location.getLocale(),
                                                                     visibleColumns);
         mRecyclerView.setAdapter(adapter);
     }

@@ -66,7 +66,7 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
             }
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context, currentLocation.getOrderId()));
-            remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, weatherRecord.getWeather()));
+            remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, currentLocation.getLocale(), weatherRecord.getWeather()));
             Utils.setWeatherIcon(remoteViews, context, weatherRecord);
             String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, currentLocation);
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);

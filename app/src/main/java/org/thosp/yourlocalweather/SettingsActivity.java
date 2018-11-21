@@ -11,6 +11,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
@@ -75,7 +76,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public static final String KEY_DEBUG_TO_FILE = "debug.to.file";
     public static final String KEY_DEBUG_FILE_LASTING_HOURS = "debug.file.lasting.hours";
 
-    private static SimpleDateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static SimpleDateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("en"));
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -286,6 +287,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         String newLocale = PreferenceUtil.getLanguage(getActivity().getApplicationContext());
                         LanguageUtil.setLanguage(getActivity().getApplication(), newLocale);
                         updateLocationsLocale(newLocale);
+                        WidgetUtils.updateWidgets(getActivity());
                         DialogFragment dialog = new SettingsAlertDialog().newInstance(R.string.update_locale_dialog_message);
                         dialog.show(getActivity().getFragmentManager(), "restartApp");
                     }
@@ -350,7 +352,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         private void setDefaultValues() {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
             if (!preferences.contains(Constants.PREF_LANGUAGE)) {
-                preferences.edit().putString(Constants.PREF_LANGUAGE, Locale.getDefault().getLanguage()).apply();
+                preferences.edit().putString(Constants.PREF_LANGUAGE, Resources.getSystem().getConfiguration().locale.getLanguage()).apply();
                 entrySummary(Constants.PREF_LANGUAGE);
             }
         }

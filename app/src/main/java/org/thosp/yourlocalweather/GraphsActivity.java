@@ -96,7 +96,7 @@ public class GraphsActivity extends ForecastingActivity {
         updateUI();
     }
 
-    private void setTemperatureChart(long locationId) {
+    private void setTemperatureChart(long locationId, String locale) {
         Description graphDescription = new Description();
         graphDescription.setText("");
         mTemperatureChart.setDescription(graphDescription);
@@ -109,7 +109,7 @@ public class GraphsActivity extends ForecastingActivity {
         mTemperatureChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         mTemperatureChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
-        formatDate(locationId);
+        formatDate(locationId, locale);
         XAxis x = mTemperatureChart.getXAxis();
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -173,7 +173,7 @@ public class GraphsActivity extends ForecastingActivity {
         mTemperatureChart.invalidate();
     }
     
-    private void setWindChart(long locationId) {
+    private void setWindChart(long locationId, String locale) {
         Description graphDescription = new Description();
         graphDescription.setText("");
         mWindChart.setDescription(graphDescription);
@@ -186,7 +186,7 @@ public class GraphsActivity extends ForecastingActivity {
         mWindChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         mWindChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
-        formatDate(locationId);
+        formatDate(locationId, locale);
         XAxis x = mWindChart.getXAxis();
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -250,7 +250,7 @@ public class GraphsActivity extends ForecastingActivity {
         mWindChart.invalidate();
     }
 
-    private void setRainChart(long locationId) {
+    private void setRainChart(long locationId, String locale) {
         Description graphDescription = new Description();
         graphDescription.setText("");
         mRainChart.setDescription(graphDescription);
@@ -263,7 +263,7 @@ public class GraphsActivity extends ForecastingActivity {
         mRainChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         mRainChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
-        formatDate(locationId);
+        formatDate(locationId, locale);
         XAxis x = mRainChart.getXAxis();
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -332,7 +332,7 @@ public class GraphsActivity extends ForecastingActivity {
         mRainChart.invalidate();
     }
 
-    private void setSnowChart(long locationId) {
+    private void setSnowChart(long locationId, String locale) {
         Description graphDescription = new Description();
         graphDescription.setText("");
         mSnowChart.setDescription(graphDescription);
@@ -345,7 +345,7 @@ public class GraphsActivity extends ForecastingActivity {
         mSnowChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         mSnowChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
-        formatDate(locationId);
+        formatDate(locationId, locale);
         XAxis x = mSnowChart.getXAxis();
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -414,7 +414,7 @@ public class GraphsActivity extends ForecastingActivity {
         mSnowChart.invalidate();
     }
 
-    private void setPressureChart(long locationId) {
+    private void setPressureChart(long locationId, String locale) {
         Description graphDescription = new Description();
         graphDescription.setText("");
         mPressureChart.setDescription(graphDescription);
@@ -427,7 +427,7 @@ public class GraphsActivity extends ForecastingActivity {
         mPressureChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         mPressureChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
-        formatDate(locationId);
+        formatDate(locationId, locale);
         XAxis x = mPressureChart.getXAxis();
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
@@ -494,8 +494,8 @@ public class GraphsActivity extends ForecastingActivity {
         mPressureChart.invalidate();
     }
 
-    private void formatDate(long locationId) {
-        SimpleDateFormat format = new SimpleDateFormat("EEE", Locale.getDefault());
+    private void formatDate(long locationId, String locale) {
+        SimpleDateFormat format = new SimpleDateFormat("EEE", new Locale(locale));
         if (weatherForecastList.get(locationId) != null) {
             int mSize = weatherForecastList.get(locationId).size();
             mDatesArray = new String[mSize];
@@ -595,10 +595,10 @@ public class GraphsActivity extends ForecastingActivity {
         snowLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         snowLabel.setTextColor(PreferenceUtil.getTextColor(this));
 
-        setTemperatureChart(locationId);
-        setWindChart(locationId);
-        setRainChart(locationId);
-        setSnowChart(locationId);
-        setPressureChart(locationId);
+        setTemperatureChart(locationId, location.getLocale());
+        setWindChart(locationId, location.getLocale());
+        setRainChart(locationId, location.getLocale());
+        setSnowChart(locationId, location.getLocale());
+        setPressureChart(locationId, location.getLocale());
     }
 }

@@ -111,7 +111,7 @@ public class NotificationService extends AbstractCommonService {
                 currentLocation.getLatitude(),
                 weatherRecord.getLastUpdatedTime());
 
-        showNotification(temperatureWithUnit, weather);
+        showNotification(temperatureWithUnit, currentLocation.getLocale(), weather);
     }
 
     private Location getLocationForNotification() {
@@ -123,7 +123,7 @@ public class NotificationService extends AbstractCommonService {
         return currentLocation;
     }
 
-    private void showNotification(String temperatureWithUnit, Weather weather) {
+    private void showNotification(String temperatureWithUnit, String locale, Weather weather) {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -145,7 +145,7 @@ public class NotificationService extends AbstractCommonService {
                         + Utils.getCityAndCountry(this, 0))
                 .setContentTitle(temperatureWithUnit +
                         "  " +
-                        Utils.getWeatherDescription(this, weather))
+                        Utils.getWeatherDescription(this, locale, weather))
                 .setContentText(Utils.getCityAndCountry(this, 0))
                 .setVibrate(isVibrateEnabled())
                 .setAutoCancel(true)

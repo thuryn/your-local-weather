@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
+import org.thosp.yourlocalweather.model.Location;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherCondition;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.ReconciliationDbService;
@@ -34,8 +36,6 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 public class WidgetUtils {
 
     private static final String TAG = "WidgetUtils";
-
-    private static final SimpleDateFormat sdfDayOfWeek = new SimpleDateFormat("EEEE");
 
     public static void setSunset(Context context, RemoteViews remoteViews, String value) {
         if (AppPreference.showLabelsOnWidget(context)) {
@@ -131,6 +131,13 @@ public class WidgetUtils {
 
     public static WeatherForecastDbHelper.WeatherForecastRecord updateWeatherForecast(Context context, long locationId, RemoteViews remoteViews) {
         final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
+        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
+        Location location = locationsDbHelper.getLocationById(locationId);
+        if (location == null) {
+            return null;
+        }
+        SimpleDateFormat sdfDayOfWeek = new SimpleDateFormat("EEEE", new Locale(location.getLocale()));
+
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
         //appendLog(context, TAG, "updateWeatherForecast:locationId=" + locationId + ", weatherForecastRecord=" + weatherForecastRecord);
         if (weatherForecastRecord == null) {

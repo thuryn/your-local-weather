@@ -89,7 +89,7 @@ public class MoreWidgetService extends IntentService {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
             }
             if(!AppPreference.hideDescription(this))
-                remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, weather));
+                remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, currentLocation.getLocale(), weather));
             else remoteViews.setTextViewText(R.id.widget_description, " ");
             WidgetUtils.setWind(getBaseContext(), remoteViews, weather.getWindSpeed(), weather.getWindDirection());
             WidgetUtils.setHumidity(getBaseContext(), remoteViews, weather.getHumidity());

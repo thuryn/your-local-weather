@@ -62,6 +62,7 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
 
     void bindWeather(Context context,
                      double latitude,
+                     String locale,
                      DetailedWeatherForecast weather,
                      Set<Integer> visibleColumns) {
         mWeatherForecast = weather;
@@ -73,7 +74,7 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
         if (visibleColumns.contains(1)) {
             mTime.setVisibility(View.VISIBLE);
             Date date = new Date(weather.getDateTime() * 1000);
-            mTime.setText(AppPreference.getLocalizedTime(context, date));
+            mTime.setText(AppPreference.getLocalizedTime(context, date, locale));
             if (AppPreference.is12TimeStyle(context)) {
                 ViewGroup.LayoutParams params=mTime.getLayoutParams();
                 params.width = Utils.spToPx(85, context);

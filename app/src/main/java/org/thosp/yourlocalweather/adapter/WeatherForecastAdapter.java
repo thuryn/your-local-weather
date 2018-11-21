@@ -23,6 +23,7 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
     private Set<Integer> visibleColumns;
     private Map<Integer, List<DetailedWeatherForecast>> mWeatherList;
     double latitude;
+    String locale;
     private List<Integer> keys;
 
     private Calendar lastDay;
@@ -30,10 +31,12 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
     public WeatherForecastAdapter(Context context,
                                   List<DetailedWeatherForecast> weatherForecastList,
                                   double latitude,
+                                  String locale,
                                   Set<Integer> visibleColumns) {
         mContext = context;
         this.visibleColumns = visibleColumns;
         this.latitude = latitude;
+        this.locale = locale;
 
         mWeatherList = new HashMap<>();
         keys = new ArrayList<>();
@@ -60,7 +63,7 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
     @Override
     public void onBindViewHolder(WeatherForecastViewHolder holder, int position) {
         List<DetailedWeatherForecast> weather = mWeatherList.get(keys.get(position));
-        holder.bindWeather(mContext, latitude, weather);
+        holder.bindWeather(mContext, latitude, locale, weather);
     }
 
     @Override

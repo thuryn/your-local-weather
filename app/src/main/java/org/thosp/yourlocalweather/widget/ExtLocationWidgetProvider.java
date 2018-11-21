@@ -74,15 +74,15 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
             } else {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
             }
-            remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, weather));
+            remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, currentLocation.getLocale(), weather));
 
             WidgetUtils.setWind(context, remoteViews, weather.getWindSpeed(), weather.getWindDirection());
             WidgetUtils.setHumidity(context, remoteViews, weather.getHumidity());
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(1000 * weather.getSunrise());
-            WidgetUtils.setSunrise(context, remoteViews, AppPreference.getLocalizedTime(context, calendar.getTime()));
+            WidgetUtils.setSunrise(context, remoteViews, AppPreference.getLocalizedTime(context, calendar.getTime(), currentLocation.getLocale()));
             calendar.setTimeInMillis(1000 * weather.getSunset());
-            WidgetUtils.setSunset(context, remoteViews, AppPreference.getLocalizedTime(context, calendar.getTime()));
+            WidgetUtils.setSunset(context, remoteViews, AppPreference.getLocalizedTime(context, calendar.getTime(), currentLocation.getLocale()));
 
             Utils.setWeatherIcon(remoteViews, context, weatherRecord);
             String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, currentLocation);

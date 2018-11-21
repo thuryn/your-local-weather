@@ -33,6 +33,7 @@ import org.thosp.yourlocalweather.service.SensorLocationUpdateService;
 import org.thosp.yourlocalweather.service.NominatimLocationService;
 import org.thosp.yourlocalweather.service.SearchActivityProcessResultFromAddressResolution;
 import org.thosp.yourlocalweather.service.SensorLocationUpdater;
+import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
@@ -140,7 +141,7 @@ public class SearchActivity extends BaseActivity {
 
                 latitude = p.getLatitude();
                 longitude = p.getLongitude();
-                locale = Locale.getDefault().getLanguage();
+                locale = PreferenceUtil.getLanguage(getApplicationContext());
                 Intent resultionResult = new Intent(ACTION_ADDRESS_RESOLUTION_RESULT);
                 resultionResult.setPackage("org.thosp.yourlocalweather");
                 NominatimLocationService.getInstance().getFromLocation(

@@ -70,7 +70,7 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
             } else {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
             }
-            remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, weather));
+            remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, currentLocation.getLocale(), weather));
 
             WidgetUtils.setWind(context, remoteViews, weather.getWindSpeed(), weather.getWindDirection());
             WidgetUtils.setHumidity(context, remoteViews, weather.getHumidity());
