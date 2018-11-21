@@ -1,6 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="weather_condition_description_200">ahoj</string>
-    <string name="label_wind">ruach</string>
-    <string name="wind_label">Ruach: %1$s %2$s %3$s</string>
 </resources>
