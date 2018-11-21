@@ -1,3 +1,6 @@
+v4.4.8
+Switch access to openstreetmap to https
+
 v4.4.7
 Added translations for weather conditions. Fixed change of language in the settings screen.
 
