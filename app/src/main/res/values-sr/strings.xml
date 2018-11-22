@@ -4,7 +4,7 @@
     <string name="label_current_city" tools:ignore="MissingTranslation">Тренутни град</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">Изабери град</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Оптимизација батерије</string>
-    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Апликација има процес у позадини који прати промене локације, временских услова или померање уређаја. Зато ће те апликација питати да искључиш оптимизацију батерије да би тај процес могао увек да ради када се уређај не користи.</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Апликација ће те питати да искључиш оптимизацију батерије да би процес у позадини могао да прати промене локације, временских услова или померање уређаја.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Настави</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Поништи</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Подешавања локације и дозвола</string>
