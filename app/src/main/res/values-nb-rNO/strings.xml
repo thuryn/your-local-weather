@@ -368,7 +368,7 @@
     <string name="weather_condition_description_751" tools:ignore="MissingTranslation">sand</string>
     <string name="weather_condition_description_761" tools:ignore="MissingTranslation">støv</string>
     <string name="weather_condition_description_762" tools:ignore="MissingTranslation">vulkansk aske</string>
-    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">vindbyge</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">vindbyger</string>
     <string name="weather_condition_description_781" tools:ignore="MissingTranslation">tornado</string>
     <string name="weather_condition_description_800" tools:ignore="MissingTranslation">klar himmel</string>
     <string name="weather_condition_description_801" tools:ignore="MissingTranslation">noen skyer</string>
