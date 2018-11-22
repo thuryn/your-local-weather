@@ -86,8 +86,8 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
     }
 
-    void bindWeather(Context context, double latitude, String locale, List<DetailedWeatherForecast> weather) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMMM", new Locale(locale));
+    void bindWeather(Context context, double latitude, Locale locale, List<DetailedWeatherForecast> weather) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMMM", locale);
         Date date = new Date(weather.get(0).getDateTime() * 1000);
         Calendar currentRowDate = Calendar.getInstance();
         currentRowDate.setTime(date);
@@ -205,7 +205,7 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
         updateUI(latitude, locale, weather);
     }
 
-    private void updateUI(double latitude, String locale, List<DetailedWeatherForecast> detailedWeatherForecast) {
+    private void updateUI(double latitude, Locale locale, List<DetailedWeatherForecast> detailedWeatherForecast) {
         WeatherForecastItemAdapter adapter = new WeatherForecastItemAdapter(
                 mContext,
                 detailedWeatherForecast,

@@ -44,6 +44,7 @@ import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.TimeZone;
 
@@ -523,7 +524,7 @@ public class Utils {
         }
     }
 
-    public static String unixTimeToFormatTime(Context context, long unixTime, String locale) {
+    public static String unixTimeToFormatTime(Context context, long unixTime, Locale locale) {
         long unixTimeToMillis = unixTime * 1000;
         return AppPreference.getLocalizedTime(context, new Date(unixTimeToMillis), locale);
     }

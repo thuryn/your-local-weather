@@ -58,23 +58,35 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
                     context,
                     weather,
                     currentLocation.getLatitude(),
-                    weatherRecord.getLastUpdatedTime()));
+                    weatherRecord.getLastUpdatedTime(),
+                    currentLocation.getLocale()));
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     context,
                     weather,
                     currentLocation.getLatitude(),
-                    weatherRecord.getLastUpdatedTime());
+                    weatherRecord.getLastUpdatedTime(),
+                    currentLocation.getLocale());
             if (secondTemperature != null) {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
                 remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
             } else {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
             }
-            remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, currentLocation.getLocale(), weather));
+            remoteViews.setTextViewText(R.id.widget_description,
+                                        Utils.getWeatherDescription(context,
+                                                                    currentLocation.getLocaleAbbrev(),
+                                                                    weather));
 
-            WidgetUtils.setWind(context, remoteViews, weather.getWindSpeed(), weather.getWindDirection());
+            WidgetUtils.setWind(context,
+                                remoteViews,
+                                weather.getWindSpeed(),
+                                weather.getWindDirection(),
+                                currentLocation.getLocale());
             WidgetUtils.setHumidity(context, remoteViews, weather.getHumidity());
-            WidgetUtils.setPressure(context, remoteViews, weather.getPressure());
+            WidgetUtils.setPressure(context,
+                                    remoteViews,
+                                    weather.getPressure(),
+                                    currentLocation.getLocale());
             WidgetUtils.setClouds(context, remoteViews, weather.getClouds());
 
             Utils.setWeatherIcon(remoteViews, context, weatherRecord);
@@ -86,17 +98,26 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
                     context,
                     null,
                     currentLocation.getLatitude(),
-                    0));
+                    0,
+                    currentLocation.getLocale()));
             remoteViews.setTextViewText(R.id.widget_second_temperature, TemperatureUtil.getTemperatureWithUnit(
                     context,
                     null,
                     currentLocation.getLatitude(),
-                    0));
+                    0,
+                    currentLocation.getLocale()));
             remoteViews.setTextViewText(R.id.widget_description, "");
 
-            WidgetUtils.setWind(context, remoteViews, 0, 0);
+            WidgetUtils.setWind(context,
+                                remoteViews,
+                            0,
+                        0,
+                                currentLocation.getLocale());
             WidgetUtils.setHumidity(context, remoteViews, 0);
-            WidgetUtils.setPressure(context, remoteViews, 0);
+            WidgetUtils.setPressure(context,
+                                    remoteViews,
+                                0,
+                                    currentLocation.getLocale());
             WidgetUtils.setClouds(context, remoteViews, 0);
 
             Utils.setWeatherIcon(remoteViews, context, weatherRecord);

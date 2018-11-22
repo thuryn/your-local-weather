@@ -15,6 +15,7 @@ import android.os.Messenger;
 import android.os.RemoteException;
 
 import org.thosp.yourlocalweather.ConnectionDetector;
+import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
@@ -164,11 +165,12 @@ public class SensorLocationUpdater implements SensorEventListener {
             if (!connectionDetector.isNetworkAvailableAndConnected()) {
                 locationsDbHelper.updateLocationSource(
                         currentLocationForSensorEvent.getId(),
-                        ".");
+                        context.getString(R.string.location_weather_update_status_location_not_reachable));
                 return;
             }
 
-            locationsDbHelper.updateLocationSource(currentLocationForSensorEvent.getId(), "-");
+            locationsDbHelper.updateLocationSource(currentLocationForSensorEvent.getId(),
+                                                   context.getString(R.string.location_weather_update_status_update_started));
         } catch (Exception e) {
             appendLog(context, TAG, "Exception occured during database update", e);
             return;

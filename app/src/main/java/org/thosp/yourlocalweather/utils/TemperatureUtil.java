@@ -64,7 +64,7 @@ public class TemperatureUtil {
         return (float) (13.12 + (0.6215 * dryBulbTemperature) - (13.37 * windWithPow) + (0.486 * dryBulbTemperature * windWithPow));
     }
 
-    public static String getSecondTemperatureWithLabel(Context context, Weather weather, double latitude, long timestamp) {
+    public static String getSecondTemperatureWithLabel(Context context, Weather weather, double latitude, long timestamp, Locale locale) {
         if (weather == null) {
             return null;
         }
@@ -82,10 +82,11 @@ public class TemperatureUtil {
                         context,
                         weather,
                         latitude,
-                        timestamp));
+                        timestamp,
+                        locale));
     }
 
-    public static String getSecondTemperatureWithUnit(Context context, Weather weather, double latitude, long timestamp) {
+    public static String getSecondTemperatureWithUnit(Context context, Weather weather, double latitude, long timestamp, Locale locale) {
         if (weather == null) {
             return null;
         }
@@ -110,15 +111,15 @@ public class TemperatureUtil {
         }
         if (unitsFromPreferences.contains("fahrenheit") ) {
             double fahrenheitValue = (value * 1.8f) + 32;
-            return apparentSign + String.format(Locale.getDefault(), "%d",
+            return apparentSign + String.format(locale, "%d",
                     Math.round(fahrenheitValue)) + getTemperatureUnit(context);
         } else {
-            return apparentSign + String.format(Locale.getDefault(), "%d",
+            return apparentSign + String.format(locale, "%d",
                     Math.round(value)) + getTemperatureUnit(context);
         }
     }
 
-    public static String getTemperatureWithUnit(Context context, Weather weather, double latitude, long timestamp) {
+    public static String getTemperatureWithUnit(Context context, Weather weather, double latitude, long timestamp, Locale locale) {
         if (weather == null) {
             return null;
         }
@@ -142,15 +143,15 @@ public class TemperatureUtil {
         }
         if (unitsFromPreferences.contains("fahrenheit") ) {
             double fahrenheitValue = (value * 1.8f) + 32;
-            return apparentSign + String.format(Locale.getDefault(), "%d",
+            return apparentSign + String.format(locale, "%d",
                     Math.round(fahrenheitValue)) + getTemperatureUnit(context);
         } else {
-            return apparentSign + String.format(Locale.getDefault(), "%d",
+            return apparentSign + String.format(locale, "%d",
                     Math.round(value)) + getTemperatureUnit(context);
         }
     }
 
-    public static String getForecastedTemperatureWithUnit(Context context, DetailedWeatherForecast weather) {
+    public static String getForecastedTemperatureWithUnit(Context context, DetailedWeatherForecast weather, Locale locale) {
         if (weather == null) {
             return null;
         }
@@ -163,10 +164,10 @@ public class TemperatureUtil {
         }
         if (unitsFromPreferences.contains("fahrenheit") ) {
             double fahrenheitValue = (value * 1.8f) + 32;
-            return apparentSign + String.format(Locale.getDefault(), "%d",
+            return apparentSign + String.format(locale, "%d",
                     Math.round(fahrenheitValue)) + getTemperatureUnit(context);
         } else {
-            return apparentSign + String.format(Locale.getDefault(), "%d",
+            return apparentSign + String.format(locale, "%d",
                     Math.round(value)) + getTemperatureUnit(context);
         }
     }
@@ -174,7 +175,8 @@ public class TemperatureUtil {
     public static String getForecastedApparentTemperatureWithUnit(
             Context context,
             double latitude,
-            DetailedWeatherForecast weather) {
+            DetailedWeatherForecast weather,
+            Locale locale) {
 
         if (weather == null) {
             return null;
@@ -195,10 +197,10 @@ public class TemperatureUtil {
         }
         if (unitsFromPreferences.contains("fahrenheit") ) {
             double fahrenheitValue = (value * 1.8f) + 32;
-            return apparentSign + String.format(Locale.getDefault(), "%d",
+            return apparentSign + String.format(locale, "%d",
                     Math.round(fahrenheitValue)) + getTemperatureUnit(context);
         } else {
-            return apparentSign + String.format(Locale.getDefault(), "%d",
+            return apparentSign + String.format(locale, "%d",
                     Math.round(value)) + getTemperatureUnit(context);
         }
     }
@@ -207,9 +209,9 @@ public class TemperatureUtil {
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
         if (unitsFromPreferences.contains("fahrenheit") ) {
-            return "°F";
+            return context.getString(R.string.temperature_unit_fahrenheit);
         } else {
-            return "°C";
+            return context.getString(R.string.temperature_unit_celsius);
         }
     }
 

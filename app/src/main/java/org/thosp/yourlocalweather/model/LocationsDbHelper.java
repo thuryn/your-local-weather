@@ -68,7 +68,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                    LocationsDbHelper.getAddressAsBytes(location.getAddress()));
         values.put(LocationsContract.Locations.COLUMN_NAME_LONGITUDE, location.getLongitude());
         values.put(LocationsContract.Locations.COLUMN_NAME_LATITUDE, location.getLatitude());
-        values.put(LocationsContract.Locations.COLUMN_NAME_LOCALE, location.getLocale());
+        values.put(LocationsContract.Locations.COLUMN_NAME_LOCALE, location.getLocaleAbbrev());
         values.put(LocationsContract.Locations.COLUMN_NAME_ORDER_ID, location.getOrderId());
         values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, location.getLocationSource());
         values.put(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND, location.isAddressFound());

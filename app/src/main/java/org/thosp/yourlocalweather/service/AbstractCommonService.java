@@ -12,6 +12,7 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
+import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
@@ -133,7 +134,7 @@ public class AbstractCommonService extends Service {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationById(locationId);
         if (currentLocation.getLocationSource() != null) {
-            locationsDbHelper.updateLocationSource(currentLocation.getId(), "-");
+            locationsDbHelper.updateLocationSource(currentLocation.getId(), getString(R.string.location_weather_update_status_update_started));
             currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
         }
         sendMessageToCurrentWeatherService(currentLocation, updateSource, wakeUpSource, forceUpdate);

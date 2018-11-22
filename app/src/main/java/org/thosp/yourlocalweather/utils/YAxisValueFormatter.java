@@ -3,18 +3,21 @@ package org.thosp.yourlocalweather.utils;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
-import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class YAxisValueFormatter implements IAxisValueFormatter {
 
-    private DecimalFormat mFormat;
+    private NumberFormat decimalFormat;
 
-    public YAxisValueFormatter() {
-        mFormat = new DecimalFormat("#.##");
+    public YAxisValueFormatter(Locale locale) {
+        decimalFormat = NumberFormat.getNumberInstance(locale);
+        decimalFormat.setMaximumFractionDigits(2);
+        decimalFormat.setMinimumFractionDigits(2);
     }
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
-        return mFormat.format(value);
+        return decimalFormat.format(value);
     }
 }

@@ -29,7 +29,7 @@ public class LanguageUtil {
                 s.append(pa);
                 s.append(":");
             }
-            LogToFile.appendLog(context, "LanguageUtil", "locale.split(\"_-\"):" + s.toString() + ":locale:" + locale);
+            appendLog(context, "LanguageUtil", "locale.split(\"_-\"):" + s.toString() + ":locale:" + locale);
             if (localeParts.length > 1) {
                 sLocale = new Locale(localeParts[0], localeParts[1]);
             } else {
@@ -49,27 +49,5 @@ public class LanguageUtil {
         }
         resources.updateConfiguration(configuration, resources.getDisplayMetrics());
         return newContext;
-    }
-
-    public static void forceChangeLanguage(Activity activity) {
-        Intent intent = activity.getIntent();
-        if (intent == null) {
-            return;
-        }
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        activity.finish();
-        activity.overridePendingTransition(0, 15);
-        activity.startActivity(intent);
-        activity.overridePendingTransition(0, 0);
-    }
-
-    public static String getLanguageName(String locale) {
-        if (TextUtils.isEmpty(locale)) {
-            locale = Locale.getDefault().toString();
-        }
-        if (locale.contains("-")) {
-            return locale.split("-")[0];
-        }
-        return locale;
     }
 }

@@ -14,19 +14,22 @@ public class WindWithUnit implements Serializable {
     private double windDirection;
     private Context context;
     private String directionTypeFromPreferences;
+    private Locale pressureLocale;
 
-    public WindWithUnit(Context context, double windDirection) {
+    public WindWithUnit(Context context, double windDirection, Locale locale) {
         this.windDirection = windDirection;
         this.context = context;
+        this.pressureLocale = locale;
         directionTypeFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_WIND_DIRECTION, "abbreviation");
     }
 
-    public WindWithUnit(Context context, double windSpeed, String windUnit, double windDirection) {
+    public WindWithUnit(Context context, double windSpeed, String windUnit, double windDirection, Locale locale) {
         this.windSpeed = windSpeed;
         this.windUnit = windUnit;
         this.windDirection = windDirection;
         this.context = context;
+        this.pressureLocale = locale;
         directionTypeFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_WIND_DIRECTION, "abbreviation");
     }
@@ -44,7 +47,7 @@ public class WindWithUnit implements Serializable {
     }
 
     public String getWindSpeed(int decimalPlaces) {
-        return String.format(Locale.getDefault(),
+        return String.format(pressureLocale,
                 "%." + decimalPlaces + "f", windSpeed);
     }
 
@@ -52,7 +55,7 @@ public class WindWithUnit implements Serializable {
         if ("nothing".equals(directionTypeFromPreferences)) {
             return "";
         } else if ("deg".equals(directionTypeFromPreferences)) {
-            return String.format(Locale.getDefault(),"%.0f°", windDirection);
+            return String.format(pressureLocale,"%.0f°", windDirection);
         } else {
             if (((windDirection >= 0) && (windDirection <= 5)) || (windDirection >= 355)) {
                 return context.getString(R.string.wind_direction_north);

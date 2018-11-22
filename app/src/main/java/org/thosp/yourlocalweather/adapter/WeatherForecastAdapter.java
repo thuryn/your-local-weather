@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -23,7 +24,7 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
     private Set<Integer> visibleColumns;
     private Map<Integer, List<DetailedWeatherForecast>> mWeatherList;
     double latitude;
-    String locale;
+    Locale locale;
     private List<Integer> keys;
 
     private Calendar lastDay;
@@ -31,7 +32,7 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
     public WeatherForecastAdapter(Context context,
                                   List<DetailedWeatherForecast> weatherForecastList,
                                   double latitude,
-                                  String locale,
+                                  Locale locale,
                                   Set<Integer> visibleColumns) {
         mContext = context;
         this.visibleColumns = visibleColumns;

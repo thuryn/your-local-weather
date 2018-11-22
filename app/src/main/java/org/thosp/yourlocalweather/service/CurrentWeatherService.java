@@ -22,6 +22,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.json.JSONException;
 import org.thosp.yourlocalweather.ConnectionDetector;
+import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.WeatherJSONParser;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
@@ -83,15 +84,15 @@ public class CurrentWeatherService extends AbstractCommonService {
 
             String originalUpdateState = currentLocation.getLocationSource();
             if (originalUpdateState == null) {
-                originalUpdateState = "-";
+                originalUpdateState = getString(R.string.location_weather_update_status_update_started);
             }
             appendLog(getBaseContext(), TAG, "originalUpdateState:" + originalUpdateState);
             String newUpdateState = originalUpdateState;
-            if (originalUpdateState.contains("N")) {
+            if (originalUpdateState.contains(getString(R.string.location_weather_update_status_location_from_network))) {
                 appendLog(getBaseContext(), TAG, "originalUpdateState contains N");
-                newUpdateState = originalUpdateState.replace("N", "L");
-            } else if (originalUpdateState.contains("G")) {
-                newUpdateState = "L";
+                newUpdateState = originalUpdateState.replace(getString(R.string.location_weather_update_status_location_from_network), getString(R.string.location_weather_update_status_location_only));
+            } else if (originalUpdateState.contains(getString(R.string.location_weather_update_status_location_from_gps))) {
+                newUpdateState = getString(R.string.location_weather_update_status_location_only);
             }
             appendLog(getBaseContext(), TAG, "currentLocation:" + currentLocation + ", newUpdateState:" + newUpdateState);
             if (currentLocation != null) {
@@ -215,7 +216,7 @@ public class CurrentWeatherService extends AbstractCommonService {
             if (numberOfAttempts > 2) {
                 locationsDbHelper.updateLocationSource(
                         currentLocation.getId(),
-                        ".");
+                        getString(R.string.location_weather_update_status_location_not_reachable));
                 appendLog(getBaseContext(),
                         TAG,
                         "currentWeatherUpdateMessages.size when attempts is more than 2 = " + currentWeatherUpdateMessages.size());
@@ -246,7 +247,7 @@ public class CurrentWeatherService extends AbstractCommonService {
                             "currentLocation is null");
                     return;
                 }
-                final String locale = currentLocation.getLocale();
+                final String locale = currentLocation.getLocaleAbbrev();
                 appendLog(context,
                         TAG,
                         "weather get params: latitude:" +
@@ -277,7 +278,7 @@ public class CurrentWeatherService extends AbstractCommonService {
                                 String weatherRaw = new String(response);
                                 appendLog(context, TAG, "weather got, result:" + weatherRaw);
 
-                                final String locale = currentLocation.getLocale();
+                                final String locale = currentLocation.getLocaleAbbrev();
                                 Weather weather = WeatherJSONParser.getWeather(context, weatherRaw, locale);
                                 timerHandler.removeCallbacksAndMessages(null);
                                 saveWeatherAndSendResult(context, weather);
@@ -295,15 +296,15 @@ public class CurrentWeatherService extends AbstractCommonService {
                                 final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
                                 if (statusCode == 401) {
                                     locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
-                                            System.currentTimeMillis(), "E");
+                                            System.currentTimeMillis(), getString(R.string.location_weather_update_status_access_expired));
 
                                 } else if (statusCode == 429) {
                                     locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
-                                            System.currentTimeMillis(), "B");
+                                            System.currentTimeMillis(), getString(R.string.location_weather_update_status_access_banned));
 
                                 } else {
                                     locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
-                                            System.currentTimeMillis(), "L");
+                                            System.currentTimeMillis(), getString(R.string.location_weather_update_status_location_only));
                                 }
                             }
                             sendResult(ACTION_WEATHER_UPDATE_FAIL, context);
@@ -389,9 +390,9 @@ public class CurrentWeatherService extends AbstractCommonService {
         appendLog(getBaseContext(), TAG, "saveWeatherAndSendResult:locationSource by location:" + locationSource);
         if ((currentLocation.getOrderId() > 0) ||
             (locationSource == null) ||
-            "-".equals(locationSource) ||
-            ".".equals(locationSource)) {
-            locationSource = "W";
+                getString(R.string.location_weather_update_status_update_started).equals(locationSource) ||
+                getString(R.string.location_weather_update_status_location_not_reachable).equals(locationSource)) {
+            locationSource = getString(R.string.location_weather_update_status_weather_only);
         }
         appendLog(context,
                 TAG,

@@ -76,12 +76,14 @@ public class MoreWidgetService extends IntentService {
                     this,
                     weather,
                     currentLocation.getLatitude(),
-                    weatherRecord.getLastUpdatedTime()));
+                    weatherRecord.getLastUpdatedTime(),
+                    currentLocation.getLocale()));
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     this,
                     weather,
                     currentLocation.getLatitude(),
-                    weatherRecord.getLastUpdatedTime());
+                    weatherRecord.getLastUpdatedTime(),
+                    currentLocation.getLocale());
             if (secondTemperature != null) {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
                 remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
@@ -89,11 +91,21 @@ public class MoreWidgetService extends IntentService {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
             }
             if(!AppPreference.hideDescription(this))
-                remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, currentLocation.getLocale(), weather));
+                remoteViews.setTextViewText(R.id.widget_description,
+                                            Utils.getWeatherDescription(this,
+                                                                        currentLocation.getLocaleAbbrev(),
+                                                    weather));
             else remoteViews.setTextViewText(R.id.widget_description, " ");
-            WidgetUtils.setWind(getBaseContext(), remoteViews, weather.getWindSpeed(), weather.getWindDirection());
+            WidgetUtils.setWind(getBaseContext(),
+                                remoteViews,
+                                weather.getWindSpeed(),
+                                weather.getWindDirection(),
+                                currentLocation.getLocale());
             WidgetUtils.setHumidity(getBaseContext(), remoteViews, weather.getHumidity());
-            WidgetUtils.setPressure(getBaseContext(), remoteViews, weather.getPressure());
+            WidgetUtils.setPressure(getBaseContext(),
+                                    remoteViews,
+                                    weather.getPressure(),
+                                    currentLocation.getLocale());
             WidgetUtils.setClouds(getBaseContext(), remoteViews, weather.getClouds());
             Utils.setWeatherIcon(remoteViews, this, weatherRecord);
             String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, currentLocation);

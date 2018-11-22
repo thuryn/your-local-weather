@@ -6,6 +6,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.PersistableBundle;
 
+import java.util.Locale;
+
 public class Location implements Parcelable {
 
     private long id;
@@ -13,18 +15,19 @@ public class Location implements Parcelable {
     private double longitude;
     private double latitude;
     private int orderId;
-    private String locale;
+    private String localeAbbrev;
     private String nickname;
     private float accuracy;
     private long lastLocationUpdate;
     private String locationSource;
     private boolean addressFound;
     private boolean enabled;
+    private Locale locale;
 
     public Location(long id,
                     int orderId,
                     String nickname,
-                    String locale,
+                    String localeAbbrev,
                     double longitude,
                     double latitude,
                     float accuracy,
@@ -37,7 +40,8 @@ public class Location implements Parcelable {
         this.address = address;
         this.orderId = orderId;
         this.nickname = nickname;
-        this.locale = locale;
+        this.localeAbbrev = localeAbbrev;
+        this.locale = new Locale(localeAbbrev);
         this.longitude = longitude;
         this.latitude = latitude;
         this.accuracy = accuracy;
@@ -67,8 +71,12 @@ public class Location implements Parcelable {
         return orderId;
     }
 
-    public String getLocale() {
+    public Locale getLocale() {
         return locale;
+    }
+
+    public String getLocaleAbbrev() {
+        return localeAbbrev;
     }
 
     public String getNickname() {
@@ -106,7 +114,7 @@ public class Location implements Parcelable {
         parcel.writeDouble(latitude);
         parcel.writeDouble(longitude);
         parcel.writeInt(orderId);
-        parcel.writeString(locale);
+        parcel.writeString(localeAbbrev);
         parcel.writeString(nickname);
         parcel.writeFloat(accuracy);
         parcel.writeString(locationSource);
@@ -130,12 +138,13 @@ public class Location implements Parcelable {
         latitude = in.readDouble();
         longitude = in.readDouble();
         orderId = in.readInt();
-        locale = in.readString();
+        localeAbbrev = in.readString();
         nickname = in.readString();
         accuracy = in.readFloat();
         locationSource = in.readString();
         lastLocationUpdate = in.readLong();
         address = in.readParcelable(Address.class.getClassLoader());
+        locale = new Locale(localeAbbrev);
     }
 
     public Location(PersistableBundle persistentBundle) {
@@ -144,7 +153,8 @@ public class Location implements Parcelable {
             latitude = persistentBundle.getDouble("latitude");
             longitude = persistentBundle.getDouble("longitude");
             orderId = persistentBundle.getInt("orderId");
-            locale = persistentBundle.getString("locale");
+            localeAbbrev = persistentBundle.getString("locale");
+            locale = new Locale(localeAbbrev);
             nickname = persistentBundle.getString("nickname");;
             accuracy = new Double(persistentBundle.getDouble("accuracy")).floatValue();
             locationSource = persistentBundle.getString("locationSource");
@@ -160,7 +170,7 @@ public class Location implements Parcelable {
             persistableBundle.putDouble("latitude", latitude);
             persistableBundle.putDouble("longitude", longitude);
             persistableBundle.putInt("orderId", orderId);
-            persistableBundle.putString("locale", locale);
+            persistableBundle.putString("locale", localeAbbrev);
             persistableBundle.putString("nickname", nickname);
             persistableBundle.putDouble("accuracy", new Double(accuracy));
             persistableBundle.putString("locationSource", locationSource);

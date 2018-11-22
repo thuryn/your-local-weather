@@ -62,7 +62,7 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
 
     void bindWeather(Context context,
                      double latitude,
-                     String locale,
+                     Locale locale,
                      DetailedWeatherForecast weather,
                      Set<Integer> visibleColumns) {
         mWeatherForecast = weather;
@@ -103,7 +103,7 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
         if (visibleColumns.contains(4)) {
             mTemperature.setVisibility(View.VISIBLE);
             String temperature = mContext.getString(R.string.temperature_with_degree,
-                    TemperatureUtil.getForecastedTemperatureWithUnit(mContext, weather));
+                    TemperatureUtil.getForecastedTemperatureWithUnit(mContext, weather, locale));
             mTemperature.setText(temperature);
         } else {
             mTemperature.setVisibility(View.GONE);
@@ -111,20 +111,20 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
         if (visibleColumns.contains(5)) {
             mApparentTemperature.setVisibility(View.VISIBLE);
             String apparentTemperature = mContext.getString(R.string.temperature_with_degree,
-                    TemperatureUtil.getForecastedApparentTemperatureWithUnit(mContext, latitude, weather));
+                    TemperatureUtil.getForecastedApparentTemperatureWithUnit(mContext, latitude, weather, locale));
             mApparentTemperature.setText(apparentTemperature);
         } else {
             mApparentTemperature.setVisibility(View.GONE);
         }
         if (visibleColumns.contains(6)) {
             mWind.setVisibility(View.VISIBLE);
-            mWind.setText(AppPreference.getWindInString(mContext, weather.getWindSpeed()));
+            mWind.setText(AppPreference.getWindInString(mContext, weather.getWindSpeed(), locale));
         } else {
             mWind.setVisibility(View.GONE);
         }
         if (visibleColumns.contains(7)) {
             windDirection.setVisibility(View.VISIBLE);
-            windDirection.setText(AppPreference.getWindDirection(mContext, weather.getWindDegree()));
+            windDirection.setText(AppPreference.getWindDirection(mContext, weather.getWindDegree(), locale));
         } else {
             windDirection.setVisibility(View.GONE);
         }
@@ -135,8 +135,8 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
             if (noRain && noSnow) {
                 mRainSnow.setText("");
             } else {
-                String rain = AppPreference.getFormatedRainOrSnow(context, weather.getRain());
-                String snow = AppPreference.getFormatedRainOrSnow(context, weather.getSnow());
+                String rain = AppPreference.getFormatedRainOrSnow(context, weather.getRain(), locale);
+                String snow = AppPreference.getFormatedRainOrSnow(context, weather.getSnow(), locale);
                 if (!noRain && !noSnow) {
                     mRainSnow.setText(rain + "/" + snow);
                 } else if (noSnow) {
@@ -153,13 +153,13 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
         }
         if (visibleColumns.contains(9)) {
             mHumidity.setVisibility(View.VISIBLE);
-            mHumidity.setText(String.format(Locale.getDefault(), "%d", weather.getHumidity()));
+            mHumidity.setText(String.format(locale, "%d", weather.getHumidity()));
         } else {
             mHumidity.setVisibility(View.GONE);
         }
         if (visibleColumns.contains(10)) {
             mPressure.setVisibility(View.VISIBLE);
-            mPressure.setText(AppPreference.getPressureInString(mContext, weather.getPressure()));
+            mPressure.setText(AppPreference.getPressureInString(mContext, weather.getPressure(), locale));
         } else {
             mPressure.setVisibility(View.GONE);
         }

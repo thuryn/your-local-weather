@@ -23,6 +23,16 @@
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Permissions are not yet granted - click the location symbol in the app</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Access expired. Upgrade the app, please.</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Your OpenweathermapApiKey is not registered.</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Share weather</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Communication app not found</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">City: %1$s\nTemperature: %2$s\nDescription: %3$s\nWind: %4$s %5$s\nSunrise: %6$s\nSunset: %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Your local weather</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Your local weather notifications</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Day</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Wind</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Rain</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Snow</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Pressure</string>
 
     <!-- Initial guide and help -->
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Close</string>
@@ -177,6 +187,7 @@
 
     <!-- Preference Screen strings -->
     <string name="title_activity_settings" tools:ignore="MissingTranslation">Settings</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Open source licenses</string>
     <string name="pref_title_temperature" tools:ignore="MissingTranslation">Temperature</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Wind</string>
     <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Wind direction style</string>
@@ -324,6 +335,17 @@
     <string name="appearance_only" tools:ignore="MissingTranslation">Appearance value only</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Show temperature as</string>
 
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">L</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">N</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
+
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Current weather icon</string>
     <string name="widget_refresh_button" tools:ignore="MissingTranslation">Widget refresh button</string>
@@ -363,11 +385,17 @@
     <string name="log_file_72_label" tools:ignore="MissingTranslation">three days</string>
     <string name="log_file_168_label" tools:ignore="MissingTranslation">a week</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">a month</string>
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">Log to file</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">Don\'t log to file</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">Log to file</string>
 
     <!-- Icon preference strings -->
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Icon Set</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Font based icons</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin the red icons</string>
+
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
 
     <string name="weather_condition_description_none" tools:ignore="MissingTranslation">none</string>
     <string name="weather_condition_description_200" tools:ignore="MissingTranslation">thunderstorm with light rain</string>

@@ -73,19 +73,24 @@ public class LessWidgetService extends IntentService {
                     this,
                     weather,
                     currentLocation.getLatitude(),
-                    weatherRecord.getLastUpdatedTime()));
+                    weatherRecord.getLastUpdatedTime(),
+                    currentLocation.getLocale()));
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     this,
                     weather,
                     currentLocation.getLatitude(),
-                    weatherRecord.getLastUpdatedTime());
+                    weatherRecord.getLastUpdatedTime(),
+                    currentLocation.getLocale());
             if (secondTemperature != null) {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
                 remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
             } else {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
             }
-            remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, currentLocation.getLocale(), weather));
+            remoteViews.setTextViewText(R.id.widget_description,
+                                        Utils.getWeatherDescription(this,
+                                                                    currentLocation.getLocaleAbbrev(),
+                                                                    weather));
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(this, currentLocation.getOrderId()));
             String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, currentLocation);
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);

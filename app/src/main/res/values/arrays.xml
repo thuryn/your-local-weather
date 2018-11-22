@@ -22,8 +22,8 @@
         <item>@string/forecast_settings_column_pressure</item>
     </string-array>
     <string-array name="pref_temperature_units_entries" translatable="false">
-        <item>°C</item>
-        <item>°F</item>
+        <item>@string/temperature_unit_celsius</item>
+        <item>@string/temperature_unit_fahrenheit</item>
     </string-array>
     <string-array name="pref_temperature_units_values" translatable="false">
         <item>celsius</item>
@@ -42,8 +42,8 @@
         <item>appearance_only</item>
     </string-array>
     <string-array name="pref_wind_units_entries" translatable="false">
-        <item>m/s</item>
-        <item>km/h</item>
+        <item>@string/wind_speed_meters</item>
+        <item>@string/wind_speed_kilometers</item>
         <item>@string/wind_speed_miles</item>
         <item>@string/wind_speed_knots</item>
     </string-array>

@@ -74,20 +74,29 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
                 context,
                 weather,
                 currentLocation.getLatitude(),
-                weatherRecord.getLastUpdatedTime()));
+                weatherRecord.getLastUpdatedTime(),
+                currentLocation.getLocale()));
         String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                 context,
                 weather,
                 currentLocation.getLatitude(),
-                weatherRecord.getLastUpdatedTime());
+                weatherRecord.getLastUpdatedTime(),
+                currentLocation.getLocale());
         if (secondTemperature != null) {
             remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
             remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
         } else {
             remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
         }
-        remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, currentLocation.getLocale(), weather));
-        WidgetUtils.setWind(context, remoteViews, weather.getWindSpeed(), weather.getWindDirection());
+        remoteViews.setTextViewText(R.id.widget_description,
+                                    Utils.getWeatherDescription(context,
+                                                                currentLocation.getLocaleAbbrev(),
+                                                                weather));
+        WidgetUtils.setWind(context,
+                            remoteViews,
+                            weather.getWindSpeed(),
+                            weather.getWindDirection(),
+                            currentLocation.getLocale());
         WidgetUtils.setHumidity(context, remoteViews, weather.getHumidity());
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(1000 * weather.getSunrise());

@@ -21,6 +21,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.json.JSONException;
 import org.thosp.yourlocalweather.ConnectionDetector;
+import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.WeatherJSONParser;
 import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
@@ -151,7 +152,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
             if (numberOfAttempts > 2) {
                 locationsDbHelper.updateLocationSource(
                         currentLocation.getId(),
-                        ".");
+                        getString(R.string.location_weather_update_status_location_not_reachable));
                 sendResult(ACTION_WEATHER_UPDATE_FAIL, getBaseContext());
                 return;
             }
@@ -179,7 +180,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
                             "currentLocation is null");
                     return;
                 }
-                final String locale = currentLocation.getLocale();
+                final String locale = currentLocation.getLocaleAbbrev();
                 appendLog(context,
                         TAG,
                         "weather get params: latitude:" +
@@ -197,7 +198,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
                             currentLocation.getLatitude(),
                             currentLocation.getLongitude(),
                             "metric",
-                            currentLocation.getLocale()).toString(), null, new AsyncHttpResponseHandler() {
+                            currentLocation.getLocaleAbbrev()).toString(), null, new AsyncHttpResponseHandler() {
 
                         @Override
                         public void onStart() {

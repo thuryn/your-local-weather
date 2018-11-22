@@ -3,9 +3,9 @@
         <CheckBoxPreference
             android:defaultValue="false"
             android:key="debug.to.file"
-            android:summaryOff="Don't log to file"
-            android:summaryOn="Log to file"
-            android:title="Log to file" />
+            android:summaryOff="@string/log_to_file_off"
+            android:summaryOn="@string/log_to_file_on"
+            android:title="@string/log_to_file_label" />
         <ListPreference
             android:defaultValue="24"
             android:entries="@array/log_file_lasting_entries"

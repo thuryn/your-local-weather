@@ -884,7 +884,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 textView.setText(R.string.licenses);
                 textView.setMovementMethod(LinkMovementMethod.getInstance());
                 return new AlertDialog.Builder(getActivity())
-                        .setTitle("Open source licenses")
+                        .setTitle(getString(R.string.title_open_source_licenses))
                         .setView(textView)
                         .setPositiveButton(android.R.string.ok, null)
                         .create();

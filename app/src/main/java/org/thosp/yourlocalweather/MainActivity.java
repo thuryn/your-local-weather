@@ -248,7 +248,7 @@ public class MainActivity extends BaseActivity
                     locationsDbHelper.updateLastUpdatedAndLocationSource(
                             currentLocation.getId(),
                             System.currentTimeMillis(),
-                            "-");
+                            getString(R.string.location_weather_update_status_update_started));
                     if ((currentLocation.getLatitude() == 0.0) && (currentLocation.getLongitude() == 0.0)) {
                         Toast.makeText(MainActivity.this,
                                 R.string.location_not_initialized,
@@ -304,7 +304,7 @@ public class MainActivity extends BaseActivity
                         locationsDbHelper.updateLastUpdatedAndLocationSource(
                                 currentLocation.getId(),
                                 System.currentTimeMillis(),
-                                "-");
+                                getString(R.string.location_weather_update_status_update_started));
                         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
                         sendMessageToCurrentWeatherService(currentLocation, "MAIN");
                     } else {
@@ -382,8 +382,13 @@ public class MainActivity extends BaseActivity
 
         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
         String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, weatherForecastRecord, currentLocation);
-        windWithUnit = AppPreference.getWindWithUnit(this, weather.getWindSpeed(), weather.getWindDirection());
-        PressureWithUnit pressure = AppPreference.getPressureWithUnit(this, weather.getPressure());
+        windWithUnit = AppPreference.getWindWithUnit(this,
+                                                     weather.getWindSpeed(),
+                                                     weather.getWindDirection(),
+                                                     currentLocation.getLocale());
+        PressureWithUnit pressure = AppPreference.getPressureWithUnit(this,
+                                                                      weather.getPressure(),
+                                                                      currentLocation.getLocale());
         String sunrise = Utils.unixTimeToFormatTime(this, weather.getSunrise(), currentLocation.getLocale());
         String sunset = Utils.unixTimeToFormatTime(this, weather.getSunset(), currentLocation.getLocale());
 
@@ -392,11 +397,13 @@ public class MainActivity extends BaseActivity
                 TemperatureUtil.getTemperatureWithUnit(this,
                         weather,
                         currentLocation.getLatitude(),
-                        weatherRecord.getLastUpdatedTime())));
+                        weatherRecord.getLastUpdatedTime(),
+                        currentLocation.getLocale())));
         String secondTemperature = TemperatureUtil.getSecondTemperatureWithLabel(this,
                 weather,
                 currentLocation.getLatitude(),
-                weatherRecord.getLastUpdatedTime());
+                weatherRecord.getLastUpdatedTime(),
+                currentLocation.getLocale());
         if (secondTemperature != null) {
             secondTemperatureView.setText(secondTemperature);
             secondTemperatureView.setVisibility(View.VISIBLE);
@@ -405,7 +412,7 @@ public class MainActivity extends BaseActivity
             secondTemperatureView.setVisibility(View.GONE);
             iconSecondTemperatureView.setVisibility(View.GONE);
         }
-        mDescriptionView.setText(Utils.getWeatherDescription(this, currentLocation.getLocale(), weather));
+        mDescriptionView.setText(Utils.getWeatherDescription(this, currentLocation.getLocaleAbbrev(), weather));
         mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
         mHumidityView.setText(getString(R.string.humidity_label,
                 String.valueOf(weather.getHumidity()),
@@ -567,32 +574,36 @@ public class MainActivity extends BaseActivity
                     MainActivity.this,
                     weather,
                     currentLocation.getLatitude(),
-                    currentWeatherRecord.getLastUpdatedTime());
+                    currentWeatherRecord.getLastUpdatedTime(),
+                    currentLocation.getLocale());
             windWithUnit = AppPreference.getWindWithUnit(
                     MainActivity.this,
                     weather.getWindSpeed(),
-                    weather.getWindDirection());
+                    weather.getWindDirection(),
+                    currentLocation.getLocale());
             String description;
             String sunrise;
             String sunset;
-            description = Utils.getWeatherDescription(MainActivity.this, currentLocation.getLocale(), weather);
+            description = Utils.getWeatherDescription(MainActivity.this, currentLocation.getLocaleAbbrev(), weather);
             sunrise = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunrise(), currentLocation.getLocale());
             sunset = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunset(), currentLocation.getLocale());
-            String weatherDescription = "City: " + getCityNameFromAddress() +
-                    "\nTemperature: " + temperatureWithUnit +
-                    "\nDescription: " + description +
-                    "\nWind: " + windWithUnit.getWindSpeed(1) + " " + windWithUnit.getWindUnit() +
-                    "\nSunrise: " + sunrise +
-                    "\nSunset: " + sunset;
+            String weatherDescription = getString(R.string.share_weather_descritpion,
+                                                  getCityNameFromAddress(),
+                                                  temperatureWithUnit,
+                                                  description,
+                                                  windWithUnit.getWindSpeed(1),
+                                                  windWithUnit.getWindUnit(),
+                                                  sunrise,
+                                                  sunset);
             Intent shareIntent = new Intent(Intent.ACTION_SEND);
             shareIntent.setType("text/plain");
             shareIntent.putExtra(Intent.EXTRA_TEXT, weatherDescription);
             shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             try {
-                startActivity(Intent.createChooser(shareIntent, "Share Weather"));
+                startActivity(Intent.createChooser(shareIntent, getString(R.string.share_weather_title)));
             } catch (ActivityNotFoundException e) {
                 Toast.makeText(MainActivity.this,
-                        "Communication app not found",
+                        getString(R.string.share_weather_app_not_found),
                         Toast.LENGTH_LONG).show();
             }
         }

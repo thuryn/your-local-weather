@@ -79,20 +79,29 @@ public class ExtLocationWidgetService extends IntentService {
                     this,
                     weather,
                     currentLocation.getLatitude(),
-                    weatherRecord.getLastUpdatedTime()));
+                    weatherRecord.getLastUpdatedTime(),
+                    currentLocation.getLocale()));
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     this,
                     weather,
                     currentLocation.getLatitude(),
-                    weatherRecord.getLastUpdatedTime());
+                    weatherRecord.getLastUpdatedTime(),
+                    currentLocation.getLocale());
             if (secondTemperature != null) {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
                 remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
             } else {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
             }
-            remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(this, currentLocation.getLocale(), weather));
-            WidgetUtils.setWind(getBaseContext(), remoteViews, weather.getWindSpeed(), weather.getWindDirection());
+            remoteViews.setTextViewText(R.id.widget_description,
+                                        Utils.getWeatherDescription(this,
+                                                                    currentLocation.getLocaleAbbrev(),
+                                                                    weather));
+            WidgetUtils.setWind(getBaseContext(),
+                                remoteViews,
+                                weather.getWindSpeed(),
+                                weather.getWindDirection(),
+                                currentLocation.getLocale());
             WidgetUtils.setHumidity(getBaseContext(), remoteViews, weather.getHumidity());
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(1000 * weather.getSunrise());

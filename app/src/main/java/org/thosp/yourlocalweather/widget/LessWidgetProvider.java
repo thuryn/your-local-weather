@@ -53,12 +53,14 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
                     context,
                     weatherRecord.getWeather(),
                     currentLocation.getLatitude(),
-                    weatherRecord.getLastUpdatedTime()));
+                    weatherRecord.getLastUpdatedTime(),
+                    currentLocation.getLocale()));
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     context,
                     weatherRecord.getWeather(),
                     currentLocation.getLatitude(),
-                    weatherRecord.getLastUpdatedTime());
+                    weatherRecord.getLastUpdatedTime(),
+                    currentLocation.getLocale());
             if (secondTemperature != null) {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
                 remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
@@ -66,7 +68,10 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
                 remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
             }
             remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context, currentLocation.getOrderId()));
-            remoteViews.setTextViewText(R.id.widget_description, Utils.getWeatherDescription(context, currentLocation.getLocale(), weatherRecord.getWeather()));
+            remoteViews.setTextViewText(R.id.widget_description,
+                                        Utils.getWeatherDescription(context,
+                                                                    currentLocation.getLocaleAbbrev(),
+                                                                    weatherRecord.getWeather()));
             Utils.setWeatherIcon(remoteViews, context, weatherRecord);
             String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, currentLocation);
             remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
@@ -75,12 +80,14 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
                     context,
                     null,
                     currentLocation.getLatitude(),
-                    0));
+                    0,
+                    currentLocation.getLocale()));
             remoteViews.setTextViewText(R.id.widget_second_temperature, TemperatureUtil.getTemperatureWithUnit(
                     context,
                     null,
                     currentLocation.getLatitude(),
-                    0));
+                    0,
+                    currentLocation.getLocale()));
             remoteViews.setTextViewText(R.id.widget_description, "");
 
             Utils.setWeatherIcon(remoteViews, context, weatherRecord);

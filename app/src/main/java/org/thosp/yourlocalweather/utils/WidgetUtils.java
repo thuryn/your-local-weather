@@ -79,8 +79,8 @@ public class WidgetUtils {
         }
     }
 
-    public static void setWind(Context context, RemoteViews remoteViews, float value, float direction) {
-        WindWithUnit windWithUnit = AppPreference.getWindWithUnit(context, value, direction);
+    public static void setWind(Context context, RemoteViews remoteViews, float value, float direction, Locale locale) {
+        WindWithUnit windWithUnit = AppPreference.getWindWithUnit(context, value, direction, locale);
         if (AppPreference.showLabelsOnWidget(context)) {
             String wind = context.getString(R.string.wind_label,
                             windWithUnit.getWindSpeed(0),
@@ -96,8 +96,8 @@ public class WidgetUtils {
         }
     }
 
-    public static void setPressure(Context context, RemoteViews remoteViews, float value) {
-        PressureWithUnit pressureWithUnit = AppPreference.getPressureWithUnit(context, value);
+    public static void setPressure(Context context, RemoteViews remoteViews, float value, Locale locale) {
+        PressureWithUnit pressureWithUnit = AppPreference.getPressureWithUnit(context, value, locale);
         if (AppPreference.showLabelsOnWidget(context)) {
             String pressure =
                     context.getString(R.string.pressure_label,
@@ -136,7 +136,7 @@ public class WidgetUtils {
         if (location == null) {
             return null;
         }
-        SimpleDateFormat sdfDayOfWeek = new SimpleDateFormat("EEEE", new Locale(location.getLocale()));
+        SimpleDateFormat sdfDayOfWeek = new SimpleDateFormat("EEEE", location.getLocale());
 
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
         //appendLog(context, TAG, "updateWeatherForecast:locationId=" + locationId + ", weatherForecastRecord=" + weatherForecastRecord);

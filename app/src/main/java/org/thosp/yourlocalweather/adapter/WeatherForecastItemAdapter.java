@@ -11,6 +11,7 @@ import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 public class WeatherForecastItemAdapter extends RecyclerView.Adapter<WeatherForecastItemViewHolder> {
@@ -19,12 +20,12 @@ public class WeatherForecastItemAdapter extends RecyclerView.Adapter<WeatherFore
     private Set<Integer> visibleColumns;
     private List<DetailedWeatherForecast> mWeatherList;
     private double latitude;
-    private String locale;
+    private Locale locale;
 
     public WeatherForecastItemAdapter(Context context,
                                       List<DetailedWeatherForecast> weather,
                                       double latitude,
-                                      String locale,
+                                      Locale locale,
                                       Set<Integer> visibleColumns) {
         mContext = context;
         mWeatherList = weather;

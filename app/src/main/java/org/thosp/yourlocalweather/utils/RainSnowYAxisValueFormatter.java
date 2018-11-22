@@ -5,18 +5,22 @@ import android.content.Context;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
-import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 public class RainSnowYAxisValueFormatter implements IAxisValueFormatter {
 
-    private DecimalFormat format;
+    private NumberFormat decimalFormat;
 
-    public RainSnowYAxisValueFormatter(Context context) {
-        format = new DecimalFormat(AppPreference.getGraphFormatterForRainOrSnow(context));
+    public RainSnowYAxisValueFormatter(Context context, Locale locale) {
+        decimalFormat = NumberFormat.getNumberInstance(locale);
+        int numberOfDecimalPlaces = AppPreference.getGraphFormatterForRainOrSnow(context);
+        decimalFormat.setMaximumFractionDigits(numberOfDecimalPlaces);
+        decimalFormat.setMinimumFractionDigits(numberOfDecimalPlaces);
     }
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
-        return format.format(value);
+        return decimalFormat.format(value);
     }
 }

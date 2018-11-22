@@ -109,9 +109,10 @@ public class NotificationService extends AbstractCommonService {
                 this,
                 weather,
                 currentLocation.getLatitude(),
-                weatherRecord.getLastUpdatedTime());
+                weatherRecord.getLastUpdatedTime(),
+                currentLocation.getLocale());
 
-        showNotification(temperatureWithUnit, currentLocation.getLocale(), weather);
+        showNotification(temperatureWithUnit, currentLocation.getLocaleAbbrev(), weather);
     }
 
     private Location getLocationForNotification() {
@@ -128,9 +129,9 @@ public class NotificationService extends AbstractCommonService {
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel("default",
-                    "Your local weather",
+                    getString(R.string.notification_channel_name),
                     NotificationManager.IMPORTANCE_DEFAULT);
-            channel.setDescription("Your local weather notifications");
+            channel.setDescription(getString(R.string.notification_channel_description));
             notificationManager.createNotificationChannel(channel);
         }
 

@@ -59,9 +59,6 @@ public class GraphsActivity extends ForecastingActivity {
         super.onCreate(savedInstanceState);
         initializeWeatherForecastReceiver(ForecastWeatherService.ACTION_GRAPHS_UPDATE_RESULT);
         setContentView(R.layout.activity_graphs);
-        mValueFormatter = new CustomValueFormatter();
-        mYAxisFormatter = new YAxisValueFormatter();
-        rainSnowYAxisValueFormatter = new RainSnowYAxisValueFormatter(this);
         mTemperatureChart = (LineChart) findViewById(R.id.temperature_chart);
         mWindChart = (LineChart) findViewById(R.id.wind_chart);
         mRainChart = (LineChart) findViewById(R.id.rain_chart);
@@ -96,7 +93,7 @@ public class GraphsActivity extends ForecastingActivity {
         updateUI();
     }
 
-    private void setTemperatureChart(long locationId, String locale) {
+    private void setTemperatureChart(long locationId, Locale locale) {
         Description graphDescription = new Description();
         graphDescription.setText("");
         mTemperatureChart.setDescription(graphDescription);
@@ -140,7 +137,7 @@ public class GraphsActivity extends ForecastingActivity {
         if (mTemperatureChart.getData() != null) {
             mTemperatureChart.getData().removeDataSet(mTemperatureChart.getData().getDataSetByIndex(
                     mTemperatureChart.getData().getDataSetCount() - 1));
-            set = new LineDataSet(entries, "Day");
+            set = new LineDataSet(entries, getString(R.string.graph_temperature_day_label));
             set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
@@ -155,7 +152,7 @@ public class GraphsActivity extends ForecastingActivity {
             LineData data = new LineData(set);
             mTemperatureChart.setData(data);
         } else {
-            set = new LineDataSet(entries, "Day");
+            set = new LineDataSet(entries, getString(R.string.graph_temperature_day_label));
             set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
@@ -173,7 +170,7 @@ public class GraphsActivity extends ForecastingActivity {
         mTemperatureChart.invalidate();
     }
     
-    private void setWindChart(long locationId, String locale) {
+    private void setWindChart(long locationId, Locale locale) {
         Description graphDescription = new Description();
         graphDescription.setText("");
         mWindChart.setDescription(graphDescription);
@@ -217,7 +214,7 @@ public class GraphsActivity extends ForecastingActivity {
         if (mWindChart.getData() != null) {
             mWindChart.getData().removeDataSet(mWindChart.getData().getDataSetByIndex(
                     mWindChart.getData().getDataSetCount() - 1));
-            set = new LineDataSet(entries, "Wind");
+            set = new LineDataSet(entries, getString(R.string.graph_wind_label));
             set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
@@ -232,7 +229,7 @@ public class GraphsActivity extends ForecastingActivity {
             LineData data = new LineData(set);
             mWindChart.setData(data);
         } else {
-            set = new LineDataSet(entries, "Wind");
+            set = new LineDataSet(entries, getString(R.string.graph_wind_label));
             set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
@@ -250,7 +247,7 @@ public class GraphsActivity extends ForecastingActivity {
         mWindChart.invalidate();
     }
 
-    private void setRainChart(long locationId, String locale) {
+    private void setRainChart(long locationId, Locale locale) {
         Description graphDescription = new Description();
         graphDescription.setText("");
         mRainChart.setDescription(graphDescription);
@@ -299,7 +296,7 @@ public class GraphsActivity extends ForecastingActivity {
         if (mRainChart.getData() != null) {
             mRainChart.getData().removeDataSet(mRainChart.getData().getDataSetByIndex(
                     mRainChart.getData().getDataSetCount() - 1));
-            set = new LineDataSet(entries, "Rain");
+            set = new LineDataSet(entries, getString(R.string.graph_rain_label));
             set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
@@ -314,7 +311,7 @@ public class GraphsActivity extends ForecastingActivity {
             LineData data = new LineData(set);
             mRainChart.setData(data);
         } else {
-            set = new LineDataSet(entries, "Rain");
+            set = new LineDataSet(entries, getString(R.string.graph_rain_label));
             set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
@@ -332,7 +329,7 @@ public class GraphsActivity extends ForecastingActivity {
         mRainChart.invalidate();
     }
 
-    private void setSnowChart(long locationId, String locale) {
+    private void setSnowChart(long locationId, Locale locale) {
         Description graphDescription = new Description();
         graphDescription.setText("");
         mSnowChart.setDescription(graphDescription);
@@ -381,7 +378,7 @@ public class GraphsActivity extends ForecastingActivity {
         if (mSnowChart.getData() != null) {
             mSnowChart.getData().removeDataSet(mSnowChart.getData().getDataSetByIndex(
                     mSnowChart.getData().getDataSetCount() - 1));
-            set = new LineDataSet(entries, "Snow");
+            set = new LineDataSet(entries, getString(R.string.graph_snow_label));
             set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
@@ -396,7 +393,7 @@ public class GraphsActivity extends ForecastingActivity {
             LineData data = new LineData(set);
             mSnowChart.setData(data);
         } else {
-            set = new LineDataSet(entries, "Snow");
+            set = new LineDataSet(entries, getString(R.string.graph_snow_label));
             set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
@@ -414,7 +411,7 @@ public class GraphsActivity extends ForecastingActivity {
         mSnowChart.invalidate();
     }
 
-    private void setPressureChart(long locationId, String locale) {
+    private void setPressureChart(long locationId, Locale locale) {
         Description graphDescription = new Description();
         graphDescription.setText("");
         mPressureChart.setDescription(graphDescription);
@@ -454,14 +451,15 @@ public class GraphsActivity extends ForecastingActivity {
                     i,
                     (float) AppPreference.getPressureWithUnit(
                             this,
-                            weatherForecastList.get(locationId).get(i).getPressure()).getPressure()));
+                            weatherForecastList.get(locationId).get(i).getPressure(),
+                            locale).getPressure()));
         }
 
         LineDataSet set;
         if (mPressureChart.getData() != null) {
             mPressureChart.getData().removeDataSet(mPressureChart.getData().getDataSetByIndex(
                     mPressureChart.getData().getDataSetCount() - 1));
-            set = new LineDataSet(entries, "Pressure");
+            set = new LineDataSet(entries, getString(R.string.graph_pressure_label));
             set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
@@ -476,7 +474,7 @@ public class GraphsActivity extends ForecastingActivity {
             LineData data = new LineData(set);
             mPressureChart.setData(data);
         } else {
-            set = new LineDataSet(entries, "Pressure");
+            set = new LineDataSet(entries, getString(R.string.graph_pressure_label));
             set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
@@ -494,8 +492,8 @@ public class GraphsActivity extends ForecastingActivity {
         mPressureChart.invalidate();
     }
 
-    private void formatDate(long locationId, String locale) {
-        SimpleDateFormat format = new SimpleDateFormat("EEE", new Locale(locale));
+    private void formatDate(long locationId, Locale locale) {
+        SimpleDateFormat format = new SimpleDateFormat("EEE", locale);
         if (weatherForecastList.get(locationId) != null) {
             int mSize = weatherForecastList.get(locationId).size();
             mDatesArray = new String[mSize];
@@ -573,6 +571,9 @@ public class GraphsActivity extends ForecastingActivity {
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
         long locationId = AppPreference.getCurrentLocationId(this);
         location = locationsDbHelper.getLocationById(locationId);
+        mValueFormatter = new CustomValueFormatter(location.getLocale());
+        mYAxisFormatter = new YAxisValueFormatter(location.getLocale());
+        rainSnowYAxisValueFormatter = new RainSnowYAxisValueFormatter(this, location.getLocale());
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
         if (weatherForecastRecord != null) {
             weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());

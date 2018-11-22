@@ -28,6 +28,7 @@ import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 
 import org.thosp.yourlocalweather.ConnectionDetector;
+import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
@@ -144,7 +145,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         if (location == null) {
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
-            locationsDbHelper.updateLocationSource(currentLocation.getId(), ".");
+            locationsDbHelper.updateLocationSource(currentLocation.getId(), getString(R.string.location_weather_update_status_location_not_reachable));
         } else {
             currentLocation = processUpdateOfLocation(location, address);
         }
@@ -165,21 +166,21 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
 
         String currentLocationSource = currentLocation.getLocationSource();
         if ("gps".equals(location.getProvider())) {
-            currentLocationSource = "G";
+            currentLocationSource = getString(R.string.location_weather_update_status_location_from_gps);
         } else if (updateDetailLevel.equals("preference_display_update_location_source")) {
             StringBuilder networkSourceBuilder = new StringBuilder();
-            networkSourceBuilder.append("N");
+            networkSourceBuilder.append(getString(R.string.location_weather_update_status_location_from_network));
             boolean additionalSourceSetted = false;
 
             if ((location.getExtras() != null) && (location.getExtras().containsKey("source"))) {
                 String networkSource = location.getExtras().getString("source");
                 if (networkSource != null) {
                     if (networkSource.contains("cells")) {
-                        networkSourceBuilder.append("c");
+                        networkSourceBuilder.append(getString(R.string.location_weather_update_status_location_from_network_cells));
                         additionalSourceSetted = true;
                     }
                     if (networkSource.contains("wifis")) {
-                        networkSourceBuilder.append("w");
+                        networkSourceBuilder.append(getString(R.string.location_weather_update_status_location_from_network_wifis));
                         additionalSourceSetted = true;
                     }
                 }
@@ -189,8 +190,8 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             }
             currentLocationSource = networkSourceBuilder.toString();
             appendLog(getBaseContext(), TAG, "send update source to " + currentLocationSource);
-        } else if ("-".equals(currentLocationSource)) {
-            currentLocationSource = "N";
+        } else if (getString(R.string.location_weather_update_status_update_started).equals(currentLocationSource)) {
+            currentLocationSource = getString(R.string.location_weather_update_status_location_from_network);
         }
         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
         locationsDbHelper.updateAutoLocationGeoLocation(location.getLatitude(), location.getLongitude(), currentLocationSource, location.getAccuracy(), getLocationTimeInMilis(location));
@@ -254,7 +255,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             appendLog(getBaseContext(), TAG, "start START_LOCATION_UPDATE:locationSource G");
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
             org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
-            locationsDbHelper.updateLocationSource(currentLocation.getId(), "G");
+            locationsDbHelper.updateLocationSource(currentLocation.getId(), getString(R.string.location_weather_update_status_location_from_gps));
             timerHandler.postDelayed(timerRunnable, LOCATION_TIMEOUT_IN_MS);
         }
 
@@ -325,7 +326,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
 
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
-        locationsDbHelper.updateLocationSource(currentLocation.getId(), "-");
+        locationsDbHelper.updateLocationSource(currentLocation.getId(), getString(R.string.location_weather_update_status_update_started));
 
         boolean isUpdateOfLocationEnabled = AppPreference.isUpdateLocationEnabled(this, currentLocation);
         appendLog(this, TAG, "START_LOCATION_AND_WEATHER_UPDATE, isUpdateOfLocationEnabled=" +
@@ -464,7 +465,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                 (gpsLastLocationTime > (System.currentTimeMillis() - GPS_MAX_LOCATION_AGE_IN_MS)) &&
                 (gpsLastLocationTime > lastLocationUpdate)) {
             inputLocation = lastLocation;
-            locationsDbHelper.updateLocationSource(currentLocation.getId(), "G");
+            locationsDbHelper.updateLocationSource(currentLocation.getId(), getString(R.string.location_weather_update_status_location_from_gps));
         } else if (byLastLocationOnly) {
             updateLocationInProcess = false;
             sendMessageToWakeUpService(
@@ -522,7 +523,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         if (numberOfAttempts > 2) {
             locationsDbHelper.updateLocationSource(
                     currentLocation.getId(),
-                    ".");
+                    getString(R.string.location_weather_update_status_location_not_reachable));
             updateLocationInProcess = false;
             stopRefreshRotation("updateNetworkLocationByNetwork:2", 3);
             sendMessageToWakeUpService(
@@ -590,15 +591,15 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                     }
                     LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
                     org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
-                    locationsDbHelper.updateLocationSource(currentLocation.getId(), "-");
+                    locationsDbHelper.updateLocationSource(currentLocation.getId(), getString(R.string.location_weather_update_status_update_started));
                     if (ContextCompat.checkSelfPermission(LocationUpdateService.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         Location lastNetworkLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                         Location lastGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
                         if ((lastGpsLocation == null) && (lastNetworkLocation != null)) {
-                            locationsDbHelper.updateLocationSource(currentLocation.getId(), "N");
+                            locationsDbHelper.updateLocationSource(currentLocation.getId(), getString(R.string.location_weather_update_status_location_from_network));
                             locationListener.onLocationChanged(lastNetworkLocation);
                         } else if ((lastGpsLocation != null) && (lastNetworkLocation == null)) {
-                            locationsDbHelper.updateLocationSource(currentLocation.getId(), "G");
+                            locationsDbHelper.updateLocationSource(currentLocation.getId(), getString(R.string.location_weather_update_status_location_from_gps));
                             locationListener.onLocationChanged(lastGpsLocation);
                         } else if (AppPreference.isGpsEnabledByPreferences(getBaseContext())){
                             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, locationListener);
