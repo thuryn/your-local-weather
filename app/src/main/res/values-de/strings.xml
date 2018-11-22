@@ -310,7 +310,7 @@
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Integriert</string>
     <string name="pref_language_sw" tools:ignore="MissingTranslation">Swahili (Suaheli)</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Batterieoptimierung</string>
-    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Die Anwendung führt Hintergrundprozesse aus, um Aktualisierungen von Standort, Wetter oder die Verfolgung des Standorts mittels Beschleunigungssensor durchzuführen. Daher wird die Anwendung Sie bitten, die Batterieoptimierung auszuschalten, um die Hintergrundprozesse ausführen zu können.</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Die Anwendung führt Hintergrundprozesse aus, um Aktualisierungen von Standort, Wetter oder die Verfolgung des Standorts mittels Beschleunigungssensor durchzuführen. Daher wird die Anwendung Sie bitten, die Batterieoptimierung auszuschalten, um Hintergrundprozesse ausführen zu können.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Fortfahren</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Abbrechen</string>
     <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Windrichtung</string>
@@ -346,4 +346,59 @@
 
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Schriftartenbasierte Symbole</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin die roten Symbole</string>
+<string name="weather_condition_description_none" tools:ignore="MissingTranslation">keine</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">Gewitter mit leichtem Regen</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">Gewitter mit Regen</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">Gewitter mit starkem Regen</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">leichtes Gewitter</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">Gewitter</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">starkes Gewitter</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">heftiges Gewitter</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">Gewitter mit leichtem Nieselregen</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">Gewitter mit Nieselregen</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">Gewitter mit starkem Nieselregen</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">leichter Nieselregen</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">Nieselregen</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">starker Nieselregen</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">leichter Nieselregen</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">Nieselregen</string>
+    <string name="weather_condition_description_312" tools:ignore="MissingTranslation">starker Nieselregen</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">Regenschauer und Nieselregen</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">starker Regenschauer und Nieselregen</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">Nieselschauer</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">leichter Regen</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">mäßiger Regen</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">starker Regen</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">sehr starker Regen</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">extremer Regen</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">überfrierender Regen</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">leichter Regenschauer</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">Regenschauer</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">starker Regenschauer</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">schwere Regenschauer</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">leichter Schnee</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">Schneefall</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">starker Schneefall</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">Graupel</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">Graupelschauer</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">Leichter Regen und Schneefall</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">Regen und Schneefall</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">leichter Schneeschauer</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">Schneeschauer</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">starker Schneeschauer</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">Sprühregen</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">Rauch</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">Dunst</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">Sand, aufgewirbelter Staub</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">Nebel</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">Sand</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">Staub</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">Ascheregen</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">Sturmböen</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">Tornado</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">klarer Himmel</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">wenige Wolken</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">lockere Bewölkung</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">durchbrochene Bewölkung</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">bewölkt</string>
 </resources>
