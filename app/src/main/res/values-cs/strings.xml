@@ -82,6 +82,7 @@
 
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Nastavení</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Licence Open source</string>
     <string name="pref_title_temperature">Teplota</string>
     <string name="preference_hide_desc">Skrýt popis počasí</string>
     <string name="pref_title_category_notification">Upozornění</string>
@@ -217,6 +218,9 @@
     <string name="log_file_72_label" tools:ignore="MissingTranslation">tři dny</string>
     <string name="log_file_168_label" tools:ignore="MissingTranslation">týden</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">měsíc</string>
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">Zápis logů do souboru</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">Nezapisovat</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">Zapisovat</string>
 
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Sada ikon</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Jednoduché ikony</string>
@@ -327,6 +331,16 @@
     <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
     <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
     <string name="inches_label" tools:ignore="MissingTranslation">palce</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Sdílet počasí</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Aplikace pro komunikaci nebyla nalezena</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Město: %1$s\nTeplota: %2$s\nPopis: %3$s\nVítr: %4$s %5$s\nVýchod slunce: %6$s\nZápad slunce: %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Vaše místní počasí</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Upozornění aplikace Vaše místní počasí</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Den</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Vítr</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Déšť</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Sníh</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Tlak</string>
 
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Déšť a sníh</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Nastavení systému</string>
