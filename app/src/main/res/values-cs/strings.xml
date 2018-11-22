@@ -13,7 +13,7 @@
     <string name="alertDialog_location_permission_message_location_gps_permission">Pro aktualizaci polohy pomocí GPS je třeba oprávnění pro přístup GPS.</string>
     <string name="alertDialog_location_permission_message_location_network_permission">Pro aktualizaci polohy pomocí WIFI a GSM sítě je třeba oprávnění pro přístup poloze.</string>
     <string name="alertDialog_location_permission_message_location_phone_permission">Pro aktualizaci polohy pomocí WIFI a GSM sítě je třeba oprávnění pro čtení informací o telefonu. Aplikaci vyžaduje toto oprávnění pro přístup k právě připojeným základnovým stanicím GSM sítě.</string>
-    <string name="alertDialog_location_permission_positiveButton_settings">Nastavení telefonu</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Nastavení</string>
     <string name="alertDialog_location_permission_positiveButton_permissions">Vyžádat oprávnění</string>
     <string name="alertDialog_location_permission_negativeButton">Zpět</string>
     <string name="progressDialog_gps_locate">Najít aktuální polohu</string>
@@ -106,7 +106,7 @@
     <string name="preference_widget_title_update_auto_period">Interval aktualizace polohy (Poloha 0)</string>
     <string name="preference_title_activity_general">Obecná nastavení</string>
     <string name="preference_title_activity_widget">Nastavení widgetu</string>
-    <string name="preference_widget_update_location">Aktualizace pozice</string>
+    <string name="preference_widget_update_location">Aktualizace polohy</string>
     <string name="preference_widget_show_labels">Zobrazit popisek ve widgetu</string>
     <string name="preference_widget_use_geocoder">Použít geolokaci pro zobrazení</string>
     <string name="preference_widget_theme_title">Téma widgetu</string>
@@ -132,7 +132,7 @@
     <string name="about_version_pref_title">Verze</string>
     <string name="about_source_code_pref_title">Zdrojový kód</string>
     <string name="about_app_license_pref_title">Licence</string>
-    <string name="about_open_source_licenses_pref_title">Open Source licence</string>
+    <string name="about_open_source_licenses_pref_title">Licence Open Source</string>
 
     <!-- Weather conditions label strings -->
     <string name="wind_label">Vítr: %1$s %2$s %3$s</string>
@@ -312,7 +312,7 @@
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Tlak</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Čínština (Chinese)</string>
     <string name="pref_language_sw" tools:ignore="MissingTranslation">Svahilština (Swahili)</string>
-    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norština (Norwegian)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norština (Norwegian Bokmål)</string>
     <string name="pref_language_nl" tools:ignore="MissingTranslation">Holandština (Dutch)</string>
     <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
     <string name="pref_language_hu" tools:ignore="MissingTranslation">Maďarština (Hungarian)</string>
@@ -320,4 +320,31 @@
     <string name="pref_language_el" tools:ignore="MissingTranslation">Řečtina (Greek)</string>
     <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabština (Arabic)</string>
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Vedle tlačítka pro pro vyhledání polohy je tlačítko pro správu poloh (tlačítko lupy). Na obrazovce pro správu poloh je vždy přítomna jedna poloha (Poloha 0) - tato poloha je určena pro automatické rozpoznávání polohy. Pokud tuto polohu posunete doleva, objeví se tlačítko pro povolení/zakázání automatické aktualizace polohy. Pomocí tlačítka \"+\" můžete přidat polohu ručně pomocí mapy. Pokud budete chtít takto nalezenou polohu smazat, opět posunete polohu doleva a tlačítkem Smazat polohu odstraníte.</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Přístup k aktualizaci počasí vypršel. Prosím, aktualizujte aplikaci.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Vaše OpenweathermapApiKey není zaregistrována.</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="location_not_initialized" tools:ignore="MissingTranslation">Poloha ještě není nalezena. Klikněte na kolečko pro získání polohy.</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">palce</string>
+
+    <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Déšť a sníh</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Nastavení systému</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">API klíč pro Openweathermap.org</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Vestavěný</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Švédština (Swedish)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">Hebrejština (עברית)</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Ukrajinština</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Rumunština</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portugalština (Portugal)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portugalština (Brazílie)</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Pocitová teplota: %s</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Měřená teplota: %s</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Tlak</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">Jen měřené hodnoty</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Obojí, primárně měřené</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Obojí, primárně pocitová</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">Pouze pocitová teplota</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Zobrazit teplotu jako</string>
+
     </resources>
