@@ -321,4 +321,58 @@
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Avbryt</string>
     <string name="pref_language_sv" tools:ignore="MissingTranslation">Svensk (Swedish)</string>
     <string name="pref_language_he" tools:ignore="MissingTranslation">Hebraisk (Hebrew)</string>
-    </resources>
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">ingen</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">tordenstorm med lett regn</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">tordenstorm og regn</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">tordenstorm og mye regn</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">lett tordenstorm</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">tordenstorm</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">stor tordenstorm</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">tordenstorm med sorte skyer</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">tordenstorm med lett duskregn</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">tordenstorm med duskregn</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">tordenstorm med mye duskregn</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">lett duskregn</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">duskregn</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">mye duskregn</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">lett duskregn</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">duskregn</string>
+    <string name="weather_condition_description_312" tools:ignore="MissingTranslation">mye duskregn</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">regnskur og duskregn</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">tung skur og duskregn</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">duskregnbyge</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">lett regn</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">regn</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">tungt regn</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">veldig tungt regn</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">ekstremregn</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">underkjølt regn</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">lett regnbyge</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">regnbyge</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">tung regnbyge</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">lett snøfall</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">snøfall</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">tungt snøfall</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">sludd</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">sluddbyge</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">lett regn og snøfall</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">regn og snø</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">lett snøbyge</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">snøbyge</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">tung snøbyge</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">dis</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">røyk</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">tørrdis</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">sand, støvvirvler</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">tåke</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">sand</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">støv</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">vulkansk aske</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">vindbyge</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">tornado</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">klar himmel</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">noen skyer</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">lettskyet</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">delvis overskyet</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">overskyet</string>
+</resources>
