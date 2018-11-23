@@ -25,7 +25,7 @@ public enum OWMLanguages {
     Lithuanian("lt"),
     Macedonian("mk"),
     Dutch("nl"),
-    Polish("pl"),
+    Polish("pl", true),
     Portuguese("pt"),
     Romanian("ro"),
     Russian("ru"),
