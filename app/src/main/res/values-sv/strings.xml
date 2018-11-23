@@ -155,4 +155,6 @@
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Skärm</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Uppdatera plats och väder</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Systeminställningar</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation"></string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation"><b>Switch GPS on when necessary</b> option, application tries to find location by cell or wifi networks. When the location could not be find by network services application turns GPS on for a several seconds to get the location.</string>
     </resources>
