@@ -115,7 +115,7 @@
     <string name="pref_language_default">Systemstandard</string>
     <string name="pref_title_language">Sprache</string>
     <string name="preference_title_category_display">Anzeige</string>
-<string name="preference_widget_use_geocoder">Verwende Standort</string>
+<string name="preference_widget_use_geocoder">Geokoordinaten in der Anzeige verwenden</string>
     <string name="preference_widget_update_location">Standort aktualisieren</string>
     <string name="preference_widget_theme_title">Widget-Motiv</string>
     <string name="theme_dark">Dunkel</string>
@@ -297,7 +297,7 @@
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Zeige Temperatur als</string>
 
     <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Gefühlte Temperatur</string>
-    <string name="app_name" tools:ignore="MissingTranslation">Dein lokales Wetter</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Ihr lokales Wetter</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chinesisch (Chinese)</string>
     <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norwegisches Bokmål (Norwegisches Bokmål)</string>
     <string name="pref_language_es" tools:ignore="MissingTranslation">Spanisch (Spanish)</string>
@@ -386,7 +386,7 @@
     <string name="weather_condition_description_620" tools:ignore="MissingTranslation">leichter Schneeschauer</string>
     <string name="weather_condition_description_621" tools:ignore="MissingTranslation">Schneeschauer</string>
     <string name="weather_condition_description_622" tools:ignore="MissingTranslation">starker Schneeschauer</string>
-    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">Sprühregen</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">Nebel</string>
     <string name="weather_condition_description_711" tools:ignore="MissingTranslation">Rauch</string>
     <string name="weather_condition_description_721" tools:ignore="MissingTranslation">Dunst</string>
     <string name="weather_condition_description_731" tools:ignore="MissingTranslation">Sand, aufgewirbelter Staub</string>
@@ -401,4 +401,39 @@
     <string name="weather_condition_description_802" tools:ignore="MissingTranslation">lockere Bewölkung</string>
     <string name="weather_condition_description_803" tools:ignore="MissingTranslation">durchbrochene Bewölkung</string>
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">bewölkt</string>
-</resources>
+<string name="share_weather_title" tools:ignore="MissingTranslation">Wetter teilen</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Kommunikations-App nicht gefunden</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Stadt: %1$s
+\nTemperatur: %2$s
+\nBeschreibung: %3$s
+\nWind: %4$s %5$s
+\nSonnenaufgang: %6$s
+\nSonnenuntergang: %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Ihr lokales Wetter</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Ihre lokalen Wetterberichte</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Tag</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Wind</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Regen</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Schnee</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Druck</string>
+
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Open-Source-Lizenzen</string>
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">L</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">N</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
+
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">In Datei protokollieren</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">Nicht in Datei loggen</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">In Datei protokollieren</string>
+
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
+
+    </resources>

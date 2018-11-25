@@ -308,4 +308,23 @@
     <string name="inches_label" tools:ignore="MissingTranslation">inches</string>
 
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Regen en sneeuw</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation"></string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation"></string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation"></string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation"></string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation"></string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation"></string>
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation"></string>
+    <string name="time_style_system" tools:ignore="MissingTranslation"></string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation"></string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation"></string>
+
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation"></string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation"></string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation"></string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation"></string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation"></string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation"></string>
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation"></string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation"></string>
     </resources>
