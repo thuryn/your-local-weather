@@ -297,7 +297,7 @@
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Zeige Temperatur als</string>
 
     <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Gefühlte Temperatur</string>
-    <string name="app_name" tools:ignore="MissingTranslation">Ihr lokales Wetter</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Wetter vor Ort</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chinesisch (Chinese)</string>
     <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norwegisches Bokmål (Norwegisches Bokmål)</string>
     <string name="pref_language_es" tools:ignore="MissingTranslation">Spanisch (Spanish)</string>
