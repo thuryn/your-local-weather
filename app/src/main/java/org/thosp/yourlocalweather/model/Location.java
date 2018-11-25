@@ -41,7 +41,7 @@ public class Location implements Parcelable {
         this.orderId = orderId;
         this.nickname = nickname;
         this.localeAbbrev = localeAbbrev;
-        this.locale = new Locale(localeAbbrev);
+        this.locale = (localeAbbrev != null)?new Locale(localeAbbrev):Locale.getDefault();
         this.longitude = longitude;
         this.latitude = latitude;
         this.accuracy = accuracy;
