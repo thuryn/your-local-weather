@@ -128,9 +128,9 @@ public class NotificationService extends AbstractCommonService {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("default",
+            NotificationChannel channel = new NotificationChannel("yourLocalWeather",
                     getString(R.string.notification_channel_name),
-                    NotificationManager.IMPORTANCE_DEFAULT);
+                    NotificationManager.IMPORTANCE_LOW);
             channel.setDescription(getString(R.string.notification_channel_description));
             notificationManager.createNotificationChannel(channel);
         }
@@ -138,7 +138,7 @@ public class NotificationService extends AbstractCommonService {
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent launchIntent = PendingIntent.getActivity(this, 0, intent, 0);
 
-        Notification notification = new NotificationCompat.Builder(this, "default")
+        Notification notification = new NotificationCompat.Builder(this, "yourLocalWeather")
                 .setContentIntent(launchIntent)
                 .setSmallIcon(R.drawable.small_icon)
                 .setTicker(temperatureWithUnit
