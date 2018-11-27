@@ -55,14 +55,14 @@
     <string name="temperature_evening_title">Wieczór</string>
     <string name="temperature_morning_title">Ranek</string>
     <string name="temperature_night_title">Noc</string>
-    <string name="wind_direction_east">E</string>
+    <string name="wind_direction_east">E←</string>
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_east">NE</string>
-    <string name="wind_direction_north_west">NW</string>
-    <string name="wind_direction_south">S</string>
-    <string name="wind_direction_south_east">SE</string>
-    <string name="wind_direction_south_west">SW</string>
-    <string name="wind_direction_west">W</string>
+    <string name="wind_direction_north_west">NW↘</string>
+    <string name="wind_direction_south">S↑</string>
+    <string name="wind_direction_south_east">SE↖</string>
+    <string name="wind_direction_south_west">SW↗</string>
+    <string name="wind_direction_west">W→</string>
     <string name="label_activity_graphs">Wykresy pogody</string>
     <string name="label_activity_main">Aktualna pogoda</string>
     <string name="label_activity_weather_forecast">Prognoza dnia</string>
@@ -113,7 +113,7 @@
     <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Strategia wybudzania</string>
     <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Opcja adresu pamięci podręcznej została rozpoznana</string>
     <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Możesz zapisać ruch sieciowy, buforując znalezione lokalizacje. Lokalizacje są następnie przechowywane w aplikacji. Nie są wysyłane ani przechowywane w innych miejscach w sieci.</string>
-    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Adres rozpoznany w pamięci podręcznej</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Rozpoznany adres w pamięci podręcznej</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Gratulacje</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">To koniec przewodnika. Inne ustawienia można znaleźć w menu Ustawienia (na przykład język, jednostki itp.). 
 \nNastępny ekran wyjaśni wymagane uprawnienia i da ci opcję ich żądania. 
@@ -319,14 +319,14 @@
     <string name="pref_language_he" tools:ignore="MissingTranslation">Hebrajski (hebrajski)</string>
     <string name="weather_condition_description_none" tools:ignore="MissingTranslation">żaden</string>
     <string name="weather_condition_description_200" tools:ignore="MissingTranslation">burza z lekkim deszczem</string>
-    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">burza i deszcz</string>
-    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">burza z piorunami i ulewny deszcz</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">burza z deszczem</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">burza z ulewnym deszczem</string>
     <string name="weather_condition_description_210" tools:ignore="MissingTranslation">lekka burza z piorunami</string>
-    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">burza</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">burza z piorunami</string>
     <string name="weather_condition_description_212" tools:ignore="MissingTranslation">wielka burza z piorunami</string>
     <string name="weather_condition_description_221" tools:ignore="MissingTranslation">burza z czarnymi chmurami</string>
     <string name="weather_condition_description_230" tools:ignore="MissingTranslation">burze z lekką mżawką</string>
-    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">burze z mżawką</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">burza z mżawką</string>
     <string name="weather_condition_description_232" tools:ignore="MissingTranslation">burze z dużą mżawką</string>
     <string name="weather_condition_description_300" tools:ignore="MissingTranslation">lekka mżawka</string>
     <string name="weather_condition_description_301" tools:ignore="MissingTranslation">mżawka</string>
@@ -337,9 +337,9 @@
     <string name="weather_condition_description_313" tools:ignore="MissingTranslation">przelotne opady deszczu i przelotne opady mżawki</string>
     <string name="weather_condition_description_314" tools:ignore="MissingTranslation">duże opady i mżawka</string>
     <string name="weather_condition_description_500" tools:ignore="MissingTranslation">lekki deszcz</string>
-    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">deszcz</string>
-    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">ulewny deszcz</string>
-    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">bardzo ulewny deszcz</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">umiarkowane opady</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">intensywny deszcz</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">obfite opady deszczu</string>
     <string name="weather_condition_description_504" tools:ignore="MissingTranslation">ekstremalny deszcz</string>
     <string name="weather_condition_description_511" tools:ignore="MissingTranslation">"marznący deszcz "</string>
     <string name="weather_condition_description_520" tools:ignore="MissingTranslation">lekki deszcz</string>
@@ -347,12 +347,12 @@
     <string name="weather_condition_description_522" tools:ignore="MissingTranslation">ulewny deszcz</string>
     <string name="weather_condition_description_531" tools:ignore="MissingTranslation">ulewny deszcz</string>
     <string name="weather_condition_description_600" tools:ignore="MissingTranslation">lekkie opady śniegu</string>
-    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">opady śniegu</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">śnieg</string>
     <string name="weather_condition_description_602" tools:ignore="MissingTranslation">obfite opady śniegu</string>
     <string name="weather_condition_description_611" tools:ignore="MissingTranslation">deszcz ze śniegiem</string>
     <string name="weather_condition_description_612" tools:ignore="MissingTranslation">deszcz ze śniegiem szkwał</string>
-    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">lekki deszcz i opady śniegu</string>
-    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">deszcz i śnieg</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">lekki deszcz z opadami śniegu</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">śnieg z deszczem</string>
     <string name="weather_condition_description_620" tools:ignore="MissingTranslation">lekkie przelotne opady śniegu</string>
     <string name="weather_condition_description_621" tools:ignore="MissingTranslation">śnieżek</string>
     <string name="weather_condition_description_622" tools:ignore="MissingTranslation">silne opady śniegu</string>
@@ -365,8 +365,32 @@
     <string name="weather_condition_description_762" tools:ignore="MissingTranslation">popiół wulkaniczny</string>
     <string name="weather_condition_description_781" tools:ignore="MissingTranslation">tornado</string>
     <string name="weather_condition_description_800" tools:ignore="MissingTranslation">czyste niebo</string>
-    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">trochę chmur</string>
-    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">pogodnie</string>
-    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">częściowo pochmurno</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">niewielkie zachmurzenie</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">rozproszone chmury</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">częściowe zachmurzenie</string>
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">pochmurno</string>
-</resources>
+<string name="share_weather_title" tools:ignore="MissingTranslation">Udostępnij pogodę</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Nie znaleziono aplikacji komunikacyjnej</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Miasto: %1$s
+\nTemperatura: %2$s
+\nOpis: %3$s
+\nWiatr: %4$s %5$s
+\nWschód słońca: %6$s
+\nZachód słońca: %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Lokalna prognoza pogody</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Powiadomienia o pogodzie</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Dzień</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Wiatr</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Deszcz</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Śnieg</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Ciśnienie</string>
+
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Licencje Open Source</string>
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
+
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">mgła</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">nawałnica</string>
+    </resources>
