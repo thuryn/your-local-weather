@@ -377,7 +377,7 @@
     <!-- Debug strings -->
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Select log folder</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Debug Options</string>
-    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">After a specified amount of time the log file will recreated</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">After a specified amount of time the log file will be recreated</string>
     <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Rotation of log file</string>
     <string name="log_file_12_label" tools:ignore="MissingTranslation">12 hours</string>
     <string name="log_file_24_label" tools:ignore="MissingTranslation">a day</string>
