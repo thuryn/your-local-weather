@@ -49,10 +49,7 @@ public class LocationUpdateServiceRetryJob extends AbstractAppJob {
 
     @Override
     protected void serviceConnected(ServiceConnection serviceConnection) {
-        connectedServicesCounter++;
-        if (connectedServicesCounter >= 4) {
-            jobFinished(params, false);
-        }
+        jobFinished(params, false);
     }
 
     private ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {

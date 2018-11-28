@@ -27,12 +27,10 @@ public class StartRegularLocationJob extends AbstractAppJob {
     public static final int JOB_ID = 894325273;
 
     private JobParameters params;
-    int connectedServicesCounter;
 
     @Override
     public boolean onStartJob(JobParameters params) {
         this.params = params;
-        connectedServicesCounter = 0;
         performUpdateOfWeather();
         return true;
     }
@@ -45,8 +43,7 @@ public class StartRegularLocationJob extends AbstractAppJob {
 
     @Override
     protected void serviceConnected(ServiceConnection serviceConnection) {
-        connectedServicesCounter++;
-        if (connectedServicesCounter >= 3) {
+        if (currentWeatherUnsentMessages.isEmpty() && weatherForecastUnsentMessages.isEmpty()) {
             jobFinished(params, false);
         }
     }
@@ -65,6 +62,9 @@ public class StartRegularLocationJob extends AbstractAppJob {
                 sendMessageToCurrentWeatherService(location, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
                 sendMessageToWeatherForecastService(location.getId());
             }
+        }
+        if (currentWeatherUnsentMessages.isEmpty() && weatherForecastUnsentMessages.isEmpty()) {
+            jobFinished(params, false);
         }
     }
 }

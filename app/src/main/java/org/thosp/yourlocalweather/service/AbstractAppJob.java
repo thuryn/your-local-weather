@@ -169,12 +169,15 @@ public abstract class AbstractAppJob extends JobService {
                     new WeatherRequestDataHolder(location.getId(), updateSource)
             );
             if (checkIfCurrentWeatherServiceIsNotBound()) {
-                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
                 currentWeatherUnsentMessages.add(msg);
                 return;
             }
-            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
             currentWeatherService.send(msg);
+            new Thread(new Runnable() {
+                public void run() {
+                    serviceConnected(currentWeatherServiceConnection);
+                }
+            }).start();
         } catch (RemoteException e) {
             appendLog(getBaseContext(), TAG, e.getMessage(), e);
         } finally {

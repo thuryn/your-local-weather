@@ -15,12 +15,10 @@ public class WeatherForecastResendJob extends AbstractAppJob {
     public static final int JOB_ID = 463452709;
 
     private JobParameters params;
-    int connectedServicesCounter;
 
     @Override
     public boolean onStartJob(JobParameters params) {
         this.params = params;
-        connectedServicesCounter = 0;
         sendRetryMessageToWeatherForecastService();
         return true;
     }
@@ -33,8 +31,7 @@ public class WeatherForecastResendJob extends AbstractAppJob {
 
     @Override
     protected void serviceConnected(ServiceConnection serviceConnection) {
-        connectedServicesCounter++;
-        if (connectedServicesCounter >= 3) {
+        if (weatherForecastUnsentMessages.isEmpty()) {
             jobFinished(params, false);
         }
     }
@@ -47,12 +44,11 @@ public class WeatherForecastResendJob extends AbstractAppJob {
                     ForecastWeatherService.START_WEATHER_FORECAST_RETRY
             );
             if (checkIfWeatherForecastServiceIsNotBound()) {
-                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
                 weatherForecastUnsentMessages.add(msg);
                 return;
             }
-            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
             weatherForecastService.send(msg);
+            jobFinished(params, false);
         } catch (RemoteException e) {
             appendLog(getBaseContext(), TAG, e.getMessage(), e);
         } finally {

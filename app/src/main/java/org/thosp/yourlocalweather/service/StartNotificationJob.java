@@ -29,12 +29,10 @@ public class StartNotificationJob extends AbstractAppJob {
     public static final int JOB_ID = 1743815655;
 
     private JobParameters params;
-    int connectedServicesCounter;
 
     @Override
     public boolean onStartJob(JobParameters params) {
         this.params = params;
-        connectedServicesCounter = 0;
         performNotification();
         return true;
     }
@@ -47,8 +45,7 @@ public class StartNotificationJob extends AbstractAppJob {
 
     @Override
     protected void serviceConnected(ServiceConnection serviceConnection) {
-        connectedServicesCounter++;
-        if (connectedServicesCounter >= 3) {
+        if (currentWeatherUnsentMessages.isEmpty()) {
             jobFinished(params, false);
         }
     }

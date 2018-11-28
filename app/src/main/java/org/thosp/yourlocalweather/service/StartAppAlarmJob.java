@@ -16,16 +16,12 @@ public class StartAppAlarmJob extends AbstractAppJob {
     private static final String TAG = "StartAppAlarmJob";
     public static final int JOB_ID = 439162570;
 
-    private JobParameters params;
-    int connectedServicesCounter;
-
     @Override
     public boolean onStartJob(JobParameters params) {
-        this.params = params;
-        connectedServicesCounter = 0;
         reScheduleNextAlarm(StartAutoLocationJob.JOB_ID, 1000, StartAutoLocationJob.class);
         reScheduleNextAlarm(StartRegularLocationJob.JOB_ID, 2000, StartRegularLocationJob.class);
         reScheduleNextAlarm(StartNotificationJob.JOB_ID, 3000, StartNotificationJob.class);
+        jobFinished(params, false);
         return true;
     }
 
@@ -37,9 +33,5 @@ public class StartAppAlarmJob extends AbstractAppJob {
 
     @Override
     protected void serviceConnected(ServiceConnection serviceConnection) {
-        connectedServicesCounter++;
-        if (connectedServicesCounter >= 3) {
-            jobFinished(params, false);
-        }
     }
 }

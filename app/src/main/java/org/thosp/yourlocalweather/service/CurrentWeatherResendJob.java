@@ -15,12 +15,9 @@ public class CurrentWeatherResendJob extends AbstractAppJob {
     public static final int JOB_ID = 1537091709;
 
     private JobParameters params;
-    int connectedServicesCounter;
-
     @Override
     public boolean onStartJob(JobParameters params) {
         this.params = params;
-        connectedServicesCounter = 0;
         appendLog(getBaseContext(), TAG, "onStartJob");
         sendRetryMessageToCurrentWeatherService();
         return true;
@@ -35,8 +32,7 @@ public class CurrentWeatherResendJob extends AbstractAppJob {
 
     @Override
     protected void serviceConnected(ServiceConnection serviceConnection) {
-        connectedServicesCounter++;
-        if (connectedServicesCounter >= 3) {
+        if (currentWeatherUnsentMessages.isEmpty()) {
             jobFinished(params, false);
         }
     }
@@ -57,6 +53,7 @@ public class CurrentWeatherResendJob extends AbstractAppJob {
             }
             appendLog(getBaseContext(), TAG, "sendMessageToService:");
             currentWeatherService.send(msg);
+            jobFinished(params, false);
         } catch (RemoteException e) {
             appendLog(getBaseContext(), TAG, e.getMessage(), e);
         } finally {

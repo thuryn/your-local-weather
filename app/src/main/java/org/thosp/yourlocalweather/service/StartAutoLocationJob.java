@@ -68,7 +68,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
     @Override
     protected void serviceConnected(ServiceConnection serviceConnection) {
         connectedServicesCounter++;
-        if (connectedServicesCounter >= 6) {
+        if (connectedServicesCounter >= 3) {
             jobFinished(params, false);
         }
     }
