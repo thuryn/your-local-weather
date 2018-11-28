@@ -92,10 +92,10 @@ public class ForecastWeatherService  extends AbstractCommonService {
             forceUpdate = intent.getBooleanExtra("forceUpdate", false);
         }
         if (intent.hasExtra("locationId")) {
-            locationId = intent.getLongExtra("forceUpdate", 0);
+            locationId = intent.getLongExtra("locationId", 0);
         }
         if (intent.hasExtra("updateSource")) {
-            updateSource = intent.getStringExtra("forceUpdate");
+            updateSource = intent.getStringExtra("updateSource");
         }
         weatherForecastUpdateMessages.add(new WeatherRequestDataHolder(locationId, updateSource, forceUpdate));
         startWeatherForecastUpdate(0);
