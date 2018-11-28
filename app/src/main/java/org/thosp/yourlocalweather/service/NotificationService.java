@@ -132,6 +132,9 @@ public class NotificationService extends AbstractCommonService {
                     getString(R.string.notification_channel_name),
                     NotificationManager.IMPORTANCE_LOW);
             channel.setDescription(getString(R.string.notification_channel_description));
+            channel.setVibrationPattern(isVibrateEnabled());
+            channel.enableVibration(AppPreference.isVibrateEnabled(this));
+            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
             notificationManager.createNotificationChannel(channel);
         }
 
@@ -149,6 +152,7 @@ public class NotificationService extends AbstractCommonService {
                         Utils.getWeatherDescription(this, locale, weather))
                 .setContentText(Utils.getCityAndCountry(this, 0))
                 .setVibrate(isVibrateEnabled())
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setAutoCancel(true)
                 .build();
         notificationManager.notify(0, notification);
@@ -163,6 +167,6 @@ public class NotificationService extends AbstractCommonService {
         if (!AppPreference.isVibrateEnabled(this)) {
             return null;
         }
-        return new long[]{500, 500, 500};
+        return new long[]{0, 500, 500};
     }
 }
