@@ -1,3 +1,6 @@
+v4.4.11
+Fix manual update of the second location. Fix vibration on newer versions of Android
+
 v4.4.10
 Fix crash when location has not been changed
 
