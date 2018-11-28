@@ -11,6 +11,7 @@ import android.os.Parcel;
 
 import org.thosp.yourlocalweather.service.SensorLocationUpdateService;
 import org.thosp.yourlocalweather.service.SensorLocationUpdater;
+import org.thosp.yourlocalweather.utils.PreferenceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -231,6 +232,10 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 boolean addressFound = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND));
                 boolean enabled = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ENABLED));
 
+                if (locale == null) {
+                    locale = PreferenceUtil.getLanguage(context);
+                }
+
                 result.add(new Location(
                         itemId,
                         orderId,
@@ -304,6 +309,10 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
             boolean addressFound = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND));
             boolean enabled = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ENABLED));
 
+            if (locale == null) {
+                locale = PreferenceUtil.getLanguage(context);
+            }
+
             return new Location(
                     itemId,
                     orderId,
@@ -374,6 +383,10 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
             String locationSource = cursor.getString(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE));
             boolean addressFound = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND));
             boolean enabled = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ENABLED));
+
+            if (locale == null) {
+                locale = PreferenceUtil.getLanguage(context);
+            }
 
             return new Location(
                     id,
