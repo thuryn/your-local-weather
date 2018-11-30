@@ -29,7 +29,11 @@ public class NetworkLocationCellsOnlyJob extends JobService {
         this.params = params;
         appendLog(this, TAG, "starting cells only location lookup");
         Intent intent = new Intent(this, NetworkLocationProvider.class);
-        bindService(intent, networkLocationProviderConnection, Context.BIND_AUTO_CREATE);
+        try {
+            bindService(intent, networkLocationProviderConnection, Context.BIND_AUTO_CREATE);
+        } catch (Exception ie) {
+            appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
+        }
         return true;
     }
 

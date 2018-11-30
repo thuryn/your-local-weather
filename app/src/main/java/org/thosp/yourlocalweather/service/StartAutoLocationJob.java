@@ -38,10 +38,14 @@ public class StartAutoLocationJob extends AbstractAppJob {
         this.params = params;
         connectedServicesCounter = 0;
         appendLog(this, TAG, "sending intent to get location update");
-        Intent intent = new Intent(this, LocationUpdateService.class);
-        bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
-        intent = new Intent(this, ScreenOnOffUpdateService.class);
-        bindService(intent, screenOnOffUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+        try {
+            Intent intent = new Intent(this, LocationUpdateService.class);
+            bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+            intent = new Intent(this, ScreenOnOffUpdateService.class);
+            bindService(intent, screenOnOffUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+        } catch (Exception ie) {
+            appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
+        }
         return true;
     }
 
@@ -74,8 +78,12 @@ public class StartAutoLocationJob extends AbstractAppJob {
     }
 
     private void performUpdateOfLocation() {
-        Intent intent = new Intent(this, SensorLocationUpdateService.class);
-        bindService(intent, sensorLocationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+        try {
+            Intent intent = new Intent(this, SensorLocationUpdateService.class);
+            bindService(intent, sensorLocationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+        } catch (Exception ie) {
+            appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
+        }
     }
 
     private ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {

@@ -28,8 +28,12 @@ public class LocationUpdateServiceRetryJob extends AbstractAppJob {
         connectedServicesCounter = 0;
         appendLog(this, TAG, "starting cells only location lookup");
         if (locationUpdateService == null) {
-            Intent intent = new Intent(this, LocationUpdateService.class);
-            bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+            try {
+                Intent intent = new Intent(this, LocationUpdateService.class);
+                bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+            } catch (Exception ie) {
+                appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
+            }
         } else {
             locationUpdateService.updateNetworkLocation(
                 params.getExtras().getBoolean("byLastLocationOnly"),
