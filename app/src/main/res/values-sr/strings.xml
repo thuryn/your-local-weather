@@ -319,4 +319,94 @@
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Скуп икона</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Иконе засноване на фонту</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Иконе Мерлин црвени</string>
+<string name="share_weather_title" tools:ignore="MissingTranslation">Подели временске услове</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Апликација за дељење није пронађена</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Место: %1$s
+\nТемпература: %2$s
+\nОпис: %3$s
+\nВетар: %4$s %5$s
+\nИзлазак сунца: %6$s
+\nЗалазак сунца: %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Твоји локални временски услови</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Обавештења од Твојих локалних временских услова</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Дан</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Ветар</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Киша</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Снег</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Притисак</string>
+
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Лиценце отвореног кода</string>
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">L</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">N</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
+
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">Снимај у датотеку</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">Не снимај у датотеку</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">Снимај у датотеку</string>
+
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
+
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">нема</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">Грмљавина са слабом кишом</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">Грмљавина са кишом</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">Грмљавина са јаком кишом</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">Слаба грмљавина</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">Грмљавина</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">Јака грмљавина</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">Местимична грмљавина</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">Грмљавина са слабом ситном кишом</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">Грмљавина са ситном кишом</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">Грмљавина са јаком ситном кишом</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">Слаба ситна киша</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">Ситна киша</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">Јака ситна киша</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">Слаба ситна киша са кишом</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">Ситна киша са кишом</string>
+    <string name="weather_condition_description_312" tools:ignore="MissingTranslation">Јака ситна киша са кишом</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">Пљусак са ситном кишом</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">Јак пљусак са ситном кишом</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">Пљусак ситне кише</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">Слаба киша</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">Умерена киша</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">Јака киша</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">Врло јака киша</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">Изузетно јака киша</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">Ледена киша</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">Слаб пљусак</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">Пљусак</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">Јак пљусак</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">Местимични пљускови</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">Слаб снег</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">Снег</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">Јак снег</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">Суснежица</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">Јака суснежица</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">Слаба суснежица</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">Суснежица</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">Слаба мећава</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">Мећава</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">Јака мећава</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">Измаглица</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">Дим</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">Сумаглица</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">Вртлози прашине или песка</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">Магла</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">Песак</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">Прашина</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">Вулкански пепео</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">Удари ветра</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">Торнадо</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">Ведро</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">Мало облачно</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">Умерено облачно</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">Местимично облачно</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">Потпуно облачно</string>
 </resources>

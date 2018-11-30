@@ -326,4 +326,43 @@
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">取消</string>
     <string name="pref_language_sv" tools:ignore="MissingTranslation">Swedish (瑞典语)</string>
     <string name="pref_language_he" tools:ignore="MissingTranslation">Hebrew (希伯来语)</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">分享天气</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">未找到社交应用</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">城市：%1$s
+\n温度：%2$s
+\n描述：%3$s
+\n风：%4$s %5$s
+\n日出：%6$s
+\n日落：%7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">当地天气</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">当地天气通知</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">风</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">雨</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">雪</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">气压</string>
+
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">开源许可证</string>
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">L</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">N</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
+
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">将日志保存到文件</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">不将日志保存到文件</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">将日志保存到文件</string>
+
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
+
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">无</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">火山灰</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">龙卷风</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">晴</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">少云</string>
     </resources>
