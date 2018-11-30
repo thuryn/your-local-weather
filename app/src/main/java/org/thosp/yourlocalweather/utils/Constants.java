@@ -34,6 +34,7 @@ public class Constants {
     public static final String KEY_PREF_OPEN_WEATHER_MAP_API_KEY = "open_weather_map_api_key";
 
     public static final String KEY_PREF_TIME_STYLE = "time_style_pref_key";
+    public static final String KEY_PREF_DATE_STYLE = "date_style_pref_key";
     public static final String KEY_PREF_IS_NOTIFICATION_ENABLED = "notification_pref_key";
     public static final String KEY_PREF_TEMPERATURE_UNITS = "temperature_units_pref_key";
     public static final String KEY_PREF_TEMPERATURE_TYPE = "temperature_type_pref_key";

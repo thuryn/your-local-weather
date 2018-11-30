@@ -10,6 +10,18 @@
         <item>12h</item>
         <item>24h</item>
     </string-array>
+    <string-array name="pref_date_style_entries" translatable="false">
+        <item>@string/time_style_system</item>
+        <item>@string/date_style_dots</item>
+        <item>@string/date_style_slash_month_first</item>
+        <item>@string/date_style_slash_day_first</item>
+    </string-array>
+    <string-array name="pref_date_style_values" translatable="false">
+        <item>system</item>
+        <item>date_style_dots</item>
+        <item>date_style_slash_month_first</item>
+        <item>date_style_slash_day_first</item>
+    </string-array>
     <string-array name="pref_forecast_columns" translatable="false">
         <item>@string/forecast_settings_column_icon</item>
         <item>@string/forecast_settings_column_description</item>

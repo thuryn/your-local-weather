@@ -181,6 +181,10 @@
     <string name="time_style_system" tools:ignore="MissingTranslation">System</string>
     <string name="time_style_12_h" tools:ignore="MissingTranslation">12-hour AM/PM</string>
     <string name="time_style_24_h" tools:ignore="MissingTranslation">24-hour</string>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">Date format</string>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm.(yy)</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/yy)</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/yy)</string>
 
     <!-- Search Screen strings -->
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Search location</string>

@@ -8,6 +8,13 @@
         android:key="time_style_pref_key"
         android:title="@string/pref_title_time_style"/>
     <ListPreference
+        android:defaultValue="system"
+        android:dialogTitle="@string/pref_title_date_style"
+        android:entries="@array/pref_date_style_entries"
+        android:entryValues="@array/pref_date_style_values"
+        android:key="date_style_pref_key"
+        android:title="@string/pref_title_date_style"/>
+    <ListPreference
         android:defaultValue="celsius"
         android:dialogTitle="@string/pref_title_temperature"
         android:entries="@array/pref_temperature_units_entries"
