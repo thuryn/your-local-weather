@@ -1,2 +1,108 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Paikallinen sää</string>
+    <string name="enter_city_hint" tools:ignore="MissingTranslation">Anna kaupunki</string>
+    <string name="label_current_city" tools:ignore="MissingTranslation">Nykyinen kaupunki</string>
+    <string name="label_choose_city" tools:ignore="MissingTranslation">Valitse kaupunki</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Tämä sovellus pyytää sinua poistamaan käytöstä akun optimisoinnin päivittääkseen sijainnin, säätilan tai mahdollistaakseen sijainnin seurannan kiihtyvyysanturin avulla taustalla.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Jatka</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Peruuta</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Sijainti- ja käyttöoikeusasetukset</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Sovellus on asetettu päivittämään sijainti, mutta siihen tarvitaan käyttöoikeus. Mene laitteen asetuksiin ja aseta sijaintipalvelut päälle tai aseta sovelluksen sijaintipäivitykset pois päältä.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Tämä sovellus vaatii käyttöoikeuden päivittääkseen sijainnin GPS:n avulla.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Tämä sovellus vaatii käyttöoikeuden päivittääkseen sijainnin Wi-Fi- ja mobiiliverkkojen avulla.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Laitteen asetukset</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Pyydä käyttöoikeuksia</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Peruuta</string>
+    <string name="progressDialog_gps_locate" tools:ignore="MissingTranslation">Löydä nykyinen sijainti</string>
+    <string name="load_progress" tools:ignore="MissingTranslation">Ladataan…</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Sijaintia ei voida löytää</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Jaa sijainti</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Kommunikaatiosovellusta ei löydy</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Kaupunki: %1$s
+\nLämpötila: %2$s
+\nKuvaus: %3$s
+\nTuuli: %4$s %5$s
+\nAuringonnousu: %6$s
+\nAuringonlasku: %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Paikallinen sää</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Päivä</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Tuuli</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Sade</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Lumi</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Paine</string>
+
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Sulje</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Seuraava</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Edellinen</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Sijainnin lähdeasetus</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Yleinen</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Widgetit</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Yleiset asetukset</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Kuvake
+\n</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Lämpötila</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Tuulen suunta</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Peruuta</string>
+
+    <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">Nykyinen sää</string>
+    <string name="nav_menu_settings" tools:ignore="MissingTranslation">Asetukset</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
+    <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">tuumaa</string>
+
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">Ajan muoto</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12-tuntinen AM/PM</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24-tuntinen
+\n</string>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">Päivämäärän muoto</string>
+    <string name="title_activity_settings" tools:ignore="MissingTranslation">Asetukset</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Avoimen lähdekoodin lisenssit</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Ilmoitukset</string>
+    <string name="pref_title_notification" tools:ignore="MissingTranslation">Ota ilmoitukset käyttöön</string>
+    <string name="preference_title_activity_general" tools:ignore="MissingTranslation">Yleiset asetukset</string>
+    <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Widgetin asetukset</string>
+    <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Widgetin teema</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">Tumma</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">Vaalea</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Järjestelmän asetukset</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Sisäänrakennettu</string>
+    <string name="pref_title_language" tools:ignore="MissingTranslation">Kieli</string>
+    <string name="pref_language_default" tools:ignore="MissingTranslation">Järjestelmän oletus</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">Teema</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Tyhjennä välimuisti</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">vuorokausi</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">viikko</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">kuukausi</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">kolme kuukautta</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">kuusi kuukautta</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">vuosi</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Poista</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Lisää</string>
+    <string name="about_version_pref_title" tools:ignore="MissingTranslation">Versio</string>
+    <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Lähdekoodi</string>
+    <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Lisenssi</string>
+    <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Vapaan ohjelmiston lisenssit</string>
+
+    <string name="cloudiness_label" tools:ignore="MissingTranslation">Pilvisyys: %1$s%2$s</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">Viimeisin päivitys: %s</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">Auringonnousu: %s</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">Auringonlasku: %s</string>
+    <string name="temperature_morning_title" tools:ignore="MissingTranslation">Aamu</string>
+    <string name="temperature_day_title" tools:ignore="MissingTranslation">Päivä</string>
+    <string name="temperature_evening_title" tools:ignore="MissingTranslation">Ilta</string>
+    <string name="temperature_night_title" tools:ignore="MissingTranslation">Yö</string>
+    <string name="label_temperature" tools:ignore="MissingTranslation">Lämpötila</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Mitattu lämpötila: %s</string>
+    <string name="label_wind" tools:ignore="MissingTranslation">Tuuli</string>
+    <string name="label_rain" tools:ignore="MissingTranslation">Sade</string>
+    <string name="label_snow" tools:ignore="MissingTranslation">Lumi</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Paine</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">viikko</string>
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
+
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">kevyt lumisade</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">lumisade</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">rankka lumisade</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">savu</string>
+    </resources>
