@@ -24,7 +24,7 @@
             android:paddingRight="8dp"
             android:paddingStart="8dp"
             android:textColor="@color/textColorPrimary"
-            android:textSize="16sp"/>
+            android:textSize="@dimen/widget_3x3_text_size"/>
 
         <TextView
             android:id="@+id/widget_last_update"
@@ -33,21 +33,20 @@
             android:layout_weight="0"
             android:ellipsize="end"
             android:lines="1"
+            android:textSize="@dimen/widget_3x3_text_size"
             android:textColor="@color/textColorPrimary"/>
 
-        <ImageButton
-            android:id="@+id/widget_button_refresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView android:id="@+id/widget_button_refresh"
+            android:layout_width="@dimen/widget_refresh_icon_size"
+            android:layout_height="@dimen/widget_refresh_icon_size"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_refresh_white_18dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/widget_refresh_button"
-            android:paddingEnd="8dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingStart="8dp"
-            android:paddingTop="3dp"
-            android:gravity="top"
-            android:src="@drawable/ic_refresh_white_18dp"/>
+            android:paddingLeft="4dp"
+            android:paddingStart="4dp"
+            android:paddingTop="@dimen/widget_refresh_icon_padding_top"
+            android:gravity="top"/>
     </LinearLayout>
 
     <LinearLayout
@@ -76,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:lines="1"
-                    android:textSize="30sp"/>
+                    android:textSize="@dimen/widget_main_temperature_text_size"/>
                 <TextView
                     android:id="@+id/widget_second_temperature"
                     android:layout_width="wrap_content"
@@ -162,7 +161,7 @@
 
         <LinearLayout
             android:id="@+id/temp_layout"
-            android:layout_width="170dp"
+            android:layout_width="@dimen/widget_main_weather_panel_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
             android:orientation="vertical">
@@ -174,7 +173,7 @@
                 android:layout_gravity="right"
                 android:layout_weight="0.5"
                 android:lines="2"
-                android:textSize="16sp"/>
+                android:textSize="@dimen/widget_3x3_text_size"/>
 
             <ImageView
                 android:id="@+id/widget_icon"
@@ -195,25 +194,25 @@
         android:orientation="horizontal"
         android:layout_below="@id/weather_info"
         android:layout_alignParentLeft="true"
-        android:gravity="center">
+        android:gravity="center"
+        android:paddingTop="@dimen/widget_forecast_padding_top">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="6dp"
-            android:paddingRight="6dp">
+            android:paddingLeft="@dimen/widget_forecast_day_padding"
+            android:paddingRight="@dimen/widget_forecast_day_padding">
             <TextView
                 android:id="@+id/forecast_1_widget_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:layout_gravity="center"
-                android:layout_weight="0.5"/>
+                android:textSize="@dimen/widget_3x3_text_size"/>
             <ImageView
                 android:id="@+id/forecast_1_widget_icon"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="0.5"
+                android:layout_width="@dimen/widget_forecast_icon_size"
+                android:layout_height="@dimen/widget_forecast_icon_size"
                 android:scaleType="fitXY"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
@@ -226,26 +225,25 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:layout_gravity="center"
-                android:layout_weight="0.5"/>
+                android:textSize="@dimen/widget_3x3_text_size"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="6dp"
-            android:paddingRight="6dp">
+            android:paddingLeft="@dimen/widget_forecast_day_padding"
+            android:paddingRight="@dimen/widget_forecast_day_padding">
             <TextView
                 android:id="@+id/forecast_2_widget_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:layout_gravity="center"
-                android:layout_weight="0.5"/>
+                android:textSize="@dimen/widget_3x3_text_size"/>
             <ImageView
                 android:id="@+id/forecast_2_widget_icon"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="0.5"
+                android:layout_width="@dimen/widget_forecast_icon_size"
+                android:layout_height="@dimen/widget_forecast_icon_size"
                 android:scaleType="fitXY"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
@@ -258,26 +256,25 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:layout_gravity="center"
-                android:layout_weight="0.5"/>
+                android:textSize="@dimen/widget_3x3_text_size"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="6dp"
-            android:paddingRight="6dp">
+            android:paddingLeft="@dimen/widget_forecast_day_padding"
+            android:paddingRight="@dimen/widget_forecast_day_padding">
             <TextView
                 android:id="@+id/forecast_3_widget_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:layout_gravity="center"
-                android:layout_weight="0.5"/>
+                android:textSize="@dimen/widget_3x3_text_size"/>
             <ImageView
                 android:id="@+id/forecast_3_widget_icon"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="0.5"
+                android:layout_width="@dimen/widget_forecast_icon_size"
+                android:layout_height="@dimen/widget_forecast_icon_size"
                 android:scaleType="fitXY"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
@@ -290,26 +287,25 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:layout_gravity="center"
-                android:layout_weight="0.5"/>
+                android:textSize="@dimen/widget_3x3_text_size"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="6dp"
-            android:paddingRight="6dp">
+            android:paddingLeft="@dimen/widget_forecast_day_padding"
+            android:paddingRight="@dimen/widget_forecast_day_padding">
             <TextView
                 android:id="@+id/forecast_4_widget_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:layout_gravity="center"
-                android:layout_weight="0.5"/>
+                android:textSize="@dimen/widget_3x3_text_size"/>
             <ImageView
                 android:id="@+id/forecast_4_widget_icon"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="0.5"
+                android:layout_width="@dimen/widget_forecast_icon_size"
+                android:layout_height="@dimen/widget_forecast_icon_size"
                 android:scaleType="fitXY"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
@@ -322,26 +318,25 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:layout_gravity="center"
-                android:layout_weight="0.5"/>
+                android:textSize="@dimen/widget_3x3_text_size"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="6dp"
-            android:paddingRight="6dp">
+            android:paddingLeft="@dimen/widget_forecast_day_padding"
+            android:paddingRight="@dimen/widget_forecast_day_padding">
             <TextView
                 android:id="@+id/forecast_5_widget_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:layout_gravity="center"
-                android:layout_weight="0.5"/>
+                android:textSize="@dimen/widget_3x3_text_size"/>
             <ImageView
                 android:id="@+id/forecast_5_widget_icon"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_weight="0.5"
+                android:layout_width="@dimen/widget_forecast_icon_size"
+                android:layout_height="@dimen/widget_forecast_icon_size"
                 android:scaleType="fitXY"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
@@ -354,7 +349,7 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:layout_gravity="center"
-                android:layout_weight="0.5"/>
+                android:textSize="@dimen/widget_3x3_text_size"/>
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

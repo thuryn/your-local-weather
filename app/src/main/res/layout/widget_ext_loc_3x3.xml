@@ -24,7 +24,7 @@
             android:paddingRight="8dp"
             android:paddingStart="8dp"
             android:textColor="@color/textColorPrimary"
-            android:textSize="16sp"/>
+            android:textSize="@dimen/widget_3x3_text_size"/>
 
         <TextView
             android:id="@+id/widget_last_update"
@@ -33,21 +33,20 @@
             android:layout_weight="0"
             android:ellipsize="end"
             android:lines="1"
+            android:textSize="@dimen/widget_3x3_text_size"
             android:textColor="@color/textColorPrimary"/>
 
-        <ImageButton
-            android:id="@+id/widget_button_refresh"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <ImageView android:id="@+id/widget_button_refresh"
+            android:layout_width="@dimen/widget_refresh_icon_size"
+            android:layout_height="@dimen/widget_refresh_icon_size"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_refresh_white_18dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/widget_refresh_button"
-            android:paddingEnd="8dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingStart="8dp"
-            android:paddingTop="3dp"
-            android:gravity="top"
-            android:src="@drawable/ic_refresh_white_18dp"/>
+            android:paddingLeft="4dp"
+            android:paddingStart="4dp"
+            android:paddingTop="@dimen/widget_refresh_icon_padding_top"
+            android:gravity="top"/>
     </LinearLayout>
 
     <LinearLayout
@@ -75,7 +74,7 @@
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:lines="1"
-                    android:textSize="30sp"/>
+                    android:textSize="@dimen/widget_main_temperature_text_size"/>
                 <TextView
                     android:id="@+id/widget_second_temperature"
                     android:layout_width="wrap_content"
@@ -161,7 +160,7 @@
 
         <LinearLayout
             android:id="@+id/temp_layout"
-            android:layout_width="170dp"
+            android:layout_width="@dimen/widget_main_weather_panel_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
             android:orientation="vertical">
@@ -173,7 +172,7 @@
                 android:layout_gravity="right"
                 android:layout_weight="0.5"
                 android:lines="2"
-                android:textSize="16sp"/>
+                android:textSize="@dimen/widget_3x3_text_size"/>
 
             <ImageView
                 android:id="@+id/widget_icon"

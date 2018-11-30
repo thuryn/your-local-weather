@@ -3,14 +3,14 @@
          (such as screen margins) for screens with more than 820dp of available width. This
          would include 7" and 10" devices in landscape (~960dp and ~1280dp respectively). -->
     <dimen name="activity_horizontal_margin">64dp</dimen>
-    <dimen name="widget_3x3_text_size">30sp</dimen>
-    <dimen name="widget_main_temperature_text_size">60sp</dimen>
-    <dimen name="widget_main_weather_panel_width">340dp</dimen>
+    <dimen name="widget_3x3_text_size">22sp</dimen>
+    <dimen name="widget_main_temperature_text_size">45sp</dimen>
+    <dimen name="widget_main_weather_panel_width">255dp</dimen>
     <dimen name="widget_forecast_icon_size">100dp</dimen>
-    <dimen name="widget_forecast_day_padding">24dp</dimen>
-    <dimen name="widget_forecast_padding_top">24dp</dimen>
-    <dimen name="widget_refresh_icon_padding_top">6dp</dimen>
-    <dimen name="widget_refresh_icon_size">40dp</dimen>
+    <dimen name="widget_forecast_day_padding">18dp</dimen>
+    <dimen name="widget_forecast_padding_top">30dp</dimen>
+    <dimen name="widget_refresh_icon_padding_top">4dp</dimen>
+    <dimen name="widget_refresh_icon_size">30dp</dimen>
 
     <!-- CardView dimensions -->
     <dimen name="cardview_text_size">20sp</dimen>
