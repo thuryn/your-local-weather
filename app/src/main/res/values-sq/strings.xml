@@ -1,2 +1,354 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<?xml version='1.0' encoding='UTF-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Moti juaj lokal</string>
+    <string name="enter_city_hint" tools:ignore="MissingTranslation">Vendosni qytetin</string>
+    <string name="label_current_city" tools:ignore="MissingTranslation">Qyteti aktual</string>
+    <string name="label_choose_city" tools:ignore="MissingTranslation">Zgjidhni qytetin</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Optimizimi i baterisë</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Aplikacioni do ju kërkojë që të fikni optimizimin e baterisë për të përditësuar vendndodhjen, motin apo të ndjekë vendndodhjen me anë të akselerometrit në sfond.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Vazhdo</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Anulo</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Aranzhimet e Vendndodhjes dhe Autorizimet</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Ky aplikacion është vendosur që të përditësojë vendndodhjen. Leja për ta përdorur atë është e nevojshme. Shkoni në aranzhimet e aparatit tuaj dhe ndizni opsionin e vendndodhjes ose fikini përditësimet e vendndodhjes të aplikacionit.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Ky aplikacion ka nevojë për autorizim që të përditësojë vendndodhjen duke përdorur GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Ky aplikacion ka nevojë për autorizim që të përditësojë vendndodhjen me anë të Wi-Fi dhe rrjetit celular.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Autorizimi për të lexuar informacion nga pajisja është i nevojshëm për të përditësuar vendndodhjen duke përdorur Wi-Fi dhe rrjetin celular. Kjo mbledh informacion rreth stacionit transmetues me të cilin pajisja juaj është lidhur.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Aranzhimet e pajisjes</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Kërko autorizim</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Anulo</string>
+    <string name="progressDialog_gps_locate" tools:ignore="MissingTranslation">Gjej vendndodhjen aktuale</string>
+    <string name="load_progress" tools:ignore="MissingTranslation">Duke ngarkuar…</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Vendndodhja nuk u gjend</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Autorizimet nuk janë dhënë ende - klikoni mbi butonin e vendndodhjes në aplikacion</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Hyrja skadoi. Ju lutem përditësoni aplikacionin.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Çelësi juaj i OpenWeatherMap nuk është i regjistruar.</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Ndani motin me të tjerët</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Aplikacioni për komunikim nuk u gjend</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Qyteti: %1$s
+\nTemperatura: %2$s
+\nPërshkrimi: %3$s
+\nEra: %4$s %5$s
+\nAgimi: %6$s
+\nPerëndimi: %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Moti juaj lokal</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Njoftimet e motit lokal</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Dita</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Era</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Shiu</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Bora</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Presioni</string>
+
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Mbyll</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Tjetra</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">E kaluara</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Përfundo</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Guida fillestare e konfigurimit</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Duke rregulluar aplikacionin sipas nevojave tuaja, ju mund të zgjidhni strategjinë e përditësimit më pas.
+\nDuke devijuar nga i paravendosuri për përditësimin kur vendndodhja juaj ndryshon, ju mund të zgjidhni <i> Mos përditëso vendndodhjen</i>.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Përditëso aranzhimin e vendndodhjes</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Aranzhimi për burimin e vendndodhjes</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Burimi për vendndodhjen dhe adresën</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Aranzhimi për strategjinë e zgjimit të telefonit</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Strategjia e zgjimit</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Aranzhimi i adresës së ruajtur</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Ju mund të ulni përdorimin e të dhënave duke ruajtur në memorje vendndodhjet e gjetura. Vendndodhjet më pas ruhen në aplikacion. Ato nuk dërgohen apo ruhen në vende të tjera në rrjet.</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Adresa e memorjes së ruajtur</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Përgëzime</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Kjo përmbyll guidën. Ju mund të gjeni aranzhime të tjera në menunë e Aranzhimeve (për shembull gjuha, njësitë etj.).
+\nEkrani pasardhës do ju shpjegojë autorizimet e nevojshme dhe do ju japë mundësinë që t\'i kërkoni ato.
+\n
+\nKënaquni me aplikacionin.</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Të përgjithshme</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Aplikacioni kryesor</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Ekrani i tretë përmban parashikimin e motit të shfaqur përmes grafikësh.</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Mjet i shpejtë</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Aranzhimet e përgjithshme</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Ky aranzhim ka ndikim mbi gjithë aplikacionin.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Temperatura</b> - Ju mund të zgjidhni njësinë e temperaturës,
+\n<b>Era</b> - Ju mund të zgjidhni njësinë e shpejtësisë së erës dhe
+\n<b>Presioni</b> - Ju mund të zgjidhni njësinë për presionin. Vlerat rillogariten sipas këtyre aranzhimeve.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Fshih përshkrimin e motit</b> - përshkrimi i motit fshehet. Ju mund ta shikoni motin aktual duke ndryshuar ikonën.</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">Aranzhimet e mjetit të shpejtë</string>
+    <string name="help_page_4_content" tools:ignore="MissingTranslation">Aranzhimet e mjetit të shpejtë përmbajnë mundësime konfigurimi për të gjitha mjetet e shpejta.</string>
+    <string name="title_activity_search" tools:ignore="MissingTranslation">Kërko Vendndodhjen</string>
+    <string name="label_activity_main" tools:ignore="MissingTranslation">Moti Aktual</string>
+    <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Parashikimi i Ditës</string>
+    <string name="label_activity_graphs" tools:ignore="MissingTranslation">Grafiku i Motit</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Ndihmë</string>
+    <string name="title_activity_license" tools:ignore="MissingTranslation">Licensa për %s</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Vendndodhjet</string>
+
+    <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Përditëso</string>
+    <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Kërko Qytetin</string>
+    <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Gjej Vendndodhjen</string>
+    <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Ndrysho Vlerat</string>
+    <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Ndrysho Aksin Vertikal</string>
+
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Aranzhimi i kolonës</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Kolonat që do të shfaqen</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikona</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Përshkrimi</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Temperatura e dukshme</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Era</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Drejtimi i erës</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Shi/Borë</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Lagështia</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Presioni</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="ok" tools:ignore="MissingTranslation">OK</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Anulo</string>
+
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Hap shiritin e navigimit</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Mbyll shiritin e navigimit</string>
+    <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">Moti Aktual</string>
+    <string name="nav_menu_daily_forecast" tools:ignore="MissingTranslation">Parashikimi Ditor</string>
+    <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Grafikët</string>
+    <string name="nav_menu_settings" tools:ignore="MissingTranslation">Aranzhimet</string>
+    <string name="nav_feedback" tools:ignore="MissingTranslation">Reagimet</string>
+    <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">Dhuroni bitcoin</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Ndihmë</string>
+
+    <string name="location_not_initialized" tools:ignore="MissingTranslation">Vendndodhja nuk është inicializuar. Klikoni mbi rrethin e vendndodhjes fillimisht.</string>
+    <string name="connection_not_found" tools:ignore="MissingTranslation">Kontrolloni lidhjen tuaj me internetin</string>
+    <string name="toast_parse_error" tools:ignore="MissingTranslation">Ka ndodhur një gabim. Ju lutem provoni më vonë.</string>
+
+    <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
+    <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
+    <string name="wind_speed_miles" tools:ignore="MissingTranslation">mph</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">nyje</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/orë</string>
+    <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">inç</string>
+
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">Formati i kohës</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">Sistemi</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12-orë AM/PM</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24-orë</string>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">Formati i datës</string>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm.(yy)</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd/(/yy)</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/yy)</string>
+
+    <string name="hint_activity_search" tools:ignore="MissingTranslation">Kërko vendndodhjen</string>
+
+    <string name="title_activity_settings" tools:ignore="MissingTranslation">Aranzhimet</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Licensat me kodburim të hapur</string>
+    <string name="pref_title_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">Era</string>
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Stili i drejtimit të erës</string>
+    <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Shiu dhe bora</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Presioni</string>
+    <string name="preference_hide_desc" tools:ignore="MissingTranslation">Fshih përshkrimin e motit</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Njoftimet</string>
+    <string name="pref_title_notification" tools:ignore="MissingTranslation">Aktivizo Njoftimet</string>
+    <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">Intervali i Rifreskimit</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Aranzhimi i Përditësimit të Vendndodhjes</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">Mos e përditëso vendndodhjen</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">Përditësoje vendndodhjen (e rekomanduar)</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">Përditësoje vendndodhjen pa GPS</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Aktivizoje GPS kur të jetë e nevojshme</string>
+    <string name="update_period_by_sensors" tools:ignore="MissingTranslation">Me anë të akselerometrit</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">Vetëm manualisht</string>
+    <string name="update_period_15min" tools:ignore="MissingTranslation">15 minuta</string>
+    <string name="update_period_30min" tools:ignore="MissingTranslation">30 minuta</string>
+    <string name="update_period_1hour" tools:ignore="MissingTranslation">Çdo orë</string>
+    <string name="update_period_3hours" tools:ignore="MissingTranslation">3 orë</string>
+    <string name="update_period_6hours" tools:ignore="MissingTranslation">6 orë</string>
+    <string name="update_period_12hours" tools:ignore="MissingTranslation">12 orë</string>
+    <string name="update_period_24hours" tools:ignore="MissingTranslation">24 orë</string>
+    <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Dridhje</string>
+    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Periudha e përditësimit për motin (Vendndodhja 1,2,3...)</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Periudha e përditësimit për vendndodhjen (Vendndodhja 0)</string>
+    <string name="preference_title_activity_general" tools:ignore="MissingTranslation">Aranzhimet e Përgjithshme</string>
+    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Përditëso Vendndodhjen</string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Përdor gjeovendndodhjen për shfaqjen</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">E errët</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">E bardhë</string>
+    <string name="theme_transparent" tools:ignore="MissingTranslation">Transparente</string>
+    <string name="preference_title_category_display" tools:ignore="MissingTranslation">Shfaqja</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Përditëso vendndodhjen dhe motin</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Aranzhimet e sistemit</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Çelësi API openweathermap.org</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">E gatshme</string>
+    <string name="pref_title_language" tools:ignore="MissingTranslation">Gjuha</string>
+    <string name="pref_language_default" tools:ignore="MissingTranslation">E Parazgjedhura e Sistemit</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Kinezçe (Kineze)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Swahili (Swahili)</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Suedisht (Suedisht)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">Hebre (Hebre)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norvegjishte Bokmal (Norvegjishte Bokmal)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Hollandisht (Hollandisht)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Hungarisht (Hungarisht)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Spanjisht (Spanjisht)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Greqisht (Greqisht)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabisht (Arabisht)</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Ukrainisht</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Rumanisht</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portugalisht (Portugalisht)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portugalisht (Braziliane)</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistemi</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">Tema</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Asgjë</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Vlerë e sapo përditësuar</string>
+    <string name="nowakeup_label" tools:ignore="MissingTranslation">Pa zgjim</string>
+    <string name="wakeuppartial_label" tools:ignore="MissingTranslation">Zgjo vetëm CPU</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">Zgjo ekranin</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Pastro memorjen</string>
+    <string name="db_info" tools:ignore="MissingTranslation">Informacion rreth memorjes</string>
+    <string name="db_header" tools:ignore="MissingTranslation">Databaza e adresave të memorjes</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Mosha e Vlerave të Memorjes</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 orë</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">një ditë</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">një javë</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">një muaj</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">3 muaj</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">6 muaj</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">një vit</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">kurrë</string>
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Vendndodhjes e memorjes</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Fshij</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Ç\'aktivizo</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Aktivizo</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">E gjetur automatikisht</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">E ç\'aktivizuar</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Shto</string>
+    <string name="preference_title_activity_about" tools:ignore="MissingTranslation">Rreth</string>
+    <string name="about_version_pref_title" tools:ignore="MissingTranslation">Versioni</string>
+    <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Kodburimi</string>
+    <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Licensa</string>
+    <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Licensat e Softuerit të Lirë</string>
+
+    <string name="wind_label" tools:ignore="MissingTranslation">Era: %1$s %2$s %3$s</string>
+    <string name="rain_label" tools:ignore="MissingTranslation">Shiu: %1$s %2$s</string>
+    <string name="snow_label" tools:ignore="MissingTranslation">Bora: %1$s %2$s</string>
+    <string name="humidity_label" tools:ignore="MissingTranslation">Lagështia: %1$s%2$s</string>
+    <string name="pressure_label" tools:ignore="MissingTranslation">Presioni: %1$s %2$s</string>
+    <string name="cloudiness_label" tools:ignore="MissingTranslation">Retë: %1$s%2$s</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">Përditësimi i fundit: %s</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">Agimi: %s</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">Perëndimi: %s</string>
+    <string name="temperature_morning_title" tools:ignore="MissingTranslation">Mëngjesi</string>
+    <string name="temperature_day_title" tools:ignore="MissingTranslation">Dita</string>
+    <string name="temperature_evening_title" tools:ignore="MissingTranslation">Mbrëmja</string>
+    <string name="temperature_night_title" tools:ignore="MissingTranslation">Nata</string>
+    <string name="label_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Temperatura e dukshme: %s</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Temperatura e matur: %s</string>
+    <string name="label_wind" tools:ignore="MissingTranslation">Era</string>
+    <string name="label_rain" tools:ignore="MissingTranslation">Shiu</string>
+    <string name="label_snow" tools:ignore="MissingTranslation">Bora</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Presioni</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">Vetëm vlera e matur</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Të dyja, e matura me përparësi</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Të dyja, pamja përparësi</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">Vetëm vlera e dukshme</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Shfaqe temperaturën si</string>
+
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">L</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">N</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
+
+    <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Ikona e motit aktual</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">E ç\'aktivizuar</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Shkurtimi V, VL, ...</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Gradët nga Veriu</string>
+    <string name="wind_direction_north" tools:ignore="MissingTranslation">V↓</string>
+    <string name="wind_direction_north_east" tools:ignore="MissingTranslation">VL↙</string>
+    <string name="wind_direction_east" tools:ignore="MissingTranslation">L←</string>
+    <string name="wind_direction_south_east" tools:ignore="MissingTranslation">JL↖</string>
+    <string name="wind_direction_south" tools:ignore="MissingTranslation">J↑</string>
+    <string name="wind_direction_south_west" tools:ignore="MissingTranslation">JP↗</string>
+    <string name="wind_direction_west" tools:ignore="MissingTranslation">P→</string>
+    <string name="wind_direction_north_west" tools:ignore="MissingTranslation">VP↘</string>
+
+    <string name="permission_location_rationale" tools:ignore="MissingTranslation">Autorizimet e vendndodhjes duhen për të përcaktuar qytetin</string>
+    <string name="permission_not_granted" tools:ignore="MissingTranslation">Autorizimet nuk janë dhënë!</string>
+    <string name="permission_available_location" tools:ignore="MissingTranslation">Autorizimi i Vendndodhjes është dhënë</string>
+    <string name="permission_location_need" tools:ignore="MissingTranslation">Jep Autorizimin për Vendndodhjen</string>
+
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">Zgjidhni folderin e shënimeve</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">Aranzhimet e Rregullimeve</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 orë</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">një ditë</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">dy ditë</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">tre ditë</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">një javë</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">një muaj</string>
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">Ruaj në skedar</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">Mos ruaj në skedar</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">Ruaj në skedarin</string>
+
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Seti i Ikonave</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Ikona të bazuara në font</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlini ikonat e kuqe</string>
+
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
+
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">asnjë</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">stuhi me shi të lehtë</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">stuhi me shi</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">stuhi me shi të rëndë</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">stuhi e lehtë</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">stuhi</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">stuhi e fortë</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">stuhi me hope</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">stuhi me vesë të lehtë</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">stuhi me ves</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">stuhi me vesë të fortë</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">ves me intensitet të ulët</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">ves</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">ves me intensitet të lartë</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">ves me shi me intensitet të ulët</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">ves me shi</string>
+    <string name="weather_condition_description_312" tools:ignore="MissingTranslation">ves me shi me intensitet të lartë</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">shi me gjyma dhe ves</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">shi i fortë me gjyma dhe ves</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">ves me gjyma</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">shi i lehtë</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">shi mesatar</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">shi me intensitet të lartë</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">shi shumë i fortë</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">shi ekstrem</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">shi i ngrirë</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">shi me intensitet të ulët</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">shi si dush</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">shi me intensitet të lartë</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">shi si dush me hope</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">borë e lehtë</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">borë</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">borë e rëndë</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">borë me shi</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">borë me shi si dush</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">shi i lehtë dhe borë</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">shi dhe borë</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">borë e lehtë si dush</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">borë si dush</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">borë e fortë si dush</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">mjegull</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">tym</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">mjegull e dendur</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">rërë, pluhur që rrotullohet</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">mjegull</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">rërë</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">pluhur</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">hir vullkanik</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">shtrëngata</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">tornado</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">qiell i pastër</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">pak re</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">re të shpërndara</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">re të thyera</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">re të mbivendosura</string>
+</resources>
