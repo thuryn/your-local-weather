@@ -298,17 +298,17 @@
 
     <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Gefühlte Temperatur</string>
     <string name="app_name" tools:ignore="MissingTranslation">Wetter vor Ort</string>
-    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chinesisch (Chinese)</string>
-    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norwegisches Bokmål (Norwegisches Bokmål)</string>
-    <string name="pref_language_es" tools:ignore="MissingTranslation">Spanisch (Spanish)</string>
-    <string name="pref_language_el" tools:ignore="MissingTranslation">Griechisch (Greek)</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (Chinesisch)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (Bokmål) (Norwegisch (Bokmål))</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Español (Spanisch)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Ελληνικά (Griechisch)</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Zugang abgelaufen. Bitte aktualisieren Sie die App.</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Ihr OpenweathermapApiKey ist nicht registriert.</string>
 
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Systemeinstellungen</string>
     <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API-Schlüssel</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Integriert</string>
-    <string name="pref_language_sw" tools:ignore="MissingTranslation">Swahili (Suaheli)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili (Suaheli)</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Batterieoptimierung</string>
     <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Die Anwendung führt Hintergrundprozesse aus, um Aktualisierungen von Standort, Wetter oder die Verfolgung des Standorts mittels Beschleunigungssensor durchzuführen. Daher wird die Anwendung Sie bitten, die Batterieoptimierung auszuschalten, um Hintergrundprozesse ausführen zu können.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Fortfahren</string>
@@ -328,16 +328,16 @@
 
     <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Stil der Windrichtung</string>
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Regen und Schnee</string>
-    <string name="pref_language_sv" tools:ignore="MissingTranslation">Schwedisch (Schwedisch)</string>
-    <string name="pref_language_he" tools:ignore="MissingTranslation">Hebräisch (Hebräisch)</string>
-    <string name="pref_language_nl" tools:ignore="MissingTranslation">Niederländisch (Niederländisch)</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Svenska (Schwedisch)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">עברית (Hebräisch)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Nederlands (Niederländisch)</string>
     <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
-    <string name="pref_language_hu" tools:ignore="MissingTranslation">Ungarisch (Ungarisch)</string>
-    <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabisch (Arabisch)</string>
-    <string name="pref_language_uk" tools:ignore="MissingTranslation">Ukrainisch</string>
-    <string name="pref_language_ro" tools:ignore="MissingTranslation">Rumänisch</string>
-    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portugiesisch (Portugal)</string>
-    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portugiesisch (Brasilien)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Magyar (Ungarisch)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">العَرَبِيَّة (Arabisch)</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Українська (Ukrainisch)</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Română (Rumänisch)</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Português (Portugal) (Portugiesisch (Portugal))</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Português (Brasilien) (Portugiesisch (Brasilien))</string>
     <string name="label_pressure" tools:ignore="MissingTranslation">Druck</string>
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Deaktiviert</string>
     <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abkürzung N, NE, ....</string>
@@ -436,4 +436,28 @@
     <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
     <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
 
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">Datumsformat</string>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm.(yy)</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/yy)</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/yy)</string>
+
+    <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (Albanisch)</string>
+    <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (Baskisch)</string>
+    <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (Weißrussisch)</string>
+    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (Weißrussisches Latein)</string>
+    <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (Katalanisch)</string>
+    <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (Tschechisch)</string>
+    <string name="pref_language_da" tools:ignore="MissingTranslation">Dansk (Dänisch)</string>
+    <string name="pref_language_en" tools:ignore="MissingTranslation">Englisch</string>
+    <string name="pref_language_fi" tools:ignore="MissingTranslation">Suomi (Finnisch)</string>
+    <string name="pref_language_fr" tools:ignore="MissingTranslation">Français (Französisch)</string>
+    <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego (Galizisch)</string>
+    <string name="pref_language_de" tools:ignore="MissingTranslation">Deutsch</string>
+    <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (Italienisch)</string>
+    <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (Japanisch)</string>
+    <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (Polnisch)</string>
+    <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (Russisch)</string>
+    <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (Serbisch)</string>
+    <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (Slowenisch)</string>
+    <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (Türkisch)</string>
     </resources>
