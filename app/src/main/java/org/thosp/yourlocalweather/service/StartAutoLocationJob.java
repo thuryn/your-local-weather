@@ -12,12 +12,16 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.IBinder;
+import android.os.Message;
+import android.os.RemoteException;
 import android.os.SystemClock;
 
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.Utils;
+import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.util.List;
 
@@ -127,6 +131,8 @@ public class StartAutoLocationJob extends AbstractAppJob {
             } else if ("OFF".equals(updateAutoPeriodStr)) {
                 sensorLocationUpdateService.stopSensorBasedUpdates();
             } else {
+                sensorLocationUpdateService.stopSensorBasedUpdates();
+                locationUpdateService.startLocationAndWeatherUpdate();
                 reScheduleNextAlarm(JOB_ID, updateAutoPeriodStr, StartAutoLocationJob.class);
             }
             new Thread(new Runnable() {

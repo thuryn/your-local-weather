@@ -219,7 +219,6 @@
             android:name=".service.NotificationService" >
             <intent-filter>
                 <action android:name="android.intent.action.START_WEATHER_NOTIFICATION_UPDATE" />
-                <action android:name="android.intent.action.SHOW_WEATHER_NOTIFICATION" />
             </intent-filter>
         </service>
         <service

@@ -175,20 +175,23 @@ public class MainActivity extends BaseActivity
         appendLog(this, TAG, "scheduleStart at boot, SDK=" + Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
             JobScheduler jobScheduler = getSystemService(JobScheduler.class);
-            /*boolean scheduled = false;
+            boolean scheduled = false;
             for (JobInfo jobInfo: jobScheduler.getAllPendingJobs()) {
-                if ((jobInfo.getId() > 0) && (jobInfo.getId() < 5)) {
+                if (jobInfo.getId() > 0) {
+                    appendLog(this, TAG, "scheduleStart does not start - it's scheduled already");
                     scheduled = true;
+                    break;
                 }
             }
-            if (!scheduled) {*/
-            jobScheduler.cancelAll();
+            if (!scheduled) {
+                appendLog(this, TAG, "scheduleStart at MainActivity");
+                jobScheduler.cancelAll();
                 ComponentName serviceComponent = new ComponentName(this, StartAppAlarmJob.class);
                 JobInfo.Builder builder = new JobInfo.Builder(StartAppAlarmJob.JOB_ID, serviceComponent);
                 builder.setMinimumLatency(1 * 1000); // wait at least
                 builder.setOverrideDeadline(3 * 1000); // maximum delay
                 jobScheduler.schedule(builder.build());
-            //}
+            }
         } else {
             Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_ALARM_SERVICE");
             intentToStartUpdate.setPackage("org.thosp.yourlocalweather");

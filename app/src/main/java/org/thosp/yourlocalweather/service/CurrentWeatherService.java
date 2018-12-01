@@ -1,6 +1,9 @@
 package org.thosp.yourlocalweather.service;
 
 import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
@@ -15,6 +18,7 @@ import android.os.Message;
 import android.os.Messenger;
 import android.os.SystemClock;
 import android.printservice.PrintService;
+import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -22,6 +26,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.json.JSONException;
 import org.thosp.yourlocalweather.ConnectionDetector;
+import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.WeatherJSONParser;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
@@ -31,6 +36,7 @@ import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
@@ -203,7 +209,7 @@ public class CurrentWeatherService extends AbstractCommonService {
                     TAG,
                     "Current weather is recent enough");
             currentWeatherUpdateMessages.poll();
-            updateResultInUI(this, ACTION_WEATHER_UPDATE_OK, updateRequest);
+            updateResultInUI(null, ACTION_WEATHER_UPDATE_OK, updateRequest);
             return;
         }
 
@@ -325,6 +331,10 @@ public class CurrentWeatherService extends AbstractCommonService {
     }
 
     private void sendResult(String result, Context context) {
+        sendResult(result, context, null);
+    }
+
+    private void sendResult(String result, Context context, Long locationId) {
         stopRefreshRotation("STOP", 2);
         sendMessageToWakeUpService(
                 AppWakeUpManager.FALL_DOWN,
@@ -336,7 +346,7 @@ public class CurrentWeatherService extends AbstractCommonService {
                 TAG,
                 "currentWeatherUpdateMessages.size after pull when sending result = " + currentWeatherUpdateMessages.size());
         try {
-            updateResultInUI(context, result, updateRequest);
+            updateResultInUI(locationId, result, updateRequest);
             if (!currentWeatherUpdateMessages.isEmpty()) {
                 resendTheIntentInSeveralSeconds(5);
             }
@@ -349,7 +359,7 @@ public class CurrentWeatherService extends AbstractCommonService {
         }
     }
 
-    private void updateResultInUI(Context context, String result, WeatherRequestDataHolder updateRequest) {
+    private void updateResultInUI(Long locationId, String result, WeatherRequestDataHolder updateRequest) {
         if (updateRequest == null) {
             return;
         }
@@ -357,15 +367,10 @@ public class CurrentWeatherService extends AbstractCommonService {
         if (updateSource != null) {
             switch (updateSource) {
                 case "MAIN":
-                    WidgetUtils.updateCurrentWeatherWidgets(context);
                     sendIntentToMain(result);
                     break;
                 case "NOTIFICATION":
-                    Intent sendIntent = new Intent("android.intent.action.SHOW_WEATHER_NOTIFICATION");
-                    sendIntent.setPackage("org.thosp.yourlocalweather");
-                    WidgetUtils.startBackgroundService(
-                            getBaseContext(),
-                            sendIntent);
+                    weatherNotification(locationId);
                     break;
             }
         }
@@ -402,7 +407,7 @@ public class CurrentWeatherService extends AbstractCommonService {
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
         currentWeatherDbHelper.saveWeather(locationId, now, weather);
         locationsDbHelper.updateLastUpdatedAndLocationSource(locationId, now, locationSource);
-        sendResult(ACTION_WEATHER_UPDATE_OK, context);
+        sendResult(ACTION_WEATHER_UPDATE_OK, context, locationId);
     }
 
     private void resendTheIntentInSeveralSeconds(int seconds) {
@@ -424,6 +429,89 @@ public class CurrentWeatherService extends AbstractCommonService {
             alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + (1000 * seconds), pendingIntent);
         }
+    }
+
+    private void weatherNotification(Long locationId) {
+        if (locationId == null) {
+            appendLog(getBaseContext(), TAG, "showNotification - locationId is null");
+        }
+        final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(this);
+        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
+        Location currentLocation = locationsDbHelper.getLocationById(locationId);
+        if (currentLocation == null) {
+            appendLog(getBaseContext(), TAG, "showNotification - shutdown");
+            sendMessageToWakeUpService(
+                    AppWakeUpManager.FALL_DOWN,
+                    AppWakeUpManager.SOURCE_NOTIFICATION
+            );
+            return;
+        }
+        CurrentWeatherDbHelper.WeatherRecord weatherRecord =
+                currentWeatherDbHelper.getWeather(currentLocation.getId());
+
+        if (weatherRecord == null) {
+            appendLog(getBaseContext(), TAG, "showNotification - shutdown");
+            sendMessageToWakeUpService(
+                    AppWakeUpManager.FALL_DOWN,
+                    AppWakeUpManager.SOURCE_NOTIFICATION
+            );
+            return;
+        }
+        Weather weather = weatherRecord.getWeather();
+        String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
+                this,
+                weather,
+                currentLocation.getLatitude(),
+                weatherRecord.getLastUpdatedTime(),
+                currentLocation.getLocale());
+
+        showNotification(temperatureWithUnit, currentLocation.getLocaleAbbrev(), weather);
+    }
+
+    private void showNotification(String temperatureWithUnit, String locale, Weather weather) {
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("yourLocalWeather",
+                    getString(R.string.notification_channel_name),
+                    NotificationManager.IMPORTANCE_LOW);
+            channel.setDescription(getString(R.string.notification_channel_description));
+            channel.setVibrationPattern(isVibrateEnabled());
+            channel.enableVibration(AppPreference.isVibrateEnabled(this));
+            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent launchIntent = PendingIntent.getActivity(this, 0, intent, 0);
+
+        Notification notification = new NotificationCompat.Builder(this, "yourLocalWeather")
+                .setContentIntent(launchIntent)
+                .setSmallIcon(R.drawable.small_icon)
+                .setTicker(temperatureWithUnit
+                        + "  "
+                        + Utils.getCityAndCountry(this, 0))
+                .setContentTitle(temperatureWithUnit +
+                        "  " +
+                        Utils.getWeatherDescription(this, locale, weather))
+                .setContentText(Utils.getCityAndCountry(this, 0))
+                .setVibrate(isVibrateEnabled())
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setAutoCancel(true)
+                .build();
+        notificationManager.notify(0, notification);
+        appendLog(getBaseContext(), TAG, "showNotification - shutdown");
+        sendMessageToWakeUpService(
+                AppWakeUpManager.FALL_DOWN,
+                AppWakeUpManager.SOURCE_NOTIFICATION
+        );
+    }
+
+    private long[] isVibrateEnabled() {
+        if (!AppPreference.isVibrateEnabled(this)) {
+            return null;
+        }
+        return new long[]{0, 500, 500};
     }
 
     private class CurrentweatherMessageHandler extends Handler {

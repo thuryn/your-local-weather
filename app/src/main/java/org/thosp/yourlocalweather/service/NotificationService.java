@@ -37,7 +37,6 @@ public class NotificationService extends AbstractCommonService {
         }
         switch (intent.getAction()) {
             case "android.intent.action.START_WEATHER_NOTIFICATION_UPDATE": startWeatherCheck(); scheduleNextNotificationAlarm(); return ret;
-            case "android.intent.action.SHOW_WEATHER_NOTIFICATION": weatherNotification(); return ret;
             default: return ret;
         }
     }
@@ -82,39 +81,6 @@ public class NotificationService extends AbstractCommonService {
         return pendingIntent;
     }
 
-    private void weatherNotification() {
-        final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(this);
-        Location currentLocation = getLocationForNotification();
-        if (currentLocation == null) {
-            appendLog(getBaseContext(), TAG, "showNotification - shutdown");
-            sendMessageToWakeUpService(
-                    AppWakeUpManager.FALL_DOWN,
-                    AppWakeUpManager.SOURCE_NOTIFICATION
-            );
-            return;
-        }
-        CurrentWeatherDbHelper.WeatherRecord weatherRecord =
-                currentWeatherDbHelper.getWeather(currentLocation.getId());
-
-        if (weatherRecord == null) {
-            appendLog(getBaseContext(), TAG, "showNotification - shutdown");
-            sendMessageToWakeUpService(
-                    AppWakeUpManager.FALL_DOWN,
-                    AppWakeUpManager.SOURCE_NOTIFICATION
-            );
-            return;
-        }
-        Weather weather = weatherRecord.getWeather();
-        String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
-                this,
-                weather,
-                currentLocation.getLatitude(),
-                weatherRecord.getLastUpdatedTime(),
-                currentLocation.getLocale());
-
-        showNotification(temperatureWithUnit, currentLocation.getLocaleAbbrev(), weather);
-    }
-
     private Location getLocationForNotification() {
         final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
         Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
@@ -122,51 +88,5 @@ public class NotificationService extends AbstractCommonService {
             currentLocation = locationsDbHelper.getLocationByOrderId(1);
         }
         return currentLocation;
-    }
-
-    private void showNotification(String temperatureWithUnit, String locale, Weather weather) {
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("yourLocalWeather",
-                    getString(R.string.notification_channel_name),
-                    NotificationManager.IMPORTANCE_LOW);
-            channel.setDescription(getString(R.string.notification_channel_description));
-            channel.setVibrationPattern(isVibrateEnabled());
-            channel.enableVibration(AppPreference.isVibrateEnabled(this));
-            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-            notificationManager.createNotificationChannel(channel);
-        }
-
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent launchIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
-        Notification notification = new NotificationCompat.Builder(this, "yourLocalWeather")
-                .setContentIntent(launchIntent)
-                .setSmallIcon(R.drawable.small_icon)
-                .setTicker(temperatureWithUnit
-                        + "  "
-                        + Utils.getCityAndCountry(this, 0))
-                .setContentTitle(temperatureWithUnit +
-                        "  " +
-                        Utils.getWeatherDescription(this, locale, weather))
-                .setContentText(Utils.getCityAndCountry(this, 0))
-                .setVibrate(isVibrateEnabled())
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setAutoCancel(true)
-                .build();
-        notificationManager.notify(0, notification);
-        appendLog(getBaseContext(), TAG, "showNotification - shutdown");
-        sendMessageToWakeUpService(
-                AppWakeUpManager.FALL_DOWN,
-                AppWakeUpManager.SOURCE_NOTIFICATION
-        );
-    }
-
-    private long[] isVibrateEnabled() {
-        if (!AppPreference.isVibrateEnabled(this)) {
-            return null;
-        }
-        return new long[]{0, 500, 500};
     }
 }
