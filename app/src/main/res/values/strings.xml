@@ -249,6 +249,25 @@
     <string name="pref_language_ro" tools:ignore="MissingTranslation">Romanian</string>
     <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portuguese (Portugal)</string>
     <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portuguese (Brazil)</string>
+    <string name="pref_language_sq" tools:ignore="MissingTranslation">Albanian</string>
+    <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (Basque)</string>
+    <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (Belarusian)</string>
+    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (Belarusian latin)</string>
+    <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (Catalan)</string>
+    <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (Czech)</string>
+    <string name="pref_language_da" tools:ignore="MissingTranslation">Danish</string>
+    <string name="pref_language_en" tools:ignore="MissingTranslation">English</string>
+    <string name="pref_language_fi" tools:ignore="MissingTranslation">Finnish</string>
+    <string name="pref_language_fr" tools:ignore="MissingTranslation">French</string>
+    <string name="pref_language_gl" tools:ignore="MissingTranslation">Galician</string>
+    <string name="pref_language_de" tools:ignore="MissingTranslation">German</string>
+    <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (Italian)</string>
+    <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (Japanese)</string>
+    <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (Polish)</string>
+    <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (Russian)</string>
+    <string name="pref_language_sr" tools:ignore="MissingTranslation">Serbian</string>
+    <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenian</string>
+    <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (Turkish)</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Location and Address Source</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Local MLS and Nominatim (recommended)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">System</string>
