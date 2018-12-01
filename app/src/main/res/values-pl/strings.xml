@@ -198,14 +198,14 @@
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chiński (Chinese)</string>
     <string name="pref_language_sw" tools:ignore="MissingTranslation">Suahili (Swahili)</string>
     <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norweski Bokmål (Norwegian Bokmål)</string>
-    <string name="pref_language_nl" tools:ignore="MissingTranslation">Holenderski (Dutch)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Holenderski (Holandia)</string>
     <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
-    <string name="pref_language_hu" tools:ignore="MissingTranslation">Węgierski (Hungarian)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Węgierski (Węgry)</string>
     <string name="pref_language_es" tools:ignore="MissingTranslation">Hiszpański (Spanish)</string>
     <string name="pref_language_el" tools:ignore="MissingTranslation">Grecki (Greek)</string>
     <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabski (Arabic)</string>
     <string name="pref_language_uk" tools:ignore="MissingTranslation">Ukraiński</string>
-    <string name="pref_language_ro" tools:ignore="MissingTranslation">Rumuński</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Rumuński (Romanian)</string>
     <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portugalski (Portugal)</string>
     <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portugalski (Brazil)</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Źródło adresu i lokalizacji</string>
@@ -316,7 +316,7 @@
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Kontynuuj</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Anuluj</string>
     <string name="pref_language_sv" tools:ignore="MissingTranslation">Szwedzki (Szwecja)</string>
-    <string name="pref_language_he" tools:ignore="MissingTranslation">Hebrajski (hebrajski)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">Hebrajski</string>
     <string name="weather_condition_description_none" tools:ignore="MissingTranslation">żaden</string>
     <string name="weather_condition_description_200" tools:ignore="MissingTranslation">burza z lekkim deszczem</string>
     <string name="weather_condition_description_201" tools:ignore="MissingTranslation">burza z deszczem</string>
@@ -324,37 +324,37 @@
     <string name="weather_condition_description_210" tools:ignore="MissingTranslation">lekka burza z piorunami</string>
     <string name="weather_condition_description_211" tools:ignore="MissingTranslation">burza z piorunami</string>
     <string name="weather_condition_description_212" tools:ignore="MissingTranslation">wielka burza z piorunami</string>
-    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">burza z czarnymi chmurami</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">ciężka burza z piorunami</string>
     <string name="weather_condition_description_230" tools:ignore="MissingTranslation">burze z lekką mżawką</string>
     <string name="weather_condition_description_231" tools:ignore="MissingTranslation">burza z mżawką</string>
-    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">burze z dużą mżawką</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">burza z silną mżawką</string>
     <string name="weather_condition_description_300" tools:ignore="MissingTranslation">lekka mżawka</string>
     <string name="weather_condition_description_301" tools:ignore="MissingTranslation">mżawka</string>
-    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">duża mżawka</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">duża intensywna mżawka</string>
     <string name="weather_condition_description_310" tools:ignore="MissingTranslation">lekka mżawka</string>
     <string name="weather_condition_description_311" tools:ignore="MissingTranslation">mżawka</string>
     <string name="weather_condition_description_312" tools:ignore="MissingTranslation">duża mżawka</string>
     <string name="weather_condition_description_313" tools:ignore="MissingTranslation">przelotne opady deszczu i przelotne opady mżawki</string>
-    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">duże opady i mżawka</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">ulewny deszcz i mżawka</string>
     <string name="weather_condition_description_500" tools:ignore="MissingTranslation">lekki deszcz</string>
     <string name="weather_condition_description_501" tools:ignore="MissingTranslation">umiarkowane opady</string>
     <string name="weather_condition_description_502" tools:ignore="MissingTranslation">intensywny deszcz</string>
     <string name="weather_condition_description_503" tools:ignore="MissingTranslation">obfite opady deszczu</string>
     <string name="weather_condition_description_504" tools:ignore="MissingTranslation">ekstremalny deszcz</string>
     <string name="weather_condition_description_511" tools:ignore="MissingTranslation">"marznący deszcz "</string>
-    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">lekki deszcz</string>
-    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">ulewa</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">lekkie przelotne opady deszczu</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">przelotny opad deszczu</string>
     <string name="weather_condition_description_522" tools:ignore="MissingTranslation">ulewny deszcz</string>
     <string name="weather_condition_description_531" tools:ignore="MissingTranslation">ulewny deszcz</string>
     <string name="weather_condition_description_600" tools:ignore="MissingTranslation">lekkie opady śniegu</string>
     <string name="weather_condition_description_601" tools:ignore="MissingTranslation">śnieg</string>
     <string name="weather_condition_description_602" tools:ignore="MissingTranslation">obfite opady śniegu</string>
     <string name="weather_condition_description_611" tools:ignore="MissingTranslation">deszcz ze śniegiem</string>
-    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">deszcz ze śniegiem szkwał</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">deszcz ze śniegiem</string>
     <string name="weather_condition_description_615" tools:ignore="MissingTranslation">lekki deszcz z opadami śniegu</string>
     <string name="weather_condition_description_616" tools:ignore="MissingTranslation">śnieg z deszczem</string>
-    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">lekkie przelotne opady śniegu</string>
-    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">śnieżek</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">lekkie opady śniegu</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">przelotne opady śniegu</string>
     <string name="weather_condition_description_622" tools:ignore="MissingTranslation">silne opady śniegu</string>
     <string name="weather_condition_description_711" tools:ignore="MissingTranslation">zadymienie</string>
     <string name="weather_condition_description_721" tools:ignore="MissingTranslation">mgiełka</string>
@@ -393,4 +393,42 @@
 
     <string name="weather_condition_description_701" tools:ignore="MissingTranslation">mgła</string>
     <string name="weather_condition_description_771" tools:ignore="MissingTranslation">nawałnica</string>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">Format daty</string>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm.(rr)</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/rr)</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/rr)</string>
+
+    <string name="pref_language_sq" tools:ignore="MissingTranslation">Albański</string>
+    <string name="pref_language_eu" tools:ignore="MissingTranslation">Baskijski</string>
+    <string name="pref_language_be" tools:ignore="MissingTranslation">Białoruski (Białoruś)</string>
+    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Białoruski (Białoruś latin)</string>
+    <string name="pref_language_ca" tools:ignore="MissingTranslation">Kataloński (Katalonia)</string>
+    <string name="pref_language_cs" tools:ignore="MissingTranslation">Czeski (Czechy)</string>
+    <string name="pref_language_da" tools:ignore="MissingTranslation">"Duński  (Danish)"</string>
+    <string name="pref_language_en" tools:ignore="MissingTranslation">Angielski</string>
+    <string name="pref_language_fi" tools:ignore="MissingTranslation">Fiński (Finnish)</string>
+    <string name="pref_language_fr" tools:ignore="MissingTranslation">Français (Francuski)</string>
+    <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego (Galicyjski)</string>
+    <string name="pref_language_de" tools:ignore="MissingTranslation">Deutsch (Niemiecki)</string>
+    <string name="pref_language_it" tools:ignore="MissingTranslation">Włoski (Włochy)</string>
+    <string name="pref_language_jp" tools:ignore="MissingTranslation">Japoński (Japonia)</string>
+    <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (Polska)</string>
+    <string name="pref_language_ru" tools:ignore="MissingTranslation">Rosyjski (Rosja)</string>
+    <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (Serbski)</string>
+    <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (Słoweński)</string>
+    <string name="pref_language_tr" tools:ignore="MissingTranslation">Turecki (Turcja)</string>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">L</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">N</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
+
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">Rejestrowanie w pliku</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">Nie rejestrowanie w pliku</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">Rejestrowanie w pliku</string>
+
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">siąpiący deszcz</string>
     </resources>
