@@ -375,4 +375,48 @@
     <string name="weather_condition_description_802" tools:ignore="MissingTranslation">lettskyet</string>
     <string name="weather_condition_description_803" tools:ignore="MissingTranslation">delvis overskyet</string>
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">overskyet</string>
-</resources>
+<string name="share_weather_title" tools:ignore="MissingTranslation">Del vær</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Fant ikke kommunikasjonsprogram</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">By: %1$s
+\nTemperatur: %2$s
+\nBeskrivelse: %3$s
+\nVind: %4$s %5$s
+\nSoloppgang: %6$s
+\nSolnedgang: %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Ditt lokale vær</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Merknader for Ditt lokale vær</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Dag</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Vind</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Regn</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Snø</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Lufttrykk</string>
+
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">Datoformat</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/åå)</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/åå)</string>
+
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Friprog-lisenser</string>
+    <string name="pref_language_sq" tools:ignore="MissingTranslation">Albansk</string>
+    <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (Tsjekkisk)</string>
+    <string name="pref_language_da" tools:ignore="MissingTranslation">Dansk</string>
+    <string name="pref_language_en" tools:ignore="MissingTranslation">Engelsk</string>
+    <string name="pref_language_fi" tools:ignore="MissingTranslation">Finsk</string>
+    <string name="pref_language_fr" tools:ignore="MissingTranslation">Fransk</string>
+    <string name="pref_language_gl" tools:ignore="MissingTranslation">Gallisk</string>
+    <string name="pref_language_de" tools:ignore="MissingTranslation">Tysk</string>
+    <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (Italiensk)</string>
+    <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (Japansk)</string>
+    <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (Polsk)</string>
+    <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (Russisk)</string>
+    <string name="pref_language_sr" tools:ignore="MissingTranslation">Serbisk</string>
+    <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovensk</string>
+    <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (Tyrkisk)</string>
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">Logg til fil</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">Ikke logg til fil</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">Logg til fil</string>
+
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
+
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">regnbyge med brutte skyer</string>
+    </resources>
