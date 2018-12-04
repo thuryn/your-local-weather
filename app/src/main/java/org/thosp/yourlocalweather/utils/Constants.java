@@ -30,6 +30,8 @@ public class Constants {
     public static final String LAST_FORECAST_UPDATE_TIME_IN_MS = "last_forecast_update";
     public static final String LAST_LOCATION_UPDATE_TIME_IN_MS = "last_location_update";
     public static final String LAST_WEATHER_UPDATE_TIME_IN_MS = "last_weather_update";
+    public static final String LAST_NOTIFICATION_TIME_IN_MS = "last_weather_update";
+    public static final String LAST_SENSOR_SERVICES_CHECK_TIME_IN_MS = "last_weather_update";
     public static final String CURRENT_LOCATION_ID = "current_location_id";
     public static final String KEY_PREF_OPEN_WEATHER_MAP_API_KEY = "open_weather_map_api_key";
 

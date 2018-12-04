@@ -118,6 +118,7 @@ public class CurrentWeatherService extends AbstractCommonService {
         boolean forceUpdate = false;
         Long locationId = null;
         String updateSource = null;
+        boolean updateWeatherOnly = false;
         if (intent.hasExtra("forceUpdate")) {
             forceUpdate = intent.getBooleanExtra("forceUpdate", false);
         }
@@ -127,7 +128,10 @@ public class CurrentWeatherService extends AbstractCommonService {
         if (intent.hasExtra("updateSource")) {
             updateSource = intent.getStringExtra("updateSource");
         }
-        currentWeatherUpdateMessages.add(new WeatherRequestDataHolder(locationId, updateSource, forceUpdate));
+        if (intent.hasExtra("updateWeatherOnly")) {
+            updateWeatherOnly = intent.getBooleanExtra("updateWeatherOnly", false);
+        }
+        currentWeatherUpdateMessages.add(new WeatherRequestDataHolder(locationId, updateSource, forceUpdate, updateWeatherOnly));
         startCurrentWeatherUpdate(0);
         return ret;
     }
@@ -165,9 +169,9 @@ public class CurrentWeatherService extends AbstractCommonService {
             return;
         }
 
-        final Location currentLocation = locationsDbHelper.getLocationById(updateRequest.getLocationId());
-        appendLog(getBaseContext(), TAG, "currentLocation=" + currentLocation + ", updateSource=" + updateRequest.getUpdateSource());
-        if (currentLocation == null) {
+        Location locationToCheck = locationsDbHelper.getLocationById(updateRequest.getLocationId());
+        appendLog(getBaseContext(), TAG, "currentLocation=" + locationToCheck + ", updateSource=" + updateRequest.getUpdateSource());
+        if (locationToCheck == null) {
             appendLog(getBaseContext(),
                     TAG,
                     "current location is null");
@@ -179,13 +183,13 @@ public class CurrentWeatherService extends AbstractCommonService {
         }
 
         CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
-        CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
+        CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(locationToCheck.getId());
 
         long lastUpdateTimeInMilis = (weatherRecord != null)?weatherRecord.getLastUpdatedTime():0;
         long now = System.currentTimeMillis();
 
         long updatePeriodForLocation;
-        if (currentLocation.getOrderId() == 0) {
+        if (locationToCheck.getOrderId() == 0) {
             String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(this);
             updatePeriodForLocation = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
         } else {
@@ -194,7 +198,7 @@ public class CurrentWeatherService extends AbstractCommonService {
         }
 
         appendLog(this, TAG, "Current weather requested for location.orderId=" +
-                currentLocation.getOrderId() +
+                locationToCheck.getOrderId() +
                 ", updatePeriodForLocation=" +
                 updatePeriodForLocation +
                 ", now=" +
@@ -212,6 +216,13 @@ public class CurrentWeatherService extends AbstractCommonService {
             updateResultInUI(null, ACTION_WEATHER_UPDATE_OK, updateRequest);
             return;
         }
+
+        if (updateRequest.isUpdateWeatherOnly()) {
+            locationsDbHelper.updateLocationSource(locationToCheck.getId(), getString(R.string.location_weather_update_status_update_started));
+            locationToCheck = locationsDbHelper.getLocationById(locationToCheck.getId());
+        }
+
+        final Location currentLocation = locationToCheck;
 
         ConnectionDetector connectionDetector = new ConnectionDetector(this);
         boolean networkAvailableAndConnected = connectionDetector.isNetworkAvailableAndConnected();
@@ -439,7 +450,7 @@ public class CurrentWeatherService extends AbstractCommonService {
         final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
         Location currentLocation = locationsDbHelper.getLocationById(locationId);
         if (currentLocation == null) {
-            appendLog(getBaseContext(), TAG, "showNotification - shutdown");
+            appendLog(getBaseContext(), TAG, "showNotification - current location is null");
             sendMessageToWakeUpService(
                     AppWakeUpManager.FALL_DOWN,
                     AppWakeUpManager.SOURCE_NOTIFICATION
@@ -450,7 +461,7 @@ public class CurrentWeatherService extends AbstractCommonService {
                 currentWeatherDbHelper.getWeather(currentLocation.getId());
 
         if (weatherRecord == null) {
-            appendLog(getBaseContext(), TAG, "showNotification - shutdown");
+            appendLog(getBaseContext(), TAG, "showNotification - current weather record is null");
             sendMessageToWakeUpService(
                     AppWakeUpManager.FALL_DOWN,
                     AppWakeUpManager.SOURCE_NOTIFICATION
@@ -465,10 +476,10 @@ public class CurrentWeatherService extends AbstractCommonService {
                 weatherRecord.getLastUpdatedTime(),
                 currentLocation.getLocale());
 
-        showNotification(temperatureWithUnit, currentLocation.getLocaleAbbrev(), weather);
+        showNotification(temperatureWithUnit, currentLocation, weather);
     }
 
-    private void showNotification(String temperatureWithUnit, String locale, Weather weather) {
+    private void showNotification(String temperatureWithUnit, Location location, Weather weather) {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -484,17 +495,17 @@ public class CurrentWeatherService extends AbstractCommonService {
 
         Intent intent = new Intent(this, MainActivity.class);
         PendingIntent launchIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
+        String cityAndCountry = Utils.getCityAndCountry(this, location.getOrderId());
         Notification notification = new NotificationCompat.Builder(this, "yourLocalWeather")
                 .setContentIntent(launchIntent)
                 .setSmallIcon(R.drawable.small_icon)
                 .setTicker(temperatureWithUnit
                         + "  "
-                        + Utils.getCityAndCountry(this, 0))
+                        + cityAndCountry)
                 .setContentTitle(temperatureWithUnit +
                         "  " +
-                        Utils.getWeatherDescription(this, locale, weather))
-                .setContentText(Utils.getCityAndCountry(this, 0))
+                        Utils.getWeatherDescription(this, location.getLocaleAbbrev(), weather))
+                .setContentText(cityAndCountry)
                 .setVibrate(isVibrateEnabled())
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setAutoCancel(true)

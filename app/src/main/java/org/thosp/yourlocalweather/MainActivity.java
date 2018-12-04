@@ -42,7 +42,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -54,7 +53,7 @@ import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
-import org.thosp.yourlocalweather.service.StartAppAlarmJob;
+import org.thosp.yourlocalweather.service.StartAutoLocationJob;
 import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
@@ -185,9 +184,10 @@ public class MainActivity extends BaseActivity
             }
             if (!scheduled) {
                 appendLog(this, TAG, "scheduleStart at MainActivity");
+                AppPreference.setLastSensorServicesCheckTimeInMs(this, 0);
                 jobScheduler.cancelAll();
-                ComponentName serviceComponent = new ComponentName(this, StartAppAlarmJob.class);
-                JobInfo.Builder builder = new JobInfo.Builder(StartAppAlarmJob.JOB_ID, serviceComponent);
+                ComponentName serviceComponent = new ComponentName(this, StartAutoLocationJob.class);
+                JobInfo.Builder builder = new JobInfo.Builder(StartAutoLocationJob.JOB_ID, serviceComponent);
                 builder.setMinimumLatency(1 * 1000); // wait at least
                 builder.setOverrideDeadline(3 * 1000); // maximum delay
                 jobScheduler.schedule(builder.build());

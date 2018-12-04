@@ -2,11 +2,17 @@ package org.thosp.yourlocalweather;
 
 import android.app.Activity;
 import android.app.Application;
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.preference.PreferenceManager;
 
+import org.thosp.yourlocalweather.service.StartAutoLocationJob;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
@@ -33,6 +39,18 @@ public class YourLocalWeather extends Application {
         LanguageUtil.setLanguage(this, PreferenceUtil.getLanguage(this));
 
         sTheme = PreferenceUtil.getTheme(this);
+
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
+            JobScheduler jobScheduler = getSystemService(JobScheduler.class);
+            appendLog(this, TAG, "scheduleStart at YourLocalWeather");
+            AppPreference.setLastSensorServicesCheckTimeInMs(this, 0);
+            jobScheduler.cancelAll();
+            ComponentName serviceComponent = new ComponentName(this, StartAutoLocationJob.class);
+            JobInfo.Builder builder = new JobInfo.Builder(StartAutoLocationJob.JOB_ID, serviceComponent);
+            builder.setMinimumLatency(1 * 1000); // wait at least
+            builder.setOverrideDeadline(3 * 1000); // maximum delay
+            jobScheduler.schedule(builder.build());
+        }
     }
 
     @Override

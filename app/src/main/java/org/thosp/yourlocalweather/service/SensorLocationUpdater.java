@@ -158,41 +158,32 @@ public class SensorLocationUpdater implements SensorEventListener {
             return;
         }
 
-        try {
-            ConnectionDetector connectionDetector = new ConnectionDetector(context.getApplicationContext());
-            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context.getApplicationContext());
-            org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
-            if (!connectionDetector.isNetworkAvailableAndConnected()) {
-                locationsDbHelper.updateLocationSource(
-                        currentLocationForSensorEvent.getId(),
-                        context.getString(R.string.location_weather_update_status_location_not_reachable));
-                return;
-            }
-
-            locationsDbHelper.updateLocationSource(currentLocationForSensorEvent.getId(),
-                                                   context.getString(R.string.location_weather_update_status_update_started));
-        } catch (Exception e) {
-            appendLog(context, TAG, "Exception occured during database update", e);
+        if (!locationUpdateServiceActions.isEmpty()) {
             return;
         }
 
+        if (updateNetworkLocation()) {
+            clearMeasuredLength();
+        }
+    }
+
+    public void clearMeasuredLength() {
         gravity[0] = 0;
         gravity[1] = 0;
         gravity[2] = 0;
         currentLength = 0;
         currentLengthLowPassed = 0;
-
-        updateNetworkLocation();
     }
 
-    protected void updateNetworkLocation() {
+    protected boolean updateNetworkLocation() {
         startRefreshRotation("updateNetworkLocation", 3);
         if (locationUpdateService != null) {
-            locationUpdateService.updateNetworkLocation(false, null, 0);
+            return locationUpdateService.updateNetworkLocation(false, null, 0);
         } else {
             locationUpdateServiceActions.add(
                     LocationUpdateService.LocationUpdateServiceActions.START_LOCATION_ONLY_UPDATE);
             bindLocationUpdateService();
+            return false;
         }
     }
 
@@ -292,7 +283,13 @@ public class SensorLocationUpdater implements SensorEventListener {
             locationUpdateService = binder.getService();
             LocationUpdateService.LocationUpdateServiceActions bindedServiceAction;
             while ((bindedServiceAction = locationUpdateServiceActions.poll()) != null) {
-                locationUpdateService.updateNetworkLocation(false, null, 0);
+                if (locationUpdateService.updateNetworkLocation(false, null, 0)) {
+                    gravity[0] = 0;
+                    gravity[1] = 0;
+                    gravity[2] = 0;
+                    currentLength = 0;
+                    currentLengthLowPassed = 0;
+                }
             }
         }
 

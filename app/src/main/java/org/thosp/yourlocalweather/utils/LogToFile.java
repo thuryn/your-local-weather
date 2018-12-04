@@ -29,7 +29,7 @@ public class LogToFile {
 
     private static final String TIME_DATE_PATTERN = "yyyy-MM-dd HH:mm:ss.SSS";
 
-    private static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat(TIME_DATE_PATTERN, new Locale("en"));
+    public static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat(TIME_DATE_PATTERN, new Locale("en"));
 
     public static String logFilePathname;
     public static Boolean logToFileEnabled;

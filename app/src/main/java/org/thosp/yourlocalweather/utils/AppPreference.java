@@ -231,6 +231,26 @@ public class AppPreference {
                 Constants.KEY_PREF_HIDE_DESCRIPTION, false);
     }
 
+    public static long getLastNotificationTimeInMs(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getLong(Constants.LAST_NOTIFICATION_TIME_IN_MS, 0);
+    }
+
+    public static void setLastNotificationTimeInMs(Context context, long lastNotificationTimeInMs) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putLong(Constants.LAST_NOTIFICATION_TIME_IN_MS, lastNotificationTimeInMs).apply();
+    }
+
+    public static long getLastSensorServicesCheckTimeInMs(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getLong(Constants.LAST_SENSOR_SERVICES_CHECK_TIME_IN_MS, 0);
+    }
+
+    public static void setLastSensorServicesCheckTimeInMs(Context context, long lastSensorServicesCheckTimeInMs) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putLong(Constants.LAST_SENSOR_SERVICES_CHECK_TIME_IN_MS, lastSensorServicesCheckTimeInMs).apply();
+    }
+
     public static String getInterval(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context)
                                 .getString(Constants.KEY_PREF_INTERVAL_NOTIFICATION, "60");

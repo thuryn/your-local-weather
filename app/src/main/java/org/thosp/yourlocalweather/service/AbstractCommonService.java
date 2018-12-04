@@ -133,11 +133,7 @@ public class AbstractCommonService extends Service {
         updateNetworkLocation(true);
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationById(locationId);
-        if (currentLocation.getLocationSource() != null) {
-            locationsDbHelper.updateLocationSource(currentLocation.getId(), getString(R.string.location_weather_update_status_update_started));
-            currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
-        }
-        sendMessageToCurrentWeatherService(currentLocation, updateSource, wakeUpSource, forceUpdate);
+        sendMessageToCurrentWeatherService(currentLocation, updateSource, wakeUpSource, forceUpdate, true);
         sendMessageToWeatherForecastService(currentLocation.getId(), updateSource, forceUpdate);
     }
 
@@ -222,14 +218,15 @@ public class AbstractCommonService extends Service {
         }
     };
 
-    protected void sendMessageToCurrentWeatherService(Location location, int wakeUpSource) {
-        sendMessageToCurrentWeatherService(location, null, wakeUpSource, false);
+    protected void sendMessageToCurrentWeatherService(Location location, int wakeUpSource, boolean updateWeatherOnly) {
+        sendMessageToCurrentWeatherService(location, null, wakeUpSource, false, updateWeatherOnly);
     }
 
     protected void sendMessageToCurrentWeatherService(Location location,
                                                       String updateSource,
                                                       int wakeUpSource,
-                                                      boolean forceUpdate) {
+                                                      boolean forceUpdate,
+                                                      boolean updateWeatherOnly) {
         sendMessageToWakeUpService(
                 AppWakeUpManager.WAKE_UP,
                 wakeUpSource
@@ -239,7 +236,7 @@ public class AbstractCommonService extends Service {
             Message msg = Message.obtain(
                     null,
                     CurrentWeatherService.START_CURRENT_WEATHER_UPDATE,
-                    new WeatherRequestDataHolder(location.getId(), updateSource, forceUpdate)
+                    new WeatherRequestDataHolder(location.getId(), updateSource, forceUpdate, updateWeatherOnly)
             );
             if (checkIfCurrentWeatherServiceIsNotBound()) {
                 //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
@@ -305,9 +302,18 @@ public class AbstractCommonService extends Service {
     }
 
     protected void sendMessageToWeatherForecastService(long locationId, String updateSource, boolean forceUpdate) {
+        appendLog(this,
+                  TAG,
+                "going to check weather forecast");
         if (!ForecastUtil.shouldUpdateForecast(this, locationId)) {
+            appendLog(this,
+                    TAG,
+                    "weather forecast is recent enough");
             return;
         }
+        appendLog(this,
+                TAG,
+                "sending message to get weather forecast");
         weatherForecastServiceLock.lock();
         try {
             Message msg = Message.obtain(

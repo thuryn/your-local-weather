@@ -160,7 +160,11 @@ public class NetworkLocationProvider extends Service {
     private void sendUpdateToLocationBackends() {
         appendLog(getBaseContext(), TAG, "update():nextScanningAllowedFrom:" + ((nextScanningAllowedFrom != null)?nextScanningAllowedFrom.getTimeInMillis():"null"));
         if(nextScanningAllowedFrom == null) {
-            scanning = wifiManager.startScan();
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
+                scanning = wifiManager.startScan();
+            } else {
+                scanning = true;
+            }
             if (scanning) {
                 nextScanningAllowedFrom = Calendar.getInstance();
                 nextScanningAllowedFrom.add(Calendar.MINUTE, 15);

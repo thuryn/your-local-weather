@@ -150,13 +150,16 @@ public abstract class AbstractAppJob extends JobService {
         }
     };
 
-    protected void sendMessageToCurrentWeatherService(Location location, int wakeUpSource) {
-        sendMessageToCurrentWeatherService(location, null, wakeUpSource);
+    protected void sendMessageToCurrentWeatherService(Location location,
+                                                      int wakeUpSource,
+                                                      boolean updateWeatherOnly) {
+        sendMessageToCurrentWeatherService(location, null, wakeUpSource, updateWeatherOnly);
     }
 
     protected void sendMessageToCurrentWeatherService(Location location,
                                                       String updateSource,
-                                                      int wakeUpSource) {
+                                                      int wakeUpSource,
+                                                      boolean updateWeatherOnly) {
         sendMessageToWakeUpService(
                 AppWakeUpManager.WAKE_UP,
                 wakeUpSource
@@ -166,7 +169,7 @@ public abstract class AbstractAppJob extends JobService {
             Message msg = Message.obtain(
                     null,
                     CurrentWeatherService.START_CURRENT_WEATHER_UPDATE,
-                    new WeatherRequestDataHolder(location.getId(), updateSource)
+                    new WeatherRequestDataHolder(location.getId(), updateSource, updateWeatherOnly)
             );
             if (checkIfCurrentWeatherServiceIsNotBound()) {
                 currentWeatherUnsentMessages.add(msg);

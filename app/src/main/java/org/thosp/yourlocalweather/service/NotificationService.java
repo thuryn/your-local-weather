@@ -50,7 +50,7 @@ public class NotificationService extends AbstractCommonService {
         if (currentLocation == null) {
             return;
         }
-        sendMessageToCurrentWeatherService(currentLocation, "NOTIFICATION", AppWakeUpManager.SOURCE_NOTIFICATION, true);
+        sendMessageToCurrentWeatherService(currentLocation, "NOTIFICATION", AppWakeUpManager.SOURCE_NOTIFICATION, true, true);
     }
 
     private void scheduleNextNotificationAlarm() {

@@ -185,6 +185,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             Intent intentToCheckWeather = new Intent(context, CurrentWeatherService.class);
             intentToCheckWeather.putExtra("locationId", currentLocation.getId());
             intentToCheckWeather.putExtra("forceUpdate", true);
+            intentToCheckWeather.putExtra("updateWeatherOnly", true);
             startServiceWithCheck(context, intentToCheckWeather);
         }
     }

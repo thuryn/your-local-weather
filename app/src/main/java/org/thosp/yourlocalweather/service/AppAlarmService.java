@@ -120,7 +120,7 @@ public class AppAlarmService extends AbstractCommonService {
                 if (location.getOrderId() == 0) {
                     continue;
                 } else {
-                    sendMessageToCurrentWeatherService(location, AppWakeUpManager.SOURCE_CURRENT_WEATHER);
+                    sendMessageToCurrentWeatherService(location, AppWakeUpManager.SOURCE_CURRENT_WEATHER, true);
                     scheduleNextLocationWeatherForecastUpdate(location.getId());
                 }
             }

@@ -6,25 +6,12 @@ import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.location.LocationManager;
-import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkCapabilities;
-import android.net.NetworkRequest;
 import android.os.Build;
 
-import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
-import org.thosp.yourlocalweather.model.Location;
-import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
-import org.thosp.yourlocalweather.service.AppWakeUpManager;
-import org.thosp.yourlocalweather.service.StartAppAlarmJob;
+import org.thosp.yourlocalweather.service.StartAutoLocationJob;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
-import org.thosp.yourlocalweather.utils.Utils;
-
-import java.util.List;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -37,6 +24,7 @@ public class StartupReceiver extends BroadcastReceiver {
         appendLog(context, TAG, "onReceive start");
         removeOldPreferences(context);
         appendLog(context, TAG, "scheduleStart start");
+        AppPreference.setLastSensorServicesCheckTimeInMs(context, 0);
         scheduleStart(context);
         appendLog(context, TAG, "scheduleStart end");
         context.sendBroadcast(new Intent("android.appwidget.action.APPWIDGET_UPDATE"));
@@ -45,8 +33,8 @@ public class StartupReceiver extends BroadcastReceiver {
     private void scheduleStart(Context context) {
         appendLog(context, TAG, "scheduleStart at boot, SDK=" + Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
-            ComponentName serviceComponent = new ComponentName(context, StartAppAlarmJob.class);
-            JobInfo.Builder builder = new JobInfo.Builder(StartAppAlarmJob.JOB_ID, serviceComponent);
+            ComponentName serviceComponent = new ComponentName(context, StartAutoLocationJob.class);
+            JobInfo.Builder builder = new JobInfo.Builder(StartAutoLocationJob.JOB_ID, serviceComponent);
             builder.setMinimumLatency(1 * 1000); // wait at least
             builder.setOverrideDeadline(3 * 1000); // maximum delay
             JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
