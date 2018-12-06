@@ -375,7 +375,7 @@
 
     <!-- Wind directions -->
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Disabled</string>
-    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abbrev N↓, NØ↙, …</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abbrev N↓, NE↙, …</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Degrees from the north</string>
     <string name="wind_direction_north" tools:ignore="MissingTranslation">N↓</string>
     <string name="wind_direction_north_east" tools:ignore="MissingTranslation">NE↙</string>
