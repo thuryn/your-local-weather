@@ -318,7 +318,7 @@
 
     <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">风向样式</string>
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">禁用</string>
-    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">缩写 N, NE, ...</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">缩写 N, NE, …</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">与正北夹角</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">电池优化</string>
     <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">应用运行后台进程以更新位置、天气或通过加速度计追踪位置。因此，应用将要求您关闭电池优化，以运行后台进程。</string>
@@ -365,4 +365,37 @@
     <string name="weather_condition_description_781" tools:ignore="MissingTranslation">龙卷风</string>
     <string name="weather_condition_description_800" tools:ignore="MissingTranslation">晴</string>
     <string name="weather_condition_description_801" tools:ignore="MissingTranslation">少云</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">日</string>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">日期格式</string>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">天天.月月.(年年)</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">月月/天天(/年年)</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">天天/月月(/年年)</string>
+
+    <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (阿尔巴尼亚语)</string>
+    <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (巴斯克语)</string>
+    <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (白俄罗斯语)</string>
+    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (白俄罗斯，拉丁字母)</string>
+    <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (加泰罗尼亚语)</string>
+    <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (捷克语)</string>
+    <string name="pref_language_da" tools:ignore="MissingTranslation">Dansk (丹麦语)</string>
+    <string name="pref_language_en" tools:ignore="MissingTranslation">English (英语)</string>
+    <string name="pref_language_fi" tools:ignore="MissingTranslation">Suomi (芬兰语)</string>
+    <string name="pref_language_fr" tools:ignore="MissingTranslation">Français (法语)</string>
+    <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego (加利西亚语)</string>
+    <string name="pref_language_de" tools:ignore="MissingTranslation">Deutsch (德语)</string>
+    <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (意大利语)</string>
+    <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (日语)</string>
+    <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (波兰语)</string>
+    <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (俄语)</string>
+    <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (塞尔维亚语)</string>
+    <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (斯洛文尼亚语)</string>
+    <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (土耳其语)</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation"></string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation"></string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation"></string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation"></string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation"></string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation"></string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation"></string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation"></string>
     </resources>
