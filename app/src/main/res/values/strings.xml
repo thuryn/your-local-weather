@@ -70,7 +70,7 @@
     <string name="help_page_3_content" tools:ignore="MissingTranslation">This options has influence on the whole app.</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Temperature</b> - You can select temperature unit, <b>Wind</b> - You can select the wind speed unit and <b>Pressure</b> - You can select the unit for pressure. Values are recalculated using these options.</string>
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Hide weather description</b> - the description of current weather is hidden. You can only see current weather by the changing icon.</string>
-    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Update period for location (Location 0)</b> - you can set update period for location 0 - location 0 has the ability to update location according cell, wifi networks and GPS. When you select update <i>By accelerometer</i> option application uses accelerometer to detect movement. When movement is detected application counts the distance. When the limit for distance is reached and the last update occurs at least 15 minutes ago update of location and current weather is performed. When application is not able to get location you can see unknown location label in the widget. When application has got no location state update of location is performed in 5 minutes again. You can select update of location based on time interval also. By option <b>Update period for weather (Location 1,2,3...)</b> - you can set update of weather for the manually discovered locations.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Update period for location (Location 0)</b> - you can set update period for location 0 - location 0 has the ability to update location according to cell-, Wi-Fi networks and GPS. When you select update <i>By accelerometer</i> the app uses that to detect movement. From this, distance is calculated. When the distance limit is reached, and no update has happened in 15 minutes, the location and current weather is updated. When the app can not fetch location, you can see unknown location label in the widget. When the app has no location state, it will try again in 5 minutes. You can also select location update based on time intervals in <b>Update period for weather (Location 1,2,3...)</b> - where you can set weather to update for manually discovered locations.</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">When you check <b>Switch GPS on when necessary</b> option, application tries to find location by cell or wifi networks. When the location could not be find by network services application turns GPS on for a several seconds to get the location.</string>
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Location and address source</b>
 \nYou can select where the application gets the location and the address from.</string>
@@ -191,7 +191,7 @@
 
     <!-- Preference Screen strings -->
     <string name="title_activity_settings" tools:ignore="MissingTranslation">Settings</string>
-    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Open source licenses</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Libre software licenses</string>
     <string name="pref_title_temperature" tools:ignore="MissingTranslation">Temperature</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Wind</string>
     <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Wind direction style</string>
@@ -252,7 +252,7 @@
     <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (Albanian)</string>
     <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (Basque)</string>
     <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (Belarusian)</string>
-    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (Belarusian latin)</string>
+    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (Belarusian, latin script)</string>
     <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (Catalan)</string>
     <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (Czech)</string>
     <string name="pref_language_da" tools:ignore="MissingTranslation">Dansk (Danish)</string>
@@ -375,8 +375,8 @@
 
     <!-- Wind directions -->
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Disabled</string>
-    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abbrev N, NE, ...</string>
-    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Degrees from the North</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abbrev N↓, NØ↙, …</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Degrees from the north</string>
     <string name="wind_direction_north" tools:ignore="MissingTranslation">N↓</string>
     <string name="wind_direction_north_east" tools:ignore="MissingTranslation">NE↙</string>
     <string name="wind_direction_east" tools:ignore="MissingTranslation">E←</string>
