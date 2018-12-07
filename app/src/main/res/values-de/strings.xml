@@ -160,7 +160,7 @@
     <string name="help_page_3_content" tools:ignore="MissingTranslation">Diese Optionen haben Einfluss auf die gesamte App.</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Temperatur</b> - Sie können die Temperatureinheit wählen, <b>Wind</b> - Sie können die Einheit für die Windgeschwindigkeit wählen und <b>Luftdruck</b> - Sie können die Einheit für den Luftdruck festlegen. Die Werte werden nach diesen Vorgaben neu berechnet.</string>
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Wetterbeschreibung ausblenden</b> - die Beschreibung der Wetterbedingungen wird ausgeblendet. Das aktuelle Wetter wird nur als Symbol dargestellt.</string>
-    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Standortaktualisierungsintervall (Standort 0)</b> - Sie können das Aktualisierungsintervall auf Standort 0 festlegen - Standort 0 hat die Fähigkeit den Standort nach Mobilfunk-, WLAN-Netzen und GPS zu aktualisieren. Wenn Sie die Aktualisierung <i>Über Beschleunigungsmesser</i> auswählen, nutzt die Anwendung den Beschleunigungsmesser, um Bewegungen zu ermitteln. Bei einer erkannten Bewegung berechnet die Anwendung die Entfernung. Wenn die Entfernungsobergrenze erreicht ist und die letzte Aktualisierung mindestens 15 Minuten zurückliegt, wird eine Aktualisierung des Standortes und der aktuellen Wetterdaten durchgeführt. Gelingt der Anwendung die Standortbestimmung nicht, wird im Widget \"Unbekannter Standort\" angezeigt. Ist die Standortaktualisierung fehlgeschlagen, wird die Aktualisierung nach 5 Minuten wiederholt. Sie können für die Standortaktualisierung auch ein zeitbasiertes Intervall festlegen. In der Einstellung <b>Wetteraktualisierungsintervall (Standort 1,2,3...)</b> können Sie die Wetterdatenaktualisierung für manuell bestimmte Standorte einstellen.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Standortaktualisierungsintervall (Standort 0)</b> - Sie können das Aktualisierungsintervall für Standort 0 festlegen - Standort 0 hat die Fähigkeit den Standort nach Mobilfunk-, WLAN-Netzen und GPS zu aktualisieren. Wenn Sie die Aktualisierung <i>Über Beschleunigungsmesser</i> auswählen, nutzt die Anwendung den Beschleunigungsmesser, um Bewegungen zu ermitteln. Bei einer erkannten Bewegung berechnet die Anwendung die Entfernung. Wenn die Entfernungsobergrenze erreicht ist und die letzte Aktualisierung mindestens 15 Minuten zurückliegt, wird eine Aktualisierung des Standortes und der aktuellen Wetterdaten durchgeführt. Gelingt der Anwendung die Standortbestimmung nicht, wird im Widget \"Unbekannter Standort\" angezeigt. Ist die Standortaktualisierung fehlgeschlagen, wird die Aktualisierung nach 5 Minuten wiederholt. Sie können für die Standortaktualisierung auch ein zeitbasiertes Intervall festlegen. In der Einstellung <b>Wetteraktualisierungsintervall (Standort 1,2,3...)</b> können Sie die Wetterdatenaktualisierung für manuell bestimmte Standorte einstellen.</string>
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Hilfe</string>
 
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
@@ -340,7 +340,7 @@
     <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Português (Brasilien) (Portugiesisch (Brasilien))</string>
     <string name="label_pressure" tools:ignore="MissingTranslation">Druck</string>
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Deaktiviert</string>
-    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abkürzung N, NE, ....</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abkürzung N, NO, .…</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Grad Abweichung von Norden</string>
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Die aktuelle Wetterbeschreibungssprache und die Adresse ändern sich beim nächsten Update, oder Sie können manuell gezwungen werden.</string>
 
@@ -444,7 +444,7 @@
     <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (Albanisch)</string>
     <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (Baskisch)</string>
     <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (Weißrussisch)</string>
-    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (Weißrussisches Latein)</string>
+    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (Weißrussisch, Latein)</string>
     <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (Katalanisch)</string>
     <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (Tschechisch)</string>
     <string name="pref_language_da" tools:ignore="MissingTranslation">Dansk (Dänisch)</string>
