@@ -47,7 +47,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
     private ScreenOnOffUpdateService screenOnOffUpdateService;
     private SensorLocationUpdateService sensorLocationUpdateService;
     private JobParameters params;
-    int connectedServicesCounter;
+    private int connectedServicesCounter;
 
     @Override
     public boolean onStartJob(JobParameters params) {
@@ -55,10 +55,10 @@ public class StartAutoLocationJob extends AbstractAppJob {
         connectedServicesCounter = 0;
         appendLog(this, TAG, "onStartJob");
         try {
-            Intent intent = new Intent(this, LocationUpdateService.class);
-            bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
-            intent = new Intent(this, ScreenOnOffUpdateService.class);
-            bindService(intent, screenOnOffUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+            Intent intent = new Intent(getApplicationContext(), LocationUpdateService.class);
+            getApplicationContext().bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+            intent = new Intent(getApplicationContext(), ScreenOnOffUpdateService.class);
+            getApplicationContext().bindService(intent, screenOnOffUpdateServiceConnection, Context.BIND_AUTO_CREATE);
         } catch (Exception ie) {
             appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
         }
@@ -68,15 +68,15 @@ public class StartAutoLocationJob extends AbstractAppJob {
     @Override
     public boolean onStopJob(JobParameters params) {
         if (screenOnOffUpdateService != null) {
-            unbindService(screenOnOffUpdateServiceConnection);
+            getApplicationContext().unbindService(screenOnOffUpdateServiceConnection);
         }
         if (locationUpdateService != null) {
-            unbindService(locationUpdateServiceConnection);
+            getApplicationContext().unbindService(locationUpdateServiceConnection);
         }
         appendLog(this, TAG, "unbinding sensorLocationUpdate: " + sensorLocationUpdateServiceConnection);
         if (sensorLocationUpdateServiceConnection !=null) {
             try {
-                unbindService(sensorLocationUpdateServiceConnection);
+                getApplicationContext().unbindService(sensorLocationUpdateServiceConnection);
             } catch (Exception e) {
                 appendLog(this, TAG, e.getMessage(), e);
             }
@@ -95,8 +95,8 @@ public class StartAutoLocationJob extends AbstractAppJob {
 
     private void performUpdateOfLocation() {
         try {
-            Intent intent = new Intent(this, SensorLocationUpdateService.class);
-            bindService(intent, sensorLocationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+            Intent intent = new Intent(getApplicationContext(), SensorLocationUpdateService.class);
+            getApplicationContext().bindService(intent, sensorLocationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
         } catch (Exception ie) {
             appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
         }
@@ -210,11 +210,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
             locationUpdateService = binder.getService();
             appendLog(getBaseContext(), TAG, "got locationUpdateServiceConnection");
             performUpdateOfLocation();
-            new Thread(new Runnable() {
-                public void run() {
-                    serviceConnected(locationUpdateServiceConnection);
-                }
-            }).start();
+            serviceConnected(locationUpdateServiceConnection);
         }
 
         @Override
@@ -295,11 +291,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
                     TAG,
                     "next scheduler time:" + DATE_FORMATTER.format(new Date(nextTimeForLog)));
             reScheduleNextAlarm(JOB_ID, nextAlarmWakeup, StartAutoLocationJob.class);
-            new Thread(new Runnable() {
-                public void run() {
-                    serviceConnected(sensorLocationUpdateServiceConnection);
-                }
-            }).start();
+            serviceConnected(sensorLocationUpdateServiceConnection);
             if (currentWeatherUnsentMessages.isEmpty() && weatherForecastUnsentMessages.isEmpty()) {
                 jobFinished(params, false);
             }

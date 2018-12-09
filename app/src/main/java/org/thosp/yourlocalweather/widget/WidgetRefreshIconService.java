@@ -75,8 +75,19 @@ public class WidgetRefreshIconService extends Service {
     }
 
     @Override
+    public void onDestroy() {
+        getApplication().unregisterReceiver(screenOnReceiver);
+        super.onDestroy();
+    }
+
+    @Override
     public IBinder onBind(Intent intent) {
         return messenger.getBinder();
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        return false;
     }
 
     @Override

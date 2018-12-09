@@ -67,16 +67,16 @@ public class AppAlarmService extends AbstractCommonService {
     @Override
     public void onCreate() {
         super.onCreate();
-        Intent intent = new Intent(this, ScreenOnOffUpdateService.class);
-        bindService(intent, screenOnOffUpdateServiceConnection, Context.BIND_AUTO_CREATE);
-        intent = new Intent(this, SensorLocationUpdateService.class);
-        bindService(intent, sensorLocationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+        Intent intent = new Intent(getApplicationContext(), ScreenOnOffUpdateService.class);
+        getApplicationContext().bindService(intent, screenOnOffUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+        intent = new Intent(getApplicationContext(), SensorLocationUpdateService.class);
+        getApplicationContext().bindService(intent, sensorLocationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
     @Override
     public boolean onUnbind(Intent intent) {
-        unbindService(screenOnOffUpdateServiceConnection);
-        unbindService(sensorLocationUpdateServiceConnection);
+        getApplicationContext().unbindService(screenOnOffUpdateServiceConnection);
+        getApplicationContext().unbindService(sensorLocationUpdateServiceConnection);
         bound = false;
         return super.onUnbind(intent);
     }

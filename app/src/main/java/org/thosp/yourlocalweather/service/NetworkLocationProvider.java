@@ -100,6 +100,11 @@ public class NetworkLocationProvider extends Service {
     }
 
     @Override
+    public boolean onUnbind(Intent intent) {
+        return false;
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
         mTelephonyManager = ((TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE));
@@ -111,6 +116,12 @@ public class NetworkLocationProvider extends Service {
             mWifiLock.acquire();
         }
         registerReceiver(mReceiver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
+    }
+
+    @Override
+    public void onDestroy() {
+        unregisterReceiver(mReceiver);
+        super.onDestroy();
     }
 
     @Override

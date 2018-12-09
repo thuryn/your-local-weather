@@ -53,30 +53,45 @@ public class AbstractCommonService extends Service {
     }
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-        bindServices();
-    }
-
-    @Override
     public boolean onUnbind(Intent intent) {
         unbindServices();
-        return super.onUnbind(intent);
+        appendLog(getBaseContext(), TAG, "onUnbind all services");
+        return false;
     }
 
     protected void updateNetworkLocation(boolean byLastLocationOnly) {
         startRefreshRotation("updateNetworkLocation", 3);
-        if (locationUpdateService != null) {
-            locationUpdateService.updateNetworkLocation(
-                    byLastLocationOnly,
-                    null,
-                    0);
-        } else {
+        if (checkIfLocationUpdateServiceIsNotBound()) {
             locationUpdateServiceActions.add(
                     new LocationUpdateServiceActionsWithParams(
                             LocationUpdateService.LocationUpdateServiceActions.START_LOCATION_ONLY_UPDATE,
                             byLastLocationOnly));
+            return;
+        } else {
+            locationUpdateService.updateNetworkLocation(
+                    byLastLocationOnly,
+                    null,
+                    0);
         }
+    }
+
+    private boolean checkIfLocationUpdateServiceIsNotBound() {
+        if (locationUpdateService != null) {
+            return false;
+        }
+        try {
+            bindLocationUpdateService();
+        } catch (Exception ie) {
+            appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
+        }
+        return (locationUpdateService == null);
+    }
+
+    private void bindLocationUpdateService() {
+        getApplicationContext().bindService(
+            new Intent(getApplicationContext(), LocationUpdateService.class),
+                locationUpdateServiceConnection,
+                Context.BIND_AUTO_CREATE);
     }
 
     protected void updateWidgets(String updateSource) {
@@ -178,24 +193,33 @@ public class AbstractCommonService extends Service {
     }
 
     private void bindServices() {
-        bindService(
-                new Intent(this, WidgetRefreshIconService.class),
+        getApplicationContext().bindService(
+                new Intent(getApplicationContext(), WidgetRefreshIconService.class),
                 widgetRefreshIconConnection,
                 Context.BIND_AUTO_CREATE);
-        Intent intent = new Intent(this, LocationUpdateService.class);
-        bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
-    private void unbindServices() {
+    @Override
+    public void unbindService(ServiceConnection conn) {
+        try {
+            super.unbindService(conn);
+        } catch (Exception e) {
+            appendLog(this, "TAG", e.getMessage(), e);
+        }
+    }
+
+    protected void unbindServices() {
+        appendLog(getBaseContext(), TAG, "unbindServices start");
         if (widgetRefreshIconService != null) {
-            unbindService(widgetRefreshIconConnection);
+            getApplicationContext().unbindService(widgetRefreshIconConnection);
         }
         if (locationUpdateService != null) {
-            unbindService(locationUpdateServiceConnection);
+            getApplicationContext().unbindService(locationUpdateServiceConnection);
         }
         unbindCurrentWeatherService();
         unbindWeatherForecastService();
         unbindwakeUpService();
+        appendLog(getBaseContext(), TAG, "unbindServices end");
     }
 
 
@@ -265,8 +289,8 @@ public class AbstractCommonService extends Service {
     }
 
     private void bindCurrentWeatherService() {
-        bindService(
-                new Intent(this, CurrentWeatherService.class),
+        getApplicationContext().bindService(
+                new Intent(getApplicationContext(), CurrentWeatherService.class),
                 currentWeatherServiceConnection,
                 Context.BIND_AUTO_CREATE);
     }
@@ -275,7 +299,7 @@ public class AbstractCommonService extends Service {
         if (currentWeatherService == null) {
             return;
         }
-        unbindService(currentWeatherServiceConnection);
+        getApplicationContext().unbindService(currentWeatherServiceConnection);
     }
 
     private ServiceConnection currentWeatherServiceConnection = new ServiceConnection() {
@@ -348,8 +372,8 @@ public class AbstractCommonService extends Service {
     }
 
     private void bindWeatherForecastService() {
-        bindService(
-                new Intent(this, ForecastWeatherService.class),
+        getApplicationContext().bindService(
+                new Intent(getApplicationContext(), ForecastWeatherService.class),
                 weatherForecastServiceConnection,
                 Context.BIND_AUTO_CREATE);
     }
@@ -358,7 +382,7 @@ public class AbstractCommonService extends Service {
         if (weatherForecastService == null) {
             return;
         }
-        unbindService(weatherForecastServiceConnection);
+        getApplicationContext().unbindService(weatherForecastServiceConnection);
     }
 
     private ServiceConnection weatherForecastServiceConnection = new ServiceConnection() {
@@ -414,8 +438,12 @@ public class AbstractCommonService extends Service {
     }
 
     private void bindWakeUpService() {
-        bindService(
-                new Intent(this, AppWakeUpManager.class),
+        if (wakeUpService != null) {
+            return;
+        }
+        appendLog(getBaseContext(), getClass().getName(), "bindWakeUpService " + wakeUpService);
+        getApplicationContext().bindService(
+                new Intent(getApplicationContext(), AppWakeUpManager.class),
                 wakeUpServiceConnection,
                 Context.BIND_AUTO_CREATE);
     }
@@ -424,7 +452,7 @@ public class AbstractCommonService extends Service {
         if (wakeUpService == null) {
             return;
         }
-        unbindService(wakeUpServiceConnection);
+        getApplicationContext().unbindService(wakeUpServiceConnection);
     }
 
     private ServiceConnection wakeUpServiceConnection = new ServiceConnection() {

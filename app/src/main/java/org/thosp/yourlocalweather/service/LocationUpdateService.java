@@ -73,8 +73,8 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
     @Override
     public void onCreate() {
         super.onCreate();
-        Intent intent = new Intent(this, NetworkLocationProvider.class);
-        bindService(intent, networkLocationProviderConnection, Context.BIND_AUTO_CREATE);
+        Intent intent = new Intent(getApplicationContext(), NetworkLocationProvider.class);
+        getApplicationContext().bindService(intent, networkLocationProviderConnection, Context.BIND_AUTO_CREATE);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
     }
 
@@ -86,9 +86,9 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
     @Override
     public boolean onUnbind(Intent intent) {
         if (networkLocationProvider != null) {
-            unbindService(networkLocationProviderConnection);
+            getApplicationContext().unbindService(networkLocationProviderConnection);
         }
-        return super.onUnbind(intent);
+        return false;
     }
 
     @Override

@@ -229,8 +229,8 @@ public class SensorLocationUpdater implements SensorEventListener {
     }
 
     private void bindWidgetRefreshIconService() {
-        context.bindService(
-                new Intent(context, WidgetRefreshIconService.class),
+        context.getApplicationContext().bindService(
+                new Intent(context.getApplicationContext(), WidgetRefreshIconService.class),
                 widgetRefreshIconConnection,
                 Context.BIND_AUTO_CREATE);
     }
@@ -239,7 +239,7 @@ public class SensorLocationUpdater implements SensorEventListener {
         if (widgetRefreshIconService == null) {
             return;
         }
-        context.unbindService(widgetRefreshIconConnection);
+        context.getApplicationContext().unbindService(widgetRefreshIconConnection);
     }
 
     private ServiceConnection widgetRefreshIconConnection = new ServiceConnection() {
@@ -262,15 +262,15 @@ public class SensorLocationUpdater implements SensorEventListener {
     };
 
     private void bindLocationUpdateService() {
-        Intent intent = new Intent(context, LocationUpdateService.class);
-        context.bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+        Intent intent = new Intent(context.getApplicationContext(), LocationUpdateService.class);
+        context.getApplicationContext().bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
     private void unbindLocationUpdateService() {
         if (locationUpdateService == null) {
             return;
         }
-        context.unbindService(locationUpdateServiceConnection);
+        context.getApplicationContext().unbindService(locationUpdateServiceConnection);
     }
 
     private ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {

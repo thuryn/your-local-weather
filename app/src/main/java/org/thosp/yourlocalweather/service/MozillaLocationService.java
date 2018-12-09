@@ -294,8 +294,8 @@ public class MozillaLocationService {
     }
 
     private void bindLocationUpdateService() {
-        Intent intent = new Intent(context, LocationUpdateService.class);
-        context.bindService(intent, instance.locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+        Intent intent = new Intent(context.getApplicationContext(), LocationUpdateService.class);
+        context.getApplicationContext().bindService(intent, instance.locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
     private void unbindLocationUpdateService() {

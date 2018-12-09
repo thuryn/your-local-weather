@@ -82,15 +82,15 @@ public class NetworkConnectionReceiver extends ConnectivityManager.NetworkCallba
     }
 
     private void bindScreenOnOffService() {
-        Intent intent = new Intent(context, ScreenOnOffUpdateService.class);
-        context.bindService(intent, screenOnOffUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+        Intent intent = new Intent(context.getApplicationContext(), ScreenOnOffUpdateService.class);
+        context.getApplicationContext().bindService(intent, screenOnOffUpdateServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
     private void unbindScreenOnOffService() {
         if (screenOnOffUpdateService == null) {
             return;
         }
-        context.unbindService(screenOnOffUpdateServiceConnection);
+        context.getApplicationContext().unbindService(screenOnOffUpdateServiceConnection);
     }
 
     private ServiceConnection screenOnOffUpdateServiceConnection = new ServiceConnection() {

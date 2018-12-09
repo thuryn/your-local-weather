@@ -214,6 +214,7 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onPause() {
         super.onPause();
+        unbindCurrentWeatherService();
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
         }
@@ -224,7 +225,6 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unbindCurrentWeatherService();
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
             mProgressDialog = null;
@@ -1065,8 +1065,8 @@ public class MainActivity extends BaseActivity
     }
 
     private void bindCurrentWeatherService() {
-        bindService(
-                new Intent(this, CurrentWeatherService.class),
+        getApplicationContext().bindService(
+                new Intent(getApplicationContext(), CurrentWeatherService.class),
                 currentWeatherServiceConnection,
                 Context.BIND_AUTO_CREATE);
     }
@@ -1075,7 +1075,7 @@ public class MainActivity extends BaseActivity
         if (currentWeatherService == null) {
             return;
         }
-        unbindService(currentWeatherServiceConnection);
+        getApplicationContext().unbindService(currentWeatherServiceConnection);
     }
 
     private ServiceConnection currentWeatherServiceConnection = new ServiceConnection() {

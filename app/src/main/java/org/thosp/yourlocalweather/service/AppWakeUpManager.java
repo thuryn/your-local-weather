@@ -67,6 +67,11 @@ public class AppWakeUpManager extends Service {
         return messenger.getBinder();
     }
 
+    @Override
+    public boolean onUnbind(Intent intent) {
+        return false;
+    }
+
     private void startWakeUp(Integer wakeUpSource) {
         wakeUpSourcesLock.lock();
         try {

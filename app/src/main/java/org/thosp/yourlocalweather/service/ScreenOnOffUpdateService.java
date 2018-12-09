@@ -41,7 +41,9 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     private static final long SCREEN_ON_RETRY_NEXT = 1000;
 
     private Lock receiversLock = new ReentrantLock();
-    private boolean receiversRegistered;
+    private volatile boolean receiversRegistered;
+    private NetworkConnectivityReceiver networkConnectivityReceiver;
+    private NetworkConnectionReceiver networkConnectionReceiver;
 
     private volatile int screenOnRetryCounter;
 
@@ -179,6 +181,14 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         try {
             getApplication().unregisterReceiver(screenOnReceiver);
             getApplication().unregisterReceiver(screenOffReceiver);
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
+                getApplicationContext().unregisterReceiver(networkConnectivityReceiver);
+            } else {
+                ConnectivityManager connectivityManager
+                        = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                connectivityManager.unregisterNetworkCallback(networkConnectionReceiver);
+            }
         } catch (Exception e) {
             appendLog(getBaseContext(), TAG, "Error unregistering screen receivers - receivers was not registered");
         }
@@ -187,6 +197,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     public void startSensorBasedUpdates() {
         receiversLock.lock();
         try {
+            appendLog(getBaseContext(), TAG, "Check if receivers is going to be started:  receiversRegistered=" + receiversRegistered);
             if (receiversRegistered) {
                 return;
             }
@@ -209,14 +220,15 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
             appendLog(getBaseContext(), TAG, "Start connectivity receiver with handler");
+            networkConnectivityReceiver = new NetworkConnectivityReceiver();
             IntentFilter filterNetworkConnectivity = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-            getApplicationContext().registerReceiver(new NetworkConnectivityReceiver(), filterNetworkConnectivity);
+            getApplicationContext().registerReceiver(networkConnectivityReceiver, filterNetworkConnectivity);
         } else {
             appendLog(getBaseContext(), TAG, "Start connectivity receiver with callback");
             ConnectivityManager connectivityManager
                     = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-
-            connectivityManager.registerDefaultNetworkCallback(new NetworkConnectionReceiver(this));
+            networkConnectionReceiver = new NetworkConnectionReceiver(this);
+            connectivityManager.registerDefaultNetworkCallback(networkConnectionReceiver);
         }
     }
 

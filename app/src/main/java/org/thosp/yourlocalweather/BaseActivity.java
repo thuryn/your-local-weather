@@ -265,8 +265,8 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     private void bindWeatherForecastService() {
-        bindService(
-                new Intent(this, ForecastWeatherService.class),
+        getApplicationContext().bindService(
+                new Intent(getApplicationContext(), ForecastWeatherService.class),
                 weatherForecastServiceConnection,
                 Context.BIND_AUTO_CREATE);
     }
@@ -275,7 +275,7 @@ public class BaseActivity extends AppCompatActivity {
         if (weatherForecastService == null) {
             return;
         }
-        unbindService(weatherForecastServiceConnection);
+        getApplicationContext().unbindService(weatherForecastServiceConnection);
     }
 
     private ServiceConnection weatherForecastServiceConnection = new ServiceConnection() {

@@ -41,6 +41,11 @@ public abstract class AbstractAppJob extends JobService {
     private Lock wakeUpServiceLock = new ReentrantLock();
     private Queue<Message> wakeUpUnsentMessages = new LinkedList<>();
 
+    @Override
+    public boolean onUnbind(Intent intent) {
+        return false;
+    }
+
     protected void reScheduleNextAlarm(int jobId, String updatePeriodStr, Class serviceClass) {
         long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updatePeriodStr);
         reScheduleNextAlarm(jobId, updateAutoPeriodMills, serviceClass);
@@ -113,8 +118,8 @@ public abstract class AbstractAppJob extends JobService {
     }
 
     private void bindWeatherForecastService() {
-        bindService(
-                new Intent(this, ForecastWeatherService.class),
+        getApplicationContext().bindService(
+                new Intent(getApplicationContext(), ForecastWeatherService.class),
                 weatherForecastServiceConnection,
                 Context.BIND_AUTO_CREATE);
     }
@@ -123,7 +128,7 @@ public abstract class AbstractAppJob extends JobService {
         if (weatherForecastService == null) {
             return;
         }
-        unbindService(weatherForecastServiceConnection);
+        getApplicationContext().unbindService(weatherForecastServiceConnection);
     }
 
     private ServiceConnection weatherForecastServiceConnection = new ServiceConnection() {
@@ -139,11 +144,7 @@ public abstract class AbstractAppJob extends JobService {
             } finally {
                 weatherForecastServiceLock.unlock();
             }
-            new Thread(new Runnable() {
-                public void run() {
-                    serviceConnected(currentWeatherServiceConnection);
-                }
-            }).start();
+            serviceConnected(currentWeatherServiceConnection);
         }
         public void onServiceDisconnected(ComponentName className) {
             weatherForecastService = null;
@@ -176,11 +177,7 @@ public abstract class AbstractAppJob extends JobService {
                 return;
             }
             currentWeatherService.send(msg);
-            new Thread(new Runnable() {
-                public void run() {
-                    serviceConnected(currentWeatherServiceConnection);
-                }
-            }).start();
+            serviceConnected(currentWeatherServiceConnection);
         } catch (RemoteException e) {
             appendLog(getBaseContext(), TAG, e.getMessage(), e);
         } finally {
@@ -201,8 +198,9 @@ public abstract class AbstractAppJob extends JobService {
     }
 
     private void bindCurrentWeatherService() {
-        bindService(
-                new Intent(this, CurrentWeatherService.class),
+        appendLog(getBaseContext(), getClass().getSimpleName(), "bind current weather service:" + this);
+        getApplicationContext().bindService(
+                new Intent(getApplicationContext(), CurrentWeatherService.class),
                 currentWeatherServiceConnection,
                 Context.BIND_AUTO_CREATE);
     }
@@ -211,7 +209,7 @@ public abstract class AbstractAppJob extends JobService {
         if (currentWeatherService == null) {
             return;
         }
-        unbindService(currentWeatherServiceConnection);
+        getApplicationContext().unbindService(currentWeatherServiceConnection);
     }
 
     private ServiceConnection currentWeatherServiceConnection = new ServiceConnection() {
@@ -227,11 +225,7 @@ public abstract class AbstractAppJob extends JobService {
             } finally {
                 currentWeatherServiceLock.unlock();
             }
-            new Thread(new Runnable() {
-                public void run() {
-                    serviceConnected(currentWeatherServiceConnection);
-                }
-            }).start();
+            serviceConnected(currentWeatherServiceConnection);
         }
         public void onServiceDisconnected(ComponentName className) {
             currentWeatherService = null;
@@ -274,8 +268,9 @@ public abstract class AbstractAppJob extends JobService {
     }
 
     private void bindWakeUpService() {
-        bindService(
-                new Intent(this, AppWakeUpManager.class),
+        appendLog(getBaseContext(), getClass().getSimpleName(), "bind wakeup service:" + this);
+        getApplicationContext().bindService(
+                new Intent(getApplicationContext(), AppWakeUpManager.class),
                 wakeUpServiceConnection,
                 Context.BIND_AUTO_CREATE);
     }
@@ -284,7 +279,7 @@ public abstract class AbstractAppJob extends JobService {
         if (wakeUpService == null) {
             return;
         }
-        unbindService(wakeUpServiceConnection);
+        getApplicationContext().unbindService(wakeUpServiceConnection);
     }
 
     private ServiceConnection wakeUpServiceConnection = new ServiceConnection() {
@@ -300,11 +295,7 @@ public abstract class AbstractAppJob extends JobService {
             } finally {
                 wakeUpServiceLock.unlock();
             }
-            new Thread(new Runnable() {
-                public void run() {
-                    serviceConnected(currentWeatherServiceConnection);
-                }
-            }).start();
+            serviceConnected(currentWeatherServiceConnection);
         }
         public void onServiceDisconnected(ComponentName className) {
             wakeUpService = null;

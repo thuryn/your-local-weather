@@ -79,6 +79,11 @@ public class ForecastWeatherService  extends AbstractCommonService {
     };
 
     @Override
+    public boolean onUnbind(Intent intent) {
+        return false;
+    }
+
+    @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
         appendLog(getBaseContext(), TAG, "onStartCommand:" + intent);
