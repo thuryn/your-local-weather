@@ -419,20 +419,20 @@
     <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
 
     <string name="weather_condition_description_531" tools:ignore="MissingTranslation">regnbyge med brutte skyer</string>
-    <string name="date_style_dots" tools:ignore="MissingTranslation"></string>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm(åå)</string>
     <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (Baskisk)</string>
-    <string name="pref_language_be" tools:ignore="MissingTranslation"></string>
-    <string name="pref_language_be_latn" tools:ignore="MissingTranslation"></string>
-    <string name="pref_language_ca" tools:ignore="MissingTranslation"></string>
-    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation"></string>
-    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation"></string>
-    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation"></string>
-    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation"></string>
-    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation"></string>
-    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation"></string>
-    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation"></string>
-    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation"></string>
-    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation"></string>
-    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation"></string>
+    <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (Hviterussisk)</string>
+    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (Hviterussisk, latinsk skript)</string>
+    <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (Katalansk)</string>
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation"/>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation"/>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation"/>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation"/>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation"/>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation"/>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation"/>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation"/>
 
     </resources>
