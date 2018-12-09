@@ -10,6 +10,7 @@ import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
@@ -134,6 +135,11 @@ public class CurrentWeatherService extends AbstractCommonService {
         currentWeatherUpdateMessages.add(new WeatherRequestDataHolder(locationId, updateSource, forceUpdate, updateWeatherOnly));
         startCurrentWeatherUpdate(0);
         return ret;
+    }
+
+    @Override
+    public boolean onUnbind(Intent intent) {
+        return false;
     }
 
     public void startCurrentWeatherUpdate(long incommingMessageTimestamp) {
@@ -476,21 +482,30 @@ public class CurrentWeatherService extends AbstractCommonService {
                 weatherRecord.getLastUpdatedTime(),
                 currentLocation.getLocale());
 
-        showNotification(temperatureWithUnit, currentLocation, weather);
+        showNotification(temperatureWithUnit, currentLocation, weatherRecord);
     }
 
-    private void showNotification(String temperatureWithUnit, Location location, Weather weather) {
+    private void showNotification(String temperatureWithUnit, Location location, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
         NotificationManager notificationManager =
                 (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel("yourLocalWeather",
-                    getString(R.string.notification_channel_name),
-                    NotificationManager.IMPORTANCE_LOW);
-            channel.setDescription(getString(R.string.notification_channel_description));
-            channel.setVibrationPattern(isVibrateEnabled());
-            channel.enableVibration(AppPreference.isVibrateEnabled(this));
-            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-            notificationManager.createNotificationChannel(channel);
+            NotificationChannel notificationChannel = notificationManager.getNotificationChannel("yourLocalWeather");
+            boolean createNotification = notificationChannel == null;
+            if (!createNotification && (notificationChannel.getImportance() == NotificationManager.IMPORTANCE_LOW)) {
+                notificationManager.deleteNotificationChannel("yourLocalWeather");
+                createNotification = true;
+            }
+            if (createNotification) {
+                NotificationChannel channel = new NotificationChannel("yourLocalWeather",
+                        getString(R.string.notification_channel_name),
+                        NotificationManager.IMPORTANCE_DEFAULT);
+                channel.setDescription(getString(R.string.notification_channel_description));
+                channel.setVibrationPattern(isVibrateEnabled());
+                channel.enableVibration(AppPreference.isVibrateEnabled(this));
+                channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+                channel.setSound(null, null);
+                notificationManager.createNotificationChannel(channel);
+            }
         }
 
         Intent intent = new Intent(this, MainActivity.class);
@@ -504,11 +519,12 @@ public class CurrentWeatherService extends AbstractCommonService {
                         + cityAndCountry)
                 .setContentTitle(temperatureWithUnit +
                         "  " +
-                        Utils.getWeatherDescription(this, location.getLocaleAbbrev(), weather))
+                        Utils.getWeatherDescription(this, location.getLocaleAbbrev(), weatherRecord.getWeather()))
                 .setContentText(cityAndCountry)
                 .setVibrate(isVibrateEnabled())
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setAutoCancel(true)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), Utils.getWeatherResourceIcon(weatherRecord)))
                 .build();
         notificationManager.notify(0, notification);
         appendLog(getBaseContext(), TAG, "showNotification - shutdown");
