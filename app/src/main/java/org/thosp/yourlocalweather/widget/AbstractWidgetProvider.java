@@ -52,11 +52,11 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         Long locationId = widgetSettingsDbHelper.getParamLong(currentWidget, "locationId");
         if (locationId == null) {
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
-            if (!currentLocation.isEnabled()) {
-                currentLocation = locationsDbHelper.getLocationByOrderId(1);
-            }
         } else {
             currentLocation = locationsDbHelper.getLocationById(locationId);
+        }
+        if (!currentLocation.isEnabled()) {
+            currentLocation = locationsDbHelper.getLocationByOrderId(1);
         }
         appendLog(context, TAG, "onEnabled:end");
     }
@@ -252,8 +252,13 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         currentLocation = locationsDbHelper.getLocationByOrderId(newOrderId);
         if (currentLocation == null) {
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
+            if (!currentLocation.isEnabled()) {
+                currentLocation = locationsDbHelper.getLocationByOrderId(1);
+            }
         }
-        widgetSettingsDbHelper.saveParamLong(widgetId, "locationId", currentLocation.getId());
+        if (currentLocation != null) {
+            widgetSettingsDbHelper.saveParamLong(widgetId, "locationId", currentLocation.getId());
+        }
     }
 
     protected void startServiceWithCheck(Context context, Intent intent) {
