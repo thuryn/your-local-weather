@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:defaultValue="nowakeup"
+        android:entries="@array/wake_up_strategy_entries"
+        android:entryValues="@array/wake_up_strategy_values"
+        android:key="wake.up.strategy"
+        android:summary="@string/wake_up_strategy_summary"
+        android:title="@string/wake_up_strategy_title"/>
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="location_gps_enabled"
+        android:title="@string/update_location_gps_enabled"/>
+    <PreferenceCategory
+        android:title="@string/db_header"
+        android:key="db_header">
+
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="location.cache.enabled"
+            android:summaryOff="@string/location_cache_enable_off"
+            android:summaryOn="@string/location_cache_enable_on"
+            android:title="@string/location_cache_enable_label" />
+        <ListPreference
+            android:defaultValue="720"
+            android:entries="@array/location_cache_lasting_entries"
+            android:entryValues="@array/location_cache_lasting_values"
+            android:key="location.cache.lasting"
+            android:summary="@string/location_cache_lasting_summary"
+            android:title="@string/location_cache_lasting_title"/>
+        <Preference android:title="@string/clear_cache_button"
+            android:key="clear_cache_button" />
+        <Preference android:title="@string/db_info"
+            android:key="db_info" />
+    </PreferenceCategory>
+</PreferenceScreen>

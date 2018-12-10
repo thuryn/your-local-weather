@@ -198,7 +198,7 @@
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Rain and snow</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Pressure</string>
     <string name="preference_hide_desc" tools:ignore="MissingTranslation">Hide weather description</string>
-    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Notifications</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Notification settings</string>
     <string name="pref_title_notification" tools:ignore="MissingTranslation">Enable Notifications</string>
     <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">Refresh Interval</string>
     <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Location Update Setting</string>
@@ -229,6 +229,8 @@
     <string name="theme_transparent" tools:ignore="MissingTranslation">Transparent</string>
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Display</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Update location and weather</string>
+    <string name="preference_title_category_units" tools:ignore="MissingTranslation">Unit settings</string>
+    <string name="preference_title_power_save" tools:ignore="MissingTranslation">Power save options</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">System settings</string>
     <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API key</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Built-in</string>

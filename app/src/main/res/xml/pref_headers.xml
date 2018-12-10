@@ -4,6 +4,18 @@
         android:fragment="org.thosp.yourlocalweather.SettingsActivity$GeneralPreferenceFragment"
         android:title="@string/preference_title_activity_general"/>
     <header
+        android:fragment="org.thosp.yourlocalweather.SettingsActivity$UnitsPreferenceFragment"
+        android:title="@string/preference_title_category_units"/>
+    <header
+        android:fragment="org.thosp.yourlocalweather.SettingsActivity$UpdatesPreferenceFragment"
+        android:title="@string/preference_title_category_location_weather"/>
+    <header
+        android:fragment="org.thosp.yourlocalweather.SettingsActivity$NotificationPreferenceFragment"
+        android:title="@string/pref_title_category_notification"/>
+    <header
+        android:fragment="org.thosp.yourlocalweather.SettingsActivity$PowerSavePreferenceFragment"
+        android:title="@string/preference_title_power_save"/>
+    <header
         android:fragment="org.thosp.yourlocalweather.SettingsActivity$WidgetPreferenceFragment"
         android:title="@string/preference_title_activity_widget"/>
     <header

@@ -85,7 +85,7 @@
     <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Licence Open source</string>
     <string name="pref_title_temperature">Teplota</string>
     <string name="preference_hide_desc">Skrýt popis počasí</string>
-    <string name="pref_title_category_notification">Upozornění</string>
+    <string name="pref_title_category_notification">Nastavení upozornění</string>
     <string name="pref_title_notification">Povolit upozornění</string>
     <string name="pref_title_notification_refresh_interval">Interval obnovení</string>
     <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Nastavení aktualizace polohy</string>
@@ -180,6 +180,8 @@
 <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Displej</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Aktualizace polohy a počasí</string>
+    <string name="preference_title_category_units" tools:ignore="MissingTranslation">Nastavení jednotek</string>
+    <string name="preference_title_power_save" tools:ignore="MissingTranslation">Nastavení optimalizace spotřeby</string>
     <string name="pref_title_language" tools:ignore="MissingTranslation">Jazyk</string>
     <string name="pref_language_default" tools:ignore="MissingTranslation">Dle systému</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Místní MLS a Nominatim (doporučené)</string>

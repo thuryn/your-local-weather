@@ -100,18 +100,13 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     }
 
     @Override
-    public boolean hasHeaders() {
-        return super.hasHeaders();
-    }
-
-    @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(LanguageUtil.setLanguage(base, PreferenceUtil.getLanguage(base)));
     }
 
     private void setupActionBar() {
         getLayoutInflater().inflate(R.layout.activity_settings, (ViewGroup)findViewById(android.R.id.content));
-        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -122,6 +117,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     protected boolean isValidFragment(String fragmentName) {
         return PreferenceFragment.class.getName().equals(fragmentName)
                 || GeneralPreferenceFragment.class.getName().equals(fragmentName)
+                || UnitsPreferenceFragment.class.getName().equals(fragmentName)
+                || UpdatesPreferenceFragment.class.getName().equals(fragmentName)
+                || NotificationPreferenceFragment.class.getName().equals(fragmentName)
+                || PowerSavePreferenceFragment.class.getName().equals(fragmentName)
                 || DebugOptionsPreferenceFragment.class.getName().equals(fragmentName)
                 || WidgetPreferenceFragment.class.getName().equals(fragmentName)
                 || AboutPreferenceFragment.class.getName().equals(fragmentName);
@@ -131,10 +130,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
+                onBackPressed();
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -142,23 +140,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             SharedPreferences.OnSharedPreferenceChangeListener {
 
         private final String[] SUMMARIES_TO_UPDATE = {
-                Constants.KEY_PREF_DATE_STYLE,
-                Constants.KEY_PREF_TIME_STYLE,
-                Constants.KEY_PREF_TEMPERATURE_TYPE,
-                Constants.KEY_PREF_TEMPERATURE_UNITS,
-                Constants.KEY_PREF_WIND_UNITS,
-                Constants.KEY_PREF_WIND_DIRECTION,
-                Constants.KEY_PREF_RAIN_SNOW_UNITS,
-                Constants.KEY_PREF_PRESSURE_UNITS,
                 Constants.KEY_PREF_HIDE_DESCRIPTION,
-                Constants.KEY_PREF_INTERVAL_NOTIFICATION,
                 Constants.PREF_LANGUAGE,
                 Constants.PREF_THEME,
                 Constants.KEY_PREF_WEATHER_ICON_SET,
-                Constants.KEY_PREF_LOCATION_GPS_ENABLED,
-                Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE,
-                Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD,
-                Constants.KEY_PREF_LOCATION_UPDATE_PERIOD,
                 Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY
         };
 
@@ -167,66 +152,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_general);
 
-            final SwitchPreference notificationSwitch = (SwitchPreference) findPreference(
-                    Constants.KEY_PREF_IS_NOTIFICATION_ENABLED);
-            notificationSwitch.setOnPreferenceChangeListener(notificationListener);
-
-            initLocationCache();
-
-            SensorManager senSensorManager  = (SensorManager) getActivity()
-                    .getSystemService(Context.SENSOR_SERVICE);
-            Sensor senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-            boolean deviceHasAccelerometer = senSensorManager.registerListener(
-                    sensorListener,
-                    senAccelerometer,
-                    SensorManager.SENSOR_DELAY_FASTEST);
-            senSensorManager.unregisterListener(sensorListener);
-
-            Preference updateWidgetUpdatePref = findPreference(Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD);
-            ListPreference updateListPref = (ListPreference) updateWidgetUpdatePref;
-            int accIndex = updateListPref.findIndexOfValue("0");
-
-            if (!deviceHasAccelerometer) {
-                CharSequence[] entries = updateListPref.getEntries();
-                CharSequence[] newEntries = new CharSequence[entries.length - 1];
-                int i = 0;
-                int j = 0;
-                for (CharSequence entry : entries) {
-                    if (i != accIndex) {
-                        newEntries[j] = entries[i];
-                        j++;
-                    }
-                    i++;
-                }
-                updateListPref.setEntries(newEntries);
-                if (updateListPref.getValue() == null) {
-                    updateListPref.setValueIndex(updateListPref.findIndexOfValue("60") - 1);
-                }
-            } else if (updateListPref.getValue() == null) {
-                updateListPref.setValueIndex(accIndex);
-            }
-            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getActivity());
-            List<Location> availableLocations = locationsDbHelper.getAllRows();
-            boolean oneNoautoLocationAvailable = false;
-            for (Location location: availableLocations) {
-                if (location.getOrderId() != 0) {
-                    oneNoautoLocationAvailable = true;
-                    break;
-                }
-            }
-            if (!oneNoautoLocationAvailable) {
-                ListPreference locationPreference = (ListPreference) findPreference("location_update_period_pref_key");
-                locationPreference.setEnabled(false);
-            }
-
-            ListPreference locationAutoPreference = (ListPreference) findPreference("location_auto_update_period_pref_key");
-            locationAutoPreference.setEnabled(locationsDbHelper.getLocationByOrderId(0).isEnabled());
-
             EditTextPreference openWeatherMapApiKey =
                     (EditTextPreference) findPreference(Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY);
             openWeatherMapApiKey.setSummary(ApiKeys.getOpenweathermapApiKeyForPreferences(getActivity()));
-
-            initWakeUpStrategy();
         }
 
         @Override
@@ -242,19 +170,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             return view;
         }
 
-        Preference.OnPreferenceChangeListener notificationListener =
-                new Preference.OnPreferenceChangeListener() {
-                    @Override
-                    public boolean onPreferenceChange(Preference preference, Object o) {
-                        boolean isEnabled = (boolean) o;
-                        AppPreference.setNotificationEnabled(getActivity(), isEnabled);
-                        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_NOTIFICATION_ALARM_SERVICE");
-                        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
-                        getActivity().startService(intentToStartUpdate);
-                        return true;
-                    }
-                };
-
         private void entrySummary(String key) {
             ListPreference preference = (ListPreference) findPreference(key);
             if (preference == null) {
@@ -265,19 +180,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
         private void updateSummary(String key, boolean changing) {
             switch (key) {
-                case Constants.KEY_PREF_DATE_STYLE:
-                case Constants.KEY_PREF_TIME_STYLE:
-                case Constants.KEY_PREF_TEMPERATURE_TYPE:
-                case Constants.KEY_PREF_TEMPERATURE_UNITS:
-                case Constants.KEY_PREF_WIND_UNITS:
-                case Constants.KEY_PREF_WIND_DIRECTION:
-                case Constants.KEY_PREF_RAIN_SNOW_UNITS:
-                case Constants.KEY_PREF_PRESSURE_UNITS:
-                    entrySummary(key);
-                    if (changing) {
-                        getActivity().sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
-                    }
-                    break;
                 case Constants.KEY_PREF_HIDE_DESCRIPTION:
                     if (changing) {
                         getActivity().sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
@@ -304,17 +206,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     }
                     break;
                 case Constants.KEY_PREF_WEATHER_ICON_SET:
-                    entrySummary(key);
-                case Constants.KEY_PREF_INTERVAL_NOTIFICATION:
-                case Constants.KEY_PREF_LOCATION_UPDATE_PERIOD:
-                case Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD:
-                    entrySummary(key);
-                    if (changing) {
-                        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");
-                        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
-                        getActivity().startService(intentToStartUpdate);
-                    }
-                case Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE:
                     entrySummary(key);
                     break;
                 case Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY:
@@ -381,6 +272,385 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             WidgetUtils.startBackgroundService(
                     getActivity(),
                     reconciliationService);
+        }
+    }
+
+    public static class UnitsPreferenceFragment extends PreferenceFragment implements
+            SharedPreferences.OnSharedPreferenceChangeListener {
+
+        private final String[] SUMMARIES_TO_UPDATE = {
+                Constants.KEY_PREF_DATE_STYLE,
+                Constants.KEY_PREF_TIME_STYLE,
+                Constants.KEY_PREF_TEMPERATURE_TYPE,
+                Constants.KEY_PREF_TEMPERATURE_UNITS,
+                Constants.KEY_PREF_WIND_UNITS,
+                Constants.KEY_PREF_WIND_DIRECTION,
+                Constants.KEY_PREF_RAIN_SNOW_UNITS,
+                Constants.KEY_PREF_PRESSURE_UNITS
+        };
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_units);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = super.onCreateView(inflater, container, savedInstanceState);
+            int horizontalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int verticalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, getResources().getDisplayMetrics());
+
+            if (view != null) {
+                view.setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
+            }
+            return view;
+        }
+
+        private void entrySummary(String key) {
+            ListPreference preference = (ListPreference) findPreference(key);
+            if (preference == null) {
+                return;
+            }
+            preference.setSummary(preference.getEntry());
+        }
+
+        private void updateSummary(String key, boolean changing) {
+            entrySummary(key);
+            if (changing) {
+                getActivity().sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
+            }
+        }
+
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            updateSummary(key, true);
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            getPreferenceScreen().getSharedPreferences()
+                    .registerOnSharedPreferenceChangeListener(this);
+            updateSummaries();
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            getPreferenceScreen().getSharedPreferences()
+                    .unregisterOnSharedPreferenceChangeListener(this);
+        }
+
+        private void updateSummaries() {
+            for (String key : SUMMARIES_TO_UPDATE) {
+                updateSummary(key, false);
+            }
+        }
+    }
+
+    public static class UpdatesPreferenceFragment extends PreferenceFragment implements
+            SharedPreferences.OnSharedPreferenceChangeListener {
+
+        private final String[] SUMMARIES_TO_UPDATE = {
+                Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD,
+                Constants.KEY_PREF_LOCATION_UPDATE_PERIOD,
+                Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE
+        };
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_updates);
+
+            SensorManager senSensorManager  = (SensorManager) getActivity()
+                    .getSystemService(Context.SENSOR_SERVICE);
+            Sensor senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+            boolean deviceHasAccelerometer = senSensorManager.registerListener(
+                    sensorListener,
+                    senAccelerometer,
+                    SensorManager.SENSOR_DELAY_FASTEST);
+            senSensorManager.unregisterListener(sensorListener);
+
+            Preference updateWidgetUpdatePref = findPreference(Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD);
+            ListPreference updateListPref = (ListPreference) updateWidgetUpdatePref;
+            int accIndex = updateListPref.findIndexOfValue("0");
+
+            if (!deviceHasAccelerometer) {
+                CharSequence[] entries = updateListPref.getEntries();
+                CharSequence[] newEntries = new CharSequence[entries.length - 1];
+                int i = 0;
+                int j = 0;
+                for (CharSequence entry : entries) {
+                    if (i != accIndex) {
+                        newEntries[j] = entries[i];
+                        j++;
+                    }
+                    i++;
+                }
+                updateListPref.setEntries(newEntries);
+                if (updateListPref.getValue() == null) {
+                    updateListPref.setValueIndex(updateListPref.findIndexOfValue("60") - 1);
+                }
+            } else if (updateListPref.getValue() == null) {
+                updateListPref.setValueIndex(accIndex);
+            }
+            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getActivity());
+            List<Location> availableLocations = locationsDbHelper.getAllRows();
+            boolean oneNoautoLocationAvailable = false;
+            for (Location location: availableLocations) {
+                if (location.getOrderId() != 0) {
+                    oneNoautoLocationAvailable = true;
+                    break;
+                }
+            }
+            if (!oneNoautoLocationAvailable) {
+                ListPreference locationPreference = (ListPreference) findPreference("location_update_period_pref_key");
+                locationPreference.setEnabled(false);
+            }
+
+            ListPreference locationAutoPreference = (ListPreference) findPreference("location_auto_update_period_pref_key");
+            locationAutoPreference.setEnabled(locationsDbHelper.getLocationByOrderId(0).isEnabled());
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = super.onCreateView(inflater, container, savedInstanceState);
+            int horizontalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int verticalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, getResources().getDisplayMetrics());
+
+            if (view != null) {
+                view.setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
+            }
+            return view;
+        }
+
+        private void entrySummary(String key) {
+            ListPreference preference = (ListPreference) findPreference(key);
+            if (preference == null) {
+                return;
+            }
+            preference.setSummary(preference.getEntry());
+        }
+
+        private void updateSummary(String key, boolean changing) {
+            entrySummary(key);
+            switch (key) {
+                case Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD:
+                case Constants.KEY_PREF_LOCATION_UPDATE_PERIOD:
+                    if (changing) {
+                        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");
+                        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+                        getActivity().startService(intentToStartUpdate);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            updateSummary(key, true);
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            getPreferenceScreen().getSharedPreferences()
+                    .registerOnSharedPreferenceChangeListener(this);
+            updateSummaries();
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            getPreferenceScreen().getSharedPreferences()
+                    .unregisterOnSharedPreferenceChangeListener(this);
+        }
+
+        private void updateSummaries() {
+            for (String key : SUMMARIES_TO_UPDATE) {
+                updateSummary(key, false);
+            }
+        }
+
+        private SensorEventListener sensorListener = new SensorEventListener() {
+
+            @Override
+            public void onSensorChanged(SensorEvent sensorEvent) {
+            }
+
+            @Override
+            public void onAccuracyChanged(Sensor sensor, int i) {
+            }
+        };
+    }
+
+    public static class NotificationPreferenceFragment extends PreferenceFragment implements
+            SharedPreferences.OnSharedPreferenceChangeListener {
+
+        private final String[] SUMMARIES_TO_UPDATE = {
+                Constants.KEY_PREF_INTERVAL_NOTIFICATION
+        };
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_notification);
+
+            final SwitchPreference notificationSwitch = (SwitchPreference) findPreference(
+                    Constants.KEY_PREF_IS_NOTIFICATION_ENABLED);
+            notificationSwitch.setOnPreferenceChangeListener(notificationListener);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = super.onCreateView(inflater, container, savedInstanceState);
+            int horizontalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int verticalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, getResources().getDisplayMetrics());
+
+            if (view != null) {
+                view.setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
+            }
+            return view;
+        }
+
+        Preference.OnPreferenceChangeListener notificationListener =
+                new Preference.OnPreferenceChangeListener() {
+                    @Override
+                    public boolean onPreferenceChange(Preference preference, Object o) {
+                        boolean isEnabled = (boolean) o;
+                        AppPreference.setNotificationEnabled(getActivity(), isEnabled);
+                        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_NOTIFICATION_ALARM_SERVICE");
+                        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+                        getActivity().startService(intentToStartUpdate);
+                        return true;
+                    }
+                };
+
+        private void entrySummary(String key) {
+            ListPreference preference = (ListPreference) findPreference(key);
+            if (preference == null) {
+                return;
+            }
+            preference.setSummary(preference.getEntry());
+        }
+
+        private void updateSummary(String key, boolean changing) {
+            switch (key) {
+                case Constants.KEY_PREF_INTERVAL_NOTIFICATION:
+                    entrySummary(key);
+                    if (changing) {
+                        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");
+                        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+                        getActivity().startService(intentToStartUpdate);
+                    }
+            }
+        }
+
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            updateSummary(key, true);
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            getPreferenceScreen().getSharedPreferences()
+                    .registerOnSharedPreferenceChangeListener(this);
+            updateSummaries();
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            getPreferenceScreen().getSharedPreferences()
+                    .unregisterOnSharedPreferenceChangeListener(this);
+        }
+
+        private void updateSummaries() {
+            for (String key : SUMMARIES_TO_UPDATE) {
+                updateSummary(key, false);
+            }
+        }
+    }
+
+    public static class PowerSavePreferenceFragment extends PreferenceFragment implements
+            SharedPreferences.OnSharedPreferenceChangeListener {
+
+        private final String[] SUMMARIES_TO_UPDATE = {
+                Constants.KEY_WAKE_UP_STRATEGY,
+                Constants.KEY_PREF_LOCATION_GPS_ENABLED,
+                Constants.APP_SETTINGS_LOCATION_CACHE_ENABLED
+        };
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            addPreferencesFromResource(R.xml.pref_powersave);
+            initLocationCache();
+            initWakeUpStrategy();
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            View view = super.onCreateView(inflater, container, savedInstanceState);
+            int horizontalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int verticalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+            int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, getResources().getDisplayMetrics());
+
+            if (view != null) {
+                view.setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
+            }
+            return view;
+        }
+
+        private void entrySummary(String key) {
+            if (!Constants.KEY_PREF_LOCATION_GPS_ENABLED.equals(key)) {
+                ListPreference preference = (ListPreference) findPreference(key);
+                if (preference == null) {
+                    return;
+                }
+                preference.setSummary(preference.getEntry());
+            }
+        }
+
+        private void updateSummary(String key, boolean changing) {
+            switch (key) {
+                case Constants.KEY_PREF_LOCATION_GPS_ENABLED:
+                    entrySummary(key);
+                    break;
+            }
+        }
+
+        private void updateSummaries() {
+            for (String key : SUMMARIES_TO_UPDATE) {
+                updateSummary(key, false);
+            }
+        }
+
+        @Override
+        public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+            updateSummary(key, true);
+        }
+
+        @Override
+        public void onResume() {
+            super.onResume();
+            getPreferenceScreen().getSharedPreferences()
+                    .registerOnSharedPreferenceChangeListener(this);
+            updateSummaries();
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            getPreferenceScreen().getSharedPreferences()
+                    .unregisterOnSharedPreferenceChangeListener(this);
         }
 
         private void initLocationCache() {
@@ -565,17 +835,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             return lastRowsFromDB.toString();
         }
-
-        private SensorEventListener sensorListener = new SensorEventListener() {
-
-            @Override
-            public void onSensorChanged(SensorEvent sensorEvent) {
-            }
-
-            @Override
-            public void onAccuracyChanged(Sensor sensor, int i) {
-            }
-        };
     }
 
     public static class WidgetPreferenceFragment extends PreferenceFragment implements

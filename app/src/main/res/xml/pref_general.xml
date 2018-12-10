@@ -1,61 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <ListPreference
-        android:defaultValue="system"
-        android:dialogTitle="@string/pref_title_time_style"
-        android:entries="@array/pref_time_style_entries"
-        android:entryValues="@array/pref_time_style_values"
-        android:key="time_style_pref_key"
-        android:title="@string/pref_title_time_style"/>
-    <ListPreference
-        android:defaultValue="system"
-        android:dialogTitle="@string/pref_title_date_style"
-        android:entries="@array/pref_date_style_entries"
-        android:entryValues="@array/pref_date_style_values"
-        android:key="date_style_pref_key"
-        android:title="@string/pref_title_date_style"/>
-    <ListPreference
-        android:defaultValue="celsius"
-        android:dialogTitle="@string/pref_title_temperature"
-        android:entries="@array/pref_temperature_units_entries"
-        android:entryValues="@array/pref_temperature_units_values"
-        android:key="temperature_units_pref_key"
-        android:title="@string/pref_title_temperature"/>
-    <ListPreference
-        android:defaultValue="measured_only"
-        android:dialogTitle="@string/pref_title_temperature_type"
-        android:entries="@array/pref_temperature_type_entries"
-        android:entryValues="@array/pref_temperature_type_values"
-        android:key="temperature_type_pref_key"
-        android:title="@string/pref_title_temperature_type"/>
-    <ListPreference
-        android:defaultValue="m_per_second"
-        android:dialogTitle="@string/pref_title_wind"
-        android:entries="@array/pref_wind_units_entries"
-        android:entryValues="@array/pref_wind_units_values"
-        android:key="wind_units_pref_key"
-        android:title="@string/pref_title_wind"/>
-    <ListPreference
-        android:defaultValue="abbreviation"
-        android:dialogTitle="@string/pref_title_wind_direction"
-        android:entries="@array/pref_wind_direction_entries"
-        android:entryValues="@array/pref_wind_direction_values"
-        android:key="wind_direction_pref_key"
-        android:title="@string/pref_title_wind_direction"/>
-    <ListPreference
-        android:defaultValue="mm"
-        android:dialogTitle="@string/pref_title_rain_snow"
-        android:entries="@array/pref_rain_snow_units_entries"
-        android:entryValues="@array/pref_rain_snow_units_values"
-        android:key="rain_snow_units_pref_key"
-        android:title="@string/pref_title_rain_snow"/>
-    <ListPreference
-        android:defaultValue="hpa"
-        android:dialogTitle="@string/pref_title_pressure"
-        android:entries="@array/pref_pressure_units_entries"
-        android:entryValues="@array/pref_pressure_units_values"
-        android:key="pressure_units_pref_key"
-        android:title="@string/pref_title_pressure"/>
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="hide_desc_pref_key"
@@ -86,89 +30,10 @@
             android:title="@string/preference_weather_icon_set_title"/>
     </PreferenceCategory>
     <PreferenceCategory
-        android:key="notification_category_pref_key"
-        android:title="@string/pref_title_category_notification">
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="notification_pref_key"
-            android:title="@string/pref_title_notification"/>
-        <ListPreference
-            android:defaultValue="60"
-            android:dependency="notification_pref_key"
-            android:dialogTitle="@string/pref_title_notification_refresh_interval"
-            android:entries="@array/notification_refresh_intervals_entries"
-            android:entryValues="@array/notification_refresh_interval_values"
-            android:key="notification_interval_pref_key"
-            android:title="@string/pref_title_notification_refresh_interval"/>
-        <SwitchPreference
-            android:defaultValue="false"
-            android:dependency="notification_pref_key"
-            android:key="notification_vibrate_pref_key"
-            android:title="@string/pref_title_vibrate"/>
-    </PreferenceCategory>
-    <PreferenceCategory
-        android:key="update_location_weather_category_pref_key"
-        android:title="@string/preference_title_category_location_weather">
-        <ListPreference
-            android:defaultValue="60"
-            android:dialogTitle="@string/preference_widget_title_update_auto_period"
-            android:entries="@array/location_auto_update_period_entries"
-            android:entryValues="@array/location_auto_update_period_values"
-            android:key="location_auto_update_period_pref_key"
-            android:title="@string/preference_widget_title_update_auto_period"/>
-        <ListPreference
-            android:defaultValue="60"
-            android:dialogTitle="@string/preference_widget_title_update_period"
-            android:entries="@array/location_update_period_entries"
-            android:entryValues="@array/location_update_period_values"
-            android:key="location_update_period_pref_key"
-            android:title="@string/preference_widget_title_update_period"/>
-        <ListPreference
-            android:defaultValue="location_geocoder_local"
-            android:dialogTitle="@string/location_geocoder_title"
-            android:entries="@array/location_geocoder_source_entries"
-            android:entryValues="@array/location_geocoder_source_values"
-            android:key="location_geocoder_source"
-            android:title="@string/location_geocoder_title"/>
-        <ListPreference
-            android:defaultValue="nowakeup"
-            android:entries="@array/wake_up_strategy_entries"
-            android:entryValues="@array/wake_up_strategy_values"
-            android:key="wake.up.strategy"
-            android:summary="@string/wake_up_strategy_summary"
-            android:title="@string/wake_up_strategy_title"/>
-        <CheckBoxPreference
-            android:defaultValue="true"
-            android:key="location_gps_enabled"
-            android:title="@string/update_location_gps_enabled"/>
-    </PreferenceCategory>
-    <PreferenceCategory
         android:key="system_category_pref_key"
         android:title="@string/preference_title_category_system">
         <EditTextPreference
             android:key="open_weather_map_api_key"
             android:title="@string/open_weather_map_api_key" />
-    </PreferenceCategory>
-    <PreferenceCategory
-        android:title="@string/db_header"
-        android:key="db_header">
-
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="location.cache.enabled"
-            android:summaryOff="@string/location_cache_enable_off"
-            android:summaryOn="@string/location_cache_enable_on"
-            android:title="@string/location_cache_enable_label" />
-        <ListPreference
-            android:defaultValue="720"
-            android:entries="@array/location_cache_lasting_entries"
-            android:entryValues="@array/location_cache_lasting_values"
-            android:key="location.cache.lasting"
-            android:summary="@string/location_cache_lasting_summary"
-            android:title="@string/location_cache_lasting_title"/>
-        <Preference android:title="@string/clear_cache_button"
-            android:key="clear_cache_button" />
-        <Preference android:title="@string/db_info"
-            android:key="db_info" />
     </PreferenceCategory>
 </PreferenceScreen>
