@@ -32,8 +32,8 @@ public class SensorLocationUpdater implements SensorEventListener {
 
     private static final String TAG = "SensorLocationUpdater";
 
-    private static final float LENGTH_UPDATE_LOCATION_LIMIT = 10000;
-    private static final float LENGTH_UPDATE_LOCATION_SECOND_LIMIT = 200000;
+    private static final float LENGTH_UPDATE_LOCATION_LIMIT = 1500;
+    private static final float LENGTH_UPDATE_LOCATION_SECOND_LIMIT = 300;
     private static final float LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION = 200;
     private static final long ACCELEROMETER_UPDATE_TIME_SPAN = 900000000000l; //15 min
     private static final long ACCELEROMETER_UPDATE_TIME_SECOND_SPAN = 300000000000l; //5 min
