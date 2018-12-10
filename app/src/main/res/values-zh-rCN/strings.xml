@@ -195,7 +195,7 @@
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">您可以在下一个屏幕上找到天气预报（选择菜单中的下一个屏幕或从左向右滑动）。天气预报在点击更新按钮或者当您进入屏幕时更新（但每小时不超过一次更新）。</string>
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">第三个屏幕包含以图表显示的天气预报。</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">该应用有三个可用微件，包含当前天气的一些常用值（例如温度）。某些值对于特定的微件是唯一的（例如日落）。每个微件的右上角都有最后一次更新的时间。您可以查看上次更新的内容（在设置菜单中启用此选项时）。您可以在上次更新时间旁边找到更新按钮。点击此按钮时，将无条件更新天气（和选定更新位置选项时的位置）。微件中的最后一个选项是更改位置 - 当您点击当前位置时，位置将更改为下一项。</string>
-    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>位置的更新周期（位置 0）</b> - 您可以为位置 0 设置更新周期 - 位置 0 能够根据蜂窝网络、Wi-Fi 网络和 GPS 更新位置。当您选择<i>通过加速度计</i> 更新时应用使用加速度计检测移动。当检测到移动时应用会计算距离。当达到距离阈值并且最后一次更新至少发生在 15 分钟之前时，将更新位置和当前天气。当应用无法获取位置时，您可以在微件中看到未知位置标签。当应用未获得位置状态更新时，将在 5 分钟内再次执行。您也可以根据时间间隔选择更新位置。通过选项 <b>天气更新周期（位置 1,2,3...）</b> - 您可以为手动设置的位置设置天气更新。</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>位置的更新周期（位置 0）</b> - 您可以为位置 0 设置更新周期 - 位置 0 能够根据蜂窝网络、Wi-Fi 网络和 GPS 更新位置。当您选择<i>通过加速度计</i> 更新时应用使用加速度计检测移动并借此计算距离。当达到距离阈值并且 15 分钟内未更新时，将更新位置和当前天气。当应用无法获取位置时，您可以在微件中看到未知位置标签。当应用未获得位置状态更新时，将在 5 分钟内再次执行。您也可以在 <b>天气更新周期（位置 1,2,3...）</b> 中选择根据时间间隔更新位置 - 由此您可以为手动发现的位置设置天气更新。</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">当您选中 <b>在必要时开启 GPS</b> 选项时，应用会尝试按蜂窝网络或 Wi-Fi 网络查找位置。当应用无法通过网络服务定位时将开启 GPS 几秒钟以获取位置。</string>
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>位置和地址源</b>
 \n您可以选择应用从何处获取位置和地址。</string>
@@ -390,12 +390,12 @@
     <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (塞尔维亚语)</string>
     <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (斯洛文尼亚语)</string>
     <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (土耳其语)</string>
-    <string name="weather_condition_description_200" tools:ignore="MissingTranslation"></string>
-    <string name="weather_condition_description_201" tools:ignore="MissingTranslation"></string>
-    <string name="weather_condition_description_202" tools:ignore="MissingTranslation"></string>
-    <string name="weather_condition_description_210" tools:ignore="MissingTranslation"></string>
-    <string name="weather_condition_description_211" tools:ignore="MissingTranslation"></string>
-    <string name="weather_condition_description_212" tools:ignore="MissingTranslation"></string>
-    <string name="weather_condition_description_230" tools:ignore="MissingTranslation"></string>
-    <string name="weather_condition_description_231" tools:ignore="MissingTranslation"></string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation"/>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation"/>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation"/>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation"/>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation"/>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation"/>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation"/>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation"/>
     </resources>
