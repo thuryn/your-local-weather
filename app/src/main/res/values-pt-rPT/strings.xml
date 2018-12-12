@@ -86,18 +86,18 @@
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Ecrã</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Actualizar localização e tempo</string>
     <string name="pref_title_language" tools:ignore="MissingTranslation">Idioma</string>
-    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chinês (Chinês)</string>
-    <string name="pref_language_sw" tools:ignore="MissingTranslation">Suaíli (Suaíli)</string>
-    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norueguês Bokmål (Norueguês Bokmål)</string>
-    <string name="pref_language_nl" tools:ignore="MissingTranslation">Holandês (Holandês)</string>
-    <string name="pref_language_hu" tools:ignore="MissingTranslation">Húngaro (Húngaro)</string>
-    <string name="pref_language_es" tools:ignore="MissingTranslation">Espanhol (Espanhol)</string>
-    <string name="pref_language_el" tools:ignore="MissingTranslation">Grego (Grego)</string>
-    <string name="pref_language_ar" tools:ignore="MissingTranslation">Árabe (Árabe)</string>
-    <string name="pref_language_uk" tools:ignore="MissingTranslation">Ucraniano (Ucraniano)</string>
-    <string name="pref_language_ro" tools:ignore="MissingTranslation">Romeno</string>
-    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Português (Portugal)</string>
-    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Português (Brasil)</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (Chinês)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili (Suaíli)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (Bokmål) (Norueguês (Bokmål))</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Nederlands (Holandês)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Magyar (Húngaro)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Español (Espanhol)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Ελληνικά (Grego)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">العَرَبِيَّة‎ (Árabe)</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Українська (Ucraniano)</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Română (Romeno)</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Português (Portugal) (Português (Portugal))</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Português (Brasil) (Português (Brasil))</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Fontes de localização e morada</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistema</string>
     <string name="pref_title_theme" tools:ignore="MissingTranslation">Tema</string>
@@ -275,8 +275,8 @@
     <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Chave de API do Openweathermap.org</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Integrado</string>
     <string name="pref_language_default" tools:ignore="MissingTranslation">Definições do sistema</string>
-    <string name="pref_language_sv" tools:ignore="MissingTranslation">Sueco (Sueco)</string>
-    <string name="pref_language_he" tools:ignore="MissingTranslation">Hebraico (Hebraico)</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Svenska (Sueco)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">עברית (Hebraico)</string>
     <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">MLS local e Nominatim (recomendado)</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Valor recentemente atualizado</string>
@@ -307,7 +307,7 @@
     <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Licenças de software livre</string>
 
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Desativado</string>
-    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abbrev N, NE, ...</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abbrev N↓, NE↙, …</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Graus desvio do Norte</string>
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">A língua atual da descrição do tempo e o endereço mudarão a actualização seguinte ou você pode ser forçado manualmente.</string>
 
@@ -338,25 +338,25 @@
     <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/yy)</string>
     <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/yy)</string>
 
-    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Licenças de código aberto</string>
-    <string name="pref_language_sq" tools:ignore="MissingTranslation">Albanês</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Licenças de software livre</string>
+    <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (Albanês)</string>
     <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (País Basco)</string>
     <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (Bielorrusso)</string>
-    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (Bielorrusso latino)</string>
+    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (bielorrusso, escrita em latim)</string>
     <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (Catalão)</string>
     <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (Checo)</string>
-    <string name="pref_language_da" tools:ignore="MissingTranslation">Dinamarquês</string>
+    <string name="pref_language_da" tools:ignore="MissingTranslation">Dansk (Dinamarquês)</string>
     <string name="pref_language_en" tools:ignore="MissingTranslation">Inglês</string>
-    <string name="pref_language_fi" tools:ignore="MissingTranslation">Finlandês</string>
-    <string name="pref_language_fr" tools:ignore="MissingTranslation">Francês</string>
-    <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego</string>
-    <string name="pref_language_de" tools:ignore="MissingTranslation">Alemão</string>
+    <string name="pref_language_fi" tools:ignore="MissingTranslation">Suomi (Finlandês)</string>
+    <string name="pref_language_fr" tools:ignore="MissingTranslation">Français (Francês)</string>
+    <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego (Galego)</string>
+    <string name="pref_language_de" tools:ignore="MissingTranslation">Deutsch (Alemão)</string>
     <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (Italiano)</string>
     <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (Japonês)</string>
     <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (Polaco)</string>
     <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (Russo)</string>
-    <string name="pref_language_sr" tools:ignore="MissingTranslation">Sérvio</string>
-    <string name="pref_language_sl" tools:ignore="MissingTranslation">Esloveno</string>
+    <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (Sérvio)</string>
+    <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (Esloveno)</string>
     <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (Turco)</string>
     <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
     <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
