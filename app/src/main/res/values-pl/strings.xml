@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="nav_menu_settings">Ustawienia</string>
     <string name="alertDialog_location_permission_message_location_phone_settings">Aplikacja jest ustawiona na aktualizację lokalizacji. Potrzebny jest do tego dostęp. Przejdź do ustawień urządzenia i zmień lokalizację lub wyłącz aktualizacje lokalizacji aplikacji.</string>
-    <string name="alertDialog_location_permission_negativeButton">Anulować</string>
+    <string name="alertDialog_location_permission_negativeButton">Anuluj</string>
     <string name="alertDialog_location_permission_positiveButton_settings">Ustawienia urządzenia</string>
     <string name="connection_not_found">Sprawdź połączenie internetowe</string>
     <string name="enter_city_hint">Wpisz miasto</string>
@@ -13,7 +13,7 @@
     <string name="progressDialog_gps_locate"> Znajdź bieżącej lokalizacji</string>
     <string name="wind_speed_miles">mph</string>
     <string name="wind_speed_meters">m/s</string>
-    <string name="hint_activity_search">Szukanie</string>
+    <string name="hint_activity_search">Wyszukaj lokalizację</string>
     <string name="pref_title_temperature">Temperatura</string>
     <string name="title_activity_settings">Ustawienia</string>
     <string name="title_activity_search">Szukanie Lokalizacji</string>
@@ -24,7 +24,7 @@
     <string name="pref_title_category_notification">Powiadomienia</string>
     <string name="pref_title_notification">Włącz powiadomienia</string>
     <string name="pref_title_notification_refresh_interval">Częstotliwość odświeżania</string>
-    <string name="pref_title_vibrate">Wibrować</string>
+    <string name="pref_title_vibrate">Wibracja</string>
     <string name="pressure_measurement">hPa</string>
     <string name="update_period_12hours">12 godzin</string>
     <string name="update_period_15min">15 minut</string>
@@ -67,7 +67,7 @@
     <string name="label_activity_main">Aktualna pogoda</string>
     <string name="label_activity_weather_forecast">Prognoza dnia</string>
     <string name="nav_menu_graphs">Wykresy</string>
-    <string name="load_progress">Załadunek…</string>
+    <string name="load_progress">Ładowanie…</string>
     <string name="millimetre_label">mm</string>
     <string name="snow_label">Śnieg: %1$s %2$s</string>
     <string name="rain_label">Deszcz: %1$s %2$s</string>
@@ -85,7 +85,7 @@
     <string name="permission_location_rationale">Potrzebne są Lokalizacja Uprawnienia do określenia obecnego miasta</string>
     <string name="permission_not_granted">Uprawnienia nie zostały przyznane!</string>
     <string name="permission_available_location">Lokalizacja uprawnienia zostały przyznane</string>
-    <string name="pref_language_default">System Default</string>
+    <string name="pref_language_default">Domyślne ustawienie systemu</string>
     <string name="pref_title_language">Język</string>
     <string name="preference_title_category_display">Widok</string>
 <string name="app_name" tools:ignore="MissingTranslation">Twoja pogoda</string>
@@ -179,7 +179,7 @@
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Wiatr</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Ciśnienie</string>
-    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Aktualizowanie lokalizacji-Ustawienia</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Ustawienia Aktualizacji Lokalizacji</string>
     <string name="update_location_none" tools:ignore="MissingTranslation">Nie aktualizuj lokalizacji</string>
     <string name="update_location_full" tools:ignore="MissingTranslation">Zaktualizuj lokalizację (zalecane)</string>
     <string name="update_location_network_only" tools:ignore="MissingTranslation">Zaktualizuj lokalizację bez użycia GPS</string>
@@ -195,10 +195,10 @@
     <string name="theme_light" tools:ignore="MissingTranslation">Jasny</string>
     <string name="theme_transparent" tools:ignore="MissingTranslation">Przezroczysty</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Zaktualizuj lokalizację i pogodę</string>
-    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">Chiński (Chinese)</string>
-    <string name="pref_language_sw" tools:ignore="MissingTranslation">Suahili (Swahili)</string>
-    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norweski Bokmål (Norwegian Bokmål)</string>
-    <string name="pref_language_nl" tools:ignore="MissingTranslation">Holenderski (Holandia)</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (Chiński)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili (Suahili)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (Bokmål) (Norweski Bokmål))</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Nederlands (Holenderski)</string>
     <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
     <string name="pref_language_hu" tools:ignore="MissingTranslation">Węgierski (Węgry)</string>
     <string name="pref_language_es" tools:ignore="MissingTranslation">Hiszpański (Spanish)</string>
@@ -288,11 +288,11 @@
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Zestaw ikon</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Ikony oparte na czcionkach</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin czerwone ikony</string>
-<string name="location_not_initialized" tools:ignore="MissingTranslation">Lokalizacja nie jest zainicjalizowana. Kliknij najpierw koło lokalizacji.</string>
+<string name="location_not_initialized" tools:ignore="MissingTranslation">Lokalizacja nie jest zainicjowana. Kliknij najpierw koło lokalizacji.</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Dostęp wygasł. Uaktualnij aplikację, proszę.</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Twój OpenweathermapApiKey nie jest zarejestrowany.</string>
 
-    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Ustawienia systemu</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Ustawienia systemowe</string>
     <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Klucz API Openweathermap.org</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Wbudowany</string>
     <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">mmHg</string>
@@ -309,14 +309,14 @@
 
     <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Styl kierunku wiatru</string>
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Wyłącz</string>
-    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Skrót N, NE, ...</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Skrót N↓, NE↙, …</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Stopni na północ</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Optymalizacja baterii</string>
     <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Aplikacja poprosi o wyłączenie optymalizacji baterii, aby zaktualizować lokalizację, pogodę lub śledzić lokalizację za pomocą akcelerometru w tle.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Kontynuuj</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Anuluj</string>
-    <string name="pref_language_sv" tools:ignore="MissingTranslation">Szwedzki (Szwecja)</string>
-    <string name="pref_language_he" tools:ignore="MissingTranslation">Hebrajski</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Svenska (Szwedzki)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">עברית (Hebrajski)</string>
     <string name="weather_condition_description_none" tools:ignore="MissingTranslation">żaden</string>
     <string name="weather_condition_description_200" tools:ignore="MissingTranslation">burza z lekkim deszczem</string>
     <string name="weather_condition_description_201" tools:ignore="MissingTranslation">burza z deszczem</string>
