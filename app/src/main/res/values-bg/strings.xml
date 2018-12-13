@@ -1,2 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Твоето местно време</string>
+    <string name="enter_city_hint" tools:ignore="MissingTranslation">Въведете град</string>
+    <string name="label_current_city" tools:ignore="MissingTranslation">Текущ град</string>
+    <string name="label_choose_city" tools:ignore="MissingTranslation">Изберете град</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Оптимизация на батерията</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Приложението ще ви помоли да изключите оптимизирането на батерията, за да може да опреснява във фонов режим, местоположението, времето или за да проследява местоположението според скоростомера.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Продължи</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Отказ</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Настройки за местоположение и позволения</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Приложението е настроено да обновява местоположението. Нужно е да му дадете позволение. Отидете на настроки на устройството и стартирайте услугата за местоположение или изключете в приложението обновяване на местоположението.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Приложението се нуждае от позволение за да обновява местоположението през GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Приложението се нуждае от позволение за да обновява местоположението през Wi-Fi и GSM мрежа.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Приложението се нуждае от позволение да чете информация от устройството за да обновява местоположението през Wi-Fi и GSM мрежа. Така ще се извлича информация относно с кои GSM станции е свързано устройството.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Настройки на устройството</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Поискай позволения</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Отказ</string>
+    <string name="progressDialog_gps_locate" tools:ignore="MissingTranslation">Намери текущото местоположение</string>
+    <string name="load_progress" tools:ignore="MissingTranslation">Зареждане…</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Не е намерено местоположение</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Правата все още не са дадени - щракнете на символа за локация в приложението</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Достъп отказан. Моля, обновете приложението.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Вашият OpenweathermapApiKey не е регистриран.</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Сподели времето</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Не е намерено приложение за комуникация</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Град: %1$s
+\nТемпература: %2$s
+\nОписание: %3$s
+\nВятър: %4$s %5$s
+\nИзгрев: %6$s
+\nЗалез: %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Твоето локално време</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Местно време - известия</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Ден</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Вятър</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Дъжд</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Сняг</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Налягане</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Затвори</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Следващ</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Предишен</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Край</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Ръководство за първоначална конфигурация</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Може да изберете стратегия за обновяване.
+\nАко не искате обновяване при промяна на местоположиенито, може да изберете <i>Не обновявай местоположението</i>.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Използвай настройките за местоположение</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Вариант за източник на местоположение</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Услуги за откриване на местоположението - <i>Системна</i> използва услугите на Гугъл за да извлече местоположение от мрежата (клетъчни и Wi-Fi). <i>MLS и Nominatim</i> използва услигите на Mozilla. За втория вариант са необходими позволения за извличане на информация за клетъчните мрежи. Предпочитаният вариант е предварително избран.</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Източници на местоположение и адрес</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Стратегия за събуждане</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Някой модели телефони не откриват правилно телефонната мрежа към която са свързани, ако екранът им не е пуснат. Предпочитаният вариант (пуснат екран) има недостатъка, че екранът ще бъде пускан за няколко секунди. Това ще има малко отражение на издържливоста на батерията. Съветваме ви да започнете с включена опция и после да я изключите за да проверите дали местоположението все още се обновява.</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Стратегия за събуждане</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Кеширай откритите адреси</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Можете да спестите мрежови трафик, ако кеширате откритите местоположения. Местоположенията ще бъдат запазвани само в приложението. Те няма да бъдат изпращани на други места по мрежата.</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Запомняй откритите адреси</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Поздравления</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">С това завършваме ръководството. Може да намерите други настройки в менюто \"Настройки\" (например език, мерни единици и др.).
+\nСледващият екран ще обясни необходимите позволения и ще ви даде възможност да ги промените.
+\n
+\nПриятно използване на приложението.</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Общи</string>
+</resources>
