@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Твоји локални временски подаци</string>
     <string name="enter_city_hint" tools:ignore="MissingTranslation">Унеси град</string>
     <string name="label_current_city" tools:ignore="MissingTranslation">Тренутни град</string>
@@ -147,7 +147,7 @@
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Киша и снег</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Притисак</string>
     <string name="preference_hide_desc" tools:ignore="MissingTranslation">Сакриј опис времена</string>
-    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Обавештења</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Поставке обавештења</string>
     <string name="pref_title_notification" tools:ignore="MissingTranslation">Укључи обавештења</string>
     <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">Интервал освежавања</string>
     <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Подешавање ажурирања локације</string>
@@ -433,4 +433,6 @@
     <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски</string>
     <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (словеначки)</string>
     <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (турски)</string>
-    </resources>
+    <string name="preference_title_category_units" tools:ignore="MissingTranslation">Поставке мерних јединица</string>
+    <string name="preference_title_power_save" tools:ignore="MissingTranslation">Поставке уштеде енергије</string>
+</resources>
