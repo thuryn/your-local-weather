@@ -208,6 +208,7 @@
     <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Switch GPS on when necessary</string>
     <string name="update_period_by_sensors" tools:ignore="MissingTranslation">By accelerometer</string>
     <string name="update_period_nothing" tools:ignore="MissingTranslation">Manual only</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">When updates regularly</string>
     <string name="update_period_15min" tools:ignore="MissingTranslation">15 minutes</string>
     <string name="update_period_30min" tools:ignore="MissingTranslation">30 minutes</string>
     <string name="update_period_1hour" tools:ignore="MissingTranslation">Every hour</string>
@@ -215,6 +216,17 @@
     <string name="update_period_6hours" tools:ignore="MissingTranslation">6 hours</string>
     <string name="update_period_12hours" tools:ignore="MissingTranslation">12 hours</string>
     <string name="update_period_24hours" tools:ignore="MissingTranslation">24 hours</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Notification presence</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">When updated</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">Permanent</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">On lock screen</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">Sun icon</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">Temperature</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">Invisible</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Classical</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Custom with a forecast</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Notification visual style</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Status bar icon style</string>
     <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Vibrate</string>
     <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Update period for weather (Location 1,2,3...)</string>
     <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Update period for location (Location 0)</string>

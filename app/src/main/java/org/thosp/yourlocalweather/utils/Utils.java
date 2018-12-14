@@ -515,6 +515,7 @@ public class Utils {
                 return AlarmManager.INTERVAL_DAY;
             case "0":
             case "OFF":
+            case "regular_only":
                 return Long.MAX_VALUE;
             default:
                 return Integer.parseInt(intervalMinutes) * 60 * 1000;

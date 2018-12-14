@@ -11,6 +11,10 @@
     <dimen name="widget_forecast_padding_top">6dp</dimen>
     <dimen name="widget_refresh_icon_padding_top">3dp</dimen>
     <dimen name="widget_refresh_icon_size">20dp</dimen>
+    <dimen name="notification_icon_size">25dp</dimen>
+    <dimen name="notification_forecast_icon_size">20dp</dimen>
+    <dimen name="notification_padding">6dp</dimen>
+    <dimen name="notification_weather_description_padding">12dp</dimen>
 
     <!-- CardView dimensions -->
     <dimen name="cardview_text_size">20sp</dimen>

@@ -142,16 +142,17 @@ public class SensorLocationUpdater implements SensorEventListener {
             float absCurrentLength = Math.abs(currentLength);
 
             long lastUpdatedPossition = getLastPossitionUodateTime();
+            long nowInMilis = System.currentTimeMillis();
 
             if (((lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SPAN)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT))
-                    && ((lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SECOND_SPAN)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_SECOND_LIMIT))
-                    && (autolocationForSensorEventAddressFound || (lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION))) {
+                    && ((nowInMilis < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SECOND_SPAN)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_SECOND_LIMIT))
+                    && (autolocationForSensorEventAddressFound || (nowInMilis < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION))) {
                 return;
             }
 
             appendLog(context, TAG, "end currentLength = " + String.format("%.8f", absCurrentLength) +
                     ", currentLengthLowPassed = " + String.format("%.8f", currentLengthLowPassed) +
-                    ", lastUpdate=" + lastUpdate + ", lastUpdatePosition=" + lastUpdatedPossition +
+                    ", lastUpdate=" + nowInMilis + ", lastUpdatePosition=" + lastUpdatedPossition +
                     ", autolocationForSensorEventAddressFound=" + autolocationForSensorEventAddressFound);
         } catch (Exception e) {
             appendLog(context, TAG, "Exception when processSensorQueue", e);

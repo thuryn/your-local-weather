@@ -235,6 +235,9 @@ public class StartAutoLocationJob extends AbstractAppJob {
             long updatePeriodMills = Utils.intervalMillisForAlarm(updatePeriodStr);
             boolean notificationEnabled = AppPreference.isNotificationEnabled(getBaseContext());
             String notificationPeriodStr = AppPreference.getInterval(getBaseContext());
+            if ("regular_only".equals(notificationPeriodStr)) {
+                notificationEnabled = false;
+            }
             long notificationPeriodMillis = Utils.intervalMillisForAlarm(notificationPeriodStr);
             long lastNotificationTimeInMs = AppPreference.getLastNotificationTimeInMs(getBaseContext());
             Location locationForNotification = checkNotificationAndReturnLocationForNotification(

@@ -256,6 +256,21 @@ public class AppPreference {
                                 .getString(Constants.KEY_PREF_INTERVAL_NOTIFICATION, "60");
     }
 
+    public static String getNotificationPresence(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(Constants.KEY_PREF_NOTIFICATION_PRESENCE, "when_updated");
+    }
+
+    public static String getNotificationStatusIconStyle(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(Constants.KEY_PREF_NOTIFICATION_STATUS_ICON, "icon_sun");
+    }
+
+    public static String getNotificationVisualStyle(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(Constants.KEY_PREF_NOTIFICATION_VISUAL_STYLE, "build_in");
+    }
+
     public static boolean isVibrateEnabled(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 Constants.KEY_PREF_VIBRATE,

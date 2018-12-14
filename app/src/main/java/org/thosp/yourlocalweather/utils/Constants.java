@@ -46,6 +46,9 @@ public class Constants {
     public static final String KEY_PREF_PRESSURE_UNITS = "pressure_units_pref_key";
     public static final String KEY_PREF_HIDE_DESCRIPTION = "hide_desc_pref_key";
     public static final String KEY_PREF_INTERVAL_NOTIFICATION = "notification_interval_pref_key";
+    public static final String KEY_PREF_NOTIFICATION_PRESENCE = "notification_presence_pref_key";
+    public static final String KEY_PREF_NOTIFICATION_STATUS_ICON = "notification_status_icon_pref_key";
+    public static final String KEY_PREF_NOTIFICATION_VISUAL_STYLE = "notification_visual_style_pref_key";
     public static final String KEY_PREF_VIBRATE = "notification_vibrate_pref_key";
     public static final String KEY_PREF_WIDGET_SHOW_LABELS = "widget_show_labels_pref_key";
     public static final String KEY_PREF_WIDGET_THEME = "widget_theme_pref_key";

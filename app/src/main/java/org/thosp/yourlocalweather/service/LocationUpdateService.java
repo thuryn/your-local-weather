@@ -269,6 +269,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         public void run() {
             locationManager.removeUpdates(gpsLocationListener);
             setNoLocationFound();
+            updateLocationInProcess = false;
             stopRefreshRotation("timerRunnableGpsLocation", 3);
         }
     };

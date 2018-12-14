@@ -1,14 +1,12 @@
 package org.thosp.yourlocalweather.service;
 
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
-import android.net.Network;
-import android.net.NetworkCapabilities;
 import android.net.NetworkInfo;
-import android.net.NetworkRequest;
 import android.os.Binder;
 import android.os.Build;
 import android.os.Handler;
@@ -18,8 +16,8 @@ import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
-import org.thosp.yourlocalweather.receiver.StartupReceiver;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
@@ -47,6 +45,19 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
     private volatile int screenOnRetryCounter;
 
+    private BroadcastReceiver userUnlockedReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            appendLog(context, TAG, "receive intent: " + intent);
+            String notificationPresence = AppPreference.getNotificationPresence(context);
+            if ("on_lock_screen".equals(notificationPresence)) {
+                NotificationManager notificationManager =
+                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                notificationManager.cancelAll();
+            }
+        }
+    };
+
     private BroadcastReceiver screenOnReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -65,6 +76,10 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         @Override
         public void onReceive(Context context, Intent intent) {
             appendLog(context, TAG, "receive intent: " + intent);
+            String notificationPresence = AppPreference.getNotificationPresence(context);
+            if ("on_lock_screen".equals(notificationPresence)) {
+                NotificationUtils.weatherNotification(context, getLocationForNotification().getId());
+            }
             timerScreenOnHandler.removeCallbacksAndMessages(null);
         }
     };
@@ -154,6 +169,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
 
         if (!currentLocation.isEnabled() || !"0".equals(updateAutoPeriodStr)) {
+            checkNotification(context);
             return;
         }
         CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
@@ -170,10 +186,35 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
                 lastUpdateTimeInMilis);
         if ((now <= (lastUpdateTimeInMilis + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now <= (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
             timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT - (now - lastUpdateTimeInMilis));
+            checkNotification(context);
             return;
         }
+        checkNotification(context);
         requestWeatherCheck(currentLocation.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER, false);
         timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
+    }
+
+    private void checkNotification(Context context) {
+        String notificationPresence = AppPreference.getNotificationPresence(context);
+        if (!"on_lock_screen".equals(notificationPresence)) {
+            return;
+        }
+        if (NotificationUtils.isScreenLocked(context)) {
+            NotificationUtils.weatherNotification(context, getLocationForNotification().getId());
+        } else {
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.cancelAll();
+        }
+    }
+
+    private Location getLocationForNotification() {
+        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
+        Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
+        if (!currentLocation.isEnabled()) {
+            currentLocation = locationsDbHelper.getLocationByOrderId(1);
+        }
+        return currentLocation;
     }
 
     public void stopSensorBasedUpdates() {
@@ -181,6 +222,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         try {
             getApplication().unregisterReceiver(screenOnReceiver);
             getApplication().unregisterReceiver(screenOffReceiver);
+            getApplication().unregisterReceiver(userUnlockedReceiver);
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                 getApplicationContext().unregisterReceiver(networkConnectivityReceiver);
             } else {
@@ -212,8 +254,10 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     private void registerScreenListeners() {
         IntentFilter filterScreenOn = new IntentFilter(Intent.ACTION_SCREEN_ON);
         IntentFilter filterScreenOff = new IntentFilter(Intent.ACTION_SCREEN_OFF);
+        IntentFilter filterUserUnlocked = new IntentFilter(Intent.ACTION_USER_PRESENT);
         getApplication().registerReceiver(screenOnReceiver, filterScreenOn);
         getApplication().registerReceiver(screenOffReceiver, filterScreenOff);
+        getApplication().registerReceiver(userUnlockedReceiver, filterUserUnlocked);
     }
 
     private void startNetworkConnectivityReceiver() {

@@ -37,6 +37,7 @@ import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
@@ -218,8 +219,6 @@ public class CurrentWeatherService extends AbstractCommonService {
             appendLog(getBaseContext(),
                     TAG,
                     "Current weather is recent enough");
-            currentWeatherUpdateMessages.poll();
-            updateResultInUI(null, ACTION_WEATHER_UPDATE_OK, updateRequest);
             return;
         }
 
@@ -386,10 +385,10 @@ public class CurrentWeatherService extends AbstractCommonService {
                 case "MAIN":
                     sendIntentToMain(result);
                     break;
-                case "NOTIFICATION":
-                    weatherNotification(locationId);
-                    break;
             }
+        }
+        if (ACTION_WEATHER_UPDATE_OK.equals(result)) {
+            weatherNotification(locationId, updateSource);
         }
     }
 
@@ -448,97 +447,19 @@ public class CurrentWeatherService extends AbstractCommonService {
         }
     }
 
-    private void weatherNotification(Long locationId) {
-        if (locationId == null) {
-            appendLog(getBaseContext(), TAG, "showNotification - locationId is null");
+    private void weatherNotification(Long locationId, String updateSource) {
+        String notificationPresence = AppPreference.getNotificationPresence(this);
+        if ("permanent".equals(notificationPresence)) {
+            NotificationUtils.weatherNotification(this, locationId);
+        } else if ("on_lock_screen".equals(notificationPresence) && NotificationUtils.isScreenLocked(this)) {
+            NotificationUtils.weatherNotification(this, locationId);
+        } else if ((updateSource != null) && "NOTIFICATION".equals(updateSource)) {
+            NotificationUtils.weatherNotification(this, locationId);
         }
-        final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(this);
-        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
-        Location currentLocation = locationsDbHelper.getLocationById(locationId);
-        if (currentLocation == null) {
-            appendLog(getBaseContext(), TAG, "showNotification - current location is null");
-            sendMessageToWakeUpService(
-                    AppWakeUpManager.FALL_DOWN,
-                    AppWakeUpManager.SOURCE_NOTIFICATION
-            );
-            return;
-        }
-        CurrentWeatherDbHelper.WeatherRecord weatherRecord =
-                currentWeatherDbHelper.getWeather(currentLocation.getId());
-
-        if (weatherRecord == null) {
-            appendLog(getBaseContext(), TAG, "showNotification - current weather record is null");
-            sendMessageToWakeUpService(
-                    AppWakeUpManager.FALL_DOWN,
-                    AppWakeUpManager.SOURCE_NOTIFICATION
-            );
-            return;
-        }
-        Weather weather = weatherRecord.getWeather();
-        String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
-                this,
-                weather,
-                currentLocation.getLatitude(),
-                weatherRecord.getLastUpdatedTime(),
-                currentLocation.getLocale());
-
-        showNotification(temperatureWithUnit, currentLocation, weatherRecord);
-    }
-
-    private void showNotification(String temperatureWithUnit, Location location, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
-        NotificationManager notificationManager =
-                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationChannel notificationChannel = notificationManager.getNotificationChannel("yourLocalWeather");
-            boolean createNotification = notificationChannel == null;
-            if (!createNotification && (notificationChannel.getImportance() == NotificationManager.IMPORTANCE_LOW)) {
-                notificationManager.deleteNotificationChannel("yourLocalWeather");
-                createNotification = true;
-            }
-            if (createNotification) {
-                NotificationChannel channel = new NotificationChannel("yourLocalWeather",
-                        getString(R.string.notification_channel_name),
-                        NotificationManager.IMPORTANCE_DEFAULT);
-                channel.setDescription(getString(R.string.notification_channel_description));
-                channel.setVibrationPattern(isVibrateEnabled());
-                channel.enableVibration(AppPreference.isVibrateEnabled(this));
-                channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-                channel.setSound(null, null);
-                notificationManager.createNotificationChannel(channel);
-            }
-        }
-
-        Intent intent = new Intent(this, MainActivity.class);
-        PendingIntent launchIntent = PendingIntent.getActivity(this, 0, intent, 0);
-        String cityAndCountry = Utils.getCityAndCountry(this, location.getOrderId());
-        Notification notification = new NotificationCompat.Builder(this, "yourLocalWeather")
-                .setContentIntent(launchIntent)
-                .setSmallIcon(R.drawable.small_icon)
-                .setTicker(temperatureWithUnit
-                        + "  "
-                        + cityAndCountry)
-                .setContentTitle(temperatureWithUnit +
-                        "  " +
-                        Utils.getWeatherDescription(this, location.getLocaleAbbrev(), weatherRecord.getWeather()))
-                .setContentText(cityAndCountry)
-                .setVibrate(isVibrateEnabled())
-                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
-                .setAutoCancel(true)
-                .setLargeIcon(BitmapFactory.decodeResource(getResources(), Utils.getWeatherResourceIcon(weatherRecord)))
-                .build();
-        notificationManager.notify(0, notification);
-        appendLog(getBaseContext(), TAG, "showNotification - shutdown");
         sendMessageToWakeUpService(
                 AppWakeUpManager.FALL_DOWN,
                 AppWakeUpManager.SOURCE_NOTIFICATION
         );
-    }
-
-    private long[] isVibrateEnabled() {
-        if (!AppPreference.isVibrateEnabled(this)) {
-            return null;
-        }
-        return new long[]{0, 500, 500};
     }
 
     private class CurrentweatherMessageHandler extends Handler {

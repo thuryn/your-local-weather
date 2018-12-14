@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -24,6 +26,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -59,8 +62,10 @@ import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.LogToFile;
+import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
+import org.yaml.snakeyaml.scanner.Constant;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -493,7 +498,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             SharedPreferences.OnSharedPreferenceChangeListener {
 
         private final String[] SUMMARIES_TO_UPDATE = {
-                Constants.KEY_PREF_INTERVAL_NOTIFICATION
+                Constants.KEY_PREF_INTERVAL_NOTIFICATION,
+                Constants.KEY_PREF_NOTIFICATION_PRESENCE,
+                Constants.KEY_PREF_NOTIFICATION_STATUS_ICON,
+                Constants.KEY_PREF_NOTIFICATION_VISUAL_STYLE
         };
 
         @Override
@@ -532,23 +540,50 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     }
                 };
 
-        private void entrySummary(String key) {
+        private void entrySummary(String key, boolean changing) {
             ListPreference preference = (ListPreference) findPreference(key);
             if (preference == null) {
                 return;
             }
             preference.setSummary(preference.getEntry());
+
+            if (Constants.KEY_PREF_NOTIFICATION_PRESENCE.equals(key)) {
+                if ("permanent".equals(preference.getValue()) || "on_lock_screen".equals(preference.getValue())) {
+                    SwitchPreference vibrate = (SwitchPreference) findPreference(Constants.KEY_PREF_VIBRATE);
+                    vibrate.setEnabled(false);
+                    vibrate.setChecked(false);
+                } else {
+                    SwitchPreference vibrate = (SwitchPreference) findPreference(Constants.KEY_PREF_VIBRATE);
+                    vibrate.setEnabled(true);
+                }
+            }
+            if ((Constants.KEY_PREF_NOTIFICATION_PRESENCE.equals(key)) && changing) {
+                if ("permanent".equals(preference.getValue())) {
+                    NotificationUtils.weatherNotification(getActivity(),
+                            NotificationUtils.getLocationForNotification(getActivity()).getId());
+                } else {
+                    NotificationManager notificationManager =
+                            (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                    notificationManager.cancelAll();
+                }
+
+            }
         }
 
         private void updateSummary(String key, boolean changing) {
             switch (key) {
                 case Constants.KEY_PREF_INTERVAL_NOTIFICATION:
-                    entrySummary(key);
+                    entrySummary(key, changing);
                     if (changing) {
                         Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");
                         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
                         getActivity().startService(intentToStartUpdate);
                     }
+                    break;
+                case Constants.KEY_PREF_NOTIFICATION_PRESENCE:
+                case Constants.KEY_PREF_NOTIFICATION_STATUS_ICON:
+                case Constants.KEY_PREF_NOTIFICATION_VISUAL_STYLE:
+                    entrySummary(key, changing);
             }
         }
 

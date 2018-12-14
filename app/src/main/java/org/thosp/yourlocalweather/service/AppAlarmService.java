@@ -185,6 +185,9 @@ public class AppAlarmService extends AbstractCommonService {
         }
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         String intervalPref = AppPreference.getInterval(getBaseContext());
+        if ("regular_only".equals(intervalPref)) {
+            return;
+        }
         long intervalMillis = Utils.intervalMillisForAlarm(intervalPref);
         appendLog(this, TAG, "Build.VERSION.SDK_INT:" + Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

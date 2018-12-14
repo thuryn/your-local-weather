@@ -4,6 +4,7 @@ import android.content.Context;
 import android.preference.PreferenceManager;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.Weather;
 
@@ -246,5 +247,26 @@ public class TemperatureUtil {
         } else {
             return value;
         }
+    }
+
+    public static int getTemperatureStatusIcon(Context context, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
+        if ((weatherRecord == null) || (weatherRecord.getWeather() == null)) {
+            return R.drawable.zero0;
+        }
+        float temperature = weatherRecord.getWeather().getTemperature();
+        return getResourceForNumber(context, temperature);
+    }
+
+    private static int getResourceForNumber(Context context, float number) {
+        String fileName;
+        int roundedNumber = Math.round(number);
+        if (roundedNumber == 0) {
+            fileName = "zero0";
+        } else if (roundedNumber > 0) {
+            fileName = "plus" + roundedNumber;
+        } else {
+            fileName = "minus" + roundedNumber;
+        }
+        return context.getResources().getIdentifier(fileName, "drawable", context.getPackageName());
     }
 }

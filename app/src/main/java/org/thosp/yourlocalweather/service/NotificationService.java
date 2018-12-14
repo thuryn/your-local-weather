@@ -18,6 +18,7 @@ import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 
@@ -46,7 +47,7 @@ public class NotificationService extends AbstractCommonService {
         if (!isNotificationEnabled) {
             return;
         }
-        Location currentLocation = getLocationForNotification();
+        Location currentLocation = NotificationUtils.getLocationForNotification(this);
         if (currentLocation == null) {
             return;
         }
@@ -60,6 +61,9 @@ public class NotificationService extends AbstractCommonService {
         }
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         String intervalPref = AppPreference.getInterval(getBaseContext());
+        if ("regular_only".equals(intervalPref)) {
+            return;
+        }
         long intervalMillis = Utils.intervalMillisForAlarm(intervalPref);
         appendLog(this, TAG, "Build.VERSION.SDK_INT:" + Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -79,14 +83,5 @@ public class NotificationService extends AbstractCommonService {
         PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(), 0, sendIntent,
                 PendingIntent.FLAG_CANCEL_CURRENT);
         return pendingIntent;
-    }
-
-    private Location getLocationForNotification() {
-        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
-        Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
-        if (!currentLocation.isEnabled()) {
-            currentLocation = locationsDbHelper.getLocationByOrderId(1);
-        }
-        return currentLocation;
     }
 }
