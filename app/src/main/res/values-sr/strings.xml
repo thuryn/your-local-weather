@@ -435,4 +435,16 @@
     <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (турски)</string>
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Поставке мерних јединица</string>
     <string name="preference_title_power_save" tools:ignore="MissingTranslation">Поставке уштеде енергије</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Само после редовног освежавања</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Подешавање обавештења</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">После освежавања</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">Стално</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">На закључаном екрану</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">Сунце</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">Температура</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">Невидљива</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Класично</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Прилагођено, са прогнозом</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Изглед обавештења</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Изглед статусне иконе</string>
 </resources>
