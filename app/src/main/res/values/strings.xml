@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" tools:ignore="MissingTranslation">Your local weather</string>
     <string name="enter_city_hint" tools:ignore="MissingTranslation">Enter city</string>
@@ -225,7 +225,7 @@
     <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">Invisible</string>
     <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Classical</string>
     <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Custom with a forecast</string>
-    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Notification visual style</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Visual notification style</string>
     <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Status bar icon style</string>
     <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Vibrate</string>
     <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Update period for weather (Location 1,2,3...)</string>
