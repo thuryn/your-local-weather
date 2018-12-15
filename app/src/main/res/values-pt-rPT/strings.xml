@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Your local weather</string>
     <string name="enter_city_hint">Introduza a cidade</string>
     <string name="label_current_city">Cidade actual</string>
@@ -188,7 +188,7 @@
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Vento</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Pressão atmosférica</string>
     <string name="preference_hide_desc" tools:ignore="MissingTranslation">Esconder descrição de tempo</string>
-    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Notificações</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Opções de notificação</string>
     <string name="pref_title_notification" tools:ignore="MissingTranslation">Activar notificações</string>
     <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">Intervalo de actualização</string>
     <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Configuração de actualização de localização</string>
@@ -316,7 +316,7 @@
 <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Opção de endereço de cache resolvido</string>
     <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Endereço de cache resolvido</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">O aplicativo tem três widgets disponíveis, contendo alguns valores comuns do tempo atual (por exemplo, temperatura). Alguns valores são exclusivos para o widget específico (por exemplo, por do sol). Há um tempo da última atualização no canto direito de cada widget. Você pode ver o que foi atualizado desde a última vez (quando você ativou esta opção no menu de configurações). Você pode encontrar o botão de atualização ao lado do último tempo atualizado. Quando prime este botão, o tempo (e a localização quando seleccionada a opção de localização de atualização) é atualizado incondicionalmente. A última opção em widgets é mudar de localização - quando pressiona o texto do local atual o local muda para o próximo.</string>
-    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Período de atualização para localização (localização 0) </b> - você pode definir o período de atualização para o localização 0 - localização 0 tem a capacidade de atualizar o local de acordo com a célula, redes Wi-Fi e GPS. Quando você seleciona a atualização <i> por acelerômetro </i> aplicativo de opção usa acelerômetro para detectar o movimento. Quando o movimento é detectado, a aplicação conta a distância. Quando o limite para a distância é alcançado e a última actualização ocorreu pelo menos 15 minutos atrás, a actualização da posição e o tempo atual é executado. Quando a aplicação não é capaz de obter a localização, você pode ver a etiqueta de localização desconhecida no widget. Quando a aplicação não tem nenhuma atualização de estado local, uma atualização da localização é realizada novamente dentro de 5 minutos. Você pode selecionar a atualização do local com base no intervalo de tempo também. Por opção <b>período de atualização para o tempo (local 1, 2, 3...) </b> - você pode definir a atualização do tempo para os locais descobertos manualmente.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Período de atualização do local (Local 0)</b> - você pode definir o período de atualização do local 0 - o local 0 tem a capacidade de atualizar o local de acordo com a rede célular, redes Wi-Fi e GPS. Quando você seleciona atualizar <i>Por acelerômetro</i>" o aplicativo usa isso para detectar movimento. A partir daqui, a distância é calculada. Quando o limite de distância é atingido e nenhuma actualização ocorre dentro de 15 minutos, a localização e o tempo actual são actualizados. Quando a aplicação não consegue obter a localização, uma etiqueta de localização desconhecida é visualizada no widget. Quando o aplicativo não tem estado de localização, ele tentará novamente obter um  depois de 5 minutos. Você também pode selecionar a atualização de local com base em intervalos de tempo em "<b>Período de atualização do tempo (Local 1,2,3...)</b> - onde você pode definir o tempo para atualizar para locais manualmente descobertos.</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Compartilhar tempo</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Aplicativo de comunicação não encontrado</string>
     <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Cidade: %1$s
@@ -430,4 +430,22 @@
     <string name="weather_condition_description_802" tools:ignore="MissingTranslation">céu parcialmente nublado</string>
     <string name="weather_condition_description_803" tools:ignore="MissingTranslation">céu nublado</string>
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">céu encoberto</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"><b>Local MLS and Nominatim</b> - O aplicativo obtém localizações por serviços de localização da Mozilla. O aplicativo usa a rede celular - informações sobre as estações base de rede atuais ativas e disponíveis. É necessário ter permissão de fazer chamadas telefónicas para obter esta informação. O aplicativo usa redes Wi-Fi ao redor para adivinhar sua localização com mais precisão. A aplicação obtém coordenadas geográficas do serviço de localização da Mozilla. O aplicativo usa os serviços Nominatim para obter o endereço das coordenadas. Quando você quiser obter a localização mais precisa do serviço de localização da Mozilla, você pode contribuir com o aplicativo Mozilla Stumbler (disponível em https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler).</string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">Para poupar tráfego de rede e acelerar a atualização do local, você pode ativar <b>Cache de locais</b>. Este cache guarda coordenadas geográficas e um endereço. A aplicação tem de chamar o serviço de resolução de rede independentemente desta definição. Mas chamadar a resolução do endereço Nominatim ocorre apenas no caso do endereço não estar em cache. Quando ativa a opção Cache de localizações, tem que aceitar o fato de que os endereços, que você visitou, estão gravados no aplicativo. Nenhuma informação do cache é enviada para fora do aplicativo.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">A opção <b>Estratégia de acordar</b> existe para superar a implementação buggy do serviço do Android por diferentes fornecedores. Quando seleciona a opção <i>No wake up</i> e o local é atualizado corretamente, você tem a implementação correta. Quando o local não estiver atualizado corretamente, pode tentar <i>Acorde somente a CPU</i>. Esta opção ativa a CPU e tenta ler o estado da rede celular e wifi. A última opção <i>Acorde com display</i> é a opção que liga a tela por vários segundos durante a atualização do local. Em alguns telefones Android esta é a única opção para obter informações corretas sobre as redes celulares e wifi. Esta opção consome alguma quantidade de bateria - mas o impacto na bateria é muito pequeno.</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Quando atualizar regularmente</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Presença de notificação</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">Quando atualizado</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">Permanente</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">Na tela de bloqueio</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">Ícone do sol</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">Invisível</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Clássico</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Personalizado com uma previsão</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Estilo de notificação visual</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Estilo de ícone da barra de status</string>
+    <string name="preference_title_category_units" tools:ignore="MissingTranslation">Definições da unidade</string>
+    <string name="preference_title_power_save" tools:ignore="MissingTranslation">Opções de economia de energia</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">Não registrar para um ficheiro</string>
 </resources>
