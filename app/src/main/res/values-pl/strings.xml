@@ -433,4 +433,16 @@
     <string name="weather_condition_description_321" tools:ignore="MissingTranslation">siąpiący deszcz</string>
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Ustawienia urządzenia</string>
     <string name="preference_title_power_save" tools:ignore="MissingTranslation">Opcje oszczędzania energii</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Aktualizuj Regularnie</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Obecność powiadomień</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">Po aktualizacji</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">Stały</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">Na ekranie blokady</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">Ikona słońca</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">Niewidoczny</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Klasyczny</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Niestandardowe z prognozą</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Styl wizualnego powiadomienia</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Styl ikony paska stanu</string>
 </resources>
