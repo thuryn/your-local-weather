@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="enter_city_hint">Stadt eingeben</string>
     <string name="label_current_city">Aktuelle Stadt</string>
@@ -47,7 +47,7 @@
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Einstellungen</string>
     <string name="pref_title_temperature">Temperatur</string>
-    <string name="pref_title_category_notification">Benachrichtigungen</string>
+    <string name="pref_title_category_notification">Benachrichtigungseinstellungen</string>
     <string name="pref_title_notification">Benachrichtigungen aktivieren</string>
     <string name="pref_title_notification_refresh_interval">Aktualisierungsintervall</string>
     <string name="update_period_15min">15 Minuten</string>
@@ -340,7 +340,7 @@
     <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Português (Brasilien) (Portugiesisch (Brasilien))</string>
     <string name="label_pressure" tools:ignore="MissingTranslation">Druck</string>
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Deaktiviert</string>
-    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abkürzung N, NO, .…</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abkürzung N↓, NO↙, …</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Grad Abweichung von Norden</string>
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Die aktuelle Wetterbeschreibungssprache und die Adresse ändern sich beim nächsten Update, oder Sie können manuell gezwungen werden.</string>
 
@@ -460,4 +460,18 @@
     <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (Serbisch)</string>
     <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (Slowenisch)</string>
     <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (Türkisch)</string>
-    </resources>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Bei regelmäßiger Aktualisierung</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Anwensenheit von Benachrichtigungen</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">Bei Aktualisierung</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">Dauerhaft</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">Auf dem Sperrbildschirm</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">Sonnensymbol</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">Temperatur</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">Unsichtbar</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Klassisch</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Benutzerdefiniert mit einer Prognose</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Visueller Benachrichtigungsstil</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Stil der Symbolstatusleiste</string>
+    <string name="preference_title_category_units" tools:ignore="MissingTranslation">Einheiteneinstellungen</string>
+    <string name="preference_title_power_save" tools:ignore="MissingTranslation">Energiesparoptionen</string>
+</resources>
