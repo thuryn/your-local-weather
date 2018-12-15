@@ -105,19 +105,19 @@ public class WidgetRefreshIconService extends Service {
             printRotationSources();
             if (WidgetRefreshIconService.isRotationActive || isThereRotationSchedule()) {
                 appendLog(getBaseContext(), TAG,
-                        "startRotatingUpdateIcon:endOnCondition:isRotationActive=" +
-                                WidgetRefreshIconService.isRotationActive + ":isThereRotationSchedule=" +
+                        "startRotatingUpdateIcon:endOnCondition:isRotationActive=",
+                                WidgetRefreshIconService.isRotationActive, ":isThereRotationSchedule=",
                                 isThereRotationSchedule());
                 return;
             }
             WidgetRefreshIconService.isRotationActive = true;
             rotateRefreshButtonOneStep();
             appendLog(getBaseContext(), TAG,
-                    "startRotatingUpdateIcon:setIsRotationActive=" +
-                            WidgetRefreshIconService.isRotationActive + ":postingNewSchedule");
+                    "startRotatingUpdateIcon:setIsRotationActive=",
+                            WidgetRefreshIconService.isRotationActive, ":postingNewSchedule");
             timerRotateIconHandler.postDelayed(timerRotateIconRunnable, ROTATE_UPDATE_ICON_MILIS);
         } catch (Exception e) {
-            appendLog(getBaseContext(), TAG, "Exception storting rotation:" + e.getMessage(), e);
+            appendLog(getBaseContext(), TAG, "Exception storting rotation:", e);
         } finally {
             rotationSourcesLock.unlock();
         }
@@ -137,12 +137,12 @@ public class WidgetRefreshIconService extends Service {
             }
             WidgetRefreshIconService.isRotationActive = false;
             appendLog(getBaseContext(), TAG,
-                    "stopRotatingUpdateIcon:setIsRotationActive=" +
-                            WidgetRefreshIconService.isRotationActive + ":postingNewSchedule");
+                    "stopRotatingUpdateIcon:setIsRotationActive=",
+                            WidgetRefreshIconService.isRotationActive, ":postingNewSchedule");
             timerRotateIconHandler.removeCallbacksAndMessages(null);
             WidgetUtils.updateWidgets(getBaseContext());
         } catch (Exception e) {
-            appendLog(getBaseContext(), TAG, "Exception stoping rotation:" + e.getMessage(), e);
+            appendLog(getBaseContext(), TAG, "Exception stoping rotation:", e);
         } finally {
             rotationSourcesLock.unlock();
         }
@@ -150,7 +150,7 @@ public class WidgetRefreshIconService extends Service {
 
     private void printRotationSources() {
         for (int rotationSourceForLog: rotationSources) {
-            appendLog(getBaseContext(), TAG, "RotationSource:" + rotationSourceForLog);
+            appendLog(getBaseContext(), TAG, "RotationSource:", rotationSourceForLog);
         }
     }
 
@@ -240,7 +240,7 @@ public class WidgetRefreshIconService extends Service {
     private class RefreshIconMessageHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
-            appendLog(getBaseContext(), TAG, "handleMessage:" + msg.what);
+            appendLog(getBaseContext(), TAG, "handleMessage:", msg.what);
             int rotationSource = msg.arg1;
             switch (msg.what) {
                 case START_ROTATING_UPDATE:

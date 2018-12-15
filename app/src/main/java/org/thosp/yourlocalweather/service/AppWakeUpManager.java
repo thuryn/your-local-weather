@@ -1,7 +1,6 @@
 package org.thosp.yourlocalweather.service;
 
 import android.app.Service;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -12,13 +11,7 @@ import android.os.Messenger;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;
 
-import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.utils.Constants;
-import org.thosp.yourlocalweather.widget.ExtLocationWidgetProvider;
-import org.thosp.yourlocalweather.widget.ExtLocationWithForecastWidgetProvider;
-import org.thosp.yourlocalweather.widget.LessWidgetProvider;
-import org.thosp.yourlocalweather.widget.MoreWidgetProvider;
-import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +19,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLogWakeupSources;
 
 public class AppWakeUpManager extends Service {
 
@@ -78,7 +72,7 @@ public class AppWakeUpManager extends Service {
             if (!wakeUpSources.contains(wakeUpSource)) {
                 wakeUpSources.add(wakeUpSource);
             }
-            printWakeupSources("startWakeUp");
+            appendLogWakeupSources(getBaseContext(), TAG, "startWakeUp:", wakeUpSources);
             if ((wakeLock != null) && wakeLock.isHeld()) {
                 appendLog(getBaseContext(), TAG,"wakeUp started");
                 return;
@@ -86,7 +80,7 @@ public class AppWakeUpManager extends Service {
             wakeUp();
             appendLog(getBaseContext(), TAG,"start wakeup");
         } catch (Exception e) {
-            appendLog(getBaseContext(), TAG, "Exception starting wakeup:" + e.getMessage(), e);
+            appendLog(getBaseContext(), TAG, "Exception starting wakeup", e);
         } finally {
             wakeUpSourcesLock.unlock();
         }
@@ -98,14 +92,13 @@ public class AppWakeUpManager extends Service {
             if (wakeUpSources.contains(wakeUpSource)) {
                 wakeUpSources.remove(wakeUpSource);
             }
-            appendLog(getBaseContext(), TAG, "wakeUpSources.size:" + wakeUpSources.size());
-            printWakeupSources("stopWakeUp");
+            appendLogWakeupSources(getBaseContext(), TAG, "startWakeUp:", wakeUpSources);
             if (!wakeUpSources.isEmpty()) {
                 return;
             }
             wakeDown();
         } catch (Exception e) {
-            appendLog(getBaseContext(), TAG, "Exception stoping wakeup:" + e.getMessage(), e);
+            appendLog(getBaseContext(), TAG, "Exception stoping wakeup", e);
         } finally {
             wakeUpSourcesLock.unlock();
         }
@@ -113,7 +106,7 @@ public class AppWakeUpManager extends Service {
 
     public void wakeDown() {
         timerWakeUpHandler.removeCallbacksAndMessages(null);
-        appendLog(getBaseContext(), TAG, "wakeDown wakeLock:" + wakeLock);
+        appendLog(getBaseContext(), TAG, "wakeDown wakeLock:", wakeLock);
         if ((wakeLock != null) && wakeLock.isHeld()) {
             try {
                 wakeLock.release();
@@ -125,7 +118,7 @@ public class AppWakeUpManager extends Service {
     }
 
     public void wakeUp() {
-        appendLog(getBaseContext(), TAG, "powerManager:" + powerManager);
+        appendLog(getBaseContext(), TAG, "powerManager:", powerManager);
 
         boolean isInUse;
 
@@ -144,7 +137,7 @@ public class AppWakeUpManager extends Service {
 
         String wakeUpStrategy = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
                 .getString(Constants.KEY_WAKE_UP_STRATEGY, "nowakeup");
-        appendLog(getBaseContext(), TAG, "wakeLock:wakeUpStrategy:" + wakeUpStrategy);
+        appendLog(getBaseContext(), TAG, "wakeLock:wakeUpStrategy:", wakeUpStrategy);
         if (wakeLock != null) {
             try {
                 wakeLock.release();
@@ -161,31 +154,20 @@ public class AppWakeUpManager extends Service {
         } else {
             powerLockID = PowerManager.PARTIAL_WAKE_LOCK;
         }
-        appendLog(getBaseContext(), TAG, "wakeLock:powerLockID:" + powerLockID);
+        appendLog(getBaseContext(), TAG, "wakeLock:powerLockID:", powerLockID);
         wakeLock = powerManager.newWakeLock(powerLockID, "YourLocalWeather:PowerLock");
-        appendLog(getBaseContext(), TAG, "wakeLock:" + wakeLock + ":" + wakeLock.isHeld());
+        appendLog(getBaseContext(), TAG, "wakeLock:", wakeLock, ":", wakeLock.isHeld());
         if (!wakeLock.isHeld()) {
             wakeLock.acquire();
         }
         appendLog(getBaseContext(), TAG, "wakeLock acquired");
     }
 
-    private void printWakeupSources(String wakeupdown) {
-        StringBuilder wakeupSourcesList = new StringBuilder();
-        wakeupSourcesList.append(wakeupdown);
-        wakeupSourcesList.append(", WakeUp source list: ");
-        for (Integer wakeupSource: wakeUpSources) {
-            wakeupSourcesList.append(wakeupSource);
-            wakeupSourcesList.append(",");
-        }
-        appendLog(getBaseContext(), TAG, "wakeUpSources:" + wakeupSourcesList.toString());
-    }
-
     private class PowerUpMessageHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             int wakeUpSource = msg.arg1;
-            appendLog(getBaseContext(), TAG, "handleMessage:" + msg.what + ":" + wakeUpSource);
+            appendLog(getBaseContext(), TAG, "handleMessage:", msg.what, ":", wakeUpSource);
             switch (msg.what) {
                 case WAKE_UP:
                     startWakeUp(wakeUpSource);

@@ -63,7 +63,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        appendLog(context, TAG, "intent:" + intent + ", widget:" + getWidgetClass());
+        appendLog(context, TAG, "intent:", intent, ", widget:", getWidgetClass());
         super.onReceive(context, intent);
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
         WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
@@ -180,7 +180,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             startLocationUpdateIntent.putExtra("locationId", currentLocation.getId());
             startLocationUpdateIntent.putExtra("forceUpdate", true);
             startServiceWithCheck(context, startLocationUpdateIntent);
-            appendLog(context, TAG, "send intent START_LOCATION_UPDATE:" + startLocationUpdateIntent);
+            appendLog(context, TAG, "send intent START_LOCATION_UPDATE:", startLocationUpdateIntent);
         } else if (currentLocation.getOrderId() != 0) {
             Intent intentToCheckWeather = new Intent(context, CurrentWeatherService.class);
             intentToCheckWeather.putExtra("locationId", currentLocation.getId());
@@ -191,7 +191,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     }
 
     public static void setWidgetIntents(Context context, RemoteViews remoteViews, Class<?>  widgetClass, int widgetId) {
-        appendLog(context, TAG, "setWidgetIntents:widgetid:" + widgetId);
+        appendLog(context, TAG, "setWidgetIntents:widgetid:", widgetId);
         Intent intentRefreshService = new Intent(context, widgetClass);
         intentRefreshService.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
         intentRefreshService.putExtra("widgetId", widgetId);

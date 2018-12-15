@@ -31,7 +31,7 @@ public class NotificationService extends AbstractCommonService {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
-        appendLog(getBaseContext(), TAG, "onStartCommand:" + intent);
+        appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
 
         if (intent == null) {
             return ret;
@@ -65,7 +65,7 @@ public class NotificationService extends AbstractCommonService {
             return;
         }
         long intervalMillis = Utils.intervalMillisForAlarm(intervalPref);
-        appendLog(this, TAG, "Build.VERSION.SDK_INT:" + Build.VERSION.SDK_INT);
+        appendLog(this, TAG, "Build.VERSION.SDK_INT:", Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + intervalMillis,

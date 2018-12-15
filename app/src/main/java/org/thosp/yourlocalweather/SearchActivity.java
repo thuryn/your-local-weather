@@ -225,7 +225,7 @@ public class SearchActivity extends BaseActivity {
         SensorLocationUpdater.autolocationForSensorEventAddressFound = true;
         appendLog(this,
                 TAG,
-                "autolocationForSensorEventAddressFound=" +
+                "autolocationForSensorEventAddressFound=",
                         SensorLocationUpdater.autolocationForSensorEventAddressFound);
 
         if (currentMaxOrderId == 0) {

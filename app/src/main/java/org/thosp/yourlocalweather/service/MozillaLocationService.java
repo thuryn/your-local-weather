@@ -72,8 +72,11 @@ public class MozillaLocationService {
                                                           List<Cell> cells,
                                                           List<ScanResult> wiFis,
                                                           final boolean resolveAddress) {
-        appendLog(context, TAG, "getLocationFromCellsAndWifis:wifi=" + ((wiFis != null)?wiFis.size():"null") +
-                    ", cells=" + ((cells != null)?cells.size():"null"));
+        appendLog(context, TAG,
+                "getLocationFromCellsAndWifis:wifi=",
+                wiFis,
+                ", cells=",
+                cells);
         if ((cells == null || cells.isEmpty()) && (wiFis == null || wiFis.size() < 2)) {
             appendLog(context, TAG, "THERE IS NO CELL AND JUST ONE WIFI NETWORK - THIS IS NOT ENOUGH FOR MLS TO GET THE LOCATION");
             processUpdateOfLocation(context, null, false);
@@ -102,7 +105,7 @@ public class MozillaLocationService {
                             Location response = null;
                             try {
                                 String result = new String(httpResponse);
-                                appendLog(context, TAG, "response: " + result);
+                                appendLog(context, TAG, "response: ", result);
                                 JSONObject responseJson = new JSONObject(result);
                                 double lat = responseJson.getJSONObject("location").getDouble("lat");
                                 double lon = responseJson.getJSONObject("location").getDouble("lng");
@@ -117,7 +120,7 @@ public class MozillaLocationService {
 
                         @Override
                         public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                            appendLog(context, TAG, "onFailure:" + statusCode);
+                            appendLog(context, TAG, "onFailure:", statusCode);
                             processUpdateOfLocation(context, null, resolveAddress);
                         }
 
@@ -137,10 +140,18 @@ public class MozillaLocationService {
     public void processUpdateOfLocation(final Context context,
                                          Location location,
                                          boolean resolveAddress) {
-        appendLog(context, TAG, "processUpdateOfLocation:resolveAddress:" + resolveAddress);
+        appendLog(context, TAG, "processUpdateOfLocation:resolveAddress:", resolveAddress);
         if (resolveAddress && (location != null)) {
             String locale = PreferenceUtil.getLanguage(context);
-            appendLog(context, TAG, "processUpdateOfLocation:location:" + location + ":" + location.getLatitude() + ", " + location.getLongitude() + ", " + locale);
+            appendLog(context, TAG,
+                    "processUpdateOfLocation:location:",
+                    location,
+                    ":",
+                    location.getLatitude(),
+                    ", ",
+                    location.getLongitude(),
+                    ", ",
+                    locale);
             NominatimLocationService.getInstance().getFromLocation(
                     context,
                     location.getLatitude(),
@@ -150,7 +161,7 @@ public class MozillaLocationService {
                     new MozillaProcessResultFromAddressResolution(context, location, this));
             return;
         }
-        appendLog(context, TAG, "processUpdateOfLocation:reportNewLocation:" + location);
+        appendLog(context, TAG, "processUpdateOfLocation:reportNewLocation:", location);
         reportNewLocation(location, null);
     }
 

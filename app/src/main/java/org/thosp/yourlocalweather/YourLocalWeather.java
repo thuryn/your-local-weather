@@ -31,7 +31,7 @@ public class YourLocalWeather extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        appendLog(this, TAG,"Default locale:" + Resources.getSystem().getConfiguration().locale.getLanguage());
+        appendLog(this, TAG,"Default locale:", Resources.getSystem().getConfiguration().locale.getLanguage());
         PreferenceManager.getDefaultSharedPreferences(this)
                 .edit()
                 .putString(Constants.PREF_OS_LANGUAGE, Resources.getSystem().getConfiguration().locale.getLanguage())

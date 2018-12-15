@@ -1,12 +1,8 @@
 package org.thosp.yourlocalweather.service;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.location.Address;
 import android.location.Location;
-import android.os.SystemClock;
 
 import java.util.List;
 
@@ -27,12 +23,12 @@ public class MozillaProcessResultFromAddressResolution implements ProcessResultF
     }
 
     public void processAddresses(List<Address> addresses) {
-        appendLog(context, TAG, "processUpdateOfLocation:addresses:" + addresses);
+        appendLog(context, TAG, "processUpdateOfLocation:addresses:", addresses);
         Address resolvedAddress = null;
         if ((addresses != null) && (addresses.size() > 0)) {
             resolvedAddress = addresses.get(0);
         }
-        appendLog(context, TAG, "processUpdateOfLocation:location:" + location + ", address=" + resolvedAddress);
+        appendLog(context, TAG, "processUpdateOfLocation:location:", location, ", address=", resolvedAddress);
         mozillaLocationService.reportNewLocation(location, resolvedAddress);
     }
 }

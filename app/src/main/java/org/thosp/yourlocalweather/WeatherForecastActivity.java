@@ -15,19 +15,15 @@ import android.view.View;
 import android.widget.ImageView;
 
 import org.thosp.yourlocalweather.adapter.WeatherForecastAdapter;
-import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.ForecastWeatherService;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
 
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class WeatherForecastActivity extends ForecastingActivity {
 

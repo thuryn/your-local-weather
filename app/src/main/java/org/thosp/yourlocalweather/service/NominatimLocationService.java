@@ -88,7 +88,7 @@ public class NominatimLocationService {
                                             final String locale,
                                             final ProcessResultFromAddressResolution processResultFromAddressResolution) {
 
-        appendLog(context, TAG, "getFromLocation:" + latitude + ", " + longitude + ", " + locale);
+        appendLog(context, TAG, "getFromLocation:", latitude, ", ", longitude, ", ", locale);
         final ReverseGeocodingCacheDbHelper mDbHelper = ReverseGeocodingCacheDbHelper.getInstance(context);
 
         List<Address> addressesFromCache = retrieveLocationFromCache(context, mDbHelper, latitude, longitude, locale);
@@ -99,8 +99,11 @@ public class NominatimLocationService {
 
         long now = System.currentTimeMillis();
         if (nextAlowedRequestTimestamp > now) {
-            appendLog(context, TAG, "request to nominatim in less than 1.4s - nextAlowedRequestTimestamp=" +
-                    nextAlowedRequestTimestamp + ", now=" + now);
+            appendLog(context, TAG,
+                    "request to nominatim in less than 1.4s - nextAlowedRequestTimestamp=",
+                    nextAlowedRequestTimestamp,
+                    ", now=",
+                    now);
             processResultFromAddressResolution.processAddresses(null);
             return;
         }
@@ -108,7 +111,7 @@ public class NominatimLocationService {
         nextAlowedRequestTimestamp = 1400 + now;
         final String url = String.format(Locale.US, REVERSE_GEOCODE_URL, SERVICE_URL_OSM, "",
                 locale.split("_")[0], latitude, longitude);
-        appendLog(context, TAG, "Constructed URL " + url);
+        appendLog(context, TAG, "Constructed URL ", url);
         Handler mainHandler = new Handler(Looper.getMainLooper());
         Runnable myRunnable = new Runnable() {
             @Override
@@ -123,8 +126,9 @@ public class NominatimLocationService {
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, byte[] response) {
                         try {
-                            JSONObject result = new JSONObject(new String(response));
-                            appendLog(context, TAG, "result from nominatim server:" + result);
+                            String rawResult = new String(response);
+                            JSONObject result = new JSONObject(rawResult);
+                            appendLog(context, TAG, "result from nominatim server:", rawResult);
 
                             Address address = parseResponse(localeFromLocaleString(locale), result);
                             if (address != null) {
@@ -134,13 +138,13 @@ public class NominatimLocationService {
                                 processResultFromAddressResolution.processAddresses(addresses);
                             }
                         } catch (JSONException jsonException) {
-                            appendLog(context, TAG, "jsonException:" + jsonException);
+                            appendLog(context, TAG, "jsonException:", jsonException);
                         }
                     }
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                        appendLog(context, TAG, "onFailure:" + statusCode);
+                        appendLog(context, TAG, "onFailure:", statusCode);
                         processResultFromAddressResolution.processAddresses(null);
                     }
 
@@ -217,7 +221,7 @@ public class NominatimLocationService {
         }
 
         Address addressFromCache = getResultFromCache(mDbHelper, latitude, longitude, locale);
-        appendLog(context, TAG, "address retrieved from cache:" + addressFromCache);
+        appendLog(context, TAG, "address retrieved from cache:", addressFromCache);
         if (addressFromCache == null) {
             return null;
         }
@@ -247,7 +251,7 @@ public class NominatimLocationService {
 
         long newLocationRowId = db.insert(LocationAddressCache.TABLE_NAME, null, values);
 
-        appendLog(context, TAG, "storedAddress:" + latitude + ", " + longitude + ", " + newLocationRowId + ", " + address);
+        appendLog(context, TAG, "storedAddress:", latitude, ", ", longitude, ", ", newLocationRowId, ", ", address);
     }
 
     private Address getResultFromCache(ReverseGeocodingCacheDbHelper mDbHelper, double latitude, double longitude, String locale) {

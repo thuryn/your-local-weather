@@ -2,14 +2,12 @@ package org.thosp.yourlocalweather.model;
 
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Address;
 import android.os.Parcel;
 
-import org.thosp.yourlocalweather.service.SensorLocationUpdateService;
 import org.thosp.yourlocalweather.service.SensorLocationUpdater;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 
@@ -80,7 +78,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         values.put(LocationsContract.Locations._ID, location.getId());
 
         long newLocationRowId = db.insert(LocationsContract.Locations.TABLE_NAME, null, values);
-        appendLog(context, TAG, "Location in memory created: " + newLocationRowId + ":" + location.getId());
+        appendLog(context, TAG, "Location in memory created: ", newLocationRowId, ":", location.getId());
     }
 
     public void deleteRecordFromTable(Location location) {
@@ -493,7 +491,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         SensorLocationUpdater.autolocationForSensorEventAddressFound = true;
         appendLog(context,
                   TAG,
-                 "updateAutoLocationAddress:autolocationForSensorEventAddressFound=" +
+                 "updateAutoLocationAddress:autolocationForSensorEventAddressFound=",
                         SensorLocationUpdater.autolocationForSensorEventAddressFound);
     }
 
@@ -502,7 +500,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                                               final String locationSource,
                                               final float accuracy,
                                               final long locationTime) {
-        appendLog(context, TAG, "updateLocationSource:entered:" + latitude + ":" + longitude + ":" + locationSource);
+        appendLog(context, TAG, "updateLocationSource:entered:", latitude, ":", longitude, ":", locationSource);
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(LocationsContract.Locations.COLUMN_NAME_LONGITUDE, longitude);
@@ -535,7 +533,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         SensorLocationUpdater.autolocationForSensorEventAddressFound = false;
         appendLog(context,
                 TAG,
-                "setNoLocationFound:autolocationForSensorEventAddressFound=" +
+                "setNoLocationFound:autolocationForSensorEventAddressFound=",
                         SensorLocationUpdater.autolocationForSensorEventAddressFound);
     }
 
@@ -548,7 +546,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         if ((locationToChangeLocationSource != null) && locationToChangeLocationSource.equals(locationSource)) {
             return;
         }
-        appendLog(context, TAG, "updateLocationSource:entered:" + locationId + ":" + locationSource);
+        appendLog(context, TAG, "updateLocationSource:entered:", locationId, ":", locationSource);
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, locationSource);
@@ -577,7 +575,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
     public void updateLastUpdatedAndLocationSource(final long locationId,
                                                    final long updateTime,
                                                    final String locationSource) {
-        appendLog(context, TAG, "updateLocationSource:entered:" + locationId + ":" + locationSource);
+        appendLog(context, TAG, "updateLocationSource:entered:", locationId, ":", locationSource);
         SQLiteDatabase db = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_UPDATE_SOURCE, locationSource);

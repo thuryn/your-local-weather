@@ -171,7 +171,7 @@ public class MainActivity extends BaseActivity
     }
 
     private void startAlarms() {
-        appendLog(this, TAG, "scheduleStart at boot, SDK=" + Build.VERSION.SDK_INT);
+        appendLog(this, TAG, "scheduleStart at boot, SDK=", Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
             JobScheduler jobScheduler = getSystemService(JobScheduler.class);
             boolean scheduled = false;
@@ -524,7 +524,7 @@ public class MainActivity extends BaseActivity
         mWeatherUpdateReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                appendLog(context, TAG, "BroadcastReceiver:" + intent);
+                appendLog(context, TAG, "BroadcastReceiver:", intent);
                 if ((mProgressDialog != null) && (refreshDialogHandler != null)) {
                     refreshDialogHandler.post(new Runnable() {
                         public void run() {

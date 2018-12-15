@@ -140,7 +140,7 @@ public class AbstractCommonService extends Service {
     protected void requestWeatherCheck(long locationId, String updateSource, int wakeUpSource, boolean forceUpdate) {
         appendLog(getBaseContext(), TAG, "startRefreshRotation");
         boolean updateLocationInProcess = LocationUpdateService.updateLocationInProcess;
-        appendLog(getBaseContext(), TAG, "requestWeatherCheck, updateLocationInProcess=" +
+        appendLog(getBaseContext(), TAG, "requestWeatherCheck, updateLocationInProcess=",
                 updateLocationInProcess);
         if (updateLocationInProcess) {
             return;
@@ -153,12 +153,12 @@ public class AbstractCommonService extends Service {
     }
 
     protected void startRefreshRotation(String where, int rotationSource) {
-        appendLog(getBaseContext(), TAG, "startRefreshRotation:" + where);
+        appendLog(getBaseContext(), TAG, "startRefreshRotation:", where);
         sendMessageToWidgetIconService(WidgetRefreshIconService.START_ROTATING_UPDATE, rotationSource);
     }
 
     protected void stopRefreshRotation(String where, int rotationSource) {
-        appendLog(getBaseContext(), TAG, "stopRefreshRotation:" + where);
+        appendLog(getBaseContext(), TAG, "stopRefreshRotation:", where);
         sendMessageToWidgetIconService(WidgetRefreshIconService.STOP_ROTATING_UPDATE, rotationSource);
     }
 
@@ -441,7 +441,7 @@ public class AbstractCommonService extends Service {
         if (wakeUpService != null) {
             return;
         }
-        appendLog(getBaseContext(), getClass().getName(), "bindWakeUpService " + wakeUpService);
+        appendLog(getBaseContext(), getClass().getName(), "bindWakeUpService ", wakeUpService);
         getApplicationContext().bindService(
                 new Intent(getApplicationContext(), AppWakeUpManager.class),
                 wakeUpServiceConnection,

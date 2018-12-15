@@ -7,18 +7,12 @@ import android.content.ServiceConnection;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
-import android.location.Address;
-import android.location.Location;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
 
-import org.thosp.yourlocalweather.ConnectionDetector;
-import org.thosp.yourlocalweather.R;
-import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.utils.WidgetUtils;
 import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.util.LinkedList;
@@ -27,6 +21,8 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLogSensorsEnd;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLogSensorsCheck;
 
 public class SensorLocationUpdater implements SensorEventListener {
 
@@ -35,9 +31,9 @@ public class SensorLocationUpdater implements SensorEventListener {
     private static final float LENGTH_UPDATE_LOCATION_LIMIT = 1500;
     private static final float LENGTH_UPDATE_LOCATION_SECOND_LIMIT = 300;
     private static final float LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION = 200;
-    private static final long ACCELEROMETER_UPDATE_TIME_SPAN = 900000000000l; //15 min
-    private static final long ACCELEROMETER_UPDATE_TIME_SECOND_SPAN = 300000000000l; //5 min
-    private static final long ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION = 300000000000l; //5 min
+    private static final long ACCELEROMETER_UPDATE_TIME_SPAN = 900000l; //15 min
+    private static final long ACCELEROMETER_UPDATE_TIME_SECOND_SPAN = 300000l; //5 min
+    private static final long ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION = 300000l; //5 min
 
     private volatile long lastUpdate = 0;
     private volatile float currentLength = 0;
@@ -104,7 +100,7 @@ public class SensorLocationUpdater implements SensorEventListener {
     }
 
     private void processSensorEvent(SensorEvent sensorEvent) {
-        double countedtLength = 0;
+        double countedLength = 0;
         double countedAcc = 0;
         long now = sensorEvent.timestamp;
         try {
@@ -113,47 +109,65 @@ public class SensorLocationUpdater implements SensorEventListener {
 
             if (lastMovement != null) {
                 countedAcc = (float) Math.sqrt((lastMovement.getX() * lastMovement.getX()) + (lastMovement.getY() * lastMovement.getY()) + (lastMovement.getZ() * lastMovement.getZ()));
-                countedtLength = countedAcc * dT *dT;
+                countedLength = countedAcc * dT *dT;
 
                 float lowPassConst = 0.1f;
 
                 if (countedAcc < lowPassConst) {
                     if (dT > 1.0f) {
-                        appendLog(context, TAG, "acc under limit, currentLength = " + String.format("%.8f", currentLength) +
-                                ":counted length = " + String.format("%.8f", countedtLength) + ":countedAcc = " + countedAcc +
-                                ", dT = " + String.format("%.8f", dT)+ ", provider=" + this);
+                        appendLogSensorsCheck(context,
+                                              TAG,
+                                  "acc under limit",
+                                              currentLength,
+                                              countedLength,
+                                              countedAcc,
+                                              dT);
                     }
-                    currentLengthLowPassed += countedtLength;
+                    currentLengthLowPassed += countedLength;
                     lastMovement = highPassFilter(sensorEvent);
                     return;
                 }
-                currentLength += countedtLength;
+                currentLength += countedLength;
             } else {
-                countedtLength = 0;
+                countedLength = 0;
                 countedAcc = 0;
             }
             lastMovement = highPassFilter(sensorEvent);
 
-            if ((lastUpdate%1000 < 5) || (countedtLength > 10)) {
-                appendLog(context, TAG, "current currentLength = " + String.format("%.8f", currentLength) +
-                        ":counted length = " + String.format("%.8f", countedtLength) + ":countedAcc = " + countedAcc +
-                        ", dT = " + String.format("%.8f", dT) + ", provider=" + this);
+            if ((lastUpdate%1000 < 5) || (countedLength > 10)) {
+                appendLogSensorsCheck(context, TAG, "current", currentLength, countedLength, countedAcc, dT);
             }
             float absCurrentLength = Math.abs(currentLength);
 
-            long lastUpdatedPossition = getLastPossitionUodateTime();
-            long nowInMilis = System.currentTimeMillis();
+            long lastUpdatedPosition = getLastPossitionUodateTime();
+            long nowInMillis = System.currentTimeMillis();
 
-            if (((lastUpdate < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SPAN)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT))
-                    && ((nowInMilis < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SECOND_SPAN)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_SECOND_LIMIT))
-                    && (autolocationForSensorEventAddressFound || (nowInMilis < (lastUpdatedPossition + ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION)) || (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION))) {
+            boolean nowIsBeforeTheLastUpdatedAndTimeSpan = (nowInMillis < (lastUpdatedPosition + ACCELEROMETER_UPDATE_TIME_SPAN));
+            boolean currentLengthIsUnderLimit = (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT);
+            boolean nowIsBeforeTheLastUpdatedAndFastTimeSpan = (nowInMillis < (lastUpdatedPosition + ACCELEROMETER_UPDATE_TIME_SECOND_SPAN));
+            boolean currentLengthIsUnderFastLimit = (absCurrentLength < LENGTH_UPDATE_LOCATION_SECOND_LIMIT);
+            boolean nowIsBeforeTheLastUpdatedAndTimeSpanNoLocation = (nowInMillis < (lastUpdatedPosition + ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION));
+            boolean currentLengthIsUnderNoLocationLimit = (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION);
+
+            if ((nowIsBeforeTheLastUpdatedAndTimeSpan || currentLengthIsUnderLimit)
+                 && (nowIsBeforeTheLastUpdatedAndFastTimeSpan || currentLengthIsUnderFastLimit)
+                 && (autolocationForSensorEventAddressFound || nowIsBeforeTheLastUpdatedAndTimeSpanNoLocation || currentLengthIsUnderNoLocationLimit)) {
                 return;
             }
 
-            appendLog(context, TAG, "end currentLength = " + String.format("%.8f", absCurrentLength) +
-                    ", currentLengthLowPassed = " + String.format("%.8f", currentLengthLowPassed) +
-                    ", lastUpdate=" + nowInMilis + ", lastUpdatePosition=" + lastUpdatedPossition +
-                    ", autolocationForSensorEventAddressFound=" + autolocationForSensorEventAddressFound);
+            appendLogSensorsEnd(context,
+                             TAG,
+                             absCurrentLength,
+                             currentLengthLowPassed,
+                             nowInMillis,
+                             lastUpdatedPosition,
+                             nowIsBeforeTheLastUpdatedAndTimeSpan,
+                             currentLengthIsUnderLimit,
+                             nowIsBeforeTheLastUpdatedAndFastTimeSpan,
+                             currentLengthIsUnderFastLimit,
+                             autolocationForSensorEventAddressFound,
+                             nowIsBeforeTheLastUpdatedAndTimeSpanNoLocation,
+                             currentLengthIsUnderNoLocationLimit);
         } catch (Exception e) {
             appendLog(context, TAG, "Exception when processSensorQueue", e);
             return;
@@ -189,7 +203,7 @@ public class SensorLocationUpdater implements SensorEventListener {
     }
 
     protected void startRefreshRotation(String where, int rotationSource) {
-        appendLog(context, TAG, "startRefreshRotation:" + where);
+        appendLog(context, TAG, "startRefreshRotation:", where);
         sendMessageToWidgetIconService(WidgetRefreshIconService.START_ROTATING_UPDATE, rotationSource);
     }
 

@@ -71,7 +71,8 @@ public class PermissionUtil {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
         Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
         if (!autoLocation.isEnabled()) {
-            appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS, "locationUpdateStrategy is set to update_location_none, return false");
+            appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS,
+                    "locationUpdateStrategy is set to update_location_none, return false");
             return false;
         }
 
@@ -85,7 +86,8 @@ public class PermissionUtil {
         boolean gpsNotSet = AppPreference.isGpsEnabledByPreferences(context) && !isGPSEnabled;
         boolean networkNotSet = "location_geocoder_system".equals(geocoder) && !isNetworkEnabled;
 
-        appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS, "isGPSEnabled=" + isGPSEnabled + ", isNetworkEnabled=" + isNetworkEnabled);
+        appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS,
+                "isGPSEnabled=", isGPSEnabled, ", isNetworkEnabled=", isNetworkEnabled);
         if (gpsNotSet && networkNotSet) {
             appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS, "isGPSEnabled and isNetworkEnabled are not set, returning false");
             return false;
@@ -101,7 +103,7 @@ public class PermissionUtil {
             } else if ("location_geocoder_system".equals(geocoder) && isNetworkEnabled && ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
             }
-            appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS, "permissions are empty = " + permissions.isEmpty());
+            appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS, "permissions are empty = ", permissions.isEmpty());
             if (permissions.isEmpty()) {
                 appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS, "permissions are empty, returning true");
                 return true;

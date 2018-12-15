@@ -88,7 +88,7 @@ public class AppAlarmService extends AbstractCommonService {
         if (intent == null) {
             return ret;
         }
-        appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():" + intent.getAction());
+        appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         if ("org.thosp.yourlocalweather.action.START_ALARM_SERVICE".equals(intent.getAction())) {
             setAlarm();
@@ -140,12 +140,12 @@ public class AppAlarmService extends AbstractCommonService {
         String updatePeriodStr = AppPreference.getLocationUpdatePeriod(getBaseContext());
         String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
         long updatePeriodMills = Utils.intervalMillisForAlarm(updatePeriodStr);
-        appendLog(getBaseContext(), TAG, "setAlarm:" + updatePeriodStr + ":" + updateAutoPeriodStr);
+        appendLog(getBaseContext(), TAG, "setAlarm:", updatePeriodStr, ":", updateAutoPeriodStr);
         AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-        appendLog(getBaseContext(), TAG, "locationsDbHelper.getLocationByOrderId(0):"
-                + locationsDbHelper.getLocationByOrderId(0));
-        appendLog(getBaseContext(), TAG, "locationsDbHelper.getLocationByOrderId(0).isEnabled()"
-                + locationsDbHelper.getLocationByOrderId(0).isEnabled());
+        appendLog(getBaseContext(), TAG, "locationsDbHelper.getLocationByOrderId(0):",
+                locationsDbHelper.getLocationByOrderId(0));
+        appendLog(getBaseContext(), TAG, "locationsDbHelper.getLocationByOrderId(0).isEnabled()",
+                locationsDbHelper.getLocationByOrderId(0).isEnabled());
         if (locationsDbHelper.getLocationByOrderId(0).isEnabled()) {
             if ("0".equals(updateAutoPeriodStr)) {
                 sendSensorStartIntent();
@@ -160,7 +160,7 @@ public class AppAlarmService extends AbstractCommonService {
             } else if (!"OFF".equals(updateAutoPeriodStr)) {
                 sendSensorAndScreenStopIntent();
                 long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
-                appendLog(getBaseContext(), TAG, "next alarm:" + updateAutoPeriodMills);
+                appendLog(getBaseContext(), TAG, "next alarm:", updateAutoPeriodMills);
                 scheduleNextRegularAlarm(getBaseContext(), true, updateAutoPeriodMills);
             } else {
                 sendSensorAndScreenStopIntent();
@@ -189,7 +189,7 @@ public class AppAlarmService extends AbstractCommonService {
             return;
         }
         long intervalMillis = Utils.intervalMillisForAlarm(intervalPref);
-        appendLog(this, TAG, "Build.VERSION.SDK_INT:" + Build.VERSION.SDK_INT);
+        appendLog(this, TAG, "Build.VERSION.SDK_INT:", Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + intervalMillis,
@@ -211,7 +211,7 @@ public class AppAlarmService extends AbstractCommonService {
 
     private static void scheduleNextRegularAlarm(Context context, boolean autoLocation, long updatePeriodMilis) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        appendLog(context, TAG, "Build.VERSION.SDK_INT:" + Build.VERSION.SDK_INT);
+        appendLog(context, TAG, "Build.VERSION.SDK_INT:", Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + updatePeriodMilis,

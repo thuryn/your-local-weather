@@ -109,7 +109,7 @@ public abstract class ForecastingActivity extends BaseActivity {
         mWeatherUpdateReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                appendLog(context, TAG, "BroadcastReceiver:" + intent);
+                appendLog(context, TAG, "BroadcastReceiver:", intent);
                 if ((mGetWeatherProgress != null) && (mHandler != null)) {
                     mHandler.post(new Runnable() {
                         public void run() {

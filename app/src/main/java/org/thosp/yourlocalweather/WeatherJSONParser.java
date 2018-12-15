@@ -8,11 +8,7 @@ import org.json.JSONObject;
 import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.Weather;
-import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
-import org.thosp.yourlocalweather.model.WeatherForecastResultHandler;
 import org.thosp.yourlocalweather.utils.OWMLanguages;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class WeatherJSONParser {
 

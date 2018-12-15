@@ -31,7 +31,7 @@ public class StartupReceiver extends BroadcastReceiver {
     }
 
     private void scheduleStart(Context context) {
-        appendLog(context, TAG, "scheduleStart at boot, SDK=" + Build.VERSION.SDK_INT);
+        appendLog(context, TAG, "scheduleStart at boot, SDK=", Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
             ComponentName serviceComponent = new ComponentName(context, StartAutoLocationJob.class);
             JobInfo.Builder builder = new JobInfo.Builder(StartAutoLocationJob.JOB_ID, serviceComponent);

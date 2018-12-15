@@ -33,13 +33,13 @@ public class NetworkConnectionReceiver extends ConnectivityManager.NetworkCallba
     @Override
     public void onAvailable(Network network) {
         super.onAvailable(network);
-        appendLog(context, TAG, "onAvailable, network=" + network + ", wasOffline=" + wasOffline);
+        appendLog(context, TAG, "onAvailable, network=", network, ", wasOffline=", wasOffline);
         if (networkIsOffline()) {
             appendLog(context, TAG, "network is offline");
             wasOffline = true;
             return;
         }
-        appendLog(context, TAG, "network is online, wasOffline=" + wasOffline);
+        appendLog(context, TAG, "network is online, wasOffline=", wasOffline);
         if (wasOffline) {
             checkAndUpdateWeather();
         }
@@ -63,11 +63,13 @@ public class NetworkConnectionReceiver extends ConnectivityManager.NetworkCallba
                 = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        appendLog(context, TAG, "networkIsOffline, networkInfo=" + networkInfo);
+        appendLog(context, TAG, "networkIsOffline, networkInfo=", networkInfo);
         if (networkInfo == null) {
             return true;
         }
-        appendLog(context, TAG, "networkIsOffline, networkInfo.isConnectedOrConnecting()=" + networkInfo.isConnectedOrConnecting());
+        appendLog(context, TAG,
+                "networkIsOffline, networkInfo.isConnectedOrConnecting()=",
+                networkInfo.isConnectedOrConnecting());
         return !networkInfo.isConnectedOrConnecting();
     }
 

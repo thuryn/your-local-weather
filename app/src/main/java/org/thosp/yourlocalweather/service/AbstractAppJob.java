@@ -52,7 +52,8 @@ public abstract class AbstractAppJob extends JobService {
     }
 
     protected void reScheduleNextAlarm(int jobId, long updatePeriod, Class serviceClass) {
-        appendLog(getBaseContext(), TAG, "next alarm:" + updatePeriod + ", serviceClass=" + serviceClass);
+        appendLog(getBaseContext(), TAG, "next alarm:", updatePeriod,
+                ", serviceClass=", serviceClass);
         ComponentName serviceComponent = new ComponentName(this, serviceClass);
         JobInfo.Builder builder = new JobInfo.Builder(jobId, serviceComponent);
         builder.setMinimumLatency(updatePeriod); // wait at least
@@ -198,7 +199,7 @@ public abstract class AbstractAppJob extends JobService {
     }
 
     private void bindCurrentWeatherService() {
-        appendLog(getBaseContext(), getClass().getSimpleName(), "bind current weather service:" + this);
+        appendLog(getBaseContext(), getClass().getSimpleName(), "bind current weather service:", this.toString());
         getApplicationContext().bindService(
                 new Intent(getApplicationContext(), CurrentWeatherService.class),
                 currentWeatherServiceConnection,
@@ -268,7 +269,7 @@ public abstract class AbstractAppJob extends JobService {
     }
 
     private void bindWakeUpService() {
-        appendLog(getBaseContext(), getClass().getSimpleName(), "bind wakeup service:" + this);
+        appendLog(getBaseContext(), getClass().getSimpleName(), "bind wakeup service:", this.toString());
         getApplicationContext().bindService(
                 new Intent(getApplicationContext(), AppWakeUpManager.class),
                 wakeUpServiceConnection,

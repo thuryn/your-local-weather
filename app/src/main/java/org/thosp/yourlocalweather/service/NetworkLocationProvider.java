@@ -19,8 +19,6 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.telephony.TelephonyManager;
 
-import org.thosp.yourlocalweather.model.LocationsDbHelper;
-
 import java.util.Calendar;
 import java.util.List;
 
@@ -51,7 +49,7 @@ public class NetworkLocationProvider extends Service {
 
         @Override
         public void onWifiResultsAvailable() {
-            appendLog(getBaseContext(), TAG, "Wifi results are available now:" + scanning);
+            appendLog(getBaseContext(), TAG, "Wifi results are available now:", scanning);
             if (!scanning) {
                 return;
             }
@@ -143,7 +141,9 @@ public class NetworkLocationProvider extends Service {
     }
 
     public void startLocationUpdateCellsOnly() {
-        appendLog(getBaseContext(), TAG, "LOCATION_UPDATE_CELLS_ONLY:nextScanningAllowedFrom:" + ((nextScanningAllowedFrom != null) ? nextScanningAllowedFrom.getTimeInMillis() : "null"));
+        appendLog(getBaseContext(), TAG,
+                "LOCATION_UPDATE_CELLS_ONLY:nextScanningAllowedFrom:",
+                nextScanningAllowedFrom);
         if (nextScanningAllowedFrom == null) {
             return;
         }
@@ -169,7 +169,9 @@ public class NetworkLocationProvider extends Service {
     }
 
     private void sendUpdateToLocationBackends() {
-        appendLog(getBaseContext(), TAG, "update():nextScanningAllowedFrom:" + ((nextScanningAllowedFrom != null)?nextScanningAllowedFrom.getTimeInMillis():"null"));
+        appendLog(getBaseContext(), TAG,
+                "update():nextScanningAllowedFrom:",
+                nextScanningAllowedFrom);
         if(nextScanningAllowedFrom == null) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P) {
                 scanning = wifiManager.startScan();
@@ -206,7 +208,9 @@ public class NetworkLocationProvider extends Service {
     }
 
     private void getLocationFromWifisAndCells(List<ScanResult> scans) {
-        appendLog(getBaseContext(), TAG, "getLocationFromWifisAndCells(), scans=" + ((scans != null)?scans.size():"null"));
+        appendLog(getBaseContext(), TAG,
+                "getLocationFromWifisAndCells(), scans=",
+                        scans);
         MozillaLocationService.getInstance(getBaseContext()).getLocationFromCellsAndWifis(getBaseContext(),
                                                                           LocationNetworkSourcesService.getInstance().getCells(getBaseContext(),
                                                                           mTelephonyManager),

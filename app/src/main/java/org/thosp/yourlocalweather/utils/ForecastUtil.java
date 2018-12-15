@@ -2,13 +2,11 @@ package org.thosp.yourlocalweather.utils;
 
 import android.content.Context;
 
-import org.thosp.yourlocalweather.GraphsActivity;
-import org.thosp.yourlocalweather.WeatherForecastActivity;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 
 import java.util.Calendar;
 
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLogLastUpdateTime;
 
 public class ForecastUtil {
 
@@ -26,11 +24,12 @@ public class ForecastUtil {
                         AUTO_FORECAST_UPDATE_TIME_MILIS) <  now) {
             return true;
         }
-        appendLog(context,
+        appendLogLastUpdateTime(context,
                 TAG,
-                "weatherForecastRecord.getLastUpdatedTime():" +
-                        ((weatherForecastRecord != null)?weatherForecastRecord.getLastUpdatedTime():"null") +
-                ", now:" + now);
+                "weatherForecastRecord.getLastUpdatedTime():",
+                weatherForecastRecord,
+                ", now:",
+                now);
         return false;
     }
 }

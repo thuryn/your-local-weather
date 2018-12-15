@@ -86,7 +86,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
-        appendLog(getBaseContext(), TAG, "onStartCommand:" + intent);
+        appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
         if (intent == null) {
             return ret;
         }
@@ -127,7 +127,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
             return;
         }
         final Location currentLocation = locationsDbHelper.getLocationById(updateRequest.getLocationId());
-        appendLog(getBaseContext(), TAG, "currentLocation=" + currentLocation + ", updateSource=" + updateRequest.getUpdateSource());
+        appendLog(getBaseContext(), TAG, "currentLocation=", currentLocation, ", updateSource=", updateRequest.getUpdateSource());
 
         if (currentLocation == null) {
             appendLog(getBaseContext(),
@@ -150,10 +150,10 @@ public class ForecastWeatherService  extends AbstractCommonService {
 
         ConnectionDetector connectionDetector = new ConnectionDetector(this);
         boolean networkAvailableAndConnected = connectionDetector.isNetworkAvailableAndConnected();
-        appendLog(getBaseContext(), TAG, "networkAvailableAndConnected=" + networkAvailableAndConnected);
+        appendLog(getBaseContext(), TAG, "networkAvailableAndConnected=", networkAvailableAndConnected);
         if (!networkAvailableAndConnected) {
             int numberOfAttempts = updateRequest.getAttempts();
-            appendLog(getBaseContext(), TAG, "numberOfAttempts=" + numberOfAttempts);
+            appendLog(getBaseContext(), TAG, "numberOfAttempts=", numberOfAttempts);
             if (numberOfAttempts > 2) {
                 locationsDbHelper.updateLocationSource(
                         currentLocation.getId(),
@@ -188,9 +188,9 @@ public class ForecastWeatherService  extends AbstractCommonService {
                 final String locale = currentLocation.getLocaleAbbrev();
                 appendLog(context,
                         TAG,
-                        "weather get params: latitude:" +
-                                currentLocation.getLatitude() +
-                                ", longitude" +
+                        "weather get params: latitude:",
+                                currentLocation.getLatitude(),
+                                ", longitude",
                                 currentLocation.getLongitude());
                 try {
                     sendMessageToWakeUpService(
@@ -214,7 +214,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
                         public void onSuccess(int statusCode, Header[] headers, byte[] weatherForecastResponse) {
                             try {
                                 String weatherForecastRaw = new String(weatherForecastResponse);
-                                appendLog(context, TAG, "weather got, result:" + weatherForecastRaw);
+                                appendLog(context, TAG, "weather got, result:", weatherForecastRaw);
 
                                 CompleteWeatherForecast completeWeatherForecast = WeatherJSONParser.getWeatherForecast(
                                         context,
@@ -223,14 +223,14 @@ public class ForecastWeatherService  extends AbstractCommonService {
                                 timerHandler.removeCallbacksAndMessages(null);
                                 saveWeatherAndSendResult(context, completeWeatherForecast);
                             } catch (JSONException e) {
-                                appendLog(context, TAG, "JSONException:" + e);
+                                appendLog(context, TAG, "JSONException:", e);
                                 sendResult(ACTION_WEATHER_UPDATE_FAIL, context);
                             }
                         }
 
                         @Override
                         public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                            appendLog(context, TAG, "onFailure:" + statusCode);
+                            appendLog(context, TAG, "onFailure:", statusCode);
                             timerHandler.removeCallbacksAndMessages(null);
                             if (statusCode == 401) {
                                 locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
@@ -250,7 +250,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
                         }
                     });
                 } catch (MalformedURLException mue) {
-                    appendLog(context, TAG, "MalformedURLException:" + mue);
+                    appendLog(context, TAG, "MalformedURLException:", mue);
                     sendResult(ACTION_WEATHER_UPDATE_FAIL, context);
                 }
             }
@@ -357,7 +357,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
         @Override
         public void handleMessage(Message msg) {
             WeatherRequestDataHolder weatherRequestDataHolder = (WeatherRequestDataHolder) msg.obj;
-            appendLog(getBaseContext(), TAG, "handleMessage:" + msg.what + ":" + weatherRequestDataHolder);
+            appendLog(getBaseContext(), TAG, "handleMessage:", msg.what, ":", weatherRequestDataHolder);
             switch (msg.what) {
                 case START_WEATHER_FORECAST_UPDATE:
                     weatherForecastUpdateMessages.add(weatherRequestDataHolder);

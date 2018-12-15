@@ -32,7 +32,7 @@ public class ReconciliationDbService extends IntentService {
         if (intent.hasExtra("force")) {
             force = intent.getBooleanExtra("force", false);
         }
-        appendLog(this, TAG, "force:" + intent.hasExtra("force") + ":" + force);
+        appendLog(this, TAG, "force:", intent.hasExtra("force"), ":", force);
         if (!force) {
             if (nextReconciliationTime == 0) {
                 nextReconciliationTime = System.currentTimeMillis() + MIN_RECONCILIATION_TIME_SPAN_IN_MS;
@@ -44,7 +44,7 @@ public class ReconciliationDbService extends IntentService {
                 appendLog(
                         this,
                         TAG,
-                        "rescheduling with inMilis:" + nextReconciliationTime + ":" + System.currentTimeMillis());
+                        "rescheduling with inMilis:", nextReconciliationTime, ":", System.currentTimeMillis());
                 Intent intentToReschedule = new Intent(getBaseContext(), ReconciliationDbService.class);
                 intentToReschedule.putExtra("force", true);
                 WidgetUtils.startBackgroundService(getBaseContext(), intentToReschedule, MIN_RECONCILIATION_TIME_SPAN_IN_MS);
@@ -99,7 +99,7 @@ public class ReconciliationDbService extends IntentService {
         appendLog(
                 this,
                 TAG,
-                "update location:" + location.getId());
+                "update location:", location.getId());
         db.updateWithOnConflict(
                 LocationsContract.Locations.TABLE_NAME,
                 values,

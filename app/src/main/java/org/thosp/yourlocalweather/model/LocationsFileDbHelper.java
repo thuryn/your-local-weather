@@ -4,12 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabaseLockedException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.location.Address;
-import android.os.Parcel;
 
-import org.thosp.yourlocalweather.service.SensorLocationUpdateService;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 
 import java.util.ArrayList;
@@ -17,7 +14,6 @@ import java.util.List;
 
 import static org.thosp.yourlocalweather.model.LocationsContract.SQL_CREATE_TABLE_LOCATIONS;
 import static org.thosp.yourlocalweather.model.LocationsContract.SQL_DELETE_TABLE_LOCATIONS;
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class LocationsFileDbHelper extends SQLiteOpenHelper {
 

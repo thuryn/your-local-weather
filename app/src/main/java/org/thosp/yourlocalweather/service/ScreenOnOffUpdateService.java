@@ -48,7 +48,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     private BroadcastReceiver userUnlockedReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            appendLog(context, TAG, "receive intent: " + intent);
+            appendLog(context, TAG, "receive intent: ", intent);
             String notificationPresence = AppPreference.getNotificationPresence(context);
             if ("on_lock_screen".equals(notificationPresence)) {
                 NotificationManager notificationManager =
@@ -61,7 +61,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     private BroadcastReceiver screenOnReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            appendLog(context, TAG, "receive intent: " + intent);
+            appendLog(context, TAG, "receive intent: ", intent);
             try {
                 processScreenOn(context);
             } catch (Exception e) {
@@ -75,7 +75,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     private BroadcastReceiver screenOffReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            appendLog(context, TAG, "receive intent: " + intent);
+            appendLog(context, TAG, "receive intent: ", intent);
             String notificationPresence = AppPreference.getNotificationPresence(context);
             if ("on_lock_screen".equals(notificationPresence)) {
                 NotificationUtils.weatherNotification(context, getLocationForNotification().getId());
@@ -115,7 +115,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
             org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
             CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
 
-            appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:weatherRecord=" + weatherRecord);
+            appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:weatherRecord=", weatherRecord);
             if (weatherRecord == null) {
                 requestWeatherCheck(currentLocation.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER, false);
                 timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
@@ -125,11 +125,11 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
             long lastUpdateTimeInMilis = Utils.getLastUpdateTimeInMilis(weatherRecord, weatherForecastRecord, currentLocation);
             long now = System.currentTimeMillis();
 
-            appendLog(getBaseContext(), TAG, "screen timer called, lastUpdate=" +
-                    currentLocation.getLastLocationUpdate() +
-                    ", now=" +
-                    now +
-                    ", lastUpdateTimeInMilis=" +
+            appendLog(getBaseContext(), TAG, "screen timer called, lastUpdate=",
+                    currentLocation.getLastLocationUpdate(),
+                    ", now=",
+                    now,
+                    ", lastUpdateTimeInMilis=",
                     lastUpdateTimeInMilis);
 
             if ((now <= (lastUpdateTimeInMilis + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now <= (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
@@ -153,7 +153,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         if (intent == null) {
             return ret;
         }
-        appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():" + intent.getAction());
+        appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
         switch (intent.getAction()) {
             case "android.intent.action.START_SCREEN_BASED_UPDATES": startSensorBasedUpdates(); return START_STICKY;
             case "android.intent.action.STOP_SCREEN_BASED_UPDATES": stopSensorBasedUpdates(); return ret;
@@ -178,11 +178,11 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
         long lastUpdateTimeInMilis = Utils.getLastUpdateTimeInMilis(weatherRecord, weatherForecastRecord, currentLocation);
         long now = System.currentTimeMillis();
-        appendLog(context, TAG, "SCREEN_ON called, lastUpdate=" +
-                currentLocation.getLastLocationUpdate() +
-                ", now=" +
-                now +
-                ", lastUpdateTimeInMilis=" +
+        appendLog(context, TAG, "SCREEN_ON called, lastUpdate=",
+                currentLocation.getLastLocationUpdate(),
+                ", now=",
+                now,
+                ", lastUpdateTimeInMilis=",
                 lastUpdateTimeInMilis);
         if ((now <= (lastUpdateTimeInMilis + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now <= (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
             timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT - (now - lastUpdateTimeInMilis));
@@ -239,7 +239,9 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     public void startSensorBasedUpdates() {
         receiversLock.lock();
         try {
-            appendLog(getBaseContext(), TAG, "Check if receivers is going to be started:  receiversRegistered=" + receiversRegistered);
+            appendLog(getBaseContext(), TAG,
+                    "Check if receivers is going to be started:  receiversRegistered=",
+                    receiversRegistered);
             if (receiversRegistered) {
                 return;
             }
@@ -281,11 +283,12 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
-        appendLog(this, TAG, "networkIsOffline, networkInfo=" + networkInfo);
+        appendLog(this, TAG, "networkIsOffline, networkInfo=", networkInfo);
         if (networkInfo == null) {
             return true;
         }
-        appendLog(this, TAG, "networkIsOffline, networkInfo.isConnectedOrConnecting()=" + networkInfo.isConnectedOrConnecting());
+        appendLog(this, TAG, "networkIsOffline, networkInfo.isConnectedOrConnecting()=",
+                networkInfo.isConnectedOrConnecting());
         return !networkInfo.isConnectedOrConnecting();
     }
 
@@ -304,7 +307,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
             CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(location.getId());
 
-            appendLog(this, TAG, "weatherRecord=" + weatherRecord);
+            appendLog(this, TAG, "weatherRecord=", weatherRecord);
             if (weatherRecord == null) {
                 requestWeatherCheck(location.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER, false);
                 continue;
@@ -322,19 +325,18 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
                 updatePeriodForLocation = Utils.intervalMillisForAlarm(updatePeriodStr);
             }
 
-            appendLog(this, TAG, "network state changed, location.orderId=" +
-                    location.getOrderId() +
-                    ", updatePeriodForLocation=" +
-                    updatePeriodForLocation +
-                    ", now=" +
-                    now +
-                    ", lastUpdateTimeInMilis=" +
+            appendLog(this, TAG, "network state changed, location.orderId=",
+                    location.getOrderId(),
+                    ", updatePeriodForLocation=",
+                    updatePeriodForLocation,
+                    ", now=",
+                    now,
+                    ", lastUpdateTimeInMilis=",
                     lastUpdateTimeInMilis);
 
             if (now <= (lastUpdateTimeInMilis + updatePeriodForLocation)) {
-                appendLog(this, TAG, "network state changed, location.orderId=" +
-                        location.getOrderId() +
-                        ", not going to update, because last update is recent enough.");
+                appendLog(this, TAG, "network state changed, location is not going to update, because last update is recent enough. location.orderId=",
+                        location.getOrderId());
                 continue;
             }
             appendLog(this, TAG, "requestWeatherCheck");
@@ -356,7 +358,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
         @Override
         public void onReceive(Context context, Intent intent) {
-            appendLog(context, TAG, "onReceive start:" + intent);
+            appendLog(context, TAG, "onReceive start:", intent);
             if (networkIsOffline()) {
                 wasOffline = true;
                 return;

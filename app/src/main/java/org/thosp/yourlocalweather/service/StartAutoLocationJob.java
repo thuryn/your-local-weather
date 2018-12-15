@@ -1,36 +1,24 @@
 package org.thosp.yourlocalweather.service;
 
 import android.annotation.TargetApi;
-import android.app.AlarmManager;
-import android.app.job.JobInfo;
 import android.app.job.JobParameters;
-import android.app.job.JobScheduler;
-import android.app.job.JobService;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.IBinder;
-import android.os.Message;
-import android.os.RemoteException;
-import android.os.SystemClock;
 
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.Utils;
-import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
-import static org.thosp.yourlocalweather.utils.LogToFile.DATE_FORMATTER;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLogWithDate;
 
 @TargetApi(Build.VERSION_CODES.M)
 public class StartAutoLocationJob extends AbstractAppJob {
@@ -73,7 +61,8 @@ public class StartAutoLocationJob extends AbstractAppJob {
         if (locationUpdateService != null) {
             getApplicationContext().unbindService(locationUpdateServiceConnection);
         }
-        appendLog(this, TAG, "unbinding sensorLocationUpdate: " + sensorLocationUpdateServiceConnection);
+        appendLog(this, TAG, "unbinding sensorLocationUpdate: ",
+                sensorLocationUpdateServiceConnection);
         if (sensorLocationUpdateServiceConnection !=null) {
             try {
                 getApplicationContext().unbindService(sensorLocationUpdateServiceConnection);
@@ -188,7 +177,11 @@ public class StartAutoLocationJob extends AbstractAppJob {
 
     private long getNextTimeForNotification(long currentAlarmWakeup, Calendar now, long lastUpdate, long updatePeriod, boolean updatedNow) {
         long nextUpdateForLocation;
-        appendLog(getBaseContext(), TAG, "updatedNow=" + updatedNow + ", updatePeriod=" + updatePeriod);
+        appendLog(getBaseContext(), TAG,
+                "updatedNow=",
+                updatedNow,
+                ", updatePeriod=",
+                updatePeriod);
         if (updatedNow || (updatePeriod == 0)) {
             nextUpdateForLocation = updatePeriod;
         } else {
@@ -248,51 +241,51 @@ public class StartAutoLocationJob extends AbstractAppJob {
 
             appendLog(getBaseContext(),
                     TAG,
-                    "updateAutoPeriodStr:" + updateAutoPeriodStr +
-                            ", updatePeriodStr:" + updatePeriodStr +
-                            ", notificationPeriodStr:" + notificationPeriodStr);
+                    "updateAutoPeriodStr:", updateAutoPeriodStr,
+                            ", updatePeriodStr:", updatePeriodStr,
+                            ", notificationPeriodStr:", notificationPeriodStr);
             long nextAlarmWakeup = AppAlarmService.START_SENSORS_CHECK_PERIOD;
-            appendLog(getBaseContext(), TAG, "1:nextAlarmWakeup=" + nextAlarmWakeup);
+            appendLog(getBaseContext(), TAG, "1:nextAlarmWakeup=", nextAlarmWakeup);
             List<Location> locations = locationsDbHelper.getAllRows();
             for (Location location: locations) {
                 appendLog(getBaseContext(),
                         TAG,
-                        "location:" + location +
-                                ", location.isEnabled:" + location.isEnabled());
+                        "location:", location,
+                                ", location.isEnabled:", location.isEnabled());
                 boolean notificationForLocation = (locationForNotification != null) && location.getId().equals(locationForNotification.getId());
                 if ((location.getOrderId() == 0) && (location.isEnabled())) {
                     long lastUpdate = location.getLastLocationUpdate();
                     Updated updated = performUpdateOfAutolocation(now, location, updateAutoPeriodStr, updateAutoPeriodMills, notificationForLocation);
                     nextAlarmWakeup = getNextTimeForNotification(nextAlarmWakeup, now, lastUpdate, updateAutoPeriodMills, !Updated.NOTHING.equals(updated));
-                    appendLog(getBaseContext(), TAG, "2:nextAlarmWakeup=" + nextAlarmWakeup);
+                    appendLog(getBaseContext(), TAG, "2:nextAlarmWakeup=", nextAlarmWakeup);
                     if (notificationEnabled) {
                         nextAlarmWakeup = getNextTimeForNotification(nextAlarmWakeup,
                                                                      now,
                                                                      lastNotificationTimeInMs,
                                                                      notificationPeriodMillis,
                                                                      Updated.BY_NOTIFICATION.equals(updated));
-                        appendLog(getBaseContext(), TAG, "3:nextAlarmWakeup=" + nextAlarmWakeup);
+                        appendLog(getBaseContext(), TAG, "3:nextAlarmWakeup=", nextAlarmWakeup);
                     }
                 } else if ((location.getOrderId() != 0) /*location.isEnabled()*/) {
                     long lastUpdate = location.getLastLocationUpdate();
                     Updated updated = performUpdateOfWeather(now, location, updatePeriodStr, updatePeriodMills, notificationForLocation);
                     nextAlarmWakeup = getNextTimeForNotification(nextAlarmWakeup, now, lastUpdate, updatePeriodMills, !Updated.NOTHING.equals(updated));
-                    appendLog(getBaseContext(), TAG, "4:nextAlarmWakeup=" + nextAlarmWakeup);
+                    appendLog(getBaseContext(), TAG, "4:nextAlarmWakeup=", nextAlarmWakeup);
                     if (notificationEnabled) {
                         nextAlarmWakeup = getNextTimeForNotification(nextAlarmWakeup,
                                 now,
                                 lastNotificationTimeInMs,
                                 notificationPeriodMillis,
                                 Updated.BY_NOTIFICATION.equals(updated));
-                        appendLog(getBaseContext(), TAG, "5:nextAlarmWakeup=" + nextAlarmWakeup);
+                        appendLog(getBaseContext(), TAG, "5:nextAlarmWakeup=", nextAlarmWakeup);
                     }
                 }
             }
             long nextTimeForLog = now.getTimeInMillis() + nextAlarmWakeup;
-            appendLog(getBaseContext(), TAG, "1:nextTimeForLog=" + nextTimeForLog);
-            appendLog(getBaseContext(),
+            appendLog(getBaseContext(), TAG, "1:nextTimeForLog=", nextTimeForLog);
+            appendLogWithDate(getBaseContext(),
                     TAG,
-                    "next scheduler time:" + DATE_FORMATTER.format(new Date(nextTimeForLog)));
+                    "next scheduler time:", nextTimeForLog);
             reScheduleNextAlarm(JOB_ID, nextAlarmWakeup, StartAutoLocationJob.class);
             serviceConnected(sensorLocationUpdateServiceConnection);
             if (currentWeatherUnsentMessages.isEmpty() && weatherForecastUnsentMessages.isEmpty()) {

@@ -1,10 +1,6 @@
 package org.thosp.yourlocalweather.utils;
 
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
-import android.content.ContextWrapper;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
@@ -12,7 +8,7 @@ import android.text.TextUtils;
 
 import java.util.Locale;
 
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLogLocale;
 
 public class LanguageUtil {
 
@@ -24,12 +20,12 @@ public class LanguageUtil {
             sLocale = Locale.getDefault();
         } else {
             String[] localeParts = locale.split("-");
-            StringBuilder s = new StringBuilder();
-            for (String pa: localeParts) {
-                s.append(pa);
-                s.append(":");
-            }
-            appendLog(context, "LanguageUtil", "locale.split(\"_-\"):" + s.toString() + ":locale:" + locale);
+            appendLogLocale(context,
+                    TAG,
+                    "locale.split(\"_-\"):",
+                    localeParts,
+                    ":locale:",
+                    locale);
             if (localeParts.length > 1) {
                 sLocale = new Locale(localeParts[0], localeParts[1]);
             } else {
