@@ -460,9 +460,9 @@
     <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (Serbisch)</string>
     <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (Slowenisch)</string>
     <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (Türkisch)</string>
-    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Bei regelmäßiger Aktualisierung</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Wann regelmäßig aktualisieren</string>
     <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Anwensenheit von Benachrichtigungen</string>
-    <string name="notification_when_updated" tools:ignore="MissingTranslation">Bei Aktualisierung</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">Wann aktualisiert</string>
     <string name="notification_permanent" tools:ignore="MissingTranslation">Dauerhaft</string>
     <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">Auf dem Sperrbildschirm</string>
     <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">Sonnensymbol</string>
