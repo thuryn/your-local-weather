@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" tools:ignore="MissingTranslation">Vaše místní počasí</string>
     <string name="enter_city_hint">Zadejte město</string>
@@ -376,5 +376,39 @@
 
     <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
     <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
-
-    </resources>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">Formát data</string>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm.(yy)</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/yy)</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/yy)</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">S pravidelnou aktualizací</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Vzhled upozornění</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">Při aktualizaci</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">Trvalá</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">Jen za zamčené obrazovce</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">Ikona slunce</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">Teplota</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">Neviditelná</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Standardní</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Vlastní s předpovědí</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Vizuální styl upozornění</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Styl ikony stavového řádku</string>
+    <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (Albánština)</string>
+    <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (Baskitština)</string>
+    <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (Běloruština)</string>
+    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (Běloruština, latinka)</string>
+    <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (Katalánština)</string>
+    <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (Czech)</string>
+    <string name="pref_language_da" tools:ignore="MissingTranslation">Dansk (Dánština)</string>
+    <string name="pref_language_en" tools:ignore="MissingTranslation">English (Angličtina)</string>
+    <string name="pref_language_fi" tools:ignore="MissingTranslation">Suomi (Finština)</string>
+    <string name="pref_language_fr" tools:ignore="MissingTranslation">Français (Francouština)</string>
+    <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego (Galicijština)</string>
+    <string name="pref_language_de" tools:ignore="MissingTranslation">Deutsch (Němčina)</string>
+    <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (Italština)</string>
+    <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (Japonština)</string>
+    <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (Polština)</string>
+    <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (Ruština)</string>
+    <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (Srbština)</string>
+    <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (Slovenština)</string>
+    <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (Turečtina)</string>
+</resources>
