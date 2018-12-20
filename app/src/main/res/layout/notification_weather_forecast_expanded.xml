@@ -49,14 +49,14 @@
             android:layout_height="wrap_content"
             android:ellipsize="end"
             android:lines="1"
-            android:paddingLeft="@dimen/notification_padding"/>
+            android:paddingLeft="@dimen/notification_padding"
+            android:paddingRight="@dimen/notification_weather_description_padding"/>
         <ImageView
             android:id="@+id/widget_icon"
             android:layout_width="@dimen/notification_icon_size"
             android:layout_height="@dimen/notification_icon_size"
             android:scaleType="fitXY"
-            android:contentDescription="@string/widget_weather_icon_description"
-            android:paddingLeft="@dimen/notification_weather_description_padding"/>
+            android:contentDescription="@string/widget_weather_icon_description"/>
         <TextView
             android:id="@+id/widget_description"
             android:layout_width="wrap_content"
