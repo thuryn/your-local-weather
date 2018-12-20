@@ -319,16 +319,7 @@ public class WidgetUtils {
         startBackgroundService(context, new Intent(context, ReconciliationDbService.class));
     }
 
-    public static void startBackgroundService(Context context,
-                                              Intent intent) {
-        try {
-            if (isInteractive(context)) {
-                context.startService(intent);
-                return;
-            }
-        } catch (Exception ise) {
-            //
-        }
+    public static void startBackgroundService(Context context, Intent intent) {
         startBackgroundService(context, intent, 10);
     }
 

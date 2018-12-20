@@ -103,11 +103,10 @@ public class WidgetRefreshIconService extends Service {
                 rotationSources.add(rotationSource);
             }
             printRotationSources();
-            if (WidgetRefreshIconService.isRotationActive || isThereRotationSchedule()) {
+            if (WidgetRefreshIconService.isRotationActive) {
                 appendLog(getBaseContext(), TAG,
                         "startRotatingUpdateIcon:endOnCondition:isRotationActive=",
-                                WidgetRefreshIconService.isRotationActive, ":isThereRotationSchedule=",
-                                isThereRotationSchedule());
+                                WidgetRefreshIconService.isRotationActive, ":isThereRotationSchedule=");
                 return;
             }
             WidgetRefreshIconService.isRotationActive = true;
@@ -154,10 +153,6 @@ public class WidgetRefreshIconService extends Service {
         }
     }
 
-    public boolean isThereRotationSchedule() {
-        return timerRotateIconHandler.hasMessages(0);
-    }
-
     private boolean isScreenOn() {
         return powerManager.isScreenOn();
     }
@@ -185,7 +180,7 @@ public class WidgetRefreshIconService extends Service {
 
         @Override
         public void run() {
-            if (!isScreenOn() || !WidgetRefreshIconService.isRotationActive || isThereRotationSchedule()) {
+            if (!isScreenOn() || !WidgetRefreshIconService.isRotationActive) {
                 return;
             }
             rotateRefreshButtonOneStep();
@@ -196,7 +191,7 @@ public class WidgetRefreshIconService extends Service {
     private BroadcastReceiver screenOnReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            if (!WidgetRefreshIconService.isRotationActive || isThereRotationSchedule()) {
+            if (!WidgetRefreshIconService.isRotationActive) {
                 return;
             }
             rotateRefreshButtonOneStep();
