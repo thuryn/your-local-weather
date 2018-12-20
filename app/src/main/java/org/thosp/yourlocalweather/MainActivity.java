@@ -18,6 +18,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.location.LocationManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -168,6 +169,18 @@ public class MainActivity extends BaseActivity
         fab.setOnClickListener(fabListener);
         checkSettingsAndPermisions();
         startAlarms();
+        StartAlarmsTask startAlarmsTask = new StartAlarmsTask();
+        startAlarmsTask.execute(new Integer[0]);
+    }
+
+    class StartAlarmsTask extends AsyncTask<Integer[], Integer, Long> {
+        @Override
+        protected Long doInBackground(Integer[]... params) {
+            synchronized (this) {
+                startAlarms();
+            }
+            return 0l;
+        }
     }
 
     private void startAlarms() {
@@ -1075,7 +1088,11 @@ public class MainActivity extends BaseActivity
         if (currentWeatherService == null) {
             return;
         }
-        getApplicationContext().unbindService(currentWeatherServiceConnection);
+        try {
+            getApplicationContext().unbindService(currentWeatherServiceConnection);
+        } catch (Exception e) {
+            appendLog(this, "TAG", e.getMessage(), e);
+        }
     }
 
     private ServiceConnection currentWeatherServiceConnection = new ServiceConnection() {
