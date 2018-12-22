@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools"><string name="enter_city_hint">输入城市</string>
     <string name="label_current_city">当前城市</string>
     <string name="label_choose_city">请选择城市</string>
@@ -40,7 +40,7 @@
     <string name="title_activity_settings">设置</string>
     <string name="pref_title_temperature">温度</string>
     <string name="preference_hide_desc">隐藏天气描述</string>
-    <string name="pref_title_category_notification">通知</string>
+    <string name="pref_title_category_notification">通知设置</string>
     <string name="pref_title_notification">启用通知</string>
     <string name="pref_title_notification_refresh_interval">刷新间隔</string>
     <string name="update_period_15min">15 分钟</string>
@@ -318,7 +318,7 @@
 
     <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">风向样式</string>
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">禁用</string>
-    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">缩写 N, NE, …</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">缩写 N↓, NE↙, …</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">与正北夹角</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">电池优化</string>
     <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">应用运行后台进程以更新位置、天气或通过加速度计追踪位置。因此，应用将要求您关闭电池优化，以运行后台进程。</string>
@@ -398,4 +398,18 @@
     <string name="weather_condition_description_212" tools:ignore="MissingTranslation"/>
     <string name="weather_condition_description_230" tools:ignore="MissingTranslation"/>
     <string name="weather_condition_description_231" tools:ignore="MissingTranslation"/>
-    </resources>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">定期更新时</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">通知展示</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">更新时</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">常驻</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">锁屏上</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">太阳图标</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">温度</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">不可见</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">经典</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">根据预报自定义</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">视觉通知样式</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">状态栏图标样式</string>
+    <string name="preference_title_category_units" tools:ignore="MissingTranslation">单位设置</string>
+    <string name="preference_title_power_save" tools:ignore="MissingTranslation">省电选项</string>
+</resources>
