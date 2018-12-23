@@ -557,11 +557,12 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     vibrate.setEnabled(true);
                 }
             }
+            if ("permanent".equals(AppPreference.getNotificationPresence(getActivity()))) {
+                NotificationUtils.weatherNotification(getActivity(),
+                        NotificationUtils.getLocationForNotification(getActivity()).getId());
+            }
             if ((Constants.KEY_PREF_NOTIFICATION_PRESENCE.equals(key)) && changing) {
-                if ("permanent".equals(preference.getValue())) {
-                    NotificationUtils.weatherNotification(getActivity(),
-                            NotificationUtils.getLocationForNotification(getActivity()).getId());
-                } else {
+                if (!"permanent".equals(preference.getValue())) {
                     NotificationManager notificationManager =
                             (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
                     notificationManager.cancelAll();
