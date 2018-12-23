@@ -21,7 +21,6 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
-import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.service.ForecastWeatherService;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.CustomValueFormatter;
@@ -34,11 +33,11 @@ import org.thosp.yourlocalweather.utils.YAxisValueFormatter;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class GraphsActivity extends ForecastingActivity {
 
@@ -50,6 +49,7 @@ public class GraphsActivity extends ForecastingActivity {
     private LineChart mSnowChart;
     private LineChart mPressureChart;
     private String[] mDatesArray;
+    private int daysCount;
     private CustomValueFormatter mValueFormatter;
     private YAxisValueFormatter mYAxisFormatter;
     private RainSnowYAxisValueFormatter rainSnowYAxisValueFormatter;
@@ -110,7 +110,8 @@ public class GraphsActivity extends ForecastingActivity {
         XAxis x = mTemperatureChart.getXAxis();
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
-        x.setDrawGridLines(false);
+        x.setDrawGridLines(true);
+        x.setLabelCount(daysCount,true);
         x.setTextColor(PreferenceUtil.getTextColor(this));
         x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
 
@@ -188,7 +189,8 @@ public class GraphsActivity extends ForecastingActivity {
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
         x.setTextColor(PreferenceUtil.getTextColor(this));
-        x.setDrawGridLines(false);
+        x.setDrawGridLines(true);
+        x.setLabelCount(daysCount,true);
         x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
 
         YAxis yLeft = mWindChart.getAxisLeft();
@@ -265,7 +267,8 @@ public class GraphsActivity extends ForecastingActivity {
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
         x.setTextColor(PreferenceUtil.getTextColor(this));
-        x.setDrawGridLines(false);
+        x.setDrawGridLines(true);
+        x.setLabelCount(daysCount,true);
         x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
 
         YAxis yLeft = mRainChart.getAxisLeft();
@@ -347,7 +350,8 @@ public class GraphsActivity extends ForecastingActivity {
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
         x.setTextColor(PreferenceUtil.getTextColor(this));
-        x.setDrawGridLines(false);
+        x.setDrawGridLines(true);
+        x.setLabelCount(daysCount,true);
         x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
 
         YAxis yLeft = mSnowChart.getAxisLeft();
@@ -429,7 +433,8 @@ public class GraphsActivity extends ForecastingActivity {
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
         x.setTextColor(PreferenceUtil.getTextColor(this));
-        x.setDrawGridLines(false);
+        x.setDrawGridLines(true);
+        x.setLabelCount(daysCount,true);
         x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
 
         YAxis yLeft = mPressureChart.getAxisLeft();
@@ -496,13 +501,20 @@ public class GraphsActivity extends ForecastingActivity {
         SimpleDateFormat format = new SimpleDateFormat("EEE", locale);
         if (weatherForecastList.get(locationId) != null) {
             int mSize = weatherForecastList.get(locationId).size();
+            List<String> uniqueDate = new ArrayList<>();
             mDatesArray = new String[mSize];
 
             for (int i = 0; i < mSize; i++) {
                 Date date = new Date(weatherForecastList.get(locationId).get(i).getDateTime() * 1000);
                 String day = format.format(date);
+                if (!uniqueDate.contains(day)) {
+                    uniqueDate.add(day);
+                }
                 mDatesArray[i] = day;
             }
+            daysCount = uniqueDate.size();
+        } else {
+            daysCount = 0;
         }
     }
 
