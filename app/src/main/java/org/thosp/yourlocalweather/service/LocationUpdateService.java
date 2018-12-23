@@ -36,7 +36,6 @@ import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.Utils;
-import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.Calendar;
 import java.util.LinkedList;
@@ -249,13 +248,13 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                 locationsDbHelper.updateLocationSource(
                         currentLocationForSensorEvent.getId(),
                         getString(R.string.location_weather_update_status_location_not_reachable));
-                updateLocationInProcess = false;
                 stopRefreshRotation("updateNetworkLocation", 3);
                 sendMessageToWakeUpService(
                         AppWakeUpManager.FALL_DOWN,
                         AppWakeUpManager.SOURCE_LOCATION_UPDATE
                 );
                 SensorLocationUpdater.getInstance(getBaseContext()).clearMeasuredLength();
+                updateLocationInProcess = false;
             } else {
                 updateNetworkLocation(false, null, 0);
             }
@@ -473,7 +472,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
             if (!connectionDetector.isNetworkAvailableAndConnected()) {
                 appendLog(this, TAG, "Network is not available");
-                if (!timerNetworkAvailabilityHandler.hasMessages(0)) {
+                if (!timerNetworkAvailabilityHandler.hasMessages(0) && !updateLocationInProcess) {
                     timerNetworkAvailabilityHandler.postDelayed(timerNetworkAvailabilityRunnable, NETWORK_AVAILABILITY_TIMEOUT_IN_MS);
                 }
                 return false;
