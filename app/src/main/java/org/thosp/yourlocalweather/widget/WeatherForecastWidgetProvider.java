@@ -69,50 +69,26 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
         WeatherForecastWidgetProvider.setWidgetTheme(context, remoteViews);
         WeatherForecastWidgetProvider.setWidgetIntents(context, remoteViews, WeatherForecastWidgetProvider.class, appWidgetId);
 
-        remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(context, currentLocation.getOrderId()));
-        remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
-                context,
-                weather,
-                currentLocation.getLatitude(),
-                weatherRecord.getLastUpdatedTime(),
-                currentLocation.getLocale()));
-        String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
-                context,
-                weather,
-                currentLocation.getLatitude(),
-                weatherRecord.getLastUpdatedTime(),
-                currentLocation.getLocale());
-        if (secondTemperature != null) {
-            remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
-            remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
-        } else {
-            remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
-        }
-        remoteViews.setTextViewText(R.id.widget_description,
-                                    Utils.getWeatherDescription(context,
-                                                                currentLocation.getLocaleAbbrev(),
-                                                                weather));
-        WidgetUtils.setWind(context,
-                            remoteViews,
-                            weather.getWindSpeed(),
-                            weather.getWindDirection(),
-                            currentLocation.getLocale());
-        WidgetUtils.setHumidity(context, remoteViews, weather.getHumidity());
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(1000 * weather.getSunrise());
-        WidgetUtils.setSunrise(context, remoteViews, AppPreference.getLocalizedTime(context, calendar.getTime(), currentLocation.getLocale()));
-        calendar.setTimeInMillis(1000 * weather.getSunset());
-        WidgetUtils.setSunset(context, remoteViews, AppPreference.getLocalizedTime(context, calendar.getTime(), currentLocation.getLocale()));
-        Utils.setWeatherIcon(remoteViews, context, weatherRecord);
-
-        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;
         try {
-            weatherForecastRecord = WidgetUtils.updateWeatherForecast(context, currentLocation.getId(), remoteViews);
+            WidgetUtils.updateWeatherForecast(context, currentLocation.getId(), remoteViews,
+                    R.id.widget_weather_forecast_1x3_forecast_1_widget_icon,
+                    R.id.widget_weather_forecast_1x3_forecast_1_widget_day,
+                    R.id.widget_weather_forecast_1x3_forecast_1_widget_temperatures,
+                    R.id.widget_weather_forecast_1x3_forecast_2_widget_icon,
+                    R.id.widget_weather_forecast_1x3_forecast_2_widget_day,
+                    R.id.widget_weather_forecast_1x3_forecast_2_widget_temperatures,
+                    R.id.widget_weather_forecast_1x3_forecast_3_widget_icon,
+                    R.id.widget_weather_forecast_1x3_forecast_3_widget_day,
+                    R.id.widget_weather_forecast_1x3_forecast_3_widget_temperatures,
+                    R.id.widget_weather_forecast_1x3_forecast_4_widget_icon,
+                    R.id.widget_weather_forecast_1x3_forecast_4_widget_day,
+                    R.id.widget_weather_forecast_1x3_forecast_4_widget_temperatures,
+                    R.id.widget_weather_forecast_1x3_forecast_5_widget_icon,
+                    R.id.widget_weather_forecast_1x3_forecast_5_widget_day,
+                    R.id.widget_weather_forecast_1x3_forecast_5_widget_temperatures);
         } catch (Exception e) {
             appendLog(context, TAG, "preLoadWeather:error updating weather forecast", e);
         }
-        String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, weatherForecastRecord, currentLocation);
-        remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
         appendLog(context, TAG, "preLoadWeather:end");
     }
 
@@ -122,18 +98,17 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
         int backgroundColorId = AppPreference.getBackgroundColor(context);
         int windowHeaderBackgroundColorId = AppPreference.getWindowHeaderBackgroundColorId(context);
 
-        remoteViews.setInt(R.id.widget_root, "setBackgroundColor", backgroundColorId);
-        remoteViews.setTextColor(R.id.forecast_1_widget_day, textColorId);
-        remoteViews.setTextColor(R.id.forecast_1_widget_temperatures, textColorId);
-        remoteViews.setTextColor(R.id.forecast_2_widget_day, textColorId);
-        remoteViews.setTextColor(R.id.forecast_2_widget_temperatures, textColorId);
-        remoteViews.setTextColor(R.id.forecast_3_widget_day, textColorId);
-        remoteViews.setTextColor(R.id.forecast_3_widget_temperatures, textColorId);
-        remoteViews.setTextColor(R.id.forecast_4_widget_day, textColorId);
-        remoteViews.setTextColor(R.id.forecast_4_widget_temperatures, textColorId);
-        remoteViews.setTextColor(R.id.forecast_5_widget_day, textColorId);
-        remoteViews.setTextColor(R.id.forecast_5_widget_temperatures, textColorId);
-        remoteViews.setInt(R.id.header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
+        remoteViews.setInt(R.id.widget_weather_forecast_1x3_widget_root, "setBackgroundColor", backgroundColorId);
+        remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_1_widget_day, textColorId);
+        remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_1_widget_temperatures, textColorId);
+        remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_2_widget_day, textColorId);
+        remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_2_widget_temperatures, textColorId);
+        remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_3_widget_day, textColorId);
+        remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_3_widget_temperatures, textColorId);
+        remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_4_widget_day, textColorId);
+        remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_4_widget_temperatures, textColorId);
+        remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_5_widget_day, textColorId);
+        remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_5_widget_temperatures, textColorId);
         appendLog(context, TAG, "setWidgetTheme:end");
     }
 

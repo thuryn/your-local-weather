@@ -232,6 +232,18 @@ public class TemperatureUtil {
         }
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
+        double value = getTemperatureInCelsius(context, weather);
+        if (unitsFromPreferences.contains("fahrenheit") ) {
+            return (value * 1.8d) + 32;
+        } else {
+            return value;
+        }
+    }
+
+    public static double getTemperatureInCelsius(Context context, DetailedWeatherForecast weather) {
+        if (weather == null) {
+            return 0;
+        }
         String temperatureTypeFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_TEMPERATURE_TYPE, "measured_only");
         double value = weather.getTemperature();
@@ -242,11 +254,7 @@ public class TemperatureUtil {
                     weather.getHumidity(),
                     weather.getWindSpeed());
         }
-        if (unitsFromPreferences.contains("fahrenheit") ) {
-            return (value * 1.8d) + 32;
-        } else {
-            return value;
-        }
+        return value;
     }
 
     public static int getTemperatureStatusIcon(Context context, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {

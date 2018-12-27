@@ -69,7 +69,7 @@ public class LessWidgetService extends IntentService {
             LessWidgetProvider.setWidgetTheme(this, remoteViews);
             LessWidgetProvider.setWidgetIntents(this, remoteViews, LessWidgetProvider.class, appWidgetId);
 
-            remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
+            remoteViews.setTextViewText(R.id.widget_less_3x1_widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     this,
                     weather,
                     currentLocation.getLatitude(),
@@ -82,19 +82,19 @@ public class LessWidgetService extends IntentService {
                     weatherRecord.getLastUpdatedTime(),
                     currentLocation.getLocale());
             if (secondTemperature != null) {
-                remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
-                remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
+                remoteViews.setViewVisibility(R.id.widget_less_3x1_widget_second_temperature, View.VISIBLE);
+                remoteViews.setTextViewText(R.id.widget_less_3x1_widget_second_temperature, secondTemperature);
             } else {
-                remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
+                remoteViews.setViewVisibility(R.id.widget_less_3x1_widget_second_temperature, View.GONE);
             }
-            remoteViews.setTextViewText(R.id.widget_description,
+            remoteViews.setTextViewText(R.id.widget_less_3x1_widget_description,
                                         Utils.getWeatherDescription(this,
                                                                     currentLocation.getLocaleAbbrev(),
                                                                     weather));
-            remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(this, currentLocation.getOrderId()));
+            remoteViews.setTextViewText(R.id.widget_less_3x1_widget_city, Utils.getCityAndCountry(this, currentLocation.getOrderId()));
             String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, currentLocation);
-            remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
-            Utils.setWeatherIcon(remoteViews, this, weatherRecord);
+            remoteViews.setTextViewText(R.id.widget_less_3x1_widget_last_update, lastUpdate);
+            Utils.setWeatherIcon(remoteViews, this, weatherRecord, R.id.widget_less_3x1_widget_icon);
             widgetManager.updateAppWidget(appWidgetId, remoteViews);
         }
         appendLog(this, TAG, "updateWidgetend");

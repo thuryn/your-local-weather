@@ -345,6 +345,55 @@ public class AppPreference {
                 Constants.KEY_PREF_FORECAST_ACTIVITY_COLUMNS, columnsToStore).apply();
     }
 
+    public static Set<Integer> getGraphsActivityVisibleGraphs(Context context) {
+        Set<String> defaultVisibleGraphs = new HashSet<>();
+        defaultVisibleGraphs.add("0");
+        defaultVisibleGraphs.add("1");
+        defaultVisibleGraphs.add("2");;
+        defaultVisibleGraphs.add("4");
+        defaultVisibleGraphs.add("6");
+        defaultVisibleGraphs.add("7");
+        Set<String> visibleColumns = PreferenceManager.getDefaultSharedPreferences(context).getStringSet(
+                Constants.KEY_PREF_GRAPHS_ACTIVITY_VISIBLE_GRAPHS, defaultVisibleGraphs);
+        Set<Integer> result = new HashSet<>();
+        for (String visibleColumn: visibleColumns) {
+            result.add(Integer.valueOf(visibleColumn));
+        }
+        return result;
+    }
+
+    public static void setGraphsActivityVisibleGraphs(Context context, Set<Integer> visibleGraphs) {
+        Set<String> columnsToStore = new HashSet<>();
+        for (Integer visibleColumn: visibleGraphs) {
+            columnsToStore.add(String.valueOf(visibleColumn));
+        }
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(
+                Constants.KEY_PREF_GRAPHS_ACTIVITY_VISIBLE_GRAPHS, columnsToStore).apply();
+    }
+
+    public static Set<Integer> getCombinedGraphValues(Context context) {
+        Set<String> defaultVisibleGraphs = new HashSet<>();
+        defaultVisibleGraphs.add("0");
+        defaultVisibleGraphs.add("1");
+        defaultVisibleGraphs.add("2");
+        Set<String> visibleColumns = PreferenceManager.getDefaultSharedPreferences(context).getStringSet(
+                Constants.KEY_PREF_COMBINED_GRAPH_VALUES, defaultVisibleGraphs);
+        Set<Integer> result = new HashSet<>();
+        for (String visibleColumn: visibleColumns) {
+            result.add(Integer.valueOf(visibleColumn));
+        }
+        return result;
+    }
+
+    public static void setCombinedGraphValues(Context context, Set<Integer> visibleGraphs) {
+        Set<String> columnsToStore = new HashSet<>();
+        for (Integer visibleColumn: visibleGraphs) {
+            columnsToStore.add(String.valueOf(visibleColumn));
+        }
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(
+                Constants.KEY_PREF_COMBINED_GRAPH_VALUES, columnsToStore).apply();
+    }
+
     public static int getTextColor(Context context) {
         String theme = getTheme(context);
         if (null == theme) {
@@ -358,7 +407,21 @@ public class AppPreference {
                 return ContextCompat.getColor(context, R.color.widget_transparentTheme_textColorPrimary);
         }
     }
-    
+
+    public static int getGraphGridColor(Context context) {
+        String theme = getTheme(context);
+        if (null == theme) {
+            return Color.parseColor("#333333");
+        } else switch (theme) {
+            case "dark":
+                return Color.WHITE;
+            case "light":
+                return Color.parseColor("#333333");
+            default:
+                return Color.WHITE;
+        }
+    }
+
     public static int getBackgroundColor(Context context) {
         String theme = getTheme(context);
         if (null == theme) {

@@ -75,50 +75,26 @@ public class WeatherForecastWidgetService extends IntentService {
             WeatherForecastWidgetProvider.setWidgetTheme(this, remoteViews);
             WeatherForecastWidgetProvider.setWidgetIntents(this, remoteViews, WeatherForecastWidgetProvider.class, appWidgetId);
 
-            remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(this, currentLocation.getOrderId()));
-            remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
-                    this,
-                    weather,
-                    currentLocation.getLatitude(),
-                    weatherRecord.getLastUpdatedTime(),
-                    currentLocation.getLocale()));
-            String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
-                    this,
-                    weather,
-                    currentLocation.getLatitude(),
-                    weatherRecord.getLastUpdatedTime(),
-                    currentLocation.getLocale());
-            if (secondTemperature != null) {
-                remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
-                remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
-            } else {
-                remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
-            }
-            remoteViews.setTextViewText(R.id.widget_description,
-                                        Utils.getWeatherDescription(this,
-                                                                    currentLocation.getLocaleAbbrev(),
-                                                                    weather));
-            WidgetUtils.setWind(getBaseContext(),
-                                remoteViews,
-                                weather.getWindSpeed(),
-                                weather.getWindDirection(),
-                                currentLocation.getLocale());
-            WidgetUtils.setHumidity(getBaseContext(), remoteViews, weather.getHumidity());
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(1000 * weather.getSunrise());
-            WidgetUtils.setSunrise(getBaseContext(), remoteViews, AppPreference.getLocalizedTime(this, calendar.getTime(), currentLocation.getLocale()));
-            calendar.setTimeInMillis(1000 * weather.getSunset());
-            WidgetUtils.setSunset(getBaseContext(), remoteViews, AppPreference.getLocalizedTime(this, calendar.getTime(), currentLocation.getLocale()));
-            Utils.setWeatherIcon(remoteViews, this, weatherRecord);
-
-            WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;
             try {
-                weatherForecastRecord = WidgetUtils.updateWeatherForecast(getBaseContext(), currentLocation.getId(), remoteViews);
+                WidgetUtils.updateWeatherForecast(getBaseContext(), currentLocation.getId(), remoteViews,
+                        R.id.widget_weather_forecast_1x3_forecast_1_widget_icon,
+                        R.id.widget_weather_forecast_1x3_forecast_1_widget_day,
+                        R.id.widget_weather_forecast_1x3_forecast_1_widget_temperatures,
+                        R.id.widget_weather_forecast_1x3_forecast_2_widget_icon,
+                        R.id.widget_weather_forecast_1x3_forecast_2_widget_day,
+                        R.id.widget_weather_forecast_1x3_forecast_2_widget_temperatures,
+                        R.id.widget_weather_forecast_1x3_forecast_3_widget_icon,
+                        R.id.widget_weather_forecast_1x3_forecast_3_widget_day,
+                        R.id.widget_weather_forecast_1x3_forecast_3_widget_temperatures,
+                        R.id.widget_weather_forecast_1x3_forecast_4_widget_icon,
+                        R.id.widget_weather_forecast_1x3_forecast_4_widget_day,
+                        R.id.widget_weather_forecast_1x3_forecast_4_widget_temperatures,
+                        R.id.widget_weather_forecast_1x3_forecast_5_widget_icon,
+                        R.id.widget_weather_forecast_1x3_forecast_5_widget_day,
+                        R.id.widget_weather_forecast_1x3_forecast_5_widget_temperatures);
             } catch (Exception e) {
                 appendLog(getBaseContext(), TAG, "preLoadWeather:error updating weather forecast", e);
             }
-            String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, weatherForecastRecord, currentLocation);
-            remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
             widgetManager.updateAppWidget(appWidgetId, remoteViews);
         }
         appendLog(this, TAG, "updateWidgetend");

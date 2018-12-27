@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/widget_root"
+<RelativeLayout android:id="@+id/widget_weather_forecast_1x3.widget_root"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cardview_dark_background">
 
     <LinearLayout
-        android:id="@+id/forecast_layout"
+        android:id="@+id/widget_weather_forecast_1x3.forecast_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@id/weather_info"
         android:layout_alignParentLeft="true"
         android:gravity="center">
         <LinearLayout
@@ -20,14 +19,14 @@
             android:paddingLeft="@dimen/widget_forecast_day_padding"
             android:paddingRight="@dimen/widget_forecast_day_padding">
             <TextView
-                android:id="@+id/forecast_1_widget_day"
+                android:id="@+id/widget_weather_forecast_1x3.forecast_1_widget_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:layout_gravity="center"
                 android:textSize="@dimen/widget_3x3_text_size"/>
             <ImageView
-                android:id="@+id/forecast_1_widget_icon"
+                android:id="@+id/widget_weather_forecast_1x3.forecast_1_widget_icon"
                 android:layout_width="@dimen/widget_forecast_icon_size"
                 android:layout_height="@dimen/widget_forecast_icon_size"
                 android:scaleType="fitXY"
@@ -37,7 +36,7 @@
                 android:layout_gravity="center"
                 android:contentDescription="@string/widget_weather_icon_description"/>
             <TextView
-                android:id="@+id/forecast_1_widget_temperatures"
+                android:id="@+id/widget_weather_forecast_1x3.forecast_1_widget_temperatures"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -51,14 +50,14 @@
             android:paddingLeft="@dimen/widget_forecast_day_padding"
             android:paddingRight="@dimen/widget_forecast_day_padding">
             <TextView
-                android:id="@+id/forecast_2_widget_day"
+                android:id="@+id/widget_weather_forecast_1x3.forecast_2_widget_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:layout_gravity="center"
                 android:textSize="@dimen/widget_3x3_text_size"/>
             <ImageView
-                android:id="@+id/forecast_2_widget_icon"
+                android:id="@+id/widget_weather_forecast_1x3.forecast_2_widget_icon"
                 android:layout_width="@dimen/widget_forecast_icon_size"
                 android:layout_height="@dimen/widget_forecast_icon_size"
                 android:scaleType="fitXY"
@@ -68,7 +67,7 @@
                 android:layout_gravity="center"
                 android:contentDescription="@string/widget_weather_icon_description"/>
             <TextView
-                android:id="@+id/forecast_2_widget_temperatures"
+                android:id="@+id/widget_weather_forecast_1x3.forecast_2_widget_temperatures"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -82,14 +81,14 @@
             android:paddingLeft="@dimen/widget_forecast_day_padding"
             android:paddingRight="@dimen/widget_forecast_day_padding">
             <TextView
-                android:id="@+id/forecast_3_widget_day"
+                android:id="@+id/widget_weather_forecast_1x3.forecast_3_widget_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:layout_gravity="center"
                 android:textSize="@dimen/widget_3x3_text_size"/>
             <ImageView
-                android:id="@+id/forecast_3_widget_icon"
+                android:id="@+id/widget_weather_forecast_1x3.forecast_3_widget_icon"
                 android:layout_width="@dimen/widget_forecast_icon_size"
                 android:layout_height="@dimen/widget_forecast_icon_size"
                 android:scaleType="fitXY"
@@ -99,7 +98,7 @@
                 android:layout_gravity="center"
                 android:contentDescription="@string/widget_weather_icon_description"/>
             <TextView
-                android:id="@+id/forecast_3_widget_temperatures"
+                android:id="@+id/widget_weather_forecast_1x3.forecast_3_widget_temperatures"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -113,14 +112,14 @@
             android:paddingLeft="@dimen/widget_forecast_day_padding"
             android:paddingRight="@dimen/widget_forecast_day_padding">
             <TextView
-                android:id="@+id/forecast_4_widget_day"
+                android:id="@+id/widget_weather_forecast_1x3.forecast_4_widget_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:layout_gravity="center"
                 android:textSize="@dimen/widget_3x3_text_size"/>
             <ImageView
-                android:id="@+id/forecast_4_widget_icon"
+                android:id="@+id/widget_weather_forecast_1x3.forecast_4_widget_icon"
                 android:layout_width="@dimen/widget_forecast_icon_size"
                 android:layout_height="@dimen/widget_forecast_icon_size"
                 android:scaleType="fitXY"
@@ -130,7 +129,7 @@
                 android:layout_gravity="center"
                 android:contentDescription="@string/widget_weather_icon_description"/>
             <TextView
-                android:id="@+id/forecast_4_widget_temperatures"
+                android:id="@+id/widget_weather_forecast_1x3.forecast_4_widget_temperatures"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -144,14 +143,14 @@
             android:paddingLeft="@dimen/widget_forecast_day_padding"
             android:paddingRight="@dimen/widget_forecast_day_padding">
             <TextView
-                android:id="@+id/forecast_5_widget_day"
+                android:id="@+id/widget_weather_forecast_1x3.forecast_5_widget_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:layout_gravity="center"
                 android:textSize="@dimen/widget_3x3_text_size"/>
             <ImageView
-                android:id="@+id/forecast_5_widget_icon"
+                android:id="@+id/widget_weather_forecast_1x3.forecast_5_widget_icon"
                 android:layout_width="@dimen/widget_forecast_icon_size"
                 android:layout_height="@dimen/widget_forecast_icon_size"
                 android:scaleType="fitXY"
@@ -161,7 +160,7 @@
                 android:layout_gravity="center"
                 android:contentDescription="@string/widget_weather_icon_description"/>
             <TextView
-                android:id="@+id/forecast_5_widget_temperatures"
+                android:id="@+id/widget_weather_forecast_1x3.forecast_5_widget_temperatures"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"

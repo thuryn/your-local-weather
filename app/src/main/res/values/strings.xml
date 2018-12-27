@@ -28,7 +28,7 @@
     <string name="share_weather_descritpion" tools:ignore="MissingTranslation">City: %1$s\nTemperature: %2$s\nDescription: %3$s\nWind: %4$s %5$s\nSunrise: %6$s\nSunset: %7$s</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">Your local weather</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">Your local weather notifications</string>
-    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Day</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Temperature</string>
     <string name="graph_wind_label" tools:ignore="MissingTranslation">Wind</string>
     <string name="graph_rain_label" tools:ignore="MissingTranslation">Rain</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Snow</string>
@@ -107,6 +107,8 @@
     <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Detect Location</string>
     <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Toggle Values</string>
     <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Toggle Y-Axis</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">Visible graphs settings</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">Combined graph settings</string>
 
     <!-- Weather forecast -->
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Column setting</string>
@@ -123,6 +125,20 @@
     <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
     <string name="ok" tools:ignore="MissingTranslation">OK</string>
     <string name="cancel" tools:ignore="MissingTranslation">Cancel</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Combined</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Temperature</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Wind</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Rain</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Rain (bar)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Snow</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Snow (bar)</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Pressure</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Temperature</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Wind</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Rain/Snow</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Pressure</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Graphs to show</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Data for combined graph</string>
 
     <!-- Navigation drawer -->
     <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Open navigation drawer</string>

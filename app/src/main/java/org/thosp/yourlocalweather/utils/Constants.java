@@ -67,6 +67,8 @@ public class Constants {
     public static final String KEY_DEBUG_FILE_LASTING_HOURS = "debug.file.lasting.hours";
     public static final String KEY_WAKE_UP_STRATEGY = "wake.up.strategy";
     public static final String KEY_PREF_FORECAST_ACTIVITY_COLUMNS = "forecast_activity_columns_pref_key";
+    public static final String KEY_PREF_GRAPHS_ACTIVITY_VISIBLE_GRAPHS = "graphs_activity_visible_graphs";
+    public static final String KEY_PREF_COMBINED_GRAPH_VALUES = "graphs_activity_combined_values";
 
     /**
      * About preference screen constants

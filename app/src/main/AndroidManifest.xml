@@ -172,6 +172,34 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_weather_forecast"/>
         </receiver>
+        <receiver android:name=".widget.ExtLocationWithGraphWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
+                <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_ext_loc_graph"/>
+        </receiver>
+        <receiver android:name=".widget.WeatherGraphWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
+                <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_weather_graph"/>
+        </receiver>
 
         <service
             android:name=".service.WeatherForecastResendJob"
@@ -217,7 +245,11 @@
         <service
             android:name=".widget.ExtLocationWidgetWithForecastService" />
         <service
+            android:name=".widget.ExtLocationWidgetWithGraphService" />
+        <service
             android:name=".widget.WeatherForecastWidgetService" />
+        <service
+            android:name=".widget.WeatherGraphWidgetService" />
         <service
             android:name=".service.AppWakeUpManager" />
         <service

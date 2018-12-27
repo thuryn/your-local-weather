@@ -23,6 +23,9 @@ android {
         vectorDrawables.useSupportLibrary = true
         playAccountConfig = playAccountConfigs.defaultAccountConfig
     }
+    packagingOptions {
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -47,7 +50,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
     implementation 'com.android.support:appcompat-v7:28.+'
     implementation 'com.android.support:design:28.+'
     implementation 'com.android.support:cardview-v7:28.+'

@@ -12,4 +12,10 @@
     <item
         android:id="@+id/action_toggle_yaxis"
         android:title="@string/menu_action_toggle_yaxis"/>
+    <item
+        android:id="@+id/action_visible_graphs_settings"
+        android:title="@string/menu_action_visible_graph_settings"/>
+    <item
+        android:id="@+id/action_graph_combined_settings"
+        android:title="@string/menu_action_graph_combined_settings"/>
 </menu>

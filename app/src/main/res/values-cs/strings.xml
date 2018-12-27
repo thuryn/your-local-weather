@@ -338,7 +338,7 @@
     <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Město: %1$s\nTeplota: %2$s\nPopis: %3$s\nVítr: %4$s %5$s\nVýchod slunce: %6$s\nZápad slunce: %7$s</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">Vaše místní počasí</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">Upozornění aplikace Vaše místní počasí</string>
-    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Den</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Teplota</string>
     <string name="graph_wind_label" tools:ignore="MissingTranslation">Vítr</string>
     <string name="graph_rain_label" tools:ignore="MissingTranslation">Déšť</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Sníh</string>

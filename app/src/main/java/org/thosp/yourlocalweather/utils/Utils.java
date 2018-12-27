@@ -169,12 +169,13 @@ public class Utils {
 
     public static void setWeatherIcon(RemoteViews remoteViews,
                                       Context context,
-                                      CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
+                                      CurrentWeatherDbHelper.WeatherRecord weatherRecord,
+                                      int widgetIconId) {
         if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
-            remoteViews.setImageViewBitmap(R.id.widget_icon,
+            remoteViews.setImageViewBitmap(widgetIconId,
                     createWeatherIcon(context, getStrIcon(context, weatherRecord)));
         } else {
-            remoteViews.setImageViewResource(R.id.widget_icon, Utils.getWeatherResourceIcon(weatherRecord));
+            remoteViews.setImageViewResource(widgetIconId, Utils.getWeatherResourceIcon(weatherRecord));
         }
     }
 

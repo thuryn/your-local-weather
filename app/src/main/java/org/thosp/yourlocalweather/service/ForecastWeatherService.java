@@ -30,6 +30,7 @@ import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
+import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
@@ -311,6 +312,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
         weatherForecastDbHelper.saveWeatherForecast(updateRequest.getLocationId(),
                 lastUpdate,
                 completeWeatherForecast);
+        GraphUtils.invalidateGraph(updateRequest.getLocationId());
         sendResult(ACTION_WEATHER_UPDATE_OK, context);
     }
 

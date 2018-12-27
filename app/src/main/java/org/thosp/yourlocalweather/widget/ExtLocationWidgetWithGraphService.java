@@ -3,9 +3,7 @@ package org.thosp.yourlocalweather.widget;
 import android.app.IntentService;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -14,24 +12,24 @@ import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
+import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Locale;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
-public class ExtLocationWidgetService extends IntentService {
+public class ExtLocationWidgetWithGraphService extends IntentService {
 
-    private static final String TAG = "UpdateExtLocWidgetService";
+    private static final String TAG = "ExtLocationWidgetWithGraphService";
 
-    public ExtLocationWidgetService() {
+    public ExtLocationWidgetWithGraphService() {
         super(TAG);
     }
 
@@ -43,7 +41,7 @@ public class ExtLocationWidgetService extends IntentService {
         final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(this);
 
         AppWidgetManager widgetManager = AppWidgetManager.getInstance(this);
-        ComponentName widgetComponent = new ComponentName(this, ExtLocationWidgetProvider.class);
+        ComponentName widgetComponent = new ComponentName(this, ExtLocationWithGraphWidgetProvider.class);
 
         int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
         for (int appWidgetId : widgetIds) {
@@ -69,13 +67,13 @@ public class ExtLocationWidgetService extends IntentService {
             Weather weather = weatherRecord.getWeather();
 
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),
-                    R.layout.widget_ext_loc_3x3);
+                    R.layout.widget_ext_loc_graph_3x3);
 
-            ExtLocationWidgetProvider.setWidgetTheme(this, remoteViews);
-            ExtLocationWidgetProvider.setWidgetIntents(this, remoteViews, ExtLocationWidgetProvider.class, appWidgetId);
+            ExtLocationWithGraphWidgetProvider.setWidgetTheme(this, remoteViews);
+            ExtLocationWithGraphWidgetProvider.setWidgetIntents(this, remoteViews, ExtLocationWithGraphWidgetProvider.class, appWidgetId);
 
-            remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_city, Utils.getCityAndCountry(this, currentLocation.getOrderId()));
-            remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_temperature, TemperatureUtil.getTemperatureWithUnit(
+            remoteViews.setTextViewText(R.id.widget_ext_loc_graph_3x3_widget_city, Utils.getCityAndCountry(this, currentLocation.getOrderId()));
+            remoteViews.setTextViewText(R.id.widget_ext_loc_graph_3x3_widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     this,
                     weather,
                     currentLocation.getLatitude(),
@@ -88,12 +86,12 @@ public class ExtLocationWidgetService extends IntentService {
                     weatherRecord.getLastUpdatedTime(),
                     currentLocation.getLocale());
             if (secondTemperature != null) {
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_widget_second_temperature, View.VISIBLE);
-                remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_second_temperature, secondTemperature);
+                remoteViews.setViewVisibility(R.id.widget_ext_loc_graph_3x3_widget_second_temperature, View.VISIBLE);
+                remoteViews.setTextViewText(R.id.widget_ext_loc_graph_3x3_widget_second_temperature, secondTemperature);
             } else {
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_widget_second_temperature, View.GONE);
+                remoteViews.setViewVisibility(R.id.widget_ext_loc_graph_3x3_widget_second_temperature, View.GONE);
             }
-            remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_description,
+            remoteViews.setTextViewText(R.id.widget_ext_loc_graph_3x3_widget_description,
                                         Utils.getWeatherDescription(this,
                                                                     currentLocation.getLocaleAbbrev(),
                                                                     weather));
@@ -102,24 +100,37 @@ public class ExtLocationWidgetService extends IntentService {
                                 weather.getWindSpeed(),
                                 weather.getWindDirection(),
                                 currentLocation.getLocale(),
-                    R.id.widget_ext_loc_3x3_widget_wind,
-                    R.id.widget_ext_loc_3x3_widget_wind_icon);
+                    R.id.widget_ext_loc_graph_3x3_widget_wind,
+                    R.id.widget_ext_loc_graph_3x3_widget_wind_icon);
             WidgetUtils.setHumidity(getBaseContext(), remoteViews, weather.getHumidity(),
-                    R.id.widget_ext_loc_3x3_widget_humidity,
-                    R.id.widget_ext_loc_3x3_widget_humidity_icon);
+                    R.id.widget_ext_loc_graph_3x3_widget_humidity,
+                    R.id.widget_ext_loc_graph_3x3_widget_humidity_icon);
             Calendar calendar = Calendar.getInstance();
             calendar.setTimeInMillis(1000 * weather.getSunrise());
             WidgetUtils.setSunrise(getBaseContext(), remoteViews, AppPreference.getLocalizedTime(this, calendar.getTime(), currentLocation.getLocale()),
-                    R.id.widget_ext_loc_3x3_widget_sunrise,
-                    R.id.widget_ext_loc_3x3_widget_sunrise_icon);
+                    R.id.widget_ext_loc_graph_3x3_widget_sunrise,
+                    R.id.widget_ext_loc_graph_3x3_widget_sunrise_icon);
             calendar.setTimeInMillis(1000 * weather.getSunset());
             WidgetUtils.setSunset(getBaseContext(), remoteViews, AppPreference.getLocalizedTime(this, calendar.getTime(), currentLocation.getLocale()),
-                    R.id.widget_ext_loc_3x3_widget_sunset,
-                    R.id.widget_ext_loc_3x3_widget_sunset_icon);
-            Utils.setWeatherIcon(remoteViews, this, weatherRecord, R.id.widget_ext_loc_3x3_widget_icon);
-            String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, currentLocation);
-            remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_last_update, lastUpdate);
+                    R.id.widget_ext_loc_graph_3x3_widget_sunset,
+                    R.id.widget_ext_loc_graph_3x3_widget_sunset_icon);
+            Utils.setWeatherIcon(remoteViews, this, weatherRecord, R.id.widget_ext_loc_graph_3x3_widget_icon);
 
+            WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;
+            try {
+                final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(getBaseContext());
+                Location location = locationsDbHelper.getLocationById(currentLocation.getId());
+                if (location != null) {
+                    weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
+                    if (weatherForecastRecord != null) {
+                        remoteViews.setImageViewBitmap(R.id.widget_ext_loc_graph_3x3_widget_combined_chart, GraphUtils.getCombinedChart(getBaseContext(), weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList(), currentLocation.getId(), currentLocation.getLocale()));
+                    }
+                }
+            } catch (Exception e) {
+                appendLog(getBaseContext(), TAG, "preLoadWeather:error updating weather forecast", e);
+            }
+            String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, weatherForecastRecord, currentLocation);
+            remoteViews.setTextViewText(R.id.widget_ext_loc_graph_3x3_widget_last_update, lastUpdate);
             widgetManager.updateAppWidget(appWidgetId, remoteViews);
         }
         appendLog(this, TAG, "updateWidgetend");

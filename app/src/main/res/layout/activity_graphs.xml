@@ -55,6 +55,34 @@
                 android:orientation="vertical">
 
                 <android.support.v7.widget.CardView
+                    android:id="@+id/combined_chart_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/graphs.combined_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="18sp"/>
+
+                        <com.github.mikephil.charting.charts.CombinedChart
+                            android:id="@+id/combined_chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="220dp">
+                        </com.github.mikephil.charting.charts.CombinedChart>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/temperature_chart_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp">
@@ -81,6 +109,7 @@
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
+                    android:id="@+id/wind_chart_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp">
@@ -107,6 +136,7 @@
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
+                    android:id="@+id/rain_chart_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp">
@@ -133,6 +163,34 @@
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
+                    android:id="@+id/rain_bar_chart_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/graphs.bar_rain_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="18sp"/>
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/bar_rain_chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="220dp">
+                        </com.github.mikephil.charting.charts.BarChart>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/snow_chart_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp">
@@ -159,6 +217,34 @@
                 </android.support.v7.widget.CardView>
 
                 <android.support.v7.widget.CardView
+                    android:id="@+id/snow_bar_chart_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/graphs.bar_snow_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="?android:attr/textColorPrimary"
+                            android:textSize="18sp"/>
+
+                        <com.github.mikephil.charting.charts.BarChart
+                            android:id="@+id/bar_snow_chart"
+                            android:layout_width="match_parent"
+                            android:layout_height="220dp">
+                        </com.github.mikephil.charting.charts.BarChart>
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/pressure_chart_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp">

@@ -19,9 +19,11 @@ import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetWithForecastService;
+import org.thosp.yourlocalweather.widget.ExtLocationWidgetWithGraphService;
 import org.thosp.yourlocalweather.widget.LessWidgetService;
 import org.thosp.yourlocalweather.widget.MoreWidgetService;
 import org.thosp.yourlocalweather.widget.WeatherForecastWidgetService;
+import org.thosp.yourlocalweather.widget.WeatherGraphWidgetService;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,99 +39,123 @@ public class WidgetUtils {
 
     private static final String TAG = "WidgetUtils";
 
-    public static void setSunset(Context context, RemoteViews remoteViews, String value) {
+    public static void setSunset(Context context, RemoteViews remoteViews, String value,
+                                 int widgetSunsetId, int widgetSunsetIconId) {
         if (AppPreference.showLabelsOnWidget(context)) {
             String sunset = context.getString(R.string.sunset_label, value);
-            remoteViews.setTextViewText(R.id.widget_sunset, sunset);
-            remoteViews.setViewVisibility(R.id.widget_sunset_icon, TextView.GONE);
+            remoteViews.setTextViewText(widgetSunsetId, sunset);
+            remoteViews.setViewVisibility(widgetSunsetIconId, TextView.GONE);
         } else {
             String sunset = ": " + value;
-            remoteViews.setImageViewBitmap(R.id.widget_sunset_icon, Utils.createWeatherIcon(context, context.getString(R.string.icon_sunset)));
-            remoteViews.setViewVisibility(R.id.widget_sunset_icon, TextView.VISIBLE);
-            remoteViews.setTextViewText(R.id.widget_sunset, sunset);
+            remoteViews.setImageViewBitmap(widgetSunsetIconId, Utils.createWeatherIcon(context, context.getString(R.string.icon_sunset)));
+            remoteViews.setViewVisibility(widgetSunsetIconId, TextView.VISIBLE);
+            remoteViews.setTextViewText(widgetSunsetId, sunset);
         }
     }
 
-    public static void setSunrise(Context context, RemoteViews remoteViews, String value) {
+    public static void setSunrise(Context context, RemoteViews remoteViews, String value,
+                                  int widgetSunriseId, int widgetSunriseIconId) {
         if (AppPreference.showLabelsOnWidget(context)) {
             String sunrise = context.getString(R.string.sunrise_label, value);
-            remoteViews.setTextViewText(R.id.widget_sunrise, sunrise);
-            remoteViews.setViewVisibility(R.id.widget_sunrise_icon, TextView.GONE);
+            remoteViews.setTextViewText(widgetSunriseId, sunrise);
+            remoteViews.setViewVisibility(widgetSunriseIconId, TextView.GONE);
         } else {
             String sunrise = ": " + value;
-            remoteViews.setImageViewBitmap(R.id.widget_sunrise_icon, Utils.createWeatherIcon(context, context.getString(R.string.icon_sunrise)));
-            remoteViews.setViewVisibility(R.id.widget_sunrise_icon, TextView.VISIBLE);
-            remoteViews.setTextViewText(R.id.widget_sunrise, sunrise);
+            remoteViews.setImageViewBitmap(widgetSunriseIconId, Utils.createWeatherIcon(context, context.getString(R.string.icon_sunrise)));
+            remoteViews.setViewVisibility(widgetSunriseIconId, TextView.VISIBLE);
+            remoteViews.setTextViewText(widgetSunriseId, sunrise);
         }
     }
 
-    public static void setHumidity(Context context, RemoteViews remoteViews, int value) {
+    public static void setHumidity(Context context, RemoteViews remoteViews, int value,
+                                   int humidityId, int humidityIconId) {
         String percentSign = context.getString(R.string.percent_sign);
         if (AppPreference.showLabelsOnWidget(context)) {
             String humidity =
                     context.getString(R.string.humidity_label,
                             String.valueOf(value), percentSign);
-            remoteViews.setTextViewText(R.id.widget_humidity, humidity);
-            remoteViews.setViewVisibility(R.id.widget_humidity_icon, TextView.GONE);
+            remoteViews.setTextViewText(humidityId, humidity);
+            remoteViews.setViewVisibility(humidityIconId, TextView.GONE);
         } else {
             String humidity = ": " + String.valueOf(value) + percentSign;
-            remoteViews.setImageViewBitmap(R.id.widget_humidity_icon, Utils.createWeatherIcon(context, context.getString(R.string.icon_humidity)));
-            remoteViews.setViewVisibility(R.id.widget_humidity_icon, TextView.VISIBLE);
-            remoteViews.setTextViewText(R.id.widget_humidity, humidity);
+            remoteViews.setImageViewBitmap(humidityIconId, Utils.createWeatherIcon(context, context.getString(R.string.icon_humidity)));
+            remoteViews.setViewVisibility(humidityIconId, TextView.VISIBLE);
+            remoteViews.setTextViewText(humidityId, humidity);
         }
     }
 
-    public static void setWind(Context context, RemoteViews remoteViews, float value, float direction, Locale locale) {
+    public static void setWind(Context context, RemoteViews remoteViews, float value, float direction, Locale locale,
+                               int widgetWindId, int widgetWindIconId) {
         WindWithUnit windWithUnit = AppPreference.getWindWithUnit(context, value, direction, locale);
         if (AppPreference.showLabelsOnWidget(context)) {
             String wind = context.getString(R.string.wind_label,
                             windWithUnit.getWindSpeed(0),
                             windWithUnit.getWindUnit(),
                             windWithUnit.getWindDirection());
-            remoteViews.setTextViewText(R.id.widget_wind, wind);
-            remoteViews.setViewVisibility(R.id.widget_wind_icon, TextView.GONE);
+            remoteViews.setTextViewText(widgetWindId, wind);
+            remoteViews.setViewVisibility(widgetWindIconId, TextView.GONE);
         } else {
             String wind = ": " + windWithUnit.getWindSpeed(0) + " " + windWithUnit.getWindUnit();
-            remoteViews.setImageViewBitmap(R.id.widget_wind_icon, Utils.createWeatherIcon(context, context.getString(R.string.icon_wind)));
-            remoteViews.setViewVisibility(R.id.widget_wind_icon, TextView.VISIBLE);
-            remoteViews.setTextViewText(R.id.widget_wind, wind);
+            remoteViews.setImageViewBitmap(widgetWindIconId, Utils.createWeatherIcon(context, context.getString(R.string.icon_wind)));
+            remoteViews.setViewVisibility(widgetWindIconId, TextView.VISIBLE);
+            remoteViews.setTextViewText(widgetWindId, wind);
         }
     }
 
-    public static void setPressure(Context context, RemoteViews remoteViews, float value, Locale locale) {
+    public static void setPressure(Context context, RemoteViews remoteViews, float value, Locale locale,
+                                   int widgetPressureId, int widgetPressureIconId) {
         PressureWithUnit pressureWithUnit = AppPreference.getPressureWithUnit(context, value, locale);
         if (AppPreference.showLabelsOnWidget(context)) {
             String pressure =
                     context.getString(R.string.pressure_label,
                             pressureWithUnit.getPressure(AppPreference.getPressureDecimalPlaces(context)),
                             pressureWithUnit.getPressureUnit());
-            remoteViews.setTextViewText(R.id.widget_pressure, pressure);
-            remoteViews.setViewVisibility(R.id.widget_pressure_icon, TextView.GONE);
+            remoteViews.setTextViewText(widgetPressureId, pressure);
+            remoteViews.setViewVisibility(widgetPressureIconId, TextView.GONE);
         } else {
             String pressure = ": " + pressureWithUnit.getPressure(0) + " " + pressureWithUnit.getPressureUnit();
-            remoteViews.setImageViewBitmap(R.id.widget_pressure_icon, Utils.createWeatherIcon(context, context.getString(R.string.icon_barometer)));
-            remoteViews.setViewVisibility(R.id.widget_pressure_icon, TextView.VISIBLE);
-            remoteViews.setTextViewText(R.id.widget_pressure, pressure);
+            remoteViews.setImageViewBitmap(widgetPressureIconId, Utils.createWeatherIcon(context, context.getString(R.string.icon_barometer)));
+            remoteViews.setViewVisibility(widgetPressureIconId, TextView.VISIBLE);
+            remoteViews.setTextViewText(widgetPressureId, pressure);
         }
     }
 
-    public static void setClouds(Context context, RemoteViews remoteViews, int value) {
+    public static void setClouds(Context context, RemoteViews remoteViews, int value,
+                                 int widgetCloudsId, int widgetCloudsIconId) {
         String percentSign = context.getString(R.string.percent_sign);
         if (AppPreference.showLabelsOnWidget(context)) {
             String cloudnes =
                     context.getString(R.string.cloudiness_label,
                             String.valueOf(value), percentSign);
-            remoteViews.setTextViewText(R.id.widget_clouds, cloudnes);
-            remoteViews.setViewVisibility(R.id.widget_clouds_icon, TextView.GONE);
+            remoteViews.setTextViewText(widgetCloudsId, cloudnes);
+            remoteViews.setViewVisibility(widgetCloudsIconId, TextView.GONE);
         } else {
             String cloudnes = ": " + String.valueOf(value) + " " + percentSign;
-            remoteViews.setImageViewBitmap(R.id.widget_clouds_icon, Utils.createWeatherIcon(context, context.getString(R.string.icon_cloudiness)));
-            remoteViews.setViewVisibility(R.id.widget_clouds_icon, TextView.VISIBLE);
-            remoteViews.setTextViewText(R.id.widget_clouds, cloudnes);
+            remoteViews.setImageViewBitmap(widgetCloudsIconId, Utils.createWeatherIcon(context, context.getString(R.string.icon_cloudiness)));
+            remoteViews.setViewVisibility(widgetCloudsIconId, TextView.VISIBLE);
+            remoteViews.setTextViewText(widgetCloudsId, cloudnes);
         }
     }
 
-    public static WeatherForecastDbHelper.WeatherForecastRecord updateWeatherForecast(Context context, long locationId, RemoteViews remoteViews) {
+    public static WeatherForecastDbHelper.WeatherForecastRecord updateWeatherForecast(
+            Context context,
+            long locationId,
+            RemoteViews remoteViews,
+            int forecast_1_widget_icon,
+            int forecast_1_widget_day,
+            int forecast_1_widget_temperatures,
+            int forecast_2_widget_icon,
+            int forecast_2_widget_day,
+            int forecast_2_widget_temperatures,
+            int forecast_3_widget_icon,
+            int forecast_3_widget_day,
+            int forecast_3_widget_temperatures,
+            int forecast_4_widget_icon,
+            int forecast_4_widget_day,
+            int forecast_4_widget_temperatures,
+            int forecast_5_widget_icon,
+            int forecast_5_widget_day,
+            int forecast_5_widget_temperatures) {
         final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
         final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
         Location location = locationsDbHelper.getLocationById(locationId);
@@ -216,85 +242,85 @@ public class WidgetUtils {
                     Utils.setForecastIcon(
                             remoteViews,
                             context,
-                            R.id.forecast_1_widget_icon,
+                            forecast_1_widget_icon,
                             weatherIdForTheDay,
                             iconId,
                             maxTemp,
                             maxWind);
                     forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYear);
                     remoteViews.setTextViewText(
-                            R.id.forecast_1_widget_day,
+                            forecast_1_widget_day,
                             sdfDayOfWeek.format(forecastCalendar.getTime()));
                     remoteViews.setTextViewText(
-                            R.id.forecast_1_widget_temperatures,
+                            forecast_1_widget_temperatures,
                             Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
                     break;
                 case 2:
                     Utils.setForecastIcon(
                             remoteViews,
                             context,
-                            R.id.forecast_2_widget_icon,
+                            forecast_2_widget_icon,
                             weatherIdForTheDay,
                             iconId,
                             maxTemp,
                             maxWind);
                     forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYear);
                     remoteViews.setTextViewText(
-                            R.id.forecast_2_widget_day,
+                            forecast_2_widget_day,
                             sdfDayOfWeek.format(forecastCalendar.getTime()));
                     remoteViews.setTextViewText(
-                            R.id.forecast_2_widget_temperatures,
+                            forecast_2_widget_temperatures,
                             Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
                     break;
                 case 3:
                     Utils.setForecastIcon(
                             remoteViews,
                             context,
-                            R.id.forecast_3_widget_icon,
+                            forecast_3_widget_icon,
                             weatherIdForTheDay,
                             iconId,
                             maxTemp,
                             maxWind);
                     forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYear);
                     remoteViews.setTextViewText(
-                            R.id.forecast_3_widget_day,
+                            forecast_3_widget_day,
                             sdfDayOfWeek.format(forecastCalendar.getTime()));
                     remoteViews.setTextViewText(
-                            R.id.forecast_3_widget_temperatures,
+                            forecast_3_widget_temperatures,
                             Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
                     break;
                 case 4:
                     Utils.setForecastIcon(
                             remoteViews,
                             context,
-                            R.id.forecast_4_widget_icon,
+                            forecast_4_widget_icon,
                             weatherIdForTheDay,
                             iconId,
                             maxTemp,
                             maxWind);
                     forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYear);
                     remoteViews.setTextViewText(
-                            R.id.forecast_4_widget_day,
+                            forecast_4_widget_day,
                             sdfDayOfWeek.format(forecastCalendar.getTime()));
                     remoteViews.setTextViewText(
-                            R.id.forecast_4_widget_temperatures,
+                            forecast_4_widget_temperatures,
                             Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
                     break;
                 case 5:
                     Utils.setForecastIcon(
                             remoteViews,
                             context,
-                            R.id.forecast_5_widget_icon,
+                            forecast_5_widget_icon,
                             weatherIdForTheDay,
                             iconId,
                             maxTemp,
                             maxWind);
                     forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYear);
                     remoteViews.setTextViewText(
-                            R.id.forecast_5_widget_day,
+                            forecast_5_widget_day,
                             sdfDayOfWeek.format(forecastCalendar.getTime()));
                     remoteViews.setTextViewText(
-                            R.id.forecast_5_widget_temperatures,
+                            forecast_5_widget_temperatures,
                             Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
                     break;
             }
@@ -309,6 +335,8 @@ public class WidgetUtils {
         startBackgroundService(context, new Intent(context, ExtLocationWidgetWithForecastService.class));
         startBackgroundService(context, new Intent(context, WeatherForecastWidgetService.class));
         startBackgroundService(context, new Intent(context, ReconciliationDbService.class));
+        startBackgroundService(context, new Intent(context, ExtLocationWidgetWithGraphService.class));
+        startBackgroundService(context, new Intent(context, WeatherGraphWidgetService.class));
     }
 
     public static void updateCurrentWeatherWidgets(Context context) {

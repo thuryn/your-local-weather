@@ -71,8 +71,8 @@ public class MoreWidgetService extends IntentService {
             MoreWidgetProvider.setWidgetTheme(this, remoteViews);
             MoreWidgetProvider.setWidgetIntents(this, remoteViews, MoreWidgetProvider.class, appWidgetId);
 
-            remoteViews.setTextViewText(R.id.widget_city, Utils.getCityAndCountry(this, currentLocation.getOrderId()));
-            remoteViews.setTextViewText(R.id.widget_temperature, TemperatureUtil.getTemperatureWithUnit(
+            remoteViews.setTextViewText(R.id.widget_more_3x3_widget_city, Utils.getCityAndCountry(this, currentLocation.getOrderId()));
+            remoteViews.setTextViewText(R.id.widget_more_3x3_widget_temperature, TemperatureUtil.getTemperatureWithUnit(
                     this,
                     weather,
                     currentLocation.getLatitude(),
@@ -85,31 +85,40 @@ public class MoreWidgetService extends IntentService {
                     weatherRecord.getLastUpdatedTime(),
                     currentLocation.getLocale());
             if (secondTemperature != null) {
-                remoteViews.setViewVisibility(R.id.widget_second_temperature, View.VISIBLE);
-                remoteViews.setTextViewText(R.id.widget_second_temperature, secondTemperature);
+                remoteViews.setViewVisibility(R.id.widget_more_3x3_widget_second_temperature, View.VISIBLE);
+                remoteViews.setTextViewText(R.id.widget_more_3x3_widget_second_temperature, secondTemperature);
             } else {
-                remoteViews.setViewVisibility(R.id.widget_second_temperature, View.GONE);
+                remoteViews.setViewVisibility(R.id.widget_more_3x3_widget_second_temperature, View.GONE);
             }
             if(!AppPreference.hideDescription(this))
-                remoteViews.setTextViewText(R.id.widget_description,
+                remoteViews.setTextViewText(R.id.widget_more_3x3_widget_description,
                                             Utils.getWeatherDescription(this,
                                                                         currentLocation.getLocaleAbbrev(),
                                                     weather));
-            else remoteViews.setTextViewText(R.id.widget_description, " ");
+            else remoteViews.setTextViewText(R.id.widget_more_3x3_widget_description, " ");
             WidgetUtils.setWind(getBaseContext(),
                                 remoteViews,
                                 weather.getWindSpeed(),
                                 weather.getWindDirection(),
-                                currentLocation.getLocale());
-            WidgetUtils.setHumidity(getBaseContext(), remoteViews, weather.getHumidity());
+                                currentLocation.getLocale(),
+                    R.id.widget_more_3x3_widget_wind,
+                    R.id.widget_more_3x3_widget_wind_icon);
+            WidgetUtils.setHumidity(getBaseContext(), remoteViews, weather.getHumidity(),
+                    R.id.widget_more_3x3_widget_humidity,
+                    R.id.widget_more_3x3_widget_humidity_icon);
             WidgetUtils.setPressure(getBaseContext(),
                                     remoteViews,
                                     weather.getPressure(),
-                                    currentLocation.getLocale());
-            WidgetUtils.setClouds(getBaseContext(), remoteViews, weather.getClouds());
-            Utils.setWeatherIcon(remoteViews, this, weatherRecord);
+                                    currentLocation.getLocale(),
+                    R.id.widget_more_3x3_widget_pressure,
+                    R.id.widget_more_3x3_widget_pressure_icon);
+            WidgetUtils.setClouds(getBaseContext(), remoteViews, weather.getClouds(),
+                    R.id.widget_more_3x3_widget_clouds,
+                    R.id.widget_more_3x3_widget_clouds_icon);
+            Utils.setWeatherIcon(remoteViews, this, weatherRecord,
+                    R.id.widget_more_3x3_widget_icon);
             String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, currentLocation);
-            remoteViews.setTextViewText(R.id.widget_last_update, lastUpdate);
+            remoteViews.setTextViewText(R.id.widget_more_3x3_widget_last_update, lastUpdate);
 
             widgetManager.updateAppWidget(appWidgetId, remoteViews);
         }

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/widget_ext_loc_3x3.widget_root"
+<RelativeLayout android:id="@+id/widget_ext_loc_graph_3x3.widget_root"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/cardview_dark_background">
 
     <LinearLayout
-        android:id="@+id/widget_ext_loc_3x3.header_layout"
+        android:id="@+id/widget_ext_loc_graph_3x3.header_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/widget_darkTheme_window_colorBackground"
         android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/widget_ext_loc_3x3.widget_city"
+            android:id="@+id/widget_ext_loc_graph_3x3.widget_city"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -27,7 +27,7 @@
             android:textSize="@dimen/widget_3x3_text_size"/>
 
         <TextView
-            android:id="@+id/widget_ext_loc_3x3.widget_last_update"
+            android:id="@+id/widget_ext_loc_graph_3x3.widget_last_update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0"
@@ -36,7 +36,7 @@
             android:textSize="@dimen/widget_3x3_text_size"
             android:textColor="@color/textColorPrimary"/>
 
-        <ImageView android:id="@+id/widget_ext_loc_3x3.widget_button_refresh"
+        <ImageView android:id="@+id/widget_ext_loc_graph_3x3.widget_button_refresh"
             android:layout_width="@dimen/widget_refresh_icon_size"
             android:layout_height="@dimen/widget_refresh_icon_size"
             android:scaleType="fitXY"
@@ -51,8 +51,9 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/widget_ext_loc_3x3.header_layout"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_ext_loc_graph_3x3.header_layout"
+        android:id="@+id/widget_ext_loc_graph_3x3.weather_info"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingEnd="8dp"
@@ -69,14 +70,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/widget_ext_loc_3x3.widget_temperature"
+                    android:id="@+id/widget_ext_loc_graph_3x3.widget_temperature"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:lines="1"
                     android:textSize="@dimen/widget_main_temperature_text_size"/>
                 <TextView
-                    android:id="@+id/widget_ext_loc_3x3.widget_second_temperature"
+                    android:id="@+id/widget_ext_loc_graph_3x3.widget_second_temperature"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -89,13 +90,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:id="@+id/widget_ext_loc_3x3.widget_wind_icon"
+                    android:id="@+id/widget_ext_loc_graph_3x3.widget_wind_icon"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_marginTop="3dp" />
 
                 <TextView
-                    android:id="@+id/widget_ext_loc_3x3.widget_wind"
+                    android:id="@+id/widget_ext_loc_graph_3x3.widget_wind"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -107,13 +108,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:id="@+id/widget_ext_loc_3x3.widget_humidity_icon"
+                    android:id="@+id/widget_ext_loc_graph_3x3.widget_humidity_icon"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_marginTop="3dp" />
 
                 <TextView
-                    android:id="@+id/widget_ext_loc_3x3.widget_humidity"
+                    android:id="@+id/widget_ext_loc_graph_3x3.widget_humidity"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -125,13 +126,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:id="@+id/widget_ext_loc_3x3.widget_sunrise_icon"
+                    android:id="@+id/widget_ext_loc_graph_3x3.widget_sunrise_icon"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_marginTop="3dp" />
 
                 <TextView
-                    android:id="@+id/widget_ext_loc_3x3.widget_sunrise"
+                    android:id="@+id/widget_ext_loc_graph_3x3.widget_sunrise"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -143,13 +144,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <ImageView
-                    android:id="@+id/widget_ext_loc_3x3.widget_sunset_icon"
+                    android:id="@+id/widget_ext_loc_graph_3x3.widget_sunset_icon"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
                     android:layout_marginTop="3dp" />
 
                 <TextView
-                    android:id="@+id/widget_ext_loc_3x3.widget_sunset"
+                    android:id="@+id/widget_ext_loc_graph_3x3.widget_sunset"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
@@ -159,13 +160,13 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/widget_ext_loc_3x3.temp_layout"
+            android:id="@+id/widget_ext_loc_graph_3x3.temp_layout"
             android:layout_width="@dimen/widget_main_weather_panel_width"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
             android:orientation="vertical">
             <TextView
-                android:id="@+id/widget_ext_loc_3x3.widget_description"
+                android:id="@+id/widget_ext_loc_graph_3x3.widget_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
@@ -175,7 +176,7 @@
                 android:textSize="@dimen/widget_3x3_text_size"/>
 
             <ImageView
-                android:id="@+id/widget_ext_loc_3x3.widget_icon"
+                android:id="@+id/widget_ext_loc_graph_3x3.widget_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
@@ -185,5 +186,17 @@
                 android:paddingTop="0dp"
                 android:contentDescription="@string/widget_weather_icon_description"/>
         </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/widget_ext_loc_graph_3x3.forecast_graph"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_ext_loc_graph_3x3.weather_info"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/widget_ext_loc_graph_3x3.widget.combined_chart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </RelativeLayout>
