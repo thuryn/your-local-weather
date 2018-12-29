@@ -69,6 +69,7 @@ public class Constants {
     public static final String KEY_PREF_FORECAST_ACTIVITY_COLUMNS = "forecast_activity_columns_pref_key";
     public static final String KEY_PREF_GRAPHS_ACTIVITY_VISIBLE_GRAPHS = "graphs_activity_visible_graphs";
     public static final String KEY_PREF_COMBINED_GRAPH_VALUES = "graphs_activity_combined_values";
+    public static final String KEY_PREF_WIDGET_GRAPH_NATIVE_SCALE = "widget_graphs_native_scale";
 
     /**
      * About preference screen constants
@@ -95,6 +96,8 @@ public class Constants {
      */
     public static final String ACTION_FORCED_APPWIDGET_UPDATE =
             "org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE";
+    public static final String ACTION_APPWIDGET_CHANGE_GRAPH_SCALE =
+            "org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_GRAPH_SCALE";
     public static final String ACTION_APPWIDGET_THEME_CHANGED =
             "org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED";
     public static final String ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED =

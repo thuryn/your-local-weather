@@ -287,6 +287,11 @@ public class AppPreference {
                 Constants.KEY_PREF_IS_NOTIFICATION_ENABLED, enabled).apply();
     }
 
+    public static boolean isWidgetGraphNativeScaled(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+                Constants.KEY_PREF_WIDGET_GRAPH_NATIVE_SCALE, false);
+    }
+
     public static boolean isUpdateLocationEnabled(Context context, Location currentLocation) {
         if ((currentLocation == null) || (currentLocation.getOrderId() != 0) || !currentLocation.isEnabled()) {
             return false;

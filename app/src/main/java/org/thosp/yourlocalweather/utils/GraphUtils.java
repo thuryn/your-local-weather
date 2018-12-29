@@ -1,13 +1,22 @@
 package org.thosp.yourlocalweather.utils;
 
+import android.appwidget.AppWidgetManager;
+import android.appwidget.AppWidgetProviderInfo;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.RemoteViews;
 
 import com.github.mikephil.charting.charts.CombinedChart;
@@ -26,6 +35,7 @@ import com.github.mikephil.charting.data.LineDataSet;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,17 +45,21 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 public class GraphUtils {
 
-    private static Map<Long, Bitmap> combinedGraphs = new HashMap<>();
+    private static Map<Integer, Bitmap> combinedGraphs = new HashMap<>();
 
     public static Bitmap getCombinedChart(Context context,
+                                          int widgetId,
+                                          Float heightMultiplayer,
                                           List<DetailedWeatherForecast> weatherForecastList,
                                           long locationId,
                                           Locale locale) {
 
-        if (combinedGraphs.get(locationId) != null) {
-            return combinedGraphs.get(locationId);
+        if (combinedGraphs.get(widgetId) != null) {
+            return combinedGraphs.get(widgetId);
         }
 
         CombinedChart combinedChart = generateCombinedGraph(context,
@@ -62,16 +76,95 @@ public class GraphUtils {
 
         combinedChart.setBackgroundColor(ContextCompat.getColor(context,
                 R.color.widget_transparentTheme_colorBackground));
-        Bitmap combinedChartBitmap = Bitmap.createBitmap( 1236, 548, Bitmap.Config.ARGB_8888);
+
+        int[] size = getWidgetSize(context, widgetId);
+        int width = size[0];
+        int height;
+        if (heightMultiplayer == null) {
+            height = size[1];
+        } else {
+            height = (int) (width * heightMultiplayer);
+        }
+
+        Bitmap combinedChartBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
         Canvas combinedChartCanvas = new Canvas(combinedChartBitmap);
-        combinedChart.layout(0, 0, 1236, 548);
+        combinedChart.layout(0, 0, width, height);
         combinedChart.draw(combinedChartCanvas);
-        combinedGraphs.put(locationId, combinedChartBitmap);
+        combinedGraphs.put(widgetId, combinedChartBitmap);
         return combinedChartBitmap;
     }
 
-    public static void invalidateGraph(long locationId) {
-        combinedGraphs.remove(locationId);
+    protected static int[] getWidgetSize(Context context, int appWidgetId) {
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(
+                context.getApplicationContext());
+
+        AppWidgetProviderInfo providerInfo = appWidgetManager.getAppWidgetInfo(appWidgetId);
+
+        int mWidgetLandWidth = providerInfo.minWidth;
+        int mWidgetPortHeight = providerInfo.minHeight;
+        int mWidgetPortWidth = providerInfo.minWidth;
+        int mWidgetLandHeight = providerInfo.minHeight;
+
+        Bundle mAppWidgetOptions = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            mAppWidgetOptions = appWidgetManager.getAppWidgetOptions(appWidgetId);
+        }
+
+        if (mAppWidgetOptions != null
+                && mAppWidgetOptions
+                .getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH) > 0) {
+
+            mWidgetPortWidth = mAppWidgetOptions
+                    .getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH);
+            mWidgetLandWidth = mAppWidgetOptions
+                    .getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_WIDTH);
+            mWidgetLandHeight = mAppWidgetOptions
+                    .getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT);
+            mWidgetPortHeight = mAppWidgetOptions
+                    .getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT);
+        } else {
+            mWidgetLandWidth = providerInfo.minWidth;
+            mWidgetPortHeight = providerInfo.minHeight;
+            mWidgetPortWidth = providerInfo.minWidth;
+            mWidgetLandHeight = providerInfo.minHeight;
+        }
+
+        int mWidgetWidthPerOrientation = mWidgetPortWidth;
+        int mWidgetHeightPerOrientation = mWidgetPortHeight;
+        if (!isPortrait(context)) {
+            mWidgetWidthPerOrientation = mWidgetLandWidth;
+            mWidgetHeightPerOrientation = mWidgetLandHeight;
+        }
+        int[] size = new int[2];
+        if (AppPreference.isWidgetGraphNativeScaled(context)) {
+            size[0] = mWidgetWidthPerOrientation;
+            size[1] = mWidgetHeightPerOrientation;
+            return size;
+        }
+        size[0] = dipToPixels(context, mWidgetWidthPerOrientation);
+        size[1] = dipToPixels(context, mWidgetHeightPerOrientation);
+        return size;
+    }
+
+    public static int dipToPixels(Context context, int dipValue) {
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dipValue, metrics);
+    }
+
+    private static boolean isPortrait (Context cx) {
+        Display d = ((WindowManager) cx.getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+
+        if (d.getWidth() == d.getHeight()) {
+            return false;
+        } else if (d.getWidth() < d.getHeight()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static void invalidateGraph() {
+        combinedGraphs = new HashMap<>();
     }
 
     public static CombinedChart generateCombinedGraph(Context context,
@@ -246,7 +339,7 @@ public class GraphUtils {
             );
         }
 
-        BarDataSet rainSet = new BarDataSet(rainEntries, context.getString(R.string.graph_rain_label));
+        BarDataSet rainSet = new BarDataSet(rainEntries, getRainSnowLabelForCombinedGraph(context, locale));
         rainSet.setValueTextSize(12f);
         rainSet.setDrawValues(false);
         rainSet.setColor(Color.parseColor("#5677FC"));
@@ -423,5 +516,25 @@ public class GraphUtils {
         public int getDaysCount() {
             return daysCount;
         }
+    }
+
+    public static String getRainSnowLabelForCombinedGraph(Context context, Locale locale) {
+        NumberFormat decimalFormat = NumberFormat.getNumberInstance(locale);
+        decimalFormat.setMaximumFractionDigits(1);
+        decimalFormat.setMinimumFractionDigits(1);
+
+        StringBuilder labelBuilder = new StringBuilder();
+        labelBuilder.append(context.getString(R.string.graph_rain_label));
+        labelBuilder.append("/");
+        labelBuilder.append(context.getString(R.string.graph_snow_label));
+        labelBuilder.append(" (*");
+        labelBuilder.append(decimalFormat.format(0.1));
+        labelBuilder.append(" ");
+        labelBuilder.append(context.getString(AppPreference.getRainOrSnowUnit(context)));
+        labelBuilder.append(" on ");
+        labelBuilder.append(TemperatureUtil.getTemperatureUnit(context));
+        labelBuilder.append(")");
+
+        return labelBuilder.toString();
     }
 }

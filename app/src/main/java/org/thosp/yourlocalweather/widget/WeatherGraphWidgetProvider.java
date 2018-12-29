@@ -1,6 +1,7 @@
 package org.thosp.yourlocalweather.widget;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -12,6 +13,7 @@ import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -26,6 +28,16 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
     private static final String TAG = "WeatherGraphWidgetProvider";
 
     private static final String WIDGET_NAME = "WEATHER_GRAPH_WIDGET";
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+        if (intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE_OPTIONS") ||
+                intent.getAction().equals(Constants.ACTION_APPWIDGET_CHANGE_GRAPH_SCALE)) {
+            GraphUtils.invalidateGraph();
+            refreshWidgetValues(context);
+        }
+    }
 
     @Override
     protected void preLoadWeather(Context context, RemoteViews remoteViews, int appWidgetId) {
@@ -58,7 +70,9 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
             if (location != null) {
                 weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
                 if (weatherForecastRecord != null) {
-                    remoteViews.setImageViewBitmap(R.id.widget_weather_graph_1x3_widget_combined_chart, GraphUtils.getCombinedChart(context, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList(), currentLocation.getId(), currentLocation.getLocale()));
+                    remoteViews.setImageViewBitmap(R.id.widget_weather_graph_1x3_widget_combined_chart,
+                            GraphUtils.getCombinedChart(context, appWidgetId,null,
+                                    weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList(), currentLocation.getId(), currentLocation.getLocale()));
                 }
             }
         } catch (Exception e) {

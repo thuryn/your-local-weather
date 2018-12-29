@@ -8,6 +8,7 @@ import android.app.DialogFragment;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -60,6 +61,7 @@ import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.LogToFile;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
@@ -187,7 +189,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             switch (key) {
                 case Constants.KEY_PREF_HIDE_DESCRIPTION:
                     if (changing) {
-                        getActivity().sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
+                        Intent intent = new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
+                        intent.setPackage("org.thosp.yourlocalweather");
+                        getActivity().sendBroadcast(intent);
                     }
                     break;
                 case Constants.PREF_LANGUAGE:
@@ -324,7 +328,9 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         private void updateSummary(String key, boolean changing) {
             entrySummary(key);
             if (changing) {
-                getActivity().sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
+                Intent intent = new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
+                intent.setPackage("org.thosp.yourlocalweather");
+                getActivity().sendBroadcast(intent);
             }
         }
 
@@ -900,16 +906,27 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             switch (key) {
                 case Constants.KEY_PREF_WIDGET_THEME:
                     Intent intent = new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED);
+                    intent.setPackage("org.thosp.yourlocalweather");
                     getActivity().sendBroadcast(intent);
                     setSummary(Constants.KEY_PREF_WIDGET_THEME);
                     break;
                 case Constants.KEY_PREF_LOCATION_GPS_ENABLED:
                     break;
                 case Constants.KEY_PREF_WIDGET_SHOW_LABELS:
-                    getActivity().sendBroadcast(new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED));
+                    intent = new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED);
+                    intent.setPackage("org.thosp.yourlocalweather");
+                    getActivity().sendBroadcast(intent);
+                    break;
+                case Constants.KEY_PREF_WIDGET_GRAPH_NATIVE_SCALE:
+                    GraphUtils.invalidateGraph();
+                    intent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_GRAPH_SCALE);
+                    intent.setPackage("org.thosp.yourlocalweather");
+                    getActivity().sendBroadcast(intent);
                     break;
                 case Constants.KEY_PREF_UPDATE_DETAIL:
-                    getActivity().sendBroadcast(new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE));
+                    intent = new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
+                    intent.setPackage("org.thosp.yourlocalweather");
+                    getActivity().sendBroadcast(intent);
                     setDetailedSummary(Constants.KEY_PREF_UPDATE_DETAIL);
                     break;
             }

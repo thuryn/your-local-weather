@@ -123,7 +123,9 @@ public class ExtLocationWidgetWithGraphService extends IntentService {
                 if (location != null) {
                     weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
                     if (weatherForecastRecord != null) {
-                        remoteViews.setImageViewBitmap(R.id.widget_ext_loc_graph_3x3_widget_combined_chart, GraphUtils.getCombinedChart(getBaseContext(), weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList(), currentLocation.getId(), currentLocation.getLocale()));
+                        remoteViews.setImageViewBitmap(R.id.widget_ext_loc_graph_3x3_widget_combined_chart,
+                                GraphUtils.getCombinedChart(getBaseContext(), appWidgetId, 0.2f,
+                                weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList(), currentLocation.getId(), currentLocation.getLocale()));
                     }
                 }
             } catch (Exception e) {

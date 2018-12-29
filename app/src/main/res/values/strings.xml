@@ -250,6 +250,7 @@
     <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Widget Settings</string>
     <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Update Location</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Show labels in widget</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Show graph by native resolution (when the graph is too small)</string>
     <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Use geolocation for displaying</string>
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Widget theme</string>
     <string name="theme_dark" tools:ignore="MissingTranslation">Dark</string>

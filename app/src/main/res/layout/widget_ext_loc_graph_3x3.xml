@@ -189,14 +189,14 @@
     </LinearLayout>
     <LinearLayout
         android:id="@+id/widget_ext_loc_graph_3x3.forecast_graph"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/widget_ext_loc_graph_3x3.weather_info"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/widget_ext_loc_graph_3x3.widget.combined_chart"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 </RelativeLayout>

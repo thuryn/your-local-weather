@@ -172,6 +172,7 @@ public class WidgetUtils {
         Integer firstDayOfYear = null;
         Map<Integer, List<DetailedWeatherForecast>> weatherList = new HashMap<>();
         Calendar forecastCalendar = Calendar.getInstance();
+        int initialYearForTheList = forecastCalendar.get(Calendar.YEAR);
         for (DetailedWeatherForecast detailedWeatherForecast : weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
             forecastCalendar.setTimeInMillis(detailedWeatherForecast.getDateTime() * 1000);
             int forecastDay = forecastCalendar.get(Calendar.DAY_OF_YEAR);
@@ -188,14 +189,23 @@ public class WidgetUtils {
         int dayCounter = 0;
         int daysInList = firstDayOfYear + weatherList.keySet().size();
         for (int dayInYear = firstDayOfYear; dayInYear < daysInList; dayInYear++) {
-            if ((weatherList.get(dayInYear) == null) || (weatherList.get(dayInYear).size() < 3)) {
+            int dayInYearForList;
+            int yearForList;
+            if (dayInYear > 365) {
+                dayInYearForList = dayInYear - 365;
+                yearForList = initialYearForTheList + 1;
+            } else {
+                dayInYearForList = dayInYear;
+                yearForList = initialYearForTheList;
+            }
+            if ((weatherList.get(dayInYearForList) == null) || (weatherList.get(dayInYearForList).size() < 3)) {
                 continue;
             }
             dayCounter++;
             Map<Integer, Integer> weatherIdsInDay = new HashMap<>();
-            for (DetailedWeatherForecast weatherForecastForDay : weatherList.get(dayInYear)) {
+            for (DetailedWeatherForecast weatherForecastForDay : weatherList.get(dayInYearForList)) {
                 WeatherCondition weatherCondition = weatherForecastForDay.getFirstWeatherCondition();
-                /*appendLog(context, TAG, "preLoadWeather:dayInYear=" + dayInYear + ":dayCounter=" + dayCounter +
+                /*appendLog(context, TAG, "preLoadWeather:dayInYear=" + dayInYearForList + ":dayCounter=" + dayCounter +
                         ":weatherCondition.getWeatherId()=" + weatherCondition.getWeatherId() +
                         ":weatherIdsInDay.get(weatherCondition.getWeatherId())=" + weatherIdsInDay.get(weatherCondition.getWeatherId()));*/
                 if (weatherIdsInDay.get(weatherCondition.getWeatherId()) == null) {
@@ -217,7 +227,7 @@ public class WidgetUtils {
             double maxTemp = Double.MIN_VALUE;
             double minTemp = Double.MAX_VALUE;
             double maxWind = 0;
-            for (DetailedWeatherForecast weatherForecastForDay : weatherList.get(dayInYear)) {
+            for (DetailedWeatherForecast weatherForecastForDay : weatherList.get(dayInYearForList)) {
                 WeatherCondition weatherCondition = weatherForecastForDay.getFirstWeatherCondition();
                 /*appendLog(context, TAG, "preLoadWeather:weatherIdForTheDay=" + weatherIdForTheDay +
                         ":weatherForecastForDay.getTemperature()=" + weatherForecastForDay.getTemperature());*/
@@ -247,7 +257,8 @@ public class WidgetUtils {
                             iconId,
                             maxTemp,
                             maxWind);
-                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYear);
+                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYearForList);
+                    forecastCalendar.set(Calendar.YEAR, yearForList);
                     remoteViews.setTextViewText(
                             forecast_1_widget_day,
                             sdfDayOfWeek.format(forecastCalendar.getTime()));
@@ -264,7 +275,8 @@ public class WidgetUtils {
                             iconId,
                             maxTemp,
                             maxWind);
-                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYear);
+                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYearForList);
+                    forecastCalendar.set(Calendar.YEAR, yearForList);
                     remoteViews.setTextViewText(
                             forecast_2_widget_day,
                             sdfDayOfWeek.format(forecastCalendar.getTime()));
@@ -281,7 +293,8 @@ public class WidgetUtils {
                             iconId,
                             maxTemp,
                             maxWind);
-                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYear);
+                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYearForList);
+                    forecastCalendar.set(Calendar.YEAR, yearForList);
                     remoteViews.setTextViewText(
                             forecast_3_widget_day,
                             sdfDayOfWeek.format(forecastCalendar.getTime()));
@@ -298,7 +311,8 @@ public class WidgetUtils {
                             iconId,
                             maxTemp,
                             maxWind);
-                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYear);
+                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYearForList);
+                    forecastCalendar.set(Calendar.YEAR, yearForList);
                     remoteViews.setTextViewText(
                             forecast_4_widget_day,
                             sdfDayOfWeek.format(forecastCalendar.getTime()));
@@ -315,7 +329,8 @@ public class WidgetUtils {
                             iconId,
                             maxTemp,
                             maxWind);
-                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYear);
+                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYearForList);
+                    forecastCalendar.set(Calendar.YEAR, yearForList);
                     remoteViews.setTextViewText(
                             forecast_5_widget_day,
                             sdfDayOfWeek.format(forecastCalendar.getTime()));
@@ -354,6 +369,7 @@ public class WidgetUtils {
     public static void startBackgroundService(Context context,
                                               Intent intent,
                                               long triggerInMillis ) {
+        intent.setPackage("org.thosp.yourlocalweather");
         PendingIntent pendingIntent = PendingIntent.getService(context,
                 0,
                 intent,

@@ -312,12 +312,13 @@ public class ForecastWeatherService  extends AbstractCommonService {
         weatherForecastDbHelper.saveWeatherForecast(updateRequest.getLocationId(),
                 lastUpdate,
                 completeWeatherForecast);
-        GraphUtils.invalidateGraph(updateRequest.getLocationId());
+        GraphUtils.invalidateGraph();
         sendResult(ACTION_WEATHER_UPDATE_OK, context);
     }
 
     private void sendIntentToForecast(String result) {
         Intent intent = new Intent(ACTION_FORECAST_UPDATE_RESULT);
+        intent.setPackage("org.thosp.yourlocalweather");
         if (result.equals(ACTION_WEATHER_UPDATE_OK)) {
             intent.putExtra(ACTION_FORECAST_UPDATE_RESULT, ACTION_WEATHER_UPDATE_OK);
         } else if (result.equals(ACTION_WEATHER_UPDATE_FAIL)) {
@@ -328,6 +329,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
 
     private void sendIntentToGraphs(String result) {
         Intent intent = new Intent(ACTION_GRAPHS_UPDATE_RESULT);
+        intent.setPackage("org.thosp.yourlocalweather");
         if (result.equals(ACTION_WEATHER_UPDATE_OK)) {
             intent.putExtra(ACTION_GRAPHS_UPDATE_RESULT, ACTION_WEATHER_UPDATE_OK);
         } else if (result.equals(ACTION_WEATHER_UPDATE_FAIL)) {

@@ -125,6 +125,7 @@ public class AbstractCommonService extends Service {
 
     protected void sendIntentToMain(String result) {
         Intent intent = new Intent(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT);
+        intent.setPackage("org.thosp.yourlocalweather");
         if (result.equals(CurrentWeatherService.ACTION_WEATHER_UPDATE_OK)) {
             intent.putExtra(
                     CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT,

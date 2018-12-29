@@ -27,7 +27,9 @@ public class StartupReceiver extends BroadcastReceiver {
         AppPreference.setLastSensorServicesCheckTimeInMs(context, 0);
         scheduleStart(context);
         appendLog(context, TAG, "scheduleStart end");
-        context.sendBroadcast(new Intent("android.appwidget.action.APPWIDGET_UPDATE"));
+        Intent intentToStartUpdate = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
+        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        context.startService(intentToStartUpdate);
     }
 
     private void scheduleStart(Context context) {

@@ -14,6 +14,7 @@ import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.service.ForecastWeatherService;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -28,6 +29,16 @@ public class ExtLocationWithGraphWidgetProvider extends AbstractWidgetProvider {
     private static final String TAG = "ExtLocationWithGraphWidgetProvider";
 
     private static final String WIDGET_NAME = "EXT_LOC_WITH_GRAPH_WIDGET";
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+        if (intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE_OPTIONS") ||
+                intent.getAction().equals(Constants.ACTION_APPWIDGET_CHANGE_GRAPH_SCALE)) {
+            GraphUtils.invalidateGraph();
+            refreshWidgetValues(context);
+        }
+    }
 
     @Override
     protected void preLoadWeather(Context context, RemoteViews remoteViews, int appWidgetId) {
@@ -149,7 +160,9 @@ public class ExtLocationWithGraphWidgetProvider extends AbstractWidgetProvider {
             if (location != null) {
                 weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
                 if (weatherForecastRecord != null) {
-                    remoteViews.setImageViewBitmap(R.id.widget_ext_loc_graph_3x3_widget_combined_chart, GraphUtils.getCombinedChart(context, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList(), currentLocation.getId(), currentLocation.getLocale()));
+                    remoteViews.setImageViewBitmap(R.id.widget_ext_loc_graph_3x3_widget_combined_chart,
+                            GraphUtils.getCombinedChart(context, appWidgetId,
+                                    0.2f, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList(), currentLocation.getId(), currentLocation.getLocale()));
                 }
             }
         } catch (Exception e) {

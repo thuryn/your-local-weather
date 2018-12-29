@@ -70,7 +70,8 @@ public class WeatherGraphWidgetService extends IntentService {
                 if (location != null) {
                     weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
                     if (weatherForecastRecord != null) {
-                        remoteViews.setImageViewBitmap(R.id.widget_weather_graph_1x3_widget_combined_chart, GraphUtils.getCombinedChart(this, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList(), currentLocation.getId(), currentLocation.getLocale()));
+                        remoteViews.setImageViewBitmap(R.id.widget_weather_graph_1x3_widget_combined_chart,
+                                GraphUtils.getCombinedChart(this, appWidgetId, null, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList(), currentLocation.getId(), currentLocation.getLocale()));
                     }
                 }
             } catch (Exception e) {

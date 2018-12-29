@@ -4,10 +4,15 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.appwidget.AppWidgetProviderInfo;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.os.Build;
+import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.DisplayMetrics;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -165,7 +170,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         }
     }
 
-    private void refreshWidgetValues(Context context) {
+    protected void refreshWidgetValues(Context context) {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
         ComponentName componentName = new ComponentName(context, getWidgetClass());
         int[] appWidgetIds = appWidgetManager.getAppWidgetIds(componentName);
@@ -239,7 +244,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_graph_3x3_widget_city, pendingSwitchLocalityIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_less_3x1_widget_city, pendingSwitchLocalityIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_more_3x3_widget_city, pendingSwitchLocalityIntent);
-
     }
 
     protected abstract void preLoadWeather(Context context, RemoteViews remoteViews, int widgetId);

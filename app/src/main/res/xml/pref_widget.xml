@@ -11,6 +11,10 @@
         android:entryValues="@array/widget_theme_values"
         android:key="widget_theme_pref_key"
         android:title="@string/preference_widget_theme_title"/>
+    <CheckBoxPreference
+        android:defaultValue="false"
+        android:key="widget_graphs_native_scale"
+        android:title="@string/preference_widget_graphs_native_scale"/>
     <ListPreference
         android:defaultValue="preference_display_update_location_source"
         android:dialogTitle="@string/preference_display_update_title"
