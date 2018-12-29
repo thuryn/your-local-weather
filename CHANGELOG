@@ -1,3 +1,6 @@
+v4.6.0
+Added combined graph; added widgets with combined graph; fix weather forecast in widget
+
 v4.5.3
 added vertical lines for days in graphs; take all changes into effect when the permanent notification is selected; fixed workflow when network connection is off and timer is running; fixed days in graphs
 
