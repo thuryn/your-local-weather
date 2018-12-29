@@ -411,4 +411,21 @@
     <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (Srbština)</string>
     <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (Slovenština)</string>
     <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (Turečtina)</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">Nastavení zobrazení grafů</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">Nastavení kombinovaného grafu</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Kombinovaný</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Teplota</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Vítr</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Déšť</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Déšť (sloupcový)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Sníh</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Sníh (sloupcový)</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Tlak</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Teplota</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Vítr</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Déšť/Sníh</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Tlak</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Zobrazení grafů</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Data pro kombinovaný graf</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Zobrazit graf pomocí přirozeného rozlišení (pokud je graf příliš malý)</string>
 </resources>
