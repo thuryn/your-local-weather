@@ -182,19 +182,28 @@ public class NotificationUtils {
 
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;
         try {
-            weatherForecastRecord = WidgetUtils.updateWeatherForecast(context, location.getId(), remoteViewsExpanded,
+            weatherForecastRecord = WidgetUtils.updateWeatherForecast(
+                    context,
+                    location.getId(),
+                    null,
+                    remoteViewsExpanded,
+                    null,
                     R.id.notification_weather_forecast_expanded_forecast_1_widget_icon,
                     R.id.notification_weather_forecast_expanded_forecast_1_widget_day,
                     R.id.notification_weather_forecast_expanded_forecast_1_widget_temperatures,
+                    null,
                     R.id.notification_weather_forecast_expanded_forecast_2_widget_icon,
                     R.id.notification_weather_forecast_expanded_forecast_2_widget_day,
                     R.id.notification_weather_forecast_expanded_forecast_2_widget_temperatures,
+                    null,
                     R.id.notification_weather_forecast_expanded_forecast_3_widget_icon,
                     R.id.notification_weather_forecast_expanded_forecast_3_widget_day,
                     R.id.notification_weather_forecast_expanded_forecast_3_widget_temperatures,
+                    null,
                     R.id.notification_weather_forecast_expanded_forecast_4_widget_icon,
                     R.id.notification_weather_forecast_expanded_forecast_4_widget_day,
                     R.id.notification_weather_forecast_expanded_forecast_4_widget_temperatures,
+                    null,
                     R.id.notification_weather_forecast_expanded_forecast_5_widget_icon,
                     R.id.notification_weather_forecast_expanded_forecast_5_widget_day,
                     R.id.notification_weather_forecast_expanded_forecast_5_widget_temperatures);

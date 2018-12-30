@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.PowerManager;
 import android.os.SystemClock;
+import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherCondition;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
+import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetWithForecastService;
@@ -29,9 +31,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -140,19 +144,25 @@ public class WidgetUtils {
     public static WeatherForecastDbHelper.WeatherForecastRecord updateWeatherForecast(
             Context context,
             long locationId,
+            Integer widgetId,
             RemoteViews remoteViews,
+            Integer forecast_1_widget_day_layout,
             int forecast_1_widget_icon,
             int forecast_1_widget_day,
             int forecast_1_widget_temperatures,
+            Integer forecast_2_widget_day_layout,
             int forecast_2_widget_icon,
             int forecast_2_widget_day,
             int forecast_2_widget_temperatures,
+            Integer forecast_3_widget_day_layout,
             int forecast_3_widget_icon,
             int forecast_3_widget_day,
             int forecast_3_widget_temperatures,
+            Integer forecast_4_widget_day_layout,
             int forecast_4_widget_icon,
             int forecast_4_widget_day,
             int forecast_4_widget_temperatures,
+            Integer forecast_5_widget_day_layout,
             int forecast_5_widget_icon,
             int forecast_5_widget_day,
             int forecast_5_widget_temperatures) {
@@ -162,7 +172,13 @@ public class WidgetUtils {
         if (location == null) {
             return null;
         }
-        SimpleDateFormat sdfDayOfWeek = new SimpleDateFormat("EEEE", location.getLocale());
+        SimpleDateFormat sdfDayOfWeek = getDaysFormatter(context, widgetId, location.getLocale());
+
+        final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
+        Long daysCount = widgetSettingsDbHelper.getParamLong(widgetId, "forecastDaysCount");
+        if (daysCount == null) {
+            daysCount = 5l;
+        }
 
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
         //appendLog(context, TAG, "updateWeatherForecast:locationId=" + locationId + ", weatherForecastRecord=" + weatherForecastRecord);
@@ -249,98 +265,163 @@ public class WidgetUtils {
             minTemp = TemperatureUtil.getTemperatureInPreferredUnit(context, minTemp);
             switch (dayCounter) {
                 case 1:
-                    Utils.setForecastIcon(
-                            remoteViews,
+                    setForecastDayInfo(
                             context,
+                            dayCounter,
+                            daysCount,
+                            remoteViews,
+                            forecast_1_widget_day_layout,
                             forecast_1_widget_icon,
                             weatherIdForTheDay,
-                            iconId,
-                            maxTemp,
-                            maxWind);
-                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYearForList);
-                    forecastCalendar.set(Calendar.YEAR, yearForList);
-                    remoteViews.setTextViewText(
                             forecast_1_widget_day,
-                            sdfDayOfWeek.format(forecastCalendar.getTime()));
-                    remoteViews.setTextViewText(
                             forecast_1_widget_temperatures,
-                            Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
+                            iconId,
+                            dayInYearForList,
+                            yearForList,
+                            maxTemp,
+                            minTemp,
+                            maxWind,
+                            sdfDayOfWeek);
                     break;
                 case 2:
-                    Utils.setForecastIcon(
-                            remoteViews,
+                    setForecastDayInfo(
                             context,
+                            dayCounter,
+                            daysCount,
+                            remoteViews,
+                            forecast_2_widget_day_layout,
                             forecast_2_widget_icon,
                             weatherIdForTheDay,
-                            iconId,
-                            maxTemp,
-                            maxWind);
-                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYearForList);
-                    forecastCalendar.set(Calendar.YEAR, yearForList);
-                    remoteViews.setTextViewText(
                             forecast_2_widget_day,
-                            sdfDayOfWeek.format(forecastCalendar.getTime()));
-                    remoteViews.setTextViewText(
                             forecast_2_widget_temperatures,
-                            Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
+                            iconId,
+                            dayInYearForList,
+                            yearForList,
+                            maxTemp,
+                            minTemp,
+                            maxWind,
+                            sdfDayOfWeek);
                     break;
                 case 3:
-                    Utils.setForecastIcon(
-                            remoteViews,
+                    setForecastDayInfo(
                             context,
+                            dayCounter,
+                            daysCount,
+                            remoteViews,
+                            forecast_3_widget_day_layout,
                             forecast_3_widget_icon,
                             weatherIdForTheDay,
-                            iconId,
-                            maxTemp,
-                            maxWind);
-                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYearForList);
-                    forecastCalendar.set(Calendar.YEAR, yearForList);
-                    remoteViews.setTextViewText(
                             forecast_3_widget_day,
-                            sdfDayOfWeek.format(forecastCalendar.getTime()));
-                    remoteViews.setTextViewText(
                             forecast_3_widget_temperatures,
-                            Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
+                            iconId,
+                            dayInYearForList,
+                            yearForList,
+                            maxTemp,
+                            minTemp,
+                            maxWind,
+                            sdfDayOfWeek);
                     break;
                 case 4:
-                    Utils.setForecastIcon(
-                            remoteViews,
+                    setForecastDayInfo(
                             context,
+                            dayCounter,
+                            daysCount,
+                            remoteViews,
+                            forecast_4_widget_day_layout,
                             forecast_4_widget_icon,
                             weatherIdForTheDay,
-                            iconId,
-                            maxTemp,
-                            maxWind);
-                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYearForList);
-                    forecastCalendar.set(Calendar.YEAR, yearForList);
-                    remoteViews.setTextViewText(
                             forecast_4_widget_day,
-                            sdfDayOfWeek.format(forecastCalendar.getTime()));
-                    remoteViews.setTextViewText(
                             forecast_4_widget_temperatures,
-                            Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
+                            iconId,
+                            dayInYearForList,
+                            yearForList,
+                            maxTemp,
+                            minTemp,
+                            maxWind,
+                            sdfDayOfWeek);
                     break;
                 case 5:
-                    Utils.setForecastIcon(
-                            remoteViews,
+                    setForecastDayInfo(
                             context,
+                            dayCounter,
+                            daysCount,
+                            remoteViews,
+                            forecast_5_widget_day_layout,
                             forecast_5_widget_icon,
                             weatherIdForTheDay,
-                            iconId,
-                            maxTemp,
-                            maxWind);
-                    forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYearForList);
-                    forecastCalendar.set(Calendar.YEAR, yearForList);
-                    remoteViews.setTextViewText(
                             forecast_5_widget_day,
-                            sdfDayOfWeek.format(forecastCalendar.getTime()));
-                    remoteViews.setTextViewText(
                             forecast_5_widget_temperatures,
-                            Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
+                            iconId,
+                            dayInYearForList,
+                            yearForList,
+                            maxTemp,
+                            minTemp,
+                            maxWind,
+                            sdfDayOfWeek);
                     break;
             }
         }
         return weatherForecastRecord;
+    }
+
+    private static void setForecastDayInfo(
+            Context context,
+            int dayCounter,
+            long daysCount,
+            RemoteViews remoteViews,
+            Integer dayViewId,
+            int forecastIconId,
+            int weatherIdForTheDay,
+            int weatherIdForDayName,
+            int weatherIdForTemperatures,
+            String iconId,
+            int dayInYearForList,
+            int yearForList,
+            double maxTemp,
+            double minTemp,
+            double maxWind,
+            SimpleDateFormat sdfDayOfWeek) {
+
+        Calendar forecastCalendar = Calendar.getInstance();
+
+        if (dayViewId != null) {
+            if (dayCounter > daysCount) {
+                remoteViews.setViewVisibility(dayViewId, View.GONE);
+                return;
+            } else {
+                remoteViews.setViewVisibility(dayViewId, View.VISIBLE);
+            }
+        }
+
+        Utils.setForecastIcon(
+                remoteViews,
+                context,
+                forecastIconId,
+                weatherIdForTheDay,
+                iconId,
+                maxTemp,
+                maxWind);
+        forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYearForList);
+        forecastCalendar.set(Calendar.YEAR, yearForList);
+        remoteViews.setTextViewText(
+                weatherIdForDayName,
+                sdfDayOfWeek.format(forecastCalendar.getTime()));
+        remoteViews.setTextViewText(
+                weatherIdForTemperatures,
+                Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
+    }
+
+    public static SimpleDateFormat getDaysFormatter(Context context, Integer widgetId, Locale locale) {
+        if (widgetId == null) {
+            return new SimpleDateFormat("EEEE", locale);
+        }
+        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
+        Boolean forecastDayAbbrev = widgetSettingsDbHelper.getParamBoolean(widgetId, "forecast_day_abbrev");
+        if ((forecastDayAbbrev != null) && forecastDayAbbrev) {
+            return new SimpleDateFormat("EEE", locale);
+        } else {
+            return new SimpleDateFormat("EEEE", locale);
+        }
     }
 
     public static void updateWidgets(Context context) {

@@ -118,10 +118,11 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                 break;
             case Intent.ACTION_LOCALE_CHANGED:
             case Constants.ACTION_APPWIDGET_THEME_CHANGED:
+            case Constants.ACTION_APPWIDGET_SETTINGS_SHOW_CONTROLS:
                 refreshWidgetValues(context);
                 break;
             case Constants.ACTION_APPWIDGET_SETTINGS_OPENED:
-                openWidgetSettings(context, widgetId);
+                openWidgetSettings(context, widgetId, intent.getStringExtra("settings_option"));
                 break;
             case Constants.ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED:
                 onEnabled(context);
@@ -145,9 +146,13 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             if (AppPreference.isShowControls(context)) {
                 remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_settings_layout, View.VISIBLE);
                 remoteViews.setViewVisibility(R.id.widget_ext_loc_graph_3x3_settings_layout, View.VISIBLE);
+                remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_3x3_settings_layout, View.VISIBLE);
+                remoteViews.setViewVisibility(R.id.widget_weather_forecast_1x3_settings_layout, View.VISIBLE);
             } else {
                 remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_settings_layout, View.GONE);
                 remoteViews.setViewVisibility(R.id.widget_ext_loc_graph_3x3_settings_layout, View.GONE);
+                remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_3x3_settings_layout, View.GONE);
+                remoteViews.setViewVisibility(R.id.widget_weather_forecast_1x3_settings_layout, View.GONE);
             }
 
             if (ExtLocationWidgetProvider.class.equals(getWidgetClass())) {
@@ -157,9 +162,9 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             } else if (LessWidgetProvider.class.equals(getWidgetClass())) {
                 LessWidgetProvider.setWidgetTheme(context, remoteViews);
             } else if (ExtLocationWithForecastWidgetProvider.class.equals(getWidgetClass())) {
-                ExtLocationWithForecastWidgetProvider.setWidgetTheme(context, remoteViews);
+                ExtLocationWithForecastWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
             } else if (WeatherForecastWidgetProvider.class.equals(getWidgetClass())) {
-                WeatherForecastWidgetProvider.setWidgetTheme(context, remoteViews);
+                WeatherForecastWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
             } else if (ExtLocationWithGraphWidgetProvider.class.equals(getWidgetClass())) {
                 ExtLocationWithGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
             } else if (WeatherGraphWidgetProvider.class.equals(getWidgetClass())) {
@@ -320,10 +325,10 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         }
     }
 
-    private void openWidgetSettings(Context context, int widgetId) {
+    private void openWidgetSettings(Context context, int widgetId, String settingsName) {
         Intent popUpIntent = new Intent(context, WidgetSettingsDialogue.class);
         popUpIntent.putExtra("widgetId", widgetId);
-        popUpIntent.putExtra("settings_option", "graphSetting");
+        popUpIntent.putExtra("settings_option", settingsName);
         popUpIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(popUpIntent);
     }

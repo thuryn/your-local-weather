@@ -64,7 +64,40 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
             } else {
                 db.updateWithOnConflict(WidgetSettingsContract.WidgetSettings.TABLE_NAME,
                         values,
-                        WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId,
+                        WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId +
+                                " AND " + WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME + "=\"" + paramName + "\"",
+                        null,
+                        SQLiteDatabase.CONFLICT_IGNORE);
+            }
+        } finally {
+        }
+    }
+
+    public void saveParamBoolean(int widgetId, String paramName, Boolean value) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        try {
+            Boolean oldValue = getParamBoolean(widgetId, paramName);
+
+            ContentValues values = new ContentValues();
+            Long valueToStore;
+            if (value == null) {
+                valueToStore = null;
+            } else if (value) {
+                valueToStore = 1l;
+            } else {
+                valueToStore = 0l;
+            }
+            values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_LONG, valueToStore);
+            if (oldValue == null) {
+                values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME, paramName);
+                values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID, widgetId);
+                db.insert(WidgetSettingsContract.WidgetSettings.TABLE_NAME, null, values);
+            } else {
+                db.updateWithOnConflict(WidgetSettingsContract.WidgetSettings.TABLE_NAME,
+                        values,
+                        WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId +
+                                " AND " + WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME + "=\"" + paramName + "\"",
                         null,
                         SQLiteDatabase.CONFLICT_IGNORE);
             }
@@ -87,7 +120,8 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
             } else {
                 db.updateWithOnConflict(WidgetSettingsContract.WidgetSettings.TABLE_NAME,
                         values,
-                        WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId,
+                        WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId +
+                        " AND " + WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME + "=\"" + paramName + "\"",
                         null,
                         SQLiteDatabase.CONFLICT_IGNORE);
             }
@@ -149,6 +183,45 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
 
             if (cursor.moveToNext()) {
                 return cursor.getString(cursor.getColumnIndexOrThrow(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_STRING));
+            } else {
+                return null;
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
+
+    public Boolean getParamBoolean(int widgetId, String paramName) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] projection = {
+                WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_LONG
+        };
+
+        Cursor cursor = null;
+        try {
+            cursor = db.query(
+                    WidgetSettingsContract.WidgetSettings.TABLE_NAME,
+                    projection,
+                    WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId +
+                            " AND " + WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME + "=\"" + paramName + "\"",
+                    null,
+                    null,
+                    null,
+                    null
+            );
+
+            if (cursor.moveToNext()) {
+                Long longValue = cursor.getLong(cursor.getColumnIndexOrThrow(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_LONG));
+                if (longValue == null) {
+                    return null;
+                } else if (longValue > 0) {
+                    return true;
+                } else {
+                    return false;
+                }
             } else {
                 return null;
             }

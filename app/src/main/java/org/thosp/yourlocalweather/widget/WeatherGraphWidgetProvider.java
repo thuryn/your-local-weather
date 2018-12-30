@@ -95,6 +95,7 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
         intentRefreshService.setAction(Constants.ACTION_APPWIDGET_SETTINGS_OPENED);
         intentRefreshService.setPackage("org.thosp.yourlocalweather");
         intentRefreshService.putExtra("widgetId", widgetId);
+        intentRefreshService.putExtra("settings_option", "graphSetting");
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
                 intentRefreshService, 0);
         remoteViews.setOnClickPendingIntent(R.id.widget_weather_graph_1x3_button_graph_setting, pendingIntent);

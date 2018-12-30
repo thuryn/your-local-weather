@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_setting_forecast.root_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/windowBackground">
+
+    <Switch
+        android:id="@+id/widget_setting_forecast.day_name_switch"
+        android:layout_width="440dp"
+        android:layout_height="wrap_content"
+        android:text="@string/widget_setting_forecast_day_name_style" />
+
+    <Spinner
+        android:id="@+id/widget_setting_forecast.number_of_days_hours"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

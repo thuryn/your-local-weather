@@ -1,5 +1,6 @@
 package org.thosp.yourlocalweather.widget;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
@@ -13,6 +14,7 @@ import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.service.ForecastWeatherService;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
@@ -148,19 +150,28 @@ public class ExtLocationWithForecastWidgetProvider extends AbstractWidgetProvide
         }
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;
         try {
-            weatherForecastRecord = WidgetUtils.updateWeatherForecast(context, currentLocation.getId(), remoteViews,
+            weatherForecastRecord = WidgetUtils.updateWeatherForecast(
+                    context,
+                    currentLocation.getId(),
+                    appWidgetId,
+                    remoteViews,
+                    R.id.widget_ext_loc_forecast_3x3_forecast_day_1,
                     R.id.widget_ext_loc_forecast_3x3_forecast_1_widget_icon,
                     R.id.widget_ext_loc_forecast_3x3_forecast_1_widget_day,
                     R.id.widget_ext_loc_forecast_3x3_forecast_1_widget_temperatures,
+                    R.id.widget_ext_loc_forecast_3x3_forecast_day_2,
                     R.id.widget_ext_loc_forecast_3x3_forecast_2_widget_icon,
                     R.id.widget_ext_loc_forecast_3x3_forecast_2_widget_day,
                     R.id.widget_ext_loc_forecast_3x3_forecast_2_widget_temperatures,
+                    R.id.widget_ext_loc_forecast_3x3_forecast_day_3,
                     R.id.widget_ext_loc_forecast_3x3_forecast_3_widget_icon,
                     R.id.widget_ext_loc_forecast_3x3_forecast_3_widget_day,
                     R.id.widget_ext_loc_forecast_3x3_forecast_3_widget_temperatures,
+                    R.id.widget_ext_loc_forecast_3x3_forecast_day_4,
                     R.id.widget_ext_loc_forecast_3x3_forecast_4_widget_icon,
                     R.id.widget_ext_loc_forecast_3x3_forecast_4_widget_day,
                     R.id.widget_ext_loc_forecast_3x3_forecast_4_widget_temperatures,
+                    R.id.widget_ext_loc_forecast_3x3_forecast_day_5,
                     R.id.widget_ext_loc_forecast_3x3_forecast_5_widget_icon,
                     R.id.widget_ext_loc_forecast_3x3_forecast_5_widget_day,
                     R.id.widget_ext_loc_forecast_3x3_forecast_5_widget_temperatures);
@@ -172,7 +183,7 @@ public class ExtLocationWithForecastWidgetProvider extends AbstractWidgetProvide
         appendLog(context, TAG, "preLoadWeather:end");
     }
 
-    public static void setWidgetTheme(Context context, RemoteViews remoteViews) {
+    public static void setWidgetTheme(Context context, RemoteViews remoteViews, int widgetId) {
         appendLog(context, TAG, "setWidgetTheme:start");
         int textColorId = AppPreference.getTextColor(context);
         int backgroundColorId = AppPreference.getBackgroundColor(context);
@@ -198,6 +209,15 @@ public class ExtLocationWithForecastWidgetProvider extends AbstractWidgetProvide
         remoteViews.setTextColor(R.id.widget_ext_loc_forecast_3x3_forecast_5_widget_day, textColorId);
         remoteViews.setTextColor(R.id.widget_ext_loc_forecast_3x3_forecast_5_widget_temperatures, textColorId);
         remoteViews.setInt(R.id.widget_ext_loc_forecast_3x3_header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
+
+        Intent intentRefreshService = new Intent(context, ExtLocationWithGraphWidgetProvider.class);
+        intentRefreshService.setAction(Constants.ACTION_APPWIDGET_SETTINGS_OPENED);
+        intentRefreshService.setPackage("org.thosp.yourlocalweather");
+        intentRefreshService.putExtra("widgetId", widgetId);
+        intentRefreshService.putExtra("settings_option", "forecastSettings");
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
+                intentRefreshService, 0);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_3x3_button_days_setting, pendingIntent);
         appendLog(context, TAG, "setWidgetTheme:end");
     }
 

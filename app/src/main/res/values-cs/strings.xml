@@ -380,6 +380,10 @@
     <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm.(yy)</string>
     <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/yy)</string>
     <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/yy)</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 dny</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 dny</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 dní</string>
+
     <string name="update_period_regular_only" tools:ignore="MissingTranslation">S pravidelnou aktualizací</string>
     <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Vzhled upozornění</string>
     <string name="notification_when_updated" tools:ignore="MissingTranslation">Při aktualizaci</string>
@@ -428,4 +432,5 @@
     <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Zobrazení grafů</string>
     <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Data pro kombinovaný graf</string>
     <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Zobrazit graf pomocí přirozeného rozlišení (pokud je graf příliš malý)</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Zobrazit den zkratkou:</string>
 </resources>

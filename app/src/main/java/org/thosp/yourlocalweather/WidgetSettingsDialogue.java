@@ -9,15 +9,30 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Switch;
 
 import org.osmdroid.config.Configuration;
+import org.thosp.yourlocalweather.model.Location;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.GraphUtils;
+import org.thosp.yourlocalweather.utils.WidgetUtils;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Set;
+
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class WidgetSettingsDialogue extends Activity {
 
@@ -31,8 +46,100 @@ public class WidgetSettingsDialogue extends Activity {
         String settingOption = getIntent().getStringExtra("settings_option");
 
         switch (settingOption) {
-            case "graphSetting": createGraphSettingDialog(getIntent().getIntExtra("widgetId", 0));
+            case "graphSetting": createGraphSettingDialog(getIntent().getIntExtra("widgetId", 0)); break;
+            case "forecastSettings": createForecastSettingsDialog(getIntent().getIntExtra("widgetId", 0)); break;
         }
+    }
+
+    private void createForecastSettingsDialog(final int widgetId) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View forecastSettingView = inflater.inflate(R.layout.widget_setting_forecast, null);
+        Switch dayNameSwitch = forecastSettingView.findViewById(R.id.widget_setting_forecast_day_name_switch);
+
+        final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(this);
+        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
+
+        Long locationId = widgetSettingsDbHelper.getParamLong(widgetId, "locationId");
+
+        Location currentLocation;
+        if (locationId == null) {
+            currentLocation = locationsDbHelper.getLocationByOrderId(0);
+            if (!currentLocation.isEnabled()) {
+                currentLocation = locationsDbHelper.getLocationByOrderId(1);
+            }
+        } else {
+            currentLocation = locationsDbHelper.getLocationById(locationId);
+        }
+        Locale locale = (currentLocation != null)?currentLocation.getLocale(): Locale.getDefault();
+        Date dateForSetting = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("EEE", locale);
+        dayNameSwitch.setTextOn(sdf.format(dateForSetting));
+        sdf = new SimpleDateFormat("EEEE", locale);
+        dayNameSwitch.setTextOff(sdf.format(dateForSetting));
+        Boolean dayAbbrev = widgetSettingsDbHelper.getParamBoolean(widgetId, "forecast_day_abbrev");
+        dayNameSwitch.setChecked((dayAbbrev != null)?dayAbbrev:false);
+        dayNameSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                widgetSettingsDbHelper.saveParamBoolean(widgetId, "forecast_day_abbrev", isChecked);
+            }
+        });
+
+        Spinner numberOfDaysSpinner = forecastSettingView.findViewById(R.id.widget_setting_forecast_number_of_days_hours);
+        int predefinedSelection = 0;
+        Long storedDays = widgetSettingsDbHelper.getParamLong(widgetId, "forecastDaysCount");
+        if (storedDays != null) {
+            switch (storedDays.intValue()) {
+                case 3: predefinedSelection = 0;break;
+                case 4: predefinedSelection = 1;break;
+                case 5: predefinedSelection = 2;break;
+            }
+        }
+        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.forecast_number_of_days_hours, android.R.layout.simple_spinner_item);
+        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        numberOfDaysSpinner.setAdapter(adapter);
+        numberOfDaysSpinner.setSelection(predefinedSelection);
+        numberOfDaysSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+              @Override
+              public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                  long numberOfDays = 5l;
+                  switch (position) {
+                      case 0: numberOfDays = 3;break;
+                      case 1: numberOfDays = 4;break;
+                      case 2: numberOfDays = 5;break;
+                  }
+                  widgetSettingsDbHelper.saveParamLong(widgetId, "forecastDaysCount", numberOfDays);
+                  Intent intent = new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED);
+                  intent.setPackage("org.thosp.yourlocalweather");
+                  sendBroadcast(intent);
+              }
+
+              @Override
+              public void onNothingSelected(AdapterView<?> parent) {
+
+              }
+          }
+        );
+
+        builder.setView(forecastSettingView)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        Intent intent = new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED);
+                        intent.setPackage("org.thosp.yourlocalweather");
+                        sendBroadcast(intent);
+                        finish();
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void createGraphSettingDialog(final int widgetId) {

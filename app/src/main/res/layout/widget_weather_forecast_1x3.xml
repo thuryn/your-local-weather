@@ -6,13 +6,35 @@
     android:background="@color/cardview_dark_background">
 
     <LinearLayout
+        android:id="@+id/widget_weather_forecast_1x3.settings_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/swipe_red"
+        android:orientation="horizontal">
+
+        <ImageView android:id="@+id/widget_weather_forecast_1x3.button_days_setting"
+            android:layout_width="@dimen/widget_refresh_icon_size"
+            android:layout_height="@dimen/widget_refresh_icon_size"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_daily_forecast_dark_24dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/widget_graph_settings_button"
+            android:paddingLeft="4dp"
+            android:paddingStart="4dp"
+            android:paddingTop="@dimen/widget_refresh_icon_padding_top"
+            android:gravity="top"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/widget_weather_forecast_1x3.forecast_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentLeft="true"
+        android:layout_below="@id/widget_weather_forecast_1x3.settings_layout"
         android:gravity="center">
         <LinearLayout
+            android:id="@+id/widget_weather_forecast_1x3.forecast_day_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -44,6 +66,7 @@
                 android:textSize="@dimen/widget_3x3_text_size"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/widget_weather_forecast_1x3.forecast_day_2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -75,6 +98,7 @@
                 android:textSize="@dimen/widget_3x3_text_size"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/widget_weather_forecast_1x3.forecast_day_3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -106,6 +130,7 @@
                 android:textSize="@dimen/widget_3x3_text_size"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/widget_weather_forecast_1x3.forecast_day_4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -137,6 +162,7 @@
                 android:textSize="@dimen/widget_3x3_text_size"/>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/widget_weather_forecast_1x3.forecast_day_5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"

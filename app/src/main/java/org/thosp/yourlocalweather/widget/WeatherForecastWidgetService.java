@@ -61,34 +61,35 @@ public class WeatherForecastWidgetService extends IntentService {
                 continue;
             }
 
-            CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
-
-            if (weatherRecord == null) {
-                continue;
-            }
-
-            Weather weather = weatherRecord.getWeather();
-
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),
                     R.layout.widget_weather_forecast_1x3);
 
-            WeatherForecastWidgetProvider.setWidgetTheme(this, remoteViews);
+            WeatherForecastWidgetProvider.setWidgetTheme(this, remoteViews, appWidgetId);
             WeatherForecastWidgetProvider.setWidgetIntents(this, remoteViews, WeatherForecastWidgetProvider.class, appWidgetId);
 
             try {
-                WidgetUtils.updateWeatherForecast(getBaseContext(), currentLocation.getId(), remoteViews,
+                WidgetUtils.updateWeatherForecast(
+                        getBaseContext(),
+                        currentLocation.getId(),
+                        appWidgetId,
+                        remoteViews,
+                        R.id.widget_weather_forecast_1x3_forecast_day_1,
                         R.id.widget_weather_forecast_1x3_forecast_1_widget_icon,
                         R.id.widget_weather_forecast_1x3_forecast_1_widget_day,
                         R.id.widget_weather_forecast_1x3_forecast_1_widget_temperatures,
+                        R.id.widget_weather_forecast_1x3_forecast_day_2,
                         R.id.widget_weather_forecast_1x3_forecast_2_widget_icon,
                         R.id.widget_weather_forecast_1x3_forecast_2_widget_day,
                         R.id.widget_weather_forecast_1x3_forecast_2_widget_temperatures,
+                        R.id.widget_weather_forecast_1x3_forecast_day_3,
                         R.id.widget_weather_forecast_1x3_forecast_3_widget_icon,
                         R.id.widget_weather_forecast_1x3_forecast_3_widget_day,
                         R.id.widget_weather_forecast_1x3_forecast_3_widget_temperatures,
+                        R.id.widget_weather_forecast_1x3_forecast_day_4,
                         R.id.widget_weather_forecast_1x3_forecast_4_widget_icon,
                         R.id.widget_weather_forecast_1x3_forecast_4_widget_day,
                         R.id.widget_weather_forecast_1x3_forecast_4_widget_temperatures,
+                        R.id.widget_weather_forecast_1x3_forecast_day_5,
                         R.id.widget_weather_forecast_1x3_forecast_5_widget_icon,
                         R.id.widget_weather_forecast_1x3_forecast_5_widget_day,
                         R.id.widget_weather_forecast_1x3_forecast_5_widget_temperatures);

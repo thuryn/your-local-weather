@@ -72,7 +72,7 @@ public class ExtLocationWidgetWithForecastService extends IntentService {
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),
                     R.layout.widget_ext_loc_forecast_3x3);
 
-            ExtLocationWithForecastWidgetProvider.setWidgetTheme(this, remoteViews);
+            ExtLocationWithForecastWidgetProvider.setWidgetTheme(this, remoteViews, appWidgetId);
             ExtLocationWithForecastWidgetProvider.setWidgetIntents(this, remoteViews, ExtLocationWithForecastWidgetProvider.class, appWidgetId);
 
             remoteViews.setTextViewText(R.id.widget_ext_loc_forecast_3x3_widget_city, Utils.getCityAndCountry(this, currentLocation.getOrderId()));
@@ -129,19 +129,25 @@ public class ExtLocationWidgetWithForecastService extends IntentService {
                 weatherForecastRecord = WidgetUtils.updateWeatherForecast(
                         getBaseContext(),
                         currentLocation.getId(),
+                        appWidgetId,
                         remoteViews,
+                        R.id.widget_ext_loc_forecast_3x3_forecast_day_1,
                         R.id.widget_ext_loc_forecast_3x3_forecast_1_widget_icon,
                         R.id.widget_ext_loc_forecast_3x3_forecast_1_widget_day,
                         R.id.widget_ext_loc_forecast_3x3_forecast_1_widget_temperatures,
+                        R.id.widget_ext_loc_forecast_3x3_forecast_day_2,
                         R.id.widget_ext_loc_forecast_3x3_forecast_2_widget_icon,
                         R.id.widget_ext_loc_forecast_3x3_forecast_2_widget_day,
                         R.id.widget_ext_loc_forecast_3x3_forecast_2_widget_temperatures,
+                        R.id.widget_ext_loc_forecast_3x3_forecast_day_3,
                         R.id.widget_ext_loc_forecast_3x3_forecast_3_widget_icon,
                         R.id.widget_ext_loc_forecast_3x3_forecast_3_widget_day,
                         R.id.widget_ext_loc_forecast_3x3_forecast_3_widget_temperatures,
+                        R.id.widget_ext_loc_forecast_3x3_forecast_day_4,
                         R.id.widget_ext_loc_forecast_3x3_forecast_4_widget_icon,
                         R.id.widget_ext_loc_forecast_3x3_forecast_4_widget_day,
                         R.id.widget_ext_loc_forecast_3x3_forecast_4_widget_temperatures,
+                        R.id.widget_ext_loc_forecast_3x3_forecast_day_5,
                         R.id.widget_ext_loc_forecast_3x3_forecast_5_widget_icon,
                         R.id.widget_ext_loc_forecast_3x3_forecast_5_widget_day,
                         R.id.widget_ext_loc_forecast_3x3_forecast_5_widget_temperatures

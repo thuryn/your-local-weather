@@ -201,6 +201,9 @@
     <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm.(yy)</string>
     <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/yy)</string>
     <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/yy)</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 days</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 days</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 days</string>
 
     <!-- Search Screen strings -->
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Search location</string>
@@ -405,6 +408,7 @@
     <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Current weather icon</string>
     <string name="widget_refresh_button" tools:ignore="MissingTranslation">Widget refresh button</string>
     <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Widget graph settings button</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Show day by abbreviation:</string>
 
     <!-- Wind directions -->
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Disabled</string>
