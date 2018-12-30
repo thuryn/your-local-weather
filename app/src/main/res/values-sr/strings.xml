@@ -329,7 +329,7 @@
 \nЗалазак сунца: %7$s</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">Твоји локални временски услови</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">Обавештења од Твојих локалних временских услова</string>
-    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Дан</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Температура</string>
     <string name="graph_wind_label" tools:ignore="MissingTranslation">Ветар</string>
     <string name="graph_rain_label" tools:ignore="MissingTranslation">Киша</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Снег</string>
@@ -447,4 +447,21 @@
     <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Прилагођено, са прогнозом</string>
     <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Изглед обавештења</string>
     <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Изглед статусне иконе</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">Подешавања видљивих графикона</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">Подешавања обједињеног графикона</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Обједињени</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Температура</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Ветар</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Киша</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Киша (стубићи)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Снег</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Снег(стубићи)</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Притисак</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Температура</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Ветар</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Киша/снег</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Притисак</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Графикони за приказ</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Подаци за обједињени графикон</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Прикажи графикон у природној размери (ако је сувише мали)</string>
 </resources>
