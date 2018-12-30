@@ -141,6 +141,7 @@ public class GraphsActivity extends ForecastingActivity {
         }
         GraphUtils.generateCombinedGraph(this,
                                         combinedChart,
+                                        AppPreference.getCombinedGraphValues(this),
                                         weatherForecastList.get(locationId),
                                         locationId,
                                         locale,

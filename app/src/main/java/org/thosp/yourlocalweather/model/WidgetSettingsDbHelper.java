@@ -5,14 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Parcel;
 
-import static org.thosp.yourlocalweather.model.WidgetSettingsContract.SQL_CREATE_TABLE_WEATHER_SETTINGS;
-import static org.thosp.yourlocalweather.model.WidgetSettingsContract.SQL_DELETE_TABLE_WEATHER_SETTINGS;
+import static org.thosp.yourlocalweather.model.WidgetSettingsContract.SQL_CREATE_TABLE_WIDGET_SETTINGS;
+import static org.thosp.yourlocalweather.model.WidgetSettingsContract.SQL_DELETE_TABLE_WIDGET_SETTINGS;
 
 public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "WidgetSettings.db";
     private static WidgetSettingsDbHelper instance;
 
@@ -28,11 +27,11 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SQL_CREATE_TABLE_WEATHER_SETTINGS);
+        db.execSQL(SQL_CREATE_TABLE_WIDGET_SETTINGS);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(SQL_DELETE_TABLE_WEATHER_SETTINGS);
+        db.execSQL(SQL_DELETE_TABLE_WIDGET_SETTINGS);
         onCreate(db);
     }
     @Override
@@ -46,6 +45,29 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
             String selection = WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + " = ?";
             String[] selectionArgs = {widgetId.toString()};
             db.delete(WidgetSettingsContract.WidgetSettings.TABLE_NAME, selection, selectionArgs);
+        } finally {
+        }
+    }
+
+    public void saveParamString(int widgetId, String paramName, String value) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        try {
+            String oldValue = getParamString(widgetId, paramName);
+
+            ContentValues values = new ContentValues();
+            values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_STRING, value);
+            if (oldValue == null) {
+                values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME, paramName);
+                values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID, widgetId);
+                db.insert(WidgetSettingsContract.WidgetSettings.TABLE_NAME, null, values);
+            } else {
+                db.updateWithOnConflict(WidgetSettingsContract.WidgetSettings.TABLE_NAME,
+                        values,
+                        WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId,
+                        null,
+                        SQLiteDatabase.CONFLICT_IGNORE);
+            }
         } finally {
         }
     }
@@ -85,7 +107,8 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
             cursor = db.query(
                     WidgetSettingsContract.WidgetSettings.TABLE_NAME,
                     projection,
-                    WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId,
+                    WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId +
+                    " AND " + WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME + "=\"" + paramName + "\"",
                     null,
                     null,
                     null,
@@ -94,6 +117,38 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
 
             if (cursor.moveToNext()) {
                 return cursor.getLong(cursor.getColumnIndexOrThrow(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_LONG));
+            } else {
+                return null;
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
+
+    public String getParamString(int widgetId, String paramName) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] projection = {
+                WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_STRING
+        };
+
+        Cursor cursor = null;
+        try {
+            cursor = db.query(
+                    WidgetSettingsContract.WidgetSettings.TABLE_NAME,
+                    projection,
+                    WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId +
+                            " AND " + WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME + "=\"" + paramName + "\"",
+                    null,
+                    null,
+                    null,
+                    null
+            );
+
+            if (cursor.moveToNext()) {
+                return cursor.getString(cursor.getColumnIndexOrThrow(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_STRING));
             } else {
                 return null;
             }

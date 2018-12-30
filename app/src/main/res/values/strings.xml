@@ -251,6 +251,7 @@
     <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Update Location</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Show labels in widget</string>
     <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Show graph by native resolution (when the graph is too small)</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Show settings on widget</string>
     <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Use geolocation for displaying</string>
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Widget theme</string>
     <string name="theme_dark" tools:ignore="MissingTranslation">Dark</string>
@@ -403,6 +404,7 @@
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Current weather icon</string>
     <string name="widget_refresh_button" tools:ignore="MissingTranslation">Widget refresh button</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Widget graph settings button</string>
 
     <!-- Wind directions -->
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Disabled</string>

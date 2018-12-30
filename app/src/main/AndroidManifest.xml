@@ -95,6 +95,13 @@
             android:label="@string/label_activity_help"
             android:parentActivityName=".MainActivity" >
         </activity>
+        <activity
+            android:name="org.thosp.yourlocalweather.WidgetSettingsDialogue"
+            android:noHistory="true"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            >
+        </activity>
 
         <receiver android:name=".receiver.StartupReceiver">
             <intent-filter>

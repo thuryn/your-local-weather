@@ -918,6 +918,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     getActivity().sendBroadcast(intent);
                     break;
                 case Constants.KEY_PREF_WIDGET_GRAPH_NATIVE_SCALE:
+                case Constants.KEY_PREF_WIDGET_SHOW_CONTROLS:
                     GraphUtils.invalidateGraph();
                     intent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_GRAPH_SCALE);
                     intent.setPackage("org.thosp.yourlocalweather");

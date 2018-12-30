@@ -69,7 +69,7 @@ public class ExtLocationWidgetWithGraphService extends IntentService {
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),
                     R.layout.widget_ext_loc_graph_3x3);
 
-            ExtLocationWithGraphWidgetProvider.setWidgetTheme(this, remoteViews);
+            ExtLocationWithGraphWidgetProvider.setWidgetTheme(this, remoteViews, appWidgetId);
             ExtLocationWithGraphWidgetProvider.setWidgetIntents(this, remoteViews, ExtLocationWithGraphWidgetProvider.class, appWidgetId);
 
             remoteViews.setTextViewText(R.id.widget_ext_loc_graph_3x3_widget_city, Utils.getCityAndCountry(this, currentLocation.getOrderId()));

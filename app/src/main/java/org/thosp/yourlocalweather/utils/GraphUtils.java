@@ -33,13 +33,16 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.WidgetSettingsDialogue;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
+import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -64,6 +67,7 @@ public class GraphUtils {
 
         CombinedChart combinedChart = generateCombinedGraph(context,
                                     null,
+                                                            getCombinedGraphValuesFromSettings(context, widgetId),
                                                             weatherForecastList,
                                                             locationId,
                                                             locale,
@@ -146,6 +150,35 @@ public class GraphUtils {
         return size;
     }
 
+    public static Set<Integer> getCombinedGraphValuesFromSettings(Context context, int widgetId) {
+        Set<Integer> combinedGraphValues = new HashSet<>();
+
+        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
+        String storedGraphValues = widgetSettingsDbHelper.getParamString(widgetId, "combinedGraphValues");
+        if ((storedGraphValues == null) || !storedGraphValues.contains(",")) {
+            combinedGraphValues = AppPreference.getCombinedGraphValues(context);
+            StringBuilder valuesToStore = new StringBuilder();
+            for (int selectedValue: combinedGraphValues) {
+                valuesToStore.append(selectedValue);
+                valuesToStore.append(",");
+            }
+            widgetSettingsDbHelper.saveParamString(widgetId, "combinedGraphValues", valuesToStore.toString());
+        } else {
+            String[] values = storedGraphValues.split(",");
+            for (String value: values) {
+                int intValue;
+                try {
+                    intValue = Integer.parseInt(value);
+                    combinedGraphValues.add(intValue);
+                } catch (Exception e) {
+                    //do nothing, just continue
+                }
+            }
+        }
+
+        return combinedGraphValues;
+    }
+
     public static int dipToPixels(Context context, int dipValue) {
         DisplayMetrics metrics = context.getResources().getDisplayMetrics();
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dipValue, metrics);
@@ -169,6 +202,7 @@ public class GraphUtils {
 
     public static CombinedChart generateCombinedGraph(Context context,
                                                       CombinedChart combinedChartFromLayout,
+                                                      Set<Integer> combinedGraphValues,
                                                       List<DetailedWeatherForecast> weatherForecastList,
                                                       long locationId,
                                                       Locale locale,
@@ -180,7 +214,6 @@ public class GraphUtils {
                                                       int gridColorId) {
         String[] mDatesArray;
         int daysCount;
-        Set<Integer> combinedGraphValues = AppPreference.getCombinedGraphValues(context);
         CustomValueFormatter mValueFormatter = new CustomValueFormatter(locale);
 
         CombinedChart combinedChart = (combinedChartFromLayout != null) ? combinedChartFromLayout : new CombinedChart(context);

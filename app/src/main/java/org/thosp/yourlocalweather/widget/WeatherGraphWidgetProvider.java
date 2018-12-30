@@ -1,11 +1,13 @@
 package org.thosp.yourlocalweather.widget;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.RemoteViews;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.WidgetSettingsDialogue;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
@@ -60,7 +62,7 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
             return;
         }
 
-        WeatherGraphWidgetProvider.setWidgetTheme(context, remoteViews);
+        WeatherGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
         WeatherGraphWidgetProvider.setWidgetIntents(context, remoteViews, WeatherGraphWidgetProvider.class, appWidgetId);
 
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;
@@ -81,13 +83,21 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
         appendLog(context, TAG, "preLoadWeather:end");
     }
 
-    public static void setWidgetTheme(Context context, RemoteViews remoteViews) {
+    public static void setWidgetTheme(Context context, RemoteViews remoteViews, int widgetId) {
         appendLog(context, TAG, "setWidgetTheme:start");
         int textColorId = AppPreference.getTextColor(context);
         int backgroundColorId = AppPreference.getBackgroundColor(context);
         int windowHeaderBackgroundColorId = AppPreference.getWindowHeaderBackgroundColorId(context);
 
         remoteViews.setInt(R.id.widget_weather_graph_1x3_widget_root, "setBackgroundColor", backgroundColorId);
+
+        Intent intentRefreshService = new Intent(context, WeatherGraphWidgetProvider.class);
+        intentRefreshService.setAction(Constants.ACTION_APPWIDGET_SETTINGS_OPENED);
+        intentRefreshService.setPackage("org.thosp.yourlocalweather");
+        intentRefreshService.putExtra("widgetId", widgetId);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
+                intentRefreshService, 0);
+        remoteViews.setOnClickPendingIntent(R.id.widget_weather_graph_1x3_button_graph_setting, pendingIntent);
         appendLog(context, TAG, "setWidgetTheme:end");
     }
 

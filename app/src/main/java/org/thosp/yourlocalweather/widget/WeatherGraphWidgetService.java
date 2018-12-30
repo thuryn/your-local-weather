@@ -60,7 +60,7 @@ public class WeatherGraphWidgetService extends IntentService {
             RemoteViews remoteViews = new RemoteViews(this.getPackageName(),
                     R.layout.widget_weather_graph_1x3);
 
-            WeatherGraphWidgetProvider.setWidgetTheme(this, remoteViews);
+            WeatherGraphWidgetProvider.setWidgetTheme(this, remoteViews, appWidgetId);
             WeatherGraphWidgetProvider.setWidgetIntents(this, remoteViews, WeatherGraphWidgetProvider.class, appWidgetId);
 
             WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;

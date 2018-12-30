@@ -1,11 +1,13 @@
 package org.thosp.yourlocalweather.widget;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.RemoteViews;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.WidgetSettingsDialogue;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
@@ -173,7 +175,7 @@ public class ExtLocationWithGraphWidgetProvider extends AbstractWidgetProvider {
         appendLog(context, TAG, "preLoadWeather:end");
     }
 
-    public static void setWidgetTheme(Context context, RemoteViews remoteViews) {
+    public static void setWidgetTheme(Context context, RemoteViews remoteViews, int widgetId) {
         appendLog(context, TAG, "setWidgetTheme:start");
         int textColorId = AppPreference.getTextColor(context);
         int backgroundColorId = AppPreference.getBackgroundColor(context);
@@ -189,6 +191,14 @@ public class ExtLocationWithGraphWidgetProvider extends AbstractWidgetProvider {
         remoteViews.setTextColor(R.id.widget_ext_loc_graph_3x3_widget_sunset, textColorId);
         remoteViews.setTextColor(R.id.widget_ext_loc_graph_3x3_widget_second_temperature, textColorId);
         remoteViews.setInt(R.id.widget_ext_loc_graph_3x3_header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
+
+        Intent intentRefreshService = new Intent(context, ExtLocationWithGraphWidgetProvider.class);
+        intentRefreshService.setAction(Constants.ACTION_APPWIDGET_SETTINGS_OPENED);
+        intentRefreshService.setPackage("org.thosp.yourlocalweather");
+        intentRefreshService.putExtra("widgetId", widgetId);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
+                intentRefreshService, 0);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_graph_3x3_button_graph_setting, pendingIntent);
         appendLog(context, TAG, "setWidgetTheme:end");
     }
 

@@ -70,6 +70,7 @@ public class Constants {
     public static final String KEY_PREF_GRAPHS_ACTIVITY_VISIBLE_GRAPHS = "graphs_activity_visible_graphs";
     public static final String KEY_PREF_COMBINED_GRAPH_VALUES = "graphs_activity_combined_values";
     public static final String KEY_PREF_WIDGET_GRAPH_NATIVE_SCALE = "widget_graphs_native_scale";
+    public static final String KEY_PREF_WIDGET_SHOW_CONTROLS = "widget_show_controls";
 
     /**
      * About preference screen constants
@@ -104,6 +105,8 @@ public class Constants {
             "org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED";
     public static final String ACTION_APPWIDGET_CHANGE_LOCATION =
             "org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION";
+    public static final String ACTION_APPWIDGET_SETTINGS_OPENED =
+            "org.thosp.yourlocalweather.action.ACTION_APPWIDGET_SETTINGS_OPENED";
 
     /**
      * URIs constants
