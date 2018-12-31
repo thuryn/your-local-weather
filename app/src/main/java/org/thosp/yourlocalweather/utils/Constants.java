@@ -109,7 +109,8 @@ public class Constants {
             "org.thosp.yourlocalweather.action.ACTION_APPWIDGET_SETTINGS_OPENED";
     public static final String ACTION_APPWIDGET_SETTINGS_SHOW_CONTROLS =
             "org.thosp.yourlocalweather.action.ACTION_APPWIDGET_SETTINGS_SHOW_CONTROLS";
-
+    public static final String ACTION_APPWIDGET_CHANGE_SETTINGS =
+            "org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS";
     /**
      * URIs constants
      */

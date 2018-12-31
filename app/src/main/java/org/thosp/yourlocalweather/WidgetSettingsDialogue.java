@@ -55,7 +55,7 @@ public class WidgetSettingsDialogue extends Activity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
         View forecastSettingView = inflater.inflate(R.layout.widget_setting_forecast, null);
-        Switch dayNameSwitch = forecastSettingView.findViewById(R.id.widget_setting_forecast_day_name_switch);
+        final Switch dayNameSwitch = forecastSettingView.findViewById(R.id.widget_setting_forecast_day_name_switch);
 
         final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(this);
         final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
@@ -74,17 +74,17 @@ public class WidgetSettingsDialogue extends Activity {
         Locale locale = (currentLocation != null)?currentLocation.getLocale(): Locale.getDefault();
         Date dateForSetting = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("EEE", locale);
-        dayNameSwitch.setTextOn(sdf.format(dateForSetting));
+        final String textOn = sdf.format(dateForSetting);
+        dayNameSwitch.setTextOn(textOn);
         sdf = new SimpleDateFormat("EEEE", locale);
-        dayNameSwitch.setTextOff(sdf.format(dateForSetting));
+        final String textOff = sdf.format(dateForSetting);
+        dayNameSwitch.setTextOff(textOff);
         Boolean dayAbbrev = widgetSettingsDbHelper.getParamBoolean(widgetId, "forecast_day_abbrev");
-        dayNameSwitch.setChecked((dayAbbrev != null)?dayAbbrev:false);
-        dayNameSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                widgetSettingsDbHelper.saveParamBoolean(widgetId, "forecast_day_abbrev", isChecked);
-            }
-        });
+        boolean dayAbbrevChecked = (dayAbbrev != null)?dayAbbrev:false;
+        dayNameSwitch.setChecked(dayAbbrevChecked);
+        dayNameSwitch.setText(getString(R.string.widget_setting_forecast_day_name_style) + " (" + (dayNameSwitch.isChecked()?textOn:textOff) + ")");
+        final DayNameSwitchListener dayNameSwitchListener = new DayNameSwitchListener(dayAbbrevChecked, dayNameSwitch, textOn, textOff);
+        dayNameSwitch.setOnCheckedChangeListener(dayNameSwitchListener);
 
         Spinner numberOfDaysSpinner = forecastSettingView.findViewById(R.id.widget_setting_forecast_number_of_days_hours);
         int predefinedSelection = 0;
@@ -101,34 +101,18 @@ public class WidgetSettingsDialogue extends Activity {
         //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         numberOfDaysSpinner.setAdapter(adapter);
         numberOfDaysSpinner.setSelection(predefinedSelection);
-        numberOfDaysSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-              @Override
-              public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                  long numberOfDays = 5l;
-                  switch (position) {
-                      case 0: numberOfDays = 3;break;
-                      case 1: numberOfDays = 4;break;
-                      case 2: numberOfDays = 5;break;
-                  }
-                  widgetSettingsDbHelper.saveParamLong(widgetId, "forecastDaysCount", numberOfDays);
-                  Intent intent = new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED);
-                  intent.setPackage("org.thosp.yourlocalweather");
-                  sendBroadcast(intent);
-              }
-
-              @Override
-              public void onNothingSelected(AdapterView<?> parent) {
-
-              }
-          }
-        );
+        final NumberOfDaysListener numberOfDaysListener = new NumberOfDaysListener(storedDays);
+        numberOfDaysSpinner.setOnItemSelectedListener(numberOfDaysListener);
 
         builder.setView(forecastSettingView)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        Intent intent = new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED);
+                        widgetSettingsDbHelper.saveParamBoolean(widgetId, "forecast_day_abbrev", dayNameSwitchListener.isChecked());
+                        widgetSettingsDbHelper.saveParamLong(widgetId, "forecastDaysCount", numberOfDaysListener.getNumberOfDays());
+                        Intent intent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_SETTINGS);
                         intent.setPackage("org.thosp.yourlocalweather");
+                        intent.putExtra("widgetId", widgetId);
                         sendBroadcast(intent);
                         finish();
                     }
@@ -217,5 +201,57 @@ public class WidgetSettingsDialogue extends Activity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    public class NumberOfDaysListener implements AdapterView.OnItemSelectedListener {
+
+        private long numberOfDays;
+
+        public NumberOfDaysListener(long initialValue) {
+            numberOfDays = initialValue;
+        }
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            switch (position) {
+                case 0: numberOfDays = 3;break;
+                case 1: numberOfDays = 4;break;
+                case 2: numberOfDays = 5;break;
+            }
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+
+        }
+
+        public long getNumberOfDays() {
+            return numberOfDays;
+        }
+    }
+
+    public class DayNameSwitchListener implements CompoundButton.OnCheckedChangeListener {
+
+        boolean checked;
+        Switch dayNameSwitch;
+        String textOn;
+        String textOff;
+
+        public DayNameSwitchListener(boolean initialValue, Switch dayNameSwitch, String textOn, String textOff) {
+            checked = initialValue;
+            this.dayNameSwitch = dayNameSwitch;
+            this.textOff = textOff;
+            this.textOn = textOn;
+        }
+
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            checked = isChecked;
+            dayNameSwitch.setText(getString(R.string.widget_setting_forecast_day_name_style) + " (" + (isChecked ? textOn : textOff) + ")");
+        }
+
+        public boolean isChecked() {
+            return checked;
+        }
     }
 }

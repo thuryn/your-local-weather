@@ -432,5 +432,6 @@
     <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Zobrazení grafů</string>
     <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Data pro kombinovaný graf</string>
     <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Zobrazit graf pomocí přirozeného rozlišení (pokud je graf příliš malý)</string>
-    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Zobrazit den zkratkou:</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Zobrazit den zkratkou</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Počet dní předpovědi</string>
 </resources>

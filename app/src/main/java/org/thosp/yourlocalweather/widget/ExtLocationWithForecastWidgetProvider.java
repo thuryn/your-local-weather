@@ -210,14 +210,6 @@ public class ExtLocationWithForecastWidgetProvider extends AbstractWidgetProvide
         remoteViews.setTextColor(R.id.widget_ext_loc_forecast_3x3_forecast_5_widget_temperatures, textColorId);
         remoteViews.setInt(R.id.widget_ext_loc_forecast_3x3_header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
 
-        Intent intentRefreshService = new Intent(context, ExtLocationWithGraphWidgetProvider.class);
-        intentRefreshService.setAction(Constants.ACTION_APPWIDGET_SETTINGS_OPENED);
-        intentRefreshService.setPackage("org.thosp.yourlocalweather");
-        intentRefreshService.putExtra("widgetId", widgetId);
-        intentRefreshService.putExtra("settings_option", "forecastSettings");
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
-                intentRefreshService, 0);
-        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_3x3_button_days_setting, pendingIntent);
         appendLog(context, TAG, "setWidgetTheme:end");
     }
 

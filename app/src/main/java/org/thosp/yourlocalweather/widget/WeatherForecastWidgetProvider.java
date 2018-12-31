@@ -113,14 +113,6 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
         remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_5_widget_day, textColorId);
         remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_5_widget_temperatures, textColorId);
 
-        Intent intentRefreshService = new Intent(context, WeatherForecastWidgetProvider.class);
-        intentRefreshService.setAction(Constants.ACTION_APPWIDGET_SETTINGS_OPENED);
-        intentRefreshService.setPackage("org.thosp.yourlocalweather");
-        intentRefreshService.putExtra("widgetId", widgetId);
-        intentRefreshService.putExtra("settings_option", "forecastSettings");
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
-                intentRefreshService, 0);
-        remoteViews.setOnClickPendingIntent(R.id.widget_weather_forecast_1x3_button_days_setting, pendingIntent);
         appendLog(context, TAG, "setWidgetTheme:end");
     }
 

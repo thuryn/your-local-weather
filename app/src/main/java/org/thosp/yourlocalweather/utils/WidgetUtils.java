@@ -174,10 +174,13 @@ public class WidgetUtils {
         }
         SimpleDateFormat sdfDayOfWeek = getDaysFormatter(context, widgetId, location.getLocale());
 
+        Long daysCount = 5l;
         final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
-        Long daysCount = widgetSettingsDbHelper.getParamLong(widgetId, "forecastDaysCount");
-        if (daysCount == null) {
-            daysCount = 5l;
+        if (widgetId != null) {
+            daysCount = widgetSettingsDbHelper.getParamLong(widgetId, "forecastDaysCount");
+            if (daysCount == null) {
+                daysCount = 5l;
+            }
         }
 
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);

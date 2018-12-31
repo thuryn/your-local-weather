@@ -58,4 +58,9 @@
         <item name="android:textSize">20sp</item>
         <item name="android:maxLines">2</item>
     </style>
+
+    <style name="WidgetOptionSwitch">
+        <item name="android:textSize">@dimen/abc_text_size_medium_material</item>
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+    </style>
 </resources>
