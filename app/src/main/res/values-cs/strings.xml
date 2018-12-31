@@ -434,4 +434,6 @@
     <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Zobrazit graf pomocí přirozeného rozlišení (pokud je graf příliš malý)</string>
     <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Zobrazit den zkratkou</string>
     <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Počet dní předpovědi</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Zobrazit nastavení na widgetech</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Tlačítko nastavení grafu na widgetech</string>
 </resources>
