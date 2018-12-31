@@ -111,6 +111,9 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
             if (cursor.moveToNext()) {
                 CompleteWeatherForecast completeWeatherForecast = getCompleteWeatherForecastFromBytes(
                         cursor.getBlob(cursor.getColumnIndexOrThrow(WeatherForecastContract.WeatherForecast.COLUMN_NAME_WEATHER_FORECAST)));
+                if (completeWeatherForecast == null) {
+                    return null;
+                }
                 return new WeatherForecastRecord(
                         cursor.getLong(cursor.getColumnIndexOrThrow(WeatherForecastContract.WeatherForecast.COLUMN_NAME_LAST_UPDATED_IN_MS)),
                         completeWeatherForecast);
@@ -125,6 +128,9 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
     }
 
     public static CompleteWeatherForecast getCompleteWeatherForecastFromBytes(byte[] addressBytes) {
+        if ((addressBytes == null) || (addressBytes.length == 0)) {
+            return null;
+        }
         final Parcel parcel = Parcel.obtain();
         parcel.unmarshall(addressBytes, 0, addressBytes.length);
         parcel.setDataPosition(0);
