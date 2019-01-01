@@ -443,4 +443,20 @@
     <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Klassisk</string>
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Enhetsinnstillinger</string>
     <string name="preference_title_power_save" tools:ignore="MissingTranslation">Strømsparingsvalg</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Kombinert</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Temperatur</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Vind</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Regn</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Regn (stolpe)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Snø</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Snø (stolpe)</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Trykk</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Temperatur</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Vind</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Regn/snø</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Trykk</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 dager</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 dager</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 dager</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Antall dager i værmeldingen</string>
 </resources>
