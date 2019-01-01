@@ -163,18 +163,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
                     getWidgetLayout());
 
-            if (AppPreference.isShowControls(context)) {
-                remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_settings_layout, View.VISIBLE);
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_graph_3x3_settings_layout, View.VISIBLE);
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_3x3_settings_layout, View.VISIBLE);
-                remoteViews.setViewVisibility(R.id.widget_weather_forecast_1x3_settings_layout, View.VISIBLE);
-            } else {
-                remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_settings_layout, View.GONE);
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_graph_3x3_settings_layout, View.GONE);
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_3x3_settings_layout, View.GONE);
-                remoteViews.setViewVisibility(R.id.widget_weather_forecast_1x3_settings_layout, View.GONE);
-            }
-
             if (ExtLocationWidgetProvider.class.equals(getWidgetClass())) {
                 ExtLocationWidgetProvider.setWidgetTheme(context, remoteViews);
             } else if (MoreWidgetProvider.class.equals(getWidgetClass())) {
@@ -239,6 +227,18 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     public static void setWidgetIntents(Context context, RemoteViews remoteViews, Class<?>  widgetClass, int widgetId) {
         appendLog(context, TAG, "setWidgetIntents:widgetid:", widgetId);
+        if (AppPreference.isShowControls(context)) {
+            remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_settings_layout, View.VISIBLE);
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_graph_3x3_settings_layout, View.VISIBLE);
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_3x3_settings_layout, View.VISIBLE);
+            remoteViews.setViewVisibility(R.id.widget_weather_forecast_1x3_settings_layout, View.VISIBLE);
+        } else {
+            remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_settings_layout, View.GONE);
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_graph_3x3_settings_layout, View.GONE);
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_3x3_settings_layout, View.GONE);
+            remoteViews.setViewVisibility(R.id.widget_weather_forecast_1x3_settings_layout, View.GONE);
+        }
+
         Intent intentRefreshService = new Intent(context, widgetClass);
         intentRefreshService.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
         intentRefreshService.setPackage("org.thosp.yourlocalweather");
