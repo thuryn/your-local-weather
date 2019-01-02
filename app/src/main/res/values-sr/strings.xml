@@ -147,7 +147,7 @@
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Киша и снег</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Притисак</string>
     <string name="preference_hide_desc" tools:ignore="MissingTranslation">Сакриј опис времена</string>
-    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Поставке обавештења</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Подешавања обавештења</string>
     <string name="pref_title_notification" tools:ignore="MissingTranslation">Укључи обавештења</string>
     <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">Интервал освежавања</string>
     <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Подешавање ажурирања локације</string>
@@ -433,8 +433,8 @@
     <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски</string>
     <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (словеначки)</string>
     <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (турски)</string>
-    <string name="preference_title_category_units" tools:ignore="MissingTranslation">Поставке мерних јединица</string>
-    <string name="preference_title_power_save" tools:ignore="MissingTranslation">Поставке уштеде енергије</string>
+    <string name="preference_title_category_units" tools:ignore="MissingTranslation">Подешавања мерних јединица</string>
+    <string name="preference_title_power_save" tools:ignore="MissingTranslation">Подешавања уштеде енергије</string>
     <string name="update_period_regular_only" tools:ignore="MissingTranslation">Само после редовног освежавања</string>
     <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Подешавање обавештења</string>
     <string name="notification_when_updated" tools:ignore="MissingTranslation">После освежавања</string>
@@ -464,4 +464,12 @@
     <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Графикони за приказ</string>
     <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Подаци за обједињени графикон</string>
     <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Прикажи графикон у природној размери (ако је сувише мали)</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 дана</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 дана</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 дана</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Прикажи подешавања на виџету</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Дугме подешавања на виџету</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Прикажи скраћеницу за дан</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Број дана прогнозе</string>
+    <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Подешавање локације</string>
 </resources>
