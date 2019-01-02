@@ -410,7 +410,7 @@
     <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Widget graph settings button</string>
     <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Show day by abbreviation</string>
     <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Number of days for the forecast</string>
-    <string name="widget_setting_location" tools:ignore="MissingTranslation">Location setting</string>
+    <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Location setting</string>
 
     <!-- Wind directions -->
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Disabled</string>
