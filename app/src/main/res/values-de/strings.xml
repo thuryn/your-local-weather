@@ -81,7 +81,7 @@
     <string name="sunrise_label">Sonnenaufgang: %s</string>
     <string name="sunset_label">Sonnenuntergang: %s</string>
     <string name="temperature_morning_title">Morgen</string>
-    <string name="temperature_day_title">Tag</string>
+    <string name="temperature_day_title">Temperatur</string>
     <string name="temperature_evening_title">Abend</string>
     <string name="temperature_night_title">Nacht</string>
     <string name="label_temperature">Temperatur</string>
