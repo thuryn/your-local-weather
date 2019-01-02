@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.AppCompat"
-        android:text="@string/widget_setting_forecast_days"
+        android:text="@string/widget_setting_location"
         android:labelFor="@+id/widget_setting_location.locations"/>
     <Spinner
         android:id="@+id/widget_setting_location.locations"
