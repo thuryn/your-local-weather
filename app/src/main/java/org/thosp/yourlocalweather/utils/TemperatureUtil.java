@@ -240,7 +240,38 @@ public class TemperatureUtil {
         }
     }
 
+    public static double getTemperature(Context context, Weather weather) {
+        if (weather == null) {
+            return 0;
+        }
+        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
+        double value = getTemperatureInCelsius(context, weather);
+        if (unitsFromPreferences.contains("fahrenheit") ) {
+            return (value * 1.8d) + 32;
+        } else {
+            return value;
+        }
+    }
+
     public static double getTemperatureInCelsius(Context context, DetailedWeatherForecast weather) {
+        if (weather == null) {
+            return 0;
+        }
+        String temperatureTypeFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_TEMPERATURE_TYPE, "measured_only");
+        double value = weather.getTemperature();
+        if ("appearance_only".equals(temperatureTypeFromPreferences) ||
+                ("measured_appearance_primary_appearance".equals(temperatureTypeFromPreferences))) {
+            value = TemperatureUtil.getApparentTemperatureWithoutSolarIrradiation(
+                    weather.getTemperature(),
+                    weather.getHumidity(),
+                    weather.getWindSpeed());
+        }
+        return value;
+    }
+
+    public static double getTemperatureInCelsius(Context context, Weather weather) {
         if (weather == null) {
             return 0;
         }
@@ -261,7 +292,7 @@ public class TemperatureUtil {
         if ((weatherRecord == null) || (weatherRecord.getWeather() == null)) {
             return R.drawable.zero0;
         }
-        float temperature = weatherRecord.getWeather().getTemperature();
+        float temperature = (float) getTemperature(context, weatherRecord.getWeather());
         return getResourceForNumber(context, temperature);
     }
 
