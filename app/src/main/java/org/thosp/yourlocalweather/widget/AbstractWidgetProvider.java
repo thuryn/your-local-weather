@@ -7,6 +7,7 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -71,6 +72,12 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         appendLog(context, TAG, "intent:", intent, ", widget:", getWidgetClass());
+        Bundle extras = intent.getExtras();
+        if (extras != null) {
+            int appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID);
+            appendLog(context, TAG, "EXTRA_APPWIDGET_ID:" + appWidgetId);
+        }
+
         super.onReceive(context, intent);
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
         WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
@@ -124,19 +131,22 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             case Constants.ACTION_APPWIDGET_UPDATE_PERIOD_CHANGED:
                 onEnabled(context);
                 break;
-            case Constants.ACTION_APPWIDGET_CHANGE_LOCATION:
-                changeLocation(widgetId, locationsDbHelper, widgetSettingsDbHelper);
-                onUpdate(context, widgetManager, new int[]{ widgetId});
-                break;
             case Constants.ACTION_APPWIDGET_CHANGE_SETTINGS:
                 onUpdate(context, widgetManager, new int[]{ widgetId});
                 break;
         }
 
         if (intent.getAction().startsWith(Constants.ACTION_APPWIDGET_SETTINGS_OPENED)) {
-            String widgetIdTxt = intent.getAction().split("__")[1];
+            String[] params = intent.getAction().split("__");
+            String widgetIdTxt = params[1];
             widgetId = Integer.parseInt(widgetIdTxt);
-            openWidgetSettings(context, widgetId, intent.getStringExtra("settings_option"));
+            openWidgetSettings(context, widgetId, params[2]);
+        } else if(intent.getAction().startsWith(Constants.ACTION_APPWIDGET_CHANGE_LOCATION)) {
+            String[] params = intent.getAction().split("__");
+            String widgetIdTxt = params[1];
+            widgetId = Integer.parseInt(widgetIdTxt);
+            changeLocation(widgetId, locationsDbHelper, widgetSettingsDbHelper);
+            onUpdate(context, widgetManager, new int[]{widgetId});
         }
     }
 
@@ -181,7 +191,8 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             setWidgetIntents(context, remoteViews, getWidgetClass(), appWidgetId);
             preLoadWeather(context, remoteViews, appWidgetId);
 
-            appWidgetManager.updateAppWidget(new ComponentName(context, getWidgetClass()), remoteViews);
+            appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+            //appWidgetManager.updateAppWidget(new ComponentName(context, getWidgetClass()), remoteViews);
         }
         appendLog(context, TAG, "onUpdate:end");
     }
@@ -232,11 +243,17 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             remoteViews.setViewVisibility(R.id.widget_ext_loc_graph_3x3_settings_layout, View.VISIBLE);
             remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_3x3_settings_layout, View.VISIBLE);
             remoteViews.setViewVisibility(R.id.widget_weather_forecast_1x3_settings_layout, View.VISIBLE);
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_settings_layout, View.VISIBLE);
+            remoteViews.setViewVisibility(R.id.widget_less_3x1_settings_layout, View.VISIBLE);
+            remoteViews.setViewVisibility(R.id.widget_more_3x3_settings_layout, View.VISIBLE);
         } else {
             remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_settings_layout, View.GONE);
             remoteViews.setViewVisibility(R.id.widget_ext_loc_graph_3x3_settings_layout, View.GONE);
             remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_3x3_settings_layout, View.GONE);
             remoteViews.setViewVisibility(R.id.widget_weather_forecast_1x3_settings_layout, View.GONE);
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_settings_layout, View.GONE);
+            remoteViews.setViewVisibility(R.id.widget_less_3x1_settings_layout, View.GONE);
+            remoteViews.setViewVisibility(R.id.widget_more_3x3_settings_layout, View.GONE);
         }
 
         Intent intentRefreshService = new Intent(context, widgetClass);
@@ -273,7 +290,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         remoteViews.setOnClickPendingIntent(R.id.widget_weather_forecast_1x3_forecast_layout, pendingIntent3);
 
         Intent intentSwitchLocality = new Intent(context, widgetClass);
-        intentSwitchLocality.setAction(Constants.ACTION_APPWIDGET_CHANGE_LOCATION);
+        intentSwitchLocality.setAction(Constants.ACTION_APPWIDGET_CHANGE_LOCATION + "__" + widgetId);
         intentSwitchLocality.putExtra("widgetId", widgetId);
         intentSwitchLocality.setPackage("org.thosp.yourlocalweather");
         PendingIntent pendingSwitchLocalityIntent = PendingIntent.getBroadcast(context, 0,
@@ -284,37 +301,31 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         remoteViews.setOnClickPendingIntent(R.id.widget_less_3x1_widget_city, pendingSwitchLocalityIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_more_3x3_widget_city, pendingSwitchLocalityIntent);
 
-        Intent intentExtLocationWithGraphWidgetProvider = new Intent(context, ExtLocationWithForecastWidgetProvider.class);
-        intentExtLocationWithGraphWidgetProvider.setAction(Constants.ACTION_APPWIDGET_SETTINGS_OPENED + "__" + widgetId);
-        intentExtLocationWithGraphWidgetProvider.setPackage("org.thosp.yourlocalweather");
-        intentExtLocationWithGraphWidgetProvider.putExtra("settings_option", "forecastSettings");
-        PendingIntent pendingIntentExtLocationWithGraphWidgetProvider = PendingIntent.getBroadcast(context, 0,
-                intentExtLocationWithGraphWidgetProvider, 0);
-        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_3x3_button_days_setting, pendingIntentExtLocationWithGraphWidgetProvider);
+        setSettingButtonAction(context, widgetId, "forecastSettings", R.id.widget_ext_loc_forecast_3x3_button_days_setting, remoteViews, ExtLocationWithForecastWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "graphSetting", R.id.widget_ext_loc_graph_3x3_button_graph_setting, remoteViews, ExtLocationWithGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "graphSetting", R.id.widget_weather_graph_1x3_button_graph_setting, remoteViews, WeatherGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "forecastSettings", R.id.widget_weather_forecast_1x3_button_days_setting, remoteViews, WeatherForecastWidgetProvider.class);
 
-        Intent intentGraphExtLocationWithGraphWidgetProvider = new Intent(context, ExtLocationWithGraphWidgetProvider.class);
-        intentGraphExtLocationWithGraphWidgetProvider.setAction(Constants.ACTION_APPWIDGET_SETTINGS_OPENED + "__" + widgetId);
-        intentGraphExtLocationWithGraphWidgetProvider.setPackage("org.thosp.yourlocalweather");
-        intentGraphExtLocationWithGraphWidgetProvider.putExtra("settings_option", "graphSetting");
-        PendingIntent pendingGraphExtLocationWithGraphWidgetProvider = PendingIntent.getBroadcast(context, 0,
-                intentGraphExtLocationWithGraphWidgetProvider, 0);
-        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_graph_3x3_button_graph_setting, pendingGraphExtLocationWithGraphWidgetProvider);
+        setSettingButtonAction(context, widgetId, "locationSettings", R.id.widget_ext_loc_forecast_3x3_button_location_setting, remoteViews, ExtLocationWithForecastWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "locationSettings", R.id.widget_weather_forecast_1x3_button_location_setting, remoteViews, WeatherForecastWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "locationSettings", R.id.widget_ext_loc_graph_3x3_button_location_setting, remoteViews, ExtLocationWithGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "locationSettings", R.id.widget_weather_graph_1x3_button_location_setting, remoteViews, WeatherGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "locationSettings", R.id.widget_weather_forecast_1x3_button_location_setting, remoteViews, WeatherForecastWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "locationSettings", R.id.widget_ext_loc_3x3_button_location_setting, remoteViews, ExtLocationWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "locationSettings", R.id.widget_less_3x1_button_location_setting, remoteViews, LessWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "locationSettings", R.id.widget_more_3x3_button_location_setting, remoteViews, MoreWidgetProvider.class);
+    }
 
-        Intent intentWeatherGraphWidgetProvider = new Intent(context, WeatherGraphWidgetProvider.class);
-        intentWeatherGraphWidgetProvider.setAction(Constants.ACTION_APPWIDGET_SETTINGS_OPENED + "__" + widgetId);
-        intentWeatherGraphWidgetProvider.setPackage("org.thosp.yourlocalweather");
-        intentWeatherGraphWidgetProvider.putExtra("settings_option", "graphSetting");
-        PendingIntent pendingWeatherGraphWidgetProvider = PendingIntent.getBroadcast(context, 0,
-                intentWeatherGraphWidgetProvider, 0);
-        remoteViews.setOnClickPendingIntent(R.id.widget_weather_graph_1x3_button_graph_setting, pendingWeatherGraphWidgetProvider);
+    private static void setSettingButtonAction(Context context, int widgetId, String settingName, int buttonId, RemoteViews remoteViews, Class widgetClass) {
 
-        Intent intentWeatherForecastWidgetProvider = new Intent(context, WeatherForecastWidgetProvider.class);
-        intentWeatherForecastWidgetProvider.setAction(Constants.ACTION_APPWIDGET_SETTINGS_OPENED + "__" + widgetId);
+
+
+        Intent intentWeatherForecastWidgetProvider = new Intent(context, widgetClass);
+        intentWeatherForecastWidgetProvider.setAction(Constants.ACTION_APPWIDGET_SETTINGS_OPENED + "__" + widgetId + "__" + settingName);
         intentWeatherForecastWidgetProvider.setPackage("org.thosp.yourlocalweather");
-        intentWeatherForecastWidgetProvider.putExtra("settings_option", "forecastSettings");
         PendingIntent pendingWeatherForecastWidgetProvider = PendingIntent.getBroadcast(context, 0,
                 intentWeatherForecastWidgetProvider, 0);
-        remoteViews.setOnClickPendingIntent(R.id.widget_weather_forecast_1x3_button_days_setting, pendingWeatherForecastWidgetProvider);
+        remoteViews.setOnClickPendingIntent(buttonId, pendingWeatherForecastWidgetProvider);
     }
 
     protected abstract void preLoadWeather(Context context, RemoteViews remoteViews, int widgetId);

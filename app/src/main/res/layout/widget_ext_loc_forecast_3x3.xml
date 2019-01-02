@@ -19,8 +19,20 @@
             android:src="@drawable/ic_daily_forecast_dark_24dp"
             android:background="@android:color/transparent"
             android:contentDescription="@string/widget_graph_settings_button"
-            android:paddingLeft="4dp"
-            android:paddingStart="4dp"
+            android:paddingLeft="@dimen/widget_refresh_icon_padding_top"
+            android:paddingStart="@dimen/widget_refresh_icon_padding_top"
+            android:paddingTop="@dimen/widget_refresh_icon_padding_top"
+            android:gravity="top"/>
+
+        <ImageView android:id="@+id/widget_ext_loc_forecast_3x3.button_location_setting"
+            android:layout_width="@dimen/widget_refresh_icon_size"
+            android:layout_height="@dimen/widget_refresh_icon_size"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_my_location_black_24dp"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/widget_graph_settings_button"
+            android:paddingLeft="@dimen/widget_refresh_icon_padding_top"
+            android:paddingStart="@dimen/widget_refresh_icon_padding_top"
             android:paddingTop="@dimen/widget_refresh_icon_padding_top"
             android:gravity="top"/>
     </LinearLayout>
