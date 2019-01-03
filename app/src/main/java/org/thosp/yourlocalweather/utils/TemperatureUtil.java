@@ -304,7 +304,7 @@ public class TemperatureUtil {
         } else if (roundedNumber > 0) {
             fileName = "plus" + roundedNumber;
         } else {
-            fileName = "minus" + roundedNumber;
+            fileName = "minus" + Math.abs(roundedNumber);
         }
         return context.getResources().getIdentifier(fileName, "drawable", context.getPackageName());
     }
