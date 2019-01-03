@@ -22,6 +22,7 @@ import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
@@ -210,6 +211,15 @@ public class ExtLocationWithGraphWidgetProvider extends AbstractWidgetProvider {
             intentToCheckWeather.putExtra("forceUpdate", true);
             startServiceWithCheck(context, intentToCheckWeather);
         }
+    }
+
+    @Override
+    ArrayList<String> getEnabledActionPlaces() {
+        ArrayList<String> enabledWidgetActions = new ArrayList();
+        enabledWidgetActions.add("action_city");
+        enabledWidgetActions.add("action_current_weather_icon");
+        enabledWidgetActions.add("action_graph");
+        return enabledWidgetActions;
     }
 
     @Override

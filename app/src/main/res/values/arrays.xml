@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="widget_actions">
+        <item>@string/widget_action_main_screen</item>
+        <item>@string/widget_action_forecast_screen</item>
+        <item>@string/widget_action_graphs_screen</item>
+        <item>@string/widget_action_switch_location</item>
+    </string-array>
     <string-array name="forecast_number_of_days_hours">
         <item>@string/forecast_number_of_days_hours_3_days</item>
         <item>@string/forecast_number_of_days_hours_4_days</item>

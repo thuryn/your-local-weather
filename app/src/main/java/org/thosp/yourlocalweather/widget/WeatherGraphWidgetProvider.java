@@ -21,6 +21,7 @@ import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
@@ -93,6 +94,13 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
         remoteViews.setInt(R.id.widget_weather_graph_1x3_widget_root, "setBackgroundColor", backgroundColorId);
 
         appendLog(context, TAG, "setWidgetTheme:end");
+    }
+
+    @Override
+    ArrayList<String> getEnabledActionPlaces() {
+        ArrayList<String> enabledWidgetActions = new ArrayList();
+        enabledWidgetActions.add("action_graph");
+        return enabledWidgetActions;
     }
 
     @Override

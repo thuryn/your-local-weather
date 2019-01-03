@@ -16,6 +16,7 @@ import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 
@@ -107,6 +108,14 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
         remoteViews.setTextColor(R.id.widget_less_3x1_widget_second_temperature, textColorId);
         remoteViews.setTextColor(R.id.widget_less_3x1_widget_description, textColorId);
         remoteViews.setInt(R.id.widget_less_3x1_header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
+    }
+
+    @Override
+    ArrayList<String> getEnabledActionPlaces() {
+        ArrayList<String> enabledWidgetActions = new ArrayList();
+        enabledWidgetActions.add("action_city");
+        enabledWidgetActions.add("action_current_weather_icon");
+        return enabledWidgetActions;
     }
 
     @Override

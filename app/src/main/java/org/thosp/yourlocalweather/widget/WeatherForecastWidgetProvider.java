@@ -117,6 +117,13 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
     }
 
     @Override
+    ArrayList<String> getEnabledActionPlaces() {
+        ArrayList<String> enabledWidgetActions = new ArrayList();
+        enabledWidgetActions.add("action_forecast");
+        return enabledWidgetActions;
+    }
+
+    @Override
     protected int getWidgetLayout() {
         return R.layout.widget_weather_forecast_1x3;
     }

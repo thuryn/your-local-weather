@@ -408,9 +408,19 @@
     <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Current weather icon</string>
     <string name="widget_refresh_button" tools:ignore="MissingTranslation">Widget refresh button</string>
     <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Widget graph settings button</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Widget location settings button</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Widget action settings button</string>
     <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Show day by abbreviation</string>
     <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Number of days for the forecast</string>
     <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Location setting</string>
+    <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">City label</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">Current weather icon</string>
+    <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">Weather forecast</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">Graph</string>
+    <string name="widget_action_main_screen" tools:ignore="MissingTranslation">Main screen</string>
+    <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">Weather forecast screen</string>
+    <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">Graphs screen</string>
+    <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Switch location</string>
 
     <!-- Wind directions -->
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Disabled</string>

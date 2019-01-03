@@ -19,6 +19,7 @@ import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
@@ -169,6 +170,14 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
         remoteViews.setTextColor(R.id.widget_ext_loc_3x3_widget_second_temperature, textColorId);
         remoteViews.setInt(R.id.widget_ext_loc_3x3_header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
         appendLog(context, TAG, "setWidgetTheme:end");
+    }
+
+    @Override
+    ArrayList<String> getEnabledActionPlaces() {
+        ArrayList<String> enabledWidgetActions = new ArrayList();
+        enabledWidgetActions.add("action_city");
+        enabledWidgetActions.add("action_current_weather_icon");
+        return enabledWidgetActions;
     }
 
     @Override
