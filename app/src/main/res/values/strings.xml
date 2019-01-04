@@ -204,6 +204,9 @@
     <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 days</string>
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 days</string>
     <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 days</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (3 hours interval)</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (3 hours interval)</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (3 hours interval)</string>
 
     <!-- Search Screen strings -->
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Search location</string>

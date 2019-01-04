@@ -30,6 +30,7 @@ import org.thosp.yourlocalweather.widget.WeatherGraphWidgetService;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -175,9 +176,11 @@ public class WidgetUtils {
         SimpleDateFormat sdfDayOfWeek = getDaysFormatter(context, widgetId, location.getLocale());
 
         Long daysCount = 5l;
+        Boolean hoursForecast = null;
         final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
         if (widgetId != null) {
             daysCount = widgetSettingsDbHelper.getParamLong(widgetId, "forecastDaysCount");
+            hoursForecast = widgetSettingsDbHelper.getParamBoolean(widgetId, "hoursForecast");
             if (daysCount == null) {
                 daysCount = 5l;
             }
@@ -188,6 +191,91 @@ public class WidgetUtils {
         if (weatherForecastRecord == null) {
             return null;
         }
+        if ((hoursForecast != null) && hoursForecast) {
+            return createForecastByHours(
+                    context,
+                    location,
+                    weatherForecastRecord,
+                    daysCount,
+                    remoteViews,
+                    forecast_1_widget_day_layout,
+                    forecast_1_widget_icon,
+                    forecast_1_widget_day,
+                    forecast_1_widget_temperatures,
+                    forecast_2_widget_day_layout,
+                    forecast_2_widget_icon,
+                    forecast_2_widget_day,
+                    forecast_2_widget_temperatures,
+                    forecast_3_widget_day_layout,
+                    forecast_3_widget_icon,
+                    forecast_3_widget_day,
+                    forecast_3_widget_temperatures,
+                    forecast_4_widget_day_layout,
+                    forecast_4_widget_icon,
+                    forecast_4_widget_day,
+                    forecast_4_widget_temperatures,
+                    forecast_5_widget_day_layout,
+                    forecast_5_widget_icon,
+                    forecast_5_widget_day,
+                    forecast_5_widget_temperatures
+            );
+        } else {
+            return createForecastByDays(
+                    context,
+                    weatherForecastRecord,
+                    sdfDayOfWeek,
+                    daysCount,
+                    remoteViews,
+                    forecast_1_widget_day_layout,
+                    forecast_1_widget_icon,
+                    forecast_1_widget_day,
+                    forecast_1_widget_temperatures,
+                    forecast_2_widget_day_layout,
+                    forecast_2_widget_icon,
+                    forecast_2_widget_day,
+                    forecast_2_widget_temperatures,
+                    forecast_3_widget_day_layout,
+                    forecast_3_widget_icon,
+                    forecast_3_widget_day,
+                    forecast_3_widget_temperatures,
+                    forecast_4_widget_day_layout,
+                    forecast_4_widget_icon,
+                    forecast_4_widget_day,
+                    forecast_4_widget_temperatures,
+                    forecast_5_widget_day_layout,
+                    forecast_5_widget_icon,
+                    forecast_5_widget_day,
+                    forecast_5_widget_temperatures);
+        }
+    }
+
+    private static WeatherForecastDbHelper.WeatherForecastRecord createForecastByDays(
+            Context context,
+            WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord,
+            SimpleDateFormat sdfDayOfWeek,
+            Long daysCount,
+            RemoteViews remoteViews,
+            Integer forecast_1_widget_day_layout,
+            int forecast_1_widget_icon,
+            int forecast_1_widget_day,
+            int forecast_1_widget_temperatures,
+            Integer forecast_2_widget_day_layout,
+            int forecast_2_widget_icon,
+            int forecast_2_widget_day,
+            int forecast_2_widget_temperatures,
+            Integer forecast_3_widget_day_layout,
+            int forecast_3_widget_icon,
+            int forecast_3_widget_day,
+            int forecast_3_widget_temperatures,
+            Integer forecast_4_widget_day_layout,
+            int forecast_4_widget_icon,
+            int forecast_4_widget_day,
+            int forecast_4_widget_temperatures,
+            Integer forecast_5_widget_day_layout,
+            int forecast_5_widget_icon,
+            int forecast_5_widget_day,
+            int forecast_5_widget_temperatures
+    ) {
         Integer firstDayOfYear = null;
         Map<Integer, List<DetailedWeatherForecast>> weatherList = new HashMap<>();
         Calendar forecastCalendar = Calendar.getInstance();
@@ -365,6 +453,175 @@ public class WidgetUtils {
             }
         }
         return weatherForecastRecord;
+    }
+
+    private static WeatherForecastDbHelper.WeatherForecastRecord createForecastByHours(
+            Context context,
+            Location location,
+            WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord,
+            long hoursCount,
+            RemoteViews remoteViews,
+            Integer forecast_1_widget_day_layout,
+            int forecast_1_widget_icon,
+            int forecast_1_widget_day,
+            int forecast_1_widget_temperatures,
+            Integer forecast_2_widget_day_layout,
+            int forecast_2_widget_icon,
+            int forecast_2_widget_day,
+            int forecast_2_widget_temperatures,
+            Integer forecast_3_widget_day_layout,
+            int forecast_3_widget_icon,
+            int forecast_3_widget_day,
+            int forecast_3_widget_temperatures,
+            Integer forecast_4_widget_day_layout,
+            int forecast_4_widget_icon,
+            int forecast_4_widget_day,
+            int forecast_4_widget_temperatures,
+            Integer forecast_5_widget_day_layout,
+            int forecast_5_widget_icon,
+            int forecast_5_widget_day,
+            int forecast_5_widget_temperatures) {
+
+        int hourCounter = 0;
+        for (DetailedWeatherForecast detailedWeatherForecast: weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
+            switch (++hourCounter) {
+                case 1:
+                    setForecastHourInfo(
+                            context,
+                            hourCounter,
+                            hoursCount,
+                            remoteViews,
+                            forecast_1_widget_day_layout,
+                            forecast_1_widget_icon,
+                            detailedWeatherForecast.getFirstWeatherCondition().getWeatherId(),
+                            forecast_1_widget_day,
+                            forecast_1_widget_temperatures,
+                            detailedWeatherForecast.getFirstWeatherCondition().getIcon(),
+                            detailedWeatherForecast.getDateTime(),
+                            detailedWeatherForecast.getTemperatureMax(),
+                            detailedWeatherForecast.getTemperatureMin(),
+                            detailedWeatherForecast.getWindSpeed(),
+                            location);
+                    break;
+                case 2:
+                    setForecastHourInfo(
+                            context,
+                            hourCounter,
+                            hoursCount,
+                            remoteViews,
+                            forecast_2_widget_day_layout,
+                            forecast_2_widget_icon,
+                            detailedWeatherForecast.getFirstWeatherCondition().getWeatherId(),
+                            forecast_2_widget_day,
+                            forecast_2_widget_temperatures,
+                            detailedWeatherForecast.getFirstWeatherCondition().getIcon(),
+                            detailedWeatherForecast.getDateTime(),
+                            detailedWeatherForecast.getTemperatureMax(),
+                            detailedWeatherForecast.getTemperatureMin(),
+                            detailedWeatherForecast.getWindSpeed(),
+                            location);
+                    break;
+                case 3:
+                    setForecastHourInfo(
+                            context,
+                            hourCounter,
+                            hoursCount,
+                            remoteViews,
+                            forecast_3_widget_day_layout,
+                            forecast_3_widget_icon,
+                            detailedWeatherForecast.getFirstWeatherCondition().getWeatherId(),
+                            forecast_3_widget_day,
+                            forecast_3_widget_temperatures,
+                            detailedWeatherForecast.getFirstWeatherCondition().getIcon(),
+                            detailedWeatherForecast.getDateTime(),
+                            detailedWeatherForecast.getTemperatureMax(),
+                            detailedWeatherForecast.getTemperatureMin(),
+                            detailedWeatherForecast.getWindSpeed(),
+                            location);
+                    break;
+                case 4:
+                    setForecastHourInfo(
+                            context,
+                            hourCounter,
+                            hoursCount,
+                            remoteViews,
+                            forecast_4_widget_day_layout,
+                            forecast_4_widget_icon,
+                            detailedWeatherForecast.getFirstWeatherCondition().getWeatherId(),
+                            forecast_4_widget_day,
+                            forecast_4_widget_temperatures,
+                            detailedWeatherForecast.getFirstWeatherCondition().getIcon(),
+                            detailedWeatherForecast.getDateTime(),
+                            detailedWeatherForecast.getTemperatureMax(),
+                            detailedWeatherForecast.getTemperatureMin(),
+                            detailedWeatherForecast.getWindSpeed(),
+                            location);
+                    break;
+                case 5:
+                    setForecastHourInfo(
+                            context,
+                            hourCounter,
+                            hoursCount,
+                            remoteViews,
+                            forecast_5_widget_day_layout,
+                            forecast_5_widget_icon,
+                            detailedWeatherForecast.getFirstWeatherCondition().getWeatherId(),
+                            forecast_5_widget_day,
+                            forecast_5_widget_temperatures,
+                            detailedWeatherForecast.getFirstWeatherCondition().getIcon(),
+                            detailedWeatherForecast.getDateTime(),
+                            detailedWeatherForecast.getTemperatureMax(),
+                            detailedWeatherForecast.getTemperatureMin(),
+                            detailedWeatherForecast.getWindSpeed(),
+                            location);
+                    break;
+            }
+        }
+        return weatherForecastRecord;
+    }
+
+    private static void setForecastHourInfo(
+            Context context,
+            int dayCounter,
+            long daysCount,
+            RemoteViews remoteViews,
+            Integer dayViewId,
+            int forecastIconId,
+            int weatherIdForTheDay,
+            int weatherIdForDayName,
+            int weatherIdForTemperatures,
+            String iconId,
+            long forecastTime,
+            double maxTemp,
+            double minTemp,
+            double maxWind,
+            Location location) {
+
+        if (dayViewId != null) {
+            if (dayCounter > daysCount) {
+                remoteViews.setViewVisibility(dayViewId, View.GONE);
+                return;
+            } else {
+                remoteViews.setViewVisibility(dayViewId, View.VISIBLE);
+            }
+        }
+
+        Calendar forecastCalendar = Calendar.getInstance();
+        forecastCalendar.setTimeInMillis(forecastTime * 1000);
+        Utils.setForecastIcon(
+                remoteViews,
+                context,
+                forecastIconId,
+                weatherIdForTheDay,
+                iconId,
+                maxTemp,
+                maxWind);
+        remoteViews.setTextViewText(
+                weatherIdForDayName,
+                AppPreference.getLocalizedHour(context, forecastCalendar.getTime(), location.getLocale()));
+        remoteViews.setTextViewText(
+                weatherIdForTemperatures,
+                Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
     }
 
     private static void setForecastDayInfo(

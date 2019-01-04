@@ -10,6 +10,9 @@
         <item>@string/forecast_number_of_days_hours_3_days</item>
         <item>@string/forecast_number_of_days_hours_4_days</item>
         <item>@string/forecast_number_of_days_hours_5_days</item>
+        <item>@string/forecast_number_of_days_hours_3_hours</item>
+        <item>@string/forecast_number_of_days_hours_4_hours</item>
+        <item>@string/forecast_number_of_days_hours_5_hours</item>
     </string-array>
     <string-array name="pref_time_style_entries" translatable="false">
         <item>@string/time_style_system</item>

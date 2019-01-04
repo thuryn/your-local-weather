@@ -298,11 +298,35 @@ public class WidgetSettingsDialogue extends Activity {
         Spinner numberOfDaysSpinner = forecastSettingView.findViewById(R.id.widget_setting_forecast_number_of_days_hours);
         int predefinedSelection = 0;
         Long storedDays = widgetSettingsDbHelper.getParamLong(widgetId, "forecastDaysCount");
+        Boolean hoursForecast = widgetSettingsDbHelper.getParamBoolean(widgetId, "hoursForecast");
+        if (hoursForecast == null) {
+            hoursForecast = false;
+        }
         if (storedDays != null) {
-            switch (storedDays.intValue()) {
-                case 3: predefinedSelection = 0;break;
-                case 4: predefinedSelection = 1;break;
-                case 5: predefinedSelection = 2;break;
+            if (hoursForecast) {
+                switch (storedDays.intValue()) {
+                    case 3:
+                        predefinedSelection = 3;
+                        break;
+                    case 4:
+                        predefinedSelection = 4;
+                        break;
+                    case 5:
+                        predefinedSelection = 5;
+                        break;
+                }
+            } else {
+                switch (storedDays.intValue()) {
+                    case 3:
+                        predefinedSelection = 0;
+                        break;
+                    case 4:
+                        predefinedSelection = 1;
+                        break;
+                    case 5:
+                        predefinedSelection = 2;
+                        break;
+                }
             }
         } else {
             storedDays = 5l;
@@ -321,6 +345,7 @@ public class WidgetSettingsDialogue extends Activity {
                     public void onClick(DialogInterface dialog, int id) {
                         widgetSettingsDbHelper.saveParamBoolean(widgetId, "forecast_day_abbrev", dayNameSwitchListener.isChecked());
                         widgetSettingsDbHelper.saveParamLong(widgetId, "forecastDaysCount", numberOfDaysListener.getNumberOfDays());
+                        widgetSettingsDbHelper.saveParamBoolean(widgetId, "hoursForecast", numberOfDaysListener.isHoursForecast());
                         Intent intent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_SETTINGS);
                         intent.setPackage("org.thosp.yourlocalweather");
                         intent.putExtra("widgetId", widgetId);
@@ -417,6 +442,7 @@ public class WidgetSettingsDialogue extends Activity {
     public class NumberOfDaysListener implements AdapterView.OnItemSelectedListener {
 
         private long numberOfDays;
+        private boolean hoursForecast;
 
         public NumberOfDaysListener(long initialValue) {
             numberOfDays = initialValue;
@@ -425,15 +451,22 @@ public class WidgetSettingsDialogue extends Activity {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
             switch (position) {
-                case 0: numberOfDays = 3;break;
-                case 1: numberOfDays = 4;break;
-                case 2: numberOfDays = 5;break;
+                case 0: numberOfDays = 3; hoursForecast = false; break;
+                case 1: numberOfDays = 4; hoursForecast = false; break;
+                case 2: numberOfDays = 5; hoursForecast = false; break;
+                case 3: numberOfDays = 3; hoursForecast = true; break;
+                case 4: numberOfDays = 4; hoursForecast = true; break;
+                case 5: numberOfDays = 5; hoursForecast = true; break;
             }
         }
 
         @Override
         public void onNothingSelected(AdapterView<?> parent) {
 
+        }
+
+        public boolean isHoursForecast() {
+            return hoursForecast;
         }
 
         public long getNumberOfDays() {

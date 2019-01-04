@@ -383,6 +383,9 @@
     <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 dny</string>
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 dny</string>
     <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 dní</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (3 hodinový interval)</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (3 hodinový interval)</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (3 hodinový interval)</string>
 
     <string name="update_period_regular_only" tools:ignore="MissingTranslation">S pravidelnou aktualizací</string>
     <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Vzhled upozornění</string>
