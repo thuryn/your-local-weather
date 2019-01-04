@@ -459,4 +459,12 @@
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 dager</string>
     <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 dager</string>
     <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Antall dager i værmeldingen</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">Grafsynlighetsinnstillinger</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">Grafkombinasjonsinnstillinger</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Grafer å vise</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Data for kombinert graf</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Ved regelmessige oppdateringer</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Egendefinert med værmelding</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Visuell merknadsstil</string>
+    <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Plasseringsinnstilling</string>
 </resources>
