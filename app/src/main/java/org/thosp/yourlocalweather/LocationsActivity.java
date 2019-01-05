@@ -153,6 +153,10 @@ public class LocationsActivity extends BaseActivity {
                 reconciliationService);
     }
 
+    @Override
+    protected void updateUI() {
+    }
+
     public class LocationHolder extends RecyclerView.ViewHolder {
 
         private Location location;

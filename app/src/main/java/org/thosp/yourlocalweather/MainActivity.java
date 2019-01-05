@@ -80,7 +80,6 @@ public class MainActivity extends BaseActivity
 
     private static final String TAG = "MainActivity";
 
-    private TextView localityView;
     private ImageView mIconWeatherView;
     private TextView mTemperatureView;
     private TextView secondTemperatureView;
@@ -112,7 +111,6 @@ public class MainActivity extends BaseActivity
     private Messenger currentWeatherService;
     private Lock currentWeatherServiceLock = new ReentrantLock();
     private Queue<Message> currentWeatherUnsentMessages = new LinkedList<>();
-    private PowerManager powerManager;
 
     private WindWithUnit windWithUnit;
     private String iconSecondTemperature;
@@ -127,7 +125,6 @@ public class MainActivity extends BaseActivity
     private static final int REQUEST_LOCATION = 0;
     public Context storedContext;
     private Handler refreshDialogHandler;
-    private Location currentLocation;
         
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -143,7 +140,6 @@ public class MainActivity extends BaseActivity
         initializeWeatherReceiver();
 
         connectionDetector = new ConnectionDetector(MainActivity.this);
-        powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
         setTitle( R.string.label_activity_main);
 
         /**
@@ -161,6 +157,7 @@ public class MainActivity extends BaseActivity
                 null,
                 WeatherForecastActivity.class, this));
 
+        updateUI();
         /**
          * Share weather fab
          */
@@ -217,7 +214,7 @@ public class MainActivity extends BaseActivity
         super.onResume();
         updateCurrentLocationAndButtonVisibility();
         checkSettingsAndPermisions();
-        preLoadWeather();
+        updateUI();
         mAppBarLayout.addOnOffsetChangedListener(this);
         registerReceiver(mWeatherUpdateReceiver,
                 new IntentFilter(
@@ -293,24 +290,6 @@ public class MainActivity extends BaseActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public void switchLocation(View arg0) {
-        int newLocationOrderId = 1 + currentLocation.getOrderId();
-        currentLocation = locationsDbHelper.getLocationByOrderId(newLocationOrderId);
-
-        if (currentLocation == null) {
-            newLocationOrderId = 0;
-            currentLocation = locationsDbHelper.getLocationByOrderId(newLocationOrderId);
-            if ((currentLocation.getOrderId() == 0) && !currentLocation.isEnabled() && (locationsDbHelper.getAllRows().size() > 1)) {
-                newLocationOrderId++;
-                currentLocation = locationsDbHelper.getLocationByOrderId(newLocationOrderId);
-            }
-        }
-
-        AppPreference.setCurrentLocationId(this, currentLocation.getId());
-        localityView.setText(Utils.getCityAndCountry(this, newLocationOrderId));
-        preLoadWeather();
-    }
-
     private SwipeRefreshLayout.OnRefreshListener swipeRefreshListener =
             new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
@@ -355,11 +334,12 @@ public class MainActivity extends BaseActivity
         localityView.setText(Utils.getCityAndCountry(this, currentLocation.getOrderId()));
     }
 
-    private void preLoadWeather() {
+    protected void updateUI() {
+        long locationId = AppPreference.getCurrentLocationId(this);
+        currentLocation = locationsDbHelper.getLocationById(locationId);
         if (currentLocation == null) {
             return;
         }
-        currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
 
         CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
@@ -396,7 +376,6 @@ public class MainActivity extends BaseActivity
 
         Weather weather = weatherRecord.getWeather();
 
-        currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
         String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, weatherForecastRecord, currentLocation);
         windWithUnit = AppPreference.getWindWithUnit(this,
                                                      weather.getWindSpeed(),
@@ -552,7 +531,7 @@ public class MainActivity extends BaseActivity
                         mSwipeRefresh.setRefreshing(false);
                         setUpdateButtonState(false);
 
-                        preLoadWeather();
+                        updateUI();
                         break;
                     case CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL:
                         mSwipeRefresh.setRefreshing(false);

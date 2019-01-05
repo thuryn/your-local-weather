@@ -13,12 +13,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import org.thosp.yourlocalweather.adapter.WeatherForecastAdapter;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.ForecastWeatherService;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
+import org.thosp.yourlocalweather.utils.Utils;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -41,6 +43,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
 
         mRecyclerView = (RecyclerView) findViewById(R.id.forecast_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        localityView = (TextView) findViewById(R.id.forecast_locality);
         visibleColumns = AppPreference.getForecastActivityColumns(this);
         connectionDetector = new ConnectionDetector(WeatherForecastActivity.this);
         updateUI();
@@ -54,7 +57,10 @@ public class WeatherForecastActivity extends ForecastingActivity {
     protected void updateUI() {
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
         long locationId = AppPreference.getCurrentLocationId(this);
-        location = locationsDbHelper.getLocationById(locationId);
+        currentLocation = locationsDbHelper.getLocationById(locationId);
+        if (currentLocation == null) {
+            return;
+        }
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
         if (weatherForecastRecord != null) {
             weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
@@ -74,10 +80,11 @@ public class WeatherForecastActivity extends ForecastingActivity {
         }
         WeatherForecastAdapter adapter = new WeatherForecastAdapter(this,
                                                                     weatherForecastList.get(locationId),
-                                                                    location.getLatitude(),
-                                                                    location.getLocale(),
+                                                                    currentLocation.getLatitude(),
+                                                                    currentLocation.getLocale(),
                                                                     visibleColumns);
         mRecyclerView.setAdapter(adapter);
+        localityView.setText(Utils.getCityAndCountry(this, currentLocation.getOrderId()));
     }
 
     @Override

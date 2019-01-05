@@ -31,7 +31,6 @@ public abstract class ForecastingActivity extends BaseActivity {
     protected ConnectionDetector connectionDetector;
     private ProgressDialog mGetWeatherProgress;
     private Handler mHandler;
-    protected Location location;
     protected BroadcastReceiver mWeatherUpdateReceiver;
 
     @Override
@@ -91,13 +90,13 @@ public abstract class ForecastingActivity extends BaseActivity {
     }
 
     protected void updateWeatherForecastFromNetwork(String updateSource, Context context) {
-        if (location == null) {
+        if (currentLocation == null) {
             return;
         }
         boolean isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
         if (isNetworkAvailable) {
             setVisibleUpdating(true);
-            sendMessageToWeatherForecastService(location.getId(), updateSource);
+            sendMessageToWeatherForecastService(currentLocation.getId(), updateSource);
         } else {
             Toast.makeText(this,
                     R.string.connection_not_found,

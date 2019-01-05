@@ -149,6 +149,13 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             String widgetIdTxt = params[1];
             widgetId = Integer.parseInt(widgetIdTxt);
             openWidgetSettings(context, widgetId, params[2]);
+        } else if (intent.getAction().startsWith(Constants.ACTION_APPWIDGET_START_ACTIVITY)) {
+            AppPreference.setCurrentLocationId(context, widgetSettingsDbHelper.getParamLong(widgetId, "locationId"));
+            Long widgetActionId = intent.getLongExtra("widgetAction", 1);
+            Class activityClass = WidgetActions.getById(widgetActionId, "action_current_weather_icon").getActivityClass();
+            Intent activityIntent = new Intent(context, activityClass);
+            activityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            context.startActivity(activityIntent);
         }
     }
 
@@ -339,12 +346,12 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     private static PendingIntent getActionIntent(Context context, WidgetActions widgetAction, Class widgetClass, int widgetId) {
         switch (widgetAction) {
-            case FORECAST_SCREEN: return getActivityIntent(context, WeatherForecastActivity.class);
-            case GRAPHS_SCREEN: return getActivityIntent(context, GraphsActivity.class);
             case LOCATION_SWITCH: return getSwitchLocationIntent(context, widgetClass, widgetId);
             case MAIN_SCREEN:
+            case FORECAST_SCREEN:
+            case GRAPHS_SCREEN:
             default:
-                return getActivityIntent(context, MainActivity.class);
+                return getActivityIntent(context, widgetClass, widgetId, widgetAction);
         }
     }
 
@@ -357,9 +364,17 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         return pendingIntent;
     }
 
-    private static PendingIntent getActivityIntent(Context context, Class activityClass) {
-        Intent activityIntent = new Intent(context, activityClass);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0,
+    private static PendingIntent getActivityIntent(
+            Context context,
+            Class widgetClass,
+            int widgetId,
+            WidgetActions widgetAction) {
+        Intent activityIntent = new Intent(context, widgetClass);
+        Long widgetActionId = widgetAction.getId();
+        activityIntent.setAction(Constants.ACTION_APPWIDGET_START_ACTIVITY + widgetActionId);
+        activityIntent.putExtra("widgetId", widgetId);
+        activityIntent.putExtra("widgetAction", widgetActionId);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
                 activityIntent, 0);
         return pendingIntent;
     }

@@ -118,6 +118,7 @@
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_START_ACTIVITY"/>
             </intent-filter>
 
             <meta-data
@@ -133,6 +134,7 @@
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_START_ACTIVITY"/>
             </intent-filter>
 
             <meta-data
@@ -148,6 +150,7 @@
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_START_ACTIVITY"/>
             </intent-filter>
 
             <meta-data
@@ -163,6 +166,7 @@
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_START_ACTIVITY"/>
             </intent-filter>
 
             <meta-data
@@ -178,6 +182,7 @@
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_START_ACTIVITY"/>
             </intent-filter>
 
             <meta-data
@@ -194,6 +199,7 @@
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_START_ACTIVITY"/>
             </intent-filter>
 
             <meta-data
@@ -210,6 +216,7 @@
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
                 <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_START_ACTIVITY"/>
             </intent-filter>
 
             <meta-data

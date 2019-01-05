@@ -40,6 +40,7 @@ import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.RainSnowYAxisValueFormatter;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
+import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.XAxisValueFormatter;
 import org.thosp.yourlocalweather.utils.YAxisValueFormatter;
 
@@ -81,6 +82,7 @@ public class GraphsActivity extends ForecastingActivity {
         super.onCreate(savedInstanceState);
         initializeWeatherForecastReceiver(ForecastWeatherService.ACTION_GRAPHS_UPDATE_RESULT);
         setContentView(R.layout.activity_graphs);
+        localityView = (TextView) findViewById(R.id.graph_locality);
         combinedChart = (CombinedChart) findViewById(R.id.combined_chart);
         combinedChartCard = (CardView) findViewById(R.id.combined_chart_card);
         mTemperatureChart = (LineChart) findViewById(R.id.temperature_chart);
@@ -117,7 +119,7 @@ public class GraphsActivity extends ForecastingActivity {
         combinedGraphValues = AppPreference.getCombinedGraphValues(this);
 
         updateUI();
-        ScrollView mRecyclerView = (ScrollView) findViewById(R.id.graph_scroll_view);
+        android.support.v4.widget.NestedScrollView mRecyclerView = (android.support.v4.widget.NestedScrollView) findViewById(R.id.graph_scroll_view);
         mRecyclerView.setOnTouchListener(new ActivityTransitionTouchListener(
                 WeatherForecastActivity.class,
                 null, this));
@@ -946,9 +948,12 @@ public class GraphsActivity extends ForecastingActivity {
     protected void updateUI() {
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
         long locationId = AppPreference.getCurrentLocationId(this);
-        location = locationsDbHelper.getLocationById(locationId);
-        mValueFormatter = new CustomValueFormatter(location.getLocale());
-        rainSnowYAxisValueFormatter = new RainSnowYAxisValueFormatter(this, location.getLocale());
+        currentLocation = locationsDbHelper.getLocationById(locationId);
+        if (currentLocation == null) {
+            return;
+        }
+        mValueFormatter = new CustomValueFormatter(currentLocation.getLocale());
+        rainSnowYAxisValueFormatter = new RainSnowYAxisValueFormatter(this, currentLocation.getLocale());
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
         if (weatherForecastRecord != null) {
             weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
@@ -987,7 +992,7 @@ public class GraphsActivity extends ForecastingActivity {
         }
         if (combinedGraphValues.contains(1)) {
             combinedGraphLabel.append(", ");
-            combinedGraphLabel.append(GraphUtils.getRainSnowLabelForCombinedGraph(this, location.getLocale()));
+            combinedGraphLabel.append(GraphUtils.getRainSnowLabelForCombinedGraph(this, currentLocation.getLocale()));
         }
         if (combinedGraphValues.contains(2)) {
             combinedGraphLabel.append(", ");
@@ -1005,13 +1010,14 @@ public class GraphsActivity extends ForecastingActivity {
         }
         combinedLabel.setText(combinedGraphLabel.toString());
 
-        setCombinedChart(locationId, location.getLocale());
-        setTemperatureChart(locationId, location.getLocale());
-        setWindChart(locationId, location.getLocale());
-        setRainChart(locationId, location.getLocale());
-        setRainBarChart(locationId, location.getLocale());
-        setSnowChart(locationId, location.getLocale());
-        setSnowBarChart(locationId, location.getLocale());
-        setPressureChart(locationId, location.getLocale());
+        setCombinedChart(locationId, currentLocation.getLocale());
+        setTemperatureChart(locationId, currentLocation.getLocale());
+        setWindChart(locationId, currentLocation.getLocale());
+        setRainChart(locationId, currentLocation.getLocale());
+        setRainBarChart(locationId, currentLocation.getLocale());
+        setSnowChart(locationId, currentLocation.getLocale());
+        setSnowBarChart(locationId, currentLocation.getLocale());
+        setPressureChart(locationId, currentLocation.getLocale());
+        localityView.setText(Utils.getCityAndCountry(this, currentLocation.getOrderId()));
     }
 }

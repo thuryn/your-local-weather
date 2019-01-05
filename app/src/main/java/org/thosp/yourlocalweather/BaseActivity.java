@@ -29,13 +29,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thosp.yourlocalweather.help.HelpActivity;
+import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.service.ForecastWeatherService;
 import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
+import org.thosp.yourlocalweather.utils.Utils;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -44,7 +47,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     private final String TAG = "BaseActivity";
 
@@ -56,6 +59,8 @@ public class BaseActivity extends AppCompatActivity {
     private Messenger weatherForecastService;
     private Lock weatherForecastServiceLock = new ReentrantLock();
     private Queue<Message> weatherForecastUnsentMessages = new LinkedList<>();
+    protected Location currentLocation;
+    protected TextView localityView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -88,6 +93,26 @@ public class BaseActivity extends AppCompatActivity {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(LanguageUtil.setLanguage(base, PreferenceUtil.getLanguage(base)));
     }
+
+    public void switchLocation(View arg0) {
+        int newLocationOrderId = 1 + currentLocation.getOrderId();
+        currentLocation = locationsDbHelper.getLocationByOrderId(newLocationOrderId);
+
+        if (currentLocation == null) {
+            newLocationOrderId = 0;
+            currentLocation = locationsDbHelper.getLocationByOrderId(newLocationOrderId);
+            if ((currentLocation.getOrderId() == 0) && !currentLocation.isEnabled() && (locationsDbHelper.getAllRows().size() > 1)) {
+                newLocationOrderId++;
+                currentLocation = locationsDbHelper.getLocationByOrderId(newLocationOrderId);
+            }
+        }
+
+        AppPreference.setCurrentLocationId(this, currentLocation.getId());
+        localityView.setText(Utils.getCityAndCountry(this, newLocationOrderId));
+        updateUI();
+    }
+
+    protected abstract void updateUI();
 
     private void setupNavDrawer() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

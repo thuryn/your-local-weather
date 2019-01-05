@@ -4,12 +4,23 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
+import org.thosp.yourlocalweather.GraphsActivity;
 import org.thosp.yourlocalweather.MainActivity;
+import org.thosp.yourlocalweather.WeatherForecastActivity;
 
 public enum WidgetActions {
-    MAIN_SCREEN(1), FORECAST_SCREEN(2), GRAPHS_SCREEN(3), LOCATION_SWITCH(4);
+    MAIN_SCREEN(1, MainActivity.class),
+    FORECAST_SCREEN(2, WeatherForecastActivity.class),
+    GRAPHS_SCREEN(3, GraphsActivity.class),
+    LOCATION_SWITCH(4);
 
     private long id;
+    private Class activityClass;
+
+    WidgetActions(long id, Class activityClass) {
+        this.activityClass = activityClass;
+        this.id = id;
+    }
 
     WidgetActions(long id) {
         this.id = id;
@@ -21,6 +32,10 @@ public enum WidgetActions {
 
     public int getComboSelection() {
         return (int) (id - 1);
+    }
+
+    public Class getActivityClass() {
+        return activityClass;
     }
 
     public static WidgetActions getByComboSelection(int selection) {

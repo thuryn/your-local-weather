@@ -173,6 +173,10 @@ public class SearchActivity extends BaseActivity {
         map.onResume();
     }
 
+    @Override
+    protected void updateUI() {
+    }
+
     public void onPause(){
         super.onPause();
         if (mProgressDialog != null) {

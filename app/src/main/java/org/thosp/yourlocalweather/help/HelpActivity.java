@@ -12,4 +12,8 @@ public class HelpActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_help);
 	}
+
+	@Override
+	protected void updateUI() {
+	}
 }
