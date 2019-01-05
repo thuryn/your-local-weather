@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="enter_city_hint">Entrer la ville</string>
     <string name="label_current_city">Ville actuelle</string>
@@ -48,7 +48,7 @@
     <string name="title_activity_settings">Réglages</string>
     <string name="pref_title_temperature">Température</string>
     <string name="preference_hide_desc">Cacher la description météo</string>
-    <string name="pref_title_category_notification">Notifications</string>
+    <string name="pref_title_category_notification">Paramètres de notification</string>
     <string name="pref_title_notification">Activer les notifications</string>
     <string name="pref_title_notification_refresh_interval">Intervalle d\'actualisation</string>
     <string name="update_period_15min">15 minutes</string>
@@ -179,7 +179,7 @@
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">À côté du bouton de mise à jour de la localisation se trouve le bouton de gestion de la localisation (l\'icône en forme de loupe). Vous pouvez gérer les emplacements dans l\'appli et les widgets. Il y a un emplacement (la localisation 0) disponible par défaut — elle est conçue pour les mises à jour automatiques. Vous pouvez trouver le bouton d\'activation et de désactivation en déplaçant cette localisation vers la gauche. Vous pouvez aussi ajouter un emplacement manuellement. Lorsque vous cliquez sur le bouton + vous pouvez choisir votre localisation sur une carte. Vous pouvez aussi supprimer la localisation avec le bouton Supprimer — qui est accessible en déplaçant la localisation vers la gauche.</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Vous pouvez trouver les prévisions météos sur l\'écran suivant (sélectionnez l\'écran suivant dans le menu ou glissez un doigts de la gauche vers la droite). Les prévisions sont mises à jour par le bouton de mise à jour où lorsque vous accéder à cet écran (mais pas plus d\'une fois par heure).</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">L\'appli a trois widgets disponibles, contenant certaines valeurs communes de la météo actuelle (par exemple la température). Certaines valeurs sont uniques au widget spécifié (par exemple l\'heure du coucher de soleil). L\'heure de dernière mise à jour se trouve dans le coin à droite de chaque widget. Vous pouvez voir ce qui a été mise à jour la dernière fois (lorsque vous avez activé cette option dans le menu des paramètres). Vous pouvez trouver le bouton de mise à jour à côté de l\'heure de dernière mise à jour. Lorsque vous appuyez sur ce bouton, la météo (et la localisation lorsque vous avez sélectionné l\'option de mise à jour de la localisation) est mise à jour sans délai. La dernière option dans les widgets est le changement de localisation — lorsque vous appuyez sur l\'emplacement actuel, il passe à l\'emplacement suivant.</string>
-    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Période de mise à jour de la localisation (Localisation 0)</b> — vous pouvez sélectionner une période de mise à jour de la localisation 0 — elle a la possibilité d\'être mise à jour à partir du réseau cellulaire, du Wi-Fi et du GPS. Lorsque vous sélectionnez l\'option de mise à jour <i>Par accéléromètre</i> l\'application utilise l\'accéléromètre pour détecter le mouvement. Lorsqu\'un mouvement est détecté l\'application mesure la distance. Lorsque la limite de distance est atteinte et que la dernière mise à jour a eu lieu il y a plus de 15 minutes, l\'application met à jour la localisation et la météo actuelle. Lorsque l\'application n\'arrive pas à récupérer la localisation vous pouvez voir l\'étiquette d\'emplacement inconnu sur le widget. Lorsque l\'application ne connaît pas sa localisation, elle essaye de mettre à jour sa localisation toutes les 5 minutes. Vous pouvez aussi sélectionner la mise à jour de la localisation à intervalle régulier. Avec l\'option <b>Période de mise à jour de la météo (Localisation 1, 2, 3, …)</b> vous pouvez paramétrer la mise à jour de la météo pour les emplacement choisis manuellement.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Période de mise à jour de la localisation (Localisation 0)</b> — vous pouvez sélectionner une période de mise à jour de la localisation 0 — elle a la possibilité d\'être mise à jour à partir du réseau cellulaire, du Wi-Fi et du GPS. Lorsque vous sélectionnez l\'option de mise à jour <i>Par accéléromètre</i> l\'application l\'utilise pour détecter le mouvement. L\'application mesure la distance. Lorsque la limite de distance est atteinte et qu\'il n\'y a pas eu de mise à jour dans les 15 dernières minutes, l\'application met à jour l\'emplacement et la météo actuelle. Lorsque l\'application n\'arrive pas à récupérer la localisation vous pouvez voir l\'étiquette d\'emplacement inconnu sur le widget. Lorsque l\'application ne connaît pas sa localisation, elle essaye de la mettre à jour toutes les 5 minutes. Vous pouvez aussi sélectionner la mise à jour de la localisation à intervalle régulier avec l\'option <b>Période de mise à jour de la météo (Localisation 1, 2, 3, …)</b> vous pouvez paramétrer la mise à jour de la météo pour les emplacement choisis manuellement.</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Lorsque vous activez l\'option <b>Activer le GPS lorsque c\'est nécessaire</b>, l\'application essayera de trouver sa localisation par les réseau cellulaires et wifi. Si la localisation est introuvable par ces méthode, elle activera le GPS pour quelques secondes pour récupérer la localisation.</string>
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Localisation et source d\'adresse</b>
 \nVous pouvez sélectionner le moyen de récupération de la localisation et de l\'adresse.</string>
@@ -320,7 +320,7 @@
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Icônes Merlin le rouge</string>
 <string name="help_page_3_content" tools:ignore="MissingTranslation">Ces options influencent toute l\'application.</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Optimisation de la batterie</string>
-    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">L\'application exécute des processus en arrière-plan pour effectuer des mises à jour de l\'emplacement, de la météo ou pour suivre l\'emplacement par accéléromètre. Par conséquent, l\'application va vous demander de désactiver l\'optimisation de la batterie pour exécuter les processus en arrière-plan.</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">L\'application vous demandera de désactiver l\'optimisation de la batterie pour effectuer des mises à jour de l\'emplacement, de la météo ou pour suivre l\'emplacement par accéléromètre.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Continuer</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Annuler</string>
     <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Direction du vent</string>
@@ -341,4 +341,53 @@
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Désactivées</string>
     <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abrév N, NE, …</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Degrés à partir du Nord</string>
-    </resources>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Partager la météo</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Appli de communication introuvable</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Ville : %1$s
+\nTempérature : %2$s
+\nDescription : %3$s
+\nVent %4$s %5$s
+\nLevé du soleil : %6$s
+\nCouché du soleil : %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Votre météo locale</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Notifications de votre météo locale</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Température</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Vent</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Pluie</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Neige</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Pression</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">Paramètres des graphes visibles</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">Paramètre des graphes combinés</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Combiné</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Température</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Vent</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Pluie</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Pluie (bar)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Neige</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Neige (bar)</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Pression</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Température</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Vent</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Pluie / Neige</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Pression</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Graphes à afficher</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Données pour le graphe combiné</string>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">Format de date</string>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">jj.mm.(aa)</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/jj(/aa)</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">jj/mm(/aa)</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 jours</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 jours</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 jours</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Licenses libres</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Quelle régularité de mise à jour</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Présence de la notification</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">À la mise à jour</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">En permanence</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">Sur l\'écran de verrouillage</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">Icône de soleil</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">Température</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">Invisible</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Classique</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Personnalisé avec prévision</string>
+</resources>
