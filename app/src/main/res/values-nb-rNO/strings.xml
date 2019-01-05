@@ -467,4 +467,7 @@
     <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Egendefinert med værmelding</string>
     <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Visuell merknadsstil</string>
     <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Plasseringsinnstilling</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (tretimersintervall)</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (firetimersintervall)</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (tretimersintervall)</string>
 </resources>
