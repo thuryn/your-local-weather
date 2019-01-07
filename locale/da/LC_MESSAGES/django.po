@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-04 16:32+0100\n"
-"PO-Revision-Date: 2019-01-07 08:25+0000\n"
+"PO-Revision-Date: 2019-01-08 07:36+0000\n"
 "Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/weblate/website/"
 "da/>\n"
@@ -123,10 +123,8 @@ msgid "User management"
 msgstr "Brugerhåndtering"
 
 #: weblate_web/forms.py:47 weblate_web/templates/donate/form.html:25
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation recurrence"
-msgstr "Donationsadresse"
+msgstr "Donationsgentagelse"
 
 #: weblate_web/forms.py:53 weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
@@ -134,11 +132,11 @@ msgstr "Beløb i EUR"
 
 #: weblate_web/models.py:76
 msgid "Link text"
-msgstr ""
+msgstr "Linktekst"
 
 #: weblate_web/models.py:80
 msgid "Link URL"
-msgstr ""
+msgstr "Link-URL"
 
 #: weblate_web/templates/404.html:4
 msgid "Page not found"
@@ -327,16 +325,13 @@ msgstr ""
 "eller blot:"
 
 #: weblate_web/templates/contribute.html:31
-#, fuzzy, python-format
-#| msgid ""
-#| "You can also ask related questions on <a href=\"%(url)s\">Stack Overflow</"
-#| "a>."
+#, python-format
 msgid ""
 "You can find more repositories related to Weblate on <a href=\"%(url)s"
 "\">GitHub</a>"
 msgstr ""
-"Du kan også stille relaterede spørgsmål på <a href=\"%(url)s\">Stack "
-"Overflow</a>."
+"Du kan finde flere softwarekilder med relation til Weblate på <a href=\""
+"%(url)s\">GitHub</a>"
 
 #: weblate_web/templates/contribute.html:37
 msgid ""
@@ -366,7 +361,7 @@ msgstr "Weblate leveres gratis, og donationer er altid velkomne."
 
 #: weblate_web/templates/donate.html:11 weblate_web/templates/donate.html:134
 msgid "Purchase hosting package"
-msgstr ""
+msgstr "Køb hostingpakke"
 
 #: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:135
 #: weblate_web/templates/download.html:13 weblate_web/templates/hosting.html:12
@@ -376,11 +371,11 @@ msgstr "Få support til Weblate"
 
 #: weblate_web/templates/donate.html:19
 msgid "Sign in to manage your donations"
-msgstr ""
+msgstr "Log ind for at håndtere dine donationer"
 
 #: weblate_web/templates/donate.html:21
 msgid "Sign out"
-msgstr ""
+msgstr "Log ud"
 
 #: weblate_web/templates/donate.html:24
 msgid "Your donations"
@@ -432,31 +427,26 @@ msgid "Donations"
 msgstr "Donationer"
 
 #: weblate_web/templates/donate.html:95
-#, fuzzy
-#| msgid ""
-#| "Regular donations allow sustainability of Weblate development and help to "
-#| "fund free hosting for libre software. You don't have to spend big money, "
-#| "every penny counts."
 msgid ""
 "Recurring donations allow sustainability of Weblate development and help to "
 "fund free hosting for libre software. You don't have to spend big money, "
 "every penny counts."
 msgstr ""
-"Regelmæssige donationer bidrager til udviklingen af Weblate og hjælper til "
-"at finansiere gratis hosting af fri software. Du behøver ikke at bruge store "
+"Gentagne donationer bidrager til udviklingen af Weblate og hjælper til at "
+"finansiere gratis hosting af fri software. Du behøver ikke at bruge store "
 "beløb, hver en krone tæller."
 
 #: weblate_web/templates/donate.html:103
-#, fuzzy
-#| msgid "Regular donations"
 msgid "Recurring donation"
-msgstr "Regelmæssig donationer"
+msgstr "Gentagen donation"
 
 #: weblate_web/templates/donate.html:106
 msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable in the long term."
 msgstr ""
+"Gentagen påskønnelse af Weblate-projektet hjælper med at opretholde "
+"projektet på lang sigt."
 
 #: weblate_web/templates/donate.html:107
 msgid ""
@@ -465,10 +455,8 @@ msgid ""
 msgstr ""
 
 #: weblate_web/templates/donate.html:116
-#, fuzzy
-#| msgid "View documentation"
 msgid "One time donation"
-msgstr "Vis dokumentation"
+msgstr "Engangsdonation"
 
 #: weblate_web/templates/donate.html:119
 msgid ""
@@ -526,39 +514,40 @@ msgstr ""
 
 #: weblate_web/templates/donate/form.html:33
 msgid "Select"
-msgstr ""
+msgstr "Vælg"
 
 #: weblate_web/templates/donate/form.html:41
 msgid ""
 "We might refuse to place your link, especially if the site contains adult or "
 "illegal content. Please consult us in advance if unsure."
 msgstr ""
+"Vi afviser måske at placere dit link, specielt hvis stedet indeholder "
+"voksent eller ulovligt indhold. Konsulter os venligst på forhånd hvis du er "
+"i tvivl."
 
 #: weblate_web/templates/donate/form.html:50
 msgid "Choose your own donation amount"
-msgstr ""
+msgstr "Vælg dit eget donationsbeløb"
 
 #: weblate_web/templates/donate/form.html:56
-#, fuzzy
-#| msgid "Contribute"
 msgid "Continue"
-msgstr "Bidrag"
+msgstr "Fortsæt"
 
 #: weblate_web/templates/donate/rewards.html:2
 msgid "Link placement on the weblate.org thanks page"
-msgstr ""
+msgstr "Linkets placering på weblate.orgs takkeside"
 
 #: weblate_web/templates/donate/rewards.html:3
 msgid "Link placement in the list of supporters"
-msgstr ""
+msgstr "Linkets placering i listen over supportere"
 
 #: weblate_web/templates/donate/rewards.html:4
 msgid "Name placement in the list of supporters"
-msgstr ""
+msgstr "Navnets placering i listen over supportere"
 
 #: weblate_web/templates/download-link.html:4
 msgid "PGP signature"
-msgstr ""
+msgstr "PGP-signatur"
 
 #: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
 #: weblate_web/templates/hosting.html:235
@@ -1279,53 +1268,44 @@ msgstr "Gennemse hundredvis af projekt på Hosted Weblate"
 
 #: weblate_web/templates/index.html:114
 msgid "Hosted service"
-msgstr ""
+msgstr "Hostede tjeneste"
 
 #: weblate_web/templates/index.html:118 weblate_web/templates/index.html:132
 #, python-format
 msgid "From %(amount)sEUR/month"
-msgstr ""
+msgstr "Fra %(amount)s EUR/måned"
 
 #: weblate_web/templates/index.html:119
 msgid "Cloud service"
-msgstr ""
+msgstr "Skytjeneste"
 
 #: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
-#, fuzzy
-#| msgid "View hosting plans"
 msgid "Choose hosting plan"
-msgstr "Vis abonnementer for hosting"
+msgstr "Vælg hostingplan"
 
 #: weblate_web/templates/index.html:128
 msgid "On premise"
-msgstr ""
+msgstr "På forudsætning"
 
 #: weblate_web/templates/index.html:133
 msgid "Your infrastructure"
-msgstr ""
+msgstr "Din infrastruktur"
 
 #: weblate_web/templates/index.html:142
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self supported"
-msgstr "Selvhostede"
+msgstr "Selvstøttede"
 
 #: weblate_web/templates/index.html:146
-#, fuzzy
-#| msgid "Weblate features"
 msgid "Weblate is free to use"
-msgstr "Funktioner i Weblate"
+msgstr "Weblate er gratis at bruge"
 
 #: weblate_web/templates/index.html:147
 msgid "Maintained by you"
-msgstr ""
+msgstr "Vedligeholdt af dig"
 
 #: weblate_web/templates/index.html:148
-#, fuzzy
-#| msgid "Phone support"
 msgid "Community support"
-msgstr "Telefonsupport"
+msgstr "Fællesskabssupport"
 
 #: weblate_web/templates/payment/customer.html:5
 #: weblate_web/templates/payment/payment.html:4
@@ -1665,14 +1645,8 @@ msgstr ""
 "sponsorer."
 
 #: weblate_web/templates/thanks.html:50
-#, fuzzy
-#| msgid ""
-#| "Support our project on Bountysource Salt and get exclusive logo placement "
-#| "on this page."
 msgid "Support our project and get link placement on this page."
-msgstr ""
-"Støt vores projekt på Bountysource Salt og få en eksklusiv logoplacering på "
-"denne side."
+msgstr "Støt vores projekt og få linket placeret på siden."
 
 #: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
 msgid "Weblate tour"
@@ -1780,18 +1754,16 @@ msgid "Please provide your billing information to complete the payment."
 msgstr "Angiv venligst din faktureringsinformation for at fuldføre betalingen."
 
 #: weblate_web/views.py:251
-#, fuzzy
-#| msgid "Payments are processed by The Pay service."
 msgid "Payment not yet processed, please retry."
-msgstr "Betalinger behandles af betalingstjenesten."
+msgstr "Betalingen er endnu ikke behandlet, prøv venligst igen."
 
 #: weblate_web/views.py:256
 msgid "The payment was rejected: {}"
-msgstr ""
+msgstr "Betalingen blev afvist: {}"
 
 #: weblate_web/views.py:257
 msgid "Unknown reason"
-msgstr ""
+msgstr "Ukendt årsag"
 
 #: weblate_web/views.py:261
 msgid "Thank you for your donation."
