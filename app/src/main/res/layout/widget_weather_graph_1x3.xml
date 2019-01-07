@@ -50,11 +50,32 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/widget_weather_graph_1x3.info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@id/widget_weather_graph_1x3.settings_layout">
+        <TextView
+            android:id="@+id/widget_weather_graph_1x3.widget_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:lines="2"
+            android:paddingEnd="8dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingStart="8dp"
+            android:textColor="@color/textColorPrimary"
+            android:textSize="@dimen/widget_3x3_text_size"/>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/widget_weather_graph_1x3.forecast_graph"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_below="@id/widget_weather_graph_1x3.settings_layout">
+        android:layout_below="@id/widget_weather_graph_1x3.info">
 
         <ImageView
             android:id="@+id/widget_weather_graph_1x3.widget.combined_chart"

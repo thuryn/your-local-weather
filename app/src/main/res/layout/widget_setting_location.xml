@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/widget_setting_location.root_layout"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -19,4 +20,14 @@
         android:layout_width="fill_parent"
         android:padding="@dimen/cardview_margin"
         android:layout_height="wrap_content"/>
+
+    <Switch
+        android:id="@+id/widget_setting.show_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.AppCompat"
+        android:switchTextAppearance="@style/WidgetOptionSwitch"
+        android:text="@string/widget_setting_location_show_location"
+        android:padding="@dimen/cardview_margin"
+        app:showText="true"/>
 </LinearLayout>

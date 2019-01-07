@@ -66,7 +66,7 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
 
         WeatherGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
         WeatherGraphWidgetProvider.setWidgetIntents(context, remoteViews, WeatherGraphWidgetProvider.class, appWidgetId);
-
+        remoteViews.setTextViewText(R.id.widget_weather_graph_1x3_widget_city, Utils.getCityAndCountry(context, currentLocation.getOrderId()));
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;
         try {
             final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
@@ -91,6 +91,16 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
         int backgroundColorId = AppPreference.getBackgroundColor(context);
         int windowHeaderBackgroundColorId = AppPreference.getWindowHeaderBackgroundColorId(context);
 
+        final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
+        Boolean showLocation = widgetSettingsDbHelper.getParamBoolean(widgetId, "showLocation");
+        if (showLocation == null) {
+            showLocation = false;
+        }
+        if (showLocation) {
+            remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_widget_city, View.VISIBLE);
+        } else {
+            remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_widget_city, View.GONE);
+        }
         remoteViews.setInt(R.id.widget_weather_graph_1x3_widget_root, "setBackgroundColor", backgroundColorId);
 
         appendLog(context, TAG, "setWidgetTheme:end");

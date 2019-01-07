@@ -20,8 +20,7 @@ public class YAxisValueFormatter implements IAxisValueFormatter {
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
-        if ((axis.getLabelCount() <= axis.mEntries.length) &&
-                axis.mEntries[axis.getLabelCount() -1] == value) {
+        if (axis.mEntries[axis.mEntries.length -1] == value) {
             return unit;
         }
         return decimalFormat.format(value);

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/widget_setting_forecast.root_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/windowBackground">
+
+    <Switch
+        android:id="@+id/widget_setting_graph.temperatre_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.AppCompat"
+        android:switchTextAppearance="@style/WidgetOptionSwitch"
+        android:text="@string/forecast_settings_graph_combined_temperature"
+        android:padding="@dimen/cardview_margin"
+        app:showText="true"/>
+    <Switch
+        android:id="@+id/widget_setting_graph.rain_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.AppCompat"
+        android:switchTextAppearance="@style/WidgetOptionSwitch"
+        android:text="@string/forecast_settings_graph_combined_rain_snow"
+        android:padding="@dimen/cardview_margin"
+        app:showText="true"/>
+    <Switch
+        android:id="@+id/widget_setting_graph.wind_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.AppCompat"
+        android:switchTextAppearance="@style/WidgetOptionSwitch"
+        android:text="@string/forecast_settings_graph_combined_wind"
+        android:padding="@dimen/cardview_margin"
+        app:showText="true"/>
+    <Switch
+        android:id="@+id/widget_setting_graph.pressure_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.AppCompat"
+        android:switchTextAppearance="@style/WidgetOptionSwitch"
+        android:text="@string/forecast_settings_graph_combined_pressure"
+        android:padding="@dimen/cardview_margin"
+        app:showText="true"/>
+
+    <Switch
+        android:id="@+id/widget_setting_graph.show_legend"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.AppCompat"
+        android:switchTextAppearance="@style/WidgetOptionSwitch"
+        android:text="@string/forecast_settings_graph_combined_show_legend"
+        android:padding="@dimen/cardview_margin"
+        app:showText="true"/>
+</LinearLayout>

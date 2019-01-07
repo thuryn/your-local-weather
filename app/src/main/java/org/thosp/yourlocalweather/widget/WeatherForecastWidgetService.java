@@ -67,6 +67,8 @@ public class WeatherForecastWidgetService extends IntentService {
             WeatherForecastWidgetProvider.setWidgetTheme(this, remoteViews, appWidgetId);
             WeatherForecastWidgetProvider.setWidgetIntents(this, remoteViews, WeatherForecastWidgetProvider.class, appWidgetId);
 
+            remoteViews.setTextViewText(R.id.widget_weather_forecast_1x3_widget_city, Utils.getCityAndCountry(this, currentLocation.getOrderId()));
+
             try {
                 WidgetUtils.updateWeatherForecast(
                         getBaseContext(),

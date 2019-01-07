@@ -63,6 +63,8 @@ public class WeatherGraphWidgetService extends IntentService {
             WeatherGraphWidgetProvider.setWidgetTheme(this, remoteViews, appWidgetId);
             WeatherGraphWidgetProvider.setWidgetIntents(this, remoteViews, WeatherGraphWidgetProvider.class, appWidgetId);
 
+            remoteViews.setTextViewText(R.id.widget_weather_graph_1x3_widget_city, Utils.getCityAndCountry(this, currentLocation.getOrderId()));
+
             WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;
             try {
                 final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);

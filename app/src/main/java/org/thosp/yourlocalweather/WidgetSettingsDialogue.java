@@ -2,6 +2,8 @@ package org.thosp.yourlocalweather;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.DataSetObserver;
@@ -26,10 +28,13 @@ import org.osmdroid.config.Configuration;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
+import org.thosp.yourlocalweather.settings.GraphValuesSwitchListener;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
+import org.thosp.yourlocalweather.widget.WeatherForecastWidgetProvider;
+import org.thosp.yourlocalweather.widget.WeatherGraphWidgetProvider;
 import org.thosp.yourlocalweather.widget.WidgetActions;
 
 import java.text.SimpleDateFormat;
@@ -43,8 +48,6 @@ import java.util.Set;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class WidgetSettingsDialogue extends Activity {
-
-    private Set<Integer> combinedGraphValues = new HashSet<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -237,12 +240,50 @@ public class WidgetSettingsDialogue extends Activity {
         final LocationsListener locationListener = new LocationsListener(currentLocation.getOrderId());
         numberOfDaysSpinner.setOnItemSelectedListener(locationListener);
 
+        boolean hasLocationToHide = false;
+        AppWidgetManager widgetManager = AppWidgetManager.getInstance(this);
+        ComponentName widgetGraphComponent = new ComponentName(this, WeatherGraphWidgetProvider.class);
+        int[] graphWidgets = widgetManager.getAppWidgetIds(widgetGraphComponent);
+        for (int widgetIdToSearch: graphWidgets) {
+            if (widgetIdToSearch == widgetId) {
+                hasLocationToHide = true;
+                break;
+            }
+        }
+        if (!hasLocationToHide) {
+            ComponentName widgetForecastComponent = new ComponentName(this, WeatherForecastWidgetProvider.class);
+            int[] forecastWidgets = widgetManager.getAppWidgetIds(widgetForecastComponent);
+            for (int widgetIdToSearch: forecastWidgets) {
+                if (widgetIdToSearch == widgetId) {
+                    hasLocationToHide = true;
+                    break;
+                }
+            }
+        }
+        final boolean saveLocationSetting = hasLocationToHide;
+        final Switch showLocationSwitch = forecastSettingView.findViewById(R.id.widget_setting_show_location);
+        Boolean showLocation = widgetSettingsDbHelper.getParamBoolean(widgetId, "showLocation");
+        if (showLocation == null) {
+            showLocation = false;
+        }
+        final GraphValuesSwitchListener showLocationSwitchListener = new GraphValuesSwitchListener(showLocation);
+        if (hasLocationToHide) {
+            showLocationSwitch.setVisibility(View.VISIBLE);
+            showLocationSwitch.setChecked(showLocation);
+            showLocationSwitch.setOnCheckedChangeListener(showLocationSwitchListener);
+        } else {
+            showLocationSwitch.setVisibility(View.GONE);
+        }
+
         builder.setView(forecastSettingView)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         Location location = locationsDbHelper.getLocationByOrderId(locationListener.getLocationOrderId());
                         widgetSettingsDbHelper.saveParamLong(widgetId, "locationId", location.getId());
+                        if (saveLocationSetting) {
+                            widgetSettingsDbHelper.saveParamBoolean(widgetId, "showLocation", showLocationSwitchListener.isChecked());
+                        }
                         GraphUtils.invalidateGraph();
                         Intent intent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_SETTINGS);
                         intent.setPackage("org.thosp.yourlocalweather");
@@ -364,63 +405,73 @@ public class WidgetSettingsDialogue extends Activity {
 
     private void createGraphSettingDialog(final int widgetId) {
         final Set<Integer> mSelectedItems = new HashSet<>();
-
-        combinedGraphValues = GraphUtils.getCombinedGraphValuesFromSettings(this, widgetId);
+        final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(WidgetSettingsDialogue.this);
+        Set<Integer> combinedGraphValues = GraphUtils.getCombinedGraphValuesFromSettings(this, widgetSettingsDbHelper, widgetId);
 
         boolean[] checkedItems = new boolean[4];
         for (Integer visibleColumn: combinedGraphValues) {
             mSelectedItems.add(visibleColumn);
             checkedItems[visibleColumn] = true;
         }
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View forecastSettingView = inflater.inflate(R.layout.widget_setting_graph, null);
+        final Switch temperatureSwitch = forecastSettingView.findViewById(R.id.widget_setting_graph_temperatre_switch);
+        final Switch rainsnowSwitch = forecastSettingView.findViewById(R.id.widget_setting_graph_rain_switch);
+        final Switch windSwitch = forecastSettingView.findViewById(R.id.widget_setting_graph_wind_switch);
+        final Switch pressureSwitch = forecastSettingView.findViewById(R.id.widget_setting_graph_pressure_switch);
+        temperatureSwitch.setChecked(checkedItems[0]);
+        final GraphValuesSwitchListener temperatureSwitchListener = new GraphValuesSwitchListener(checkedItems[0]);
+        temperatureSwitch.setOnCheckedChangeListener(temperatureSwitchListener);
+        rainsnowSwitch.setChecked(checkedItems[1]);
+        final GraphValuesSwitchListener rainsnowSwitchListener = new GraphValuesSwitchListener(checkedItems[1]);
+        rainsnowSwitch.setOnCheckedChangeListener(rainsnowSwitchListener);
+        windSwitch.setChecked(checkedItems[2]);
+        final GraphValuesSwitchListener windSwitchListener = new GraphValuesSwitchListener(checkedItems[2], pressureSwitch);
+        windSwitch.setOnCheckedChangeListener(windSwitchListener);
+        pressureSwitch.setChecked(checkedItems[3]);
+        final GraphValuesSwitchListener pressureSwitchListener = new GraphValuesSwitchListener(checkedItems[3], windSwitch);
+        pressureSwitch.setOnCheckedChangeListener(pressureSwitchListener);
+        if (windSwitch.isChecked()) {
+            pressureSwitch.setEnabled(false);
+        } else if (pressureSwitch.isChecked()) {
+            windSwitch.setEnabled(false);
+        }
+
+        Boolean showLegend = widgetSettingsDbHelper.getParamBoolean(widgetId, "combinedGraphShowLegend");
+        if (showLegend == null) {
+            showLegend = true;
+        }
+        final Switch showLegendSwitch = forecastSettingView.findViewById(R.id.widget_setting_graph_show_legend);
+        showLegendSwitch.setChecked(showLegend);
+        final GraphValuesSwitchListener showLegendSwitchListener = new GraphValuesSwitchListener(showLegend);
+        showLegendSwitch.setOnCheckedChangeListener(showLegendSwitchListener);
+
         builder.setTitle(R.string.forecast_settings_combined_values)
-                .setMultiChoiceItems(R.array.pref_combined_graph_values, checkedItems,
-                        new DialogInterface.OnMultiChoiceClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which,
-                                                boolean isChecked) {
-                                ListView dialogListView = ((AlertDialog) dialog).getListView();
-                                if (isChecked) {
-                                    mSelectedItems.add(which);
-                                    if (which == 2) {
-                                        if (mSelectedItems.contains(3)) {
-                                            mSelectedItems.remove(3);
-                                        }
-                                        dialogListView.getChildAt(3).setEnabled(false);
-                                        dialogListView.getChildAt(3).setClickable(true);
-                                    } else if (which == 3) {
-                                        if (mSelectedItems.contains(2)) {
-                                            mSelectedItems.remove(2);
-                                        }
-                                        dialogListView.getChildAt(2).setEnabled(false);
-                                        dialogListView.getChildAt(2).setClickable(true);
-                                    }
-                                } else if (mSelectedItems.contains(which)) {
-                                    // Else, if the item is already in the array, remove it
-                                    mSelectedItems.remove(Integer.valueOf(which));
-                                    if ((which == 2) || (which == 3)) {
-                                        dialogListView.getChildAt(3).setEnabled(true);
-                                        dialogListView.getChildAt(3).setClickable(false);
-                                        dialogListView.getChildAt(2).setEnabled(true);
-                                        dialogListView.getChildAt(2).setClickable(false);
-                                    }
-                                }
-                            }
-                        })
+                .setView(forecastSettingView)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        combinedGraphValues = new HashSet<>();
-                        for (Integer selectedItem: mSelectedItems) {
-                            combinedGraphValues.add(selectedItem);
-                        }
-                        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(WidgetSettingsDialogue.this);
                         StringBuilder valuesToStore = new StringBuilder();
-                        for (int selectedValue: combinedGraphValues) {
-                            valuesToStore.append(selectedValue);
+                        if (temperatureSwitchListener.isChecked()) {
+                            valuesToStore.append(0);
                             valuesToStore.append(",");
                         }
+                        if (rainsnowSwitchListener.isChecked()) {
+                            valuesToStore.append(1);
+                            valuesToStore.append(",");
+                        }
+                        if (windSwitchListener.isChecked()) {
+                            valuesToStore.append(2);
+                            valuesToStore.append(",");
+                        }
+                        if (pressureSwitchListener.isChecked()) {
+                            valuesToStore.append(3);
+                        }
+
                         widgetSettingsDbHelper.saveParamString(widgetId, "combinedGraphValues", valuesToStore.toString());
+                        widgetSettingsDbHelper.saveParamBoolean(widgetId, "combinedGraphShowLegend", showLegendSwitchListener.isChecked());
                         GraphUtils.invalidateGraph();
                         Intent refreshWidgetIntent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_GRAPH_SCALE);
                         refreshWidgetIntent.setPackage("org.thosp.yourlocalweather");
@@ -429,12 +480,10 @@ public class WidgetSettingsDialogue extends Activity {
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
                     public void onClick(DialogInterface dialog, int id) {
                         finish();
                     }
                 });
-
         AlertDialog dialog = builder.create();
         dialog.show();
     }

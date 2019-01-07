@@ -3,18 +3,21 @@ package org.thosp.yourlocalweather;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
 import android.support.v7.widget.CardView;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ScrollView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -32,8 +35,11 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
+import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.service.ForecastWeatherService;
+import org.thosp.yourlocalweather.settings.GraphValuesSwitchListener;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.CustomValueFormatter;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.GraphUtils;
@@ -148,11 +154,12 @@ public class GraphsActivity extends ForecastingActivity {
                                         locationId,
                                         locale,
                                         null,
-                                        null,
+                                        8,
                                         2,
                                         PreferenceUtil.getTextColor(this),
                                         PreferenceUtil.getBackgroundColor(this),
-                                        PreferenceUtil.getGraphGridColor(this)
+                                        PreferenceUtil.getGraphGridColor(this),
+                            true
         );
     }
 
@@ -800,65 +807,63 @@ public class GraphsActivity extends ForecastingActivity {
     }
 
     private void showCombinedGraphSettings() {
-        final Set<Integer> mSelectedItems = new HashSet<>();
         boolean[] checkedItems = new boolean[4];
         for (Integer visibleColumn: combinedGraphValues) {
-            mSelectedItems.add(visibleColumn);
             checkedItems[visibleColumn] = true;
         }
-        final Context context = this;
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View forecastSettingView = inflater.inflate(R.layout.activity_setting_graph, null);
+        final Switch temperatureSwitch = forecastSettingView.findViewById(R.id.widget_setting_graph_temperatre_switch);
+        final Switch rainsnowSwitch = forecastSettingView.findViewById(R.id.widget_setting_graph_rain_switch);
+        final Switch windSwitch = forecastSettingView.findViewById(R.id.widget_setting_graph_wind_switch);
+        final Switch pressureSwitch = forecastSettingView.findViewById(R.id.widget_setting_graph_pressure_switch);
+        temperatureSwitch.setChecked(checkedItems[0]);
+        final GraphValuesSwitchListener temperatureSwitchListener = new GraphValuesSwitchListener(checkedItems[0]);
+        temperatureSwitch.setOnCheckedChangeListener(temperatureSwitchListener);
+        rainsnowSwitch.setChecked(checkedItems[1]);
+        final GraphValuesSwitchListener rainsnowSwitchListener = new GraphValuesSwitchListener(checkedItems[1]);
+        rainsnowSwitch.setOnCheckedChangeListener(rainsnowSwitchListener);
+        windSwitch.setChecked(checkedItems[2]);
+        final GraphValuesSwitchListener windSwitchListener = new GraphValuesSwitchListener(checkedItems[2], pressureSwitch);
+        windSwitch.setOnCheckedChangeListener(windSwitchListener);
+        pressureSwitch.setChecked(checkedItems[3]);
+        final GraphValuesSwitchListener pressureSwitchListener = new GraphValuesSwitchListener(checkedItems[3], windSwitch);
+        pressureSwitch.setOnCheckedChangeListener(pressureSwitchListener);
+        if (windSwitch.isChecked()) {
+            pressureSwitch.setEnabled(false);
+        } else if (pressureSwitch.isChecked()) {
+            windSwitch.setEnabled(false);
+        }
+
         builder.setTitle(R.string.forecast_settings_combined_values)
-                .setMultiChoiceItems(R.array.pref_combined_graph_values, checkedItems,
-                        new DialogInterface.OnMultiChoiceClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which,
-                                                boolean isChecked) {
-                                ListView dialogListView = ((AlertDialog) dialog).getListView();
-                                if (isChecked) {
-                                    mSelectedItems.add(which);
-                                    if (which == 2) {
-                                        if (mSelectedItems.contains(3)) {
-                                            mSelectedItems.remove(3);
-                                        }
-                                        dialogListView.getChildAt(3).setEnabled(false);
-                                        dialogListView.getChildAt(3).setClickable(true);
-                                    } else if (which == 3) {
-                                        if (mSelectedItems.contains(2)) {
-                                            mSelectedItems.remove(2);
-                                        }
-                                        dialogListView.getChildAt(2).setEnabled(false);
-                                        dialogListView.getChildAt(2).setClickable(true);
-                                    }
-                                } else if (mSelectedItems.contains(which)) {
-                                    // Else, if the item is already in the array, remove it
-                                    mSelectedItems.remove(Integer.valueOf(which));
-                                    if ((which == 2) || (which == 3)) {
-                                        dialogListView.getChildAt(3).setEnabled(true);
-                                        dialogListView.getChildAt(3).setClickable(false);
-                                        dialogListView.getChildAt(2).setEnabled(true);
-                                        dialogListView.getChildAt(2).setClickable(false);
-                                    }
-                                }
-                            }
-                        })
+                .setView(forecastSettingView)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         combinedGraphValues = new HashSet<>();
-                        for (Integer selectedItem: mSelectedItems) {
-                            combinedGraphValues.add(selectedItem);
+                        if (temperatureSwitchListener.isChecked()) {
+                            combinedGraphValues.add(0);
                         }
-                        AppPreference.setCombinedGraphValues(context, combinedGraphValues);
+                        if (rainsnowSwitchListener.isChecked()) {
+                            combinedGraphValues.add(1);
+                        }
+                        if (windSwitchListener.isChecked()) {
+                            combinedGraphValues.add(2);
+                        }
+                        if (pressureSwitchListener.isChecked()) {
+                            combinedGraphValues.add(3);
+                        }
+                        AppPreference.setCombinedGraphValues(GraphsActivity.this, combinedGraphValues);
                         updateUI();
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
                     public void onClick(DialogInterface dialog, int id) {
+                        finish();
                     }
                 });
-
         AlertDialog dialog = builder.create();
         dialog.show();
     }
@@ -992,7 +997,12 @@ public class GraphsActivity extends ForecastingActivity {
         }
         if (combinedGraphValues.contains(1)) {
             combinedGraphLabel.append(", ");
-            combinedGraphLabel.append(GraphUtils.getRainSnowLabelForCombinedGraph(this, currentLocation.getLocale()));
+            combinedGraphLabel.append(getString(R.string.graph_rain_label));
+            combinedGraphLabel.append("/");
+            combinedGraphLabel.append(getString(R.string.graph_snow_label));
+            combinedGraphLabel.append(" (");
+            combinedGraphLabel.append(getString(AppPreference.getRainOrSnowUnit(this)));
+            combinedGraphLabel.append(")");
         }
         if (combinedGraphValues.contains(2)) {
             combinedGraphLabel.append(", ");

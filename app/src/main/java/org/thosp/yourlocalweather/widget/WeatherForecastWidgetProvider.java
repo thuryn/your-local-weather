@@ -62,7 +62,7 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
 
         WeatherForecastWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
         WeatherForecastWidgetProvider.setWidgetIntents(context, remoteViews, WeatherForecastWidgetProvider.class, appWidgetId);
-
+        remoteViews.setTextViewText(R.id.widget_weather_forecast_1x3_widget_city, Utils.getCityAndCountry(context, currentLocation.getOrderId()));
         try {
             WidgetUtils.updateWeatherForecast(
                     context,
@@ -101,6 +101,16 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
         int backgroundColorId = AppPreference.getBackgroundColor(context);
         int windowHeaderBackgroundColorId = AppPreference.getWindowHeaderBackgroundColorId(context);
 
+        final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
+        Boolean showLocation = widgetSettingsDbHelper.getParamBoolean(widgetId, "showLocation");
+        if (showLocation == null) {
+            showLocation = false;
+        }
+        if (showLocation) {
+            remoteViews.setViewVisibility(R.id.widget_weather_forecast_1x3_widget_city, View.VISIBLE);
+        } else {
+            remoteViews.setViewVisibility(R.id.widget_weather_forecast_1x3_widget_city, View.GONE);
+        }
         remoteViews.setInt(R.id.widget_weather_forecast_1x3_widget_root, "setBackgroundColor", backgroundColorId);
         remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_1_widget_day, textColorId);
         remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_1_widget_temperatures, textColorId);
