@@ -450,4 +450,6 @@
     <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">Obrazovka předpovědi počasí</string>
     <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">Obrazovka s grafy</string>
     <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Přepnout polohu</string>
+    <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Zobrazit legendu v grafu</string>
+    <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Zobrazit polohu ve widgetu</string>
 </resources>
