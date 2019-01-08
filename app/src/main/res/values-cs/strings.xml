@@ -440,4 +440,14 @@
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Zobrazit nastavení na widgetech</string>
     <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Tlačítko nastavení grafu na widgetech</string>
     <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Nastavení polohy</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Tlačítko nastavení polohy pro widget</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Tlačítko pro nastavení akce ve widgetu</string>
+    <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">Název města</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">Ikona aktuálního počasí</string>
+    <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">Předpověď počasí</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">Graf</string>
+    <string name="widget_action_main_screen" tools:ignore="MissingTranslation">Hlavní obrazovka</string>
+    <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">Obrazovka předpovědi počasí</string>
+    <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">Obrazovka s grafy</string>
+    <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Přepnout polohu</string>
 </resources>
