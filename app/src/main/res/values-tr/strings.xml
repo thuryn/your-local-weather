@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="enter_city_hint">Şehir girin</string>
     <string name="label_current_city">Şu anki şehir</string>
@@ -311,5 +311,9 @@
     <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portekizce (Brezilya)</string>
     <string name="label_pressure" tools:ignore="MissingTranslation">Basınç</string>
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Mevcut hava durumu açıklama dili ve adresiniz sonraki güncellemede değişecek, ya da şimdi de değiştirebilirsiniz.</string>
-
-    </resources>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Pil İyileştirmesi</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Uygulama, arka planda ivmeölçer ile konumu, hava durumunu veya iz konumunu güncellemek için pil optimizasyonunu kapatmanızı ister.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">İlerle</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">İptal</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Erişim süresi doldu. Uygulamayı yükseltin lütfen.</string>
+</resources>
