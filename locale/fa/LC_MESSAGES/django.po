@@ -1,15 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Arash Ataei <arash.ataei.71@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-04 16:32+0100\n"
-"PO-Revision-Date: 2018-01-30 21:02+0000\n"
-"Last-Translator: Michal Čihař <michal@cihar.com>\n"
+"PO-Revision-Date: 2019-01-10 10:26+0000\n"
+"Last-Translator: Arash Ataei <arash.ataei.71@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/weblate/website/"
 "fa/>\n"
 "Language: fa\n"
@@ -17,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 2.19-dev\n"
+"X-Generator: Weblate 3.4-dev\n"
 
 #: weblate_web/data.py:33
 #, fuzzy
@@ -83,7 +82,7 @@ msgstr ""
 
 #: weblate_web/data.py:81
 msgid "Addons"
-msgstr ""
+msgstr "افزونه ها"
 
 #: weblate_web/data.py:86
 msgid ""
@@ -104,7 +103,7 @@ msgstr ""
 
 #: weblate_web/data.py:97 weblate_web/templates/features.html:87
 msgid "Export and import"
-msgstr ""
+msgstr "درون ریزی و برون ریزی"
 
 #: weblate_web/data.py:101
 msgid "You can define access levels for every user."
