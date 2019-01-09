@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-04 16:32+0100\n"
-"PO-Revision-Date: 2019-01-08 07:36+0000\n"
+"PO-Revision-Date: 2019-01-10 10:26+0000\n"
 "Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/weblate/website/"
 "da/>\n"
@@ -452,7 +452,7 @@ msgstr ""
 msgid ""
 "Please consider this if you are using Weblate on premise without support "
 "contract."
-msgstr ""
+msgstr "Overvej venligst om du bruger Weblate på præmis uden supportkontrakt."
 
 #: weblate_web/templates/donate.html:116
 msgid "One time donation"
@@ -463,6 +463,8 @@ msgid ""
 "One time donations are great for appreciating our work on single issue or "
 "support."
 msgstr ""
+"Engangsdonationer er en god måde at værdsætte vores arbejde på enkelt "
+"problemstilling eller support."
 
 #: weblate_web/templates/donate.html:128
 msgid "Use our services"
@@ -473,6 +475,8 @@ msgid ""
 "Commercial services like hosting or support for on premise installation help "
 "funding Weblate development."
 msgstr ""
+"Kommercielle tjenester såsom hosting eller support for hjælp til "
+"installation på på præmis, der finansierer udviklingen af Weblate."
 
 #: weblate_web/templates/donate.html:143
 msgid "Cryptocurrencies"
@@ -498,6 +502,7 @@ msgstr "Donationsadresse"
 #: weblate_web/templates/donate/edit.html:12
 msgid "Please select choose wanted reward or enter custom donation amount."
 msgstr ""
+"Vælg venligst den ønskede belønning eller indtast tilpasset donationsbeløb."
 
 #: weblate_web/templates/donate/edit.html:20
 msgid "Edit your reward link"
@@ -511,6 +516,7 @@ msgstr "Gem"
 #: weblate_web/templates/donate/form.html:13
 msgid "Please choose wanted reward or enter custom donation amount."
 msgstr ""
+"Vælg venligst den ønskede belønning eller indtast tilpasset donationsbeløb."
 
 #: weblate_web/templates/donate/form.html:33
 msgid "Select"
