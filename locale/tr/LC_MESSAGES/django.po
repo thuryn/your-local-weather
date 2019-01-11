@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-11 15:13+0100\n"
-"PO-Revision-Date: 2019-01-07 08:25+0000\n"
+"PO-Revision-Date: 2019-01-12 18:09+0000\n"
 "Last-Translator: Mesut Akcan <makcan@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/weblate/website/"
 "tr/>\n"
@@ -480,10 +480,8 @@ msgstr ""
 "geliştirmesinin finanse edilmesine yardımcı olur."
 
 #: weblate_web/templates/donate.html:142
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation rewards"
-msgstr "Bağış adresi"
+msgstr "Bağış ödülleri"
 
 #: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
@@ -1769,7 +1767,7 @@ msgstr "Ödemeyi tamamlamak için lütfen fatura bilgilerinizi sağlayın."
 
 #: weblate_web/views.py:109
 msgid "The VAT ID is no longer valid, please update it."
-msgstr ""
+msgstr "KDV NUMARASI artık geçerli değil, güncelleyin."
 
 #: weblate_web/views.py:269
 msgid "Payment not yet processed, please retry."
