@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-11 15:13+0100\n"
-"PO-Revision-Date: 2019-01-11 14:08+0000\n"
+"PO-Revision-Date: 2019-01-11 14:21+0000\n"
 "Last-Translator: Michal Čihař <michal@cihar.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/weblate/website/cs/"
 ">\n"
@@ -478,10 +478,8 @@ msgstr ""
 "Placené služby jako hostování nebo podpora pomáhají platit vývoj Weblate."
 
 #: weblate_web/templates/donate.html:142
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation rewards"
-msgstr "Adresa pro příspěvek"
+msgstr "Odměny za příspěvek"
 
 #: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
@@ -1763,7 +1761,7 @@ msgstr "Pro dokončení platby prosím zadejte vaše fakturační údaje."
 
 #: weblate_web/views.py:109
 msgid "The VAT ID is no longer valid, please update it."
-msgstr ""
+msgstr "Vaše DIČ již není platné, prosím upravte ho."
 
 #: weblate_web/views.py:269
 msgid "Payment not yet processed, please retry."
