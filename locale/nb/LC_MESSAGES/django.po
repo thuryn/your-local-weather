@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-11 15:13+0100\n"
-"PO-Revision-Date: 2019-01-05 10:10+0000\n"
+"PO-Revision-Date: 2019-01-12 18:09+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/weblate/"
 "website/nb_NO/>\n"
@@ -188,7 +188,7 @@ msgstr "Kreditering"
 #: weblate_web/templates/base-features.html:23
 msgid ""
 "All your translators will be properly credited in the version control system."
-msgstr "Alle dine oversettere vil krediteres i versjonskontrollsystemet."
+msgstr "Alle dine oversettere krediteres i versjonskontrollsystemet."
 
 #: weblate_web/templates/base-features.html:30
 #: weblate_web/templates/hosting.html:18
@@ -397,7 +397,7 @@ msgstr "Samarbeidende sider"
 
 #: weblate_web/templates/donate.html:30
 msgid "Reward"
-msgstr ""
+msgstr "Belønning"
 
 #: weblate_web/templates/donate.html:31
 msgid "Expiry date"
@@ -420,7 +420,7 @@ msgstr "Rediger"
 
 #: weblate_web/templates/donate.html:45
 msgid "No reward"
-msgstr ""
+msgstr "Ingen belønning"
 
 #: weblate_web/templates/donate.html:53
 msgid "Expired"
@@ -466,12 +466,14 @@ msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable in the long term."
 msgstr ""
+"Gjentatt påskjønnelse av Weblate-prosjektet hjelper å holde prosjektet "
+"bærekraftig på sikt."
 
 #: weblate_web/templates/donate.html:107
 msgid ""
 "Please consider this if you are using Weblate on premise without support "
 "contract."
-msgstr ""
+msgstr "Overvei dette hvis du bruker Weblate selv, uten støttekontrakt."
 
 #: weblate_web/templates/donate.html:116
 #, fuzzy
@@ -484,6 +486,8 @@ msgid ""
 "One time donations are great for appreciating our work on single issue or "
 "support."
 msgstr ""
+"Éngangsdonasjoner er flott for verdsettelse av vårt arbeide i en sak eller "
+"et støtteforetagende."
 
 #: weblate_web/templates/donate.html:128
 #, fuzzy
@@ -496,6 +500,8 @@ msgid ""
 "Commercial services like hosting or support for on premise installation help "
 "funding Weblate development."
 msgstr ""
+"Kommersielle tjenester som vertstjening eller støtte for installasjon i "
+"infrastruktur hjelper finansieringen av Weblate-utvikling."
 
 #: weblate_web/templates/donate.html:142
 #, fuzzy
@@ -527,11 +533,11 @@ msgstr "Donasjonsadresse"
 #: weblate_web/templates/donate/edit.html:12
 #: weblate_web/templates/donate/form.html:13
 msgid "Please choose wanted reward or enter custom donation amount."
-msgstr ""
+msgstr "Velg ønsket belønning, eller skriv inn egendefinert donasjonsmengde."
 
 #: weblate_web/templates/donate/edit.html:20
 msgid "Edit your reward link"
-msgstr ""
+msgstr "Rediger din belønningslenke"
 
 #: weblate_web/templates/donate/edit.html:26
 #: weblate_web/templates/payment/customer.html:21
@@ -561,7 +567,7 @@ msgstr "Fortsett"
 
 #: weblate_web/templates/donate/rewards.html:2
 msgid "Link placement on the weblate.org thanks page"
-msgstr ""
+msgstr "Lenkeplassering på takkesiden for weblate.org"
 
 #: weblate_web/templates/donate/rewards.html:3
 msgid "Link placement in the list of supporters"
@@ -1309,7 +1315,7 @@ msgstr "Vis vertslagringstilbud"
 
 #: weblate_web/templates/index.html:130
 msgid "On premise"
-msgstr ""
+msgstr "I infrastruktur"
 
 #: weblate_web/templates/index.html:135
 msgid "Your infrastructure"
@@ -1795,7 +1801,7 @@ msgstr "Angi din faktureringsinformasjon for å fullføre betalingen."
 
 #: weblate_web/views.py:109
 msgid "The VAT ID is no longer valid, please update it."
-msgstr ""
+msgstr "Moms-ID-en er ikke lenger gyldig, oppdater den."
 
 #: weblate_web/views.py:269
 #, fuzzy
