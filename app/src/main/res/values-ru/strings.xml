@@ -209,12 +209,12 @@
     <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">После определённого промежутка времени кэшированные значение будут удалены</string>
     <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Срок хранения данных в кэше</string>
     <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 часов</string>
-    <string name="location_cache_24_label" tools:ignore="MissingTranslation">в день</string>
-    <string name="location_cache_168_label" tools:ignore="MissingTranslation">в неделю</string>
-    <string name="location_cache_720_label" tools:ignore="MissingTranslation">в месяц</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">день</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">неделя</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">месяц</string>
     <string name="location_cache_2190_label" tools:ignore="MissingTranslation">3 месяца</string>
     <string name="location_cache_4380_label" tools:ignore="MissingTranslation">6 месяцев</string>
-    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">в год</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">год</string>
     <string name="location_cache_88888_label" tools:ignore="MissingTranslation">никогда</string>
     <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Кэш местоположений</string>
     <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Найденные местоположения кэшированы</string>
@@ -291,12 +291,12 @@
     <string name="subscription_expired" tools:ignore="MissingTranslation">Доступ истёк. Пожалуйста, обновите приложение.</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Поделиться погодой</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Программа коммуникации не найдена</string>
-    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Город: %1$s
-\nТемпература: %2$s
-\nОписание: %3$s
-\nВетер: %4$s %5$s
-\nВосход: %6$s
-\nЗаход: %7$s</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Город: %1$s 
+\nТемпература: %2$s 
+\nОписание: %3$s 
+\nВетер: %4$s %5$s 
+\nВосход: %6$s 
+\nЗакат: %7$s</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">Твоя местная погода</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">Оповещения о текущей погоде</string>
     <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Температура</string>
