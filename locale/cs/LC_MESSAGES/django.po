@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-04 16:32+0100\n"
-"PO-Revision-Date: 2019-01-07 08:25+0000\n"
+"PO-Revision-Date: 2019-01-11 14:08+0000\n"
 "Last-Translator: Michal Čihař <michal@cihar.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/weblate/website/cs/"
 ">\n"
@@ -322,16 +322,13 @@ msgstr ""
 "forknout, nebo stačí:"
 
 #: weblate_web/templates/contribute.html:31
-#, fuzzy, python-format
-#| msgid ""
-#| "You can also ask related questions on <a href=\"%(url)s\">Stack Overflow</"
-#| "a>."
+#, python-format
 msgid ""
 "You can find more repositories related to Weblate on <a href=\"%(url)s"
 "\">GitHub</a>"
 msgstr ""
-"Na související dotazy se můžete ptát i na <a href=\"%(url)s\">Stack "
-"Overflow</a>."
+"Další repozitáře související s Weblate naleznete <a href=\"%(url)s\">na "
+"GitHubu</a>"
 
 #: weblate_web/templates/contribute.html:37
 msgid ""
@@ -445,12 +442,15 @@ msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable in the long term."
 msgstr ""
+"Opakovaným přispěním projektu Weblate nám pomůžete být dlouhodobě "
+"udržitelným projektem."
 
 #: weblate_web/templates/donate.html:107
 msgid ""
 "Please consider this if you are using Weblate on premise without support "
 "contract."
 msgstr ""
+"Prosím zvažte tuto možnost pokud používáte Weblate bez naší placené podpory."
 
 #: weblate_web/templates/donate.html:116
 msgid "One time donation"
@@ -461,6 +461,8 @@ msgid ""
 "One time donations are great for appreciating our work on single issue or "
 "support."
 msgstr ""
+"Jednorázový příspěvek je skvělý jako ocenění naší práce na vašich "
+"požadavcích."
 
 #: weblate_web/templates/donate.html:128
 msgid "Use our services"
@@ -471,6 +473,7 @@ msgid ""
 "Commercial services like hosting or support for on premise installation help "
 "funding Weblate development."
 msgstr ""
+"Placené služby jako hostování nebo podpora pomáhají platit vývoj Weblate."
 
 #: weblate_web/templates/donate.html:143
 msgid "Cryptocurrencies"
@@ -495,7 +498,7 @@ msgstr "Adresa pro příspěvek"
 
 #: weblate_web/templates/donate/edit.html:12
 msgid "Please select choose wanted reward or enter custom donation amount."
-msgstr ""
+msgstr "Prosím zvolte požadovanou odměnu nebo zvolte vlastní výši příspěvku."
 
 #: weblate_web/templates/donate/edit.html:20
 msgid "Edit your reward link"
@@ -508,7 +511,7 @@ msgstr "Uložit"
 
 #: weblate_web/templates/donate/form.html:13
 msgid "Please choose wanted reward or enter custom donation amount."
-msgstr ""
+msgstr "Prosím zvolte požadovanou odměnu nebo zvolte vlastní výši příspěvku."
 
 #: weblate_web/templates/donate/form.html:33
 msgid "Select"
@@ -519,10 +522,13 @@ msgid ""
 "We might refuse to place your link, especially if the site contains adult or "
 "illegal content. Please consult us in advance if unsure."
 msgstr ""
+"Můžeme odmítnout umístit váš odkaz, obzvlášť pokud stránky obsahují obsah "
+"pro dospělé nebo nelegální obsah. Pokud si nejste jisti, prosím zeptejte se "
+"nás předem."
 
 #: weblate_web/templates/donate/form.html:50
 msgid "Choose your own donation amount"
-msgstr ""
+msgstr "Zvolte si vlastní výši příspěvku"
 
 #: weblate_web/templates/donate/form.html:56
 msgid "Continue"
@@ -534,11 +540,11 @@ msgstr "Umístění odkazu na stránce s poděkováním na weblate.org"
 
 #: weblate_web/templates/donate/rewards.html:3
 msgid "Link placement in the list of supporters"
-msgstr ""
+msgstr "Umístění odkazu v seznamu podporovatelů"
 
 #: weblate_web/templates/donate/rewards.html:4
 msgid "Name placement in the list of supporters"
-msgstr ""
+msgstr "Umístění jména v seznamu podporovatelů"
 
 #: weblate_web/templates/download-link.html:4
 msgid "PGP signature"
@@ -1272,7 +1278,7 @@ msgstr "Od %(amount)s EUR/měsíc"
 
 #: weblate_web/templates/index.html:119
 msgid "Cloud service"
-msgstr ""
+msgstr "Služba v cloudu"
 
 #: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
 msgid "Choose hosting plan"
