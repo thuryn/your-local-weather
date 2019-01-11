@@ -411,7 +411,7 @@
 \nSonnenuntergang: %7$s</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">Ihr lokales Wetter</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">Ihre lokalen Wetterberichte</string>
-    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Tag</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Temperatur</string>
     <string name="graph_wind_label" tools:ignore="MissingTranslation">Wind</string>
     <string name="graph_rain_label" tools:ignore="MissingTranslation">Regen</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Schnee</string>
