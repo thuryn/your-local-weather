@@ -24,7 +24,7 @@ from django.utils.translation import override
 
 
 from weblate_web.data import VERSION, EXTENSIONS, SCREENSHOTS
-from weblate_web.models import Donation
+from weblate_web.models import Donation, Reward
 
 
 def weblate_web(request):
@@ -59,4 +59,7 @@ def weblate_web(request):
         'donate_links': Donation.objects.filter(
             active=True, reward__thanks_link=True
         ),
+        'rewards': Reward.objects.filter(
+            third_party=False, active=True
+        ).order_by('amount'),
     }

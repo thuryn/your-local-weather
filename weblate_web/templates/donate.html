@@ -139,6 +139,26 @@
       </div>
     </div>
 
+<h2>{% trans "Donation rewards" %}</h2>
+
+  <div class="card-deck mb-3 text-center">
+{% for reward in rewards %}
+        <div class="card mb-4 shadow-sm">
+          <h5 class="card-header">
+            {{ reward.get_display_name }}
+          </h5>
+          <div class="card-body">
+            <table>
+            <tr><th>{% trans "Donation recurrence" %}</th><td>{{ reward.get_recurring_display }}</td></tr>
+            <tr><th>{% trans "Amount in EUR" %}</th><td>{{ reward.amount }} EUR</td></tr>
+            </table>
+          </div>
+          <div class="card-footer">
+            <a href="{% url "donate-new" %}" class="btn btn-lg btn-block btn-info"><i class="fas fa-donate"></i> {% trans "Donate" %}</a>
+          </div>
+        </div>
+{% endfor %}
+  </div>
 
 <h2 id="crypto">{% trans "Cryptocurrencies" %}</h2>
 
