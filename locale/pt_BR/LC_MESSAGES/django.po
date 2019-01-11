@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Weblate 1.2\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-11 15:13+0100\n"
-"PO-Revision-Date: 2019-01-05 10:11+0000\n"
+"PO-Revision-Date: 2019-01-11 14:28+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "weblate/website/pt_BR/>\n"
@@ -487,10 +487,8 @@ msgstr ""
 "ajudam a financiar o desenvolvimento do Weblate."
 
 #: weblate_web/templates/donate.html:142
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation rewards"
-msgstr "Endereço de doação"
+msgstr "Recompensas de doação"
 
 #: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
