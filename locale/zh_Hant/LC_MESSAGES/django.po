@@ -1,15 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Chang-Chia Tseng <pswo10680@gmail.com>, 2018.
+# Chang-Chia Tseng <pswo10680@gmail.com>, 2018, 2019.
 # Louies <louies0623@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-11 15:13+0100\n"
-"PO-Revision-Date: 2019-01-11 13:57+0000\n"
-"Last-Translator: Louies <louies0623@gmail.com>\n"
+"PO-Revision-Date: 2019-01-12 13:58+0000\n"
+"Last-Translator: Chang-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "weblate/website/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -115,12 +115,12 @@ msgstr "使用者管理"
 #: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
 #: weblate_web/templates/donate/form.html:25
 msgid "Donation recurrence"
-msgstr "定期捐款"
+msgstr "定期贊助"
 
 #: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
-msgstr "金額以歐元計算"
+msgstr "金額（歐元）"
 
 #: weblate_web/models.py:76
 msgid "Link text"
@@ -346,7 +346,7 @@ msgstr "Weblate 以免費方式提供，我們歡迎您的捐款贊助。"
 
 #: weblate_web/templates/donate.html:11 weblate_web/templates/donate.html:134
 msgid "Purchase hosting package"
-msgstr "購買託管封包"
+msgstr "購買託管套裝組"
 
 #: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:135
 #: weblate_web/templates/download.html:13 weblate_web/templates/hosting.html:12
@@ -368,7 +368,7 @@ msgstr "您的贊助"
 
 #: weblate_web/templates/donate.html:29
 msgid "Creation date"
-msgstr "創立日期"
+msgstr "建立日期"
 
 #: weblate_web/templates/donate.html:30
 msgid "Reward"
@@ -401,7 +401,7 @@ msgstr "已過期"
 
 #: weblate_web/templates/donate.html:57
 msgid "Disable renewal"
-msgstr "禁用續約"
+msgstr "停止續約"
 
 #: weblate_web/templates/donate.html:60
 msgid "Does not renew"
@@ -409,7 +409,7 @@ msgstr "不續約"
 
 #: weblate_web/templates/donate.html:92
 msgid "Donations"
-msgstr "捐助"
+msgstr "贊助"
 
 #: weblate_web/templates/donate.html:95
 #, fuzzy
