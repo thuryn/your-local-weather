@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: French (Weblate)\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-11 15:13+0100\n"
-"PO-Revision-Date: 2019-01-05 10:10+0000\n"
+"PO-Revision-Date: 2019-01-12 18:09+0000\n"
 "Last-Translator: Ldm Public <ldmpub@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/weblate/website/"
 "fr/>\n"
@@ -482,10 +482,8 @@ msgid ""
 msgstr ""
 
 #: weblate_web/templates/donate.html:142
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation rewards"
-msgstr "Adresse pour les dons"
+msgstr "Récompenses pour les dons"
 
 #: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
@@ -1318,11 +1316,8 @@ msgid "Your infrastructure"
 msgstr "Votre infrastructure"
 
 #: weblate_web/templates/index.html:144
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self supported"
-msgstr "Hébergé par vous-même"
+msgstr "Supporté par vous-même"
 
 #: weblate_web/templates/index.html:148
 msgid "Weblate is free to use"
@@ -1678,13 +1673,8 @@ msgstr ""
 "L’hébergement gratuit de projets libres serait impossible sans nos sponsors."
 
 #: weblate_web/templates/thanks.html:50
-#, fuzzy
-#| msgid ""
-#| "Support our project on Bountysource Salt and get exclusive logo placement "
-#| "on this page."
 msgid "Support our project and get link placement on this page."
-msgstr ""
-"Soutenez notre projet et obtenez un emplacement privilégié sur cette page."
+msgstr "Soutenez notre projet et obtenez un lien sur cette page."
 
 #: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
 msgid "Weblate tour"
@@ -1798,7 +1788,7 @@ msgstr ""
 
 #: weblate_web/views.py:109
 msgid "The VAT ID is no longer valid, please update it."
-msgstr ""
+msgstr "Le code TVA n'est plus valide, veuillez le mettre à jour."
 
 #: weblate_web/views.py:269
 msgid "Payment not yet processed, please retry."
