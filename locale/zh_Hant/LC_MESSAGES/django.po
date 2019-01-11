@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-04 16:32+0100\n"
+"POT-Creation-Date: 2019-01-11 15:13+0100\n"
 "PO-Revision-Date: 2019-01-11 13:57+0000\n"
 "Last-Translator: Louies <louies0623@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -112,11 +112,13 @@ msgstr "您可以定義各個使用者的存取層級。"
 msgid "User management"
 msgstr "使用者管理"
 
-#: weblate_web/forms.py:47 weblate_web/templates/donate/form.html:25
+#: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
+#: weblate_web/templates/donate/form.html:25
 msgid "Donation recurrence"
 msgstr "定期捐款"
 
-#: weblate_web/forms.py:53 weblate_web/templates/donate/form.html:26
+#: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
+#: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
 msgstr "金額以歐元計算"
 
@@ -215,7 +217,7 @@ msgid "Features"
 msgstr "功能"
 
 #: weblate_web/templates/base.html:59 weblate_web/templates/download.html:18
-#: weblate_web/templates/index.html:150
+#: weblate_web/templates/index.html:152
 msgid "Download"
 msgstr "下載"
 
@@ -228,7 +230,7 @@ msgid "Develop"
 msgstr "開發"
 
 #: weblate_web/templates/base.html:62 weblate_web/templates/donate.html:110
-#: weblate_web/templates/donate.html:122
+#: weblate_web/templates/donate.html:122 weblate_web/templates/donate.html:157
 msgid "Donate"
 msgstr "捐款"
 
@@ -348,7 +350,7 @@ msgstr "購買託管封包"
 
 #: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:135
 #: weblate_web/templates/download.html:13 weblate_web/templates/hosting.html:12
-#: weblate_web/templates/hosting.html:234
+#: weblate_web/templates/hosting.html:233
 msgid "Get support for Weblate"
 msgstr "取得 Weblate 的支援"
 
@@ -465,11 +467,17 @@ msgid ""
 "funding Weblate development."
 msgstr ""
 
-#: weblate_web/templates/donate.html:143
+#: weblate_web/templates/donate.html:142
+#, fuzzy
+#| msgid "Donation address"
+msgid "Donation rewards"
+msgstr "捐款位址"
+
+#: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
 msgstr "加密貨幣"
 
-#: weblate_web/templates/donate.html:146
+#: weblate_web/templates/donate.html:166
 #, python-format
 msgid ""
 "Thanks to <a href=\"%(url)s\">Trezor</a>, we will gladly accept donations in "
@@ -478,16 +486,17 @@ msgstr ""
 "多虧有 <a href=\"%(url)s\">Trezor</a>，我們很高興能接受幾種加密貨幣的捐款贊"
 "助。您可以使用下方表格中的地址。"
 
-#: weblate_web/templates/donate.html:151
+#: weblate_web/templates/donate.html:171
 msgid "Currency"
 msgstr "貨幣"
 
-#: weblate_web/templates/donate.html:151
+#: weblate_web/templates/donate.html:171
 msgid "Donation address"
 msgstr "捐款位址"
 
 #: weblate_web/templates/donate/edit.html:12
-msgid "Please select choose wanted reward or enter custom donation amount."
+#: weblate_web/templates/donate/form.html:13
+msgid "Please choose wanted reward or enter custom donation amount."
 msgstr ""
 
 #: weblate_web/templates/donate/edit.html:20
@@ -498,10 +507,6 @@ msgstr ""
 #: weblate_web/templates/payment/customer.html:21
 msgid "Save"
 msgstr "儲存"
-
-#: weblate_web/templates/donate/form.html:13
-msgid "Please choose wanted reward or enter custom donation amount."
-msgstr ""
 
 #: weblate_web/templates/donate/form.html:33
 msgid "Select"
@@ -540,7 +545,7 @@ msgid "PGP signature"
 msgstr ""
 
 #: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
-#: weblate_web/templates/hosting.html:235
+#: weblate_web/templates/hosting.html:234
 msgid "Download Weblate"
 msgstr "下載 Weblate"
 
@@ -1068,8 +1073,8 @@ msgstr "翻譯附加元件"
 msgid "Translation memory"
 msgstr "翻譯記憶"
 
-#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:120
-#: weblate_web/templates/index.html:134
+#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:122
+#: weblate_web/templates/index.html:136
 msgid "Priority email support"
 msgstr "優先電子郵件技術支援"
 
@@ -1146,11 +1151,11 @@ msgstr "我們也接受電匯（IBAN 為佳）或是比特幣付款。詳情請�
 msgid "Self hosting"
 msgstr "自行架設"
 
-#: weblate_web/templates/hosting.html:230
+#: weblate_web/templates/hosting.html:229
 msgid "There are also several options for deploying Weblate to the cloud."
 msgstr "也有許多種將 Weblate 布署至雲端的選項。"
 
-#: weblate_web/templates/hosting.html:234
+#: weblate_web/templates/hosting.html:233
 msgid ""
 "In case you need help with your self hosted solution, we're ready to help as "
 "well with consulting services tailored for your needs."
@@ -1201,55 +1206,55 @@ msgstr "查看更多功能…"
 msgid "See who is using Weblate and join them!"
 msgstr "他們都用 Weblate，加入他們的行列吧！"
 
-#: weblate_web/templates/index.html:106
+#: weblate_web/templates/index.html:108
 msgid "Browse hundreds of projects on Hosted Weblate"
 msgstr "瀏覽 Hosted Weblate 中的上百個專案"
 
-#: weblate_web/templates/index.html:114
+#: weblate_web/templates/index.html:116
 msgid "Hosted service"
 msgstr ""
 
-#: weblate_web/templates/index.html:118 weblate_web/templates/index.html:132
+#: weblate_web/templates/index.html:120 weblate_web/templates/index.html:134
 #, python-format
 msgid "From %(amount)sEUR/month"
 msgstr ""
 
-#: weblate_web/templates/index.html:119
+#: weblate_web/templates/index.html:121
 msgid "Cloud service"
 msgstr ""
 
-#: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
+#: weblate_web/templates/index.html:124 weblate_web/templates/index.html:138
 #, fuzzy
 #| msgid "View hosting plans"
 msgid "Choose hosting plan"
 msgstr "檢視託管方案"
 
-#: weblate_web/templates/index.html:128
+#: weblate_web/templates/index.html:130
 msgid "On premise"
 msgstr ""
 
-#: weblate_web/templates/index.html:133
+#: weblate_web/templates/index.html:135
 msgid "Your infrastructure"
 msgstr ""
 
-#: weblate_web/templates/index.html:142
+#: weblate_web/templates/index.html:144
 #, fuzzy
 #| msgctxt "Hosting plan"
 #| msgid "Self hosted"
 msgid "Self supported"
 msgstr "自行架設"
 
-#: weblate_web/templates/index.html:146
+#: weblate_web/templates/index.html:148
 #, fuzzy
 #| msgid "Weblate features"
 msgid "Weblate is free to use"
 msgstr "Weblate 功能"
 
-#: weblate_web/templates/index.html:147
+#: weblate_web/templates/index.html:149
 msgid "Maintained by you"
 msgstr ""
 
-#: weblate_web/templates/index.html:148
+#: weblate_web/templates/index.html:150
 #, fuzzy
 #| msgid "Phone support"
 msgid "Community support"
@@ -1690,25 +1695,29 @@ msgstr "源始碼 tarball，以 xz 壓縮"
 msgid "Sources, zip compressed"
 msgstr "源始碼，以 zip 壓縮"
 
-#: weblate_web/views.py:103
+#: weblate_web/views.py:98
 msgid "Please provide your billing information to complete the payment."
 msgstr "請提供您的付費資訊完成支付。"
 
-#: weblate_web/views.py:251
+#: weblate_web/views.py:109
+msgid "The VAT ID is no longer valid, please update it."
+msgstr ""
+
+#: weblate_web/views.py:269
 #, fuzzy
 #| msgid "Payments are processed by The Pay service."
 msgid "Payment not yet processed, please retry."
 msgstr "支付金流由 The Pay 服務處理。"
 
-#: weblate_web/views.py:256
+#: weblate_web/views.py:274
 msgid "The payment was rejected: {}"
 msgstr ""
 
-#: weblate_web/views.py:257
+#: weblate_web/views.py:275
 msgid "Unknown reason"
 msgstr ""
 
-#: weblate_web/views.py:261
+#: weblate_web/views.py:279
 msgid "Thank you for your donation."
 msgstr "感謝您的贊助。"
 

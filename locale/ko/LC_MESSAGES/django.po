@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-04 16:32+0100\n"
+"POT-Creation-Date: 2019-01-11 15:13+0100\n"
 "PO-Revision-Date: 2019-01-10 10:26+0000\n"
 "Last-Translator: 송태섭 <xotjq237@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/weblate/website/"
@@ -118,11 +118,13 @@ msgstr "모든 사용자를 위한 액세스 수준을 정의할 수 있습니�
 msgid "User management"
 msgstr "사용자 관리"
 
-#: weblate_web/forms.py:47 weblate_web/templates/donate/form.html:25
+#: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
+#: weblate_web/templates/donate/form.html:25
 msgid "Donation recurrence"
 msgstr "기부 회귀"
 
-#: weblate_web/forms.py:53 weblate_web/templates/donate/form.html:26
+#: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
+#: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
 msgstr "EUR 금액"
 
@@ -224,7 +226,7 @@ msgid "Features"
 msgstr "특징"
 
 #: weblate_web/templates/base.html:59 weblate_web/templates/download.html:18
-#: weblate_web/templates/index.html:150
+#: weblate_web/templates/index.html:152
 msgid "Download"
 msgstr "다운로드"
 
@@ -237,7 +239,7 @@ msgid "Develop"
 msgstr "개발"
 
 #: weblate_web/templates/base.html:62 weblate_web/templates/donate.html:110
-#: weblate_web/templates/donate.html:122
+#: weblate_web/templates/donate.html:122 weblate_web/templates/donate.html:157
 msgid "Donate"
 msgstr "기부하기"
 
@@ -320,7 +322,9 @@ msgstr ""
 msgid ""
 "You can find more repositories related to Weblate on <a href=\"%(url)s"
 "\">GitHub</a>"
-msgstr "Weblate에 관련된 더 많은 저장소는 <a href=\"%(url)s\">GitHub</a>에서 찾으실 수 있습니다"
+msgstr ""
+"Weblate에 관련된 더 많은 저장소는 <a href=\"%(url)s\">GitHub</a>에서 찾으실 "
+"수 있습니다"
 
 #: weblate_web/templates/contribute.html:37
 msgid ""
@@ -354,7 +358,7 @@ msgstr "호스팅 패키지 구매"
 
 #: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:135
 #: weblate_web/templates/download.html:13 weblate_web/templates/hosting.html:12
-#: weblate_web/templates/hosting.html:234
+#: weblate_web/templates/hosting.html:233
 msgid "Get support for Weblate"
 msgstr "Weblate에 대한 지원 받기"
 
@@ -421,8 +425,8 @@ msgid ""
 "fund free hosting for libre software. You don't have to spend big money, "
 "every penny counts."
 msgstr ""
-"반복적인 기부는 Weblate의 지속 가능한 개발과 자유 소프트웨어를 무료로 호스팅하는데 재정적 도움이 됩니다. 약간의 금액도 큰 도움이 "
-"됩니다."
+"반복적인 기부는 Weblate의 지속 가능한 개발과 자유 소프트웨어를 무료로 호스팅"
+"하는데 재정적 도움이 됩니다. 약간의 금액도 큰 도움이 됩니다."
 
 #: weblate_web/templates/donate.html:103
 msgid "Recurring donation"
@@ -432,13 +436,16 @@ msgstr "반복 기부"
 msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable in the long term."
-msgstr "Weblate 프로젝트에 대한 반복적인 감사는 오랜 기간 지속 가능한 프로젝트를 유지하는데 도움이 됩니다."
+msgstr ""
+"Weblate 프로젝트에 대한 반복적인 감사는 오랜 기간 지속 가능한 프로젝트를 유지"
+"하는데 도움이 됩니다."
 
 #: weblate_web/templates/donate.html:107
 msgid ""
 "Please consider this if you are using Weblate on premise without support "
 "contract."
-msgstr "지원 계약이 없다는 전제에 Weblate를 사용하신다면 이 점을 고려해 주십시오."
+msgstr ""
+"지원 계약이 없다는 전제에 Weblate를 사용하신다면 이 점을 고려해 주십시오."
 
 #: weblate_web/templates/donate.html:116
 msgid "One time donation"
@@ -458,13 +465,21 @@ msgstr "우리의 서비스 사용"
 msgid ""
 "Commercial services like hosting or support for on premise installation help "
 "funding Weblate development."
-msgstr "호스팅이나 지원 같은 상업적 서비스는 설치한다는 전제 하에 Weblate 개발 지원에 도움을 줍니다."
+msgstr ""
+"호스팅이나 지원 같은 상업적 서비스는 설치한다는 전제 하에 Weblate 개발 지원"
+"에 도움을 줍니다."
 
-#: weblate_web/templates/donate.html:143
+#: weblate_web/templates/donate.html:142
+#, fuzzy
+#| msgid "Donation address"
+msgid "Donation rewards"
+msgstr "기부 주소"
+
+#: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
 msgstr "암호화 가상화폐"
 
-#: weblate_web/templates/donate.html:146
+#: weblate_web/templates/donate.html:166
 #, python-format
 msgid ""
 "Thanks to <a href=\"%(url)s\">Trezor</a>, we will gladly accept donations in "
@@ -474,16 +489,17 @@ msgstr ""
 "상화폐로 기부금을 모금할 수 있게 되었습니다. 아래의 도표에 있는 주소를 사용하"
 "실 수 있습니다."
 
-#: weblate_web/templates/donate.html:151
+#: weblate_web/templates/donate.html:171
 msgid "Currency"
 msgstr "통화"
 
-#: weblate_web/templates/donate.html:151
+#: weblate_web/templates/donate.html:171
 msgid "Donation address"
 msgstr "기부 주소"
 
 #: weblate_web/templates/donate/edit.html:12
-msgid "Please select choose wanted reward or enter custom donation amount."
+#: weblate_web/templates/donate/form.html:13
+msgid "Please choose wanted reward or enter custom donation amount."
 msgstr "원하는 보상을 선택하거나 맞춤 기부 금액을 입력하십시오."
 
 #: weblate_web/templates/donate/edit.html:20
@@ -495,10 +511,6 @@ msgstr "당신의 보상 링크 편집"
 msgid "Save"
 msgstr "저장"
 
-#: weblate_web/templates/donate/form.html:13
-msgid "Please choose wanted reward or enter custom donation amount."
-msgstr "원하는 보상을 선택하거나 맞춤 기부 금액을 입력하십시오."
-
 #: weblate_web/templates/donate/form.html:33
 msgid "Select"
 msgstr "선택"
@@ -508,7 +520,8 @@ msgid ""
 "We might refuse to place your link, especially if the site contains adult or "
 "illegal content. Please consult us in advance if unsure."
 msgstr ""
-"당신의 링크를 거부할지도 모릅니다, 특히 사이트가 성인이나 불법인 내용을 포함할 경우 그렇습니다. 확실하지 않으면 미리 상담하십시오."
+"당신의 링크를 거부할지도 모릅니다, 특히 사이트가 성인이나 불법인 내용을 포함"
+"할 경우 그렇습니다. 확실하지 않으면 미리 상담하십시오."
 
 #: weblate_web/templates/donate/form.html:50
 msgid "Choose your own donation amount"
@@ -535,7 +548,7 @@ msgid "PGP signature"
 msgstr "PGP 서명"
 
 #: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
-#: weblate_web/templates/hosting.html:235
+#: weblate_web/templates/hosting.html:234
 msgid "Download Weblate"
 msgstr "Weblate 내려받기"
 
@@ -1094,8 +1107,8 @@ msgstr "번역 부가 기능"
 msgid "Translation memory"
 msgstr "번역 메모리"
 
-#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:120
-#: weblate_web/templates/index.html:134
+#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:122
+#: weblate_web/templates/index.html:136
 msgid "Priority email support"
 msgstr "우선적인 이메일 지원"
 
@@ -1174,11 +1187,11 @@ msgstr ""
 msgid "Self hosting"
 msgstr "자체 호스팅"
 
-#: weblate_web/templates/hosting.html:230
+#: weblate_web/templates/hosting.html:229
 msgid "There are also several options for deploying Weblate to the cloud."
 msgstr "Weblate를 클라우드에 배포하기 위한 몇 가지 옵션이 있습니다."
 
-#: weblate_web/templates/hosting.html:234
+#: weblate_web/templates/hosting.html:233
 msgid ""
 "In case you need help with your self hosted solution, we're ready to help as "
 "well with consulting services tailored for your needs."
@@ -1232,48 +1245,48 @@ msgstr "더 많은 특징들 보기…"
 msgid "See who is using Weblate and join them!"
 msgstr "누가 Weblate를 사용하고 있는지 확인하고 동참하세요!"
 
-#: weblate_web/templates/index.html:106
+#: weblate_web/templates/index.html:108
 msgid "Browse hundreds of projects on Hosted Weblate"
 msgstr "Hosted Weblate에서 수백개의 프로젝트를 검색하기"
 
-#: weblate_web/templates/index.html:114
+#: weblate_web/templates/index.html:116
 msgid "Hosted service"
 msgstr "호스팅 서비스"
 
-#: weblate_web/templates/index.html:118 weblate_web/templates/index.html:132
+#: weblate_web/templates/index.html:120 weblate_web/templates/index.html:134
 #, python-format
 msgid "From %(amount)sEUR/month"
 msgstr "%(amount)s금액/월 부터"
 
-#: weblate_web/templates/index.html:119
+#: weblate_web/templates/index.html:121
 msgid "Cloud service"
 msgstr "클라우드 서비스"
 
-#: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
+#: weblate_web/templates/index.html:124 weblate_web/templates/index.html:138
 msgid "Choose hosting plan"
 msgstr "호스팅 플랜 선택"
 
-#: weblate_web/templates/index.html:128
+#: weblate_web/templates/index.html:130
 msgid "On premise"
 msgstr "전제 하에"
 
-#: weblate_web/templates/index.html:133
+#: weblate_web/templates/index.html:135
 msgid "Your infrastructure"
 msgstr "당신의 인프라"
 
-#: weblate_web/templates/index.html:142
+#: weblate_web/templates/index.html:144
 msgid "Self supported"
 msgstr "자체 지원"
 
-#: weblate_web/templates/index.html:146
+#: weblate_web/templates/index.html:148
 msgid "Weblate is free to use"
 msgstr "Weblate는 무료로 사용할 수 있습니다"
 
-#: weblate_web/templates/index.html:147
+#: weblate_web/templates/index.html:149
 msgid "Maintained by you"
 msgstr "당신이 유지해야 함"
 
-#: weblate_web/templates/index.html:148
+#: weblate_web/templates/index.html:150
 msgid "Community support"
 msgstr "커뮤니티 지원"
 
@@ -1722,25 +1735,32 @@ msgstr "소스 코드는 tarball, xz으로 압축됨"
 msgid "Sources, zip compressed"
 msgstr "소스 코드는 zip으로 압축됨"
 
-#: weblate_web/views.py:103
+#: weblate_web/views.py:98
 msgid "Please provide your billing information to complete the payment."
 msgstr "결제을 완료하려면 결제 정보를 입력하십시오."
 
-#: weblate_web/views.py:251
+#: weblate_web/views.py:109
+msgid "The VAT ID is no longer valid, please update it."
+msgstr ""
+
+#: weblate_web/views.py:269
 msgid "Payment not yet processed, please retry."
 msgstr "결제가 아직 진행되지 않았습니다, 다시 시도하십시오."
 
-#: weblate_web/views.py:256
+#: weblate_web/views.py:274
 msgid "The payment was rejected: {}"
 msgstr "결제가 거부되었습니다: {}"
 
-#: weblate_web/views.py:257
+#: weblate_web/views.py:275
 msgid "Unknown reason"
 msgstr "알 수 없는 이유"
 
-#: weblate_web/views.py:261
+#: weblate_web/views.py:279
 msgid "Thank you for your donation."
 msgstr "기부해주셔서 감사합니다."
+
+#~ msgid "Please select choose wanted reward or enter custom donation amount."
+#~ msgstr "원하는 보상을 선택하거나 맞춤 기부 금액을 입력하십시오."
 
 #~ msgid "This website is stored on <a href=\"%(url)s\">GitHub</a> as well:"
 #~ msgstr "이 웹사이트는 <a href=\"%(url)s\">GitHub</a>에도 저장되어 있습니다:"

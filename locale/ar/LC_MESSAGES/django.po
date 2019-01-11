@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-04 16:32+0100\n"
+"POT-Creation-Date: 2019-01-11 15:13+0100\n"
 "PO-Revision-Date: 2018-11-26 14:09+0000\n"
 "Last-Translator: ButterflyOfFire <ButterflyOfFire@protonmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/weblate/website/"
@@ -119,13 +119,15 @@ msgstr "يمكنك تحديد مستويات النفاذ لكل مستخدم."
 msgid "User management"
 msgstr "إدارة المُستخدمين"
 
-#: weblate_web/forms.py:47 weblate_web/templates/donate/form.html:25
+#: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
+#: weblate_web/templates/donate/form.html:25
 #, fuzzy
 #| msgid "Donation address"
 msgid "Donation recurrence"
 msgstr "عنوان التبرع"
 
-#: weblate_web/forms.py:53 weblate_web/templates/donate/form.html:26
+#: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
+#: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
 msgstr ""
 
@@ -224,7 +226,7 @@ msgid "Features"
 msgstr "الميزات"
 
 #: weblate_web/templates/base.html:59 weblate_web/templates/download.html:18
-#: weblate_web/templates/index.html:150
+#: weblate_web/templates/index.html:152
 msgid "Download"
 msgstr "التنزيل"
 
@@ -237,7 +239,7 @@ msgid "Develop"
 msgstr "التطوير"
 
 #: weblate_web/templates/base.html:62 weblate_web/templates/donate.html:110
-#: weblate_web/templates/donate.html:122
+#: weblate_web/templates/donate.html:122 weblate_web/templates/donate.html:157
 msgid "Donate"
 msgstr "التبرّعات"
 
@@ -358,7 +360,7 @@ msgstr ""
 
 #: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:135
 #: weblate_web/templates/download.html:13 weblate_web/templates/hosting.html:12
-#: weblate_web/templates/hosting.html:234
+#: weblate_web/templates/hosting.html:233
 msgid "Get support for Weblate"
 msgstr "تحصّل على دعم مِن Weblate"
 
@@ -484,11 +486,17 @@ msgid ""
 "funding Weblate development."
 msgstr ""
 
-#: weblate_web/templates/donate.html:143
+#: weblate_web/templates/donate.html:142
+#, fuzzy
+#| msgid "Donation address"
+msgid "Donation rewards"
+msgstr "عنوان التبرع"
+
+#: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
 msgstr "تحويل العملات الرقمية"
 
-#: weblate_web/templates/donate.html:146
+#: weblate_web/templates/donate.html:166
 #, python-format
 msgid ""
 "Thanks to <a href=\"%(url)s\">Trezor</a>, we will gladly accept donations in "
@@ -497,16 +505,17 @@ msgstr ""
 "شكراً لـ <a href=\"%(url)s\">Trezor </a>، سوف نقبل بشكر أي تبرعات تحويل "
 "العملات الرقمية، يمكن استخدام العناوين في الأسفل."
 
-#: weblate_web/templates/donate.html:151
+#: weblate_web/templates/donate.html:171
 msgid "Currency"
 msgstr "العملة"
 
-#: weblate_web/templates/donate.html:151
+#: weblate_web/templates/donate.html:171
 msgid "Donation address"
 msgstr "عنوان التبرع"
 
 #: weblate_web/templates/donate/edit.html:12
-msgid "Please select choose wanted reward or enter custom donation amount."
+#: weblate_web/templates/donate/form.html:13
+msgid "Please choose wanted reward or enter custom donation amount."
 msgstr ""
 
 #: weblate_web/templates/donate/edit.html:20
@@ -517,10 +526,6 @@ msgstr ""
 #: weblate_web/templates/payment/customer.html:21
 msgid "Save"
 msgstr "احفظ"
-
-#: weblate_web/templates/donate/form.html:13
-msgid "Please choose wanted reward or enter custom donation amount."
-msgstr ""
 
 #: weblate_web/templates/donate/form.html:33
 msgid "Select"
@@ -557,7 +562,7 @@ msgid "PGP signature"
 msgstr ""
 
 #: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
-#: weblate_web/templates/hosting.html:235
+#: weblate_web/templates/hosting.html:234
 msgid "Download Weblate"
 msgstr "حمّل Weblate"
 
@@ -1109,8 +1114,8 @@ msgstr "إضافات الترجمة"
 msgid "Translation memory"
 msgstr "ذاكرة الترجمة"
 
-#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:120
-#: weblate_web/templates/index.html:134
+#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:122
+#: weblate_web/templates/index.html:136
 msgid "Priority email support"
 msgstr "أولوية دعم البريد الإلكتروني"
 
@@ -1190,11 +1195,11 @@ msgstr ""
 msgid "Self hosting"
 msgstr "استضافة خاصة"
 
-#: weblate_web/templates/hosting.html:230
+#: weblate_web/templates/hosting.html:229
 msgid "There are also several options for deploying Weblate to the cloud."
 msgstr "وهناك أيضا العديد من الخيارات لنشر Weblate على السحابية."
 
-#: weblate_web/templates/hosting.html:234
+#: weblate_web/templates/hosting.html:233
 msgid ""
 "In case you need help with your self hosted solution, we're ready to help as "
 "well with consulting services tailored for your needs."
@@ -1248,55 +1253,55 @@ msgstr "شاهد المزيد من المميزات…"
 msgid "See who is using Weblate and join them!"
 msgstr "اكتشف مَن يستخدم Weblate وانضم إليهم!"
 
-#: weblate_web/templates/index.html:106
+#: weblate_web/templates/index.html:108
 msgid "Browse hundreds of projects on Hosted Weblate"
 msgstr "اطلعوا على الآلاف مِن المشاريع على Hosted Weblate"
 
-#: weblate_web/templates/index.html:114
+#: weblate_web/templates/index.html:116
 msgid "Hosted service"
 msgstr ""
 
-#: weblate_web/templates/index.html:118 weblate_web/templates/index.html:132
+#: weblate_web/templates/index.html:120 weblate_web/templates/index.html:134
 #, python-format
 msgid "From %(amount)sEUR/month"
 msgstr ""
 
-#: weblate_web/templates/index.html:119
+#: weblate_web/templates/index.html:121
 msgid "Cloud service"
 msgstr ""
 
-#: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
+#: weblate_web/templates/index.html:124 weblate_web/templates/index.html:138
 #, fuzzy
 #| msgid "View hosting plans"
 msgid "Choose hosting plan"
 msgstr "استعرض باقات الاستضافة"
 
-#: weblate_web/templates/index.html:128
+#: weblate_web/templates/index.html:130
 msgid "On premise"
 msgstr ""
 
-#: weblate_web/templates/index.html:133
+#: weblate_web/templates/index.html:135
 msgid "Your infrastructure"
 msgstr ""
 
-#: weblate_web/templates/index.html:142
+#: weblate_web/templates/index.html:144
 #, fuzzy
 #| msgctxt "Hosting plan"
 #| msgid "Self hosted"
 msgid "Self supported"
 msgstr "استضافة ذاتية"
 
-#: weblate_web/templates/index.html:146
+#: weblate_web/templates/index.html:148
 #, fuzzy
 #| msgid "Weblate features"
 msgid "Weblate is free to use"
 msgstr "خصائص Weblate"
 
-#: weblate_web/templates/index.html:147
+#: weblate_web/templates/index.html:149
 msgid "Maintained by you"
 msgstr ""
 
-#: weblate_web/templates/index.html:148
+#: weblate_web/templates/index.html:150
 #, fuzzy
 #| msgid "Phone support"
 msgid "Community support"
@@ -1753,25 +1758,29 @@ msgstr "المصادر تار، مضغوطة بـ xz"
 msgid "Sources, zip compressed"
 msgstr "المصادر، مضغوطة بصيغة Zip"
 
-#: weblate_web/views.py:103
+#: weblate_web/views.py:98
 msgid "Please provide your billing information to complete the payment."
 msgstr "يرجى تقديم معلومات الفوترة الخاصة بك لإكمال الدفع."
 
-#: weblate_web/views.py:251
+#: weblate_web/views.py:109
+msgid "The VAT ID is no longer valid, please update it."
+msgstr ""
+
+#: weblate_web/views.py:269
 #, fuzzy
 #| msgid "Payments are processed by The Pay service."
 msgid "Payment not yet processed, please retry."
 msgstr "تتم معالجة عمليات الدفع مِن قِبَل دفع خدمة The Pay service."
 
-#: weblate_web/views.py:256
+#: weblate_web/views.py:274
 msgid "The payment was rejected: {}"
 msgstr ""
 
-#: weblate_web/views.py:257
+#: weblate_web/views.py:275
 msgid "Unknown reason"
 msgstr ""
 
-#: weblate_web/views.py:261
+#: weblate_web/views.py:279
 #, fuzzy
 #| msgid "Thank you for ordering hosting!"
 msgid "Thank you for your donation."

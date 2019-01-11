@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-04 16:32+0100\n"
+"POT-Creation-Date: 2019-01-11 15:13+0100\n"
 "PO-Revision-Date: 2019-01-05 10:11+0000\n"
 "Last-Translator: Андрій Бандура <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/weblate/"
@@ -17,8 +17,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.4-dev\n"
 
 #: weblate_web/data.py:33
@@ -126,11 +126,13 @@ msgstr "Ви можете задати рівні доступу для кожн
 msgid "User management"
 msgstr "Керування користувачами"
 
-#: weblate_web/forms.py:47 weblate_web/templates/donate/form.html:25
+#: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
+#: weblate_web/templates/donate/form.html:25
 msgid "Donation recurrence"
 msgstr "Частота пожертвування"
 
-#: weblate_web/forms.py:53 weblate_web/templates/donate/form.html:26
+#: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
+#: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
 msgstr "Сума в євро"
 
@@ -236,7 +238,7 @@ msgid "Features"
 msgstr "Особливості"
 
 #: weblate_web/templates/base.html:59 weblate_web/templates/download.html:18
-#: weblate_web/templates/index.html:150
+#: weblate_web/templates/index.html:152
 msgid "Download"
 msgstr "Завантажити"
 
@@ -249,7 +251,7 @@ msgid "Develop"
 msgstr "Розробляти"
 
 #: weblate_web/templates/base.html:62 weblate_web/templates/donate.html:110
-#: weblate_web/templates/donate.html:122
+#: weblate_web/templates/donate.html:122 weblate_web/templates/donate.html:157
 msgid "Donate"
 msgstr "Пожертвувати"
 
@@ -334,8 +336,8 @@ msgid ""
 "You can find more repositories related to Weblate on <a href=\"%(url)s"
 "\">GitHub</a>"
 msgstr ""
-"Ви можете знайти більше сховищ, пов'язаних з Weblate на <a href=\"%(url)s\""
-">GitHub</a>"
+"Ви можете знайти більше сховищ, пов'язаних з Weblate на <a href=\"%(url)s"
+"\">GitHub</a>"
 
 #: weblate_web/templates/contribute.html:37
 msgid ""
@@ -369,7 +371,7 @@ msgstr "Купити пакет хостингу"
 
 #: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:135
 #: weblate_web/templates/download.html:13 weblate_web/templates/hosting.html:12
-#: weblate_web/templates/hosting.html:234
+#: weblate_web/templates/hosting.html:233
 msgid "Get support for Weblate"
 msgstr "Отримати підтримку для Weblate"
 
@@ -489,11 +491,17 @@ msgid ""
 "funding Weblate development."
 msgstr ""
 
-#: weblate_web/templates/donate.html:143
+#: weblate_web/templates/donate.html:142
+#, fuzzy
+#| msgid "Donation address"
+msgid "Donation rewards"
+msgstr "Адреса пожертвування"
+
+#: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
 msgstr "Криптовалюти"
 
-#: weblate_web/templates/donate.html:146
+#: weblate_web/templates/donate.html:166
 #, python-format
 msgid ""
 "Thanks to <a href=\"%(url)s\">Trezor</a>, we will gladly accept donations in "
@@ -502,16 +510,17 @@ msgstr ""
 "Завдяки <a href=\"%(url)s\">Trezor</a>, ми із радістю приймемо пожертви в "
 "декількох криптовалютах. Ви можете використовувати адреси в таблиці нижче."
 
-#: weblate_web/templates/donate.html:151
+#: weblate_web/templates/donate.html:171
 msgid "Currency"
 msgstr "Валюта"
 
-#: weblate_web/templates/donate.html:151
+#: weblate_web/templates/donate.html:171
 msgid "Donation address"
 msgstr "Адреса пожертвування"
 
 #: weblate_web/templates/donate/edit.html:12
-msgid "Please select choose wanted reward or enter custom donation amount."
+#: weblate_web/templates/donate/form.html:13
+msgid "Please choose wanted reward or enter custom donation amount."
 msgstr ""
 
 #: weblate_web/templates/donate/edit.html:20
@@ -522,10 +531,6 @@ msgstr ""
 #: weblate_web/templates/payment/customer.html:21
 msgid "Save"
 msgstr "Зберегти"
-
-#: weblate_web/templates/donate/form.html:13
-msgid "Please choose wanted reward or enter custom donation amount."
-msgstr ""
 
 #: weblate_web/templates/donate/form.html:33
 msgid "Select"
@@ -562,7 +567,7 @@ msgid "PGP signature"
 msgstr ""
 
 #: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
-#: weblate_web/templates/hosting.html:235
+#: weblate_web/templates/hosting.html:234
 msgid "Download Weblate"
 msgstr "Завантажити Weblate"
 
@@ -1132,8 +1137,8 @@ msgstr "Доповнення перекладу"
 msgid "Translation memory"
 msgstr "Пам'ять перекладу"
 
-#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:120
-#: weblate_web/templates/index.html:134
+#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:122
+#: weblate_web/templates/index.html:136
 msgid "Priority email support"
 msgstr "Пріоритетна підтримка по електронній пошті"
 
@@ -1215,11 +1220,11 @@ msgstr ""
 msgid "Self hosting"
 msgstr "Власний хостинг"
 
-#: weblate_web/templates/hosting.html:230
+#: weblate_web/templates/hosting.html:229
 msgid "There are also several options for deploying Weblate to the cloud."
 msgstr "Також існує декілька варіантів розгортання Weblate у хмарі."
 
-#: weblate_web/templates/hosting.html:234
+#: weblate_web/templates/hosting.html:233
 msgid ""
 "In case you need help with your self hosted solution, we're ready to help as "
 "well with consulting services tailored for your needs."
@@ -1275,55 +1280,55 @@ msgstr "Див. додаткові функції …"
 msgid "See who is using Weblate and join them!"
 msgstr "Погляньте, хто використовує Weblate і приєднуйтеся до них!"
 
-#: weblate_web/templates/index.html:106
+#: weblate_web/templates/index.html:108
 msgid "Browse hundreds of projects on Hosted Weblate"
 msgstr "Переглянути сотні проектів на Hosted Weblate"
 
-#: weblate_web/templates/index.html:114
+#: weblate_web/templates/index.html:116
 msgid "Hosted service"
 msgstr ""
 
-#: weblate_web/templates/index.html:118 weblate_web/templates/index.html:132
+#: weblate_web/templates/index.html:120 weblate_web/templates/index.html:134
 #, python-format
 msgid "From %(amount)sEUR/month"
 msgstr ""
 
-#: weblate_web/templates/index.html:119
+#: weblate_web/templates/index.html:121
 msgid "Cloud service"
 msgstr ""
 
-#: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
+#: weblate_web/templates/index.html:124 weblate_web/templates/index.html:138
 #, fuzzy
 #| msgid "View hosting plans"
 msgid "Choose hosting plan"
 msgstr "Переглянути тарифні плани хостингу"
 
-#: weblate_web/templates/index.html:128
+#: weblate_web/templates/index.html:130
 msgid "On premise"
 msgstr ""
 
-#: weblate_web/templates/index.html:133
+#: weblate_web/templates/index.html:135
 msgid "Your infrastructure"
 msgstr ""
 
-#: weblate_web/templates/index.html:142
+#: weblate_web/templates/index.html:144
 #, fuzzy
 #| msgctxt "Hosting plan"
 #| msgid "Self hosted"
 msgid "Self supported"
 msgstr "Власний хостинг"
 
-#: weblate_web/templates/index.html:146
+#: weblate_web/templates/index.html:148
 #, fuzzy
 #| msgid "Weblate features"
 msgid "Weblate is free to use"
 msgstr "Функції Weblate"
 
-#: weblate_web/templates/index.html:147
+#: weblate_web/templates/index.html:149
 msgid "Maintained by you"
 msgstr ""
 
-#: weblate_web/templates/index.html:148
+#: weblate_web/templates/index.html:150
 #, fuzzy
 #| msgid "Phone support"
 msgid "Community support"
@@ -1782,25 +1787,29 @@ msgstr "Заархівований код у xz"
 msgid "Sources, zip compressed"
 msgstr "Вихідний код, стиснутий у zip"
 
-#: weblate_web/views.py:103
+#: weblate_web/views.py:98
 msgid "Please provide your billing information to complete the payment."
 msgstr "Будь ласка, вкажіть інформацію про оплату, щоб здійснити платіж."
 
-#: weblate_web/views.py:251
+#: weblate_web/views.py:109
+msgid "The VAT ID is no longer valid, please update it."
+msgstr ""
+
+#: weblate_web/views.py:269
 #, fuzzy
 #| msgid "Payments are processed by The Pay service."
 msgid "Payment not yet processed, please retry."
 msgstr "Платежі опрацьовуються сервісом The Pay."
 
-#: weblate_web/views.py:256
+#: weblate_web/views.py:274
 msgid "The payment was rejected: {}"
 msgstr ""
 
-#: weblate_web/views.py:257
+#: weblate_web/views.py:275
 msgid "Unknown reason"
 msgstr ""
 
-#: weblate_web/views.py:261
+#: weblate_web/views.py:279
 #, fuzzy
 #| msgid "Thank you for ordering hosting!"
 msgid "Thank you for your donation."

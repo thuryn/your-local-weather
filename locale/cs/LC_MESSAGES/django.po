@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-04 16:32+0100\n"
+"POT-Creation-Date: 2019-01-11 15:13+0100\n"
 "PO-Revision-Date: 2019-01-11 14:08+0000\n"
 "Last-Translator: Michal Čihař <michal@cihar.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/weblate/website/cs/"
@@ -122,11 +122,13 @@ msgstr "Každému z uživatelů je možné určit úrovně přístupových oprá
 msgid "User management"
 msgstr "Správa uživatelů"
 
-#: weblate_web/forms.py:47 weblate_web/templates/donate/form.html:25
+#: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
+#: weblate_web/templates/donate/form.html:25
 msgid "Donation recurrence"
 msgstr "Opakování příspěvku"
 
-#: weblate_web/forms.py:53 weblate_web/templates/donate/form.html:26
+#: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
+#: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
 msgstr "Částka v EUR"
 
@@ -229,7 +231,7 @@ msgid "Features"
 msgstr "Vlastnosti"
 
 #: weblate_web/templates/base.html:59 weblate_web/templates/download.html:18
-#: weblate_web/templates/index.html:150
+#: weblate_web/templates/index.html:152
 msgid "Download"
 msgstr "Stáhnout"
 
@@ -242,7 +244,7 @@ msgid "Develop"
 msgstr "Vyvíjejte"
 
 #: weblate_web/templates/base.html:62 weblate_web/templates/donate.html:110
-#: weblate_web/templates/donate.html:122
+#: weblate_web/templates/donate.html:122 weblate_web/templates/donate.html:157
 msgid "Donate"
 msgstr "Přispějte"
 
@@ -362,7 +364,7 @@ msgstr "Zakoupit balíček hostování"
 
 #: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:135
 #: weblate_web/templates/download.html:13 weblate_web/templates/hosting.html:12
-#: weblate_web/templates/hosting.html:234
+#: weblate_web/templates/hosting.html:233
 msgid "Get support for Weblate"
 msgstr "Získejte podporu pro Weblate"
 
@@ -475,11 +477,17 @@ msgid ""
 msgstr ""
 "Placené služby jako hostování nebo podpora pomáhají platit vývoj Weblate."
 
-#: weblate_web/templates/donate.html:143
+#: weblate_web/templates/donate.html:142
+#, fuzzy
+#| msgid "Donation address"
+msgid "Donation rewards"
+msgstr "Adresa pro příspěvek"
+
+#: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
 msgstr "Kryptoměny"
 
-#: weblate_web/templates/donate.html:146
+#: weblate_web/templates/donate.html:166
 #, python-format
 msgid ""
 "Thanks to <a href=\"%(url)s\">Trezor</a>, we will gladly accept donations in "
@@ -488,16 +496,17 @@ msgstr ""
 "Díky <a href=\"%(url)s\">Trezoru</a> rádi přijmeme příspěvky v několika "
 "kryptoměnách. Můžete použít adresy uvedené v tabulce níže."
 
-#: weblate_web/templates/donate.html:151
+#: weblate_web/templates/donate.html:171
 msgid "Currency"
 msgstr "Měna"
 
-#: weblate_web/templates/donate.html:151
+#: weblate_web/templates/donate.html:171
 msgid "Donation address"
 msgstr "Adresa pro příspěvek"
 
 #: weblate_web/templates/donate/edit.html:12
-msgid "Please select choose wanted reward or enter custom donation amount."
+#: weblate_web/templates/donate/form.html:13
+msgid "Please choose wanted reward or enter custom donation amount."
 msgstr "Prosím zvolte požadovanou odměnu nebo zvolte vlastní výši příspěvku."
 
 #: weblate_web/templates/donate/edit.html:20
@@ -508,10 +517,6 @@ msgstr "Upravte váš odkaz za odměnu"
 #: weblate_web/templates/payment/customer.html:21
 msgid "Save"
 msgstr "Uložit"
-
-#: weblate_web/templates/donate/form.html:13
-msgid "Please choose wanted reward or enter custom donation amount."
-msgstr "Prosím zvolte požadovanou odměnu nebo zvolte vlastní výši příspěvku."
 
 #: weblate_web/templates/donate/form.html:33
 msgid "Select"
@@ -551,7 +556,7 @@ msgid "PGP signature"
 msgstr "PGP podpis"
 
 #: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
-#: weblate_web/templates/hosting.html:235
+#: weblate_web/templates/hosting.html:234
 msgid "Download Weblate"
 msgstr "Stáhněte si Weblate"
 
@@ -1120,8 +1125,8 @@ msgstr "Doplňky překladu"
 msgid "Translation memory"
 msgstr "Paměť překladů"
 
-#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:120
-#: weblate_web/templates/index.html:134
+#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:122
+#: weblate_web/templates/index.html:136
 msgid "Priority email support"
 msgstr "Přednostní e-mailová podpora"
 
@@ -1203,11 +1208,11 @@ msgstr ""
 msgid "Self hosting"
 msgstr "Vlastní hostování"
 
-#: weblate_web/templates/hosting.html:230
+#: weblate_web/templates/hosting.html:229
 msgid "There are also several options for deploying Weblate to the cloud."
 msgstr "Je také několik možností jak provozovat Weblate v cloudu."
 
-#: weblate_web/templates/hosting.html:234
+#: weblate_web/templates/hosting.html:233
 msgid ""
 "In case you need help with your self hosted solution, we're ready to help as "
 "well with consulting services tailored for your needs."
@@ -1263,48 +1268,48 @@ msgstr "Další vlastnosti…"
 msgid "See who is using Weblate and join them!"
 msgstr "Podívejte se, kdo používá Weblate, a přidejte se k nim!"
 
-#: weblate_web/templates/index.html:106
+#: weblate_web/templates/index.html:108
 msgid "Browse hundreds of projects on Hosted Weblate"
 msgstr "Prohlédněte si stovky projektů na Hosted Weblate"
 
-#: weblate_web/templates/index.html:114
+#: weblate_web/templates/index.html:116
 msgid "Hosted service"
 msgstr "Hostovaná služba"
 
-#: weblate_web/templates/index.html:118 weblate_web/templates/index.html:132
+#: weblate_web/templates/index.html:120 weblate_web/templates/index.html:134
 #, python-format
 msgid "From %(amount)sEUR/month"
 msgstr "Od %(amount)s EUR/měsíc"
 
-#: weblate_web/templates/index.html:119
+#: weblate_web/templates/index.html:121
 msgid "Cloud service"
 msgstr "Služba v cloudu"
 
-#: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
+#: weblate_web/templates/index.html:124 weblate_web/templates/index.html:138
 msgid "Choose hosting plan"
 msgstr "Zvolit hostovací balíček"
 
-#: weblate_web/templates/index.html:128
+#: weblate_web/templates/index.html:130
 msgid "On premise"
 msgstr "U vás"
 
-#: weblate_web/templates/index.html:133
+#: weblate_web/templates/index.html:135
 msgid "Your infrastructure"
 msgstr "Vaše infrastruktura"
 
-#: weblate_web/templates/index.html:142
+#: weblate_web/templates/index.html:144
 msgid "Self supported"
 msgstr "Bez podpory"
 
-#: weblate_web/templates/index.html:146
+#: weblate_web/templates/index.html:148
 msgid "Weblate is free to use"
 msgstr "Weblate je dostupné zdarma"
 
-#: weblate_web/templates/index.html:147
+#: weblate_web/templates/index.html:149
 msgid "Maintained by you"
 msgstr "Udržováno vámi"
 
-#: weblate_web/templates/index.html:148
+#: weblate_web/templates/index.html:150
 msgid "Community support"
 msgstr "Podpora komunitou"
 
@@ -1752,25 +1757,33 @@ msgstr "Zdrojový tarball, komprimový xz"
 msgid "Sources, zip compressed"
 msgstr "Zdrojové kódy, komprimované zipem"
 
-#: weblate_web/views.py:103
+#: weblate_web/views.py:98
 msgid "Please provide your billing information to complete the payment."
 msgstr "Pro dokončení platby prosím zadejte vaše fakturační údaje."
 
-#: weblate_web/views.py:251
+#: weblate_web/views.py:109
+msgid "The VAT ID is no longer valid, please update it."
+msgstr ""
+
+#: weblate_web/views.py:269
 msgid "Payment not yet processed, please retry."
 msgstr "Platba ještě nebyla zpracována, prosím zkuste to znovu."
 
-#: weblate_web/views.py:256
+#: weblate_web/views.py:274
 msgid "The payment was rejected: {}"
 msgstr "Platba byla zamítnuta: {}"
 
-#: weblate_web/views.py:257
+#: weblate_web/views.py:275
 msgid "Unknown reason"
 msgstr "Neznámý důvod"
 
-#: weblate_web/views.py:261
+#: weblate_web/views.py:279
 msgid "Thank you for your donation."
 msgstr "Děkujeme vám za váš příspěvek."
+
+#~ msgid "Please select choose wanted reward or enter custom donation amount."
+#~ msgstr ""
+#~ "Prosím zvolte požadovanou odměnu nebo zvolte vlastní výši příspěvku."
 
 #~ msgid "This website is stored on <a href=\"%(url)s\">GitHub</a> as well:"
 #~ msgstr "Tyto stránky jsou také uloženy na <a href=\"%(url)s\">GitHubu</a>:"
