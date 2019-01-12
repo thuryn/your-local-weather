@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-11 15:13+0100\n"
-"PO-Revision-Date: 2019-01-12 13:58+0000\n"
-"Last-Translator: Louies <louies0623@gmail.com>\n"
+"PO-Revision-Date: 2019-01-12 18:08+0000\n"
+"Last-Translator: Chang-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "weblate/website/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -313,7 +313,7 @@ msgstr ""
 msgid ""
 "You can find more repositories related to Weblate on <a href=\"%(url)s"
 "\">GitHub</a>"
-msgstr "您可以在 <a href=\"%(url)s\"> GitHub </a> 上找到更多與 Weblate 相關的存儲庫"
+msgstr "您可以在 <a href=\"%(url)s\">GitHub</a> 上找到更多 Weblate 相關的儲存庫"
 
 #: weblate_web/templates/contribute.html:37
 msgid ""
@@ -353,7 +353,7 @@ msgstr "取得 Weblate 的支援"
 
 #: weblate_web/templates/donate.html:19
 msgid "Sign in to manage your donations"
-msgstr "登入以管理您的捐款"
+msgstr "登入以管理您的贊助"
 
 #: weblate_web/templates/donate.html:21
 msgid "Sign out"
@@ -413,7 +413,7 @@ msgid ""
 "Recurring donations allow sustainability of Weblate development and help to "
 "fund free hosting for libre software. You don't have to spend big money, "
 "every penny counts."
-msgstr "定期捐款允許 Weblate 開發的可持續性，並有助於資助免費託管的 Libre 軟體。你不必花大把的錢，每一分錢都很重要。"
+msgstr "定期贊助能支持 Weblate 繼續開發，並可協助自由軟體的免費託管服務。您不一定要花大錢，即便是小額捐款也都能幫到我們。"
 
 #: weblate_web/templates/donate.html:103
 msgid "Recurring donation"
@@ -423,23 +423,23 @@ msgstr "定期贊助"
 msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable in the long term."
-msgstr "對 Weblate 專案的反復欣賞有助於保持專案的長期可持續性。"
+msgstr "定期贊助 Weblate 專案有助於讓專案長久維持下去。"
 
 #: weblate_web/templates/donate.html:107
 msgid ""
 "Please consider this if you are using Weblate on premise without support "
 "contract."
-msgstr "如果您在沒有支援合同的情況下在內部使用 Weblate，請考慮這一點。"
+msgstr "如果您正在使用沒有商業支援的自架 Weblate，還請多多考慮。"
 
 #: weblate_web/templates/donate.html:116
 msgid "One time donation"
-msgstr "一次捐助"
+msgstr "一次性贊助"
 
 #: weblate_web/templates/donate.html:119
 msgid ""
 "One time donations are great for appreciating our work on single issue or "
 "support."
-msgstr "曾經的捐款是偉大的讚賞我們的工作，在單一的問題或支援。"
+msgstr "一次性贊助很適合您表達我們對某項 Issue 的改善或支援成果的感謝。"
 
 #: weblate_web/templates/donate.html:128
 msgid "Use our services"
@@ -449,11 +449,11 @@ msgstr "使用我們的服務"
 msgid ""
 "Commercial services like hosting or support for on premise installation help "
 "funding Weblate development."
-msgstr "商務服務，如託管或支援內部安裝，有助於為 Weblate 開發提供資金。"
+msgstr "商業服務，例如申請託管服務或自架安裝支援，都有助於為 Weblate 開發提供資金。"
 
 #: weblate_web/templates/donate.html:142
 msgid "Donation rewards"
-msgstr "捐款獎勵"
+msgstr "贊助獎勵"
 
 #: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
@@ -479,7 +479,7 @@ msgstr "捐款位址"
 #: weblate_web/templates/donate/edit.html:12
 #: weblate_web/templates/donate/form.html:13
 msgid "Please choose wanted reward or enter custom donation amount."
-msgstr "請選擇想要的獎勵或輸入自訂捐款金額。"
+msgstr "請選擇希望的獎勵，或輸入自訂贊助金額。"
 
 #: weblate_web/templates/donate/edit.html:20
 msgid "Edit your reward link"
@@ -492,17 +492,17 @@ msgstr "儲存"
 
 #: weblate_web/templates/donate/form.html:33
 msgid "Select"
-msgstr "選擇"
+msgstr "選取"
 
 #: weblate_web/templates/donate/form.html:41
 msgid ""
 "We might refuse to place your link, especially if the site contains adult or "
 "illegal content. Please consult us in advance if unsure."
-msgstr "我們可能會拒絕放置您的連結，尤其是如果網站包含成人或非法內容。如不確定，請提前諮詢我們。"
+msgstr "我們可能會拒絕放置您的連結，尤其是您的網站若有包含成人或非法內容。如有不確定，請先諮詢我們。"
 
 #: weblate_web/templates/donate/form.html:50
 msgid "Choose your own donation amount"
-msgstr "選擇您自己的捐款金額"
+msgstr "選擇您自訂的贊助金額"
 
 #: weblate_web/templates/donate/form.html:56
 msgid "Continue"
@@ -510,15 +510,15 @@ msgstr "繼續"
 
 #: weblate_web/templates/donate/rewards.html:2
 msgid "Link placement on the weblate.org thanks page"
-msgstr "連結放置在 weblate.org 感謝頁面上"
+msgstr "放置在 weblate.org 感謝頁面上的連結"
 
 #: weblate_web/templates/donate/rewards.html:3
 msgid "Link placement in the list of supporters"
-msgstr "連結在支援者清單中的位置"
+msgstr "放置在支持者名單中的連結"
 
 #: weblate_web/templates/donate/rewards.html:4
 msgid "Name placement in the list of supporters"
-msgstr "支援者清單中的名稱位置"
+msgstr "放置在支援者名單中的名稱"
 
 #: weblate_web/templates/download-link.html:4
 msgid "PGP signature"
@@ -1197,7 +1197,7 @@ msgstr "託管服務"
 #: weblate_web/templates/index.html:120 weblate_web/templates/index.html:134
 #, python-format
 msgid "From %(amount)sEUR/month"
-msgstr "來自%(amount)s歐元/月"
+msgstr "%(amount)s 歐元起/月"
 
 #: weblate_web/templates/index.html:121
 msgid "Cloud service"
@@ -1205,11 +1205,11 @@ msgstr "雲端服務"
 
 #: weblate_web/templates/index.html:124 weblate_web/templates/index.html:138
 msgid "Choose hosting plan"
-msgstr "選擇託管計畫"
+msgstr "選擇託管方案"
 
 #: weblate_web/templates/index.html:130
 msgid "On premise"
-msgstr "在前提下"
+msgstr "自行架設"
 
 #: weblate_web/templates/index.html:135
 msgid "Your infrastructure"
@@ -1217,7 +1217,7 @@ msgstr "您的基礎架構"
 
 #: weblate_web/templates/index.html:144
 msgid "Self supported"
-msgstr "自負盈虧"
+msgstr "自助"
 
 #: weblate_web/templates/index.html:148
 msgid "Weblate is free to use"
@@ -1225,11 +1225,11 @@ msgstr "Weblate 可免費使用"
 
 #: weblate_web/templates/index.html:149
 msgid "Maintained by you"
-msgstr "由您維護"
+msgstr "由您自行維護"
 
 #: weblate_web/templates/index.html:150
 msgid "Community support"
-msgstr "社區支援"
+msgstr "社群支援"
 
 #: weblate_web/templates/payment/customer.html:5
 #: weblate_web/templates/payment/payment.html:4
@@ -1273,7 +1273,7 @@ msgstr "將每年支付，直到您取消訂購為止。"
 #: weblate_web/templates/payment/payment.html:24
 msgid ""
 "Payment will be issued every six months till you cancel the subscription."
-msgstr "付款將每六個月發放一次，直到您取消訂閱。"
+msgstr "將每六個月支付一次，直到您取消訂購為止。"
 
 #: weblate_web/templates/payment/payment.html:26
 msgid "Payment will be issued monthly till you cancel the subscription."
@@ -1557,7 +1557,7 @@ msgstr "自由軟體專案的免費託管服務不能沒有贊助商的支持。
 
 #: weblate_web/templates/thanks.html:50
 msgid "Support our project and get link placement on this page."
-msgstr "支援我們的專案，並在此頁面上獲得連結位置。"
+msgstr "請贊助我們的專案以獲得在此頁面上放置連結的機會。"
 
 #: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
 msgid "Weblate tour"
@@ -1665,15 +1665,15 @@ msgstr "請提供您的付費資訊完成支付。"
 
 #: weblate_web/views.py:109
 msgid "The VAT ID is no longer valid, please update it."
-msgstr "加值稅 ID 不再有效，請進行更新。"
+msgstr "營業稅 VAT ID 不再有效，請更新。"
 
 #: weblate_web/views.py:269
 msgid "Payment not yet processed, please retry."
-msgstr "付款尚未處理，請重試。"
+msgstr "支付尚未處理，請重試。"
 
 #: weblate_web/views.py:274
 msgid "The payment was rejected: {}"
-msgstr "付款被拒絕: {}"
+msgstr "支付動作遭拒：{}"
 
 #: weblate_web/views.py:275
 msgid "Unknown reason"
