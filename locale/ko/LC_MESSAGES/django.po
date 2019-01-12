@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-11 15:13+0100\n"
-"PO-Revision-Date: 2019-01-10 10:26+0000\n"
+"PO-Revision-Date: 2019-01-12 18:09+0000\n"
 "Last-Translator: 송태섭 <xotjq237@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/weblate/website/"
 "ko/>\n"
@@ -470,10 +470,8 @@ msgstr ""
 "에 도움을 줍니다."
 
 #: weblate_web/templates/donate.html:142
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation rewards"
-msgstr "기부 주소"
+msgstr "기부 보상"
 
 #: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
@@ -1741,7 +1739,7 @@ msgstr "결제을 완료하려면 결제 정보를 입력하십시오."
 
 #: weblate_web/views.py:109
 msgid "The VAT ID is no longer valid, please update it."
-msgstr ""
+msgstr "VAT ID가 더 이상 유효하지 않습니다, 업데이트 해주시길 바랍니다."
 
 #: weblate_web/views.py:269
 msgid "Payment not yet processed, please retry."
