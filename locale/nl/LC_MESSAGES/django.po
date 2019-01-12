@@ -2,13 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Thomas De Rocker <thomasderocker@outlook.com>, 2018, 2019.
+# Nathan Follens <nthn@unseen.is>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-11 15:13+0100\n"
-"PO-Revision-Date: 2019-01-05 15:28+0000\n"
-"Last-Translator: Thomas De Rocker <thomasderocker@outlook.com>\n"
+"PO-Revision-Date: 2019-01-12 18:09+0000\n"
+"Last-Translator: Nathan Follens <nthn@unseen.is>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/weblate/website/nl/"
 ">\n"
 "Language: nl\n"
@@ -480,10 +481,8 @@ msgstr ""
 "locatie helpen bij de financiering van Weblate-ontwikkeling."
 
 #: weblate_web/templates/donate.html:142
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation rewards"
-msgstr "Donatie-adres"
+msgstr "Donatiebeloningen"
 
 #: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
@@ -1656,7 +1655,7 @@ msgstr "Onze vertalingen worden uitgevoerd op Hosted Weblate."
 
 #: weblate_web/templates/thanks.html:42
 msgid "Payments are processed by The Pay service."
-msgstr "Betalingen worden verwerkt door The Pay service."
+msgstr "Betalingen worden verwerkt door The Pay."
 
 #: weblate_web/templates/thanks.html:46
 msgid "Supporters"
@@ -1782,7 +1781,7 @@ msgstr "Geef uw facturatiegegevens op om de betaling af te ronden."
 
 #: weblate_web/views.py:109
 msgid "The VAT ID is no longer valid, please update it."
-msgstr ""
+msgstr "Het BTW-ID is niet langer geldig, gelieve het bij te werken."
 
 #: weblate_web/views.py:269
 msgid "Payment not yet processed, please retry."
