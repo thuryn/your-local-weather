@@ -1,2 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">您當地的天氣</string>
+    <string name="enter_city_hint" tools:ignore="MissingTranslation">輸入城市</string>
+    <string name="label_current_city" tools:ignore="MissingTranslation">目前城市</string>
+    <string name="label_choose_city" tools:ignore="MissingTranslation">選擇城市</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">電池最佳化</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">該應用程式將要求您關閉電池最佳化，以更新位置，天氣或跟蹤位置的加速度計在後臺。</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">進行</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">取消</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">位置和許可權設置</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">應用程式設定為更新位置。需要訪問它。轉到設備設置並打開位置或關閉應用位置更新。</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">應用程式需要使用 GPS 更新位置的許可權。</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">該應用程式需要通過 Wi-Fi 和 GSM 網路更新位置的許可權。</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">使用 Wi-Fi和 GSM 網路更新位置需要從設備讀取資訊的許可權。這將獲取有關設備連接到的 gsm 基站的資訊。</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">裝置設定</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">請求許可權</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">取消</string>
+    <string name="progressDialog_gps_locate" tools:ignore="MissingTranslation">查尋目前位置</string>
+    <string name="load_progress" tools:ignore="MissingTranslation">載入中…</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">找不到位置</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">尚未授予許可權-按一下應用程式中的位置符號</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">訪問已過期。請升級應用程式。</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">您的OpenweathermapApi Key 尚未註冊。</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">分享天氣</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">找不到通信應用</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">您當地的天氣</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">您當地的天氣通知</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">溫度</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">風速</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">雨量</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">積雪</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">氣壓</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">關閉</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">下一步</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">返回</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">完成</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">初始配置指南</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">更新位置設定</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">位置源選項</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">位置和位址源</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">喚醒策略選項</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">除非顯示處於打開狀態，否則某些手機型號無法正確報告連接的儲存格。首選選項 (打開顯示器) 的缺點是手機將顯示器切換幾秒鐘。這對電池壽命的影響很小。從它開始，並嘗試將其關閉，看看位置是否仍然更新。</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">喚醒策略</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">快取已解決的位址選項</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">您可以透過快取找到的位置來保存網路流量。然後，位置存儲在應用程式中。它們不會發送或存儲在網路中的其他位置。</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">快取已解析的位址</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">祝賀</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">一般</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">主要應用程式</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">烏雲密布</string>
+</resources>
