@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Ditt lokala väder</string>
     <string name="enter_city_hint" tools:ignore="MissingTranslation">Ange stad</string>
     <string name="label_current_city" tools:ignore="MissingTranslation">Aktuell stad</string>
@@ -155,6 +155,21 @@
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Skärm</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Uppdatera plats och väder</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Systeminställningar</string>
-    <string name="help_page_2_content" tools:ignore="MissingTranslation"></string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation"/>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation"><b>Switch GPS on when necessary</b> option, application tries to find location by cell or wifi networks. When the location could not be find by network services application turns GPS on for a several seconds to get the location.</string>
-    </resources>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Dela väder</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Kommunikationsapp hittades inte</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Stad: %1$s
+\nTemperatur: %2$s
+\nBeskrivning: %3$s
+\nVind: % 4$s % 5$s
+\nSoluppgång: %6$s
+\nSolnedgång: %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Ditt lokala väder</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Dina lokala väderaviseringar</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Temperatur</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Vind</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Regn</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Snö</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Tryck</string>
+</resources>
