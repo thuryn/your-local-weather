@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-11 15:13+0100\n"
-"PO-Revision-Date: 2019-01-12 18:09+0000\n"
-"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
+"PO-Revision-Date: 2019-01-15 11:19+0000\n"
+"Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/weblate/website/"
 "da/>\n"
 "Language: da\n"
@@ -483,10 +483,8 @@ msgstr ""
 "installation der du kører det fra, finansierer udviklingen af Weblate."
 
 #: weblate_web/templates/donate.html:142
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation rewards"
-msgstr "Donationsadresse"
+msgstr "Donationsbelønninger"
 
 #: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
@@ -1768,7 +1766,7 @@ msgstr "Angiv venligst din faktureringsinformation for at fuldføre betalingen."
 
 #: weblate_web/views.py:109
 msgid "The VAT ID is no longer valid, please update it."
-msgstr ""
+msgstr "VAT-ID'et er ikke længere gyldigt, opdater det venligst."
 
 #: weblate_web/views.py:269
 msgid "Payment not yet processed, please retry."
