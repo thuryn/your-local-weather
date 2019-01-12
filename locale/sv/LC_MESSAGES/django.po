@@ -1,12 +1,12 @@
 # Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>, 2018, 2019.
-# Johan Jacobsson <johan.jacobsson@telia.com>, 2018.
+# Johan Jacobsson <johan.jacobsson@telia.com>, 2018, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: Swedish (Weblate)\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-11 15:13+0100\n"
-"PO-Revision-Date: 2019-01-12 18:09+0000\n"
-"Last-Translator: Jonatan Nyberg <jonatan.nyberg.karl@gmail.com>\n"
+"PO-Revision-Date: 2019-01-15 11:20+0000\n"
+"Last-Translator: Johan Jacobsson <johan.jacobsson@telia.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/weblate/website/"
 "sv/>\n"
 "Language: sv\n"
@@ -45,7 +45,7 @@ msgstr ""
 
 #: weblate_web/data.py:50
 msgid "Project overview"
-msgstr "Projektöverblick"
+msgstr "Projektöversikt"
 
 #: weblate_web/data.py:55 weblate_web/templates/features.html:72
 msgid ""
@@ -85,7 +85,7 @@ msgstr "Marknadsföring"
 
 #: weblate_web/data.py:79
 msgid "Translation workflow can be customized by using addons."
-msgstr "Översättning arbetsflöde kan anpassas med hjälp av tillägg."
+msgstr "Arbetsflödet vid översättning kan anpassas med hjälp av tillägg."
 
 #: weblate_web/data.py:81
 msgid "Addons"
@@ -96,8 +96,9 @@ msgid ""
 "Automatic translation can be used to bootstrap your translations using "
 "machine translation services or translation memory."
 msgstr ""
-"Automatisk översättning kan användas för att starta upp dina översättningar "
-"med hjälp av maskinöversättningstjänster eller översättningsminne."
+"Automatisk översättning kan användas för att komma igång med dina "
+"översättningar med hjälp av maskinöversättningstjänster eller "
+"översättningsminne."
 
 #: weblate_web/data.py:89
 msgid "Automatic translation"
@@ -106,9 +107,7 @@ msgstr "Automatisk översättning"
 #: weblate_web/data.py:94
 msgid ""
 "Translations can be exported and imported in many widely used file formats."
-msgstr ""
-"Översättningar kan exporteras och importeras i många allmänt använda "
-"filformat."
+msgstr "Översättningar kan exporteras och importeras i många vanliga filformat."
 
 #: weblate_web/data.py:97 weblate_web/templates/features.html:87
 msgid "Export and import"
@@ -143,11 +142,11 @@ msgstr "Länkwebbadress"
 
 #: weblate_web/templates/404.html:4
 msgid "Page not found"
-msgstr "Sidan ej funnen"
+msgstr "Sidan hittades inte"
 
 #: weblate_web/templates/404.html:8 weblate_web/templates/500.html:8
 msgid "Weblate is a free web-based translation management system."
-msgstr "Weblate är ett fritt webbaserat översättningshanteringssystem."
+msgstr "Weblate är ett fritt webbaserat system för översättningar."
 
 #: weblate_web/templates/404.html:15
 msgid "The page you are looking for was not found."
@@ -174,27 +173,28 @@ msgstr "Kontinuerlig översättning"
 msgid ""
 "Automated translation process can closely follow development of your project."
 msgstr ""
-"En automatiserad översättningsprocess kan nära följa utvecklandet av ditt "
+"En automatiserad översättningsprocess kan nära följa utvecklingen av ditt "
 "projekt."
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
-msgstr "Attribuering"
+msgstr "Erkännande"
 
 #: weblate_web/templates/base-features.html:23
 msgid ""
 "All your translators will be properly credited in the version control system."
 msgstr ""
-"Alla dina översättare får ordentligt erkännande i versionshanteringssystemet."
+"Alla dina översättare får korrekt erkännande i versionshanteringssystemet."
 
 #: weblate_web/templates/base-features.html:30
 #: weblate_web/templates/hosting.html:18
 msgid "Hosting plans"
-msgstr "Hostingplaner"
+msgstr "Hosting-abbonemang"
 
 #: weblate_web/templates/base-features.html:31
 msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
-msgstr "Hostingplaner för att använda Weblate från 19 EUR."
+msgstr ""
+"Hosting-abbonemang för att använda Weblate som en tjänst, finns från 19 EUR."
 
 #: weblate_web/templates/base-features.html:38
 msgid "Ready for cloud"
@@ -213,7 +213,7 @@ msgstr "Fri mjukvara"
 #: weblate_web/templates/base-features.html:47
 #: weblate_web/templates/hosting.html:228
 msgid "Weblate is free software, you can run your own instance of it."
-msgstr "Weblate är fri mjukvara, du kan köra din egen instans av den."
+msgstr "Weblate är fri mjukvara, som du kan köra din egen instans av."
 
 #: weblate_web/templates/base.html:11
 msgctxt "Keyword"
@@ -222,11 +222,11 @@ msgstr "översätt"
 
 #: weblate_web/templates/base.html:49
 msgid "Weblate logo"
-msgstr "Weblates logo"
+msgstr "Weblate-logo"
 
 #: weblate_web/templates/base.html:57
 msgid "Try"
-msgstr "Pröva"
+msgstr "Testa"
 
 #: weblate_web/templates/base.html:58
 msgid "Features"
@@ -307,8 +307,8 @@ msgid ""
 "docs.weblate.org/en/latest/contributing.html\">Contributing chapter</a> of "
 "the documentation."
 msgstr ""
-"Du kan hitta mer detaljerad information om detta ämne i kapitlet <a href="
-"\"https://docs.weblate.org/en/latest/contributing.html\">Bidrag</a> i "
+"Du kan hitta mer detaljerad information om detta ämne i kapitlet <a href=\""
+"https://docs.weblate.org/en/latest/contributing.html\">Bidra</a> i "
 "dokumentationen."
 
 #: weblate_web/templates/contribute.html:20
@@ -322,8 +322,8 @@ msgid ""
 "Weblate is being developed on <a href=\"%(url)s\">GitHub</a>, you can fork "
 "it there or just:"
 msgstr ""
-"Weblate utvecklas på <a href=\"%(url)s\">GitHub</a>, du kan skapa en "
-"förgrening där eller bara utföra:"
+"Weblate utvecklas på <a href=\"%(url)s\">GitHub</a>. Där du kan \"forka\" "
+"koden eller kör bara:"
 
 #: weblate_web/templates/contribute.html:31
 #, python-format
@@ -331,7 +331,7 @@ msgid ""
 "You can find more repositories related to Weblate on <a href=\"%(url)s"
 "\">GitHub</a>"
 msgstr ""
-"Du kan hitta fler förråd relaterade till Weblate på <a href=\"%(url)s\""
+"Du kan hitta fler arkiv relaterade till Weblate på <a href=\"%(url)s\""
 ">GitHub</a>"
 
 #: weblate_web/templates/contribute.html:37
@@ -362,7 +362,7 @@ msgstr "Weblate kan användas gratis, och välkomnar donationer."
 
 #: weblate_web/templates/donate.html:11 weblate_web/templates/donate.html:134
 msgid "Purchase hosting package"
-msgstr "Köp hostingpaketet"
+msgstr "Köp ett hosting-paket"
 
 #: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:135
 #: weblate_web/templates/download.html:13 weblate_web/templates/hosting.html:12
@@ -476,6 +476,8 @@ msgid ""
 "Commercial services like hosting or support for on premise installation help "
 "funding Weblate development."
 msgstr ""
+"Kommersiella tjänster som hosting eller på-platsen-support hjälper till att "
+"finansiera Weblate-utvecklingen."
 
 #: weblate_web/templates/donate.html:142
 msgid "Donation rewards"
