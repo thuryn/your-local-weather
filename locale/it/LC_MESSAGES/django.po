@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Weblate v. 2017.09.28\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-11 15:13+0100\n"
-"PO-Revision-Date: 2019-01-07 08:25+0000\n"
+"PO-Revision-Date: 2019-01-15 11:20+0000\n"
 "Last-Translator: bovirus <roberto.boriotti@canon-europe.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/weblate/website/"
 "it/>\n"
@@ -492,10 +492,8 @@ msgstr ""
 "premise aiutano a finanziare lo sviluppo di Weblate."
 
 #: weblate_web/templates/donate.html:142
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation rewards"
-msgstr "Coordinate per le donazioni"
+msgstr "Premi donazione"
 
 #: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
@@ -1806,7 +1804,7 @@ msgstr ""
 
 #: weblate_web/views.py:109
 msgid "The VAT ID is no longer valid, please update it."
-msgstr ""
+msgstr "L'ID IVA non è più valido. Aggiornalo."
 
 #: weblate_web/views.py:269
 msgid "Payment not yet processed, please retry."
