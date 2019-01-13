@@ -141,7 +141,7 @@
     <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">描述</string>
     <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">温度</string>
     <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">风速</string>
-    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">雨/雪</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">降水</string>
     <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">湿度</string>
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">气压</string>
     <string name="ok" tools:ignore="MissingTranslation">确定</string>
@@ -336,9 +336,9 @@
 \n日落：%7$s</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">当地天气</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">当地天气通知</string>
-    <string name="graph_wind_label" tools:ignore="MissingTranslation">风</string>
-    <string name="graph_rain_label" tools:ignore="MissingTranslation">雨</string>
-    <string name="graph_snow_label" tools:ignore="MissingTranslation">雪</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">风速</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">降雨</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">降雪</string>
     <string name="graph_pressure_label" tools:ignore="MissingTranslation">气压</string>
 
     <string name="title_open_source_licenses" tools:ignore="MissingTranslation">开源许可证</string>
@@ -365,7 +365,7 @@
     <string name="weather_condition_description_781" tools:ignore="MissingTranslation">龙卷风</string>
     <string name="weather_condition_description_800" tools:ignore="MissingTranslation">晴</string>
     <string name="weather_condition_description_801" tools:ignore="MissingTranslation">少云</string>
-    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">日</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">温度</string>
     <string name="pref_title_date_style" tools:ignore="MissingTranslation">日期格式</string>
     <string name="date_style_dots" tools:ignore="MissingTranslation">天天.月月.(年年)</string>
     <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">月月/天天(/年年)</string>
@@ -412,4 +412,44 @@
     <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">状态栏图标样式</string>
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">单位设置</string>
     <string name="preference_title_power_save" tools:ignore="MissingTranslation">省电选项</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">可见图表设置</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">组合图表设置</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">组合</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">温度</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">风速</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">降雨</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">降雨（条形图）</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">降雪</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">降雪（条形图）</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">气压</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">温度</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">风速</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">降水</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">气压</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">显示的图标</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">组合图表数据</string>
+    <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">在图表中显示图例</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 天</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 天</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 天</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x（3 小时间隔）</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x（4 小时间隔）</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x（5 小时间隔）</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">按原始分辨率显示图形（当图形太小时）</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">在微件上显示设置</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">微件图形设置按钮</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">微件位置设置按钮</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">微件动作设置按钮</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">将日期显示为缩写</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">预报天数</string>
+    <string name="widget_setting_location_label" tools:ignore="MissingTranslation">位置设置</string>
+    <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">城市标签</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">当前天气图标</string>
+    <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">天气预报</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">图标</string>
+    <string name="widget_action_main_screen" tools:ignore="MissingTranslation">主屏幕</string>
+    <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">天气预报屏幕</string>
+    <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">图标屏幕</string>
+    <string name="widget_action_switch_location" tools:ignore="MissingTranslation">切换位置</string>
+    <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">在微件中显示位置</string>
 </resources>
