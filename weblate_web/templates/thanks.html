@@ -56,7 +56,13 @@
 <p><a href="https://www.scams.info/">scams.info</a></p>
 
 {% for donation in donate_links %}
+{% if donation.link_text and donation.link_url %}
 <p><a href="{{ donation.link_url }}">{{ donation.link_text }}</a></p>
+{% elif donation.link_text %}
+<p>{{ donation.link_text }}</p>
+{% elif donation.link_url %}
+<p><a href="{{ donation.link_url }}">{{ donation.link_url }}</a></p>
+{% endif %}
 {% endfor %}
 
 </div>
