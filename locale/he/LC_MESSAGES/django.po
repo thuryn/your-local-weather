@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-11 15:13+0100\n"
-"PO-Revision-Date: 2019-01-07 08:25+0000\n"
+"PO-Revision-Date: 2019-01-15 11:20+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/weblate/website/"
 "he/>\n"
@@ -460,10 +460,8 @@ msgstr ""
 "של Weblate."
 
 #: weblate_web/templates/donate.html:142
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation rewards"
-msgstr "כתובת לתרומה"
+msgstr "פרסים על תרומות"
 
 #: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
@@ -509,30 +507,32 @@ msgid ""
 "We might refuse to place your link, especially if the site contains adult or "
 "illegal content. Please consult us in advance if unsure."
 msgstr ""
+"יתכן שנסרב להציב את הקישור שלך, במיוחד אם האתר המופנה מכיל תוכן למבוגרים או "
+"בלתי חוקי. נא ליצור אתנו קשר במקרה של ספק."
 
 #: weblate_web/templates/donate/form.html:50
 msgid "Choose your own donation amount"
-msgstr ""
+msgstr "בחירת סכום תרומה משלך"
 
 #: weblate_web/templates/donate/form.html:56
 msgid "Continue"
-msgstr ""
+msgstr "המשך"
 
 #: weblate_web/templates/donate/rewards.html:2
 msgid "Link placement on the weblate.org thanks page"
-msgstr ""
+msgstr "מיקום הקישור בעמוד התודות של weblate.org"
 
 #: weblate_web/templates/donate/rewards.html:3
 msgid "Link placement in the list of supporters"
-msgstr ""
+msgstr "מיקום הקישור ברשימת התומכים"
 
 #: weblate_web/templates/donate/rewards.html:4
 msgid "Name placement in the list of supporters"
-msgstr ""
+msgstr "מיקום השם ברשימת התומכים"
 
 #: weblate_web/templates/download-link.html:4
 msgid "PGP signature"
-msgstr ""
+msgstr "חתימת PGP"
 
 #: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
 #: weblate_web/templates/hosting.html:234
@@ -1228,16 +1228,16 @@ msgstr "גלישה בין מאות מיזמים ב־Weblate באירוח מלא"
 
 #: weblate_web/templates/index.html:116
 msgid "Hosted service"
-msgstr ""
+msgstr "שירות מתארח"
 
 #: weblate_web/templates/index.html:120 weblate_web/templates/index.html:134
 #, python-format
 msgid "From %(amount)sEUR/month"
-msgstr ""
+msgstr "החל מ־%(amount)sאירו בחודש"
 
 #: weblate_web/templates/index.html:121
 msgid "Cloud service"
-msgstr ""
+msgstr "שירות ענן"
 
 #: weblate_web/templates/index.html:124 weblate_web/templates/index.html:138
 msgid "Choose hosting plan"
@@ -1245,11 +1245,11 @@ msgstr "בחירת תכנית אירוח"
 
 #: weblate_web/templates/index.html:130
 msgid "On premise"
-msgstr ""
+msgstr "על שרתים מקומיים"
 
 #: weblate_web/templates/index.html:135
 msgid "Your infrastructure"
-msgstr ""
+msgstr "תשתית משלך"
 
 #: weblate_web/templates/index.html:144
 msgid "Self supported"
@@ -1261,7 +1261,7 @@ msgstr "Weblate חופשי לשימוש"
 
 #: weblate_web/templates/index.html:149
 msgid "Maintained by you"
-msgstr ""
+msgstr "בתחזוקה עצמית"
 
 #: weblate_web/templates/index.html:150
 msgid "Community support"
@@ -1707,7 +1707,7 @@ msgstr "נא לספק את פרטי החיוב שלך כדי להשלים את �
 
 #: weblate_web/views.py:109
 msgid "The VAT ID is no longer valid, please update it."
-msgstr ""
+msgstr "מזהה המע״מ אינו תקף עוד, נא לעדכן אותו."
 
 #: weblate_web/views.py:269
 msgid "Payment not yet processed, please retry."
@@ -1715,11 +1715,11 @@ msgstr "התשלומים עדיין לא טופלו, נא לנסות שוב."
 
 #: weblate_web/views.py:274
 msgid "The payment was rejected: {}"
-msgstr ""
+msgstr "התשלום נדחה: {}"
 
 #: weblate_web/views.py:275
 msgid "Unknown reason"
-msgstr ""
+msgstr "סיבה בלתי ידועה"
 
 #: weblate_web/views.py:279
 msgid "Thank you for your donation."
