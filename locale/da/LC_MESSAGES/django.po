@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-15 11:19+0000\n"
+"PO-Revision-Date: 2019-01-21 02:47+0000\n"
 "Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/weblate/website/"
 "da/>\n"
@@ -136,7 +136,7 @@ msgstr "Beløb i EUR"
 #: weblate_web/forms.py:56
 #, python-format
 msgid "The minimal amount is %d EUR."
-msgstr ""
+msgstr "Minimumsbeløbet er %d EUR."
 
 #: weblate_web/models.py:76
 msgid "Link text"
@@ -152,10 +152,9 @@ msgstr "Siden blev ikke fundet"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
 msgid "Weblate is a libre software web-based continuous localization system."
-msgstr "Weblate er et frit webbaseret system til håndtering af oversættelser."
+msgstr ""
+"Weblate er et webbaseret system til løbende lokalisering, og er fri software."
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -179,14 +178,8 @@ msgid "Continuous translation"
 msgstr "Kontinuerlig oversættelse"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation process can closely follow development of your "
-#| "project."
 msgid "Automated translation closely follows the development of your project."
-msgstr ""
-"Automatiserede oversættelsesprocesser kan følge udviklingen af dit projekt "
-"tæt."
+msgstr "Automatiserede oversættelse følger nøje udviklingen af dit projekt."
 
 #: weblate_web/templates/base-features.html:15
 #, fuzzy
@@ -203,14 +196,9 @@ msgid "Attribution"
 msgstr "Kreditering"
 
 #: weblate_web/templates/base-features.html:23
-#, fuzzy
-#| msgid ""
-#| "All your translators will be properly credited in the version control "
-#| "system."
 msgid "All translators are properly credited in the version control system."
 msgstr ""
-"Alle dine oversættelser vil blive korrekt krediteret i "
-"versionsstyringssystemet."
+"Alle oversættere krediteres på ordentlig vis i versionsstyringssystemet."
 
 #: weblate_web/templates/base-features.html:30
 #: weblate_web/templates/hosting.html:18
@@ -218,30 +206,18 @@ msgid "Hosting plans"
 msgstr "Hostingplaner"
 
 #: weblate_web/templates/base-features.html:31
-#, fuzzy
-#| msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
 msgid "Hosting plans for Weblate as a service starting at 19 EUR."
-msgstr ""
-"Hostingplaner om at bruge Weblate som en tjeneste, startende fra 19 EUR."
+msgstr "Hostingplaner for Weblate som en tjeneste, startende fra 19 EUR."
 
 #: weblate_web/templates/base-features.html:38
-#, fuzzy
-#| msgid "Cloud service"
 msgid "Cloud ready"
-msgstr "Skytjeneste"
+msgstr "Klar til skyen"
 
 #: weblate_web/templates/base-features.html:39
-#, fuzzy
-#| msgid ""
-#| "Weblate comes with appliances, which are ready to deploy in your cloud."
 msgid "Weblate comes with appliances, ready to deploy in your cloud."
-msgstr ""
-"Med Weblate følger anvendelsesområder, der er klar til implementering i "
-"skyen."
+msgstr "Med Weblate følger anvendelsesområder, klar til implementering i skyen."
 
 #: weblate_web/templates/base-features.html:46
-#, fuzzy
-#| msgid "Free software"
 msgid "Libre software"
 msgstr "Fri software"
 
@@ -249,6 +225,8 @@ msgstr "Fri software"
 msgid ""
 "Weblate is copylefted; use, see, modify and share at will, and with everyone."
 msgstr ""
+"Weblate er copylefted; brug, se, modificer og del som du ønsker, og med hvem "
+"du ønsker."
 
 #: weblate_web/templates/base.html:11
 msgctxt "Keyword"
@@ -481,16 +459,12 @@ msgid "Recurring donation"
 msgstr "Gentagen donation"
 
 #: weblate_web/templates/donate.html:106
-#, fuzzy
-#| msgid ""
-#| "Repeated appreciation of the Weblate project helps in keeping the project "
-#| "sustainable in the long term."
 msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable long term."
 msgstr ""
 "Gentagen påskønnelse af Weblate-projektet hjælper med at opretholde "
-"projektet på lang sigt."
+"projektet på langt sigt."
 
 #: weblate_web/templates/donate.html:107
 #, fuzzy
@@ -720,7 +694,7 @@ msgid ""
 "Weblate supports all widely used file formats for localization, like "
 "gettext, JSON, XLIFF or resource strings."
 msgstr ""
-"Weblate understøtter alle vidt udbredt filformater til oversættelse, såsom "
+"Weblate understøtter alle vidt udbredt filformater til lokalisering, såsom "
 "gettext, JSON, XLIFF eller ressource-strenge."
 
 #: weblate_web/templates/features.html:55
@@ -1274,39 +1248,29 @@ msgstr ""
 "til at hjælpe med konsulentydelser skræddersyet til dit behov."
 
 #: weblate_web/templates/index.html:3
-#, fuzzy
-#| msgid "Weblate - web-based translation"
 msgid "Weblate - web-based localization"
-msgstr "Weblate - webbaseret oversættelse"
+msgstr "Weblate - webbaseret lokalisering"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
 msgstr "Kom godt i gang med Weblate"
 
 #: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
 msgid "Try the live demo server"
-msgstr "Prøv vores demoserver"
+msgstr "Prøv live demoserveren"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
 msgstr "Downloads"
 
 #: weblate_web/templates/index.html:23
-#, fuzzy
-#| msgid ""
-#| "Weblate is a free web-based translation tool with tight version control "
-#| "integration. It features simple and clean user interface, propagation of "
-#| "translations across components, quality checks and automatic linking to "
-#| "source files."
 msgid ""
 "Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
 msgstr ""
-"Weblate er et frit, webbaseret oversættelsesværktøj med tæt integration med "
+"Weblate er et frit, webbaseret lokaliseringsværktøj med tæt integration med "
 "versionsstyringssystem. Det tilbyder en enkel og overskuelig brugerflade, "
 "udbredelse af oversættelser på tværs af komponenter, kvalitetstjek og "
 "automatisk sammenkædning med kildefiler."
@@ -1345,9 +1309,6 @@ msgid "Choose hosting plan"
 msgstr "Vælg hostingplan"
 
 #: weblate_web/templates/index.html:128
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self hosted"
 msgstr "Selvhostede"
 
