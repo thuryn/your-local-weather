@@ -9,16 +9,16 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-12 18:09+0000\n"
-"Last-Translator: Taras <oster.ok@gmail.com>\n"
+"PO-Revision-Date: 2019-01-17 09:07+0000\n"
+"Last-Translator: Андрій Бандура <andriykopanytsia@gmail.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/weblate/"
 "website/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
+"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.4-dev\n"
 
 #: weblate_web/data.py:33
@@ -139,7 +139,7 @@ msgstr "Сума в євро"
 #: weblate_web/forms.py:56
 #, python-format
 msgid "The minimal amount is %d EUR."
-msgstr ""
+msgstr "Найменша сума %d євро."
 
 #: weblate_web/models.py:76
 msgid "Link text"
@@ -155,10 +155,8 @@ msgstr "Сторінку не знайдено"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
 msgid "Weblate is a libre software web-based continuous localization system."
-msgstr "Weblate - вільна веб-система керування перекладом."
+msgstr "Weblate - вільна веб-система неперервного перекладу."
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -182,37 +180,21 @@ msgid "Continuous translation"
 msgstr "Неперервний переклад"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation process can closely follow development of your "
-#| "project."
 msgid "Automated translation closely follows the development of your project."
 msgstr ""
-"Процес автоматизованого перекладу може уважно відстежувати розвиток вашого "
-"проекту."
+"Автоматизований переклад може уважно відстежувати розвиток вашого проекту."
 
 #: weblate_web/templates/base-features.html:15
-#, fuzzy
-#| msgid ""
-#| "Customizable quality checks will help you in improving quality of "
-#| "translations."
 msgid "Customizable quality checks helps improve translation quality."
-msgstr ""
-"Налаштування контролю якості допоможуть вам покрищити якість перекладу."
+msgstr "Налаштування контролю якості допоможуть вам покращити якість перекладу."
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
 msgstr "Привласнення"
 
 #: weblate_web/templates/base-features.html:23
-#, fuzzy
-#| msgid ""
-#| "All your translators will be properly credited in the version control "
-#| "system."
 msgid "All translators are properly credited in the version control system."
-msgstr ""
-"Всі ваші перекладачі будуть належним чином записані в систему контролю "
-"версій."
+msgstr "Всі перекладачі належно записуються в систему контролю версій."
 
 #: weblate_web/templates/base-features.html:30
 #: weblate_web/templates/hosting.html:18
@@ -220,26 +202,18 @@ msgid "Hosting plans"
 msgstr "Плани хостингу"
 
 #: weblate_web/templates/base-features.html:31
-#, fuzzy
-#| msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
 msgid "Hosting plans for Weblate as a service starting at 19 EUR."
-msgstr ""
-"Ціни на хостинг для використання Weblate як служби починаються від 19 EUR."
+msgstr "Ціни на хостинг для Weblate як служби починаються від 19 євро."
 
 #: weblate_web/templates/base-features.html:38
 msgid "Cloud ready"
-msgstr ""
+msgstr "Готовий до хмарних послуг"
 
 #: weblate_web/templates/base-features.html:39
-#, fuzzy
-#| msgid ""
-#| "Weblate comes with appliances, which are ready to deploy in your cloud."
 msgid "Weblate comes with appliances, ready to deploy in your cloud."
 msgstr "Weblate поставляється повністю готовим до розгортання у хмарі."
 
 #: weblate_web/templates/base-features.html:46
-#, fuzzy
-#| msgid "Free software"
 msgid "Libre software"
 msgstr "Вільне програмне забезпечення"
 
@@ -247,6 +221,8 @@ msgstr "Вільне програмне забезпечення"
 msgid ""
 "Weblate is copylefted; use, see, modify and share at will, and with everyone."
 msgstr ""
+"Weblate поширюється на умовах копілефту; використовуйте, переглядайте, "
+"змінюйте та поширюйте, як вам зручно і з кожним."
 
 #: weblate_web/templates/base.html:11
 msgctxt "Keyword"
@@ -461,44 +437,32 @@ msgid "Donations"
 msgstr "Пожертви"
 
 #: weblate_web/templates/donate.html:95
-#, fuzzy
-#| msgid ""
-#| "Recurring donations allow sustainability of Weblate development and help "
-#| "to fund free hosting for libre software. You don't have to spend big "
-#| "money, every penny counts."
 msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
-"Повторні пожертвування сприяють стійкій розробці Weblate і допомагають "
-"фінансувати безкоштовний хостинг для вільного програмного забезпечення. Вам "
-"не доведеться витрачати великі гроші, кожна копійка враховується."
+"Повторні пожертвування сприяють стійкій розробці Weblate, навіть найменші "
+"суми допомагають фінансувати безкоштовний хостинг для вільного програмного "
+"забезпечення."
 
 #: weblate_web/templates/donate.html:103
 msgid "Recurring donation"
 msgstr "Повторні пожертви"
 
 #: weblate_web/templates/donate.html:106
-#, fuzzy
-#| msgid ""
-#| "Repeated appreciation of the Weblate project helps in keeping the project "
-#| "sustainable in the long term."
 msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable long term."
 msgstr ""
-"Повторювані вдячності проекту Weblate допомагає тримати проект в стійкому "
-"стані в довгостроковій перспективі."
+"Повторне визнання проекту Weblate сприяє сталому розвитку проекту в "
+"довгостроковій перспективі."
 
 #: weblate_web/templates/donate.html:107
-#, fuzzy
-#| msgid ""
-#| "Please consider this if you are using Weblate on premise without support "
-#| "contract."
 msgid ""
 "Please consider this if you are hosting Weblate yourself without a support "
 "contract."
-msgstr "Будь ласка, врахуйте це, якщо ви використовуєте Weblate без підтримки."
+msgstr ""
+"Будь ласка, врахуйте це, якщо ви розміщуєте Weblate без платної підтримки."
 
 #: weblate_web/templates/donate.html:116
 msgid "One time donation"
@@ -521,12 +485,12 @@ msgid ""
 "Commercial services like hosting or support for self hosted installation "
 "help fund Weblate development."
 msgstr ""
+"Платні послуги такі, як хостинг або підтримка, допомагають розробляти "
+"Weblate."
 
 #: weblate_web/templates/donate.html:142
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation rewards"
-msgstr "Адреса пожертвування"
+msgstr "Винагорода за пожертви"
 
 #: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
@@ -552,11 +516,11 @@ msgstr "Адреса пожертвування"
 #: weblate_web/templates/donate/edit.html:12
 #: weblate_web/templates/donate/form.html:13
 msgid "Please choose wanted reward or enter custom donation amount."
-msgstr ""
+msgstr "Виберіть бажану винагороду або введіть власну суму пожертви."
 
 #: weblate_web/templates/donate/edit.html:20
 msgid "Edit your reward link"
-msgstr ""
+msgstr "Змініть посилання для нагороди"
 
 #: weblate_web/templates/donate/edit.html:26
 #: weblate_web/templates/payment/customer.html:21
@@ -565,37 +529,40 @@ msgstr "Зберегти"
 
 #: weblate_web/templates/donate/form.html:33
 msgid "Select"
-msgstr ""
+msgstr "Вибрати"
 
 #: weblate_web/templates/donate/form.html:41
 msgid ""
 "We might refuse to place your link, especially if the site contains adult or "
 "illegal content. Please consult us in advance if unsure."
 msgstr ""
+"Ми можемо відмовитися від розміщення посилання, особливо якщо сайт містить "
+"матеріали для дорослих або незаконний вміст. Якщо ви не впевнені, "
+"проконсультуйтеся заздалегідь."
 
 #: weblate_web/templates/donate/form.html:50
 msgid "Choose your own donation amount"
-msgstr ""
+msgstr "Виберіть вашу суму пожертви"
 
 #: weblate_web/templates/donate/form.html:56
 msgid "Continue"
-msgstr ""
+msgstr "Продовжити"
 
 #: weblate_web/templates/donate/rewards.html:2
 msgid "Link placement on the weblate.org thanks page"
-msgstr ""
+msgstr "Розміщення посилання на сторінці подяк weblate.org"
 
 #: weblate_web/templates/donate/rewards.html:3
 msgid "Link placement in the list of supporters"
-msgstr ""
+msgstr "Розміщення посилання у списку прихильників"
 
 #: weblate_web/templates/donate/rewards.html:4
 msgid "Name placement in the list of supporters"
-msgstr ""
+msgstr "Розміщення назви у списку прихильників"
 
 #: weblate_web/templates/download-link.html:4
 msgid "PGP signature"
-msgstr ""
+msgstr "Підпис PGP"
 
 #: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
 #: weblate_web/templates/hosting.html:234
@@ -1270,39 +1237,29 @@ msgstr ""
 "готові надати консультаційні послуги з урахуванням ваших потреб."
 
 #: weblate_web/templates/index.html:3
-#, fuzzy
-#| msgid "Weblate - web-based translation"
 msgid "Weblate - web-based localization"
-msgstr "Weblate - система веб-перекладу"
+msgstr "Weblate — веб-локалізація"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
 msgstr "Розпочніть використання Weblate"
 
 #: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
 msgid "Try the live demo server"
-msgstr "Спробуйте наш демо-сервер"
+msgstr "Спробуйте живий демо-сервер"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
 msgstr "Завантаження"
 
 #: weblate_web/templates/index.html:23
-#, fuzzy
-#| msgid ""
-#| "Weblate is a free web-based translation tool with tight version control "
-#| "integration. It features simple and clean user interface, propagation of "
-#| "translations across components, quality checks and automatic linking to "
-#| "source files."
 msgid ""
 "Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
 msgstr ""
-"Weblate - це безкоштовний веб-інструмент перекладу з жорсткою інтеграцією із "
+"Weblate - це вільний веб-засіб локалізації з жорсткою інтеграцією із "
 "системами контролю версій. Він має простий і зрозумілий інтерфейс "
 "користувача, розповсюдження перекладів по всіх компонентах, перевірку якості "
 "та автоматичні посилання на початкові файли."
@@ -1325,56 +1282,44 @@ msgstr "Переглянути сотні проектів на Hosted Weblate"
 
 #: weblate_web/templates/index.html:114
 msgid "Hosted service"
-msgstr ""
+msgstr "Послуга хостингу"
 
 #: weblate_web/templates/index.html:118 weblate_web/templates/index.html:132
 #, python-format
 msgid "From %(amount)sEUR/month"
-msgstr ""
+msgstr "Від %(amount)sєвро/місяць"
 
 #: weblate_web/templates/index.html:119
 msgid "Cloud service"
-msgstr ""
+msgstr "Послуга хмари"
 
 #: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
-#, fuzzy
-#| msgid "View hosting plans"
 msgid "Choose hosting plan"
-msgstr "Переглянути тарифні плани хостингу"
+msgstr "Вибрати план хостингу"
 
 #: weblate_web/templates/index.html:128
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self hosted"
 msgstr "Власний хостинг"
 
 #: weblate_web/templates/index.html:133
 msgid "Your infrastructure"
-msgstr ""
+msgstr "Ваша інфраструктура"
 
 #: weblate_web/templates/index.html:142
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self supported"
-msgstr "Власний хостинг"
+msgstr "Власна підтримка"
 
 #: weblate_web/templates/index.html:146
-#, fuzzy
-#| msgid "Weblate features"
 msgid "Weblate is free to use"
-msgstr "Функції Weblate"
+msgstr "Weblate безкоштовний для використання"
 
 #: weblate_web/templates/index.html:147
 msgid "Maintained by you"
-msgstr ""
+msgstr "Підтримано вами"
 
 #: weblate_web/templates/index.html:148
-#, fuzzy
-#| msgid "Phone support"
 msgid "Community support"
-msgstr "Підтримка по телефону"
+msgstr "Підтримка спільноти"
 
 #: weblate_web/templates/payment/customer.html:5
 #: weblate_web/templates/payment/payment.html:4
@@ -1416,11 +1361,11 @@ msgid "Payment will be issued yearly till you cancel the subscription."
 msgstr "Оплата буде повторюватися щороку, поки ви не скасуєте цю підписку."
 
 #: weblate_web/templates/payment/payment.html:24
-#, fuzzy
-#| msgid "Payment will be issued monthly till you cancel the subscription."
 msgid ""
 "Payment will be issued every six months till you cancel the subscription."
-msgstr "Оплата буде повторюватися щомісяця, поки ви не скасуєте цю підписку."
+msgstr ""
+"Оплата буде повторюватися кожні шість місяців, поки ви не скасуєте цю "
+"підписку."
 
 #: weblate_web/templates/payment/payment.html:26
 msgid "Payment will be issued monthly till you cancel the subscription."
@@ -1718,14 +1663,8 @@ msgstr ""
 "наших спонсорів."
 
 #: weblate_web/templates/thanks.html:50
-#, fuzzy
-#| msgid ""
-#| "Support our project on Bountysource Salt and get exclusive logo placement "
-#| "on this page."
 msgid "Support our project and get link placement on this page."
-msgstr ""
-"Підтримайте наш проект на Bountysource Salt і отримайте розміщення "
-"виняткового логотипу на цій сторінці."
+msgstr "Підтримайте наш проект і розмістіть посилання на цій сторінці."
 
 #: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
 msgid "Weblate tour"
@@ -1835,27 +1774,23 @@ msgstr "Будь ласка, вкажіть інформацію про опла
 
 #: weblate_web/views.py:109
 msgid "The VAT ID is no longer valid, please update it."
-msgstr ""
+msgstr "Цей номер платника ПДВ вже не дійсний. Оновіть його."
 
 #: weblate_web/views.py:269
-#, fuzzy
-#| msgid "Payments are processed by The Pay service."
 msgid "Payment not yet processed, please retry."
-msgstr "Платежі опрацьовуються сервісом The Pay."
+msgstr "Платіж ще не опрацьований. Будь ласка, повторіть."
 
 #: weblate_web/views.py:274
 msgid "The payment was rejected: {}"
-msgstr ""
+msgstr "Платіж відхилили: {}"
 
 #: weblate_web/views.py:275
 msgid "Unknown reason"
-msgstr ""
+msgstr "Невідома причина"
 
 #: weblate_web/views.py:279
-#, fuzzy
-#| msgid "Thank you for ordering hosting!"
 msgid "Thank you for your donation."
-msgstr "Дякуємо вас, що оплатили хостинг!"
+msgstr "Дякуємо за вашу пожертву."
 
 #~ msgid "Weblate is a free web-based translation management system."
 #~ msgstr "Weblate - вільна веб-система керування перекладом."
