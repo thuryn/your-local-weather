@@ -92,7 +92,7 @@
 <h2>{% trans "Donations" %}</h2>
 
 <p>
-{% blocktrans %}Recurring donations allow sustainability of Weblate development and help to fund free hosting for libre software. You don't have to spend big money, every penny counts.{% endblocktrans %}
+{% blocktrans %}Recurring donations facilitate sustainable Weblate development, even the smallest amount helps fund free of charge hosting for libre software.{% endblocktrans %}
 </p>
 
     <div class="container">
@@ -103,8 +103,8 @@
             <h4 class="my-0 font-weight-normal">{% trans "Recurring donation" %}</h4>
           </div>
           <div class="card-body">
-            <p>{% trans "Repeated appreciation of the Weblate project helps in keeping the project sustainable in the long term." %}</p>
-            <p>{% trans "Please consider this if you are using Weblate on premise without support contract." %}</p>
+            <p>{% trans "Repeated appreciation of the Weblate project helps in keeping the project sustainable long term." %}</p>
+            <p>{% trans "Please consider this if you are hosting Weblate yourself without a support contract." %}</p>
           </div>
           <div class="card-footer">
             <a href="{% url "donate-new" %}?recurring=m" class="btn btn-lg btn-block btn-info"><i class="fas fa-donate"></i> {% trans "Donate" %}</a>
@@ -128,7 +128,7 @@
             <h4 class="my-0 font-weight-normal">{% trans "Use our services" %}</h4>
           </div>
           <div class="card-body">
-            <p>{% trans "Commercial services like hosting or support for on premise installation help funding Weblate development." %}</p>
+            <p>{% trans "Commercial services like hosting or support for self hosted installation help fund Weblate development." %}</p>
           </div>
           <div class="card-footer">
             <a class="btn btn-info btn-lg btn-block" href="{% url 'hosting' %}" role="button"><i class="fas fa-server"></i> {% trans "Purchase hosting package" %}</a>
