@@ -51,8 +51,9 @@ class DonateForm(forms.Form):
     )
     amount = forms.IntegerField(
         label=_('Amount in EUR'),
-        min_value=2,
+        min_value=5,
         initial=10,
+        help_text=_('The minimal amount is %d EUR.') % 5
     )
 
 
