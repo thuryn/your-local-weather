@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: French (Weblate)\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-12 18:09+0000\n"
+"PO-Revision-Date: 2019-01-17 09:07+0000\n"
 "Last-Translator: Ldm Public <ldmpub@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/weblate/website/"
 "fr/>\n"
@@ -139,7 +139,7 @@ msgstr "Montant en EUR"
 #: weblate_web/forms.py:56
 #, python-format
 msgid "The minimal amount is %d EUR."
-msgstr ""
+msgstr "Le montant minimal est de %d EUR."
 
 #: weblate_web/models.py:76
 msgid "Link text"
@@ -155,10 +155,10 @@ msgstr "Page inexistante"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
 msgid "Weblate is a libre software web-based continuous localization system."
-msgstr "Weblate est un système libre de gestion de traductions en mode Web."
+msgstr ""
+"Weblate est un système libre de gestion de traductions en continu et en mode "
+"Web."
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -193,28 +193,20 @@ msgstr ""
 "de votre projet."
 
 #: weblate_web/templates/base-features.html:15
-#, fuzzy
-#| msgid ""
-#| "Customizable quality checks will help you in improving quality of "
-#| "translations."
 msgid "Customizable quality checks helps improve translation quality."
 msgstr ""
-"Des contrôles qualité personnalisables vous aideront à améliorer la qualité "
-"des traductions."
+"Des contrôles qualité personnalisables vous aident à améliorer les "
+"traductions."
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
 msgstr "Attribution"
 
 #: weblate_web/templates/base-features.html:23
-#, fuzzy
-#| msgid ""
-#| "All your translators will be properly credited in the version control "
-#| "system."
 msgid "All translators are properly credited in the version control system."
 msgstr ""
-"Tous vos traducteurs seront correctement nommés dans le système de contrôle "
-"des versions."
+"Tous les traducteurs sont identifiés dans le système de contrôle des "
+"versions."
 
 #: weblate_web/templates/base-features.html:30
 #: weblate_web/templates/hosting.html:18
@@ -222,32 +214,22 @@ msgid "Hosting plans"
 msgstr "Offres d’hébergement"
 
 #: weblate_web/templates/base-features.html:31
-#, fuzzy
-#| msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
 msgid "Hosting plans for Weblate as a service starting at 19 EUR."
-msgstr ""
-"L’offre d’hébergement pour utiliser le service Weblate débute à 19 EUR."
+msgstr "L’offre de service Weblate en mode hébergé débute à 19 EUR."
 
 #: weblate_web/templates/base-features.html:38
-#, fuzzy
-#| msgid "Cloud service"
 msgid "Cloud ready"
-msgstr "Service cloud"
+msgstr "Prêt pour le Cloud"
 
 #: weblate_web/templates/base-features.html:39
-#, fuzzy
-#| msgid ""
-#| "Weblate comes with appliances, which are ready to deploy in your cloud."
 msgid "Weblate comes with appliances, ready to deploy in your cloud."
 msgstr ""
-"Weblate est disponible en versions applicatives, prêtes à déployer dans "
-"votre nuage."
+"Weblate est disponible en versions applicatives prêtes pour le déploiement "
+"dans votre Cloud."
 
 #: weblate_web/templates/base-features.html:46
-#, fuzzy
-#| msgid "Free software"
 msgid "Libre software"
-msgstr "Logiciel libre et gratuit"
+msgstr "Logiciel libre"
 
 #: weblate_web/templates/base-features.html:47
 msgid ""
@@ -576,7 +558,7 @@ msgstr "Continuer"
 
 #: weblate_web/templates/donate/rewards.html:2
 msgid "Link placement on the weblate.org thanks page"
-msgstr ""
+msgstr "Position du lien dans la page de remerciements sur weblate.org"
 
 #: weblate_web/templates/donate/rewards.html:3
 msgid "Link placement in the list of supporters"
@@ -1279,8 +1261,6 @@ msgstr ""
 "Weblate), nous pouvons vous proposer des prestations sur mesure."
 
 #: weblate_web/templates/index.html:3
-#, fuzzy
-#| msgid "Weblate - web-based translation"
 msgid "Weblate - web-based localization"
 msgstr "Weblate - traduction en ligne"
 
@@ -1289,8 +1269,6 @@ msgid "Start using Weblate"
 msgstr "Commencer à utiliser Weblate"
 
 #: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
 msgid "Try the live demo server"
 msgstr "Essayez notre serveur de démonstration"
 
@@ -1351,9 +1329,6 @@ msgid "Choose hosting plan"
 msgstr "Sélectionnez l'offre d’hébergement"
 
 #: weblate_web/templates/index.html:128
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self hosted"
 msgstr "Hébergé par vous-même"
 
