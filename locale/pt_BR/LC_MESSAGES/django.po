@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Weblate 1.2\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-17 08:31+0000\n"
+"PO-Revision-Date: 2019-01-17 09:07+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "weblate/website/pt_BR/>\n"
@@ -156,7 +156,7 @@ msgstr "Página não encontrada"
 msgid "Weblate is a libre software web-based continuous localization system."
 msgstr ""
 "Weblate é um sistema de localização contínua baseado na web de software "
-"libre."
+"livre."
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -215,17 +215,10 @@ msgid "Cloud ready"
 msgstr "Pronto para a nuvem"
 
 #: weblate_web/templates/base-features.html:39
-#, fuzzy
-#| msgid ""
-#| "Weblate comes with appliances, which are ready to deploy in your cloud."
 msgid "Weblate comes with appliances, ready to deploy in your cloud."
-msgstr ""
-"O Weblate vem com appliances, que estão prontas para implantação em sua "
-"nuvem."
+msgstr "O Weblate vem com appliances, prontas para implantação em sua nuvem."
 
 #: weblate_web/templates/base-features.html:46
-#, fuzzy
-#| msgid "Free software"
 msgid "Libre software"
 msgstr "Software livre"
 
@@ -233,6 +226,8 @@ msgstr "Software livre"
 msgid ""
 "Weblate is copylefted; use, see, modify and share at will, and with everyone."
 msgstr ""
+"Weblate é copylefted; use, veja, modifique e compartilhe à vontade e com "
+"todos."
 
 #: weblate_web/templates/base.html:11
 msgctxt "Keyword"
@@ -447,28 +442,19 @@ msgid "Donations"
 msgstr "Doações"
 
 #: weblate_web/templates/donate.html:95
-#, fuzzy
-#| msgid ""
-#| "Recurring donations allow sustainability of Weblate development and help "
-#| "to fund free hosting for libre software. You don't have to spend big "
-#| "money, every penny counts."
 msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
-"Doações recorrentes permitem a sustentabilidade do desenvolvimento do "
-"Weblate e ajuda a custear a hospedagem livre de softwares livres. Você não "
-"precisa doar grandes quantias, cada centavo ajuda."
+"As doações recorrentes facilitam o desenvolvimento sustentável do Weblate, "
+"até mesmo a menor quantia ajuda a financiar hospedagem gratuita para "
+"software livre."
 
 #: weblate_web/templates/donate.html:103
 msgid "Recurring donation"
 msgstr "Doações recorrentes"
 
 #: weblate_web/templates/donate.html:106
-#, fuzzy
-#| msgid ""
-#| "Repeated appreciation of the Weblate project helps in keeping the project "
-#| "sustainable in the long term."
 msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable long term."
@@ -477,16 +463,12 @@ msgstr ""
 "sustentável a longo prazo."
 
 #: weblate_web/templates/donate.html:107
-#, fuzzy
-#| msgid ""
-#| "Please consider this if you are using Weblate on premise without support "
-#| "contract."
 msgid ""
 "Please consider this if you are hosting Weblate yourself without a support "
 "contract."
 msgstr ""
-"Por favor, considere isto se você estiver usando Weblate no local sem "
-"contrato de suporte."
+"Por favor, considere isto se você estiver hospedando o Weblate localmente "
+"sem contrato de suporte."
 
 #: weblate_web/templates/donate.html:116
 msgid "One time donation"
@@ -505,16 +487,12 @@ msgid "Use our services"
 msgstr "Use nossos serviços"
 
 #: weblate_web/templates/donate.html:131
-#, fuzzy
-#| msgid ""
-#| "Commercial services like hosting or support for on premise installation "
-#| "help funding Weblate development."
 msgid ""
 "Commercial services like hosting or support for self hosted installation "
 "help fund Weblate development."
 msgstr ""
-"Serviços comerciais como hospedagem ou suporte para instalação no local "
-"ajudam a financiar o desenvolvimento do Weblate."
+"Serviços comerciais como hospedagem ou suporte para instalação com "
+"hospedagem própria ajudam a financiar o desenvolvimento do Weblate."
 
 #: weblate_web/templates/donate.html:142
 msgid "Donation rewards"
@@ -1272,39 +1250,29 @@ msgstr ""
 "suas necessidades."
 
 #: weblate_web/templates/index.html:3
-#, fuzzy
-#| msgid "Weblate - web-based translation"
 msgid "Weblate - web-based localization"
-msgstr "Weblate - tradução baseada na web"
+msgstr "Weblate - localização baseada na web"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
 msgstr "Comece a usar o Weblate"
 
 #: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
 msgid "Try the live demo server"
-msgstr "Teste nosso servidor de demonstração"
+msgstr "Teste o servidor de demonstração"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
 msgstr "Downloads"
 
 #: weblate_web/templates/index.html:23
-#, fuzzy
-#| msgid ""
-#| "Weblate is a free web-based translation tool with tight version control "
-#| "integration. It features simple and clean user interface, propagation of "
-#| "translations across components, quality checks and automatic linking to "
-#| "source files."
 msgid ""
 "Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
 msgstr ""
-"O Weblate é uma ferramenta gratuita de tradução com robusta integração de "
+"O Weblate é uma ferramenta livre de localização com robusta integração de "
 "controle de versão. Ele possui uma interface limpa e simples, propagação de "
 "traduções através de componentes, verificações de qualidade e associação "
 "automática aos arquivos fontes."
@@ -1343,9 +1311,6 @@ msgid "Choose hosting plan"
 msgstr "Escolha o plano de hospedagem"
 
 #: weblate_web/templates/index.html:128
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self hosted"
 msgstr "Hospedagem própria"
 
@@ -1479,7 +1444,7 @@ msgstr ""
 
 #: weblate_web/templates/support.html:28
 msgid "Support for self hosted environments"
-msgstr "Suporte à ambientes de hospedagem próprios"
+msgstr "Suporte a ambientes de hospedagem própria"
 
 #: weblate_web/templates/support.html:30
 msgid ""
