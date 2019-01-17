@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 08:33+0100\n"
-"PO-Revision-Date: 2019-01-11 14:21+0000\n"
+"PO-Revision-Date: 2019-01-17 07:59+0000\n"
 "Last-Translator: Michal Čihař <michal@cihar.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/weblate/website/cs/"
 ">\n"
@@ -170,18 +170,10 @@ msgid "Continuous translation"
 msgstr "Průběžný překlad"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation process can closely follow development of your "
-#| "project."
 msgid "Automated translation closely follows the development of your project."
 msgstr "Automatizovaný překladový proces následuje vývoj vašeho projektu."
 
 #: weblate_web/templates/base-features.html:15
-#, fuzzy
-#| msgid ""
-#| "Customizable quality checks will help you in improving quality of "
-#| "translations."
 msgid "Customizable quality checks helps improve translation quality."
 msgstr ""
 "Nastavitelné kontroly kvality vám pomohou se zlepšením kvality překladů."
@@ -191,14 +183,9 @@ msgid "Attribution"
 msgstr "Autorství"
 
 #: weblate_web/templates/base-features.html:23
-#, fuzzy
-#| msgid ""
-#| "All your translators will be properly credited in the version control "
-#| "system."
 msgid "All translators are properly credited in the version control system."
 msgstr ""
-"Všechny vaše překlady budou zapsány pod vaším jménem do systému správy "
-"revizí."
+"Všechny vaše překlady jsou zapsány pod vaším jménem do systému správy revizí."
 
 #: weblate_web/templates/base-features.html:30
 #: weblate_web/templates/hosting.html:18
@@ -206,29 +193,19 @@ msgid "Hosting plans"
 msgstr "Hostovací balíčky"
 
 #: weblate_web/templates/base-features.html:31
-#, fuzzy
-#| msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
 msgid "Hosting plans for Weblate as a service starting at 19 EUR."
-msgstr "Hostovací balíčky pro použití služby Weblate začínají na 19 EUR."
+msgstr "Hostovací balíčky pro Weblate začínají na 19 EUR."
 
 #: weblate_web/templates/base-features.html:38
-#, fuzzy
-#| msgid "Cloud service"
 msgid "Cloud ready"
-msgstr "Služba v cloudu"
+msgstr "Připraveno na cloud"
 
 #: weblate_web/templates/base-features.html:39
-#, fuzzy
-#| msgid ""
-#| "Weblate comes with appliances, which are ready to deploy in your cloud."
 msgid "Weblate comes with appliances, ready to deploy in your cloud."
 msgstr ""
-"Weblate je k dispozici i jako obrazy, které můžete okamžitě nasadit do "
-"vašeho cloudu."
+"Weblate je k dispozici i jako obrazy k okamžitému nasazení do vašeho cloudu."
 
 #: weblate_web/templates/base-features.html:46
-#, fuzzy
-#| msgid "Free software"
 msgid "Libre software"
 msgstr "Svobodný software"
 
@@ -236,6 +213,8 @@ msgstr "Svobodný software"
 msgid ""
 "Weblate is copylefted; use, see, modify and share at will, and with everyone."
 msgstr ""
+"Weblate je copyleftovaný; používejte, prohlížejte, upravujte a sdílejte "
+"podle svých představ a s každým."
 
 #: weblate_web/templates/base.html:11
 msgctxt "Keyword"
@@ -450,28 +429,18 @@ msgid "Donations"
 msgstr "Příspěvky"
 
 #: weblate_web/templates/donate.html:95
-#, fuzzy
-#| msgid ""
-#| "Recurring donations allow sustainability of Weblate development and help "
-#| "to fund free hosting for libre software. You don't have to spend big "
-#| "money, every penny counts."
 msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
-"Pravidelné příspěvky umožní udržitelný vývoj Weblate a pomohou zaplatit "
-"hosting zdarma pro svobodný software. Nemusíte přispět velké peníze, každá "
-"koruna se počítá."
+"Pravidelné příspěvky umožní udržitelný vývoj Weblate. I malé příspěvky "
+"pomohou zaplatit hosting zdarma pro svobodný software."
 
 #: weblate_web/templates/donate.html:103
 msgid "Recurring donation"
 msgstr "Opakované příspěvky"
 
 #: weblate_web/templates/donate.html:106
-#, fuzzy
-#| msgid ""
-#| "Repeated appreciation of the Weblate project helps in keeping the project "
-#| "sustainable in the long term."
 msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable long term."
@@ -480,10 +449,6 @@ msgstr ""
 "udržitelným projektem."
 
 #: weblate_web/templates/donate.html:107
-#, fuzzy
-#| msgid ""
-#| "Please consider this if you are using Weblate on premise without support "
-#| "contract."
 msgid ""
 "Please consider this if you are hosting Weblate yourself without a support "
 "contract."
@@ -507,10 +472,6 @@ msgid "Use our services"
 msgstr "Využijte naše služby"
 
 #: weblate_web/templates/donate.html:131
-#, fuzzy
-#| msgid ""
-#| "Commercial services like hosting or support for on premise installation "
-#| "help funding Weblate development."
 msgid ""
 "Commercial services like hosting or support for self hosted installation "
 "help fund Weblate development."
@@ -1340,9 +1301,6 @@ msgid "Choose hosting plan"
 msgstr "Zvolit hostovací balíček"
 
 #: weblate_web/templates/index.html:130
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self hosted"
 msgstr "Vlastní hostování"
 
