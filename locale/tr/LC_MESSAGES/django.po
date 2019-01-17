@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-17 09:07+0000\n"
+"PO-Revision-Date: 2019-01-17 16:26+0000\n"
 "Last-Translator: Mesut Akcan <makcan@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/weblate/website/"
 "tr/>\n"
@@ -209,22 +209,19 @@ msgid "Cloud ready"
 msgstr "Bulut hazır"
 
 #: weblate_web/templates/base-features.html:39
-#, fuzzy
-#| msgid ""
-#| "Weblate comes with appliances, which are ready to deploy in your cloud."
 msgid "Weblate comes with appliances, ready to deploy in your cloud."
-msgstr "Weblate, bulutunuz içinde dağıtmak için araçlar ile birlikte gelir."
+msgstr "Weblate, bulutunuzda dağıtmaya hazır araçlarla birlikte gelir."
 
 #: weblate_web/templates/base-features.html:46
-#, fuzzy
-#| msgid "Free software"
 msgid "Libre software"
-msgstr "Ücretsiz yazılım"
+msgstr "Özgür yazılım"
 
 #: weblate_web/templates/base-features.html:47
 msgid ""
 "Weblate is copylefted; use, see, modify and share at will, and with everyone."
 msgstr ""
+"Weblate copyleft'dir; kullan, gör, değiştir ve dilediğiniz zaman ve herkesle "
+"paylaş."
 
 #: weblate_web/templates/base.html:11
 msgctxt "Keyword"
@@ -439,45 +436,31 @@ msgid "Donations"
 msgstr "Bağışlar"
 
 #: weblate_web/templates/donate.html:95
-#, fuzzy
-#| msgid ""
-#| "Recurring donations allow sustainability of Weblate development and help "
-#| "to fund free hosting for libre software. You don't have to spend big "
-#| "money, every penny counts."
 msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
-"Düzenli ödenen bağışlar Weblate geliştirmelerinin devamlılığını sağlar ve "
-"özgür yazılım için ücretsiz barındırma fonuna yardım eder. Büyük para "
-"harcamak zorunda değilsin, her kuruş kabul edilir."
+"Düzenli bağışlar sürdürülebilir Weblate gelişimini kolaylaştırır, en küçük "
+"miktarlar bile özgür yazılım için ücretsiz barındırma fonuna yardımcı olur."
 
 #: weblate_web/templates/donate.html:103
 msgid "Recurring donation"
 msgstr "Düzenli ödenen bağışlar"
 
 #: weblate_web/templates/donate.html:106
-#, fuzzy
-#| msgid ""
-#| "Repeated appreciation of the Weblate project helps in keeping the project "
-#| "sustainable in the long term."
 msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable long term."
 msgstr ""
-"Weblate projesinin tekrar tekrar takdir edilmesi, projenin uzun vadede "
-"devamlılığına yardımcı olur."
+"Weblate projesinin tekrar tekrar takdir edilmesi, projenin uzun süre "
+"sürdürülebilir kalmasına yardımcı olur."
 
 #: weblate_web/templates/donate.html:107
-#, fuzzy
-#| msgid ""
-#| "Please consider this if you are using Weblate on premise without support "
-#| "contract."
 msgid ""
 "Please consider this if you are hosting Weblate yourself without a support "
 "contract."
 msgstr ""
-"Lütfen, Weblate'i destek sözleşmesi olmadan şirket içi kullanıyorsanız "
+"Lütfen, Weblate'i bir destek sözleşmesi olmadan kendiniz barındırıyorsanız "
 "düşünün."
 
 #: weblate_web/templates/donate.html:116
@@ -497,16 +480,12 @@ msgid "Use our services"
 msgstr "Hizmetlerimizi kullanın"
 
 #: weblate_web/templates/donate.html:131
-#, fuzzy
-#| msgid ""
-#| "Commercial services like hosting or support for on premise installation "
-#| "help funding Weblate development."
 msgid ""
 "Commercial services like hosting or support for self hosted installation "
 "help fund Weblate development."
 msgstr ""
-"Yerinde kurulum için barındırma veya destek gibi ticari hizmetler Weblate "
-"geliştirmesinin finanse edilmesine yardımcı olur."
+"Kendi kendine barındırılan kurulum için barındırma veya destek gibi ticari "
+"hizmetler Weblate'in geliştirilmesine fon sağlar."
 
 #: weblate_web/templates/donate.html:142
 msgid "Donation rewards"
@@ -1255,40 +1234,30 @@ msgstr ""
 "için uygun danışmanlık hizmetlerine de yardımcı olmaya hazırız."
 
 #: weblate_web/templates/index.html:3
-#, fuzzy
-#| msgid "Weblate - web-based translation"
 msgid "Weblate - web-based localization"
-msgstr "Weblate - web tabanlı çeviri"
+msgstr "Weblate - web tabanlı yerelleştirme"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
 msgstr "Weblate'i kullanmaya başla"
 
 #: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
 msgid "Try the live demo server"
-msgstr "Demo sunucumuzu deneyin"
+msgstr "Canlı demo sunucusunu deneyin"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
 msgstr "İndirmeler"
 
 #: weblate_web/templates/index.html:23
-#, fuzzy
-#| msgid ""
-#| "Weblate is a free web-based translation tool with tight version control "
-#| "integration. It features simple and clean user interface, propagation of "
-#| "translations across components, quality checks and automatic linking to "
-#| "source files."
 msgid ""
 "Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
 msgstr ""
-"Weblate sıkı sürüm kontrol bütünleştirmesine sahip ücretsiz bir web tabanlı "
-"çeviri aracıdır. Basit ve temiz bir kullanıcı arayüzü, çevirilerin "
+"Weblate sıkı sürüm kontrol bütünleştirmesine sahip özgür bir web tabanlı "
+"yerelleştirme aracıdır. Basit ve temiz bir kullanıcı arayüzü, çevirilerin "
 "bileşenlere yayılması, kalite kontrolleri ve kaynak dosyalara otomatik "
 "bağlantı kurma özelliklerine sahiptir."
 
@@ -1326,11 +1295,8 @@ msgid "Choose hosting plan"
 msgstr "Barındırma planı seç"
 
 #: weblate_web/templates/index.html:128
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self hosted"
-msgstr "Kendinizin barındırdığı"
+msgstr "Kendi barındırma"
 
 #: weblate_web/templates/index.html:133
 msgid "Your infrastructure"
