@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-11 15:13+0100\n"
+"POT-Creation-Date: 2019-01-17 08:33+0100\n"
 "PO-Revision-Date: 2019-01-12 18:08+0000\n"
 "Last-Translator: Chang-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -57,7 +57,7 @@ msgstr "翻譯者可以定義自己的詞彙表來讓常用到的術語翻譯保
 msgid "Glossary"
 msgstr "詞彙表"
 
-#: weblate_web/data.py:63 weblate_web/templates/base-features.html:15
+#: weblate_web/data.py:63
 msgid ""
 "Customizable quality checks will help you in improving quality of "
 "translations."
@@ -160,17 +160,31 @@ msgid "Continuous translation"
 msgstr "持續翻譯"
 
 #: weblate_web/templates/base-features.html:7
-msgid ""
-"Automated translation process can closely follow development of your project."
+#, fuzzy
+#| msgid ""
+#| "Automated translation process can closely follow development of your "
+#| "project."
+msgid "Automated translation closely follows the development of your project."
 msgstr "自動化翻譯流程能緊密貼合您的專案開發。"
+
+#: weblate_web/templates/base-features.html:15
+#, fuzzy
+#| msgid ""
+#| "Customizable quality checks will help you in improving quality of "
+#| "translations."
+msgid "Customizable quality checks helps improve translation quality."
+msgstr "可自訂的翻譯品質查核檢測可協助您改善翻譯品質。"
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
 msgstr "記名標示"
 
 #: weblate_web/templates/base-features.html:23
-msgid ""
-"All your translators will be properly credited in the version control system."
+#, fuzzy
+#| msgid ""
+#| "All your translators will be properly credited in the version control "
+#| "system."
+msgid "All translators are properly credited in the version control system."
 msgstr "透過版本控制系統我們能妥善記錄所有翻譯者的貢獻。"
 
 #: weblate_web/templates/base-features.html:30
@@ -179,25 +193,34 @@ msgid "Hosting plans"
 msgstr "託管方案"
 
 #: weblate_web/templates/base-features.html:31
-msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
+#, fuzzy
+#| msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
+msgid "Hosting plans for Weblate as a service starting at 19 EUR."
 msgstr "Weblate 的託管服務方案從 19 歐元起。"
 
 #: weblate_web/templates/base-features.html:38
-msgid "Ready for cloud"
-msgstr "支援雲端"
+#, fuzzy
+#| msgid "Cloud service"
+msgid "Cloud ready"
+msgstr "雲端服務"
 
 #: weblate_web/templates/base-features.html:39
-msgid "Weblate comes with appliances, which are ready to deploy in your cloud."
+#, fuzzy
+#| msgid ""
+#| "Weblate comes with appliances, which are ready to deploy in your cloud."
+msgid "Weblate comes with appliances, ready to deploy in your cloud."
 msgstr "Weblate 有提供應用實例可直接在雲端部署。"
 
 #: weblate_web/templates/base-features.html:46
-msgid "Free software"
+#, fuzzy
+#| msgid "Free software"
+msgid "Libre software"
 msgstr "自由軟體"
 
 #: weblate_web/templates/base-features.html:47
-#: weblate_web/templates/hosting.html:228
-msgid "Weblate is free software, you can run your own instance of it."
-msgstr "Weblate 是自由軟體，您也可以自行架設。"
+msgid ""
+"Weblate is copylefted; use, see, modify and share at will, and with everyone."
+msgstr ""
 
 #: weblate_web/templates/base.html:11
 msgctxt "Keyword"
@@ -313,7 +336,8 @@ msgstr ""
 msgid ""
 "You can find more repositories related to Weblate on <a href=\"%(url)s"
 "\">GitHub</a>"
-msgstr "您可以在 <a href=\"%(url)s\">GitHub</a> 上找到更多 Weblate 相關的儲存庫"
+msgstr ""
+"您可以在 <a href=\"%(url)s\">GitHub</a> 上找到更多 Weblate 相關的儲存庫"
 
 #: weblate_web/templates/contribute.html:37
 msgid ""
@@ -409,25 +433,39 @@ msgid "Donations"
 msgstr "贊助"
 
 #: weblate_web/templates/donate.html:95
+#, fuzzy
+#| msgid ""
+#| "Recurring donations allow sustainability of Weblate development and help "
+#| "to fund free hosting for libre software. You don't have to spend big "
+#| "money, every penny counts."
 msgid ""
-"Recurring donations allow sustainability of Weblate development and help to "
-"fund free hosting for libre software. You don't have to spend big money, "
-"every penny counts."
-msgstr "定期贊助能支持 Weblate 繼續開發，並可協助自由軟體的免費託管服務。您不一定要花大錢，即便是小額捐款也都能幫到我們。"
+"Recurring donations facilitate sustainable Weblate development, even the "
+"smallest amount helps fund free of charge hosting for libre software."
+msgstr ""
+"定期贊助能支持 Weblate 繼續開發，並可協助自由軟體的免費託管服務。您不一定要花"
+"大錢，即便是小額捐款也都能幫到我們。"
 
 #: weblate_web/templates/donate.html:103
 msgid "Recurring donation"
 msgstr "定期贊助"
 
 #: weblate_web/templates/donate.html:106
+#, fuzzy
+#| msgid ""
+#| "Repeated appreciation of the Weblate project helps in keeping the project "
+#| "sustainable in the long term."
 msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
-"sustainable in the long term."
+"sustainable long term."
 msgstr "定期贊助 Weblate 專案有助於讓專案長久維持下去。"
 
 #: weblate_web/templates/donate.html:107
+#, fuzzy
+#| msgid ""
+#| "Please consider this if you are using Weblate on premise without support "
+#| "contract."
 msgid ""
-"Please consider this if you are using Weblate on premise without support "
+"Please consider this if you are hosting Weblate yourself without a support "
 "contract."
 msgstr "如果您正在使用沒有商業支援的自架 Weblate，還請多多考慮。"
 
@@ -446,10 +484,15 @@ msgid "Use our services"
 msgstr "使用我們的服務"
 
 #: weblate_web/templates/donate.html:131
+#, fuzzy
+#| msgid ""
+#| "Commercial services like hosting or support for on premise installation "
+#| "help funding Weblate development."
 msgid ""
-"Commercial services like hosting or support for on premise installation help "
-"funding Weblate development."
-msgstr "商業服務，例如申請託管服務或自架安裝支援，都有助於為 Weblate 開發提供資金。"
+"Commercial services like hosting or support for self hosted installation "
+"help fund Weblate development."
+msgstr ""
+"商業服務，例如申請託管服務或自架安裝支援，都有助於為 Weblate 開發提供資金。"
 
 #: weblate_web/templates/donate.html:142
 msgid "Donation rewards"
@@ -498,7 +541,9 @@ msgstr "選取"
 msgid ""
 "We might refuse to place your link, especially if the site contains adult or "
 "illegal content. Please consult us in advance if unsure."
-msgstr "我們可能會拒絕放置您的連結，尤其是您的網站若有包含成人或非法內容。如有不確定，請先諮詢我們。"
+msgstr ""
+"我們可能會拒絕放置您的連結，尤其是您的網站若有包含成人或非法內容。如有不確"
+"定，請先諮詢我們。"
 
 #: weblate_web/templates/donate/form.html:50
 msgid "Choose your own donation amount"
@@ -1131,6 +1176,10 @@ msgstr "我們也接受電匯（IBAN 為佳）或是比特幣付款。詳情請�
 msgid "Self hosting"
 msgstr "自行架設"
 
+#: weblate_web/templates/hosting.html:228
+msgid "Weblate is free software, you can run your own instance of it."
+msgstr "Weblate 是自由軟體，您也可以自行架設。"
+
 #: weblate_web/templates/hosting.html:229
 msgid "There are also several options for deploying Weblate to the cloud."
 msgstr "也有許多種將 Weblate 布署至雲端的選項。"
@@ -1147,17 +1196,21 @@ msgid "Weblate - web-based translation"
 msgstr "Weblate - 網頁介面翻譯平台"
 
 #: weblate_web/templates/index.html:7
+#, fuzzy
+#| msgid "Weblate is a free web-based translation management system."
 msgid ""
-"Weblate is an open source web-based translation management system supporting "
-"continuous translation."
-msgstr "Weblate 是一款採用網頁介面且支援持續翻譯的開源翻譯管理系統。"
+"Weblate is a libre software web-based continuous translation and management "
+"system."
+msgstr "Weblate 是一款網頁介面的自由翻譯管理系統。"
 
 #: weblate_web/templates/index.html:14
 msgid "Start using Weblate"
 msgstr "開始使用 Weblate"
 
 #: weblate_web/templates/index.html:15
-msgid "Try our demo server"
+#, fuzzy
+#| msgid "Try our demo server"
+msgid "Try the live demo server"
 msgstr "試用我們的 Demo 伺服器"
 
 #: weblate_web/templates/index.html:16
@@ -1165,8 +1218,14 @@ msgid "Downloads"
 msgstr "下載"
 
 #: weblate_web/templates/index.html:25
+#, fuzzy
+#| msgid ""
+#| "Weblate is a free web-based translation tool with tight version control "
+#| "integration. It features simple and clean user interface, propagation of "
+#| "translations across components, quality checks and automatic linking to "
+#| "source files."
 msgid ""
-"Weblate is a free web-based translation tool with tight version control "
+"Weblate is a libre web-based translation tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
@@ -1208,7 +1267,10 @@ msgid "Choose hosting plan"
 msgstr "選擇託管方案"
 
 #: weblate_web/templates/index.html:130
-msgid "On premise"
+#, fuzzy
+#| msgctxt "Hosting plan"
+#| msgid "Self hosted"
+msgid "Self hosted"
 msgstr "自行架設"
 
 #: weblate_web/templates/index.html:135
@@ -1682,6 +1744,17 @@ msgstr "未知原因"
 #: weblate_web/views.py:279
 msgid "Thank you for your donation."
 msgstr "感謝您的贊助。"
+
+#~ msgid "Ready for cloud"
+#~ msgstr "支援雲端"
+
+#~ msgid ""
+#~ "Weblate is an open source web-based translation management system "
+#~ "supporting continuous translation."
+#~ msgstr "Weblate 是一款採用網頁介面且支援持續翻譯的開源翻譯管理系統。"
+
+#~ msgid "On premise"
+#~ msgstr "自行架設"
 
 #~ msgid "This website is stored on <a href=\"%(url)s\">GitHub</a> as well:"
 #~ msgstr "本網站也同時儲存在 <a href=\"%(url)s\">GitHub</a> 上："
