@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Weblate 1.2\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-12 18:09+0000\n"
+"PO-Revision-Date: 2019-01-17 08:31+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "weblate/website/pt_BR/>\n"
@@ -137,7 +137,7 @@ msgstr "Quantidade em EUR"
 #: weblate_web/forms.py:56
 #, python-format
 msgid "The minimal amount is %d EUR."
-msgstr ""
+msgstr "A quantidade mínima é %d EUR."
 
 #: weblate_web/models.py:76
 msgid "Link text"
@@ -153,11 +153,10 @@ msgstr "Página não encontrada"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
 msgid "Weblate is a libre software web-based continuous localization system."
 msgstr ""
-"O Weblate é um sistema de gerenciamento de tradução livre baseado na web."
+"Weblate é um sistema de localização contínua baseado na web de software "
+"libre."
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -181,38 +180,26 @@ msgid "Continuous translation"
 msgstr "Tradução contínua"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation process can closely follow development of your "
-#| "project."
 msgid "Automated translation closely follows the development of your project."
 msgstr ""
-"Processo de tradução automatizada pode acompanhar de perto o desenvolvimento "
-"do seu projeto."
+"Processo de tradução automatizada acompanha de perto o desenvolvimento do "
+"seu projeto."
 
 #: weblate_web/templates/base-features.html:15
-#, fuzzy
-#| msgid ""
-#| "Customizable quality checks will help you in improving quality of "
-#| "translations."
 msgid "Customizable quality checks helps improve translation quality."
 msgstr ""
-"Verificações de qualidade personalizáveis ajudarão você a melhorar a "
-"qualidade das traduções."
+"Verificações de qualidade personalizáveis ajudam a melhorar a qualidade da "
+"tradução."
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
 msgstr "Atribuição"
 
 #: weblate_web/templates/base-features.html:23
-#, fuzzy
-#| msgid ""
-#| "All your translators will be properly credited in the version control "
-#| "system."
 msgid "All translators are properly credited in the version control system."
 msgstr ""
-"Todos os seus tradutores serão creditados apropriadamente no sistema de "
-"controle de versão."
+"Todos os tradutores são creditados apropriadamente no sistema de controle de "
+"versão."
 
 #: weblate_web/templates/base-features.html:30
 #: weblate_web/templates/hosting.html:18
@@ -220,17 +207,12 @@ msgid "Hosting plans"
 msgstr "Planos de hospedagem"
 
 #: weblate_web/templates/base-features.html:31
-#, fuzzy
-#| msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
 msgid "Hosting plans for Weblate as a service starting at 19 EUR."
-msgstr ""
-"Planos de hospedagem para usar o Weblate como um serviço começando em 19 EUR."
+msgstr "Planos de hospedagem do Weblate como um serviço começando em 19 EUR."
 
 #: weblate_web/templates/base-features.html:38
-#, fuzzy
-#| msgid "Cloud service"
 msgid "Cloud ready"
-msgstr "Serviço de nuvem"
+msgstr "Pronto para a nuvem"
 
 #: weblate_web/templates/base-features.html:39
 #, fuzzy
