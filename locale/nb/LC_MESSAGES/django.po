@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-17 08:17+0000\n"
+"PO-Revision-Date: 2019-01-17 16:26+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/weblate/"
 "website/nb_NO/>\n"
@@ -127,10 +127,8 @@ msgstr "Brukeradministrasjon"
 
 #: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
 #: weblate_web/templates/donate/form.html:25
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation recurrence"
-msgstr "Donasjonsadresse"
+msgstr "Donasjonsgjentagelse"
 
 #: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
@@ -156,11 +154,10 @@ msgstr "Finner ikke side"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
 msgid "Weblate is a libre software web-based continuous localization system."
 msgstr ""
-"Weblate er et gratis nettbasert system for håndtering av oversettelser."
+"Weblate et fritt nettbasert system for kontinuerkug håndtering av "
+"oversettelser."
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -184,13 +181,9 @@ msgid "Continuous translation"
 msgstr "Kontinuerlig oversettelse"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation process can closely follow development of your "
-#| "project."
 msgid "Automated translation closely follows the development of your project."
 msgstr ""
-"Automatisert oversettelsesprosess kan følge utviklingen av prosjektet nøye."
+"Automatisert oversettelsesprosess følger utviklingen av prosjektet nøye."
 
 #: weblate_web/templates/base-features.html:15
 #, fuzzy
@@ -220,17 +213,12 @@ msgid "Hosting plans"
 msgstr "Vertslagringstilbud"
 
 #: weblate_web/templates/base-features.html:31
-#, fuzzy
-#| msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
 msgid "Hosting plans for Weblate as a service starting at 19 EUR."
-msgstr ""
-"Vertslagringstilbud for å bruke Weblate som en tjeneste starter på 19 Euro."
+msgstr "Vertslagringstilbud for Weblate som en tjeneste starter på 19 Euro."
 
 #: weblate_web/templates/base-features.html:38
-#, fuzzy
-#| msgid "Cloud service"
 msgid "Cloud ready"
-msgstr "Skytjeneste"
+msgstr "Klar for skyen"
 
 #: weblate_web/templates/base-features.html:39
 #, fuzzy
@@ -240,8 +228,6 @@ msgid "Weblate comes with appliances, ready to deploy in your cloud."
 msgstr "Weblate kommer med tjenester, klare til distribuering i skyen."
 
 #: weblate_web/templates/base-features.html:46
-#, fuzzy
-#| msgid "Free software"
 msgid "Libre software"
 msgstr "Fri programvare"
 
@@ -363,16 +349,13 @@ msgstr ""
 "forgrening der, eller bare:"
 
 #: weblate_web/templates/contribute.html:31
-#, fuzzy, python-format
-#| msgid ""
-#| "You can also ask related questions on <a href=\"%(url)s\">Stack Overflow</"
-#| "a>."
+#, python-format
 msgid ""
 "You can find more repositories related to Weblate on <a href=\"%(url)s"
 "\">GitHub</a>"
 msgstr ""
-"Du kan også stille programmeringsrelaterte spørsmål på <a href=\"%(url)s"
-"\">Stack Overflow</a>."
+"Du kan også finne flere Weblate-pakkebrønner på <a href=\"%(url)s\""
+">GitHub</a>."
 
 #: weblate_web/templates/contribute.html:37
 msgid ""
@@ -419,16 +402,12 @@ msgid "Sign out"
 msgstr "Logg ut"
 
 #: weblate_web/templates/donate.html:24
-#, fuzzy
-#| msgid "Regular donations"
 msgid "Your donations"
-msgstr "Regelmessige donasjoner"
+msgstr "Dine donasjoner"
 
 #: weblate_web/templates/donate.html:29
-#, fuzzy
-#| msgid "Collaboration sites"
 msgid "Creation date"
-msgstr "Samarbeidende sider"
+msgstr "Opprettelsesdato"
 
 #: weblate_web/templates/donate.html:30
 msgid "Reward"
@@ -443,10 +422,8 @@ msgid "Renewal"
 msgstr "Fornyelse"
 
 #: weblate_web/templates/donate.html:33
-#, fuzzy
-#| msgid "Payment summary"
 msgid "Payments"
-msgstr "Betalingssammendrag"
+msgstr "Betalinger"
 
 #: weblate_web/templates/donate.html:43
 #: weblate_web/templates/payment/payment.html:37
@@ -470,10 +447,8 @@ msgid "Does not renew"
 msgstr "Fornyes ikke"
 
 #: weblate_web/templates/donate.html:92
-#, fuzzy
-#| msgid "Documentation"
 msgid "Donations"
-msgstr "Dokumentasjon"
+msgstr "Donasjoner"
 
 #: weblate_web/templates/donate.html:95
 #, fuzzy
@@ -490,16 +465,10 @@ msgstr ""
 "bruke store beløp, hver krone teller."
 
 #: weblate_web/templates/donate.html:103
-#, fuzzy
-#| msgid "Regular donations"
 msgid "Recurring donation"
-msgstr "Regelmessige donasjoner"
+msgstr "Regelmessig donasjon"
 
 #: weblate_web/templates/donate.html:106
-#, fuzzy
-#| msgid ""
-#| "Repeated appreciation of the Weblate project helps in keeping the project "
-#| "sustainable in the long term."
 msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable long term."
@@ -518,10 +487,8 @@ msgid ""
 msgstr "Overvei dette hvis du bruker Weblate selv, uten støttekontrakt."
 
 #: weblate_web/templates/donate.html:116
-#, fuzzy
-#| msgid "View documentation"
 msgid "One time donation"
-msgstr "Vis dokumentasjon"
+msgstr "Engangsdonasjon"
 
 #: weblate_web/templates/donate.html:119
 msgid ""
@@ -532,10 +499,8 @@ msgstr ""
 "et støtteforetagende."
 
 #: weblate_web/templates/donate.html:128
-#, fuzzy
-#| msgid "Use our hosting"
 msgid "Use our services"
-msgstr "Bruk vår vertslagring"
+msgstr "Bruk vår tjenester"
 
 #: weblate_web/templates/donate.html:131
 #, fuzzy
