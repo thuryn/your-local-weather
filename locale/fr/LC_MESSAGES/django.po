@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: French (Weblate)\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-17 08:33+0100\n"
+"POT-Creation-Date: 2019-01-17 09:00+0100\n"
 "PO-Revision-Date: 2019-01-12 18:09+0000\n"
 "Last-Translator: Ldm Public <ldmpub@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/weblate/website/"
@@ -136,6 +136,11 @@ msgstr "Fréquence du don"
 msgid "Amount in EUR"
 msgstr "Montant en EUR"
 
+#: weblate_web/forms.py:56
+#, python-format
+msgid "The minimal amount is %d EUR."
+msgstr ""
+
 #: weblate_web/models.py:76
 msgid "Link text"
 msgstr "Texte du lien"
@@ -148,11 +153,14 @@ msgstr "Lien URL"
 msgid "Page not found"
 msgstr "Page inexistante"
 
-#: weblate_web/templates/404.html:8 weblate_web/templates/500.html:8
-msgid "Weblate is a free web-based translation management system."
+#: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
+#: weblate_web/templates/index.html:6
+#, fuzzy
+#| msgid "Weblate is a free web-based translation management system."
+msgid "Weblate is a libre software web-based continuous localization system."
 msgstr "Weblate est un système libre de gestion de traductions en mode Web."
 
-#: weblate_web/templates/404.html:15
+#: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
 msgstr "La page que vous recherchez n’existe pas."
 
@@ -160,7 +168,7 @@ msgstr "La page que vous recherchez n’existe pas."
 msgid "Server error"
 msgstr "Erreur de serveur"
 
-#: weblate_web/templates/500.html:15
+#: weblate_web/templates/500.html:13
 msgid ""
 "The server had serious problems while serving your request. We've just sent "
 "our trained monkeys to fix the issue."
@@ -264,7 +272,7 @@ msgid "Features"
 msgstr "Fonctionnalités"
 
 #: weblate_web/templates/base.html:59 weblate_web/templates/download.html:18
-#: weblate_web/templates/index.html:152
+#: weblate_web/templates/index.html:150
 msgid "Download"
 msgstr "Télécharger"
 
@@ -1168,8 +1176,8 @@ msgstr "Greffons de traduction"
 msgid "Translation memory"
 msgstr "Mémoire de traduction"
 
-#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:122
-#: weblate_web/templates/index.html:136
+#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:120
+#: weblate_web/templates/index.html:134
 msgid "Priority email support"
 msgstr "Support prioritaire par courriel"
 
@@ -1271,32 +1279,26 @@ msgstr ""
 "Weblate), nous pouvons vous proposer des prestations sur mesure."
 
 #: weblate_web/templates/index.html:3
-msgid "Weblate - web-based translation"
+#, fuzzy
+#| msgid "Weblate - web-based translation"
+msgid "Weblate - web-based localization"
 msgstr "Weblate - traduction en ligne"
 
-#: weblate_web/templates/index.html:7
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
-msgid ""
-"Weblate is a libre software web-based continuous translation and management "
-"system."
-msgstr "Weblate est un système libre de gestion de traductions en mode Web."
-
-#: weblate_web/templates/index.html:14
+#: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
 msgstr "Commencer à utiliser Weblate"
 
-#: weblate_web/templates/index.html:15
+#: weblate_web/templates/index.html:13
 #, fuzzy
 #| msgid "Try our demo server"
 msgid "Try the live demo server"
 msgstr "Essayez notre serveur de démonstration"
 
-#: weblate_web/templates/index.html:16
+#: weblate_web/templates/index.html:14
 msgid "Downloads"
 msgstr "Téléchargements"
 
-#: weblate_web/templates/index.html:25
+#: weblate_web/templates/index.html:23
 #, fuzzy
 #| msgid ""
 #| "Weblate is a free web-based translation tool with tight version control "
@@ -1304,7 +1306,7 @@ msgstr "Téléchargements"
 #| "translations across components, quality checks and automatic linking to "
 #| "source files."
 msgid ""
-"Weblate is a libre web-based translation tool with tight version control "
+"Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
@@ -1315,63 +1317,63 @@ msgstr ""
 "vérifier la qualité des traductions et est automatiquement lié aux fichiers "
 "sources."
 
-#: weblate_web/templates/index.html:29
+#: weblate_web/templates/index.html:27
 msgid "Weblate screenshot"
 msgstr "Capture d’écran de Weblate"
 
-#: weblate_web/templates/index.html:38
+#: weblate_web/templates/index.html:36
 msgid "See more features…"
 msgstr "Voir plus de fonctionnalités…"
 
-#: weblate_web/templates/index.html:45
+#: weblate_web/templates/index.html:43
 msgid "See who is using Weblate and join them!"
 msgstr "Découvrez qui utilise Weblate et rejoignez nous !"
 
-#: weblate_web/templates/index.html:108
+#: weblate_web/templates/index.html:106
 msgid "Browse hundreds of projects on Hosted Weblate"
 msgstr "Parcourez des centaines de projets sur Hosted Weblate"
 
-#: weblate_web/templates/index.html:116
+#: weblate_web/templates/index.html:114
 msgid "Hosted service"
 msgstr "Service d'hébergement"
 
-#: weblate_web/templates/index.html:120 weblate_web/templates/index.html:134
+#: weblate_web/templates/index.html:118 weblate_web/templates/index.html:132
 #, python-format
 msgid "From %(amount)sEUR/month"
 msgstr "À partir de %(amount)s EUR/mois"
 
-#: weblate_web/templates/index.html:121
+#: weblate_web/templates/index.html:119
 msgid "Cloud service"
 msgstr "Service cloud"
 
-#: weblate_web/templates/index.html:124 weblate_web/templates/index.html:138
+#: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
 msgid "Choose hosting plan"
 msgstr "Sélectionnez l'offre d’hébergement"
 
-#: weblate_web/templates/index.html:130
+#: weblate_web/templates/index.html:128
 #, fuzzy
 #| msgctxt "Hosting plan"
 #| msgid "Self hosted"
 msgid "Self hosted"
 msgstr "Hébergé par vous-même"
 
-#: weblate_web/templates/index.html:135
+#: weblate_web/templates/index.html:133
 msgid "Your infrastructure"
 msgstr "Votre infrastructure"
 
-#: weblate_web/templates/index.html:144
+#: weblate_web/templates/index.html:142
 msgid "Self supported"
 msgstr "Supporté par vous-même"
 
-#: weblate_web/templates/index.html:148
+#: weblate_web/templates/index.html:146
 msgid "Weblate is free to use"
 msgstr "L'utilisation de Weblate est gratuite"
 
-#: weblate_web/templates/index.html:149
+#: weblate_web/templates/index.html:147
 msgid "Maintained by you"
 msgstr "Maintenu par vous-même"
 
-#: weblate_web/templates/index.html:150
+#: weblate_web/templates/index.html:148
 msgid "Community support"
 msgstr "Support communautaire"
 
@@ -1849,6 +1851,9 @@ msgstr "Raison inconnue"
 #: weblate_web/views.py:279
 msgid "Thank you for your donation."
 msgstr "Merci beaucoup pour votre don."
+
+#~ msgid "Weblate is a free web-based translation management system."
+#~ msgstr "Weblate est un système libre de gestion de traductions en mode Web."
 
 #~ msgid "Ready for cloud"
 #~ msgstr "Prêt pour le nuage"

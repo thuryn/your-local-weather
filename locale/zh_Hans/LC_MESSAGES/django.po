@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-17 08:33+0100\n"
+"POT-Creation-Date: 2019-01-17 09:00+0100\n"
 "PO-Revision-Date: 2018-12-22 18:05+0000\n"
 "Last-Translator: dragonandy <dragonandy@foxmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
@@ -125,6 +125,11 @@ msgstr "捐赠地址"
 msgid "Amount in EUR"
 msgstr ""
 
+#: weblate_web/forms.py:56
+#, python-format
+msgid "The minimal amount is %d EUR."
+msgstr ""
+
 #: weblate_web/models.py:76
 msgid "Link text"
 msgstr ""
@@ -137,11 +142,14 @@ msgstr ""
 msgid "Page not found"
 msgstr "找不到页面"
 
-#: weblate_web/templates/404.html:8 weblate_web/templates/500.html:8
-msgid "Weblate is a free web-based translation management system."
+#: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
+#: weblate_web/templates/index.html:6
+#, fuzzy
+#| msgid "Weblate is a free web-based translation management system."
+msgid "Weblate is a libre software web-based continuous localization system."
 msgstr "Weblate 是一个自由的基于网页的翻译管理系统。"
 
-#: weblate_web/templates/404.html:15
+#: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
 msgstr "找不到您要访问的页面。"
 
@@ -149,7 +157,7 @@ msgstr "找不到您要访问的页面。"
 msgid "Server error"
 msgstr "服务器错误"
 
-#: weblate_web/templates/500.html:15
+#: weblate_web/templates/500.html:13
 msgid ""
 "The server had serious problems while serving your request. We've just sent "
 "our trained monkeys to fix the issue."
@@ -240,7 +248,7 @@ msgid "Features"
 msgstr "功能"
 
 #: weblate_web/templates/base.html:59 weblate_web/templates/download.html:18
-#: weblate_web/templates/index.html:152
+#: weblate_web/templates/index.html:150
 msgid "Download"
 msgstr "下载"
 
@@ -1102,8 +1110,8 @@ msgstr "翻译插件"
 msgid "Translation memory"
 msgstr "翻译记忆库"
 
-#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:122
-#: weblate_web/templates/index.html:136
+#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:120
+#: weblate_web/templates/index.html:134
 msgid "Priority email support"
 msgstr "优先邮件支持"
 
@@ -1196,32 +1204,26 @@ msgid ""
 msgstr "当您自行托管时需要帮助，我们已经准备好为您的需求量身定制的咨询服务。"
 
 #: weblate_web/templates/index.html:3
-msgid "Weblate - web-based translation"
+#, fuzzy
+#| msgid "Weblate - web-based translation"
+msgid "Weblate - web-based localization"
 msgstr "Weblate - 基于网页的在线翻译平台"
 
-#: weblate_web/templates/index.html:7
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
-msgid ""
-"Weblate is a libre software web-based continuous translation and management "
-"system."
-msgstr "Weblate 是一个自由的基于网页的翻译管理系统。"
-
-#: weblate_web/templates/index.html:14
+#: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
 msgstr "开始使用 Weblate"
 
-#: weblate_web/templates/index.html:15
+#: weblate_web/templates/index.html:13
 #, fuzzy
 #| msgid "Try our demo server"
 msgid "Try the live demo server"
 msgstr "试用我们的演示服务器"
 
-#: weblate_web/templates/index.html:16
+#: weblate_web/templates/index.html:14
 msgid "Downloads"
 msgstr "下载"
 
-#: weblate_web/templates/index.html:25
+#: weblate_web/templates/index.html:23
 #, fuzzy
 #| msgid ""
 #| "Weblate is a free web-based translation tool with tight version control "
@@ -1229,7 +1231,7 @@ msgstr "下载"
 #| "translations across components, quality checks and automatic linking to "
 #| "source files."
 msgid ""
-"Weblate is a libre web-based translation tool with tight version control "
+"Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
@@ -1237,70 +1239,70 @@ msgstr ""
 "Weblate 是一款基于网页的在线翻译工具，并与版本控制系统紧密结合。它具有简洁清"
 "爽的用户界面，组件间翻译同步、质量检查以及自动链接到源文件等功能。"
 
-#: weblate_web/templates/index.html:29
+#: weblate_web/templates/index.html:27
 msgid "Weblate screenshot"
 msgstr "Weblate 截图"
 
-#: weblate_web/templates/index.html:38
+#: weblate_web/templates/index.html:36
 msgid "See more features…"
 msgstr "查看更多功能…"
 
-#: weblate_web/templates/index.html:45
+#: weblate_web/templates/index.html:43
 msgid "See who is using Weblate and join them!"
 msgstr "查看谁在使用 Weblate 并加入他们的行列！"
 
-#: weblate_web/templates/index.html:108
+#: weblate_web/templates/index.html:106
 msgid "Browse hundreds of projects on Hosted Weblate"
 msgstr "浏览 Hosted Weblate 上的数百个项目"
 
-#: weblate_web/templates/index.html:116
+#: weblate_web/templates/index.html:114
 msgid "Hosted service"
 msgstr ""
 
-#: weblate_web/templates/index.html:120 weblate_web/templates/index.html:134
+#: weblate_web/templates/index.html:118 weblate_web/templates/index.html:132
 #, python-format
 msgid "From %(amount)sEUR/month"
 msgstr ""
 
-#: weblate_web/templates/index.html:121
+#: weblate_web/templates/index.html:119
 msgid "Cloud service"
 msgstr ""
 
-#: weblate_web/templates/index.html:124 weblate_web/templates/index.html:138
+#: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
 #, fuzzy
 #| msgid "View hosting plans"
 msgid "Choose hosting plan"
 msgstr "查看托管套餐"
 
-#: weblate_web/templates/index.html:130
+#: weblate_web/templates/index.html:128
 #, fuzzy
 #| msgctxt "Hosting plan"
 #| msgid "Self hosted"
 msgid "Self hosted"
 msgstr "自行托管"
 
-#: weblate_web/templates/index.html:135
+#: weblate_web/templates/index.html:133
 msgid "Your infrastructure"
 msgstr ""
 
-#: weblate_web/templates/index.html:144
+#: weblate_web/templates/index.html:142
 #, fuzzy
 #| msgctxt "Hosting plan"
 #| msgid "Self hosted"
 msgid "Self supported"
 msgstr "自行托管"
 
-#: weblate_web/templates/index.html:148
+#: weblate_web/templates/index.html:146
 #, fuzzy
 #| msgid "Weblate features"
 msgid "Weblate is free to use"
 msgstr "Weblate 功能"
 
-#: weblate_web/templates/index.html:149
+#: weblate_web/templates/index.html:147
 msgid "Maintained by you"
 msgstr ""
 
-#: weblate_web/templates/index.html:150
+#: weblate_web/templates/index.html:148
 #, fuzzy
 #| msgid "Phone support"
 msgid "Community support"
@@ -1767,6 +1769,9 @@ msgstr ""
 #| msgid "Thank you for ordering hosting!"
 msgid "Thank you for your donation."
 msgstr "感谢您订购托管！"
+
+#~ msgid "Weblate is a free web-based translation management system."
+#~ msgstr "Weblate 是一个自由的基于网页的翻译管理系统。"
 
 #~ msgid "Ready for cloud"
 #~ msgstr "云支持"
