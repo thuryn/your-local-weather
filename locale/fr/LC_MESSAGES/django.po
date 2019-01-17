@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: French (Weblate)\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-17 16:26+0000\n"
+"PO-Revision-Date: 2019-01-21 10:36+0000\n"
 "Last-Translator: Ldm Public <ldmpub@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/weblate/website/"
 "fr/>\n"
@@ -183,14 +183,9 @@ msgid "Continuous translation"
 msgstr "Traduction en continu"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation process can closely follow development of your "
-#| "project."
 msgid "Automated translation closely follows the development of your project."
 msgstr ""
-"Un processus de traduction automatisée peut suivre de près le développement "
-"de votre projet."
+"La traduction automatisée suit de près le développement de votre projet."
 
 #: weblate_web/templates/base-features.html:15
 msgid "Customizable quality checks helps improve translation quality."
@@ -235,6 +230,8 @@ msgstr "Logiciel libre"
 msgid ""
 "Weblate is copylefted; use, see, modify and share at will, and with everyone."
 msgstr ""
+"Weblate est sous licence copyleft : vous êtes autorisés à utiliser, étudier, "
+"modifier et partager Weblate."
 
 #: weblate_web/templates/base.html:11
 msgctxt "Keyword"
@@ -449,18 +446,13 @@ msgid "Donations"
 msgstr "Dons"
 
 #: weblate_web/templates/donate.html:95
-#, fuzzy
-#| msgid ""
-#| "Recurring donations allow sustainability of Weblate development and help "
-#| "to fund free hosting for libre software. You don't have to spend big "
-#| "money, every penny counts."
 msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
-"Les dons récurrents garantissent la pérennité de Weblate et permettent "
-"d'offrir un hébergement gratuit aux logiciels libres. Peu importe la somme, "
-"chaque contribution compte."
+"Les dons récurrents garantissent la pérennité de Weblate, même les plus "
+"petites contributions comptent et permettent d'offrir un hébergement gratuit "
+"aux logiciels libres."
 
 #: weblate_web/templates/donate.html:103
 msgid "Recurring donation"
@@ -471,12 +463,14 @@ msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable long term."
 msgstr ""
+"Les dons récurrents garantissent la pérennité de Weblate sur le long terme."
 
 #: weblate_web/templates/donate.html:107
 msgid ""
 "Please consider this if you are hosting Weblate yourself without a support "
 "contract."
 msgstr ""
+"Bien adapté si vous hébergez Weblate par vous-même sans contrat de support."
 
 #: weblate_web/templates/donate.html:116
 msgid "One time donation"
@@ -487,6 +481,8 @@ msgid ""
 "One time donations are great for appreciating our work on single issue or "
 "support."
 msgstr ""
+"Les dons uniques sont parfaits si vous avez apprécié notre assistance ou "
+"notre travail sur un point particulier."
 
 #: weblate_web/templates/donate.html:128
 msgid "Use our services"
@@ -497,6 +493,8 @@ msgid ""
 "Commercial services like hosting or support for self hosted installation "
 "help fund Weblate development."
 msgstr ""
+"Les services payants comme l'hébergement ou l'assistance aident à financer "
+"les développements de Weblate."
 
 #: weblate_web/templates/donate.html:142
 msgid "Donation rewards"
@@ -528,6 +526,7 @@ msgstr "Adresse pour les dons"
 #: weblate_web/templates/donate/form.html:13
 msgid "Please choose wanted reward or enter custom donation amount."
 msgstr ""
+"Veuillez sélectionner la récompense souhaitée ou saisissez le montant du don."
 
 #: weblate_web/templates/donate/edit.html:20
 msgid "Edit your reward link"
@@ -547,6 +546,8 @@ msgid ""
 "We might refuse to place your link, especially if the site contains adult or "
 "illegal content. Please consult us in advance if unsure."
 msgstr ""
+"Nous refusons les liens illégaux ou pointant vers du contenu pour adultes. "
+"En cas de doute, contactez-nous."
 
 #: weblate_web/templates/donate/form.html:50
 msgid "Choose your own donation amount"
@@ -1277,23 +1278,17 @@ msgid "Downloads"
 msgstr "Téléchargements"
 
 #: weblate_web/templates/index.html:23
-#, fuzzy
-#| msgid ""
-#| "Weblate is a free web-based translation tool with tight version control "
-#| "integration. It features simple and clean user interface, propagation of "
-#| "translations across components, quality checks and automatic linking to "
-#| "source files."
 msgid ""
 "Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
 msgstr ""
-"Weblate est un outil de traduction en mode web fortement lié aux systèmes de "
-"contrôle de versions. A travers une interface utilisateur claire et simple, "
-"Weblate permet la propagation de traductions entre sous-projets, peut "
-"vérifier la qualité des traductions et est automatiquement lié aux fichiers "
-"sources."
+"Weblate est un outil libre de traduction en mode web fortement lié aux "
+"systèmes de contrôle de versions. A travers une interface utilisateur claire "
+"et simple, Weblate permet la propagation de traductions entre sous-projets, "
+"peut vérifier la qualité des traductions et est automatiquement lié aux "
+"fichiers sources."
 
 #: weblate_web/templates/index.html:27
 msgid "Weblate screenshot"
