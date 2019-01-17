@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-12 18:09+0000\n"
-"Last-Translator: Nathan Follens <nthn@unseen.is>\n"
+"PO-Revision-Date: 2019-01-17 19:10+0000\n"
+"Last-Translator: Thomas De Rocker <thomasderocker@outlook.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/weblate/website/nl/"
 ">\n"
 "Language: nl\n"
@@ -137,7 +137,7 @@ msgstr "Bedrag in EUR"
 #: weblate_web/forms.py:56
 #, python-format
 msgid "The minimal amount is %d EUR."
-msgstr ""
+msgstr "De minimale hoeveelheid is %d EUR."
 
 #: weblate_web/models.py:76
 msgid "Link text"
@@ -153,10 +153,8 @@ msgstr "Pagina niet gevonden"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
 msgid "Weblate is a libre software web-based continuous localization system."
-msgstr "Weblate is een gratis webgebaseerd vertaalbeheersysteem."
+msgstr "Weblate is een libre software webgebaseerd vertaalbeheersysteem."
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -180,35 +178,20 @@ msgid "Continuous translation"
 msgstr "Voortdurende vertaling"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation process can closely follow development of your "
-#| "project."
 msgid "Automated translation closely follows the development of your project."
-msgstr ""
-"Een geautomatiseerd vertaalproces volgt nauw de ontwikkeling van uw project."
+msgstr "Geautomatiseerde vertaling volgt nauw de ontwikkeling van uw project."
 
 #: weblate_web/templates/base-features.html:15
-#, fuzzy
-#| msgid ""
-#| "Customizable quality checks will help you in improving quality of "
-#| "translations."
 msgid "Customizable quality checks helps improve translation quality."
-msgstr ""
-"Aanpasbare kwaliteitscontroles helpen u bij het verbeteren van de kwaliteit "
-"van vertalingen."
+msgstr "Aanpasbare kwaliteitscontroles helpen vertaalkwaliteit te verbeteren."
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
 msgstr "Bijdrage"
 
 #: weblate_web/templates/base-features.html:23
-#, fuzzy
-#| msgid ""
-#| "All your translators will be properly credited in the version control "
-#| "system."
 msgid "All translators are properly credited in the version control system."
-msgstr "Al uw vertalers worden correct vermeld in het versiebeheersysteem."
+msgstr "Alle vertalers worden correct vermeld in het versiebeheersysteem."
 
 #: weblate_web/templates/base-features.html:30
 #: weblate_web/templates/hosting.html:18
@@ -216,36 +199,29 @@ msgid "Hosting plans"
 msgstr "Hosting-tariefplannen"
 
 #: weblate_web/templates/base-features.html:31
-#, fuzzy
-#| msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
 msgid "Hosting plans for Weblate as a service starting at 19 EUR."
 msgstr "Prijzen voor Weblate als dienst vanaf 19 EUR."
 
 #: weblate_web/templates/base-features.html:38
-#, fuzzy
-#| msgid "Cloud service"
 msgid "Cloud ready"
-msgstr "Cloud-service"
+msgstr "Klaar voor de cloud"
 
 #: weblate_web/templates/base-features.html:39
-#, fuzzy
-#| msgid ""
-#| "Weblate comes with appliances, which are ready to deploy in your cloud."
 msgid "Weblate comes with appliances, ready to deploy in your cloud."
 msgstr ""
 "Weblate wordt geleverd met een aantal pakketten, klaar om te installeren in "
 "uw cloud."
 
 #: weblate_web/templates/base-features.html:46
-#, fuzzy
-#| msgid "Free software"
 msgid "Libre software"
-msgstr "Vrije software"
+msgstr "Libre software"
 
 #: weblate_web/templates/base-features.html:47
 msgid ""
 "Weblate is copylefted; use, see, modify and share at will, and with everyone."
 msgstr ""
+"Weblate is zonder auteursrecht; gebruiken, weergeven, wijzigen en delen met "
+"iedereen naar eigen goeddunken."
 
 #: weblate_web/templates/base.html:11
 msgctxt "Keyword"
@@ -460,46 +436,32 @@ msgid "Donations"
 msgstr "Donaties"
 
 #: weblate_web/templates/donate.html:95
-#, fuzzy
-#| msgid ""
-#| "Recurring donations allow sustainability of Weblate development and help "
-#| "to fund free hosting for libre software. You don't have to spend big "
-#| "money, every penny counts."
 msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
-"Terugkerende donaties zorgen voor duurzaamheid van de Weblate-ontwikkeling "
-"en helpen bij de financiering van gratis hosting voor vrije software. U "
-"hoeft geen grote bedragen uit te geven, elke cent telt."
+"Terugkerende donaties vergemakkelijken duurzame Weblate-ontwikkeling, zelfs "
+"het kleinste bedrag helpt om gratis hosting voor vrije software te "
+"financieren."
 
 #: weblate_web/templates/donate.html:103
 msgid "Recurring donation"
 msgstr "Terugkerende donatie"
 
 #: weblate_web/templates/donate.html:106
-#, fuzzy
-#| msgid ""
-#| "Repeated appreciation of the Weblate project helps in keeping the project "
-#| "sustainable in the long term."
 msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable long term."
 msgstr ""
 "Herhaalde waardering van het Weblate project helpt om het project duurzaam "
-"te houden op de lange termijn."
+"te houden op lange termijn."
 
 #: weblate_web/templates/donate.html:107
-#, fuzzy
-#| msgid ""
-#| "Please consider this if you are using Weblate on premise without support "
-#| "contract."
 msgid ""
 "Please consider this if you are hosting Weblate yourself without a support "
 "contract."
 msgstr ""
-"Houd hier rekening mee als u Weblate op locatie gebruikt zonder "
-"ondersteuningscontract."
+"Houd hier rekening mee als u Weblate zelf host zonder ondersteuningscontract."
 
 #: weblate_web/templates/donate.html:116
 msgid "One time donation"
@@ -518,16 +480,12 @@ msgid "Use our services"
 msgstr "Onze services gebruiken"
 
 #: weblate_web/templates/donate.html:131
-#, fuzzy
-#| msgid ""
-#| "Commercial services like hosting or support for on premise installation "
-#| "help funding Weblate development."
 msgid ""
 "Commercial services like hosting or support for self hosted installation "
 "help fund Weblate development."
 msgstr ""
-"Commerciële diensten zoals hosting of ondersteuning voor installatie op "
-"locatie helpen bij de financiering van Weblate-ontwikkeling."
+"Commerciële diensten zoals hosting of ondersteuning voor zelf-gehoste "
+"installatie helpen bij de financiering van Weblate-ontwikkeling."
 
 #: weblate_web/templates/donate.html:142
 msgid "Donation rewards"
@@ -1285,8 +1243,6 @@ msgstr ""
 "terecht voor advies op maat."
 
 #: weblate_web/templates/index.html:3
-#, fuzzy
-#| msgid "Weblate - web-based translation"
 msgid "Weblate - web-based localization"
 msgstr "Weblate - webgebaseerd vertalen"
 
@@ -1295,29 +1251,21 @@ msgid "Start using Weblate"
 msgstr "Weblate beginnen gebruiken"
 
 #: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
 msgid "Try the live demo server"
-msgstr "Onze demo-server proberen"
+msgstr "De live demo-server proberen"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
 msgstr "Downloads"
 
 #: weblate_web/templates/index.html:23
-#, fuzzy
-#| msgid ""
-#| "Weblate is a free web-based translation tool with tight version control "
-#| "integration. It features simple and clean user interface, propagation of "
-#| "translations across components, quality checks and automatic linking to "
-#| "source files."
 msgid ""
 "Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
 msgstr ""
-"Weblate is een vrij, webgebaseerd vertaalhulpmiddel met een sterke "
+"Weblate is een libre, webgebaseerd vertaalhulpmiddel met een sterke "
 "integratie van versiebeheer. Het heeft een eenvoudige en nette "
 "gebruikersinterface, verspreiding van vertalingen tussen onderdelen, "
 "kwaliteitscontroles en automatische koppeling met bronbestanden."
@@ -1356,9 +1304,6 @@ msgid "Choose hosting plan"
 msgstr "Hostingpakket kiezen"
 
 #: weblate_web/templates/index.html:128
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self hosted"
 msgstr "Zelf-gehost"
 
