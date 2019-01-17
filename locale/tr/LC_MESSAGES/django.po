@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-15 01:59+0000\n"
+"PO-Revision-Date: 2019-01-17 09:07+0000\n"
 "Last-Translator: Mesut Akcan <makcan@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/weblate/website/"
 "tr/>\n"
@@ -135,7 +135,7 @@ msgstr "EUR cinsinden miktar"
 #: weblate_web/forms.py:56
 #, python-format
 msgid "The minimal amount is %d EUR."
-msgstr ""
+msgstr "Asgari miktar %d EUR."
 
 #: weblate_web/models.py:76
 msgid "Link text"
@@ -151,10 +151,9 @@ msgstr "Sayfa bulunamadı"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
 msgid "Weblate is a libre software web-based continuous localization system."
-msgstr "Weblate özgür bir web tabanlı çeviri yönetimi sistemidir."
+msgstr ""
+"Weblate bir özgür yazılımdır ve web tabanlı devamlı yerelleştirme sistemidir."
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -178,36 +177,23 @@ msgid "Continuous translation"
 msgstr "Sürekli çeviri"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation process can closely follow development of your "
-#| "project."
 msgid "Automated translation closely follows the development of your project."
-msgstr "Otomatik çeviri süreci projenizin gelişimini yakından takip edebilir."
+msgstr "Otomatik çeviri projenizin gelişimini yakından takip eder."
 
 #: weblate_web/templates/base-features.html:15
-#, fuzzy
-#| msgid ""
-#| "Customizable quality checks will help you in improving quality of "
-#| "translations."
 msgid "Customizable quality checks helps improve translation quality."
 msgstr ""
-"Özelleştirilebilir kalite denetimleri çevirilerin kalitesini iyileştirmede "
-"size yardımcı olacaktır."
+"Özelleştirilebilir kalite denetimleri çeviri kalitesini artırmaya yardımcı "
+"olur."
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
 msgstr "Nitelik"
 
 #: weblate_web/templates/base-features.html:23
-#, fuzzy
-#| msgid ""
-#| "All your translators will be properly credited in the version control "
-#| "system."
 msgid "All translators are properly credited in the version control system."
 msgstr ""
-"Tüm çevirmenlerinizin sürüm kontrol sisteminde uygun bir şekilde adı "
-"geçecektir."
+"Tüm tercümanlar sürüm kontrol sisteminde adı uygun bir şekilde belirtilir."
 
 #: weblate_web/templates/base-features.html:30
 #: weblate_web/templates/hosting.html:18
@@ -215,18 +201,12 @@ msgid "Hosting plans"
 msgstr "Barındırma planları"
 
 #: weblate_web/templates/base-features.html:31
-#, fuzzy
-#| msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
 msgid "Hosting plans for Weblate as a service starting at 19 EUR."
-msgstr ""
-"Weblate kullanmak için barındırma planları 19 EUR'dan başlayan hizmet "
-"bedeliyle."
+msgstr "Weblate için barındırma planları hizmet bedeli 19 EUR'dan başlar."
 
 #: weblate_web/templates/base-features.html:38
-#, fuzzy
-#| msgid "Cloud service"
 msgid "Cloud ready"
-msgstr "Bulut hizmeti"
+msgstr "Bulut hazır"
 
 #: weblate_web/templates/base-features.html:39
 #, fuzzy
