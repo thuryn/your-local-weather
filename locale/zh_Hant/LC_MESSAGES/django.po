@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-12 18:08+0000\n"
+"PO-Revision-Date: 2019-01-17 16:26+0000\n"
 "Last-Translator: Chang-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "weblate/website/zh_Hant/>\n"
@@ -125,7 +125,7 @@ msgstr "金額（歐元）"
 #: weblate_web/forms.py:56
 #, python-format
 msgid "The minimal amount is %d EUR."
-msgstr ""
+msgstr "最低金額為 %d 歐元。"
 
 #: weblate_web/models.py:76
 msgid "Link text"
@@ -141,10 +141,8 @@ msgstr "找不到頁面"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
 msgid "Weblate is a libre software web-based continuous localization system."
-msgstr "Weblate 是一款網頁介面的自由翻譯管理系統。"
+msgstr "Weblate 是一款網頁介面持續在地化系統的自由軟體。"
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -168,30 +166,18 @@ msgid "Continuous translation"
 msgstr "持續翻譯"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation process can closely follow development of your "
-#| "project."
 msgid "Automated translation closely follows the development of your project."
-msgstr "自動化翻譯流程能緊密貼合您的專案開發。"
+msgstr "自動化翻譯能緊密貼合您的專案開發。"
 
 #: weblate_web/templates/base-features.html:15
-#, fuzzy
-#| msgid ""
-#| "Customizable quality checks will help you in improving quality of "
-#| "translations."
 msgid "Customizable quality checks helps improve translation quality."
-msgstr "可自訂的翻譯品質查核檢測可協助您改善翻譯品質。"
+msgstr "可自訂的翻譯品質查核檢測可協助改善翻譯品質。"
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
 msgstr "記名標示"
 
 #: weblate_web/templates/base-features.html:23
-#, fuzzy
-#| msgid ""
-#| "All your translators will be properly credited in the version control "
-#| "system."
 msgid "All translators are properly credited in the version control system."
 msgstr "透過版本控制系統我們能妥善記錄所有翻譯者的貢獻。"
 
@@ -201,34 +187,25 @@ msgid "Hosting plans"
 msgstr "託管方案"
 
 #: weblate_web/templates/base-features.html:31
-#, fuzzy
-#| msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
 msgid "Hosting plans for Weblate as a service starting at 19 EUR."
 msgstr "Weblate 的託管服務方案從 19 歐元起。"
 
 #: weblate_web/templates/base-features.html:38
-#, fuzzy
-#| msgid "Cloud service"
 msgid "Cloud ready"
-msgstr "雲端服務"
+msgstr "雲端就緒"
 
 #: weblate_web/templates/base-features.html:39
-#, fuzzy
-#| msgid ""
-#| "Weblate comes with appliances, which are ready to deploy in your cloud."
 msgid "Weblate comes with appliances, ready to deploy in your cloud."
-msgstr "Weblate 有提供應用實例可直接在雲端部署。"
+msgstr "Weblate 提供應用實例，可直接在雲端部署。"
 
 #: weblate_web/templates/base-features.html:46
-#, fuzzy
-#| msgid "Free software"
 msgid "Libre software"
 msgstr "自由軟體"
 
 #: weblate_web/templates/base-features.html:47
 msgid ""
 "Weblate is copylefted; use, see, modify and share at will, and with everyone."
-msgstr ""
+msgstr "Weblate 採著作傳保護；請隨意使用、查看源碼、做出修改、與他人分享。"
 
 #: weblate_web/templates/base.html:11
 msgctxt "Keyword"
@@ -441,41 +418,26 @@ msgid "Donations"
 msgstr "贊助"
 
 #: weblate_web/templates/donate.html:95
-#, fuzzy
-#| msgid ""
-#| "Recurring donations allow sustainability of Weblate development and help "
-#| "to fund free hosting for libre software. You don't have to spend big "
-#| "money, every penny counts."
 msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
-msgstr ""
-"定期贊助能支持 Weblate 繼續開發，並可協助自由軟體的免費託管服務。您不一定要花"
-"大錢，即便是小額捐款也都能幫到我們。"
+msgstr "定期贊助能促進 Weblate 繼續開發，即便是小額捐款也都能幫助到自由軟體的免費託管服務。"
 
 #: weblate_web/templates/donate.html:103
 msgid "Recurring donation"
 msgstr "定期贊助"
 
 #: weblate_web/templates/donate.html:106
-#, fuzzy
-#| msgid ""
-#| "Repeated appreciation of the Weblate project helps in keeping the project "
-#| "sustainable in the long term."
 msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable long term."
 msgstr "定期贊助 Weblate 專案有助於讓專案長久維持下去。"
 
 #: weblate_web/templates/donate.html:107
-#, fuzzy
-#| msgid ""
-#| "Please consider this if you are using Weblate on premise without support "
-#| "contract."
 msgid ""
 "Please consider this if you are hosting Weblate yourself without a support "
 "contract."
-msgstr "如果您正在使用沒有商業支援的自架 Weblate，還請多多考慮。"
+msgstr "如果您正自行架設沒有商業支援的 Weblate，還請多多考慮。"
 
 #: weblate_web/templates/donate.html:116
 msgid "One time donation"
@@ -492,15 +454,10 @@ msgid "Use our services"
 msgstr "使用我們的服務"
 
 #: weblate_web/templates/donate.html:131
-#, fuzzy
-#| msgid ""
-#| "Commercial services like hosting or support for on premise installation "
-#| "help funding Weblate development."
 msgid ""
 "Commercial services like hosting or support for self hosted installation "
 "help fund Weblate development."
-msgstr ""
-"商業服務，例如申請託管服務或自架安裝支援，都有助於為 Weblate 開發提供資金。"
+msgstr "商業服務，例如申請託管服務或自架安裝支援，都有助於為 Weblate 開發提供資金。"
 
 #: weblate_web/templates/donate.html:142
 msgid "Donation rewards"
@@ -1200,40 +1157,28 @@ msgstr ""
 "若您自行架設時遇到問題需要幫助，我們已準備好符合您需求的諮詢服務出手協助。"
 
 #: weblate_web/templates/index.html:3
-#, fuzzy
-#| msgid "Weblate - web-based translation"
 msgid "Weblate - web-based localization"
-msgstr "Weblate - 網頁介面翻譯平台"
+msgstr "Weblate - 網頁介面在地化平臺"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
 msgstr "開始使用 Weblate"
 
 #: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
 msgid "Try the live demo server"
-msgstr "試用我們的 Demo 伺服器"
+msgstr "試用 Live Demo 伺服器"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
 msgstr "下載"
 
 #: weblate_web/templates/index.html:23
-#, fuzzy
-#| msgid ""
-#| "Weblate is a free web-based translation tool with tight version control "
-#| "integration. It features simple and clean user interface, propagation of "
-#| "translations across components, quality checks and automatic linking to "
-#| "source files."
 msgid ""
 "Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
-msgstr ""
-"Weblate 是款網頁型的翻譯工具，並緊密整合版本控制系統。它有簡潔的使用者介面、"
-"跨組件翻譯再用、品質檢測，以及自動與源始檔連結。"
+msgstr "Weblate 是款自由的網頁介面在地化工具，並緊密整合版本控制系統。它有簡潔的使用者介面、跨組件翻譯再用、品質檢測，以及自動與源始檔連結。"
 
 #: weblate_web/templates/index.html:27
 msgid "Weblate screenshot"
@@ -1269,9 +1214,6 @@ msgid "Choose hosting plan"
 msgstr "選擇託管方案"
 
 #: weblate_web/templates/index.html:128
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self hosted"
 msgstr "自行架設"
 
