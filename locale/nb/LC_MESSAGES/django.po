@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-17 16:26+0000\n"
+"PO-Revision-Date: 2019-01-21 10:36+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/weblate/"
 "website/nb_NO/>\n"
@@ -186,26 +186,16 @@ msgstr ""
 "Automatisert oversettelsesprosess følger utviklingen av prosjektet nøye."
 
 #: weblate_web/templates/base-features.html:15
-#, fuzzy
-#| msgid ""
-#| "Customizable quality checks will help you in improving quality of "
-#| "translations."
 msgid "Customizable quality checks helps improve translation quality."
-msgstr ""
-"Justerbare kvalitetskontroller hjelper deg med å forbedre kvaliteten på "
-"oversettelsene."
+msgstr "Justerbare kvalitetskontroller forbedrer kvaliteten på oversettelsene."
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
 msgstr "Kreditering"
 
 #: weblate_web/templates/base-features.html:23
-#, fuzzy
-#| msgid ""
-#| "All your translators will be properly credited in the version control "
-#| "system."
 msgid "All translators are properly credited in the version control system."
-msgstr "Alle dine oversettere krediteres i versjonskontrollsystemet."
+msgstr "Alle oversettere krediteres i versjonskontrollsystemet."
 
 #: weblate_web/templates/base-features.html:30
 #: weblate_web/templates/hosting.html:18
@@ -221,9 +211,6 @@ msgid "Cloud ready"
 msgstr "Klar for skyen"
 
 #: weblate_web/templates/base-features.html:39
-#, fuzzy
-#| msgid ""
-#| "Weblate comes with appliances, which are ready to deploy in your cloud."
 msgid "Weblate comes with appliances, ready to deploy in your cloud."
 msgstr "Weblate kommer med tjenester, klare til distribuering i skyen."
 
@@ -451,18 +438,12 @@ msgid "Donations"
 msgstr "Donasjoner"
 
 #: weblate_web/templates/donate.html:95
-#, fuzzy
-#| msgid ""
-#| "Regular donations allow sustainability of Weblate development and help to "
-#| "fund free hosting for libre software. You don't have to spend big money, "
-#| "every penny counts."
 msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
-"Regelmessige donasjoner tillater Weblate en bærekraftig utvikling, og bidrar "
-"til å finansiere gratis vertskap for fri programvare. Du trenger ikke å "
-"bruke store beløp, hver krone teller."
+"Regelmessige donasjoner tillater Weblate en bærekraftig utvikling, selv det "
+"minste beløp finansierer gratis vertskap for fri programvare."
 
 #: weblate_web/templates/donate.html:103
 msgid "Recurring donation"
@@ -477,10 +458,6 @@ msgstr ""
 "bærekraftig på sikt."
 
 #: weblate_web/templates/donate.html:107
-#, fuzzy
-#| msgid ""
-#| "Please consider this if you are using Weblate on premise without support "
-#| "contract."
 msgid ""
 "Please consider this if you are hosting Weblate yourself without a support "
 "contract."
@@ -503,22 +480,16 @@ msgid "Use our services"
 msgstr "Bruk vår tjenester"
 
 #: weblate_web/templates/donate.html:131
-#, fuzzy
-#| msgid ""
-#| "Commercial services like hosting or support for on premise installation "
-#| "help funding Weblate development."
 msgid ""
 "Commercial services like hosting or support for self hosted installation "
 "help fund Weblate development."
 msgstr ""
-"Kommersielle tjenester som vertstjening eller støtte for installasjon i "
-"infrastruktur hjelper finansieringen av Weblate-utvikling."
+"Kommersielle tjenester som vertstjening eller støtte for selvtjent "
+"installasjon hjelper finansieringen av Weblate-utvikling."
 
 #: weblate_web/templates/donate.html:142
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation rewards"
-msgstr "Donasjonsadresse"
+msgstr "Donasjonsbelønninger"
 
 #: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
@@ -568,9 +539,8 @@ msgstr ""
 "ulovlig innhold. Ta kontakt på forhånd hvis du er usikker."
 
 #: weblate_web/templates/donate/form.html:50
-#, fuzzy
 msgid "Choose your own donation amount"
-msgstr "Velg ditt donasjonsbeløp"
+msgstr "Velg ditt eget donasjonsbeløp"
 
 #: weblate_web/templates/donate/form.html:56
 msgid "Continue"
@@ -1268,10 +1238,8 @@ msgid "Start using Weblate"
 msgstr "Kom i gang med Weblate"
 
 #: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
 msgid "Try the live demo server"
-msgstr "Prøv vår demotjener"
+msgstr "Prøv vår sanntidsdemotjener"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
@@ -1325,44 +1293,32 @@ msgid "Cloud service"
 msgstr "Skytjeneste"
 
 #: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
-#, fuzzy
-#| msgid "View hosting plans"
 msgid "Choose hosting plan"
-msgstr "Vis vertslagringstilbud"
+msgstr "Velg vertslagringstilbud"
 
 #: weblate_web/templates/index.html:128
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self hosted"
-msgstr "Selvdriftet"
+msgstr "Selvdrevet"
 
 #: weblate_web/templates/index.html:133
 msgid "Your infrastructure"
 msgstr "Din infrastruktur"
 
 #: weblate_web/templates/index.html:142
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self supported"
-msgstr "Selvdriftet"
+msgstr "Selvstøttet"
 
 #: weblate_web/templates/index.html:146
-#, fuzzy
-#| msgid "Weblate features"
 msgid "Weblate is free to use"
-msgstr "Weblate-funksjoner"
+msgstr "Weblate er gratis å bruke"
 
 #: weblate_web/templates/index.html:147
 msgid "Maintained by you"
 msgstr "Vedlikeholdt av deg"
 
 #: weblate_web/templates/index.html:148
-#, fuzzy
-#| msgid "Phone support"
 msgid "Community support"
-msgstr "Telefonstøtte"
+msgstr "Gemenskapsstøtte"
 
 #: weblate_web/templates/payment/customer.html:5
 #: weblate_web/templates/payment/payment.html:4
@@ -1404,11 +1360,9 @@ msgid "Payment will be issued yearly till you cancel the subscription."
 msgstr "Betaling gjentas årlig til du avbryter abonnementet."
 
 #: weblate_web/templates/payment/payment.html:24
-#, fuzzy
-#| msgid "Payment will be issued monthly till you cancel the subscription."
 msgid ""
 "Payment will be issued every six months till you cancel the subscription."
-msgstr "Betaling vil utstedes månedlig til du avbryter abonnementet."
+msgstr "Betaling vil utstedes hver sjette måned, til du avbryter abonnementet."
 
 #: weblate_web/templates/payment/payment.html:26
 msgid "Payment will be issued monthly till you cancel the subscription."
@@ -1705,14 +1659,8 @@ msgstr ""
 "sponsorer."
 
 #: weblate_web/templates/thanks.html:50
-#, fuzzy
-#| msgid ""
-#| "Support our project on Bountysource Salt and get exclusive logo placement "
-#| "on this page."
 msgid "Support our project and get link placement on this page."
-msgstr ""
-"Støtt vårt prosjekt på Bountysource Salt og få en eksklusiv logoplassering "
-"på denne siden."
+msgstr "Støtt vårt prosjekt og få eksklusiv logoplassering på denne siden."
 
 #: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
 msgid "Weblate tour"
@@ -1824,10 +1772,8 @@ msgid "The VAT ID is no longer valid, please update it."
 msgstr "Moms-ID-en er ikke lenger gyldig, oppdater den."
 
 #: weblate_web/views.py:269
-#, fuzzy
-#| msgid "Payments are processed by The Pay service."
 msgid "Payment not yet processed, please retry."
-msgstr "Betalinger behandles av The Pay-tjenesten."
+msgstr "Betalinger ikke behandlet enda, prøv igjen."
 
 #: weblate_web/views.py:274
 msgid "The payment was rejected: {}"
@@ -1838,10 +1784,8 @@ msgid "Unknown reason"
 msgstr "Ukjent grunn"
 
 #: weblate_web/views.py:279
-#, fuzzy
-#| msgid "Thank you for ordering hosting!"
 msgid "Thank you for your donation."
-msgstr "Takk for at du bestiller vertslagring!"
+msgstr "Takk for din donasjon."
 
 #~ msgid "Weblate is a free web-based translation management system."
 #~ msgstr ""
