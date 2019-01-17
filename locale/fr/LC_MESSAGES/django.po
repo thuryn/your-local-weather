@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: French (Weblate)\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-17 09:07+0000\n"
+"PO-Revision-Date: 2019-01-17 16:26+0000\n"
 "Last-Translator: Ldm Public <ldmpub@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/weblate/website/"
 "fr/>\n"
@@ -562,11 +562,11 @@ msgstr "Position du lien dans la page de remerciements sur weblate.org"
 
 #: weblate_web/templates/donate/rewards.html:3
 msgid "Link placement in the list of supporters"
-msgstr ""
+msgstr "Position du lien dans la liste des supporteurs"
 
 #: weblate_web/templates/donate/rewards.html:4
 msgid "Name placement in the list of supporters"
-msgstr ""
+msgstr "Nom dans la liste des supporteurs"
 
 #: weblate_web/templates/download-link.html:4
 msgid "PGP signature"
