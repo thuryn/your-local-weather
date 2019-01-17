@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-17 09:07+0000\n"
+"PO-Revision-Date: 2019-01-17 16:26+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/weblate/website/"
 "he/>\n"
@@ -142,10 +142,8 @@ msgstr "העמוד לא נמצא"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
 msgid "Weblate is a libre software web-based continuous localization system."
-msgstr "Weblate היא מערכת חופשית מבוססת ממשק דפדפן לניהול תרגומים."
+msgstr "Weblate היא מערכת חופשית מבוססת מנשק דפדפן לניהול תרגומים באופן שוטף."
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -169,32 +167,20 @@ msgid "Continuous translation"
 msgstr "תרגום רציף"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation process can closely follow development of your "
-#| "project."
 msgid "Automated translation closely follows the development of your project."
-msgstr "תהליך תרגום אוטומטי יכול לעקוב מקרוב אחר הפיתוח של המיזם שלך."
+msgstr "תרגום אוטומטי עוקב מקרוב אחר התפתחות המיזם שלך."
 
 #: weblate_web/templates/base-features.html:15
-#, fuzzy
-#| msgid ""
-#| "Customizable quality checks will help you in improving quality of "
-#| "translations."
 msgid "Customizable quality checks helps improve translation quality."
-msgstr "בדיקות איכות בהתאמה אישית יסייעו לך בשיפור איכות התרגומים."
+msgstr "בדיקות איכות בהתאמה אישית מסייעות בשיפור איכות התרגום."
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
 msgstr "ייחוס"
 
 #: weblate_web/templates/base-features.html:23
-#, fuzzy
-#| msgid ""
-#| "All your translators will be properly credited in the version control "
-#| "system."
 msgid "All translators are properly credited in the version control system."
-msgstr "כל המתרגמים שלך יזכו להוקרה הראויה במערכת ניהול הגרסאות."
+msgstr "כל המתרגמים זוכים להוקרה הראויה במערכת ניהול הגרסאות."
 
 #: weblate_web/templates/base-features.html:30
 #: weblate_web/templates/hosting.html:18
@@ -202,27 +188,18 @@ msgid "Hosting plans"
 msgstr "תכניות אירוח"
 
 #: weblate_web/templates/base-features.html:31
-#, fuzzy
-#| msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
 msgid "Hosting plans for Weblate as a service starting at 19 EUR."
-msgstr "תכניות אירוח לשימוש ב־Weblate כשירות החל מ־19 אירו."
+msgstr "תכניות אירוח ל־Weblate כשירות החל מ־19 אירו."
 
 #: weblate_web/templates/base-features.html:38
-#, fuzzy
-#| msgid "Cloud service"
 msgid "Cloud ready"
-msgstr "שירות ענן"
+msgstr "הכנה לענן"
 
 #: weblate_web/templates/base-features.html:39
-#, fuzzy
-#| msgid ""
-#| "Weblate comes with appliances, which are ready to deploy in your cloud."
 msgid "Weblate comes with appliances, ready to deploy in your cloud."
-msgstr "ל־Weblate ישנן הכנות למערכות וירטואליות שמיועדות להטמעה בענן שלך."
+msgstr "ל־Weblate ישנן הכנות למערכות וירטואליות שמוכנות להטמעה בענן שלך."
 
 #: weblate_web/templates/base-features.html:46
-#, fuzzy
-#| msgid "Free software"
 msgid "Libre software"
 msgstr "תכנה חופשית"
 
@@ -230,6 +207,8 @@ msgstr "תכנה חופשית"
 msgid ""
 "Weblate is copylefted; use, see, modify and share at will, and with everyone."
 msgstr ""
+"Weblate מוגן ברישיון מתירני (copyleft) שמאפשר שימוש, צפייה, שינוי ושיתוף לפי "
+"בקשתך ועם כל אחד."
 
 #: weblate_web/templates/base.html:11
 msgctxt "Keyword"
@@ -442,41 +421,28 @@ msgid "Donations"
 msgstr "תרומות"
 
 #: weblate_web/templates/donate.html:95
-#, fuzzy
-#| msgid ""
-#| "Recurring donations allow sustainability of Weblate development and help "
-#| "to fund free hosting for libre software. You don't have to spend big "
-#| "money, every penny counts."
 msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
-"תרומות מתחדשות מאפשרות תחזוקה ופיתוח של Weblate ועוזרות לממן אחסון חינמי "
-"עבור תכניות חופשיות. אין צורך לבזבז המון כסף, כל אגורה חשובה."
+"תרומות מתחדשות הן הבסיס לתחזוקה ולפיתוח של Weblate, אפילו הסכום הקטן ביותר "
+"מסייע במימון אירוח ללא עלות של תכנה חופשית."
 
 #: weblate_web/templates/donate.html:103
 msgid "Recurring donation"
 msgstr "תרומה מתחדשת"
 
 #: weblate_web/templates/donate.html:106
-#, fuzzy
-#| msgid ""
-#| "Repeated appreciation of the Weblate project helps in keeping the project "
-#| "sustainable in the long term."
 msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable long term."
 msgstr "הערכה מתחדשת כלפי מיזם Weblate מסייעת בחיזוק המיזם לטווח ארוך."
 
 #: weblate_web/templates/donate.html:107
-#, fuzzy
-#| msgid ""
-#| "Please consider this if you are using Weblate on premise without support "
-#| "contract."
 msgid ""
 "Please consider this if you are hosting Weblate yourself without a support "
 "contract."
-msgstr "מוטב לשקול אם Weblate משמש אותך על גבי שרתים משלך ללא חוזה תמיכה."
+msgstr "מוטב לשקול לתרום באופן הזה אם Weblate מתארח אצלך ללא חוזה תמיכה."
 
 #: weblate_web/templates/donate.html:116
 msgid "One time donation"
@@ -495,15 +461,11 @@ msgid "Use our services"
 msgstr "שימוש בשירותים שלנו"
 
 #: weblate_web/templates/donate.html:131
-#, fuzzy
-#| msgid ""
-#| "Commercial services like hosting or support for on premise installation "
-#| "help funding Weblate development."
 msgid ""
 "Commercial services like hosting or support for self hosted installation "
 "help fund Weblate development."
 msgstr ""
-"שירותים מסחריים כמו אירוח או תמיכה בהתקנה בשרתים משלך מסייעים במימון הפיתוח "
+"שירותים מסחריים כמו אירוח או תמיכה בהקנות באירוח עצמי מסייעים במימון הפיתוח "
 "של Weblate."
 
 #: weblate_web/templates/donate.html:142
@@ -1227,8 +1189,6 @@ msgstr ""
 "ייעוץ לפי מידותיך."
 
 #: weblate_web/templates/index.html:3
-#, fuzzy
-#| msgid "Weblate - web-based translation"
 msgid "Weblate - web-based localization"
 msgstr "Weblate - תרגום מבוסס דפדפן"
 
@@ -1237,31 +1197,23 @@ msgid "Start using Weblate"
 msgstr "התחלת השימוש ב־Weblate"
 
 #: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
 msgid "Try the live demo server"
-msgstr "התנסות בשרת ההדגמה שלנו"
+msgstr "התנסות בשרת ההדגמה"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
 msgstr "הורדות"
 
 #: weblate_web/templates/index.html:23
-#, fuzzy
-#| msgid ""
-#| "Weblate is a free web-based translation tool with tight version control "
-#| "integration. It features simple and clean user interface, propagation of "
-#| "translations across components, quality checks and automatic linking to "
-#| "source files."
 msgid ""
 "Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
 msgstr ""
-"מערכת Weblate היא למעשה כלי תרגומים נגיש דרך הדפדפן עם שילוב הדוק מול מערכת "
-"ניהול גרסאות. ל־Weblate ממשק משתמש פשוט ונקי והמערכת מאפשר הפצה של תרגומים "
-"בין רכיבים שונים, בדיקות איכות וקישור אוטומטי לקובצי מקור."
+"מערכת Weblate היא למעשה כלי תרגומים חופשי שנגיש דרך הדפדפן עם שילוב הדוק מול "
+"מערכת ניהול גרסאות. ל־Weblate מנשק משתמש פשוט ונקי והמערכת מאפשר הפצה של "
+"תרגומים בין רכיבים שונים, בדיקות איכות וקישור אוטומטי לקובצי מקור."
 
 #: weblate_web/templates/index.html:27
 msgid "Weblate screenshot"
@@ -1297,9 +1249,6 @@ msgid "Choose hosting plan"
 msgstr "בחירת תכנית אירוח"
 
 #: weblate_web/templates/index.html:128
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self hosted"
 msgstr "באירוח עצמי"
 
