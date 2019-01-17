@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-17 07:59+0000\n"
+"PO-Revision-Date: 2019-01-17 08:05+0000\n"
 "Last-Translator: Michal Čihař <michal@cihar.com>\n"
 "Language-Team: Czech <https://hosted.weblate.org/projects/weblate/website/cs/"
 ">\n"
@@ -135,7 +135,7 @@ msgstr "Částka v EUR"
 #: weblate_web/forms.py:56
 #, python-format
 msgid "The minimal amount is %d EUR."
-msgstr ""
+msgstr "Minimální částka je %d EUR."
 
 #: weblate_web/models.py:76
 msgid "Link text"
@@ -151,10 +151,8 @@ msgstr "Stránka nenalezena"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
 msgid "Weblate is a libre software web-based continuous localization system."
-msgstr "Weblate je svobodný nástroj pro správu překladu přes web."
+msgstr "Weblate je svobodný webový nástroj pro kontinuální lokalizace."
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -1232,39 +1230,29 @@ msgstr ""
 "nabídnout konzultace přizpůsobené vašim potřebám."
 
 #: weblate_web/templates/index.html:3
-#, fuzzy
-#| msgid "Weblate - web-based translation"
 msgid "Weblate - web-based localization"
-msgstr "Weblate – překládání přes web"
+msgstr "Weblate – lokalizace přes web"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
 msgstr "Začít používat Weblate"
 
 #: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
 msgid "Try the live demo server"
-msgstr "Vyzkoušejte náš server na ukázku"
+msgstr "Vyzkoušejte živý ukázkový server"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
 msgstr "Stáhnout"
 
 #: weblate_web/templates/index.html:23
-#, fuzzy
-#| msgid ""
-#| "Weblate is a free web-based translation tool with tight version control "
-#| "integration. It features simple and clean user interface, propagation of "
-#| "translations across components, quality checks and automatic linking to "
-#| "source files."
 msgid ""
 "Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
 msgstr ""
-"Weblate je svobodný nástroj pro překládání přes webové rozhraní s těsnou "
+"Weblate je svobodný nástroj pro lokalizaci přes webové rozhraní s těsnou "
 "vazbou na správu verzí. Má jednoduché uživatelské rozhraní, umožňuje "
 "propagaci překladů mezi komponentami, kontrolu kvality překladu nebo "
 "zobrazení odkazů na zdrojové soubory."
