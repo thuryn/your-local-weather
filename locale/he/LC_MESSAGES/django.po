@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-15 11:20+0000\n"
+"PO-Revision-Date: 2019-01-17 09:07+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/weblate/website/"
 "he/>\n"
@@ -126,7 +126,7 @@ msgstr "סכום באירו"
 #: weblate_web/forms.py:56
 #, python-format
 msgid "The minimal amount is %d EUR."
-msgstr ""
+msgstr "הסכום הנמוך ביותר הוא %d אירו."
 
 #: weblate_web/models.py:76
 msgid "Link text"
