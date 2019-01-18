@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-17 16:26+0000\n"
+"PO-Revision-Date: 2019-01-21 10:36+0000\n"
 "Last-Translator: Mesut Akcan <makcan@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/weblate/website/"
 "tr/>\n"
@@ -732,7 +732,7 @@ msgstr ""
 
 #: weblate_web/templates/features.html:111
 msgid "Review"
-msgstr "Gözden geçirme"
+msgstr "Gözden geçir"
 
 #: weblate_web/templates/features.html:112
 msgid "Translators have several options to review contributions made by peers."
@@ -1061,7 +1061,7 @@ msgid ""
 "Text unit defined in a translation format, it can be word, sentence or a "
 "paragraph"
 msgstr ""
-"Çeviri biçiminde tanımlanan metin birimidir, sözcük, tümce veya bir paragraf "
+"Çeviri biçiminde tanımlanmış metin birimi, kelime, cümle veya paragraf "
 "olabilir"
 
 #: weblate_web/templates/hosting.html:51
@@ -1071,7 +1071,7 @@ msgstr "Kaynak satırlar"
 #: weblate_web/templates/hosting.html:52 weblate_web/templates/hosting.html:61
 #: weblate_web/templates/hosting.html:70
 msgid "Negotiable"
-msgstr "Müzakere edilebilir"
+msgstr "Görüşülebilir"
 
 #: weblate_web/templates/hosting.html:57 weblate_web/templates/hosting.html:66
 #: weblate_web/templates/hosting.html:75 weblate_web/templates/hosting.html:82
@@ -1201,9 +1201,9 @@ msgid ""
 "languages. The source string is a text unit defined in a translation format, "
 "it can be word, sentence or a paragraph."
 msgstr ""
-"Fiyatlandırma kaynak satırların ve hedef dillerin sayısına bağlıdır. Kaynak "
-"satır bir çeviri biçiminde tanımlanan bir metin birimidir, sözcük, tümce "
-"veya bir paragraf olabilir."
+"Fiyatlandırma, kaynak satırların sayısına ve hedef dillerin sayısına "
+"dayanmaktadır. Kaynak satır, çeviri biçiminde tanımlanan bir metin "
+"birimidir, kelime, cümle veya paragraf olabilir."
 
 #: weblate_web/templates/hosting.html:222
 msgid ""
