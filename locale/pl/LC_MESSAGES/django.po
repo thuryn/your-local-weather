@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Weblate 1.2\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-17 19:10+0000\n"
+"PO-Revision-Date: 2019-01-21 10:36+0000\n"
 "Last-Translator: WaldiS <admin@sto.ugu.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/weblate/website/"
 "pl/>\n"
@@ -436,18 +436,13 @@ msgid "Donations"
 msgstr "Darowizny"
 
 #: weblate_web/templates/donate.html:95
-#, fuzzy
-#| msgid ""
-#| "Recurring donations allow sustainability of Weblate development and help "
-#| "to fund free hosting for libre software. You don't have to spend big "
-#| "money, every penny counts."
 msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
-"Powtarzające się darowizny umożliwiają zrównoważone tworzenie Weblate i "
-"pomagają w  finansowaniu darmowego hostingu dla wolnego oprogramowania. Nie "
-"musisz wydawać dużych pieniędzy, liczy się każdy grosz."
+"Powtarzające się darowizny ułatwiają zrównoważony rozwój Weblate, nawet "
+"najmniejsza kwota pomaga finansować darmowy hosting dla wolnego "
+"oprogramowania."
 
 #: weblate_web/templates/donate.html:103
 msgid "Recurring donation"
@@ -485,15 +480,11 @@ msgid "Use our services"
 msgstr "Skorzystaj z naszych usług"
 
 #: weblate_web/templates/donate.html:131
-#, fuzzy
-#| msgid ""
-#| "Commercial services like hosting or support for on premise installation "
-#| "help funding Weblate development."
 msgid ""
 "Commercial services like hosting or support for self hosted installation "
 "help fund Weblate development."
 msgstr ""
-"Usługi komercyjne, takie jak hosting lub wsparcie instalacji na miejscu, "
+"Usługi komercyjne, takie jak hosting lub wsparcie dla instalacji hostowanej, "
 "pomagają w finansowaniu rozwoju Weblate."
 
 #: weblate_web/templates/donate.html:142
@@ -1260,42 +1251,32 @@ msgstr ""
 "konsultingowe, dostosowane do twoich indywidualnych potrzeb."
 
 #: weblate_web/templates/index.html:3
-#, fuzzy
-#| msgid "Weblate - web-based translation"
 msgid "Weblate - web-based localization"
-msgstr "Weblate - tłumaczenia internetowe"
+msgstr "Weblate - lokalizacja internetowa"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
 msgstr "Zacznij korzystać z Weblate"
 
 #: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
 msgid "Try the live demo server"
-msgstr "Wypróbuj nasz serwer demonstracyjny"
+msgstr "Wypróbuj serwer demonstracyjny na żywo"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
 msgstr "Pobierz"
 
 #: weblate_web/templates/index.html:23
-#, fuzzy
-#| msgid ""
-#| "Weblate is a free web-based translation tool with tight version control "
-#| "integration. It features simple and clean user interface, propagation of "
-#| "translations across components, quality checks and automatic linking to "
-#| "source files."
 msgid ""
 "Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
 msgstr ""
-"Weblate jest darmowym narzędziem do tłumaczenia z interfejsem WWW, "
-"zintegrowanym z systemem kontroli wersji. Posiada przejrzysty interfejs "
-"użytkownika, możliwość scalania tłumaczeń pomiędzy komponentami, sprawdzanie "
-"spójności, kontrole jakości i automatyczne odnośniki do plików źródłowych."
+"Weblate to łatwe w użyciu internetowe narzędzie do lokalizacji z ścisłą "
+"integracją kontroli wersji. Posiada prosty i przejrzysty interfejs "
+"użytkownika, propagację tłumaczeń między komponentami, kontrolę jakości i "
+"automatyczne łączenie z plikami źródłowymi."
 
 #: weblate_web/templates/index.html:27
 msgid "Weblate screenshot"
@@ -1331,11 +1312,8 @@ msgid "Choose hosting plan"
 msgstr "Wybierz plan hostingowy"
 
 #: weblate_web/templates/index.html:128
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self hosted"
-msgstr "Hosting własny"
+msgstr "Samodzielnie hostowane"
 
 #: weblate_web/templates/index.html:133
 msgid "Your infrastructure"
@@ -1817,7 +1795,7 @@ msgstr "Podaj informacje rozliczeniowe, aby zakończyć płatność."
 
 #: weblate_web/views.py:109
 msgid "The VAT ID is no longer valid, please update it."
-msgstr ""
+msgstr "Identyfikator VAT nie jest już ważny, zaktualizuj go."
 
 #: weblate_web/views.py:269
 msgid "Payment not yet processed, please retry."
