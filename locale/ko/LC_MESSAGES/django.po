@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-12 18:09+0000\n"
+"PO-Revision-Date: 2019-01-21 10:36+0000\n"
 "Last-Translator: 송태섭 <xotjq237@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/weblate/website/"
 "ko/>\n"
@@ -131,7 +131,7 @@ msgstr "EUR 금액"
 #: weblate_web/forms.py:56
 #, python-format
 msgid "The minimal amount is %d EUR."
-msgstr ""
+msgstr "최소 금액은 %d EUR 입니다."
 
 #: weblate_web/models.py:76
 msgid "Link text"
@@ -147,10 +147,8 @@ msgstr "페이지를 찾을 수 없습니다"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
 msgid "Weblate is a libre software web-based continuous localization system."
-msgstr "Weblate는 무료 웹 기반 번역 관리 시스템입니다."
+msgstr "Weblate는 자유 소프트웨어 웹 기반 지속 현지화 시스템입니다."
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -174,33 +172,20 @@ msgid "Continuous translation"
 msgstr "연속 번역"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation process can closely follow development of your "
-#| "project."
 msgid "Automated translation closely follows the development of your project."
-msgstr ""
-"자동화된 번역 절차는 당신의 프로젝트 개발 상황에 밀착 진행할 수 있습니다."
+msgstr "자동화된 번역 절차는 당신의 프로젝트 개발 상황을 밀첩하게 이끌어줍니다."
 
 #: weblate_web/templates/base-features.html:15
-#, fuzzy
-#| msgid ""
-#| "Customizable quality checks will help you in improving quality of "
-#| "translations."
 msgid "Customizable quality checks helps improve translation quality."
-msgstr "사용자 정의 품질 검사는 번역의 질을 향상하는데 도움을 줄 것입니다."
+msgstr "사용자 정의 품질 검사는 번역의 질을 향상하는데 도와줍니다."
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
 msgstr "속성"
 
 #: weblate_web/templates/base-features.html:23
-#, fuzzy
-#| msgid ""
-#| "All your translators will be properly credited in the version control "
-#| "system."
 msgid "All translators are properly credited in the version control system."
-msgstr "모든 번역자는 버전 관리 시스템에 적절히 명시될 것입니다."
+msgstr "모든 번역자는 버전 관리 시스템에 적절히 명시됩니다."
 
 #: weblate_web/templates/base-features.html:30
 #: weblate_web/templates/hosting.html:18
@@ -208,34 +193,25 @@ msgid "Hosting plans"
 msgstr "호스팅 플랜"
 
 #: weblate_web/templates/base-features.html:31
-#, fuzzy
-#| msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
 msgid "Hosting plans for Weblate as a service starting at 19 EUR."
 msgstr "Weblate 서비스의 호스팅 플랜은 19유로부터 시작합니다."
 
 #: weblate_web/templates/base-features.html:38
-#, fuzzy
-#| msgid "Cloud service"
 msgid "Cloud ready"
-msgstr "클라우드 서비스"
+msgstr "클라우드 준비"
 
 #: weblate_web/templates/base-features.html:39
-#, fuzzy
-#| msgid ""
-#| "Weblate comes with appliances, which are ready to deploy in your cloud."
 msgid "Weblate comes with appliances, ready to deploy in your cloud."
 msgstr "Weblate는 클라우드에 배포할 준비된 도구를 함께 제공합니다."
 
 #: weblate_web/templates/base-features.html:46
-#, fuzzy
-#| msgid "Free software"
 msgid "Libre software"
 msgstr "자유 소프트웨어"
 
 #: weblate_web/templates/base-features.html:47
 msgid ""
 "Weblate is copylefted; use, see, modify and share at will, and with everyone."
-msgstr ""
+msgstr "Weblate는 카피레프트입니다; 자유롭게 사용, 보기, 수정 및 공유를 할 수 있습니다."
 
 #: weblate_web/templates/base.html:11
 msgctxt "Keyword"
@@ -449,44 +425,27 @@ msgid "Donations"
 msgstr "기부"
 
 #: weblate_web/templates/donate.html:95
-#, fuzzy
-#| msgid ""
-#| "Recurring donations allow sustainability of Weblate development and help "
-#| "to fund free hosting for libre software. You don't have to spend big "
-#| "money, every penny counts."
 msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
-"반복적인 기부는 Weblate의 지속 가능한 개발과 자유 소프트웨어를 무료로 호스팅"
-"하는데 재정적 도움이 됩니다. 약간의 금액도 큰 도움이 됩니다."
+"반복적인 기부는 Weblate의 지속 가능한 개발에 용이하게 해주며, 작은 금액이라도 자유 소프트웨어에 대한 무료 호스팅에 도움이 됩니다."
 
 #: weblate_web/templates/donate.html:103
 msgid "Recurring donation"
 msgstr "반복 기부"
 
 #: weblate_web/templates/donate.html:106
-#, fuzzy
-#| msgid ""
-#| "Repeated appreciation of the Weblate project helps in keeping the project "
-#| "sustainable in the long term."
 msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable long term."
-msgstr ""
-"Weblate 프로젝트에 대한 반복적인 감사는 오랜 기간 지속 가능한 프로젝트를 유지"
-"하는데 도움이 됩니다."
+msgstr "Weblate 프로젝트에 대한 반복적인 감사는 프로젝트를 오랜 기간 유지하는데 도움이 됩니다."
 
 #: weblate_web/templates/donate.html:107
-#, fuzzy
-#| msgid ""
-#| "Please consider this if you are using Weblate on premise without support "
-#| "contract."
 msgid ""
 "Please consider this if you are hosting Weblate yourself without a support "
 "contract."
-msgstr ""
-"지원 계약이 없다는 전제에 Weblate를 사용하신다면 이 점을 고려해 주십시오."
+msgstr "지원 계약 없이 Weblate를 스스로 호스팅 하신다면 이 점을 고려해 주십시오."
 
 #: weblate_web/templates/donate.html:116
 msgid "One time donation"
@@ -503,16 +462,10 @@ msgid "Use our services"
 msgstr "우리의 서비스 사용"
 
 #: weblate_web/templates/donate.html:131
-#, fuzzy
-#| msgid ""
-#| "Commercial services like hosting or support for on premise installation "
-#| "help funding Weblate development."
 msgid ""
 "Commercial services like hosting or support for self hosted installation "
 "help fund Weblate development."
-msgstr ""
-"호스팅이나 지원 같은 상업적 서비스는 설치한다는 전제 하에 Weblate 개발 지원"
-"에 도움을 줍니다."
+msgstr "자체 호스팅 설치를 위해 호스팅이나 지원 같은 상업적 서비스는 Weblate 개발 지원에 도움을 줍니다."
 
 #: weblate_web/templates/donate.html:142
 msgid "Donation rewards"
@@ -1249,41 +1202,30 @@ msgstr ""
 "와드릴 수 있습니다."
 
 #: weblate_web/templates/index.html:3
-#, fuzzy
-#| msgid "Weblate - web-based translation"
 msgid "Weblate - web-based localization"
-msgstr "Weblate - 웹기반 번역"
+msgstr "Weblate - 웹기반 현지화"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
 msgstr "Weblate 사용 시작하기"
 
 #: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
 msgid "Try the live demo server"
-msgstr "데모 서버 체험하기"
+msgstr "실시간 데모 서버 체험하기"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
 msgstr "내려받기"
 
 #: weblate_web/templates/index.html:23
-#, fuzzy
-#| msgid ""
-#| "Weblate is a free web-based translation tool with tight version control "
-#| "integration. It features simple and clean user interface, propagation of "
-#| "translations across components, quality checks and automatic linking to "
-#| "source files."
 msgid ""
 "Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
 msgstr ""
-"Weblate는 버전 관리 시스템과 밀접하게 통합된 웹 기반의 번역 도구입니다. 간결"
-"하고 깔끔한 사용자 인터페이스, 요소간에 번역 배포, 품질 검사 및 원본 파일에 "
-"대한 자동화된 연결을 제공합니다."
+"Weblate는 버전 관리 시스템과 밀접하게 통합된 자유 웹 기반의 현지화 도구입니다. 간결하고 깔끔한 사용자 인터페이스, 요소간에 번역 "
+"배포, 품질 검사 및 원본 파일에 대한 자동화된 연결을 제공합니다."
 
 #: weblate_web/templates/index.html:27
 msgid "Weblate screenshot"
@@ -1319,9 +1261,6 @@ msgid "Choose hosting plan"
 msgstr "호스팅 플랜 선택"
 
 #: weblate_web/templates/index.html:128
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self hosted"
 msgstr "자체 호스팅"
 
