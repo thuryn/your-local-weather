@@ -2,13 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # ButterflyOfFire <ButterflyOfFire@protonmail.com>, 2018.
+# mohammadA <mohammadAbdulhadi1@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2018-11-26 14:09+0000\n"
-"Last-Translator: ButterflyOfFire <ButterflyOfFire@protonmail.com>\n"
+"PO-Revision-Date: 2019-01-20 21:35+0000\n"
+"Last-Translator: mohammadA <mohammadAbdulhadi1@gmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/weblate/website/"
 "ar/>\n"
 "Language: ar\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 3.3-dev\n"
+"X-Generator: Weblate 3.4-dev\n"
 
 #: weblate_web/data.py:33
 msgid "Overview of own translations at main page."
@@ -65,16 +66,16 @@ msgstr "المفردات"
 msgid ""
 "Customizable quality checks will help you in improving quality of "
 "translations."
-msgstr "يمكن لفحوصات الجودة المساعدة في تحسين جودة الترجمات."
+msgstr "يمكن لفحوص الجودة المساعدة في تحسين جودة الترجمات."
 
 #: weblate_web/data.py:66 weblate_web/templates/base-features.html:14
 #: weblate_web/templates/hosting.html:123
 msgid "Quality checks"
-msgstr "فحوصات الجودة"
+msgstr "فحوص الجودة"
 
 #: weblate_web/data.py:71 weblate_web/templates/features.html:128
 msgid "Weblate provides you various ways to promote your translation project."
-msgstr "لدى Weblate  عدة طرق للمساعدة في الترويج لمشروع الترجمة وإبرازه."
+msgstr "لدى Weblate عدة طرق للمساعدة في الترويج لمشروع الترجمة وإبرازه."
 
 #: weblate_web/data.py:74 weblate_web/templates/features.html:127
 msgid "Promotion"
@@ -150,10 +151,8 @@ msgstr "الصفحة غير موجودة"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
 msgid "Weblate is a libre software web-based continuous localization system."
-msgstr "Weblate نظام حر لإدارة الترجمة عبر الويب."
+msgstr "Weblate هو نظام برمجي حر للترجمة المستمرة مبني على الوب."
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -209,26 +208,19 @@ msgid "Hosting plans"
 msgstr "باقات الاستضافة"
 
 #: weblate_web/templates/base-features.html:31
-#, fuzzy
-#| msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
 msgid "Hosting plans for Weblate as a service starting at 19 EUR."
-msgstr "أسعار باقات الاستضافة على Weblate كخدمة تبدأ من 19 يورو."
+msgstr "أسعار باقات الاستضافة على خدمة Weblate تبدأ من 19 يورو."
 
 #: weblate_web/templates/base-features.html:38
 msgid "Cloud ready"
-msgstr ""
+msgstr "جاهز للسحاب"
 
 #: weblate_web/templates/base-features.html:39
-#, fuzzy
-#| msgid ""
-#| "Weblate comes with appliances, which are ready to deploy in your cloud."
 msgid "Weblate comes with appliances, ready to deploy in your cloud."
 msgstr ""
 "توفر لكم خدمة Weblate طرح مشاريعكم مباشرة على سحابتكم الخاصة بيسر وبكل سهولة."
 
 #: weblate_web/templates/base-features.html:46
-#, fuzzy
-#| msgid "Free software"
 msgid "Libre software"
 msgstr "برنامج حُرّ"
 
@@ -459,11 +451,6 @@ msgid "Donations"
 msgstr "الوثائق"
 
 #: weblate_web/templates/donate.html:95
-#, fuzzy
-#| msgid ""
-#| "Regular donations allow sustainability of Weblate development and help to "
-#| "fund free hosting for libre software. You don't have to spend big money, "
-#| "every penny counts."
 msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
@@ -1250,22 +1237,14 @@ msgid "Start using Weblate"
 msgstr "اشرَع في استخدام Weblate"
 
 #: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
 msgid "Try the live demo server"
-msgstr "جرِّب خادمنا التجريبي"
+msgstr "جرِّب الخادم التجريبي"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
 msgstr "التنزيلات"
 
 #: weblate_web/templates/index.html:23
-#, fuzzy
-#| msgid ""
-#| "Weblate is a free web-based translation tool with tight version control "
-#| "integration. It features simple and clean user interface, propagation of "
-#| "translations across components, quality checks and automatic linking to "
-#| "source files."
 msgid ""
 "Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
@@ -1812,7 +1791,7 @@ msgstr "تتم معالجة عمليات الدفع مِن قِبَل دفع خ�
 
 #: weblate_web/views.py:274
 msgid "The payment was rejected: {}"
-msgstr ""
+msgstr "رُفض الدفع: {}"
 
 #: weblate_web/views.py:275
 msgid "Unknown reason"
