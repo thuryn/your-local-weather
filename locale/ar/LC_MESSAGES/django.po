@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-20 21:35+0000\n"
+"PO-Revision-Date: 2019-01-21 10:36+0000\n"
 "Last-Translator: Omar Aglan <omar.aglan91@yahoo.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/weblate/website/"
 "ar/>\n"
@@ -76,7 +76,7 @@ msgstr "فحوص الجودة"
 
 #: weblate_web/data.py:71 weblate_web/templates/features.html:128
 msgid "Weblate provides you various ways to promote your translation project."
-msgstr "لدى Weblate عدة طرق للمساعدة في الترويج لمشروع الترجمة وإبرازه."
+msgstr "لدى Weblate عدة طرق لمساعدتك في الترويج لمشروع الترجمة."
 
 #: weblate_web/data.py:74 weblate_web/templates/features.html:127
 msgid "Promotion"
@@ -95,8 +95,8 @@ msgid ""
 "Automatic translation can be used to bootstrap your translations using "
 "machine translation services or translation memory."
 msgstr ""
-"يمكن للترجمة التلقائية دعم ترجماتكم باستعمال خدمات آلة الترجمة أو ذاكرة "
-"الترجمة."
+"يمكن للترجمة التلقائية دعم ترجماتكم باستعمال خدمات مثل الترجمة الآلية أو "
+"ذاكرة الترجمة."
 
 #: weblate_web/data.py:89
 msgid "Automatic translation"
@@ -123,10 +123,8 @@ msgstr "إدارة المُستخدمين"
 
 #: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
 #: weblate_web/templates/donate/form.html:25
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation recurrence"
-msgstr "عنوان التبرع"
+msgstr "كرر التبرع"
 
 #: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
