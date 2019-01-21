@@ -11,6 +11,9 @@ import android.os.Binder;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
+import android.os.Message;
+import android.os.RemoteException;
 
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
@@ -161,8 +164,22 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         }
     }
 
+    Handler handler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(Message inputMessage) {
+            WidgetUtils.updateWidgets((Context) inputMessage.obj);
+        }
+    };
+
     private void processScreenOn(Context context) {
-        WidgetUtils.updateWidgets(context);
+        Message completeMessage =
+                handler.obtainMessage();
+        completeMessage.obj = context;
+        completeMessage.sendToTarget();
+        processScreenOnInBg(context);
+    }
+
+    private void processScreenOnInBg(Context context) {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
 

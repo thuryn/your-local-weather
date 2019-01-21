@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.location.Address;
+import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
@@ -163,22 +165,34 @@ public class AbstractCommonService extends Service {
         sendMessageToWidgetIconService(WidgetRefreshIconService.STOP_ROTATING_UPDATE, rotationSource);
     }
 
-    protected void sendMessageToWidgetIconService(int action, int rotationsource) {
-        widgetRotationServiceLock.lock();
-        try {
-            Message msg = Message.obtain(null, action, rotationsource, 0);
-            if (checkIfWidgetIconServiceIsNotBound()) {
-                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
-                unsentMessages.add(msg);
-                return;
+    Handler handler = new Handler(Looper.getMainLooper()) {
+        @Override
+        public void handleMessage(Message inputMessage) {
+
+            widgetRotationServiceLock.lock();
+            try {
+                Message msg = Message.obtain(null, inputMessage.arg1, inputMessage.arg2, 0);
+                if (checkIfWidgetIconServiceIsNotBound()) {
+                    //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
+                    unsentMessages.add(msg);
+                    return;
+                }
+                //appendLog(getBaseContext(), TAG, "sendMessageToService:");
+                widgetRefreshIconService.send(msg);
+            } catch (RemoteException e) {
+                appendLog(getBaseContext(), TAG, e.getMessage(), e);
+            } finally {
+                widgetRotationServiceLock.unlock();
             }
-            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
-            widgetRefreshIconService.send(msg);
-        } catch (RemoteException e) {
-            appendLog(getBaseContext(), TAG, e.getMessage(), e);
-        } finally {
-            widgetRotationServiceLock.unlock();
         }
+    };
+
+    protected void sendMessageToWidgetIconService(int action, int rotationsource) {
+        Message completeMessage =
+                handler.obtainMessage();
+        completeMessage.arg1 = action;
+        completeMessage.arg2 = rotationsource;
+        completeMessage.sendToTarget();
     }
 
     private boolean checkIfWidgetIconServiceIsNotBound() {

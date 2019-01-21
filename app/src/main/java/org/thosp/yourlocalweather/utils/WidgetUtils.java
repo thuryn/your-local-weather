@@ -2,9 +2,14 @@ package org.thosp.yourlocalweather.utils;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.view.View;
@@ -19,26 +24,21 @@ import org.thosp.yourlocalweather.model.WeatherCondition;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.service.ReconciliationDbService;
-import org.thosp.yourlocalweather.widget.ExtLocationWidgetService;
-import org.thosp.yourlocalweather.widget.ExtLocationWidgetWithForecastService;
-import org.thosp.yourlocalweather.widget.ExtLocationWidgetWithGraphService;
-import org.thosp.yourlocalweather.widget.LessWidgetService;
-import org.thosp.yourlocalweather.widget.MoreWidgetService;
-import org.thosp.yourlocalweather.widget.WeatherForecastWidgetService;
-import org.thosp.yourlocalweather.widget.WeatherGraphWidgetService;
+import org.thosp.yourlocalweather.widget.ExtLocationWidgetProvider;
+import org.thosp.yourlocalweather.widget.ExtLocationWithForecastWidgetProvider;
+import org.thosp.yourlocalweather.widget.ExtLocationWithGraphWidgetProvider;
+import org.thosp.yourlocalweather.widget.LessWidgetProvider;
+import org.thosp.yourlocalweather.widget.MoreWidgetProvider;
+import org.thosp.yourlocalweather.widget.WeatherForecastWidgetProvider;
+import org.thosp.yourlocalweather.widget.WeatherGraphWidgetProvider;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class WidgetUtils {
 
@@ -684,22 +684,24 @@ public class WidgetUtils {
         }
     }
 
-    public static void updateWidgets(Context context) {
-        startBackgroundService(context, new Intent(context, LessWidgetService.class));
-        startBackgroundService(context, new Intent(context, MoreWidgetService.class));
-        startBackgroundService(context, new Intent(context, ExtLocationWidgetService.class));
-        startBackgroundService(context, new Intent(context, ExtLocationWidgetWithForecastService.class));
-        startBackgroundService(context, new Intent(context, WeatherForecastWidgetService.class));
-        startBackgroundService(context, new Intent(context, ReconciliationDbService.class));
-        startBackgroundService(context, new Intent(context, ExtLocationWidgetWithGraphService.class));
-        startBackgroundService(context, new Intent(context, WeatherGraphWidgetService.class));
+    private static void updateWidgetForType(Context context, Class<?> widgetProvider) {
+        AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
+        Intent intentToUpdate = new Intent(context, widgetProvider);
+        ComponentName widgetComponent = new ComponentName(context, widgetProvider);
+        int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
+        intentToUpdate.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        intentToUpdate.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, widgetIds);
+        context.sendBroadcast(intentToUpdate);
     }
 
-    public static void updateCurrentWeatherWidgets(Context context) {
-        startBackgroundService(context, new Intent(context, LessWidgetService.class));
-        startBackgroundService(context, new Intent(context, MoreWidgetService.class));
-        startBackgroundService(context, new Intent(context, ExtLocationWidgetService.class));
-        startBackgroundService(context, new Intent(context, ExtLocationWidgetWithForecastService.class));
+    public static void updateWidgets(Context context) {
+        updateWidgetForType(context, LessWidgetProvider.class);
+        updateWidgetForType(context, MoreWidgetProvider.class);
+        updateWidgetForType(context, ExtLocationWidgetProvider.class);
+        updateWidgetForType(context, ExtLocationWithForecastWidgetProvider.class);
+        updateWidgetForType(context, WeatherForecastWidgetProvider.class);
+        updateWidgetForType(context, ExtLocationWithGraphWidgetProvider.class);
+        updateWidgetForType(context, WeatherGraphWidgetProvider.class);
         startBackgroundService(context, new Intent(context, ReconciliationDbService.class));
     }
 

@@ -14,10 +14,7 @@ import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import org.thosp.yourlocalweather.WidgetSettingsDialogue;
-import org.thosp.yourlocalweather.GraphsActivity;
-import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.R;
-import org.thosp.yourlocalweather.WeatherForecastActivity;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
@@ -28,9 +25,6 @@ import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -47,7 +41,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         super.onEnabled(context);
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
         WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
-        if (PermissionUtil.areAllPermissionsGranted(context)) {
+        if (PermissionUtil.noPermissionGranted(context)) {
             Toast.makeText(context,
                     R.string.permissions_not_granted,
                     Toast.LENGTH_LONG).show();
@@ -137,11 +131,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             case Constants.ACTION_APPWIDGET_CHANGE_SETTINGS:
                 onUpdate(context, widgetManager, new int[]{ widgetId});
                 break;
-            case Constants.ACTION_APPWIDGET_CHANGE_LOCATION:
-                changeLocation(widgetId, locationsDbHelper, widgetSettingsDbHelper);
-                GraphUtils.invalidateGraph();
-                onUpdate(context, widgetManager, new int[]{widgetId});
-                break;
         }
 
         if (intent.getAction().startsWith(Constants.ACTION_APPWIDGET_SETTINGS_OPENED)) {
@@ -156,6 +145,10 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             Intent activityIntent = new Intent(context, activityClass);
             activityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             context.startActivity(activityIntent);
+        } else if (intent.getAction().startsWith(Constants.ACTION_APPWIDGET_CHANGE_LOCATION)) {
+            changeLocation(widgetId, locationsDbHelper, widgetSettingsDbHelper);
+            GraphUtils.invalidateGraph();
+            onUpdate(context, widgetManager, new int[]{widgetId});
         }
     }
 
@@ -357,7 +350,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     private static PendingIntent getSwitchLocationIntent(Context context, Class widgetClass, int widgetId) {
         Intent intentSwitchLocality = new Intent(context, widgetClass);
-        intentSwitchLocality.setAction(Constants.ACTION_APPWIDGET_CHANGE_LOCATION);
+        intentSwitchLocality.setAction(Constants.ACTION_APPWIDGET_CHANGE_LOCATION + "_" + widgetId);
         intentSwitchLocality.putExtra("widgetId", widgetId);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
                 intentSwitchLocality, 0);

@@ -213,6 +213,8 @@ public class CurrentWeatherService extends AbstractCommonService {
             appendLog(getBaseContext(),
                     TAG,
                     "Current weather is recent enough");
+            currentWeatherUpdateMessages.poll();
+            WidgetUtils.updateWidgets(this);
             return;
         }
 

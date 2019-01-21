@@ -14,3 +14,4 @@
 *.mo
 db.sqlite3
 /django
+/.nb-gradle/

@@ -260,20 +260,6 @@
         <service
             android:name=".widget.WidgetRefreshIconService" />
         <service
-            android:name=".widget.LessWidgetService" />
-        <service
-            android:name=".widget.MoreWidgetService" />
-        <service
-            android:name=".widget.ExtLocationWidgetService" />
-        <service
-            android:name=".widget.ExtLocationWidgetWithForecastService" />
-        <service
-            android:name=".widget.ExtLocationWidgetWithGraphService" />
-        <service
-            android:name=".widget.WeatherForecastWidgetService" />
-        <service
-            android:name=".widget.WeatherGraphWidgetService" />
-        <service
             android:name=".service.AppWakeUpManager" />
         <service
             android:name=".service.CurrentWeatherService" />

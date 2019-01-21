@@ -40,7 +40,7 @@ public class NetworkLocationProvider extends Service {
     WifiManager.WifiLock mWifiLock;
     private WifiManager wifiManager;
     private volatile boolean scanning;
-    private volatile Calendar nextScanningAllowedFrom;
+    private static volatile Calendar nextScanningAllowedFrom;
     private volatile PendingIntent intentToCancel;
     private volatile Integer jobId;
     private AlarmManager alarmManager;
