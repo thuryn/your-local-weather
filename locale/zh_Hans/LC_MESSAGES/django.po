@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Boyuan Yang <073plan@gmail.com>, 2018.
+# Boyuan Yang <073plan@gmail.com>, 2018, 2019.
 # popcorner <memoword@163.com>, 2018.
 # dragonandy <dragonandy@foxmail.com>, 2018.
 msgid ""
@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2018-12-22 18:05+0000\n"
-"Last-Translator: dragonandy <dragonandy@foxmail.com>\n"
+"PO-Revision-Date: 2019-01-22 12:45+0000\n"
+"Last-Translator: Boyuan Yang <073plan@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "weblate/website/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -1748,27 +1748,23 @@ msgstr "请提供您的结算信息以完成付款。"
 
 #: weblate_web/views.py:109
 msgid "The VAT ID is no longer valid, please update it."
-msgstr ""
+msgstr "VAT ID 已失效，请对其进行更新。"
 
 #: weblate_web/views.py:269
-#, fuzzy
-#| msgid "Payments are processed by The Pay service."
 msgid "Payment not yet processed, please retry."
-msgstr "付款由 The Pay 提供处理服务。"
+msgstr "付款尚未处理，请再试一次。"
 
 #: weblate_web/views.py:274
 msgid "The payment was rejected: {}"
-msgstr ""
+msgstr "付款被拒绝：{}"
 
 #: weblate_web/views.py:275
 msgid "Unknown reason"
-msgstr ""
+msgstr "未知原因"
 
 #: weblate_web/views.py:279
-#, fuzzy
-#| msgid "Thank you for ordering hosting!"
 msgid "Thank you for your donation."
-msgstr "感谢您订购托管！"
+msgstr "感谢您的捐赠。"
 
 #~ msgid "Weblate is a free web-based translation management system."
 #~ msgstr "Weblate 是一个自由的基于网页的翻译管理系统。"
