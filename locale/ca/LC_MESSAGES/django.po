@@ -2,13 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Joan Montané <joan@montane.cat>, 2018.
+# Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2018-11-02 14:29+0000\n"
-"Last-Translator: Joan Montané <joan@montane.cat>\n"
+"PO-Revision-Date: 2019-01-23 04:22+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/weblate/website/"
 "ca/>\n"
 "Language: ca\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.3-dev\n"
+"X-Generator: Weblate 3.4\n"
 
 #: weblate_web/data.py:33
 msgid "Overview of own translations at main page."
@@ -1284,7 +1285,7 @@ msgstr "Allotjament propi"
 #: weblate_web/templates/hosting.html:228
 msgid "Weblate is free software, you can run your own instance of it."
 msgstr ""
-"Weblate és un programari lliure, podeu executar-hi la vostra pròpia "
+"El Weblate és programari lliure: podeu executar-ne la vostra pròpia "
 "instància."
 
 #: weblate_web/templates/hosting.html:229
