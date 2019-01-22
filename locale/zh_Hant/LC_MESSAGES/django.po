@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-21 15:44+0000\n"
-"Last-Translator: Louies <louies0623@gmail.com>\n"
+"PO-Revision-Date: 2019-01-22 12:45+0000\n"
+"Last-Translator: Chang-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "weblate/website/zh_Hant/>\n"
 "Language: zh_Hant\n"
@@ -1091,7 +1091,7 @@ msgstr "額外收費 %(price)s 歐元/年，僅能以年為單位計算收費"
 
 #: weblate_web/templates/hosting.html:179
 msgid "Monthly"
-msgstr "每月一次"
+msgstr "每月繳費"
 
 #: weblate_web/templates/hosting.html:181
 msgid "Contact us"
@@ -1293,7 +1293,7 @@ msgstr "註：有些支付方式無法適用此選項，在這種情況下，您
 
 #: weblate_web/templates/payment/payment.html:35
 msgid "Billing information"
-msgstr "結算資訊"
+msgstr "結帳資訊"
 
 #: weblate_web/templates/payment/payment.html:49
 msgid "Please choose payment method:"
