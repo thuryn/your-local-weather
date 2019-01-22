@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-17 16:26+0000\n"
+"PO-Revision-Date: 2019-01-22 12:45+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/weblate/website/"
 "he/>\n"
@@ -1120,7 +1120,7 @@ msgstr "תשלום נוסף של %(price)s אירו בשנה, זמין רק בת
 
 #: weblate_web/templates/hosting.html:179
 msgid "Monthly"
-msgstr "חודשית"
+msgstr "חודשי"
 
 #: weblate_web/templates/hosting.html:181
 msgid "Contact us"
