@@ -470,4 +470,16 @@
     <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (tretimersintervall)</string>
     <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (firetimersintervall)</string>
     <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (tretimersintervall)</string>
+    <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Vis historikk i graf</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Merknadstilstedeværelse</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Forkortede dagsnavn</string>
+    <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">Byetikett</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">Ikon for nåværende vær</string>
+    <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">Værmelding</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">Graf</string>
+    <string name="widget_action_main_screen" tools:ignore="MissingTranslation">Hovedskjerm</string>
+    <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">Værmeldingsskjerm</string>
+    <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">Grafskjerm</string>
+    <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Bytt plassering</string>
+    <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Vis plassering i miniprogram</string>
 </resources>

@@ -159,16 +159,22 @@
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Yok</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Değer şimdi güncellendi</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Konum kaynağıyla güncellenmiş değer</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - yalnızca hava güncellenir
-\nL - yalnızca konum güncellenir
-\nG - GPS\'ten konum ve hava güncellenir
-\nN - ağdan konum ve hava güncellenir</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - yalnızca hava güncellenir 
-\nL - yalnızca konum güncellenir 
-\nG - GPS\'ten konum ve hava güncellenir 
-\nN - ağdan konum ve hava güncellenir 
-\nNc - hücre ağından konum ve hava güncellenir. Konumu Mozzila konum servisleri sayesinde keşfeder</string>
-    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Telefon uyurken konum takılırsa, hücre arandığında telefonu uyandırabilirsiniz</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - konum ve / veya hava durumunu güncelleyecek
+\n. - konum ulaşılamıyor, hava durumunu son konuma göre güncelleyecek
+\nW - sadece hava durumu güncellendi
+\nL - sadece konum güncellendi
+\nG - GPS ve hava durumu bilgileri güncellendi
+\nN - ağ ve hava durumu konumundan güncellendi
+\nB - Openweathermap.org hizmetine giriş yasaklandı, daha sonra hava durumunu güncellemeye çalışın, lütfen
+\nE - Openweathermap.org hizmetinin erişim belirtecinin süresi doldu. Yeniden erişebilmek için uygulamayı yükseltmeniz gerekir.</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - sadece hava durumu güncellendi
+\nL - sadece konum güncellendi
+\nG - GPS ve hava durumu bilgileri güncellendi
+\nN - ağ ve hava durumu konumundan güncellendi
+\nNi - hücresel şebeke ve hava durumu bilgileri güncellendi, Mozilla konum servisi tarafından keşfedilen yer
+\nB - Openweathermap.org hizmetine giriş yasaklandı, daha sonra hava durumunu güncellemeye çalışın, lütfen
+\nE - Openweathermap.org hizmetinin acce süresi doldu. Yeniden erişebilmek için uygulamayı yükseltmeniz gerekir</string>
+    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Cihaz uyku sırasında konum takılı kaldığında, hücresel bir şebeke ararken onu uyandırmayı deneyebilirsiniz</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Uyanma Stratejisi</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">Uyanma yok</string>
     <string name="wakeuppartial_label" tools:ignore="MissingTranslation">Yalnızca işlemciyi uyandır</string>
@@ -176,7 +182,7 @@
     <string name="clear_cache_button" tools:ignore="MissingTranslation">Önbelleği Temizle</string>
     <string name="db_info" tools:ignore="MissingTranslation">Önbellek hakkında bilgi</string>
     <string name="db_header" tools:ignore="MissingTranslation">Adres önbellek veritabanı</string>
-    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">"Belirli bir süre sonunda, önbellekteki değerler kaldırılır "</string>
+    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Belirtilen süreden sonra önbellekteki değerler kaldırılacak</string>
     <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Önbellekteki Değerlerin Yaşı</string>
     <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 saat</string>
     <string name="location_cache_24_label" tools:ignore="MissingTranslation">bir gün</string>
@@ -189,7 +195,7 @@
     
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Günlük klasörünü seçin</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Hata Ayıklama Seçenekleri</string>
-    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Belirli bir süre sonunda, günlük dosyası yeniden oluşturulacak</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Belirtilen süreden sonra, günlük dosyası yeniden oluşturulur</string>
     <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Günlük dosyasının dönüşü</string>
     <string name="log_file_12_label" tools:ignore="MissingTranslation">12 saat</string>
     <string name="log_file_24_label" tools:ignore="MissingTranslation">bir gün</string>
@@ -308,7 +314,7 @@
     <string name="pref_language_uk" tools:ignore="MissingTranslation">Українська (Ukraynaca)</string>
     <string name="pref_language_ro" tools:ignore="MissingTranslation">Română (Rumence)</string>
     <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Português (Portekizce) (Portugese (Portekizce))</string>
-    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portekizce (Brezilya)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation"></string>
     <string name="label_pressure" tools:ignore="MissingTranslation">Basınç</string>
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Mevcut hava durumu açıklama dili ve adresiniz sonraki güncellemede değişecek, ya da şimdi de değiştirebilirsiniz.</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Pil İyileştirmesi</string>
@@ -386,4 +392,71 @@
     <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Özel tahminli</string>
     <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Görsel bildirim stili</string>
     <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Durum çubuğu simge stili</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Grafiği yerel çözünürlüğe göre göster (grafik çok küçük olduğunda)</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Widget’ta ayarları göster</string>
+    <string name="preference_title_category_units" tools:ignore="MissingTranslation">Birim ayarları</string>
+    <string name="preference_title_power_save" tools:ignore="MissingTranslation">Güç tasarrufu seçenekleri</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Sistem ayarları</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API anahtarı</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Gömülü</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Svenska (İsveççe)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">עברית (İbranice)</string>
+    <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (Arnavutça)</string>
+    <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (Baskça)</string>
+    <string name="pref_language_en" tools:ignore="MissingTranslation">İngilizce</string>
+    <string name="pref_language_fr" tools:ignore="MissingTranslation">Français (Fransızca)</string>
+    <string name="pref_language_tr" tools:ignore="MissingTranslation">Turkish (Türkçe)</string>
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">L</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">N</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Widget grafiği ayarları düğmesi</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Widget konumu ayarları düğmesi</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Widget eylem ayarları düğmesi</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Günü kısaltma ile göster</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Tahmin için gün sayısı</string>
+    <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Konum ayarı</string>
+    <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">Şehir etiketi</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">Şu anki hava durumu simgesi</string>
+    <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">Hava durumu tahmini</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">Grafik</string>
+    <string name="widget_action_main_screen" tools:ignore="MissingTranslation">Ana ekran</string>
+    <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">Hava tahmini ekranı</string>
+    <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">Grafik ekranı</string>
+    <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Konum değiştir</string>
+    <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Widget\'ta konumu göster</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Devre dışı</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Kısaltması N↓, NE↙, …</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Kuzeyden derece</string>
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">Günlüğü dosyaya yaz</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">Günlüğü dosyaya yazma</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">Günlüğü dosyaya yaz</string>
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">yok</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">gök gürültülü hafif yağmur</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">gök gürültülü yağmur</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">gök gürültülü yoğun yağmur</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">hafif gök gürültülü</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">gök gürültülü</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">yoğun gök gürültülü</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">düzensiz gök gürültülü</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">gök gürültülü hafif çiseleme</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">gök gürültülü çiseleme</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">gök gürültülü yoğun çiseleme</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">hafif yoğunlukta çiseleme</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">çiseleme</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">yüksek yoğunlukta çiseleme</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">hafif yoğunlukta çiselemeli yağmur</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">çiseleyen yağmur</string>
+    <string name="weather_condition_description_312" tools:ignore="MissingTranslation">yüksek yoğunlukta çiselemeli yağmur</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">sağanak yağmur ve çiseleme</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">hafif yağmur</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">az bulutlu</string>
 </resources>
