@@ -113,7 +113,11 @@ public class GraphUtils {
             bitmapHeight += 20;
         }
 
-        Bitmap combinedChartBitmap = Bitmap.createBitmap(width, bitmapHeight, Bitmap.Config.ARGB_8888);
+        Bitmap.Config bitmapConfig = Bitmap.Config.ARGB_8888;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            bitmapConfig = Bitmap.Config.RGBA_F16;
+        }
+        Bitmap combinedChartBitmap = Bitmap.createBitmap(width, bitmapHeight, bitmapConfig);
         Canvas combinedChartCanvas = new Canvas(combinedChartBitmap);
         combinedChart.layout(0, 0, width, height);
         combinedChart.draw(combinedChartCanvas);
