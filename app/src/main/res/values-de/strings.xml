@@ -474,4 +474,44 @@
     <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Stil der Symbolstatusleiste</string>
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Einheiteneinstellungen</string>
     <string name="preference_title_power_save" tools:ignore="MissingTranslation">Energiesparoptionen</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">Einstellungen für sichtbare Diagramme</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">Einstellungen für kombinierte Diagramme</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Kombiniert</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Temperatur</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Wind</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Regen</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Regen (bar)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Schnee</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Schnee (bar)</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Druck</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Temperatur</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Wind</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Regen/Schnee</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Druck</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Diagramme zum Anzeigen</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Daten für kombinierte Diagramme</string>
+    <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Legende im Diagramm anzeigen</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 Tage</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 Tage</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 Tage</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (3 Stunden Intervall)</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (3 Stunden Intervall)</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (3 Stunden Intervall)</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Diagramm in nativer Auflösung anzeigen (wenn das Diagramm zu klein ist)</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Einstellungen im Widget anzeigen</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Schaltfläche für die Einstellungen der Widget-Grafik</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Schaltfläche für Widget-Positionseinstellungen</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Schaltfläche für die Einstellungen der Widgetaktionen</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Tag per Abkürzung anzeigen</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Anzahl der Tage für die Vorhersage</string>
+    <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Standortbestimmung</string>
+    <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">Stadtkennzeichnung</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">Aktuelles Wettersymbol</string>
+    <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">Wettervorhersage</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">Diagramm</string>
+    <string name="widget_action_main_screen" tools:ignore="MissingTranslation">Hauptbildschirm</string>
+    <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">Wettervorhersage-Bildschirm</string>
+    <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">Diagrammbildschirm</string>
+    <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Standort wechseln</string>
+    <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Standort im Widget anzeigen</string>
 </resources>
