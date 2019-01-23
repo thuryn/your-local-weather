@@ -4,13 +4,14 @@
 # ssantos <ssantos@web.de>, 2018, 2019.
 # Krombel <krombel@krombel.de>, 2018.
 # jo vuit <jo.vuitton@gmail.com>, 2019.
+# C. Rüdinger <Mail-an-CR@web.de>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
 "PO-Revision-Date: 2019-01-23 19:53+0000\n"
-"Last-Translator: ssantos <ssantos@web.de>\n"
+"Last-Translator: C. Rüdinger <Mail-an-CR@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/weblate/website/"
 "de/>\n"
 "Language: de\n"
@@ -479,28 +480,19 @@ msgid "Does not renew"
 msgstr "Verlängert sich nicht"
 
 #: weblate_web/templates/donate.html:92
-#, fuzzy
-#| msgid "Documentation"
 msgid "Donations"
-msgstr "Dokumentation"
+msgstr "Spenden"
 
 #: weblate_web/templates/donate.html:95
-#, fuzzy
-#| msgid ""
-#| "Regular donations allow sustainability of Weblate development and help to "
-#| "fund free hosting for libre software. You don't have to spend big money, "
-#| "every penny counts."
 msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
-"Regelmäßige Spenden ermöglichen die nachhaltige Weiterentwicklung von "
-"Weblate und helfen dabei, das Hosting für freie Software zu finanzieren. Es "
-"müssen gar keine großen Beträge sein, auch kleine Spenden helfen."
+"Regelmäßige Spenden fördern eine nachhaltige Weblate-Weiterentwicklung, "
+"selbst kleinste Beträge helfen dabei, kostenloses Hosting für freie Software "
+"zu finanzieren."
 
 #: weblate_web/templates/donate.html:103
-#, fuzzy
-#| msgid "Regular donations"
 msgid "Recurring donation"
 msgstr "Regelmäßige Spenden"
 
@@ -520,10 +512,8 @@ msgstr ""
 "Bitte beachten Sie dies, wenn Sie Weblate selbst ohne Supportvertrag hosten."
 
 #: weblate_web/templates/donate.html:116
-#, fuzzy
-#| msgid "View documentation"
 msgid "One time donation"
-msgstr "Dokumentation anzeigen"
+msgstr "Einmalige Spende"
 
 #: weblate_web/templates/donate.html:119
 msgid ""
@@ -534,10 +524,8 @@ msgstr ""
 "oder einer Unterstützung zu würdigen."
 
 #: weblate_web/templates/donate.html:128
-#, fuzzy
-#| msgid "Use our hosting"
 msgid "Use our services"
-msgstr "Nutzen Sie unsere Hosting-Angebote"
+msgstr "Unsere Dienste nutzen"
 
 #: weblate_web/templates/donate.html:131
 msgid ""
