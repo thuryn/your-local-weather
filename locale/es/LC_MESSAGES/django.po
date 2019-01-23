@@ -2,13 +2,14 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Franco <francobenedetti.59+github1@gmail.com>, 2018.
+# Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2018-12-10 21:09+0000\n"
-"Last-Translator: Franco <francobenedetti.59+github1@gmail.com>\n"
+"PO-Revision-Date: 2019-01-24 07:43+0000\n"
+"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/weblate/website/"
 "es/>\n"
 "Language: es\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.4\n"
 
 #: weblate_web/data.py:33
 msgid "Overview of own translations at main page."
@@ -136,12 +137,12 @@ msgstr "Dirección de donación"
 #: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
-msgstr ""
+msgstr "Cantidad en EUR"
 
 #: weblate_web/forms.py:56
 #, python-format
 msgid "The minimal amount is %d EUR."
-msgstr ""
+msgstr "La cantidad mínima es de %d EUR."
 
 #: weblate_web/models.py:76
 msgid "Link text"
@@ -157,10 +158,9 @@ msgstr "Página no encontrada"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
 msgid "Weblate is a libre software web-based continuous localization system."
-msgstr "Weblate es un sistema de gestión de traducciones basado en la web."
+msgstr ""
+"Weblate es un sistema web libre de traducción y regionalización continuas."
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -194,14 +194,10 @@ msgstr ""
 "proyecto."
 
 #: weblate_web/templates/base-features.html:15
-#, fuzzy
-#| msgid ""
-#| "Customizable quality checks will help you in improving quality of "
-#| "translations."
 msgid "Customizable quality checks helps improve translation quality."
 msgstr ""
-"Comprobaciones de calidad personalizables que le ayudarán a mejorar la "
-"calidad de las traducciones."
+"Comprobaciones de calidad personalizables que ayudan a mejorar la calidad de "
+"las traducciones."
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
@@ -231,7 +227,7 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:38
 msgid "Cloud ready"
-msgstr ""
+msgstr "Preparado para la nube"
 
 #: weblate_web/templates/base-features.html:39
 #, fuzzy
@@ -250,6 +246,8 @@ msgstr "Software libre"
 msgid ""
 "Weblate is copylefted; use, see, modify and share at will, and with everyone."
 msgstr ""
+"Weblate es «copyleft»: utilícelo, revíselo, modifíquelo y compártalo como "
+"desee y con quienes desee."
 
 #: weblate_web/templates/base.html:11
 msgctxt "Keyword"
