@@ -166,7 +166,7 @@
 \nG - GPS ve hava durumu bilgileri güncellendi
 \nN - ağ ve hava durumu konumundan güncellendi
 \nB - Openweathermap.org hizmetine giriş yasaklandı, daha sonra hava durumunu güncellemeye çalışın, lütfen
-\nE - Openweathermap.org hizmetinin erişim belirtecinin süresi doldu. Yeniden erişebilmek için uygulamayı yükseltmeniz gerekir.</string>
+\nE - Openweathermap.org hizmetinin erişim belirtecinin süresi doldu. Yeniden erişebilmek için uygulamayı yükseltmeniz gerekir</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - sadece hava durumu güncellendi
 \nL - sadece konum güncellendi
 \nG - GPS ve hava durumu bilgileri güncellendi
@@ -314,7 +314,7 @@
     <string name="pref_language_uk" tools:ignore="MissingTranslation">Українська (Ukraynaca)</string>
     <string name="pref_language_ro" tools:ignore="MissingTranslation">Română (Rumence)</string>
     <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Português (Portekizce) (Portugese (Portekizce))</string>
-    <string name="pref_language_pt_br" tools:ignore="MissingTranslation"></string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Português (Brasil) (Portekizce(Brazil))</string>
     <string name="label_pressure" tools:ignore="MissingTranslation">Basınç</string>
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Mevcut hava durumu açıklama dili ve adresiniz sonraki güncellemede değişecek, ya da şimdi de değiştirebilirsiniz.</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Pil İyileştirmesi</string>
@@ -459,4 +459,51 @@
     <string name="weather_condition_description_313" tools:ignore="MissingTranslation">sağanak yağmur ve çiseleme</string>
     <string name="weather_condition_description_500" tools:ignore="MissingTranslation">hafif yağmur</string>
     <string name="weather_condition_description_801" tools:ignore="MissingTranslation">az bulutlu</string>
+    <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (Belarusça)</string>
+    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (Belarusça, latin betiği)</string>
+    <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (Katalanca)</string>
+    <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (Çekce)</string>
+    <string name="pref_language_da" tools:ignore="MissingTranslation">Dansk (Danca)</string>
+    <string name="pref_language_fi" tools:ignore="MissingTranslation">Suomi (Fince)</string>
+    <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego (Galiçyaca)</string>
+    <string name="pref_language_de" tools:ignore="MissingTranslation">Deutsch (Almanca)</string>
+    <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (İtalianca)</string>
+    <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (Japonca)</string>
+    <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (Lehçe)</string>
+    <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (Rusça)</string>
+    <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (Sırpça)</string>
+    <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (Slovence)</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">yüksek yoğunluklu yağmur ve çiseleme</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">sağanak çiseleme</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">Orta şiddette yağmur</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">yüksek yoğunlukta yağmur</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">çok şiddetli yağmur</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">aşırı yağmur</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">dondurucu yağmur</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">hafif yoğunluklu yağmur</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">sağanak yağmur</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">ağır yoğunluklu yağmur</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">düzensiz sağanak yağmur</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">hafif kar</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">kar</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">şiddetli kar</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">karla karışık yağmur</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">sağanak karla karışık kar</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">hafif yağmur ve kar</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">yağmur ve kar</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">hafif sağanak kar</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">sağanak kar</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">ağır sağanak kar</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">sis</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">duman</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">sis</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">kum, toz fırtınası</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">sis</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">kum</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">toz</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">volkanik kül</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">bora</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">kasırga</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">açık gökyüzü</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">parçalı bulutlu</string>
 </resources>
