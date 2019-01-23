@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-21 02:47+0000\n"
+"PO-Revision-Date: 2019-01-24 07:43+0000\n"
 "Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/weblate/website/"
 "da/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.4\n"
 
 #: weblate_web/data.py:33
 msgid "Overview of own translations at main page."
@@ -182,13 +182,9 @@ msgid "Automated translation closely follows the development of your project."
 msgstr "Automatiserede oversættelse følger nøje udviklingen af dit projekt."
 
 #: weblate_web/templates/base-features.html:15
-#, fuzzy
-#| msgid ""
-#| "Customizable quality checks will help you in improving quality of "
-#| "translations."
 msgid "Customizable quality checks helps improve translation quality."
 msgstr ""
-"Justerbare kvalitetstjek vil hjælpe dig med at forbedre kvaliteten af "
+"Justerbare kvalitetstjek hjælper med at forbedre kvaliteten af "
 "oversættelserne."
 
 #: weblate_web/templates/base-features.html:22
@@ -441,18 +437,12 @@ msgid "Donations"
 msgstr "Donationer"
 
 #: weblate_web/templates/donate.html:95
-#, fuzzy
-#| msgid ""
-#| "Recurring donations allow sustainability of Weblate development and help "
-#| "to fund free hosting for libre software. You don't have to spend big "
-#| "money, every penny counts."
 msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
-"Gentagne donationer bidrager til udviklingen af Weblate og hjælper til at "
-"finansiere gratis hosting af fri software. Du behøver ikke at bruge store "
-"beløb, hver en krone tæller."
+"Gentagne donationer bidrager til udviklingen af Weblate. Selv de mindste "
+"beløb hjælper til at finansiere gratis hosting af fri software."
 
 #: weblate_web/templates/donate.html:103
 msgid "Recurring donation"
@@ -467,14 +457,10 @@ msgstr ""
 "projektet på langt sigt."
 
 #: weblate_web/templates/donate.html:107
-#, fuzzy
-#| msgid ""
-#| "Please consider this if you are using Weblate on premise without support "
-#| "contract."
 msgid ""
 "Please consider this if you are hosting Weblate yourself without a support "
 "contract."
-msgstr "Overvej venligst om du bruger Weblate på præmis uden supportkontrakt."
+msgstr "Overvej venligst om du selv hoster Weblate uden en supportkontrakt."
 
 #: weblate_web/templates/donate.html:116
 msgid "One time donation"
@@ -493,13 +479,12 @@ msgid "Use our services"
 msgstr "Brug vores tjenester"
 
 #: weblate_web/templates/donate.html:131
-#, fuzzy
 msgid ""
 "Commercial services like hosting or support for self hosted installation "
 "help fund Weblate development."
 msgstr ""
-"Kommercielle tjenester såsom hosting eller support for hjælp til "
-"installation der du kører det fra, finansierer udviklingen af Weblate."
+"Kommercielle tjenester såsom hosting eller support til selvhostede "
+"installation hjælper med at finansiere udviklingen af Weblate."
 
 #: weblate_web/templates/donate.html:142
 msgid "Donation rewards"
@@ -1229,7 +1214,7 @@ msgstr ""
 
 #: weblate_web/templates/hosting.html:225
 msgid "Self hosting"
-msgstr "Egen hosting"
+msgstr "Selvhostede"
 
 #: weblate_web/templates/hosting.html:228
 msgid "Weblate is free software, you can run your own instance of it."
@@ -1448,8 +1433,8 @@ msgid ""
 "Worried of putting your translations into cloud? You can self host Weblate "
 "and we can still provide you premium support for your setup."
 msgstr ""
-"Bekymret for at have oversættelser i skyen? Host selv Weblate og få "
-"stadigvæk førsteklasses support til opsætning."
+"Bekymret for at have oversættelser i skyen? Du kan selvhoste Weblate og "
+"stadigvæk få førsteklasses support til din opsætning."
 
 #: weblate_web/templates/support.html:36
 msgid "Installation on your Linux server"
