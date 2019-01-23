@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-23 19:53+0000\n"
+"PO-Revision-Date: 2019-01-24 07:43+0000\n"
 "Last-Translator: C. Rüdinger <Mail-an-CR@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/weblate/website/"
 "de/>\n"
@@ -131,10 +131,8 @@ msgstr "Nutzerverwaltung"
 
 #: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
 #: weblate_web/templates/donate/form.html:25
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation recurrence"
-msgstr "Spendenadresse"
+msgstr "Wiederholung der Spende"
 
 #: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
@@ -188,24 +186,15 @@ msgid "Continuous translation"
 msgstr "Kontinuierliche Übersetzungen"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation process can closely follow development of your "
-#| "project."
 msgid "Automated translation closely follows the development of your project."
 msgstr ""
-"Durch den automatisierten Übersetzungsprozess ist es möglich, der "
-"Projektweiterentwicklung zeitnah zu folgen."
+"Automatisierte Übersetzungen folgen eng der Weiterentwicklung Ihres Projekts."
 
 #: weblate_web/templates/base-features.html:15
-#, fuzzy
-#| msgid ""
-#| "Customizable quality checks will help you in improving quality of "
-#| "translations."
 msgid "Customizable quality checks helps improve translation quality."
 msgstr ""
-"Individuell konfigurierbare Qualitätsprüfungen helfen Ihnen dabei, die "
-"Qualität der Übersetzungen zu verbessern."
+"Individuell konfigurierbare Qualitätsprüfungen tragen zur Verbesserung der "
+"Übersetzungsqualität bei."
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
@@ -429,16 +418,12 @@ msgid "Sign out"
 msgstr "Abmelden"
 
 #: weblate_web/templates/donate.html:24
-#, fuzzy
-#| msgid "Regular donations"
 msgid "Your donations"
-msgstr "Regelmäßige Spenden"
+msgstr "Ihre Spenden"
 
 #: weblate_web/templates/donate.html:29
-#, fuzzy
-#| msgid "Collaboration sites"
 msgid "Creation date"
-msgstr "Kollaborationsplattformen"
+msgstr "Erstelldatum"
 
 #: weblate_web/templates/donate.html:30
 msgid "Reward"
@@ -453,10 +438,8 @@ msgid "Renewal"
 msgstr "Verlängerung"
 
 #: weblate_web/templates/donate.html:33
-#, fuzzy
-#| msgid "Payment summary"
 msgid "Payments"
-msgstr "Zahlungsübersicht"
+msgstr "Zahlungen"
 
 #: weblate_web/templates/donate.html:43
 #: weblate_web/templates/payment/payment.html:37
@@ -532,14 +515,12 @@ msgid ""
 "Commercial services like hosting or support for self hosted installation "
 "help fund Weblate development."
 msgstr ""
-"Kommerzielle Dienste wie Hosting oder Support für selbst gehostete "
+"Kommerzielle Dienstleistungen wie Hosting oder Support für selbst gehostete "
 "Installationen unterstützen die Entwicklung von Weblate."
 
 #: weblate_web/templates/donate.html:142
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation rewards"
-msgstr "Spendenadresse"
+msgstr "Spendenprämien"
 
 #: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
@@ -588,32 +569,33 @@ msgid ""
 "We might refuse to place your link, especially if the site contains adult or "
 "illegal content. Please consult us in advance if unsure."
 msgstr ""
+"Wir können die Platzierung Ihres Links ablehnen, insbesondere wenn die "
+"Internetseite nicht jugendfreie oder illegale Inhalte enthält. Kontaktieren "
+"Sie uns bitte im Voraus, wenn Sie sich unsicher sind."
 
 #: weblate_web/templates/donate/form.html:50
 msgid "Choose your own donation amount"
-msgstr ""
+msgstr "Bestimmen Sie Ihren eigenen Spendenbetrag"
 
 #: weblate_web/templates/donate/form.html:56
-#, fuzzy
-#| msgid "Contribute"
 msgid "Continue"
-msgstr "Beitragen"
+msgstr "Weiter"
 
 #: weblate_web/templates/donate/rewards.html:2
 msgid "Link placement on the weblate.org thanks page"
-msgstr ""
+msgstr "Link-Platzierung auf der Danksagungsseite von weblate.org"
 
 #: weblate_web/templates/donate/rewards.html:3
 msgid "Link placement in the list of supporters"
-msgstr ""
+msgstr "Link-Platzierung in der Liste der Unterstützer"
 
 #: weblate_web/templates/donate/rewards.html:4
 msgid "Name placement in the list of supporters"
-msgstr ""
+msgstr "Namenserwähnung in der Liste der Unterstützer"
 
 #: weblate_web/templates/download-link.html:4
 msgid "PGP signature"
-msgstr ""
+msgstr "PGP-Signatur"
 
 #: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
 #: weblate_web/templates/hosting.html:234
@@ -1322,13 +1304,11 @@ msgstr "Weblate – web-basierte Übersetzung"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
-msgstr "Starten Sie die Nutzung von Weblate"
+msgstr "Mit der Nutzung von Weblate beginnen"
 
 #: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
 msgid "Try the live demo server"
-msgstr "Probieren Sie unsere Demoserver aus"
+msgstr "Live-Demoserver testen"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
@@ -1383,10 +1363,8 @@ msgid "Cloud service"
 msgstr ""
 
 #: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
-#, fuzzy
-#| msgid "View hosting plans"
 msgid "Choose hosting plan"
-msgstr "Hosting-Angebote anzeigen"
+msgstr "Hosting-Angebot wählen"
 
 #: weblate_web/templates/index.html:128
 #, fuzzy
@@ -1414,7 +1392,7 @@ msgstr "Funktionen von Weblate"
 
 #: weblate_web/templates/index.html:147
 msgid "Maintained by you"
-msgstr ""
+msgstr "Von Ihnen gewartet"
 
 #: weblate_web/templates/index.html:148
 #, fuzzy
@@ -1900,7 +1878,7 @@ msgstr "Bitte geben Sie Ihre Rechnungsdaten an, um die Zahlung abzuschließen."
 
 #: weblate_web/views.py:109
 msgid "The VAT ID is no longer valid, please update it."
-msgstr ""
+msgstr "Die VAT ID ist nicht mehr gültig, bitte aktualisieren."
 
 #: weblate_web/views.py:269
 #, fuzzy
@@ -1910,7 +1888,7 @@ msgstr "Zahlungen werden von The Pay Service bearbeitet."
 
 #: weblate_web/views.py:274
 msgid "The payment was rejected: {}"
-msgstr ""
+msgstr "Die Zahlung wurde zurückgewiesen: {}"
 
 #: weblate_web/views.py:275
 msgid "Unknown reason"
