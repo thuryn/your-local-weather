@@ -327,7 +327,7 @@
 \nPor do sol: %7$s</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">Seu clima local</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">"Notificações do seu clima local "</string>
-    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Dia</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Temperatura</string>
     <string name="graph_wind_label" tools:ignore="MissingTranslation">Vento</string>
     <string name="graph_rain_label" tools:ignore="MissingTranslation">Chuva</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Neve</string>
@@ -432,12 +432,12 @@
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">céu encoberto</string>
     <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"><b>Local MLS and Nominatim</b> - O aplicativo obtém localizações por serviços de localização da Mozilla. O aplicativo usa a rede celular - informações sobre as estações base de rede atuais ativas e disponíveis. É necessário ter permissão de fazer chamadas telefónicas para obter esta informação. O aplicativo usa redes Wi-Fi ao redor para adivinhar sua localização com mais precisão. A aplicação obtém coordenadas geográficas do serviço de localização da Mozilla. O aplicativo usa os serviços Nominatim para obter o endereço das coordenadas. Quando você quiser obter a localização mais precisa do serviço de localização da Mozilla, você pode contribuir com o aplicativo Mozilla Stumbler (disponível em https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler).</string>
     <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">Para poupar tráfego de rede e acelerar a atualização do local, você pode ativar <b>Cache de locais</b>. Este cache guarda coordenadas geográficas e um endereço. A aplicação tem de chamar o serviço de resolução de rede independentemente desta definição. Mas chamadar a resolução do endereço Nominatim ocorre apenas no caso do endereço não estar em cache. Quando ativa a opção Cache de localizações, tem que aceitar o fato de que os endereços, que você visitou, estão gravados no aplicativo. Nenhuma informação do cache é enviada para fora do aplicativo.</string>
-    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">A opção <b>Estratégia de acordar</b> existe para superar a implementação buggy do serviço do Android por diferentes fornecedores. Quando seleciona a opção <i>No wake up</i> e o local é atualizado corretamente, você tem a implementação correta. Quando o local não estiver atualizado corretamente, pode tentar <i>Acorde somente a CPU</i>. Esta opção ativa a CPU e tenta ler o estado da rede celular e wifi. A última opção <i>Acorde com display</i> é a opção que liga a tela por vários segundos durante a atualização do local. Em alguns telefones Android esta é a única opção para obter informações corretas sobre as redes celulares e wifi. Esta opção consome alguma quantidade de bateria - mas o impacto na bateria é muito pequeno.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">A opção <b>Estratégia de acordar</b> existe para superar a implementação buggy do serviço do Android por diferentes fornecedores. Quando seleciona a opção <i>No wake up</i> e o local é atualizado corretamente, você tem a implementação correta. Quando o local não estiver atualizado corretamente, pode tentar <i>Acorde somente a CPU</i>. Esta opção ativa a CPU e tenta ler o estado da rede celular e wifi. A última opção <i>Acorde com display</i> é a opção que liga o ecrã por vários segundos durante a atualização do local. Em alguns telefones Android esta é a única opção para obter informações corretas sobre as redes celulares e wifi. Esta opção consome alguma quantidade de bateria - mas o impacto na bateria é muito pequeno.</string>
     <string name="update_period_regular_only" tools:ignore="MissingTranslation">Quando atualizar regularmente</string>
     <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Presença de notificação</string>
     <string name="notification_when_updated" tools:ignore="MissingTranslation">Quando atualizado</string>
     <string name="notification_permanent" tools:ignore="MissingTranslation">Permanente</string>
-    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">Na tela de bloqueio</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">No ecrã de bloqueio</string>
     <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">Ícone do sol</string>
     <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">Temperatura</string>
     <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">Invisível</string>
@@ -448,4 +448,44 @@
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Definições da unidade</string>
     <string name="preference_title_power_save" tools:ignore="MissingTranslation">Opções de economia de energia</string>
     <string name="log_to_file_off" tools:ignore="MissingTranslation">Não registrar para um ficheiro</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">Configurações de gráficos visíveis</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">Configurações combinadas de gráficos</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Combinado</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Vento</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Chuva</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Chuva (bar)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Neve</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Neve (bar)</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Pressão</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Vento</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Chuva/Neve</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Pressão</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Gráficos para mostrar</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Dados para o gráfico combinado</string>
+    <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Mostrar legenda no gráfico</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 dias</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 dias</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 dias</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (intervalo de 3 horas)</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (intervalo de 3 horas)</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (intervalo de 3 horas)</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Mostrar gráfico por resolução nativa (quando o gráfico é muito pequeno)</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Mostrar configurações no widget</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Botão widget de configuração de gráficos</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Botão widget de configurações de localização</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Botão widget de configurações de ação</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Mostrar dia por abreviação</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Número de dias para a previsão</string>
+    <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Definição da localização</string>
+    <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">Etiqueta da cidade</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">Ícone do tempo atual</string>
+    <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">Previsão do tempo</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">Gráfico</string>
+    <string name="widget_action_main_screen" tools:ignore="MissingTranslation">Ecrã principal</string>
+    <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">Ecrã de previsão do tempo</string>
+    <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">Ecrã de gráficos</string>
+    <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Localização do interruptor</string>
+    <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Mostrar localização no widget</string>
 </resources>
