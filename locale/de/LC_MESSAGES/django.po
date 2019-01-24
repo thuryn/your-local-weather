@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-24 07:55+0000\n"
-"Last-Translator: C. Rüdinger <Mail-an-CR@web.de>\n"
+"PO-Revision-Date: 2019-01-25 12:06+0000\n"
+"Last-Translator: ssantos <ssantos@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/weblate/website/"
 "de/>\n"
 "Language: de\n"
@@ -1302,10 +1302,10 @@ msgid ""
 "translations across components, quality checks and automatic linking to "
 "source files."
 msgstr ""
-"Weblate ist ein freies, web-basiertes Lokalisierungswerkzeug mit enger "
-"Anbindung an die Versionsverwaltung. Es bietet eine einfache und klare "
+"Weblate ist ein freies, web-basiertes Übersetzungswerkzeug mit enger "
+"Anbindung an eine Versionsverwaltung. Es bietet eine einfache und klare "
 "Benutzeroberfläche, die komponentenübergreifende Weitergabe von "
-"Übersetzungen, Qualitätsprüfungen sowie die automatische Verlinkung auf "
+"Übersetzungen, Qualitätsprüfungen, sowie die automatische Verknüpfung mit "
 "Quelldateien."
 
 #: weblate_web/templates/index.html:27
@@ -1326,7 +1326,7 @@ msgstr "Hunderte von Projekten auf Hosted Weblate durchsuchen"
 
 #: weblate_web/templates/index.html:114
 msgid "Hosted service"
-msgstr ""
+msgstr "Gehosteter Service"
 
 #: weblate_web/templates/index.html:118 weblate_web/templates/index.html:132
 #, python-format
@@ -1335,45 +1335,35 @@ msgstr "Ab EUR %(amount)s pro Monat"
 
 #: weblate_web/templates/index.html:119
 msgid "Cloud service"
-msgstr ""
+msgstr "Cloud-Service"
 
 #: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
 msgid "Choose hosting plan"
 msgstr "Hosting-Angebot wählen"
 
 #: weblate_web/templates/index.html:128
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self hosted"
 msgstr "Selbst gehostet"
 
 #: weblate_web/templates/index.html:133
 msgid "Your infrastructure"
-msgstr ""
+msgstr "Ihre Infrastruktur"
 
 #: weblate_web/templates/index.html:142
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self supported"
-msgstr "Selbst gehostet"
+msgstr "Selbst unterstützt"
 
 #: weblate_web/templates/index.html:146
-#, fuzzy
-#| msgid "Weblate features"
 msgid "Weblate is free to use"
-msgstr "Funktionen von Weblate"
+msgstr "Weblate ist kostenlos nutzbar"
 
 #: weblate_web/templates/index.html:147
 msgid "Maintained by you"
 msgstr "Von Ihnen gewartet"
 
 #: weblate_web/templates/index.html:148
-#, fuzzy
-#| msgid "Phone support"
 msgid "Community support"
-msgstr "Telefon-Support"
+msgstr "Unterstützung durch die Gemeinschaft"
 
 #: weblate_web/templates/payment/customer.html:5
 #: weblate_web/templates/payment/payment.html:4
@@ -1415,11 +1405,9 @@ msgid "Payment will be issued yearly till you cancel the subscription."
 msgstr "Die Zahlung erfolgt jährlich, bis Sie das Abonnement kündigen."
 
 #: weblate_web/templates/payment/payment.html:24
-#, fuzzy
-#| msgid "Payment will be issued monthly till you cancel the subscription."
 msgid ""
 "Payment will be issued every six months till you cancel the subscription."
-msgstr "Die Zahlung erfolgt monatlich, bis Sie das Abonnement kündigen."
+msgstr "Die Zahlung erfolgt alle sechs Monate, bis Sie das Abonnement kündigen."
 
 #: weblate_web/templates/payment/payment.html:26
 msgid "Payment will be issued monthly till you cancel the subscription."
@@ -1733,14 +1721,10 @@ msgstr ""
 "nicht möglich."
 
 #: weblate_web/templates/thanks.html:50
-#, fuzzy
-#| msgid ""
-#| "Support our project on Bountysource Salt and get exclusive logo placement "
-#| "on this page."
 msgid "Support our project and get link placement on this page."
 msgstr ""
-"Unterstützen Sie unser Projekt auf \"Bountysource Salt\" und Sie erhalten im "
-"Gegenzug eine exklusive Platzierung Ihres Logos auf dieser Seite."
+"Unterstützen Sie unser Projekt und erhalten Sie auf dieser Seite eine "
+"Linkplatzierung."
 
 #: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
 msgid "Weblate tour"
@@ -1856,10 +1840,8 @@ msgid "The VAT ID is no longer valid, please update it."
 msgstr "Die VAT ID ist nicht mehr gültig, bitte aktualisieren."
 
 #: weblate_web/views.py:269
-#, fuzzy
-#| msgid "Payments are processed by The Pay service."
 msgid "Payment not yet processed, please retry."
-msgstr "Zahlungen werden von The Pay Service bearbeitet."
+msgstr "Zahlung noch nicht bearbeitet, bitte versuchen Sie es erneut."
 
 #: weblate_web/views.py:274
 msgid "The payment was rejected: {}"
@@ -1867,13 +1849,11 @@ msgstr "Die Zahlung wurde zurückgewiesen: {}"
 
 #: weblate_web/views.py:275
 msgid "Unknown reason"
-msgstr ""
+msgstr "Unbekannter Grund"
 
 #: weblate_web/views.py:279
-#, fuzzy
-#| msgid "Thank you for ordering hosting!"
 msgid "Thank you for your donation."
-msgstr "Vielen Dank für Ihre Hosting-Bestellung!"
+msgstr "Vielen Dank für Ihre Spende."
 
 #~ msgid "Weblate is a free web-based translation management system."
 #~ msgstr "Weblate ist ein freies, web-basiertes Übersetzungsmanagementsystem."
