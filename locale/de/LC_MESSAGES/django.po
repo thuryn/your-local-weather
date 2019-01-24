@@ -11,7 +11,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
 "PO-Revision-Date: 2019-01-25 12:06+0000\n"
-"Last-Translator: ssantos <ssantos@web.de>\n"
+"Last-Translator: C. Rüdinger <Mail-an-CR@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/weblate/website/"
 "de/>\n"
 "Language: de\n"
@@ -160,8 +160,8 @@ msgstr "Seite nicht gefunden"
 #: weblate_web/templates/index.html:6
 msgid "Weblate is a libre software web-based continuous localization system."
 msgstr ""
-"Weblate ist ein Libre Software, webbasiertes, kontinuierliches "
-"Lokalisierungssystem."
+"Weblate ist ein auf freier Software beruhendes, webbasiertes, "
+"kontinuierliches Lokalisierungssystem."
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -410,7 +410,7 @@ msgstr "Erstelldatum"
 
 #: weblate_web/templates/donate.html:30
 msgid "Reward"
-msgstr "Belohnung"
+msgstr "Prämie"
 
 #: weblate_web/templates/donate.html:31
 msgid "Expiry date"
@@ -431,7 +431,7 @@ msgstr "Bearbeiten"
 
 #: weblate_web/templates/donate.html:45
 msgid "No reward"
-msgstr "Keine Belohnung"
+msgstr "Keine Prämie"
 
 #: weblate_web/templates/donate.html:53
 msgid "Expired"
@@ -467,15 +467,15 @@ msgid ""
 "Repeated appreciation of the Weblate project helps in keeping the project "
 "sustainable long term."
 msgstr ""
-"Die wiederholte Anerkennung des Weblate-Projekts trägt dazu bei, das Projekt "
-"langfristig nachhaltig zu machen."
+"Wiederholte Zuwendungen an das Weblate-Projekt tragen zur langfristigen "
+"Zukunftsfähigkeit des Projekts bei."
 
 #: weblate_web/templates/donate.html:107
 msgid ""
 "Please consider this if you are hosting Weblate yourself without a support "
 "contract."
 msgstr ""
-"Bitte beachten Sie dies, wenn Sie Weblate selbst ohne Supportvertrag hosten."
+"Bitte beachten Sie dies, wenn Sie Weblate ohne Supportvertrag selbst hosten."
 
 #: weblate_web/templates/donate.html:116
 msgid "One time donation"
@@ -486,8 +486,8 @@ msgid ""
 "One time donations are great for appreciating our work on single issue or "
 "support."
 msgstr ""
-"Einmalige Spenden sind großartig, um unsere Arbeit an einem einzelnen Thema "
-"oder einer Unterstützung zu würdigen."
+"Einmalige Spenden sind großartig, um unsere Leistungen bei Einzelfragen oder "
+"unseren Support zu würdigen."
 
 #: weblate_web/templates/donate.html:128
 msgid "Use our services"
@@ -531,12 +531,12 @@ msgstr "Spendenadresse"
 #: weblate_web/templates/donate/form.html:13
 msgid "Please choose wanted reward or enter custom donation amount."
 msgstr ""
-"Bitte wählen Sie die gewünschte Belohnung oder geben Sie einen "
+"Bitte wählen Sie die gewünschte Prämie oder geben Sie einen "
 "benutzerdefinierten Spendenbetrag ein."
 
 #: weblate_web/templates/donate/edit.html:20
 msgid "Edit your reward link"
-msgstr "Bearbeiten Sie Ihre Belohnungsveknüpfung"
+msgstr "Bearbeiten Sie Ihren Prämien-Link"
 
 #: weblate_web/templates/donate/edit.html:26
 #: weblate_web/templates/payment/customer.html:21
