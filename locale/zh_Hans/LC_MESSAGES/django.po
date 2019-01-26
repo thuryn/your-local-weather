@@ -4,13 +4,14 @@
 # Boyuan Yang <073plan@gmail.com>, 2018, 2019.
 # popcorner <memoword@163.com>, 2018.
 # dragonandy <dragonandy@foxmail.com>, 2018.
+# YONGLE <tanyongle0633@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-17 09:00+0100\n"
-"PO-Revision-Date: 2019-01-22 12:45+0000\n"
-"Last-Translator: Boyuan Yang <073plan@gmail.com>\n"
+"PO-Revision-Date: 2019-01-28 08:59+0000\n"
+"Last-Translator: YONGLE <tanyongle0633@gmail.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "weblate/website/zh_Hans/>\n"
 "Language: zh_Hans\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: weblate_web/data.py:33
 msgid "Overview of own translations at main page."
@@ -115,28 +116,26 @@ msgstr "用户管理"
 
 #: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
 #: weblate_web/templates/donate/form.html:25
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation recurrence"
-msgstr "捐赠地址"
+msgstr "定期捐赠"
 
 #: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
-msgstr ""
+msgstr "金额以欧元计算"
 
 #: weblate_web/forms.py:56
 #, python-format
 msgid "The minimal amount is %d EUR."
-msgstr ""
+msgstr "最低金额为 %d1 欧元。"
 
 #: weblate_web/models.py:76
 msgid "Link text"
-msgstr ""
+msgstr "链接文字"
 
 #: weblate_web/models.py:80
 msgid "Link URL"
-msgstr ""
+msgstr "链接网址"
 
 #: weblate_web/templates/404.html:4
 msgid "Page not found"
@@ -144,10 +143,8 @@ msgstr "找不到页面"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
 msgid "Weblate is a libre software web-based continuous localization system."
-msgstr "Weblate 是一个自由的基于网页的翻译管理系统。"
+msgstr "Weblate 是一个基于网络自由软件持续本地化系统。"
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -170,20 +167,12 @@ msgid "Continuous translation"
 msgstr "持续翻译集成"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation process can closely follow development of your "
-#| "project."
 msgid "Automated translation closely follows the development of your project."
-msgstr "自动化翻译流程能紧密跟随您项目的开发进程。"
+msgstr "自动翻译能紧密贴合您的项目开发。"
 
 #: weblate_web/templates/base-features.html:15
-#, fuzzy
-#| msgid ""
-#| "Customizable quality checks will help you in improving quality of "
-#| "translations."
 msgid "Customizable quality checks helps improve translation quality."
-msgstr "可定制的质量检查将帮助您改善翻译质量。"
+msgstr "可定制的质量检查有助于提高翻译质量。"
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
@@ -1138,7 +1127,7 @@ msgstr "附加费用 %(price)s 欧元/年，仅在年度账单中出现"
 
 #: weblate_web/templates/hosting.html:179
 msgid "Monthly"
-msgstr "按月"
+msgstr "每月"
 
 #: weblate_web/templates/hosting.html:181
 msgid "Contact us"
