@@ -472,4 +472,5 @@
     <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Прикажи скраћеницу за дан</string>
     <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Број дана прогнозе</string>
     <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Подешавање локације</string>
+    <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Прикажи легенду у графикону</string>
 </resources>
