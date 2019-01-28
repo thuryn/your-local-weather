@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-17 09:00+0100\n"
+"POT-Creation-Date: 2019-01-28 23:20+0100\n"
 "PO-Revision-Date: 2019-01-22 12:45+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/weblate/website/"
@@ -1191,6 +1191,12 @@ msgstr ""
 #: weblate_web/templates/index.html:3
 msgid "Weblate - web-based localization"
 msgstr "Weblate - תרגום מבוסס דפדפן"
+
+#: weblate_web/templates/index.html:4
+#, fuzzy
+#| msgid "Consulting services or custom development"
+msgid "Bring translators closer to development"
+msgstr "שירותי ייעוץ או פיתוח בהתאמה אישית"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"

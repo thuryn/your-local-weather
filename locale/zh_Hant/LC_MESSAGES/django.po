@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-17 09:00+0100\n"
+"POT-Creation-Date: 2019-01-28 23:20+0100\n"
 "PO-Revision-Date: 2019-01-22 12:45+0000\n"
 "Last-Translator: Chang-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
@@ -421,7 +421,9 @@ msgstr "贊助"
 msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
-msgstr "定期贊助能促進 Weblate 繼續開發，即便是小額捐款也都能幫助到自由軟體的免費託管服務。"
+msgstr ""
+"定期贊助能促進 Weblate 繼續開發，即便是小額捐款也都能幫助到自由軟體的免費託管"
+"服務。"
 
 #: weblate_web/templates/donate.html:103
 msgid "Recurring donation"
@@ -457,7 +459,8 @@ msgstr "使用我們的服務"
 msgid ""
 "Commercial services like hosting or support for self hosted installation "
 "help fund Weblate development."
-msgstr "商業服務，例如申請託管服務或自架安裝支援，都有助於為 Weblate 開發提供資金。"
+msgstr ""
+"商業服務，例如申請託管服務或自架安裝支援，都有助於為 Weblate 開發提供資金。"
 
 #: weblate_web/templates/donate.html:142
 msgid "Donation rewards"
@@ -1160,6 +1163,12 @@ msgstr ""
 msgid "Weblate - web-based localization"
 msgstr "Weblate - 網頁介面在地化平臺"
 
+#: weblate_web/templates/index.html:4
+#, fuzzy
+#| msgid "Consulting services or custom development"
+msgid "Bring translators closer to development"
+msgstr "提供諮詢服務或客製化開發"
+
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
 msgstr "開始使用 Weblate"
@@ -1178,7 +1187,9 @@ msgid ""
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
-msgstr "Weblate 是款自由的網頁介面在地化工具，並緊密整合版本控制系統。它有簡潔的使用者介面、跨組件翻譯再用、品質檢測，以及自動與源始檔連結。"
+msgstr ""
+"Weblate 是款自由的網頁介面在地化工具，並緊密整合版本控制系統。它有簡潔的使用"
+"者介面、跨組件翻譯再用、品質檢測，以及自動與源始檔連結。"
 
 #: weblate_web/templates/index.html:27
 msgid "Weblate screenshot"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-17 09:00+0100\n"
+"POT-Creation-Date: 2019-01-28 23:20+0100\n"
 "PO-Revision-Date: 2019-01-21 10:36+0000\n"
 "Last-Translator: Mesut Akcan <makcan@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/weblate/website/"
@@ -1236,6 +1236,12 @@ msgstr ""
 #: weblate_web/templates/index.html:3
 msgid "Weblate - web-based localization"
 msgstr "Weblate - web tabanlı yerelleştirme"
+
+#: weblate_web/templates/index.html:4
+#, fuzzy
+#| msgid "Consulting services or custom development"
+msgid "Bring translators closer to development"
+msgstr "Danışmanlık hizmetleri veya özel geliştirme"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"

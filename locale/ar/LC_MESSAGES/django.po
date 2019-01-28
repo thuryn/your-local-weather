@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-17 09:00+0100\n"
+"POT-Creation-Date: 2019-01-28 23:20+0100\n"
 "PO-Revision-Date: 2019-01-24 07:43+0000\n"
 "Last-Translator: ButterflyOfFire <ButterflyOfFire@protonmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/weblate/website/"
@@ -332,8 +332,8 @@ msgid ""
 "You can find more repositories related to Weblate on <a href=\"%(url)s"
 "\">GitHub</a>"
 msgstr ""
-"بإمكانكم العثور على مستودعات ذات صلة بويب لايت على <a href=\"%(url)s\""
-">GitHub</a>"
+"بإمكانكم العثور على مستودعات ذات صلة بويب لايت على <a href=\"%(url)s"
+"\">GitHub</a>"
 
 #: weblate_web/templates/contribute.html:37
 msgid ""
@@ -1201,6 +1201,12 @@ msgstr ""
 #: weblate_web/templates/index.html:3
 msgid "Weblate - web-based localization"
 msgstr "ويب لايت Weblate - التدويل المعتمِد على الويب"
+
+#: weblate_web/templates/index.html:4
+#, fuzzy
+#| msgid "Consulting services or custom development"
+msgid "Bring translators closer to development"
+msgstr "خدمة استشارات أو تطوير مخصص"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"

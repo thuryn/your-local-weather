@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-17 09:00+0100\n"
+"POT-Creation-Date: 2019-01-28 23:20+0100\n"
 "PO-Revision-Date: 2019-01-25 12:06+0000\n"
 "Last-Translator: C. Rüdinger <Mail-an-CR@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/weblate/website/"
@@ -351,8 +351,8 @@ msgid ""
 "You can find more repositories related to Weblate on <a href=\"%(url)s"
 "\">GitHub</a>"
 msgstr ""
-"Weitere Repositories zum Thema Weblate finden Sie unter <a href=\"%(url)s\""
-">GitHub</a>"
+"Weitere Repositories zum Thema Weblate finden Sie unter <a href=\"%(url)s"
+"\">GitHub</a>"
 
 #: weblate_web/templates/contribute.html:37
 msgid ""
@@ -1283,6 +1283,12 @@ msgstr ""
 msgid "Weblate - web-based localization"
 msgstr "Weblate – web-basierte Übersetzung"
 
+#: weblate_web/templates/index.html:4
+#, fuzzy
+#| msgid "Consulting services or custom development"
+msgid "Bring translators closer to development"
+msgstr "Beratungsdienstleistungen und kundenspezifische Entwicklung"
+
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
 msgstr "Mit der Nutzung von Weblate beginnen"
@@ -1407,7 +1413,8 @@ msgstr "Die Zahlung erfolgt jährlich, bis Sie das Abonnement kündigen."
 #: weblate_web/templates/payment/payment.html:24
 msgid ""
 "Payment will be issued every six months till you cancel the subscription."
-msgstr "Die Zahlung erfolgt alle sechs Monate, bis Sie das Abonnement kündigen."
+msgstr ""
+"Die Zahlung erfolgt alle sechs Monate, bis Sie das Abonnement kündigen."
 
 #: weblate_web/templates/payment/payment.html:26
 msgid "Payment will be issued monthly till you cancel the subscription."

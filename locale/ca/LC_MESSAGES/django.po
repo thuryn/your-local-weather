@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-17 09:00+0100\n"
+"POT-Creation-Date: 2019-01-28 23:20+0100\n"
 "PO-Revision-Date: 2019-01-23 04:22+0000\n"
 "Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/weblate/website/"
@@ -1305,6 +1305,12 @@ msgstr ""
 #| msgid "Weblate - web-based translation"
 msgid "Weblate - web-based localization"
 msgstr "Weblate - traducció basada en la xarxa"
+
+#: weblate_web/templates/index.html:4
+#, fuzzy
+#| msgid "Consulting services or custom development"
+msgid "Bring translators closer to development"
+msgstr "Serveis de consulta o desenvolupament personalitzat"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"

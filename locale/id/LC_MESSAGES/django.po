@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Weblate 1.2\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-17 09:00+0100\n"
+"POT-Creation-Date: 2019-01-28 23:20+0100\n"
 "PO-Revision-Date: 2018-09-24 13:08+0000\n"
 "Last-Translator: Andika Triwidada <andika@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/weblate/"
@@ -1305,6 +1305,12 @@ msgstr ""
 #| msgid "Weblate - web-based translation"
 msgid "Weblate - web-based localization"
 msgstr "Weblate - penerjemahan berbasis web"
+
+#: weblate_web/templates/index.html:4
+#, fuzzy
+#| msgid "Consulting services or custom development"
+msgid "Bring translators closer to development"
+msgstr "Layanan konsultasi atau pengembangan khusus"
 
 #: weblate_web/templates/index.html:12
 #, fuzzy
