@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: French (Weblate)\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-28 23:20+0100\n"
-"PO-Revision-Date: 2019-01-21 10:36+0000\n"
+"PO-Revision-Date: 2019-01-29 13:03+0000\n"
 "Last-Translator: Ldm Public <ldmpub@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/weblate/website/"
 "fr/>\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: weblate_web/data.py:33
 msgid "Overview of own translations at main page."
@@ -1266,10 +1266,8 @@ msgid "Weblate - web-based localization"
 msgstr "Weblate - traduction en ligne"
 
 #: weblate_web/templates/index.html:4
-#, fuzzy
-#| msgid "Consulting services or custom development"
 msgid "Bring translators closer to development"
-msgstr "Prestation de conseil ou développement sur-mesure"
+msgstr "Rapprochez les traducteurs des développeurs"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
