@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-28 23:20+0100\n"
-"PO-Revision-Date: 2019-01-22 12:45+0000\n"
+"PO-Revision-Date: 2019-01-29 13:03+0000\n"
 "Last-Translator: Chang-Chia Tseng <pswo10680@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <https://hosted.weblate.org/projects/"
 "weblate/website/zh_Hant/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: weblate_web/data.py:33
 msgid "Overview of own translations at main page."
@@ -1164,10 +1164,8 @@ msgid "Weblate - web-based localization"
 msgstr "Weblate - 網頁介面在地化平臺"
 
 #: weblate_web/templates/index.html:4
-#, fuzzy
-#| msgid "Consulting services or custom development"
 msgid "Bring translators closer to development"
-msgstr "提供諮詢服務或客製化開發"
+msgstr "讓翻譯者更貼近開發程序"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
