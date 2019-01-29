@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-28 23:20+0100\n"
-"PO-Revision-Date: 2019-01-22 12:45+0000\n"
+"PO-Revision-Date: 2019-01-29 13:03+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/weblate/"
 "website/nb_NO/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: weblate_web/data.py:33
 msgid "Overview of own translations at main page."
@@ -1234,10 +1234,8 @@ msgid "Weblate - web-based localization"
 msgstr "Weblate - nettbasert oversetting"
 
 #: weblate_web/templates/index.html:4
-#, fuzzy
-#| msgid "Consulting services or custom development"
 msgid "Bring translators closer to development"
-msgstr "Konsultasjonstjenester eller tilpasset utvikling"
+msgstr "Bringer oversettere tettere på utviklingen"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
