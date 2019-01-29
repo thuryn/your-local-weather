@@ -47,6 +47,7 @@ class DonateForm(forms.Form):
         label=_('Donation recurrence'),
         choices=RECURRENCE_CHOICES,
         initial='m',
+        required=False,
         widget=forms.RadioSelect,
     )
     amount = forms.IntegerField(
