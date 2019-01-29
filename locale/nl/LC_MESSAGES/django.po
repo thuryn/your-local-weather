@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-28 23:20+0100\n"
-"PO-Revision-Date: 2019-01-17 19:10+0000\n"
+"PO-Revision-Date: 2019-01-29 15:57+0000\n"
 "Last-Translator: Thomas De Rocker <thomasderocker@outlook.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/weblate/website/nl/"
 ">\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: weblate_web/data.py:33
 msgid "Overview of own translations at main page."
@@ -1247,10 +1247,8 @@ msgid "Weblate - web-based localization"
 msgstr "Weblate - webgebaseerd vertalen"
 
 #: weblate_web/templates/index.html:4
-#, fuzzy
-#| msgid "Consulting services or custom development"
 msgid "Bring translators closer to development"
-msgstr "Consultatiediensten of aangepaste ontwikkeling"
+msgstr "Vertalers dichter bij ontwikkeling brengen"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
