@@ -1,15 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# farkasg.zoltan <farkasg.zoltan@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-28 23:20+0100\n"
-"PO-Revision-Date: 2018-07-26 20:40+0000\n"
-"Last-Translator: Doma Gergő <domag02@gmail.com>\n"
+"PO-Revision-Date: 2019-02-05 07:13+0000\n"
+"Last-Translator: farkasg.zoltan <farkasg.zoltan@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/weblate/"
 "website/hu/>\n"
 "Language: hu\n"
@@ -17,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.1-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: weblate_web/data.py:33
 msgid "Overview of own translations at main page."
@@ -88,7 +87,7 @@ msgstr ""
 
 #: weblate_web/data.py:81
 msgid "Addons"
-msgstr ""
+msgstr "Bővítmények"
 
 #: weblate_web/data.py:86
 msgid ""
@@ -128,12 +127,12 @@ msgstr "Támogasson minket"
 #: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
-msgstr ""
+msgstr "Összeg EUR-ban"
 
 #: weblate_web/forms.py:56
 #, python-format
 msgid "The minimal amount is %d EUR."
-msgstr ""
+msgstr "A minimális összeg %d EUR."
 
 #: weblate_web/models.py:76
 msgid "Link text"
@@ -149,8 +148,6 @@ msgstr "Az oldal nem található"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
 msgid "Weblate is a libre software web-based continuous localization system."
 msgstr "A Weblate egy ingyenes webes fordításkezelő rendszer."
 
@@ -216,7 +213,7 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:38
 msgid "Cloud ready"
-msgstr ""
+msgstr "Felhő kész"
 
 #: weblate_web/templates/base-features.html:39
 #, fuzzy
@@ -262,7 +259,7 @@ msgstr "Letöltés"
 
 #: weblate_web/templates/base.html:60
 msgid "Pricing"
-msgstr ""
+msgstr "Árak"
 
 #: weblate_web/templates/base.html:61
 msgid "Develop"
@@ -303,7 +300,7 @@ msgstr "Segíts a fordításban!"
 
 #: weblate_web/templates/base.html:124 weblate_web/templates/terms.html:4
 msgid "Terms of Service and Privacy Policy"
-msgstr ""
+msgstr "Felhasználási feltételek és adatvédelem"
 
 #: weblate_web/templates/contribute.html:3
 #: weblate_web/templates/contribute.html:4
@@ -389,7 +386,7 @@ msgstr "A Weblate ingyenes, de köszönettel fogadunk el anyagi támogatást."
 
 #: weblate_web/templates/donate.html:11 weblate_web/templates/donate.html:134
 msgid "Purchase hosting package"
-msgstr ""
+msgstr "Tárhely csomag vásárlása"
 
 #: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:135
 #: weblate_web/templates/download.html:13 weblate_web/templates/hosting.html:12
@@ -405,7 +402,7 @@ msgstr ""
 
 #: weblate_web/templates/donate.html:21
 msgid "Sign out"
-msgstr ""
+msgstr "Kijelentkezés"
 
 #: weblate_web/templates/donate.html:24
 #, fuzzy
@@ -421,19 +418,19 @@ msgstr "Együttműködési oldalak"
 
 #: weblate_web/templates/donate.html:30
 msgid "Reward"
-msgstr ""
+msgstr "Jutalom"
 
 #: weblate_web/templates/donate.html:31
 msgid "Expiry date"
-msgstr ""
+msgstr "Lejárati idő"
 
 #: weblate_web/templates/donate.html:32
 msgid "Renewal"
-msgstr ""
+msgstr "Megújítása"
 
 #: weblate_web/templates/donate.html:33
 msgid "Payments"
-msgstr ""
+msgstr "Kifizetések"
 
 #: weblate_web/templates/donate.html:43
 #: weblate_web/templates/payment/payment.html:37
@@ -442,19 +439,19 @@ msgstr "Szerkesztés"
 
 #: weblate_web/templates/donate.html:45
 msgid "No reward"
-msgstr ""
+msgstr "Nincs jutalom"
 
 #: weblate_web/templates/donate.html:53
 msgid "Expired"
-msgstr ""
+msgstr "Lejárt"
 
 #: weblate_web/templates/donate.html:57
 msgid "Disable renewal"
-msgstr ""
+msgstr "Tiltsa le a megújítást"
 
 #: weblate_web/templates/donate.html:60
 msgid "Does not renew"
-msgstr ""
+msgstr "Nem hosszabbít"
 
 #: weblate_web/templates/donate.html:92
 #, fuzzy
@@ -526,7 +523,7 @@ msgstr "Támogasson minket"
 
 #: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
-msgstr ""
+msgstr "Kriptovaluták"
 
 #: weblate_web/templates/donate.html:166
 #, python-format
@@ -537,7 +534,7 @@ msgstr ""
 
 #: weblate_web/templates/donate.html:171
 msgid "Currency"
-msgstr ""
+msgstr "Pénznem"
 
 #: weblate_web/templates/donate.html:171
 #, fuzzy
@@ -571,11 +568,11 @@ msgstr ""
 
 #: weblate_web/templates/donate/form.html:50
 msgid "Choose your own donation amount"
-msgstr ""
+msgstr "Válassza ki a saját adomány összegét"
 
 #: weblate_web/templates/donate/form.html:56
 msgid "Continue"
-msgstr ""
+msgstr "Tovább"
 
 #: weblate_web/templates/donate/rewards.html:2
 msgid "Link placement on the weblate.org thanks page"
@@ -591,7 +588,7 @@ msgstr ""
 
 #: weblate_web/templates/download-link.html:4
 msgid "PGP signature"
-msgstr ""
+msgstr "PGP aláírás"
 
 #: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
 #: weblate_web/templates/hosting.html:234
@@ -1179,7 +1176,7 @@ msgstr ""
 
 #: weblate_web/templates/hosting.html:179
 msgid "Monthly"
-msgstr ""
+msgstr "Havi"
 
 #: weblate_web/templates/hosting.html:181
 msgid "Contact us"
@@ -1807,7 +1804,7 @@ msgstr ""
 
 #: weblate_web/views.py:275
 msgid "Unknown reason"
-msgstr ""
+msgstr "Ismeretlen ok"
 
 #: weblate_web/views.py:279
 #, fuzzy
