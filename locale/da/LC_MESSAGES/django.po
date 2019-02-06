@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-28 23:20+0100\n"
-"PO-Revision-Date: 2019-01-30 16:47+0000\n"
+"PO-Revision-Date: 2019-02-07 10:11+0000\n"
 "Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/weblate/website/"
 "da/>\n"
@@ -175,7 +175,7 @@ msgstr ""
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
 msgid "Continuous translation"
-msgstr "Kontinuerlig oversættelse"
+msgstr "Løbende oversættelse"
 
 #: weblate_web/templates/base-features.html:7
 msgid "Automated translation closely follows the development of your project."
@@ -249,7 +249,7 @@ msgstr "Download"
 
 #: weblate_web/templates/base.html:60
 msgid "Pricing"
-msgstr "Prissætning"
+msgstr "Priser"
 
 #: weblate_web/templates/base.html:61
 msgid "Develop"
@@ -1201,9 +1201,9 @@ msgid ""
 "languages. The source string is a text unit defined in a translation format, "
 "it can be word, sentence or a paragraph."
 msgstr ""
-"Prissætningen er baseret på antallet af kildestrenge og antallet af "
-"målsprog. Kildestrengen er en tekstenhed defineret i et oversættelsesformat, "
-"kan være et ord, en sætning eller et afsnit."
+"Priserne er baseret på antallet af kildestrenge og antallet af målsprog. "
+"Kildestrengen er en tekstenhed defineret i et oversættelsesformat, kan være "
+"et ord, en sætning eller et afsnit."
 
 #: weblate_web/templates/hosting.html:222
 msgid ""
@@ -1260,7 +1260,7 @@ msgid ""
 "translations across components, quality checks and automatic linking to "
 "source files."
 msgstr ""
-"Weblate er et frit, webbaseret lokaliseringsværktøj med tæt integration med "
+"Weblate er et frit, webbaseret lokaliseringsværktøj med tæt integration af "
 "versionsstyringssystem. Det tilbyder en enkel og overskuelig brugerflade, "
 "udbredelse af oversættelser på tværs af komponenter, kvalitetstjek og "
 "automatisk sammenkædning med kildefiler."
@@ -1629,7 +1629,7 @@ msgstr "GitHub leverer hosting til vores kildekode og issue tracker."
 
 #: weblate_web/templates/thanks.html:26
 msgid "Travis CI is our continuous integration platform."
-msgstr "Travis CI er vores platform til kontinuerlig integration."
+msgstr "Travis CI er vores platform til løbende integration."
 
 #: weblate_web/templates/thanks.html:30
 msgid "Codecov helps us to monitor code coverage of our test suite."
