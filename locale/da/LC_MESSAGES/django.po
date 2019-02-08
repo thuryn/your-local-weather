@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-01-28 23:20+0100\n"
-"PO-Revision-Date: 2019-02-07 10:11+0000\n"
+"PO-Revision-Date: 2019-02-09 13:11+0000\n"
 "Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/weblate/website/"
 "da/>\n"
@@ -1355,7 +1355,7 @@ msgstr "Betalingsbeskrivelse"
 
 #: weblate_web/templates/payment/payment.html:20
 msgid "Payment frequence"
-msgstr "Betalingshyppighed"
+msgstr "Betalingsfrekvens"
 
 #: weblate_web/templates/payment/payment.html:22
 msgid "Payment will be issued yearly till you cancel the subscription."
