@@ -379,7 +379,7 @@
 \nZachód słońca: %7$s</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">Lokalna prognoza pogody</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">Powiadomienia o pogodzie</string>
-    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Dzień</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Temperatura</string>
     <string name="graph_wind_label" tools:ignore="MissingTranslation">Wiatr</string>
     <string name="graph_rain_label" tools:ignore="MissingTranslation">Deszcz</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Śnieg</string>
@@ -445,4 +445,44 @@
     <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Niestandardowe z prognozą</string>
     <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Styl wizualnego powiadomienia</string>
     <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Styl ikony paska stanu</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">Widoczne ustawienia wykresów</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">Połączone ustawienia wykresu</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">W połączeniu</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Wiatr</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Deszcz</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Deszcz (bar)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Śnieg</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Śnieg (bar)</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Ciśnienie</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Wiatr</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Deszcz/Śnieg</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Ciśnienie</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Wykresy do wyświetlenia</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Dane dla połączonego wykresu</string>
+    <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Pokaż legendę na wykresie</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 dni</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 dni</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 dni</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (interwał 3-godzinny)</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (interwał 3-godzinny)</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (interwał 3-godzinny)</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Pokaż wykres według rozdzielczości własnej (gdy wykres jest zbyt mały)</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Pokaż ustawienia na widżecie</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Przycisk ustawień wykresu widżetów</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Przycisk ustawień lokalizacji widgetu</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Przycisk ustawień akcji widżetu</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Pokaż dzień według skrótu</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Liczba dni dla prognozy</string>
+    <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Ustawienie lokalizacji</string>
+    <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">Etykieta miasta</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">Aktualna ikona pogody</string>
+    <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">Prognoza pogody</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">Wykres</string>
+    <string name="widget_action_main_screen" tools:ignore="MissingTranslation">Główny ekran</string>
+    <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">Ekran prognozy pogody</string>
+    <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">Ekran wykresów</string>
+    <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Zmień lokalizację</string>
+    <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Pokaż lokalizację w widżecie</string>
 </resources>
