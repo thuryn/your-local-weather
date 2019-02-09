@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Weblate 1.2\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-28 23:20+0100\n"
+"POT-Creation-Date: 2019-02-09 15:05+0100\n"
 "PO-Revision-Date: 2019-02-01 06:40+0000\n"
 "Last-Translator: WaldiS <admin@sto.ugu.pl>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/weblate/website/"
@@ -130,12 +130,12 @@ msgstr "Zarządzanie użytkownikami"
 msgid "Donation recurrence"
 msgstr "Powtórz darowiznę"
 
-#: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
+#: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
 msgstr "Kwota w EUR"
 
-#: weblate_web/forms.py:56
+#: weblate_web/forms.py:57
 #, python-format
 msgid "The minimal amount is %d EUR."
 msgstr "Minimalna kwota to %d EUR."
@@ -177,11 +177,18 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-msgid "Continuous translation"
+#, fuzzy
+#| msgid "Continuous translation"
+msgid "Continuous localization"
 msgstr "Tłumaczenie ciągłe"
 
 #: weblate_web/templates/base-features.html:7
-msgid "Automated translation closely follows the development of your project."
+#, fuzzy
+#| msgid ""
+#| "Automated translation closely follows the development of your project."
+msgid ""
+"Automated localization workflow closely follows the development of your "
+"project."
 msgstr "Automatyczne tłumaczenie ściśle śledzi rozwój twojego projektu."
 
 #: weblate_web/templates/base-features.html:15
@@ -266,30 +273,26 @@ msgid "Support"
 msgstr "Wsparcie techniczne"
 
 #: weblate_web/templates/base.html:64
-msgid "Tour"
-msgstr "Wycieczka"
-
-#: weblate_web/templates/base.html:65
 msgid "Thanks"
 msgstr "Podziękowania"
 
-#: weblate_web/templates/base.html:66
+#: weblate_web/templates/base.html:65
 msgid "Blog"
 msgstr "Blog"
 
-#: weblate_web/templates/base.html:67
+#: weblate_web/templates/base.html:66
 msgid "Docs"
 msgstr "Dokumentacja"
 
-#: weblate_web/templates/base.html:68
+#: weblate_web/templates/base.html:67
 msgid "Hosting"
 msgstr "Hosting"
 
-#: weblate_web/templates/base.html:80
+#: weblate_web/templates/base.html:79
 msgid "Help with translations!"
 msgstr "Pomóż tłumaczyć!"
 
-#: weblate_web/templates/base.html:124 weblate_web/templates/terms.html:4
+#: weblate_web/templates/base.html:123 weblate_web/templates/terms.html:4
 msgid "Terms of Service and Privacy Policy"
 msgstr "Zasady usługi i polityka prywatności"
 
@@ -1154,11 +1157,6 @@ msgstr "Pamięć tłumaczenia"
 msgid "Priority email support"
 msgstr "Priorytety obsługi e-mail"
 
-#: weblate_web/templates/hosting.html:165
-#: weblate_web/templates/hosting.html:173
-msgid "Available on request"
-msgstr "Dostępny na żądanie"
-
 #: weblate_web/templates/hosting.html:168
 msgid "Custom domain name with SSL"
 msgstr "Dostosowana nazwa domeny z SSL"
@@ -1175,6 +1173,10 @@ msgid ""
 "Additional charge %(price)s EUR/year, only available with yearly billing"
 msgstr ""
 "Dodatkowa opłata %(price)s EUR/rok, dostępna tylko przy rozliczeniu rocznym"
+
+#: weblate_web/templates/hosting.html:173
+msgid "Available on request"
+msgstr "Dostępny na żądanie"
 
 #: weblate_web/templates/hosting.html:179
 msgid "Monthly"
@@ -1263,9 +1265,10 @@ msgstr "Przyciągnij tłumaczy bliżej rozwoju"
 msgid "Start using Weblate"
 msgstr "Zacznij korzystać z Weblate"
 
-#: weblate_web/templates/index.html:13
-msgid "Try the live demo server"
-msgstr "Wypróbuj serwer demonstracyjny na żywo"
+#: weblate_web/templates/index.html:13 weblate_web/templates/try.html:3
+#: weblate_web/templates/try.html:4 weblate_web/templates/try.html:12
+msgid "Try Weblate"
+msgstr "Wypróbuj Weblate"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
@@ -1689,26 +1692,12 @@ msgstr ""
 msgid "Support our project and get link placement on this page."
 msgstr "Wesprzyj nasz projekt i znajdź link na tej stronie."
 
-#: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
-msgid "Weblate tour"
-msgstr "Wycieczka po Weblate"
-
-#: weblate_web/templates/tour.html:6
-msgid "Weblate has useful features for every crowdsourced translation."
+#: weblate_web/templates/try.html:6
+#, fuzzy
+#| msgid "Weblate has useful features for every crowdsourced translation."
+msgid "Weblate has useful features for every crowdsourced localization."
 msgstr ""
 "Weblate posiada użyteczne cechy dla każdego tłumaczenia typu crowdsource."
-
-#: weblate_web/templates/tour.html:11 weblate_web/templates/try.html:12
-msgid "Try our demo"
-msgstr "Wypróbuj nasze demo"
-
-#: weblate_web/templates/try.html:3 weblate_web/templates/try.html:4
-msgid "Try Weblate"
-msgstr "Wypróbuj Weblate"
-
-#: weblate_web/templates/try.html:6
-msgid "Weblate is easy to deploy as an appliance."
-msgstr "Weblate jest łatwe do wdrożenia w chmurze."
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
@@ -1734,17 +1723,10 @@ msgstr ""
 "użytkownika: <code>review</code> i hasłem: <code>review</code>."
 
 #: weblate_web/templates/try.html:27
-msgid "Appliances"
-msgstr "Obrazy"
-
-#: weblate_web/templates/try.html:30
-#, python-format
-msgid ""
-"Check out the <a href=\"%(download_url)s\">download page</a> for appliances, "
-"providing an easy way to deploy Weblate in the cloud."
-msgstr ""
-"Sprawdź <a href=\"%(download_url)s\">stronę pobierania</a> dla urządzeń, "
-"dzięki czemu będziesz mógł łatwo wdrożyć Weblate w chmurze."
+#, fuzzy
+#| msgid "Weblate screenshot"
+msgid "Screenshots"
+msgstr "Zrzuty ekranu Weblate"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
@@ -1817,6 +1799,31 @@ msgstr "Nieznany powód"
 #: weblate_web/views.py:279
 msgid "Thank you for your donation."
 msgstr "Dziękuję za darowiznę."
+
+#~ msgid "Tour"
+#~ msgstr "Wycieczka"
+
+#~ msgid "Try the live demo server"
+#~ msgstr "Wypróbuj serwer demonstracyjny na żywo"
+
+#~ msgid "Weblate tour"
+#~ msgstr "Wycieczka po Weblate"
+
+#~ msgid "Try our demo"
+#~ msgstr "Wypróbuj nasze demo"
+
+#~ msgid "Weblate is easy to deploy as an appliance."
+#~ msgstr "Weblate jest łatwe do wdrożenia w chmurze."
+
+#~ msgid "Appliances"
+#~ msgstr "Obrazy"
+
+#~ msgid ""
+#~ "Check out the <a href=\"%(download_url)s\">download page</a> for "
+#~ "appliances, providing an easy way to deploy Weblate in the cloud."
+#~ msgstr ""
+#~ "Sprawdź <a href=\"%(download_url)s\">stronę pobierania</a> dla urządzeń, "
+#~ "dzięki czemu będziesz mógł łatwo wdrożyć Weblate w chmurze."
 
 #~ msgid "Weblate is a free web-based translation management system."
 #~ msgstr "Weblate to darmowy, internetowy system zarządzania tłumaczeniem."

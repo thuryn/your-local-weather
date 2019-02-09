@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-28 23:20+0100\n"
+"POT-Creation-Date: 2019-02-09 15:05+0100\n"
 "PO-Revision-Date: 2018-07-23 11:06+0000\n"
 "Last-Translator: Michal Čihař <michal@cihar.com>\n"
 "Language-Team: Greek <https://hosted.weblate.org/projects/weblate/website/el/"
@@ -129,12 +129,12 @@ msgstr "Διαχείριση χρήστη"
 msgid "Donation recurrence"
 msgstr "Διεύθυνση πληρωμής"
 
-#: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
+#: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
 msgstr ""
 
-#: weblate_web/forms.py:56
+#: weblate_web/forms.py:57
 #, python-format
 msgid "The minimal amount is %d EUR."
 msgstr ""
@@ -177,7 +177,9 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-msgid "Continuous translation"
+#, fuzzy
+#| msgid "Continuous translation"
+msgid "Continuous localization"
 msgstr "Συνεχής μετάφραση"
 
 #: weblate_web/templates/base-features.html:7
@@ -185,7 +187,9 @@ msgstr "Συνεχής μετάφραση"
 #| msgid ""
 #| "Automated translation process can closely follow development of your "
 #| "project."
-msgid "Automated translation closely follows the development of your project."
+msgid ""
+"Automated localization workflow closely follows the development of your "
+"project."
 msgstr ""
 "Η αυτοματοποιημένη διαδικασία μετάφρασης μπορεί να ακολουθεί την ανάπτυξη "
 "του έργου σας από κοντά."
@@ -290,30 +294,26 @@ msgid "Support"
 msgstr "Υποστήριξη"
 
 #: weblate_web/templates/base.html:64
-msgid "Tour"
-msgstr "Περιοδεία"
-
-#: weblate_web/templates/base.html:65
 msgid "Thanks"
 msgstr "Ευχαριστίες"
 
-#: weblate_web/templates/base.html:66
+#: weblate_web/templates/base.html:65
 msgid "Blog"
 msgstr "Ιστολόγιο"
 
-#: weblate_web/templates/base.html:67
+#: weblate_web/templates/base.html:66
 msgid "Docs"
 msgstr "Έγγραφα"
 
-#: weblate_web/templates/base.html:68
+#: weblate_web/templates/base.html:67
 msgid "Hosting"
 msgstr "Φιλοξενία"
 
-#: weblate_web/templates/base.html:80
+#: weblate_web/templates/base.html:79
 msgid "Help with translations!"
 msgstr "Βοήθεια με μεταφράσεις!"
 
-#: weblate_web/templates/base.html:124 weblate_web/templates/terms.html:4
+#: weblate_web/templates/base.html:123 weblate_web/templates/terms.html:4
 msgid "Terms of Service and Privacy Policy"
 msgstr ""
 
@@ -1211,11 +1211,6 @@ msgstr "Ροή εργασιών μετάφρασης"
 msgid "Priority email support"
 msgstr "Υποστήριξη ηλεκτρονικής αλληλογραφίας προτεραιότητας"
 
-#: weblate_web/templates/hosting.html:165
-#: weblate_web/templates/hosting.html:173
-msgid "Available on request"
-msgstr "Διαθέσιμο μετά από αίτημα"
-
 #: weblate_web/templates/hosting.html:168
 msgid "Custom domain name with SSL"
 msgstr "Προσαρμοσμένο όνομα domain με SSL"
@@ -1231,6 +1226,10 @@ msgstr "Το δικό μου domain"
 msgid ""
 "Additional charge %(price)s EUR/year, only available with yearly billing"
 msgstr ""
+
+#: weblate_web/templates/hosting.html:173
+msgid "Available on request"
+msgstr "Διαθέσιμο μετά από αίτημα"
 
 #: weblate_web/templates/hosting.html:179
 msgid "Monthly"
@@ -1332,11 +1331,10 @@ msgstr "Υπηρεσίες συμβουλευτικής ή προσαρμοσμ�
 msgid "Start using Weblate"
 msgstr "Φιλοξενία Weblate"
 
-#: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo"
-msgid "Try the live demo server"
-msgstr "Δοκιμάστε το demo μας"
+#: weblate_web/templates/index.html:13 weblate_web/templates/try.html:3
+#: weblate_web/templates/try.html:4 weblate_web/templates/try.html:12
+msgid "Try Weblate"
+msgstr "Δοκιμάστε το Weblate"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
@@ -1800,25 +1798,11 @@ msgstr ""
 "Υποστηρίξτε το έργο μας στο Bountysource Salt και λάβετε αποκλειστική θέση "
 "λογοτύπου σε αυτή τη σελίδα."
 
-#: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
-msgid "Weblate tour"
-msgstr "Περιοδεία του Weblate"
-
-#: weblate_web/templates/tour.html:6
-msgid "Weblate has useful features for every crowdsourced translation."
-msgstr "Το Weblate έχει χρήσιμα χαρακτηριστικά για κάθε πολυπληθή μετάφραση."
-
-#: weblate_web/templates/tour.html:11 weblate_web/templates/try.html:12
-msgid "Try our demo"
-msgstr "Δοκιμάστε το demo μας"
-
-#: weblate_web/templates/try.html:3 weblate_web/templates/try.html:4
-msgid "Try Weblate"
-msgstr "Δοκιμάστε το Weblate"
-
 #: weblate_web/templates/try.html:6
-msgid "Weblate is easy to deploy as an appliance."
-msgstr "Το Weblate είναι εύκολο να ενσωματωθεί ως εφαρμογή."
+#, fuzzy
+#| msgid "Weblate has useful features for every crowdsourced translation."
+msgid "Weblate has useful features for every crowdsourced localization."
+msgstr "Το Weblate έχει χρήσιμα χαρακτηριστικά για κάθε πολυπληθή μετάφραση."
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
@@ -1844,17 +1828,10 @@ msgstr ""
 "παρωνύμιο: <code>review</code>, και συνθηματικό: <code>review</code>."
 
 #: weblate_web/templates/try.html:27
-msgid "Appliances"
-msgstr "Εφαρμογές"
-
-#: weblate_web/templates/try.html:30
-#, python-format
-msgid ""
-"Check out the <a href=\"%(download_url)s\">download page</a> for appliances, "
-"providing an easy way to deploy Weblate in the cloud."
-msgstr ""
-"Ελέγξτε τη <a href=\"%(download_url)s\">σελίδα λήψης</a> για εφαρμογές που "
-"παρέχουν εύκολο τρόπο ενσωμάτωσης του Weblate σε σύννεφο."
+#, fuzzy
+#| msgid "Weblate screenshot"
+msgid "Screenshots"
+msgstr "Στιγμιότυπο του Weblate"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
@@ -1928,6 +1905,33 @@ msgstr ""
 #| msgid "Thank you for ordering hosting!"
 msgid "Thank you for your donation."
 msgstr "Ευχαριστούμε που παραγγειλατε φιλοξενία!"
+
+#~ msgid "Tour"
+#~ msgstr "Περιοδεία"
+
+#, fuzzy
+#~| msgid "Try our demo"
+#~ msgid "Try the live demo server"
+#~ msgstr "Δοκιμάστε το demo μας"
+
+#~ msgid "Weblate tour"
+#~ msgstr "Περιοδεία του Weblate"
+
+#~ msgid "Try our demo"
+#~ msgstr "Δοκιμάστε το demo μας"
+
+#~ msgid "Weblate is easy to deploy as an appliance."
+#~ msgstr "Το Weblate είναι εύκολο να ενσωματωθεί ως εφαρμογή."
+
+#~ msgid "Appliances"
+#~ msgstr "Εφαρμογές"
+
+#~ msgid ""
+#~ "Check out the <a href=\"%(download_url)s\">download page</a> for "
+#~ "appliances, providing an easy way to deploy Weblate in the cloud."
+#~ msgstr ""
+#~ "Ελέγξτε τη <a href=\"%(download_url)s\">σελίδα λήψης</a> για εφαρμογές "
+#~ "που παρέχουν εύκολο τρόπο ενσωμάτωσης του Weblate σε σύννεφο."
 
 #~ msgid "Weblate is a free web-based translation management system."
 #~ msgstr ""

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-28 23:20+0100\n"
+"POT-Creation-Date: 2019-02-09 15:05+0100\n"
 "PO-Revision-Date: 2019-02-05 07:13+0000\n"
 "Last-Translator: farkasg.zoltan <farkasg.zoltan@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/weblate/"
@@ -124,12 +124,12 @@ msgstr "Felhasználók kezelése"
 msgid "Donation recurrence"
 msgstr "Támogasson minket"
 
-#: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
+#: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
 msgstr "Összeg EUR-ban"
 
-#: weblate_web/forms.py:56
+#: weblate_web/forms.py:57
 #, python-format
 msgid "The minimal amount is %d EUR."
 msgstr "A minimális összeg %d EUR."
@@ -169,7 +169,9 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-msgid "Continuous translation"
+#, fuzzy
+#| msgid "Continuous translation"
+msgid "Continuous localization"
 msgstr "Folyamatos fordítás"
 
 #: weblate_web/templates/base-features.html:7
@@ -177,7 +179,9 @@ msgstr "Folyamatos fordítás"
 #| msgid ""
 #| "Automated translation process can closely follow development of your "
 #| "project."
-msgid "Automated translation closely follows the development of your project."
+msgid ""
+"Automated localization workflow closely follows the development of your "
+"project."
 msgstr ""
 "Az automatikus fordítási folyamat kis késleltetéssel tudja követni az Ön "
 "projektjének fejlődését."
@@ -275,30 +279,26 @@ msgid "Support"
 msgstr "Technikai támogatás"
 
 #: weblate_web/templates/base.html:64
-msgid "Tour"
-msgstr "Bemutató"
-
-#: weblate_web/templates/base.html:65
 msgid "Thanks"
 msgstr "Köszönet"
 
-#: weblate_web/templates/base.html:66
+#: weblate_web/templates/base.html:65
 msgid "Blog"
 msgstr "Blog"
 
-#: weblate_web/templates/base.html:67
+#: weblate_web/templates/base.html:66
 msgid "Docs"
 msgstr "Dokumentáció"
 
-#: weblate_web/templates/base.html:68
+#: weblate_web/templates/base.html:67
 msgid "Hosting"
 msgstr "Elhelyezés"
 
-#: weblate_web/templates/base.html:80
+#: weblate_web/templates/base.html:79
 msgid "Help with translations!"
 msgstr "Segíts a fordításban!"
 
-#: weblate_web/templates/base.html:124 weblate_web/templates/terms.html:4
+#: weblate_web/templates/base.html:123 weblate_web/templates/terms.html:4
 msgid "Terms of Service and Privacy Policy"
 msgstr "Felhasználási feltételek és adatvédelem"
 
@@ -1153,11 +1153,6 @@ msgstr "Fordítási memória"
 msgid "Priority email support"
 msgstr "Elsőbbségi e-mailes támogatás"
 
-#: weblate_web/templates/hosting.html:165
-#: weblate_web/templates/hosting.html:173
-msgid "Available on request"
-msgstr "Kérésre elérhető"
-
 #: weblate_web/templates/hosting.html:168
 msgid "Custom domain name with SSL"
 msgstr "Saját domainnév SSL-lel"
@@ -1173,6 +1168,10 @@ msgstr "Saját domain"
 msgid ""
 "Additional charge %(price)s EUR/year, only available with yearly billing"
 msgstr ""
+
+#: weblate_web/templates/hosting.html:173
+msgid "Available on request"
+msgstr "Kérésre elérhető"
 
 #: weblate_web/templates/hosting.html:179
 msgid "Monthly"
@@ -1262,11 +1261,10 @@ msgstr ""
 msgid "Start using Weblate"
 msgstr "Hosting Weblate"
 
-#: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo"
-msgid "Try the live demo server"
-msgstr "Demo kipróbálása"
+#: weblate_web/templates/index.html:13 weblate_web/templates/try.html:3
+#: weblate_web/templates/try.html:4 weblate_web/templates/try.html:12
+msgid "Try Weblate"
+msgstr "Próbálja ki a Weblate-et"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
@@ -1689,25 +1687,11 @@ msgstr ""
 msgid "Support our project and get link placement on this page."
 msgstr ""
 
-#: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
-msgid "Weblate tour"
-msgstr "Weblate túra"
-
-#: weblate_web/templates/tour.html:6
-msgid "Weblate has useful features for every crowdsourced translation."
-msgstr "A Weblate hasznos funkciókat tartalmaz minden közösségi fordításhoz."
-
-#: weblate_web/templates/tour.html:11 weblate_web/templates/try.html:12
-msgid "Try our demo"
-msgstr "Demo kipróbálása"
-
-#: weblate_web/templates/try.html:3 weblate_web/templates/try.html:4
-msgid "Try Weblate"
-msgstr "Próbálja ki a Weblate-et"
-
 #: weblate_web/templates/try.html:6
-msgid "Weblate is easy to deploy as an appliance."
-msgstr "A Weblate könnyen telepíthető appliance-ként."
+#, fuzzy
+#| msgid "Weblate has useful features for every crowdsourced translation."
+msgid "Weblate has useful features for every crowdsourced localization."
+msgstr "A Weblate hasznos funkciókat tartalmaz minden közösségi fordításhoz."
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
@@ -1730,17 +1714,10 @@ msgid ""
 msgstr ""
 
 #: weblate_web/templates/try.html:27
-msgid "Appliances"
-msgstr "Appliance-ek"
-
-#: weblate_web/templates/try.html:30
-#, python-format
-msgid ""
-"Check out the <a href=\"%(download_url)s\">download page</a> for appliances, "
-"providing an easy way to deploy Weblate in the cloud."
-msgstr ""
-"Látogasson el a <a href=\"%(download_url)s\">letöltési oldalra</a> az "
-"appliance eléréséhez, amivel egyszerű a Weblate kihelyezése a felhőbe."
+#, fuzzy
+#| msgid "Weblate screenshot"
+msgid "Screenshots"
+msgstr "Weblate képernyőkép"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
@@ -1811,6 +1788,33 @@ msgstr "Ismeretlen ok"
 #| msgid "Thank you for ordering hosting!"
 msgid "Thank you for your donation."
 msgstr "Köszönjük, hogy elhelyezést rendelt!"
+
+#~ msgid "Tour"
+#~ msgstr "Bemutató"
+
+#, fuzzy
+#~| msgid "Try our demo"
+#~ msgid "Try the live demo server"
+#~ msgstr "Demo kipróbálása"
+
+#~ msgid "Weblate tour"
+#~ msgstr "Weblate túra"
+
+#~ msgid "Try our demo"
+#~ msgstr "Demo kipróbálása"
+
+#~ msgid "Weblate is easy to deploy as an appliance."
+#~ msgstr "A Weblate könnyen telepíthető appliance-ként."
+
+#~ msgid "Appliances"
+#~ msgstr "Appliance-ek"
+
+#~ msgid ""
+#~ "Check out the <a href=\"%(download_url)s\">download page</a> for "
+#~ "appliances, providing an easy way to deploy Weblate in the cloud."
+#~ msgstr ""
+#~ "Látogasson el a <a href=\"%(download_url)s\">letöltési oldalra</a> az "
+#~ "appliance eléréséhez, amivel egyszerű a Weblate kihelyezése a felhőbe."
 
 #~ msgid "Weblate is a free web-based translation management system."
 #~ msgstr "A Weblate egy ingyenes webes fordításkezelő rendszer."

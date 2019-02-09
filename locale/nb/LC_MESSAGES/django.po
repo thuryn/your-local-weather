@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-28 23:20+0100\n"
+"POT-Creation-Date: 2019-02-09 15:05+0100\n"
 "PO-Revision-Date: 2019-01-29 13:03+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/weblate/"
@@ -130,12 +130,12 @@ msgstr "Brukeradministrasjon"
 msgid "Donation recurrence"
 msgstr "Donasjonsgjentagelse"
 
-#: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
+#: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
 msgstr "Beløp i EUR"
 
-#: weblate_web/forms.py:56
+#: weblate_web/forms.py:57
 #, python-format
 msgid "The minimal amount is %d EUR."
 msgstr "Minimumsbeløpet er %d EUR."
@@ -177,11 +177,18 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-msgid "Continuous translation"
+#, fuzzy
+#| msgid "Continuous translation"
+msgid "Continuous localization"
 msgstr "Kontinuerlig oversettelse"
 
 #: weblate_web/templates/base-features.html:7
-msgid "Automated translation closely follows the development of your project."
+#, fuzzy
+#| msgid ""
+#| "Automated translation closely follows the development of your project."
+msgid ""
+"Automated localization workflow closely follows the development of your "
+"project."
 msgstr ""
 "Automatisert oversettelsesprosess følger utviklingen av prosjektet nøye."
 
@@ -265,30 +272,26 @@ msgid "Support"
 msgstr "Støtte"
 
 #: weblate_web/templates/base.html:64
-msgid "Tour"
-msgstr "Omvisning"
-
-#: weblate_web/templates/base.html:65
 msgid "Thanks"
 msgstr "Mange takk"
 
-#: weblate_web/templates/base.html:66
+#: weblate_web/templates/base.html:65
 msgid "Blog"
 msgstr "Blogg"
 
-#: weblate_web/templates/base.html:67
+#: weblate_web/templates/base.html:66
 msgid "Docs"
 msgstr "Dokumenter"
 
-#: weblate_web/templates/base.html:68
+#: weblate_web/templates/base.html:67
 msgid "Hosting"
 msgstr "Vertslagring"
 
-#: weblate_web/templates/base.html:80
+#: weblate_web/templates/base.html:79
 msgid "Help with translations!"
 msgstr "Hjelp med oversetting!"
 
-#: weblate_web/templates/base.html:124 weblate_web/templates/terms.html:4
+#: weblate_web/templates/base.html:123 weblate_web/templates/terms.html:4
 msgid "Terms of Service and Privacy Policy"
 msgstr "Tjenestevilkår og personvernspraksis"
 
@@ -1134,11 +1137,6 @@ msgstr "Oversettelsesminne"
 msgid "Priority email support"
 msgstr "Prioritert e-posthjelp"
 
-#: weblate_web/templates/hosting.html:165
-#: weblate_web/templates/hosting.html:173
-msgid "Available on request"
-msgstr "Tilgengelig på forespørsel"
-
 #: weblate_web/templates/hosting.html:168
 msgid "Custom domain name with SSL"
 msgstr "Tilpassede domenenavn med SSL"
@@ -1155,6 +1153,10 @@ msgid ""
 "Additional charge %(price)s EUR/year, only available with yearly billing"
 msgstr ""
 "Ytterligere kostnad %(price)s EUR/year, kun tilgjengelig med årvis betaling"
+
+#: weblate_web/templates/hosting.html:173
+msgid "Available on request"
+msgstr "Tilgengelig på forespørsel"
 
 #: weblate_web/templates/hosting.html:179
 msgid "Monthly"
@@ -1241,9 +1243,10 @@ msgstr "Bringer oversettere tettere på utviklingen"
 msgid "Start using Weblate"
 msgstr "Kom i gang med Weblate"
 
-#: weblate_web/templates/index.html:13
-msgid "Try the live demo server"
-msgstr "Prøv vår sanntidsdemotjener"
+#: weblate_web/templates/index.html:13 weblate_web/templates/try.html:3
+#: weblate_web/templates/try.html:4 weblate_web/templates/try.html:12
+msgid "Try Weblate"
+msgstr "Prøv Weblate"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
@@ -1667,25 +1670,11 @@ msgstr ""
 msgid "Support our project and get link placement on this page."
 msgstr "Støtt vårt prosjekt og få eksklusiv logoplassering på denne siden."
 
-#: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
-msgid "Weblate tour"
-msgstr "Presentasjon av Weblate"
-
-#: weblate_web/templates/tour.html:6
-msgid "Weblate has useful features for every crowdsourced translation."
-msgstr "Weblate har nyttige funksjoner til alle dugnadsbaserte oversettelser."
-
-#: weblate_web/templates/tour.html:11 weblate_web/templates/try.html:12
-msgid "Try our demo"
-msgstr "Prøv vår demo"
-
-#: weblate_web/templates/try.html:3 weblate_web/templates/try.html:4
-msgid "Try Weblate"
-msgstr "Prøv Weblate"
-
 #: weblate_web/templates/try.html:6
-msgid "Weblate is easy to deploy as an appliance."
-msgstr "Weblate er enkelt å få i gang som en tjeneste."
+#, fuzzy
+#| msgid "Weblate has useful features for every crowdsourced translation."
+msgid "Weblate has useful features for every crowdsourced localization."
+msgstr "Weblate har nyttige funksjoner til alle dugnadsbaserte oversettelser."
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
@@ -1710,17 +1699,10 @@ msgstr ""
 "<code>review</code> for å teste korrekturlesingsarbeidsflyten der."
 
 #: weblate_web/templates/try.html:27
-msgid "Appliances"
-msgstr "Tjenester"
-
-#: weblate_web/templates/try.html:30
-#, python-format
-msgid ""
-"Check out the <a href=\"%(download_url)s\">download page</a> for appliances, "
-"providing an easy way to deploy Weblate in the cloud."
-msgstr ""
-"Sjekk <a href=\"%(download_url)s\">nedlastingssiden</a> for tjenester, som "
-"tilbyr en enkel måte å implementere Weblate i skyen."
+#, fuzzy
+#| msgid "Weblate screenshot"
+msgid "Screenshots"
+msgstr "Weblate skjermbilder"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
@@ -1791,6 +1773,31 @@ msgstr "Ukjent grunn"
 #: weblate_web/views.py:279
 msgid "Thank you for your donation."
 msgstr "Takk for din donasjon."
+
+#~ msgid "Tour"
+#~ msgstr "Omvisning"
+
+#~ msgid "Try the live demo server"
+#~ msgstr "Prøv vår sanntidsdemotjener"
+
+#~ msgid "Weblate tour"
+#~ msgstr "Presentasjon av Weblate"
+
+#~ msgid "Try our demo"
+#~ msgstr "Prøv vår demo"
+
+#~ msgid "Weblate is easy to deploy as an appliance."
+#~ msgstr "Weblate er enkelt å få i gang som en tjeneste."
+
+#~ msgid "Appliances"
+#~ msgstr "Tjenester"
+
+#~ msgid ""
+#~ "Check out the <a href=\"%(download_url)s\">download page</a> for "
+#~ "appliances, providing an easy way to deploy Weblate in the cloud."
+#~ msgstr ""
+#~ "Sjekk <a href=\"%(download_url)s\">nedlastingssiden</a> for tjenester, "
+#~ "som tilbyr en enkel måte å implementere Weblate i skyen."
 
 #~ msgid "Weblate is a free web-based translation management system."
 #~ msgstr ""

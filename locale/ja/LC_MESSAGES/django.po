@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: weblate-website-ja\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-28 23:20+0100\n"
+"POT-Creation-Date: 2019-02-09 15:05+0100\n"
 "PO-Revision-Date: 2019-01-15 11:20+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/weblate/website/"
@@ -133,12 +133,12 @@ msgstr "ユーザ管理"
 msgid "Donation recurrence"
 msgstr "寄付のアドレス"
 
-#: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
+#: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
 msgstr ""
 
-#: weblate_web/forms.py:56
+#: weblate_web/forms.py:57
 #, python-format
 msgid "The minimal amount is %d EUR."
 msgstr ""
@@ -180,7 +180,9 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-msgid "Continuous translation"
+#, fuzzy
+#| msgid "Continuous translation"
+msgid "Continuous localization"
 msgstr "継続的な翻訳"
 
 #: weblate_web/templates/base-features.html:7
@@ -188,7 +190,9 @@ msgstr "継続的な翻訳"
 #| msgid ""
 #| "Automated translation process can closely follow development of your "
 #| "project."
-msgid "Automated translation closely follows the development of your project."
+msgid ""
+"Automated localization workflow closely follows the development of your "
+"project."
 msgstr ""
 "自動化された翻訳プロセスにより、開発プロジェクトに密に追従することができま"
 "す。"
@@ -291,30 +295,26 @@ msgid "Support"
 msgstr "サポート"
 
 #: weblate_web/templates/base.html:64
-msgid "Tour"
-msgstr "ツアー"
-
-#: weblate_web/templates/base.html:65
 msgid "Thanks"
 msgstr "謝辞"
 
-#: weblate_web/templates/base.html:66
+#: weblate_web/templates/base.html:65
 msgid "Blog"
 msgstr "ブログ"
 
-#: weblate_web/templates/base.html:67
+#: weblate_web/templates/base.html:66
 msgid "Docs"
 msgstr "ドキュメント"
 
-#: weblate_web/templates/base.html:68
+#: weblate_web/templates/base.html:67
 msgid "Hosting"
 msgstr "ホスティング"
 
-#: weblate_web/templates/base.html:80
+#: weblate_web/templates/base.html:79
 msgid "Help with translations!"
 msgstr "翻訳を手伝ってください！"
 
-#: weblate_web/templates/base.html:124 weblate_web/templates/terms.html:4
+#: weblate_web/templates/base.html:123 weblate_web/templates/terms.html:4
 msgid "Terms of Service and Privacy Policy"
 msgstr "利用規約、プライバシー ポリシー"
 
@@ -1181,11 +1181,6 @@ msgstr "翻訳メモリ"
 msgid "Priority email support"
 msgstr "優先メール サポート"
 
-#: weblate_web/templates/hosting.html:165
-#: weblate_web/templates/hosting.html:173
-msgid "Available on request"
-msgstr "リクエストで利用可能"
-
 #: weblate_web/templates/hosting.html:168
 msgid "Custom domain name with SSL"
 msgstr "SSL 使用の独自ドメイン名"
@@ -1201,6 +1196,10 @@ msgstr "独自ドメイン"
 msgid ""
 "Additional charge %(price)s EUR/year, only available with yearly billing"
 msgstr "追加費用は %(price)s ユーロ/年、年払いのみ"
+
+#: weblate_web/templates/hosting.html:173
+msgid "Available on request"
+msgstr "リクエストで利用可能"
 
 #: weblate_web/templates/hosting.html:179
 msgid "Monthly"
@@ -1290,11 +1289,10 @@ msgstr "コンサルティングサービス／独自開発"
 msgid "Start using Weblate"
 msgstr "Weblate の使用を開始する"
 
-#: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
-msgid "Try the live demo server"
-msgstr "デモサーバを試す"
+#: weblate_web/templates/index.html:13 weblate_web/templates/try.html:3
+#: weblate_web/templates/try.html:4 weblate_web/templates/try.html:12
+msgid "Try Weblate"
+msgstr "Weblate の試用"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
@@ -1742,25 +1740,11 @@ msgstr ""
 "Bountysource Salt でプロジェクトをサポートして、独自のロゴをこのページに表示"
 "できます。"
 
-#: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
-msgid "Weblate tour"
-msgstr "Weblate ツアー"
-
-#: weblate_web/templates/tour.html:6
-msgid "Weblate has useful features for every crowdsourced translation."
-msgstr "Weblate では、クラウド型の翻訳に対応した便利な機能を用意しています。"
-
-#: weblate_web/templates/tour.html:11 weblate_web/templates/try.html:12
-msgid "Try our demo"
-msgstr "デモを試す"
-
-#: weblate_web/templates/try.html:3 weblate_web/templates/try.html:4
-msgid "Try Weblate"
-msgstr "Weblate の試用"
-
 #: weblate_web/templates/try.html:6
-msgid "Weblate is easy to deploy as an appliance."
-msgstr "Weblate は、アプライアンスとして簡単にデプロイすることができます。"
+#, fuzzy
+#| msgid "Weblate has useful features for every crowdsourced translation."
+msgid "Weblate has useful features for every crowdsourced localization."
+msgstr "Weblate では、クラウド型の翻訳に対応した便利な機能を用意しています。"
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
@@ -1786,18 +1770,10 @@ msgstr ""
 "パスワード: <code>review</code> でログインしてください。"
 
 #: weblate_web/templates/try.html:27
-msgid "Appliances"
-msgstr "アプライアンス"
-
-#: weblate_web/templates/try.html:30
-#, python-format
-msgid ""
-"Check out the <a href=\"%(download_url)s\">download page</a> for appliances, "
-"providing an easy way to deploy Weblate in the cloud."
-msgstr ""
-"<a href=\"%(download_url)s\">ダウンロードページ</a> でアプライアンスについて"
-"調べてみてください。これを使用することで、 Weblate を簡単にクラウド上に配置す"
-"ることができます。"
+#, fuzzy
+#| msgid "Weblate screenshot"
+msgid "Screenshots"
+msgstr "Weblate のスクリーンショット"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
@@ -1872,6 +1848,34 @@ msgstr ""
 #| msgid "Thank you for ordering hosting!"
 msgid "Thank you for your donation."
 msgstr "ホスティングのご依頼ありがとうございます！"
+
+#~ msgid "Tour"
+#~ msgstr "ツアー"
+
+#, fuzzy
+#~| msgid "Try our demo server"
+#~ msgid "Try the live demo server"
+#~ msgstr "デモサーバを試す"
+
+#~ msgid "Weblate tour"
+#~ msgstr "Weblate ツアー"
+
+#~ msgid "Try our demo"
+#~ msgstr "デモを試す"
+
+#~ msgid "Weblate is easy to deploy as an appliance."
+#~ msgstr "Weblate は、アプライアンスとして簡単にデプロイすることができます。"
+
+#~ msgid "Appliances"
+#~ msgstr "アプライアンス"
+
+#~ msgid ""
+#~ "Check out the <a href=\"%(download_url)s\">download page</a> for "
+#~ "appliances, providing an easy way to deploy Weblate in the cloud."
+#~ msgstr ""
+#~ "<a href=\"%(download_url)s\">ダウンロードページ</a> でアプライアンスについ"
+#~ "て調べてみてください。これを使用することで、 Weblate を簡単にクラウド上に"
+#~ "配置することができます。"
 
 #~ msgid "Weblate is a free web-based translation management system."
 #~ msgstr "Weblate はフリーで Web ベースの翻訳管理システムです。"

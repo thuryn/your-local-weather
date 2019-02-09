@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-28 23:20+0100\n"
+"POT-Creation-Date: 2019-02-09 15:05+0100\n"
 "PO-Revision-Date: 2018-07-23 11:06+0000\n"
 "Last-Translator: Michal Čihař <michal@cihar.com>\n"
 "Language-Team: Breton <https://hosted.weblate.org/projects/weblate/website/"
@@ -129,12 +129,12 @@ msgstr ""
 msgid "Donation recurrence"
 msgstr "Ober un donezon"
 
-#: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
+#: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
 msgstr ""
 
-#: weblate_web/forms.py:56
+#: weblate_web/forms.py:57
 #, python-format
 msgid "The minimal amount is %d EUR."
 msgstr ""
@@ -177,7 +177,9 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-msgid "Continuous translation"
+#, fuzzy
+#| msgid "Continuous translation"
+msgid "Continuous localization"
 msgstr "Treiñ dibaouez"
 
 #: weblate_web/templates/base-features.html:7
@@ -185,7 +187,9 @@ msgstr "Treiñ dibaouez"
 #| msgid ""
 #| "Automated translation process can closely follow development of your "
 #| "project."
-msgid "Automated translation closely follows the development of your project."
+msgid ""
+"Automated localization workflow closely follows the development of your "
+"project."
 msgstr ""
 "Gallout a ra un argerzh treiñ emgefre heuliañ a-dost araokadennoù ho raktres."
 
@@ -286,30 +290,26 @@ msgid "Support"
 msgstr "Harpañ"
 
 #: weblate_web/templates/base.html:64
-msgid "Tour"
-msgstr "Troiad"
-
-#: weblate_web/templates/base.html:65
 msgid "Thanks"
 msgstr "Trugarez"
 
-#: weblate_web/templates/base.html:66
+#: weblate_web/templates/base.html:65
 msgid "Blog"
 msgstr "Blog"
 
-#: weblate_web/templates/base.html:67
+#: weblate_web/templates/base.html:66
 msgid "Docs"
 msgstr "Teuliadoù"
 
-#: weblate_web/templates/base.html:68
+#: weblate_web/templates/base.html:67
 msgid "Hosting"
 msgstr "Herberc'hiañ"
 
-#: weblate_web/templates/base.html:80
+#: weblate_web/templates/base.html:79
 msgid "Help with translations!"
 msgstr "Roit an dorn deomp evit treiñ !"
 
-#: weblate_web/templates/base.html:124 weblate_web/templates/terms.html:4
+#: weblate_web/templates/base.html:123 weblate_web/templates/terms.html:4
 msgid "Terms of Service and Privacy Policy"
 msgstr ""
 
@@ -1191,11 +1191,6 @@ msgstr "Labour treiñ"
 msgid "Priority email support"
 msgstr ""
 
-#: weblate_web/templates/hosting.html:165
-#: weblate_web/templates/hosting.html:173
-msgid "Available on request"
-msgstr ""
-
 #: weblate_web/templates/hosting.html:168
 msgid "Custom domain name with SSL"
 msgstr ""
@@ -1210,6 +1205,10 @@ msgstr ""
 #, python-format
 msgid ""
 "Additional charge %(price)s EUR/year, only available with yearly billing"
+msgstr ""
+
+#: weblate_web/templates/hosting.html:173
+msgid "Available on request"
 msgstr ""
 
 #: weblate_web/templates/hosting.html:179
@@ -1298,11 +1297,10 @@ msgstr ""
 msgid "Start using Weblate"
 msgstr "Herberc'hiañ Weblate"
 
-#: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo"
-msgid "Try the live demo server"
-msgstr "Esaeit hon demo"
+#: weblate_web/templates/index.html:13 weblate_web/templates/try.html:3
+#: weblate_web/templates/try.html:4 weblate_web/templates/try.html:12
+msgid "Try Weblate"
+msgstr "Amprouit Weblate"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
@@ -1734,27 +1732,11 @@ msgstr ""
 msgid "Support our project and get link placement on this page."
 msgstr ""
 
-#: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
-msgid "Weblate tour"
-msgstr "Un tamm tro dre Weblate"
-
-#: weblate_web/templates/tour.html:6
+#: weblate_web/templates/try.html:6
 #, fuzzy
 #| msgid "Weblate has useful features for every translation."
-msgid "Weblate has useful features for every crowdsourced translation."
+msgid "Weblate has useful features for every crowdsourced localization."
 msgstr "Perzhioù talvoudus evit pep troidigezh zo gant Weblate."
-
-#: weblate_web/templates/tour.html:11 weblate_web/templates/try.html:12
-msgid "Try our demo"
-msgstr "Esaeit hon demo"
-
-#: weblate_web/templates/try.html:3 weblate_web/templates/try.html:4
-msgid "Try Weblate"
-msgstr "Amprouit Weblate"
-
-#: weblate_web/templates/try.html:6
-msgid "Weblate is easy to deploy as an appliance."
-msgstr "Un aez eo displegañ Weblate evel arload."
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
@@ -1783,21 +1765,10 @@ msgid ""
 msgstr ""
 
 #: weblate_web/templates/try.html:27
-msgid "Appliances"
-msgstr "Skeudennoù pladenn"
-
-#: weblate_web/templates/try.html:30
-#, fuzzy, python-format
-#| msgid ""
-#| "Check our <a href=\"%(download_url)s\">download page</a> for appliances, "
-#| "which provide an easy way to deploy Weblate in the cloud."
-msgid ""
-"Check out the <a href=\"%(download_url)s\">download page</a> for appliances, "
-"providing an easy way to deploy Weblate in the cloud."
-msgstr ""
-"Sellit ouzh hor <a href=\"%(download_url)s\">pajenn bellgargañ</a> evit an "
-"arloadegoù; ar re-mañ a bourchas un doare aes da zispakañ Weblate er "
-"goumoulenn."
+#, fuzzy
+#| msgid "Weblate screenshot"
+msgid "Screenshots"
+msgstr "Tapadenn skramm Weblate"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
@@ -1866,6 +1837,38 @@ msgstr ""
 #: weblate_web/views.py:279
 msgid "Thank you for your donation."
 msgstr ""
+
+#~ msgid "Tour"
+#~ msgstr "Troiad"
+
+#, fuzzy
+#~| msgid "Try our demo"
+#~ msgid "Try the live demo server"
+#~ msgstr "Esaeit hon demo"
+
+#~ msgid "Weblate tour"
+#~ msgstr "Un tamm tro dre Weblate"
+
+#~ msgid "Try our demo"
+#~ msgstr "Esaeit hon demo"
+
+#~ msgid "Weblate is easy to deploy as an appliance."
+#~ msgstr "Un aez eo displegañ Weblate evel arload."
+
+#~ msgid "Appliances"
+#~ msgstr "Skeudennoù pladenn"
+
+#, fuzzy
+#~| msgid ""
+#~| "Check our <a href=\"%(download_url)s\">download page</a> for appliances, "
+#~| "which provide an easy way to deploy Weblate in the cloud."
+#~ msgid ""
+#~ "Check out the <a href=\"%(download_url)s\">download page</a> for "
+#~ "appliances, providing an easy way to deploy Weblate in the cloud."
+#~ msgstr ""
+#~ "Sellit ouzh hor <a href=\"%(download_url)s\">pajenn bellgargañ</a> evit "
+#~ "an arloadegoù; ar re-mañ a bourchas un doare aes da zispakañ Weblate er "
+#~ "goumoulenn."
 
 #~ msgid "Weblate is a free web-based translation management system."
 #~ msgstr ""

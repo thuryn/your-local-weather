@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Swedish (Weblate)\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-28 23:20+0100\n"
+"POT-Creation-Date: 2019-02-09 15:05+0100\n"
 "PO-Revision-Date: 2019-01-15 11:20+0000\n"
 "Last-Translator: Johan Jacobsson <johan.jacobsson@telia.com>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/weblate/website/"
@@ -128,12 +128,12 @@ msgstr "Användarhantering"
 msgid "Donation recurrence"
 msgstr "Återkommande donation"
 
-#: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
+#: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
 msgstr "Belopp i euro"
 
-#: weblate_web/forms.py:56
+#: weblate_web/forms.py:57
 #, python-format
 msgid "The minimal amount is %d EUR."
 msgstr ""
@@ -175,7 +175,9 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-msgid "Continuous translation"
+#, fuzzy
+#| msgid "Continuous translation"
+msgid "Continuous localization"
 msgstr "Kontinuerlig översättning"
 
 #: weblate_web/templates/base-features.html:7
@@ -183,7 +185,9 @@ msgstr "Kontinuerlig översättning"
 #| msgid ""
 #| "Automated translation process can closely follow development of your "
 #| "project."
-msgid "Automated translation closely follows the development of your project."
+msgid ""
+"Automated localization workflow closely follows the development of your "
+"project."
 msgstr ""
 "En automatiserad översättningsprocess kan nära följa utvecklingen av ditt "
 "projekt."
@@ -289,30 +293,26 @@ msgid "Support"
 msgstr "Support"
 
 #: weblate_web/templates/base.html:64
-msgid "Tour"
-msgstr "Rundtur"
-
-#: weblate_web/templates/base.html:65
 msgid "Thanks"
 msgstr "Tack"
 
-#: weblate_web/templates/base.html:66
+#: weblate_web/templates/base.html:65
 msgid "Blog"
 msgstr "Blogg"
 
-#: weblate_web/templates/base.html:67
+#: weblate_web/templates/base.html:66
 msgid "Docs"
 msgstr "Dokumentation"
 
-#: weblate_web/templates/base.html:68
+#: weblate_web/templates/base.html:67
 msgid "Hosting"
 msgstr "Hosting"
 
-#: weblate_web/templates/base.html:80
+#: weblate_web/templates/base.html:79
 msgid "Help with translations!"
 msgstr "Hjälp med översättningar!"
 
-#: weblate_web/templates/base.html:124 weblate_web/templates/terms.html:4
+#: weblate_web/templates/base.html:123 weblate_web/templates/terms.html:4
 msgid "Terms of Service and Privacy Policy"
 msgstr "Användarvillkor och sekretesspolicy"
 
@@ -1180,11 +1180,6 @@ msgstr "Översättningsminne"
 msgid "Priority email support"
 msgstr "Prioriterat e-poststöd"
 
-#: weblate_web/templates/hosting.html:165
-#: weblate_web/templates/hosting.html:173
-msgid "Available on request"
-msgstr "Tillgänglig vid behov"
-
 #: weblate_web/templates/hosting.html:168
 msgid "Custom domain name with SSL"
 msgstr "Anpassat domännamn med SSL"
@@ -1201,6 +1196,10 @@ msgid ""
 "Additional charge %(price)s EUR/year, only available with yearly billing"
 msgstr ""
 "Ytterligare betala %(price)s EUR/år, endast tillgänglig vid årlig betalning"
+
+#: weblate_web/templates/hosting.html:173
+msgid "Available on request"
+msgstr "Tillgänglig vid behov"
 
 #: weblate_web/templates/hosting.html:179
 msgid "Monthly"
@@ -1290,11 +1289,10 @@ msgstr "Konsulttjänster eller anpassad utveckling"
 msgid "Start using Weblate"
 msgstr "Börja använda Weblate"
 
-#: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
-msgid "Try the live demo server"
-msgstr "Prova vår demoserver"
+#: weblate_web/templates/index.html:13 weblate_web/templates/try.html:3
+#: weblate_web/templates/try.html:4 weblate_web/templates/try.html:12
+msgid "Try Weblate"
+msgstr "Pröva Weblate"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
@@ -1725,26 +1723,12 @@ msgstr ""
 msgid "Support our project and get link placement on this page."
 msgstr "Stöd vårt projekt och få länkplacering på den här sidan."
 
-#: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
-msgid "Weblate tour"
-msgstr "Rundtur i Weblate"
-
-#: weblate_web/templates/tour.html:6
-msgid "Weblate has useful features for every crowdsourced translation."
+#: weblate_web/templates/try.html:6
+#, fuzzy
+#| msgid "Weblate has useful features for every crowdsourced translation."
+msgid "Weblate has useful features for every crowdsourced localization."
 msgstr ""
 "Weblate har användbara funktioner för varje gräsrotsöversatt översättning."
-
-#: weblate_web/templates/tour.html:11 weblate_web/templates/try.html:12
-msgid "Try our demo"
-msgstr "Prova vår demo"
-
-#: weblate_web/templates/try.html:3 weblate_web/templates/try.html:4
-msgid "Try Weblate"
-msgstr "Pröva Weblate"
-
-#: weblate_web/templates/try.html:6
-msgid "Weblate is easy to deploy as an appliance."
-msgstr "Weblate är lätt att distribuera som en appliance."
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
@@ -1769,17 +1753,10 @@ msgstr ""
 "<code>review</code> och lösenordet: <code>review</code>."
 
 #: weblate_web/templates/try.html:27
-msgid "Appliances"
-msgstr "Verktyg"
-
-#: weblate_web/templates/try.html:30
-#, python-format
-msgid ""
-"Check out the <a href=\"%(download_url)s\">download page</a> for appliances, "
-"providing an easy way to deploy Weblate in the cloud."
-msgstr ""
-"Kolla på <a href=\"%(download_url)s\">hämtningssidan</a> för verktyg, som "
-"ger ett enkelt sätt att sjösätta Weblate i molnet."
+#, fuzzy
+#| msgid "Weblate screenshot"
+msgid "Screenshots"
+msgstr "Weblate-skärmdump"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
@@ -1851,6 +1828,33 @@ msgstr "Okänd anledning"
 #: weblate_web/views.py:279
 msgid "Thank you for your donation."
 msgstr "Tack för din donation."
+
+#~ msgid "Tour"
+#~ msgstr "Rundtur"
+
+#, fuzzy
+#~| msgid "Try our demo server"
+#~ msgid "Try the live demo server"
+#~ msgstr "Prova vår demoserver"
+
+#~ msgid "Weblate tour"
+#~ msgstr "Rundtur i Weblate"
+
+#~ msgid "Try our demo"
+#~ msgstr "Prova vår demo"
+
+#~ msgid "Weblate is easy to deploy as an appliance."
+#~ msgstr "Weblate är lätt att distribuera som en appliance."
+
+#~ msgid "Appliances"
+#~ msgstr "Verktyg"
+
+#~ msgid ""
+#~ "Check out the <a href=\"%(download_url)s\">download page</a> for "
+#~ "appliances, providing an easy way to deploy Weblate in the cloud."
+#~ msgstr ""
+#~ "Kolla på <a href=\"%(download_url)s\">hämtningssidan</a> för verktyg, som "
+#~ "ger ett enkelt sätt att sjösätta Weblate i molnet."
 
 #~ msgid "Weblate is a free web-based translation management system."
 #~ msgstr "Weblate är ett fritt webbaserat system för översättningar."

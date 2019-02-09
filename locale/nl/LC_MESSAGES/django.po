@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-28 23:20+0100\n"
+"POT-Creation-Date: 2019-02-09 15:05+0100\n"
 "PO-Revision-Date: 2019-01-29 15:57+0000\n"
 "Last-Translator: Thomas De Rocker <thomasderocker@outlook.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/weblate/website/nl/"
@@ -129,12 +129,12 @@ msgstr "Gebruikersbeheer"
 msgid "Donation recurrence"
 msgstr "Donatie-herhaling"
 
-#: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
+#: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
 msgstr "Bedrag in EUR"
 
-#: weblate_web/forms.py:56
+#: weblate_web/forms.py:57
 #, python-format
 msgid "The minimal amount is %d EUR."
 msgstr "De minimale hoeveelheid is %d EUR."
@@ -174,11 +174,18 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-msgid "Continuous translation"
+#, fuzzy
+#| msgid "Continuous translation"
+msgid "Continuous localization"
 msgstr "Voortdurende vertaling"
 
 #: weblate_web/templates/base-features.html:7
-msgid "Automated translation closely follows the development of your project."
+#, fuzzy
+#| msgid ""
+#| "Automated translation closely follows the development of your project."
+msgid ""
+"Automated localization workflow closely follows the development of your "
+"project."
 msgstr "Geautomatiseerde vertaling volgt nauw de ontwikkeling van uw project."
 
 #: weblate_web/templates/base-features.html:15
@@ -263,30 +270,26 @@ msgid "Support"
 msgstr "Ondersteuning"
 
 #: weblate_web/templates/base.html:64
-msgid "Tour"
-msgstr "Rondleiding"
-
-#: weblate_web/templates/base.html:65
 msgid "Thanks"
 msgstr "Bedankt"
 
-#: weblate_web/templates/base.html:66
+#: weblate_web/templates/base.html:65
 msgid "Blog"
 msgstr "Blog"
 
-#: weblate_web/templates/base.html:67
+#: weblate_web/templates/base.html:66
 msgid "Docs"
 msgstr "Documentatie"
 
-#: weblate_web/templates/base.html:68
+#: weblate_web/templates/base.html:67
 msgid "Hosting"
 msgstr "Hosting"
 
-#: weblate_web/templates/base.html:80
+#: weblate_web/templates/base.html:79
 msgid "Help with translations!"
 msgstr "Helpen met vertalingen!"
 
-#: weblate_web/templates/base.html:124 weblate_web/templates/terms.html:4
+#: weblate_web/templates/base.html:123 weblate_web/templates/terms.html:4
 msgid "Terms of Service and Privacy Policy"
 msgstr "Servicevoorwaarden en privacybeleid"
 
@@ -1147,11 +1150,6 @@ msgstr "Vertaalgeheugen"
 msgid "Priority email support"
 msgstr "Prioritaire e-mailondersteuning"
 
-#: weblate_web/templates/hosting.html:165
-#: weblate_web/templates/hosting.html:173
-msgid "Available on request"
-msgstr "Beschikbaar op aanvraag"
-
 #: weblate_web/templates/hosting.html:168
 msgid "Custom domain name with SSL"
 msgstr "Aangepaste domeinnaam met SSL"
@@ -1169,6 +1167,10 @@ msgid ""
 msgstr ""
 "Dit kost %(price)s EUR/jaar extra, enkel beschikbaar met jaarlijkse "
 "afrekening"
+
+#: weblate_web/templates/hosting.html:173
+msgid "Available on request"
+msgstr "Beschikbaar op aanvraag"
 
 #: weblate_web/templates/hosting.html:179
 msgid "Monthly"
@@ -1254,9 +1256,10 @@ msgstr "Vertalers dichter bij ontwikkeling brengen"
 msgid "Start using Weblate"
 msgstr "Weblate beginnen gebruiken"
 
-#: weblate_web/templates/index.html:13
-msgid "Try the live demo server"
-msgstr "De live demo-server proberen"
+#: weblate_web/templates/index.html:13 weblate_web/templates/try.html:3
+#: weblate_web/templates/try.html:4 weblate_web/templates/try.html:12
+msgid "Try Weblate"
+msgstr "Weblate proberen"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
@@ -1680,25 +1683,11 @@ msgstr ""
 msgid "Support our project and get link placement on this page."
 msgstr "Steun ons project en krijg link-plaatsing op deze pagina."
 
-#: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
-msgid "Weblate tour"
-msgstr "Weblate-rondleiding"
-
-#: weblate_web/templates/tour.html:6
-msgid "Weblate has useful features for every crowdsourced translation."
-msgstr "Weblate heeft handige functies voor elke publiek uitbestede vertaling."
-
-#: weblate_web/templates/tour.html:11 weblate_web/templates/try.html:12
-msgid "Try our demo"
-msgstr "Onze demo proberen"
-
-#: weblate_web/templates/try.html:3 weblate_web/templates/try.html:4
-msgid "Try Weblate"
-msgstr "Weblate proberen"
-
 #: weblate_web/templates/try.html:6
-msgid "Weblate is easy to deploy as an appliance."
-msgstr "Weblate is eenvoudig in te zetten als een appliance."
+#, fuzzy
+#| msgid "Weblate has useful features for every crowdsourced translation."
+msgid "Weblate has useful features for every crowdsourced localization."
+msgstr "Weblate heeft handige functies voor elke publiek uitbestede vertaling."
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
@@ -1723,17 +1712,10 @@ msgstr ""
 "code> om na te gaan hoe de procedure voor het nakijken van vertalingen werkt."
 
 #: weblate_web/templates/try.html:27
-msgid "Appliances"
-msgstr "Appliances"
-
-#: weblate_web/templates/try.html:30
-#, python-format
-msgid ""
-"Check out the <a href=\"%(download_url)s\">download page</a> for appliances, "
-"providing an easy way to deploy Weblate in the cloud."
-msgstr ""
-"Bekijk de <a href=\"%(download_url)s\">downloadpagina</a> voor appliances, "
-"voor een eenvoudige manier om Weblate in de cloud in te zetten."
+#, fuzzy
+#| msgid "Weblate screenshot"
+msgid "Screenshots"
+msgstr "Weblate-schermafdruk"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
@@ -1805,6 +1787,32 @@ msgstr "Onbekende reden"
 #: weblate_web/views.py:279
 msgid "Thank you for your donation."
 msgstr "Bedankt voor uw donatie."
+
+#~ msgid "Tour"
+#~ msgstr "Rondleiding"
+
+#~ msgid "Try the live demo server"
+#~ msgstr "De live demo-server proberen"
+
+#~ msgid "Weblate tour"
+#~ msgstr "Weblate-rondleiding"
+
+#~ msgid "Try our demo"
+#~ msgstr "Onze demo proberen"
+
+#~ msgid "Weblate is easy to deploy as an appliance."
+#~ msgstr "Weblate is eenvoudig in te zetten als een appliance."
+
+#~ msgid "Appliances"
+#~ msgstr "Appliances"
+
+#~ msgid ""
+#~ "Check out the <a href=\"%(download_url)s\">download page</a> for "
+#~ "appliances, providing an easy way to deploy Weblate in the cloud."
+#~ msgstr ""
+#~ "Bekijk de <a href=\"%(download_url)s\">downloadpagina</a> voor "
+#~ "appliances, voor een eenvoudige manier om Weblate in de cloud in te "
+#~ "zetten."
 
 #~ msgid "Weblate is a free web-based translation management system."
 #~ msgstr "Weblate is een gratis webgebaseerd vertaalbeheersysteem."

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-28 23:20+0100\n"
+"POT-Creation-Date: 2019-02-09 15:05+0100\n"
 "PO-Revision-Date: 2019-01-15 11:20+0000\n"
 "Last-Translator: Aman ALam <alam.yellow@gmail.com>\n"
 "Language-Team: Punjabi <https://hosted.weblate.org/projects/weblate/website/"
@@ -118,12 +118,12 @@ msgstr "ਵਰਤੋਂਕਾਰ ਬੰਦੋਬਸਤ"
 msgid "Donation recurrence"
 msgstr "ਦਾਨ ਕਰੋ"
 
-#: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
+#: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
 msgstr ""
 
-#: weblate_web/forms.py:56
+#: weblate_web/forms.py:57
 #, python-format
 msgid "The minimal amount is %d EUR."
 msgstr ""
@@ -163,11 +163,15 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-msgid "Continuous translation"
+#, fuzzy
+#| msgid "Continuous translation"
+msgid "Continuous localization"
 msgstr "ਲਗਾਤਾਰ ਜਾਰੀ ਅਨੁਵਾਦ"
 
 #: weblate_web/templates/base-features.html:7
-msgid "Automated translation closely follows the development of your project."
+msgid ""
+"Automated localization workflow closely follows the development of your "
+"project."
 msgstr ""
 
 #: weblate_web/templates/base-features.html:15
@@ -250,32 +254,28 @@ msgid "Support"
 msgstr "ਸਹਿਯੋਗ"
 
 #: weblate_web/templates/base.html:64
-msgid "Tour"
-msgstr ""
-
-#: weblate_web/templates/base.html:65
 msgid "Thanks"
 msgstr ""
 
-#: weblate_web/templates/base.html:66
+#: weblate_web/templates/base.html:65
 msgid "Blog"
 msgstr "ਬਲੌਗ"
 
-#: weblate_web/templates/base.html:67
+#: weblate_web/templates/base.html:66
 msgid "Docs"
 msgstr "ਦਸਤਾਵੇਜ਼"
 
-#: weblate_web/templates/base.html:68
+#: weblate_web/templates/base.html:67
 #, fuzzy
 #| msgid "Hosting plans"
 msgid "Hosting"
 msgstr "ਮੇਜ਼ਬਾਨ ਦੀਆਂ ਯੋਜਨਾਵਾਂ"
 
-#: weblate_web/templates/base.html:80
+#: weblate_web/templates/base.html:79
 msgid "Help with translations!"
 msgstr ""
 
-#: weblate_web/templates/base.html:124 weblate_web/templates/terms.html:4
+#: weblate_web/templates/base.html:123 weblate_web/templates/terms.html:4
 msgid "Terms of Service and Privacy Policy"
 msgstr ""
 
@@ -1039,11 +1039,6 @@ msgstr ""
 msgid "Priority email support"
 msgstr ""
 
-#: weblate_web/templates/hosting.html:165
-#: weblate_web/templates/hosting.html:173
-msgid "Available on request"
-msgstr ""
-
 #: weblate_web/templates/hosting.html:168
 msgid "Custom domain name with SSL"
 msgstr ""
@@ -1058,6 +1053,10 @@ msgstr ""
 #, python-format
 msgid ""
 "Additional charge %(price)s EUR/year, only available with yearly billing"
+msgstr ""
+
+#: weblate_web/templates/hosting.html:173
+msgid "Available on request"
 msgstr ""
 
 #: weblate_web/templates/hosting.html:179
@@ -1136,8 +1135,9 @@ msgstr ""
 msgid "Start using Weblate"
 msgstr ""
 
-#: weblate_web/templates/index.html:13
-msgid "Try the live demo server"
+#: weblate_web/templates/index.html:13 weblate_web/templates/try.html:3
+#: weblate_web/templates/try.html:4 weblate_web/templates/try.html:12
+msgid "Try Weblate"
 msgstr ""
 
 #: weblate_web/templates/index.html:14
@@ -1536,24 +1536,8 @@ msgstr ""
 msgid "Support our project and get link placement on this page."
 msgstr ""
 
-#: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
-msgid "Weblate tour"
-msgstr ""
-
-#: weblate_web/templates/tour.html:6
-msgid "Weblate has useful features for every crowdsourced translation."
-msgstr ""
-
-#: weblate_web/templates/tour.html:11 weblate_web/templates/try.html:12
-msgid "Try our demo"
-msgstr ""
-
-#: weblate_web/templates/try.html:3 weblate_web/templates/try.html:4
-msgid "Try Weblate"
-msgstr ""
-
 #: weblate_web/templates/try.html:6
-msgid "Weblate is easy to deploy as an appliance."
+msgid "Weblate has useful features for every crowdsourced localization."
 msgstr ""
 
 #: weblate_web/templates/try.html:19
@@ -1574,14 +1558,7 @@ msgid ""
 msgstr ""
 
 #: weblate_web/templates/try.html:27
-msgid "Appliances"
-msgstr ""
-
-#: weblate_web/templates/try.html:30
-#, python-format
-msgid ""
-"Check out the <a href=\"%(download_url)s\">download page</a> for appliances, "
-"providing an easy way to deploy Weblate in the cloud."
+msgid "Screenshots"
 msgstr ""
 
 #: weblate_web/templates/vat.html:3

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-01-28 23:20+0100\n"
+"POT-Creation-Date: 2019-02-09 15:05+0100\n"
 "PO-Revision-Date: 2019-01-31 07:04+0000\n"
 "Last-Translator: Viktar Vauchkevich <victorenator@gmail.com>\n"
 "Language-Team: Belarusian <https://hosted.weblate.org/projects/weblate/"
@@ -15,8 +15,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<="
-"4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 3.5-dev\n"
 
 #: weblate_web/data.py:33
@@ -127,12 +127,12 @@ msgstr "Кіраванне карыстальнікамі"
 msgid "Donation recurrence"
 msgstr "Частата ахвяраваньняў"
 
-#: weblate_web/forms.py:53 weblate_web/templates/donate.html:153
+#: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
 msgstr ""
 
-#: weblate_web/forms.py:56
+#: weblate_web/forms.py:57
 #, python-format
 msgid "The minimal amount is %d EUR."
 msgstr ""
@@ -174,7 +174,9 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-msgid "Continuous translation"
+#, fuzzy
+#| msgid "Continuous translation"
+msgid "Continuous localization"
 msgstr "Бесперапынныя пераклады"
 
 #: weblate_web/templates/base-features.html:7
@@ -182,7 +184,9 @@ msgstr "Бесперапынныя пераклады"
 #| msgid ""
 #| "Automated translation process can closely follow development of your "
 #| "project."
-msgid "Automated translation closely follows the development of your project."
+msgid ""
+"Automated localization workflow closely follows the development of your "
+"project."
 msgstr ""
 "Аўтаматызаваны працэс перакладу можа ісці побач з працэсам распрацоўкі."
 
@@ -283,30 +287,26 @@ msgid "Support"
 msgstr "Падтрымка"
 
 #: weblate_web/templates/base.html:64
-msgid "Tour"
-msgstr "Экскурс"
-
-#: weblate_web/templates/base.html:65
 msgid "Thanks"
 msgstr "Падзякі"
 
-#: weblate_web/templates/base.html:66
+#: weblate_web/templates/base.html:65
 msgid "Blog"
 msgstr "Блог"
 
-#: weblate_web/templates/base.html:67
+#: weblate_web/templates/base.html:66
 msgid "Docs"
 msgstr "Дакументацыя"
 
-#: weblate_web/templates/base.html:68
+#: weblate_web/templates/base.html:67
 msgid "Hosting"
 msgstr "Хостынг"
 
-#: weblate_web/templates/base.html:80
+#: weblate_web/templates/base.html:79
 msgid "Help with translations!"
 msgstr "Дапамажыце з перакладам!"
 
-#: weblate_web/templates/base.html:124 weblate_web/templates/terms.html:4
+#: weblate_web/templates/base.html:123 weblate_web/templates/terms.html:4
 msgid "Terms of Service and Privacy Policy"
 msgstr "Умовы прадастаўленьня паслуг і Палітыка прыватнасьці"
 
@@ -1175,11 +1175,6 @@ msgstr "Памяць перакладу"
 msgid "Priority email support"
 msgstr "Прыярытэтныя падтрымка па электроннай пошце"
 
-#: weblate_web/templates/hosting.html:165
-#: weblate_web/templates/hosting.html:173
-msgid "Available on request"
-msgstr "Даступны па запыце"
-
 #: weblate_web/templates/hosting.html:168
 msgid "Custom domain name with SSL"
 msgstr "Уласнае даменнае імя з SSL"
@@ -1196,6 +1191,10 @@ msgid ""
 "Additional charge %(price)s EUR/year, only available with yearly billing"
 msgstr ""
 "Дадатковы збор %(price)s еўра за год даступны толькі з штогадовым плацяжом"
+
+#: weblate_web/templates/hosting.html:173
+msgid "Available on request"
+msgstr "Даступны па запыце"
 
 #: weblate_web/templates/hosting.html:179
 msgid "Monthly"
@@ -1288,11 +1287,10 @@ msgstr "Паслугі кансультавання ці дапрацоўка к
 msgid "Start using Weblate"
 msgstr "Пачаць выкарыстоўваць Weblate"
 
-#: weblate_web/templates/index.html:13
-#, fuzzy
-#| msgid "Try our demo server"
-msgid "Try the live demo server"
-msgstr "Выпрабуйце дэма-сервер"
+#: weblate_web/templates/index.html:13 weblate_web/templates/try.html:3
+#: weblate_web/templates/try.html:4 weblate_web/templates/try.html:12
+msgid "Try Weblate"
+msgstr "Выпрабаваць Weblate"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
@@ -1735,25 +1733,11 @@ msgstr ""
 "Падтрымайце наш праект на Bountysource Salt і атрымайте эксклюзіўнае "
 "размяшчэнне лагатыпа на гэтай старонцы."
 
-#: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
-msgid "Weblate tour"
-msgstr "Экскурс па Weblate"
-
-#: weblate_web/templates/tour.html:6
-msgid "Weblate has useful features for every crowdsourced translation."
-msgstr "Weblate мае карысныя магчымасці для кожнага перакладу."
-
-#: weblate_web/templates/tour.html:11 weblate_web/templates/try.html:12
-msgid "Try our demo"
-msgstr "Выпрабуйце дэма"
-
-#: weblate_web/templates/try.html:3 weblate_web/templates/try.html:4
-msgid "Try Weblate"
-msgstr "Выпрабаваць Weblate"
-
 #: weblate_web/templates/try.html:6
-msgid "Weblate is easy to deploy as an appliance."
-msgstr "Weblate проста разгортваць як вобраз."
+#, fuzzy
+#| msgid "Weblate has useful features for every crowdsourced translation."
+msgid "Weblate has useful features for every crowdsourced localization."
+msgstr "Weblate мае карысныя магчымасці для кожнага перакладу."
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
@@ -1778,17 +1762,10 @@ msgstr ""
 "<code>review</code> з паролем <code>review</code>."
 
 #: weblate_web/templates/try.html:27
-msgid "Appliances"
-msgstr "Дадаткі"
-
-#: weblate_web/templates/try.html:30
-#, python-format
-msgid ""
-"Check out the <a href=\"%(download_url)s\">download page</a> for appliances, "
-"providing an easy way to deploy Weblate in the cloud."
-msgstr ""
-"Звярніцеся да <a href=\"%(download_url)s\">старонкі са сцягваннямі</a> па "
-"дадаткі, якія забяспечваюць лёгкі спосаб разгортвання Weblate у воблаку."
+#, fuzzy
+#| msgid "Weblate screenshot"
+msgid "Screenshots"
+msgstr "Здымак экрану Weblate"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
@@ -1864,6 +1841,33 @@ msgstr ""
 #| msgid "Thank you for ordering hosting!"
 msgid "Thank you for your donation."
 msgstr "Дзякуй за замову хостынгу!"
+
+#~ msgid "Tour"
+#~ msgstr "Экскурс"
+
+#, fuzzy
+#~| msgid "Try our demo server"
+#~ msgid "Try the live demo server"
+#~ msgstr "Выпрабуйце дэма-сервер"
+
+#~ msgid "Weblate tour"
+#~ msgstr "Экскурс па Weblate"
+
+#~ msgid "Try our demo"
+#~ msgstr "Выпрабуйце дэма"
+
+#~ msgid "Weblate is easy to deploy as an appliance."
+#~ msgstr "Weblate проста разгортваць як вобраз."
+
+#~ msgid "Appliances"
+#~ msgstr "Дадаткі"
+
+#~ msgid ""
+#~ "Check out the <a href=\"%(download_url)s\">download page</a> for "
+#~ "appliances, providing an easy way to deploy Weblate in the cloud."
+#~ msgstr ""
+#~ "Звярніцеся да <a href=\"%(download_url)s\">старонкі са сцягваннямі</a> па "
+#~ "дадаткі, якія забяспечваюць лёгкі спосаб разгортвання Weblate у воблаку."
 
 #~ msgid "Weblate is a free web-based translation management system."
 #~ msgstr "Weblate — гэта свабодная вэб-сістэма кіравання перакладамі."
