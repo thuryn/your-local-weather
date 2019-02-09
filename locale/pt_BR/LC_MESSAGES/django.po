@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: Weblate 1.2\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-09 15:05+0100\n"
-"PO-Revision-Date: 2019-01-29 13:03+0000\n"
+"PO-Revision-Date: 2019-02-11 09:17+0000\n"
 "Last-Translator: Rafael Fontenelle <rafaelff@gnome.org>\n"
 "Language-Team: Portuguese (Brazil) <https://hosted.weblate.org/projects/"
 "weblate/website/pt_BR/>\n"
@@ -176,21 +176,16 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-#, fuzzy
-#| msgid "Continuous translation"
 msgid "Continuous localization"
-msgstr "Tradução contínua"
+msgstr "Localização contínua"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation closely follows the development of your project."
 msgid ""
 "Automated localization workflow closely follows the development of your "
 "project."
 msgstr ""
-"Processo de tradução automatizada acompanha de perto o desenvolvimento do "
-"seu projeto."
+"Processo de fluxo de trabalho de localização automatizada acompanha de perto "
+"o desenvolvimento do seu projeto."
 
 #: weblate_web/templates/base-features.html:15
 msgid "Customizable quality checks helps improve translation quality."
@@ -1695,10 +1690,8 @@ msgid "Support our project and get link placement on this page."
 msgstr "Suporte nosso projeto e obtenha colocação de link nesta página."
 
 #: weblate_web/templates/try.html:6
-#, fuzzy
-#| msgid "Weblate has useful features for every crowdsourced translation."
 msgid "Weblate has useful features for every crowdsourced localization."
-msgstr "O Weblate tem recursos úteis para qualquer tradução."
+msgstr "O Weblate tem recursos úteis para qualquer localização."
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
@@ -1723,10 +1716,8 @@ msgstr ""
 "senha <code>review</code>."
 
 #: weblate_web/templates/try.html:27
-#, fuzzy
-#| msgid "Weblate screenshot"
 msgid "Screenshots"
-msgstr "Captura de tela do Weblate"
+msgstr "Capturas de tela"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
