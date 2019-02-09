@@ -10,7 +10,7 @@
 {% block extrajumbo %}
 <p>
 <a class="btn btn-info btn-lg" href="{% url 'hosting' %}" role="button"><i class="fas fa-server"></i> {% trans "Start using Weblate" %}</a>
-<a class="btn btn-info btn-lg" href="https://demo.weblate.org/" role="button"><i class="fas fa-search"></i> {% trans "Try the live demo server" %}</a>
+<a class="btn btn-info btn-lg" href="https://demo.weblate.org/" role="button"><i class="fas fa-search"></i> {% trans "Try Weblate" %}</a>
 <a class="btn btn-info btn-lg" href="{% url 'download' %}" role="button"><i class="fas fa-download"></i> {% trans "Downloads" %}</a>
 </p>
 {% endblock %}
@@ -23,7 +23,7 @@
 {% blocktrans %}Weblate is a libre web-based localization tool with tight version control integration. It features simple and clean user interface, propagation of translations across components, quality checks and automatic linking to source files.{% endblocktrans %}
 </p>
 
-<a href="{% url 'tour' %}" class="trailer">
+<a href="{% url 'try' %}" class="trailer">
 <img src="/media/background.png" class="img-responsive" alt="{% trans "Weblate screenshot" %}">
 </a>
 

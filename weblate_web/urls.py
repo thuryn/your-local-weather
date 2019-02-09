@@ -49,7 +49,6 @@ class PagesSitemap(Sitemap):
         return (
             ('/', 1.0, 'weekly'),
             ('/features/', 0.9, 'weekly'),
-            ('/tour/', 0.9, 'monthly'),
             ('/download/', 0.5, 'daily'),
             ('/try/', 0.5, 'weekly'),
             ('/hosting/', 0.8, 'monthly'),
@@ -99,8 +98,7 @@ urlpatterns = i18n_patterns(
     ),
     url(
         r'^tour/$',
-        TemplateView.as_view(template_name="tour.html"),
-        name='tour'
+        RedirectView.as_view(url='/try/', permanent=True)
     ),
     url(
         r'^download/$',

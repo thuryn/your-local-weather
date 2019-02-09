@@ -3,13 +3,13 @@
 {% block title %}{% trans "Try Weblate" %}{% endblock %}
 {% block header %}{% trans "Try Weblate" %}{% endblock %}
 {% block description %}
-{% block headline %}{% trans "Weblate is easy to deploy as an appliance." %}{% endblock %}
+{% block headline %}{% trans "Weblate has useful features for every crowdsourced localization." %}{% endblock %}
 {% endblock %}
 
 
 {% block extrajumbo %}
 <p>
-<a class="btn btn-info btn-lg" href="https://demo.weblate.org/" role="button"><i class="fas fa-search"></i> {% trans "Try our demo" %}</a>
+<a class="btn btn-info btn-lg" href="https://demo.weblate.org/" role="button"><i class="fas fa-search"></i> {% trans "Try Weblate" %}</a>
 </p>
 {% endblock %}
 
@@ -24,11 +24,15 @@
 
 <p>{% trans "To test the review workflow there, log in with username: <code>review</code>, and password: <code>review</code>." %}</p>
 
-<h2>{% trans "Appliances" %}</h2>
+<h2>{% trans "Screenshots" %}</h2>
 
-<p>
-{% blocktrans %}Check out the <a href="{{ download_url }}">download page</a> for appliances, providing an easy way to deploy Weblate in the cloud.{% endblocktrans %}
-</p>
+{% for screenshot in screenshots %}
+<a href="/media/screenshots/{{ screenshot.0 }}" class="screenshot" title="{{ screenshot.1 }}">
+<img src="/media/thumbnails/{{ screenshot.0 }}">
+{{ screenshot.2 }}
+</a>
+{% endfor %}
+
 
 {% endblock %}
 
