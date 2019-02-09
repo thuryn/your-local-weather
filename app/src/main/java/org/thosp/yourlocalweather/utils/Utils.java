@@ -504,6 +504,7 @@ public class Utils {
 
     public static long intervalMillisForAlarm(String intervalMinutes) {
         switch (intervalMinutes) {
+            case "0":
             case "15":
                 return AlarmManager.INTERVAL_FIFTEEN_MINUTES;
             case "30":
@@ -514,7 +515,6 @@ public class Utils {
                 return AlarmManager.INTERVAL_HALF_DAY;
             case "1440":
                 return AlarmManager.INTERVAL_DAY;
-            case "0":
             case "OFF":
             case "regular_only":
                 return Long.MAX_VALUE;

@@ -30,7 +30,9 @@ import android.support.v4.content.ContextCompat;
 
 import org.thosp.yourlocalweather.ConnectionDetector;
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
@@ -195,6 +197,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             currentLocationSource = getString(R.string.location_weather_update_status_location_from_network);
         }
         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
+        checkDistanceAndRemoveForecastIfTheNewLocationIsFarAway(location, currentLocation);
         locationsDbHelper.updateAutoLocationGeoLocation(location.getLatitude(), location.getLongitude(), currentLocationSource, location.getAccuracy(), getLocationTimeInMilis(location));
         appendLog(getBaseContext(), TAG, "put new location from location update service, latitude=", location.getLatitude(), ", longitude=", location.getLongitude());
         if (address != null) {
@@ -211,6 +214,30 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                     this);
         }
         return currentLocation;
+    }
+
+    private void checkDistanceAndRemoveForecastIfTheNewLocationIsFarAway(Location location, org.thosp.yourlocalweather.model.Location currentLocation) {
+        double distanceBetweenLocationsInKm = distance(location.getLatitude(), location.getLongitude(), currentLocation.getLatitude(), currentLocation.getLongitude());
+        appendLog(getBaseContext(), TAG, "Distance between old and new location (in Km)=", distanceBetweenLocationsInKm);
+        if (distanceBetweenLocationsInKm > 10) {
+            appendLog(getBaseContext(), TAG, "Distance between old and new location is more than 10 Km, removing current weather and forecast");
+            WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(getBaseContext());
+            weatherForecastDbHelper.deleteRecordByLocation(currentLocation);
+            CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
+            currentWeatherDbHelper.deleteRecordByLocation(currentLocation);
+        }
+    }
+
+    private double distance(double lat1, double lon1, double lat2, double lon2) {
+        if ((lat1 == lat2) && (lon1 == lon2)) {
+            return 0;
+        } else {
+            double theta = lon1 - lon2;
+            double dist = Math.sin(Math.toRadians(lat1)) * Math.sin(Math.toRadians(lat2)) + Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2)) * Math.cos(Math.toRadians(theta));
+            dist = Math.acos(dist);
+            dist = Math.toDegrees(dist);
+            return dist * 60 * 1.853159616;
+        }
     }
 
     Handler lastKnownLocationTimerHandler = new Handler();
@@ -428,7 +455,6 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                                       Intent originalIntent,
                                       Integer attempts) {
         forceUpdate = false;
-        updateSource = null;
         updateLocationInProcess = true;
         startRefreshRotation("updateNetworkLocation", 3);
         boolean permissionsGranted = PermissionUtil.checkPermissionsAndSettings(this);
@@ -511,15 +537,6 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                 AppWakeUpManager.SOURCE_LOCATION_UPDATE
         );
         return false;
-    }
-
-    private boolean isInteractive() {
-        PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            return powerManager.isInteractive();
-        } else {
-            return powerManager.isScreenOn();
-        }
     }
 
     private void updateNetworkLocationByNetwork(Location lastLocation,

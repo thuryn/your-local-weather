@@ -485,7 +485,7 @@ public class AppPreference {
 
     public static String getLocationAutoUpdatePeriod(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD, "0");
+                Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD, "60");
     }
 
     public static String getLocationUpdatePeriod(Context context) {
