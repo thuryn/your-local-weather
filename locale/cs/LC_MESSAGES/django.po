@@ -248,7 +248,7 @@ msgstr "Stáhnout"
 
 #: weblate_web/templates/base.html:60
 msgid "Pricing"
-msgstr "Ceny"
+msgstr "Ceník"
 
 #: weblate_web/templates/base.html:61
 msgid "Develop"
