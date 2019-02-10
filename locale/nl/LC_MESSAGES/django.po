@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-09 15:05+0100\n"
-"PO-Revision-Date: 2019-01-29 15:57+0000\n"
+"PO-Revision-Date: 2019-02-11 09:17+0000\n"
 "Last-Translator: Thomas De Rocker <thomasderocker@outlook.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/weblate/website/nl/"
 ">\n"
@@ -174,19 +174,15 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-#, fuzzy
-#| msgid "Continuous translation"
 msgid "Continuous localization"
 msgstr "Voortdurende vertaling"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation closely follows the development of your project."
 msgid ""
 "Automated localization workflow closely follows the development of your "
 "project."
-msgstr "Geautomatiseerde vertaling volgt nauw de ontwikkeling van uw project."
+msgstr ""
+"Geautomatiseerde vertaalworkflow volgt nauw de ontwikkeling van uw project."
 
 #: weblate_web/templates/base-features.html:15
 msgid "Customizable quality checks helps improve translation quality."
@@ -1279,7 +1275,7 @@ msgstr ""
 
 #: weblate_web/templates/index.html:27
 msgid "Weblate screenshot"
-msgstr "Weblate-schermafdruk"
+msgstr "Weblate-screenshot"
 
 #: weblate_web/templates/index.html:36
 msgid "See more features…"
@@ -1684,8 +1680,6 @@ msgid "Support our project and get link placement on this page."
 msgstr "Steun ons project en krijg link-plaatsing op deze pagina."
 
 #: weblate_web/templates/try.html:6
-#, fuzzy
-#| msgid "Weblate has useful features for every crowdsourced translation."
 msgid "Weblate has useful features for every crowdsourced localization."
 msgstr "Weblate heeft handige functies voor elke publiek uitbestede vertaling."
 
@@ -1712,10 +1706,8 @@ msgstr ""
 "code> om na te gaan hoe de procedure voor het nakijken van vertalingen werkt."
 
 #: weblate_web/templates/try.html:27
-#, fuzzy
-#| msgid "Weblate screenshot"
 msgid "Screenshots"
-msgstr "Weblate-schermafdruk"
+msgstr "Screenshots"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
