@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-09 15:05+0100\n"
-"PO-Revision-Date: 2019-01-30 16:47+0000\n"
+"PO-Revision-Date: 2019-02-11 09:17+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/weblate/website/"
 "he/>\n"
@@ -163,15 +163,10 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-#, fuzzy
-#| msgid "Continuous translation"
 msgid "Continuous localization"
 msgstr "תרגום רציף"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation closely follows the development of your project."
 msgid ""
 "Automated localization workflow closely follows the development of your "
 "project."
@@ -1613,8 +1608,6 @@ msgid "Support our project and get link placement on this page."
 msgstr "ניתן לתמוך במיזם שלנו ולקבל מקום להצבת קישור אליכם בעמוד זה."
 
 #: weblate_web/templates/try.html:6
-#, fuzzy
-#| msgid "Weblate has useful features for every crowdsourced translation."
 msgid "Weblate has useful features for every crowdsourced localization."
 msgstr "ל־Weblate יש תכונות שימושיות לכל מיזם בתרגום קהילתי."
 
@@ -1641,10 +1634,8 @@ msgstr ""
 "code> והססמה: <code>review</code>."
 
 #: weblate_web/templates/try.html:27
-#, fuzzy
-#| msgid "Weblate screenshot"
 msgid "Screenshots"
-msgstr "צילום מסך של Weblate"
+msgstr "צילום מסך"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
