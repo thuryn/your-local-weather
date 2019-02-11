@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-09 15:05+0100\n"
-"PO-Revision-Date: 2019-01-29 13:03+0000\n"
+"PO-Revision-Date: 2019-02-13 13:12+0000\n"
 "Last-Translator: 송태섭 <xotjq237@gmail.com>\n"
 "Language-Team: Korean <https://hosted.weblate.org/projects/weblate/website/"
 "ko/>\n"
@@ -168,20 +168,14 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-#, fuzzy
-#| msgid "Continuous translation"
 msgid "Continuous localization"
-msgstr "연속 번역"
+msgstr "꾸준한 현지화"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation closely follows the development of your project."
 msgid ""
 "Automated localization workflow closely follows the development of your "
 "project."
-msgstr ""
-"자동화된 번역 절차는 당신의 프로젝트 개발 상황을 밀첩하게 이끌어줍니다."
+msgstr "자동화된 현지화 작업 흐름은 당신의 프로젝트 개발 상황을 밀첩하게 이끌어줍니다."
 
 #: weblate_web/templates/base-features.html:15
 msgid "Customizable quality checks helps improve translation quality."
@@ -1646,10 +1640,8 @@ msgid "Support our project and get link placement on this page."
 msgstr "저희 프로젝트를 후원해주시고 이 페이지에 링크를 게시하세요."
 
 #: weblate_web/templates/try.html:6
-#, fuzzy
-#| msgid "Weblate has useful features for every crowdsourced translation."
 msgid "Weblate has useful features for every crowdsourced localization."
-msgstr "Weblate는 크라우드소싱 번역에 유용한 기능들을 가지고 있습니다."
+msgstr "Weblate는 크라우드소싱 현지화에 유용한 기능들을 가지고 있습니다."
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
@@ -1675,10 +1667,8 @@ msgstr ""
 "code> 비밀번호로 로그인하세요."
 
 #: weblate_web/templates/try.html:27
-#, fuzzy
-#| msgid "Weblate screenshot"
 msgid "Screenshots"
-msgstr "Weblate 스크린샷"
+msgstr "스크린샷"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
