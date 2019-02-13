@@ -79,15 +79,6 @@ class PaymentView(FormView, SingleObjectMixin):
         kwargs['backends'] = [x(self.object) for x in list_backends()]
         return kwargs
 
-    def get(self, request, *args, **kwargs):
-        if self.object.customer.is_eu_enduser:
-            messages.error(
-                request,
-                'Payments for EU endusers are currently not possible. '
-                'Please contact us at billing@weblate.org.'
-            )
-        return super().get(request, *args, **kwargs)
-
     def validate_customer(self, customer):
         if not self.check_customer:
             return None
