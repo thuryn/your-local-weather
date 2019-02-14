@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-11 09:17+0000\n"
+"PO-Revision-Date: 2019-02-14 20:15+0000\n"
 "Last-Translator: Mesut Akcan <makcan@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/weblate/website/"
 "tr/>\n"
@@ -399,7 +399,7 @@ msgstr "Ödül"
 
 #: weblate_web/templates/donate.html:31
 msgid "Expiry date"
-msgstr "Son kullanma tarihi"
+msgstr "Bitiş tarihi"
 
 #: weblate_web/templates/donate.html:32
 msgid "Renewal"
