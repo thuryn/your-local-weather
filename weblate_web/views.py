@@ -106,7 +106,7 @@ class PaymentView(FormView, SingleObjectMixin):
         with transaction.atomic(using='payments_db'):
             self.object = self.get_object()
             customer = self.object.customer
-            self.can_pay = not customer.is_empty and not customer.is_eu_enduser
+            self.can_pay = not customer.is_empty
             # Redirect already processed payments to origin in case
             # the web redirect was aborted
             if self.object.state != Payment.NEW:
