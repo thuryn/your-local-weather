@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-02-09 15:05+0100\n"
+"POT-Creation-Date: 2019-02-14 13:40+0100\n"
 "PO-Revision-Date: 2019-02-11 09:17+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://hosted.weblate.org/projects/weblate/website/"
@@ -1683,27 +1683,27 @@ msgstr "קובץ tar של קוד המקור, דחוס עם xz‏"
 msgid "Sources, zip compressed"
 msgstr "קובצי המקור, מכווצים ב־zip"
 
-#: weblate_web/views.py:98
+#: weblate_web/views.py:89
 msgid "Please provide your billing information to complete the payment."
 msgstr "נא לספק את פרטי החיוב שלך כדי להשלים את התשלום."
 
-#: weblate_web/views.py:109
+#: weblate_web/views.py:100
 msgid "The VAT ID is no longer valid, please update it."
 msgstr "מזהה המע״מ אינו תקף עוד, נא לעדכן אותו."
 
-#: weblate_web/views.py:269
+#: weblate_web/views.py:260
 msgid "Payment not yet processed, please retry."
 msgstr "התשלומים עדיין לא טופלו, נא לנסות שוב."
 
-#: weblate_web/views.py:274
+#: weblate_web/views.py:265
 msgid "The payment was rejected: {}"
 msgstr "התשלום נדחה: {}"
 
-#: weblate_web/views.py:275
+#: weblate_web/views.py:266
 msgid "Unknown reason"
 msgstr "סיבה בלתי ידועה"
 
-#: weblate_web/views.py:279
+#: weblate_web/views.py:270
 msgid "Thank you for your donation."
 msgstr "תודה לך על תרומתך."
 

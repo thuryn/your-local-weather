@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Weblate v. 2017.09.28\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-02-09 15:05+0100\n"
+"POT-Creation-Date: 2019-02-14 13:40+0100\n"
 "PO-Revision-Date: 2019-02-05 07:13+0000\n"
 "Last-Translator: bovirus <roberto.boriotti@canon-europe.com>\n"
 "Language-Team: Italian <https://hosted.weblate.org/projects/weblate/website/"
@@ -1787,28 +1787,28 @@ msgstr "Tarball sorgenti, compressi xz"
 msgid "Sources, zip compressed"
 msgstr "Sorgenti, compressi zip"
 
-#: weblate_web/views.py:98
+#: weblate_web/views.py:89
 msgid "Please provide your billing information to complete the payment."
 msgstr ""
 "Per favore, inserisci i dati di fatturazione per completare il pagamento."
 
-#: weblate_web/views.py:109
+#: weblate_web/views.py:100
 msgid "The VAT ID is no longer valid, please update it."
 msgstr "L'ID IVA non è più valido. Aggiornalo."
 
-#: weblate_web/views.py:269
+#: weblate_web/views.py:260
 msgid "Payment not yet processed, please retry."
 msgstr "Pagamento non ancora elaborato. Riprova."
 
-#: weblate_web/views.py:274
+#: weblate_web/views.py:265
 msgid "The payment was rejected: {}"
 msgstr "Il pagamento è stato rifiutato. {}"
 
-#: weblate_web/views.py:275
+#: weblate_web/views.py:266
 msgid "Unknown reason"
 msgstr "Ragione sconosciuta"
 
-#: weblate_web/views.py:279
+#: weblate_web/views.py:270
 msgid "Thank you for your donation."
 msgstr "Grazie per la tua donazione."
 

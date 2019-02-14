@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-02-09 15:05+0100\n"
+"POT-Creation-Date: 2019-02-14 13:40+0100\n"
 "PO-Revision-Date: 2019-01-10 10:26+0000\n"
 "Last-Translator: Arash Ataei <arash.ataei.71@gmail.com>\n"
 "Language-Team: Persian <https://hosted.weblate.org/projects/weblate/website/"
@@ -1608,27 +1608,27 @@ msgstr ""
 msgid "Sources, zip compressed"
 msgstr ""
 
-#: weblate_web/views.py:98
+#: weblate_web/views.py:89
 msgid "Please provide your billing information to complete the payment."
 msgstr ""
 
-#: weblate_web/views.py:109
+#: weblate_web/views.py:100
 msgid "The VAT ID is no longer valid, please update it."
 msgstr ""
 
-#: weblate_web/views.py:269
+#: weblate_web/views.py:260
 msgid "Payment not yet processed, please retry."
 msgstr ""
 
-#: weblate_web/views.py:274
+#: weblate_web/views.py:265
 msgid "The payment was rejected: {}"
 msgstr ""
 
-#: weblate_web/views.py:275
+#: weblate_web/views.py:266
 msgid "Unknown reason"
 msgstr ""
 
-#: weblate_web/views.py:279
+#: weblate_web/views.py:270
 msgid "Thank you for your donation."
 msgstr ""
 

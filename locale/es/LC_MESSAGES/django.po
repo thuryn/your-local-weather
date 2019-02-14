@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-02-09 15:05+0100\n"
+"POT-Creation-Date: 2019-02-14 13:40+0100\n"
 "PO-Revision-Date: 2019-02-13 13:12+0000\n"
 "Last-Translator: Franco <francobenedetti.59+github1@gmail.com>\n"
 "Language-Team: Spanish <https://hosted.weblate.org/projects/weblate/website/"
@@ -347,8 +347,8 @@ msgid ""
 "You can find more repositories related to Weblate on <a href=\"%(url)s"
 "\">GitHub</a>"
 msgstr ""
-"Puede encontrar más repositorios relacionados con Weblate en <a href=\"%(url)"
-"s\">GitHub</a>"
+"Puede encontrar más repositorios relacionados con Weblate en <a href="
+"\"%(url)s\">GitHub</a>"
 
 #: weblate_web/templates/contribute.html:37
 msgid ""
@@ -1773,28 +1773,28 @@ msgstr "Compendio tar del código fuente, comprimido con xz"
 msgid "Sources, zip compressed"
 msgstr "Código fuente, comprimido con zip"
 
-#: weblate_web/views.py:98
+#: weblate_web/views.py:89
 msgid "Please provide your billing information to complete the payment."
 msgstr ""
 "Por favor, proporcione su información de facturación para completar el pago."
 
-#: weblate_web/views.py:109
+#: weblate_web/views.py:100
 msgid "The VAT ID is no longer valid, please update it."
 msgstr "El ID de IVA es inválido, por favor actualícelo."
 
-#: weblate_web/views.py:269
+#: weblate_web/views.py:260
 msgid "Payment not yet processed, please retry."
 msgstr "El pago no fue procesado, por favor reintente."
 
-#: weblate_web/views.py:274
+#: weblate_web/views.py:265
 msgid "The payment was rejected: {}"
 msgstr "El pago fue rechazado: {}"
 
-#: weblate_web/views.py:275
+#: weblate_web/views.py:266
 msgid "Unknown reason"
 msgstr "Razón desconocida"
 
-#: weblate_web/views.py:279
+#: weblate_web/views.py:270
 msgid "Thank you for your donation."
 msgstr "Gracias por su donación."
 

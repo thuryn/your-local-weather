@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: weblate-website-ja\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-02-09 15:05+0100\n"
+"POT-Creation-Date: 2019-02-14 13:40+0100\n"
 "PO-Revision-Date: 2019-01-15 11:20+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/weblate/website/"
@@ -1821,29 +1821,29 @@ msgstr "ソース tar 書庫、xz 圧縮"
 msgid "Sources, zip compressed"
 msgstr "ソース、zip 圧縮"
 
-#: weblate_web/views.py:98
+#: weblate_web/views.py:89
 msgid "Please provide your billing information to complete the payment."
 msgstr "支払いを完了するには、お支払い情報を入力してください。"
 
-#: weblate_web/views.py:109
+#: weblate_web/views.py:100
 msgid "The VAT ID is no longer valid, please update it."
 msgstr ""
 
-#: weblate_web/views.py:269
+#: weblate_web/views.py:260
 #, fuzzy
 #| msgid "Payments are processed by The Pay service."
 msgid "Payment not yet processed, please retry."
 msgstr "支払いは Pay サービスによって処理されます。"
 
-#: weblate_web/views.py:274
+#: weblate_web/views.py:265
 msgid "The payment was rejected: {}"
 msgstr ""
 
-#: weblate_web/views.py:275
+#: weblate_web/views.py:266
 msgid "Unknown reason"
 msgstr ""
 
-#: weblate_web/views.py:279
+#: weblate_web/views.py:270
 #, fuzzy
 #| msgid "Thank you for ordering hosting!"
 msgid "Thank you for your donation."

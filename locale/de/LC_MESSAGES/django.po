@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2019-02-09 15:05+0100\n"
+"POT-Creation-Date: 2019-02-14 13:40+0100\n"
 "PO-Revision-Date: 2019-02-13 13:12+0000\n"
 "Last-Translator: C. Rüdinger <Mail-an-CR@web.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/weblate/website/"
@@ -603,8 +603,8 @@ msgid ""
 "You can control Weblate remotely using <a href=\"%(url)s\">wlc</a>, it can "
 "be installed by using Python PIP:"
 msgstr ""
-"Sie können Weblate per Remote-Zugriff mit dem Programm <a href=\"%(url)s\""
-">wlc</a> steuern, das mittels Python PIP installiert werden kann:"
+"Sie können Weblate per Remote-Zugriff mit dem Programm <a href=\"%(url)s"
+"\">wlc</a> steuern, das mittels Python PIP installiert werden kann:"
 
 #: weblate_web/templates/download.html:40
 msgid "You can also install using packages for following Linux distributions:"
@@ -1808,27 +1808,27 @@ msgstr "tar-Quellpaket, xz-komprimiert"
 msgid "Sources, zip compressed"
 msgstr "Quellen, ZIP-komprimiert"
 
-#: weblate_web/views.py:98
+#: weblate_web/views.py:89
 msgid "Please provide your billing information to complete the payment."
 msgstr "Bitte geben Sie Ihre Rechnungsdaten an, um die Zahlung abzuschließen."
 
-#: weblate_web/views.py:109
+#: weblate_web/views.py:100
 msgid "The VAT ID is no longer valid, please update it."
 msgstr "Die VAT ID ist nicht mehr gültig, bitte aktualisieren."
 
-#: weblate_web/views.py:269
+#: weblate_web/views.py:260
 msgid "Payment not yet processed, please retry."
 msgstr "Zahlung noch nicht bearbeitet, bitte versuchen Sie es erneut."
 
-#: weblate_web/views.py:274
+#: weblate_web/views.py:265
 msgid "The payment was rejected: {}"
 msgstr "Die Zahlung wurde zurückgewiesen: {}"
 
-#: weblate_web/views.py:275
+#: weblate_web/views.py:266
 msgid "Unknown reason"
 msgstr "Unbekannter Grund"
 
-#: weblate_web/views.py:279
+#: weblate_web/views.py:270
 msgid "Thank you for your donation."
 msgstr "Vielen Dank für Ihre Spende."
 
