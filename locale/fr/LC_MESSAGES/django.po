@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: French (Weblate)\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-11 09:17+0000\n"
+"PO-Revision-Date: 2019-02-16 08:59+0000\n"
 "Last-Translator: Ldm Public <ldmpub@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/weblate/website/"
 "fr/>\n"
@@ -408,7 +408,7 @@ msgstr "Récompense"
 
 #: weblate_web/templates/donate.html:31
 msgid "Expiry date"
-msgstr "Date d'expiration"
+msgstr "Date d’expiration"
 
 #: weblate_web/templates/donate.html:32
 msgid "Renewal"
