@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-11 09:17+0000\n"
+"PO-Revision-Date: 2019-02-16 08:59+0000\n"
 "Last-Translator: Thomas De Rocker <thomasderocker@outlook.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/weblate/website/nl/"
 ">\n"
@@ -1707,7 +1707,7 @@ msgstr ""
 
 #: weblate_web/templates/try.html:27
 msgid "Screenshots"
-msgstr "Screenshots"
+msgstr "Schermafbeeldingen"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
