@@ -1,15 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# Joan Montané <joan@montane.cat>, 2018.
+# Joan Montané <joan@montane.cat>, 2018, 2019.
 # Adolfo Jayme Barrientos <fitojb@ubuntu.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-01-23 04:22+0000\n"
-"Last-Translator: Adolfo Jayme Barrientos <fitojb@ubuntu.com>\n"
+"PO-Revision-Date: 2019-02-16 04:48+0000\n"
+"Last-Translator: Joan Montané <joan@montane.cat>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/weblate/website/"
 "ca/>\n"
 "Language: ca\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.4\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: weblate_web/data.py:33
 msgid "Overview of own translations at main page."
@@ -129,28 +129,26 @@ msgstr "Gestió d'usuaris"
 
 #: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
 #: weblate_web/templates/donate/form.html:25
-#, fuzzy
-#| msgid "Donate address"
 msgid "Donation recurrence"
-msgstr "Adreça per a fer donatius"
+msgstr "Recurrència del donatiu"
 
 #: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
-msgstr ""
+msgstr "Quantitat en euros"
 
 #: weblate_web/forms.py:57
 #, python-format
 msgid "The minimal amount is %d EUR."
-msgstr ""
+msgstr "La quantitat mínima és %d EUR."
 
 #: weblate_web/models.py:76
 msgid "Link text"
-msgstr ""
+msgstr "Text de l'enllaç"
 
 #: weblate_web/models.py:80
 msgid "Link URL"
-msgstr ""
+msgstr "URL de l'enllaç"
 
 #: weblate_web/templates/404.html:4
 msgid "Page not found"
@@ -158,8 +156,6 @@ msgstr "No s'ha trobat la pàgina"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
-#, fuzzy
-#| msgid "Weblate is a free web-based translation management system."
 msgid "Weblate is a libre software web-based continuous localization system."
 msgstr ""
 "Weblate és un sistema de gestió de traduccions lliure i basat en la xarxa."
@@ -182,16 +178,10 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-#, fuzzy
-#| msgid "Continuous translation"
 msgid "Continuous localization"
 msgstr "Traducció contínua"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation process can closely follow development of your "
-#| "project."
 msgid ""
 "Automated localization workflow closely follows the development of your "
 "project."
@@ -200,27 +190,19 @@ msgstr ""
 "projecte."
 
 #: weblate_web/templates/base-features.html:15
-#, fuzzy
-#| msgid ""
-#| "Customizable quality checks will help you in improving quality of "
-#| "translations."
 msgid "Customizable quality checks helps improve translation quality."
 msgstr ""
-"Les verificacions de qualitat que podeu configurar us permetran millorar la "
-"qualitat de les traduccions."
+"Les verificacions de qualitat us ajuden a millorar la qualitat de les "
+"traduccions."
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
 msgstr "Atribució"
 
 #: weblate_web/templates/base-features.html:23
-#, fuzzy
-#| msgid ""
-#| "All your translators will be properly credited in the version control "
-#| "system."
 msgid "All translators are properly credited in the version control system."
 msgstr ""
-"Tots els traductors seran degudament reconeguts al sistema de control de "
+"Tots els traductors són degudament reconeguts al sistema de control de "
 "versions."
 
 #: weblate_web/templates/base-features.html:30
@@ -229,28 +211,20 @@ msgid "Hosting plans"
 msgstr "Plans d'allotjament"
 
 #: weblate_web/templates/base-features.html:31
-#, fuzzy
-#| msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
 msgid "Hosting plans for Weblate as a service starting at 19 EUR."
-msgstr ""
-"Hi ha plans d'allotjament per a utilitzar Weblate com a servei des de 19 EUR."
+msgstr "Hi ha plans d'allotjament per al Weblate com a servei des de 19 EUR."
 
 #: weblate_web/templates/base-features.html:38
 msgid "Cloud ready"
-msgstr ""
+msgstr "Preparat per al núvol"
 
 #: weblate_web/templates/base-features.html:39
-#, fuzzy
-#| msgid ""
-#| "Weblate comes with appliances, which are ready to deploy in your cloud."
 msgid "Weblate comes with appliances, ready to deploy in your cloud."
 msgstr ""
-"Weblate es presenta en versions operatives, a punt per a desplegar-se al "
+"El Weblate es presenta en versions operatives, a punt per a desplegar-se al "
 "vostre núvol."
 
 #: weblate_web/templates/base-features.html:46
-#, fuzzy
-#| msgid "Free software"
 msgid "Libre software"
 msgstr "Programari lliure"
 
@@ -258,6 +232,8 @@ msgstr "Programari lliure"
 msgid ""
 "Weblate is copylefted; use, see, modify and share at will, and with everyone."
 msgstr ""
+"El Weblate és copyleft; use-lo, estudieu-lo, modifiqueu-lo i compartiu-lo "
+"com vulgueu, amb qui vulgueu."
 
 #: weblate_web/templates/base.html:11
 msgctxt "Keyword"
@@ -406,53 +382,45 @@ msgstr "El Weblate és lliure,  però agraeix donatius."
 
 #: weblate_web/templates/donate.html:11 weblate_web/templates/donate.html:134
 msgid "Purchase hosting package"
-msgstr ""
+msgstr "Adquisició d'un paquet d'allotjament"
 
 #: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:135
 #: weblate_web/templates/download.html:13 weblate_web/templates/hosting.html:12
 #: weblate_web/templates/hosting.html:233
-#, fuzzy
-#| msgid "Basic support for self hosted Weblate"
 msgid "Get support for Weblate"
-msgstr "Compatibilitat bàsica amb el Weblate en allotjament propi"
+msgstr "Obtenció de suport per al Weblate"
 
 #: weblate_web/templates/donate.html:19
 msgid "Sign in to manage your donations"
-msgstr ""
+msgstr "Inicieu sessió per a gestionar els donatius"
 
 #: weblate_web/templates/donate.html:21
 msgid "Sign out"
-msgstr ""
+msgstr "Tanca la sessió"
 
 #: weblate_web/templates/donate.html:24
-#, fuzzy
-#| msgid "Regular donations"
 msgid "Your donations"
-msgstr "Donacions periòdiques"
+msgstr "Els vostres donatius"
 
 #: weblate_web/templates/donate.html:29
-#, fuzzy
-#| msgid "Collaboration sites"
 msgid "Creation date"
-msgstr "Llocs web de col·laboració"
+msgstr "Data de creació"
 
 #: weblate_web/templates/donate.html:30
 msgid "Reward"
-msgstr ""
+msgstr "Recompensa"
 
 #: weblate_web/templates/donate.html:31
 msgid "Expiry date"
-msgstr ""
+msgstr "Data d'expiració"
 
 #: weblate_web/templates/donate.html:32
 msgid "Renewal"
-msgstr ""
+msgstr "Renovació"
 
 #: weblate_web/templates/donate.html:33
-#, fuzzy
-#| msgid "Payment amount"
 msgid "Payments"
-msgstr "Quantitat de pagament"
+msgstr "Pagaments"
 
 #: weblate_web/templates/donate.html:43
 #: weblate_web/templates/payment/payment.html:37
@@ -461,25 +429,23 @@ msgstr "Edita"
 
 #: weblate_web/templates/donate.html:45
 msgid "No reward"
-msgstr ""
+msgstr "Sense recompensa"
 
 #: weblate_web/templates/donate.html:53
 msgid "Expired"
-msgstr ""
+msgstr "Expirat"
 
 #: weblate_web/templates/donate.html:57
 msgid "Disable renewal"
-msgstr ""
+msgstr "Desactiva la renovació"
 
 #: weblate_web/templates/donate.html:60
 msgid "Does not renew"
-msgstr ""
+msgstr "No hi ha renovació"
 
 #: weblate_web/templates/donate.html:92
-#, fuzzy
-#| msgid "Documentation"
 msgid "Donations"
-msgstr "Documentació"
+msgstr "Donatius"
 
 #: weblate_web/templates/donate.html:95
 #, fuzzy
@@ -512,6 +478,8 @@ msgid ""
 "Please consider this if you are hosting Weblate yourself without a support "
 "contract."
 msgstr ""
+"Tingueu en compte això si allotgeu el Weblate vós mateix sense contracte de "
+"suport."
 
 #: weblate_web/templates/donate.html:116
 #, fuzzy
@@ -573,7 +541,7 @@ msgstr ""
 
 #: weblate_web/templates/donate/edit.html:20
 msgid "Edit your reward link"
-msgstr ""
+msgstr "Editeu l'enllaç de recompensa"
 
 #: weblate_web/templates/donate/edit.html:26
 #: weblate_web/templates/payment/customer.html:21
@@ -582,7 +550,7 @@ msgstr "Desa"
 
 #: weblate_web/templates/donate/form.html:33
 msgid "Select"
-msgstr ""
+msgstr "Seleccioneu"
 
 #: weblate_web/templates/donate/form.html:41
 msgid ""
@@ -596,11 +564,11 @@ msgstr ""
 
 #: weblate_web/templates/donate/form.html:56
 msgid "Continue"
-msgstr ""
+msgstr "Continua"
 
 #: weblate_web/templates/donate/rewards.html:2
 msgid "Link placement on the weblate.org thanks page"
-msgstr ""
+msgstr "Ubicació de l'enllaç a la pàgina d'agraïments de weblate.org"
 
 #: weblate_web/templates/donate/rewards.html:3
 msgid "Link placement in the list of supporters"
@@ -608,11 +576,11 @@ msgstr ""
 
 #: weblate_web/templates/donate/rewards.html:4
 msgid "Name placement in the list of supporters"
-msgstr ""
+msgstr "Ubicació del nom a la llista de col·laboradors"
 
 #: weblate_web/templates/download-link.html:4
 msgid "PGP signature"
-msgstr ""
+msgstr "Signatura PGP"
 
 #: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
 #: weblate_web/templates/hosting.html:234
@@ -1289,7 +1257,7 @@ msgstr ""
 
 #: weblate_web/templates/hosting.html:229
 msgid "There are also several options for deploying Weblate to the cloud."
-msgstr ""
+msgstr "Hi ha diverses opcions per a desplegar el Weblate al núvol."
 
 #: weblate_web/templates/hosting.html:233
 msgid ""
@@ -1300,16 +1268,12 @@ msgstr ""
 "oferim ajuda amb serveis de consultoria adaptats a les vostres necessitats."
 
 #: weblate_web/templates/index.html:3
-#, fuzzy
-#| msgid "Weblate - web-based translation"
 msgid "Weblate - web-based localization"
 msgstr "Weblate - traducció basada en la xarxa"
 
 #: weblate_web/templates/index.html:4
-#, fuzzy
-#| msgid "Consulting services or custom development"
 msgid "Bring translators closer to development"
-msgstr "Serveis de consulta o desenvolupament personalitzat"
+msgstr "Apropeu els traductors al desenvolupament"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
@@ -1325,19 +1289,13 @@ msgid "Downloads"
 msgstr "Baixades"
 
 #: weblate_web/templates/index.html:23
-#, fuzzy
-#| msgid ""
-#| "Weblate is a free web-based translation tool with tight version control "
-#| "integration. It features simple and clean user interface, propagation of "
-#| "translations across components, quality checks and automatic linking to "
-#| "source files."
 msgid ""
 "Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
 msgstr ""
-"El Weblate és una eina de traducció basada en la xarxa, oberta i amb "
+"El Weblate és una eina lliure de traducció basada en la xarxa, oberta i amb "
 "integració plena amb el control de versions. Les seves característiques són "
 "una interfície clara i simple, propagació de traduccions entre components, "
 "comprovacions de la qualitat i enllaç automàtic als fitxers font."
@@ -1356,60 +1314,48 @@ msgstr "Mireu qui està utilitzant el Weblate i uniu-vos-hi!"
 
 #: weblate_web/templates/index.html:106
 msgid "Browse hundreds of projects on Hosted Weblate"
-msgstr ""
+msgstr "Navegueu per centenars de projectes allotjats a Weblate"
 
 #: weblate_web/templates/index.html:114
 msgid "Hosted service"
-msgstr ""
+msgstr "Servei allotjat"
 
 #: weblate_web/templates/index.html:118 weblate_web/templates/index.html:132
 #, python-format
 msgid "From %(amount)sEUR/month"
-msgstr ""
+msgstr "Des de %(amount)s EUR/mes"
 
 #: weblate_web/templates/index.html:119
 msgid "Cloud service"
-msgstr ""
+msgstr "Servei al núvol"
 
 #: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
-#, fuzzy
-#| msgid "View hosting plans"
 msgid "Choose hosting plan"
-msgstr "Mostra els plans d'allotjament"
+msgstr "Trieu un pla d'allotjament"
 
 #: weblate_web/templates/index.html:128
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self hosted"
 msgstr "Allotjament propi"
 
 #: weblate_web/templates/index.html:133
 msgid "Your infrastructure"
-msgstr ""
+msgstr "La vostra infraestructura"
 
 #: weblate_web/templates/index.html:142
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self supported"
-msgstr "Allotjament propi"
+msgstr "Suport propi"
 
 #: weblate_web/templates/index.html:146
-#, fuzzy
-#| msgid "Weblate features"
 msgid "Weblate is free to use"
-msgstr "Característiques del Weblate"
+msgstr "El Weblate és d'ús gratuït"
 
 #: weblate_web/templates/index.html:147
 msgid "Maintained by you"
-msgstr ""
+msgstr "Mantingut per vós"
 
 #: weblate_web/templates/index.html:148
-#, fuzzy
-#| msgid "Phone support"
 msgid "Community support"
-msgstr "Assistència per telèfon"
+msgstr "Suport comunitari"
 
 #: weblate_web/templates/payment/customer.html:5
 #: weblate_web/templates/payment/payment.html:4
@@ -1421,10 +1367,8 @@ msgid "Your billing information"
 msgstr "Informació de la facturació"
 
 #: weblate_web/templates/payment/payment.html:11
-#, fuzzy
-#| msgid "Payment amount"
 msgid "Payment summary"
-msgstr "Quantitat de pagament"
+msgstr "Resum del pagament"
 
 #: weblate_web/templates/payment/payment.html:14
 msgid "Payment amount"
@@ -1438,17 +1382,15 @@ msgstr "%(price)s EUR"
 
 #: weblate_web/templates/payment/payment.html:16
 msgid "(including VAT)"
-msgstr "(inclòs IVA)"
+msgstr "(IVA inclòs)"
 
 #: weblate_web/templates/payment/payment.html:18
 msgid "Payment description"
 msgstr "Descripció del pagament"
 
 #: weblate_web/templates/payment/payment.html:20
-#, fuzzy
-#| msgid "Payment recurrence"
 msgid "Payment frequence"
-msgstr "Periodicitat del pagament"
+msgstr "Freqüència de pagament"
 
 #: weblate_web/templates/payment/payment.html:22
 #, fuzzy
@@ -1881,11 +1823,11 @@ msgstr ""
 
 #: weblate_web/views.py:265
 msgid "The payment was rejected: {}"
-msgstr ""
+msgstr "El pagament s'ha rebutjat: {}"
 
 #: weblate_web/views.py:266
 msgid "Unknown reason"
-msgstr ""
+msgstr "Raó desconeguda"
 
 #: weblate_web/views.py:270
 #, fuzzy
