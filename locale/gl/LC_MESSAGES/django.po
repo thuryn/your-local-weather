@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-02 20:10+0000\n"
+"PO-Revision-Date: 2019-02-16 21:31+0000\n"
 "Last-Translator: Iván Seoane <ivanrsm1997@gmail.com>\n"
 "Language-Team: Galician <https://hosted.weblate.org/projects/weblate/website/"
 "gl/>\n"
@@ -178,20 +178,16 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-#, fuzzy
-#| msgid "Continuous translation"
 msgid "Continuous localization"
-msgstr "Tradución continua"
+msgstr "Localización continua"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation closely follows the development of your project."
 msgid ""
 "Automated localization workflow closely follows the development of your "
 "project."
 msgstr ""
-"Segue de preto o desenvolvemento da tradución automática do teu proxecto."
+"O fluxo de traballo de localización automatizado segue de preto o "
+"desenvolvemento do teu proxecto."
 
 #: weblate_web/templates/base-features.html:15
 msgid "Customizable quality checks helps improve translation quality."
@@ -257,7 +253,7 @@ msgstr "Funcións"
 #: weblate_web/templates/base.html:59 weblate_web/templates/download.html:18
 #: weblate_web/templates/index.html:150
 msgid "Download"
-msgstr "Descarregar"
+msgstr "Baixar"
 
 #: weblate_web/templates/base.html:60
 msgid "Pricing"
@@ -578,7 +574,7 @@ msgstr "Sinatura PGP"
 #: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
 #: weblate_web/templates/hosting.html:234
 msgid "Download Weblate"
-msgstr "Descarrega-lo Weblate"
+msgstr "Baixa-lo Weblate"
 
 #: weblate_web/templates/download.html:7
 msgid "Weblate comes with complete source code."
@@ -586,7 +582,7 @@ msgstr "O Weblate inclúe todo o seu código fonte completo."
 
 #: weblate_web/templates/download.html:21
 msgid "You can download latest release here:"
-msgstr "Velaquí pode descarregar a última versión:"
+msgstr "Velaquí podes baixar a última versión:"
 
 #: weblate_web/templates/download.html:30
 #: weblate_web/templates/download.html:73
@@ -722,8 +718,8 @@ msgstr ""
 #: weblate_web/templates/features.html:88
 msgid "Translations can be downloaded for offline translation and merged back."
 msgstr ""
-"Pode descarrega-las traducións para traducilas sen conexión e despois "
-"integralas de novo."
+"Pode baixa-las traducións para traducilas sen conexión e despois integralas "
+"de novo."
 
 #: weblate_web/templates/features.html:95
 msgid "Integrated"
@@ -1099,7 +1095,7 @@ msgstr "Negociábel"
 #: weblate_web/templates/hosting.html:101
 #: weblate_web/templates/hosting.html:102
 msgid "Unlimited"
-msgstr "Ilimitado"
+msgstr "Infindo"
 
 #: weblate_web/templates/hosting.html:60
 msgid "Target languages"
@@ -1269,7 +1265,7 @@ msgstr "Probe o Weblate"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
-msgstr "Descarregas"
+msgstr "Baixadas"
 
 #: weblate_web/templates/index.html:23
 msgid ""
@@ -1696,10 +1692,8 @@ msgstr ""
 "páxina."
 
 #: weblate_web/templates/try.html:6
-#, fuzzy
-#| msgid "Weblate has useful features for every crowdsourced translation."
 msgid "Weblate has useful features for every crowdsourced localization."
-msgstr "O Weblate ten funcións útis para tódalas traducións colaborativas."
+msgstr "O Weblate ten funcións útis para cada localización de múltiples fontes."
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
@@ -1725,10 +1719,8 @@ msgstr ""
 "nome de usuario: <code>review</code> e o contrasinal: <code>review</code>."
 
 #: weblate_web/templates/try.html:27
-#, fuzzy
-#| msgid "Weblate screenshot"
 msgid "Screenshots"
-msgstr "Captura da pantalla do Weblate"
+msgstr "Capturas da pantalla"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
