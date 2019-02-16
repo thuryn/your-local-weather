@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-10 14:56+0000\n"
+"PO-Revision-Date: 2019-02-16 21:31+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://hosted.weblate.org/projects/weblate/"
 "website/nb_NO/>\n"
@@ -34,12 +34,12 @@ msgid ""
 "Translator can always see important context information like comments or "
 "corresponding source code."
 msgstr ""
-"Oversettere kan alltid se viktig innholdsinformasjon som kommentarer eller "
-"tilsvarende kildekode."
+"Oversettere kan alltid se viktig bindeleddsinformasjon, som kommentarer "
+"eller tilhørende kildekode."
 
 #: weblate_web/data.py:42 weblate_web/templates/features.html:63
 msgid "Translation context"
-msgstr "Oversettelsessammenheng"
+msgstr "Oversettelsesbindeleddsinformasjon"
 
 #: weblate_web/data.py:47
 msgid ""
@@ -70,17 +70,17 @@ msgid ""
 "Customizable quality checks will help you in improving quality of "
 "translations."
 msgstr ""
-"Justerbare kvalitetskontroller hjelper deg med å forbedre kvaliteten på "
+"Justerbare kvalitetskontroller hjelper deg å forbedre kvaliteten på "
 "oversettelsene."
 
 #: weblate_web/data.py:66 weblate_web/templates/base-features.html:14
 #: weblate_web/templates/hosting.html:123
 msgid "Quality checks"
-msgstr "Kvalitetskontroll"
+msgstr "Kvalitetskontroller"
 
 #: weblate_web/data.py:71 weblate_web/templates/features.html:128
 msgid "Weblate provides you various ways to promote your translation project."
-msgstr "Weblate gir deg ulike måter å markedsføre oversettelsesprosjekt på."
+msgstr "Weblate tilbyr ulike måter å markedsføre ditt oversettelsesprosjekt."
 
 #: weblate_web/data.py:74 weblate_web/templates/features.html:127
 msgid "Promotion"
@@ -150,7 +150,7 @@ msgstr "Lenkenettadresse"
 
 #: weblate_web/templates/404.html:4
 msgid "Page not found"
-msgstr "Finner ikke side"
+msgstr "Finner ikke siden"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
@@ -239,7 +239,7 @@ msgstr "oversette"
 
 #: weblate_web/templates/base.html:49
 msgid "Weblate logo"
-msgstr "Weblate logo"
+msgstr "Weblate-logo"
 
 #: weblate_web/templates/base.html:57
 msgid "Try"
