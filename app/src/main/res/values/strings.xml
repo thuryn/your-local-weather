@@ -33,6 +33,7 @@
     <string name="graph_rain_label" tools:ignore="MissingTranslation">Rain</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Snow</string>
     <string name="graph_pressure_label" tools:ignore="MissingTranslation">Pressure</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">You are not allowed to have more than %1$d locations at the moment.</string>
 
     <!-- Initial guide and help -->
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Close</string>

@@ -2,11 +2,14 @@ package org.thosp.yourlocalweather;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +41,7 @@ public class LocationsActivity extends BaseActivity {
     private LocationsDbHelper locationsDbHelper;
     private RecyclerView recyclerView;
     private FloatingActionButton addLocationButton;
+    private boolean addLocationDisabled;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,18 +61,25 @@ public class LocationsActivity extends BaseActivity {
     public void onResume(){
         super.onResume();
         List<Location> allLocations = locationsDbHelper.getAllRows();
-        if (allLocations.size() >= ApiKeys.getAvailableLocations(this)) {
-            addLocationButton.hide();
-        } else {
-            addLocationButton.show();
-        }
+        updateAddLocationButton(allLocations);
         locationsAdapter = new LocationsAdapter(allLocations);
         recyclerView.setAdapter(locationsAdapter);
     }
 
     public void addLocation(View view) {
-        Intent intent = new Intent(LocationsActivity.this, SearchActivity.class);
-        startActivity(intent);
+        if (addLocationDisabled) {
+            notifyUserAboutMaxAllowedLocations();
+        } else {
+            Intent intent = new Intent(LocationsActivity.this, SearchActivity.class);
+            startActivity(intent);
+        }
+    }
+
+    private void notifyUserAboutMaxAllowedLocations() {
+        Snackbar.make(
+                findViewById(android.R.id.content),
+                getString(R.string.snackbar_add_location_disabled, ApiKeys.getAvailableLocations(this)),
+                Snackbar.LENGTH_LONG).show();
     }
 
     private void setupActionBar() {
@@ -87,7 +98,12 @@ public class LocationsActivity extends BaseActivity {
             @Override
             public void onRightClicked(int position) {
                 if (position == 0) {
-                    disableEnableLocation();
+                    Location location = locationsAdapter.locations.get(0);
+                    if (addLocationDisabled && !location.isEnabled()) {
+                        notifyUserAboutMaxAllowedLocations();
+                    } else {
+                        disableEnableLocation();
+                    }
                 } else {
                     deleteLocation(position);
                 }
@@ -113,6 +129,7 @@ public class LocationsActivity extends BaseActivity {
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
         startService(intentToStartUpdate);
         List<Location> allLocations = locationsDbHelper.getAllRows();
+        updateAddLocationButton(allLocations);
         locationsAdapter = new LocationsAdapter(allLocations);
         recyclerView.setAdapter(locationsAdapter);
         WidgetUtils.startBackgroundService(
@@ -139,11 +156,7 @@ public class LocationsActivity extends BaseActivity {
         locationsAdapter.notifyItemRemoved(position);
         locationsAdapter.notifyItemRangeChanged(position, locationsAdapter.getItemCount());
         List<Location> allLocations = locationsDbHelper.getAllRows();
-        if (allLocations.size() >= ApiKeys.getAvailableLocations(this)) {
-            addLocationButton.hide();
-        } else {
-            addLocationButton.show();
-        }
+        updateAddLocationButton(allLocations);
         locationsAdapter = new LocationsAdapter(allLocations);
         recyclerView.setAdapter(locationsAdapter);
         Intent reconciliationService = new Intent(this, ReconciliationDbService.class);
@@ -151,6 +164,20 @@ public class LocationsActivity extends BaseActivity {
         WidgetUtils.startBackgroundService(
                 this,
                 reconciliationService);
+    }
+
+    private void updateAddLocationButton(List<Location> allLocations) {
+        int locationsCount = allLocations.size();
+        if (!allLocations.get(0).isEnabled()) {
+            locationsCount--;
+        }
+        if (locationsCount >= ApiKeys.getAvailableLocations(this)) {
+            addLocationButton.setBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
+            addLocationDisabled = true;
+        } else {
+            addLocationButton.setBackgroundTintList(ColorStateList.valueOf(Color.rgb(0xde, 0x44, 0x4e)));
+            addLocationDisabled = false;
+        }
     }
 
     @Override
