@@ -1,4 +1,7 @@
 v4.6.10
+Enable one more location when location 0 is disabled; added snackbar notifification when maximum number of allowed locations is reached
+
+v4.6.10
 Several small fixies on location update and notification
 
 v4.6.9
