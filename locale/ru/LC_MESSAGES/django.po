@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: weblate-web\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-18 15:53+0000\n"
+"PO-Revision-Date: 2019-02-20 15:14+0000\n"
 "Last-Translator: WWWesten <wwwesten@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/weblate/website/"
 "ru/>\n"
@@ -255,7 +255,7 @@ msgstr "Возможности"
 #: weblate_web/templates/base.html:59 weblate_web/templates/download.html:18
 #: weblate_web/templates/index.html:150
 msgid "Download"
-msgstr "Загрузки"
+msgstr "Скачать"
 
 #: weblate_web/templates/base.html:60
 msgid "Pricing"
@@ -360,7 +360,7 @@ msgstr ""
 
 #: weblate_web/templates/contribute.html:42
 msgid "Translation status"
-msgstr "Состояние перевода"
+msgstr "Статус перевода"
 
 #: weblate_web/templates/donate.html:3 weblate_web/templates/donate.html:4
 #: weblate_web/templates/donate/edit.html:4
@@ -745,7 +745,7 @@ msgstr ""
 
 #: weblate_web/templates/features.html:111
 msgid "Review"
-msgstr "Ревью"
+msgstr "Рецензия"
 
 #: weblate_web/templates/features.html:112
 msgid "Translators have several options to review contributions made by peers."
@@ -860,8 +860,8 @@ msgid ""
 "Source code has to be publicly available in a supported version control "
 "system."
 msgstr ""
-"Исходный код должен быть публично доступен в одной из поддерживаемых систем "
-"контроля версий."
+"Исходный код должен быть публично доступен в поддерживаемой системе контроля "
+"версий."
 
 #: weblate_web/templates/hosting-free.html:29
 msgid "There is no guarantee for service availability or quality."
@@ -1672,7 +1672,7 @@ msgstr "Наши переводы выполняются на Hosted Weblate."
 
 #: weblate_web/templates/thanks.html:42
 msgid "Payments are processed by The Pay service."
-msgstr "Платежи обрабатываются платёжной системой."
+msgstr "Платежи обрабатываются сервисом The Pay."
 
 #: weblate_web/templates/thanks.html:46
 msgid "Supporters"
@@ -1721,7 +1721,7 @@ msgstr ""
 
 #: weblate_web/templates/try.html:27
 msgid "Screenshots"
-msgstr "Скриншоты"
+msgstr "Снимки экрана"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
