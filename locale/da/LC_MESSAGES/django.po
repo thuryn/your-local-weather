@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-09 13:11+0000\n"
+"PO-Revision-Date: 2019-02-21 22:18+0000\n"
 "Last-Translator: scootergrisen <scootergrisen@gmail.com>\n"
 "Language-Team: Danish <https://hosted.weblate.org/projects/weblate/website/"
 "da/>\n"
@@ -174,19 +174,16 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-#, fuzzy
-#| msgid "Continuous translation"
 msgid "Continuous localization"
-msgstr "Løbende oversættelse"
+msgstr "Løbende lokalisering"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation closely follows the development of your project."
 msgid ""
 "Automated localization workflow closely follows the development of your "
 "project."
-msgstr "Automatiserede oversættelse følger nøje udviklingen af dit projekt."
+msgstr ""
+"Automatiserede lokaliseringsarbejdsgang følger nøje udviklingen af dit "
+"projekt."
 
 #: weblate_web/templates/base-features.html:15
 msgid "Customizable quality checks helps improve translation quality."
@@ -1667,10 +1664,8 @@ msgid "Support our project and get link placement on this page."
 msgstr "Støt vores projekt og få linket placeret på siden."
 
 #: weblate_web/templates/try.html:6
-#, fuzzy
-#| msgid "Weblate has useful features for every crowdsourced translation."
 msgid "Weblate has useful features for every crowdsourced localization."
-msgstr "Weblate har nyttige funktioner til alle crowdsourcede oversættelser."
+msgstr "Weblate har nyttige funktioner til enhver crowdsourcet lokalisering."
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
@@ -1695,10 +1690,8 @@ msgstr ""
 "<code>review</code> og adgangskoden <code>review</code>."
 
 #: weblate_web/templates/try.html:27
-#, fuzzy
-#| msgid "Weblate screenshot"
 msgid "Screenshots"
-msgstr "Weblate-skærmbillede"
+msgstr "Skærmbilleder"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
