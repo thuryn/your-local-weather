@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: weblate-web\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-20 15:14+0000\n"
+"PO-Revision-Date: 2019-02-21 22:18+0000\n"
 "Last-Translator: WWWesten <wwwesten@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/weblate/website/"
 "ru/>\n"
@@ -369,7 +369,7 @@ msgstr "Статус перевода"
 #: weblate_web/templates/donate/form.html:5
 #: weblate_web/templates/thanks.html:10
 msgid "Donate to Weblate"
-msgstr "Пожертвовать Weblate"
+msgstr "Пожертвовать для Weblate"
 
 #: weblate_web/templates/donate.html:6 weblate_web/templates/donate/edit.html:7
 #: weblate_web/templates/donate/form.html:7
@@ -1622,7 +1622,7 @@ msgstr ""
 
 #: weblate_web/templates/terms.html:3 weblate_web/templates/terms.html:13
 msgid "Terms of Service"
-msgstr "Условия оказания услуг"
+msgstr "Условия обслуживания"
 
 #: weblate_web/templates/terms.html:6
 msgid "The legal documents necessary to offer this service."
@@ -1630,7 +1630,7 @@ msgstr "Юридические документы, необходимые для
 
 #: weblate_web/templates/terms.html:20
 msgid "Privacy Policy"
-msgstr "Политика приватности"
+msgstr "Политика конфиденциальности"
 
 #: weblate_web/templates/thanks.html:3 weblate_web/templates/thanks.html:4
 msgid "Thanks from Weblate"
