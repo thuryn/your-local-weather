@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: weblate-website-ja\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-01-15 11:20+0000\n"
+"PO-Revision-Date: 2019-02-24 14:18+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/weblate/website/"
 "ja/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 3.4-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: weblate_web/data.py:33
 msgid "Overview of own translations at main page."
@@ -128,20 +128,18 @@ msgstr "ユーザ管理"
 
 #: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
 #: weblate_web/templates/donate/form.html:25
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation recurrence"
-msgstr "寄付のアドレス"
+msgstr "寄付の頻度"
 
 #: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
-msgstr ""
+msgstr "寄付の額 (ユーロ)"
 
 #: weblate_web/forms.py:57
 #, python-format
 msgid "The minimal amount is %d EUR."
-msgstr ""
+msgstr "寄付の最低金額は %d ユーロです。"
 
 #: weblate_web/models.py:76
 msgid "Link text"
@@ -180,41 +178,24 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-#, fuzzy
-#| msgid "Continuous translation"
 msgid "Continuous localization"
-msgstr "継続的な翻訳"
+msgstr "継続的な現地化"
 
 #: weblate_web/templates/base-features.html:7
-#, fuzzy
-#| msgid ""
-#| "Automated translation process can closely follow development of your "
-#| "project."
 msgid ""
 "Automated localization workflow closely follows the development of your "
 "project."
-msgstr ""
-"自動化された翻訳プロセスにより、開発プロジェクトに密に追従することができま"
-"す。"
+msgstr "自動化された現地化ワークフローにより、開発プロジェクトに密に追従します。"
 
 #: weblate_web/templates/base-features.html:15
-#, fuzzy
-#| msgid ""
-#| "Customizable quality checks will help you in improving quality of "
-#| "translations."
 msgid "Customizable quality checks helps improve translation quality."
-msgstr ""
-"品質チェックのカスタマイズにより、翻訳の質をさらに向上させることができます。"
+msgstr "品質チェックのカスタマイズにより、翻訳の質を向上させることができます。"
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
 msgstr "帰属"
 
 #: weblate_web/templates/base-features.html:23
-#, fuzzy
-#| msgid ""
-#| "All your translators will be properly credited in the version control "
-#| "system."
 msgid "All translators are properly credited in the version control system."
 msgstr "すべての翻訳者は、バージョン管理システムにおいて適切に表示されます。"
 
@@ -224,25 +205,16 @@ msgid "Hosting plans"
 msgstr "ホスティング プラン"
 
 #: weblate_web/templates/base-features.html:31
-#, fuzzy
-#| msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
 msgid "Hosting plans for Weblate as a service starting at 19 EUR."
-msgstr ""
-"Weblate のサービスを提供するホスティング プランは、19 ユーロから提供していま"
-"す。"
+msgstr "Weblate のサービスを提供するホスティング プランは、19 ユーロから提供しています。"
 
 #: weblate_web/templates/base-features.html:38
 msgid "Cloud ready"
-msgstr ""
+msgstr "クラウド対応"
 
 #: weblate_web/templates/base-features.html:39
-#, fuzzy
-#| msgid ""
-#| "Weblate comes with appliances, which are ready to deploy in your cloud."
 msgid "Weblate comes with appliances, ready to deploy in your cloud."
-msgstr ""
-"Weblate には、ご使用のクラウドにそのまま設置可能なアプライアンスも付属してい"
-"ます。"
+msgstr "Weblate には、ご使用のクラウドにそのまま設置可能なアプライアンスも付属しています。"
 
 #: weblate_web/templates/base-features.html:46
 #, fuzzy
@@ -401,7 +373,7 @@ msgstr "Weblate は無料で提供されており、寄付を歓迎していま�
 
 #: weblate_web/templates/donate.html:11 weblate_web/templates/donate.html:134
 msgid "Purchase hosting package"
-msgstr ""
+msgstr "ホスティングパッケージを購入"
 
 #: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:135
 #: weblate_web/templates/download.html:13 weblate_web/templates/hosting.html:12
@@ -411,17 +383,15 @@ msgstr "Weblate へのサポートを受ける"
 
 #: weblate_web/templates/donate.html:19
 msgid "Sign in to manage your donations"
-msgstr ""
+msgstr "寄付を管理するにはサインインしてください"
 
 #: weblate_web/templates/donate.html:21
 msgid "Sign out"
-msgstr ""
+msgstr "サインアウト"
 
 #: weblate_web/templates/donate.html:24
-#, fuzzy
-#| msgid "Regular donations"
 msgid "Your donations"
-msgstr "継続寄付"
+msgstr "ご自身の寄付"
 
 #: weblate_web/templates/donate.html:29
 #, fuzzy
@@ -431,21 +401,19 @@ msgstr "グループ作業サイト"
 
 #: weblate_web/templates/donate.html:30
 msgid "Reward"
-msgstr ""
+msgstr "報酬"
 
 #: weblate_web/templates/donate.html:31
 msgid "Expiry date"
-msgstr ""
+msgstr "期限"
 
 #: weblate_web/templates/donate.html:32
 msgid "Renewal"
-msgstr ""
+msgstr "更新"
 
 #: weblate_web/templates/donate.html:33
-#, fuzzy
-#| msgid "Payment summary"
 msgid "Payments"
-msgstr "支払いの概要"
+msgstr "支払い"
 
 #: weblate_web/templates/donate.html:43
 #: weblate_web/templates/payment/payment.html:37
@@ -454,25 +422,23 @@ msgstr "編集"
 
 #: weblate_web/templates/donate.html:45
 msgid "No reward"
-msgstr ""
+msgstr "報酬がありません"
 
 #: weblate_web/templates/donate.html:53
 msgid "Expired"
-msgstr ""
+msgstr "期限切れ"
 
 #: weblate_web/templates/donate.html:57
 msgid "Disable renewal"
-msgstr ""
+msgstr "更新を無効にする"
 
 #: weblate_web/templates/donate.html:60
 msgid "Does not renew"
 msgstr ""
 
 #: weblate_web/templates/donate.html:92
-#, fuzzy
-#| msgid "Documentation"
 msgid "Donations"
-msgstr "ドキュメンテーション"
+msgstr "寄付"
 
 #: weblate_web/templates/donate.html:95
 #, fuzzy
@@ -488,8 +454,6 @@ msgstr ""
 "ティングに資金援助できます。大金でなくとも、少額でもありがたいです。"
 
 #: weblate_web/templates/donate.html:103
-#, fuzzy
-#| msgid "Regular donations"
 msgid "Recurring donation"
 msgstr "継続寄付"
 
@@ -503,13 +467,11 @@ msgstr ""
 msgid ""
 "Please consider this if you are hosting Weblate yourself without a support "
 "contract."
-msgstr ""
+msgstr "サポート契約をせず、ご自身で Weblate をホスティングされている場合、この寄付をご検討ください。"
 
 #: weblate_web/templates/donate.html:116
-#, fuzzy
-#| msgid "View documentation"
 msgid "One time donation"
-msgstr "ドキュメンテーションの表示"
+msgstr "一回限りの寄付"
 
 #: weblate_web/templates/donate.html:119
 msgid ""
@@ -530,10 +492,8 @@ msgid ""
 msgstr ""
 
 #: weblate_web/templates/donate.html:142
-#, fuzzy
-#| msgid "Donation address"
 msgid "Donation rewards"
-msgstr "寄付のアドレス"
+msgstr "寄付の報酬"
 
 #: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
@@ -559,11 +519,11 @@ msgstr "寄付のアドレス"
 #: weblate_web/templates/donate/edit.html:12
 #: weblate_web/templates/donate/form.html:13
 msgid "Please choose wanted reward or enter custom donation amount."
-msgstr ""
+msgstr "お求めの報酬を選択するか、任意の寄付金額を入力してください。"
 
 #: weblate_web/templates/donate/edit.html:20
 msgid "Edit your reward link"
-msgstr ""
+msgstr "ご自身の報酬リンクを編集"
 
 #: weblate_web/templates/donate/edit.html:26
 #: weblate_web/templates/payment/customer.html:21
@@ -572,17 +532,17 @@ msgstr "保存"
 
 #: weblate_web/templates/donate/form.html:33
 msgid "Select"
-msgstr ""
+msgstr "選択"
 
 #: weblate_web/templates/donate/form.html:41
 msgid ""
 "We might refuse to place your link, especially if the site contains adult or "
 "illegal content. Please consult us in advance if unsure."
-msgstr ""
+msgstr "特に、ご自身のサイトに成人向け内容や違法な内容が含まれる場合に、リンクの掲載を拒否することがあります。ご不明な場合は、事前にご相談ください。"
 
 #: weblate_web/templates/donate/form.html:50
 msgid "Choose your own donation amount"
-msgstr ""
+msgstr "ご自身の寄付額を選択"
 
 #: weblate_web/templates/donate/form.html:56
 msgid "Continue"
@@ -590,19 +550,19 @@ msgstr "続行"
 
 #: weblate_web/templates/donate/rewards.html:2
 msgid "Link placement on the weblate.org thanks page"
-msgstr ""
+msgstr "weblate.org の謝辞ページへのリンクの掲載"
 
 #: weblate_web/templates/donate/rewards.html:3
 msgid "Link placement in the list of supporters"
-msgstr ""
+msgstr "サポーターのリストへのリンクの掲載"
 
 #: weblate_web/templates/donate/rewards.html:4
 msgid "Name placement in the list of supporters"
-msgstr ""
+msgstr "サポーターのリストへの名前の掲載"
 
 #: weblate_web/templates/download-link.html:4
 msgid "PGP signature"
-msgstr ""
+msgstr "PGP 鍵"
 
 #: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
 #: weblate_web/templates/hosting.html:234
@@ -1096,7 +1056,7 @@ msgstr "エンタープライズ"
 #: weblate_web/templates/hosting.html:37
 msgctxt "Hosting plan"
 msgid "Self hosted"
-msgstr "独自ホスティング"
+msgstr "セルフホスティング"
 
 #: weblate_web/templates/hosting.html:51
 msgid ""
@@ -1254,7 +1214,7 @@ msgstr ""
 
 #: weblate_web/templates/hosting.html:225
 msgid "Self hosting"
-msgstr "独自ホスティング"
+msgstr "セルフホスティング"
 
 #: weblate_web/templates/hosting.html:228
 msgid "Weblate is free software, you can run your own instance of it."
@@ -1274,10 +1234,8 @@ msgstr ""
 "サービスを提供することができます。"
 
 #: weblate_web/templates/index.html:3
-#, fuzzy
-#| msgid "Weblate - web-based translation"
 msgid "Weblate - web-based localization"
-msgstr "Weblate - Web ベースの翻訳"
+msgstr "Weblate - Web ベースの現地化"
 
 #: weblate_web/templates/index.html:4
 #, fuzzy
@@ -1299,22 +1257,14 @@ msgid "Downloads"
 msgstr "ダウンロード"
 
 #: weblate_web/templates/index.html:23
-#, fuzzy
-#| msgid ""
-#| "Weblate is a free web-based translation tool with tight version control "
-#| "integration. It features simple and clean user interface, propagation of "
-#| "translations across components, quality checks and automatic linking to "
-#| "source files."
 msgid ""
 "Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
 msgstr ""
-"Weblate は、バージョン管理サービスとの密接な統合が可能なフリーの Web ベースの"
-"翻訳ツールです。シンプルで明瞭なユーザーインターフェイス、コンポーネント間の"
-"翻訳の連携、品質チェック、ソースファイルへの自動リンクなどの機能を備えていま"
-"す。"
+"Weblate は、バージョン管理サービスとの密接な統合が可能なフリーの Web ベースの現地化ツールです。シンプルで明瞭なユーザーインターフェイス、コン"
+"ポーネント間の翻訳の連携、品質チェック、ソースファイルへの自動リンクなどの機能を備えています。"
 
 #: weblate_web/templates/index.html:27
 msgid "Weblate screenshot"
@@ -1339,51 +1289,39 @@ msgstr ""
 #: weblate_web/templates/index.html:118 weblate_web/templates/index.html:132
 #, python-format
 msgid "From %(amount)sEUR/month"
-msgstr ""
+msgstr "月額 %(amount)s ユーロから"
 
 #: weblate_web/templates/index.html:119
 msgid "Cloud service"
-msgstr ""
+msgstr "クラウドサービス"
 
 #: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
-#, fuzzy
-#| msgid "View hosting plans"
 msgid "Choose hosting plan"
-msgstr "ホスティング プランの表示"
+msgstr "ホスティングプランを選択"
 
 #: weblate_web/templates/index.html:128
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self hosted"
-msgstr "独自ホスティング"
+msgstr "セルフホスティング"
 
 #: weblate_web/templates/index.html:133
 msgid "Your infrastructure"
 msgstr ""
 
 #: weblate_web/templates/index.html:142
-#, fuzzy
-#| msgctxt "Hosting plan"
-#| msgid "Self hosted"
 msgid "Self supported"
-msgstr "独自ホスティング"
+msgstr "自己サポート"
 
 #: weblate_web/templates/index.html:146
-#, fuzzy
-#| msgid "Weblate features"
 msgid "Weblate is free to use"
-msgstr "Weblate の機能"
+msgstr "Weblate を無料でお使いいただけます"
 
 #: weblate_web/templates/index.html:147
 msgid "Maintained by you"
-msgstr ""
+msgstr "ご自身での維持"
 
 #: weblate_web/templates/index.html:148
-#, fuzzy
-#| msgid "Phone support"
 msgid "Community support"
-msgstr "電話サポート"
+msgstr "コミュニティーサポート"
 
 #: weblate_web/templates/payment/customer.html:5
 #: weblate_web/templates/payment/payment.html:4
@@ -1425,11 +1363,9 @@ msgid "Payment will be issued yearly till you cancel the subscription."
 msgstr "定期購入を中止するまで、毎年、支払いが発生します。"
 
 #: weblate_web/templates/payment/payment.html:24
-#, fuzzy
-#| msgid "Payment will be issued monthly till you cancel the subscription."
 msgid ""
 "Payment will be issued every six months till you cancel the subscription."
-msgstr "定期購入を中止するまで、毎月、支払いが発生します。"
+msgstr "定期購入を中止するまで、半年に一度、支払いが発生します。"
 
 #: weblate_web/templates/payment/payment.html:26
 msgid "Payment will be issued monthly till you cancel the subscription."
@@ -1494,7 +1430,7 @@ msgstr ""
 
 #: weblate_web/templates/support.html:28
 msgid "Support for self hosted environments"
-msgstr "独自ホスティング環境に対するサポート"
+msgstr "セルフホスティング環境に対するサポート"
 
 #: weblate_web/templates/support.html:30
 msgid ""
@@ -1731,20 +1667,12 @@ msgstr ""
 "フリー ソフトウェアの無料ホスティングは、スポンサー無しには実現できません。"
 
 #: weblate_web/templates/thanks.html:50
-#, fuzzy
-#| msgid ""
-#| "Support our project on Bountysource Salt and get exclusive logo placement "
-#| "on this page."
 msgid "Support our project and get link placement on this page."
-msgstr ""
-"Bountysource Salt でプロジェクトをサポートして、独自のロゴをこのページに表示"
-"できます。"
+msgstr "プロジェクトをサポートして、リンクをこのページに掲載できます。"
 
 #: weblate_web/templates/try.html:6
-#, fuzzy
-#| msgid "Weblate has useful features for every crowdsourced translation."
 msgid "Weblate has useful features for every crowdsourced localization."
-msgstr "Weblate では、クラウド型の翻訳に対応した便利な機能を用意しています。"
+msgstr "Weblate では、クラウド型の現地化に対応した便利な機能を用意しています。"
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
@@ -1770,10 +1698,8 @@ msgstr ""
 "パスワード: <code>review</code> でログインしてください。"
 
 #: weblate_web/templates/try.html:27
-#, fuzzy
-#| msgid "Weblate screenshot"
 msgid "Screenshots"
-msgstr "Weblate のスクリーンショット"
+msgstr "スクリーンショット"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
@@ -1827,27 +1753,23 @@ msgstr "支払いを完了するには、お支払い情報を入力してくだ
 
 #: weblate_web/views.py:100
 msgid "The VAT ID is no longer valid, please update it."
-msgstr ""
+msgstr "VAT ID が有効ではなくなっています。更新してください。"
 
 #: weblate_web/views.py:260
-#, fuzzy
-#| msgid "Payments are processed by The Pay service."
 msgid "Payment not yet processed, please retry."
-msgstr "支払いは Pay サービスによって処理されます。"
+msgstr "支払いはまだ処理されていません。もう一度お試しください。"
 
 #: weblate_web/views.py:265
 msgid "The payment was rejected: {}"
-msgstr ""
+msgstr "支払いが拒否されました： {}"
 
 #: weblate_web/views.py:266
 msgid "Unknown reason"
-msgstr ""
+msgstr "理由不明"
 
 #: weblate_web/views.py:270
-#, fuzzy
-#| msgid "Thank you for ordering hosting!"
 msgid "Thank you for your donation."
-msgstr "ホスティングのご依頼ありがとうございます！"
+msgstr "寄付していただきありがとうございます。"
 
 #~ msgid "Tour"
 #~ msgstr "ツアー"
