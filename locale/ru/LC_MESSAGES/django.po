@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: weblate-web\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-21 22:18+0000\n"
+"PO-Revision-Date: 2019-02-24 14:18+0000\n"
 "Last-Translator: WWWesten <wwwesten@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/weblate/website/"
 "ru/>\n"
@@ -48,11 +48,11 @@ msgstr "Контекст перевода"
 msgid ""
 "Project page gives you detailed information about project translation status."
 msgstr ""
-"На странице проекта вы найдете подробную информацию о состоянии его перевода."
+"На странице проекта вы найдете подробную информацию о статусе его перевода."
 
 #: weblate_web/data.py:50
 msgid "Project overview"
-msgstr "Краткий обзор проекта"
+msgstr "Обзор проекта"
 
 #: weblate_web/data.py:55 weblate_web/templates/features.html:72
 msgid ""
@@ -71,12 +71,13 @@ msgstr "Глоссарий"
 msgid ""
 "Customizable quality checks will help you in improving quality of "
 "translations."
-msgstr "Настройки контроля качества помогут вам улучшить качество перевода."
+msgstr ""
+"Настраиваемые проверки качества помогут вам улучшить качество переводов."
 
 #: weblate_web/data.py:66 weblate_web/templates/base-features.html:14
 #: weblate_web/templates/hosting.html:123
 msgid "Quality checks"
-msgstr "Контроль качества"
+msgstr "Проверки качества"
 
 #: weblate_web/data.py:71 weblate_web/templates/features.html:128
 msgid "Weblate provides you various ways to promote your translation project."
@@ -90,7 +91,7 @@ msgstr "Продвижение"
 
 #: weblate_web/data.py:79
 msgid "Translation workflow can be customized by using addons."
-msgstr "Процесс перевода можно настроить с помощью дополнений."
+msgstr "Рабочий процесс перевода возможно настраивать, используя надстройки."
 
 #: weblate_web/data.py:81
 msgid "Addons"
@@ -101,7 +102,7 @@ msgid ""
 "Automatic translation can be used to bootstrap your translations using "
 "machine translation services or translation memory."
 msgstr ""
-"Автоматический перевод (машинные переводы и история переводов) можно "
+"Автоматический перевод (машинные переводы и накопитель переводов) можно "
 "использовать для создания первоначального варианта локализованных строк."
 
 #: weblate_web/data.py:89
@@ -112,7 +113,7 @@ msgstr "Автоматический перевод"
 msgid ""
 "Translations can be exported and imported in many widely used file formats."
 msgstr ""
-"Строки перевода можно экспортировать и импортировать во многих популярных "
+"Файлы переводов можно экспортировать и импортировать во многих популярных "
 "форматах."
 
 #: weblate_web/data.py:97 weblate_web/templates/features.html:87
@@ -131,7 +132,7 @@ msgstr "Управление пользователями"
 #: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
 #: weblate_web/templates/donate/form.html:25
 msgid "Donation recurrence"
-msgstr "Повторное пожертвование"
+msgstr "Регулярное пожертвование"
 
 #: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
@@ -159,8 +160,8 @@ msgstr "Страница не найдена"
 #: weblate_web/templates/index.html:6
 msgid "Weblate is a libre software web-based continuous localization system."
 msgstr ""
-"Weblate - это веб-система непрерывной локализации на базе свободного "
-"программного обеспечения."
+"Weblate - это свободное программное обеспечение системы непрерывной "
+"локализации основанное на веб-технологиях."
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
@@ -175,8 +176,8 @@ msgid ""
 "The server had serious problems while serving your request. We've just sent "
 "our trained monkeys to fix the issue."
 msgstr ""
-"Во время обработки вашего запроса на сервере произошел сбой. Наши специально "
-"обученные мартышки спешат на помощь."
+"Во время ослуживания вашего запроса на сервере случились серьёзные проблемы. "
+"Наши специально обученные мартышки спешат на помощь."
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
@@ -193,8 +194,7 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:15
 msgid "Customizable quality checks helps improve translation quality."
-msgstr ""
-"Гибкая система контроля качества способствует улучшению качества перевода."
+msgstr "Настраиваемые проверки качества помогают улучшению качества перевода."
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
@@ -202,22 +202,22 @@ msgstr "Указание авторства"
 
 #: weblate_web/templates/base-features.html:23
 msgid "All translators are properly credited in the version control system."
-msgstr "Вклад каждого переводчика отражается в системе контроля версий."
+msgstr ""
+"Вклад каждого переводчика должным образом отражается в системе контроля "
+"версий."
 
 #: weblate_web/templates/base-features.html:30
 #: weblate_web/templates/hosting.html:18
 msgid "Hosting plans"
-msgstr "Варианты хостинга"
+msgstr "Планы хостинга"
 
 #: weblate_web/templates/base-features.html:31
 msgid "Hosting plans for Weblate as a service starting at 19 EUR."
-msgstr ""
-"Тарифные планы хостинга с использованием Weblate как сервиса начинаются от "
-"19 евро."
+msgstr "Планы хостинга для Weblate как услуги начинаются от 19 евро."
 
 #: weblate_web/templates/base-features.html:38
 msgid "Cloud ready"
-msgstr "Готово для работы в облаке"
+msgstr "Готово для облака"
 
 #: weblate_web/templates/base-features.html:39
 msgid "Weblate comes with appliances, ready to deploy in your cloud."
@@ -232,8 +232,8 @@ msgstr "Свободное программное обеспечение"
 msgid ""
 "Weblate is copylefted; use, see, modify and share at will, and with everyone."
 msgstr ""
-"Weblate - \"копилефт\"; вы можете его использовать, видеть код, "
-"модифицировать и делиться им, с кем угодно, когда захотите."
+"Weblate - \"copyleft\"; используйте, смотрите, изменяйте и делитесь, по "
+"желанию, и со всеми."
 
 #: weblate_web/templates/base.html:11
 msgctxt "Keyword"
@@ -246,16 +246,16 @@ msgstr "Логотип Weblate"
 
 #: weblate_web/templates/base.html:57
 msgid "Try"
-msgstr "Попробовать"
+msgstr "Демо"
 
 #: weblate_web/templates/base.html:58
 msgid "Features"
-msgstr "Возможности"
+msgstr "Функции"
 
 #: weblate_web/templates/base.html:59 weblate_web/templates/download.html:18
 #: weblate_web/templates/index.html:150
 msgid "Download"
-msgstr "Скачать"
+msgstr "Загрузки"
 
 #: weblate_web/templates/base.html:60
 msgid "Pricing"
@@ -268,7 +268,7 @@ msgstr "Разработка"
 #: weblate_web/templates/base.html:62 weblate_web/templates/donate.html:110
 #: weblate_web/templates/donate.html:122 weblate_web/templates/donate.html:157
 msgid "Donate"
-msgstr "Поддержать проект"
+msgstr "Пожертвования"
 
 #: weblate_web/templates/base.html:63
 msgid "Support"
@@ -292,30 +292,30 @@ msgstr "Хостинг"
 
 #: weblate_web/templates/base.html:79
 msgid "Help with translations!"
-msgstr "Помогите с переводом!"
+msgstr "Помогите с переводами!"
 
 #: weblate_web/templates/base.html:123 weblate_web/templates/terms.html:4
 msgid "Terms of Service and Privacy Policy"
-msgstr "Условия предоставления услуг и политика конфиденциальности"
+msgstr "Условия обслуживания и Политика конфиденциальности"
 
 #: weblate_web/templates/contribute.html:3
 #: weblate_web/templates/contribute.html:4
 msgid "Contribute to Weblate"
-msgstr "Помочь Weblate"
+msgstr "Внести вклад в Weblate"
 
 #: weblate_web/templates/contribute.html:6
 msgid "Weblate is being developed by an open community."
-msgstr "Weblate разрабатывает открытое сообщество."
+msgstr "Weblate разрабатывается открытым сообществом."
 
 #: weblate_web/templates/contribute.html:10
 #: weblate_web/templates/download.html:12
 msgid "View sources"
-msgstr "Посмотреть исходный код"
+msgstr "Исходные коды"
 
 #: weblate_web/templates/contribute.html:11
 #: weblate_web/templates/contribute.html:34
 msgid "Translate"
-msgstr "Перевести"
+msgstr "Перевод"
 
 #: weblate_web/templates/contribute.html:17
 msgid ""
@@ -323,14 +323,13 @@ msgid ""
 "docs.weblate.org/en/latest/contributing.html\">Contributing chapter</a> of "
 "the documentation."
 msgstr ""
-"Более подробно об этом можно узнать из главы документации, посвященной <a "
-"href=\"https://docs.weblate.org/en/latest/contributing.html\">участию в "
-"проекте</a>."
+"Более подробно об этом можно узнать из главы <a href=\"https://docs.weblate."
+"org/en/latest/contributing.html\">Участие</a> в документации."
 
 #: weblate_web/templates/contribute.html:20
 #: weblate_web/templates/download.html:63
 msgid "Code"
-msgstr "Пишите код"
+msgstr "Кодируйте"
 
 #: weblate_web/templates/contribute.html:23
 #, python-format
@@ -339,7 +338,7 @@ msgid ""
 "it there or just:"
 msgstr ""
 "Weblate разрабатывают на <a href=\"%(url)s\">GitHub</a>, вы можете сделать "
-"форк прямо там или просто набрать в командной строке:"
+"форк прямо там или просто набрать команду:"
 
 #: weblate_web/templates/contribute.html:31
 #, python-format
@@ -347,15 +346,15 @@ msgid ""
 "You can find more repositories related to Weblate on <a href=\"%(url)s"
 "\">GitHub</a>"
 msgstr ""
-"Вы можете найти дополнительные репозитории, связанные с Weblate на <a href="
-"\"%(url)s\"> GitHub</a>"
+"Вы можете найти дополнительные репозитории, связанные с Weblate на <a href=\""
+"%(url)s\">GitHub</a>"
 
 #: weblate_web/templates/contribute.html:37
 msgid ""
 "You can translate Weblate at <a href=\"https://hosted.weblate.org/engage/"
 "weblate/\">hosted.weblate.org</a>."
 msgstr ""
-"Переводить Weblate нужно на <a href=\"https://hosted.weblate.org/engage/"
+"Переводить Weblate можно на <a href=\"https://hosted.weblate.org/engage/"
 "weblate/\">hosted.weblate.org</a>."
 
 #: weblate_web/templates/contribute.html:42
@@ -429,7 +428,7 @@ msgstr "Без вознаграждения"
 
 #: weblate_web/templates/donate.html:53
 msgid "Expired"
-msgstr "Срок действия истёк"
+msgstr "Срок истёк"
 
 #: weblate_web/templates/donate.html:57
 msgid "Disable renewal"
@@ -448,7 +447,7 @@ msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
-"Периодические пожертвования способствуют устойчивому развитию Weblate, даже "
+"Регулярные пожертвования способствуют устойчивому развитию Weblate, даже "
 "небольшая сумма помогает финансировать бесплатный хостинг свободного "
 "программного обеспечения."
 
@@ -468,9 +467,7 @@ msgstr ""
 msgid ""
 "Please consider this if you are hosting Weblate yourself without a support "
 "contract."
-msgstr ""
-"Пожалуйста, учитывайте это при размещении Weblate у себя без договора на "
-"поддержку."
+msgstr "Учитывайте это при размещении Weblate у себя без договора на поддержку."
 
 #: weblate_web/templates/donate.html:116
 msgid "One time donation"
@@ -481,12 +478,12 @@ msgid ""
 "One time donations are great for appreciating our work on single issue or "
 "support."
 msgstr ""
-"Однократные пожертвования - отличная оценка нашей работы по конкретной "
+"Единовременные пожертвования - отличная оценка нашей работы по конкретной "
 "проблеме или поддержке."
 
 #: weblate_web/templates/donate.html:128
 msgid "Use our services"
-msgstr "Воспользуйтесь нашими услугами"
+msgstr "Пользуйтесь нашими услугами"
 
 #: weblate_web/templates/donate.html:131
 msgid ""
@@ -498,7 +495,7 @@ msgstr ""
 
 #: weblate_web/templates/donate.html:142
 msgid "Donation rewards"
-msgstr "Оплаты пожертвований"
+msgstr "Вознаграждение за пожертвования"
 
 #: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
@@ -510,8 +507,8 @@ msgid ""
 "Thanks to <a href=\"%(url)s\">Trezor</a>, we will gladly accept donations in "
 "several cryptocurrencies. You can use the addresses in table below."
 msgstr ""
-"Благодаря <a href=\"%(url)s\">Trezor</a>, мы с радостью примем пожертвования "
-"в нескольких криптовалютах. Адреса в таблице ниже."
+"Благодаря кошельку <a href=\"%(url)s\">Trezor</a>, мы с радостью примем "
+"пожертвования в нескольких криптовалютах. Адреса в таблице ниже."
 
 #: weblate_web/templates/donate.html:171
 msgid "Currency"
@@ -524,12 +521,11 @@ msgstr "Адрес пожертвования"
 #: weblate_web/templates/donate/edit.html:12
 #: weblate_web/templates/donate/form.html:13
 msgid "Please choose wanted reward or enter custom donation amount."
-msgstr ""
-"Пожалуйста, выберите желаемое вознаграждение или укажите сумму пожертвования."
+msgstr "Выберите желаемое вознаграждение или укажите свою сумму пожертвования."
 
 #: weblate_web/templates/donate/edit.html:20
 msgid "Edit your reward link"
-msgstr "Отредактируйте свою ссылку на вознаграждение"
+msgstr "Править свою ссылку на вознаграждение"
 
 #: weblate_web/templates/donate/edit.html:26
 #: weblate_web/templates/payment/customer.html:21
@@ -538,20 +534,20 @@ msgstr "Сохранить"
 
 #: weblate_web/templates/donate/form.html:33
 msgid "Select"
-msgstr "Выберите"
+msgstr "Выбрать"
 
 #: weblate_web/templates/donate/form.html:41
 msgid ""
 "We might refuse to place your link, especially if the site contains adult or "
 "illegal content. Please consult us in advance if unsure."
 msgstr ""
-"Мы можем отказать в размещении вашей ссылки, особенно если сайт содержит "
-"взрослый или незаконный контент. Пожалуйста, проконсультируйтесь с нами "
-"заранее, если вы не уверены."
+"Мы можем отказать в размещении вашей ссылки, особенно, если сайт содержит "
+"взрослое или противозаконное содержание. Проконсультируйтесь с нами заранее, "
+"если вы не уверены."
 
 #: weblate_web/templates/donate/form.html:50
 msgid "Choose your own donation amount"
-msgstr "Выберите сумму пожертвования самостоятельно"
+msgstr "Выберите свою сумму пожертвования"
 
 #: weblate_web/templates/donate/form.html:56
 msgid "Continue"
@@ -584,7 +580,7 @@ msgstr "Weblate поставляется с полным исходным код
 
 #: weblate_web/templates/download.html:21
 msgid "You can download latest release here:"
-msgstr "Самую свежую версию можно скачать по ссылкам:"
+msgstr "Самый последний выпуск можно скачать по ссылкам:"
 
 #: weblate_web/templates/download.html:30
 #: weblate_web/templates/download.html:73
@@ -602,7 +598,9 @@ msgstr ""
 
 #: weblate_web/templates/download.html:40
 msgid "You can also install using packages for following Linux distributions:"
-msgstr "Вы также можете установить пакет вот в этих дистрибутивах Linux:"
+msgstr ""
+"Вы также можете сделать установку, используя пакеты для следующих "
+"дистрибутивов Linux:"
 
 #: weblate_web/templates/download.html:47
 msgid "Cloud or virtualization images"
@@ -613,7 +611,8 @@ msgid ""
 "Weblate can be run in any cloud or virtualization environment. Following "
 "links will show you information about some of these:"
 msgstr ""
-"Weblate можно запустить в любом облаке или виртуальной машине. Например:"
+"Weblate можно запустить в любом облаке или виртуальной среде. О некоторых из "
+"них расскажут следующие ссылки:"
 
 #: weblate_web/templates/download.html:52
 msgid "Running Weblate in a Docker container"
@@ -628,8 +627,9 @@ msgid ""
 "BitNami Weblate stack providing native installation for most platforms as "
 "well as support for many public cloud providers"
 msgstr ""
-"BitNami Weblate Stack напрямую устанавливается на большинство платформ, а "
-"также поддерживает множество публичных облачных сервисов"
+"BitNami Weblate Stack предоставляет собственный режим установки для "
+"большинства платформ, а также поддерживает множество поставщиков публичных "
+"облак"
 
 #: weblate_web/templates/download.html:66
 msgid ""
@@ -642,15 +642,16 @@ msgstr ""
 
 #: weblate_web/templates/features.html:3 weblate_web/templates/features.html:4
 msgid "Weblate features"
-msgstr "Возможности Weblate"
+msgstr "Функции Weblate"
 
 #: weblate_web/templates/features.html:6
 msgid "Weblate is a feature rich computer aided translation tool."
-msgstr "Weblate — многофункциональный инструмент для автоматизации перевода."
+msgstr ""
+"Weblate - это многофункциональный инструмент для компьютерного перевода."
 
 #: weblate_web/templates/features.html:11
 msgid "View documentation"
-msgstr "Документация"
+msgstr "Просмотр документации"
 
 #: weblate_web/templates/features.html:23
 msgid "Access control"
@@ -659,7 +660,7 @@ msgstr "Контроль доступа"
 #: weblate_web/templates/features.html:24
 msgid "Access rights can be fine tuned depending on your environment."
 msgstr ""
-"Права доступа могут быть точно настроены в соответствии с вашей средой."
+"Права доступа могут быть тщательно настроены в соответствии с вашей средой."
 
 #: weblate_web/templates/features.html:31
 msgid "Notifications"
@@ -669,8 +670,8 @@ msgstr "Уведомления"
 msgid ""
 "Translators can be notified on new strings to translate or other events."
 msgstr ""
-"Когда появляются новые строки для перевода, или что-то происходит, "
-"переводчики могут получать уведомления."
+"Переводчики могут получать уведомления о новых строках для перевода или о "
+"других событиях."
 
 #: weblate_web/templates/features.html:39
 msgid "Integration API"
@@ -678,7 +679,7 @@ msgstr "API для интеграции"
 
 #: weblate_web/templates/features.html:40
 msgid "Thanks to the API you can integrate Weblate with third party services."
-msgstr "Благодаря API в Weblate можно включать дополнительные сервисы."
+msgstr "Благодаря API в Weblate можно интегрировать сторонние сервисы."
 
 #: weblate_web/templates/features.html:47
 msgid "File formats"
@@ -701,8 +702,8 @@ msgid ""
 "Weblate can handle different versions of the translation by pushing them to "
 "different branches automatically."
 msgstr ""
-"Weblate может работать с разными версиями перевода, автоматически сохраняя "
-"их в разных ветвях."
+"Weblate может обрабатывать разные версии перевода, автоматически отправляя "
+"их в разные ветви репозиториев."
 
 #: weblate_web/templates/features.html:79
 msgid "Acquiring feedback"
@@ -713,14 +714,14 @@ msgid ""
 "You can also use Weblate to acquire feedback on source strings and thus "
 "improve them."
 msgstr ""
-"Weblate можно использовать для получения отзывов на качество исходных "
-"текстов и повышать его."
+"Weblate можно использовать для получения отзывов и предложений на исходные "
+"строки и таким образом улучшать их."
 
 #: weblate_web/templates/features.html:88
 msgid "Translations can be downloaded for offline translation and merged back."
 msgstr ""
-"Текстовые строки можно выгрузить для автономного перевода, а потом загрузить "
-"обратно и смержить."
+"Файлы переводов можно скачивать для оффлайн перевода, а затем объединять "
+"обратно."
 
 #: weblate_web/templates/features.html:95
 msgid "Integrated"
@@ -729,8 +730,8 @@ msgstr "Интеграция"
 #: weblate_web/templates/features.html:96
 msgid "Translations are managed within same version control system as code."
 msgstr ""
-"За переводами следит та же самая система контроля версий, которую используют "
-"для остального кода."
+"Переводы управляются той же самой системой контроля версий, которую "
+"используют для кода."
 
 #: weblate_web/templates/features.html:103
 msgid "Documentation"
@@ -740,17 +741,16 @@ msgstr "Документация"
 msgid ""
 "Weblate comes with comprehensive documentation covering both setup and usage."
 msgstr ""
-"У Weblate удобная и понятная документация, подробно описывающая как его "
-"установку, так и использование."
+"Weblate поставляется с подробной документацией, охватывающей как установку и "
+"настройку, так и использование."
 
 #: weblate_web/templates/features.html:111
 msgid "Review"
-msgstr "Рецензия"
+msgstr "Рецензирование"
 
 #: weblate_web/templates/features.html:112
 msgid "Translators have several options to review contributions made by peers."
-msgstr ""
-"Переводчики могут проверить (вычитать) работу коллег несколькими способами."
+msgstr "Переводчики могут отрецензировать вклад коллег несколькими способами."
 
 #: weblate_web/templates/features.html:119
 msgid "Languages"
@@ -766,15 +766,15 @@ msgstr ""
 
 #: weblate_web/templates/features.html:135
 msgid "Reporting"
-msgstr "Отчеты"
+msgstr "Отчёты"
 
 #: weblate_web/templates/features.html:136
 msgid ""
 "Weblate generates various reports to provide information about project "
 "activity."
 msgstr ""
-"Weblate составляет разнообразные отчеты, позволяющие получить предоставление "
-"о том, в каком состоянии проект."
+"Weblate генерирует разнообразные отчеты, предоставляющие информацию о "
+"жизнедеятельности проекта."
 
 #: weblate_web/templates/features.html:144
 msgid "Version control"
@@ -797,8 +797,8 @@ msgid ""
 "Weblate has native support for many software development sites such as "
 "GitHub, Bitbucket or Gitlab."
 msgstr ""
-"Weblate поддерживает множество сайтов для разработки ПО, таких как GitHub, "
-"Bitbucket или Gitlab."
+"Weblate имеет встроенную поддержку для множества сайтов для разработки "
+"программного обеспечения, таких как GitHub, Bitbucket или Gitlab."
 
 #: weblate_web/templates/features.html:160
 msgid "Responsive UI"
@@ -820,12 +820,12 @@ msgstr "Бесплатный хостинг на Weblate"
 #: weblate_web/templates/hosting-free.html:6
 msgid "We love open source and we offer free plans for hosting translations."
 msgstr ""
-"Нам нравится открытое ПО, поэтому мы предлагаем бесплатные планы для "
-"размещения переводов."
+"Нам нравится открытое программное обеспечение, поэтому мы предлагаем "
+"бесплатные планы для хостинга переводов."
 
 #: weblate_web/templates/hosting-free.html:11
 msgid "Ask for hosting"
-msgstr "Попросить хостинг"
+msgstr "Запросить хостинг"
 
 #: weblate_web/templates/hosting-free.html:18
 msgid "Hosting for free software"
@@ -839,9 +839,10 @@ msgid ""
 "installing and maintaining it."
 msgstr ""
 "Если вы заинтересованы в использовании Weblate для вашего свободного "
-"программного обеспечения, вы можете попросить нас хранить ваши переводы на "
-"<a href=\"https://hosted.weblate.org/\">hosted.weblate.org</a>. Это позволит "
-"вам использовать Weblate, не тратя усилий на установку и поддержку."
+"программного обеспечения, вы можете запросить у нас хостинг для ваших "
+"переводов на <a href=\"https://hosted.weblate.org/\">hosted.weblate.org</a>. "
+"Это позволит вам использовать Weblate, не тратя своих усилий на установку и "
+"обслуживание."
 
 #: weblate_web/templates/hosting-free.html:24
 msgid "Conditions for free hosting"
@@ -852,8 +853,11 @@ msgid ""
 "Translated content has to be released under <a href=\"https://en.wikipedia."
 "org/wiki/Free_software_license\">free license</a>."
 msgstr ""
-"Перевод должен быть выпущен под <a href=\"https://en.wikipedia.org/wiki/"
-"Free_software_license\">свободной лицензией</a>."
+"Переведённое содержание должено быть выпущено под <a href=\""
+"https://ru.wikipedia.org/wiki/%D0%9B%D0%B8%D1%86%D0%B5%D0%BD%D0%B7%D0%B8%D1%8"
+"F_%D1%81%D0%B2%D0%BE%D0%B1%D0%BE%D0%B4%D0%BD%D0%BE%D0%B3%D0%BE_%D0%BF%D1%80%D"
+"0%BE%D0%B3%D1%80%D0%B0%D0%BC%D0%BC%D0%BD%D0%BE%D0%B3%D0%BE_%D0%BE%D0%B1%D0%B5"
+"%D1%81%D0%BF%D0%B5%D1%87%D0%B5%D0%BD%D0%B8%D1%8F\">свободной лицензией</a>."
 
 #: weblate_web/templates/hosting-free.html:28
 msgid ""
@@ -869,7 +873,7 @@ msgstr "Нет гарантии доступности службы или ее 
 
 #: weblate_web/templates/hosting-free.html:32
 msgid "Asking for hosting"
-msgstr "Просьба о хостинге"
+msgstr "Запрос о хостинге"
 
 #: weblate_web/templates/hosting-free.html:35
 #, python-format
@@ -877,8 +881,8 @@ msgid ""
 "Please use <a href=\"%(url)s\">contact form on Hosted Weblate</a> to request "
 "hosting. You will need following information:"
 msgstr ""
-"Чтобы запросить хостинг, пожалуйста, используйте <a href=\"%(url)s\">форму "
-"для связи на Hosted Weblate</a>. Потребуется следующая информация:"
+"Чтобы запросить хостинг, используйте <a href=\"%(url)s\">контактную форму на "
+"Hosted Weblate</a>. Вам потребуется следующая информация:"
 
 #: weblate_web/templates/hosting-free.html:39
 msgid "Information about your project."
@@ -891,7 +895,7 @@ msgstr "Веб-сайт проекта."
 #: weblate_web/templates/hosting-free.html:41
 #: weblate_web/templates/hosting-ordered.html:18
 msgid "URL of repository with translations."
-msgstr "URL репозитория со строками для перевода."
+msgstr "URL репозитория с переводами."
 
 #: weblate_web/templates/hosting-free.html:42
 #: weblate_web/templates/hosting-ordered.html:19
@@ -903,7 +907,7 @@ msgid ""
 "The free plan does not allow you to change project visibility or to limit "
 "users which can contribute to the translation."
 msgstr ""
-"Бесплатный план не позволяет менять настройки видимости проекта или "
+"Бесплатный план не позволяет изменять режим видимости проекта или "
 "ограничивать пользователей, которые могут участвовать в переводе."
 
 #: weblate_web/templates/hosting-free.html:51
@@ -912,9 +916,9 @@ msgid ""
 "will still have free software limits, but you will get extended user "
 "management capabilities."
 msgstr ""
-"Это ограничение можно преодолеть приобретением «Базового» плана — у вас все "
-"еще будут ограничения свободного ПО, но вы получите расширенные возможности "
-"управления пользователями."
+"Это ограничение можно преодолеть приобретением «Базового» плана — вы все еще "
+"ограничиваетесь свободным программным обеспечением, но вы получите "
+"расширенные возможности управления пользователями."
 
 #: weblate_web/templates/hosting-free.html:54
 msgid "Translation workflow"
@@ -927,10 +931,10 @@ msgid ""
 "<code>https://hosted.weblate.org/git/weblate/master/</code>. You can figure "
 "out the URL on the component information tab."
 msgstr ""
-"Все переведенные репозитории доступны через протокол https с похожей на "
-"используемую на этом сайте схемой именования: перевод weblate/master "
-"опубликован как <code>https://hosted.weblate.org/git/weblate/master/</code>. "
-"Вы можете выяснить URL на вкладе информации о компоненте."
+"Все репозитории переводов доступны через протокол https с аналогичным этому "
+"сайту именованием: перевод weblate/master публикуется как "
+"<code>https://hosted.weblate.org/git/weblate/master/</code>. Вы можете "
+"выяснить URL на вкладке информации о компоненте."
 
 #: weblate_web/templates/hosting-free.html:61
 #, python-format
@@ -939,10 +943,10 @@ msgid ""
 "see our documentation for setup on <a href=\"%(github)s\">GitHub</a>, <a "
 "href=\"%(bitbucket)s\">Bitbucket</a> or <a href=\"%(gitlab)s\">GitLab</a>."
 msgstr ""
-"Weblate может автоматически принимать изменения из главных сервисов хостинга "
-"кода, смотрите нашу документацию для установки на <a href=\"%(github)s"
-"\">GitHub</a>, <a href=\"%(bitbucket)s\">Bitbucket</a> или <a href="
-"\"%(gitlab)s\">GitLab</a>."
+"Weblate может автоматически принимать изменения из крупнейших сервисов "
+"хостинга кода, смотрите нашу документацию для установки и настройки на <a "
+"href=\"%(github)s\">GitHub</a>, <a href=\"%(bitbucket)s\">Bitbucket</a> или <"
+"a href=\"%(gitlab)s\">GitLab</a>."
 
 #: weblate_web/templates/hosting-free.html:65
 #, python-format
@@ -968,8 +972,9 @@ msgid ""
 "\">Liberapay</a> or <a href=\"%(donate_url)s\">other ways to donate</a>."
 msgstr ""
 "Хостинг предоставляется бесплатно, но работа сервера и его поддержка стоят "
-"денег, поэтому вы можете использовать <a href=\"%(gittip_url)s\">Liberapay</"
-"a> или <a href=\"%(donate_url)s\">другие варианты пожертвования</a>."
+"денег, поэтому вы можете использовать <a href=\"%(gittip_url)s\""
+">Liberapay</a> или <a href=\"%(donate_url)s\">другие способы "
+"пожертвования</a>."
 
 #: weblate_web/templates/hosting-ordered.html:3
 #: weblate_web/templates/hosting-ordered.html:4
@@ -979,7 +984,7 @@ msgstr "Хостинг Weblate"
 
 #: weblate_web/templates/hosting-ordered.html:6
 msgid "Thank you for ordering hosting!"
-msgstr "Спасибо за заказ хостинга!"
+msgstr "Благодарим за заказ хостинга!"
 
 #: weblate_web/templates/hosting-ordered.html:11
 msgid "Next steps"
@@ -990,12 +995,13 @@ msgid ""
 "The project setup is currently manual. If you haven't done so already, "
 "please get in touch with us and send us details about your repository setup."
 msgstr ""
-"В настоящий момент проекты настраивают  вручную. Если вы делаете это первый "
-"раз, свяжитесь с нами и отправьте информацию о настройках вашего репозитория."
+"В настоящее время проекты устанавливаются и настраиваются вручную. Если вы "
+"этого ещё не сделали, свяжитесь с нами и отправьте детали о настройках "
+"вашего репозитория."
 
 #: weblate_web/templates/hosting-ordered.html:15
 msgid "Usually following information is needed:"
-msgstr "Обычно стоит упомянуть вот что:"
+msgstr "Обычно необходима следующая информация:"
 
 #: weblate_web/templates/hosting-ordered.html:22
 msgid ""
@@ -1010,7 +1016,8 @@ msgstr ""
 #: weblate_web/templates/hosting.html:6
 msgid "Use Weblate as a service or get support for on-premises hosting."
 msgstr ""
-"Используйте Weblate как сервис или воспользуйтесь локальными ресурсами."
+"Используйте Weblate как сервис или получите поддержку для локального "
+"хостинга."
 
 #: weblate_web/templates/hosting.html:11
 msgid "Order hosting"
@@ -1021,9 +1028,8 @@ msgid ""
 "Hosted Weblate allows you to use Weblate without any effort and with premium "
 "support backed by it's core developers."
 msgstr ""
-"Hosted Weblate позволяет пользоваться Weblate, не тратя силы и время на "
-"доработку и починку: всем занимаются разработчики этого проекта (и это "
-"поддержка премиум-класса!)."
+"Hosted Weblate позволяет пользоваться Weblate не тратя усилия - всем "
+"занимаются основные разработчики, обеспечивая поддержку премиум-класса."
 
 #: weblate_web/templates/hosting.html:25
 #, python-format
@@ -1033,10 +1039,10 @@ msgid ""
 "look for hosting of bigger projects, don't hesitate to <a href=\"%(contact)s"
 "\">get in touch with us</a>."
 msgstr ""
-"Мы можем хостить переводы как для коммерческих, так и для свободных "
-"проектов. Описание тарифов — ниже. Если у вас остались вопросы, или вы "
-"хотели бы разместить больший проект, не стесняйтесь и <a href=\"%(contact)s"
-"\">свяжитесь с нами</a>."
+"Мы можем предоставить хостинг переводов как для коммерческих, так и для "
+"свободных проектов. Сводка тарифных планов — ниже. Если у вас остались "
+"вопросы, или вы ищете хостинг для более крупных проектов, не стесняйтесь и <"
+"a href=\"%(contact)s\">свяжитесь с нами</a>."
 
 #: weblate_web/templates/hosting.html:32
 msgctxt "Hosting plan"
@@ -1051,7 +1057,7 @@ msgstr "Базовый"
 #: weblate_web/templates/hosting.html:34
 msgctxt "Hosting plan"
 msgid "Medium"
-msgstr "Умеренный"
+msgstr "Средний"
 
 #: weblate_web/templates/hosting.html:35
 msgctxt "Hosting plan"
@@ -1073,8 +1079,8 @@ msgid ""
 "Text unit defined in a translation format, it can be word, sentence or a "
 "paragraph"
 msgstr ""
-"Текст, заданный в формате для перевода, может быть словом, предложением или "
-"параграфом"
+"Текстовой единицой, задаваемой в формате для перевода, может быть слово, "
+"фраза или абзац"
 
 #: weblate_web/templates/hosting.html:51
 msgid "Source strings"
@@ -1096,7 +1102,7 @@ msgstr "Обсуждаемый"
 #: weblate_web/templates/hosting.html:101
 #: weblate_web/templates/hosting.html:102
 msgid "Unlimited"
-msgstr "Без ограничений"
+msgstr "Неограниченно"
 
 #: weblate_web/templates/hosting.html:60
 msgid "Target languages"
@@ -1112,7 +1118,7 @@ msgstr "Переводимые проекты"
 
 #: weblate_web/templates/hosting.html:87
 msgid "Translation components"
-msgstr "Компоненты перевода"
+msgstr "Переводимые компоненты"
 
 #: weblate_web/templates/hosting.html:96
 msgid "Number of translators"
@@ -1142,7 +1148,7 @@ msgstr "Настраиваемо"
 
 #: weblate_web/templates/hosting.html:132
 msgid "Translation addons"
-msgstr "Дополнения перевода"
+msgstr "Надстройки перевода"
 
 #: weblate_web/templates/hosting.html:150
 msgid "Translation memory"
@@ -1155,7 +1161,7 @@ msgstr "Приоритетная поддержка по электронной 
 
 #: weblate_web/templates/hosting.html:168
 msgid "Custom domain name with SSL"
-msgstr "Другое имя домена с SSL"
+msgstr "Настраиваемое имя домена с SSL"
 
 #: weblate_web/templates/hosting.html:168
 msgid "Own domain"
@@ -1177,7 +1183,7 @@ msgstr "Доступно по запросу"
 
 #: weblate_web/templates/hosting.html:179
 msgid "Monthly"
-msgstr "Ежемесячный"
+msgstr "Ежемесячно"
 
 #: weblate_web/templates/hosting.html:181
 msgid "Contact us"
@@ -1193,7 +1199,7 @@ msgstr "%(price)s евро в месяц"
 
 #: weblate_web/templates/hosting.html:196
 msgid "View support options"
-msgstr "Посмотреть варианты поддержки"
+msgstr "Посмотреть опции поддержки"
 
 #: weblate_web/templates/hosting.html:200
 #, python-format
@@ -1214,16 +1220,16 @@ msgid ""
 "languages. The source string is a text unit defined in a translation format, "
 "it can be word, sentence or a paragraph."
 msgstr ""
-"Цена зависит от количества исходных строк и целевых языков. Исходная строка "
-"— это текст, заданный в формате для перевода, она может быть словом, "
-"предложением или параграфом."
+"Цена зависит от количества исходных строк и целевых языков. Исходная строка —"
+" это текстовая единица, заданная в формате для перевода, она может быть "
+"словом, фразой или абзацем."
 
 #: weblate_web/templates/hosting.html:222
 msgid ""
 "Alternatively we can accept payments by wire transfer (preferably IBAN) or "
 "Bitcoin. Please get in touch for more details."
 msgstr ""
-"Как вариант, мы можем принять платеж банковским переводом (предпочтительно "
+"Как вариант, мы можем принять платеж электронным переводом (предпочтительно "
 "IBAN) или криптовалютой (Bitcoin). Свяжитесь с нами, чтобы узнать "
 "подробности."
 
@@ -1285,7 +1291,7 @@ msgstr ""
 
 #: weblate_web/templates/index.html:27
 msgid "Weblate screenshot"
-msgstr "Снимки экрана Weblate"
+msgstr "Снимок экрана Weblate"
 
 #: weblate_web/templates/index.html:36
 msgid "See more features…"
@@ -1293,11 +1299,11 @@ msgstr "Узнать еще о возможностях…"
 
 #: weblate_web/templates/index.html:43
 msgid "See who is using Weblate and join them!"
-msgstr "Узнайте, кто пользуется Weblate, и присоединяйтесь!"
+msgstr "Узнайте, кто пользуется Weblate, и присоединяйтесь к ним!"
 
 #: weblate_web/templates/index.html:106
 msgid "Browse hundreds of projects on Hosted Weblate"
-msgstr "Просматривайте сотни проектов на Hosted Weblate"
+msgstr "Навигация по сотням проектов на Hosted Weblate"
 
 #: weblate_web/templates/index.html:114
 msgid "Hosted service"
@@ -1365,11 +1371,11 @@ msgstr "%(price)s евро"
 
 #: weblate_web/templates/payment/payment.html:16
 msgid "(including VAT)"
-msgstr "(включая налог)"
+msgstr "(включая НДС)"
 
 #: weblate_web/templates/payment/payment.html:18
 msgid "Payment description"
-msgstr "Описание платежа"
+msgstr "Назначение платежа"
 
 #: weblate_web/templates/payment/payment.html:20
 msgid "Payment frequence"
@@ -1395,8 +1401,8 @@ msgid ""
 "Note: This is unavailable for some payment methods, you will have to "
 "manually complete the next payment in those cases."
 msgstr ""
-"Прим.: недоступно для некоторых методов платежа, в таком случае вам придётся "
-"платить вручную."
+"Примечание: это недоступно для некоторых способов оплаты, в этих случаях вам "
+"придется вручную завершить следующий платеж."
 
 #: weblate_web/templates/payment/payment.html:35
 msgid "Billing information"
@@ -1404,7 +1410,7 @@ msgstr "Платежная информация"
 
 #: weblate_web/templates/payment/payment.html:49
 msgid "Please choose payment method:"
-msgstr "Выберите метод платежа:"
+msgstr "Выберите способ платежа:"
 
 #: weblate_web/templates/support.html:3 weblate_web/templates/support.html:4
 msgid "Weblate support"
@@ -1430,8 +1436,8 @@ msgid ""
 "\">issue tracker on GitHub</a>."
 msgstr ""
 "Столкнулись со сбоями в работе Weblate? Есть соображения, как сделать его "
-"лучше? Пожалуйста, расскажите нам об этом в <a href=\"https://github.com/"
-"WeblateOrg/weblate/issues\">системе отслеживания задач на GitHub</a>."
+"лучше? Расскажите нам об этом в <a href=\"https://github.com/WeblateOrg/"
+"weblate/issues\">системе отслеживания ошибок на GitHub</a>."
 
 #: weblate_web/templates/support.html:22
 msgid "Security issues"
@@ -1444,13 +1450,13 @@ msgid ""
 "%(contact)s. More information on reporting security issues can be found in "
 "<a href=\"%(docs)s\">our documentation</a>."
 msgstr ""
-"Если обнаружите в нашем коде проблемы безопасности, сообщите нам, "
-"пожалуйста: %(contact)s. Более подробно о том, что нужно включить в "
-"сообщение — в <a href=\"%(docs)s\">нашей документации</a>."
+"Если обнаружите ошибку безопасности в нашей кодовой базе, сообщите нам: "
+"%(contact)s. Более подробно о том, что нужно включить в сообщение — в <a "
+"href=\"%(docs)s\">нашей документации</a>."
 
 #: weblate_web/templates/support.html:28
 msgid "Support for self hosted environments"
-msgstr "Поддержка окружений своих хостингов"
+msgstr "Поддержка среды с собственным хостингом"
 
 #: weblate_web/templates/support.html:30
 msgid ""
@@ -1467,20 +1473,21 @@ msgstr "Установка на ваш сервер Linux"
 
 #: weblate_web/templates/support.html:42 weblate_web/templates/support.html:58
 msgid "One time installation of Weblate"
-msgstr "Однократная установка Weblate"
+msgstr "Одноразовая установка Weblate"
 
 #: weblate_web/templates/support.html:43
 msgid "Installation using virtualenv, uwsgi and nginx"
-msgstr "Установка с использованием ваших virtualenv, uwsgi и nginx"
+msgstr "Установка с использованием virtualenv, uwsgi и nginx"
 
 #: weblate_web/templates/support.html:44
 msgid "Using PostgreSQL, MySQL or MariaDB as database backend"
-msgstr "Использование PostgreSQL, MySQL или MariaDB в качестве базы данных"
+msgstr ""
+"Использование PostgreSQL, MySQL или MariaDB в качестве опорной базы данных"
 
 #: weblate_web/templates/support.html:45 weblate_web/templates/support.html:60
 msgid "Requires root access or close cooperation of your admins"
 msgstr ""
-"Требуется рут доступ или тесное взаимодействие с вашими администраторами"
+"Требуется с правами root или тесное взаимодействие с вашими администраторами"
 
 #: weblate_web/templates/support.html:46 weblate_web/templates/support.html:61
 msgid "Configuration customization"
@@ -1504,11 +1511,11 @@ msgstr "Базовая поддержка своего хостинга Weblate"
 
 #: weblate_web/templates/support.html:73
 msgid "Your Weblate will be upgraded to the latest version on every release."
-msgstr "Ваша версия Weblate будет обновлена до последней с каждым релизом."
+msgstr "Ваша версия Weblate будет обновлена до последней с каждым выпуском."
 
 #: weblate_web/templates/support.html:74
 msgid "We will fix issues that occur in your environment."
-msgstr "Мы исправим проблемы в вашем окружении."
+msgstr "Мы исправим проблемы в вашей среде."
 
 #: weblate_web/templates/support.html:75
 msgid "You will receive priority email support."
@@ -1537,11 +1544,11 @@ msgstr "Предложения по процессу интернационал�
 
 #: weblate_web/templates/support.html:96
 msgid "Ask us for details about self hosted Weblate"
-msgstr "Спросите нас о самостоятельном хостинге Weblate"
+msgstr "Запросите нас о самостоятельном хостинге Weblate"
 
 #: weblate_web/templates/support.html:99
 msgid "Support for Hosted Weblate services"
-msgstr "Поддержка хостинга сервисов Weblate"
+msgstr "Поддержка сервисов Hosted Weblate"
 
 #: weblate_web/templates/support.html:102
 #, python-format
@@ -1593,7 +1600,7 @@ msgstr "Подписаться"
 
 #: weblate_web/templates/support.html:123
 msgid "Hosted Weblate Announcements mailing list"
-msgstr "Список рассылки Hosted Weblate Announcements"
+msgstr "Список рассылки Объявления Hosted Weblate"
 
 #: weblate_web/templates/support.html:125
 msgid ""
@@ -1605,7 +1612,7 @@ msgstr ""
 #: weblate_web/templates/support.html:126
 msgid "This list is moderated, only chosen users can post announcements."
 msgstr ""
-"Этот список модерируется, только выбранные пользователи могут помещать сюда "
+"Этот список модерируется, только избранные пользователи могут помещать сюда "
 "объявления."
 
 #: weblate_web/templates/support.html:139
@@ -1626,7 +1633,7 @@ msgstr "Условия обслуживания"
 
 #: weblate_web/templates/terms.html:6
 msgid "The legal documents necessary to offer this service."
-msgstr "Юридические документы, необходимые для предоставления этого сервиса."
+msgstr "Юридические документы, необходимые для предоставления этой услуги."
 
 #: weblate_web/templates/terms.html:20
 msgid "Privacy Policy"
@@ -1660,7 +1667,7 @@ msgstr "Travis CI – наша платформа непрерывной инт�
 
 #: weblate_web/templates/thanks.html:30
 msgid "Codecov helps us to monitor code coverage of our test suite."
-msgstr "Codecov помогает нам отслеживать покрытие кода тестами."
+msgstr "Codecov помогает нам мониторить покрытие кода нашего набора тестов."
 
 #: weblate_web/templates/thanks.html:34
 msgid "Sauce Labs is running our Selenium tests in real browsers."
@@ -1676,7 +1683,7 @@ msgstr "Платежи обрабатываются сервисом The Pay."
 
 #: weblate_web/templates/thanks.html:46
 msgid "Supporters"
-msgstr "Поддержка"
+msgstr "Поддерживающие"
 
 #: weblate_web/templates/thanks.html:48
 msgid ""
@@ -1716,8 +1723,8 @@ msgid ""
 "To test the review workflow there, log in with username: <code>review</"
 "code>, and password: <code>review</code>."
 msgstr ""
-"Чтобы проверить режим рецензирования, войдите как пользователь <code>review</"
-"code> с паролем <code>review</code>."
+"Чтобы тестировать рабочий процесс рецензирования, войдите как пользователь "
+"<code>review</code> с паролем <code>review</code>."
 
 #: weblate_web/templates/try.html:27
 msgid "Screenshots"
@@ -1728,8 +1735,9 @@ msgid ""
 "All prices exclude VAT, invoices for EU countries are issued as a reverse "
 "charge, invoices for Czech Republic will include additional VAT."
 msgstr ""
-"Цены не включают НДС, накладные для стран ЕС выпускаются как обратные "
-"отчисления, в накладные для Чехии будет включен дополнительный НДС."
+"Все цены приводятся без НДС, счета для стран ЕС выставляются c НДС, "
+"удерживаемым у источника доходов (reverse charge), в счетах для Чешской "
+"Республики будет включен дополнительный НДС."
 
 #: weblate_web/templatetags/downloads.py:39
 #, python-format
@@ -1776,7 +1784,7 @@ msgstr "Чтобы завершить платёж, предоставьте и�
 
 #: weblate_web/views.py:100
 msgid "The VAT ID is no longer valid, please update it."
-msgstr "Идентификатор НДС больше не действителен, пожалуйста, обновите его."
+msgstr "Номер плательщика НДС более не действителен, обновите его."
 
 #: weblate_web/views.py:260
 msgid "Payment not yet processed, please retry."
