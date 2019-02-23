@@ -253,7 +253,7 @@
     <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Widget Settings</string>
     <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Update Location</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Show labels in widget</string>
-    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Show graph by native resolution (when the graph is too small)</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Show graph in native resolution (when the graph is too small)</string>
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Show settings on widget</string>
     <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Use geolocation for displaying</string>
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Widget theme</string>
@@ -437,7 +437,7 @@
     <string name="permission_available_location" tools:ignore="MissingTranslation">Location Permissions have been granted</string>
     <string name="permission_location_need" tools:ignore="MissingTranslation">Grant Location Permissions</string>
     <!-- Dialog strings -->
-    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Current weather description language and the address will change next update, or you can be forced manually.</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Current weather description language and the address will change with the next update, or you can force it manually.</string>
     <!-- Debug strings -->
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Select log folder</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Debug Options</string>
