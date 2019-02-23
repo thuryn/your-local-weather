@@ -302,7 +302,7 @@
     <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Português (Portekizce) (Portugese (Portekizce))</string>
     <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Português (Brasil) (Portekizce(Brazil))</string>
     <string name="label_pressure" tools:ignore="MissingTranslation">Basınç</string>
-    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Mevcut hava durumu açıklama dili ve adresiniz sonraki güncellemede değişecek, ya da şimdi de değiştirtebilirsiniz.</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Mevcut hava durumu açıklama dili ve adres bir sonraki güncellemeyle değişecektir isterseniz şimdi de değiştirtebilirsiniz.</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Pil İyileştirmesi</string>
     <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Uygulama, arka planda ivmeölçer ile konumu, hava durumunu veya iz konumunu güncellemek için pil optimizasyonunu kapatmanızı ister.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">İlerle</string>
@@ -378,7 +378,7 @@
     <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Özel tahminli</string>
     <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Görsel bildirim stili</string>
     <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Durum çubuğu simge stili</string>
-    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Grafiği yerel çözünürlüğe göre göster (grafik çok küçük olduğunda)</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Grafiği yerel çözünürlükte göster (grafik çok küçük olduğunda)</string>
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Widget’ta ayarları göster</string>
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Birim ayarları</string>
     <string name="preference_title_power_save" tools:ignore="MissingTranslation">Güç tasarrufu seçenekleri</string>
