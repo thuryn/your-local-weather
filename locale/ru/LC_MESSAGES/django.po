@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: weblate-web\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-26 13:18+0000\n"
+"PO-Revision-Date: 2019-02-27 06:33+0000\n"
 "Last-Translator: WWWesten <wwwesten@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/weblate/website/"
 "ru/>\n"
@@ -221,8 +221,7 @@ msgstr "Готово для облака"
 
 #: weblate_web/templates/base-features.html:39
 msgid "Weblate comes with appliances, ready to deploy in your cloud."
-msgstr ""
-"Weblate поставляется с виртуальными модулями для развертывания в облаке."
+msgstr "Weblate поставляется с принадлежностями для развертывания в облаке."
 
 #: weblate_web/templates/base-features.html:46
 msgid "Libre software"
@@ -255,7 +254,7 @@ msgstr "Функции"
 #: weblate_web/templates/base.html:59 weblate_web/templates/download.html:18
 #: weblate_web/templates/index.html:150
 msgid "Download"
-msgstr "Загрузка"
+msgstr "Скачать"
 
 #: weblate_web/templates/base.html:60
 msgid "Pricing"
@@ -315,7 +314,7 @@ msgstr "Исходные коды"
 #: weblate_web/templates/contribute.html:11
 #: weblate_web/templates/contribute.html:34
 msgid "Translate"
-msgstr "Перевод"
+msgstr "Перевести"
 
 #: weblate_web/templates/contribute.html:17
 msgid ""
@@ -346,7 +345,7 @@ msgid ""
 "You can find more repositories related to Weblate on <a href=\"%(url)s"
 "\">GitHub</a>"
 msgstr ""
-"Вы можете найти дополнительные репозитории, связанные с Weblate на <a href=\""
+"Вы можете найти больше репозиториев, относящихся к Weblate на <a href=\""
 "%(url)s\">GitHub</a>"
 
 #: weblate_web/templates/contribute.html:37
@@ -383,7 +382,7 @@ msgstr "Приобрести пакет хостинга"
 #: weblate_web/templates/download.html:13 weblate_web/templates/hosting.html:12
 #: weblate_web/templates/hosting.html:233
 msgid "Get support for Weblate"
-msgstr "Получить поддержку Weblate"
+msgstr "Поддержка для Weblate"
 
 #: weblate_web/templates/donate.html:19
 msgid "Sign in to manage your donations"
@@ -636,9 +635,9 @@ msgid ""
 "Weblate is being developed on <a href=\"https://github.com/WeblateOrg/weblate"
 "\">GitHub</a>, you can fork it there or just:"
 msgstr ""
-"Weblate разрабатывают на <a href=\"https://github.com/WeblateOrg/weblate"
-"\">GitHub</a>, вы можете сделать форк прямо там или просто набрать в "
-"командной строке:"
+"Weblate разрабатывают на <a href=\"https://github.com/WeblateOrg/weblate\""
+">GitHub</a>, вы можете сделать форк там или просто набрать в командной "
+"строке:"
 
 #: weblate_web/templates/features.html:3 weblate_web/templates/features.html:4
 msgid "Weblate features"
@@ -931,7 +930,7 @@ msgid ""
 "<code>https://hosted.weblate.org/git/weblate/master/</code>. You can figure "
 "out the URL on the component information tab."
 msgstr ""
-"Все репозитории переводов доступны через протокол https с аналогичным этому "
+"Все репозитории переводов доступны по протоколу https с аналогичным этому "
 "сайту именованием: перевод weblate/master публикуется как "
 "<code>https://hosted.weblate.org/git/weblate/master/</code>. Вы можете "
 "выяснить URL на вкладке информации о компоненте."
@@ -1089,7 +1088,7 @@ msgstr "Исходные строки"
 #: weblate_web/templates/hosting.html:52 weblate_web/templates/hosting.html:61
 #: weblate_web/templates/hosting.html:70
 msgid "Negotiable"
-msgstr "Обсуждаемый"
+msgstr "Обсуждаемо"
 
 #: weblate_web/templates/hosting.html:57 weblate_web/templates/hosting.html:66
 #: weblate_web/templates/hosting.html:75 weblate_web/templates/hosting.html:82
@@ -1157,7 +1156,7 @@ msgstr "Накопитель переводов"
 #: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:120
 #: weblate_web/templates/index.html:134
 msgid "Priority email support"
-msgstr "Приоритетная поддержка по электронной почте"
+msgstr "Приоритетная поддержка по э-почте"
 
 #: weblate_web/templates/hosting.html:168
 msgid "Custom domain name with SSL"
@@ -1199,7 +1198,7 @@ msgstr "%(price)s евро в месяц"
 
 #: weblate_web/templates/hosting.html:196
 msgid "View support options"
-msgstr "Посмотреть опции поддержки"
+msgstr "Опции поддержки"
 
 #: weblate_web/templates/hosting.html:200
 #, python-format
@@ -1353,7 +1352,7 @@ msgstr "Оплата Weblate"
 
 #: weblate_web/templates/payment/customer.html:15
 msgid "Your billing information"
-msgstr "Информация о биллинге"
+msgstr "Ваша платёжная информация"
 
 #: weblate_web/templates/payment/payment.html:11
 msgid "Payment summary"
@@ -1406,7 +1405,7 @@ msgstr ""
 
 #: weblate_web/templates/payment/payment.html:35
 msgid "Billing information"
-msgstr "Платежная информация"
+msgstr "Платёжная информация"
 
 #: weblate_web/templates/payment/payment.html:49
 msgid "Please choose payment method:"
@@ -1423,7 +1422,7 @@ msgstr ""
 
 #: weblate_web/templates/support.html:11
 msgid "Report issue"
-msgstr "Сообщить о сбое"
+msgstr "Сообщить о проблеме"
 
 #: weblate_web/templates/support.html:16
 msgid "Bugs or feature requests"
@@ -1487,11 +1486,11 @@ msgstr ""
 #: weblate_web/templates/support.html:45 weblate_web/templates/support.html:60
 msgid "Requires root access or close cooperation of your admins"
 msgstr ""
-"Требуется с правами root или тесное взаимодействие с вашими администраторами"
+"Потребуется доступ root или тесное взаимодействие с вашими администраторами"
 
 #: weblate_web/templates/support.html:46 weblate_web/templates/support.html:61
 msgid "Configuration customization"
-msgstr "Настройка конфигурации"
+msgstr "Заказная настройка конфигурации"
 
 #: weblate_web/templates/support.html:47 weblate_web/templates/support.html:62
 msgid "Does not include custom code development"
@@ -1503,7 +1502,7 @@ msgstr "Установка на ваш сервер Linux с использов�
 
 #: weblate_web/templates/support.html:59
 msgid "Installation using Docker"
-msgstr "Установка с помощью Docker"
+msgstr "Установка с исполжованием Docker"
 
 #: weblate_web/templates/support.html:67
 msgid "Basic support for self hosted Weblate"
@@ -1511,15 +1510,16 @@ msgstr "Базовая поддержка своего хостинга Weblate"
 
 #: weblate_web/templates/support.html:73
 msgid "Your Weblate will be upgraded to the latest version on every release."
-msgstr "Ваша версия Weblate будет обновлена до последней с каждым выпуском."
+msgstr ""
+"Ваша версия Weblate будет обновляться до самой последней с каждым выпуском."
 
 #: weblate_web/templates/support.html:74
 msgid "We will fix issues that occur in your environment."
-msgstr "Мы исправим проблемы в вашей среде."
+msgstr "Мы будем исправлять проблемы, возникающие в вашей среде."
 
 #: weblate_web/templates/support.html:75
 msgid "You will receive priority email support."
-msgstr "Вы получите приоритетную поддержку по электронной почте."
+msgstr "Вы получите приоритетную поддержку по э-почте."
 
 #: weblate_web/templates/support.html:80
 msgid "Consulting services or custom development"
@@ -1540,11 +1540,11 @@ msgstr "Интеграция Weblate в ваш рабочий процесс"
 
 #: weblate_web/templates/support.html:88
 msgid "Suggestions on the internationalization or localization process"
-msgstr "Предложения по процессу интернационализации или локализации"
+msgstr "Рекомендации по интернационализации или процессу локализации"
 
 #: weblate_web/templates/support.html:96
 msgid "Ask us for details about self hosted Weblate"
-msgstr "Запросите нас о самостоятельном хостинге Weblate"
+msgstr "Запрос о самостоятельном хостинге Weblate"
 
 #: weblate_web/templates/support.html:99
 msgid "Support for Hosted Weblate services"
@@ -1556,7 +1556,7 @@ msgid ""
 "If you are using our hosting services, you can ask for support at "
 "%(contact)s."
 msgstr ""
-"Если вы используете наши сервисы хостинга, вы можете получить поддержку "
+"Если вы используете наши услуги хостинга, вы можете запросить поддержку "
 "здесь: %(contact)s."
 
 #: weblate_web/templates/support.html:105
@@ -1591,7 +1591,7 @@ msgstr "Вы можете просматривать архивы списка �
 #: weblate_web/templates/support.html:114
 #: weblate_web/templates/support.html:130
 msgid "Enter your email"
-msgstr "Введите свой адрес email"
+msgstr "Введите свою э-почту"
 
 #: weblate_web/templates/support.html:116
 #: weblate_web/templates/support.html:132
@@ -1695,7 +1695,7 @@ msgstr ""
 
 #: weblate_web/templates/thanks.html:50
 msgid "Support our project and get link placement on this page."
-msgstr "Поддержите наш проект и мы разместим на этой странице вашу ссылку."
+msgstr "Поддержите наш проект и мы разместим ссылку здесь."
 
 #: weblate_web/templates/try.html:6
 msgid "Weblate has useful features for every crowdsourced localization."
@@ -1737,7 +1737,7 @@ msgid ""
 msgstr ""
 "Все цены приводятся без НДС, счета для стран ЕС выставляются c НДС, "
 "удерживаемым у источника доходов (reverse charge), в счетах для Чешской "
-"Республики будет включен дополнительный НДС."
+"Республики будет включен дополнительно НДС."
 
 #: weblate_web/templatetags/downloads.py:39
 #, python-format
@@ -1780,7 +1780,7 @@ msgstr "Исходники, сжатые zip"
 
 #: weblate_web/views.py:89
 msgid "Please provide your billing information to complete the payment."
-msgstr "Чтобы завершить платёж, предоставьте информацию о биллинге."
+msgstr "Чтобы завершить платёж, предоставьте вашу платёжную информацию."
 
 #: weblate_web/views.py:100
 msgid "The VAT ID is no longer valid, please update it."
