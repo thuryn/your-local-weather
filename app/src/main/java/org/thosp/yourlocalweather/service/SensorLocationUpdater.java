@@ -47,6 +47,7 @@ public class SensorLocationUpdater implements SensorEventListener {
     private Queue<Message> unsentMessages = new LinkedList<>();
     private Lock widgetRotationServiceLock = new ReentrantLock();
     private Context context;
+    private volatile boolean processLocationUpdate;
     private static SensorLocationUpdater instance;
     private LocationUpdateService locationUpdateService;
     private static Queue<LocationUpdateService.LocationUpdateServiceActions> locationUpdateServiceActions = new LinkedList<>();
@@ -149,12 +150,13 @@ public class SensorLocationUpdater implements SensorEventListener {
             boolean nowIsBeforeTheLastUpdatedAndTimeSpanNoLocation = (nowInMillis < (lastUpdatedPosition + ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION));
             boolean currentLengthIsUnderNoLocationLimit = (absCurrentLength < LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION);
 
-            if ((nowIsBeforeTheLastUpdatedAndTimeSpan || currentLengthIsUnderLimit)
+            if (processLocationUpdate ||
+                    (nowIsBeforeTheLastUpdatedAndTimeSpan || currentLengthIsUnderLimit)
                  && (nowIsBeforeTheLastUpdatedAndFastTimeSpan || currentLengthIsUnderFastLimit)
                  && (autolocationForSensorEventAddressFound || nowIsBeforeTheLastUpdatedAndTimeSpanNoLocation || currentLengthIsUnderNoLocationLimit)) {
                 return;
             }
-
+            processLocationUpdate = true;
             appendLogSensorsEnd(context,
                              TAG,
                              absCurrentLength,
@@ -170,16 +172,20 @@ public class SensorLocationUpdater implements SensorEventListener {
                              currentLengthIsUnderNoLocationLimit);
         } catch (Exception e) {
             appendLog(context, TAG, "Exception when processSensorQueue", e);
+            processLocationUpdate = false;
             return;
         }
 
         if (!locationUpdateServiceActions.isEmpty()) {
+            processLocationUpdate = false;
             return;
         }
+
 
         if (updateNetworkLocation()) {
             clearMeasuredLength();
         }
+        processLocationUpdate = false;
     }
 
     public void clearMeasuredLength() {

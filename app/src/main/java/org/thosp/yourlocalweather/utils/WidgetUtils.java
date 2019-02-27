@@ -702,7 +702,6 @@ public class WidgetUtils {
         updateWidgetForType(context, WeatherForecastWidgetProvider.class);
         updateWidgetForType(context, ExtLocationWithGraphWidgetProvider.class);
         updateWidgetForType(context, WeatherGraphWidgetProvider.class);
-        startBackgroundService(context, new Intent(context, ReconciliationDbService.class));
     }
 
     public static void startBackgroundService(Context context, Intent intent) {

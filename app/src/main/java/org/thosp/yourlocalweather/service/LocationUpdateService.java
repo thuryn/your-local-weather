@@ -108,6 +108,11 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         }
     }
 
+    public void onLocationChangedCanceled() {
+        updateLocationInProcess = false;
+        stopRefreshRotation("onLocationChangedCanceled",3);
+    }
+
     @Override
     public void onLocationChanged(Location location) {
         onLocationChanged(location, null);
@@ -141,6 +146,8 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         }*/
 
         if ((location == null) && gpsRequestLocation()) {
+            updateLocationInProcess = false;
+            stopRefreshRotation("onLocationChanged",3);
             return;
         }
 

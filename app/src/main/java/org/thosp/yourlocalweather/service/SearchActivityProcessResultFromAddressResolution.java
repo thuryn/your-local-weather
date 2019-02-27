@@ -37,4 +37,9 @@ public class SearchActivityProcessResultFromAddressResolution implements Process
         appendLog(context, TAG, "processUpdateOfLocation:sendIntent:", sendIntent);
         context.sendBroadcast(sendIntent);
     }
+
+    @Override
+    public void processCanceledRequest() {
+        processAddresses(null);
+    }
 }

@@ -7,4 +7,5 @@ import java.util.List;
 public interface ProcessResultFromAddressResolution {
 
     void processAddresses(List<Address> addresses);
+    void processCanceledRequest();
 }

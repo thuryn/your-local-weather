@@ -132,9 +132,7 @@ public class LocationsActivity extends BaseActivity {
         updateAddLocationButton(allLocations);
         locationsAdapter = new LocationsAdapter(allLocations);
         recyclerView.setAdapter(locationsAdapter);
-        WidgetUtils.startBackgroundService(
-                getBaseContext(),
-                new Intent(getBaseContext(), ReconciliationDbService.class));
+        sendMessageToReconciliationDbService(true);
     }
 
     private void deleteLocation(int position) {
@@ -159,11 +157,7 @@ public class LocationsActivity extends BaseActivity {
         updateAddLocationButton(allLocations);
         locationsAdapter = new LocationsAdapter(allLocations);
         recyclerView.setAdapter(locationsAdapter);
-        Intent reconciliationService = new Intent(this, ReconciliationDbService.class);
-        reconciliationService.putExtra("force", true);
-        WidgetUtils.startBackgroundService(
-                this,
-                reconciliationService);
+        sendMessageToReconciliationDbService(true);
     }
 
     private void updateAddLocationButton(List<Location> allLocations) {

@@ -7,7 +7,12 @@ import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.RemoteViews;
@@ -18,19 +23,34 @@ import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
+import org.thosp.yourlocalweather.service.AbstractCommonService;
+import org.thosp.yourlocalweather.service.AppWakeUpManager;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
+import org.thosp.yourlocalweather.service.LocationUpdateService;
+import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     private static String TAG = "AbstractWidgetProvider";
+
+    private Messenger currentWeatherService;
+    private Lock currentWeatherServiceLock = new ReentrantLock();
+    private Queue<Message> currentWeatherUnsentMessages = new LinkedList<>();
+
+    private static Queue<LocationUpdateService.LocationUpdateServiceActions> locationUpdateServiceActions = new LinkedList<>();
+    LocationUpdateService locationUpdateService;
 
     protected Location currentLocation;
     volatile boolean servicesStarted = false;
@@ -76,8 +96,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         }
 
         super.onReceive(context, intent);
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
-        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
         AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
 
         Integer widgetId = null;
@@ -94,8 +112,18 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             if (widgetIds.length == 0) {
                 return;
             }
-            widgetId = widgetIds[0];
+            for (int widgetIditer: widgetIds) {
+                performActionOnReceiveForWidget(context, intent, widgetIditer);
+                return;
+            }
         }
+        performActionOnReceiveForWidget(context, intent, widgetId);
+    }
+
+    private void performActionOnReceiveForWidget(Context context, Intent intent, int widgetId) {
+        AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
+        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
         Long locationId = widgetSettingsDbHelper.getParamLong(widgetId, "locationId");
         if (locationId == null) {
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
@@ -113,12 +141,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                     servicesStarted = true;
                 }
                 onUpdate(context, widgetManager, new int[] {widgetId});
-                break;
-            case Constants.ACTION_FORCED_APPWIDGET_UPDATE:
-                if (!WidgetRefreshIconService.isRotationActive) {
-                    sendWeatherUpdate(context);
-                }
-                onUpdate(context, widgetManager, new int[]{ widgetId});
                 break;
             case Intent.ACTION_LOCALE_CHANGED:
             case Constants.ACTION_APPWIDGET_THEME_CHANGED:
@@ -149,6 +171,12 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             changeLocation(widgetId, locationsDbHelper, widgetSettingsDbHelper);
             GraphUtils.invalidateGraph();
             onUpdate(context, widgetManager, new int[]{widgetId});
+        } else if (intent.getAction().startsWith(Constants.ACTION_FORCED_APPWIDGET_UPDATE)) {
+            if (!WidgetRefreshIconService.isRotationActive) {
+                sendWeatherUpdate(context, widgetId);
+            }
+            onUpdate(context, widgetManager, new int[]{ widgetId});
+
         }
     }
 
@@ -206,6 +234,15 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         for (int widgetId: appWidgetIds) {
             widgetSettingsDbHelper.deleteRecordFromTable(widgetId);
         }
+        unbindCurrentWeatherService(context);
+        unbindLocationUpdateService(context);
+    }
+
+    @Override
+    public void onDisabled(Context context) {
+        super.onDisabled(context);
+        unbindCurrentWeatherService(context);
+        unbindLocationUpdateService(context);
     }
 
     protected void refreshWidgetValues(Context context) {
@@ -215,7 +252,17 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         onUpdate(context, appWidgetManager, appWidgetIds);
     }
 
-    protected void sendWeatherUpdate(Context context) {
+    protected void sendWeatherUpdate(Context context, int widgetId) {
+        final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
+        Long currentLocationId = widgetSettingsDbHelper.getParamLong(widgetId, "locationId");
+        if (currentLocationId == null) {
+            appendLog(context,
+                    TAG,
+                    "currentLocation is null");
+            return;
+        }
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
+        currentLocation = locationsDbHelper.getLocationById(currentLocationId);
         if (currentLocation == null) {
             appendLog(context,
                     TAG,
@@ -223,18 +270,9 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             return;
         }
         if ((currentLocation.getOrderId() == 0) && currentLocation.isEnabled()) {
-            Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
-            startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
-            startLocationUpdateIntent.putExtra("locationId", currentLocation.getId());
-            startLocationUpdateIntent.putExtra("forceUpdate", true);
-            startServiceWithCheck(context, startLocationUpdateIntent);
-            appendLog(context, TAG, "send intent START_LOCATION_UPDATE:", startLocationUpdateIntent);
+            sendMessageToLocationUpdateService(context);
         } else if (currentLocation.getOrderId() != 0) {
-            Intent intentToCheckWeather = new Intent(context, CurrentWeatherService.class);
-            intentToCheckWeather.putExtra("locationId", currentLocation.getId());
-            intentToCheckWeather.putExtra("forceUpdate", true);
-            intentToCheckWeather.putExtra("updateWeatherOnly", true);
-            startServiceWithCheck(context, intentToCheckWeather);
+            sendMessageToCurrentWeatherService(context, currentLocation, null, true, true);
         }
     }
 
@@ -259,7 +297,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         }
 
         Intent intentRefreshService = new Intent(context, widgetClass);
-        intentRefreshService.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
+        intentRefreshService.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE + "_" + widgetId);
         intentRefreshService.setPackage("org.thosp.yourlocalweather");
         intentRefreshService.putExtra("widgetId", widgetId);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
@@ -389,17 +427,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     protected abstract int getWidgetLayout();
 
-    private void startBackgroundService(Context context, Intent intent) {
-        PendingIntent pendingIntent = PendingIntent.getService(context,
-                0,
-                intent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime() + 10,
-                pendingIntent);
-    }
-
     private void changeLocation(int widgetId,
                                 LocationsDbHelper locationsDbHelper,
                                 WidgetSettingsDbHelper widgetSettingsDbHelper) {
@@ -451,4 +478,132 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     }
 
     abstract ArrayList<String> getEnabledActionPlaces();
+
+    protected void sendMessageToCurrentWeatherService(Context context,
+                                                      Location location,
+                                                      String updateSource,
+                                                      boolean forceUpdate,
+                                                      boolean updateWeatherOnly) {
+        currentWeatherServiceLock.lock();
+        try {
+            Message msg = Message.obtain(
+                    null,
+                    CurrentWeatherService.START_CURRENT_WEATHER_UPDATE,
+                    new WeatherRequestDataHolder(location.getId(), updateSource, forceUpdate, updateWeatherOnly)
+            );
+            if (checkIfCurrentWeatherServiceIsNotBound(context)) {
+                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
+                currentWeatherUnsentMessages.add(msg);
+                return;
+            }
+            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
+            currentWeatherService.send(msg);
+        } catch (RemoteException e) {
+            appendLog(context, TAG, e.getMessage(), e);
+        } finally {
+            currentWeatherServiceLock.unlock();
+        }
+    }
+
+    private boolean checkIfCurrentWeatherServiceIsNotBound(Context context) {
+        if (currentWeatherService != null) {
+            return false;
+        }
+        try {
+            bindCurrentWeatherService(context);
+        } catch (Exception ie) {
+            appendLog(context, TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
+        }
+        return (currentWeatherService == null);
+    }
+
+    private void bindCurrentWeatherService(Context context) {
+        context.getApplicationContext().bindService(
+                new Intent(context.getApplicationContext(), CurrentWeatherService.class),
+                currentWeatherServiceConnection,
+                Context.BIND_AUTO_CREATE);
+    }
+
+    private void unbindCurrentWeatherService(Context context) {
+        if (currentWeatherService == null) {
+            return;
+        }
+        context.getApplicationContext().unbindService(currentWeatherServiceConnection);
+    }
+
+    private ServiceConnection currentWeatherServiceConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className, IBinder binderService) {
+            currentWeatherService = new Messenger(binderService);
+            currentWeatherServiceLock.lock();
+            try {
+                while (!currentWeatherUnsentMessages.isEmpty()) {
+                    currentWeatherService.send(currentWeatherUnsentMessages.poll());
+                }
+            } catch (RemoteException e) {
+                //appendLog(getBaseContext(), TAG, e.getMessage(), e);
+            } finally {
+                currentWeatherServiceLock.unlock();
+            }
+        }
+        public void onServiceDisconnected(ComponentName className) {
+            currentWeatherService = null;
+        }
+    };
+
+    protected void sendMessageToLocationUpdateService(Context context) {
+        //startRefreshRotation("updateNetworkLocation", 3);
+        if (checkIfLocationUpdateServiceIsNotBound(context)) {
+            locationUpdateServiceActions.add(LocationUpdateService.LocationUpdateServiceActions.START_LOCATION_AND_WEATHER_UPDATE);
+            return;
+        } else {
+            locationUpdateService.startLocationAndWeatherUpdate(null);
+        }
+    }
+
+    private boolean checkIfLocationUpdateServiceIsNotBound(Context context) {
+        if (locationUpdateService != null) {
+            return false;
+        }
+        try {
+            bindLocationUpdateService(context);
+        } catch (Exception ie) {
+            appendLog(context, TAG, "locationUpdtaeServiceIsNotBound interrupted:", ie);
+        }
+        return (locationUpdateService == null);
+    }
+
+    private void bindLocationUpdateService(Context context) {
+        context.getApplicationContext().bindService(
+                new Intent(context.getApplicationContext(), LocationUpdateService.class),
+                locationUpdateServiceConnection,
+                Context.BIND_AUTO_CREATE);
+    }
+
+    private void unbindLocationUpdateService(Context context) {
+        if (locationUpdateService == null) {
+            return;
+        }
+        context.getApplicationContext().unbindService(locationUpdateServiceConnection);
+    }
+
+    private ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className, IBinder service) {
+
+            LocationUpdateService.LocationUpdateServiceBinder binder =
+                    (LocationUpdateService.LocationUpdateServiceBinder) service;
+            locationUpdateService = binder.getService();
+            LocationUpdateService.LocationUpdateServiceActions bindedServiceAction;
+            while ((bindedServiceAction = locationUpdateServiceActions.poll()) != null) {
+                switch (bindedServiceAction) {
+                    case START_LOCATION_AND_WEATHER_UPDATE:
+                        locationUpdateService.startLocationAndWeatherUpdate();
+                        break;
+                }
+            }
+        }
+
+        public void onServiceDisconnected(ComponentName className) {
+            locationUpdateService = null;
+        }
+    };
 }

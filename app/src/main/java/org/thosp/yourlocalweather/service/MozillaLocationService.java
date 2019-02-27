@@ -290,6 +290,16 @@ public class MozillaLocationService {
         return location;
     }
 
+    protected void reportCanceledRequestForNewLocation() {
+        if (locationUpdateService != null) {
+            locationUpdateService.onLocationChangedCanceled();
+        } else {
+            locationUpdateServiceActions.add(
+                    new LocationAndAddressToUpdate(true));
+            bindLocationUpdateService();
+        }
+    }
+
     protected void reportNewLocation(Location location, Address address) {
         if (locationUpdateService != null) {
             locationUpdateService.onLocationChanged(
@@ -326,9 +336,13 @@ public class MozillaLocationService {
             locationUpdateService = binder.getService();
             LocationAndAddressToUpdate bindedServiceAction;
             while ((bindedServiceAction = locationUpdateServiceActions.poll()) != null) {
-                locationUpdateService.onLocationChanged(
-                        bindedServiceAction.getLocation(),
-                        bindedServiceAction.getAddress());
+                if (bindedServiceAction.isCanceled()) {
+                    locationUpdateService.onLocationChangedCanceled();
+                } else {
+                    locationUpdateService.onLocationChanged(
+                            bindedServiceAction.getLocation(),
+                            bindedServiceAction.getAddress());
+                }
             }
         }
 
@@ -341,10 +355,15 @@ public class MozillaLocationService {
     private class LocationAndAddressToUpdate {
         Location location;
         Address address;
+        boolean canceled;
 
         public LocationAndAddressToUpdate(Location location, Address address) {
             this.location = location;
             this.address = address;
+        }
+
+        public LocationAndAddressToUpdate(boolean canceled) {
+            this.canceled = canceled;
         }
 
         public Location getLocation() {
@@ -353,6 +372,10 @@ public class MozillaLocationService {
 
         public Address getAddress() {
             return address;
+        }
+
+        public boolean isCanceled() {
+            return canceled;
         }
     }
 }

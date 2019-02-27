@@ -237,10 +237,6 @@ public class SearchActivity extends BaseActivity {
             intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
             startService(intentToStartUpdate);
         }
-        Intent reconciliationService = new Intent(this, ReconciliationDbService.class);
-        reconciliationService.putExtra("force", true);
-        WidgetUtils.startBackgroundService(
-                this,
-                reconciliationService);
+        sendMessageToReconciliationDbService(true);
     }
 }

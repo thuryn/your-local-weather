@@ -4,7 +4,12 @@ import android.app.IntentService;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
 
+import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsContract;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
@@ -13,41 +18,50 @@ import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
-public class ReconciliationDbService extends IntentService {
+public class ReconciliationDbService extends AbstractCommonService {
 
     private static final String TAG = "ReconciliationDbService";
+
+    public static final int START_RECONCILIATION = 1;
 
     private static final long MIN_RECONCILIATION_TIME_SPAN_IN_MS = 60000;
 
     private static volatile long nextReconciliationTime;
 
-    public ReconciliationDbService() {
-        super(TAG);
-    }
+    final Messenger messenger = new Messenger(new ReconciliationDbService.ReconciliationDbMessageHandler());
+
+    Handler timerHandler = new Handler();
+    Runnable timerRunnable = new Runnable() {
+
+        @Override
+        public void run() {
+            startReconciliation(false);
+        }
+    };
+
 
     @Override
-    protected void onHandleIntent(Intent intent) {
+    public IBinder onBind(Intent intent) {
+        return messenger.getBinder();
+    }
+
+    protected void startReconciliation(boolean force) {
         appendLog(this, TAG, "onHandleIntent");
-        boolean force = false;
-        if (intent.hasExtra("force")) {
-            force = intent.getBooleanExtra("force", false);
-        }
-        appendLog(this, TAG, "force:", intent.hasExtra("force"), ":", force);
+        long nowInMilis = System.currentTimeMillis();
+        timerHandler.removeCallbacksAndMessages(null);
         if (!force) {
             if (nextReconciliationTime == 0) {
-                nextReconciliationTime = System.currentTimeMillis() + MIN_RECONCILIATION_TIME_SPAN_IN_MS;
+                nextReconciliationTime = nowInMilis + MIN_RECONCILIATION_TIME_SPAN_IN_MS;
                 appendLog(
                         this,
                         TAG,
                         "nextReconciliationTime is 0");
-            } else {
+            } else if (nextReconciliationTime > nowInMilis) {
                 appendLog(
                         this,
                         TAG,
-                        "rescheduling with inMilis:", nextReconciliationTime, ":", System.currentTimeMillis());
-                Intent intentToReschedule = new Intent(getBaseContext(), ReconciliationDbService.class);
-                intentToReschedule.putExtra("force", true);
-                WidgetUtils.startBackgroundService(getBaseContext(), intentToReschedule, MIN_RECONCILIATION_TIME_SPAN_IN_MS);
+                        "rescheduling with inMilis:", nextReconciliationTime, ":", nowInMilis);
+                timerHandler.postDelayed(timerRunnable, MIN_RECONCILIATION_TIME_SPAN_IN_MS);
                 return;
             }
         }
@@ -144,5 +158,19 @@ public class ReconciliationDbService extends IntentService {
             values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_NICKNAME, location.getNickname());
         }
         return values;
+    }
+
+    private class ReconciliationDbMessageHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            appendLog(getBaseContext(), TAG, "handleMessage:", msg.what, ":", msg.arg1);
+            switch (msg.what) {
+                case START_RECONCILIATION:
+                    startReconciliation((msg.arg1 == 1)?true:false);
+                    break;
+                default:
+                    super.handleMessage(msg);
+            }
+        }
     }
 }

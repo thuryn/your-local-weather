@@ -104,7 +104,7 @@ public class NominatimLocationService {
                     nextAlowedRequestTimestamp,
                     ", now=",
                     now);
-            processResultFromAddressResolution.processAddresses(null);
+            processResultFromAddressResolution.processCanceledRequest();
             return;
         }
 

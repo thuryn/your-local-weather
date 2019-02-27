@@ -44,6 +44,9 @@ public class AbstractCommonService extends Service {
     private Messenger wakeUpService;
     private Lock wakeUpServiceLock = new ReentrantLock();
     private Queue<Message> wakeUpUnsentMessages = new LinkedList<>();
+    private Messenger reconciliationDbService;
+    private Lock reconciliationDbServiceLock = new ReentrantLock();
+    private Queue<Message> reconciliationDbUnsentMessages = new LinkedList<>();
 
     private static Queue<LocationUpdateServiceActionsWithParams> locationUpdateServiceActions = new LinkedList<>();
     LocationUpdateService locationUpdateService;
@@ -100,6 +103,7 @@ public class AbstractCommonService extends Service {
         if (WidgetRefreshIconService.isRotationActive) {
             return;
         }
+        sendMessageToReconciliationDbService(false);
         WidgetUtils.updateWidgets(getBaseContext());
         if (updateSource != null) {
             switch (updateSource) {
@@ -234,6 +238,7 @@ public class AbstractCommonService extends Service {
         unbindCurrentWeatherService();
         unbindWeatherForecastService();
         unbindwakeUpService();
+        unbindReconciliationDbService();
         appendLog(getBaseContext(), TAG, "unbindServices end");
     }
 
@@ -521,6 +526,76 @@ public class AbstractCommonService extends Service {
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
             locationUpdateService = null;
+        }
+    };
+
+    protected void sendMessageToReconciliationDbService(boolean force) {
+        appendLog(this,
+                TAG,
+                "going run reconciliation DB service");
+        reconciliationDbServiceLock.lock();
+        try {
+            Message msg = Message.obtain(
+                    null,
+                    ReconciliationDbService.START_RECONCILIATION,
+                    force?1:0
+            );
+            if (checkIfReconciliationDbServiceIsNotBound()) {
+                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
+                reconciliationDbUnsentMessages.add(msg);
+                return;
+            }
+            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
+            reconciliationDbService.send(msg);
+        } catch (RemoteException e) {
+            appendLog(getBaseContext(), TAG, e.getMessage(), e);
+        } finally {
+            reconciliationDbServiceLock.unlock();
+        }
+    }
+
+    private boolean checkIfReconciliationDbServiceIsNotBound() {
+        if (reconciliationDbService != null) {
+            return false;
+        }
+        try {
+            bindReconciliationDBService();
+        } catch (Exception ie) {
+            appendLog(getBaseContext(), TAG, "weatherForecastServiceIsNotBound interrupted:", ie);
+        }
+        return (reconciliationDbService == null);
+    }
+
+    private void bindReconciliationDBService() {
+        getApplicationContext().bindService(
+                new Intent(getApplicationContext(), ReconciliationDbService.class),
+                reconciliationDbServiceConnection,
+                Context.BIND_AUTO_CREATE);
+    }
+
+    private void unbindReconciliationDbService() {
+        if (reconciliationDbService == null) {
+            return;
+        }
+        getApplicationContext().unbindService(reconciliationDbServiceConnection);
+    }
+
+    private ServiceConnection reconciliationDbServiceConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className, IBinder binderService) {
+            reconciliationDbService = new Messenger(binderService);
+            reconciliationDbServiceLock.lock();
+            try {
+                while (!reconciliationDbUnsentMessages.isEmpty()) {
+                    reconciliationDbService.send(reconciliationDbUnsentMessages.poll());
+                }
+            } catch (RemoteException e) {
+                appendLog(getBaseContext(), TAG, e.getMessage(), e);
+            } finally {
+                reconciliationDbServiceLock.unlock();
+            }
+        }
+        public void onServiceDisconnected(ComponentName className) {
+            reconciliationDbService = null;
         }
     };
 

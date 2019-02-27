@@ -9,9 +9,11 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -26,6 +28,10 @@ import android.location.Address;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
 import android.os.SystemClock;
 import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
@@ -72,8 +78,14 @@ import org.yaml.snakeyaml.scanner.Constant;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Queue;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class SettingsActivity extends AppCompatPreferenceActivity {
 
@@ -145,6 +157,11 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     public static class GeneralPreferenceFragment extends PreferenceFragment implements
             SharedPreferences.OnSharedPreferenceChangeListener {
+
+        private Messenger reconciliationDbService;
+        private Lock reconciliationDbServiceLock = new ReentrantLock();
+        private Queue<Message> reconciliationDbUnsentMessages = new LinkedList<>();
+
 
         private final String[] SUMMARIES_TO_UPDATE = {
                 Constants.KEY_PREF_HIDE_DESCRIPTION,
@@ -240,6 +257,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         @Override
         public void onPause() {
             super.onPause();
+            unbindReconciliationDbService();
             getPreferenceScreen().getSharedPreferences()
                                  .unregisterOnSharedPreferenceChangeListener(this);
         }
@@ -276,12 +294,78 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     locationsDbHelper.deleteRecordFromTable(location);
                 }
             }
-            Intent reconciliationService = new Intent(getActivity(), ReconciliationDbService.class);
-            reconciliationService.putExtra("force", true);
-            WidgetUtils.startBackgroundService(
-                    getActivity(),
-                    reconciliationService);
+            sendMessageToReconciliationDbService(true);
         }
+
+        protected void sendMessageToReconciliationDbService(boolean force) {
+            appendLog(getActivity(),
+                    TAG,
+                    "going run reconciliation DB service");
+            reconciliationDbServiceLock.lock();
+            try {
+                Message msg = Message.obtain(
+                        null,
+                        ReconciliationDbService.START_RECONCILIATION,
+                        force?1:0
+                );
+                if (checkIfReconciliationDbServiceIsNotBound()) {
+                    //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
+                    reconciliationDbUnsentMessages.add(msg);
+                    return;
+                }
+                //appendLog(getBaseContext(), TAG, "sendMessageToService:");
+                reconciliationDbService.send(msg);
+            } catch (RemoteException e) {
+                appendLog(getActivity(), TAG, e.getMessage(), e);
+            } finally {
+                reconciliationDbServiceLock.unlock();
+            }
+        }
+
+        private boolean checkIfReconciliationDbServiceIsNotBound() {
+            if (reconciliationDbService != null) {
+                return false;
+            }
+            try {
+                bindReconciliationDBService();
+            } catch (Exception ie) {
+                appendLog(getActivity(), TAG, "weatherForecastServiceIsNotBound interrupted:", ie);
+            }
+            return (reconciliationDbService == null);
+        }
+
+        private void bindReconciliationDBService() {
+            getActivity().getApplicationContext().bindService(
+                    new Intent(getActivity().getApplicationContext(), ReconciliationDbService.class),
+                    reconciliationDbServiceConnection,
+                    Context.BIND_AUTO_CREATE);
+        }
+
+        protected void unbindReconciliationDbService() {
+            if (reconciliationDbService == null) {
+                return;
+            }
+            getActivity().getApplicationContext().unbindService(reconciliationDbServiceConnection);
+        }
+
+        private ServiceConnection reconciliationDbServiceConnection = new ServiceConnection() {
+            public void onServiceConnected(ComponentName className, IBinder binderService) {
+                reconciliationDbService = new Messenger(binderService);
+                reconciliationDbServiceLock.lock();
+                try {
+                    while (!reconciliationDbUnsentMessages.isEmpty()) {
+                        reconciliationDbService.send(reconciliationDbUnsentMessages.poll());
+                    }
+                } catch (RemoteException e) {
+                    appendLog(getActivity(), TAG, e.getMessage(), e);
+                } finally {
+                    reconciliationDbServiceLock.unlock();
+                }
+            }
+            public void onServiceDisconnected(ComponentName className) {
+                reconciliationDbService = null;
+            }
+        };
     }
 
     public static class UnitsPreferenceFragment extends PreferenceFragment implements

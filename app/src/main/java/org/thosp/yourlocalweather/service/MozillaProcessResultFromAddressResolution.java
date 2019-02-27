@@ -31,4 +31,9 @@ public class MozillaProcessResultFromAddressResolution implements ProcessResultF
         appendLog(context, TAG, "processUpdateOfLocation:location:", location, ", address=", resolvedAddress);
         mozillaLocationService.reportNewLocation(location, resolvedAddress);
     }
+
+    @Override
+    public void processCanceledRequest() {
+        mozillaLocationService.reportCanceledRequestForNewLocation();
+    }
 }

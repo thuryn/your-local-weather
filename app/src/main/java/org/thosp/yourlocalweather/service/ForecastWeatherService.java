@@ -275,6 +275,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
             if (WidgetRefreshIconService.isRotationActive) {
                 return;
             }
+            sendMessageToReconciliationDbService(false);
             WidgetUtils.updateWidgets(getBaseContext());
         } catch (Throwable exception) {
             appendLog(context, TAG, "Exception occured when starting the service:", exception);
@@ -287,6 +288,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
         }
         String updateSource = updateRequest.getUpdateSource();
         if (updateSource != null) {
+            sendMessageToReconciliationDbService(false);
             WidgetUtils.updateWidgets(context);
             switch (updateSource) {
                 case "FORECAST":

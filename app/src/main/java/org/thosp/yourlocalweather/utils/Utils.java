@@ -48,6 +48,8 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.TimeZone;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 public class Utils {
 
     public static Bitmap createWeatherIcon(Context context, String text) {

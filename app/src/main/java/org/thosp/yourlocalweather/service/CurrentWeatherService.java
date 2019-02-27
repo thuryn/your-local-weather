@@ -214,6 +214,7 @@ public class CurrentWeatherService extends AbstractCommonService {
                     TAG,
                     "Current weather is recent enough");
             currentWeatherUpdateMessages.poll();
+            sendMessageToReconciliationDbService(false);
             WidgetUtils.updateWidgets(this);
             return;
         }
@@ -366,6 +367,7 @@ public class CurrentWeatherService extends AbstractCommonService {
             if (WidgetRefreshIconService.isRotationActive) {
                 return;
             }
+            sendMessageToReconciliationDbService(false);
             WidgetUtils.updateWidgets(getBaseContext());
         } catch (Throwable exception) {
             appendLog(context, TAG, "Exception occured when starting the service:", exception);
