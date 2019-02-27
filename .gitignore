@@ -11,7 +11,9 @@
 *.pyc
 *.*~
 /weblate_web/files/
+/weblate_web/settings_local.py
 *.mo
 db.sqlite3
 /django
 /.nb-gradle/
+/*.sqlite3

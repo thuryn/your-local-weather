@@ -1,29 +1,15 @@
 {% load i18n %}
-{% get_available_languages as languages %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_BIDI %}rtl{% else %}ltr{% endif %}">
 <head>
   <meta charset="utf-8">
   <meta name="author" content="Michal Čihař" />
   <meta name="dcterms.rightsHolder" content="Michal Čihař">
-  <meta name="dcterms.dateCopyrighted" content="2012 - 2018">
+  <meta name="dcterms.dateCopyrighted" content="2012 - 2019">
   <meta name="robots" content="index, follow" />
   <meta name="description" content="{% block description %}{% endblock %}" />
   <meta name="keywords" content="weblate,git,gettext,resources,json,po,mo,qts,CAT,web,crowdsourcing,{% trans "translate" context "Keyword" %}" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-<script>
-var _rollbarConfig = {
-    accessToken: "",
-    captureUncaught: true,
-    payload: {
-        environment: "production"
-    }
-};
-// Rollbar Snippet
-!function(r){function e(n){if(o[n])return o[n].exports;var t=o[n]={exports:{},id:n,loaded:!1};return r[n].call(t.exports,t,t.exports,e),t.loaded=!0,t.exports}var o={};return e.m=r,e.c=o,e.p="",e(0)}([function(r,e,o){"use strict";var n=o(1),t=o(4);_rollbarConfig=_rollbarConfig||{},_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"https://cdnjs.cloudflare.com/ajax/libs/rollbar.js/2.4.1/rollbar.min.js",_rollbarConfig.async=void 0===_rollbarConfig.async||_rollbarConfig.async;var a=n.setupShim(window,_rollbarConfig),l=t(_rollbarConfig);window.rollbar=n.Rollbar,a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,l)},function(r,e,o){"use strict";function n(r){return function(){try{return r.apply(this,arguments)}catch(r){try{console.error("[Rollbar]: Internal error",r)}catch(r){}}}}function t(r,e){this.options=r,this._rollbarOldOnError=null;var o=s++;this.shimId=function(){return o},"undefined"!=typeof window&&window._rollbarShims&&(window._rollbarShims[o]={handler:e,messages:[]})}function a(r,e){if(r){var o=e.globalAlias||"Rollbar";if("object"==typeof r[o])return r[o];r._rollbarShims={},r._rollbarWrappedError=null;var t=new p(e);return n(function(){e.captureUncaught&&(t._rollbarOldOnError=r.onerror,i.captureUncaughtExceptions(r,t,!0),i.wrapGlobals(r,t,!0)),e.captureUnhandledRejections&&i.captureUnhandledRejections(r,t,!0);var n=e.autoInstrument;return e.enabled!==!1&&(void 0===n||n===!0||"object"==typeof n&&n.network)&&r.addEventListener&&(r.addEventListener("load",t.captureLoad.bind(t)),r.addEventListener("DOMContentLoaded",t.captureDomContentLoaded.bind(t))),r[o]=t,t})()}}function l(r){return n(function(){var e=this,o=Array.prototype.slice.call(arguments,0),n={shim:e,method:r,args:o,ts:new Date};window._rollbarShims[this.shimId()].messages.push(n)})}var i=o(2),s=0,d=o(3),c=function(r,e){return new t(r,e)},p=d.bind(null,c);t.prototype.loadFull=function(r,e,o,t,a){var l=function(){var e;if(void 0===r._rollbarDidLoad){e=new Error("rollbar.js did not load");for(var o,n,t,l,i=0;o=r._rollbarShims[i++];)for(o=o.messages||[];n=o.shift();)for(t=n.args||[],i=0;i<t.length;++i)if(l=t[i],"function"==typeof l){l(e);break}}"function"==typeof a&&a(e)},i=!1,s=e.createElement("script"),d=e.getElementsByTagName("script")[0],c=d.parentNode;s.crossOrigin="",s.src=t.rollbarJsUrl,o||(s.async=!0),s.onload=s.onreadystatechange=n(function(){if(!(i||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){s.onload=s.onreadystatechange=null;try{c.removeChild(s)}catch(r){}i=!0,l()}}),c.insertBefore(s,d)},t.prototype.wrap=function(r,e,o){try{var n;if(n="function"==typeof e?e:function(){return e||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._rollbar_wrapped&&(r._rollbar_wrapped=function(){o&&"function"==typeof o&&o.apply(this,arguments);try{return r.apply(this,arguments)}catch(o){var e=o;throw e&&("string"==typeof e&&(e=new String(e)),e._rollbarContext=n()||{},e._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=e),e}},r._rollbar_wrapped._isWrap=!0,r.hasOwnProperty))for(var t in r)r.hasOwnProperty(t)&&(r._rollbar_wrapped[t]=r[t]);return r._rollbar_wrapped}catch(e){return r}};for(var u="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,captureEvent,captureDomContentLoaded,captureLoad".split(","),f=0;f<u.length;++f)t.prototype[u[f]]=l(u[f]);r.exports={setupShim:a,Rollbar:p}},function(r,e){"use strict";function o(r,e,o){if(r){var t;"function"==typeof e._rollbarOldOnError?t=e._rollbarOldOnError:r.onerror&&!r.onerror.belongsToShim&&(t=r.onerror,e._rollbarOldOnError=t);var a=function(){var o=Array.prototype.slice.call(arguments,0);n(r,e,t,o)};a.belongsToShim=o,r.onerror=a}}function n(r,e,o,n){r._rollbarWrappedError&&(n[4]||(n[4]=r._rollbarWrappedError),n[5]||(n[5]=r._rollbarWrappedError._rollbarContext),r._rollbarWrappedError=null),e.handleUncaughtException.apply(e,n),o&&o.apply(r,n)}function t(r,e,o){if(r){"function"==typeof r._rollbarURH&&r._rollbarURH.belongsToShim&&r.removeEventListener("unhandledrejection",r._rollbarURH);var n=function(r){var o,n,t;try{o=r.reason}catch(r){o=void 0}try{n=r.promise}catch(r){n="[unhandledrejection] error getting `promise` from event"}try{t=r.detail,!o&&t&&(o=t.reason,n=t.promise)}catch(r){t="[unhandledrejection] error getting `detail` from event"}o||(o="[unhandledrejection] error getting `reason` from event"),e&&e.handleUnhandledRejection&&e.handleUnhandledRejection(o,n)};n.belongsToShim=o,r._rollbarURH=n,r.addEventListener("unhandledrejection",n)}}function a(r,e,o){if(r){var n,t,a="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(n=0;n<a.length;++n)t=a[n],r[t]&&r[t].prototype&&l(e,r[t].prototype,o)}}function l(r,e,o){if(e.hasOwnProperty&&e.hasOwnProperty("addEventListener")){for(var n=e.addEventListener;n._rollbarOldAdd&&n.belongsToShim;)n=n._rollbarOldAdd;var t=function(e,o,t){n.call(this,e,r.wrap(o),t)};t._rollbarOldAdd=n,t.belongsToShim=o,e.addEventListener=t;for(var a=e.removeEventListener;a._rollbarOldRemove&&a.belongsToShim;)a=a._rollbarOldRemove;var l=function(r,e,o){a.call(this,r,e&&e._rollbar_wrapped||e,o)};l._rollbarOldRemove=a,l.belongsToShim=o,e.removeEventListener=l}}r.exports={captureUncaughtExceptions:o,captureUnhandledRejections:t,wrapGlobals:a}},function(r,e){"use strict";function o(r,e){this.impl=r(e,this),this.options=e,n(o.prototype)}function n(r){for(var e=function(r){return function(){var e=Array.prototype.slice.call(arguments,0);if(this.impl[r])return this.impl[r].apply(this.impl,e)}},o="log,debug,info,warn,warning,error,critical,global,configure,handleUncaughtException,handleUnhandledRejection,_createItem,wrap,loadFull,shimId,captureEvent,captureDomContentLoaded,captureLoad".split(","),n=0;n<o.length;n++)r[o[n]]=e(o[n])}o.prototype._swapAndProcessMessages=function(r,e){this.impl=r(this.options);for(var o,n,t;o=e.shift();)n=o.method,t=o.args,this[n]&&"function"==typeof this[n]&&("captureDomContentLoaded"===n||"captureLoad"===n?this[n].apply(this,[t[0],o.ts]):this[n].apply(this,t));return this},r.exports=o},function(r,e){"use strict";r.exports=function(r){return function(e){if(!e&&!window._rollbarInitialized){r=r||{};for(var o,n,t=r.globalAlias||"Rollbar",a=window.rollbar,l=function(r){return new a(r)},i=0;o=window._rollbarShims[i++];)n||(n=o.handler),o.handler._swapAndProcessMessages(l,o.messages);window[t]=n,window._rollbarInitialized=!0}}}}]);
-// End Rollbar Snippet
-</script>
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="/media/colorbox.css">
   <link rel="author" href="mailto:michal@cihar.com" />
   <link rel="shortcut icon" href="/media/favicon.ico" type="image/x-icon" />
@@ -35,22 +21,22 @@ var _rollbarConfig = {
   <link rel="alternate" type="application/rss+xml" href="https://blog.cihar.com/archives/weblate/index-atom.xml" title="Weblate blog (Atom 1.0)"/>
   <link rel="alternate" type="application/rss+xml" href="https://blog.cihar.com/archives/weblate/index-rss.xml" title="Weblate blog (RSS 2.0)"/>
   <link rel="alternate" type="application/rss+xml" href="https://blog.cihar.com/archives/weblate/index.xml" title="Weblate blog (RSS 1.0)"/>
-  {% language 'en' %}
-  <link rel="canonical" href="{% if url_name %}{% url url_name %}{% else %}{% url 'home' %}{% endif %}" />
-  {% endlanguage %}
-  {% for lang_code, lang_name in languages %}
-    {% if lang_code != LANGUAGE_CODE %}
-      {% language lang_code %}
-      <link rel="alternate" hreflang="{{ lang_code }}" href="{% if url_name %}{% url url_name %}{% else %}{% url 'home' %}{% endif %}" />
-      {% endlanguage %}
-    {% endif %}
+  <link rel="canonical" href="{{ canonical_url }}" />
+  {% for lang in language_urls %}
+    {% if lang.code != LANGUAGE_CODE %}<link rel="alternate" hreflang="{{ lang.code }}" href="{{ lang.url }}" />{% endif %}
   {% endfor %}
-   <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+   <script src="/media/jquery-3.3.1.min.js"></script>
 
-   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-   <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+{% if LANGUAGE_BIDI %}
+   <link rel="stylesheet" href="/media/bootstrap-4.1.3.rtl.min.css">
+{% else %}
+   <link rel="stylesheet" href="/media/bootstrap-4.1.3.min.css">
+{% endif %}
+   <script src="/media/bootstrap-4.1.3.bundle.min.js"></script>
    <link rel="stylesheet" type="text/css" href="/media/custom.css">
+   <script src="/media/fontawesome-free-5.5.0.js" data-auto-add-css="false" async defer></script>
+   <link href="/media/fontawesome-free-5.5.0.css" rel="stylesheet" />
+   
 
    <script src="/media/jquery.colorbox-min.js"></script>
    <script src="/media/code.js"></script>
@@ -58,58 +44,48 @@ var _rollbarConfig = {
    <meta name="wot-verification" content="b166aac1728babda4ade" />
 </head>
  <body {% if LANGUAGE_BIDI %}class="dir-rtl"{% endif %}>
-<nav class="navbar navbar-default navbar-static-top">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">{% trans "Toggle navigation" %}</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{% url 'home' %}">
-      <img class="logo" src="/media/weblate-128.png" alt="{% trans "Weblate logo" %}" />
-      Weblate
-      </a>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a href="https://blog.cihar.com/archives/weblate/">{% trans "Blog" %}</a></li>
-        <li><a href="{% url 'try' %}">{% trans "Try" %}</a></li>
-        <li><a href="{% url 'features'%}">{% trans "Features" %}</a></li>
-        <li><a href="https://docs.weblate.org/">{% trans "Docs" %}</a></li>
-        <li><a href="{% url 'download' %}">{% trans "Download" %}</a></li>
-        <li><a href="{% url 'hosting' %}">{% trans "Hosting" %}</a></li>
-        <li><a href="{% url 'contribute' %}">{% trans "Develop" %}</a></li>
-        <li><a href="{% url 'donate' %}">{% trans "Donate" %}</a></li>
-        <li><a href="{% url 'support' %}">{% trans "Support" %}</a></li>
-        <li><a href="{% url 'tour' %}">{% trans "Tour" %}</a></li>
-        <li><a href="{% url 'thanks' %}">{% trans "Thanks" %}</a></li>
+<nav class="navbar navbar-default navbar-expand-md navbar-static-top navbar-light bg-light">
+  <a class="navbar-brand" href="{% url 'home' %}">
+  <img class="logo" src="/media/weblate-128.png" alt="{% trans "Weblate logo" %}" />
+  Weblate
+  </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>     
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="{% url 'try' %}">{% trans "Try" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'features'%}">{% trans "Features" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'download' %}">{% trans "Download" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'hosting' %}">{% trans "Pricing" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'contribute' %}">{% trans "Develop" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'donate' %}">{% trans "Donate" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'support' %}">{% trans "Support" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'thanks' %}">{% trans "Thanks" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://blog.cihar.com/archives/weblate/">{% trans "Blog" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://docs.weblate.org/">{% trans "Docs" %}</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://hosted.weblate.org/">{% trans "Hosting" %}</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-        <span class="fa fa-globe"></span>
+        <li class="dropdown"><a href="#" class="nav-link dropdown-toggle" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="fas fa-language"></span>
         {% for lang in LANGUAGES %}{% if lang.0 == LANGUAGE_CODE %}{{ lang.1 }}{% endif %}{% endfor %}
-        <b class="caret"></b>
         </a>
-        <ul class="dropdown-menu">
-          {% for lang_code, lang_name in languages %}
-          {% language lang_code %}
-          <li><a href="{% if url_name %}{% url url_name %}{% else %}{% url 'home' %}{% endif %}">{{ lang_name }}</a></li>
-          {% endlanguage %}
+        <div class="dropdown-menu {% if LANGUAGE_BIDI %}dropdown-menu-left{% else %}dropdown-menu-right{% endif %}" aria-labelledby="dropdownMenuLink">
+          {% for lang in language_urls %}
+          <a class="dropdown-item" href="{{ lang.url }}">{{ lang.name }}</a>
           {% endfor %}
-          <li role="presentation" class="divider"></li>
-          <li><a href="{% url 'contribute' %}#translate">{% trans "Help with translations!" %}</a></li>
-        </ul>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="{% url 'contribute' %}#translate">{% trans "Help with translations!" %}</a>
+        </div>
         </li>
       </ul>
-    </div>
   </div>
 </nav>
 <header>
 
-<div class="jumbotron">
+{% block jumbotron %}
+<div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1>
     {% block header %}
@@ -124,8 +100,15 @@ var _rollbarConfig = {
     {% endblock %}
   </div>
 </div>
+{% endblock %}
 </header>
 <div class="container">
+
+{% for message in messages %}
+<div class="m-4 alert alert-{% if "error" in message.tags %}danger{% else %}{{ message.tags }}{% endif %}" role="alert">
+  {{ message }}
+</div>
+{% endfor %}
 
 {% block content %}
 {% endblock %}
@@ -136,33 +119,20 @@ var _rollbarConfig = {
 
 <footer>
 <ul class="footer">
-<li>Copyright &copy; 2012 - 2018 <a href="https://cihar.com/">Michal Čihař</a></li>
-<li>{% url 'donate' as donate_url %}{% blocktrans with 'https://github.com/WeblateOrg/weblate' as github_url %}Weblate is <a href="{{ github_url }}">free software</a> and welcomes <a href="{{ donate_url }}">donations</a>.{% endblocktrans %}</li>
-<li><a href="https://twitter.com/WeblateOrg" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-<li><a href="https://plus.google.com/+WeblateOrg" title="Google+"><i class="fa fa-google-plus"></i></a></li>
-<li><a href="https://www.facebook.com/WeblateOrg" title="Facebook"><i class="fa fa-facebook-official"></i></a></li>
-<li><a href="https://github.com/WeblateOrg/weblate" title="GitHub"><i class="fa fa-github"></i></a></li>
+<li>Copyright &copy; 2012 - 2019 <a href="https://cihar.com/">Michal Čihař</a></li>
+<li><a href="{% url 'terms' %}">{% trans "Terms of Service and Privacy Policy" %}</a></li>
+<li><a href="https://twitter.com/WeblateOrg" title="Twitter"><i class="fab fa-twitter"></i></a></li>
+<li><a href="https://www.facebook.com/WeblateOrg" title="Facebook"><i class="fab fa-facebook"></i></a></li>
+<li><a href="https://github.com/WeblateOrg/weblate" title="GitHub"><i class="fab fa-github"></i></a></li>
 {% block extrafooter %}{% endblock %}
 </ul>
 </footer>
-<!-- Piwik Image Tracker -->
-<noscript><img src="https://stats.cihar.com/piwik.php?idsite=12&amp;rec=1" style="border:0" alt="" /></noscript>
-<!-- End Piwik -->
-<!-- Piwik -->
-<script type="text/javascript">
-  var _paq = _paq || [];
-  _paq.push(['trackPageView']);
-  _paq.push(['enableLinkTracking']);
-  (function() {
-    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://stats.cihar.com/";
-    _paq.push(['setTrackerUrl', u+'piwik.php']);
-    _paq.push(['setSiteId', 12]);
-    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0]; g.type='text/javascript';
-    g.defer=true; g.async=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
-  })();
-</script>
-<noscript><p><img src="https://stats.cihar.com/piwik.php?idsite=12" style="border:0;" alt="" /></p></noscript>
-<!-- End Piwik Code -->
+
+<!-- Matomo -->
+<script src="https://stats.cihar.com/piwik.js" async defer></script>
+<script src="/media/tracker.js"></script>
+<noscript><img src="https://stats.cihar.com/piwik.php?idsite=12&amp;rec=1" alt="" /></noscript>
+<!-- End Matomo Code -->
 
 </body>
 </html>

@@ -1,19 +1,17 @@
 {% extends "base.html" %}
 {% load i18n %}
-{% block title %}{% trans "Weblate - web-based translation" %}{% endblock %}
-{% block header %}Weblate{% endblock %}
+{% block title %}{% trans "Weblate - web-based localization" %}{% endblock %}
+{% block header %}{% trans "Bring translators closer to development" %}{% endblock %}
 {% block description %}
-{% block headline %}
-{% trans "Weblate is a free web-based translation management system." %}
-{% endblock %}
+{% block headline %}{% trans "Weblate is a libre software web-based continuous localization system." %}{% endblock %}
 {% endblock %}
 
 
 {% block extrajumbo %}
 <p>
-<a class="btn btn-primary btn-lg" href="https://demo.weblate.org/" role="button"><i class="fa fa-search"></i> {% trans "Try our demo" %}</a>
-<a class="btn btn-primary btn-lg" href="{% url 'hosting' %}" role="button"><i class="fa fa-server"></i> {% trans "View hosting plans" %}</a>
-<a class="btn btn-primary btn-lg" href="{% url 'download' %}" role="button"><i class="fa fa-download"></i> {% trans "Downloads" %}</a>
+<a class="btn btn-info btn-lg" href="{% url 'hosting' %}" role="button"><i class="fas fa-server"></i> {% trans "Start using Weblate" %}</a>
+<a class="btn btn-info btn-lg" href="https://demo.weblate.org/" role="button"><i class="fas fa-search"></i> {% trans "Try Weblate" %}</a>
+<a class="btn btn-info btn-lg" href="{% url 'download' %}" role="button"><i class="fas fa-download"></i> {% trans "Downloads" %}</a>
 </p>
 {% endblock %}
 
@@ -22,10 +20,10 @@
 
 
 <p class="description">
-{% blocktrans %}Weblate is a free web-based translation tool with tight version control integration. It features simple and clean user interface, propagation of translations across components, quality checks and automatic linking to source files.{% endblocktrans %}
+{% blocktrans %}Weblate is a libre web-based localization tool with tight version control integration. It features simple and clean user interface, propagation of translations across components, quality checks and automatic linking to source files.{% endblocktrans %}
 </p>
 
-<a href="{% url 'tour' %}" class="trailer">
+<a href="{% url 'try' %}" class="trailer">
 <img src="/media/background.png" class="img-responsive" alt="{% trans "Weblate screenshot" %}">
 </a>
 
@@ -35,57 +33,125 @@
 
 </div>
 
-<p><a class="btn btn-primary" href="{% url 'features' %}">{% trans "See more features…"%}</a></p>
-
+<p><a class="btn btn-info" href="{% url 'features' %}">{% trans "See more features…"%}</a></p>
 
 {% endblock %}
 
 {% block bottom %}
-<div class="jumbotron userlogos" id="users">
-  <div class="container">
+<div class="jumbotron jumbotron-fluid userlogos" id="users">
     <h2>
     {% trans "See who is using Weblate and join them!" %}
     </h2>
+<div class="container">
     <div class="row">
 
-    <div class="col-sm-3 userlogo">
+    <div class="col-sm-4 userlogo">
     <a href="https://hosted.weblate.org/engage/osmand/">
     <img src="/media/logos/osmand.png" alt="OsmAnd" />
     </a>
     </div>
 
-    <div class="col-sm-3 userlogo">
+    <div class="col-sm-4 userlogo">
     <a href="https://hosted.weblate.org/engage/phpmyadmin/">
     <img src="/media/logos/phpmyadmin.png" alt="phpMyAdmin" />
     </a>
     </div>
 
-    <div class="col-sm-3 userlogo">
+    <div class="col-sm-4 userlogo">
     <a href="https://hosted.weblate.org/engage/turris/">
-    <img src="/media/logos/turris-logo.svg" alt="Turris" />
+    <img src="/media/logos/turris-logo.png" alt="Turris" />
     </a>
     </div>
 
-    <div class="col-sm-3 userlogo">
+    <div class="col-sm-4 userlogo">
     <a href="https://hosted.weblate.org/engage/mypaint/">
     <img src="/media/logos/mypaint.png" alt="MyPaint" />
     </a>
     </div>
 
-    <div class="col-sm-3 userlogo">
+    <div class="col-sm-4 userlogo">
     <a href="https://hosted.weblate.org/engage/freedombox/">
     <img src="/media/logos/freedombox.png" alt="FreedomBox" />
     </a>
     </div>
 
-    <div class="col-sm-3 userlogo">
+    <div class="col-sm-4 userlogo">
     <a href="https://hosted.weblate.org/engage/sonic-pi/">
     <img src="/media/logos/sonic-pi.png" alt="Sonic Pi" />
     </a>
     </div>
 
+    <div class="col-sm-4 userlogo">
+    <a href="https://translation.odoo-community.org/">
+    <img src="/media/logos/oca.png" alt="Odoo Community Association" />
+    </a>
     </div>
-  </div>
+
+    <div class="col-sm-4 userlogo">
+    <a href="https://l10n.opensuse.org/">
+    <img src="/media/logos/opensuse.png" alt="openSUSE" />
+    </a>
+    </div>
+
+    <div class="col-sm-4 userlogo">
+    <a href="https://weblate.securedrop.club/">
+    <img src="/media/logos/securedrop.png" alt="SecureDrop" />
+    </a>
+    </div>
+
+
+
+    </div>
+    </div>
+    <a class="btn btn-info btn-lg" href="https://hosted.weblate.org/projects/">{% trans "Browse hundreds of projects on Hosted Weblate" %}</a>
 </div>
+
+    <div class="container">
+      <div class="card-deck mb-3 text-center">
+
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{% trans "Hosted service" %}</h4>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>{% blocktrans with amount=19 %}From {{ amount }}EUR/month{% endblocktrans %}</li>
+              <li>{% trans "Cloud service" %}</li>
+              <li>{% trans "Priority email support" %}</li>
+            </ul>
+            <a href="{% url "hosting" %}" class="btn btn-lg btn-block btn-info">{% trans "Choose hosting plan" %}</a>
+          </div>
+        </div>
+
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{% trans "Self hosted" %}</h4>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>{% blocktrans with amount=50 %}From {{ amount }}EUR/month{% endblocktrans %}</li>
+              <li>{% trans "Your infrastructure" %}</li>
+              <li>{% trans "Priority email support" %}</li>
+            </ul>
+            <a href="{% url "support" %}" class="btn btn-lg btn-block btn-info">{% trans "Choose hosting plan" %}</a>
+          </div>
+        </div>
+
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{% trans "Self supported" %}</h4>
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>{% trans "Weblate is free to use" %}</li>
+              <li>{% trans "Maintained by you" %}</li>
+              <li>{% trans "Community support" %}</li>
+            </ul>
+            <a href="{% url "download" %}" class="btn btn-lg btn-block btn-info">{% trans "Download" %}</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
 {% endblock %}
-{% block extrafooter %}<li>Thanks for the support of <a href="https://www.webhostingsecretrevealed.net/">Web Hosting Secret Revealed</a>.</li>{% endblock %}

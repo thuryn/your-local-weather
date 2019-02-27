@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2012 - 2018 Michal Čihař <michal@cihar.com>
+# Copyright © 2012 - 2019 Michal Čihař <michal@cihar.com>
 #
 # This file is part of Weblate <https://weblate.org/>
 #
@@ -22,18 +22,29 @@ from __future__ import unicode_literals
 
 from django.conf import settings
 
+URL = (
+    'https://sentry.io/api/1305560/security/'
+    '?sentry_key=795461fdeabc4ff6a3b6a6dedc495b5f'
+)
 
 CSP_TEMPLATE = (
-    "default-src 'self'; style-src {0}; img-src {1}; script-src {2}; "
-    "connect-src api.rollbar.com; object-src 'none'; "
-    "font-src maxcdn.bootstrapcdn.com; "
-    "child-src 'none'; frame-ancestors 'none';"
+    "default-src 'self'; "
+    "style-src {style}; "
+    "img-src {image}; "
+    "script-src {script}; "
+    "connect-src {connect}; "
+    "object-src 'none'; "
+    "font-src {font}; "
+    "frame-src 'none'; "
+    "frame-ancestors 'none'; "
+    "report-uri {report}"
 )
 
 
-class SecurityMiddleware(object):
+class SecurityMiddleware:
     """Middleware that sets various security related headers.
 
+    - Disables CSRF when payment secret is provided
     - Content-Security-Policy
     - X-XSS-Protection
     """
@@ -41,34 +52,43 @@ class SecurityMiddleware(object):
         self.get_response = get_response
 
     def __call__(self, request):
+        # Skip CSRF validation for requests with valid secret
+        # This is used to process automatic payments
+        if request.POST.get('secret') == settings.PAYMENT_SECRET:
+            setattr(request, '_dont_enforce_csrf_checks', True)
+
         response = self.get_response(request)
         # No CSP for debug mode (to allow djdt or error pages)
         if settings.DEBUG:
             return response
 
-        style = ["'self'", "'unsafe-inline'"]
+        style = ["'self'"]
         script = ["'self'"]
-        image = ["'self'"]
+        connect = ["'self'"]
+        image = ["'self'", "data:"]
+        font = ["data:"]
 
-        # Rollbar
-        script.append("'unsafe-inline'")
-        script.append('cdnjs.cloudflare.com')
+        # Sentry/Raven
+        script.append('cdn.ravenjs.com')
 
-        # Piwik
+        # Matomo/Piwik
         script.append('stats.cihar.com')
         image.append('stats.cihar.com')
+        connect.append('stats.cihar.com')
 
-        # Font Awesome + Bootstrap
-        script.append('maxcdn.bootstrapcdn.com')
-        style.append('maxcdn.bootstrapcdn.com')
+        # Hosted Weblate widget
+        image.append('hosted.weblate.org')
 
-        # jQuery
-        script.append('code.jquery.com')
+        # The Pay
+        image.append('www.thepay.cz')
 
         response['Content-Security-Policy'] = CSP_TEMPLATE.format(
-            ' '.join(style),
-            ' '.join(image),
-            ' '.join(script),
+            style=' '.join(style),
+            image=' '.join(image),
+            script=' '.join(script),
+            font=' '.join(font),
+            connect=' '.join(connect),
+            report=URL
         )
         response['X-XSS-Protection'] = '1; mode=block'
         return response

@@ -3,97 +3,180 @@
 {% block title %}{% trans "Donate to Weblate" %}{% endblock %}
 {% block header %}{% trans "Donate to Weblate" %}{% endblock %}
 {% block description %}
-{% block headline %}{% trans "Weblate is free, but welcomes donations." %}{% endblock %}
+{% block headline %}{% trans "Weblate is provided free of charge, and welcomes donations." %}{% endblock %}
 {% endblock %}
 {% block extrajumbo %}
 <p>
-<a href="https://liberapay.com/Weblate/" class="btn btn-primary btn-lg">
-<i class="fa fa-money"></i>
-{% trans "Donate using Liberapay" %}
-</a>
+
+<a class="btn btn-info btn-lg" href="{% url 'hosting' %}" role="button"><i class="fas fa-server"></i> {% trans "Purchase hosting package" %}</a>
+<a class="btn btn-info btn-lg" href="{% url 'support' %}"><i class="fas fa-life-ring"></i> {% trans "Get support for Weblate" %}</a>
+
 </p>
 {% endblock %}
 {% block content %}
 
-<h2>{% trans "Use our hosting" %}</h2>
+{% if not user.is_authenticated %}
+<a class="btn btn-info float-right" href="{% url 'simple-sso-login' %}?next={% url 'donate' %}"><i class="fas fa-sign-in-alt"></i> {% trans "Sign in to manage your donations" %}</a>
+{% else %}
+<a class="btn btn-info float-right" href="{% url 'logout' %}?next={% url 'donate' %}"><i class="fas fa-sign-out-alt"></i> {% trans "Sign out" %}</a>
+{% with donations=user.donation_set.all %}
+{% if donations %}
+<h2>{% trans "Your donations" %}</h2>
 
-<p>
-{% url 'hosting' as hosting_url %}
-{% blocktrans %}Host your commercial translations on <a href="{{ hosting_url }}">Hosted Weblate</a> and you will be supporting Weblate development automatically.{% endblocktrans %}
-</p>
-
-<h2>{% trans "Regular donations" %}</h2>
-
-<p>
-{% blocktrans %}Regular donations allow sustainability of Weblate development and help to fund free hosting for free software. You don't have to spend big money, every penny counts.{% endblocktrans %}
-</p>
-
-<a href="https://salt.bountysource.com/teams/weblate" class="btn btn-primary">
-<i class="fa fa-money"></i>
-{% trans "Fund on Bountysource" %}
-</a>
-
-<p>
-{% trans "You can send a monthly donation using a credit card. You can also get rewards for higher donations, for example a logo placement on our website." %}
-</p>
-
-
-<a href="https://liberapay.com/Weblate/" class="btn btn-primary">
-<i class="fa fa-money"></i>
-{% trans "Donate using Liberapay" %}
-</a>
-
-<p>
-{% blocktrans %}Liberapay is a recurrent donations platform where you send weekly amount to fund projects you use. You can use credit card, bank transfer or direct debit to top up the account.{% endblocktrans %}
-</p>
-
-<h2>{% trans "Fund features" %}</h2>
-
-<a href="https://www.bountysource.com/teams/weblate/issues" class="btn btn-primary">
-<i class="fa fa-money"></i>
-{% trans "Fund on Bountysource" %}
-</a>
-
-<p>
-{% trans "Bountysource allows you to fund individual features which are reported on our issue tracker." %}
-</p>
-
-<h2>{% trans "Donate" %}</h2>
-
-<p>
-{% blocktrans %}If you like Weblate you can support its further development by donating.{% endblocktrans %}
-</p>
-
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-<input type="hidden" name="cmd" value="_s-xclick" />
-<input type="hidden" name="hosted_button_id" value="AXN88S8GX5MQ4" />
-<button class="btn btn-primary" type="submit">
-<i class="fa fa-paypal"></i>
-{% trans "Donate using PayPal" %}
-</button>
+<table class="table">
+<thead>
+<tr>
+<th>{% trans "Creation date" %}</th>
+<th>{% trans "Reward" %}</th>
+<th>{% trans "Expiry date" %}</th>
+<th>{% trans "Renewal" %}</th>
+<th>{% trans "Payments" %}</th>
+</tr>
+</thead>
+<tbody>
+{% for donation in donations %}
+<tr>
+<td>{{ donation.created }}</td>
+<td>
+{% if donation.reward %}
+{{ donation.reward.get_display_name }}
+<a class="btn btn-info btn-sm" href="{% url "donate-edit" pk=donation.pk %}">{% trans "Edit" %}</a>
+{% else %}
+{% trans "No reward" %}
+{% endif %}
+</td>
+<td>
+{{ donation.expires }}
+</td>
+<td>
+{% if not donation.active %}
+{% trans "Expired" %}
+{% elif donation.payment_obj.recurring %}
+<form class="form-inline" method="post" action="{% url "donate-disable" pk=donation.pk %}">
+{% csrf_token %}
+<input type="submit" class="btn btn-warning btn-sm" value="{% trans "Disable renewal" %}">
 </form>
+{% else %}
+{% trans "Does not renew" %}
+{% endif %}
+</td>
+<td>
+<ul class="list-unstyled">
+{% for payment in donation.list_payments %}
+<li>
+{{ payment.amount }} EUR 
+{% if payment.state == 5 %} 
+{% if payment.invoice_filename_valid %}
+(<a href="{% url 'donate-invoice' pk=payment.pk %}">{{ payment.invoice_filename }}</a>)
+{% else %}
+({{ payment.invoice_filename }})
+{% endif %}
+{% else %}
+{{ payment.get_state_display }}
+{% if payment.details.reject_reason %}
+({{ payment.details.reject_reason }})
+{% endif %}
+{% endif %}
+</li>
+{% endfor %}
+</ul>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% endif %}
+{% endwith %}
+{% endif %}
+
+<h2>{% trans "Donations" %}</h2>
 
 <p>
-{% trans "PayPal allows you to send money from credit card, PayPal balance or a bank account." %}
+{% blocktrans %}Recurring donations facilitate sustainable Weblate development, even the smallest amount helps fund free of charge hosting for libre software.{% endblocktrans %}
 </p>
+
+    <div class="container">
+      <div class="card-deck mb-3 text-center">
+
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{% trans "Recurring donation" %}</h4>
+          </div>
+          <div class="card-body">
+            <p>{% trans "Repeated appreciation of the Weblate project helps in keeping the project sustainable long term." %}</p>
+            <p>{% trans "Please consider this if you are hosting Weblate yourself without a support contract." %}</p>
+          </div>
+          <div class="card-footer">
+            <a href="{% url "donate-new" %}?recurring=m" class="btn btn-lg btn-block btn-info"><i class="fas fa-donate"></i> {% trans "Donate" %}</a>
+          </div>
+        </div>
+
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{% trans "One time donation" %}</h4>
+          </div>
+          <div class="card-body">
+            <p>{% trans "One time donations are great for appreciating our work on single issue or support." %}</p>
+          </div>
+          <div class="card-footer">
+            <a href="{% url "donate-new" %}?recurring=" class="btn btn-lg btn-block btn-info"><i class="fas fa-donate"></i> {% trans "Donate" %}</a>
+          </div>
+        </div>
+
+        <div class="card mb-4 shadow-sm">
+          <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{% trans "Use our services" %}</h4>
+          </div>
+          <div class="card-body">
+            <p>{% trans "Commercial services like hosting or support for self hosted installation help fund Weblate development." %}</p>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-info btn-lg btn-block" href="{% url 'hosting' %}" role="button"><i class="fas fa-server"></i> {% trans "Purchase hosting package" %}</a>
+            <a class="btn btn-info btn-lg btn-block" href="{% url 'support' %}"><i class="fas fa-life-ring"></i> {% trans "Get support for Weblate" %}</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+<h2>{% trans "Donation rewards" %}</h2>
+
+  <div class="card-deck mb-3 text-center">
+{% for reward in rewards %}
+        <div class="card mb-4 shadow-sm">
+          <h5 class="card-header">
+            {{ reward.get_display_name }}
+          </h5>
+          <div class="card-body">
+            <table>
+            <tr><th>{% trans "Donation recurrence" %}</th><td>{{ reward.get_recurring_display }}</td></tr>
+            <tr><th>{% trans "Amount in EUR" %}</th><td>{{ reward.amount }} EUR</td></tr>
+            </table>
+          </div>
+          <div class="card-footer">
+            <a href="{% url "donate-new" %}" class="btn btn-lg btn-block btn-info"><i class="fas fa-donate"></i> {% trans "Donate" %}</a>
+          </div>
+        </div>
+{% endfor %}
+  </div>
 
 <h2 id="crypto">{% trans "Cryptocurrencies" %}</h2>
 
 <p>
-{% blocktrans with "https://shop.trezor.io?a=572b241135e1" as url %}Thanks to <a href="{{ url }}">Trezor</a>, we will gladly accept donations in several cryptocurrencies. You can use the addresses in table below.{% endblocktrans %}
+{% blocktrans with "https://trezor.io?offer_id=12&amp;aff_id=1592" as url %}Thanks to <a href="{{ url }}">Trezor</a>, we will gladly accept donations in several cryptocurrencies. You can use the addresses in table below.{% endblocktrans %}
 </p>
 
-<table class="table table-striped">
-<thead>
-<tr><th>{% trans "Currency" %}</th><th>{% trans "Payment link" %}</th><th>{% trans "Payment address" %}</th></tr>
+<table class="table table-bordered table-striped">
+<thead class="thead-dark">
+<tr><th>{% trans "Currency" %}</th><th>{% trans "Donation address" %}</th></tr>
 </thead>
 <tbody>
-<tr><th>Bitcoin</th><td><a href="bitcoin:36pK1Yso2ZYv5xLR36wgUzQ7AHDk7i6hwU">{% trans "Donate" %}</a></td><td>36pK1Yso2ZYv5xLR36wgUzQ7AHDk7i6hwU</td></tr>
-<tr><th>Litecoin</th><td><a href="litecoin:MTYACnktCc32n3GRhQDfdDyzqSDnQr2tzy">{% trans "Donate" %}</a></td><td>MTYACnktCc32n3GRhQDfdDyzqSDnQr2tzy</td></tr>
-<tr><th>DASH</th><td><a href="dash:XoXrWTmZf7ar9P9tpXHm2JuvpvAwSbbgNh">{% trans "Donate" %}</a></td><td>XoXrWTmZf7ar9P9tpXHm2JuvpvAwSbbgNh</td></tr>
-<tr><th>Zcash</th><td><a href="zcash:t1PSe8FpKfnRJk6XTHkJKCwx4tseSxHr3Z5">{% trans "Donate" %}</a></td><td>t1PSe8FpKfnRJk6XTHkJKCwx4tseSxHr3Z5</td></tr>
-<tr><th>Ethereum</th><td><a href="ethereum:0xE5cd6Fe38af85f68B377AEBCF97Fea2C9683ee0c">{% trans "Donate" %}</a></td><td>0xE5cd6Fe38af85f68B377AEBCF97Fea2C9683ee0c</td></tr>
-<tr><th>Monero</th></td><a href="monero:89A8YoXSErG6X3aTGf96tfCXTJv2kmUUQJucmS8WWuz8S1ftZGAiBKuW66qbV8KDqBSyK8eQBu76PUBi3QUmhY7VFpQ9gbi">{% trans "Donate" %}</a></td><td>89A8YoXSErG6X3aTGf96tfCXTJv2kmUUQJucmS8WWuz8S1ftZGAiBKuW66qbV8KDqBSyK8eQBu76PUBi3QUmhY7VFpQ9gbi</td></tr>
+<tr><td><a href="bitcoin:36pK1Yso2ZYv5xLR36wgUzQ7AHDk7i6hwU">Bitcoin</a></td><td>36pK1Yso2ZYv5xLR36wgUzQ7AHDk7i6hwU</td></tr>
+<tr><td><a href="litecoin:MTYACnktCc32n3GRhQDfdDyzqSDnQr2tzy">Litecoin</a></td><td>MTYACnktCc32n3GRhQDfdDyzqSDnQr2tzy</td></tr>
+<tr><td><a href="dash:XoXrWTmZf7ar9P9tpXHm2JuvpvAwSbbgNh">DASH</a></td><td>XoXrWTmZf7ar9P9tpXHm2JuvpvAwSbbgNh</td></tr>
+<tr><td><a href="zcash:t1PSe8FpKfnRJk6XTHkJKCwx4tseSxHr3Z5">Zcash</a></td><td>t1PSe8FpKfnRJk6XTHkJKCwx4tseSxHr3Z5</td></tr>
+<tr><td><a href="ethereum:0xE5cd6Fe38af85f68B377AEBCF97Fea2C9683ee0c">Ethereum</a></td><td>0xE5cd6Fe38af85f68B377AEBCF97Fea2C9683ee0c</td></tr>
+<tr><td><a href="monero:89A8YoXSErG6X3aTGf96tfCXTJv2kmUUQJucmS8WWuz8S1ftZGAiBKuW66qbV8KDqBSyK8eQBu76PUBi3QUmhY7VFpQ9gbi">Monero</a></td><td>89A8YoXSErG6X3aTGf96tfCXTJv2kmUUQJucmS8WWuz8S1ftZGAiBKuW66qbV8KDqBSyK8eQBu76PUBi3QUmhY7VFpQ9gbi</td></tr>
 </tbody>
 </table>
 

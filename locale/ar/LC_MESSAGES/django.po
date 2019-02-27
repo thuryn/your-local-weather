@@ -1,15 +1,16 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# ButterflyOfFire <ButterflyOfFire@protonmail.com>, 2018, 2019.
+# mohammadA <mohammadAbdulhadi1@gmail.com>, 2019.
+# Omar Aglan <omar.aglan91@yahoo.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2018-05-21 13:24+0200\n"
-"PO-Revision-Date: 2018-06-01 06:13+0000\n"
-"Last-Translator: Rex_sa <asd1234567890m@gmail.com>\n"
+"POT-Creation-Date: 2019-02-14 13:40+0100\n"
+"PO-Revision-Date: 2019-02-09 13:11+0000\n"
+"Last-Translator: ButterflyOfFire <ButterflyOfFire@protonmail.com>\n"
 "Language-Team: Arabic <https://hosted.weblate.org/projects/weblate/website/"
 "ar/>\n"
 "Language: ar\n"
@@ -18,11 +19,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Weblate 3.0-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: weblate_web/data.py:33
 msgid "Overview of own translations at main page."
-msgstr "استعرض ترجماتك على الصفحة الرئيسية."
+msgstr "نظرة عامة علي ترجماتك في الصفحة الرئيسية."
 
 #: weblate_web/data.py:34
 msgid "Own translations"
@@ -43,11 +44,11 @@ msgstr "سياق الترجمة"
 #: weblate_web/data.py:47
 msgid ""
 "Project page gives you detailed information about project translation status."
-msgstr "صفحة المشروع تعطي معلومات مفصّلة عن حالة ترجمة المشروع."
+msgstr "تُقدّم صفحة المشروع معلومات مفصّلة عن حالة ترجمة المشروع."
 
 #: weblate_web/data.py:50
 msgid "Project overview"
-msgstr "معلومات عامة عن المشروع"
+msgstr "نظرة شاملة عن المشروع"
 
 #: weblate_web/data.py:55 weblate_web/templates/features.html:72
 msgid ""
@@ -55,18 +56,18 @@ msgid ""
 "used terminology."
 msgstr ""
 "يستطيع المترجمون تعيين المفردات الخاصة بهم لتوحيد ترجمة مفردات المصطلحات "
-"والمحافظة على أتساق ومنهجيّة ترجمة المصطلحات الأكثر استعمالاً."
+"والمحافظة على اتساق ومنهجيّة ترجمة المصطلحات الأكثر استعمالاً."
 
 #: weblate_web/data.py:58 weblate_web/templates/features.html:71
 #: weblate_web/templates/hosting.html:141
 msgid "Glossary"
 msgstr "المفردات"
 
-#: weblate_web/data.py:63 weblate_web/templates/base-features.html:15
+#: weblate_web/data.py:63
 msgid ""
 "Customizable quality checks will help you in improving quality of "
 "translations."
-msgstr "فحوصات الجودة يمكن تفصيلها ووضعها لتساعد في تحسين جودة الترجمات."
+msgstr "يمكن لفحوص الجودة المساعدة في تحسين جودة الترجمات."
 
 #: weblate_web/data.py:66 weblate_web/templates/base-features.html:14
 #: weblate_web/templates/hosting.html:123
@@ -75,171 +76,233 @@ msgstr "فحوصات الجودة"
 
 #: weblate_web/data.py:71 weblate_web/templates/features.html:128
 msgid "Weblate provides you various ways to promote your translation project."
-msgstr "Weblate يوفر عدة طرق للمساعدة في الترويج لمشروع الترجمة وإبرازه."
+msgstr "لدى Weblate عدة طرق لمساعدتك في الترويج لمشروع الترجمة."
 
 #: weblate_web/data.py:74 weblate_web/templates/features.html:127
 msgid "Promotion"
 msgstr "ترويج"
 
+#: weblate_web/data.py:79
+msgid "Translation workflow can be customized by using addons."
+msgstr "يمكن تخصيص سياق عملية الترجمة باستخدام الإضافات."
+
+#: weblate_web/data.py:81
+msgid "Addons"
+msgstr "الإضافات"
+
+#: weblate_web/data.py:86
+msgid ""
+"Automatic translation can be used to bootstrap your translations using "
+"machine translation services or translation memory."
+msgstr ""
+"يمكن للترجمة التلقائية دعم ترجماتكم باستعمال خدمات مثل الترجمة الآلية أو "
+"ذاكرة الترجمة."
+
+#: weblate_web/data.py:89
+msgid "Automatic translation"
+msgstr "الترجمة الآلية"
+
+#: weblate_web/data.py:94
+msgid ""
+"Translations can be exported and imported in many widely used file formats."
+msgstr ""
+"يمكن تصدير و استيراد الترجمات في شتى أشكال نُسق الملفات الشائعة الإستخدام."
+
+#: weblate_web/data.py:97 weblate_web/templates/features.html:87
+msgid "Export and import"
+msgstr "التصدير والاستيراد"
+
+#: weblate_web/data.py:101
+msgid "You can define access levels for every user."
+msgstr "يمكنك تحديد مستويات النفاذ لكل مستخدم."
+
+#: weblate_web/data.py:102 weblate_web/templates/hosting-free.html:45
+#: weblate_web/templates/hosting.html:105
+msgid "User management"
+msgstr "إدارة المُستخدمين"
+
+#: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
+#: weblate_web/templates/donate/form.html:25
+msgid "Donation recurrence"
+msgstr "كرر التبرع"
+
+#: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
+#: weblate_web/templates/donate/form.html:26
+msgid "Amount in EUR"
+msgstr "المبلغ باليورو"
+
+#: weblate_web/forms.py:57
+#, python-format
+msgid "The minimal amount is %d EUR."
+msgstr "المبلغ الأدنى %d يورو."
+
+#: weblate_web/models.py:76
+msgid "Link text"
+msgstr "نص الرابط"
+
+#: weblate_web/models.py:80
+msgid "Link URL"
+msgstr "رابط العنوان"
+
 #: weblate_web/templates/404.html:4
 msgid "Page not found"
 msgstr "الصفحة غير موجودة"
 
-#: weblate_web/templates/404.html:8 weblate_web/templates/500.html:8
-#: weblate_web/templates/index.html:7
-msgid "Weblate is a free web-based translation management system."
-msgstr ""
-"Weblate عبارة عن نظام لإدارة الترجمة ، وهو متاح مجاناً للجميع، ويعمل عبر "
-"الإنترنت من خلال متصفحات الإنترنت."
+#: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
+#: weblate_web/templates/index.html:6
+msgid "Weblate is a libre software web-based continuous localization system."
+msgstr "Weblate هو نظام برمجي حر للترجمة المستمرة مبني على الويب."
 
-#: weblate_web/templates/404.html:15
+#: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
-msgstr "لم يمكن إيجاد الصفحة التي تبحث عنها."
+msgstr "لا وجود للصفحة التي تبحث عنها."
 
 #: weblate_web/templates/500.html:4
 msgid "Server error"
 msgstr "خطأ من الخادم"
 
-#: weblate_web/templates/500.html:15
+#: weblate_web/templates/500.html:13
 msgid ""
 "The server had serious problems while serving your request. We've just sent "
 "our trained monkeys to fix the issue."
 msgstr ""
-"واجه الخادم خللاً أثناء تلبية طلبك، لقد أُبلغ المختصين بالخلل للعمل على إصلاحه."
+"واجه الخادم خللاً أثناء تلبية طلبك، لقد أُبلغ المختصون بالخلل للعمل على إصلاحه."
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-msgid "Continuous translation"
-msgstr "ترجمة مستمرّة"
+#, fuzzy
+#| msgid "Continuous translation"
+msgid "Continuous localization"
+msgstr "الترجمة المستمرّة"
 
 #: weblate_web/templates/base-features.html:7
+#, fuzzy
+#| msgid ""
+#| "Automated translation closely follows the development of your project."
 msgid ""
-"Automated translation process can closely follow development of your project."
-msgstr "عملية الترجمة الآلية يمكنها متابعة تطور مشروع الترجمة الخاص بك."
+"Automated localization workflow closely follows the development of your "
+"project."
+msgstr ""
+"عملية الترجمة الآلية يمكنها المتابعة و عن قُرب تطوّر مشروع الترجمة الخاص بكم."
+
+#: weblate_web/templates/base-features.html:15
+msgid "Customizable quality checks helps improve translation quality."
+msgstr "فحوصات الجودة المخصصة يمكنها المساعدة في تحسين جودة الترجمة."
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
-msgstr "ارتباط"
+msgstr "النسب"
 
 #: weblate_web/templates/base-features.html:23
-msgid ""
-"All your translators will be properly credited in the version control system."
-msgstr "في نظام إدارة النسخ سيُرصد عمل كافة المترجمين."
+msgid "All translators are properly credited in the version control system."
+msgstr "أسماء المترجمين والمترجِمات تُدرَج بأمان في نظام مراقبة النُّسخ."
 
 #: weblate_web/templates/base-features.html:30
-#: weblate_web/templates/hosting.html:17
+#: weblate_web/templates/hosting.html:18
 msgid "Hosting plans"
 msgstr "باقات الاستضافة"
 
 #: weblate_web/templates/base-features.html:31
-msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
-msgstr "أسعار باقات الاستضافة على Weblate تبدأ من 19 يورو."
+msgid "Hosting plans for Weblate as a service starting at 19 EUR."
+msgstr "أسعار باقات الاستضافة على خدمة Weblate تبدأ من 19 يورو."
 
 #: weblate_web/templates/base-features.html:38
-msgid "Ready for cloud"
-msgstr "جاهز للرفع على السحابة"
+msgid "Cloud ready"
+msgstr "جاهز للسحاب"
 
 #: weblate_web/templates/base-features.html:39
-msgid "Weblate comes with appliances, which are ready to deploy in your cloud."
-msgstr "توفر لك خدمة Weblate طرح مشاريعك مباشرة على سحابتك الخاصة بيسر وسهولة."
+msgid "Weblate comes with appliances, ready to deploy in your cloud."
+msgstr ""
+"توفر لكم خدمة Weblate طرح مشاريعكم مباشرة على سحابتكم الخاصة بيسر وبكل سهولة."
 
 #: weblate_web/templates/base-features.html:46
-msgid "Free software"
-msgstr "برنامج مجاني"
+msgid "Libre software"
+msgstr "برنامج حُرّ"
 
 #: weblate_web/templates/base-features.html:47
-msgid "Weblate is free software, you can run your own instance of it."
-msgstr "Weblate برنامج حر و يُمكنك تنصيبه على مثيل خادومك."
+msgid ""
+"Weblate is copylefted; use, see, modify and share at will, and with everyone."
+msgstr ""
 
-#: weblate_web/templates/base.html:12
+#: weblate_web/templates/base.html:11
 msgctxt "Keyword"
 msgid "translate"
 msgstr "ترجم"
 
-#: weblate_web/templates/base.html:66
-msgid "Toggle navigation"
-msgstr "تبديل التصفح"
-
-#: weblate_web/templates/base.html:72
+#: weblate_web/templates/base.html:49
 msgid "Weblate logo"
 msgstr "شعار Weblate"
 
-#: weblate_web/templates/base.html:78
-msgid "Blog"
-msgstr "المدوّنة"
-
-#: weblate_web/templates/base.html:79
+#: weblate_web/templates/base.html:57
 msgid "Try"
-msgstr "تجربة"
+msgstr "تجريب"
 
-#: weblate_web/templates/base.html:80
+#: weblate_web/templates/base.html:58
 msgid "Features"
-msgstr "المميزات"
+msgstr "الميزات"
 
-#: weblate_web/templates/base.html:81
-msgid "Docs"
-msgstr "الوثائق"
-
-#: weblate_web/templates/base.html:82 weblate_web/templates/download.html:17
+#: weblate_web/templates/base.html:59 weblate_web/templates/download.html:18
+#: weblate_web/templates/index.html:150
 msgid "Download"
-msgstr "تحميل"
+msgstr "التنزيل"
 
-#: weblate_web/templates/base.html:83
-msgid "Hosting"
-msgstr "الاستضافة"
+#: weblate_web/templates/base.html:60
+msgid "Pricing"
+msgstr "التسعيرة"
 
-#: weblate_web/templates/base.html:84
+#: weblate_web/templates/base.html:61
 msgid "Develop"
 msgstr "التطوير"
 
-#: weblate_web/templates/base.html:85 weblate_web/templates/donate.html:61
-#: weblate_web/templates/donate.html:91 weblate_web/templates/donate.html:92
-#: weblate_web/templates/donate.html:93 weblate_web/templates/donate.html:94
-#: weblate_web/templates/donate.html:95 weblate_web/templates/donate.html:96
+#: weblate_web/templates/base.html:62 weblate_web/templates/donate.html:110
+#: weblate_web/templates/donate.html:122 weblate_web/templates/donate.html:157
 msgid "Donate"
 msgstr "التبرّعات"
 
-#: weblate_web/templates/base.html:86
+#: weblate_web/templates/base.html:63
 msgid "Support"
 msgstr "الدعم"
 
-#: weblate_web/templates/base.html:87
-msgid "Tour"
-msgstr "جولة"
-
-#: weblate_web/templates/base.html:88
+#: weblate_web/templates/base.html:64
 msgid "Thanks"
 msgstr "شكراً"
 
-#: weblate_web/templates/base.html:103
-msgid "Help with translations!"
-msgstr "ساعد في الترجمة!"
+#: weblate_web/templates/base.html:65
+msgid "Blog"
+msgstr "المدوّنة"
 
-#: weblate_web/templates/base.html:140
-#, python-format
-msgid ""
-"Weblate is <a href=\"%(github_url)s\">free software</a> and welcomes <a href="
-"\"%(donate_url)s\">donations</a>."
-msgstr ""
-"Weblate  منظومة برمجيّة  <a href=\"%(github_url)s\">حرة</a>، و جميع  <a href="
-"\"%(donate_url)s\">التبرّعات</a> مُرحب بها."
+#: weblate_web/templates/base.html:66
+msgid "Docs"
+msgstr "المستندات"
+
+#: weblate_web/templates/base.html:67
+msgid "Hosting"
+msgstr "الاستضافة"
+
+#: weblate_web/templates/base.html:79
+msgid "Help with translations!"
+msgstr "ساهموا بالترجمة!"
+
+#: weblate_web/templates/base.html:123 weblate_web/templates/terms.html:4
+msgid "Terms of Service and Privacy Policy"
+msgstr "شروط الخدمة وسياسة الخصوصية"
 
 #: weblate_web/templates/contribute.html:3
 #: weblate_web/templates/contribute.html:4
 msgid "Contribute to Weblate"
-msgstr "شارك في العمل على تطوير Weblate"
+msgstr "المساهمة في ويب لايت"
 
 #: weblate_web/templates/contribute.html:6
 msgid "Weblate is being developed by an open community."
-msgstr "يطوّر Weblate مجتمعٌ مفتوح ومستعد لاستقبال الأعضاء الجدد."
+msgstr "يطوّر Weblate مجتمعٌ مفتوح مِن المطوّرين و المطوّرات."
 
 #: weblate_web/templates/contribute.html:10
 #: weblate_web/templates/download.html:12
 msgid "View sources"
-msgstr "شاهد المصادر"
+msgstr "الإطلاع على المصادر"
 
 #: weblate_web/templates/contribute.html:11
-#: weblate_web/templates/contribute.html:38
+#: weblate_web/templates/contribute.html:34
 msgid "Translate"
 msgstr "ترجم"
 
@@ -253,7 +316,7 @@ msgstr ""
 "weblate.org/en/latest/contributing.html\">قسم المشاركة</a> ضمن المراجع."
 
 #: weblate_web/templates/contribute.html:20
-#: weblate_web/templates/download.html:69
+#: weblate_web/templates/download.html:63
 msgid "Code"
 msgstr "النص المصدري للبرنامج"
 
@@ -268,117 +331,162 @@ msgstr ""
 
 #: weblate_web/templates/contribute.html:31
 #, python-format
-msgid "This website is stored on <a href=\"%(url)s\">GitHub</a> as well:"
-msgstr "موقع الإنترنت هذا مخزون على <a href=\"%(url)s\">GitHub</a> أيضاً:"
+msgid ""
+"You can find more repositories related to Weblate on <a href=\"%(url)s"
+"\">GitHub</a>"
+msgstr ""
+"بإمكانكم العثور على مستودعات ذات صلة بويب لايت على <a href=\"%(url)s"
+"\">GitHub</a>"
 
-#: weblate_web/templates/contribute.html:41
+#: weblate_web/templates/contribute.html:37
 msgid ""
 "You can translate Weblate at <a href=\"https://hosted.weblate.org/engage/"
 "weblate/\">hosted.weblate.org</a>."
 msgstr ""
-"يمكن ترجمة Weblate على <a href=\"https://hosted.weblate.org/engage/weblate/"
+"يمكنم ترجمة Weblate على <a href=\"https://hosted.weblate.org/engage/weblate/"
 "\">hosted.weblate.org</a>."
 
-#: weblate_web/templates/contribute.html:46
+#: weblate_web/templates/contribute.html:42
 msgid "Translation status"
 msgstr "حالة الترجمة"
 
 #: weblate_web/templates/donate.html:3 weblate_web/templates/donate.html:4
+#: weblate_web/templates/donate/edit.html:4
+#: weblate_web/templates/donate/edit.html:5
+#: weblate_web/templates/donate/form.html:4
+#: weblate_web/templates/donate/form.html:5
+#: weblate_web/templates/thanks.html:10
 msgid "Donate to Weblate"
 msgstr "تبرع لمساعدة وِبليت"
 
-#: weblate_web/templates/donate.html:6
-msgid "Weblate is free, but welcomes donations."
-msgstr "Weblate متاح مجّاناً ، ولكن التبرعات مرحب بها."
+#: weblate_web/templates/donate.html:6 weblate_web/templates/donate/edit.html:7
+#: weblate_web/templates/donate/form.html:7
+msgid "Weblate is provided free of charge, and welcomes donations."
+msgstr "Weblate متاح مجّاناً ، وكل التبرعات مرحب بها."
 
-#: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:43
-msgid "Donate using Liberapay"
-msgstr "تبرع عبر Liberapay"
+#: weblate_web/templates/donate.html:11 weblate_web/templates/donate.html:134
+msgid "Purchase hosting package"
+msgstr "شراء حزمة استضافة"
 
-#: weblate_web/templates/donate.html:18
-msgid "Use our hosting"
-msgstr "استخدم استضافتنا"
+#: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:135
+#: weblate_web/templates/download.html:13 weblate_web/templates/hosting.html:12
+#: weblate_web/templates/hosting.html:233
+msgid "Get support for Weblate"
+msgstr "تحصّل على دعم مِن Weblate"
 
-#: weblate_web/templates/donate.html:22
-#, python-format
+#: weblate_web/templates/donate.html:19
+msgid "Sign in to manage your donations"
+msgstr "قموا بتسجيل الدخول لإدارة هباتكم"
+
+#: weblate_web/templates/donate.html:21
+msgid "Sign out"
+msgstr "الخروج"
+
+#: weblate_web/templates/donate.html:24
+msgid "Your donations"
+msgstr "تبرعاتكم"
+
+#: weblate_web/templates/donate.html:29
+msgid "Creation date"
+msgstr "تاريخ الإنشاء"
+
+#: weblate_web/templates/donate.html:30
+msgid "Reward"
+msgstr "مكافأة"
+
+#: weblate_web/templates/donate.html:31
+msgid "Expiry date"
+msgstr "تاريخ انتهاء الصلاحية"
+
+#: weblate_web/templates/donate.html:32
+msgid "Renewal"
+msgstr "تجديد"
+
+#: weblate_web/templates/donate.html:33
+msgid "Payments"
+msgstr "المبالغ المدفوعة"
+
+#: weblate_web/templates/donate.html:43
+#: weblate_web/templates/payment/payment.html:37
+msgid "Edit"
+msgstr "تحرير"
+
+#: weblate_web/templates/donate.html:45
+msgid "No reward"
+msgstr "بدون مكافأة"
+
+#: weblate_web/templates/donate.html:53
+msgid "Expired"
+msgstr "مُنتهي الصلاحية"
+
+#: weblate_web/templates/donate.html:57
+msgid "Disable renewal"
+msgstr "تعطيل التجديد"
+
+#: weblate_web/templates/donate.html:60
+msgid "Does not renew"
+msgstr "لم يُجدَّد"
+
+#: weblate_web/templates/donate.html:92
+msgid "Donations"
+msgstr "التبرعات"
+
+#: weblate_web/templates/donate.html:95
 msgid ""
-"Host your commercial translations on <a href=\"%(hosting_url)s\">Hosted "
-"Weblate</a> and you will be supporting Weblate development automatically."
-msgstr ""
-"استضف ترجماتك التجارية على <a href=\"%(hosting_url)s\"> مستضاف Weblate </a> "
-"وهكذا أنت سوف تدعم تطوير Weblate تلقائياً."
-
-#: weblate_web/templates/donate.html:25
-msgid "Regular donations"
-msgstr "التبرعات المنتظمة"
-
-#: weblate_web/templates/donate.html:28
-msgid ""
-"Regular donations allow sustainability of Weblate development and help to "
-"fund free hosting for free software. You don't have to spend big money, "
-"every penny counts."
+"Recurring donations facilitate sustainable Weblate development, even the "
+"smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
 "التبرعات المنتظمة تسمح بإدامة العمل على تطوير Weblate  وتساعد في تمويل "
-"استضافة البرمجيّات المجّانية، ولا تحتاج لدفع مبالغ كبيرة من النقود للتبرع، إن "
-"أي مبلغ تقدر أن تتبرع به مهم للعمل."
+"استضافة البرمجيّات الحرة. لستم بحاجة إلى دفع مبالغ كبيرة من المال للتبرع، إن "
+"أي مبلغ تقدرون التبرع به مهم لمستقبل المشروع."
 
-#: weblate_web/templates/donate.html:33 weblate_web/templates/donate.html:54
-#: weblate_web/templates/thanks.html:12
-msgid "Fund on Bountysource"
-msgstr "تمويل عبر Bountysource"
+#: weblate_web/templates/donate.html:103
+msgid "Recurring donation"
+msgstr "التبرعات المنتظمة"
 
-#: weblate_web/templates/donate.html:37
+#: weblate_web/templates/donate.html:106
 msgid ""
-"You can send a monthly donation using a credit card. You can also get "
-"rewards for higher donations, for example a logo placement on our website."
+"Repeated appreciation of the Weblate project helps in keeping the project "
+"sustainable long term."
 msgstr ""
-"بإمكانكم التبرع لنا بمبلغ شهري مقتطع، وكتقدير منا لكرمكم سنرد الجميل بهدايا "
-"تعبر عن امتنانا، كأن نضع إعلاناً لموقعكم على صفحاتنا."
 
-#: weblate_web/templates/donate.html:47
+#: weblate_web/templates/donate.html:107
 msgid ""
-"Liberapay is a recurrent donations platform where you send weekly amount to "
-"fund projects you use. You can use credit card, bank transfer or direct "
-"debit to top up the account."
+"Please consider this if you are hosting Weblate yourself without a support "
+"contract."
 msgstr ""
-"Liberapay هو عبارة عن منصة تبرعات متكررة حيث ترسل مبلغًا أسبوعيًا لتمويل "
-"المشاريع التي تستخدمها. يمكنك استخدام بطاقة الائتمان أو التحويل المصرفي أو "
-"الخصم المباشر لتعبئة الحساب."
 
-#: weblate_web/templates/donate.html:50
-msgid "Fund features"
-msgstr "تمويل مميزات محددة"
+#: weblate_web/templates/donate.html:116
+msgid "One time donation"
+msgstr "تبرع أحادي مرة واحدة"
 
-#: weblate_web/templates/donate.html:58
+#: weblate_web/templates/donate.html:119
 msgid ""
-"Bountysource allows you to fund individual features which are reported on "
-"our issue tracker."
+"One time donations are great for appreciating our work on single issue or "
+"support."
 msgstr ""
-"Bountysource يسمح لك بتمويل مميزات محددة تطلبها أنت أو ترغب بإعطائها المزيد "
-"من الأولوية في أولويات التطوير."
 
-#: weblate_web/templates/donate.html:64
+#: weblate_web/templates/donate.html:128
+msgid "Use our services"
+msgstr "استخدم خدماتنا"
+
+#: weblate_web/templates/donate.html:131
 msgid ""
-"If you like Weblate you can support its further development by donating."
-msgstr "إذا أعجبك Weblate يمكنك رعايته ودفع عملية تطويره من خلال التبرع له."
-
-#: weblate_web/templates/donate.html:72
-msgid "Donate using PayPal"
-msgstr "التبرع عبر خدمة PayPal"
-
-#: weblate_web/templates/donate.html:77
-msgid ""
-"PayPal allows you to send money from credit card, PayPal balance or a bank "
-"account."
+"Commercial services like hosting or support for self hosted installation "
+"help fund Weblate development."
 msgstr ""
-"PayPal خدمة دفع مالي عبر الإنترنت تمكنك من التبرع بإستخدام بطاقة اعتماد او "
-"حساب بنكي."
+"الخدمات التجارية كالاستضافة والدعم التقني بغرض التنصيب والتثبيت تساهم كثيرا "
+"في تمويل وتطوير مشروع ويب لايت."
 
-#: weblate_web/templates/donate.html:80
+#: weblate_web/templates/donate.html:142
+msgid "Donation rewards"
+msgstr "منح المكافآت"
+
+#: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
 msgstr "تحويل العملات الرقمية"
 
-#: weblate_web/templates/donate.html:83
+#: weblate_web/templates/donate.html:166
 #, python-format
 msgid ""
 "Thanks to <a href=\"%(url)s\">Trezor</a>, we will gladly accept donations in "
@@ -387,19 +495,64 @@ msgstr ""
 "شكراً لـ <a href=\"%(url)s\">Trezor </a>، سوف نقبل بشكر أي تبرعات تحويل "
 "العملات الرقمية، يمكن استخدام العناوين في الأسفل."
 
-#: weblate_web/templates/donate.html:88
+#: weblate_web/templates/donate.html:171
 msgid "Currency"
 msgstr "العملة"
 
-#: weblate_web/templates/donate.html:88
-msgid "Payment link"
-msgstr "رابط الدفع"
+#: weblate_web/templates/donate.html:171
+msgid "Donation address"
+msgstr "عنوان التبرع"
 
-#: weblate_web/templates/donate.html:88
-msgid "Payment address"
-msgstr "عنوان الدفع"
+#: weblate_web/templates/donate/edit.html:12
+#: weblate_web/templates/donate/form.html:13
+msgid "Please choose wanted reward or enter custom donation amount."
+msgstr "يُرجى اختيار المكافأة التي تريدونها أو ادخلوا مقدار الهبة."
+
+#: weblate_web/templates/donate/edit.html:20
+msgid "Edit your reward link"
+msgstr "تعديل رابط مكافأتك"
+
+#: weblate_web/templates/donate/edit.html:26
+#: weblate_web/templates/payment/customer.html:21
+msgid "Save"
+msgstr "احفظ"
+
+#: weblate_web/templates/donate/form.html:33
+msgid "Select"
+msgstr "اختر"
+
+#: weblate_web/templates/donate/form.html:41
+msgid ""
+"We might refuse to place your link, especially if the site contains adult or "
+"illegal content. Please consult us in advance if unsure."
+msgstr ""
+
+#: weblate_web/templates/donate/form.html:50
+msgid "Choose your own donation amount"
+msgstr "اختر مقدار مبلغ هبتك"
+
+#: weblate_web/templates/donate/form.html:56
+msgid "Continue"
+msgstr "المواصلة"
+
+#: weblate_web/templates/donate/rewards.html:2
+msgid "Link placement on the weblate.org thanks page"
+msgstr ""
+
+#: weblate_web/templates/donate/rewards.html:3
+msgid "Link placement in the list of supporters"
+msgstr ""
+
+#: weblate_web/templates/donate/rewards.html:4
+msgid "Name placement in the list of supporters"
+msgstr ""
+
+#: weblate_web/templates/download-link.html:4
+msgid "PGP signature"
+msgstr "توقيع بي جي بي PGP"
 
 #: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
+#: weblate_web/templates/hosting.html:234
 msgid "Download Weblate"
 msgstr "حمّل Weblate"
 
@@ -407,20 +560,16 @@ msgstr "حمّل Weblate"
 msgid "Weblate comes with complete source code."
 msgstr "Weblate موفَّر بكامل الشيفرة المصدرية للبرنامج."
 
-#: weblate_web/templates/download.html:20
+#: weblate_web/templates/download.html:21
 msgid "You can download latest release here:"
 msgstr "يمكنكم الحصول على أحدث إصدارتنا هنا :"
 
-#: weblate_web/templates/download.html:29
-#: weblate_web/templates/download.html:45
-msgid "You can also install using packages for following Linux distributions:"
-msgstr "يمكنك أيضا التثبيت باستخدام حزم  توزيعات لينكس التالية:"
-
-#: weblate_web/templates/download.html:35
+#: weblate_web/templates/download.html:30
+#: weblate_web/templates/download.html:73
 msgid "Weblate command line client"
 msgstr "سطر أوامر Weblate"
 
-#: weblate_web/templates/download.html:38
+#: weblate_web/templates/download.html:33
 #, python-format
 msgid ""
 "You can control Weblate remotely using <a href=\"%(url)s\">wlc</a>, it can "
@@ -429,11 +578,15 @@ msgstr ""
 "يمكنك التحكم عن بعد في Weblate باستخدام <a href=\"%(url)s\"> wlc</a> يمكن "
 "تثبيته عن طريق بايثون PIP:"
 
-#: weblate_web/templates/download.html:53
+#: weblate_web/templates/download.html:40
+msgid "You can also install using packages for following Linux distributions:"
+msgstr "يمكنك أيضا التثبيت باستخدام حزم  توزيعات لينكس التالية:"
+
+#: weblate_web/templates/download.html:47
 msgid "Cloud or virtualization images"
 msgstr "صور سحابية/إفتراضية"
 
-#: weblate_web/templates/download.html:55
+#: weblate_web/templates/download.html:49
 msgid ""
 "Weblate can be run in any cloud or virtualization environment. Following "
 "links will show you information about some of these:"
@@ -441,15 +594,15 @@ msgstr ""
 "يمكنكم الاستفادة من Weblate في استضافة سحابية أو بيئة إفتراضية. الروابط "
 "التالية ستعطيكم صورة أفضل عن كيفية إتمام ذلك :"
 
-#: weblate_web/templates/download.html:58
+#: weblate_web/templates/download.html:52
 msgid "Running Weblate in a Docker container"
 msgstr "تشغيل Weblate في حاوية دوكر(Docker)"
 
-#: weblate_web/templates/download.html:59
+#: weblate_web/templates/download.html:53
 msgid "Running Weblate on OpenShift platform"
 msgstr "تشغيل Weblate على منصة أوبن شفت (OpenShift)"
 
-#: weblate_web/templates/download.html:60
+#: weblate_web/templates/download.html:54
 msgid ""
 "BitNami Weblate stack providing native installation for most platforms as "
 "well as support for many public cloud providers"
@@ -457,7 +610,7 @@ msgstr ""
 "BitNami Weblate توفر حزم التثبيت الأصلية لمعظم المنصات، فضلا عن دعم العديد "
 "من برامج مقدمي الخدمات السحابية العامة"
 
-#: weblate_web/templates/download.html:72
+#: weblate_web/templates/download.html:66
 msgid ""
 "Weblate is being developed on <a href=\"https://github.com/WeblateOrg/weblate"
 "\">GitHub</a>, you can fork it there or just:"
@@ -483,7 +636,7 @@ msgstr "التحكم في الدخول"
 
 #: weblate_web/templates/features.html:24
 msgid "Access rights can be fine tuned depending on your environment."
-msgstr "يمكن ضبط حقوق الوصول جيداً اعتماداً على بيئتك."
+msgstr "يمكنم ضبط تصريحات الوصول بدقة اعتماداً بحسب بيئتكم."
 
 #: weblate_web/templates/features.html:31
 msgid "Notifications"
@@ -508,11 +661,11 @@ msgstr "تنسيقات الملفات"
 
 #: weblate_web/templates/features.html:48
 msgid ""
-"Weblate supports all widely used file formats for localisation like Gettext, "
-"JSON, XLIFF or resource strings."
+"Weblate supports all widely used file formats for localization, like "
+"gettext, JSON, XLIFF or resource strings."
 msgstr ""
-"Weblate يدعم كل صيغ الملفات المستخدمة بكثرة للترجمة مثل Gettext, JSON, XLIFF "
-"أو كلمات المصدر."
+"يدعم Weblate  كافة صيغ الملفات المستخدمة بكثرة للترجمة مثل Gettext, JSON, "
+"XLIFF أو كلمات المصدر."
 
 #: weblate_web/templates/features.html:55
 msgid "Branches support"
@@ -537,10 +690,6 @@ msgid ""
 msgstr ""
 "يمكنك أيضا استخدام Weblate للحصول على ردود الفعل على كلمات المصدر وبالتالي "
 "تحسينها."
-
-#: weblate_web/templates/features.html:87
-msgid "Export and import"
-msgstr "تصدير وتوريد"
 
 #: weblate_web/templates/features.html:88
 msgid "Translations can be downloaded for offline translation and merged back."
@@ -627,7 +776,160 @@ msgstr "واجهة تفاعلية"
 msgid ""
 "Weblate has responsive UI which will work nicely on your desktop, tablet or "
 "phone."
-msgstr "Weblate لديه واجهة تفاعلية تعمل جيداً على الحاسوب واللوحي والهاتف."
+msgstr ""
+"لدى Weblate واجهة تفاعلية تعمل جيداً على الحاسوب والأجهزة اللوحية وكذا على "
+"الهاتف."
+
+#: weblate_web/templates/hosting-free.html:3
+#: weblate_web/templates/hosting-free.html:4
+msgid "Free hosting on Weblate"
+msgstr "الإستضافة المجانية على Weblate"
+
+#: weblate_web/templates/hosting-free.html:6
+msgid "We love open source and we offer free plans for hosting translations."
+msgstr "نحن نحب المصدر المفتوح و نقدم خططا مجانية لاستضافه الترجمات."
+
+#: weblate_web/templates/hosting-free.html:11
+msgid "Ask for hosting"
+msgstr "اطلب استضافة"
+
+#: weblate_web/templates/hosting-free.html:18
+msgid "Hosting for free software"
+msgstr "استضافة البرمجيات الحرّة"
+
+#: weblate_web/templates/hosting-free.html:21
+msgid ""
+"If you are interested in using Weblate for your free software, you can ask "
+"us for hosting of your translations on <a href=\"https://hosted.weblate.org/"
+"\">hosted.weblate.org</a>. This will allow you to use Weblate without "
+"installing and maintaining it."
+msgstr ""
+"إذا كنت مهتمين باستخدام Weblate من أجل برنامجكم الحر، فيمكنكم أن تطلبوا منا "
+"استضافة ترجماتكم على <a href=\"https://hosted.weblate.org/\"> hosted.weblate."
+"org</a>.  سيسمح لكم ذلك باستخدام Weblate من دون تثبيته وصيانته."
+
+#: weblate_web/templates/hosting-free.html:24
+msgid "Conditions for free hosting"
+msgstr "شروط الاستضافة المجانية"
+
+#: weblate_web/templates/hosting-free.html:27
+msgid ""
+"Translated content has to be released under <a href=\"https://en.wikipedia."
+"org/wiki/Free_software_license\">free license</a>."
+msgstr ""
+"المحتوى المُترجم يجب أن يصدر <a href=\"https://en.wikipedia.org/wiki/"
+"Free_software_license\">بترخيص حر</a>."
+
+#: weblate_web/templates/hosting-free.html:28
+msgid ""
+"Source code has to be publicly available in a supported version control "
+"system."
+msgstr ""
+"يجب أن تكون الشفرة المصدرية متوفرة بشكل عام في إحدى نظم إدارة النسخ المدعومة."
+
+#: weblate_web/templates/hosting-free.html:29
+msgid "There is no guarantee for service availability or quality."
+msgstr "ليس هناك ضمان لتوفر الخدمة أو الجودة."
+
+#: weblate_web/templates/hosting-free.html:32
+msgid "Asking for hosting"
+msgstr "طلب الاستضافة"
+
+#: weblate_web/templates/hosting-free.html:35
+#, python-format
+msgid ""
+"Please use <a href=\"%(url)s\">contact form on Hosted Weblate</a> to request "
+"hosting. You will need following information:"
+msgstr ""
+"من فضلك استخدم <a href=\"%(url)s\"> نموذج التواصل على Hosted Weblate</a> لكي "
+"تطلب الاستضافة. سوف تحتاج المعلومات الآتية:"
+
+#: weblate_web/templates/hosting-free.html:39
+msgid "Information about your project."
+msgstr "معلومات حول مشروعك."
+
+#: weblate_web/templates/hosting-free.html:40
+msgid "Project website."
+msgstr "موقع المشروع."
+
+#: weblate_web/templates/hosting-free.html:41
+#: weblate_web/templates/hosting-ordered.html:18
+msgid "URL of repository with translations."
+msgstr "رابط المشروع مع الترجمة."
+
+#: weblate_web/templates/hosting-free.html:42
+#: weblate_web/templates/hosting-ordered.html:19
+msgid "Path to translations within the repository."
+msgstr "رابط الترجمة في داخل المشروع."
+
+#: weblate_web/templates/hosting-free.html:48
+msgid ""
+"The free plan does not allow you to change project visibility or to limit "
+"users which can contribute to the translation."
+msgstr ""
+"الباقة المجانية لا تُمكنك من تغيير ظهور المشروع أو تحديد المستخدمين الذين "
+"يمكنهم المشاركة في الترجمة."
+
+#: weblate_web/templates/hosting-free.html:51
+msgid ""
+"This limitation can be lifted by purchasing the \"Basic\" hosting plan - you "
+"will still have free software limits, but you will get extended user "
+"management capabilities."
+msgstr ""
+"يمكن رفع هذا التقييد عن طريق شراء خطة الاستضافة \"الأساسية\" - ستظل لديك "
+"حدود برامج مجانية، لكن ستحصل على إمكانات إدارة مستخدم موسعة."
+
+#: weblate_web/templates/hosting-free.html:54
+msgid "Translation workflow"
+msgstr "تدفق عمل للترجمة"
+
+#: weblate_web/templates/hosting-free.html:57
+msgid ""
+"All translated repositories are available using https protocol with similar "
+"naming as on website - weblate/master translation is published as "
+"<code>https://hosted.weblate.org/git/weblate/master/</code>. You can figure "
+"out the URL on the component information tab."
+msgstr ""
+"كل المستودعات المُترجمَة متاحة باستخدام برتوكول https مع تسمية مشابهة في موقع "
+"الإنترنت - weblate/master يُنشر على <code> https://hosted.weblate.org/git/"
+"weblate/master </code>. يمكنك إكتشاف الرابط في صفحة معلومات المكوّن."
+
+#: weblate_web/templates/hosting-free.html:61
+#, python-format
+msgid ""
+"Weblate can automatically receive changes from major code hosting services, "
+"see our documentation for setup on <a href=\"%(github)s\">GitHub</a>, <a "
+"href=\"%(bitbucket)s\">Bitbucket</a> or <a href=\"%(gitlab)s\">GitLab</a>."
+msgstr ""
+"Weblate يمكنه تلقائياً استقبال التغييرات في منصات الأكواد العامة، ألقِ نظرة "
+"على المستندات للإعداد على <a href=\"%(github)s\">GitHub</a> أو <a href="
+"\"%(bitbucket)s\">Bitbucket</a> أو <a href=\"%(gitlab)s\">GitLab</a>."
+
+#: weblate_web/templates/hosting-free.html:65
+#, python-format
+msgid ""
+"If you want Weblate to automatically push changes as well, add Weblate push "
+"user to collaborators and let us know you want to use this option. See <a "
+"href=\"%(docs)s\">documentation</a> for more detailed instructions."
+msgstr ""
+"إذا أردت من Weblate أن يطبق التغييرات الجديدة تلقائياً، أضف حساب دفع Weblate "
+"إلى المُسهمين وأعلمنا إذا أردت إستخدام هذا الإعداد. طالع <a href=\"%(docs)s"
+"\">الوثائق</a> لتفاصيل أكثر."
+
+#: weblate_web/templates/hosting-free.html:68
+msgid "Support free hosting"
+msgstr "دعم الاستضافة المجانية"
+
+#: weblate_web/templates/hosting-free.html:72
+#, python-format
+msgid ""
+"The hosting is provided for free, but running the server and maintaining it "
+"costs some money, so you are welcome to use <a href=\"%(gittip_url)s"
+"\">Liberapay</a> or <a href=\"%(donate_url)s\">other ways to donate</a>."
+msgstr ""
+"الاستضافة مُوفرة مجاناً، لكن تشغيل الخادوم و صيانته يكلّف بعض المال، لذا نرحب "
+"بتبرعاتكم من خلال <a href=\"%(gittip_url)s\">Liberapay</a> أو <a href="
+"\"%(donate_url)s\">أي طريقة أخرى للتبرع</a>."
 
 #: weblate_web/templates/hosting-ordered.html:3
 #: weblate_web/templates/hosting-ordered.html:4
@@ -655,43 +957,34 @@ msgstr ""
 msgid "Usually following information is needed:"
 msgstr "المعلومات الآتية مطلوبة دائماً:"
 
-#: weblate_web/templates/hosting-ordered.html:18
-#: weblate_web/templates/hosting.html:307
-msgid "URL of repository with translations."
-msgstr "رابط المشروع مع الترجمة."
-
-#: weblate_web/templates/hosting-ordered.html:19
-#: weblate_web/templates/hosting.html:308
-msgid "Path to translations within the repository."
-msgstr "رابط الترجمة في داخل المشروع."
-
 #: weblate_web/templates/hosting-ordered.html:22
 msgid ""
 "You have to allow Weblate to access your repository. This can be done by "
 "adding Weblate user to your project (on GitHub, Bitbucket or GitLab) or "
 "adding SSH key we will provide you."
 msgstr ""
-"يجب عليك أن تمنح Weblate إذن الدخول إلى مشروعك. هذا يمكن عمله عن طريق إضافة "
-"مستخدم Weblate إلى مشروعك (على GitHub أو Bitbucket أو GitLab) أو بأضافة "
-"مفتاح SSH الذي سوف نمنحه لك."
+"يجب عليكم أن تمنحوا Weblate إذن الدخول إلى مشروعكم. هذا يمكن عمله عن طريق "
+"إضافة مستخدم Weblate إلى مشروعكم (على GitHub أو Bitbucket أو GitLab) أو "
+"بإضافة مفتاح SSH الذي سوف نمنحه لكم."
 
 #: weblate_web/templates/hosting.html:6
-msgid "Free continuous translation hosting for free software."
-msgstr "استضافة ترجمة مجانية مستمرة للبرامج الحرة."
+msgid "Use Weblate as a service or get support for on-premises hosting."
+msgstr ""
+"إستخدموا ويب لايت كخدمة أو أحصلوا على الدعم الفني لتنصيبه محليًا في مكاتبكم."
 
 #: weblate_web/templates/hosting.html:11
-msgid "Ask for hosting"
+msgid "Order hosting"
 msgstr "اطلب استضافة"
 
-#: weblate_web/templates/hosting.html:20
+#: weblate_web/templates/hosting.html:21
 msgid ""
 "Hosted Weblate allows you to use Weblate without any effort and with premium "
 "support backed by it's core developers."
 msgstr ""
-"Weblate المُضيف يسمح لك باستخدام Weblate من غير أي جهد ومع الدعم الممتاز من "
-"مطوريه الأساسيين."
+"Weblate المُضيف أو Hosted يسمح لكم باستخدام Weblate من غير أي جهد مستفيدا من "
+"الدعم الممتاز الذي يقدمه مطوروه الأساسيين."
 
-#: weblate_web/templates/hosting.html:24
+#: weblate_web/templates/hosting.html:25
 #, python-format
 msgid ""
 "We can host translations for your commercial or free software projects. You "
@@ -781,11 +1074,6 @@ msgstr "مكونات الترجمة"
 msgid "Number of translators"
 msgstr "عدد المترجمين"
 
-#: weblate_web/templates/hosting.html:105
-#: weblate_web/templates/hosting.html:311
-msgid "User management"
-msgstr "إدارة المُستخدمين"
-
 #: weblate_web/templates/hosting.html:114
 msgid "Supported file formats"
 msgstr "تنسيقات الملفات المدعومة"
@@ -816,14 +1104,10 @@ msgstr "إضافات الترجمة"
 msgid "Translation memory"
 msgstr "ذاكرة الترجمة"
 
-#: weblate_web/templates/hosting.html:159
+#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:120
+#: weblate_web/templates/index.html:134
 msgid "Priority email support"
 msgstr "أولوية دعم البريد الإلكتروني"
-
-#: weblate_web/templates/hosting.html:165
-#: weblate_web/templates/hosting.html:173
-msgid "Available on request"
-msgstr "متوفر عند الطلب"
 
 #: weblate_web/templates/hosting.html:168
 msgid "Custom domain name with SSL"
@@ -841,9 +1125,13 @@ msgid ""
 "Additional charge %(price)s EUR/year, only available with yearly billing"
 msgstr "مدفوعية إضافية %(price)s يورو/السنة، متوفرة فقط مع الدفع السنوي"
 
+#: weblate_web/templates/hosting.html:173
+msgid "Available on request"
+msgstr "متوفر عند الطلب"
+
 #: weblate_web/templates/hosting.html:179
-msgid "Monthly by PayPal"
-msgstr "شهرياً عبر خدمة PayPal"
+msgid "Monthly"
+msgstr "شهريا"
 
 #: weblate_web/templates/hosting.html:181
 msgid "Contact us"
@@ -853,37 +1141,28 @@ msgstr "اتصل بنا"
 #: weblate_web/templates/hosting.html:187
 #: weblate_web/templates/hosting.html:190
 #: weblate_web/templates/hosting.html:193
-#: weblate_web/templates/hosting.html:253
 #, python-format
 msgid "%(price)s EUR / month"
 msgstr "%(price)s يورو / شهر"
 
-#: weblate_web/templates/hosting.html:195
-msgid "See below for options"
-msgstr "انظر أدناه للحصول على خيارات"
+#: weblate_web/templates/hosting.html:196
+msgid "View support options"
+msgstr "عرض خيارات الدعم"
 
-#: weblate_web/templates/hosting.html:198
+#: weblate_web/templates/hosting.html:200
 #, python-format
-msgid "Yearly by invoice (save 15-20%%)"
-msgstr "فاتورة سنوية (توفير 15-20%%)"
+msgid "Yearly (save 15-20%%)"
+msgstr "سنويًا (توفير 15-20%%)"
 
-#: weblate_web/templates/hosting.html:200
-#: weblate_web/templates/hosting.html:203
-#: weblate_web/templates/hosting.html:206
-#: weblate_web/templates/hosting.html:209
-msgid "Ask us for yearly invoicing with discount."
-msgstr "اسئلنا عن الفاتورة السنوية مع التخفيض."
-
-#: weblate_web/templates/hosting.html:200
-#: weblate_web/templates/hosting.html:203
-#: weblate_web/templates/hosting.html:206
-#: weblate_web/templates/hosting.html:209
-#: weblate_web/templates/hosting.html:254
+#: weblate_web/templates/hosting.html:202
+#: weblate_web/templates/hosting.html:205
+#: weblate_web/templates/hosting.html:208
+#: weblate_web/templates/hosting.html:211 weblate_web/templates/support.html:68
 #, python-format
 msgid "%(price)s EUR / year"
 msgstr "%(price)s يورو / سنة"
 
-#: weblate_web/templates/hosting.html:217
+#: weblate_web/templates/hosting.html:218
 msgid ""
 "The pricing is based on number of source strings and number of target "
 "languages. The source string is a text unit defined in a translation format, "
@@ -892,15 +1171,7 @@ msgstr ""
 "يعتمد التسعير على عدد كلمات المصدر وعدد اللغات المستهدفة. كلمات المصدر هي "
 "وحدة كتابية محددة في صيغة الترجمة، ويمكن أن تكون كلمة أو جملة أو فقرة."
 
-#: weblate_web/templates/hosting.html:221
-msgid ""
-"The hosting setup is currently done manually, so you might want to get in "
-"touch with us prior to making subscription with your project details."
-msgstr ""
-"تثبيت الاستضافة حالياً يدوي، ربما تود التواصل معنا لكي تنشئ اشتراكًا مع تفاصيل "
-"مشروعك."
-
-#: weblate_web/templates/hosting.html:225
+#: weblate_web/templates/hosting.html:222
 msgid ""
 "Alternatively we can accept payments by wire transfer (preferably IBAN) or "
 "Bitcoin. Please get in touch for more details."
@@ -909,277 +1180,50 @@ msgstr ""
 "الحساب المصرفي الدولي) أو بتكوين، من فضلك تواصل معنا من أجل المزيد من "
 "التفاصيل."
 
-#: weblate_web/templates/hosting.html:228
-msgid "Support for self hosted environments"
-msgstr "دعم بيئات الاستضافة الذاتية"
-
-#: weblate_web/templates/hosting.html:230
-msgid ""
-"Worried of putting your translations into cloud? You can self host Weblate "
-"and we can still provide you premium support for your setup."
-msgstr ""
-"هل أنت قلق من وضع ترجماتك على خدمتنا السحابية؟ يمكنك استضافة Weblate شخصياً "
-"وبإمكاننا أن نوفر لك الدعم المميز من أجل تثبيتك."
-
-#: weblate_web/templates/hosting.html:236
-msgid "Installation on your Linux server"
-msgstr "التثبيت على خادم لينكس الخاص بك"
-
-#: weblate_web/templates/hosting.html:237
-#, python-format
-msgid "%(price)s EUR"
-msgstr "%(price)s يورو"
-
-#: weblate_web/templates/hosting.html:242
-msgid "One time installation of Weblate"
-msgstr "تثبيت مره واحدة من Weblate"
-
-#: weblate_web/templates/hosting.html:243
-msgid "Installation using virtualenv, uwsgi and nginx"
-msgstr "التثبيت بإستخدام البيئة الإفتراضية، uwsgi  و nginx"
-
-#: weblate_web/templates/hosting.html:244
-msgid "Using PostgreSQL, MySQL or MariaDB as database backend"
-msgstr ""
-"باستخدام بوستجري إس كيو إل (PostgreSQL) أو ماي إس كيو إل (MySQL) أو ماريا دي "
-"بي (MariaDB) كقاعدة بيانات داعمة لمشروعك"
-
-#: weblate_web/templates/hosting.html:245
-msgid "Requires root access or close cooperation of your admins"
-msgstr "يتطلب إذن الجذر أو التعاون الوثيق بين مديري مشروعك"
-
-#: weblate_web/templates/hosting.html:246
-msgid "Configuration customization"
-msgstr "تهيئة التهيئة"
-
-#: weblate_web/templates/hosting.html:247
-msgid "Does not include custom code development"
-msgstr "لا تتضمن تطوير أكواد مخصصة"
-
-#: weblate_web/templates/hosting.html:252
-msgid "Basic support for self hosted Weblate"
-msgstr "دعم أساسي للاستضافة الذاتية لـWeblate"
-
-#: weblate_web/templates/hosting.html:259
-msgid "Your Weblate will be upgraded to the latest version on every release."
-msgstr "سيُرقّى Weblate إلى آخر إصدارة عند إصدار جديد."
-
-#: weblate_web/templates/hosting.html:260
-msgid "We will fix issues that occur in your environment."
-msgstr "نحن سنصلح الأخطاء الواقعة في بيئتك."
-
-#: weblate_web/templates/hosting.html:261
-msgid "You will receive priority email support."
-msgstr "سوف تحصل على الأولوية في الدعم بالبريد."
-
-#: weblate_web/templates/hosting.html:266
-msgid "Consulting services or custom development"
-msgstr "خدمة استشارات أو تطوير مخصص"
-
-#: weblate_web/templates/hosting.html:267
-#, python-format
-msgid "%(price)s EUR / hour"
-msgstr "%(price)s يورو/ساعة"
-
-#: weblate_web/templates/hosting.html:272
-msgid "Custom features development"
-msgstr "تطوير الميزات المخصصة"
-
-#: weblate_web/templates/hosting.html:273
-msgid "Integrating Weblate into your workflow"
-msgstr "تضمين Weblate داخل منطقة عملك"
-
-#: weblate_web/templates/hosting.html:274
-msgid "Suggestions on the internationalization or localization process"
-msgstr "اقتراحات على عملية التدويل أو التوطين"
-
-#: weblate_web/templates/hosting.html:282
-msgid "Ask us for details about self hosted Weblate"
-msgstr "اسئلنا عن تفاصيل الاستضافة الذاتية لـWeblate"
-
-#: weblate_web/templates/hosting.html:284
-msgid "Hosting for free software"
-msgstr "استضافة البرمجيات الحرّة"
-
-#: weblate_web/templates/hosting.html:287
-msgid ""
-"If you are interested in using Weblate for your free software, you can ask "
-"us for hosting of your translations on <a href=\"https://hosted.weblate.org/"
-"\">hosted.weblate.org</a>. This will allow you to use Weblate without "
-"installing and maintaining it."
-msgstr ""
-"إذا كنت مهتماً باستخدام Weblate من أجل برنامجك الحر، فيمكنك أن تطلب منا "
-"استضافة ترجماتك على <a href=\"https://hosted.weblate.org/\"> hosted.weblate."
-"org</a>. هذا سوف يسمح لك باستخدام Weblate من دون تثبيته وصيانته."
-
-#: weblate_web/templates/hosting.html:290
-msgid "Conditions for free hosting"
-msgstr "شروط الاستضافة المجانية"
-
-#: weblate_web/templates/hosting.html:293
-msgid ""
-"Translated content has to be released under <a href=\"https://en.wikipedia."
-"org/wiki/Free_software_license\">free license</a>."
-msgstr ""
-"المحتوى المُترجم يجب أن يصدر <a href=\"https://en.wikipedia.org/wiki/"
-"Free_software_license\">بترخيص حر</a>."
-
-#: weblate_web/templates/hosting.html:294
-msgid ""
-"Source code has to be publicly available in a supported version control "
-"system."
-msgstr ""
-"الكود المصدري يجب أن يتوفر للعامة في نظام إدارة النسخ على أن يكون مدعومًا."
-
-#: weblate_web/templates/hosting.html:295
-msgid "There is no guarantee for service availability or quality."
-msgstr "ليس هناك ضمان لتوفر الخدمة أو الجودة."
-
-#: weblate_web/templates/hosting.html:298
-msgid "Asking for hosting"
-msgstr "طلب الاستضافة"
-
-#: weblate_web/templates/hosting.html:301
-#, python-format
-msgid ""
-"Please use <a href=\"%(url)s\">contact form on Hosted Weblate</a> to request "
-"hosting. You will need following information:"
-msgstr ""
-"من فضلك استخدم <a href=\"%(url)s\"> نموذج التواصل على Hosted Weblate</a> لكي "
-"تطلب الاستضافة. سوف تحتاج المعلومات الآتية:"
-
-#: weblate_web/templates/hosting.html:305
-msgid "Information about your project."
-msgstr "معلومات حول مشروعك."
-
-#: weblate_web/templates/hosting.html:306
-msgid "Project website."
-msgstr "موقع المشروع."
-
-#: weblate_web/templates/hosting.html:314
-msgid ""
-"The free plan does not allow you to change project visibility or to limit "
-"users which can contribute to the translation."
-msgstr ""
-"الباقة المجانية لا تُمكنك من تغيير ظهور المشروع أو تحديد المستخدمين الذين "
-"يمكنهم المشاركة في الترجمة."
-
-#: weblate_web/templates/hosting.html:317
-msgid ""
-"This limitation can be lifted by purchasing the \"Basic\" hosting plan - you "
-"will still have free software limits, but you will get extended user "
-"management capabilities."
-msgstr ""
-"يمكن رفع هذا التقييد عن طريق شراء خطة الاستضافة \"الأساسية\" - ستظل لديك "
-"حدود برامج مجانية، لكن ستحصل على إمكانات إدارة مستخدم موسعة."
-
-#: weblate_web/templates/hosting.html:320
-msgid "Translation workflow"
-msgstr "تدفق عمل للترجمة"
-
-#: weblate_web/templates/hosting.html:323
-msgid ""
-"All translated repositories are available using https protocol with similar "
-"naming as on website - weblate/master translation is published as "
-"<code>https://hosted.weblate.org/git/weblate/master/</code>. You can figure "
-"out the URL on the component information tab."
-msgstr ""
-"كل المستودعات المُترجمَة متاحة باستخدام برتوكول https مع تسمية مشابهة في موقع "
-"الإنترنت - weblate/master يُنشر على <code> https://hosted.weblate.org/git/"
-"weblate/master </code>. يمكنك إكتشاف الرابط في صفحة معلومات المكوّن."
-
-#: weblate_web/templates/hosting.html:327
-#, python-format
-msgid ""
-"Weblate can automatically receive changes from major code hosting services, "
-"see our documentation for setup on <a href=\"%(github)s\">GitHub</a>, <a "
-"href=\"%(bitbucket)s\">Bitbucket</a> or <a href=\"%(gitlab)s\">GitLab</a>."
-msgstr ""
-"Weblate يمكنه تلقائياً استقبال التغييرات في منصات الأكواد العامة، ألقِ نظرة "
-"على المستندات للإعداد على <a href=\"%(github)s\">GitHub</a> أو <a href="
-"\"%(bitbucket)s\">Bitbucket</a> أو <a href=\"%(gitlab)s\">GitLab</a>."
-
-#: weblate_web/templates/hosting.html:331
-#, python-format
-msgid ""
-"If you want Weblate to automatically push changes as well, add Weblate push "
-"user to collaborators and let us know you want to use this option. See <a "
-"href=\"%(docs)s\">documentation</a> for more detailed instructions."
-msgstr ""
-"إذا أردت من Weblate أن يطبق التغييرات الجديدة تلقائياً، أضف حساب دفع Weblate "
-"إلى المُسهمين وأعلمنا إذا أردت إستخدام هذا الإعداد. طالع <a href=\"%(docs)s"
-"\">الوثائق</a> لتفاصيل أكثر."
-
-#: weblate_web/templates/hosting.html:334
-msgid "Support free hosting"
-msgstr "دعم الاستضافة المجانية"
-
-#: weblate_web/templates/hosting.html:338
-#, python-format
-msgid ""
-"The hosting is provided for free, but running the server and maintaining it "
-"costs some money, so you are welcome to use <a href=\"%(gittip_url)s"
-"\">Liberapay</a> or <a href=\"%(donate_url)s\">other ways to donate</a>."
-msgstr ""
-"الاستضافة مُوفرة مجاناً، لكن تشغيل الخادوم و صيانته يكلّف بعض المال، لذا نرحب "
-"بتبرعاتكم من خلال <a href=\"%(gittip_url)s\">Liberapay</a> أو <a href="
-"\"%(donate_url)s\">أي طريقة أخرى للتبرع</a>."
-
-#: weblate_web/templates/hosting.html:342
+#: weblate_web/templates/hosting.html:225
 msgid "Self hosting"
 msgstr "استضافة خاصة"
 
-#: weblate_web/templates/hosting.html:346
-#, python-format
-msgid ""
-"You can also <a href=\"%(download_url)s\">download</a> Weblate sources and "
-"run it on your systems. There are also several options for deploying Weblate "
-"to the cloud."
-msgstr ""
-"يمكنك أيضاً <a href=\"%(download_url)s\">تنزيل</a> الكود المصدري لـWeblate "
-"وتشغيلة علي أنظمتك. هناك أيضاً بعض الإعدادات من أجل تطبيق Weblate على الخدمة "
-"السحابية."
+#: weblate_web/templates/hosting.html:228
+msgid "Weblate is free software, you can run your own instance of it."
+msgstr "Weblate برنامج حر و يُمكنك تنصيبه على مثيل خادومك."
 
-#: weblate_web/templates/hosting.html:350
-#, python-format
+#: weblate_web/templates/hosting.html:229
+msgid "There are also several options for deploying Weblate to the cloud."
+msgstr "وهناك أيضا العديد من الخيارات لنشر Weblate على السحابية."
+
+#: weblate_web/templates/hosting.html:233
 msgid ""
 "In case you need help with your self hosted solution, we're ready to help as "
-"well with consulting services tailored for your needs. Please contact <a "
-"href=\"%(contact_url)s\">Michal Čihař</a> for more details."
+"well with consulting services tailored for your needs."
 msgstr ""
-"في حالة إذا أردت المساعدة مع استضافتك الذاتية، فنحن جاهزون لمساعدتك عن طريق "
-"خدمة الاستشارات من أجل احتياجاتك. من فضلك تواصل مع <a href=\"%(contact_url)s"
-"\">Michal Čihař </a> من أجل تفاصيل إضافية."
-
-#: weblate_web/templates/hosting.html:353
-msgid ""
-"All prices exclude VAT, invoices for EU countries are issued as a reverse "
-"charge, invoices for Czech Republic will include additional VAT."
-msgstr ""
-"كل الأسعار شاملة ضريبة القيمة المضافة، وفواتير دول الاتحاد الأوروبي معلنة "
-"أنها مدفوعة القيمة (Reverse Charge)، فواتير جمهورية التشيك سوف تتضمن ضريبة "
-"قيمة مضافة إضافية."
+"في حال كنتم بحاجه إلى مساعدة للإستضافة الذاتية ، نحن على استعداد للمساعدة "
+"بالاضافة إلى خدمات استشارية مصممة خصيصا لتلبيه احتياجاتكم."
 
 #: weblate_web/templates/index.html:3
-msgid "Weblate - web-based translation"
-msgstr "Weblate - الترجمات المعتمدة على الإنترنت"
+msgid "Weblate - web-based localization"
+msgstr "ويب لايت Weblate - التدويل المعتمِد على الويب"
 
-#: weblate_web/templates/index.html:14 weblate_web/templates/tour.html:11
-#: weblate_web/templates/try.html:12
-msgid "Try our demo"
-msgstr "تجربة خدمتنا"
+#: weblate_web/templates/index.html:4
+msgid "Bring translators closer to development"
+msgstr "قرِّب المترجِمين والمترجِمات أكثر إلى تطوير البرمجيات"
 
-#: weblate_web/templates/index.html:15
-msgid "View hosting plans"
-msgstr "استعرض باقات الاستضافة"
+#: weblate_web/templates/index.html:12
+msgid "Start using Weblate"
+msgstr "اشرَع في استخدام Weblate"
 
-#: weblate_web/templates/index.html:16
+#: weblate_web/templates/index.html:13 weblate_web/templates/try.html:3
+#: weblate_web/templates/try.html:4 weblate_web/templates/try.html:12
+msgid "Try Weblate"
+msgstr "تجربة Weblate"
+
+#: weblate_web/templates/index.html:14
 msgid "Downloads"
 msgstr "التنزيلات"
 
-#: weblate_web/templates/index.html:25
+#: weblate_web/templates/index.html:23
 msgid ""
-"Weblate is a free web-based translation tool with tight version control "
+"Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
@@ -1188,17 +1232,126 @@ msgstr ""
 "بواجهة مستخدم سهلة وبسيطة و الإعلان عن الترجمات في المكونات و فحص للجودة و "
 "ربط تلقائي بالملفات المصدرية."
 
-#: weblate_web/templates/index.html:29
+#: weblate_web/templates/index.html:27
 msgid "Weblate screenshot"
 msgstr "لقطة شاشة لـWeblate"
 
-#: weblate_web/templates/index.html:38
+#: weblate_web/templates/index.html:36
 msgid "See more features…"
 msgstr "شاهد المزيد من المميزات…"
 
-#: weblate_web/templates/index.html:47
+#: weblate_web/templates/index.html:43
 msgid "See who is using Weblate and join them!"
-msgstr "شاهد من يستخدم Weblate وانضم إليهم!"
+msgstr "اكتشف مَن يستخدم Weblate وانضم إليهم!"
+
+#: weblate_web/templates/index.html:106
+msgid "Browse hundreds of projects on Hosted Weblate"
+msgstr "اطلعوا على الآلاف مِن المشاريع على Hosted Weblate"
+
+#: weblate_web/templates/index.html:114
+msgid "Hosted service"
+msgstr "الخدمة المُستضافة"
+
+#: weblate_web/templates/index.html:118 weblate_web/templates/index.html:132
+#, python-format
+msgid "From %(amount)sEUR/month"
+msgstr "مِن %(amount)s يورو/شهريا"
+
+#: weblate_web/templates/index.html:119
+msgid "Cloud service"
+msgstr "الخدمة السحابية"
+
+#: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
+msgid "Choose hosting plan"
+msgstr "اختر خطة استضافة"
+
+#: weblate_web/templates/index.html:128
+msgid "Self hosted"
+msgstr "استضافة ذاتية"
+
+#: weblate_web/templates/index.html:133
+msgid "Your infrastructure"
+msgstr "بنيتكم التحتية"
+
+#: weblate_web/templates/index.html:142
+msgid "Self supported"
+msgstr "دعم ذاتي"
+
+#: weblate_web/templates/index.html:146
+msgid "Weblate is free to use"
+msgstr "استخدام ويب لايت Weblate مجاني"
+
+#: weblate_web/templates/index.html:147
+msgid "Maintained by you"
+msgstr "مُصان مِن قِبَلِكم"
+
+#: weblate_web/templates/index.html:148
+msgid "Community support"
+msgstr "الدعم المُجتمعاتي"
+
+#: weblate_web/templates/payment/customer.html:5
+#: weblate_web/templates/payment/payment.html:4
+msgid "Weblate payment"
+msgstr "سداد Weblate"
+
+#: weblate_web/templates/payment/customer.html:15
+msgid "Your billing information"
+msgstr "معلومات الفوترة الخاصة بكم"
+
+#: weblate_web/templates/payment/payment.html:11
+msgid "Payment summary"
+msgstr "ملخص الدفع"
+
+#: weblate_web/templates/payment/payment.html:14
+msgid "Payment amount"
+msgstr "المبلغ المسدد"
+
+#: weblate_web/templates/payment/payment.html:15
+#: weblate_web/templates/support.html:37 weblate_web/templates/support.html:53
+#, python-format
+msgid "%(price)s EUR"
+msgstr "%(price)s يورو"
+
+#: weblate_web/templates/payment/payment.html:16
+msgid "(including VAT)"
+msgstr "(بما في ذلك ضريبة القيمة المضافة)"
+
+#: weblate_web/templates/payment/payment.html:18
+msgid "Payment description"
+msgstr "وصف الدفع"
+
+#: weblate_web/templates/payment/payment.html:20
+msgid "Payment frequence"
+msgstr "السداد الدوري"
+
+#: weblate_web/templates/payment/payment.html:22
+msgid "Payment will be issued yearly till you cancel the subscription."
+msgstr "سيتم إصدار الدفع سنويا حتى تقوموا بإلغاء الاشتراك."
+
+#: weblate_web/templates/payment/payment.html:24
+msgid ""
+"Payment will be issued every six months till you cancel the subscription."
+msgstr "سيتم إصدار الدفع كل ستة أشهر حتى تقوموا بإلغاء الاشتراك."
+
+#: weblate_web/templates/payment/payment.html:26
+msgid "Payment will be issued monthly till you cancel the subscription."
+msgstr "سيتم إصدار الدفع شهريا حتى تقوموا بإلغاء الاشتراك."
+
+#: weblate_web/templates/payment/payment.html:31
+msgid ""
+"Note: This is unavailable for some payment methods, you will have to "
+"manually complete the next payment in those cases."
+msgstr ""
+"ملاحظة: هذا غير متوفر لبعض طرق الدفع ، في تلك الحالات يلزم عليكم اكمال "
+"السداد القادم يدويا."
+
+#: weblate_web/templates/payment/payment.html:35
+msgid "Billing information"
+msgstr "معلومات الفوترة"
+
+#: weblate_web/templates/payment/payment.html:49
+msgid "Please choose payment method:"
+msgstr "الرجاء اختيار طريقة الدفع أو السداد:"
 
 #: weblate_web/templates/support.html:3 weblate_web/templates/support.html:4
 msgid "Weblate support"
@@ -1242,25 +1395,116 @@ msgstr ""
 "\"%(docs)s\">وثائقنا</a>."
 
 #: weblate_web/templates/support.html:28
+msgid "Support for self hosted environments"
+msgstr "دعم بيئات الاستضافة الذاتية"
+
+#: weblate_web/templates/support.html:30
+msgid ""
+"Worried of putting your translations into cloud? You can self host Weblate "
+"and we can still provide you premium support for your setup."
+msgstr ""
+"هل أنتم قلقون من وضع ترجماتكم على خدمتنا السحابية؟ يمكنكم استضافة Weblate "
+"بأنفسكم وبإمكاننا أن نوفر لكم الدعم المميز عند التنصيب."
+
+#: weblate_web/templates/support.html:36
+msgid "Installation on your Linux server"
+msgstr "التثبيت على خادم لينكس الخاص بك"
+
+#: weblate_web/templates/support.html:42 weblate_web/templates/support.html:58
+msgid "One time installation of Weblate"
+msgstr "تثبيت مره واحدة من Weblate"
+
+#: weblate_web/templates/support.html:43
+msgid "Installation using virtualenv, uwsgi and nginx"
+msgstr "التثبيت بإستخدام البيئة الإفتراضية، uwsgi  و nginx"
+
+#: weblate_web/templates/support.html:44
+msgid "Using PostgreSQL, MySQL or MariaDB as database backend"
+msgstr ""
+"باستخدام بوستجري إس كيو إل (PostgreSQL) أو ماي إس كيو إل (MySQL) أو ماريا دي "
+"بي (MariaDB) كقاعدة بيانات داعمة لمشروعك"
+
+#: weblate_web/templates/support.html:45 weblate_web/templates/support.html:60
+msgid "Requires root access or close cooperation of your admins"
+msgstr "يتطلب إذن الجذر أو التعاون الوثيق بين مديري مشروعك"
+
+#: weblate_web/templates/support.html:46 weblate_web/templates/support.html:61
+msgid "Configuration customization"
+msgstr "تهيئة التهيئة"
+
+#: weblate_web/templates/support.html:47 weblate_web/templates/support.html:62
+msgid "Does not include custom code development"
+msgstr "لا تتضمن تطوير أكواد مخصصة"
+
+#: weblate_web/templates/support.html:52
+msgid "Installation using Docker on your Linux server"
+msgstr "التثبيت على خادم لينكس الخاص بك باستخدام دوكر"
+
+#: weblate_web/templates/support.html:59
+msgid "Installation using Docker"
+msgstr "التنصيب باستخدام دوكر"
+
+#: weblate_web/templates/support.html:67
+msgid "Basic support for self hosted Weblate"
+msgstr "دعم أساسي للاستضافة الذاتية لـWeblate"
+
+#: weblate_web/templates/support.html:73
+msgid "Your Weblate will be upgraded to the latest version on every release."
+msgstr "سيُرقّى Weblate إلى آخر إصدارة عند إصدار جديد."
+
+#: weblate_web/templates/support.html:74
+msgid "We will fix issues that occur in your environment."
+msgstr "نحن سنصلح الأخطاء الواقعة في بيئتك."
+
+#: weblate_web/templates/support.html:75
+msgid "You will receive priority email support."
+msgstr "سوف تحصل على الأولوية في الدعم بالبريد."
+
+#: weblate_web/templates/support.html:80
+msgid "Consulting services or custom development"
+msgstr "خدمة استشارات أو تطوير مخصص"
+
+#: weblate_web/templates/support.html:81
+#, python-format
+msgid "%(price)s EUR / hour"
+msgstr "%(price)s يورو/ساعة"
+
+#: weblate_web/templates/support.html:86
+msgid "Custom features development"
+msgstr "تطوير الميزات المخصصة"
+
+#: weblate_web/templates/support.html:87
+msgid "Integrating Weblate into your workflow"
+msgstr "تضمين Weblate داخل منطقة عملك"
+
+#: weblate_web/templates/support.html:88
+msgid "Suggestions on the internationalization or localization process"
+msgstr "اقتراحات على عملية التدويل أو التوطين"
+
+#: weblate_web/templates/support.html:96
+msgid "Ask us for details about self hosted Weblate"
+msgstr "اسئلنا عن تفاصيل الاستضافة الذاتية لـWeblate"
+
+#: weblate_web/templates/support.html:99
 msgid "Support for Hosted Weblate services"
 msgstr "دعم خدمات استضافة Weblate"
 
-#: weblate_web/templates/support.html:31
+#: weblate_web/templates/support.html:102
 #, python-format
 msgid ""
 "If you are using our hosting services, you can ask for support at "
 "%(contact)s."
 msgstr "إذا كنت تستخدم خدمات استضافتنا، يمكنك طلب الدعم من %(contact)s."
 
-#: weblate_web/templates/support.html:34
+#: weblate_web/templates/support.html:105
 msgid "Mailing lists"
 msgstr "قائمة المراسلة"
 
-#: weblate_web/templates/support.html:36
+#: weblate_web/templates/support.html:107
 msgid "Users and developers mailing list"
 msgstr "قائمة البريد للمستخدمين والمطوريين"
 
-#: weblate_web/templates/support.html:38
+#: weblate_web/templates/support.html:109
 msgid ""
 "You can use mailing lists for discussions with other Weblate users and "
 "developers."
@@ -1268,7 +1512,7 @@ msgstr ""
 "يمكنك استخدام قائمة البريد هذه من أجل المناقشة مع المطورين والمستخدمين "
 "الآخرين لـWeblate."
 
-#: weblate_web/templates/support.html:39
+#: weblate_web/templates/support.html:110
 msgid ""
 "You can post to it using <a href=\"mailto:weblate@lists.cihar.com"
 "\">weblate@lists.cihar.com</a> address."
@@ -1276,59 +1520,58 @@ msgstr ""
 "يمكنك النشر فيه عن طريق استخدام العنوان <a href=\"mailto:weblate@lists.cihar."
 "com\">weblate@lists.cihar.com</a>."
 
-#: weblate_web/templates/support.html:40 weblate_web/templates/support.html:56
+#: weblate_web/templates/support.html:111
+#: weblate_web/templates/support.html:127
 msgid "You can browse mailing list archives"
 msgstr "يمكنك تصفح أرشيف قائمة البريد"
 
-#: weblate_web/templates/support.html:43 weblate_web/templates/support.html:59
+#: weblate_web/templates/support.html:114
+#: weblate_web/templates/support.html:130
 msgid "Enter your email"
 msgstr "أدخل بريدك الإلكتروني"
 
-#: weblate_web/templates/support.html:45 weblate_web/templates/support.html:61
+#: weblate_web/templates/support.html:116
+#: weblate_web/templates/support.html:132
 msgid "Subscribe"
 msgstr "اشتراك"
 
-#: weblate_web/templates/support.html:52
+#: weblate_web/templates/support.html:123
 msgid "Hosted Weblate Announcements mailing list"
 msgstr "قائمة إشعارات استضافة Weblate"
 
-#: weblate_web/templates/support.html:54
+#: weblate_web/templates/support.html:125
 msgid ""
 "Low traffic mailing list with announcements about Hosted Weblate services."
 msgstr "قائمة بريد ذات وصول منخفض فيها الاشعارات عن خدمات استضافة Weblate."
 
-#: weblate_web/templates/support.html:55
-msgid "This list is moderated, only selected users can post announcements."
+#: weblate_web/templates/support.html:126
+msgid "This list is moderated, only chosen users can post announcements."
 msgstr ""
-"هذه القائمة محكومة، المستخدمون المحددون هم من يمكنهم نشر الإشعارات فقط."
+"هذه القائمة تحت الإشراف، ليس بإمكان أي كان نشر إشعارات إلّا المستخدمون اللذون "
+"تم اختيارهم."
 
-#: weblate_web/templates/support.html:68
+#: weblate_web/templates/support.html:139
 msgid "Stack Overflow"
 msgstr "ستاك أوفرفلو"
 
-#: weblate_web/templates/support.html:70
+#: weblate_web/templates/support.html:141
 #, python-format
 msgid ""
 "You can also ask related questions on <a href=\"%(url)s\">Stack Overflow</a>."
 msgstr ""
 "يمكنك السؤال عن الأشياء المتعلقة في <a href=\"%(url)s\">ستاك أوفرفلو</a>."
 
-#: weblate_web/templates/support.html:72
-msgid "Consulting"
-msgstr "استشارات"
+#: weblate_web/templates/terms.html:3 weblate_web/templates/terms.html:13
+msgid "Terms of Service"
+msgstr "شروط الخدمة"
 
-#: weblate_web/templates/support.html:74
-msgid "See our support offerings for self hosted Weblate instances"
-msgstr "شاهد عروضنا لتقديم استشارات عن الاستضافة الذاتية"
+#: weblate_web/templates/terms.html:6
+msgid "The legal documents necessary to offer this service."
+msgstr "المستندات القانونية اللازمة لتسيير هذه الخدمة."
 
-#: weblate_web/templates/support.html:77
-#, python-format
-msgid ""
-"You can also contact <a href=\"%(contact_link)s\">Michal Čihař</a>, who is "
-"author of Weblate for consulting services."
-msgstr ""
-"يمكنك أيضاً التواصل مع <a href=\"%(contact_link)s\"> Michal Čihař </a> مالك "
-"Weblate من أجل خدمات الاستشارة."
+#: weblate_web/templates/terms.html:20
+msgid "Privacy Policy"
+msgstr "سياسة الخصوصية"
 
 #: weblate_web/templates/thanks.html:3 weblate_web/templates/thanks.html:4
 msgid "Thanks from Weblate"
@@ -1338,70 +1581,57 @@ msgstr "شكراً من Weblate"
 msgid "Weblate is thankful for help from others."
 msgstr "Weblate شاكر للمساعدة التي تلقّاها من الآخرين."
 
-#: weblate_web/templates/thanks.html:20
+#: weblate_web/templates/thanks.html:16
 msgid "Technology"
 msgstr "التقنية"
 
-#: weblate_web/templates/thanks.html:22
+#: weblate_web/templates/thanks.html:18
 msgid "The development of Weblate is based on the following technologies:"
 msgstr "تطوير Weblate قائم على التقنيات الآتية:"
 
-#: weblate_web/templates/thanks.html:26
+#: weblate_web/templates/thanks.html:22
 msgid "GitHub provides hosting for our source code and issue tracker."
 msgstr "GitHub يوفر الاستضافة للكود المصدري لبرنامجنا ومتتبع الأخطاء."
 
-#: weblate_web/templates/thanks.html:30
+#: weblate_web/templates/thanks.html:26
 msgid "Travis CI is our continuous integration platform."
 msgstr "Travis CI هو برنامج متابعة منصة الدمج الخاص بنا."
 
-#: weblate_web/templates/thanks.html:34
+#: weblate_web/templates/thanks.html:30
 msgid "Codecov helps us to monitor code coverage of our test suite."
 msgstr "Codecov يساعدنا في مراقبة الكود المصدري من أجل قائمة تجربتنا."
 
-#: weblate_web/templates/thanks.html:38
+#: weblate_web/templates/thanks.html:34
 msgid "Sauce Labs is running our Selenium tests in real browsers."
 msgstr "Sauce Labs يُجري إختبارتنا السخيفة في متصفحات حقيقية."
 
-#: weblate_web/templates/thanks.html:42
-msgid "Rollbar helps us to collect and fix errors happening on Hosted Weblate."
-msgstr "Rollbar يساعدنا على تجميع وإصلاح الأخطاء الحاصلة في استضافة Weblate."
-
-#: weblate_web/templates/thanks.html:46
+#: weblate_web/templates/thanks.html:38
 msgid "Our translations are being done on Hosted Weblate."
 msgstr "ترجماتنا يُعمل عليها في استضافة Weblate."
 
-#: weblate_web/templates/thanks.html:50
+#: weblate_web/templates/thanks.html:42
+msgid "Payments are processed by The Pay service."
+msgstr "تتم معالجة عمليات الدفع مِن قِبَل دفع خدمة The Pay service."
+
+#: weblate_web/templates/thanks.html:46
 msgid "Supporters"
 msgstr "الداعمون"
 
-#: weblate_web/templates/thanks.html:52
+#: weblate_web/templates/thanks.html:48
 msgid ""
 "Free hosting for free software projects would be impossible without our "
 "sponsors."
 msgstr "إنّ الاستضافة المجانية للبرمجيات الحرة ستكون مستحيلة من غير داعمينا."
 
-#: weblate_web/templates/thanks.html:54
-msgid ""
-"Support our project on Bountysource Salt and get exclusive logo placement on "
-"this page."
-msgstr ""
-"ادعم مشروعنا على Bountysource Salt واحصل على لصق لوجو حصريا على هذه الصفحة."
-
-#: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
-msgid "Weblate tour"
-msgstr "تعرّف على Weblate"
-
-#: weblate_web/templates/tour.html:6
-msgid "Weblate has useful features for every crowdsourced translation."
-msgstr "Weblate يوفر مزايا عديدة ونافعة لمشاريع الترجمة الجماعية."
-
-#: weblate_web/templates/try.html:3 weblate_web/templates/try.html:4
-msgid "Try Weblate"
-msgstr "تجربة Weblate"
+#: weblate_web/templates/thanks.html:50
+msgid "Support our project and get link placement on this page."
+msgstr "ادعم مشروعنا واحصل على رابط حصري على هذه الصفحة."
 
 #: weblate_web/templates/try.html:6
-msgid "Weblate is easy to deploy as an appliance."
-msgstr "Weblate سهل في التنزيل والتطبيق على هيئة أداة."
+#, fuzzy
+#| msgid "Weblate has useful features for every crowdsourced translation."
+msgid "Weblate has useful features for every crowdsourced localization."
+msgstr "Weblate يوفر مزايا عديدة ونافعة لمشاريع الترجمة الجماعية."
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
@@ -1426,19 +1656,21 @@ msgstr ""
 "code>، وكلمة سر: <code>review</code>."
 
 #: weblate_web/templates/try.html:27
-msgid "Appliances"
-msgstr "الأداة"
+#, fuzzy
+#| msgid "Weblate screenshot"
+msgid "Screenshots"
+msgstr "لقطة شاشة لـWeblate"
 
-#: weblate_web/templates/try.html:30
-#, python-format
+#: weblate_web/templates/vat.html:3
 msgid ""
-"Check out the <a href=\"%(download_url)s\">download page</a> for appliances, "
-"providing an easy way to deploy Weblate in the cloud."
+"All prices exclude VAT, invoices for EU countries are issued as a reverse "
+"charge, invoices for Czech Republic will include additional VAT."
 msgstr ""
-"تحقق من <a href=\"%(download_url)s\"> صفحة التنزيل</a> من أجل التطبيق، يوفر "
-"طريقة سهلة لتطبيق Weblate على الخدمة السحابية."
+"كل الأسعار شاملة ضريبة القيمة المضافة، وفواتير دول الاتحاد الأوروبي معلنة "
+"أنها مدفوعة القيمة (Reverse Charge)، فواتير جمهورية التشيك سوف تتضمن ضريبة "
+"قيمة مضافة إضافية."
 
-#: weblate_web/templatetags/downloads.py:40
+#: weblate_web/templatetags/downloads.py:39
 #, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
@@ -1449,36 +1681,215 @@ msgstr[3] "%(size)d بايت"
 msgstr[4] "%(size)d بايت"
 msgstr[5] "%(size)d بايت"
 
-#: weblate_web/templatetags/downloads.py:45
+#: weblate_web/templatetags/downloads.py:44
 #, python-format
 msgid "%.1f KiB"
 msgstr "%.1f كيلوبايت"
 
-#: weblate_web/templatetags/downloads.py:47
+#: weblate_web/templatetags/downloads.py:46
 #, python-format
 msgid "%.1f MiB"
 msgstr "%.1f ميجابايت"
 
-#: weblate_web/templatetags/downloads.py:48
+#: weblate_web/templatetags/downloads.py:47
 #, python-format
 msgid "%.1f GiB"
 msgstr "%.1f جيجابايت"
 
-#: weblate_web/templatetags/downloads.py:55
+#: weblate_web/templatetags/downloads.py:54
 msgid "Sources tarball, bzip2 compressed"
-msgstr "المصادر تار، مضغوطة بصيغة bzip2"
+msgstr "مصادر تار، مضغوطة بصيغة bzip2"
 
-#: weblate_web/templatetags/downloads.py:57
+#: weblate_web/templatetags/downloads.py:56
 msgid "Sources tarball, gzip compressed"
 msgstr "المصادر تار، مضغوطة بصيغة gzip"
 
-#: weblate_web/templatetags/downloads.py:59
+#: weblate_web/templatetags/downloads.py:58
 msgid "Sources tarball, xz compressed"
 msgstr "المصادر تار، مضغوطة بـ xz"
 
-#: weblate_web/templatetags/downloads.py:61
+#: weblate_web/templatetags/downloads.py:60
 msgid "Sources, zip compressed"
 msgstr "المصادر، مضغوطة بصيغة Zip"
+
+#: weblate_web/views.py:89
+msgid "Please provide your billing information to complete the payment."
+msgstr "يرجى تقديم معلومات الفوترة الخاصة بك لإكمال الدفع."
+
+#: weblate_web/views.py:100
+msgid "The VAT ID is no longer valid, please update it."
+msgstr "معرّف ضريبة القيمة المضافة لم يعد صالحا، يرجى تحديثه."
+
+#: weblate_web/views.py:260
+msgid "Payment not yet processed, please retry."
+msgstr "لم يتم بعد معالجة المبلغ المدفوع، يرجى إعادة المحاولة."
+
+#: weblate_web/views.py:265
+msgid "The payment was rejected: {}"
+msgstr "رُفض الدفع: {}"
+
+#: weblate_web/views.py:266
+msgid "Unknown reason"
+msgstr "سبب مجهول"
+
+#: weblate_web/views.py:270
+msgid "Thank you for your donation."
+msgstr "شكرا لكم على تبرعكم."
+
+#~ msgid "Tour"
+#~ msgstr "جولة"
+
+#~ msgid "Try the live demo server"
+#~ msgstr "جرِّب الخادم التجريبي"
+
+#~ msgid "Weblate tour"
+#~ msgstr "تعرّف على Weblate"
+
+#~ msgid "Try our demo"
+#~ msgstr "تجربة خدمتنا"
+
+#~ msgid "Weblate is easy to deploy as an appliance."
+#~ msgstr "Weblate سهل في التنزيل والتطبيق على هيئة أداة."
+
+#~ msgid "Appliances"
+#~ msgstr "الأداة"
+
+#~ msgid ""
+#~ "Check out the <a href=\"%(download_url)s\">download page</a> for "
+#~ "appliances, providing an easy way to deploy Weblate in the cloud."
+#~ msgstr ""
+#~ "تحقق من <a href=\"%(download_url)s\"> صفحة التنزيل</a> من أجل التطبيق، "
+#~ "يوفر طريقة سهلة لتطبيق Weblate على الخدمة السحابية."
+
+#~ msgid "Weblate is a free web-based translation management system."
+#~ msgstr "Weblate نظام حر لإدارة الترجمة عبر الويب."
+
+#~ msgid "Ready for cloud"
+#~ msgstr "جاهز للرفع على السحابة"
+
+#~ msgid ""
+#~ "Weblate is an open source web-based translation management system "
+#~ "supporting continuous translation."
+#~ msgstr ""
+#~ "Weblate هي منصة ويب مفتوحة المصدر ونظام لإدارة الترجمة لدعم الترجمة "
+#~ "المستمرة."
+
+#~ msgid "This website is stored on <a href=\"%(url)s\">GitHub</a> as well:"
+#~ msgstr "موقع الإنترنت هذا مخزون على <a href=\"%(url)s\">GitHub</a> أيضاً:"
+
+#~ msgid "Donate using Liberapay"
+#~ msgstr "تبرع عبر Liberapay"
+
+#~ msgid ""
+#~ "Host your commercial translations on <a href=\"%(hosting_url)s\">Hosted "
+#~ "Weblate</a> and you will be supporting Weblate development automatically."
+#~ msgstr ""
+#~ "استضف ترجماتك التجارية على  <a href=\"%(hosting_url)s\">Hosted Weblate</"
+#~ "a>وهكذا أنت سوف تدعم تطوير Weblate تلقائياً."
+
+#~ msgid "Fund on Bountysource"
+#~ msgstr "تمويل عبر Bountysource"
+
+#~ msgid ""
+#~ "You can send a monthly donation using a credit card. You can also get "
+#~ "rewards for higher donations, for example a logo placement on our website."
+#~ msgstr ""
+#~ "بإمكانكم التبرع لنا بمبلغ شهري مقتطع، وكتقدير منا لكرمكم سنرد الجميل "
+#~ "بهدايا تعبر عن امتنانا، كأن نضع إعلاناً لموقعكم على صفحاتنا."
+
+#~ msgid ""
+#~ "Liberapay is a recurrent donations platform where you send weekly amount "
+#~ "to fund projects you use. You can use credit card, bank transfer or "
+#~ "direct debit to top up the account."
+#~ msgstr ""
+#~ "Liberapay هو عبارة عن منصة تبرعات متكررة حيث ترسل مبلغًا أسبوعيًا لتمويل "
+#~ "المشاريع التي تستخدمها. يمكنك استخدام بطاقة الائتمان أو التحويل المصرفي "
+#~ "أو الخصم المباشر لتعبئة الحساب."
+
+#~ msgid "Fund features"
+#~ msgstr "تمويل مميزات محددة"
+
+#~ msgid ""
+#~ "Bountysource allows you to fund individual features reported on our issue "
+#~ "tracker."
+#~ msgstr ""
+#~ "يسمح لكم BountySource بتمويل ميزات محددة تطلبونها أنتم أو ترغبون بإعطائها "
+#~ "المزيد من الأولوية في أولويات التطوير."
+
+#~ msgid ""
+#~ "If you like Weblate you can support its further development by donating."
+#~ msgstr "إذا أعجبك Weblate يمكنك رعايته ودفع عملية تطويره من خلال التبرع له."
+
+#~ msgid "Donate using PayPal"
+#~ msgstr "التبرع عبر خدمة PayPal"
+
+#~ msgid ""
+#~ "PayPal allows you to send money from credit card, PayPal balance or a "
+#~ "bank account."
+#~ msgstr ""
+#~ "PayPal خدمة دفع مالي عبر الإنترنت تمكنك من التبرع بإستخدام بطاقة اعتماد "
+#~ "او حساب بنكي."
+
+#~ msgid "Monthly by PayPal"
+#~ msgstr "شهرياً عبر خدمة PayPal"
+
+#~ msgid "Ask us for yearly invoicing with discount."
+#~ msgstr "اسئلنا عن الفاتورة السنوية مع التخفيض."
+
+#~ msgid ""
+#~ "The hosting setup is currently done manually, so you might want to get in "
+#~ "touch with us prior to making subscription with your project details."
+#~ msgstr ""
+#~ "تثبيت الاستضافة حالياً يدوي، ربما تود التواصل معنا لكي تنشئ اشتراكًا مع "
+#~ "تفاصيل مشروعك."
+
+#, fuzzy
+#~| msgid "Weblate is free software, you can run your own instance of it."
+#~ msgid "Weblate is free software and you can run it on your systems."
+#~ msgstr "Weblate برنامج حر و يُمكنك تنصيبه على مثيل خادومك."
+
+#~ msgid ""
+#~ "You can also <a href=\"%(download_url)s\">download</a> Weblate sources "
+#~ "and run it on your systems. There are also several options for deploying "
+#~ "Weblate to the cloud."
+#~ msgstr ""
+#~ "يمكنك أيضاً <a href=\"%(download_url)s\">تنزيل</a> الكود المصدري لـWeblate "
+#~ "وتشغيلة علي أنظمتك. هناك أيضاً بعض الإعدادات من أجل تطبيق Weblate على "
+#~ "الخدمة السحابية."
+
+#~ msgid "Either installation directly on your system"
+#~ msgstr "أو التنصيب المباشر على نظامكم"
+
+#~ msgid "Toggle navigation"
+#~ msgstr "تبديل التصفح"
+
+#~ msgid ""
+#~ "Weblate is <a href=\"%(github_url)s\">free software</a> and welcomes <a "
+#~ "href=\"%(donate_url)s\">donations</a>."
+#~ msgstr ""
+#~ "Weblate منظومة برمجيّة  <a href=\"%(github_url)s\">حرة</a>، و جميع  <a "
+#~ "href=\"%(donate_url)s\">التبرّعات</a> مُرحب بها."
+
+#~ msgid "Consulting"
+#~ msgstr "استشارات"
+
+#~ msgid "See our support offerings for self hosted Weblate instances"
+#~ msgstr "شاهد عروضنا لتقديم استشارات عن الاستضافة الذاتية"
+
+#~ msgid ""
+#~ "You can also contact <a href=\"%(contact_link)s\">Michal Čihař</a>, who "
+#~ "is author of Weblate for consulting services."
+#~ msgstr ""
+#~ "يمكنك أيضاً التواصل مع <a href=\"%(contact_link)s\"> Michal Čihař </a> "
+#~ "مالك Weblate من أجل خدمات الاستشارة."
+
+#~ msgid ""
+#~ "Rollbar helps us to collect and fix errors happening on Hosted Weblate."
+#~ msgstr ""
+#~ "Rollbar يساعدنا على تجميع وإصلاح الأخطاء الحاصلة في استضافة Weblate."
+
+#~ msgid "Free continuous translation hosting for free software."
+#~ msgstr "استضافة ترجمة مجانية مستمرة للبرامج الحرة."
 
 #~ msgid "Liberapay allows you to send a weekly amount using a credit card."
 #~ msgstr ""
@@ -1486,9 +1897,6 @@ msgstr "المصادر، مضغوطة بصيغة Zip"
 
 #~ msgid "Translation processing"
 #~ msgstr "معالجة الترجمة"
-
-#~ msgid "Phone support"
-#~ msgstr "الدعم عبر الهاتف"
 
 #~ msgid "Minimal support for self hosted Weblate"
 #~ msgstr "الدعم الأدنى للاستضافة الذاتية لـWeblate"

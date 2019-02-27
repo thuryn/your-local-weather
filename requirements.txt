@@ -1,2 +1,7 @@
-Django>=1.8,<2.0
-rollbar
+Django>=1.11
+sentry_sdk
+fakturace
+wlhosted
+Weblate
+django-crispy-forms>=1.7.1
+django-simple-sso

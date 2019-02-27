@@ -1,15 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# farkasg.zoltan <farkasg.zoltan@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2018-05-21 13:24+0200\n"
-"PO-Revision-Date: 2018-01-11 14:36+0000\n"
-"Last-Translator: Balázs Úr <urbalazs@gmail.com>\n"
+"POT-Creation-Date: 2019-02-14 13:40+0100\n"
+"PO-Revision-Date: 2019-02-05 07:13+0000\n"
+"Last-Translator: farkasg.zoltan <farkasg.zoltan@gmail.com>\n"
 "Language-Team: Hungarian <https://hosted.weblate.org/projects/weblate/"
 "website/hu/>\n"
 "Language: hu\n"
@@ -17,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2.19-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: weblate_web/data.py:33
 msgid "Overview of own translations at main page."
@@ -61,7 +60,7 @@ msgstr ""
 msgid "Glossary"
 msgstr "Szójegyzék"
 
-#: weblate_web/data.py:63 weblate_web/templates/base-features.html:15
+#: weblate_web/data.py:63
 msgid ""
 "Customizable quality checks will help you in improving quality of "
 "translations."
@@ -82,16 +81,77 @@ msgstr ""
 msgid "Promotion"
 msgstr "Híresztelés"
 
+#: weblate_web/data.py:79
+msgid "Translation workflow can be customized by using addons."
+msgstr ""
+
+#: weblate_web/data.py:81
+msgid "Addons"
+msgstr "Bővítmények"
+
+#: weblate_web/data.py:86
+msgid ""
+"Automatic translation can be used to bootstrap your translations using "
+"machine translation services or translation memory."
+msgstr ""
+
+#: weblate_web/data.py:89
+msgid "Automatic translation"
+msgstr "Automatikus fordítás"
+
+#: weblate_web/data.py:94
+msgid ""
+"Translations can be exported and imported in many widely used file formats."
+msgstr ""
+
+#: weblate_web/data.py:97 weblate_web/templates/features.html:87
+msgid "Export and import"
+msgstr "Import/export"
+
+#: weblate_web/data.py:101
+msgid "You can define access levels for every user."
+msgstr ""
+
+#: weblate_web/data.py:102 weblate_web/templates/hosting-free.html:45
+#: weblate_web/templates/hosting.html:105
+msgid "User management"
+msgstr "Felhasználók kezelése"
+
+#: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
+#: weblate_web/templates/donate/form.html:25
+#, fuzzy
+#| msgid "Donate"
+msgid "Donation recurrence"
+msgstr "Támogasson minket"
+
+#: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
+#: weblate_web/templates/donate/form.html:26
+msgid "Amount in EUR"
+msgstr "Összeg EUR-ban"
+
+#: weblate_web/forms.py:57
+#, python-format
+msgid "The minimal amount is %d EUR."
+msgstr "A minimális összeg %d EUR."
+
+#: weblate_web/models.py:76
+msgid "Link text"
+msgstr ""
+
+#: weblate_web/models.py:80
+msgid "Link URL"
+msgstr ""
+
 #: weblate_web/templates/404.html:4
 msgid "Page not found"
 msgstr "Az oldal nem található"
 
-#: weblate_web/templates/404.html:8 weblate_web/templates/500.html:8
-#: weblate_web/templates/index.html:7
-msgid "Weblate is a free web-based translation management system."
+#: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
+#: weblate_web/templates/index.html:6
+msgid "Weblate is a libre software web-based continuous localization system."
 msgstr "A Weblate egy ingyenes webes fordításkezelő rendszer."
 
-#: weblate_web/templates/404.html:15
+#: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
 msgstr "Az Ön által keresett oldal nem található."
 
@@ -99,7 +159,7 @@ msgstr "Az Ön által keresett oldal nem található."
 msgid "Server error"
 msgstr "Szerverhiba"
 
-#: weblate_web/templates/500.html:15
+#: weblate_web/templates/500.html:13
 msgid ""
 "The server had serious problems while serving your request. We've just sent "
 "our trained monkeys to fix the issue."
@@ -109,124 +169,138 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-msgid "Continuous translation"
+#, fuzzy
+#| msgid "Continuous translation"
+msgid "Continuous localization"
 msgstr "Folyamatos fordítás"
 
 #: weblate_web/templates/base-features.html:7
+#, fuzzy
+#| msgid ""
+#| "Automated translation process can closely follow development of your "
+#| "project."
 msgid ""
-"Automated translation process can closely follow development of your project."
+"Automated localization workflow closely follows the development of your "
+"project."
 msgstr ""
 "Az automatikus fordítási folyamat kis késleltetéssel tudja követni az Ön "
 "projektjének fejlődését."
+
+#: weblate_web/templates/base-features.html:15
+#, fuzzy
+#| msgid ""
+#| "Customizable quality checks will help you in improving quality of "
+#| "translations."
+msgid "Customizable quality checks helps improve translation quality."
+msgstr "A testre szabható minőségellenőrzés javítja a fordítások minőségét."
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
 msgstr "Készítő megnevezése"
 
 #: weblate_web/templates/base-features.html:23
-msgid ""
-"All your translators will be properly credited in the version control system."
+#, fuzzy
+#| msgid ""
+#| "All your translators will be properly credited in the version control "
+#| "system."
+msgid "All translators are properly credited in the version control system."
 msgstr "Minden fordító neve szerepel a verziókezelő rendszerben."
 
 #: weblate_web/templates/base-features.html:30
-#: weblate_web/templates/hosting.html:17
+#: weblate_web/templates/hosting.html:18
 msgid "Hosting plans"
 msgstr "Tárhely tervek"
 
 #: weblate_web/templates/base-features.html:31
-msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
+msgid "Hosting plans for Weblate as a service starting at 19 EUR."
 msgstr ""
 
 #: weblate_web/templates/base-features.html:38
-msgid "Ready for cloud"
-msgstr "Felhőkörnyezet támogatása"
+msgid "Cloud ready"
+msgstr "Felhő kész"
 
 #: weblate_web/templates/base-features.html:39
-msgid "Weblate comes with appliances, which are ready to deploy in your cloud."
+#, fuzzy
+#| msgid ""
+#| "Weblate comes with appliances, which are ready to deploy in your cloud."
+msgid "Weblate comes with appliances, ready to deploy in your cloud."
 msgstr ""
 "A Weblate letölthető appliance-ként, ami könnyen üzembe helyezhető az Ön "
 "felhő környezetében."
 
 #: weblate_web/templates/base-features.html:46
-msgid "Free software"
+#, fuzzy
+#| msgid "Free software"
+msgid "Libre software"
 msgstr "Ingyenes szoftver"
 
 #: weblate_web/templates/base-features.html:47
-msgid "Weblate is free software, you can run your own instance of it."
-msgstr "A Weblate ingyenes szoftver, saját példányt futtathat belőle."
+msgid ""
+"Weblate is copylefted; use, see, modify and share at will, and with everyone."
+msgstr ""
 
-#: weblate_web/templates/base.html:12
+#: weblate_web/templates/base.html:11
 msgctxt "Keyword"
 msgid "translate"
 msgstr "fordítás"
 
-#: weblate_web/templates/base.html:66
-msgid "Toggle navigation"
-msgstr "Navigáció ki- vagy bekapcsolása"
-
-#: weblate_web/templates/base.html:72
+#: weblate_web/templates/base.html:49
 msgid "Weblate logo"
 msgstr "Weblate logo"
 
-#: weblate_web/templates/base.html:78
-msgid "Blog"
-msgstr "Blog"
-
-#: weblate_web/templates/base.html:79
+#: weblate_web/templates/base.html:57
 msgid "Try"
 msgstr "Kipróbálás"
 
-#: weblate_web/templates/base.html:80
+#: weblate_web/templates/base.html:58
 msgid "Features"
 msgstr "Jellemzők"
 
-#: weblate_web/templates/base.html:81
-msgid "Docs"
-msgstr "Dokumentáció"
-
-#: weblate_web/templates/base.html:82 weblate_web/templates/download.html:17
+#: weblate_web/templates/base.html:59 weblate_web/templates/download.html:18
+#: weblate_web/templates/index.html:150
 msgid "Download"
 msgstr "Letöltés"
 
-#: weblate_web/templates/base.html:83
-msgid "Hosting"
-msgstr "Elhelyezés"
+#: weblate_web/templates/base.html:60
+msgid "Pricing"
+msgstr "Árak"
 
-#: weblate_web/templates/base.html:84
+#: weblate_web/templates/base.html:61
 msgid "Develop"
 msgstr "Fejlesztés"
 
-#: weblate_web/templates/base.html:85 weblate_web/templates/donate.html:61
-#: weblate_web/templates/donate.html:91 weblate_web/templates/donate.html:92
-#: weblate_web/templates/donate.html:93 weblate_web/templates/donate.html:94
-#: weblate_web/templates/donate.html:95 weblate_web/templates/donate.html:96
+#: weblate_web/templates/base.html:62 weblate_web/templates/donate.html:110
+#: weblate_web/templates/donate.html:122 weblate_web/templates/donate.html:157
 msgid "Donate"
 msgstr "Támogasson minket"
 
-#: weblate_web/templates/base.html:86
+#: weblate_web/templates/base.html:63
 msgid "Support"
 msgstr "Technikai támogatás"
 
-#: weblate_web/templates/base.html:87
-msgid "Tour"
-msgstr "Bemutató"
-
-#: weblate_web/templates/base.html:88
+#: weblate_web/templates/base.html:64
 msgid "Thanks"
 msgstr "Köszönet"
 
-#: weblate_web/templates/base.html:103
+#: weblate_web/templates/base.html:65
+msgid "Blog"
+msgstr "Blog"
+
+#: weblate_web/templates/base.html:66
+msgid "Docs"
+msgstr "Dokumentáció"
+
+#: weblate_web/templates/base.html:67
+msgid "Hosting"
+msgstr "Elhelyezés"
+
+#: weblate_web/templates/base.html:79
 msgid "Help with translations!"
 msgstr "Segíts a fordításban!"
 
-#: weblate_web/templates/base.html:140
-#, python-format
-msgid ""
-"Weblate is <a href=\"%(github_url)s\">free software</a> and welcomes <a href="
-"\"%(donate_url)s\">donations</a>."
-msgstr ""
-"A Weblate <a href=\"%(github_url)s\">ingyenes szoftver</a>, de köszönettel "
-"fogadunk minden <a href=\"%(donate_url)s\">támogatást</a>."
+#: weblate_web/templates/base.html:123 weblate_web/templates/terms.html:4
+msgid "Terms of Service and Privacy Policy"
+msgstr "Felhasználási feltételek és adatvédelem"
 
 #: weblate_web/templates/contribute.html:3
 #: weblate_web/templates/contribute.html:4
@@ -243,7 +317,7 @@ msgid "View sources"
 msgstr "Forrás megtekintése"
 
 #: weblate_web/templates/contribute.html:11
-#: weblate_web/templates/contribute.html:38
+#: weblate_web/templates/contribute.html:34
 msgid "Translate"
 msgstr "Fordítás"
 
@@ -257,7 +331,7 @@ msgstr ""
 "docs.weblate.org/en/latest/contributing.html\">Közreműködés fejezetében</a>."
 
 #: weblate_web/templates/contribute.html:20
-#: weblate_web/templates/download.html:69
+#: weblate_web/templates/download.html:63
 msgid "Code"
 msgstr "Kód"
 
@@ -271,11 +345,18 @@ msgstr ""
 "forkolhatja ott vagy egyszerűen:"
 
 #: weblate_web/templates/contribute.html:31
-#, python-format
-msgid "This website is stored on <a href=\"%(url)s\">GitHub</a> as well:"
-msgstr "Ez a weboldal is <a href=\"%(url)s\">GitHub</a>-on fut:"
+#, fuzzy, python-format
+#| msgid ""
+#| "You can also ask related questions on <a href=\"%(url)s\">Stack Overflow</"
+#| "a>."
+msgid ""
+"You can find more repositories related to Weblate on <a href=\"%(url)s"
+"\">GitHub</a>"
+msgstr ""
+"A kapcsolódó kérdéseit felteheti a <a href=\"%(url)s\">Stack Overflow</a> "
+"oldalon is."
 
-#: weblate_web/templates/contribute.html:41
+#: weblate_web/templates/contribute.html:37
 msgid ""
 "You can translate Weblate at <a href=\"https://hosted.weblate.org/engage/"
 "weblate/\">hosted.weblate.org</a>."
@@ -283,122 +364,234 @@ msgstr ""
 "Lefordíthatja a Weblate programot a <a href=\"https://hosted.weblate.org/"
 "engage/weblate/\">hosted.weblate.org</a> oldalon."
 
-#: weblate_web/templates/contribute.html:46
+#: weblate_web/templates/contribute.html:42
 msgid "Translation status"
 msgstr "Fordítás állapota"
 
 #: weblate_web/templates/donate.html:3 weblate_web/templates/donate.html:4
+#: weblate_web/templates/donate/edit.html:4
+#: weblate_web/templates/donate/edit.html:5
+#: weblate_web/templates/donate/form.html:4
+#: weblate_web/templates/donate/form.html:5
+#: weblate_web/templates/thanks.html:10
 msgid "Donate to Weblate"
 msgstr "Támogassa a Weblate-et"
 
-#: weblate_web/templates/donate.html:6
-msgid "Weblate is free, but welcomes donations."
+#: weblate_web/templates/donate.html:6 weblate_web/templates/donate/edit.html:7
+#: weblate_web/templates/donate/form.html:7
+#, fuzzy
+#| msgid "Weblate is free, but welcomes donations."
+msgid "Weblate is provided free of charge, and welcomes donations."
 msgstr "A Weblate ingyenes, de köszönettel fogadunk el anyagi támogatást."
 
-#: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:43
-msgid "Donate using Liberapay"
-msgstr "Támogatás Liberapay segítségével"
+#: weblate_web/templates/donate.html:11 weblate_web/templates/donate.html:134
+msgid "Purchase hosting package"
+msgstr "Tárhely csomag vásárlása"
 
-#: weblate_web/templates/donate.html:18
-msgid "Use our hosting"
+#: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:135
+#: weblate_web/templates/download.html:13 weblate_web/templates/hosting.html:12
+#: weblate_web/templates/hosting.html:233
+#, fuzzy
+#| msgid "Support for Hosted Weblate services"
+msgid "Get support for Weblate"
+msgstr "Támogatás a Hosted Weblate szolgáltatásokhoz"
+
+#: weblate_web/templates/donate.html:19
+msgid "Sign in to manage your donations"
 msgstr ""
 
-#: weblate_web/templates/donate.html:22
-#, python-format
-msgid ""
-"Host your commercial translations on <a href=\"%(hosting_url)s\">Hosted "
-"Weblate</a> and you will be supporting Weblate development automatically."
-msgstr ""
+#: weblate_web/templates/donate.html:21
+msgid "Sign out"
+msgstr "Kijelentkezés"
 
-#: weblate_web/templates/donate.html:25
-msgid "Regular donations"
+#: weblate_web/templates/donate.html:24
+#, fuzzy
+#| msgid "Regular donations"
+msgid "Your donations"
 msgstr "Rendszeres felajánlások"
 
-#: weblate_web/templates/donate.html:28
+#: weblate_web/templates/donate.html:29
+#, fuzzy
+#| msgid "Collaboration sites"
+msgid "Creation date"
+msgstr "Együttműködési oldalak"
+
+#: weblate_web/templates/donate.html:30
+msgid "Reward"
+msgstr "Jutalom"
+
+#: weblate_web/templates/donate.html:31
+msgid "Expiry date"
+msgstr "Lejárati idő"
+
+#: weblate_web/templates/donate.html:32
+msgid "Renewal"
+msgstr "Megújítása"
+
+#: weblate_web/templates/donate.html:33
+msgid "Payments"
+msgstr "Kifizetések"
+
+#: weblate_web/templates/donate.html:43
+#: weblate_web/templates/payment/payment.html:37
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: weblate_web/templates/donate.html:45
+msgid "No reward"
+msgstr "Nincs jutalom"
+
+#: weblate_web/templates/donate.html:53
+msgid "Expired"
+msgstr "Lejárt"
+
+#: weblate_web/templates/donate.html:57
+msgid "Disable renewal"
+msgstr "Tiltsa le a megújítást"
+
+#: weblate_web/templates/donate.html:60
+msgid "Does not renew"
+msgstr "Nem hosszabbít"
+
+#: weblate_web/templates/donate.html:92
+#, fuzzy
+#| msgid "Documentation"
+msgid "Donations"
+msgstr "Dokumentáció"
+
+#: weblate_web/templates/donate.html:95
+#, fuzzy
+#| msgid ""
+#| "Regular donations allow sustainability of Weblate development and help to "
+#| "fund free hosting for free software. You don't have to spend big money, "
+#| "every penny counts."
 msgid ""
-"Regular donations allow sustainability of Weblate development and help to "
-"fund free hosting for free software. You don't have to spend big money, "
-"every penny counts."
+"Recurring donations facilitate sustainable Weblate development, even the "
+"smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
 "A rendszeres felajánlások lehetővé teszik a Weblate fejlesztésének "
 "fenntarthatóságát és segítenek fenntartani az ingyenes szoftverek ingyenes "
 "eltárolását is. Nem kell sokat adnia, minden egyes forint sokat jelent."
 
-#: weblate_web/templates/donate.html:33 weblate_web/templates/donate.html:54
-#: weblate_web/templates/thanks.html:12
-msgid "Fund on Bountysource"
-msgstr "Támogatás Bountysource-on"
+#: weblate_web/templates/donate.html:103
+#, fuzzy
+#| msgid "Regular donations"
+msgid "Recurring donation"
+msgstr "Rendszeres felajánlások"
 
-#: weblate_web/templates/donate.html:37
+#: weblate_web/templates/donate.html:106
 msgid ""
-"You can send a monthly donation using a credit card. You can also get "
-"rewards for higher donations, for example a logo placement on our website."
-msgstr ""
-"Küldhet havi támogatást hitelkártyával. Elismerést is kaphat nagyobb "
-"támogatásért, például logóelhelyezést a weboldalunkon."
-
-#: weblate_web/templates/donate.html:47
-msgid ""
-"Liberapay is a recurrent donations platform where you send weekly amount to "
-"fund projects you use. You can use credit card, bank transfer or direct "
-"debit to top up the account."
+"Repeated appreciation of the Weblate project helps in keeping the project "
+"sustainable long term."
 msgstr ""
 
-#: weblate_web/templates/donate.html:50
-msgid "Fund features"
-msgstr "Funkciók pénzelése"
-
-#: weblate_web/templates/donate.html:58
+#: weblate_web/templates/donate.html:107
 msgid ""
-"Bountysource allows you to fund individual features which are reported on "
-"our issue tracker."
+"Please consider this if you are hosting Weblate yourself without a support "
+"contract."
 msgstr ""
-"A Bountysource lehetővé teszi a hibakezelőnkbe bejelentett egyes "
-"funkcióigények támogatását."
 
-#: weblate_web/templates/donate.html:64
+#: weblate_web/templates/donate.html:116
+#, fuzzy
+#| msgid "View documentation"
+msgid "One time donation"
+msgstr "Dokumentáció megtekintése"
+
+#: weblate_web/templates/donate.html:119
 msgid ""
-"If you like Weblate you can support its further development by donating."
+"One time donations are great for appreciating our work on single issue or "
+"support."
 msgstr ""
-"Ha tetszik a Weblate, támogathatja a további fejlesztést anyagi "
-"felajánlással."
 
-#: weblate_web/templates/donate.html:72
-msgid "Donate using PayPal"
-msgstr "Adományozás PayPal segítségével"
+#: weblate_web/templates/donate.html:128
+#, fuzzy
+#| msgid "Service"
+msgid "Use our services"
+msgstr "Szolgáltatás"
 
-#: weblate_web/templates/donate.html:77
+#: weblate_web/templates/donate.html:131
 msgid ""
-"PayPal allows you to send money from credit card, PayPal balance or a bank "
-"account."
+"Commercial services like hosting or support for self hosted installation "
+"help fund Weblate development."
 msgstr ""
-"A PayPal segítségével hitelkártyáról, PayPal számláról és bankszámláról tud "
-"pénzt küldeni."
 
-#: weblate_web/templates/donate.html:80
+#: weblate_web/templates/donate.html:142
+#, fuzzy
+#| msgid "Donate"
+msgid "Donation rewards"
+msgstr "Támogasson minket"
+
+#: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
-msgstr ""
+msgstr "Kriptovaluták"
 
-#: weblate_web/templates/donate.html:83
+#: weblate_web/templates/donate.html:166
 #, python-format
 msgid ""
 "Thanks to <a href=\"%(url)s\">Trezor</a>, we will gladly accept donations in "
 "several cryptocurrencies. You can use the addresses in table below."
 msgstr ""
 
-#: weblate_web/templates/donate.html:88
+#: weblate_web/templates/donate.html:171
 msgid "Currency"
+msgstr "Pénznem"
+
+#: weblate_web/templates/donate.html:171
+#, fuzzy
+#| msgid "Donate"
+msgid "Donation address"
+msgstr "Támogasson minket"
+
+#: weblate_web/templates/donate/edit.html:12
+#: weblate_web/templates/donate/form.html:13
+msgid "Please choose wanted reward or enter custom donation amount."
 msgstr ""
 
-#: weblate_web/templates/donate.html:88
-msgid "Payment link"
+#: weblate_web/templates/donate/edit.html:20
+msgid "Edit your reward link"
 msgstr ""
 
-#: weblate_web/templates/donate.html:88
-msgid "Payment address"
+#: weblate_web/templates/donate/edit.html:26
+#: weblate_web/templates/payment/customer.html:21
+msgid "Save"
+msgstr "Mentés"
+
+#: weblate_web/templates/donate/form.html:33
+msgid "Select"
 msgstr ""
+
+#: weblate_web/templates/donate/form.html:41
+msgid ""
+"We might refuse to place your link, especially if the site contains adult or "
+"illegal content. Please consult us in advance if unsure."
+msgstr ""
+
+#: weblate_web/templates/donate/form.html:50
+msgid "Choose your own donation amount"
+msgstr "Válassza ki a saját adomány összegét"
+
+#: weblate_web/templates/donate/form.html:56
+msgid "Continue"
+msgstr "Tovább"
+
+#: weblate_web/templates/donate/rewards.html:2
+msgid "Link placement on the weblate.org thanks page"
+msgstr ""
+
+#: weblate_web/templates/donate/rewards.html:3
+msgid "Link placement in the list of supporters"
+msgstr ""
+
+#: weblate_web/templates/donate/rewards.html:4
+msgid "Name placement in the list of supporters"
+msgstr ""
+
+#: weblate_web/templates/download-link.html:4
+msgid "PGP signature"
+msgstr "PGP aláírás"
 
 #: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
+#: weblate_web/templates/hosting.html:234
 msgid "Download Weblate"
 msgstr "Weblate letöltése"
 
@@ -406,20 +599,16 @@ msgstr "Weblate letöltése"
 msgid "Weblate comes with complete source code."
 msgstr "A Weblate-hez teljeskörű forráskód tartozik."
 
-#: weblate_web/templates/download.html:20
+#: weblate_web/templates/download.html:21
 msgid "You can download latest release here:"
 msgstr "A legutóbbi kiadás innen tölthető le:"
 
-#: weblate_web/templates/download.html:29
-#: weblate_web/templates/download.html:45
-msgid "You can also install using packages for following Linux distributions:"
-msgstr "Csomagokkal is telepíthet a következő Linux-disztribúciókon:"
-
-#: weblate_web/templates/download.html:35
+#: weblate_web/templates/download.html:30
+#: weblate_web/templates/download.html:73
 msgid "Weblate command line client"
 msgstr "Weblate parancssori kliens"
 
-#: weblate_web/templates/download.html:38
+#: weblate_web/templates/download.html:33
 #, python-format
 msgid ""
 "You can control Weblate remotely using <a href=\"%(url)s\">wlc</a>, it can "
@@ -428,11 +617,15 @@ msgstr ""
 "Irányíthatja a Weblate-et távolról a <a href=\"%(url)s\">wlc</a>-vel, a "
 "Python PIP segítségével telepíthető:"
 
-#: weblate_web/templates/download.html:53
+#: weblate_web/templates/download.html:40
+msgid "You can also install using packages for following Linux distributions:"
+msgstr "Csomagokkal is telepíthet a következő Linux-disztribúciókon:"
+
+#: weblate_web/templates/download.html:47
 msgid "Cloud or virtualization images"
 msgstr "Rendszerkép felhőhöz vagy virtualizációhoz"
 
-#: weblate_web/templates/download.html:55
+#: weblate_web/templates/download.html:49
 msgid ""
 "Weblate can be run in any cloud or virtualization environment. Following "
 "links will show you information about some of these:"
@@ -440,21 +633,21 @@ msgstr ""
 "A Weblate bármilyen felhő- vagy virtualizációs környezetben futtatható. A "
 "következő linkeken további információkat találhat néhányról:"
 
-#: weblate_web/templates/download.html:58
+#: weblate_web/templates/download.html:52
 msgid "Running Weblate in a Docker container"
 msgstr "A Weblate futtatása Docker konténerben"
 
-#: weblate_web/templates/download.html:59
+#: weblate_web/templates/download.html:53
 msgid "Running Weblate on OpenShift platform"
 msgstr "A Weblate futtatása OpenShift platformon"
 
-#: weblate_web/templates/download.html:60
+#: weblate_web/templates/download.html:54
 msgid ""
 "BitNami Weblate stack providing native installation for most platforms as "
 "well as support for many public cloud providers"
 msgstr ""
 
-#: weblate_web/templates/download.html:72
+#: weblate_web/templates/download.html:66
 msgid ""
 "Weblate is being developed on <a href=\"https://github.com/WeblateOrg/weblate"
 "\">GitHub</a>, you can fork it there or just:"
@@ -507,11 +700,11 @@ msgstr "Fájlformátumok"
 
 #: weblate_web/templates/features.html:48
 msgid ""
-"Weblate supports all widely used file formats for localisation like Gettext, "
-"JSON, XLIFF or resource strings."
+"Weblate supports all widely used file formats for localization, like "
+"gettext, JSON, XLIFF or resource strings."
 msgstr ""
 "A Weblate minden széles körben elterjedt fájlformátumot támogat, mind "
-"például a Gettext, JSON, XLIFF vagy erőforrás szövegek."
+"például a gettext, JSON, XLIFF vagy erőforrás szövegek."
 
 #: weblate_web/templates/features.html:55
 msgid "Branches support"
@@ -536,10 +729,6 @@ msgid ""
 msgstr ""
 "A Weblate visszajelzések fogadására is használható a forrásszövegek kapcsán, "
 "ami ezek fejlődését  segíti."
-
-#: weblate_web/templates/features.html:87
-msgid "Export and import"
-msgstr "Import/export"
 
 #: weblate_web/templates/features.html:88
 msgid "Translations can be downloaded for offline translation and merged back."
@@ -635,6 +824,159 @@ msgstr ""
 "A Weblate alkalmazkodó felülettel rendelkezik, amely szépen működik asztali "
 "számítógépen, táblagépen vagy telefonon."
 
+#: weblate_web/templates/hosting-free.html:3
+#: weblate_web/templates/hosting-free.html:4
+#, fuzzy
+#| msgid "Hosting Weblate"
+msgid "Free hosting on Weblate"
+msgstr "Hosting Weblate"
+
+#: weblate_web/templates/hosting-free.html:6
+msgid "We love open source and we offer free plans for hosting translations."
+msgstr ""
+
+#: weblate_web/templates/hosting-free.html:11
+msgid "Ask for hosting"
+msgstr "Elhelyezés kérelmezése"
+
+#: weblate_web/templates/hosting-free.html:18
+msgid "Hosting for free software"
+msgstr "Hosting ingyenes szoftverekhez"
+
+#: weblate_web/templates/hosting-free.html:21
+msgid ""
+"If you are interested in using Weblate for your free software, you can ask "
+"us for hosting of your translations on <a href=\"https://hosted.weblate.org/"
+"\">hosted.weblate.org</a>. This will allow you to use Weblate without "
+"installing and maintaining it."
+msgstr ""
+"Ha szeretné ingyenes szoftveréhez használni a Weblate-et, kérheti annak "
+"felvételét a <a href=\"https://hosted.weblate.org/\">hosted.weblate.org</a> "
+"oldalra. Ezzel úgy használhatja a Weblate-et, hogy nem kell telepítenie és "
+"fenntartania."
+
+#: weblate_web/templates/hosting-free.html:24
+msgid "Conditions for free hosting"
+msgstr "Az ingyenes elhelyezés feltételei"
+
+#: weblate_web/templates/hosting-free.html:27
+msgid ""
+"Translated content has to be released under <a href=\"https://en.wikipedia."
+"org/wiki/Free_software_license\">free license</a>."
+msgstr ""
+"A lefordított tartalmat a <a href=\"https://en.wikipedia.org/wiki/"
+"Free_software_license\">szabad licenc</a> alatt kell kiadni."
+
+#: weblate_web/templates/hosting-free.html:28
+msgid ""
+"Source code has to be publicly available in a supported version control "
+"system."
+msgstr ""
+"A forráskódnak szabadon elérhetőnek kell lennie támogatott verziókövető "
+"rendszerben."
+
+#: weblate_web/templates/hosting-free.html:29
+msgid "There is no guarantee for service availability or quality."
+msgstr "Nincs garantált rendelkezésre állás vagy szolgáltatási szint."
+
+#: weblate_web/templates/hosting-free.html:32
+msgid "Asking for hosting"
+msgstr "Elhelyezés kérelmezése"
+
+#: weblate_web/templates/hosting-free.html:35
+#, python-format
+msgid ""
+"Please use <a href=\"%(url)s\">contact form on Hosted Weblate</a> to request "
+"hosting. You will need following information:"
+msgstr ""
+
+#: weblate_web/templates/hosting-free.html:39
+msgid "Information about your project."
+msgstr "Információ az Ön projektjéről."
+
+#: weblate_web/templates/hosting-free.html:40
+msgid "Project website."
+msgstr "Projekt weboldala."
+
+#: weblate_web/templates/hosting-free.html:41
+#: weblate_web/templates/hosting-ordered.html:18
+msgid "URL of repository with translations."
+msgstr "A fordításokat tartalmazó tár URL-je."
+
+#: weblate_web/templates/hosting-free.html:42
+#: weblate_web/templates/hosting-ordered.html:19
+msgid "Path to translations within the repository."
+msgstr "A fordítások elérési útvonala a tárban."
+
+#: weblate_web/templates/hosting-free.html:48
+msgid ""
+"The free plan does not allow you to change project visibility or to limit "
+"users which can contribute to the translation."
+msgstr ""
+
+#: weblate_web/templates/hosting-free.html:51
+msgid ""
+"This limitation can be lifted by purchasing the \"Basic\" hosting plan - you "
+"will still have free software limits, but you will get extended user "
+"management capabilities."
+msgstr ""
+
+#: weblate_web/templates/hosting-free.html:54
+msgid "Translation workflow"
+msgstr "Fordítási folyamat"
+
+#: weblate_web/templates/hosting-free.html:57
+msgid ""
+"All translated repositories are available using https protocol with similar "
+"naming as on website - weblate/master translation is published as "
+"<code>https://hosted.weblate.org/git/weblate/master/</code>. You can figure "
+"out the URL on the component information tab."
+msgstr ""
+"Minden lefordított tár elérhető a HTTPS protokollon keresztül a weboldalhoz "
+"hasonló elnevezéssel - a weblate/master fordítás <code>https://hosted."
+"weblate.org/git/weblate/master/</code> néven lesz publikálva. Az URL-t "
+"megtalálhatod a komponens információs fülén."
+
+#: weblate_web/templates/hosting-free.html:61
+#, python-format
+msgid ""
+"Weblate can automatically receive changes from major code hosting services, "
+"see our documentation for setup on <a href=\"%(github)s\">GitHub</a>, <a "
+"href=\"%(bitbucket)s\">Bitbucket</a> or <a href=\"%(gitlab)s\">GitLab</a>."
+msgstr ""
+"A Weblate automatikusan át tudja venni a forráskód változásokat a nagyobb "
+"kódtároló szolgáltatóktól, a <a href=\"%(github)s\">GitHub</a>, <a href="
+"\"%(bitbucket)s\">Bitbucket</a> vagy <a href=\"%(gitlab)s\">GitLab</a> "
+"beállításokat lásd a dokumentációnkban."
+
+#: weblate_web/templates/hosting-free.html:65
+#, python-format
+msgid ""
+"If you want Weblate to automatically push changes as well, add Weblate push "
+"user to collaborators and let us know you want to use this option. See <a "
+"href=\"%(docs)s\">documentation</a> for more detailed instructions."
+msgstr ""
+"Ha engedélyezni szeretné, hogy a Weblate automatikusan felküldje a "
+"módosításokat, adja hozzá a Weblate push felhasználót a közreműködőkhöz és "
+"értesítsen minket arról, hogy igényli ezt a lehetőséget. További "
+"információért tekintse meg a <a href=\"%(docs)s\">dokumentációnkat</a>."
+
+#: weblate_web/templates/hosting-free.html:68
+msgid "Support free hosting"
+msgstr "Támogassa az ingyenes elhelyezést"
+
+#: weblate_web/templates/hosting-free.html:72
+#, python-format
+msgid ""
+"The hosting is provided for free, but running the server and maintaining it "
+"costs some money, so you are welcome to use <a href=\"%(gittip_url)s"
+"\">Liberapay</a> or <a href=\"%(donate_url)s\">other ways to donate</a>."
+msgstr ""
+"Az elhelyezés ingyenes, de egy kiszolgáló fenntartása költségekkel jár, "
+"ezért örömmel vesszük a <a href=\"%(gittip_url)s\">Liberapay</a> "
+"segítségével vagy <a href=\"%(donate_url)s\">más módon</a> tett anyagi "
+"felajánlásokat."
+
 #: weblate_web/templates/hosting-ordered.html:3
 #: weblate_web/templates/hosting-ordered.html:4
 #: weblate_web/templates/hosting.html:3 weblate_web/templates/hosting.html:4
@@ -661,16 +1003,6 @@ msgstr ""
 msgid "Usually following information is needed:"
 msgstr "Általában a következő adatokra van szükség:"
 
-#: weblate_web/templates/hosting-ordered.html:18
-#: weblate_web/templates/hosting.html:307
-msgid "URL of repository with translations."
-msgstr "A fordításokat tartalmazó tár URL-je."
-
-#: weblate_web/templates/hosting-ordered.html:19
-#: weblate_web/templates/hosting.html:308
-msgid "Path to translations within the repository."
-msgstr "A fordítások elérési útvonala a tárban."
-
 #: weblate_web/templates/hosting-ordered.html:22
 msgid ""
 "You have to allow Weblate to access your repository. This can be done by "
@@ -682,20 +1014,22 @@ msgstr ""
 "megadott SSH kulcs hozzáadásával."
 
 #: weblate_web/templates/hosting.html:6
-msgid "Free continuous translation hosting for free software."
-msgstr "Ingyenes folyamatos fordítási tárhely szabad szoftverhez."
+msgid "Use Weblate as a service or get support for on-premises hosting."
+msgstr ""
 
 #: weblate_web/templates/hosting.html:11
-msgid "Ask for hosting"
-msgstr "Elhelyezés kérelmezése"
+#, fuzzy
+#| msgid "Self hosting"
+msgid "Order hosting"
+msgstr "Saját hosting"
 
-#: weblate_web/templates/hosting.html:20
+#: weblate_web/templates/hosting.html:21
 msgid ""
 "Hosted Weblate allows you to use Weblate without any effort and with premium "
 "support backed by it's core developers."
 msgstr ""
 
-#: weblate_web/templates/hosting.html:24
+#: weblate_web/templates/hosting.html:25
 #, python-format
 msgid ""
 "We can host translations for your commercial or free software projects. You "
@@ -730,11 +1064,9 @@ msgid "Enterprise"
 msgstr "Nagyvállalati"
 
 #: weblate_web/templates/hosting.html:37
-#, fuzzy
-#| msgid "Self hosting"
 msgctxt "Hosting plan"
 msgid "Self hosted"
-msgstr "Saját hosting"
+msgstr "Saját üzemeltetésű"
 
 #: weblate_web/templates/hosting.html:51
 msgid ""
@@ -786,11 +1118,6 @@ msgstr "Fordítási komponensek"
 msgid "Number of translators"
 msgstr "Fordítók száma"
 
-#: weblate_web/templates/hosting.html:105
-#: weblate_web/templates/hosting.html:311
-msgid "User management"
-msgstr "Felhasználók kezelése"
-
 #: weblate_web/templates/hosting.html:114
 msgid "Supported file formats"
 msgstr "Támogatott fájlformátumok"
@@ -814,25 +1141,17 @@ msgid "Customizable"
 msgstr "Testreszabható"
 
 #: weblate_web/templates/hosting.html:132
-#, fuzzy
-#| msgid "Translation status"
 msgid "Translation addons"
-msgstr "Fordítás állapota"
+msgstr "Fordítás bővítmények"
 
 #: weblate_web/templates/hosting.html:150
-#, fuzzy
-#| msgid "Translation workflow"
 msgid "Translation memory"
-msgstr "Fordítási folyamat"
+msgstr "Fordítási memória"
 
-#: weblate_web/templates/hosting.html:159
+#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:120
+#: weblate_web/templates/index.html:134
 msgid "Priority email support"
 msgstr "Elsőbbségi e-mailes támogatás"
-
-#: weblate_web/templates/hosting.html:165
-#: weblate_web/templates/hosting.html:173
-msgid "Available on request"
-msgstr "Kérésre elérhető"
 
 #: weblate_web/templates/hosting.html:168
 msgid "Custom domain name with SSL"
@@ -850,9 +1169,13 @@ msgid ""
 "Additional charge %(price)s EUR/year, only available with yearly billing"
 msgstr ""
 
+#: weblate_web/templates/hosting.html:173
+msgid "Available on request"
+msgstr "Kérésre elérhető"
+
 #: weblate_web/templates/hosting.html:179
-msgid "Monthly by PayPal"
-msgstr "Havonta PayPal segítségével"
+msgid "Monthly"
+msgstr "Havi"
 
 #: weblate_web/templates/hosting.html:181
 msgid "Contact us"
@@ -862,37 +1185,31 @@ msgstr "Kapcsolat"
 #: weblate_web/templates/hosting.html:187
 #: weblate_web/templates/hosting.html:190
 #: weblate_web/templates/hosting.html:193
-#: weblate_web/templates/hosting.html:253
 #, python-format
 msgid "%(price)s EUR / month"
 msgstr "%(price)s EUR / hónap"
 
-#: weblate_web/templates/hosting.html:195
-msgid "See below for options"
-msgstr ""
+#: weblate_web/templates/hosting.html:196
+#, fuzzy
+#| msgid "Other options"
+msgid "View support options"
+msgstr "Egyéb lehetőségek"
 
-#: weblate_web/templates/hosting.html:198
-#, python-format
-msgid "Yearly by invoice (save 15-20%%)"
+#: weblate_web/templates/hosting.html:200
+#, fuzzy, python-format
+#| msgid "Yearly by invoice (save 15-20%%)"
+msgid "Yearly (save 15-20%%)"
 msgstr "Éves számla (15-20%% megtakarítás)"
 
-#: weblate_web/templates/hosting.html:200
-#: weblate_web/templates/hosting.html:203
-#: weblate_web/templates/hosting.html:206
-#: weblate_web/templates/hosting.html:209
-msgid "Ask us for yearly invoicing with discount."
-msgstr ""
-
-#: weblate_web/templates/hosting.html:200
-#: weblate_web/templates/hosting.html:203
-#: weblate_web/templates/hosting.html:206
-#: weblate_web/templates/hosting.html:209
-#: weblate_web/templates/hosting.html:254
+#: weblate_web/templates/hosting.html:202
+#: weblate_web/templates/hosting.html:205
+#: weblate_web/templates/hosting.html:208
+#: weblate_web/templates/hosting.html:211 weblate_web/templates/support.html:68
 #, python-format
 msgid "%(price)s EUR / year"
 msgstr "%(price)s EUR / év"
 
-#: weblate_web/templates/hosting.html:217
+#: weblate_web/templates/hosting.html:218
 msgid ""
 "The pricing is based on number of source strings and number of target "
 "languages. The source string is a text unit defined in a translation format, "
@@ -902,15 +1219,7 @@ msgstr ""
 "szövegység fordítási formátumban definiálva, lehet egy szó, egy mondat vagy "
 "egy bekezdés."
 
-#: weblate_web/templates/hosting.html:221
-msgid ""
-"The hosting setup is currently done manually, so you might want to get in "
-"touch with us prior to making subscription with your project details."
-msgstr ""
-"Az elhelyezés beállítása jelenleg kézzel történik, így esetleg kapcsolatba "
-"akarhat lépni velünk a feliratkozás előtt a projekt adataival."
-
-#: weblate_web/templates/hosting.html:225
+#: weblate_web/templates/hosting.html:222
 msgid ""
 "Alternatively we can accept payments by wire transfer (preferably IBAN) or "
 "Bitcoin. Please get in touch for more details."
@@ -918,282 +1227,58 @@ msgstr ""
 "Alternatív megoldásként elfogadunk fizetést átutalással (lehetőleg IBAN) "
 "vagy Bitcoinnal. További részletekért lépjen kapcsolatba velünk."
 
-#: weblate_web/templates/hosting.html:228
-#, fuzzy
-#| msgid "Support free hosting"
-msgid "Support for self hosted environments"
-msgstr "Támogassa az ingyenes elhelyezést"
-
-#: weblate_web/templates/hosting.html:230
-msgid ""
-"Worried of putting your translations into cloud? You can self host Weblate "
-"and we can still provide you premium support for your setup."
-msgstr ""
-
-#: weblate_web/templates/hosting.html:236
-msgid "Installation on your Linux server"
-msgstr ""
-
-#: weblate_web/templates/hosting.html:237
-#, python-format
-msgid "%(price)s EUR"
-msgstr "%(price)s EUR"
-
-#: weblate_web/templates/hosting.html:242
-msgid "One time installation of Weblate"
-msgstr "A Weblate egyszeri telepítése"
-
-#: weblate_web/templates/hosting.html:243
-msgid "Installation using virtualenv, uwsgi and nginx"
-msgstr ""
-
-#: weblate_web/templates/hosting.html:244
-msgid "Using PostgreSQL, MySQL or MariaDB as database backend"
-msgstr ""
-
-#: weblate_web/templates/hosting.html:245
-msgid "Requires root access or close cooperation of your admins"
-msgstr ""
-
-#: weblate_web/templates/hosting.html:246
-msgid "Configuration customization"
-msgstr ""
-
-#: weblate_web/templates/hosting.html:247
-msgid "Does not include custom code development"
-msgstr ""
-
-#: weblate_web/templates/hosting.html:252
-msgid "Basic support for self hosted Weblate"
-msgstr ""
-
-#: weblate_web/templates/hosting.html:259
-msgid "Your Weblate will be upgraded to the latest version on every release."
-msgstr ""
-
-#: weblate_web/templates/hosting.html:260
-msgid "We will fix issues that occur in your environment."
-msgstr ""
-
-#: weblate_web/templates/hosting.html:261
-#, fuzzy
-#| msgid "Priority email support"
-msgid "You will receive priority email support."
-msgstr "Elsőbbségi e-mailes támogatás"
-
-#: weblate_web/templates/hosting.html:266
-msgid "Consulting services or custom development"
-msgstr ""
-
-#: weblate_web/templates/hosting.html:267
-#, fuzzy, python-format
-#| msgid "%(price)s EUR / year"
-msgid "%(price)s EUR / hour"
-msgstr "%(price)s EUR / év"
-
-#: weblate_web/templates/hosting.html:272
-msgid "Custom features development"
-msgstr ""
-
-#: weblate_web/templates/hosting.html:273
-msgid "Integrating Weblate into your workflow"
-msgstr ""
-
-#: weblate_web/templates/hosting.html:274
-msgid "Suggestions on the internationalization or localization process"
-msgstr ""
-
-#: weblate_web/templates/hosting.html:282
-msgid "Ask us for details about self hosted Weblate"
-msgstr ""
-
-#: weblate_web/templates/hosting.html:284
-msgid "Hosting for free software"
-msgstr "Hosting ingyenes szoftverekhez"
-
-#: weblate_web/templates/hosting.html:287
-#, fuzzy
-#| msgid ""
-#| "If you are interested in using Weblate for your free software, you can "
-#| "ask us to be include on <a href=\"https://hosted.weblate.org/\">hosted."
-#| "weblate.org</a>. This will allow you to use Weblate without installing "
-#| "and maintaining it."
-msgid ""
-"If you are interested in using Weblate for your free software, you can ask "
-"us for hosting of your translations on <a href=\"https://hosted.weblate.org/"
-"\">hosted.weblate.org</a>. This will allow you to use Weblate without "
-"installing and maintaining it."
-msgstr ""
-"Ha szeretné ingyenes szoftveréhez használni a Weblate-et, kérheti annak "
-"felvételét a <a href=\"https://hosted.weblate.org/\">hosted.weblate.org</a> "
-"oldalra. Ezzel úgy használhatja a Weblate-et, hogy nem kell telepítenie és "
-"fenntartania."
-
-#: weblate_web/templates/hosting.html:290
-msgid "Conditions for free hosting"
-msgstr "Az ingyenes elhelyezés feltételei"
-
-#: weblate_web/templates/hosting.html:293
-msgid ""
-"Translated content has to be released under <a href=\"https://en.wikipedia."
-"org/wiki/Free_software_license\">free license</a>."
-msgstr ""
-"A lefordított tartalmat a <a href=\"https://en.wikipedia.org/wiki/"
-"Free_software_license\">szabad licenc</a> alatt kell kiadni."
-
-#: weblate_web/templates/hosting.html:294
-msgid ""
-"Source code has to be publicly available in a supported version control "
-"system."
-msgstr ""
-"A forráskódnak szabadon elérhetőnek kell lennie támogatott verziókövető "
-"rendszerben."
-
-#: weblate_web/templates/hosting.html:295
-msgid "There is no guarantee for service availability or quality."
-msgstr "Nincs garantált rendelkezésre állás vagy szolgáltatási szint."
-
-#: weblate_web/templates/hosting.html:298
-msgid "Asking for hosting"
-msgstr "Elhelyezés kérelmezése"
-
-#: weblate_web/templates/hosting.html:301
-#, python-format
-msgid ""
-"Please use <a href=\"%(url)s\">contact form on Hosted Weblate</a> to request "
-"hosting. You will need following information:"
-msgstr ""
-
-#: weblate_web/templates/hosting.html:305
-msgid "Information about your project."
-msgstr "Információ az Ön projektjéről."
-
-#: weblate_web/templates/hosting.html:306
-msgid "Project website."
-msgstr "Projekt weboldala."
-
-#: weblate_web/templates/hosting.html:314
-msgid ""
-"The free plan does not allow you to change project visibility or to limit "
-"users which can contribute to the translation."
-msgstr ""
-
-#: weblate_web/templates/hosting.html:317
-msgid ""
-"This limitation can be lifted by purchasing the \"Basic\" hosting plan - you "
-"will still have free software limits, but you will get extended user "
-"management capabilities."
-msgstr ""
-
-#: weblate_web/templates/hosting.html:320
-msgid "Translation workflow"
-msgstr "Fordítási folyamat"
-
-#: weblate_web/templates/hosting.html:323
-#, fuzzy
-#| msgid ""
-#| "All translated repositories are available at <code>git.weblate.org</code> "
-#| "with similar naming as on website - hello/master translation would be "
-#| "published as <code>git://git.weblate.org/hello-master.git</code>."
-msgid ""
-"All translated repositories are available using https protocol with similar "
-"naming as on website - weblate/master translation is published as "
-"<code>https://hosted.weblate.org/git/weblate/master/</code>. You can figure "
-"out the URL on the component information tab."
-msgstr ""
-"Minden lefordított tár elérhető a <code>git.weblate.org</code> oldalon a "
-"weboldalhoz hasonló elnevezéssel - a hello/master fordítás <code>git://git."
-"weblate.org/hello-master.git</code> néven lesz publikálva."
-
-#: weblate_web/templates/hosting.html:327
-#, python-format
-msgid ""
-"Weblate can automatically receive changes from major code hosting services, "
-"see our documentation for setup on <a href=\"%(github)s\">GitHub</a>, <a "
-"href=\"%(bitbucket)s\">Bitbucket</a> or <a href=\"%(gitlab)s\">GitLab</a>."
-msgstr ""
-"A Weblate automatikusan át tudja venni a forráskód változásokat a nagyobb "
-"kódtároló szolgáltatóktól, a <a href=\"%(github)s\">GitHub</a>, <a href="
-"\"%(bitbucket)s\">Bitbucket</a> vagy <a href=\"%(gitlab)s\">GitLab</a> "
-"beállításokat lásd a dokumentációnkban."
-
-#: weblate_web/templates/hosting.html:331
-#, python-format
-msgid ""
-"If you want Weblate to automatically push changes as well, add Weblate push "
-"user to collaborators and let us know you want to use this option. See <a "
-"href=\"%(docs)s\">documentation</a> for more detailed instructions."
-msgstr ""
-"Ha engedélyezni szeretné, hogy a Weblate automatikusan felküldje a "
-"módosításokat, adja hozzá a Weblate push felhasználót a közreműködőkhöz és "
-"értesítsen minket arról, hogy igényli ezt a lehetőséget. További "
-"információért tekintse meg a <a href=\"%(docs)s\">dokumentációnkat</a>."
-
-#: weblate_web/templates/hosting.html:334
-msgid "Support free hosting"
-msgstr "Támogassa az ingyenes elhelyezést"
-
-#: weblate_web/templates/hosting.html:338
-#, python-format
-msgid ""
-"The hosting is provided for free, but running the server and maintaining it "
-"costs some money, so you are welcome to use <a href=\"%(gittip_url)s"
-"\">Liberapay</a> or <a href=\"%(donate_url)s\">other ways to donate</a>."
-msgstr ""
-"Az elhelyezés ingyenes, de egy kiszolgáló fenntartása költségekkel jár, "
-"ezért örömmel vesszük a <a href=\"%(gittip_url)s\">Liberapay</a> "
-"segítségével vagy <a href=\"%(donate_url)s\">más módon</a> tett anyagi "
-"felajánlásokat."
-
-#: weblate_web/templates/hosting.html:342
+#: weblate_web/templates/hosting.html:225
 msgid "Self hosting"
 msgstr "Saját hosting"
 
-#: weblate_web/templates/hosting.html:346
-#, python-format
-msgid ""
-"You can also <a href=\"%(download_url)s\">download</a> Weblate sources and "
-"run it on your systems. There are also several options for deploying Weblate "
-"to the cloud."
-msgstr ""
-"<a href=\"%(download_url)s\">Le is töltheti</a> a Weblate forrásait, és "
-"futtathatja saját rendszerein. Számos lehetőség van a Weblate felhőbe "
-"helyezésére is."
+#: weblate_web/templates/hosting.html:228
+msgid "Weblate is free software, you can run your own instance of it."
+msgstr "A Weblate ingyenes szoftver, saját példányt futtathat belőle."
 
-#: weblate_web/templates/hosting.html:350
-#, python-format
+#: weblate_web/templates/hosting.html:229
+msgid "There are also several options for deploying Weblate to the cloud."
+msgstr ""
+
+#: weblate_web/templates/hosting.html:233
 msgid ""
 "In case you need help with your self hosted solution, we're ready to help as "
-"well with consulting services tailored for your needs. Please contact <a "
-"href=\"%(contact_url)s\">Michal Čihař</a> for more details."
-msgstr ""
-
-#: weblate_web/templates/hosting.html:353
-msgid ""
-"All prices exclude VAT, invoices for EU countries are issued as a reverse "
-"charge, invoices for Czech Republic will include additional VAT."
+"well with consulting services tailored for your needs."
 msgstr ""
 
 #: weblate_web/templates/index.html:3
-msgid "Weblate - web-based translation"
+#, fuzzy
+#| msgid "Weblate - web-based translation"
+msgid "Weblate - web-based localization"
 msgstr "Weblate - webes fordítás"
 
-#: weblate_web/templates/index.html:14 weblate_web/templates/tour.html:11
-#: weblate_web/templates/try.html:12
-msgid "Try our demo"
-msgstr "Demo kipróbálása"
+#: weblate_web/templates/index.html:4
+msgid "Bring translators closer to development"
+msgstr ""
 
-#: weblate_web/templates/index.html:15
-msgid "View hosting plans"
-msgstr "Hosting tervek megtekintése"
+#: weblate_web/templates/index.html:12
+#, fuzzy
+#| msgid "Hosting Weblate"
+msgid "Start using Weblate"
+msgstr "Hosting Weblate"
 
-#: weblate_web/templates/index.html:16
+#: weblate_web/templates/index.html:13 weblate_web/templates/try.html:3
+#: weblate_web/templates/try.html:4 weblate_web/templates/try.html:12
+msgid "Try Weblate"
+msgstr "Próbálja ki a Weblate-et"
+
+#: weblate_web/templates/index.html:14
 msgid "Downloads"
 msgstr "Letöltések"
 
-#: weblate_web/templates/index.html:25
+#: weblate_web/templates/index.html:23
+#, fuzzy
+#| msgid ""
+#| "Weblate is a free web-based translation tool with tight version control "
+#| "integration. It features simple and clean user interface, propagation of "
+#| "translations across components, quality checks and automatic linking to "
+#| "source files."
 msgid ""
-"Weblate is a free web-based translation tool with tight version control "
+"Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
@@ -1204,16 +1289,137 @@ msgstr ""
 "ellenőrzéssel rendelkezik. Ezen kívül képes a forrásállományok automatikus "
 "belinkelésére is."
 
-#: weblate_web/templates/index.html:29
+#: weblate_web/templates/index.html:27
 msgid "Weblate screenshot"
 msgstr "Weblate képernyőkép"
 
-#: weblate_web/templates/index.html:38
+#: weblate_web/templates/index.html:36
 msgid "See more features…"
 msgstr "További funkciók…"
 
-#: weblate_web/templates/index.html:47
+#: weblate_web/templates/index.html:43
 msgid "See who is using Weblate and join them!"
+msgstr ""
+
+#: weblate_web/templates/index.html:106
+msgid "Browse hundreds of projects on Hosted Weblate"
+msgstr ""
+
+#: weblate_web/templates/index.html:114
+msgid "Hosted service"
+msgstr ""
+
+#: weblate_web/templates/index.html:118 weblate_web/templates/index.html:132
+#, python-format
+msgid "From %(amount)sEUR/month"
+msgstr ""
+
+#: weblate_web/templates/index.html:119
+msgid "Cloud service"
+msgstr ""
+
+#: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
+#, fuzzy
+#| msgid "View hosting plans"
+msgid "Choose hosting plan"
+msgstr "Hosting tervek megtekintése"
+
+#: weblate_web/templates/index.html:128
+#, fuzzy
+#| msgctxt "Hosting plan"
+#| msgid "Self hosted"
+msgid "Self hosted"
+msgstr "Saját üzemeltetésű"
+
+#: weblate_web/templates/index.html:133
+msgid "Your infrastructure"
+msgstr ""
+
+#: weblate_web/templates/index.html:142
+#, fuzzy
+#| msgctxt "Hosting plan"
+#| msgid "Self hosted"
+msgid "Self supported"
+msgstr "Saját üzemeltetésű"
+
+#: weblate_web/templates/index.html:146
+#, fuzzy
+#| msgid "Weblate features"
+msgid "Weblate is free to use"
+msgstr "A Weblate képességei"
+
+#: weblate_web/templates/index.html:147
+msgid "Maintained by you"
+msgstr ""
+
+#: weblate_web/templates/index.html:148
+#, fuzzy
+#| msgid "Phone support"
+msgid "Community support"
+msgstr "Telefonos támogatás"
+
+#: weblate_web/templates/payment/customer.html:5
+#: weblate_web/templates/payment/payment.html:4
+#, fuzzy
+#| msgid "Weblate screenshot"
+msgid "Weblate payment"
+msgstr "Weblate képernyőkép"
+
+#: weblate_web/templates/payment/customer.html:15
+msgid "Your billing information"
+msgstr ""
+
+#: weblate_web/templates/payment/payment.html:11
+msgid "Payment summary"
+msgstr ""
+
+#: weblate_web/templates/payment/payment.html:14
+msgid "Payment amount"
+msgstr ""
+
+#: weblate_web/templates/payment/payment.html:15
+#: weblate_web/templates/support.html:37 weblate_web/templates/support.html:53
+#, python-format
+msgid "%(price)s EUR"
+msgstr "%(price)s EUR"
+
+#: weblate_web/templates/payment/payment.html:16
+msgid "(including VAT)"
+msgstr ""
+
+#: weblate_web/templates/payment/payment.html:18
+msgid "Payment description"
+msgstr ""
+
+#: weblate_web/templates/payment/payment.html:20
+msgid "Payment frequence"
+msgstr ""
+
+#: weblate_web/templates/payment/payment.html:22
+msgid "Payment will be issued yearly till you cancel the subscription."
+msgstr ""
+
+#: weblate_web/templates/payment/payment.html:24
+msgid ""
+"Payment will be issued every six months till you cancel the subscription."
+msgstr ""
+
+#: weblate_web/templates/payment/payment.html:26
+msgid "Payment will be issued monthly till you cancel the subscription."
+msgstr ""
+
+#: weblate_web/templates/payment/payment.html:31
+msgid ""
+"Note: This is unavailable for some payment methods, you will have to "
+"manually complete the next payment in those cases."
+msgstr ""
+
+#: weblate_web/templates/payment/payment.html:35
+msgid "Billing information"
+msgstr ""
+
+#: weblate_web/templates/payment/payment.html:49
+msgid "Please choose payment method:"
 msgstr ""
 
 #: weblate_web/templates/support.html:3 weblate_web/templates/support.html:4
@@ -1254,70 +1460,156 @@ msgid ""
 msgstr ""
 
 #: weblate_web/templates/support.html:28
-#, fuzzy
-#| msgid "Support free hosting"
-msgid "Support for Hosted Weblate services"
-msgstr "Támogassa az ingyenes elhelyezést"
+msgid "Support for self hosted environments"
+msgstr "Támogatás saját üzemeltetésű környezetekhez"
 
-#: weblate_web/templates/support.html:31
+#: weblate_web/templates/support.html:30
+msgid ""
+"Worried of putting your translations into cloud? You can self host Weblate "
+"and we can still provide you premium support for your setup."
+msgstr ""
+
+#: weblate_web/templates/support.html:36
+msgid "Installation on your Linux server"
+msgstr ""
+
+#: weblate_web/templates/support.html:42 weblate_web/templates/support.html:58
+msgid "One time installation of Weblate"
+msgstr "A Weblate egyszeri telepítése"
+
+#: weblate_web/templates/support.html:43
+msgid "Installation using virtualenv, uwsgi and nginx"
+msgstr ""
+
+#: weblate_web/templates/support.html:44
+msgid "Using PostgreSQL, MySQL or MariaDB as database backend"
+msgstr ""
+
+#: weblate_web/templates/support.html:45 weblate_web/templates/support.html:60
+msgid "Requires root access or close cooperation of your admins"
+msgstr ""
+
+#: weblate_web/templates/support.html:46 weblate_web/templates/support.html:61
+msgid "Configuration customization"
+msgstr ""
+
+#: weblate_web/templates/support.html:47 weblate_web/templates/support.html:62
+msgid "Does not include custom code development"
+msgstr ""
+
+#: weblate_web/templates/support.html:52
+msgid "Installation using Docker on your Linux server"
+msgstr ""
+
+#: weblate_web/templates/support.html:59
+msgid "Installation using Docker"
+msgstr ""
+
+#: weblate_web/templates/support.html:67
+msgid "Basic support for self hosted Weblate"
+msgstr ""
+
+#: weblate_web/templates/support.html:73
+msgid "Your Weblate will be upgraded to the latest version on every release."
+msgstr ""
+
+#: weblate_web/templates/support.html:74
+msgid "We will fix issues that occur in your environment."
+msgstr ""
+
+#: weblate_web/templates/support.html:75
+msgid "You will receive priority email support."
+msgstr "Elsőbbségi e-mailes támogatást fog kapni."
+
+#: weblate_web/templates/support.html:80
+msgid "Consulting services or custom development"
+msgstr ""
+
+#: weblate_web/templates/support.html:81
+#, python-format
+msgid "%(price)s EUR / hour"
+msgstr "%(price)s EUR / óra"
+
+#: weblate_web/templates/support.html:86
+msgid "Custom features development"
+msgstr ""
+
+#: weblate_web/templates/support.html:87
+msgid "Integrating Weblate into your workflow"
+msgstr ""
+
+#: weblate_web/templates/support.html:88
+msgid "Suggestions on the internationalization or localization process"
+msgstr ""
+
+#: weblate_web/templates/support.html:96
+msgid "Ask us for details about self hosted Weblate"
+msgstr ""
+
+#: weblate_web/templates/support.html:99
+msgid "Support for Hosted Weblate services"
+msgstr "Támogatás a Hosted Weblate szolgáltatásokhoz"
+
+#: weblate_web/templates/support.html:102
 #, python-format
 msgid ""
 "If you are using our hosting services, you can ask for support at "
 "%(contact)s."
 msgstr ""
 
-#: weblate_web/templates/support.html:34
-#, fuzzy
-#| msgid "Mailing list"
+#: weblate_web/templates/support.html:105
 msgid "Mailing lists"
-msgstr "Levelezőlista"
+msgstr "Levelezőlisták"
 
-#: weblate_web/templates/support.html:36
+#: weblate_web/templates/support.html:107
 msgid "Users and developers mailing list"
 msgstr ""
 
-#: weblate_web/templates/support.html:38
+#: weblate_web/templates/support.html:109
 msgid ""
 "You can use mailing lists for discussions with other Weblate users and "
 "developers."
 msgstr ""
 
-#: weblate_web/templates/support.html:39
+#: weblate_web/templates/support.html:110
 msgid ""
 "You can post to it using <a href=\"mailto:weblate@lists.cihar.com"
 "\">weblate@lists.cihar.com</a> address."
 msgstr ""
 
-#: weblate_web/templates/support.html:40 weblate_web/templates/support.html:56
+#: weblate_web/templates/support.html:111
+#: weblate_web/templates/support.html:127
 msgid "You can browse mailing list archives"
 msgstr ""
 
-#: weblate_web/templates/support.html:43 weblate_web/templates/support.html:59
+#: weblate_web/templates/support.html:114
+#: weblate_web/templates/support.html:130
 msgid "Enter your email"
 msgstr ""
 
-#: weblate_web/templates/support.html:45 weblate_web/templates/support.html:61
+#: weblate_web/templates/support.html:116
+#: weblate_web/templates/support.html:132
 msgid "Subscribe"
 msgstr ""
 
-#: weblate_web/templates/support.html:52
+#: weblate_web/templates/support.html:123
 msgid "Hosted Weblate Announcements mailing list"
 msgstr ""
 
-#: weblate_web/templates/support.html:54
+#: weblate_web/templates/support.html:125
 msgid ""
 "Low traffic mailing list with announcements about Hosted Weblate services."
 msgstr ""
 
-#: weblate_web/templates/support.html:55
-msgid "This list is moderated, only selected users can post announcements."
+#: weblate_web/templates/support.html:126
+msgid "This list is moderated, only chosen users can post announcements."
 msgstr ""
 
-#: weblate_web/templates/support.html:68
+#: weblate_web/templates/support.html:139
 msgid "Stack Overflow"
 msgstr "Stack Overflow"
 
-#: weblate_web/templates/support.html:70
+#: weblate_web/templates/support.html:141
 #, python-format
 msgid ""
 "You can also ask related questions on <a href=\"%(url)s\">Stack Overflow</a>."
@@ -1325,22 +1617,19 @@ msgstr ""
 "A kapcsolódó kérdéseit felteheti a <a href=\"%(url)s\">Stack Overflow</a> "
 "oldalon is."
 
-#: weblate_web/templates/support.html:72
-msgid "Consulting"
-msgstr "Konzultáció"
+#: weblate_web/templates/terms.html:3 weblate_web/templates/terms.html:13
+#, fuzzy
+#| msgid "Service"
+msgid "Terms of Service"
+msgstr "Szolgáltatás"
 
-#: weblate_web/templates/support.html:74
-msgid "See our support offerings for self hosted Weblate instances"
+#: weblate_web/templates/terms.html:6
+msgid "The legal documents necessary to offer this service."
 msgstr ""
 
-#: weblate_web/templates/support.html:77
-#, python-format
-msgid ""
-"You can also contact <a href=\"%(contact_link)s\">Michal Čihař</a>, who is "
-"author of Weblate for consulting services."
+#: weblate_web/templates/terms.html:20
+msgid "Privacy Policy"
 msgstr ""
-"A Weblate alkotójával, <a href=\"%(contact_link)s\">Michal Čihař</a>-ral is "
-"kapcsolatba léphet."
 
 #: weblate_web/templates/thanks.html:3 weblate_web/templates/thanks.html:4
 msgid "Thanks from Weblate"
@@ -1350,43 +1639,43 @@ msgstr "Köszönet a Weblate-től"
 msgid "Weblate is thankful for help from others."
 msgstr "A Weblate hálás mások segítségéért."
 
-#: weblate_web/templates/thanks.html:20
+#: weblate_web/templates/thanks.html:16
 msgid "Technology"
 msgstr "Technológia"
 
-#: weblate_web/templates/thanks.html:22
+#: weblate_web/templates/thanks.html:18
 msgid "The development of Weblate is based on the following technologies:"
 msgstr "A Weblate fejlesztése az alábbi technológiákon alapul:"
 
-#: weblate_web/templates/thanks.html:26
+#: weblate_web/templates/thanks.html:22
 msgid "GitHub provides hosting for our source code and issue tracker."
 msgstr "A GitHub biztosít helyet a forráskódnak és hibakövetőnknek."
 
-#: weblate_web/templates/thanks.html:30
+#: weblate_web/templates/thanks.html:26
 msgid "Travis CI is our continuous integration platform."
 msgstr "A Travis CI a mi folyamatos integrációs platformunk."
 
-#: weblate_web/templates/thanks.html:34
+#: weblate_web/templates/thanks.html:30
 msgid "Codecov helps us to monitor code coverage of our test suite."
 msgstr "Codecov segítségével ellenőrizzük forráskódunk teszt-lefedettségét."
 
-#: weblate_web/templates/thanks.html:38
+#: weblate_web/templates/thanks.html:34
 msgid "Sauce Labs is running our Selenium tests in real browsers."
 msgstr "Selenium tesztjeinket a Sauce Labs futtatja valódi böngészőkben."
 
-#: weblate_web/templates/thanks.html:42
-msgid "Rollbar helps us to collect and fix errors happening on Hosted Weblate."
-msgstr ""
-
-#: weblate_web/templates/thanks.html:46
+#: weblate_web/templates/thanks.html:38
 msgid "Our translations are being done on Hosted Weblate."
 msgstr "A fordításaink a Hosted Weblate oldalon készültek."
 
-#: weblate_web/templates/thanks.html:50
+#: weblate_web/templates/thanks.html:42
+msgid "Payments are processed by The Pay service."
+msgstr ""
+
+#: weblate_web/templates/thanks.html:46
 msgid "Supporters"
 msgstr "Támogatók"
 
-#: weblate_web/templates/thanks.html:52
+#: weblate_web/templates/thanks.html:48
 msgid ""
 "Free hosting for free software projects would be impossible without our "
 "sponsors."
@@ -1394,44 +1683,27 @@ msgstr ""
 "A szabad szoftverek ingyenes elhelyezése lehetetlen lenne a szponzoraink "
 "nélkül."
 
-#: weblate_web/templates/thanks.html:54
-msgid ""
-"Support our project on Bountysource Salt and get exclusive logo placement on "
-"this page."
+#: weblate_web/templates/thanks.html:50
+msgid "Support our project and get link placement on this page."
 msgstr ""
 
-#: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
-msgid "Weblate tour"
-msgstr "Weblate túra"
-
-#: weblate_web/templates/tour.html:6
-msgid "Weblate has useful features for every crowdsourced translation."
-msgstr "A Weblate hasznos funkciókat tartalmaz minden közösségi fordításhoz."
-
-#: weblate_web/templates/try.html:3 weblate_web/templates/try.html:4
-msgid "Try Weblate"
-msgstr "Próbálja ki a Weblate-et"
-
 #: weblate_web/templates/try.html:6
-msgid "Weblate is easy to deploy as an appliance."
-msgstr "A Weblate könnyen telepíthető appliance-ként."
+#, fuzzy
+#| msgid "Weblate has useful features for every crowdsourced translation."
+msgid "Weblate has useful features for every crowdsourced localization."
+msgstr "A Weblate hasznos funkciókat tartalmaz minden közösségi fordításhoz."
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
 msgstr "Demo kiszolgáló"
 
 #: weblate_web/templates/try.html:22
-#, fuzzy
-#| msgid ""
-#| "You can try how Weblate on our <a href=\"https://demo.weblate.org\">demo "
-#| "server</a>. You can register there and work under your username or just "
-#| "use <code>demo</code> account with <code>demo</code> password."
 msgid ""
 "Try Weblate on the <a href=\"https://demo.weblate.org\">demo server</a>. "
 "Register there and work under your username, or just use username: "
 "<code>demo</code> with password: <code>demo</code>."
 msgstr ""
-"Kipróbálhatja a Weblate-elést a <a href=\"https://demo.weblate.org\">demo "
+"Próbálja ki a Weblate-et a <a href=\"https://demo.weblate.org\">demo "
 "szerverünkön</a>. Ott regisztrálhat és dolgozhat saját felhasználónéven vagy "
 "használhatja <code>demo</code> felhasználónevet és <code>demo</code> jelszót."
 
@@ -1442,58 +1714,213 @@ msgid ""
 msgstr ""
 
 #: weblate_web/templates/try.html:27
-msgid "Appliances"
-msgstr "Appliance-ek"
+#, fuzzy
+#| msgid "Weblate screenshot"
+msgid "Screenshots"
+msgstr "Weblate képernyőkép"
 
-#: weblate_web/templates/try.html:30
-#, fuzzy, python-format
-#| msgid ""
-#| "Check our <a href=\"%(download_url)s\">download page</a> for appliances, "
-#| "which provide an easy way to deploy Weblate in the cloud."
+#: weblate_web/templates/vat.html:3
 msgid ""
-"Check out the <a href=\"%(download_url)s\">download page</a> for appliances, "
-"providing an easy way to deploy Weblate in the cloud."
+"All prices exclude VAT, invoices for EU countries are issued as a reverse "
+"charge, invoices for Czech Republic will include additional VAT."
 msgstr ""
-"Látogasson el a <a href=\"%(download_url)s\">letöltési oldalra</a> az "
-"appliance eléréséhez, amivel egyszerű a Weblate kihelyezése a felhőbe."
 
-#: weblate_web/templatetags/downloads.py:40
+#: weblate_web/templatetags/downloads.py:39
 #, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
 msgstr[0] "%(size)d bájt"
 msgstr[1] "%(size)d bájt"
 
-#: weblate_web/templatetags/downloads.py:45
+#: weblate_web/templatetags/downloads.py:44
 #, python-format
 msgid "%.1f KiB"
 msgstr "%.1f KiB"
 
-#: weblate_web/templatetags/downloads.py:47
+#: weblate_web/templatetags/downloads.py:46
 #, python-format
 msgid "%.1f MiB"
 msgstr "%.1f MiB"
 
-#: weblate_web/templatetags/downloads.py:48
+#: weblate_web/templatetags/downloads.py:47
 #, python-format
 msgid "%.1f GiB"
 msgstr "%.1f GiB"
 
-#: weblate_web/templatetags/downloads.py:55
+#: weblate_web/templatetags/downloads.py:54
 msgid "Sources tarball, bzip2 compressed"
 msgstr "Forráskód tarball, bzip2 tömörített"
 
-#: weblate_web/templatetags/downloads.py:57
+#: weblate_web/templatetags/downloads.py:56
 msgid "Sources tarball, gzip compressed"
 msgstr "Forráskód tarball, gzip tömörített"
 
-#: weblate_web/templatetags/downloads.py:59
+#: weblate_web/templatetags/downloads.py:58
 msgid "Sources tarball, xz compressed"
 msgstr "Forráskód tarball, xz tömörített"
 
-#: weblate_web/templatetags/downloads.py:61
+#: weblate_web/templatetags/downloads.py:60
 msgid "Sources, zip compressed"
 msgstr "Forráskód tarball, zip tömörített"
+
+#: weblate_web/views.py:89
+msgid "Please provide your billing information to complete the payment."
+msgstr ""
+
+#: weblate_web/views.py:100
+msgid "The VAT ID is no longer valid, please update it."
+msgstr ""
+
+#: weblate_web/views.py:260
+msgid "Payment not yet processed, please retry."
+msgstr ""
+
+#: weblate_web/views.py:265
+msgid "The payment was rejected: {}"
+msgstr ""
+
+#: weblate_web/views.py:266
+msgid "Unknown reason"
+msgstr "Ismeretlen ok"
+
+#: weblate_web/views.py:270
+#, fuzzy
+#| msgid "Thank you for ordering hosting!"
+msgid "Thank you for your donation."
+msgstr "Köszönjük, hogy elhelyezést rendelt!"
+
+#~ msgid "Tour"
+#~ msgstr "Bemutató"
+
+#, fuzzy
+#~| msgid "Try our demo"
+#~ msgid "Try the live demo server"
+#~ msgstr "Demo kipróbálása"
+
+#~ msgid "Weblate tour"
+#~ msgstr "Weblate túra"
+
+#~ msgid "Try our demo"
+#~ msgstr "Demo kipróbálása"
+
+#~ msgid "Weblate is easy to deploy as an appliance."
+#~ msgstr "A Weblate könnyen telepíthető appliance-ként."
+
+#~ msgid "Appliances"
+#~ msgstr "Appliance-ek"
+
+#~ msgid ""
+#~ "Check out the <a href=\"%(download_url)s\">download page</a> for "
+#~ "appliances, providing an easy way to deploy Weblate in the cloud."
+#~ msgstr ""
+#~ "Látogasson el a <a href=\"%(download_url)s\">letöltési oldalra</a> az "
+#~ "appliance eléréséhez, amivel egyszerű a Weblate kihelyezése a felhőbe."
+
+#~ msgid "Weblate is a free web-based translation management system."
+#~ msgstr "A Weblate egy ingyenes webes fordításkezelő rendszer."
+
+#~ msgid "Ready for cloud"
+#~ msgstr "Felhőkörnyezet támogatása"
+
+#, fuzzy
+#~| msgid "Weblate is a free web-based translation management system."
+#~ msgid ""
+#~ "Weblate is an open source web-based translation management system "
+#~ "supporting continuous translation."
+#~ msgstr "A Weblate egy ingyenes webes fordításkezelő rendszer."
+
+#~ msgid "This website is stored on <a href=\"%(url)s\">GitHub</a> as well:"
+#~ msgstr "Ez a weboldal is <a href=\"%(url)s\">GitHub</a>-on fut:"
+
+#~ msgid "Donate using Liberapay"
+#~ msgstr "Támogatás Liberapay segítségével"
+
+#~ msgid "Fund on Bountysource"
+#~ msgstr "Támogatás Bountysource-on"
+
+#~ msgid ""
+#~ "You can send a monthly donation using a credit card. You can also get "
+#~ "rewards for higher donations, for example a logo placement on our website."
+#~ msgstr ""
+#~ "Küldhet havi támogatást hitelkártyával. Elismerést is kaphat nagyobb "
+#~ "támogatásért, például logóelhelyezést a weboldalunkon."
+
+#~ msgid "Fund features"
+#~ msgstr "Funkciók pénzelése"
+
+#, fuzzy
+#~| msgid ""
+#~| "Bountysource allows you to fund individual features which are reported "
+#~| "on our issue tracker."
+#~ msgid ""
+#~ "Bountysource allows you to fund individual features reported on our issue "
+#~ "tracker."
+#~ msgstr ""
+#~ "A Bountysource lehetővé teszi a hibakezelőnkbe bejelentett egyes "
+#~ "funkcióigények támogatását."
+
+#~ msgid ""
+#~ "If you like Weblate you can support its further development by donating."
+#~ msgstr ""
+#~ "Ha tetszik a Weblate, támogathatja a további fejlesztést anyagi "
+#~ "felajánlással."
+
+#~ msgid "Donate using PayPal"
+#~ msgstr "Adományozás PayPal segítségével"
+
+#~ msgid ""
+#~ "PayPal allows you to send money from credit card, PayPal balance or a "
+#~ "bank account."
+#~ msgstr ""
+#~ "A PayPal segítségével hitelkártyáról, PayPal számláról és bankszámláról "
+#~ "tud pénzt küldeni."
+
+#~ msgid "Monthly by PayPal"
+#~ msgstr "Havonta PayPal segítségével"
+
+#~ msgid ""
+#~ "The hosting setup is currently done manually, so you might want to get in "
+#~ "touch with us prior to making subscription with your project details."
+#~ msgstr ""
+#~ "Az elhelyezés beállítása jelenleg kézzel történik, így esetleg "
+#~ "kapcsolatba akarhat lépni velünk a feliratkozás előtt a projekt adataival."
+
+#, fuzzy
+#~| msgid "Weblate is free software, you can run your own instance of it."
+#~ msgid "Weblate is free software and you can run it on your systems."
+#~ msgstr "A Weblate ingyenes szoftver, saját példányt futtathat belőle."
+
+#~ msgid ""
+#~ "You can also <a href=\"%(download_url)s\">download</a> Weblate sources "
+#~ "and run it on your systems. There are also several options for deploying "
+#~ "Weblate to the cloud."
+#~ msgstr ""
+#~ "<a href=\"%(download_url)s\">Le is töltheti</a> a Weblate forrásait, és "
+#~ "futtathatja saját rendszerein. Számos lehetőség van a Weblate felhőbe "
+#~ "helyezésére is."
+
+#~ msgid "Toggle navigation"
+#~ msgstr "Navigáció ki- vagy bekapcsolása"
+
+#~ msgid ""
+#~ "Weblate is <a href=\"%(github_url)s\">free software</a> and welcomes <a "
+#~ "href=\"%(donate_url)s\">donations</a>."
+#~ msgstr ""
+#~ "A Weblate <a href=\"%(github_url)s\">ingyenes szoftver</a>, de "
+#~ "köszönettel fogadunk minden <a href=\"%(donate_url)s\">támogatást</a>."
+
+#~ msgid "Consulting"
+#~ msgstr "Konzultáció"
+
+#~ msgid ""
+#~ "You can also contact <a href=\"%(contact_link)s\">Michal Čihař</a>, who "
+#~ "is author of Weblate for consulting services."
+#~ msgstr ""
+#~ "A Weblate alkotójával, <a href=\"%(contact_link)s\">Michal Čihař</a>-ral "
+#~ "is kapcsolatba léphet."
+
+#~ msgid "Free continuous translation hosting for free software."
+#~ msgstr "Ingyenes folyamatos fordítási tárhely szabad szoftverhez."
 
 #~ msgid "Liberapay allows you to send a weekly amount using a credit card."
 #~ msgstr ""
@@ -1502,9 +1929,6 @@ msgstr "Forráskód tarball, zip tömörített"
 
 #~ msgid "Translation processing"
 #~ msgstr "Fordítási folyamat"
-
-#~ msgid "Phone support"
-#~ msgstr "Telefonos támogatás"
 
 #~ msgid ""
 #~ "There is a mailing list <a href=\"mailto:weblate@lists.cihar.com"
@@ -1653,9 +2077,6 @@ msgstr "Forráskód tarball, zip tömörített"
 #~ msgstr ""
 #~ "További részletekért lépjen kapcsolatba <a href=\"mailto:michal@cihar.com"
 #~ "\">Michal Čihař</a>-ral."
-
-#~ msgid "Other options"
-#~ msgstr "Egyéb lehetőségek"
 
 #~ msgid ""
 #~ "Commercial hosting is possible as well, our price starts at 19 EUR per "

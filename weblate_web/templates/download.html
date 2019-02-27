@@ -9,7 +9,8 @@
 
 {% block extrajumbo %}
 <p>
-<a class="btn btn-primary btn-lg" href="https://github.com/WeblateOrg/weblate/" role="button"><i class="fa fa-github"></i> {% trans "View sources" %}</a>
+<a class="btn btn-info btn-lg" href="https://github.com/WeblateOrg/weblate/" role="button"><i class="fab fa-github"></i> {% trans "View sources" %}</a>
+<a class="btn btn-info btn-lg" href="{% url 'support' %}"><i class="fas fa-life-ring"></i> {% trans "Get support for Weblate" %}</a>
 </p>
 {% endblock %}
 {% block content %}
@@ -26,12 +27,6 @@
 {% endfor %}
 </ul>
 
-<p>{% trans "You can also install using packages for following Linux distributions:" %}</p>
-
-<ul>
-<li><a href="https://software.opensuse.org/package/weblate/">openSUSE</a>
-</ul>
-
 <h2>{% trans "Weblate command line client" %}</h2>
 
 <p>
@@ -46,7 +41,6 @@ pip3 install wlc
 
 <ul>
 <li><a href="https://packages.debian.org/wlc">Debian</a>
-<li><a href="https://software.opensuse.org/package/wlc/">openSUSE</a>
 </ul>
 
 
@@ -76,11 +70,8 @@ pip3 install wlc
 # Weblate
 git clone https://github.com/WeblateOrg/weblate.git
 
-# wlc
+# {% trans "Weblate command line client" %}
 git clone https://github.com/WeblateOrg/wlc.git
-
-# Weblate website
-git clone https://github.com/WeblateOrg/website.git
 </pre>
 
 {% endblock %}

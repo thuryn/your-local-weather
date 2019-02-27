@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2012 - 2018 Michal Čihař <michal@cihar.com>
+# Copyright © 2012 - 2019 Michal Čihař <michal@cihar.com>
 #
 # This file is part of Weblate <https://weblate.org/>
 #
@@ -23,6 +23,8 @@
 #
 
 import os
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
 
 DEBUG = True
 
@@ -46,8 +48,23 @@ DATABASES = {
         'HOST': '',
         # Set to empty string for default. Not used with sqlite3.
         'PORT': '',
+    },
+    'payments_db': {
+        # Use 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.sqlite3',
+        # Database name or path to database file if using sqlite3.
+        'NAME': '/home/nijel/weblate/hosted/payments.db',
+        # Database user, not used with sqlite3.
+        'USER': '',
+        # Database pasword, not used with sqlite3.
+        'PASSWORD': '',
+        # Set to empty string for localhost. Not used with sqlite3.
+        'HOST': '',
+        # Set to empty string for default. Not used with sqlite3.
+        'PORT': '',
     }
 }
+DATABASE_ROUTERS = ['wlhosted.dbrouter.HostedRouter']
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -78,6 +95,7 @@ LANGUAGES = (
     ('es', u'Español'),
     ('fi', u'Suomi'),
     ('fr', u'Français'),
+    ('gl', u'Galego'),
     ('he', u'עברית'),
     ('hu', u'Magyar'),
     ('id', u'Indonesia'),
@@ -151,21 +169,26 @@ STATICFILES_FINDERS = (
 SECRET_KEY = 'qov6(*cp%)b*ot+8c%#4@4or(t@_$y5#d8k9u1^+pknz%lms0x'
 
 # Templates settings
+_TEMPLATE_LOADERS = [
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+]
+if not DEBUG:
+    _TEMPLATE_LOADERS = [
+        ('django.template.loaders.cached.Loader', _TEMPLATE_LOADERS)
+    ]
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'OPTIONS': {
             'context_processors': [
+                'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.request',
                 'django.template.context_processors.i18n',
+                'django.contrib.messages.context_processors.messages',
                 'weblate_web.context_processors.weblate_web',
             ],
-            'loaders': [
-                ('django.template.loaders.cached.Loader', [
-                    'django.template.loaders.filesystem.Loader',
-                    'django.template.loaders.app_directories.Loader',
-                ]),
-            ],
+            'loaders': _TEMPLATE_LOADERS,
         },
     },
 ]
@@ -174,28 +197,40 @@ TEMPLATES = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'weblate_web.middleware.SecurityMiddleware',
-    'rollbar.contrib.django.middleware.RollbarNotifierMiddleware',
 ]
-
-ROLLBAR = {
-    'access_token': '',
-    'environment': 'development' if DEBUG else 'production',
-    'branch': 'master',
-    'root': '/home/nijel/weblate-web/',
-}
 
 ROOT_URLCONF = 'weblate_web.urls'
 
 INSTALLED_APPS = (
     'weblate_web',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
     'django.contrib.staticfiles',
     'django.contrib.sitemaps',
+    'django.contrib.messages',
+    'django.contrib.admin',
+    'wlhosted',
+    'wlhosted.payments',
+    'wlhosted.legal',
+    'crispy_forms',
 )
+
+# Some security headers
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Optionally enable HSTS
+SECURE_HSTS_SECONDS = 0
+SECURE_HSTS_PRELOAD = False
+SECURE_HSTS_INCLUDE_SUBDOMAINS = False
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -232,9 +267,32 @@ LOCALE_PATHS = (
     os.path.join(BASE_DIR, '..', 'locale'),
 )
 
-ALLOWED_HOSTS = ('weblate.org', '127.0.0.1')
+ALLOWED_HOSTS = ('weblate.org', '127.0.0.1', 'localhost')
+
+EMAIL_SUBJECT_PREFIX = '[weblate.org] '
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 
-# Force sane test runner
-TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+sentry_sdk.init(
+    dsn="",
+    integrations=[DjangoIntegration()]
+)
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+PAYMENT_DEBUG = True
+
+PAYMENT_FAKTURACE = "/home/nijel/weblate/tmp-fakturace"
+
+SSO_SERVER = 'https://hosted.weblate.org/accounts/sso/'
+SSO_PRIVATE_KEY = None
+SSO_PUBLIC_KEY = None
+
+LOGIN_URL = '/sso-login/'
+
+PAYMENT_REDIRECT_URL = 'http://localhost:1234/{language}/payment/{uuid}/'
+
+try:
+    from .settings_local import *
+except ImportError:
+    pass

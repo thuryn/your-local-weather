@@ -7,8 +7,8 @@
 {% endblock %}
 {% block extrajumbo %}
 <p>
-<a class="btn btn-primary btn-lg" href="https://github.com/WeblateOrg/weblate/" role="button"><i class="fa fa-github"></i> {% trans "View sources" %}</a>
-<a class="btn btn-primary btn-lg" href="https://hosted.weblate.org/engage/weblate/" role="button"><i class="fa fa-globe"></i> {% trans "Translate" %}</a>
+<a class="btn btn-info btn-lg" href="https://github.com/WeblateOrg/weblate/" role="button"><i class="fab fa-github"></i> {% trans "View sources" %}</a>
+<a class="btn btn-info btn-lg" href="https://hosted.weblate.org/engage/weblate/" role="button"><i class="fas fa-language"></i> {% trans "Translate" %}</a>
 </p>
 {% endblock %}
 {% block content %}
@@ -28,12 +28,8 @@ git clone https://github.com/WeblateOrg/weblate.git
 </pre>
 
 <p>
-{% blocktrans with "https://github.com/WeblateOrg/website" as url %}This website is stored on <a href="{{ url }}">GitHub</a> as well:{% endblocktrans %}
+{% blocktrans with "https://github.com/WeblateOrg" as url %}You can find more repositories related to Weblate on <a href="{{ url }}">GitHub</a>{% endblocktrans %}
 </p>
-
-<pre>
-git clone https://github.com/WeblateOrg/website.git
-</pre>
 
 <h2 id="translate">{% trans "Translate" %}</h2>
 

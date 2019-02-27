@@ -1,12 +1,19 @@
 #!/bin/sh
 
+WEBLATE=~/work/weblate/docs/images/
 SCREENSHOTS=weblate_web/media/screenshots/
 THUMBNAILS=weblate_web/media/thumbnails/
+
+cp $WEBLATE/source-information.png $SCREENSHOTS/translation-context.png
+cp $WEBLATE/your-translations.png $SCREENSHOTS/own-translations.png
+cp $WEBLATE/glossary-edit.png $SCREENSHOTS/glossary.png
+
+for shot in checks project-overview promote addons automatic-translation export-import manage-users ; do
+    cp $WEBLATE/$shot.png $SCREENSHOTS/
+done
 
 for file in $SCREENSHOTS*.png ; do
     base=${file##$SCREENSHOTS}
     thumb=$THUMBNAILS$base
-    if [ ! -f $thumb ] ; then
-        convert "$file" -resize 300x300^ -gravity center -crop 300x300+0+0 +repage "$thumb"
-    fi
+    convert "$file" -resize 300x300^ -gravity center -crop 300x300+0+0 +repage "$thumb"
 done

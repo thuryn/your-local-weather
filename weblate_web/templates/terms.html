@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}{% trans "Terms of Service" %}{% endblock %}
+{% block header %}{% trans "Terms of Service and Privacy Policy" %}{% endblock %}
+{% block description %}
+{% block headline %}{% trans "The legal documents necessary to offer this service." %}{% endblock %}
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid">
+
+<div class="card card-primary mb-4">
+<div class="card-header">{% trans "Terms of Service" %}</div>
+<div class="card-body tos">
+{% include "legal/documents/tos.html" %}
+</div>
+</div>
+
+<div class="card card-primary">
+<div class="card-header">{% trans "Privacy Policy" %}</div>
+<div class="card-body tos">
+{% include "legal/documents/privacy.html" %}
+</div>
+</div>
+
+</div>
+{% endblock %}
+

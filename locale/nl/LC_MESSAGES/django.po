@@ -1,15 +1,15 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Thomas De Rocker <thomasderocker@outlook.com>, 2018, 2019.
+# Nathan Follens <nthn@unseen.is>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
-"POT-Creation-Date: 2018-05-21 13:24+0200\n"
-"PO-Revision-Date: 2018-05-21 16:04+0000\n"
-"Last-Translator: Nathan Follens <nthn@unseen.is>\n"
+"POT-Creation-Date: 2019-02-14 13:40+0100\n"
+"PO-Revision-Date: 2019-02-16 08:59+0000\n"
+"Last-Translator: Thomas De Rocker <thomasderocker@outlook.com>\n"
 "Language-Team: Dutch <https://hosted.weblate.org/projects/weblate/website/nl/"
 ">\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 3.0-dev\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: weblate_web/data.py:33
 msgid "Overview of own translations at main page."
@@ -43,8 +43,8 @@ msgstr "Vertaalcontext"
 msgid ""
 "Project page gives you detailed information about project translation status."
 msgstr ""
-"De projectpagina geeft u gedetailleerde informatie over de vertalingsstatus "
-"van het project."
+"De projectpagina geeft u gedetailleerde informatie over de vertaalstatus van "
+"het project."
 
 #: weblate_web/data.py:50
 msgid "Project overview"
@@ -63,7 +63,7 @@ msgstr ""
 msgid "Glossary"
 msgstr "Woordenlijst"
 
-#: weblate_web/data.py:63 weblate_web/templates/base-features.html:15
+#: weblate_web/data.py:63
 msgid ""
 "Customizable quality checks will help you in improving quality of "
 "translations."
@@ -84,24 +84,87 @@ msgstr "Weblate biedt verschillende manieren om uw vertaalproject te promoten."
 msgid "Promotion"
 msgstr "Promoten"
 
+#: weblate_web/data.py:79
+msgid "Translation workflow can be customized by using addons."
+msgstr "Het vertaalproces kan aangepast worden met behulp van add-ons."
+
+#: weblate_web/data.py:81
+msgid "Addons"
+msgstr "Add-ons"
+
+#: weblate_web/data.py:86
+msgid ""
+"Automatic translation can be used to bootstrap your translations using "
+"machine translation services or translation memory."
+msgstr ""
+"Automatische vertaling kan gebruikt worden voor een vliegende start bij uw "
+"vertalingen met behulp van machinevertaaldiensten of vertaalgeheugen."
+
+#: weblate_web/data.py:89
+msgid "Automatic translation"
+msgstr "Automatische vertaling"
+
+#: weblate_web/data.py:94
+msgid ""
+"Translations can be exported and imported in many widely used file formats."
+msgstr ""
+"Vertalingen kunnen geëxporteerd en geïmporteerd worden in vele vaakgebruikte "
+"bestandsformaten."
+
+#: weblate_web/data.py:97 weblate_web/templates/features.html:87
+msgid "Export and import"
+msgstr "Exporteren en importeren"
+
+#: weblate_web/data.py:101
+msgid "You can define access levels for every user."
+msgstr "U kunt de toegangsniveaus voor elke gebruiker opgeven."
+
+#: weblate_web/data.py:102 weblate_web/templates/hosting-free.html:45
+#: weblate_web/templates/hosting.html:105
+msgid "User management"
+msgstr "Gebruikersbeheer"
+
+#: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
+#: weblate_web/templates/donate/form.html:25
+msgid "Donation recurrence"
+msgstr "Donatie-herhaling"
+
+#: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
+#: weblate_web/templates/donate/form.html:26
+msgid "Amount in EUR"
+msgstr "Bedrag in EUR"
+
+#: weblate_web/forms.py:57
+#, python-format
+msgid "The minimal amount is %d EUR."
+msgstr "De minimale hoeveelheid is %d EUR."
+
+#: weblate_web/models.py:76
+msgid "Link text"
+msgstr "Tekst van link"
+
+#: weblate_web/models.py:80
+msgid "Link URL"
+msgstr "URL van link"
+
 #: weblate_web/templates/404.html:4
 msgid "Page not found"
 msgstr "Pagina niet gevonden"
 
-#: weblate_web/templates/404.html:8 weblate_web/templates/500.html:8
-#: weblate_web/templates/index.html:7
-msgid "Weblate is a free web-based translation management system."
-msgstr "Weblate is een gratis webgebaseerd vertaalbeheersysteem."
+#: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
+#: weblate_web/templates/index.html:6
+msgid "Weblate is a libre software web-based continuous localization system."
+msgstr "Weblate is een libre software webgebaseerd vertaalbeheersysteem."
 
-#: weblate_web/templates/404.html:15
+#: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
-msgstr "De pagina die u zoekt is niet gevonden."
+msgstr "De pagina die u zoekt, werd niet teruggevonden."
 
 #: weblate_web/templates/500.html:4
 msgid "Server error"
 msgstr "Serverfout"
 
-#: weblate_web/templates/500.html:15
+#: weblate_web/templates/500.html:13
 msgid ""
 "The server had serious problems while serving your request. We've just sent "
 "our trained monkeys to fix the issue."
@@ -111,123 +174,120 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
-msgid "Continuous translation"
-msgstr "Continue vertaling"
+msgid "Continuous localization"
+msgstr "Voortdurende vertaling"
 
 #: weblate_web/templates/base-features.html:7
 msgid ""
-"Automated translation process can closely follow development of your project."
+"Automated localization workflow closely follows the development of your "
+"project."
 msgstr ""
-"Een geautomatiseerd vertaalproces volgt nauw de ontwikkeling van uw project."
+"Geautomatiseerde vertaalworkflow volgt nauw de ontwikkeling van uw project."
+
+#: weblate_web/templates/base-features.html:15
+msgid "Customizable quality checks helps improve translation quality."
+msgstr "Aanpasbare kwaliteitscontroles helpen vertaalkwaliteit te verbeteren."
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
 msgstr "Bijdrage"
 
 #: weblate_web/templates/base-features.html:23
-msgid ""
-"All your translators will be properly credited in the version control system."
-msgstr "Al uw vertalers worden correct vermeld in het versiebeheersysteem."
+msgid "All translators are properly credited in the version control system."
+msgstr "Alle vertalers worden correct vermeld in het versiebeheersysteem."
 
 #: weblate_web/templates/base-features.html:30
-#: weblate_web/templates/hosting.html:17
+#: weblate_web/templates/hosting.html:18
 msgid "Hosting plans"
-msgstr "Hosting formules"
+msgstr "Hosting-tariefplannen"
 
 #: weblate_web/templates/base-features.html:31
-msgid "Hosting plans to use Weblate as a service starting at 19 EUR."
+msgid "Hosting plans for Weblate as a service starting at 19 EUR."
 msgstr "Prijzen voor Weblate als dienst vanaf 19 EUR."
 
 #: weblate_web/templates/base-features.html:38
-msgid "Ready for cloud"
+msgid "Cloud ready"
 msgstr "Klaar voor de cloud"
 
 #: weblate_web/templates/base-features.html:39
-msgid "Weblate comes with appliances, which are ready to deploy in your cloud."
+msgid "Weblate comes with appliances, ready to deploy in your cloud."
 msgstr ""
-"Weblate wordt aangeleverd met een aantal pakketten, klaar om te installeren "
-"in uw cloud."
+"Weblate wordt geleverd met een aantal pakketten, klaar om te installeren in "
+"uw cloud."
 
 #: weblate_web/templates/base-features.html:46
-msgid "Free software"
-msgstr "Vrije software"
+msgid "Libre software"
+msgstr "Libre software"
 
 #: weblate_web/templates/base-features.html:47
-msgid "Weblate is free software, you can run your own instance of it."
-msgstr "Weblate is vrije software, waarvan u een eigen kopie mag gebruiken."
+msgid ""
+"Weblate is copylefted; use, see, modify and share at will, and with everyone."
+msgstr ""
+"Weblate is zonder auteursrecht; gebruiken, weergeven, wijzigen en delen met "
+"iedereen naar eigen goeddunken."
 
-#: weblate_web/templates/base.html:12
+#: weblate_web/templates/base.html:11
 msgctxt "Keyword"
 msgid "translate"
 msgstr "vertalen"
 
-#: weblate_web/templates/base.html:66
-msgid "Toggle navigation"
-msgstr "Navigatie wisselen"
-
-#: weblate_web/templates/base.html:72
+#: weblate_web/templates/base.html:49
 msgid "Weblate logo"
-msgstr "Weblate logo"
+msgstr "Weblate-logo"
 
-#: weblate_web/templates/base.html:78
-msgid "Blog"
-msgstr "Blog"
-
-#: weblate_web/templates/base.html:79
+#: weblate_web/templates/base.html:57
 msgid "Try"
-msgstr "Probeer"
+msgstr "Proberen"
 
-#: weblate_web/templates/base.html:80
+#: weblate_web/templates/base.html:58
 msgid "Features"
 msgstr "Functies"
 
-#: weblate_web/templates/base.html:81
-msgid "Docs"
-msgstr "Documentatie"
-
-#: weblate_web/templates/base.html:82 weblate_web/templates/download.html:17
+#: weblate_web/templates/base.html:59 weblate_web/templates/download.html:18
+#: weblate_web/templates/index.html:150
 msgid "Download"
 msgstr "Downloaden"
 
-#: weblate_web/templates/base.html:83
-msgid "Hosting"
-msgstr "Hosting"
+#: weblate_web/templates/base.html:60
+msgid "Pricing"
+msgstr "Tarieven"
 
-#: weblate_web/templates/base.html:84
+#: weblate_web/templates/base.html:61
 msgid "Develop"
-msgstr "Ontwikkel"
+msgstr "Ontwikkelen"
 
-#: weblate_web/templates/base.html:85 weblate_web/templates/donate.html:61
-#: weblate_web/templates/donate.html:91 weblate_web/templates/donate.html:92
-#: weblate_web/templates/donate.html:93 weblate_web/templates/donate.html:94
-#: weblate_web/templates/donate.html:95 weblate_web/templates/donate.html:96
+#: weblate_web/templates/base.html:62 weblate_web/templates/donate.html:110
+#: weblate_web/templates/donate.html:122 weblate_web/templates/donate.html:157
 msgid "Donate"
 msgstr "Doneren"
 
-#: weblate_web/templates/base.html:86
+#: weblate_web/templates/base.html:63
 msgid "Support"
 msgstr "Ondersteuning"
 
-#: weblate_web/templates/base.html:87
-msgid "Tour"
-msgstr "Rondleiding"
-
-#: weblate_web/templates/base.html:88
+#: weblate_web/templates/base.html:64
 msgid "Thanks"
 msgstr "Bedankt"
 
-#: weblate_web/templates/base.html:103
-msgid "Help with translations!"
-msgstr "Help met vertalen!"
+#: weblate_web/templates/base.html:65
+msgid "Blog"
+msgstr "Blog"
 
-#: weblate_web/templates/base.html:140
-#, python-format
-msgid ""
-"Weblate is <a href=\"%(github_url)s\">free software</a> and welcomes <a href="
-"\"%(donate_url)s\">donations</a>."
-msgstr ""
-"Weblate is <a href=\"%(github_url)s\">vrije software</a> en <a href="
-"\"%(donate_url)s\">donaties</a> zijn altijd welkom."
+#: weblate_web/templates/base.html:66
+msgid "Docs"
+msgstr "Documentatie"
+
+#: weblate_web/templates/base.html:67
+msgid "Hosting"
+msgstr "Hosting"
+
+#: weblate_web/templates/base.html:79
+msgid "Help with translations!"
+msgstr "Helpen met vertalingen!"
+
+#: weblate_web/templates/base.html:123 weblate_web/templates/terms.html:4
+msgid "Terms of Service and Privacy Policy"
+msgstr "Servicevoorwaarden en privacybeleid"
 
 #: weblate_web/templates/contribute.html:3
 #: weblate_web/templates/contribute.html:4
@@ -241,10 +301,10 @@ msgstr "Weblate wordt ontwikkeld door een open gemeenschap."
 #: weblate_web/templates/contribute.html:10
 #: weblate_web/templates/download.html:12
 msgid "View sources"
-msgstr "Bronnen bekijken"
+msgstr "Bronnen weergeven"
 
 #: weblate_web/templates/contribute.html:11
-#: weblate_web/templates/contribute.html:38
+#: weblate_web/templates/contribute.html:34
 msgid "Translate"
 msgstr "Vertalen"
 
@@ -256,10 +316,10 @@ msgid ""
 msgstr ""
 "U kunt meer gedetailleerde informatie over dit onderwerp vinden in het <a "
 "href=\"https://docs.weblate.org/en/latest/contributing.html\">hoofdstuk "
-"Bijdragen</a> van onze documentatie."
+"Bijdragen</a> van de documentatie."
 
 #: weblate_web/templates/contribute.html:20
-#: weblate_web/templates/download.html:69
+#: weblate_web/templates/download.html:63
 msgid "Code"
 msgstr "Code"
 
@@ -274,10 +334,14 @@ msgstr ""
 
 #: weblate_web/templates/contribute.html:31
 #, python-format
-msgid "This website is stored on <a href=\"%(url)s\">GitHub</a> as well:"
-msgstr "Deze website wordt ook op <a href=\"%(url)s\">GitHub</a> bewaard:"
+msgid ""
+"You can find more repositories related to Weblate on <a href=\"%(url)s"
+"\">GitHub</a>"
+msgstr ""
+"U kunt meer opslagruimten gerelateerd aan Weblate terugvinden op <a href="
+"\"%(url)s\">GitHub</a>"
 
-#: weblate_web/templates/contribute.html:41
+#: weblate_web/templates/contribute.html:37
 msgid ""
 "You can translate Weblate at <a href=\"https://hosted.weblate.org/engage/"
 "weblate/\">hosted.weblate.org</a>."
@@ -285,108 +349,152 @@ msgstr ""
 "U kunt Weblate vertalen op <a href=\"https://hosted.weblate.org/engage/"
 "weblate/\">hosted.weblate.org</a>."
 
-#: weblate_web/templates/contribute.html:46
+#: weblate_web/templates/contribute.html:42
 msgid "Translation status"
-msgstr "Vertalingsstatus"
+msgstr "Vertaalstatus"
 
 #: weblate_web/templates/donate.html:3 weblate_web/templates/donate.html:4
+#: weblate_web/templates/donate/edit.html:4
+#: weblate_web/templates/donate/edit.html:5
+#: weblate_web/templates/donate/form.html:4
+#: weblate_web/templates/donate/form.html:5
+#: weblate_web/templates/thanks.html:10
 msgid "Donate to Weblate"
 msgstr "Doneren aan Weblate"
 
-#: weblate_web/templates/donate.html:6
-msgid "Weblate is free, but welcomes donations."
-msgstr "Weblate is vrije software, maar donaties zijn altijd welkom."
+#: weblate_web/templates/donate.html:6 weblate_web/templates/donate/edit.html:7
+#: weblate_web/templates/donate/form.html:7
+msgid "Weblate is provided free of charge, and welcomes donations."
+msgstr "Weblate is gratis software maar donaties zijn altijd welkom."
 
-#: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:43
-msgid "Donate using Liberapay"
-msgstr "Doneer met Liberapay"
+#: weblate_web/templates/donate.html:11 weblate_web/templates/donate.html:134
+msgid "Purchase hosting package"
+msgstr "Hosting-pakket aankopen"
 
-#: weblate_web/templates/donate.html:18
-msgid "Use our hosting"
-msgstr "Gebruik onze hosting"
+#: weblate_web/templates/donate.html:12 weblate_web/templates/donate.html:135
+#: weblate_web/templates/download.html:13 weblate_web/templates/hosting.html:12
+#: weblate_web/templates/hosting.html:233
+msgid "Get support for Weblate"
+msgstr "Ondersteuning krijgen voor Weblate"
 
-#: weblate_web/templates/donate.html:22
-#, python-format
+#: weblate_web/templates/donate.html:19
+msgid "Sign in to manage your donations"
+msgstr "Aanmelden om uw donaties te beheren"
+
+#: weblate_web/templates/donate.html:21
+msgid "Sign out"
+msgstr "Afmelden"
+
+#: weblate_web/templates/donate.html:24
+msgid "Your donations"
+msgstr "Uw donaties"
+
+#: weblate_web/templates/donate.html:29
+msgid "Creation date"
+msgstr "Aanmaakdatum"
+
+#: weblate_web/templates/donate.html:30
+msgid "Reward"
+msgstr "Beloning"
+
+#: weblate_web/templates/donate.html:31
+msgid "Expiry date"
+msgstr "Vervaldatum"
+
+#: weblate_web/templates/donate.html:32
+msgid "Renewal"
+msgstr "Vernieuwing"
+
+#: weblate_web/templates/donate.html:33
+msgid "Payments"
+msgstr "Betalingen"
+
+#: weblate_web/templates/donate.html:43
+#: weblate_web/templates/payment/payment.html:37
+msgid "Edit"
+msgstr "Bewerken"
+
+#: weblate_web/templates/donate.html:45
+msgid "No reward"
+msgstr "Geen beloning"
+
+#: weblate_web/templates/donate.html:53
+msgid "Expired"
+msgstr "Vervallen"
+
+#: weblate_web/templates/donate.html:57
+msgid "Disable renewal"
+msgstr "Verlenging uitschakelen"
+
+#: weblate_web/templates/donate.html:60
+msgid "Does not renew"
+msgstr "Verlengt niet"
+
+#: weblate_web/templates/donate.html:92
+msgid "Donations"
+msgstr "Donaties"
+
+#: weblate_web/templates/donate.html:95
 msgid ""
-"Host your commercial translations on <a href=\"%(hosting_url)s\">Hosted "
-"Weblate</a> and you will be supporting Weblate development automatically."
+"Recurring donations facilitate sustainable Weblate development, even the "
+"smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
-"Host uw commerciele vertalingen op <a href=\"%(hosting_url)s\">gehostte "
-"Weblate</a>, dan steunt u automatisch de ontwikkeling van Weblate."
+"Terugkerende donaties vergemakkelijken duurzame Weblate-ontwikkeling, zelfs "
+"het kleinste bedrag helpt om gratis hosting voor vrije software te "
+"financieren."
 
-#: weblate_web/templates/donate.html:25
-msgid "Regular donations"
-msgstr "Normale donaties"
+#: weblate_web/templates/donate.html:103
+msgid "Recurring donation"
+msgstr "Terugkerende donatie"
 
-#: weblate_web/templates/donate.html:28
+#: weblate_web/templates/donate.html:106
 msgid ""
-"Regular donations allow sustainability of Weblate development and help to "
-"fund free hosting for free software. You don't have to spend big money, "
-"every penny counts."
+"Repeated appreciation of the Weblate project helps in keeping the project "
+"sustainable long term."
 msgstr ""
-"Regelmatige donaties zorgen voor duurzaamheid van de Weblate ontwikkeling en "
-"helpen bij de financiering van gratis hosting voor gratis software. U hoeft "
-"geen grote bedragen uit te geven, elke cent telt."
+"Herhaalde waardering van het Weblate project helpt om het project duurzaam "
+"te houden op lange termijn."
 
-#: weblate_web/templates/donate.html:33 weblate_web/templates/donate.html:54
-#: weblate_web/templates/thanks.html:12
-msgid "Fund on Bountysource"
-msgstr "Bekostig via Bountysource"
-
-#: weblate_web/templates/donate.html:37
+#: weblate_web/templates/donate.html:107
 msgid ""
-"You can send a monthly donation using a credit card. You can also get "
-"rewards for higher donations, for example a logo placement on our website."
+"Please consider this if you are hosting Weblate yourself without a support "
+"contract."
 msgstr ""
-"U kunt een maandelijkse donatie doen via een kredietkaart. Voor grotere "
-"donaties zijn er beloningen mogelijk, zoals het plaatsen van uw logo op onze "
-"website."
+"Houd hier rekening mee als u Weblate zelf host zonder ondersteuningscontract."
 
-#: weblate_web/templates/donate.html:47
+#: weblate_web/templates/donate.html:116
+msgid "One time donation"
+msgstr "Eenmalige donatie"
+
+#: weblate_web/templates/donate.html:119
 msgid ""
-"Liberapay is a recurrent donations platform where you send weekly amount to "
-"fund projects you use. You can use credit card, bank transfer or direct "
-"debit to top up the account."
+"One time donations are great for appreciating our work on single issue or "
+"support."
 msgstr ""
-"Liberapay is een platform voor terugkerende donaties, waarmee u wekelijks "
-"een bedrag kunt schenken aan de projecten die u gebruikt. U kunt een krediet-"
-" of debietkaart of bankoverschrijving gebruiken om de account bij te vullen."
+"Eenmalige donaties zijn geweldig voor het waarderen van ons werk op het "
+"gebied van single issue of ondersteuning."
 
-#: weblate_web/templates/donate.html:50
-msgid "Fund features"
-msgstr "Sponsor functies"
+#: weblate_web/templates/donate.html:128
+msgid "Use our services"
+msgstr "Onze services gebruiken"
 
-#: weblate_web/templates/donate.html:58
+#: weblate_web/templates/donate.html:131
 msgid ""
-"Bountysource allows you to fund individual features which are reported on "
-"our issue tracker."
+"Commercial services like hosting or support for self hosted installation "
+"help fund Weblate development."
 msgstr ""
-"Met Bountysource kunt u individuele functies uit onze tracker bekostigen."
+"Commerciële diensten zoals hosting of ondersteuning voor zelf-gehoste "
+"installatie helpen bij de financiering van Weblate-ontwikkeling."
 
-#: weblate_web/templates/donate.html:64
-msgid ""
-"If you like Weblate you can support its further development by donating."
-msgstr ""
-"Als Weblate u bevalt, kunt u de verdere ontwikkeling ervan steunen door een "
-"donatie te doen."
+#: weblate_web/templates/donate.html:142
+msgid "Donation rewards"
+msgstr "Donatiebeloningen"
 
-#: weblate_web/templates/donate.html:72
-msgid "Donate using PayPal"
-msgstr "Doneer met PayPal"
-
-#: weblate_web/templates/donate.html:77
-msgid ""
-"PayPal allows you to send money from credit card, PayPal balance or a bank "
-"account."
-msgstr ""
-"Met PayPal kunt u geld verzenden via kredietkaart, PayPal-saldo of een "
-"bankrekening."
-
-#: weblate_web/templates/donate.html:80
+#: weblate_web/templates/donate.html:163
 msgid "Cryptocurrencies"
 msgstr "Cryptovaluta"
 
-#: weblate_web/templates/donate.html:83
+#: weblate_web/templates/donate.html:166
 #, python-format
 msgid ""
 "Thanks to <a href=\"%(url)s\">Trezor</a>, we will gladly accept donations in "
@@ -396,19 +504,66 @@ msgstr ""
 "verschillende cryptovaluta. U kunt de adressen in onderstaande tabel "
 "gebruiken."
 
-#: weblate_web/templates/donate.html:88
+#: weblate_web/templates/donate.html:171
 msgid "Currency"
 msgstr "Valuta"
 
-#: weblate_web/templates/donate.html:88
-msgid "Payment link"
-msgstr "Betalingslink"
+#: weblate_web/templates/donate.html:171
+msgid "Donation address"
+msgstr "Donatie-adres"
 
-#: weblate_web/templates/donate.html:88
-msgid "Payment address"
-msgstr "Betalingsadres"
+#: weblate_web/templates/donate/edit.html:12
+#: weblate_web/templates/donate/form.html:13
+msgid "Please choose wanted reward or enter custom donation amount."
+msgstr "Selecteer de gewenste beloning of vul een aangepast donatiebedrag in."
+
+#: weblate_web/templates/donate/edit.html:20
+msgid "Edit your reward link"
+msgstr "Uw beloningslink bewerken"
+
+#: weblate_web/templates/donate/edit.html:26
+#: weblate_web/templates/payment/customer.html:21
+msgid "Save"
+msgstr "Opslaan"
+
+#: weblate_web/templates/donate/form.html:33
+msgid "Select"
+msgstr "Selecteren"
+
+#: weblate_web/templates/donate/form.html:41
+msgid ""
+"We might refuse to place your link, especially if the site contains adult or "
+"illegal content. Please consult us in advance if unsure."
+msgstr ""
+"We kunnen weigeren uw link te plaatsen, vooral als de site volwassen of "
+"illegale inhoud bevat. Gelieve ons vooraf te raadplegen indien u twijfelt."
+
+#: weblate_web/templates/donate/form.html:50
+msgid "Choose your own donation amount"
+msgstr "Uw eigen donatiebedrag kiezen"
+
+#: weblate_web/templates/donate/form.html:56
+msgid "Continue"
+msgstr "Doorgaan"
+
+#: weblate_web/templates/donate/rewards.html:2
+msgid "Link placement on the weblate.org thanks page"
+msgstr "Link-plaatsing op de weblate.org bedankingspagina"
+
+#: weblate_web/templates/donate/rewards.html:3
+msgid "Link placement in the list of supporters"
+msgstr "Link plaatsing in de lijst van supporters"
+
+#: weblate_web/templates/donate/rewards.html:4
+msgid "Name placement in the list of supporters"
+msgstr "Naam plaatsing in de lijst van supporters"
+
+#: weblate_web/templates/download-link.html:4
+msgid "PGP signature"
+msgstr "PGP-handtekening"
 
 #: weblate_web/templates/download.html:4 weblate_web/templates/download.html:5
+#: weblate_web/templates/hosting.html:234
 msgid "Download Weblate"
 msgstr "Weblate downloaden"
 
@@ -416,65 +571,65 @@ msgstr "Weblate downloaden"
 msgid "Weblate comes with complete source code."
 msgstr "Weblate wordt geleverd met de volledige broncode."
 
-#: weblate_web/templates/download.html:20
+#: weblate_web/templates/download.html:21
 msgid "You can download latest release here:"
 msgstr "U kunt de meest recente versie hier downloaden:"
 
-#: weblate_web/templates/download.html:29
-#: weblate_web/templates/download.html:45
-msgid "You can also install using packages for following Linux distributions:"
-msgstr ""
-"U kunt ook een installatie uitvoeren via pakketten voor de volgende Linux-"
-"distributies:"
-
-#: weblate_web/templates/download.html:35
+#: weblate_web/templates/download.html:30
+#: weblate_web/templates/download.html:73
 msgid "Weblate command line client"
-msgstr "Weblate-opdrachtregelcliënt"
+msgstr "Weblate-opdrachtregelclient"
 
-#: weblate_web/templates/download.html:38
+#: weblate_web/templates/download.html:33
 #, python-format
 msgid ""
 "You can control Weblate remotely using <a href=\"%(url)s\">wlc</a>, it can "
 "be installed by using Python PIP:"
 msgstr ""
-"U kunt Weblate extern besturen met <a href=\"%(url)s\">wlc</a>; dit kunt u "
+"U kunt Weblate extern bedienen met <a href=\"%(url)s\">wlc</a>; dit kunt u "
 "installeren door Python PIP te gebruiken:"
 
-#: weblate_web/templates/download.html:53
-msgid "Cloud or virtualization images"
-msgstr "Cloud of virtualisatie images"
+#: weblate_web/templates/download.html:40
+msgid "You can also install using packages for following Linux distributions:"
+msgstr ""
+"U kunt ook een installatie uitvoeren via pakketten voor de volgende Linux-"
+"distributies:"
 
-#: weblate_web/templates/download.html:55
+#: weblate_web/templates/download.html:47
+msgid "Cloud or virtualization images"
+msgstr "Cloud- of virtualisatie-images"
+
+#: weblate_web/templates/download.html:49
 msgid ""
 "Weblate can be run in any cloud or virtualization environment. Following "
 "links will show you information about some of these:"
 msgstr ""
 "Weblate kan in elke cloud- of virtualisatieomgeving uitgevoerd worden. De "
-"volgende koppelingen bieden meer informatie over een aantal hiervan:"
+"volgende links bieden meer informatie over een aantal hiervan:"
 
-#: weblate_web/templates/download.html:58
+#: weblate_web/templates/download.html:52
 msgid "Running Weblate in a Docker container"
-msgstr "Gebruik Weblate in een Docker-omgeving"
+msgstr "Weblate in een Docker-container draaien"
 
-#: weblate_web/templates/download.html:59
+#: weblate_web/templates/download.html:53
 msgid "Running Weblate on OpenShift platform"
-msgstr "Gebruik Weblate op de OpenShift-omgeving"
+msgstr "Weblate op het OpenShift-platform draaien"
 
-#: weblate_web/templates/download.html:60
+#: weblate_web/templates/download.html:54
 msgid ""
 "BitNami Weblate stack providing native installation for most platforms as "
 "well as support for many public cloud providers"
 msgstr ""
 "BitNami Weblate stack biedt installatie voor zowel de meeste platformen als "
-"ondersteuning voor vele publieke cloud aanbieders"
+"ondersteuning voor vele publieke cloud-aanbieders"
 
-#: weblate_web/templates/download.html:72
+#: weblate_web/templates/download.html:66
 msgid ""
 "Weblate is being developed on <a href=\"https://github.com/WeblateOrg/weblate"
 "\">GitHub</a>, you can fork it there or just:"
 msgstr ""
 "Weblate wordt ontwikkeld op <a href=\"https://github.com/WeblateOrg/weblate"
-"\">GitHub</a>, je kan er een fork aanmaken of gewoon:"
+"\">GitHub</a>. U kunt er een fork aanmaken of gewoon:"
 
 #: weblate_web/templates/features.html:3 weblate_web/templates/features.html:4
 msgid "Weblate features"
@@ -486,7 +641,7 @@ msgstr "Weblate is een computerondersteunde vertalingstool met vele functies."
 
 #: weblate_web/templates/features.html:11
 msgid "View documentation"
-msgstr "Bekijk documentatie"
+msgstr "Documentatie weergeven"
 
 #: weblate_web/templates/features.html:23
 msgid "Access control"
@@ -494,7 +649,7 @@ msgstr "Toegangsbeheer"
 
 #: weblate_web/templates/features.html:24
 msgid "Access rights can be fine tuned depending on your environment."
-msgstr "Toegangsrechten kunnen worden aangepast aan uw omgeving."
+msgstr "Toegangsrechten kunnen aan uw omgeving aangepast worden."
 
 #: weblate_web/templates/features.html:31
 msgid "Notifications"
@@ -504,12 +659,12 @@ msgstr "Meldingen"
 msgid ""
 "Translators can be notified on new strings to translate or other events."
 msgstr ""
-"Vertalers kunnen worden geïnformeerd bij nieuwe te vertalen tekenreeksen of "
+"Vertalers kunnen geïnformeerd worden bij nieuwe te vertalen tekenreeksen of "
 "andere gebeurtenissen."
 
 #: weblate_web/templates/features.html:39
 msgid "Integration API"
-msgstr "Integratie API"
+msgstr "Integratie-API"
 
 #: weblate_web/templates/features.html:40
 msgid "Thanks to the API you can integrate Weblate with third party services."
@@ -521,11 +676,11 @@ msgstr "Bestandsformaten"
 
 #: weblate_web/templates/features.html:48
 msgid ""
-"Weblate supports all widely used file formats for localisation like Gettext, "
-"JSON, XLIFF or resource strings."
+"Weblate supports all widely used file formats for localization, like "
+"gettext, JSON, XLIFF or resource strings."
 msgstr ""
 "Weblate ondersteunt alle veelgebruikte bestandsformaten voor vertalingen, "
-"zoals Gettext, JSON, XLIFF of brontekenreeksen."
+"zoals gettext, JSON, XLIFF of resource-tekenreeksen."
 
 #: weblate_web/templates/features.html:55
 msgid "Branches support"
@@ -541,7 +696,7 @@ msgstr ""
 
 #: weblate_web/templates/features.html:79
 msgid "Acquiring feedback"
-msgstr "Verkrijgen van feedback"
+msgstr "Feedback verkrijgen"
 
 #: weblate_web/templates/features.html:80
 msgid ""
@@ -550,10 +705,6 @@ msgid ""
 msgstr ""
 "U kunt Weblate ook gebruiken om feedback over brontekenreeksen te verkrijgen "
 "en ze dus te verbeteren."
-
-#: weblate_web/templates/features.html:87
-msgid "Export and import"
-msgstr "Exporteren en importeren"
 
 #: weblate_web/templates/features.html:88
 msgid "Translations can be downloaded for offline translation and merged back."
@@ -583,13 +734,12 @@ msgstr ""
 
 #: weblate_web/templates/features.html:111
 msgid "Review"
-msgstr "Beoordelen"
+msgstr "Nakijken"
 
 #: weblate_web/templates/features.html:112
 msgid "Translators have several options to review contributions made by peers."
 msgstr ""
-"Vertalers hebben verschillende mogelijkheden tot het beoordelen van "
-"bijdragen van anderen."
+"Vertalers hebben verschillende opties om bijdragen van anderen na te kijken."
 
 #: weblate_web/templates/features.html:119
 msgid "Languages"
@@ -605,7 +755,7 @@ msgstr ""
 
 #: weblate_web/templates/features.html:135
 msgid "Reporting"
-msgstr "Rapporteren"
+msgstr "Rapportering"
 
 #: weblate_web/templates/features.html:136
 msgid ""
@@ -624,32 +774,194 @@ msgid ""
 "Weblate talks directly with your version control system, currently Git and "
 "Mercurial are supported."
 msgstr ""
-"Weblate communiceert rechtstreeks met uw versiebeheersysteem, momenteel "
+"Weblate communiceert rechtstreeks met uw versiebeheersysteem. Momenteel "
 "worden Git en Mercurial ondersteund."
 
 #: weblate_web/templates/features.html:152
 msgid "Collaboration sites"
-msgstr "Samenwerkings sites"
+msgstr "Samenwerkingssites"
 
 #: weblate_web/templates/features.html:153
 msgid ""
 "Weblate has native support for many software development sites such as "
 "GitHub, Bitbucket or Gitlab."
 msgstr ""
-"Weblate bied directe ondersteuning van diverse software ontwikkel sites, "
-"zoals GitHub, Bitbucket en Gitlab."
+"Weblate heeft ingebouwde ondersteuning voor vele softwareontwikkelingssites "
+"zoals GitHub, Bitbucket of Gitlab."
 
 #: weblate_web/templates/features.html:160
 msgid "Responsive UI"
-msgstr "Toegankelijke UI"
+msgstr "Responsieve UI"
 
 #: weblate_web/templates/features.html:161
 msgid ""
 "Weblate has responsive UI which will work nicely on your desktop, tablet or "
 "phone."
 msgstr ""
-"Weblate heeft een toegankelijke gebruikersinterface die goed werkt op uw "
+"Weblate heeft een responsieve gebruikersinterface die goed werkt op uw "
 "desktop, tablet of telefoon."
+
+#: weblate_web/templates/hosting-free.html:3
+#: weblate_web/templates/hosting-free.html:4
+msgid "Free hosting on Weblate"
+msgstr "Gratis hosting op Weblate"
+
+#: weblate_web/templates/hosting-free.html:6
+msgid "We love open source and we offer free plans for hosting translations."
+msgstr ""
+"We houden van opensource en we bieden gratis tariefplannen aan voor het "
+"hosten van vertalingen."
+
+#: weblate_web/templates/hosting-free.html:11
+msgid "Ask for hosting"
+msgstr "Hosting aanvragen"
+
+#: weblate_web/templates/hosting-free.html:18
+msgid "Hosting for free software"
+msgstr "Hosting voor vrije software"
+
+#: weblate_web/templates/hosting-free.html:21
+msgid ""
+"If you are interested in using Weblate for your free software, you can ask "
+"us for hosting of your translations on <a href=\"https://hosted.weblate.org/"
+"\">hosted.weblate.org</a>. This will allow you to use Weblate without "
+"installing and maintaining it."
+msgstr ""
+"Als u interesse hebt in het gebruik van Weblate voor uw vrije software, kunt "
+"u ons vragen uw vertalingen op <a href=\"https://hosted.weblate.org/"
+"\">hosted.weblate.org</a> te hosten. Hierdoor kunt u Weblate gebruiken "
+"zonder het te installeren en te onderhouden."
+
+#: weblate_web/templates/hosting-free.html:24
+msgid "Conditions for free hosting"
+msgstr "Voorwaarden voor gratis hosting"
+
+#: weblate_web/templates/hosting-free.html:27
+msgid ""
+"Translated content has to be released under <a href=\"https://en.wikipedia."
+"org/wiki/Free_software_license\">free license</a>."
+msgstr ""
+"Vertaalde inhoud moet vrijgegeven worden onder een <a href=\"https://en."
+"wikipedia.org/wiki/Free_software_license\">vrije licentie</a>."
+
+#: weblate_web/templates/hosting-free.html:28
+msgid ""
+"Source code has to be publicly available in a supported version control "
+"system."
+msgstr ""
+"Broncode moet openbaar beschikbaar zijn in een ondersteund "
+"versiebeheersysteem."
+
+#: weblate_web/templates/hosting-free.html:29
+msgid "There is no guarantee for service availability or quality."
+msgstr ""
+"Er is geen garantie voor de beschikbaarheid of kwaliteit van de service."
+
+#: weblate_web/templates/hosting-free.html:32
+msgid "Asking for hosting"
+msgstr "Hosting aanvragen"
+
+#: weblate_web/templates/hosting-free.html:35
+#, python-format
+msgid ""
+"Please use <a href=\"%(url)s\">contact form on Hosted Weblate</a> to request "
+"hosting. You will need following information:"
+msgstr ""
+"Gebruik het <a href=\"%(url)s\">contactformulier op Hosted Weblate</a> om "
+"hosting aan te vragen. U hebt de volgende informatie nodig:"
+
+#: weblate_web/templates/hosting-free.html:39
+msgid "Information about your project."
+msgstr "Informatie over uw project."
+
+#: weblate_web/templates/hosting-free.html:40
+msgid "Project website."
+msgstr "Projectwebsite."
+
+#: weblate_web/templates/hosting-free.html:41
+#: weblate_web/templates/hosting-ordered.html:18
+msgid "URL of repository with translations."
+msgstr "URL van de opslagruimte met vertalingen."
+
+#: weblate_web/templates/hosting-free.html:42
+#: weblate_web/templates/hosting-ordered.html:19
+msgid "Path to translations within the repository."
+msgstr "Pad naar de vertalingen binnen de opslagruimte."
+
+#: weblate_web/templates/hosting-free.html:48
+msgid ""
+"The free plan does not allow you to change project visibility or to limit "
+"users which can contribute to the translation."
+msgstr ""
+"Het gratis tariefplan laat u niet toe de zichtbaarheid van uw project aan te "
+"passen of te beperken welke gebruikers bijdragen kunnen leveren aan de "
+"vertaling."
+
+#: weblate_web/templates/hosting-free.html:51
+msgid ""
+"This limitation can be lifted by purchasing the \"Basic\" hosting plan - you "
+"will still have free software limits, but you will get extended user "
+"management capabilities."
+msgstr ""
+"Deze beperking kan opgeheven worden door het ‘basis’-hosting-tariefplan te "
+"kopen - u zult nog steeds enkel vrije software kunnen vertalen, maar met "
+"uitgebreide mogelijkheden voor gebruikersbeheer."
+
+#: weblate_web/templates/hosting-free.html:54
+msgid "Translation workflow"
+msgstr "Vertaalworkflow"
+
+#: weblate_web/templates/hosting-free.html:57
+msgid ""
+"All translated repositories are available using https protocol with similar "
+"naming as on website - weblate/master translation is published as "
+"<code>https://hosted.weblate.org/git/weblate/master/</code>. You can figure "
+"out the URL on the component information tab."
+msgstr ""
+"Alle vertaalde opslagruimten zijn beschikbaar via het HTTPS-protocol met "
+"gelijksoortige naamgeving als op de website - de vertaling van weblate/"
+"master wordt gepubliceerd als <code>https://hosted.weblate.org/git/weblate/"
+"master/</code>. U kunt de URL vinden op het informatietabblad van het "
+"onderdeel."
+
+#: weblate_web/templates/hosting-free.html:61
+#, python-format
+msgid ""
+"Weblate can automatically receive changes from major code hosting services, "
+"see our documentation for setup on <a href=\"%(github)s\">GitHub</a>, <a "
+"href=\"%(bitbucket)s\">Bitbucket</a> or <a href=\"%(gitlab)s\">GitLab</a>."
+msgstr ""
+"Weblate kan automatisch wijzigingen van de belangrijkste codehostingdiensten "
+"ontvangen; bekijk onze documentatie om dit in te stellen voor <a href="
+"\"%(github)s\">GitHub</a>, <a href=\"%(bitbucket)s\">Bitbucket</a> of <a "
+"href=\"%(gitlab)s\">GitLab</a>."
+
+#: weblate_web/templates/hosting-free.html:65
+#, python-format
+msgid ""
+"If you want Weblate to automatically push changes as well, add Weblate push "
+"user to collaborators and let us know you want to use this option. See <a "
+"href=\"%(docs)s\">documentation</a> for more detailed instructions."
+msgstr ""
+"Als u wilt dat Weblate automatisch wijzigingen doorstuurt, voegt u \"Weblate "
+"push\"-gebruiker toe aan de medewerkers en laat u ons weten dat u deze optie "
+"wilt gebruiken. In de <a href=\"%(docs)s\">documentatie</a> vindt u "
+"detailleerde instructies."
+
+#: weblate_web/templates/hosting-free.html:68
+msgid "Support free hosting"
+msgstr "Gratis hosting ondersteunen"
+
+#: weblate_web/templates/hosting-free.html:72
+#, python-format
+msgid ""
+"The hosting is provided for free, but running the server and maintaining it "
+"costs some money, so you are welcome to use <a href=\"%(gittip_url)s"
+"\">Liberapay</a> or <a href=\"%(donate_url)s\">other ways to donate</a>."
+msgstr ""
+"De hosting wordt gratis aangeboden, maar onderhoud van de server kost wat "
+"geld, dus u mag altijd <a href=\"%(gittip_url)s\">Liberapay</a> of <a href="
+"\"%(donate_url)s\">andere manieren om te doneren</a> gebruiken."
 
 #: weblate_web/templates/hosting-ordered.html:3
 #: weblate_web/templates/hosting-ordered.html:4
@@ -670,22 +982,13 @@ msgid ""
 "The project setup is currently manual. If you haven't done so already, "
 "please get in touch with us and send us details about your repository setup."
 msgstr ""
-"Het opzetten van een project is momenteel een manueel proces. Gelieve ons te "
-"contacteren en de details van uw opslagruimteinstellingen door te sturen."
+"Het opzetten van een project is momenteel een manueel proces. Contacteer ons "
+"en stuur ons de details van uw opslagruimte-instellingen door als u dat nog "
+"niet gedaan heeft."
 
 #: weblate_web/templates/hosting-ordered.html:15
 msgid "Usually following information is needed:"
-msgstr "Meestal is de volgende informatie nodig :"
-
-#: weblate_web/templates/hosting-ordered.html:18
-#: weblate_web/templates/hosting.html:307
-msgid "URL of repository with translations."
-msgstr "URL van de opslagruimte met vertalingen."
-
-#: weblate_web/templates/hosting-ordered.html:19
-#: weblate_web/templates/hosting.html:308
-msgid "Path to translations within the repository."
-msgstr "Pad naar de vertalingen binnen de opslagruimte."
+msgstr "Meestal is de volgende informatie nodig:"
 
 #: weblate_web/templates/hosting-ordered.html:22
 msgid ""
@@ -695,25 +998,27 @@ msgid ""
 msgstr ""
 "U moet Weblate toegang geven tot uw opslagruimte. Dit kan door de Weblate-"
 "gebruiker aan uw project toe te voegen (op GitHub, Bitbucket of Gitlab), of "
-"door een SSH-sleutel toe te voegen die aan u wordt verstrekt."
+"door een SSH-sleutel toe te voegen die we u zullen verstrekken."
 
 #: weblate_web/templates/hosting.html:6
-msgid "Free continuous translation hosting for free software."
-msgstr "Gratis hosting van continue vertaling voor vrije software."
+msgid "Use Weblate as a service or get support for on-premises hosting."
+msgstr ""
+"Weblate als een service gebruiken of ondersteuning krijgen voor hosting ter "
+"plaatse."
 
 #: weblate_web/templates/hosting.html:11
-msgid "Ask for hosting"
-msgstr "Hosting aanvragen"
+msgid "Order hosting"
+msgstr "Hosting bestellen"
 
-#: weblate_web/templates/hosting.html:20
+#: weblate_web/templates/hosting.html:21
 msgid ""
 "Hosted Weblate allows you to use Weblate without any effort and with premium "
 "support backed by it's core developers."
 msgstr ""
-"Met hosted Weblate kunt u Weblate zonder enige inspanning in gebruik nemen "
+"Met Hosted Weblate kunt u Weblate zonder enige inspanning in gebruik nemen "
 "en biedt de kerngroep van de ontwikkelaars u premium support."
 
-#: weblate_web/templates/hosting.html:24
+#: weblate_web/templates/hosting.html:25
 #, python-format
 msgid ""
 "We can host translations for your commercial or free software projects. You "
@@ -744,25 +1049,25 @@ msgstr "Gemiddeld"
 #: weblate_web/templates/hosting.html:35
 msgctxt "Hosting plan"
 msgid "Advanced"
-msgstr "Gevorderd"
+msgstr "Geavanceerd"
 
 #: weblate_web/templates/hosting.html:36
 msgctxt "Hosting plan"
 msgid "Enterprise"
-msgstr "Grote onderneming"
+msgstr "Enterprise"
 
 #: weblate_web/templates/hosting.html:37
 msgctxt "Hosting plan"
 msgid "Self hosted"
-msgstr "Zelf hosten"
+msgstr "Zelf-gehost"
 
 #: weblate_web/templates/hosting.html:51
 msgid ""
 "Text unit defined in a translation format, it can be word, sentence or a "
 "paragraph"
 msgstr ""
-"Teksteenheid die door de vertaalindeling wordt bepaald; dit kan een woord, "
-"zin of een alinea zijn"
+"Teksteenheid bepaald in een vertaalformaat; dit kan een woord, zin of een "
+"alinea zijn"
 
 #: weblate_web/templates/hosting.html:51
 msgid "Source strings"
@@ -792,7 +1097,7 @@ msgstr "Doeltalen"
 
 #: weblate_web/templates/hosting.html:69
 msgid "VCS repositories"
-msgstr "Versiebeheersysteemopslagruimten"
+msgstr "Versiebeheersysteem-opslagruimten"
 
 #: weblate_web/templates/hosting.html:78
 msgid "Translation projects"
@@ -805,11 +1110,6 @@ msgstr "Vertaalonderdelen"
 #: weblate_web/templates/hosting.html:96
 msgid "Number of translators"
 msgstr "Aantal vertalers"
-
-#: weblate_web/templates/hosting.html:105
-#: weblate_web/templates/hosting.html:311
-msgid "User management"
-msgstr "Gebruikersbeheer"
 
 #: weblate_web/templates/hosting.html:114
 msgid "Supported file formats"
@@ -835,20 +1135,16 @@ msgstr "Aanpasbaar"
 
 #: weblate_web/templates/hosting.html:132
 msgid "Translation addons"
-msgstr "Vertalingsadd-ons"
+msgstr "Vertaaladd-ons"
 
 #: weblate_web/templates/hosting.html:150
 msgid "Translation memory"
 msgstr "Vertaalgeheugen"
 
-#: weblate_web/templates/hosting.html:159
+#: weblate_web/templates/hosting.html:159 weblate_web/templates/index.html:120
+#: weblate_web/templates/index.html:134
 msgid "Priority email support"
-msgstr "Prioritaire e-mail ondersteuning"
-
-#: weblate_web/templates/hosting.html:165
-#: weblate_web/templates/hosting.html:173
-msgid "Available on request"
-msgstr "Beschikbaar op aanvraag"
+msgstr "Prioritaire e-mailondersteuning"
 
 #: weblate_web/templates/hosting.html:168
 msgid "Custom domain name with SSL"
@@ -868,9 +1164,13 @@ msgstr ""
 "Dit kost %(price)s EUR/jaar extra, enkel beschikbaar met jaarlijkse "
 "afrekening"
 
+#: weblate_web/templates/hosting.html:173
+msgid "Available on request"
+msgstr "Beschikbaar op aanvraag"
+
 #: weblate_web/templates/hosting.html:179
-msgid "Monthly by PayPal"
-msgstr "Maandelijks met PayPal"
+msgid "Monthly"
+msgstr "Maandelijks"
 
 #: weblate_web/templates/hosting.html:181
 msgid "Contact us"
@@ -880,37 +1180,28 @@ msgstr "Contacteer ons"
 #: weblate_web/templates/hosting.html:187
 #: weblate_web/templates/hosting.html:190
 #: weblate_web/templates/hosting.html:193
-#: weblate_web/templates/hosting.html:253
 #, python-format
 msgid "%(price)s EUR / month"
-msgstr "%(price)s EUR / maand"
+msgstr "%(price)s EUR/maand"
 
-#: weblate_web/templates/hosting.html:195
-msgid "See below for options"
-msgstr "Zie hieronder voor de mogelijkheden"
+#: weblate_web/templates/hosting.html:196
+msgid "View support options"
+msgstr "Ondersteuningsopties weergeven"
 
-#: weblate_web/templates/hosting.html:198
+#: weblate_web/templates/hosting.html:200
 #, python-format
-msgid "Yearly by invoice (save 15-20%%)"
-msgstr "Jaarlijks met factuur (15-20%% korting)"
+msgid "Yearly (save 15-20%%)"
+msgstr "Jaarlijks (15-20%% korting)"
 
-#: weblate_web/templates/hosting.html:200
-#: weblate_web/templates/hosting.html:203
-#: weblate_web/templates/hosting.html:206
-#: weblate_web/templates/hosting.html:209
-msgid "Ask us for yearly invoicing with discount."
-msgstr "Vraag naar onze jaarlijkse facturatie met korting."
-
-#: weblate_web/templates/hosting.html:200
-#: weblate_web/templates/hosting.html:203
-#: weblate_web/templates/hosting.html:206
-#: weblate_web/templates/hosting.html:209
-#: weblate_web/templates/hosting.html:254
+#: weblate_web/templates/hosting.html:202
+#: weblate_web/templates/hosting.html:205
+#: weblate_web/templates/hosting.html:208
+#: weblate_web/templates/hosting.html:211 weblate_web/templates/support.html:68
 #, python-format
 msgid "%(price)s EUR / year"
-msgstr "%(price)s EUR / jaar"
+msgstr "%(price)s EUR/jaar"
 
-#: weblate_web/templates/hosting.html:217
+#: weblate_web/templates/hosting.html:218
 msgid ""
 "The pricing is based on number of source strings and number of target "
 "languages. The source string is a text unit defined in a translation format, "
@@ -920,15 +1211,7 @@ msgstr ""
 "aantal talen. De tekenreeks is een teksteenheid die in een vertaalindeling "
 "wordt gedefinieerd; dit kan een woord, zin of een alinea zijn."
 
-#: weblate_web/templates/hosting.html:221
-msgid ""
-"The hosting setup is currently done manually, so you might want to get in "
-"touch with us prior to making subscription with your project details."
-msgstr ""
-"Hosting wordt op dit moment manueel geconfigureerd, dus u neemt best contact "
-"met ons voordat u een aanvraag instuurt met de details van uw project."
-
-#: weblate_web/templates/hosting.html:225
+#: weblate_web/templates/hosting.html:222
 msgid ""
 "Alternatively we can accept payments by wire transfer (preferably IBAN) or "
 "Bitcoin. Please get in touch for more details."
@@ -936,305 +1219,181 @@ msgstr ""
 "We aanvaarden ook overschrijvingen (bij voorkeur met IBAN) of Bitcoin. Neem "
 "contact met ons op voor meer details."
 
-#: weblate_web/templates/hosting.html:228
-msgid "Support for self hosted environments"
-msgstr "Ondersteuning voor zelf-gehoste omgevingen"
-
-#: weblate_web/templates/hosting.html:230
-msgid ""
-"Worried of putting your translations into cloud? You can self host Weblate "
-"and we can still provide you premium support for your setup."
-msgstr ""
-"Baart het u zorgen uw vertalingen in de cloud te plaatsen? U kunt Weblate "
-"ook zelf hosten, en wij kunnen u nog steeds premiumondersteuning bieden."
-
-#: weblate_web/templates/hosting.html:236
-msgid "Installation on your Linux server"
-msgstr "Installatie op uw Linux-server"
-
-#: weblate_web/templates/hosting.html:237
-#, python-format
-msgid "%(price)s EUR"
-msgstr "%(price)s EUR"
-
-#: weblate_web/templates/hosting.html:242
-msgid "One time installation of Weblate"
-msgstr "Eenmalige installatie van Weblate"
-
-#: weblate_web/templates/hosting.html:243
-msgid "Installation using virtualenv, uwsgi and nginx"
-msgstr "Installatie met virtualenv, uwsgi en nginx"
-
-#: weblate_web/templates/hosting.html:244
-msgid "Using PostgreSQL, MySQL or MariaDB as database backend"
-msgstr "Met PostgreSQL, MySQL of MariaDB als databaseback-end"
-
-#: weblate_web/templates/hosting.html:245
-msgid "Requires root access or close cooperation of your admins"
-msgstr "Vereist roottoegang of hechte medewerking van uw systeembeheerders"
-
-#: weblate_web/templates/hosting.html:246
-msgid "Configuration customization"
-msgstr "Configuratieaanpassing"
-
-#: weblate_web/templates/hosting.html:247
-msgid "Does not include custom code development"
-msgstr "Aangepaste codeontwikkeling niet inbegrepen"
-
-#: weblate_web/templates/hosting.html:252
-msgid "Basic support for self hosted Weblate"
-msgstr "Basisondersteuning voor zelfgehoste Weblate"
-
-#: weblate_web/templates/hosting.html:259
-msgid "Your Weblate will be upgraded to the latest version on every release."
-msgstr ""
-"Uw Weblate zal bij elke nieuwe uitgave bijgewerkt worden naar de laatste "
-"versie."
-
-#: weblate_web/templates/hosting.html:260
-msgid "We will fix issues that occur in your environment."
-msgstr "We zullen problemen die zich in uw omgeving voordoen oplossen."
-
-#: weblate_web/templates/hosting.html:261
-msgid "You will receive priority email support."
-msgstr "U ontvangt ondersteuning per e-mail met prioriteit."
-
-#: weblate_web/templates/hosting.html:266
-msgid "Consulting services or custom development"
-msgstr "Consultatiediensten of aangepaste ontwikkeling"
-
-#: weblate_web/templates/hosting.html:267
-#, python-format
-msgid "%(price)s EUR / hour"
-msgstr "%(price)s EUR / uur"
-
-#: weblate_web/templates/hosting.html:272
-msgid "Custom features development"
-msgstr "Ontwikkeling van aangepaste functionaliteit"
-
-#: weblate_web/templates/hosting.html:273
-msgid "Integrating Weblate into your workflow"
-msgstr "Weblate integreren in uw werkstroom"
-
-#: weblate_web/templates/hosting.html:274
-msgid "Suggestions on the internationalization or localization process"
-msgstr ""
-"Suggesties betreffende het internationaliserings- of lokaliseringsproces"
-
-#: weblate_web/templates/hosting.html:282
-msgid "Ask us for details about self hosted Weblate"
-msgstr "Neem contact met ons op voor meer informatie over zelfgehoste Weblate"
-
-#: weblate_web/templates/hosting.html:284
-msgid "Hosting for free software"
-msgstr "Huisvesting voor vrije software"
-
-#: weblate_web/templates/hosting.html:287
-msgid ""
-"If you are interested in using Weblate for your free software, you can ask "
-"us for hosting of your translations on <a href=\"https://hosted.weblate.org/"
-"\">hosted.weblate.org</a>. This will allow you to use Weblate without "
-"installing and maintaining it."
-msgstr ""
-"Als u interesse hebt in het gebruik van Weblate voor uw vrije software, kunt "
-"u ons vragen uw vertalingen op <a href=\"https://hosted.weblate.org/"
-"\">hosted.weblate.org</a> te hosten. Hierdoor kunt u Weblate gebruiken "
-"zonder het te installeren en te onderhouden."
-
-#: weblate_web/templates/hosting.html:290
-msgid "Conditions for free hosting"
-msgstr "Voorwaarden voor gratis hosting"
-
-#: weblate_web/templates/hosting.html:293
-msgid ""
-"Translated content has to be released under <a href=\"https://en.wikipedia."
-"org/wiki/Free_software_license\">free license</a>."
-msgstr ""
-"Vertaalde inhoud moet worden vrijgegeven onder een <a href=\"https://en."
-"wikipedia.org/wiki/Free_software_license\">vrije licentie</a>."
-
-#: weblate_web/templates/hosting.html:294
-msgid ""
-"Source code has to be publicly available in a supported version control "
-"system."
-msgstr ""
-"Broncode moet publiekelijk beschikbaar zijn in een ondersteund "
-"versiebeheersysteem."
-
-#: weblate_web/templates/hosting.html:295
-msgid "There is no guarantee for service availability or quality."
-msgstr "Geen garantie op beschikbaarheid of kwaliteit van de dienst."
-
-#: weblate_web/templates/hosting.html:298
-msgid "Asking for hosting"
-msgstr "Hosting aanvragen"
-
-#: weblate_web/templates/hosting.html:301
-#, python-format
-msgid ""
-"Please use <a href=\"%(url)s\">contact form on Hosted Weblate</a> to request "
-"hosting. You will need following information:"
-msgstr ""
-"Gelieve het <a href=\"%(url)s\">contact formulier op gehoste Weblate</a> te "
-"gebruiken om hosting aan te vragen. U hebt de volgende informatie nodig:"
-
-#: weblate_web/templates/hosting.html:305
-msgid "Information about your project."
-msgstr "Informatie over uw project."
-
-#: weblate_web/templates/hosting.html:306
-msgid "Project website."
-msgstr "Projectwebsite."
-
-#: weblate_web/templates/hosting.html:314
-msgid ""
-"The free plan does not allow you to change project visibility or to limit "
-"users which can contribute to the translation."
-msgstr ""
-"Het gratis plan laat u niet toe de zichtbaarheid van uw project aan te "
-"passen, of te beperken welke gebruikers bijdragen kunnen leveren aan de "
-"vertaling."
-
-#: weblate_web/templates/hosting.html:317
-msgid ""
-"This limitation can be lifted by purchasing the \"Basic\" hosting plan - you "
-"will still have free software limits, but you will get extended user "
-"management capabilities."
-msgstr ""
-"Deze beperking kan opgeheven worden door het ‘basis’-hostingsplan te kopen - "
-"u zult nog steeds enkel vrije software kunnen vertalen, maar met uitgebreide "
-"mogelijkheden voor gebruikersbeheer."
-
-#: weblate_web/templates/hosting.html:320
-msgid "Translation workflow"
-msgstr "Vertaalworkflow"
-
-#: weblate_web/templates/hosting.html:323
-msgid ""
-"All translated repositories are available using https protocol with similar "
-"naming as on website - weblate/master translation is published as "
-"<code>https://hosted.weblate.org/git/weblate/master/</code>. You can figure "
-"out the URL on the component information tab."
-msgstr ""
-"Alle vertaalde opslagruimten zijn beschikbaar via het HTTPS-protocol met "
-"gelijksoortige naamgeving als op de website - de vertaling van weblate/"
-"master wordt gepubliceerd als <code>https://hosted.weblate.org/git/weblate/"
-"master/</code>. U kunt de URL vinden op het informatietabblad van het "
-"onderdeel."
-
-#: weblate_web/templates/hosting.html:327
-#, python-format
-msgid ""
-"Weblate can automatically receive changes from major code hosting services, "
-"see our documentation for setup on <a href=\"%(github)s\">GitHub</a>, <a "
-"href=\"%(bitbucket)s\">Bitbucket</a> or <a href=\"%(gitlab)s\">GitLab</a>."
-msgstr ""
-"Weblate kan automatisch wijzigingen van de belangrijkste codehostingdiensten "
-"ontvangen; bekijk onze documentatie om dit in te stellen voor <a href="
-"\"%(github)s\">GitHub</a>, <a href=\"%(bitbucket)s\">Bitbucket</a> of <a "
-"href=\"%(gitlab)s\">GitLab</a>."
-
-#: weblate_web/templates/hosting.html:331
-#, python-format
-msgid ""
-"If you want Weblate to automatically push changes as well, add Weblate push "
-"user to collaborators and let us know you want to use this option. See <a "
-"href=\"%(docs)s\">documentation</a> for more detailed instructions."
-msgstr ""
-"Als u wil dat Weblate automatisch wijzigingen doorstuurt, dan dient u een "
-"Weblate duw gebruiker toe te voegen aan de medewerkers en laat u ons weten "
-"dat u deze optie wenst te gebruiken. In de <a href=\"%(docs)s"
-"\">documentatie</a> vindt u detailleerde instructies."
-
-#: weblate_web/templates/hosting.html:334
-msgid "Support free hosting"
-msgstr "Ondersteun gratis hosting"
-
-#: weblate_web/templates/hosting.html:338
-#, python-format
-msgid ""
-"The hosting is provided for free, but running the server and maintaining it "
-"costs some money, so you are welcome to use <a href=\"%(gittip_url)s"
-"\">Liberapay</a> or <a href=\"%(donate_url)s\">other ways to donate</a>."
-msgstr ""
-"De hosting wordt gratis aangeboden, maar onderhoud van de server kost wat "
-"geld, dus u mag altijd <a href=\"%(gittip_url)s\">Liberapay</a> of <a href="
-"\"%(donate_url)s\">andere manieren om te doneren</a> gebruiken."
-
-#: weblate_web/templates/hosting.html:342
+#: weblate_web/templates/hosting.html:225
 msgid "Self hosting"
 msgstr "Zelf hosten"
 
-#: weblate_web/templates/hosting.html:346
-#, python-format
-msgid ""
-"You can also <a href=\"%(download_url)s\">download</a> Weblate sources and "
-"run it on your systems. There are also several options for deploying Weblate "
-"to the cloud."
-msgstr ""
-"Het is ook mogelijk om Weblate-bronbestanden <a href=\"%(download_url)s\">te "
-"downloaden</a> en deze te installeren op uw eigen systemen. Er zijn ook "
-"verschillende mogelijkheden om Weblate in de cloud in te zetten."
+#: weblate_web/templates/hosting.html:228
+msgid "Weblate is free software, you can run your own instance of it."
+msgstr "Weblate is vrije software, waarvan u een eigen kopie mag gebruiken."
 
-#: weblate_web/templates/hosting.html:350
-#, python-format
+#: weblate_web/templates/hosting.html:229
+msgid "There are also several options for deploying Weblate to the cloud."
+msgstr ""
+"Er zijn ook verschillende opties om Weblate in de cloud te implementeren."
+
+#: weblate_web/templates/hosting.html:233
 msgid ""
 "In case you need help with your self hosted solution, we're ready to help as "
-"well with consulting services tailored for your needs. Please contact <a "
-"href=\"%(contact_url)s\">Michal Čihař</a> for more details."
+"well with consulting services tailored for your needs."
 msgstr ""
 "Als u hulp nodig hebt bij uw eigen installatie van Weblate, kunt u bij ons "
-"terecht voor advies op maat. Neem contact op met <a href=\"%(contact_url)s"
-"\">Michal Čihař</a> voor meer details."
-
-#: weblate_web/templates/hosting.html:353
-msgid ""
-"All prices exclude VAT, invoices for EU countries are issued as a reverse "
-"charge, invoices for Czech Republic will include additional VAT."
-msgstr ""
-"Alle prijzen zijn exclusief BTW. Facturen voor EU-landen worden uitgegeven "
-"als ‘reverse charge’. Facturen voor Tsjechië bevatten extra BTW."
+"terecht voor advies op maat."
 
 #: weblate_web/templates/index.html:3
-msgid "Weblate - web-based translation"
+msgid "Weblate - web-based localization"
 msgstr "Weblate - webgebaseerd vertalen"
 
-#: weblate_web/templates/index.html:14 weblate_web/templates/tour.html:11
-#: weblate_web/templates/try.html:12
-msgid "Try our demo"
-msgstr "Probeer onze demo"
+#: weblate_web/templates/index.html:4
+msgid "Bring translators closer to development"
+msgstr "Vertalers dichter bij ontwikkeling brengen"
 
-#: weblate_web/templates/index.html:15
-msgid "View hosting plans"
-msgstr "Bekijk de hosting formules"
+#: weblate_web/templates/index.html:12
+msgid "Start using Weblate"
+msgstr "Weblate beginnen gebruiken"
 
-#: weblate_web/templates/index.html:16
+#: weblate_web/templates/index.html:13 weblate_web/templates/try.html:3
+#: weblate_web/templates/try.html:4 weblate_web/templates/try.html:12
+msgid "Try Weblate"
+msgstr "Weblate proberen"
+
+#: weblate_web/templates/index.html:14
 msgid "Downloads"
 msgstr "Downloads"
 
-#: weblate_web/templates/index.html:25
+#: weblate_web/templates/index.html:23
 msgid ""
-"Weblate is a free web-based translation tool with tight version control "
+"Weblate is a libre web-based localization tool with tight version control "
 "integration. It features simple and clean user interface, propagation of "
 "translations across components, quality checks and automatic linking to "
 "source files."
 msgstr ""
-"Weblate is een vrij, webgebaseerd vertaalhulpmiddel met een sterke "
+"Weblate is een libre, webgebaseerd vertaalhulpmiddel met een sterke "
 "integratie van versiebeheer. Het heeft een eenvoudige en nette "
 "gebruikersinterface, verspreiding van vertalingen tussen onderdelen, "
 "kwaliteitscontroles en automatische koppeling met bronbestanden."
 
-#: weblate_web/templates/index.html:29
+#: weblate_web/templates/index.html:27
 msgid "Weblate screenshot"
-msgstr "Weblate-schermafdruk"
+msgstr "Weblate-screenshot"
 
-#: weblate_web/templates/index.html:38
+#: weblate_web/templates/index.html:36
 msgid "See more features…"
-msgstr "Bekijk meer functies…"
+msgstr "Meer functies weergeven…"
 
-#: weblate_web/templates/index.html:47
+#: weblate_web/templates/index.html:43
 msgid "See who is using Weblate and join them!"
 msgstr "Ontdek wie er reeds Weblate gebruikt en voeg u erbij!"
+
+#: weblate_web/templates/index.html:106
+msgid "Browse hundreds of projects on Hosted Weblate"
+msgstr "Blader door honderden projecten op Hosted Weblate"
+
+#: weblate_web/templates/index.html:114
+msgid "Hosted service"
+msgstr "Gehoste service"
+
+#: weblate_web/templates/index.html:118 weblate_web/templates/index.html:132
+#, python-format
+msgid "From %(amount)sEUR/month"
+msgstr "Vanaf %(amount)s EUR/maand"
+
+#: weblate_web/templates/index.html:119
+msgid "Cloud service"
+msgstr "Cloud-service"
+
+#: weblate_web/templates/index.html:122 weblate_web/templates/index.html:136
+msgid "Choose hosting plan"
+msgstr "Hostingpakket kiezen"
+
+#: weblate_web/templates/index.html:128
+msgid "Self hosted"
+msgstr "Zelf-gehost"
+
+#: weblate_web/templates/index.html:133
+msgid "Your infrastructure"
+msgstr "Uw infrastructuur"
+
+#: weblate_web/templates/index.html:142
+msgid "Self supported"
+msgstr "Zelf ondersteund"
+
+#: weblate_web/templates/index.html:146
+msgid "Weblate is free to use"
+msgstr "Weblate is gratis te gebruiken"
+
+#: weblate_web/templates/index.html:147
+msgid "Maintained by you"
+msgstr "Door u onderhouden"
+
+#: weblate_web/templates/index.html:148
+msgid "Community support"
+msgstr "Steun van de gemeenschap"
+
+#: weblate_web/templates/payment/customer.html:5
+#: weblate_web/templates/payment/payment.html:4
+msgid "Weblate payment"
+msgstr "Weblate-betaling"
+
+#: weblate_web/templates/payment/customer.html:15
+msgid "Your billing information"
+msgstr "Uw facturatie-informatie"
+
+#: weblate_web/templates/payment/payment.html:11
+msgid "Payment summary"
+msgstr "Samenvatting van betaling"
+
+#: weblate_web/templates/payment/payment.html:14
+msgid "Payment amount"
+msgstr "Bedrag voor betaling"
+
+#: weblate_web/templates/payment/payment.html:15
+#: weblate_web/templates/support.html:37 weblate_web/templates/support.html:53
+#, python-format
+msgid "%(price)s EUR"
+msgstr "%(price)s EUR"
+
+#: weblate_web/templates/payment/payment.html:16
+msgid "(including VAT)"
+msgstr "(inclusief btw)"
+
+#: weblate_web/templates/payment/payment.html:18
+msgid "Payment description"
+msgstr "Beschrijving van betaling"
+
+#: weblate_web/templates/payment/payment.html:20
+msgid "Payment frequence"
+msgstr "Frequentie van betaling"
+
+#: weblate_web/templates/payment/payment.html:22
+msgid "Payment will be issued yearly till you cancel the subscription."
+msgstr "Betaling zal jaarlijks plaatsvinden tot u het abonnement opzegt."
+
+#: weblate_web/templates/payment/payment.html:24
+msgid ""
+"Payment will be issued every six months till you cancel the subscription."
+msgstr ""
+"Betaling zal elke zes maand uitgevoerd worden tot u het abonnement opzegt."
+
+#: weblate_web/templates/payment/payment.html:26
+msgid "Payment will be issued monthly till you cancel the subscription."
+msgstr "Betaling zal maandelijks plaatsvinden tot u het abonnement opzegt."
+
+#: weblate_web/templates/payment/payment.html:31
+msgid ""
+"Note: This is unavailable for some payment methods, you will have to "
+"manually complete the next payment in those cases."
+msgstr ""
+"Let op: dit is niet beschikbaar voor sommige betalingsmethodes. In die "
+"gevallen moet u de volgende betaling handmatig voltooien."
+
+#: weblate_web/templates/payment/payment.html:35
+msgid "Billing information"
+msgstr "Facturatie-informatie"
+
+#: weblate_web/templates/payment/payment.html:49
+msgid "Please choose payment method:"
+msgstr "Betalingsmethode kiezen:"
 
 #: weblate_web/templates/support.html:3 weblate_web/templates/support.html:4
 msgid "Weblate support"
@@ -1279,10 +1438,102 @@ msgstr ""
 "documentatie</a>."
 
 #: weblate_web/templates/support.html:28
-msgid "Support for Hosted Weblate services"
-msgstr "Ondersteuning voor gehoste Weblate-diensten"
+msgid "Support for self hosted environments"
+msgstr "Ondersteuning voor zelf-gehoste omgevingen"
 
-#: weblate_web/templates/support.html:31
+#: weblate_web/templates/support.html:30
+msgid ""
+"Worried of putting your translations into cloud? You can self host Weblate "
+"and we can still provide you premium support for your setup."
+msgstr ""
+"Maakt u zich zorgen over het in de cloud plaatsen van uw vertalingen? U kunt "
+"Weblate ook zelf hosten en wij kunnen u nog steeds premium-ondersteuning "
+"bieden."
+
+#: weblate_web/templates/support.html:36
+msgid "Installation on your Linux server"
+msgstr "Installatie op uw Linux-server"
+
+#: weblate_web/templates/support.html:42 weblate_web/templates/support.html:58
+msgid "One time installation of Weblate"
+msgstr "Eenmalige installatie van Weblate"
+
+#: weblate_web/templates/support.html:43
+msgid "Installation using virtualenv, uwsgi and nginx"
+msgstr "Installatie met virtualenv, uwsgi en nginx"
+
+#: weblate_web/templates/support.html:44
+msgid "Using PostgreSQL, MySQL or MariaDB as database backend"
+msgstr "Met PostgreSQL, MySQL of MariaDB als databaseback-end"
+
+#: weblate_web/templates/support.html:45 weblate_web/templates/support.html:60
+msgid "Requires root access or close cooperation of your admins"
+msgstr "Vereist roottoegang of hechte medewerking van uw systeembeheerders"
+
+#: weblate_web/templates/support.html:46 weblate_web/templates/support.html:61
+msgid "Configuration customization"
+msgstr "Configuratieaanpassing"
+
+#: weblate_web/templates/support.html:47 weblate_web/templates/support.html:62
+msgid "Does not include custom code development"
+msgstr "Aangepaste codeontwikkeling niet inbegrepen"
+
+#: weblate_web/templates/support.html:52
+msgid "Installation using Docker on your Linux server"
+msgstr "Installatie met Docker op uw Linux-server"
+
+#: weblate_web/templates/support.html:59
+msgid "Installation using Docker"
+msgstr "Installatie met Docker"
+
+#: weblate_web/templates/support.html:67
+msgid "Basic support for self hosted Weblate"
+msgstr "Basisondersteuning voor zelfgehoste Weblate"
+
+#: weblate_web/templates/support.html:73
+msgid "Your Weblate will be upgraded to the latest version on every release."
+msgstr ""
+"Uw Weblate zal bij elke nieuwe uitgave bijgewerkt worden naar de laatste "
+"versie."
+
+#: weblate_web/templates/support.html:74
+msgid "We will fix issues that occur in your environment."
+msgstr "We zullen problemen oplossen die zich in uw omgeving voordoen."
+
+#: weblate_web/templates/support.html:75
+msgid "You will receive priority email support."
+msgstr "U ontvangt ondersteuning per e-mail met prioriteit."
+
+#: weblate_web/templates/support.html:80
+msgid "Consulting services or custom development"
+msgstr "Consultatiediensten of aangepaste ontwikkeling"
+
+#: weblate_web/templates/support.html:81
+#, python-format
+msgid "%(price)s EUR / hour"
+msgstr "%(price)s EUR/uur"
+
+#: weblate_web/templates/support.html:86
+msgid "Custom features development"
+msgstr "Ontwikkeling van aangepaste functionaliteit"
+
+#: weblate_web/templates/support.html:87
+msgid "Integrating Weblate into your workflow"
+msgstr "Weblate integreren in uw workflow"
+
+#: weblate_web/templates/support.html:88
+msgid "Suggestions on the internationalization or localization process"
+msgstr "Suggesties voor het internationalisatie- of lokalisatieproces"
+
+#: weblate_web/templates/support.html:96
+msgid "Ask us for details about self hosted Weblate"
+msgstr "Vraag ons meer informatie over zelfgehoste Weblate"
+
+#: weblate_web/templates/support.html:99
+msgid "Support for Hosted Weblate services"
+msgstr "Ondersteuning voor diensten van Hosted Weblate"
+
+#: weblate_web/templates/support.html:102
 #, python-format
 msgid ""
 "If you are using our hosting services, you can ask for support at "
@@ -1291,15 +1542,15 @@ msgstr ""
 "Als u gebruik maakt van onze hostingdiensten, kunt u voor ondersteuning "
 "terecht op %(contact)s."
 
-#: weblate_web/templates/support.html:34
+#: weblate_web/templates/support.html:105
 msgid "Mailing lists"
 msgstr "Mailinglijsten"
 
-#: weblate_web/templates/support.html:36
+#: weblate_web/templates/support.html:107
 msgid "Users and developers mailing list"
 msgstr "Mailinglijst voor gebruikers en ontwikkelaars"
 
-#: weblate_web/templates/support.html:38
+#: weblate_web/templates/support.html:109
 msgid ""
 "You can use mailing lists for discussions with other Weblate users and "
 "developers."
@@ -1307,7 +1558,7 @@ msgstr ""
 "U kunt mailinglijsten gebruiken voor discussies met andere gebruikers en "
 "ontwikkelaars van Weblate."
 
-#: weblate_web/templates/support.html:39
+#: weblate_web/templates/support.html:110
 msgid ""
 "You can post to it using <a href=\"mailto:weblate@lists.cihar.com"
 "\">weblate@lists.cihar.com</a> address."
@@ -1315,39 +1566,42 @@ msgstr ""
 "U kunt een bericht aan de mailinglijst sturen op het adres <a href=\"mailto:"
 "weblate@lists.cihar.com\">weblate@lists.cihar.com</a>."
 
-#: weblate_web/templates/support.html:40 weblate_web/templates/support.html:56
+#: weblate_web/templates/support.html:111
+#: weblate_web/templates/support.html:127
 msgid "You can browse mailing list archives"
 msgstr "U kunt door de mailinglijstarchieven bladeren"
 
-#: weblate_web/templates/support.html:43 weblate_web/templates/support.html:59
+#: weblate_web/templates/support.html:114
+#: weblate_web/templates/support.html:130
 msgid "Enter your email"
 msgstr "Voer uw e-mailadres in"
 
-#: weblate_web/templates/support.html:45 weblate_web/templates/support.html:61
+#: weblate_web/templates/support.html:116
+#: weblate_web/templates/support.html:132
 msgid "Subscribe"
 msgstr "Abonneren"
 
-#: weblate_web/templates/support.html:52
+#: weblate_web/templates/support.html:123
 msgid "Hosted Weblate Announcements mailing list"
-msgstr "Mailinglijst voor aankondigingen betreffende gehoste Weblate"
+msgstr "Mailinglijst voor aankondigingen betreffende Hosted Weblate"
 
-#: weblate_web/templates/support.html:54
+#: weblate_web/templates/support.html:125
 msgid ""
 "Low traffic mailing list with announcements about Hosted Weblate services."
 msgstr ""
-"Laagverkeersmailinglijst met aankondigingen over gehoste Weblate-diensten."
+"Laagverkeersmailinglijst met aankondigingen over diensten van Hosted Weblate."
 
-#: weblate_web/templates/support.html:55
-msgid "This list is moderated, only selected users can post announcements."
+#: weblate_web/templates/support.html:126
+msgid "This list is moderated, only chosen users can post announcements."
 msgstr ""
-"Deze lijst wordt gemodereerd, enkel bepaalde gebruikers kunnen "
+"Deze lijst wordt gemodereerd, enkel geselecteerde gebruikers kunnen "
 "aankondigingen sturen."
 
-#: weblate_web/templates/support.html:68
+#: weblate_web/templates/support.html:139
 msgid "Stack Overflow"
 msgstr "Stack Overflow"
 
-#: weblate_web/templates/support.html:70
+#: weblate_web/templates/support.html:141
 #, python-format
 msgid ""
 "You can also ask related questions on <a href=\"%(url)s\">Stack Overflow</a>."
@@ -1355,22 +1609,17 @@ msgstr ""
 "U kunt ook gerelateerde vragen stellen op <a href=\"%(url)s\">Stack "
 "Overflow</a>."
 
-#: weblate_web/templates/support.html:72
-msgid "Consulting"
-msgstr "Advies"
+#: weblate_web/templates/terms.html:3 weblate_web/templates/terms.html:13
+msgid "Terms of Service"
+msgstr "Algemene voorwaarden"
 
-#: weblate_web/templates/support.html:74
-msgid "See our support offerings for self hosted Weblate instances"
-msgstr "Bekijk onze ondersteuningsaanboden voor zelfgehoste Weblate-instanties"
+#: weblate_web/templates/terms.html:6
+msgid "The legal documents necessary to offer this service."
+msgstr "De wettelijke documenten die nodig zijn om deze dienst aan te bieden."
 
-#: weblate_web/templates/support.html:77
-#, python-format
-msgid ""
-"You can also contact <a href=\"%(contact_link)s\">Michal Čihař</a>, who is "
-"author of Weblate for consulting services."
-msgstr ""
-"Voor advies kunt u contact opnemen met <a href=\"%(contact_link)s\">Michal "
-"Čihař</a>, de auteur van Weblate."
+#: weblate_web/templates/terms.html:20
+msgid "Privacy Policy"
+msgstr "Privacybeleid"
 
 #: weblate_web/templates/thanks.html:3 weblate_web/templates/thanks.html:4
 msgid "Thanks from Weblate"
@@ -1378,47 +1627,47 @@ msgstr "Weblate dankt u"
 
 #: weblate_web/templates/thanks.html:6
 msgid "Weblate is thankful for help from others."
-msgstr "Weblate is dankbaar voor de help van anderen."
+msgstr "Weblate is dankbaar voor de hulp van anderen."
 
-#: weblate_web/templates/thanks.html:20
+#: weblate_web/templates/thanks.html:16
 msgid "Technology"
 msgstr "Technologie"
 
-#: weblate_web/templates/thanks.html:22
+#: weblate_web/templates/thanks.html:18
 msgid "The development of Weblate is based on the following technologies:"
 msgstr ""
 "De ontwikkeling van Weblate maakt gebruik van de volgende technologieën:"
 
-#: weblate_web/templates/thanks.html:26
+#: weblate_web/templates/thanks.html:22
 msgid "GitHub provides hosting for our source code and issue tracker."
 msgstr "GitHub biedt hosting voor broncode en probleemopvolging."
 
-#: weblate_web/templates/thanks.html:30
+#: weblate_web/templates/thanks.html:26
 msgid "Travis CI is our continuous integration platform."
 msgstr "Travis CI is ons platform voor continue integratie."
 
-#: weblate_web/templates/thanks.html:34
+#: weblate_web/templates/thanks.html:30
 msgid "Codecov helps us to monitor code coverage of our test suite."
-msgstr "Codecov helpt bij het opvolgen van code dekking van de tests."
+msgstr ""
+"Codecov helpt ons bij het opvolgen van code-dekking van onze test-suite."
+
+#: weblate_web/templates/thanks.html:34
+msgid "Sauce Labs is running our Selenium tests in real browsers."
+msgstr "Sauce Labs voert onze Selenium-tests uit in echte browsers."
 
 #: weblate_web/templates/thanks.html:38
-msgid "Sauce Labs is running our Selenium tests in real browsers."
-msgstr "Sauce Labs voert de Selenium tests uit in echte browsers."
+msgid "Our translations are being done on Hosted Weblate."
+msgstr "Onze vertalingen worden uitgevoerd op Hosted Weblate."
 
 #: weblate_web/templates/thanks.html:42
-msgid "Rollbar helps us to collect and fix errors happening on Hosted Weblate."
-msgstr ""
-"Rollbar helpt ons om fouten op gehoste Weblate te verzamelen en op te lossen."
+msgid "Payments are processed by The Pay service."
+msgstr "Betalingen worden verwerkt door The Pay."
 
 #: weblate_web/templates/thanks.html:46
-msgid "Our translations are being done on Hosted Weblate."
-msgstr "Onze vertalingen worden uitgevoerd op gehoste Weblate."
-
-#: weblate_web/templates/thanks.html:50
 msgid "Supporters"
 msgstr "Aanhangers"
 
-#: weblate_web/templates/thanks.html:52
+#: weblate_web/templates/thanks.html:48
 msgid ""
 "Free hosting for free software projects would be impossible without our "
 "sponsors."
@@ -1426,33 +1675,17 @@ msgstr ""
 "Gratis hosting voor vrijesoftwareprojecten zou onmogelijk zijn zonder onze "
 "sponsors."
 
-#: weblate_web/templates/thanks.html:54
-msgid ""
-"Support our project on Bountysource Salt and get exclusive logo placement on "
-"this page."
-msgstr ""
-"Steun ons project op Bountysource Salt en uw logo wordt exclusief getoond op "
-"deze pagina."
-
-#: weblate_web/templates/tour.html:3 weblate_web/templates/tour.html:4
-msgid "Weblate tour"
-msgstr "Weblate-rondleiding"
-
-#: weblate_web/templates/tour.html:6
-msgid "Weblate has useful features for every crowdsourced translation."
-msgstr "Weblate heeft handige functies voor elke publiek uitbestede vertaling."
-
-#: weblate_web/templates/try.html:3 weblate_web/templates/try.html:4
-msgid "Try Weblate"
-msgstr "Probeer Weblate"
+#: weblate_web/templates/thanks.html:50
+msgid "Support our project and get link placement on this page."
+msgstr "Steun ons project en krijg link-plaatsing op deze pagina."
 
 #: weblate_web/templates/try.html:6
-msgid "Weblate is easy to deploy as an appliance."
-msgstr "Weblate is eenvoudig in te zetten als een appliance."
+msgid "Weblate has useful features for every crowdsourced localization."
+msgstr "Weblate heeft handige functies voor elke publiek uitbestede vertaling."
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
-msgstr "Demonstratieserver"
+msgstr "Demo-server"
 
 #: weblate_web/templates/try.html:22
 msgid ""
@@ -1460,10 +1693,9 @@ msgid ""
 "Register there and work under your username, or just use username: "
 "<code>demo</code> with password: <code>demo</code>."
 msgstr ""
-"Probeer Weblate uit op de <a href=\"https://demo.weblate.org"
-"\">demonstratieserver</a>. Registreer en werk onder uw eigen gebruikersnaam, "
-"of gebruik eenvoudig de gebruikersnaam: <code>demo</code> met wachtwoord "
-"<code>demo</code>."
+"Probeer Weblate uit op de <a href=\"https://demo.weblate.org\">demo-server</"
+"a>. Registreer en werk onder uw eigen gebruikersnaam, of gebruik eenvoudig "
+"de gebruikersnaam: <code>demo</code> met wachtwoord <code>demo</code>."
 
 #: weblate_web/templates/try.html:25
 msgid ""
@@ -1474,55 +1706,246 @@ msgstr ""
 "code> om na te gaan hoe de procedure voor het nakijken van vertalingen werkt."
 
 #: weblate_web/templates/try.html:27
-msgid "Appliances"
-msgstr "Appliances"
+msgid "Screenshots"
+msgstr "Schermafbeeldingen"
 
-#: weblate_web/templates/try.html:30
-#, python-format
+#: weblate_web/templates/vat.html:3
 msgid ""
-"Check out the <a href=\"%(download_url)s\">download page</a> for appliances, "
-"providing an easy way to deploy Weblate in the cloud."
+"All prices exclude VAT, invoices for EU countries are issued as a reverse "
+"charge, invoices for Czech Republic will include additional VAT."
 msgstr ""
-"Bekijk de <a href=\"%(download_url)s\">downloadpagina</a> voor appliances, "
-"voor een eenvoudige manier om Weblate in de cloud in te zetten."
+"Alle prijzen zijn exclusief btw, facturen voor EU-landen worden als een "
+"verleggingsregeling opgemaakt, facturen voor Tsjechië zijn inclusief extra "
+"btw."
 
-#: weblate_web/templatetags/downloads.py:40
+#: weblate_web/templatetags/downloads.py:39
 #, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
 msgstr[0] "%(size)d byte"
 msgstr[1] "%(size)d bytes"
 
-#: weblate_web/templatetags/downloads.py:45
+#: weblate_web/templatetags/downloads.py:44
 #, python-format
 msgid "%.1f KiB"
 msgstr "%.1f KiB"
 
-#: weblate_web/templatetags/downloads.py:47
+#: weblate_web/templatetags/downloads.py:46
 #, python-format
 msgid "%.1f MiB"
 msgstr "%.1f MiB"
 
-#: weblate_web/templatetags/downloads.py:48
+#: weblate_web/templatetags/downloads.py:47
 #, python-format
 msgid "%.1f GiB"
 msgstr "%.1f GiB"
 
-#: weblate_web/templatetags/downloads.py:55
+#: weblate_web/templatetags/downloads.py:54
 msgid "Sources tarball, bzip2 compressed"
 msgstr "Broncode-tarball, bzip2-gecomprimeerd"
 
-#: weblate_web/templatetags/downloads.py:57
+#: weblate_web/templatetags/downloads.py:56
 msgid "Sources tarball, gzip compressed"
 msgstr "Broncode-tarball, gzip-gecomprimeerd"
 
-#: weblate_web/templatetags/downloads.py:59
+#: weblate_web/templatetags/downloads.py:58
 msgid "Sources tarball, xz compressed"
 msgstr "Broncode-tarball, xz-gecomprimeerd"
 
-#: weblate_web/templatetags/downloads.py:61
+#: weblate_web/templatetags/downloads.py:60
 msgid "Sources, zip compressed"
-msgstr "Broncode, gezipt"
+msgstr "Broncode, zip-gecomprimeerd"
+
+#: weblate_web/views.py:89
+msgid "Please provide your billing information to complete the payment."
+msgstr "Geef uw facturatiegegevens op om de betaling af te ronden."
+
+#: weblate_web/views.py:100
+msgid "The VAT ID is no longer valid, please update it."
+msgstr "Het BTW-ID is niet langer geldig, gelieve het bij te werken."
+
+#: weblate_web/views.py:260
+msgid "Payment not yet processed, please retry."
+msgstr "Betaling nog niet verwerkt, gelieve opnieuw te proberen."
+
+#: weblate_web/views.py:265
+msgid "The payment was rejected: {}"
+msgstr "De betaling werd geweigerd: {}"
+
+#: weblate_web/views.py:266
+msgid "Unknown reason"
+msgstr "Onbekende reden"
+
+#: weblate_web/views.py:270
+msgid "Thank you for your donation."
+msgstr "Bedankt voor uw donatie."
+
+#~ msgid "Tour"
+#~ msgstr "Rondleiding"
+
+#~ msgid "Try the live demo server"
+#~ msgstr "De live demo-server proberen"
+
+#~ msgid "Weblate tour"
+#~ msgstr "Weblate-rondleiding"
+
+#~ msgid "Try our demo"
+#~ msgstr "Onze demo proberen"
+
+#~ msgid "Weblate is easy to deploy as an appliance."
+#~ msgstr "Weblate is eenvoudig in te zetten als een appliance."
+
+#~ msgid "Appliances"
+#~ msgstr "Appliances"
+
+#~ msgid ""
+#~ "Check out the <a href=\"%(download_url)s\">download page</a> for "
+#~ "appliances, providing an easy way to deploy Weblate in the cloud."
+#~ msgstr ""
+#~ "Bekijk de <a href=\"%(download_url)s\">downloadpagina</a> voor "
+#~ "appliances, voor een eenvoudige manier om Weblate in de cloud in te "
+#~ "zetten."
+
+#~ msgid "Weblate is a free web-based translation management system."
+#~ msgstr "Weblate is een gratis webgebaseerd vertaalbeheersysteem."
+
+#~ msgid "Ready for cloud"
+#~ msgstr "Klaar voor de cloud"
+
+#~ msgid ""
+#~ "Weblate is an open source web-based translation management system "
+#~ "supporting continuous translation."
+#~ msgstr ""
+#~ "Weblate is een opensource webgebaseerd vertaalbeheersysteem dat "
+#~ "voortdurende vertaling ondersteunt."
+
+#~ msgid "On premise"
+#~ msgstr "Op locatie"
+
+#~ msgid "Please select choose wanted reward or enter custom donation amount."
+#~ msgstr ""
+#~ "Selecteer de gewenste beloning of vul een aangepast donatiebedrag in."
+
+#~ msgid "This website is stored on <a href=\"%(url)s\">GitHub</a> as well:"
+#~ msgstr "Deze website wordt ook op <a href=\"%(url)s\">GitHub</a> bewaard:"
+
+#~ msgid "Donate using Liberapay"
+#~ msgstr "Doneren met Liberapay"
+
+#~ msgid ""
+#~ "Host your commercial translations on <a href=\"%(hosting_url)s\">Hosted "
+#~ "Weblate</a> and you will be supporting Weblate development automatically."
+#~ msgstr ""
+#~ "Host uw commerciele vertalingen op <a href=\"%(hosting_url)s\">gehostte "
+#~ "Weblate</a>, dan steunt u automatisch de ontwikkeling van Weblate."
+
+#~ msgid "Fund on Bountysource"
+#~ msgstr "Financieren op Bountysource"
+
+#~ msgid ""
+#~ "You can send a monthly donation using a credit card. You can also get "
+#~ "rewards for higher donations, for example a logo placement on our website."
+#~ msgstr ""
+#~ "U kunt een maandelijkse donatie doen via een kredietkaart. Voor grotere "
+#~ "donaties zijn er beloningen mogelijk, zoals het plaatsen van uw logo op "
+#~ "onze website."
+
+#~ msgid ""
+#~ "Liberapay is a recurrent donations platform where you send weekly amount "
+#~ "to fund projects you use. You can use credit card, bank transfer or "
+#~ "direct debit to top up the account."
+#~ msgstr ""
+#~ "Liberapay is een platform voor terugkerende donaties, waarmee u wekelijks "
+#~ "een bedrag kunt schenken aan de projecten die u gebruikt. U kunt een "
+#~ "krediet- of debietkaart of bankoverschrijving gebruiken om de account bij "
+#~ "te vullen."
+
+#~ msgid "Fund features"
+#~ msgstr "Sponsor-functies"
+
+#~ msgid ""
+#~ "Bountysource allows you to fund individual features reported on our issue "
+#~ "tracker."
+#~ msgstr ""
+#~ "Met Bountysource kunt u individuele functies financieren die op onze onze "
+#~ "issue-tracker gerapporteerd worden."
+
+#~ msgid ""
+#~ "If you like Weblate you can support its further development by donating."
+#~ msgstr ""
+#~ "Als Weblate u bevalt, kunt u de verdere ontwikkeling ervan steunen door "
+#~ "te doneren."
+
+#~ msgid "Donate using PayPal"
+#~ msgstr "Doneren met PayPal"
+
+#~ msgid ""
+#~ "PayPal allows you to send money from credit card, PayPal balance or a "
+#~ "bank account."
+#~ msgstr ""
+#~ "Met PayPal kunt u geld verzenden via kredietkaart, PayPal-saldo of een "
+#~ "bankrekening."
+
+#~ msgid "Monthly by PayPal"
+#~ msgstr "Maandelijks met PayPal"
+
+#~ msgid "Ask us for yearly invoicing with discount."
+#~ msgstr "Vraag naar onze jaarlijkse facturatie met korting."
+
+#~ msgid ""
+#~ "The hosting setup is currently done manually, so you might want to get in "
+#~ "touch with us prior to making subscription with your project details."
+#~ msgstr ""
+#~ "Hosting wordt op dit moment manueel geconfigureerd, dus u neemt best "
+#~ "contact met ons voordat u een aanvraag instuurt met de details van uw "
+#~ "project."
+
+#, fuzzy
+#~| msgid "Weblate is free software, you can run your own instance of it."
+#~ msgid "Weblate is free software and you can run it on your systems."
+#~ msgstr "Weblate is vrije software, waarvan u een eigen kopie mag gebruiken."
+
+#~ msgid ""
+#~ "You can also <a href=\"%(download_url)s\">download</a> Weblate sources "
+#~ "and run it on your systems. There are also several options for deploying "
+#~ "Weblate to the cloud."
+#~ msgstr ""
+#~ "Het is ook mogelijk om Weblate-bronbestanden <a href=\"%(download_url)s"
+#~ "\">te downloaden</a> en deze te installeren op uw eigen systemen. Er zijn "
+#~ "ook verschillende mogelijkheden om Weblate in de cloud in te zetten."
+
+#~ msgid "Toggle navigation"
+#~ msgstr "Navigatie wisselen"
+
+#~ msgid ""
+#~ "Weblate is <a href=\"%(github_url)s\">free software</a> and welcomes <a "
+#~ "href=\"%(donate_url)s\">donations</a>."
+#~ msgstr ""
+#~ "Weblate is <a href=\"%(github_url)s\">vrije software</a> en <a href="
+#~ "\"%(donate_url)s\">donaties</a> zijn altijd welkom."
+
+#~ msgid "Consulting"
+#~ msgstr "Advies"
+
+#~ msgid "See our support offerings for self hosted Weblate instances"
+#~ msgstr ""
+#~ "Bekijk onze ondersteuningsaanboden voor zelfgehoste Weblate-instanties"
+
+#~ msgid ""
+#~ "You can also contact <a href=\"%(contact_link)s\">Michal Čihař</a>, who "
+#~ "is author of Weblate for consulting services."
+#~ msgstr ""
+#~ "Voor advies kunt u contact opnemen met <a href=\"%(contact_link)s"
+#~ "\">Michal Čihař</a>, de auteur van Weblate."
+
+#~ msgid ""
+#~ "Rollbar helps us to collect and fix errors happening on Hosted Weblate."
+#~ msgstr ""
+#~ "Rollbar helpt ons om fouten op gehoste Weblate te verzamelen en op te "
+#~ "lossen."
+
+#~ msgid "Free continuous translation hosting for free software."
+#~ msgstr "Gratis hosting van continue vertaling voor vrije software."
 
 #~ msgid "Liberapay allows you to send a weekly amount using a credit card."
 #~ msgstr ""
@@ -1531,9 +1954,6 @@ msgstr "Broncode, gezipt"
 
 #~ msgid "Translation processing"
 #~ msgstr "Verwerken van de vertaling"
-
-#~ msgid "Phone support"
-#~ msgstr "Telefonische ondersteuning"
 
 #~ msgid "Minimal support for self hosted Weblate"
 #~ msgstr "Minimale ondersteuning voor zelfgehoste Weblate"
@@ -1635,9 +2055,6 @@ msgstr "Broncode, gezipt"
 
 #~ msgid "Sponsors"
 #~ msgstr "Sponsors"
-
-#~ msgid "Monthly"
-#~ msgstr "Maandelijks"
 
 #~ msgid "Contact"
 #~ msgstr "Contact"
@@ -1796,9 +2213,6 @@ msgstr "Broncode, gezipt"
 #~ msgstr ""
 #~ "Nieuwe <a href=\"%(url)s\">Weblate-functies</a> worden ook <a href="
 #~ "\"%(url)s\">gefinancierd via Catincan</a>, u kunt ze daar ondersteunen!"
-
-#~ msgid "Contribute"
-#~ msgstr "Bijdragen"
 
 #~ msgid "0 bytes"
 #~ msgstr "0 bytes"

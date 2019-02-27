@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Copyright © 2012 - 2015 Michal Čihař <michal@cihar.com>
+# Copyright © 2012 - 2019 Michal Čihař <michal@cihar.com>
 #
 # This file is part of Weblate <https://weblate.org/>
 #
@@ -21,7 +21,7 @@
 from django.utils.translation import ugettext_lazy as _
 
 # Version offered for download
-VERSION = '3.0.1'
+VERSION = '3.4'
 
 # Extensions offered for donwload
 EXTENSIONS = ('tar.xz', 'tar.bz2', 'tar.gz')
@@ -72,5 +72,33 @@ SCREENSHOTS = (
             'translation project.'
         ),
         _('Promotion'),
+    ),
+    (
+        'addons.png',
+        _(
+            'Translation workflow can be customized by using addons.'
+        ),
+        _('Addons'),
+    ),
+    (
+        'automatic-translation.png',
+        _(
+            'Automatic translation can be used to bootstrap your translations '
+            'using machine translation services or translation memory.'
+        ),
+        _('Automatic translation'),
+    ),
+    (
+        'export-import.png',
+        _(
+            'Translations can be exported and imported in many widely used '
+            'file formats.'
+        ),
+        _('Export and import')
+    ),
+    (
+        'manage-users.png',
+        _('You can define access levels for every user.'),
+        _('User management'),
     ),
 )
