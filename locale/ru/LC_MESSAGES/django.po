@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: weblate-web\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-27 06:33+0000\n"
+"PO-Revision-Date: 2019-02-27 18:01+0000\n"
 "Last-Translator: WWWesten <wwwesten@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/weblate/website/"
 "ru/>\n"
@@ -427,7 +427,7 @@ msgstr "Без вознаграждения"
 
 #: weblate_web/templates/donate.html:53
 msgid "Expired"
-msgstr "Срок истёк"
+msgstr "Истёкший"
 
 #: weblate_web/templates/donate.html:57
 msgid "Disable renewal"
@@ -435,7 +435,7 @@ msgstr "Отключить обновление"
 
 #: weblate_web/templates/donate.html:60
 msgid "Does not renew"
-msgstr "Не продлевать"
+msgstr "Не продлевается"
 
 #: weblate_web/templates/donate.html:92
 msgid "Donations"
@@ -1388,8 +1388,8 @@ msgstr "Платёж будет повторяться ежегодно, пок�
 msgid ""
 "Payment will be issued every six months till you cancel the subscription."
 msgstr ""
-"Оплата будет производиться каждые шесть месяцев, пока вы не откажетесь от "
-"подписки."
+"Оплата будет производиться каждые шесть месяцев, пока вы не отмените "
+"подписку."
 
 #: weblate_web/templates/payment/payment.html:26
 msgid "Payment will be issued monthly till you cancel the subscription."
