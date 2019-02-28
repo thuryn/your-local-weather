@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-16 04:48+0000\n"
+"PO-Revision-Date: 2019-02-28 11:50+0000\n"
 "Last-Translator: Joan Montané <joan@montane.cat>\n"
 "Language-Team: Catalan <https://hosted.weblate.org/projects/weblate/website/"
 "ca/>\n"
@@ -342,15 +342,13 @@ msgstr ""
 "podeu bifurcar allà o executant:"
 
 #: weblate_web/templates/contribute.html:31
-#, fuzzy, python-format
-#| msgid ""
-#| "You can also ask related questions on <a href=\"%(url)s\">Stack Overflow</"
-#| "a>."
+#, python-format
 msgid ""
 "You can find more repositories related to Weblate on <a href=\"%(url)s"
 "\">GitHub</a>"
 msgstr ""
-"També podeu preguntar al respecte al  <a href=\"%(url)s\">Stack Overflow</a>."
+"Podeu trobar més repositoris relacionats amb el Weblate a <a href=\"%(url)s\""
+">GitHub</a>"
 
 #: weblate_web/templates/contribute.html:37
 msgid ""
@@ -375,10 +373,8 @@ msgstr "Feu un donatiu al Weblate"
 
 #: weblate_web/templates/donate.html:6 weblate_web/templates/donate/edit.html:7
 #: weblate_web/templates/donate/form.html:7
-#, fuzzy
-#| msgid "Weblate is free, but welcomes donations."
 msgid "Weblate is provided free of charge, and welcomes donations."
-msgstr "El Weblate és lliure,  però agraeix donatius."
+msgstr "El Weblate és gratuït, però agraeix donatius."
 
 #: weblate_web/templates/donate.html:11 weblate_web/templates/donate.html:134
 msgid "Purchase hosting package"
@@ -448,22 +444,15 @@ msgid "Donations"
 msgstr "Donatius"
 
 #: weblate_web/templates/donate.html:95
-#, fuzzy
-#| msgid ""
-#| "Regular donations allow sustainability of Weblate development and help to "
-#| "fund free hosting for free software. You don't have to spend big money, "
-#| "every penny counts."
 msgid ""
 "Recurring donations facilitate sustainable Weblate development, even the "
 "smallest amount helps fund free of charge hosting for libre software."
 msgstr ""
-"Les donacions periòdiques permeten la sostenibilitat del desenvolupament del "
-"Weblate i ajuden a proporcionar allotjament gratuït per al programari "
-"lliure. No cal que gasteu molts diners, tota pedra fa pared."
+"Els donatius periòdics faciliten la sostenibilitat del desenvolupament del "
+"Weblate, fins i tot la quantitat més petita ajuda a proporcionar allotjament "
+"gratuït per al programari lliure."
 
 #: weblate_web/templates/donate.html:103
-#, fuzzy
-#| msgid "Regular donations"
 msgid "Recurring donation"
 msgstr "Donacions periòdiques"
 
@@ -482,10 +471,8 @@ msgstr ""
 "suport."
 
 #: weblate_web/templates/donate.html:116
-#, fuzzy
-#| msgid "View documentation"
 msgid "One time donation"
-msgstr "Mostra la documentació"
+msgstr "Donatiu únic"
 
 #: weblate_web/templates/donate.html:119
 msgid ""
@@ -1425,7 +1412,7 @@ msgstr ""
 
 #: weblate_web/templates/payment/payment.html:35
 msgid "Billing information"
-msgstr "Informació de la facturació"
+msgstr "Informació de facturació"
 
 #: weblate_web/templates/payment/payment.html:49
 #, fuzzy
