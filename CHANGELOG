@@ -1,4 +1,7 @@
-v4.6.10
+v4.6.12
+Fixed manual update when there are more than one location; add update weather action on update time; fixed storing of updated location
+
+v4.6.11
 Enable one more location when location 0 is disabled; added snackbar notifification when maximum number of allowed locations is reached
 
 v4.6.10
