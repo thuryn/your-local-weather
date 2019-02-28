@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: weblate-website-ja\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-28 11:50+0000\n"
+"PO-Revision-Date: 2019-03-01 08:36+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/weblate/website/"
 "ja/>\n"
@@ -1245,12 +1245,12 @@ msgstr "コンサルティングサービス／独自開発"
 
 #: weblate_web/templates/index.html:12
 msgid "Start using Weblate"
-msgstr "Weblate の使用を開始する"
+msgstr "Weblate の使用を開始"
 
 #: weblate_web/templates/index.html:13 weblate_web/templates/try.html:3
 #: weblate_web/templates/try.html:4 weblate_web/templates/try.html:12
 msgid "Try Weblate"
-msgstr "Weblate の試用"
+msgstr "Weblate を試用"
 
 #: weblate_web/templates/index.html:14
 msgid "Downloads"
@@ -1280,7 +1280,7 @@ msgstr "Weblate を使用している人々を確認し、ご参加ください�
 
 #: weblate_web/templates/index.html:106
 msgid "Browse hundreds of projects on Hosted Weblate"
-msgstr "Weblate でホスティングしている数百のプロジェクトを確認する"
+msgstr "Hosted Weblate の数百のプロジェクトを確認"
 
 #: weblate_web/templates/index.html:114
 msgid "Hosted service"
@@ -1521,7 +1521,7 @@ msgstr "独自の Weblate の設置の詳細はお問い合わせください"
 
 #: weblate_web/templates/support.html:99
 msgid "Support for Hosted Weblate services"
-msgstr "Weblate ホスティング サービスへのサポート"
+msgstr "Hosted Weblate サービス向けのサポート"
 
 #: weblate_web/templates/support.html:102
 #, python-format
@@ -1572,14 +1572,12 @@ msgstr "購読"
 
 #: weblate_web/templates/support.html:123
 msgid "Hosted Weblate Announcements mailing list"
-msgstr "Weblate ホスティングのアナウンス用メーリング リスト"
+msgstr "Hosted Weblate のアナウンス用メーリング リスト"
 
 #: weblate_web/templates/support.html:125
 msgid ""
 "Low traffic mailing list with announcements about Hosted Weblate services."
-msgstr ""
-"Weblate のホスティング サービスに関するアナウンスを送信する、低トラフィックの"
-"メーリング リストです。"
+msgstr "Hosted Weblate サービスに関するアナウンスを送信する、低頻度のメーリング リストです。"
 
 #: weblate_web/templates/support.html:126
 msgid "This list is moderated, only chosen users can post announcements."
@@ -1605,7 +1603,7 @@ msgstr "サービス利用規約"
 
 #: weblate_web/templates/terms.html:6
 msgid "The legal documents necessary to offer this service."
-msgstr "このサービスの提供に必要な法的文書。"
+msgstr "このサービスの提供に必要な法的文書です。"
 
 #: weblate_web/templates/terms.html:20
 msgid "Privacy Policy"
