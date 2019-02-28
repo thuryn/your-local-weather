@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: weblate-website-ja\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-24 14:18+0000\n"
+"PO-Revision-Date: 2019-02-28 11:50+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://hosted.weblate.org/projects/weblate/website/"
 "ja/>\n"
@@ -1163,7 +1163,7 @@ msgstr "リクエストで利用可能"
 
 #: weblate_web/templates/hosting.html:179
 msgid "Monthly"
-msgstr "月額"
+msgstr "月間"
 
 #: weblate_web/templates/hosting.html:181
 msgid "Contact us"
