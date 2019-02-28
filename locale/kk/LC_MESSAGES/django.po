@@ -2,19 +2,22 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # Weblate <noreply@weblate.org>, 2019.
+# WWWesten <wwwesten@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
+"Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2019-02-28 21:48+0000\n"
+"Last-Translator: WWWesten <wwwesten@gmail.com>\n"
+"Language-Team: Kazakh <https://hosted.weblate.org/projects/weblate/website/"
+"kk/>\n"
 "Language: kk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 3.5-dev\n"
 
 #: weblate_web/data.py:33
 msgid "Overview of own translations at main page."
@@ -284,7 +287,7 @@ msgstr ""
 #: weblate_web/templates/contribute.html:11
 #: weblate_web/templates/contribute.html:34
 msgid "Translate"
-msgstr ""
+msgstr "Tárjimeleý"
 
 #: weblate_web/templates/contribute.html:17
 msgid ""
@@ -320,7 +323,7 @@ msgstr ""
 
 #: weblate_web/templates/contribute.html:42
 msgid "Translation status"
-msgstr ""
+msgstr "Tárjime kúıi"
 
 #: weblate_web/templates/donate.html:3 weblate_web/templates/donate.html:4
 #: weblate_web/templates/donate/edit.html:4
@@ -665,7 +668,7 @@ msgstr ""
 
 #: weblate_web/templates/features.html:111
 msgid "Review"
-msgstr ""
+msgstr "Saraptaý"
 
 #: weblate_web/templates/features.html:112
 msgid "Translators have several options to review contributions made by peers."
