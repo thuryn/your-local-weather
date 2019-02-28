@@ -303,10 +303,15 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
                 intentRefreshService, 0);
         remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_3x3_widget_button_refresh, pendingIntent);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_3x3_widget_last_update, pendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_3x3_widget_button_refresh, pendingIntent);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_3x3_widget_last_update, pendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_graph_3x3_widget_button_refresh, pendingIntent);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_graph_3x3_widget_last_update, pendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_less_3x1_widget_button_refresh, pendingIntent);
+        remoteViews.setOnClickPendingIntent(R.id.widget_less_3x1_widget_last_update, pendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_more_3x3_widget_button_refresh, pendingIntent);
+        remoteViews.setOnClickPendingIntent(R.id.widget_more_3x3_widget_last_update, pendingIntent);
 
         final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
 
