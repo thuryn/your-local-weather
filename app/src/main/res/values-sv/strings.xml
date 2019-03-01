@@ -5,7 +5,7 @@
     <string name="label_current_city" tools:ignore="MissingTranslation">Aktuell stad</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">Välj stad</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Batterioptimering</string>
-    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Applikationen kör bakgrundsprocesser för att utföra uppdateringar av plats, väder eller spåra plats genom accelerometer. Därför kommer applikationen att be dig att stänga av batterioptimeringen för att köra bakgrundsprocesserna.</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Applikationen kommer att be dig att stänga av batterioptimeringen för att uppdatera plats, väder eller för att spåra plats genom accelerometer i bakgrunden.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Fortsätt</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Avbryt</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Plats- och behörighetsinställningar</string>
