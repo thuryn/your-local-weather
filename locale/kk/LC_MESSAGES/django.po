@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-03-01 08:36+0000\n"
+"PO-Revision-Date: 2019-03-01 18:02+0000\n"
 "Last-Translator: WWWesten <wwwesten@gmail.com>\n"
 "Language-Team: Kazakh <https://hosted.weblate.org/projects/weblate/website/"
 "kk/>\n"
@@ -82,7 +82,7 @@ msgstr ""
 
 #: weblate_web/data.py:81
 msgid "Addons"
-msgstr ""
+msgstr "Qondyrmalar"
 
 #: weblate_web/data.py:86
 msgid ""
@@ -483,7 +483,7 @@ msgstr ""
 #: weblate_web/templates/donate/edit.html:26
 #: weblate_web/templates/payment/customer.html:21
 msgid "Save"
-msgstr ""
+msgstr "Saqtaý"
 
 #: weblate_web/templates/donate/form.html:33
 msgid "Select"
@@ -676,7 +676,7 @@ msgstr ""
 
 #: weblate_web/templates/features.html:119
 msgid "Languages"
-msgstr ""
+msgstr "Tilder"
 
 #: weblate_web/templates/features.html:120
 msgid ""
@@ -943,7 +943,7 @@ msgstr ""
 
 #: weblate_web/templates/hosting.html:51
 msgid "Source strings"
-msgstr "Qaınar sózderi"
+msgstr "Qaınar joldary"
 
 #: weblate_web/templates/hosting.html:52 weblate_web/templates/hosting.html:61
 #: weblate_web/templates/hosting.html:70
@@ -973,7 +973,7 @@ msgstr ""
 
 #: weblate_web/templates/hosting.html:78
 msgid "Translation projects"
-msgstr ""
+msgstr "Tárjimelik jobalar"
 
 #: weblate_web/templates/hosting.html:87
 msgid "Translation components"
@@ -1443,7 +1443,7 @@ msgstr ""
 
 #: weblate_web/templates/terms.html:3 weblate_web/templates/terms.html:13
 msgid "Terms of Service"
-msgstr ""
+msgstr "Qyzmet sharttary"
 
 #: weblate_web/templates/terms.html:6
 msgid "The legal documents necessary to offer this service."
@@ -1451,7 +1451,7 @@ msgstr ""
 
 #: weblate_web/templates/terms.html:20
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Qupıalylyq saıasaty"
 
 #: weblate_web/templates/thanks.html:3 weblate_web/templates/thanks.html:4
 msgid "Thanks from Weblate"
