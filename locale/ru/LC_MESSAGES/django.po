@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: weblate-web\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-27 18:01+0000\n"
+"PO-Revision-Date: 2019-03-01 08:36+0000\n"
 "Last-Translator: WWWesten <wwwesten@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/weblate/website/"
 "ru/>\n"
@@ -410,7 +410,7 @@ msgstr "Дата истечения"
 
 #: weblate_web/templates/donate.html:32
 msgid "Renewal"
-msgstr "Обновление"
+msgstr "Продление"
 
 #: weblate_web/templates/donate.html:33
 msgid "Payments"
@@ -431,7 +431,7 @@ msgstr "Истёкший"
 
 #: weblate_web/templates/donate.html:57
 msgid "Disable renewal"
-msgstr "Отключить обновление"
+msgstr "Отключить продление"
 
 #: weblate_web/templates/donate.html:60
 msgid "Does not renew"
