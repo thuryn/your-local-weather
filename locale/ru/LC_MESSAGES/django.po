@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: weblate-web\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-03-01 08:36+0000\n"
+"PO-Revision-Date: 2019-03-01 18:02+0000\n"
 "Last-Translator: WWWesten <wwwesten@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/weblate/website/"
 "ru/>\n"
@@ -82,8 +82,8 @@ msgstr "Проверки качества"
 #: weblate_web/data.py:71 weblate_web/templates/features.html:128
 msgid "Weblate provides you various ways to promote your translation project."
 msgstr ""
-"Weblate обеспечивает разнообразные способы для продвижения вашего проекта "
-"перевода."
+"Weblate обеспечивает разнообразные способы для продвижения вашего "
+"переводческого проекта."
 
 #: weblate_web/data.py:74 weblate_web/templates/features.html:127
 msgid "Promotion"
@@ -1113,7 +1113,7 @@ msgstr "Репозитории VCS"
 
 #: weblate_web/templates/hosting.html:78
 msgid "Translation projects"
-msgstr "Переводимые проекты"
+msgstr "Переводческие проекты"
 
 #: weblate_web/templates/hosting.html:87
 msgid "Translation components"
