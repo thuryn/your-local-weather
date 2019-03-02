@@ -5,13 +5,14 @@
 # Krombel <krombel@krombel.de>, 2018.
 # jo vuit <jo.vuitton@gmail.com>, 2019.
 # C. Rüdinger <Mail-an-CR@web.de>, 2019.
+# WWWesten <wwwesten@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-13 13:12+0000\n"
-"Last-Translator: C. Rüdinger <Mail-an-CR@web.de>\n"
+"PO-Revision-Date: 2019-03-03 15:16+0000\n"
+"Last-Translator: WWWesten <wwwesten@gmail.com>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/weblate/website/"
 "de/>\n"
 "Language: de\n"
@@ -905,7 +906,7 @@ msgstr "Grundlegende Informationen über Ihr Projekt."
 
 #: weblate_web/templates/hosting-free.html:40
 msgid "Project website."
-msgstr "Projekt-Website"
+msgstr "Projekt-Website."
 
 #: weblate_web/templates/hosting-free.html:41
 #: weblate_web/templates/hosting-ordered.html:18
