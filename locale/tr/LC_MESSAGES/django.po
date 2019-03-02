@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # MESUT AKCAN <makcan@gmail.com>, 2018.
 # Mesut Akcan <makcan@gmail.com>, 2018, 2019.
+# WWWesten <wwwesten@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-14 20:15+0000\n"
-"Last-Translator: Mesut Akcan <makcan@gmail.com>\n"
+"PO-Revision-Date: 2019-03-03 04:21+0000\n"
+"Last-Translator: WWWesten <wwwesten@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/weblate/website/"
 "tr/>\n"
 "Language: tr\n"
@@ -1707,7 +1708,7 @@ msgstr ""
 "verilir, Çek Cumhuriyeti için faturalar ek KDV içerir."
 
 #: weblate_web/templatetags/downloads.py:39
-#, python-format
+#, fuzzy, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
 msgstr[0] "%(size)d bayt"
