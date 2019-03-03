@@ -164,7 +164,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             widgetId = Integer.parseInt(widgetIdTxt);
             openWidgetSettings(context, widgetId, params[2]);
         } else if (intent.getAction().startsWith(Constants.ACTION_APPWIDGET_START_ACTIVITY)) {
-            AppPreference.setCurrentLocationId(context, currentLocation.getId());
+            AppPreference.setCurrentLocationId(context, currentLocation);
             Long widgetActionId = intent.getLongExtra("widgetAction", 1);
             Class activityClass = WidgetActions.getById(widgetActionId, "action_current_weather_icon").getActivityClass();
             Intent activityIntent = new Intent(context, activityClass);

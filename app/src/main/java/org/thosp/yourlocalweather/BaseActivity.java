@@ -113,7 +113,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         }
 
-        AppPreference.setCurrentLocationId(this, currentLocation.getId());
+        AppPreference.setCurrentLocationId(this, currentLocation);
         localityView.setText(Utils.getCityAndCountry(this, newLocationOrderId));
         updateUI();
     }

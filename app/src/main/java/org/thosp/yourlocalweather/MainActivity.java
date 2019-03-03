@@ -1018,7 +1018,7 @@ public class MainActivity extends BaseActivity
                 mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(true);
             }
         }
-        AppPreference.setCurrentLocationId(this, currentLocation.getId());
+        AppPreference.setCurrentLocationId(this, currentLocation);
     }
 
     protected void sendMessageToCurrentWeatherService(Location location, String updateSource) {
