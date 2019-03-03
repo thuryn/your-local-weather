@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-03-03 04:21+0000\n"
-"Last-Translator: WWWesten <wwwesten@gmail.com>\n"
+"PO-Revision-Date: 2019-03-03 15:16+0000\n"
+"Last-Translator: Mesut Akcan <makcan@gmail.com>\n"
 "Language-Team: Turkish <https://hosted.weblate.org/projects/weblate/website/"
 "tr/>\n"
 "Language: tr\n"
@@ -1708,7 +1708,7 @@ msgstr ""
 "verilir, Çek Cumhuriyeti için faturalar ek KDV içerir."
 
 #: weblate_web/templatetags/downloads.py:39
-#, fuzzy, python-format
+#, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
 msgstr[0] "%(size)d bayt"
@@ -1731,19 +1731,19 @@ msgstr "%.1f GiB"
 
 #: weblate_web/templatetags/downloads.py:54
 msgid "Sources tarball, bzip2 compressed"
-msgstr "Kaynaklar tarball, bzip2 sıkıştırmalı"
+msgstr "Kaynaklar tarball, bzip2 ile sıkıştırılmış"
 
 #: weblate_web/templatetags/downloads.py:56
 msgid "Sources tarball, gzip compressed"
-msgstr "Kaynaklar tarball, gzip sıkıştırmalı"
+msgstr "Kaynaklar tarball, gzip ile sıkıştırılmış"
 
 #: weblate_web/templatetags/downloads.py:58
 msgid "Sources tarball, xz compressed"
-msgstr "Kaynaklar tarball, xz sıkıştırmalı"
+msgstr "Kaynaklar tarball, xz ile sıkıştırılmış"
 
 #: weblate_web/templatetags/downloads.py:60
 msgid "Sources, zip compressed"
-msgstr "Kaynaklar, zip sıkıştırmalı"
+msgstr "Kaynaklar, zip ile sıkıştırılmış"
 
 #: weblate_web/views.py:89
 msgid "Please provide your billing information to complete the payment."
