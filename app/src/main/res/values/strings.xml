@@ -354,7 +354,7 @@
     <string name="locations_disabled" tools:ignore="MissingTranslation">Disabled</string>
     <string name="search_location_add" tools:ignore="MissingTranslation">Add</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Tap on map to get desired location and wait to get address resolved.</string>
-    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Current weather has not been updated yet. Update current weather by refresh button first, please.</string>
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Please click the refresh button to update the weather first.</string>
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about" tools:ignore="MissingTranslation">About</string>
     <string name="about_version_pref_title" tools:ignore="MissingTranslation">Version</string>
