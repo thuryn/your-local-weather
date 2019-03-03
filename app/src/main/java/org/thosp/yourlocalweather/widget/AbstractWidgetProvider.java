@@ -80,6 +80,9 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         } else {
             currentLocation = locationsDbHelper.getLocationById(locationId);
         }
+        if (currentLocation == null) {
+            return;
+        }
         if (!currentLocation.isEnabled()) {
             currentLocation = locationsDbHelper.getLocationByOrderId(1);
         }

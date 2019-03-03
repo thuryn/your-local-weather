@@ -1,3 +1,6 @@
+v4.6.13
+Fixed storing of location in widget when no location available
+
 v4.6.12
 Fixed manual update when there are more than one location; add update weather action on update time; fixed storing of updated location
 
