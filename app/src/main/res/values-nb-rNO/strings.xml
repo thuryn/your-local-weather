@@ -16,7 +16,7 @@
     <string name="location_not_found" tools:ignore="MissingTranslation">Fant ikke plassering</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Tilganger ikke innvilget - klikk plasseringssymbolet i programmet</string>
     <string name="title_activity_search">Aktivitetsnavn</string>
-    <string name="label_activity_main">Nåværende vær</string>
+    <string name="label_activity_main">Været nå</string>
     <string name="label_activity_weather_forecast">Dagsvarsel</string>
     <string name="title_activity_license">Lisens for %s</string>
     <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Oppdater</string>
@@ -35,7 +35,7 @@
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Trykk</string>
     <string name="ok" tools:ignore="MissingTranslation">OK</string>
     <string name="cancel" tools:ignore="MissingTranslation">Avbryt</string>
-    <string name="nav_menu_current_weather">Nåværende vær</string>
+    <string name="nav_menu_current_weather">Været nå</string>
     <string name="nav_menu_daily_forecast">Dagsvarsel</string>
     <string name="nav_menu_settings">Innstillinger</string>
     <string name="nav_feedback">Tilbakemelding</string>
@@ -218,7 +218,7 @@
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Du kan kontrollere miniprogramsbakgrunner med <b xmlns:tools="https://schemas.android.com/tools">Draktvalg for miniprogrammer</b>.</string>
     <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">
         <b xmlns:tools="https://schemas.android.com/tools">Oppvåkningsstrategien</b> er der for å imøtegå feilaktige implementasjonen av Android-tjenesten av forskjellige tilbydere. Når du velger <i xmlns:tools="https://schemas.android.com/tools">Ingen oppvåkning</i> og plasseringen er oppdatert rett, har du rett implementasjon. I motsatt fall kan du prøve <i xmlns:tools="https://schemas.android.com/tools">Kun vekk opp CPU</i>. Dette valget vekker opp prosessoren og prøver å lese tilstanden for mobil og Wi-Fi-nettverk. Det siste valget <i xmlns:tools="https://schemas.android.com/tools">Vekk opp med skjer</i> skrur på skjermen i flere sekunder under plasseringsoppdateringen. På noen Android-telefoner er dette det eneste valget som gir rett informasjon om mobil- og Wi-Fi-nettverk. Dette bruker dog mer batteri, men innvirkningen er ganske liten.</string>
-    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Når du oppdaterer plassering og nåværende være utføres kan du se status for oppdateringen ved siden av oppdateringstiden i miniprogrammet. Du kan kontrollere hva som vises med <b xmlns:tools="https://schemas.android.com/tools">Vis oppdateringssammendrag</b>. Forklaringen på det mest avanserte valget følger:</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Når du oppdaterer plassering og nåværende vær utføres kan du se status for oppdateringen ved siden av oppdateringstiden i miniprogrammet. Du kan kontrollere hva som vises med <b xmlns:tools="https://schemas.android.com/tools">Vis oppdateringssammendrag</b>. Forklaringen på det mest avanserte valget følger:</string>
     <string name="label_activity_graphs" tools:ignore="MissingTranslation">Værgrafer</string>
     <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Grafer</string>
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
@@ -264,7 +264,7 @@
     <string name="pref_language_el" tools:ignore="MissingTranslation">Gresk (Greek)</string>
     <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabisk (Arabic)</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Trykk på kartet for å hente valgt plassering og vent på utledning av adresse.</string>
-    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Nåværende vær har ikke blitt oppdatert enda. Oppdater nåværende vær med gjenoppfriskingsknappen først.</string>
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Klikk på oppdateringsknappen for å hente nåværende vær.</string>
     <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Følt temperatur: %s</string>
     <string name="label_measured_temperature" tools:ignore="MissingTranslation">Målt temperatur: %s</string>
     <string name="measured_only" tools:ignore="MissingTranslation">Kun målt temperatur</string>
