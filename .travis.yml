@@ -1,6 +1,8 @@
 language: python
+dist: xenial
 python:
   - "3.5"
+  - "3.7"
 # commands to install dependencies
 install: 
   - pip install https://github.com/WeblateOrg/weblate/archive/master.zip
