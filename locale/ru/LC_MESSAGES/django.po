@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: weblate-web\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-27 18:01+0000\n"
+"PO-Revision-Date: 2019-03-03 15:16+0000\n"
 "Last-Translator: WWWesten <wwwesten@gmail.com>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/weblate/website/"
 "ru/>\n"
@@ -82,8 +82,8 @@ msgstr "Проверки качества"
 #: weblate_web/data.py:71 weblate_web/templates/features.html:128
 msgid "Weblate provides you various ways to promote your translation project."
 msgstr ""
-"Weblate обеспечивает разнообразные способы для продвижения вашего проекта "
-"перевода."
+"Weblate обеспечивает разнообразные способы для продвижения вашего "
+"переводческого проекта."
 
 #: weblate_web/data.py:74 weblate_web/templates/features.html:127
 msgid "Promotion"
@@ -102,8 +102,8 @@ msgid ""
 "Automatic translation can be used to bootstrap your translations using "
 "machine translation services or translation memory."
 msgstr ""
-"Автоматический перевод (машинные переводы и накопитель переводов) можно "
-"использовать для создания первоначального варианта локализованных строк."
+"Автоматический перевод (используя сервисы машинных переводов или накопитель "
+"переводов) можно использовать для инициализации ваших переводов."
 
 #: weblate_web/data.py:89
 msgid "Automatic translation"
@@ -165,7 +165,7 @@ msgstr ""
 
 #: weblate_web/templates/404.html:13
 msgid "The page you are looking for was not found."
-msgstr "Страница, которую вы ищете, не найдена."
+msgstr "Страница, которую вы искали, не найдена."
 
 #: weblate_web/templates/500.html:4
 msgid "Server error"
@@ -410,7 +410,7 @@ msgstr "Дата истечения"
 
 #: weblate_web/templates/donate.html:32
 msgid "Renewal"
-msgstr "Обновление"
+msgstr "Продление"
 
 #: weblate_web/templates/donate.html:33
 msgid "Payments"
@@ -431,7 +431,7 @@ msgstr "Истёкший"
 
 #: weblate_web/templates/donate.html:57
 msgid "Disable renewal"
-msgstr "Отключить обновление"
+msgstr "Отключить продление"
 
 #: weblate_web/templates/donate.html:60
 msgid "Does not renew"
@@ -1113,7 +1113,7 @@ msgstr "Репозитории VCS"
 
 #: weblate_web/templates/hosting.html:78
 msgid "Translation projects"
-msgstr "Переводимые проекты"
+msgstr "Переводческие проекты"
 
 #: weblate_web/templates/hosting.html:87
 msgid "Translation components"
@@ -1735,8 +1735,8 @@ msgid ""
 "All prices exclude VAT, invoices for EU countries are issued as a reverse "
 "charge, invoices for Czech Republic will include additional VAT."
 msgstr ""
-"Все цены приводятся без НДС, счета для стран ЕС выставляются c НДС, "
-"удерживаемым у источника доходов (reverse charge), в счетах для Чешской "
+"Все цены приводятся без НДС, инвойсы для стран ЕС выставляются c НДС, "
+"удерживаемым у источника доходов (reverse charge), в инвойсах для Чешской "
 "Республики будет включен дополнительно НДС."
 
 #: weblate_web/templatetags/downloads.py:39
