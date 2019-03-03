@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-03-01 18:02+0000\n"
+"PO-Revision-Date: 2019-03-03 15:16+0000\n"
 "Last-Translator: WWWesten <wwwesten@gmail.com>\n"
 "Language-Team: Kazakh <https://hosted.weblate.org/projects/weblate/website/"
 "kk/>\n"
@@ -35,7 +35,7 @@ msgstr ""
 
 #: weblate_web/data.py:42 weblate_web/templates/features.html:63
 msgid "Translation context"
-msgstr ""
+msgstr "Tárjime mátinmáni"
 
 #: weblate_web/data.py:47
 msgid ""
@@ -74,7 +74,7 @@ msgstr ""
 
 #: weblate_web/data.py:74 weblate_web/templates/features.html:127
 msgid "Promotion"
-msgstr ""
+msgstr "Ilgeriletý"
 
 #: weblate_web/data.py:79
 msgid "Translation workflow can be customized by using addons."
@@ -92,7 +92,7 @@ msgstr ""
 
 #: weblate_web/data.py:89
 msgid "Automatic translation"
-msgstr ""
+msgstr "Avtomatty tárjime"
 
 #: weblate_web/data.py:94
 msgid ""
@@ -101,7 +101,7 @@ msgstr ""
 
 #: weblate_web/data.py:97 weblate_web/templates/features.html:87
 msgid "Export and import"
-msgstr ""
+msgstr "Eksport jáne ımport"
 
 #: weblate_web/data.py:101
 msgid "You can define access levels for every user."
@@ -110,7 +110,7 @@ msgstr ""
 #: weblate_web/data.py:102 weblate_web/templates/hosting-free.html:45
 #: weblate_web/templates/hosting.html:105
 msgid "User management"
-msgstr ""
+msgstr "Paıdalanýshy basqarý"
 
 #: weblate_web/forms.py:47 weblate_web/templates/donate.html:152
 #: weblate_web/templates/donate/form.html:25
@@ -120,12 +120,12 @@ msgstr ""
 #: weblate_web/forms.py:54 weblate_web/templates/donate.html:153
 #: weblate_web/templates/donate/form.html:26
 msgid "Amount in EUR"
-msgstr ""
+msgstr "EUR somasy"
 
 #: weblate_web/forms.py:57
 #, python-format
 msgid "The minimal amount is %d EUR."
-msgstr ""
+msgstr "Eń kishi somasy %d EUR."
 
 #: weblate_web/models.py:76
 msgid "Link text"
@@ -137,7 +137,7 @@ msgstr "Silteme URL-y"
 
 #: weblate_web/templates/404.html:4
 msgid "Page not found"
-msgstr ""
+msgstr "Bet tabylmady"
 
 #: weblate_web/templates/404.html:7 weblate_web/templates/500.html:7
 #: weblate_web/templates/index.html:6
@@ -161,7 +161,7 @@ msgstr ""
 #: weblate_web/templates/base-features.html:6
 #: weblate_web/templates/hosting.html:42
 msgid "Continuous localization"
-msgstr ""
+msgstr "Úzdiksiz jersindirý"
 
 #: weblate_web/templates/base-features.html:7
 msgid ""
@@ -175,7 +175,7 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:22
 msgid "Attribution"
-msgstr ""
+msgstr "Avtorlyq"
 
 #: weblate_web/templates/base-features.html:23
 msgid "All translators are properly credited in the version control system."
@@ -200,7 +200,7 @@ msgstr ""
 
 #: weblate_web/templates/base-features.html:46
 msgid "Libre software"
-msgstr ""
+msgstr "Erkin baǵdarlamalyq jasaqtama"
 
 #: weblate_web/templates/base-features.html:47
 msgid ""
@@ -256,7 +256,7 @@ msgstr "Blog"
 
 #: weblate_web/templates/base.html:66
 msgid "Docs"
-msgstr "Qujatnama"
+msgstr "Qujattama"
 
 #: weblate_web/templates/base.html:67
 msgid "Hosting"
@@ -323,7 +323,7 @@ msgstr ""
 
 #: weblate_web/templates/contribute.html:42
 msgid "Translation status"
-msgstr "Tárjime kúıi"
+msgstr "Tárjime mártebesi"
 
 #: weblate_web/templates/donate.html:3 weblate_web/templates/donate.html:4
 #: weblate_web/templates/donate/edit.html:4
@@ -392,7 +392,7 @@ msgstr ""
 
 #: weblate_web/templates/donate.html:53
 msgid "Expired"
-msgstr ""
+msgstr "Merzimi aıaqtalǵan"
 
 #: weblate_web/templates/donate.html:57
 msgid "Disable renewal"
@@ -592,7 +592,7 @@ msgstr ""
 
 #: weblate_web/templates/features.html:23
 msgid "Access control"
-msgstr ""
+msgstr "Qatynaýdy basqarý"
 
 #: weblate_web/templates/features.html:24
 msgid "Access rights can be fine tuned depending on your environment."
@@ -659,7 +659,7 @@ msgstr ""
 
 #: weblate_web/templates/features.html:103
 msgid "Documentation"
-msgstr "Qujatnama"
+msgstr "Qujattama"
 
 #: weblate_web/templates/features.html:104
 msgid ""
@@ -739,7 +739,7 @@ msgstr ""
 
 #: weblate_web/templates/hosting-free.html:18
 msgid "Hosting for free software"
-msgstr ""
+msgstr "Tegin baǵdarlamalyq jasaqtama úshin hostıń"
 
 #: weblate_web/templates/hosting-free.html:21
 msgid ""
@@ -908,7 +908,7 @@ msgstr ""
 #: weblate_web/templates/hosting.html:32
 msgctxt "Hosting plan"
 msgid "Free software"
-msgstr ""
+msgstr "Tegin baǵdarlamalyq jasaqtama"
 
 #: weblate_web/templates/hosting.html:33
 msgctxt "Hosting plan"
@@ -969,7 +969,7 @@ msgstr ""
 
 #: weblate_web/templates/hosting.html:69
 msgid "VCS repositories"
-msgstr ""
+msgstr "VCS repozıtorılary"
 
 #: weblate_web/templates/hosting.html:78
 msgid "Translation projects"
@@ -1040,7 +1040,7 @@ msgstr ""
 
 #: weblate_web/templates/hosting.html:179
 msgid "Monthly"
-msgstr "Aı saıyn"
+msgstr "Aılyq"
 
 #: weblate_web/templates/hosting.html:181
 msgid "Contact us"
@@ -1052,7 +1052,7 @@ msgstr "Bisben baılanysý"
 #: weblate_web/templates/hosting.html:193
 #, python-format
 msgid "%(price)s EUR / month"
-msgstr ""
+msgstr "%(price)s EUR / aı"
 
 #: weblate_web/templates/hosting.html:196
 msgid "View support options"
@@ -1069,7 +1069,7 @@ msgstr ""
 #: weblate_web/templates/hosting.html:211 weblate_web/templates/support.html:68
 #, python-format
 msgid "%(price)s EUR / year"
-msgstr ""
+msgstr "%(price)s EUR / jyl"
 
 #: weblate_web/templates/hosting.html:218
 msgid ""
@@ -1104,7 +1104,7 @@ msgstr ""
 
 #: weblate_web/templates/index.html:3
 msgid "Weblate - web-based localization"
-msgstr ""
+msgstr "Weblate - ýeb-negizdelingen jersindirý"
 
 #: weblate_web/templates/index.html:4
 msgid "Bring translators closer to development"
@@ -1366,7 +1366,7 @@ msgstr ""
 
 #: weblate_web/templates/support.html:88
 msgid "Suggestions on the internationalization or localization process"
-msgstr ""
+msgstr "Halyqaralyqtandyrý nemese jersindirý úderisi jónindegi usynystar"
 
 #: weblate_web/templates/support.html:96
 msgid "Ask us for details about self hosted Weblate"
@@ -1495,7 +1495,7 @@ msgstr ""
 
 #: weblate_web/templates/thanks.html:46
 msgid "Supporters"
-msgstr ""
+msgstr "Qoldaýshylar"
 
 #: weblate_web/templates/thanks.html:48
 msgid ""
@@ -1513,7 +1513,7 @@ msgstr ""
 
 #: weblate_web/templates/try.html:19
 msgid "Demo server"
-msgstr ""
+msgstr "Demo-server"
 
 #: weblate_web/templates/try.html:22
 msgid ""
@@ -1530,7 +1530,7 @@ msgstr ""
 
 #: weblate_web/templates/try.html:27
 msgid "Screenshots"
-msgstr ""
+msgstr "Ekran sýretteri"
 
 #: weblate_web/templates/vat.html:3
 msgid ""
@@ -1542,23 +1542,23 @@ msgstr ""
 #, python-format
 msgid "%(size)d byte"
 msgid_plural "%(size)d bytes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(size)d baıt"
+msgstr[1] "%(size)d B (baıt)"
 
 #: weblate_web/templatetags/downloads.py:44
 #, python-format
 msgid "%.1f KiB"
-msgstr ""
+msgstr "%.1f KiB"
 
 #: weblate_web/templatetags/downloads.py:46
 #, python-format
 msgid "%.1f MiB"
-msgstr ""
+msgstr "%.1f MiB"
 
 #: weblate_web/templatetags/downloads.py:47
 #, python-format
 msgid "%.1f GiB"
-msgstr ""
+msgstr "%.1f GiB"
 
 #: weblate_web/templatetags/downloads.py:54
 msgid "Sources tarball, bzip2 compressed"
@@ -1590,11 +1590,11 @@ msgstr ""
 
 #: weblate_web/views.py:265
 msgid "The payment was rejected: {}"
-msgstr ""
+msgstr "Tólem qabyldanbady: {}"
 
 #: weblate_web/views.py:266
 msgid "Unknown reason"
-msgstr ""
+msgstr "Belgisiz sebep"
 
 #: weblate_web/views.py:270
 msgid "Thank you for your donation."

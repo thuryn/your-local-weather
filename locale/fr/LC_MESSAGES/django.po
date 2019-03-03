@@ -2,13 +2,14 @@
 # Ldm Public <ldmpub@gmail.com>, 2018, 2019.
 # ButterflyOfFire <ButterflyOfFire@protonmail.com>, 2018.
 # Olivier Humbert <trebmuh@tuxfamily.org>, 2018.
+# WWWesten <wwwesten@gmail.com>, 2019.
 msgid ""
 msgstr ""
 "Project-Id-Version: French (Weblate)\n"
 "Report-Msgid-Bugs-To: weblate@lists.cihar.com\n"
 "POT-Creation-Date: 2019-02-14 13:40+0100\n"
-"PO-Revision-Date: 2019-02-16 08:59+0000\n"
-"Last-Translator: Ldm Public <ldmpub@gmail.com>\n"
+"PO-Revision-Date: 2019-03-03 15:16+0000\n"
+"Last-Translator: WWWesten <wwwesten@gmail.com>\n"
 "Language-Team: French <https://hosted.weblate.org/projects/weblate/website/"
 "fr/>\n"
 "Language: fr\n"
@@ -347,8 +348,8 @@ msgid ""
 "You can find more repositories related to Weblate on <a href=\"%(url)s"
 "\">GitHub</a>"
 msgstr ""
-"Vous trouverez d'autres dépôts liés à Weblate sur <a href=\"%(url)s"
-"\">GitHub</a>."
+"Vous trouverez d'autres dépôts liés à Weblate sur <a href=\"%(url)s\""
+">GitHub</a>"
 
 #: weblate_web/templates/contribute.html:37
 msgid ""
