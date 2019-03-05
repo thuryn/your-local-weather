@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Clima local</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="MissingTranslation">Clima local</string>
     <string name="enter_city_hint">Insira uma cidade</string>
     <string name="label_current_city">Cidade atual</string>
     <string name="label_choose_city">Escolha a cidade</string>
@@ -15,8 +16,7 @@
     <string name="load_progress">Carregando…</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Localização não encontrada</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">As permissões ainda não foram concedidas - toque no símbolo de localização no aplicativo</string>
-
-    <string name="initial_guide_close" tools:ignore="MissingTranslation">Guia inicial e ajuda</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Fechar</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Próximo</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Anterior</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Terminar</string>
@@ -34,4 +34,30 @@
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Fonte da localização de endereço</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Parabéns</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Geral</string>
-    </resources>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Otimização de bateria</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">O aplicativo irá pedir para que a otimização da bateria seja desligada para que sejam atualizadas a localização, a previsão do tempo ou rastreamento de localização pelo acelerômetro em processamento em segundo plano.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Continue</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Cancelar</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Seu OpenweathermapApiKey não está registrado.</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Compartilhar clima</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Aplicativo de comunicação não encontrado</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Cidade: %1$s
+\nTemperatura: %2$s
+\nDescrição: %3$s
+\nVento: %4$s %5$s
+\nAmanhecer: %6$s
+\nAnoitecer: %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Clima na sua localização</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Notificações sobre o clima na sua localização</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Vento</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Chuva</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Neve</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Pressão</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Opção de estratégia de alerta</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Alguns modelos de celulares não mostram células conectadas corretamentes se a tela não estiver ligada. A opção preferida (com a tela ligada) tem a desvantagem que a tela do celular fica ligada por diversos segundos, isso pode ter um impacto pequeno em seu nível de bateria. Comece com a tela ligada, então desligue-a e veja se o local ainda atualiza.</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Isto conclui o guia. Você pode encontrar outra configurações (como por exemplo linguagem, unidades etc...) no menu de Configurações. 
+\nA próxima tela irá explicar as permissões necessárias e como solicitá-las. 
+\n 
+\nAproveite o aplicativo.</string>
+</resources>
