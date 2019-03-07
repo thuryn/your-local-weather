@@ -57,7 +57,7 @@
     <string name="preference_title_activity_general">Genel Ayarlar</string>
     <string name="preference_title_activity_widget">Widget Ayarları</string>
     <string name="preference_widget_update_location">Konumu Güncelle</string>
-    <string name="preference_widget_use_geocoder">Görüntüleme için konumu kullan</string>
+    <string name="preference_widget_use_geocoder">Görüntülemek için coğrafi konumu kullanın</string>
     <string name="preference_widget_theme_title">Widget teması</string>
     <string name="theme_dark">Koyu</string>
     <string name="theme_light">Açık</string>
@@ -140,7 +140,7 @@
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistem</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Güncelleme Özetini Göster</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Yok</string>
-    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Değer şimdi güncellendi</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Sadece güncellenmiş değer</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Konum kaynağıyla güncellenmiş değer</string>
     <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - konum ve / veya hava durumunu güncelleyecek
 \n. - konum ulaşılamıyor, hava durumunu son konuma göre güncelleyecek
@@ -258,7 +258,7 @@
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Ana uygulama anlık hava durumunun genel görünümünü içerir. Yenileme düğmesini kullanarak veya ekranı aşağı kaydırarak havayı güncelleyebilirsiniz. Konum güncelleme düğmesini hava yenileme düğmesinin yanında bulabilirsiniz. Bu düğme, yalnızca konum 0 etkinleştirildiğinde kullanılabilir (konum 0 konumun kendiliğinden güncellenmesi içindir).</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">Uygulamanın mevcut hava durumunun bazı ortak değerlerini içeren (örneğin sıcaklık) üç widget vardır. Bazı değerler belirli widget\'a özgüdür (örneğin gün batımı). Her widget\'ın sağ köşesinde son güncellemenin bir zamanı var. En son nelerin güncellendiğini görebilirsiniz (ayarlar menüsünde bu seçeneği etkinleştirdiğinizde). Güncelleme düğmesini, en son güncelleme zamanının yanında bulabilirsiniz. Bu düğmeye bastığınızda, hava durumu (ve güncelleme konumu seçildiğinde seçilen konum) koşulsuz olarak güncellenir. Pencere öğelerinde son seçenek konum değiştirmektir - geçerli konum metnine bastığınızda konum bir sonrakine değişir.</string>
     <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">
-        <b>Yerel MLS and Nominatim</b> - Uygulama konumu Mozilla konum hizmetiyle alır. Uygulama o anki etkin ve kullanılabilir baz istasyonları hakkındaki hücre ağı - bilgisini kullanır. Telefon araması yapma izni bu bilgiyi almak için gereklidir. Uygulama konumu daha kesin tahmin için çevredeki wifi ağlarını kullanır. Uygulama Mozilla konum hizmetinden coğrafi kordinatları alır. Mozilla konum hizmetininden daha kesin konum almak için Mozilla Stumbler (https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler adresinde bulunabilir) uygulamasına katkıda bulunabilirsiniz.</string>
+        <b> Yerel MLS ve Nominatim </b> - Uygulama, Mozilla konum servislerinden konum ve coğrafi koordinatlar alır. Nominatim servisleri adresi bu koordinatlardan alır. Mozilla Stumbler\'ı yükleyerek MLS için gelecekteki gelişmelere katkıda bulunabilirsiniz (https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler adresinde bulunabilir). Telefon görüşmesine izin vererek mevcut ve kullanılabilir şebeke bazındaki istasyonlar hakkında bilgi alın. Çevrenizdeki Wi-Fi ağları, konumunuzu daha kesin olarak tahmin etmek için kullanılır.</string>
     <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">Ağ trafiğini azaltmak ve konum güncellemeyi hızlandırmak için <b>Konumları önbellekte sakla</b> seçeneğini açabilirsiniz. Önbellek coğrafi kordinatlar ve bir adres saklar. Uygulamanın, bu ayardan bağımsız olarak ağ çözümleme hizmetini çağırması gerekir. Ama Nominatim adres çözümlemeye çağrı, adresin önbellekte olmaması durumuna karşın yapılır. Konumları önbellekte sakla seçeneğini açtığınızda, ziyaret ettiğiniz adreslerin uygulamada kaydedildiği gerçeğini kabul etmelisiniz. Önbellekten hiçbir bilgi uygulama dışına gönderilmez.</string>
     <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Konumları önbellekte sakla seçeneğinin (onay kutusu) yanında <b>Önbellekteki değerlerin yaşı</b> için bir ayar vardır. Saklanan her adresin bir zaman damgası vardır. Zaman damgası, önbellekteki değerlerin yaşı değerinden yaşlı olduğunda uygulama Nominatim\'i kaydı güncellemesi için çağırır.</string>
     <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Gezinti çekmecesini aç</string>
@@ -288,7 +288,7 @@
     <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">
         <b>Uyanma stratejisi</b> seçeneği farklı satıcıların sorunlu android hizmeti uyarlamalarının üstesinden gelmek için vardır. <i>Uyanma yok</i> seçeneğini seçtiğinizde ve konum düzgün şekilde güncellendiğinde, doğru uyarlamaya sahipsiniz. Konum düzgün güncellenmediğinde <i>Yalnızca işlemciyi uyandır</i> seçeneğini deneyebilirsiniz. Bu seçenek işlemciyi uyandırır ve hücre ve wifi ağlarını hazır duruma getirmeye çalışır. Son seçenek <i>Ekran ile uyan</i> konum güncellemesi boyunca ekranı birkaç saniye için açan seçenektir. Bazı android telefonlarda, bu hücre ve wifi ağları hakkında doğru bilgi almak için tek seçenektir - ancak pil süresine etkisi azdır.</string>
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">knot</string>
-    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Şu anki hava henüz güncellenmedi. Lütfen ilk olarak yenile düğmesine basarak şu anki havayı güncelleyin.</string>
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Lütfen önce hava durumunu güncellemek için yenile düğmesine tıklayın.</string>
     <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Hissedilen sıcaklık: %s</string>
     <string name="label_measured_temperature" tools:ignore="MissingTranslation">Ölçülen sıcaklık: %s</string>
     <string name="measured_only" tools:ignore="MissingTranslation">Yalnızca ölçülen değer</string>
