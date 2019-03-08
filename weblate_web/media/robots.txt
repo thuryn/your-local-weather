@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /admin/
-Disallow: /js/
-Sitemap: https://weblate.org/sitemap.xml
