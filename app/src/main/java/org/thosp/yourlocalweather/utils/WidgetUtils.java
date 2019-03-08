@@ -25,6 +25,7 @@ import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetProvider;
+import org.thosp.yourlocalweather.widget.ExtLocationWithForecastGraphWidgetProvider;
 import org.thosp.yourlocalweather.widget.ExtLocationWithForecastWidgetProvider;
 import org.thosp.yourlocalweather.widget.ExtLocationWithGraphWidgetProvider;
 import org.thosp.yourlocalweather.widget.LessWidgetProvider;
@@ -702,6 +703,7 @@ public class WidgetUtils {
         updateWidgetForType(context, WeatherForecastWidgetProvider.class);
         updateWidgetForType(context, ExtLocationWithGraphWidgetProvider.class);
         updateWidgetForType(context, WeatherGraphWidgetProvider.class);
+        updateWidgetForType(context, ExtLocationWithForecastGraphWidgetProvider.class);
     }
 
     public static void startBackgroundService(Context context, Intent intent) {

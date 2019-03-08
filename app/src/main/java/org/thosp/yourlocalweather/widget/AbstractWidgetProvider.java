@@ -220,6 +220,8 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                 ExtLocationWithGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
             } else if (WeatherGraphWidgetProvider.class.equals(getWidgetClass())) {
                 WeatherGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
+            } else if (ExtLocationWithForecastGraphWidgetProvider.class.equals(getWidgetClass())) {
+                ExtLocationWithForecastGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
             }
             setWidgetIntents(context, remoteViews, getWidgetClass(), appWidgetId);
             preLoadWeather(context, remoteViews, appWidgetId);
@@ -289,6 +291,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_settings_layout, View.VISIBLE);
             remoteViews.setViewVisibility(R.id.widget_less_3x1_settings_layout, View.VISIBLE);
             remoteViews.setViewVisibility(R.id.widget_more_3x3_settings_layout, View.VISIBLE);
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_graph_3x3_settings_layout, View.VISIBLE);
         } else {
             remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_settings_layout, View.GONE);
             remoteViews.setViewVisibility(R.id.widget_ext_loc_graph_3x3_settings_layout, View.GONE);
@@ -297,6 +300,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_settings_layout, View.GONE);
             remoteViews.setViewVisibility(R.id.widget_less_3x1_settings_layout, View.GONE);
             remoteViews.setViewVisibility(R.id.widget_more_3x3_settings_layout, View.GONE);
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_graph_3x3_settings_layout, View.GONE);
         }
 
         Intent intentRefreshService = new Intent(context, widgetClass);
@@ -315,6 +319,8 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         remoteViews.setOnClickPendingIntent(R.id.widget_less_3x1_widget_last_update, pendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_more_3x3_widget_button_refresh, pendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_more_3x3_widget_last_update, pendingIntent);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_graph_3x3_widget_button_refresh, pendingIntent);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_graph_3x3_widget_last_update, pendingIntent);
 
         final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
 
@@ -325,16 +331,19 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_graph_3x3_widget_icon, pendingIntentMainIconAction);
         remoteViews.setOnClickPendingIntent(R.id.widget_less_3x1_widget_icon, pendingIntentMainIconAction);
         remoteViews.setOnClickPendingIntent(R.id.widget_more_3x3_widget_icon, pendingIntentMainIconAction);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_graph_3x3_widget_icon, pendingIntentMainIconAction);
 
         WidgetActions graphAction = WidgetActions.getById(widgetSettingsDbHelper.getParamLong(widgetId, "action_graph"), "action_graph");
         PendingIntent pendingIntentGraphAction = getActionIntent(context, graphAction, widgetClass, widgetId);
         remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_graph_3x3_forecast_graph, pendingIntentGraphAction);
         remoteViews.setOnClickPendingIntent(R.id.widget_weather_graph_1x3_forecast_graph, pendingIntentGraphAction);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_graph_3x3_forecast_graph, pendingIntentGraphAction);
 
         WidgetActions forecastAction = WidgetActions.getById(widgetSettingsDbHelper.getParamLong(widgetId, "action_forecast"), "action_forecast");
         PendingIntent pendingIntentForecastAction = getActionIntent(context, forecastAction, widgetClass, widgetId);
         remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_3x3_forecast_layout, pendingIntentForecastAction);
         remoteViews.setOnClickPendingIntent(R.id.widget_weather_forecast_1x3_forecast_layout, pendingIntentForecastAction);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_graph_3x3_forecast_layout, pendingIntentForecastAction);
 
         Integer cityViewId = getCityViewId(widgetClass);
         if (cityViewId != null) {
@@ -347,6 +356,8 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         setSettingButtonAction(context, widgetId, "graphSetting", R.id.widget_ext_loc_graph_3x3_button_graph_setting, remoteViews, ExtLocationWithGraphWidgetProvider.class);
         setSettingButtonAction(context, widgetId, "graphSetting", R.id.widget_weather_graph_1x3_button_graph_setting, remoteViews, WeatherGraphWidgetProvider.class);
         setSettingButtonAction(context, widgetId, "forecastSettings", R.id.widget_weather_forecast_1x3_button_days_setting, remoteViews, WeatherForecastWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "forecastSettings", R.id.widget_ext_loc_forecast_graph_3x3_button_days_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "graphSetting", R.id.widget_ext_loc_forecast_graph_3x3_button_graph_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
 
         setSettingButtonAction(context, widgetId, "locationSettings", R.id.widget_ext_loc_forecast_3x3_button_location_setting, remoteViews, ExtLocationWithForecastWidgetProvider.class);
         setSettingButtonAction(context, widgetId, "locationSettings", R.id.widget_weather_forecast_1x3_button_location_setting, remoteViews, WeatherForecastWidgetProvider.class);
@@ -356,6 +367,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         setSettingButtonAction(context, widgetId, "locationSettings", R.id.widget_ext_loc_3x3_button_location_setting, remoteViews, ExtLocationWidgetProvider.class);
         setSettingButtonAction(context, widgetId, "locationSettings", R.id.widget_less_3x1_button_location_setting, remoteViews, LessWidgetProvider.class);
         setSettingButtonAction(context, widgetId, "locationSettings", R.id.widget_more_3x3_button_location_setting, remoteViews, MoreWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "locationSettings", R.id.widget_ext_loc_forecast_graph_3x3_button_location_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
 
         setSettingButtonAction(context, widgetId, "widgetActionSettings", R.id.widget_ext_loc_forecast_3x3_button_action_setting, remoteViews, ExtLocationWithForecastWidgetProvider.class);
         setSettingButtonAction(context, widgetId, "widgetActionSettings", R.id.widget_weather_forecast_1x3_button_action_setting, remoteViews, WeatherForecastWidgetProvider.class);
@@ -365,6 +377,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         setSettingButtonAction(context, widgetId, "widgetActionSettings", R.id.widget_ext_loc_3x3_button_action_setting, remoteViews, ExtLocationWidgetProvider.class);
         setSettingButtonAction(context, widgetId, "widgetActionSettings", R.id.widget_less_3x1_button_action_setting, remoteViews, LessWidgetProvider.class);
         setSettingButtonAction(context, widgetId, "widgetActionSettings", R.id.widget_more_3x3_button_action_setting, remoteViews, MoreWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "widgetActionSettings", R.id.widget_ext_loc_forecast_graph_3x3_button_action_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
     }
 
     private static Integer getCityViewId(Class widgetClass) {
@@ -378,6 +391,8 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             return R.id.widget_ext_loc_forecast_3x3_widget_city;
         } else if (ExtLocationWithGraphWidgetProvider.class.equals(widgetClass)) {
             return R.id.widget_ext_loc_graph_3x3_widget_city;
+        } else if (ExtLocationWithForecastGraphWidgetProvider.class.equals(widgetClass)) {
+            return R.id.widget_ext_loc_forecast_graph_3x3_widget_city;
         } else {
             return null;
         }

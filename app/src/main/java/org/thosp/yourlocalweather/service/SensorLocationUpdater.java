@@ -177,7 +177,6 @@ public class SensorLocationUpdater implements SensorEventListener {
         }
 
         if (!locationUpdateServiceActions.isEmpty()) {
-            processLocationUpdate = false;
             return;
         }
 
@@ -185,7 +184,6 @@ public class SensorLocationUpdater implements SensorEventListener {
         if (updateNetworkLocation()) {
             clearMeasuredLength();
         }
-        processLocationUpdate = false;
     }
 
     public void clearMeasuredLength() {
@@ -199,7 +197,9 @@ public class SensorLocationUpdater implements SensorEventListener {
     protected boolean updateNetworkLocation() {
         startRefreshRotation("updateNetworkLocation", 3);
         if (locationUpdateService != null) {
-            return locationUpdateService.updateNetworkLocation(false, null, 0);
+            boolean result = locationUpdateService.updateNetworkLocation(false, null, 0);
+            processLocationUpdate = false;
+            return result;
         } else {
             locationUpdateServiceActions.add(
                     LocationUpdateService.LocationUpdateServiceActions.START_LOCATION_ONLY_UPDATE);
@@ -305,6 +305,7 @@ public class SensorLocationUpdater implements SensorEventListener {
             LocationUpdateService.LocationUpdateServiceActions bindedServiceAction;
             while ((bindedServiceAction = locationUpdateServiceActions.poll()) != null) {
                 if (locationUpdateService.updateNetworkLocation(false, null, 0)) {
+                    processLocationUpdate = false;
                     gravity[0] = 0;
                     gravity[1] = 0;
                     gravity[2] = 0;

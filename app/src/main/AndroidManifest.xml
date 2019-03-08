@@ -223,6 +223,22 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_weather_graph"/>
         </receiver>
+        <receiver android:name=".widget.ExtLocationWithForecastGraphWidgetProvider">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
+                <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_UPDATE_PERIOD_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_START_ACTIVITY"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_ext_loc_forecast_graph"/>
+        </receiver>
 
         <service
             android:name=".service.WeatherForecastResendJob"
