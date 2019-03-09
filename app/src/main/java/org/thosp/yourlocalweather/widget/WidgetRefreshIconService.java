@@ -174,6 +174,7 @@ public class WidgetRefreshIconService extends Service {
                 rv.setImageViewResource(R.id.widget_ext_loc_graph_3x3_widget_button_refresh, refreshIcons[currentRotationIndex]);
                 rv.setImageViewResource(R.id.widget_less_3x1_widget_button_refresh, refreshIcons[currentRotationIndex]);
                 rv.setImageViewResource(R.id.widget_more_3x3_widget_button_refresh, refreshIcons[currentRotationIndex]);
+                rv.setImageViewResource(R.id.widget_ext_loc_forecast_graph_3x3_widget_button_refresh, refreshIcons[currentRotationIndex]);
                 widgetManager.partiallyUpdateAppWidget(appWidgetId, rv);
                 WidgetRefreshIconService.currentRotationIndexes.put(appWidgetId, ++currentRotationIndex);
             }

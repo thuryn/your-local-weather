@@ -41,7 +41,7 @@
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Previous</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Finish</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Initial configuration guide</string>
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Adjusting the app to your needs, you can choose update strategy next. 
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Adjusting the app to your needs, you can choose update strategy next.
 \nDiverting from the default of updating when location changes, you can select <i>Don\'t update location</i>.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Update location setting</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Location source option</string>
@@ -69,16 +69,23 @@
     <string name="help_page_2_content" tools:ignore="MissingTranslation">The app has three widgets available, containing some common values of the current weather (for example temperature). Some values are unique to the specific widget (for example sunset). There is a time of the last update on right corner of every widget. You can see what has been updated last time (when you have enabled this option in the settings menu). You can find update button next to the last updated time. When you press this button, the weather (and the location when selected update location option) is updated unconditionally. The last option in widgets is changing of location - when you press on current location text the location changes to the next one.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">General settings</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">This options has influence on the whole app.</string>
-    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Temperature</b> - You can select temperature unit, <b>Wind</b> - You can select the wind speed unit and <b>Pressure</b> - You can select the unit for pressure. Values are recalculated using these options.</string>
-    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Hide weather description</b> - the description of current weather is hidden. You can only see current weather by the changing icon.</string>
-    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Update period for location (Location 0)</b> - you can set update period for location 0 - location 0 has the ability to update location according to cell-, Wi-Fi networks and GPS. When you select update <i>By accelerometer</i> the app uses that to detect movement. From this, distance is calculated. When the distance limit is reached, and no update has happened in 15 minutes, the location and current weather is updated. When the app can not fetch location, you can see unknown location label in the widget. When the app has no location state, it will try again in 5 minutes. You can also select location update based on time intervals in <b>Update period for weather (Location 1,2,3...)</b> - where you can set weather to update for manually discovered locations.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
+        <b>Temperature</b> - You can select temperature unit, <b>Wind</b> - You can select the wind speed unit and <b>Pressure</b> - You can select the unit for pressure. Values are recalculated using these options.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">
+        <b>Hide weather description</b> - the description of current weather is hidden. You can only see current weather by the changing icon.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation">
+        <b>Update period for location (Location 0)</b> - you can set update period for location 0 - location 0 has the ability to update location according to cell-, Wi-Fi networks and GPS. When you select update <i>By accelerometer</i> the app uses that to detect movement. From this, distance is calculated. When the distance limit is reached, and no update has happened in 15 minutes, the location and current weather is updated. When the app can not fetch location, you can see unknown location label in the widget. When the app has no location state, it will try again in 5 minutes. You can also select location update based on time intervals in <b>Update period for weather (Location 1,2,3...)</b> - where you can set weather to update for manually discovered locations.</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">When you check <b>Switch GPS on when necessary</b> option, application tries to find location by cell or wifi networks. When the location could not be find by network services application turns GPS on for a several seconds to get the location.</string>
-    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Location and address source</b>
-\nYou can select where the application gets the location and the address from.</string>
-    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"><b>Local MLS and Nominatim</b> - The application gets location by Mozilla location services. Application uses cell network - information about current active and available network base stations. Make phone calls permission is needed to get this information. Application uses wifi networks around to guess your location more precisely. Application gets geographical coordinates from Mozilla location service. Application uses Nominatim services to get address from coordinates. When you want to get location more precisely from Mozilla location service you can contribute by Mozilla Stumbler application (available at https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler).</string>
-    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"><b>System</b> - The application gets location and address by system services in Android (usually with Google location services).</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">
+        <b>Location and address source</b>
+\nYou can select where the app gets the location and address from.</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">
+        <b>Local MLS and Nominatim</b> - The app gets location and geographical coordinates from the Mozilla location services. Nominatim services fetches the address from those coordinates. You can contribute to future improvements to MLS by installing Mozilla Stumbler (available at https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler). Get info about current active and available network base stations from the cell network by granting phone call permission. Wi-Fi networks around you are used to guess your location more precisely.</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
+        <b>System</b> - The application gets location and address by system services in Android (usually with Google location services).</string>
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">These menu options sets the <b>language</b>, <b>theme</b> of main application and <b>icon set</b> used in the application and widgets.</string>
-    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"><b>Notifications</b>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">
+        <b>Notifications</b>
 \nWhen you selects notifications option, application updates current weather periodically. Current weather is put into notifications area then. You can enable vibration also - application vibrate when updated.</string>
     <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">To save network traffic and speed-up location update you can switch <b>Cache locations</b> on. This cache stores geographic coordinates and an address. Application have to call network resolution service regardless of this setting. But the call to Nominatim address resolution takes place just in the case the address is not in cache. When you switch the Cache locations option on, you have to accept the fact that addresses, you\'ve visited, are stored in the application. No information from the cache are send outside of the application.</string>
     <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Next to cache location option (checkbox) there is a setting for <b>The age of cached values</b>. Every stored address has a timestamp. When the timestamp is older then value set in The age of cached values application calls Nominatim to refresh the record.</string>
@@ -92,7 +99,6 @@
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">When update of location and current weather is performed you can see status of update next to the update time in widget. You can control what is displayed by the <b>Display update summary</b> option. The explanation of the most advanced option follows:</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Debug options</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">There are options to enable debugging into log file. This option is useful when there is some trouble with application.</string>
-
     <!-- Activity names -->
     <string name="title_activity_search" tools:ignore="MissingTranslation">Search Location</string>
     <string name="label_activity_main" tools:ignore="MissingTranslation">Current Weather</string>
@@ -101,7 +107,6 @@
     <string name="label_activity_help" tools:ignore="MissingTranslation">Help</string>
     <string name="title_activity_license" tools:ignore="MissingTranslation">License for %s</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Locations</string>
-
     <!-- Toolbar menu -->
     <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Update</string>
     <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Search City</string>
@@ -110,7 +115,6 @@
     <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Toggle Y-Axis</string>
     <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">Visible graphs settings</string>
     <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">Combined graph settings</string>
-
     <!-- Weather forecast -->
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Column setting</string>
     <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Columns to show</string>
@@ -141,7 +145,6 @@
     <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Graphs to show</string>
     <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Data for combined graph</string>
     <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Show legend in graph</string>
-
     <!-- Navigation drawer -->
     <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Open navigation drawer</string>
     <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Close navigation drawer</string>
@@ -152,12 +155,10 @@
     <string name="nav_feedback" tools:ignore="MissingTranslation">Feedback</string>
     <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">Donate bitcoin</string>
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Help</string>
-
     <!-- Toast messages -->
     <string name="location_not_initialized" tools:ignore="MissingTranslation">Location is not initialized. Click on location circle first.</string>
     <string name="connection_not_found" tools:ignore="MissingTranslation">Check your Internet connection</string>
     <string name="toast_parse_error" tools:ignore="MissingTranslation">An error has occurred. Try later.</string>
-
     <!-- Weather icons -->
     <string name="icon_clear_sky_day" translatable="false"></string>
     <string name="icon_clear_sky_night" translatable="false"></string>
@@ -179,7 +180,6 @@
     <string name="icon_sunrise" translatable="false"></string>
     <string name="icon_sunset" translatable="false"></string>
     <string name="icon_thermometer" translatable="false">\uf055</string>
-
     <!-- Units and Measurement-->
     <string name="percent_sign" translatable="false">\u0025</string>
     <string name="temperature_with_degree" translatable="false">%s</string>
@@ -193,7 +193,6 @@
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
     <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
     <string name="inches_label" tools:ignore="MissingTranslation">inches</string>
-
     <!-- Time style setting -->
     <string name="pref_title_time_style" tools:ignore="MissingTranslation">Time format</string>
     <string name="time_style_system" tools:ignore="MissingTranslation">System</string>
@@ -209,10 +208,8 @@
     <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (3 hours interval)</string>
     <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (3 hours interval)</string>
     <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (3 hours interval)</string>
-
     <!-- Search Screen strings -->
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Search location</string>
-
     <!-- Preference Screen strings -->
     <string name="title_activity_settings" tools:ignore="MissingTranslation">Settings</string>
     <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Libre software licenses</string>
@@ -258,7 +255,7 @@
     <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Widget Settings</string>
     <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Update Location</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Show labels in widget</string>
-    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Show graph by native resolution (when the graph is too small)</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Show graph in native resolution (when the graph is too small)</string>
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Show settings on widget</string>
     <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Use geolocation for displaying</string>
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Widget theme</string>
@@ -359,8 +356,7 @@
     <string name="locations_disabled" tools:ignore="MissingTranslation">Disabled</string>
     <string name="search_location_add" tools:ignore="MissingTranslation">Add</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Tap on map to get desired location and wait to get address resolved.</string>
-    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Current weather has not been updated yet. Update current weather by refresh button first, please.</string>
-
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Please click the refresh button to update the weather first.</string>
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about" tools:ignore="MissingTranslation">About</string>
     <string name="about_version_pref_title" tools:ignore="MissingTranslation">Version</string>
@@ -369,7 +365,6 @@
     <string name="about_f_droid_pref_title" translatable="false">F-Droid</string>
     <string name="about_google_play_pref_title" translatable="false">Google Play</string>
     <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Libre software Licenses</string>
-
     <!-- Weather conditions label strings -->
     <string name="wind_label" tools:ignore="MissingTranslation">Wind: %1$s %2$s %3$s</string>
     <string name="rain_label" tools:ignore="MissingTranslation">Rain: %1$s %2$s</string>
@@ -397,7 +392,6 @@
     <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Both, appearance primary</string>
     <string name="appearance_only" tools:ignore="MissingTranslation">Appearance value only</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Show temperature as</string>
-
     <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
     <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
     <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
@@ -408,7 +402,6 @@
     <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
     <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
     <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
-
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Current weather icon</string>
     <string name="widget_refresh_button" tools:ignore="MissingTranslation">Widget refresh button</string>
@@ -427,7 +420,6 @@
     <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">Graphs screen</string>
     <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Switch location</string>
     <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Show location in widget</string>
-
     <!-- Wind directions -->
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Disabled</string>
     <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abbrev N↓, NE↙, …</string>
@@ -440,18 +432,14 @@
     <string name="wind_direction_south_west" tools:ignore="MissingTranslation">SW↗</string>
     <string name="wind_direction_west" tools:ignore="MissingTranslation">W→</string>
     <string name="wind_direction_north_west" tools:ignore="MissingTranslation">NW↘</string>
-
     <string name="default_daily_forecast" translatable="false">[{"cloudiness":"6","windSpeed":"1.5","description":"Clear","humidity":"45","icon":"10d","pressure":"1000","windDegree":"303","temperatureEvening":"14.63","dateTime":"1471673520","temperatureMin":"10.38","temperatureMorning":"15.9","temperatureNight":"10.38","temperatureDay":"15.9","temperatureMax":"16.52","rain":"2","snow":"5"}]</string>
-
     <!-- Permission strings -->
     <string name="permission_location_rationale" tools:ignore="MissingTranslation">Location permissions needed to determine city</string>
     <string name="permission_not_granted" tools:ignore="MissingTranslation">Permissions not granted!</string>
     <string name="permission_available_location" tools:ignore="MissingTranslation">Location Permissions have been granted</string>
     <string name="permission_location_need" tools:ignore="MissingTranslation">Grant Location Permissions</string>
-
     <!-- Dialog strings -->
-    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Current weather description language and the address will change next update, or you can be forced manually.</string>
-
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Current weather description language and the address will change with the next update, or you can force it manually.</string>
     <!-- Debug strings -->
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Select log folder</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Debug Options</string>
@@ -466,15 +454,12 @@
     <string name="log_to_file_label" tools:ignore="MissingTranslation">Log to file</string>
     <string name="log_to_file_off" tools:ignore="MissingTranslation">Don\'t log to file</string>
     <string name="log_to_file_on" tools:ignore="MissingTranslation">Log to file</string>
-
     <!-- Icon preference strings -->
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Icon Set</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Font based icons</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin the red icons</string>
-
     <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
     <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
-
     <string name="weather_condition_description_none" tools:ignore="MissingTranslation">none</string>
     <string name="weather_condition_description_200" tools:ignore="MissingTranslation">thunderstorm with light rain</string>
     <string name="weather_condition_description_201" tools:ignore="MissingTranslation">thunderstorm with rain</string>

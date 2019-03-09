@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Ditt lokale vær</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="MissingTranslation">Ditt lokale vær</string>
     <string name="enter_city_hint">Oppgi by</string>
     <string name="label_current_city">Nåværende by</string>
     <string name="label_choose_city">Velg by</string>
@@ -14,18 +15,15 @@
     <string name="load_progress">Laster…</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Fant ikke plassering</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Tilganger ikke innvilget - klikk plasseringssymbolet i programmet</string>
-
     <string name="title_activity_search">Aktivitetsnavn</string>
-    <string name="label_activity_main">Nåværende vær</string>
+    <string name="label_activity_main">Været nå</string>
     <string name="label_activity_weather_forecast">Dagsvarsel</string>
     <string name="title_activity_license">Lisens for %s</string>
-
     <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Oppdater</string>
     <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Søk etter by</string>
     <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Oppdag plassering</string>
     <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Veksle verdier</string>
     <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Veksle Y-akse</string>
-
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Kolonneinnstilling</string>
     <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Viste kolonner</string>
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikon</string>
@@ -37,28 +35,23 @@
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Trykk</string>
     <string name="ok" tools:ignore="MissingTranslation">OK</string>
     <string name="cancel" tools:ignore="MissingTranslation">Avbryt</string>
-
-    <string name="nav_menu_current_weather">Nåværende vær</string>
+    <string name="nav_menu_current_weather">Været nå</string>
     <string name="nav_menu_daily_forecast">Dagsvarsel</string>
     <string name="nav_menu_settings">Innstillinger</string>
     <string name="nav_feedback">Tilbakemelding</string>
     <string name="nav_menu_bitcoin_donation">Doner bitcoin</string>
-
     <string name="connection_not_found">Sjekk din internettilknytning</string>
     <string name="toast_parse_error">En feil inntraff. Prøv igjen senere.</string>
-
     <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
     <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
     <string name="wind_speed_miles" tools:ignore="MissingTranslation">mph</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
     <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
-
     <string name="hint_activity_search">Søk etter plassering</string>
-
     <string name="title_activity_settings">Innstillinger</string>
     <string name="pref_title_temperature">Temperatur</string>
     <string name="preference_hide_desc">Skjul værbeskrivelse</string>
-    <string name="pref_title_category_notification">Merknader</string>
+    <string name="pref_title_category_notification">Merknadsinnstillinger</string>
     <string name="pref_title_notification">Skru på merknader</string>
     <string name="pref_title_notification_refresh_interval">Oppdateringsintervall</string>
     <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Innstilling for plasseringsoppdatering</string>
@@ -102,7 +95,6 @@
     <string name="about_source_code_pref_title">Kildekode</string>
     <string name="about_app_license_pref_title">Lisens</string>
     <string name="about_open_source_licenses_pref_title">Friproglisenser</string>
-
     <string name="wind_label" tools:ignore="MissingTranslation">Vind: %1$s %2$s %3$s</string>
     <string name="rain_label" tools:ignore="MissingTranslation">Regn: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Snø: %1$s %2$s</string>
@@ -120,10 +112,8 @@
     <string name="label_wind" tools:ignore="MissingTranslation">Vind</string>
     <string name="label_rain" tools:ignore="MissingTranslation">Regn</string>
     <string name="label_snow" tools:ignore="MissingTranslation">Snø</string>
-
     <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Nåværende værikon</string>
     <string name="widget_refresh_button" tools:ignore="MissingTranslation">Oppdateringsknapp for miniprogram</string>
-
     <string name="wind_direction_north">N↓</string>
     <string name="wind_direction_north_east">NØ↙</string>
     <string name="wind_direction_east">Ø←</string>
@@ -132,12 +122,10 @@
     <string name="wind_direction_south_west">SV↗</string>
     <string name="wind_direction_west">V→</string>
     <string name="wind_direction_north_west">NV↘</string>
-
     <string name="permission_location_rationale" tools:ignore="MissingTranslation">Plasseringstilganger trengs for å bestemme nåværende by</string>
     <string name="permission_not_granted" tools:ignore="MissingTranslation">Tilganger ikke innvilget!</string>
     <string name="permission_available_location" tools:ignore="MissingTranslation">Plasseringstilganger innvilget</string>
     <string name="permission_location_need" tools:ignore="MissingTranslation">Du må innvilge plasseringstilganger</string>
-
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Velg loggføringsmappe</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Feilrettingsvalg</string>
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Ikon-sett</string>
@@ -156,7 +144,6 @@
     <string name="help_page_4_title" tools:ignore="MissingTranslation">Miniprogramsinnstillinger</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">Hjelp</string>
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Hjelp</string>
-
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Vis</string>
     <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 timer</string>
     <string name="location_cache_24_label" tools:ignore="MissingTranslation">Én dag</string>
@@ -173,7 +160,6 @@
     <string name="log_file_72_label" tools:ignore="MissingTranslation">Tre dager</string>
     <string name="log_file_168_label" tools:ignore="MissingTranslation">Ei uke</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">en måned</string>
-
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Skriftbaserte ikoner</string>
     <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Programmet er satt til å oppdatere en plassering. For å få det til å virke, gå til \"Telefoninnstillinger\" og skru på plasseringstjenester, eller skru det av i programmet.</string>
     <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">I justeringen av programmet etter ønske, kan du nå velge oppdateringsstrategi.
@@ -185,15 +171,13 @@
     <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Noen telefonmodeller rapporterer ikke tilkoblede tårn rett, med mindre skjermen er påslått. Forvalget (med skjermen slått av), har bakdelen med at telefonen skrur på skjermen på i flere sekunder. Dette har en liten innvirkning på batteritiden. Du kan starte med anbefalt valg og skru dette valget av senere og holde oppsyn med plasseringsoppdateringene.</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Feilrettingsvalg</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Dette valget skriver feilrettingsinformasjon til loggfila. Dette valget er nyttig hvis det oppstår et problem med programmet.</string>
-
     <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Alderen på hurtiglagrede verdier</string>
     <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Funnede plasseringer hurtiglagret</string>
     <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Funnede plasseringer ikke hurtiglagret</string>
-    
     <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Etter angitt tid vil loggfilen overskrives</string>
     <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Rotasjon for loggfila</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlins røde ikoner</string>
-<string name="initial_guide_title_7" tools:ignore="MissingTranslation">Valg for hurtiglagring av utledet adresse</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Valg for hurtiglagring av utledet adresse</string>
     <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Du kan lagre nettverkstrafikk ved å hurtiglagre funnede plasseringe. Du må godta at plasseringene lagres i programmet. Plasseringene blir ikke sendt eller lagret noen andre steder i nettverket.</string>
     <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Hurtiglagre utledet adresse</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Du har fullført grunnleggende innstillinger. Andre er å finne i innstillingsmenyen (for eksempel språk, enheter, osv.)
@@ -206,17 +190,24 @@
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Den tredje skjermen inneholder værmelding vist med grafer.</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">Programmet har tre miniprogrammer. Miniprogrammer inneholder noen delte verdier for nåværende vær (for eksempel temperatur). Noen verdier er unike for hver enkelt miniprogram (for eksempel solnedgang). Det er en tid for forrige oppdatering i høyre hjørne for hvert miniprogram. Du kan se hva som har blitt oppdatert sist gang (når du har valgt dette i innstillingsmenyen). Oppdateringsknappen er å finne ved siden av oppdatert tid. Når du trykker denne knappen, blir været, (og plasseringen når oppdatering av den er valgt) oppdatert uten videre plunder.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Hovedinnstillinger</string>
-    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Temperatur</b> - Du kan velge temperaturenhet, <b>Vind</b> - Du kan velge vindhastighetsenhet og <b>Trykk</b> - Du kan velge enhet for trykk. Verdier regnes ut igjen ved bruk av disse valgene.</string>
-    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Skjul værbeskrivelse</b> - Beskrivelsen av nåværende vær er skjult. Du kan kun se hva nåværende vær er ved å se på ikonet.</string>
-    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Innstilling for plasseringsoppdatering</b>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
+        <b>Temperatur</b> - Du kan velge temperaturenhet, <b>Vind</b> - Du kan velge vindhastighetsenhet og <b>Trykk</b> - Du kan velge enhet for trykk. Verdier regnes ut igjen ved bruk av disse valgene.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">
+        <b>Skjul værbeskrivelse</b> - Beskrivelsen av nåværende vær er skjult. Du kan kun se hva nåværende vær er ved å se på ikonet.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation">
+        <b>Innstilling for plasseringsoppdatering</b>
 \nDu kan velge hvorvidt kun vær skal oppdateres. Når du velger dette kan du finne søkeknappen i hovedprogrammet. Du kan søke opp plasseringen du ønsker å se. Programmet søker ikke etter plassering i sådant fall.</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Når du velger <b xmlns:tools="https://schemas.android.com/tools">Oppdatering av plassering uten GPS</b> vil programmet prøve å finne plassering kun ved bruk av mobilnettverk og Wi-Fi. Programmet skrur aldri på GPS for å finne plassering.</string>
-    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Plassering og adressekilde</b>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">
+        <b>Plassering og adressekilde</b>
 \nDu kan velge hvor plasseringen og adressen blir hentet fra.</string>
-    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"><b xmlns:tools="https://schemas.android.com/tools">Lokal MLS og Nominatim</b> - Programmet henter plassering fra Mozillas plasseringstjenester. Programmet bruker mobilnettverket - informasjon om nåværende og tilgjengelige basestasjoner. Tilgang til å føre telefonsamtaler må innvilges for å få hente denne informasjonen. Programmet bruker Wi-Fi-nettverk rundt omring for å gjette plasseringen din mer presist. Programmet henter geografiske koordinater fra Mozillas plasseringstjeneste. Programmet bruker Nominatim-tjenester for å hente adresser fra koordinater. Når du ønsker å hente plassering mer presist fra Mozillas plasseringstjeneste kan du bidra til Mozilla Stumbler-programmet (tilgjengelig på https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler).</string>
-    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"><b xmlns:tools="https://schemas.android.com/tools">System</b> - Programmet henter plassering og adresser fra systemtjenester i Android (vanligvis ved bruk av Googles plasseringstjenester).</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">
+        <b xmlns:tools="https://schemas.android.com/tools">Lokal MLS og Nominatim</b> - Programmet henter plassering fra Mozillas plasseringstjenester. Programmet bruker mobilnettverket - informasjon om nåværende og tilgjengelige basestasjoner. Tilgang til å føre telefonsamtaler må innvilges for å få hente denne informasjonen. Programmet bruker Wi-Fi-nettverk rundt omring for å gjette plasseringen din mer presist. Programmet henter geografiske koordinater fra Mozillas plasseringstjeneste. Programmet bruker Nominatim-tjenester for å hente adresser fra koordinater. Når du ønsker å hente plassering mer presist fra Mozillas plasseringstjeneste kan du bidra til Mozilla Stumbler-programmet (tilgjengelig på https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler).</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
+        <b xmlns:tools="https://schemas.android.com/tools">System</b> - Programmet henter plassering og adresser fra systemtjenester i Android (vanligvis ved bruk av Googles plasseringstjenester).</string>
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Disse menyvalgene setter <b>language</b>, <b>theme</b> for hovedprogrammet og <b>icon set</b> brukt i programmet og miniprogrammene.</string>
-    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"><b xmlns:tools="https://schemas.android.com/tools">Merknader</b> 
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">
+        <b xmlns:tools="https://schemas.android.com/tools">Merknader</b> 
 \nNår du velger merknadsvalget, vil programmet oppdatere nåværende være periodisk. Nåværende vær legges så inn i merknadsområdet. Du kan også skru på vibrering - da vil det vibrere ved oppdateringer.</string>
     <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">For å spare nettverkstrafikk og framskynde plasseringsoppdatering kan du skru på <b xmlns:tools="https://schemas.android.com/tools">Hurtiglagring av plasseringer</b>. Hurtiglageret lagrer geografiske koordinater og en adresse. Programmet må ringe til nettverksløsningstjenesten uavhengig av denne innstillingen. Samtalen til Nominatim finner kun sted hvis adressen ikke er å finne i hurtiglageret. Når du skrur på hurtiglagerplasseringer må du godta at adressene du besøker blir lagret i programmet. Ingen informasjon fra hurtiglageret sendes ut av programmet.</string>
     <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Ved siden av hurtiglagerløsningen (avkryssningsboks) finnes det en innstilling for <b xmlns:tools="https://schemas.android.com/tools">Alderen på hurtiglagrede verdier</b>. Hver lagret adresse har et tidsstempel. Når det er eldre enn verdien satt i alderen for hurtiglagrede verdier, ringer programmet til Nominatim for å oppdatere oppføringen.</string>
@@ -225,8 +216,9 @@
     <string name="help_page_4_content" tools:ignore="MissingTranslation">Miniprograminnstillinger inneholder oppsettsvalg for alle miniprogrammer.</string>
     <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Når du har huket av <b xmlns:tools="https://schemas.android.com/tools">Vis etiketter i miniprogram</b> kan du se etiketter istedenfor ikoner for værtilstandsverdier.</string>
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Du kan kontrollere miniprogramsbakgrunner med <b xmlns:tools="https://schemas.android.com/tools">Draktvalg for miniprogrammer</b>.</string>
-    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b xmlns:tools="https://schemas.android.com/tools">Oppvåkningsstrategien</b> er der for å imøtegå feilaktige implementasjonen av Android-tjenesten av forskjellige tilbydere. Når du velger <i xmlns:tools="https://schemas.android.com/tools">Ingen oppvåkning</i> og plasseringen er oppdatert rett, har du rett implementasjon. I motsatt fall kan du prøve <i xmlns:tools="https://schemas.android.com/tools">Kun vekk opp CPU</i>. Dette valget vekker opp prosessoren og prøver å lese tilstanden for mobil og Wi-Fi-nettverk. Det siste valget <i xmlns:tools="https://schemas.android.com/tools">Vekk opp med skjer</i> skrur på skjermen i flere sekunder under plasseringsoppdateringen. På noen Android-telefoner er dette det eneste valget som gir rett informasjon om mobil- og Wi-Fi-nettverk. Dette bruker dog mer batteri, men innvirkningen er ganske liten.</string>
-    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Når du oppdaterer plassering og nåværende være utføres kan du se status for oppdateringen ved siden av oppdateringstiden i miniprogrammet. Du kan kontrollere hva som vises med <b xmlns:tools="https://schemas.android.com/tools">Vis oppdateringssammendrag</b>. Forklaringen på det mest avanserte valget følger:</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">
+        <b xmlns:tools="https://schemas.android.com/tools">Oppvåkningsstrategien</b> er der for å imøtegå feilaktige implementasjonen av Android-tjenesten av forskjellige tilbydere. Når du velger <i xmlns:tools="https://schemas.android.com/tools">Ingen oppvåkning</i> og plasseringen er oppdatert rett, har du rett implementasjon. I motsatt fall kan du prøve <i xmlns:tools="https://schemas.android.com/tools">Kun vekk opp CPU</i>. Dette valget vekker opp prosessoren og prøver å lese tilstanden for mobil og Wi-Fi-nettverk. Det siste valget <i xmlns:tools="https://schemas.android.com/tools">Vekk opp med skjer</i> skrur på skjermen i flere sekunder under plasseringsoppdateringen. På noen Android-telefoner er dette det eneste valget som gir rett informasjon om mobil- og Wi-Fi-nettverk. Dette bruker dog mer batteri, men innvirkningen er ganske liten.</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Når du oppdaterer plassering og nåværende vær utføres kan du se status for oppdateringen ved siden av oppdateringstiden i miniprogrammet. Du kan kontrollere hva som vises med <b xmlns:tools="https://schemas.android.com/tools">Vis oppdateringssammendrag</b>. Forklaringen på det mest avanserte valget følger:</string>
     <string name="label_activity_graphs" tools:ignore="MissingTranslation">Værgrafer</string>
     <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Grafer</string>
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
@@ -260,7 +252,6 @@
     <string name="search_location_add" tools:ignore="MissingTranslation">Legg til</string>
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Ved siden av knappen for oppdatering av plassering er et en knapp for plasseringsbehandling (forstørrelsesikon). Du kan behandle plasseringer tilgjengelig i programmet og miniprogrammer. Det er én plassering (Plassering 0) tilgjengelig som forvalg - denne plasseringen er tiltenkt automatisk oppdatering av plassering. Du kan finne/skru av knappen når du drar denne plasseringen til venstre. Du kan også legge til plassering manuelt. Når du klikker +knappen kan du hente plasseringen din på kartet. Du kan også slette plasseringen med \"Slett\"-knappen - som er tilgjengelig når du drar plasseringen til venstre.</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Plasseringer</string>
-
     <string name="update_period_nothing" tools:ignore="MissingTranslation">Kun manuell</string>
     <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Oppdateringsperiode for plassering (Plassering 0)</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Oppdater plassering og vær</string>
@@ -273,9 +264,7 @@
     <string name="pref_language_el" tools:ignore="MissingTranslation">Gresk (Greek)</string>
     <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabisk (Arabic)</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Trykk på kartet for å hente valgt plassering og vent på utledning av adresse.</string>
-    
-    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Nåværende vær har ikke blitt oppdatert enda. Oppdater nåværende vær med gjenoppfriskingsknappen først.</string>
-
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Klikk på oppdateringsknappen for å hente nåværende vær.</string>
     <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Følt temperatur: %s</string>
     <string name="label_measured_temperature" tools:ignore="MissingTranslation">Målt temperatur: %s</string>
     <string name="measured_only" tools:ignore="MissingTranslation">Kun målt temperatur</string>
@@ -283,26 +272,22 @@
     <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Begge, følt først</string>
     <string name="appearance_only" tools:ignore="MissingTranslation">Kun følt temperatur</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Vis temperatur som</string>
-
     <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Følt temperatur</string>
     <string name="label_pressure" tools:ignore="MissingTranslation">Lufttrykk</string>
     <string name="pref_language_uk" tools:ignore="MissingTranslation">Ukrainsk</string>
     <string name="pref_language_ro" tools:ignore="MissingTranslation">Rumensk</string>
     <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portugisisk (Portugal)</string>
     <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portugisisk (Brasil)</string>
-    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">"Lokalet for nåværende værbeskrivelse og addressen vil oppdateres ved vanlig oppdatering, eller du kan påtvinge den manuelt "</string>
-
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Lokalet for nåværende værbeskrivelse og addressen vil oppdateres ved vanlig oppdatering, eller du kan påtvinge den manuelt.</string>
     <string name="location_not_initialized" tools:ignore="MissingTranslation">Plassering ikke igangsatt. Klikk på plasseringssirkelen først.</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Tilgangsutløp. Oppgrader programmet.</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Din OpenweathermapApiKey er ikke registrert.</string>
-
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Systeminnstillinger</string>
     <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org-API-nøkkel</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Innebygd</string>
     <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
     <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
     <string name="inches_label" tools:ignore="MissingTranslation">tommer</string>
-
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Regn og snø</string>
     <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Vindretningsstil</string>
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Avskrudd</string>
@@ -314,7 +299,6 @@
     <string name="time_style_system" tools:ignore="MissingTranslation">System</string>
     <string name="time_style_12_h" tools:ignore="MissingTranslation">12-timersklokke AM/PM</string>
     <string name="time_style_24_h" tools:ignore="MissingTranslation">24-timersklokke</string>
-
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Batterioptimisering</string>
     <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Programmet kjører i bakgrunnen for å utføre plasseringsoppdateringer, vær, eller for å spore plassering med akselerometer. Derfor vil det spørre deg om å skru av batterioptimisering for å kjøre bakgrunnsprosesser.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Fortsett</string>
@@ -375,7 +359,7 @@
     <string name="weather_condition_description_802" tools:ignore="MissingTranslation">lettskyet</string>
     <string name="weather_condition_description_803" tools:ignore="MissingTranslation">delvis overskyet</string>
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">overskyet</string>
-<string name="share_weather_title" tools:ignore="MissingTranslation">Del vær</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Del vær</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Fant ikke kommunikasjonsprogram</string>
     <string name="share_weather_descritpion" tools:ignore="MissingTranslation">By: %1$s
 \nTemperatur: %2$s
@@ -385,16 +369,14 @@
 \nSolnedgang: %7$s</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">Ditt lokale vær</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">Merknader for Ditt lokale vær</string>
-    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Dag</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Temperatur</string>
     <string name="graph_wind_label" tools:ignore="MissingTranslation">Vind</string>
     <string name="graph_rain_label" tools:ignore="MissingTranslation">Regn</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Snø</string>
     <string name="graph_pressure_label" tools:ignore="MissingTranslation">Lufttrykk</string>
-
     <string name="pref_title_date_style" tools:ignore="MissingTranslation">Datoformat</string>
     <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/åå)</string>
     <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/åå)</string>
-
     <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Friprog-lisenser</string>
     <string name="pref_language_sq" tools:ignore="MissingTranslation">Albansk</string>
     <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (Tsjekkisk)</string>
@@ -414,10 +396,8 @@
     <string name="log_to_file_label" tools:ignore="MissingTranslation">Logg til fil</string>
     <string name="log_to_file_off" tools:ignore="MissingTranslation">Ikke logg til fil</string>
     <string name="log_to_file_on" tools:ignore="MissingTranslation">Logg til fil</string>
-
     <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
     <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
-
     <string name="weather_condition_description_531" tools:ignore="MissingTranslation">regnbyge med brutte skyer</string>
     <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm(åå)</string>
     <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (Baskisk)</string>
@@ -426,14 +406,14 @@
     <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (Katalansk)</string>
     <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
     <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
-    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation"/>
-    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation"/>
-    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation"/>
-    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation"/>
-    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation"/>
-    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation"/>
-    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation"/>
-    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation"/>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">V</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">P</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">N</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">U</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">m</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
     <string name="notification_when_updated" tools:ignore="MissingTranslation">Når oppdatert</string>
     <string name="notification_permanent" tools:ignore="MissingTranslation">Permanent</string>
     <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">På låseskjerm</string>
@@ -482,4 +462,10 @@
     <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">Grafskjerm</string>
     <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Bytt plassering</string>
     <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Vis plassering i miniprogram</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Ikonstil for statusfelt</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Vis kurve i opprinnelig oppløsning (når kurven er for liten)</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Vis innstillinger i miniprogram</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Innstillingsknapp for miniprogramskurve</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Innstillingsknapp for miniprogramsplassering</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Innstillingsknapp for miniprogramshandling</string>
 </resources>
