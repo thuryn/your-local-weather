@@ -32,12 +32,12 @@
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Uppdatera platsinställning</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Platskälla alternativ</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Du kan välja platsmetoden - <i>Systemet</i> använder Google-tjänster för att få platsen via nätverk (cell-och Wi-Fi-nätverk). <i>Lokala MLS och Nominatim</i> inställningen använder Mozilla-platsentjänst för att få koordinaterna för platsen och Nominatim-tjänst för att få platsnamn. Den andra inställningen kräver telefonsamtalstillstånd för att hämta information om mobilnätet. Den föredragna inställningen är förvald.</string>
-    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Plats och adress källa</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Plats- och adresskälla</string>
     <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Vissa telefonmodeller rapporterar inte anslutna celler korrekt om inte skärmen är på. Den föredragna inställninge (med skärm påslagen) har en nackdel att telefonen slår på skärmen i flera sekunder. Detta har en liten inverkan på batteriets livslängd. Börja med det på, och försök att stänga av det och se om platsen fortfarande uppdateras.</string>
     <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Du kan spara nätverkstrafik genom att cacha hittade platser. Platser lagras sedan i appen. De skickas inte eller lagras på andra platser i nätverket.</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Grattis</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Vakna upp strategi alternativ</string>
-    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Vakna upp strategi</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Vakna upp-strategi</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Detta avslutar guiden. Du kan hitta andra inställningar i inställningsmenyn (till exempel språk, enheter m.m.).
 \nNästa skärm kommer att förklara de begärda behörigheterna och ge dig möjlighet att begära dem.
 \n
@@ -77,12 +77,12 @@
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikon</string>
     <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Beskrivning</string>
     <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperatur</string>
-    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Tydlig temperatur</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Synbar temperatur</string>
     <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Vind</string>
     <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Vindriktning</string>
     <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Regn/Snö</string>
     <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Luftfuktighet</string>
-    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Trycket</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Tryck</string>
     <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
     <string name="ok" tools:ignore="MissingTranslation">OK</string>
     <string name="cancel" tools:ignore="MissingTranslation">Avbryt</string>
@@ -114,11 +114,11 @@
     <string name="title_activity_settings" tools:ignore="MissingTranslation">Inställningar</string>
     <string name="pref_title_temperature" tools:ignore="MissingTranslation">Temperatur</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Vind</string>
-    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Vindriktning stil</string>
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Vindriktningsstil</string>
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Regn och snö</string>
-    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Trycket</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Tryck</string>
     <string name="preference_hide_desc" tools:ignore="MissingTranslation">Dölj väderbeskrivning</string>
-    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Aviseringar</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Aviseringsinställningar</string>
     <string name="pref_title_notification" tools:ignore="MissingTranslation">Aktivera aviseringar</string>
     <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">Uppdateringsintervall</string>
     <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Inställning för platsuppdatering</string>
@@ -142,8 +142,8 @@
     <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Uppdatera plats</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Visa etiketter i gränssnittskomponenter</string>
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Tema för gränssnittskomponent</string>
-    <string name="theme_dark" tools:ignore="MissingTranslation">Mörk</string>
-    <string name="theme_light" tools:ignore="MissingTranslation">Ljus</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">Mörkt</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">Ljust</string>
     <string name="theme_transparent" tools:ignore="MissingTranslation">Transparent</string>
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Skärm</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Uppdatera plats och väder</string>
@@ -166,4 +166,89 @@
     <string name="graph_rain_label" tools:ignore="MissingTranslation">Regn</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Snö</string>
     <string name="graph_pressure_label" tools:ignore="MissingTranslation">Tryck</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">
+        <b>Plats- och adresskälla</b> 
+\nDu kan välja var appen får plats och adress från.</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Temperatur</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Vind</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Snö</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Tryck</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Temperatur</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Vind</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Regn/Snö</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Tryck</string>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">Datumformat</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Fria programvarulicenser</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">Endast manuellt</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Aviseringsnärvaro</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">Permanent</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">På låsskärmen</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">Solikon</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">Temperatur</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">Osynlig</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Klassisk</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Anpassad med en prognos</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Visuell aviseringsstil</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Statusfältets ikonstil</string>
+    <string name="preference_title_category_units" tools:ignore="MissingTranslation">Enhetsinställningar</string>
+    <string name="preference_title_power_save" tools:ignore="MissingTranslation">Energisparalternativ</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API-nyckel</string>
+    <string name="pref_title_language" tools:ignore="MissingTranslation">Språk</string>
+    <string name="pref_language_default" tools:ignore="MissingTranslation">Systemstandard</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Plats- och adresskälla</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">Tema</string>
+    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Uppdaterat värde med platskälla</string>
+    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Vakna upp-strategi</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">Vakna upp med skärmen</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Rensa cache</string>
+    <string name="db_info" tools:ignore="MissingTranslation">Information om cache</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Inaktiverad</string>
+    <string name="preference_title_activity_about" tools:ignore="MissingTranslation">Om</string>
+    <string name="about_version_pref_title" tools:ignore="MissingTranslation">Version</string>
+    <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Källkod</string>
+    <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Licens</string>
+    <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Fria programvarulicenser</string>
+    <string name="wind_label" tools:ignore="MissingTranslation">Vind: %1$s %2$s %3$s</string>
+    <string name="snow_label" tools:ignore="MissingTranslation">Snö: %1$s %2$s</string>
+    <string name="humidity_label" tools:ignore="MissingTranslation">Luftfuktighet: %1$s%2$s</string>
+    <string name="pressure_label" tools:ignore="MissingTranslation">Tryck: %1$s %2$s</string>
+    <string name="cloudiness_label" tools:ignore="MissingTranslation">Molnighet: %1$s%2$s</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">Senaste uppdatering: %s</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">Soluppgång: %s</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">Solnedgång: %s</string>
+    <string name="label_temperature" tools:ignore="MissingTranslation">Temperatur</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Synbar temperatur: %s</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Uppmätt temperatur: %s</string>
+    <string name="label_wind" tools:ignore="MissingTranslation">Vind</string>
+    <string name="label_snow" tools:ignore="MissingTranslation">Snö</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Tryck</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Visa temperatur som</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Inaktiverad</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Förkortning N↓, NE↙, …</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Grader från norr</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Aktuellt väder beskrivningsspråk och adressen kommer att ändras med nästa uppdatering, eller så kan du tvinga det manuellt.</string>
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">Välj loggmapp</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">Felsökningsalternativ</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Efter en viss tid kommer loggfilen att återskapas</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Rotation av loggfilen</string>
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">Logga till fil</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">Logga inte till fil</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">Logga till fil</string>
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Ikonuppsättning</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Typsnitts baserade ikoner</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin de röda ikonerna</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">åskväder med lätt regn</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">lätt regn</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">lätt snö</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">snö</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">mycket snö</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">lätt regn och snö</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">regn och snö</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation"></string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation"></string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">klar himmel</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">lite molnigt</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">spridda moln</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">brutna moln</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">mulet</string>
 </resources>
