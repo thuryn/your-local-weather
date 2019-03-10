@@ -492,4 +492,5 @@
     <string name="weather_condition_description_781" tools:ignore="MissingTranslation">kasırga</string>
     <string name="weather_condition_description_800" tools:ignore="MissingTranslation">açık gökyüzü</string>
     <string name="weather_condition_description_803" tools:ignore="MissingTranslation">parçalı bulutlu</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Şu anda %1$d\'den fazla konuma sahip olmanıza izin verilmiyor.</string>
 </resources>

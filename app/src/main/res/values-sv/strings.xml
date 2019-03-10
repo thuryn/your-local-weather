@@ -36,7 +36,7 @@
     <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Vissa telefonmodeller rapporterar inte anslutna celler korrekt om inte skärmen är på. Den föredragna inställninge (med skärm påslagen) har en nackdel att telefonen slår på skärmen i flera sekunder. Detta har en liten inverkan på batteriets livslängd. Börja med det på, och försök att stänga av det och se om platsen fortfarande uppdateras.</string>
     <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Du kan spara nätverkstrafik genom att cacha hittade platser. Platser lagras sedan i appen. De skickas inte eller lagras på andra platser i nätverket.</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Grattis</string>
-    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Vakna upp strategi alternativ</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Vakna upp-strategi alternativ</string>
     <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Vakna upp-strategi</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Detta avslutar guiden. Du kan hitta andra inställningar i inställningsmenyn (till exempel språk, enheter m.m.).
 \nNästa skärm kommer att förklara de begärda behörigheterna och ge dig möjlighet att begära dem.
@@ -77,7 +77,7 @@
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikon</string>
     <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Beskrivning</string>
     <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperatur</string>
-    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Synbar temperatur</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Upplevd temperatur</string>
     <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Vind</string>
     <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Vindriktning</string>
     <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Regn/Snö</string>
@@ -217,7 +217,7 @@
     <string name="sunrise_label" tools:ignore="MissingTranslation">Soluppgång: %s</string>
     <string name="sunset_label" tools:ignore="MissingTranslation">Solnedgång: %s</string>
     <string name="label_temperature" tools:ignore="MissingTranslation">Temperatur</string>
-    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Synbar temperatur: %s</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Upplevd temperatur: %s</string>
     <string name="label_measured_temperature" tools:ignore="MissingTranslation">Uppmätt temperatur: %s</string>
     <string name="label_wind" tools:ignore="MissingTranslation">Vind</string>
     <string name="label_snow" tools:ignore="MissingTranslation">Snö</string>
@@ -244,11 +244,12 @@
     <string name="weather_condition_description_602" tools:ignore="MissingTranslation">mycket snö</string>
     <string name="weather_condition_description_615" tools:ignore="MissingTranslation">lätt regn och snö</string>
     <string name="weather_condition_description_616" tools:ignore="MissingTranslation">regn och snö</string>
-    <string name="weather_condition_description_620" tools:ignore="MissingTranslation"></string>
-    <string name="weather_condition_description_621" tools:ignore="MissingTranslation"></string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation"/>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation"/>
     <string name="weather_condition_description_800" tools:ignore="MissingTranslation">klar himmel</string>
     <string name="weather_condition_description_801" tools:ignore="MissingTranslation">lite molnigt</string>
     <string name="weather_condition_description_802" tools:ignore="MissingTranslation">spridda moln</string>
     <string name="weather_condition_description_803" tools:ignore="MissingTranslation">brutna moln</string>
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">mulet</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Du får inte ha mer än %1$d platser för tillfället.</string>
 </resources>

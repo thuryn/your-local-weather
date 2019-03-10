@@ -468,4 +468,5 @@
     <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Innstillingsknapp for miniprogramskurve</string>
     <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Innstillingsknapp for miniprogramsplassering</string>
     <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Innstillingsknapp for miniprogramshandling</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Du tillates ikke å ha mer enn %1$d plasseringer for øyeblikket.</string>
 </resources>
