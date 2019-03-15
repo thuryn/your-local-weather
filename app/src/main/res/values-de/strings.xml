@@ -154,7 +154,7 @@
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Wenn Sie die Option <b>GPS wenn nötig einschalten</b> markieren, wird die Anwendung versuchen, den Standort über Mobilfunk- oder WLAN-Netze zu finden. Kann der Standort über Netzwerkdienste nicht gefunden werden, schaltet die Anwendung für einige Sekunden das GPS an, um den Standort zu bestimmen.</string>
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">
         <b>Standort- und Adressenbezugsquelle</b> 
-\nSie können wählen, woher die Anwendung den Standort und die Adresse erhält.</string>
+\nSie können wählen, woher die App Standort und Adresse erhält.</string>
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">Knoten</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Wind</string>
@@ -235,7 +235,7 @@
     <string name="locations_disabled" tools:ignore="MissingTranslation">Ausgeschaltet</string>
     <string name="search_location_add" tools:ignore="MissingTranslation">Hinzufügen</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Auf Karte tippen, um gewünschten Standort zu bestimmen, und warten bis die Adresse ermittelt wurde.</string>
-    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Momentanes Wetter wurde noch nicht aktualisiert. Bitte Wetterdaten über den \"Aktualisieren\"-Schalter abrufen.</string>
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Bitte klicken Sie auf die Aktualisieren-Schaltfläche, um das Wetter zuerst zu aktualisieren.</string>
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Protokollordner wählen</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Optionen zur Fehlersuche</string>
     <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Protokolldatei wird nach der festgelegten Zeit neu erstellt</string>
@@ -252,7 +252,7 @@
     <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">
         <b>Lokaler MLS und Nominatim</b> - Die Anwendung bezieht Standorte über den Mozilla Location Service. Sie nutzt dafür das Mobilfunknetz - Informationen über die momentan aktive und abrufbare Mobilfunkstation. Um diese Informationen zu erhalten, ist die Zugriffsberechtigung für Telefonfunktionen nötig. Die Anwendung nutzt umliegende WLAN-Netze, um Ihren Standort genauer einordnen zu können. Der Mozilla-Standortdienst liefert geographische Koordinaten, aus denen der Nominatim-Dienst Adressdaten ermittelt. Sie können zur Verbesserung des Mozilla Location Service beitragen, indem Sie die Mozilla Stumbler App installieren (abrufbar auf https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler), um künftig genauere Standortdaten zu erhalten.</string>
     <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
-        <b>System</b> - Die Anwendung bezieht Standort und Adressen über die Android-Systemdienste (für gewöhnlich über den Google-Standortdienst).</string>
+        <b>System</b> - Die Anwendung bezieht Standort und Adresse über die Android-Systemdienste (für gewöhnlich über den Google-Standortdienst).</string>
     <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">
         <b>Benachrichtigungen</b> 
 \nWenn Sie die Benachrichtigungen einschalten, wird das Wetter regelmäßig aktualisiert. Aktuelle Wetterdaten werden dann in den Benachrichtigungen angezeigt. Es kann auch ein Vibrationsalarm bei Aktualisierung aktiviert werden.</string>
@@ -324,7 +324,7 @@
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Deaktiviert</string>
     <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abkürzung N↓, NO↙, …</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Grad Abweichung von Norden</string>
-    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Die aktuelle Wetterbeschreibungssprache und die Adresse ändern sich beim nächsten Update, oder Sie können manuell gezwungen werden.</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Die aktuelle Wetterbeschreibungssprache und die Adresse ändern sich beim nächsten Update oder Sie können es manuell erzwingen.</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Schriftartenbasierte Symbole</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin die roten Symbole</string>
     <string name="weather_condition_description_none" tools:ignore="MissingTranslation">keine</string>
