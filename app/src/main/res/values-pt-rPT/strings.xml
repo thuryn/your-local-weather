@@ -30,11 +30,11 @@
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Definições gerais</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">Estas opções têm influência em todo o aplicativo.</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
-        <b>Temperatura</b> - Pode seleccionar a unidade de temperatura, <b>Vento</b>" -  Pode seleccionar a unidade de velocidade do tempo e "<b>Pressão atmosférica</b>" -  Pode seleccionar a unidade de pressão atmosférica. Os valores são recalculados utilizando estas opções."</string>
+        <b>Temperatura</b> - Pode selecionar a unidade de temperatura, <b>Vento</b>" -  Pode selecionar a unidade de velocidade do tempo e "<b>Pressão atmosférica</b>" -  Pode selecionar a unidade de pressão atmosférica. Os valores são recalculados utilizando estas opções."</string>
     <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">A aplicação está configurada para actualizar a localização. É necessário permissão. Vá às configurações do dispositivo e active a localização ou desactive as actualizações de localização na aplicação.</string>
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">É necessária permissão para ler informação do dispositivo para actualizar a localização utilizando as redes Wi-Fi e GSM. Isto pesquisa informação acerca das estações base GSM a que o dispositivo está conectado.</string>
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">A ajustar a aplicação às suas necessidades, pode escolher a estratégia de actualização a seguir. 
-\nPara alterar o comportamento por defeito de actualizar quando a localização muda, pode escolher <i>Não actualizar localização</i>.</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Ajustando a aplicação às suas necessidades, a seguir pode escolher a estratégia de atualização. 
+\nPara alterar o comportamento por predefinição de atualizar quando a localização muda, pode escolher <i>Não actualizar localização</i>.</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Opção de fonte de localização</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Fonte de localização e morada</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Opção de estratégia de despertar</string>
@@ -162,7 +162,7 @@
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Ícones baseados na fonte</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Pode encontrar a previsão meteorológica no próximo ecrã (seleccione próximo ecrã no menu ou deslize da esquerda para a direita). A previsão meteorológica é actualizada pelo botão actualizar ou quando entra no ecrã (mas não mais que uma actualização por hora).</string>
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">
-        <b>Esconder a descrição do tempo</b>" - a descrição do tempo actual é escondida. Apenas pode ver o tempo actual  pelo ícone de mudança."</string>
+        <b>Esconder a descrição do tempo</b> - a descrição do tempo actual está escondida. Apenas pode ver o tempo atual pelo ícone alterando.</string>
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Estas opções de menu definem <b>o idioma</b>, <b>o tema</b>" da aplicação principal e  "<b>o pacote de ícones</b> utilizado na aplicação e nos widgets.</string>
     <string name="help_page_4_title" tools:ignore="MissingTranslation">Configurações do widget</string>
     <string name="help_page_4_content" tools:ignore="MissingTranslation">As configurações do widget contêm as opções de configuração para todos os widgets.</string>
