@@ -341,7 +341,7 @@ public class AppPreference {
                 .getBoolean(Constants.KEY_PREF_WIDGET_SHOW_LABELS, false);
     }
 
-    public static String getTheme(Context context) {
+    public static String getWidgetTheme(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_WIDGET_THEME, "dark");
     }
@@ -420,7 +420,7 @@ public class AppPreference {
     }
 
     public static int getTextColor(Context context) {
-        String theme = getTheme(context);
+        String theme = getWidgetTheme(context);
         if (null == theme) {
             return ContextCompat.getColor(context, R.color.widget_transparentTheme_textColorPrimary);
         } else switch (theme) {
@@ -433,22 +433,22 @@ public class AppPreference {
         }
     }
 
-    public static int getGraphGridColor(Context context) {
-        String theme = getTheme(context);
+    public static GraphGridColors getWidgetGraphGridColor(Context context) {
+        String theme = getWidgetTheme(context);
         if (null == theme) {
-            return Color.parseColor("#333333");
+            return new GraphGridColors(Color.parseColor("#333333"), Color.LTGRAY);
         } else switch (theme) {
             case "dark":
-                return Color.WHITE;
+                return new GraphGridColors(Color.WHITE, Color.GRAY);
             case "light":
-                return Color.parseColor("#333333");
+                return new GraphGridColors(Color.parseColor("#333333"), Color.LTGRAY);
             default:
-                return Color.WHITE;
+                return new GraphGridColors(Color.WHITE, Color.GRAY);
         }
     }
 
-    public static int getBackgroundColor(Context context) {
-        String theme = getTheme(context);
+    public static int getWidgetBackgroundColor(Context context) {
+        String theme = getWidgetTheme(context);
         if (null == theme) {
             return ContextCompat.getColor(context,
                     R.color.widget_transparentTheme_colorBackground);
@@ -466,7 +466,7 @@ public class AppPreference {
     }
     
     public static int getWindowHeaderBackgroundColorId(Context context) {
-        String theme = getTheme(context);
+        String theme = getWidgetTheme(context);
         if (null == theme) {
             return ContextCompat.getColor(context,
                     R.color.widget_transparentTheme_window_colorBackground);
@@ -505,5 +505,23 @@ public class AppPreference {
     public static long getCurrentLocationId(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getLong(
                 Constants.CURRENT_LOCATION_ID, 0);
+    }
+
+    public static class GraphGridColors {
+        private int mainGridColor;
+        private int secondaryGridColor;
+
+        public GraphGridColors(int mainGridColor, int secondaryGridColor) {
+            this.mainGridColor = mainGridColor;
+            this.secondaryGridColor = secondaryGridColor;
+        }
+
+        public int getMainGridColor() {
+            return mainGridColor;
+        }
+
+        public int getSecondaryGridColor() {
+            return secondaryGridColor;
+        }
     }
 }

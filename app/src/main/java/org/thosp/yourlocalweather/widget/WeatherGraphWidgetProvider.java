@@ -88,7 +88,7 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
     public static void setWidgetTheme(Context context, RemoteViews remoteViews, int widgetId) {
         appendLog(context, TAG, "setWidgetTheme:start");
         int textColorId = AppPreference.getTextColor(context);
-        int backgroundColorId = AppPreference.getBackgroundColor(context);
+        int backgroundColorId = AppPreference.getWidgetBackgroundColor(context);
         int windowHeaderBackgroundColorId = AppPreference.getWindowHeaderBackgroundColorId(context);
 
         final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);

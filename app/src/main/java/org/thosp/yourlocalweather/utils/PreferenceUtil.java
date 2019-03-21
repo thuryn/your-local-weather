@@ -37,17 +37,17 @@ public class PreferenceUtil {
         return Theme.valueOf(PreferenceManager.getDefaultSharedPreferences(context).getString(Constants.PREF_THEME, "light"));
     }
 
-    public static int getGraphGridColor(Context context) {
+    public static AppPreference.GraphGridColors getGraphGridColor(Context context) {
         Theme theme = getTheme(context);
         if (null == theme) {
-            return Color.parseColor("#333333");
+            return new AppPreference.GraphGridColors(Color.parseColor("#333333"), Color.LTGRAY);
         } else switch (theme) {
             case dark:
-                return Color.WHITE;
+                return new AppPreference.GraphGridColors(Color.WHITE, Color.GRAY);
             case light:
-                return Color.parseColor("#333333");
+                return new AppPreference.GraphGridColors(Color.parseColor("#333333"), Color.LTGRAY);
             default:
-                return Color.parseColor("#333333");
+                return new AppPreference.GraphGridColors(Color.parseColor("#333333"), Color.LTGRAY);
         }
     }
 

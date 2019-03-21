@@ -146,7 +146,7 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
 
     public static void setWidgetTheme(Context context, RemoteViews remoteViews) {
         int textColorId = AppPreference.getTextColor(context);
-        int backgroundColorId = AppPreference.getBackgroundColor(context);
+        int backgroundColorId = AppPreference.getWidgetBackgroundColor(context);
         int windowHeaderBackgroundColorId = AppPreference.getWindowHeaderBackgroundColorId(context);
 
         remoteViews.setInt(R.id.widget_more_3x3_widget_root, "setBackgroundColor", backgroundColorId);

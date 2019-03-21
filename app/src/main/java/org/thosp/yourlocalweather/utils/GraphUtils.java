@@ -22,6 +22,7 @@ import android.widget.RemoteViews;
 import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
@@ -40,6 +41,7 @@ import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -100,8 +102,8 @@ public class GraphUtils {
                                                             yAxisValues,
                                                             0,
                                                             AppPreference.getTextColor(context),
-                                                            AppPreference.getBackgroundColor(context),
-                                                            AppPreference.getGraphGridColor(context),
+                                                            AppPreference.getWidgetBackgroundColor(context),
+                                                            AppPreference.getWidgetGraphGridColor(context),
                                                             showLegend);
 
         combinedChart.setBackgroundColor(ContextCompat.getColor(context,
@@ -237,10 +239,9 @@ public class GraphUtils {
                                                       int yAxisFractionalDigits,
                                                       int textColorId,
                                                       int backgroundColorId,
-                                                      int gridColorId,
+                                                      AppPreference.GraphGridColors gridColorId,
                                                       boolean showLegend) {
-        String[] mDatesArray;
-        int daysCount;
+
         CustomValueFormatter mValueFormatter = new CustomValueFormatter(locale);
 
         boolean pressure = false;
@@ -298,19 +299,7 @@ public class GraphUtils {
         combinedChart.setBackgroundColor(backgroundColorId);
         combinedChart.setGridBackgroundColor(textColorId);
 
-        FormattedDate formatedDate = formatDate(weatherForecastList, locationId, locale);
-        mDatesArray = formatedDate.getDatesArray();
-        daysCount = formatedDate.getDaysCount();
-        XAxis x = combinedChart.getXAxis();
-        x.setEnabled(true);
-        x.setPosition(XAxis.XAxisPosition.BOTTOM);
-        x.setDrawGridLines(true);
-        x.setLabelCount(daysCount,true);
-        x.setTextColor(textColorId);
-        x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
-        if (textSize != null) {
-            x.setTextSize(textSize);
-        }
+        setupXAxis(combinedChart.getXAxis(), weatherForecastList, textColorId, textSize, gridColorId, locale);
 
         int temperatureListSize = weatherForecastList.size();
         double[] temperatures = new double[temperatureListSize];
@@ -553,7 +542,7 @@ public class GraphUtils {
         yLeft.setDrawGridLines(true);
         yLeft.enableGridDashedLine(5f, 10f, 0f);
         yLeft.setTextColor(textColorId);
-        yLeft.setGridColor(gridColorId);
+        yLeft.setGridColor(gridColorId.getMainGridColor());
         yLeft.setZeroLineWidth(20f);
         if (textSize != null) {
             yLeft.setTextSize(textSize);
@@ -615,6 +604,10 @@ public class GraphUtils {
             yLeft.setAxisMinimum((float) (axisMinimum));
             yLeft.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, context.getString(AppPreference.getRainOrSnowUnit(context))));
         }
+        LimitLine zerolimitLine = new LimitLine(0);
+        zerolimitLine.setLineColor(gridColorId.getMainGridColor());
+        zerolimitLine.setLineWidth(0.5f);
+        yLeft.addLimitLine(zerolimitLine);
 
         YAxis yRight = combinedChart.getAxisRight();
         yRight.setEnabled(true);
@@ -623,7 +616,7 @@ public class GraphUtils {
         yRight.setDrawGridLines(true);
         yRight.enableGridDashedLine(5f, 10f, 0f);
         yRight.setTextColor(textColorId);
-        yRight.setGridColor(gridColorId);
+        yRight.setGridColor(gridColorId.getMainGridColor());
         yRight.setZeroLineWidth(20f);
         if (textSize != null) {
             yRight.setTextSize(textSize);
@@ -704,46 +697,63 @@ public class GraphUtils {
         return combinedChart;
     }
 
-    public static FormattedDate formatDate(List<DetailedWeatherForecast> weatherForecastList, long locationId, Locale locale) {
-        String[] mDatesArray = new String[0];
-        int daysCount;
-        SimpleDateFormat format = new SimpleDateFormat("EEE", locale);
-        if (weatherForecastList != null) {
-            int mSize = weatherForecastList.size();
-            List<String> uniqueDate = new ArrayList<>();
-            mDatesArray = new String[mSize];
+    public static void setupXAxis(XAxis x,
+                                  List<DetailedWeatherForecast> weatherForecastList,
+                                  int textColorId,
+                                  Float textSize,
+                                  AppPreference.GraphGridColors gridColor,
+                                  Locale locale) {
+        Map<Integer, Long> hourIndexes = new HashMap<>();
 
-            for (int i = 0; i < mSize; i++) {
-                Date date = new Date(weatherForecastList.get(i).getDateTime() * 1000);
-                String day = format.format(date);
-                if (!uniqueDate.contains(day)) {
-                    uniqueDate.add(day);
+        int lastDayOflimitLine = 0;
+        for (int i = 0; i < weatherForecastList.size(); i++) {
+            hourIndexes.put(i, weatherForecastList.get(i).getDateTime());
+            Calendar cal = Calendar.getInstance();
+            cal.setTimeInMillis(weatherForecastList.get(i).getDateTime() * 1000);
+            if (cal.get(Calendar.DAY_OF_YEAR) != lastDayOflimitLine) {
+                Calendar calOfPreviousRecord = Calendar.getInstance();
+                int previousRecordHour = 24;
+                if (i > 0) {
+                    calOfPreviousRecord.setTimeInMillis(weatherForecastList.get(i - 1).getDateTime() * 1000);
+                    previousRecordHour = calOfPreviousRecord.get(Calendar.HOUR_OF_DAY);
                 }
-                mDatesArray[i] = day;
+                int currentHour = cal.get(Calendar.HOUR_OF_DAY);
+                float timeSpan = (24 - previousRecordHour) + currentHour;
+                float dayLine = currentHour / timeSpan;
+                float midnight = i - dayLine;
+                float hour6 = midnight + (6 / timeSpan);
+                float hour12 = midnight + (12 / timeSpan);
+                float hour18 = midnight + (18 / timeSpan);
+                LimitLine limitLine = new LimitLine(midnight);
+                limitLine.setLineColor(gridColor.getMainGridColor());
+                limitLine.setLineWidth(0.5f);
+                x.addLimitLine(limitLine);
+                /*LimitLine limitLine6 = new LimitLine(hour6, "");
+                limitLine6.setLineColor(Color.LTGRAY);
+                limitLine6.setLineWidth(0.5f);
+                x.addLimitLine(limitLine6);*/
+                LimitLine limitLine12 = new LimitLine(hour12);
+                limitLine12.setLineColor(gridColor.getSecondaryGridColor());
+                limitLine12.setLineWidth(0.5f);
+                x.addLimitLine(limitLine12);
+                /*LimitLine limitLine18 = new LimitLine(hour18, "");
+                limitLine18.setLineColor(Color.LTGRAY);
+                limitLine18.setLineWidth(0.5f);
+                x.addLimitLine(limitLine18);*/
+                lastDayOflimitLine = cal.get(Calendar.DAY_OF_YEAR);
             }
-            daysCount = uniqueDate.size();
-        } else {
-            daysCount = 0;
         }
 
-        return new FormattedDate(mDatesArray, daysCount);
-    }
+        x.setEnabled(true);
+        x.setPosition(XAxis.XAxisPosition.BOTTOM);
+        x.setDrawGridLines(false);
+        x.setLabelCount(25, true);
+        x.setTextColor(textColorId);
+        x.setValueFormatter(new XAxisValueFormatter(hourIndexes, locale));
+        x.setDrawLimitLinesBehindData(true);
 
-    public static class FormattedDate {
-        private String[] mDatesArray;
-        private int daysCount;
-
-        public FormattedDate(String[] mDatesArray, int daysCount) {
-            this.daysCount = daysCount;
-            this.mDatesArray = mDatesArray;
-        }
-
-        public String[] getDatesArray() {
-            return mDatesArray;
-        }
-
-        public int getDaysCount() {
-            return daysCount;
+        if (textSize != null) {
+            x.setTextSize(textSize);
         }
     }
 

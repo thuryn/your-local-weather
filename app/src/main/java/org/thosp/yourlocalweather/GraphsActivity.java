@@ -182,16 +182,13 @@ public class GraphsActivity extends ForecastingActivity {
         mTemperatureChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         mTemperatureChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
-        GraphUtils.FormattedDate formattedDate = GraphUtils.formatDate(weatherForecastList.get(locationId), locationId, locale);
-        mDatesArray = formattedDate.getDatesArray();
-        daysCount = formattedDate.getDaysCount();
-        XAxis x = mTemperatureChart.getXAxis();
-        x.setEnabled(true);
-        x.setPosition(XAxis.XAxisPosition.BOTTOM);
-        x.setDrawGridLines(true);
-        x.setLabelCount(daysCount,true);
-        x.setTextColor(PreferenceUtil.getTextColor(this));
-        x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
+        GraphUtils.setupXAxis(
+                mTemperatureChart.getXAxis(),
+                weatherForecastList.get(locationId),
+                PreferenceUtil.getTextColor(this),
+                null,
+                PreferenceUtil.getGraphGridColor(this),
+                locale);
 
         YAxis yLeft = mTemperatureChart.getAxisLeft();
         yLeft.setEnabled(true);
@@ -200,7 +197,7 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setDrawGridLines(true);
         yLeft.enableGridDashedLine(5f, 10f, 0f);
         yLeft.setTextColor(PreferenceUtil.getTextColor(this));
-        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this));
+        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this).getMainGridColor());
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(new YAxisValueFormatter(locale, 2, TemperatureUtil.getTemperatureUnit(this)));
 
@@ -268,16 +265,13 @@ public class GraphsActivity extends ForecastingActivity {
         mWindChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         mWindChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
-        GraphUtils.FormattedDate formattedDate = GraphUtils.formatDate(weatherForecastList.get(locationId), locationId, locale);
-        mDatesArray = formattedDate.getDatesArray();
-        daysCount = formattedDate.getDaysCount();
-        XAxis x = mWindChart.getXAxis();
-        x.setEnabled(true);
-        x.setPosition(XAxis.XAxisPosition.BOTTOM);
-        x.setTextColor(PreferenceUtil.getTextColor(this));
-        x.setDrawGridLines(true);
-        x.setLabelCount(daysCount,true);
-        x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
+        GraphUtils.setupXAxis(
+                mWindChart.getXAxis(),
+                weatherForecastList.get(locationId),
+                PreferenceUtil.getTextColor(this),
+                null,
+                PreferenceUtil.getGraphGridColor(this),
+                locale);
 
         YAxis yLeft = mWindChart.getAxisLeft();
         yLeft.setEnabled(true);
@@ -286,7 +280,7 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setDrawGridLines(true);
         yLeft.enableGridDashedLine(5f, 10f, 0f);
         yLeft.setTextColor(PreferenceUtil.getTextColor(this));
-        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this));
+        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this).getMainGridColor());
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(new YAxisValueFormatter(locale, 2, AppPreference.getWindUnit(this)));
         yLeft.setZeroLineWidth(10f);
@@ -355,16 +349,13 @@ public class GraphsActivity extends ForecastingActivity {
         mRainChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         mRainChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
-        GraphUtils.FormattedDate formattedDate = GraphUtils.formatDate(weatherForecastList.get(locationId), locationId, locale);
-        mDatesArray = formattedDate.getDatesArray();
-        daysCount = formattedDate.getDaysCount();
-        XAxis x = mRainChart.getXAxis();
-        x.setEnabled(true);
-        x.setPosition(XAxis.XAxisPosition.BOTTOM);
-        x.setTextColor(PreferenceUtil.getTextColor(this));
-        x.setDrawGridLines(true);
-        x.setLabelCount(daysCount,true);
-        x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
+        GraphUtils.setupXAxis(
+                mRainChart.getXAxis(),
+                weatherForecastList.get(locationId),
+                PreferenceUtil.getTextColor(this),
+                null,
+                PreferenceUtil.getGraphGridColor(this),
+                locale);
 
         YAxis yLeft = mRainChart.getAxisLeft();
         yLeft.setEnabled(true);
@@ -373,7 +364,7 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setDrawGridLines(true);
         yLeft.enableGridDashedLine(5f, 10f, 0f);
         yLeft.setTextColor(PreferenceUtil.getTextColor(this));
-        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this));
+        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this).getMainGridColor());
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(rainSnowYAxisValueFormatter);
 
@@ -446,16 +437,13 @@ public class GraphsActivity extends ForecastingActivity {
         rainBarChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         rainBarChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
-        GraphUtils.FormattedDate formattedDate = GraphUtils.formatDate(weatherForecastList.get(locationId), locationId, locale);
-        mDatesArray = formattedDate.getDatesArray();
-        daysCount = formattedDate.getDaysCount();
-        XAxis x = rainBarChart.getXAxis();
-        x.setEnabled(true);
-        x.setPosition(XAxis.XAxisPosition.BOTTOM);
-        x.setTextColor(PreferenceUtil.getTextColor(this));
-        x.setDrawGridLines(true);
-        x.setLabelCount(daysCount,true);
-        x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
+        GraphUtils.setupXAxis(
+                rainBarChart.getXAxis(),
+                weatherForecastList.get(locationId),
+                PreferenceUtil.getTextColor(this),
+                null,
+                PreferenceUtil.getGraphGridColor(this),
+                locale);
 
         YAxis yLeft = rainBarChart.getAxisLeft();
         yLeft.setEnabled(true);
@@ -464,7 +452,7 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setDrawGridLines(true);
         yLeft.enableGridDashedLine(5f, 10f, 0f);
         yLeft.setTextColor(PreferenceUtil.getTextColor(this));
-        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this));
+        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this).getMainGridColor());
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(rainSnowYAxisValueFormatter);
 
@@ -529,16 +517,13 @@ public class GraphsActivity extends ForecastingActivity {
         mSnowChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         mSnowChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
-        GraphUtils.FormattedDate formattedDate = GraphUtils.formatDate(weatherForecastList.get(locationId), locationId, locale);
-        mDatesArray = formattedDate.getDatesArray();
-        daysCount = formattedDate.getDaysCount();
-        XAxis x = mSnowChart.getXAxis();
-        x.setEnabled(true);
-        x.setPosition(XAxis.XAxisPosition.BOTTOM);
-        x.setTextColor(PreferenceUtil.getTextColor(this));
-        x.setDrawGridLines(true);
-        x.setLabelCount(daysCount,true);
-        x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
+        GraphUtils.setupXAxis(
+                mSnowChart.getXAxis(),
+                weatherForecastList.get(locationId),
+                PreferenceUtil.getTextColor(this),
+                null,
+                PreferenceUtil.getGraphGridColor(this),
+                locale);
 
         YAxis yLeft = mSnowChart.getAxisLeft();
         yLeft.setEnabled(true);
@@ -547,7 +532,7 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setDrawGridLines(true);
         yLeft.enableGridDashedLine(5f, 10f, 0f);
         yLeft.setTextColor(PreferenceUtil.getTextColor(this));
-        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this));
+        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this).getMainGridColor());
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(rainSnowYAxisValueFormatter);
 
@@ -620,16 +605,13 @@ public class GraphsActivity extends ForecastingActivity {
         snowBarChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         snowBarChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
-        GraphUtils.FormattedDate formattedDate = GraphUtils.formatDate(weatherForecastList.get(locationId), locationId, locale);
-        mDatesArray = formattedDate.getDatesArray();
-        daysCount = formattedDate.getDaysCount();
-        XAxis x = snowBarChart.getXAxis();
-        x.setEnabled(true);
-        x.setPosition(XAxis.XAxisPosition.BOTTOM);
-        x.setTextColor(PreferenceUtil.getTextColor(this));
-        x.setDrawGridLines(true);
-        x.setLabelCount(daysCount,true);
-        x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
+        GraphUtils.setupXAxis(
+                snowBarChart.getXAxis(),
+                weatherForecastList.get(locationId),
+                PreferenceUtil.getTextColor(this),
+                null,
+                PreferenceUtil.getGraphGridColor(this),
+                locale);
 
         YAxis yLeft = snowBarChart.getAxisLeft();
         yLeft.setEnabled(true);
@@ -638,7 +620,7 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setDrawGridLines(true);
         yLeft.enableGridDashedLine(5f, 10f, 0f);
         yLeft.setTextColor(PreferenceUtil.getTextColor(this));
-        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this));
+        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this).getMainGridColor());
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(rainSnowYAxisValueFormatter);
 
@@ -703,16 +685,13 @@ public class GraphsActivity extends ForecastingActivity {
         mPressureChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         mPressureChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
-        GraphUtils.FormattedDate formattedDate = GraphUtils.formatDate(weatherForecastList.get(locationId), locationId, locale);
-        mDatesArray = formattedDate.getDatesArray();
-        daysCount = formattedDate.getDaysCount();
-        XAxis x = mPressureChart.getXAxis();
-        x.setEnabled(true);
-        x.setPosition(XAxis.XAxisPosition.BOTTOM);
-        x.setTextColor(PreferenceUtil.getTextColor(this));
-        x.setDrawGridLines(true);
-        x.setLabelCount(daysCount,true);
-        x.setValueFormatter(new XAxisValueFormatter(mDatesArray));
+        GraphUtils.setupXAxis(
+                mPressureChart.getXAxis(),
+                weatherForecastList.get(locationId),
+                PreferenceUtil.getTextColor(this),
+                null,
+                PreferenceUtil.getGraphGridColor(this),
+                locale);
 
         YAxis yLeft = mPressureChart.getAxisLeft();
         yLeft.setEnabled(true);
@@ -721,7 +700,7 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setDrawGridLines(true);
         yLeft.enableGridDashedLine(5f, 10f, 0f);
         yLeft.setTextColor(PreferenceUtil.getTextColor(this));
-        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this));
+        yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this).getMainGridColor());
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(new YAxisValueFormatter(locale, 2, AppPreference.getPressureUnit(this)));
 

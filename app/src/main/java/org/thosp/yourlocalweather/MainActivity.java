@@ -1022,6 +1022,10 @@ public class MainActivity extends BaseActivity
     }
 
     protected void sendMessageToCurrentWeatherService(Location location, String updateSource) {
+        if ((location.getLongitude() == 0) && (location.getLatitude() == 0) && (location.getLastLocationUpdate() == 0)) {
+            detectLocation();
+            return;
+        }
         currentWeatherServiceLock.lock();
         try {
             Message msg = Message.obtain(
