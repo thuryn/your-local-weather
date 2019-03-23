@@ -60,4 +60,6 @@
 \nA próxima tela irá explicar as permissões necessárias e como solicitá-las. 
 \n 
 \nAproveite o aplicativo.</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
+        <b>Sistema</b> - O aplicativo obtém a localização e o endereço por serviços do sistema no Android (geralmente pelo Google Location Services).</string>
 </resources>
