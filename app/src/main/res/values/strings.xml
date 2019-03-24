@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" tools:ignore="MissingTranslation">Your local weather</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Yorecast</string>
     <string name="enter_city_hint" tools:ignore="MissingTranslation">Enter city</string>
     <string name="label_current_city" tools:ignore="MissingTranslation">Current city</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">Choose city</string>
@@ -34,7 +34,6 @@
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Snow</string>
     <string name="graph_pressure_label" tools:ignore="MissingTranslation">Pressure</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">You are not allowed to have more than %1$d locations at the moment.</string>
-
     <!-- Initial guide and help -->
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Close</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Next</string>
