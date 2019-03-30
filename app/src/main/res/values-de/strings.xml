@@ -282,7 +282,7 @@
     <string name="appearance_only" tools:ignore="MissingTranslation">Nur gefühlter Wert</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Zeige Temperatur als</string>
     <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Gefühlte Temperatur</string>
-    <string name="app_name" tools:ignore="MissingTranslation">Wetter vor Ort</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Yorecast</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (Chinesisch)</string>
     <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (Bokmål) (Norwegisch (Bokmål))</string>
     <string name="pref_language_es" tools:ignore="MissingTranslation">Español (Spanisch)</string>
