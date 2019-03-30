@@ -224,7 +224,7 @@
     <string name="label_pressure" tools:ignore="MissingTranslation">Tryck</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Visa temperatur som</string>
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Inaktiverad</string>
-    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Förkortning N↓, NE↙, …</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Förkortning N↓, NO↙, …</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Grader från norr</string>
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Aktuellt väder beskrivningsspråk och adressen kommer att ändras med nästa uppdatering, eller så kan du tvinga det manuellt.</string>
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Välj loggmapp</string>
@@ -252,4 +252,8 @@
     <string name="weather_condition_description_803" tools:ignore="MissingTranslation">brutna moln</string>
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">mulet</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Du får inte ha mer än %1$d platser för tillfället.</string>
+    <string name="wind_direction_north_east" tools:ignore="MissingTranslation">NO↙</string>
+    <string name="wind_direction_south_east" tools:ignore="MissingTranslation">SO↖</string>
+    <string name="wind_direction_south_west" tools:ignore="MissingTranslation">SV↗</string>
+    <string name="wind_direction_north_west" tools:ignore="MissingTranslation">NV↘</string>
 </resources>
