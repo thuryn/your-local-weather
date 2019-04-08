@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" tools:ignore="MissingTranslation">Ditt lokala väder</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Yorecast</string>
     <string name="enter_city_hint" tools:ignore="MissingTranslation">Ange stad</string>
     <string name="label_current_city" tools:ignore="MissingTranslation">Aktuell stad</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">Välj stad</string>
@@ -27,8 +27,8 @@
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Föregående</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Klar</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Initial konfigurationsguide</string>
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Justera appen till dina behov kan du välja uppdatera strategi nästa.
-\nOmdirigering från standardvärdet för uppdatering när platsen ändras kan du välja <i>Uppdatera inte plats</i>.</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Justera appen till dina behov, du välja att uppdateringsstrategi som nästa. 
+\nOmdirigering från standardvärdet för uppdatering när platsen ändras, du kan välja <i>Uppdatera inte plats</i>.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Uppdatera platsinställning</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Platskälla alternativ</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Du kan välja platsmetoden - <i>Systemet</i> använder Google-tjänster för att få platsen via nätverk (cell-och Wi-Fi-nätverk). <i>Lokala MLS och Nominatim</i> inställningen använder Mozilla-platsentjänst för att få koordinaterna för platsen och Nominatim-tjänst för att få platsnamn. Den andra inställningen kräver telefonsamtalstillstånd för att hämta information om mobilnätet. Den föredragna inställningen är förvald.</string>
@@ -63,7 +63,7 @@
     <string name="title_activity_search" tools:ignore="MissingTranslation">Sök plats</string>
     <string name="label_activity_main" tools:ignore="MissingTranslation">Aktuellt väder</string>
     <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Daglig prognos</string>
-    <string name="label_activity_graphs" tools:ignore="MissingTranslation">Väder grafer</string>
+    <string name="label_activity_graphs" tools:ignore="MissingTranslation">Vädergrafer</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">Hjälp</string>
     <string name="title_activity_license" tools:ignore="MissingTranslation">Licens för %s</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Plats</string>
@@ -108,7 +108,7 @@
     <string name="inches_label" tools:ignore="MissingTranslation">tum</string>
     <string name="pref_title_time_style" tools:ignore="MissingTranslation">Tidsformat</string>
     <string name="time_style_system" tools:ignore="MissingTranslation">System</string>
-    <string name="time_style_12_h" tools:ignore="MissingTranslation">12-timmars AM/PM</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12-timmars</string>
     <string name="time_style_24_h" tools:ignore="MissingTranslation">24-timmars</string>
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Sök plats</string>
     <string name="title_activity_settings" tools:ignore="MissingTranslation">Inställningar</string>
