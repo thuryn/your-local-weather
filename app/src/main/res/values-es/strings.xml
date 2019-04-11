@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="enter_city_hint">Introduce ciudad</string>
     <string name="label_current_city">Ciudad actual</string>
@@ -8,21 +8,18 @@
     <string name="alertDialog_location_permission_negativeButton">Cancelar</string>
     <string name="progressDialog_gps_locate">Encontrar ubicación actual</string>
     <string name="load_progress">Cargando…</string>
-
     <!-- Activity names -->
     <string name="title_activity_search">Buscar ubicación</string>
     <string name="label_activity_main">Clima actual</string>
     <string name="label_activity_weather_forecast">Pronóstico diario</string>
     <string name="label_activity_graphs">Gráficos de clima</string>
     <string name="title_activity_license">Licencia para %s</string>
-
     <!-- Toolbar menu -->
     <string name="toolbar_menu_refresh">Actualizar</string>
     <string name="toolbar_menu_search_city">Buscar ciudad</string>
     <string name="toolbar_menu_detect_location">Detectar ubicación</string>
     <string name="menu_action_toggle_values">Intercambiar valores</string>
     <string name="menu_action_toggle_yaxis">Intercambiar eje Y</string>
-
     <!-- Navigation drawer -->
     <string name="nav_menu_current_weather">Clima actual</string>
     <string name="nav_menu_daily_forecast">Pronóstico diario</string>
@@ -30,20 +27,16 @@
     <string name="nav_menu_settings">Ajustes</string>
     <string name="nav_feedback">Opinión</string>
     <string name="nav_menu_bitcoin_donation">Donar Bitcoins</string>
-
     <!-- Toast messages -->
     <string name="connection_not_found">Comprueba tu conexión a internet</string>
     <string name="toast_parse_error">Ha ocurrido un error. Prueba más tarde.</string>
-
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
     <string name="wind_speed_miles">mph</string>
     <string name="millimetre_label">mm</string>
-
     <!-- Search Screen strings -->
     <string name="hint_activity_search">Buscar ubicación</string>
-
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Ajustes</string>
     <string name="pref_title_temperature">Temperatura</string>
@@ -62,14 +55,12 @@
     <string name="preference_widget_title_update_period">Periodo de actualización</string>
     <string name="preference_title_activity_general">Ajustes generales</string>
     <string name="preference_title_activity_widget">Ajustes de widget</string>
-
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">Acerca de</string>
     <string name="about_version_pref_title">Versión</string>
     <string name="about_source_code_pref_title">Código fuente</string>
     <string name="about_app_license_pref_title">Licencia</string>
     <string name="about_open_source_licenses_pref_title">Licencias de código abierto</string>
-
     <!-- Weather conditions label strings -->
     <string name="wind_label">Viento: %1$s %2$s %3$s</string>
     <string name="rain_label">Lluvia: %1$s %2$s</string>
@@ -88,13 +79,10 @@
     <string name="label_wind">Viento</string>
     <string name="label_rain">Lluvia</string>
     <string name="label_snow">Nieve</string>
-
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description">Icono de clima actual</string>
     <string name="widget_refresh_button">Botón de actualización del widget</string>
-
     <!-- Donation Bitcoin dialog -->
-
     <!-- Wind directions -->
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_east">NE</string>
@@ -104,7 +92,6 @@
     <string name="wind_direction_south_west">SO</string>
     <string name="wind_direction_west">O</string>
     <string name="wind_direction_north_west">NO</string>
-
     <!-- Permission strings -->
     <string name="permission_location_rationale">Los permisos de ubicación son necesarios para determinar la ciudad actual</string>
     <string name="permission_not_granted">Los permisos no se concedieron!</string>
@@ -112,21 +99,27 @@
     <string name="pref_language_default">System Default</string>
     <string name="pref_title_language">Idioma</string>
     <string name="preference_title_category_display">Mostrar</string>
-<string name="preference_widget_update_location">Actualizar ubicación</string>
+    <string name="preference_widget_update_location">Actualizar ubicación</string>
     <string name="preference_widget_use_geocoder">Utilizar geolocalización para mostrar</string>
     <string name="preference_widget_theme_title">Tema del widget</string>
     <string name="theme_dark">Oscuro</string>
     <string name="theme_light">Claro</string>
     <string name="theme_transparent">Transparente</string>
     <string name="pref_title_theme">Tema</string>
-    
     <string name="permission_location_need">Tiene que conceder permiso de localización</string>
-
-    <string name="app_name" tools:ignore="MissingTranslation"></string>
-    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation"></string>
-    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation"></string>
-    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation"></string>
-    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation"></string>
-    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation"></string>
-    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation"></string>
-    </resources>
+    <string name="app_name" tools:ignore="MissingTranslation"/>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Optimización de la pila</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">La aplicación va a pedir que la optimización de la batería esté apagado para que pueda actualizar el lugar, el tiempo o el seguimiento de la ubicación del accelerómetro.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Continuar</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Cancelar</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Configuración de ubicación y permisos</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">La aplicación nececita permiso para actualizar la ubicación por GPS.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Su OpenweathermapApiKey no está registrado.</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Compartir tiempo</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Ciudad: %1$s 
+\nTemperatura: %2$s 
+\nDescripción: %3$s 
+\nViento: %4$s %5$s 
+\nAmanecer: %6$s 
+\nAtardecer: %7$s</string>
+</resources>
