@@ -1,3 +1,6 @@
+v4.7.4
+Remove old limit vertical lines on graphs; rewritten temerature notification icon; enhanced update of weather from server
+
 v4.7.3
 Fix of missing days on axis X
 
