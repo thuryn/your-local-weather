@@ -703,6 +703,7 @@ public class GraphUtils {
                                   Float textSize,
                                   AppPreference.GraphGridColors gridColor,
                                   Locale locale) {
+        x.removeAllLimitLines();
         Map<Integer, Long> hourIndexes = new HashMap<>();
 
         int lastDayOflimitLine = 0;
