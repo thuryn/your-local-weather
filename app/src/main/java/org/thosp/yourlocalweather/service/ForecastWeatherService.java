@@ -58,7 +58,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     private volatile static boolean gettingWeatherStarted;
-    private static Queue<WeatherRequestDataHolder> weatherForecastUpdateMessages = new LinkedList<>();
+    private static final Queue<WeatherRequestDataHolder> weatherForecastUpdateMessages = new LinkedList<>();
     final Messenger messenger = new Messenger(new WeatherForecastMessageHandler());
 
     @Override
@@ -135,6 +135,7 @@ public class ForecastWeatherService  extends AbstractCommonService {
                     TAG,
                     "current location is null");
             weatherForecastUpdateMessages.poll();
+            startWeatherForecastUpdate(0);
             return;
         }
 
@@ -144,8 +145,9 @@ public class ForecastWeatherService  extends AbstractCommonService {
             appendLog(getBaseContext(),
                     TAG,
                     "Weather forecast is recent enough");
-            weatherForecastUpdateMessages.poll();
+            updateRequest = weatherForecastUpdateMessages.poll();
             updateResultInUI(this, ACTION_WEATHER_UPDATE_OK, updateRequest);
+            startWeatherForecastUpdate(0);
             return;
         }
 
@@ -280,27 +282,29 @@ public class ForecastWeatherService  extends AbstractCommonService {
         } catch (Throwable exception) {
             appendLog(context, TAG, "Exception occured when starting the service:", exception);
         }
+        startWeatherForecastUpdate(0);
     }
 
     private void updateResultInUI(Context context, String result, WeatherRequestDataHolder updateRequest) {
         if (updateRequest == null) {
             return;
         }
+        WidgetUtils.updateWidgets(context);
+        sendMessageToReconciliationDbService(false);
         String updateSource = updateRequest.getUpdateSource();
-        if (updateSource != null) {
-            sendMessageToReconciliationDbService(false);
-            WidgetUtils.updateWidgets(context);
-            switch (updateSource) {
-                case "FORECAST":
-                    sendIntentToForecast(result);
-                    break;
-                case "GRAPHS":
-                    sendIntentToGraphs(result);
-                    break;
-                case "MAIN":
-                    sendIntentToMain(result);
-                    break;
-            }
+        if (updateSource == null) {
+            return;
+        }
+        switch (updateSource) {
+            case "FORECAST":
+                sendIntentToForecast(result);
+                break;
+            case "GRAPHS":
+                sendIntentToGraphs(result);
+                break;
+            case "MAIN":
+                sendIntentToMain(result);
+                break;
         }
     }
 
@@ -366,7 +370,9 @@ public class ForecastWeatherService  extends AbstractCommonService {
             appendLog(getBaseContext(), TAG, "handleMessage:", msg.what, ":", weatherRequestDataHolder);
             switch (msg.what) {
                 case START_WEATHER_FORECAST_UPDATE:
-                    weatherForecastUpdateMessages.add(weatherRequestDataHolder);
+                    if (!weatherForecastUpdateMessages.contains(weatherRequestDataHolder)) {
+                        weatherForecastUpdateMessages.add(weatherRequestDataHolder);
+                    }
                     startWeatherForecastUpdate(weatherRequestDataHolder.getTimestamp());
                     break;
                 case START_WEATHER_FORECAST_RETRY:

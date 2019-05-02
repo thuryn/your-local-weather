@@ -1,14 +1,15 @@
 package org.thosp.yourlocalweather.service;
 
 import java.io.Serializable;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class WeatherRequestDataHolder implements Serializable {
     private final long locationId;
     private final String updateSource;
     private final boolean updateWeatherOnly;
     private int attempts;
-    private long timestamp;
-    private boolean forceUpdate;
+    private final long timestamp;
+    private final boolean forceUpdate;
 
     public WeatherRequestDataHolder(long locationId, String updateSource) {
         this.locationId = locationId;
@@ -65,6 +66,28 @@ public class WeatherRequestDataHolder implements Serializable {
         return updateWeatherOnly;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (!(obj instanceof WeatherRequestDataHolder)) {
+            return false;
+        }
+        if (obj == this) {
+            return true;
+        }
+        WeatherRequestDataHolder objToCompareTo = (WeatherRequestDataHolder) obj;
+        return (this.locationId == objToCompareTo.locationId) &&
+               (((this.updateSource == null) && (objToCompareTo.getUpdateSource() == null)) ||
+                ((this.updateSource != null) && (this.updateSource.equals(objToCompareTo.getUpdateSource())))) &&
+               (this.forceUpdate == objToCompareTo.forceUpdate) &&
+               (this.updateWeatherOnly == objToCompareTo.updateWeatherOnly);
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) locationId;
+    }
+    
     @Override
     public String toString() {
         return "WeatherRequestDataHolder:locationId=" + locationId + ", updateSource="

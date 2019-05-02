@@ -54,7 +54,7 @@ public class CurrentWeatherService extends AbstractCommonService {
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     private static volatile boolean gettingWeatherStarted;
-    private static Queue<WeatherRequestDataHolder> currentWeatherUpdateMessages = new LinkedList<>();
+    private static final Queue<WeatherRequestDataHolder> currentWeatherUpdateMessages = new LinkedList<>();
     final Messenger messenger = new Messenger(new CurrentweatherMessageHandler());
 
     @Override
@@ -179,6 +179,7 @@ public class CurrentWeatherService extends AbstractCommonService {
             appendLog(getBaseContext(),
                     TAG,
                     "currentWeatherUpdateMessages.size when current location is null = ", currentWeatherUpdateMessages);
+            startCurrentWeatherUpdate(0);
             return;
         }
 
@@ -216,6 +217,7 @@ public class CurrentWeatherService extends AbstractCommonService {
             currentWeatherUpdateMessages.poll();
             sendMessageToReconciliationDbService(false);
             WidgetUtils.updateWidgets(this);
+            startCurrentWeatherUpdate(0);
             return;
         }
 
@@ -314,17 +316,19 @@ public class CurrentWeatherService extends AbstractCommonService {
                             timerHandler.removeCallbacksAndMessages(null);
                             if (currentLocation != null) {
                                 final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-                                if (statusCode == 401) {
-                                    locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
-                                            System.currentTimeMillis(), getString(R.string.location_weather_update_status_access_expired));
-
-                                } else if (statusCode == 429) {
-                                    locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
-                                            System.currentTimeMillis(), getString(R.string.location_weather_update_status_access_banned));
-
-                                } else {
-                                    locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
-                                            System.currentTimeMillis(), getString(R.string.location_weather_update_status_location_only));
+                                switch (statusCode) {
+                                    case 401:
+                                        locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
+                                                System.currentTimeMillis(), getString(R.string.location_weather_update_status_access_expired));
+                                        break;
+                                    case 429:
+                                        locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
+                                                System.currentTimeMillis(), getString(R.string.location_weather_update_status_access_banned));
+                                        break;
+                                    default:
+                                        locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
+                                                System.currentTimeMillis(), getString(R.string.location_weather_update_status_location_only));
+                                        break;
                                 }
                             }
                             sendResult(ACTION_WEATHER_UPDATE_FAIL, context);
@@ -471,7 +475,9 @@ public class CurrentWeatherService extends AbstractCommonService {
                     "currentWeatherUpdateMessages.size when adding new message = ", currentWeatherUpdateMessages);
             switch (msg.what) {
                 case START_CURRENT_WEATHER_UPDATE:
-                    currentWeatherUpdateMessages.add(weatherRequestDataHolder);
+                    if (!currentWeatherUpdateMessages.contains(weatherRequestDataHolder)) {
+                        currentWeatherUpdateMessages.add(weatherRequestDataHolder);
+                    }
                     startCurrentWeatherUpdate(weatherRequestDataHolder.getTimestamp());
                     break;
                 case START_CURRENT_WEATHER_RETRY:
