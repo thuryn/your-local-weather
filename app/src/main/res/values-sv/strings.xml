@@ -153,12 +153,12 @@
         <b>Switch GPS on when necessary</b> option, application tries to find location by cell or wifi networks. When the location could not be find by network services application turns GPS on for a several seconds to get the location.</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Dela väder</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Kommunikationsapp hittades inte</string>
-    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Stad: %1$s
-\nTemperatur: %2$s
-\nBeskrivning: %3$s
-\nVind: % 4$s % 5$s
-\nSoluppgång: %6$s
-\nSolnedgång: %7$s</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Stad: %1$s 
+\nTemperatur: %2$s 
+\nBeskrivning: %3$s 
+\nVind: % 4$s % 5$s 
+\nGryning: %6$s 
+\nSkymning: %7$s</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">Ditt lokala väder</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">Dina lokala väderaviseringar</string>
     <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Temperatur</string>
@@ -214,8 +214,8 @@
     <string name="pressure_label" tools:ignore="MissingTranslation">Tryck: %1$s %2$s</string>
     <string name="cloudiness_label" tools:ignore="MissingTranslation">Molnighet: %1$s%2$s</string>
     <string name="last_update_label" tools:ignore="MissingTranslation">Senaste uppdatering: %s</string>
-    <string name="sunrise_label" tools:ignore="MissingTranslation">Soluppgång: %s</string>
-    <string name="sunset_label" tools:ignore="MissingTranslation">Solnedgång: %s</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">Gryning: %s</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">Skymning: %s</string>
     <string name="label_temperature" tools:ignore="MissingTranslation">Temperatur</string>
     <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Upplevd temperatur: %s</string>
     <string name="label_measured_temperature" tools:ignore="MissingTranslation">Uppmätt temperatur: %s</string>
