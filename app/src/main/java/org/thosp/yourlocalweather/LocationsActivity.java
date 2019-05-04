@@ -12,6 +12,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -26,10 +27,8 @@ import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
-import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.Utils;
-import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.List;
 
@@ -38,7 +37,6 @@ public class LocationsActivity extends BaseActivity {
     public static final String TAG = "SearchActivity";
 
     private LocationsAdapter locationsAdapter;
-    private LocationsDbHelper locationsDbHelper;
     private RecyclerView recyclerView;
     private FloatingActionButton addLocationButton;
     private boolean addLocationDisabled;
@@ -58,6 +56,7 @@ public class LocationsActivity extends BaseActivity {
         addLocationButton = (FloatingActionButton) findViewById(R.id.add_location);
     }
 
+    @Override
     public void onResume(){
         super.onResume();
         List<Location> allLocations = locationsDbHelper.getAllRows();
@@ -85,8 +84,9 @@ public class LocationsActivity extends BaseActivity {
     private void setupActionBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
 
@@ -181,8 +181,8 @@ public class LocationsActivity extends BaseActivity {
     public class LocationHolder extends RecyclerView.ViewHolder {
 
         private Location location;
-        private TextView mCityName;
-        private TextView mCountryName;
+        private final TextView mCityName;
+        private final TextView mCountryName;
 
         LocationHolder(View itemView) {
             super(itemView);
@@ -195,7 +195,7 @@ public class LocationsActivity extends BaseActivity {
             if (location == null) {
                 return;
             }
-            String orderId = new Integer(location.getOrderId()).toString();
+            String orderId = Integer.toString(location.getOrderId());
             mCityName.setText(orderId + getLocationNickname(getBaseContext(), location));
             if (location.getAddress() != null) {
                 mCountryName.setText(Utils.getCityAndCountryFromAddress(location.getAddress()));

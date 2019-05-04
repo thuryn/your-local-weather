@@ -334,6 +334,7 @@ public class MainActivity extends BaseActivity
         localityView.setText(Utils.getCityAndCountry(this, currentLocation.getOrderId()));
     }
 
+    @Override
     protected void updateUI() {
         long locationId = AppPreference.getCurrentLocationId(this);
         currentLocation = locationsDbHelper.getLocationById(locationId);

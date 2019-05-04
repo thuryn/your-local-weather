@@ -15,3 +15,6 @@
 db.sqlite3
 /django
 /.nb-gradle/
+/.idea/
+/app/private/
+/app/release/
