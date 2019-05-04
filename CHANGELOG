@@ -1,3 +1,6 @@
+v4.7.5
+Fix Add location button for Android 4.x
+
 v4.7.4
 Remove old limit vertical lines on graphs; rewritten temerature notification icon; enhanced update of weather from server
 
