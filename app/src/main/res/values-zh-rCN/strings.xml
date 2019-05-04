@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools"><string name="enter_city_hint">输入城市</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="enter_city_hint">输入城市</string>
     <string name="label_current_city">当前城市</string>
     <string name="label_choose_city">请选择城市</string>
     <string name="alertDialog_location_permission_message_location_phone_settings">此应用设置为更新位置，因此需要访问位置信息。在设备设置中打开位置信息或关闭应用位置更新。</string>
@@ -7,36 +8,29 @@
     <string name="alertDialog_location_permission_negativeButton">取消</string>
     <string name="progressDialog_gps_locate">查找当前位置</string>
     <string name="load_progress">正在加载……</string>
-
     <string name="title_activity_search">搜索位置</string>
     <string name="label_activity_main">当前天气</string>
     <string name="label_activity_weather_forecast">每日预报</string>
     <string name="label_activity_graphs">天气图</string>
     <string name="title_activity_license">%s 的许可证</string>
-
     <string name="toolbar_menu_refresh">更新</string>
     <string name="toolbar_menu_search_city">搜索城市</string>
     <string name="toolbar_menu_detect_location">检测位置</string>
     <string name="menu_action_toggle_values">显示/隐藏数值</string>
     <string name="menu_action_toggle_yaxis">显示/隐藏 Y 轴</string>
-
     <string name="nav_menu_current_weather">当前天气</string>
     <string name="nav_menu_daily_forecast">每日预报</string>
     <string name="nav_menu_graphs">天气图</string>
     <string name="nav_menu_settings">设置</string>
     <string name="nav_feedback">反馈</string>
     <string name="nav_menu_bitcoin_donation">捐赠比特币</string>
-
     <string name="connection_not_found">请检查您的互联网连接</string>
     <string name="toast_parse_error">发生了一个问题。请稍后重试。</string>
-
     <string name="pressure_measurement">百帕</string>
     <string name="wind_speed_meters">米/秒</string>
     <string name="wind_speed_miles">英里/小时</string>
     <string name="millimetre_label">毫米</string>
-
     <string name="hint_activity_search">搜索位置</string>
-
     <string name="title_activity_settings">设置</string>
     <string name="pref_title_temperature">温度</string>
     <string name="preference_hide_desc">隐藏天气描述</string>
@@ -64,13 +58,11 @@
     <string name="pref_title_language">语言</string>
     <string name="pref_language_default">系统默认</string>
     <string name="pref_title_theme">主题</string>
-    
     <string name="preference_title_activity_about">关于</string>
     <string name="about_version_pref_title">版本</string>
     <string name="about_source_code_pref_title">源代码</string>
     <string name="about_app_license_pref_title">许可证</string>
     <string name="about_open_source_licenses_pref_title">自由软件许可证</string>
-
     <string name="wind_label">风速：%1$s %2$s %3$s</string>
     <string name="rain_label">降雨量：%1$s %2$s</string>
     <string name="snow_label">降雪量：%1$s %2$s</string>
@@ -88,10 +80,8 @@
     <string name="label_wind">风</string>
     <string name="label_rain">雨</string>
     <string name="label_snow">雪</string>
-
     <string name="widget_weather_icon_description">当前天气图标</string>
     <string name="widget_refresh_button">微件刷新按钮</string>
-
     <string name="wind_direction_north">北↓</string>
     <string name="wind_direction_north_east">东北↙</string>
     <string name="wind_direction_east">东←</string>
@@ -100,20 +90,17 @@
     <string name="wind_direction_south_west">西南↗</string>
     <string name="wind_direction_west">西→</string>
     <string name="wind_direction_north_west">西北↘</string>
-
     <string name="permission_location_rationale">确定城市需要位置权限</string>
     <string name="permission_not_granted">未授予权限！</string>
     <string name="permission_available_location">位置权限已授予</string>
     <string name="permission_location_need">授予位置权限</string>
-
-<string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">位置及权限设置</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">位置及权限设置</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">应用需要通过 GPS 更新位置的权限。</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">应用需要通过 Wi-Fi 和 GSM 网络更新位置的权限。</string>
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">应用需要读取设备信息的权限，以通过 Wi-Fi 和 GSM 网络更新位置。这将获取设备连接的 GSM 基站的信息。</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">权限请求</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">位置未找到</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">权限尚未授予 - 请在应用中点击位置符号</string>
-
     <string name="initial_guide_close" tools:ignore="MissingTranslation">关闭</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">下一步</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">上一步</string>
@@ -130,13 +117,14 @@
     <string name="help_page_2_title" tools:ignore="MissingTranslation">微件</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">通用设置</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">这些设置作用于整个应用。</string>
-    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>温度</b> - 您可以选择温度的单位， <b>风速</b> - 您可以选择风速的单位和 <b>气压</b> - 您可以选择气压的单位。这些数值会根据单位重新计算。</string>
-    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>隐藏天气描述</b> - 当前天气的描述将被隐藏。您将只能通过变化的图标查看当前天气。</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
+        <b>温度</b> - 您可以选择温度的单位， <b>风速</b> - 您可以选择风速的单位和 <b>气压</b> - 您可以选择气压的单位。这些数值会根据单位重新计算。</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">
+        <b>隐藏天气描述</b> - 当前天气的描述将被隐藏。您将只能通过变化的图标查看当前天气。</string>
     <string name="help_page_4_title" tools:ignore="MissingTranslation">微件设置</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">调试选项</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">帮助</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">位置</string>
-
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">图标</string>
     <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">描述</string>
     <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">温度</string>
@@ -146,11 +134,9 @@
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">气压</string>
     <string name="ok" tools:ignore="MissingTranslation">确定</string>
     <string name="cancel" tools:ignore="MissingTranslation">取消</string>
-
     <string name="navigation_drawer_open" tools:ignore="MissingTranslation">打开导航菜单</string>
     <string name="navigation_drawer_close" tools:ignore="MissingTranslation">关闭导航菜单</string>
     <string name="nav_menu_help" tools:ignore="MissingTranslation">帮助</string>
-
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">毫米汞柱</string>
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">节</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">千米/小时</string>
@@ -174,10 +160,9 @@
     <string name="pref_language_ar" tools:ignore="MissingTranslation">العَرَبِيَّة‎（阿拉伯语）</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">位置及地址来源</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">系统</string>
-    <string name="app_name" tools:ignore="MissingTranslation">当地天气</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Yorecast</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">访问权限已过期。请升级应用。</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">您的 OpenweathermapApiKey 未注册。</string>
-
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">您可以选择定位方法 - <i>系统</i> 选项使用 Google 服务通过网络（蜂窝网络和 Wi-Fi）获取位置。<i>本地 MLS 和 Nominatim</i> 选项使用 Mozilla 位置服务获取位置坐标并使用 Nominatim 服务获取地址名称。第二个选项需要电话呼叫权限以获取有关蜂窝网络的信息。已预选为首选项。</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">唤醒策略选项</string>
     <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">某些手机型号不会正确报告已连接的蜂窝网络除非屏幕点亮。首选项（屏幕点亮）有一个缺点，即手机会点亮屏幕几秒钟。这对电池寿命有很小的影响。开始时开启它，并尝试关闭它，看看是否仍然更新位置。</string>
@@ -195,14 +180,19 @@
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">您可以在下一个屏幕上找到天气预报（选择菜单中的下一个屏幕或从左向右滑动）。天气预报在点击更新按钮或者当您进入屏幕时更新（但每小时不超过一次更新）。</string>
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">第三个屏幕包含以图表显示的天气预报。</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">该应用有三个可用微件，包含当前天气的一些常用值（例如温度）。某些值对于特定的微件是唯一的（例如日落）。每个微件的右上角都有最后一次更新的时间。您可以查看上次更新的内容（在设置菜单中启用此选项时）。您可以在上次更新时间旁边找到更新按钮。点击此按钮时，将无条件更新天气（和选定更新位置选项时的位置）。微件中的最后一个选项是更改位置 - 当您点击当前位置时，位置将更改为下一项。</string>
-    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>位置的更新周期（位置 0）</b> - 您可以为位置 0 设置更新周期 - 位置 0 能够根据蜂窝网络、Wi-Fi 网络和 GPS 更新位置。当您选择<i>通过加速度计</i> 更新时应用使用加速度计检测移动并借此计算距离。当达到距离阈值并且 15 分钟内未更新时，将更新位置和当前天气。当应用无法获取位置时，您可以在微件中看到未知位置标签。当应用未获得位置状态更新时，将在 5 分钟内再次执行。您也可以在 <b>天气更新周期（位置 1,2,3...）</b> 中选择根据时间间隔更新位置 - 由此您可以为手动发现的位置设置天气更新。</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation">
+        <b>位置的更新周期（位置 0）</b> - 您可以为位置 0 设置更新周期 - 位置 0 能够根据蜂窝网络、Wi-Fi 网络和 GPS 更新位置。当您选择<i>通过加速度计</i> 更新时应用使用加速度计检测移动并借此计算距离。当达到距离阈值并且 15 分钟内未更新时，将更新位置和当前天气。当应用无法获取位置时，您可以在微件中看到未知位置标签。当应用未获得位置状态更新时，将在 5 分钟内再次执行。您也可以在 <b>天气更新周期（位置 1,2,3...）</b> 中选择根据时间间隔更新位置 - 由此您可以为手动发现的位置设置天气更新。</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">当您选中 <b>在必要时开启 GPS</b> 选项时，应用会尝试按蜂窝网络或 Wi-Fi 网络查找位置。当应用无法通过网络服务定位时将开启 GPS 几秒钟以获取位置。</string>
-    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>位置和地址源</b>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">
+        <b>位置和地址源</b> 
 \n您可以选择应用从何处获取位置和地址。</string>
-    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"><b>本地 MLS 和 Nominatim</b> - 应用通过 Mozilla 位置服务获取位置。应用使用蜂窝网络 - 有关当前活动和可用网络基站的信息。获取此信息需要电话呼叫权限。应用程序使用 Wi-Fi 网络来更精确地猜测您的位置。应用从 Mozilla 位置服务获取地理坐标。应用程序使用 Nominatim 服务从坐标获取地址。当您想要从 Mozilla 位置服务更精确地获得位置时，您可以通过 Mozilla Stumbler 应用（在 https://play.google.com/store/apps/details？id=org.mozilla.mozstumbler 提供）进行贡献。</string>
-    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"><b>系统</b> - 应用通过 Android 中的系统服务获取位置和地址（通常使用 Google 定位服务）。</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">
+        <b>本地 MLS 和 Nominatim</b> - 应用通过 Mozilla 位置服务获取位置。Nominatim 服务从坐标获取地址。您可以通过安装 Mozilla Stumbler（在 available at https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler 提供）为 MLS 的未来改进做出贡献。通过授予电话呼叫权限，从蜂窝网络获取有关当前活动和可用网络基站的信息。使用周围的 Wi-Fi 网络来更精确地猜测您的位置</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
+        <b>系统</b> - 应用通过 Android 中的系统服务获取位置和地址（通常使用 Google 定位服务）。</string>
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">这些菜单选项设置 <b>语言</b> ，主应用的 <b>主题</b> 和用于应用和微件的 <b>图标集</b> 。</string>
-    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"><b>通知</b>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">
+        <b>通知</b> 
 \n当您选择通知选项时，应用程序定期更新当前天气。然后将当前天气放入通知区域。您也可以启用振动 - 应用将在更新时振动。</string>
     <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">要节省网络流量并加速位置更新，您可以开启 <b>缓存位置</b>。此缓存存储地理坐标和地址。应用程序必须调用网络解析服务无论是否启用此设置。但是仅在地址不在缓存中时调用 Nominatim 地址解析。当您开启缓存位置选项时，您必须接受您访问过的地址存储在应用中的事实。缓存中的任何信息都不会发送到应用外。</string>
     <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">在缓存位置选项（复选框）旁边有一个 <b>缓存值的期限</b> 的设置。每个存储的地址都有一个时间戳。当时间戳早于缓存值的期限设置的值时应用会调用 Nominatim 刷新记录。</string>
@@ -211,10 +201,10 @@
     <string name="help_page_4_content" tools:ignore="MissingTranslation">微件设置包含对全部微件的配置选项。</string>
     <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">当您选中 <b>在微件中显示标签</b> 选项时，您可以看到标签而不是天气条件值的图标。</string>
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">您可以通过 <b>微件主题选项</b> 来控制微件背景。</string>
-    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b>唤醒策略</b> 选项是为了克服不同供应商的 Android 服务的错误实现。当您选择 <i>无唤醒</i> 选项且位置正确更新时您已经得到了正确实现。当位置未被正确更新时您可以尝试 <i>仅唤醒 CPU</i> 。此选项唤醒 CPU 并尝试读取蜂窝网络和 Wi-Fi 网络的状态。最后一项 <i>唤醒屏幕</i> 在更新位置期间开启屏幕数秒。此选项消耗一些电量 - 但对电池寿命的影响真的很小。</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">
+        <b>唤醒策略</b> 选项是为了克服不同供应商的 Android 服务的错误实现。当您选择 <i>无唤醒</i> 选项且位置正确更新时您已经得到了正确实现。当位置未被正确更新时您可以尝试 <i>仅唤醒 CPU</i> 。此选项唤醒 CPU 并尝试读取蜂窝网络和 Wi-Fi 网络的状态。最后一项 <i>唤醒屏幕</i> 在更新位置期间开启屏幕数秒。此选项消耗一些电量 - 但对电池寿命的影响真的很小。</string>
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">当执行位置和当前天气的更新时，您可以看到微件中更新时间旁的更新状态。您可以通过 <b>显示更新摘要</b> 选项控制显示的内容。最高级选项的说明如下：</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">此选项可以启用将调试记录到日志文件。当应用出现问题时此选项非常有用。</string>
-
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">列设置</string>
     <string name="forecast_settings_columns" tools:ignore="MissingTranslation">要显示的列</string>
     <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">体感温度</string>
@@ -222,7 +212,6 @@
     <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">英寸汞柱</string>
     <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">毫巴</string>
     <string name="inches_label" tools:ignore="MissingTranslation">英尺</string>
-
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">雨雪</string>
     <string name="update_period_by_sensors" tools:ignore="MissingTranslation">通过加速度计</string>
     <string name="update_period_nothing" tools:ignore="MissingTranslation">仅手动</string>
@@ -282,8 +271,7 @@
     <string name="locations_disabled" tools:ignore="MissingTranslation">已禁用</string>
     <string name="search_location_add" tools:ignore="MissingTranslation">添加</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">点按地图以获取所需位置，然后等待获取地址解析。</string>
-    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">当前天气尚未更新。请先点击刷新按钮更新当前天气。</string>
-
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">请先点击刷新按钮更新天气。</string>
     <string name="label_apparent_temperature" tools:ignore="MissingTranslation">体感温度：%s</string>
     <string name="label_measured_temperature" tools:ignore="MissingTranslation">测量温度：%s</string>
     <string name="label_pressure" tools:ignore="MissingTranslation">气压</string>
@@ -292,9 +280,7 @@
     <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">同时，以体感值为主</string>
     <string name="appearance_only" tools:ignore="MissingTranslation">仅体感值</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">显示温度为</string>
-
-    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">当前天气描述语言和地址将在下一次更新时更改，或者您可以手动强制更改。</string>
-
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">当前天气描述语言和地址将在下一次更新时更改，您也可以手动强制更改。</string>
     <string name="debug_choose_file" tools:ignore="MissingTranslation">选择日志文件夹</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">调试选项</string>
     <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">在指定的时间之后，日志文件将被重新创建</string>
@@ -305,17 +291,15 @@
     <string name="log_file_72_label" tools:ignore="MissingTranslation">三天</string>
     <string name="log_file_168_label" tools:ignore="MissingTranslation">一周</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">一个月</string>
-
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">图标集</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">基于字体的图标</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin 红色图标</string>
-<string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">风向</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">风向</string>
     <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
     <string name="pref_title_time_style" tools:ignore="MissingTranslation">时间格式</string>
     <string name="time_style_system" tools:ignore="MissingTranslation">系统</string>
     <string name="time_style_12_h" tools:ignore="MissingTranslation">12 小时制 AM/PM</string>
     <string name="time_style_24_h" tools:ignore="MissingTranslation">24 小时制</string>
-
     <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">风向样式</string>
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">禁用</string>
     <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">缩写 N↓, NE↙, …</string>
@@ -340,7 +324,6 @@
     <string name="graph_rain_label" tools:ignore="MissingTranslation">降雨</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">降雪</string>
     <string name="graph_pressure_label" tools:ignore="MissingTranslation">气压</string>
-
     <string name="title_open_source_licenses" tools:ignore="MissingTranslation">开源许可证</string>
     <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
     <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
@@ -352,14 +335,11 @@
     <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
     <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
     <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
-
     <string name="log_to_file_label" tools:ignore="MissingTranslation">将日志保存到文件</string>
     <string name="log_to_file_off" tools:ignore="MissingTranslation">不将日志保存到文件</string>
     <string name="log_to_file_on" tools:ignore="MissingTranslation">将日志保存到文件</string>
-
     <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
     <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
-
     <string name="weather_condition_description_none" tools:ignore="MissingTranslation">无</string>
     <string name="weather_condition_description_762" tools:ignore="MissingTranslation">火山灰</string>
     <string name="weather_condition_description_781" tools:ignore="MissingTranslation">龙卷风</string>
@@ -370,7 +350,6 @@
     <string name="date_style_dots" tools:ignore="MissingTranslation">天天.月月.(年年)</string>
     <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">月月/天天(/年年)</string>
     <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">天天/月月(/年年)</string>
-
     <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (阿尔巴尼亚语)</string>
     <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (巴斯克语)</string>
     <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (白俄罗斯语)</string>
@@ -390,14 +369,14 @@
     <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (塞尔维亚语)</string>
     <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (斯洛文尼亚语)</string>
     <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (土耳其语)</string>
-    <string name="weather_condition_description_200" tools:ignore="MissingTranslation"/>
-    <string name="weather_condition_description_201" tools:ignore="MissingTranslation"/>
-    <string name="weather_condition_description_202" tools:ignore="MissingTranslation"/>
-    <string name="weather_condition_description_210" tools:ignore="MissingTranslation"/>
-    <string name="weather_condition_description_211" tools:ignore="MissingTranslation"/>
-    <string name="weather_condition_description_212" tools:ignore="MissingTranslation"/>
-    <string name="weather_condition_description_230" tools:ignore="MissingTranslation"/>
-    <string name="weather_condition_description_231" tools:ignore="MissingTranslation"/>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">雷暴伴有小雨</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">雷暴伴有降雨</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">雷暴伴有大雨</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">轻雷暴</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">雷暴</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">强雷暴</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">雷暴伴有微雨</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">雷暴伴有微雨</string>
     <string name="update_period_regular_only" tools:ignore="MissingTranslation">定期更新时</string>
     <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">通知展示</string>
     <string name="notification_when_updated" tools:ignore="MissingTranslation">更新时</string>
@@ -452,4 +431,5 @@
     <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">图标屏幕</string>
     <string name="widget_action_switch_location" tools:ignore="MissingTranslation">切换位置</string>
     <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">在微件中显示位置</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">目前，您不能有超过 %1$d 个位置。</string>
 </resources>
