@@ -246,10 +246,10 @@
     <string name="weather_condition_description_616" tools:ignore="MissingTranslation">regn och snö</string>
     <string name="weather_condition_description_620" tools:ignore="MissingTranslation"/>
     <string name="weather_condition_description_621" tools:ignore="MissingTranslation"/>
-    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">klar himmel</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">klart</string>
     <string name="weather_condition_description_801" tools:ignore="MissingTranslation">lite molnigt</string>
     <string name="weather_condition_description_802" tools:ignore="MissingTranslation">spridda moln</string>
-    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">brutna moln</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">hål i molntäcket</string>
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">mulet</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Du får inte ha mer än %1$d platser för tillfället.</string>
     <string name="wind_direction_north_east" tools:ignore="MissingTranslation">NO↙</string>
