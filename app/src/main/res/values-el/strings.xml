@@ -1,41 +1,35 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:tools="http://schemas.android.com/tools"><string name="enter_city_hint">Εισαγωγή Πόλης</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="enter_city_hint">Εισαγωγή Πόλης</string>
     <string name="label_current_city">Τωρινή Πόλη</string>
     <string name="label_choose_city">Επέλεξε Πόλη</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings">Η εφαρμογή είναι ρυθμισμένη να ενημερώνει την τοποθεσία. Η πρόσβαση στην τοποθεσία πρέπει να ενεργοποιηθεί για να λειτουργήσει η ενημέρωση. Πήγαινε στις ρυθμίσεις του τηλεφώνου και ενεργοποίηση την τοποθεσία ή απενεργοποίησε την ενημέρωση της τοποθεσίας στην εφαρμογή.</string>
-    <string name="alertDialog_location_permission_positiveButton_settings">Ρυθμίσεις</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">Η εφαρμογή έχει ρυθμιστεί ώστε να ενημερώνει την τοποθεσία. Χρειάζεται πρόσβαση στην τοποθεσία. Πήγαινε στις ρυθμίσεις της συσκευής και ενεργοποίησε την τοποθεσία. Εναλλακτικά, απενεργοποίησε την ενημέρωση της τοποθεσίας στην εφαρμογή.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Ρυθμίσεις συσκευής</string>
     <string name="alertDialog_location_permission_negativeButton">Ακύρωση</string>
     <string name="progressDialog_gps_locate">Εύρεση τωρινής τοποθεσίας</string>
     <string name="load_progress">Φορτώνεται…</string>
-
     <string name="title_activity_search">Αναζήτηση Τοποθεσίας</string>
     <string name="label_activity_main">Τωρινός Καιρός</string>
     <string name="label_activity_weather_forecast">Ημερήσια Πρόβλεψη</string>
     <string name="label_activity_graphs">Γραφικός Καιρός</string>
     <string name="title_activity_license">Η άδεια για το %s</string>
-
     <string name="toolbar_menu_refresh">Ενημέρωση</string>
     <string name="toolbar_menu_search_city">Αναζήτηση Πόλης</string>
     <string name="toolbar_menu_detect_location">Εντοπισμός Τοποθεσίας</string>
     <string name="menu_action_toggle_values">Εναλλαγή των Τιμών</string>
     <string name="menu_action_toggle_yaxis">Εναλλαγή του Άξονα Υ</string>
-
     <string name="nav_menu_current_weather">Τωρινός Καιρός</string>
     <string name="nav_menu_daily_forecast">Ημερήσια Πρόβλεψη</string>
     <string name="nav_menu_graphs">Γραφικά</string>
     <string name="nav_menu_settings">Ρυθμίσεις</string>
     <string name="nav_menu_bitcoin_donation">Δωρεά σε Bitcoin</string>
-
     <string name="connection_not_found">Έλεγξε την σύνδεσή σου στο διαδίκτυο</string>
     <string name="toast_parse_error">Παρουσιάστηκε κάποιο σφάλμα. Ξαναπροσπάθησε αργότερα.</string>
-
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">μ/δευτ.</string>
     <string name="wind_speed_miles">μίλια/ώρα</string>
     <string name="millimetre_label">χιλιοστά</string>
-
     <string name="hint_activity_search">Αναζήτηση τοποθεσίας</string>
-
     <string name="title_activity_settings">Ρυθμίσεις</string>
     <string name="pref_title_temperature">Θερμοκρασία</string>
     <string name="preference_hide_desc">Απόκρυψη της περιγραφής του καιρού</string>
@@ -81,7 +75,6 @@
     <string name="label_wind">Άνεμος</string>
     <string name="label_rain">Βροχή</string>
     <string name="label_snow">Χιόνι</string>
-
     <string name="wind_direction_north">Β</string>
     <string name="wind_direction_north_east">ΒΑ</string>
     <string name="wind_direction_east">Α</string>
@@ -90,25 +83,65 @@
     <string name="wind_direction_south_west">ΝΔ</string>
     <string name="wind_direction_west">Δ</string>
     <string name="wind_direction_north_west">ΒΔ</string>
-
-<string name="permission_location_rationale">Απαιτούνται Δικαιώματα Εντοπισμού της Τοποθεσίας, για να προσδιοριστεί η τωρινή πόλη.</string>
+    <string name="permission_location_rationale">Απαιτούνται Δικαιώματα Εντοπισμού της Τοποθεσίας, για να προσδιοριστεί η τωρινή πόλη.</string>
     <string name="permission_not_granted">Τα Δικαιώματα δεν δόθηκαν.</string>
     <string name="permission_available_location">Δόθηκαν Δικαιώματα Εντοπισμού της Τοποθεσίας</string>
     <string name="permission_location_need">Θα πρέπει να παραχωρήσεις Δικαιώματα Εντοπισμού της Τοποθεσίας</string>
-
     <string name="preference_widget_use_geocoder">Χρήση γεωντοπισμού για την προβολή</string>
     <string name="about_open_source_licenses_pref_title">Άδειες Ανοιχτού Κώδικα</string>
-
     <string name="nav_feedback">Γνώμη</string>
     <string name="preference_widget_theme_title">Θέμα Γραφικού Στοιχείου</string>
     <string name="pref_title_theme">Θέμα</string>
-    
     <string name="widget_weather_icon_description">Εικονίδιο τωρινού καιρού</string>
     <string name="widget_refresh_button">Πλήκτρο ανανέωσης του γραφικού στοιχείου</string>
-
-    <string name="app_name" tools:ignore="MissingTranslation">Ο καιρός τοπικά</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Yorecast</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Ρυθμίσεις τοποθεσίας και αδειών</string>
-    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Η εφαρμογή χρειάζεται άδεια για να ενημερώσει την τοποθεσία μέσω GPS.</string>
-    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Η εφαρμογή χρειάζεται άδεια για να ενημερώσει την τοποθεσία μέσω WIFI και δικτύων GSM.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Η εφαρμογή χρειάζεται άδεια για να ενημερώωει την τοποθεσία μέσω GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Η εφαρμογή χρειάζεται άδεια για να ενημερώνει την τοποθεσία μέσω Wi-Fi και δικτύων GSM.</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Η τοποθεσία δε βρέθηκε</string>
-    </resources>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Βελτιστοποίηση κατανάλωσης</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Η εφαρμογή θα σου ζητήσει να απενεργοποιήσεις την βελτιστοποίηση κατανάλωσης για να ανανεώνεται η τοποθεσία, ο καιρός ή για να εντοπίζεται η τοποθεσία χρησιμοποιώντας το επιταχυνσιόμετρο στο υπόβαθρο.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Συνέχεια</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Ακύρωση</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Χρειάζεται άδεια για ανάγνωση δεδομένων από την συσκευή, ώστε να ανανεώνεται η τοποθεσία χρησιμοποιώντας Wi-Fi και δίκτυα GSM. Αυτή η επιλογή θα αντλεί πληροφορίες για τους σταθμούς βάσης GSM στους οποίους συνδέεται η συσκευή.</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Αίτημα δικαιωμάτων</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Δεν έχουν δοθεί ακόμα δικαιώματα - πάτησε στο σύμβολο της τοποθεσίας στην εφαρμογή</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Η πρόσβαση έχει λήξει. Παρακαλώ αναβάθμισε την εφαρμογή.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Το OpenweathermapApiKey δεν είναι καταχωρημένο.</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Μοιράσου τον καιρό</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Δεν βρέθηκε εφαρμογή επικοινωνίας</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Πόλη: %1$s
+\nΘερμοκρασία: %2$s
+\nΠεριγραφή: %3$s
+\nΆνεμοι: %4$s %5$s
+\nΑνατολή: %6$s
+\nΔύση: %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Ο τοπικός καιρός</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Οι ειδοποιήσεις του τοπικού καιρού</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Θερμοκρασία</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Άνεμοι</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Βροχή</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Χιόνι</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Πίεση</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Δεν επιτρέπεται να έχεις πάνω από %1$d τοποθεσίες προς το παρόν.</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Κλείσιμο</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Επόμενο</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Προηγούμενο</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Τέλος</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Οδηγός αρχικής παραμετροποίησης</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Ρυθμίζοντας την εφαρμογή στις δικές σου ανάγκες, μπορείς στο επόμενο βήμα να επιλέξεις τη στρατηγική ανανέωσης.
+\nΑντί για την προκαθορισμένη επιλογή ανανέωσης όταν αλλάζει η τοποθεσία, μπορεις να επιλέξεις <i>Να μην ανανεώνεται η τοποθεσία</i>.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Ρύθμιση ανανέωσης τοποθεσίας</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Επιλογή πηγής τοποθεσίας</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Μπορείς να επιλέξεις την μέθοδο τοποθεσίας. Η επιλογή <i>Σύστημα</i> χρησιμοποιεί τις υπηρεσίες Google για να λάβει την τοποθεσία χρησιμοποιώντας τα δίκτυα (κινητής και Wi-Fi). Η επιλογή <i>Τοπικό MLS και Nominatim</i> χρησιμοποιεί την υπηρεσία τοποθεσίας της Mozilla για να λάβει τις συντεταγμένες και την υπηρεσία Nominatim για να λάβει το όνομα της τοποθεσίας. Η δεύτερη επιλογή απαιτεί δικαιώματα κλήσεων τηλεφώνου για να μπορεί να λάβει πληροφορίες για το δίκτυο κινητής. Η προτιμώμενη επιλογή είναι προεπιλεγμένη.</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Πηγή τοποθεσίας και διεύθυνσης</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Επιλογή στρατηγικής αφύπνισης</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Στρατηγική αφύπνισης</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Συγχαρητήρια</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Ο οδηγός τελείωσε. Μπορείς να βρεις περισσότερες ρυθμίσεις στο μενου Ρυθμίσεων (για παράδειγμα επιλογή γλώσσας, μονάδες μέτρησης, κλπ)
+\nΗ επόμενη οθόνη θα παρουσιάσει τα δικαιώματα που χρειάζονται και θα σου δώσει την επιλογή να τα ζητήσεις.
+\n
+\nΚαλή απόλαυση της εφαρμογής.</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Γενικά</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Κύρια εφαρμογή</string>
+</resources>
