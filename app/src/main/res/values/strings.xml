@@ -228,7 +228,7 @@
     <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Switch GPS on when necessary</string>
     <string name="update_period_by_sensors" tools:ignore="MissingTranslation">By accelerometer</string>
     <string name="update_period_nothing" tools:ignore="MissingTranslation">Manual only</string>
-    <string name="update_period_regular_only" tools:ignore="MissingTranslation">When updates regularly</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">When updating regularly</string>
     <string name="update_period_15min" tools:ignore="MissingTranslation">15 minutes</string>
     <string name="update_period_30min" tools:ignore="MissingTranslation">30 minutes</string>
     <string name="update_period_1hour" tools:ignore="MissingTranslation">Every hour</string>
