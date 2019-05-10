@@ -421,7 +421,7 @@
     <string name="weather_condition_description_321" tools:ignore="MissingTranslation">siąpiący deszcz</string>
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Ustawienia urządzenia</string>
     <string name="preference_title_power_save" tools:ignore="MissingTranslation">Opcje oszczędzania energii</string>
-    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Aktualizuj Regularnie</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Podczas regularnych aktualizacji</string>
     <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Obecność powiadomień</string>
     <string name="notification_when_updated" tools:ignore="MissingTranslation">Po aktualizacji</string>
     <string name="notification_permanent" tools:ignore="MissingTranslation">Stały</string>
