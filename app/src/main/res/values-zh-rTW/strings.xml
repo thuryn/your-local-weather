@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">您當地的天氣</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="MissingTranslation">您當地的天氣</string>
     <string name="enter_city_hint" tools:ignore="MissingTranslation">輸入城市</string>
     <string name="label_current_city" tools:ignore="MissingTranslation">目前城市</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">選擇城市</string>
@@ -48,4 +49,17 @@
     <string name="help_page_general_title" tools:ignore="MissingTranslation">一般</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">主要應用程式</string>
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">烏雲密布</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">城市: %1$s
+\n溫度: %2$s
+\n描述: %3$s
+\n風: %4$s %5$s
+\n日出: %6$s
+\n日落: %7$s</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">該應用程式使用蜂窩網路 (BTS)、Wi-Fi 確定位置, 如果這些網路失敗;GPS 顯示當地天氣, 進而從 Mozilla 定位服務中獲取座標。該應用程式至少需要: 一個 GSM 網路基站或兩個可訪問的 wifi 網路或 GSM 和 Wi-Fi 網路的任何組合。使用手機或平板電腦上的小部件, 您可以在主畫面上看到自己的位置和當前天氣。位置更新可以是週期性的 (例如每小時更新), 或者應用程式可以使用加速度計檢測距離大於值的移動。在你的口袋裡, 距離增加得更快。您可以關閉位置更新--只有天氣才會更新。應用按指定的時間間隔更新位置和天氣。例如, 您可以將更新週期設置為一小時。天氣會在位置結束後立即更新, 或在螢幕打開時更新-但不會更頻繁地每15分鐘更新一次 (並且在最近15分鐘內沒有更新天氣時)。這些資訊用於通過 Mozilla 定位服務獲取位置座標。當手機網路和 Wi-Fi 網路無法提供位置時, 該應用程式將嘗試使用 GPS。位置座標是用來得到位址的 Nominatim 服務。該位址在應用程式或小部件中使用。該應用程式使用 openweathermap. org 服務來獲取當前天氣。</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">主應用程式包含當前天氣的概述。您可以使用應用面板中的 \"刷新\" 按鈕或向下滑動來更新天氣。您可以在刷新天氣按鈕旁邊找到更新位置按鈕。此按鈕僅在啟用位置0時才可用 (位置0用於自動更新位置)。</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">在更新位置按鈕旁邊, 有一個位置管理按鈕 (放大鏡圖示)。您可以管理應用和小部件中可用的位置。預設情況下有一個位置 (位置 0) 可用-這是為自動位置更新而使用的。當您向左滑動此位置時, 您可以找到 \"禁用\" 按鈕。您還可以手動添加位置。當您按一下 + 按鈕時, 您可以在地圖上選擇您的位置。您還可以使用 \"刪除\" 按鈕刪除該位置, 當您向左滑動位置時, 可以訪問該按鈕。</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">您可以在下一個螢幕上找到天氣預報 (選擇功能表中的下一個螢幕或從左至右滑動)。天氣預報是通過更新按鈕或在您進入螢幕時更新的 (但每小時更新不超過一次)。</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">第三個螢幕包含圖形顯示的天氣預報。</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">該應用程式有三個小部件可用, 包含當前天氣的一些常見值 (例如溫度)。某些值對於特定的小部件是唯一的 (例如日落)。每個小部件的右上角都有最後一次更新的時間。您可以查看上次更新的內容 (當您在設置功能表中啟用此選項時)。您可以在上次更新時間旁邊找到 \"更新\" 按鈕。按下此按鈕時, 天氣 (以及選定更新位置選項時的位置) 將無條件更新。小部件中的最後一個選項是更改位置-當您按下當前位置文本時, 位置將更改為下一個位置。</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">常規設置</string>
 </resources>
