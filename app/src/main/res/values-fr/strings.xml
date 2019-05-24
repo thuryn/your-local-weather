@@ -113,7 +113,9 @@
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Guide de configuration initial</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Général</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
-        <b>Température</b> — Vous pouvez sélectionner l\'unité de température, <b>Vent</b> — Vous pouvez sélectionner l\'unité de vitesse du vent et <b>Pression</b> — Vous pouvez sélectionner l\'unité de pression. Les valeurs sont recalculées avec ces options.</string>
+        <b>Température</b> — Vous pouvez sélectionner l\'unité de température,
+\n<b>Vent</b> — Vous pouvez sélectionner l\'unité de vitesse du vent et 
+\n<b>Pression</b> — Vous pouvez sélectionner l\'unité de pression. Les valeurs sont recalculées avec ces options.</string>
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">
         <b>Cacher la description météo</b> — la description de la météo actuelle est cachée. Vous pouvez seulement voir la météo par l\'icône qui change.</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">Aide</string>
@@ -392,4 +394,73 @@
     <string name="pref_language_de" tools:ignore="MissingTranslation">Deutsch (Allemand)</string>
     <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (Italien)</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Vous n\'êtes pas autorisé à avoir plus de %1$d lieux pour l\'instant.</string>
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">aucun</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">orage avec pluie légère</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">orage accompagné de pluie</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">orage avec de fortes pluies</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">orage léger</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">orage</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">orage violent</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">orage avec une bruine légère</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">orage avec de la bruine</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">crachin</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">pluie fine</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">pluie modérée</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">pluie de forte intensité</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">très fortes pluies</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">pluies diluviennes</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">pluie verglaçante</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">neige légère</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">neige</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">neige abondante</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">neige fondue</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">Pluie et neige</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">brouillard</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">fumée</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">brume</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">sable, tourbillons de poussière</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">brouillard</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">sable</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">poussière</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">cendres volcaniques</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">Rafales</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">tornade</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">ciel clair</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">quelques nuages</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">nuages épars</string>
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">l</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">N</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
+    <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (Tchèque)</string>
+    <string name="pref_language_da" tools:ignore="MissingTranslation">Dansk (Danois)</string>
+    <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego (Galicien)</string>
+    <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (Japonais)</string>
+    <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (Polonais)</string>
+    <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (Russe)</string>
+    <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (Serbe)</string>
+    <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (Slovène)</string>
+    <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (Turc)</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Bouton de réglage des paramètres graphiques des widgets</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Afficher le jour par abréviation</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Nombre de jours pour la prévision</string>
+    <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Réglage de l\'emplacement</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Bouton de réglage des paramètres de localisation du widget</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Bouton Paramètres d’action du widget</string>
+    <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">Étiquette de la ville</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">Icône de la météo actuelle</string>
+    <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">Prévisions météo</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">Graphique</string>
+    <string name="widget_action_main_screen" tools:ignore="MissingTranslation">Écran principal</string>
+    <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">Écran de prévision météo</string>
+    <string name="widget_action_switch_location" tools:ignore="MissingTranslation">changer de lieu</string>
+    <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Afficher l’emplacement dans le widget</string>
 </resources>
