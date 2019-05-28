@@ -23,8 +23,6 @@ import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
-import org.thosp.yourlocalweather.service.AbstractCommonService;
-import org.thosp.yourlocalweather.service.AppWakeUpManager;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.service.LocationUpdateService;
 import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
@@ -226,8 +224,11 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             setWidgetIntents(context, remoteViews, getWidgetClass(), appWidgetId);
             preLoadWeather(context, remoteViews, appWidgetId);
 
-            appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
-            //appWidgetManager.updateAppWidget(new ComponentName(context, getWidgetClass()), remoteViews);
+            try {
+                appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+            } catch (Exception e) {
+                appendLog(context, TAG, e.getMessage(), e);
+            }
         }
         appendLog(context, TAG, "onUpdate:end");
     }
