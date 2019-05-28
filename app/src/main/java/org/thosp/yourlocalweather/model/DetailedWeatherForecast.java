@@ -3,7 +3,6 @@ package org.thosp.yourlocalweather.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class DetailedWeatherForecast implements Parcelable {
     private int cloudiness;
     private double rain;
     private double snow;
-    private List<WeatherCondition> weatherConditions = new ArrayList<>();
+    private final List<WeatherCondition> weatherConditions = new ArrayList<>();
 
     public DetailedWeatherForecast() {
         super();

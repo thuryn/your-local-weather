@@ -11,10 +11,10 @@ import java.util.Locale;
 public class WindWithUnit implements Serializable {
     private double windSpeed;
     private String windUnit;
-    private double windDirection;
-    private Context context;
-    private String directionTypeFromPreferences;
-    private Locale pressureLocale;
+    private final double windDirection;
+    private final Context context;
+    private final String directionTypeFromPreferences;
+    private final Locale pressureLocale;
 
     public WindWithUnit(Context context, double windDirection, Locale locale) {
         this.windDirection = windDirection;

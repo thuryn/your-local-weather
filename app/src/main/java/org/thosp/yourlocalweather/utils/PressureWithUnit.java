@@ -4,9 +4,9 @@ import java.io.Serializable;
 import java.util.Locale;
 
 public class PressureWithUnit implements Serializable {
-    private double pressure;
-    private String pressureUnit;
-    private Locale pressureLocale;
+    private final double pressure;
+    private final String pressureUnit;
+    private final Locale pressureLocale;
 
     public PressureWithUnit(double pressure, String pressureUnit, Locale locale) {
         this.pressure = pressure;

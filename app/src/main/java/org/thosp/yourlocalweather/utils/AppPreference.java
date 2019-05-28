@@ -206,6 +206,7 @@ public class AppPreference {
             case "mmhg": return context.getString(R.string.pressure_measurement_mmhg);
             case "inhg": return context.getString(R.string.pressure_measurement_inhg);
             case "mbar": return context.getString(R.string.pressure_measurement_mbar);
+            case "psi": return context.getString(R.string.pressure_measurement_psi);
             default: return context.getString(R.string.pressure_measurement);
         }
     }
@@ -217,6 +218,7 @@ public class AppPreference {
             case "mmhg": return 2;
             case "inhg": return 2;
             case "mbar": return 0;
+            case "psi" : return 2;
             default: return 0;
         }
     }
@@ -236,6 +238,8 @@ public class AppPreference {
                                                  context.getString(R.string.pressure_measurement_inhg), locale);
             case "mbar": return new PressureWithUnit(value,
                                                  context.getString(R.string.pressure_measurement_mbar), locale);
+            case "psi": return new PressureWithUnit(value * 0.0145037738f,
+                                                 context.getString(R.string.pressure_measurement_psi), locale);
             default: return new PressureWithUnit(value, context.getString(R.string.pressure_measurement), locale);
         }
     }

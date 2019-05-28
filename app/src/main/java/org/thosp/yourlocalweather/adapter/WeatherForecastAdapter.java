@@ -20,14 +20,12 @@ import java.util.Set;
 
 public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecastViewHolder> {
 
-    private Context mContext;
-    private Set<Integer> visibleColumns;
-    private Map<Integer, List<DetailedWeatherForecast>> mWeatherList;
+    private final Context mContext;
+    private final Set<Integer> visibleColumns;
+    private final Map<Integer, List<DetailedWeatherForecast>> mWeatherList;
     double latitude;
     Locale locale;
-    private List<Integer> keys;
-
-    private Calendar lastDay;
+    private final List<Integer> keys;
 
     public WeatherForecastAdapter(Context context,
                                   List<DetailedWeatherForecast> weatherForecastList,

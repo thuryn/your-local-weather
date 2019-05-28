@@ -186,6 +186,7 @@
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
     <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
     <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">psi</string>
     <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
     <string name="wind_speed_miles" tools:ignore="MissingTranslation">mph</string>
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">knots</string>
@@ -304,6 +305,9 @@
     <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (Serbian)</string>
     <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (Slovenian)</string>
     <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (Turkish)</string>
+    <string name="pref_language_bg" tools:ignore="MissingTranslation">Bulgarian</string>
+    <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Chinese (traditional)</string>
+    <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhis</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Location and Address Source</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Local MLS and Nominatim (recommended)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">System</string>

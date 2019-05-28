@@ -25,32 +25,32 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
 
     private final String TAG = "ForecastViewHolder";
 
-    private RecyclerView mRecyclerView;
-    private Context mContext;
-    private Set<Integer> visibleColumns;
+    private final RecyclerView mRecyclerView;
+    private final Context mContext;
+    private final Set<Integer> visibleColumns;
 
-    private TextView mDate;
-    private TextView headerTime;
-    private TextView headerIcon;
-    private TextView headerDescription;
-    private TextView headerTemperature;
-    private TextView headerApparentTemperature;
-    private TextView headerWind;
-    private TextView headerWindDirection;
-    private TextView headerRainSnow;
-    private TextView headerHumidity;
-    private TextView headerPressure;
+    private final TextView mDate;
+    private final TextView headerTime;
+    private final TextView headerIcon;
+    private final TextView headerDescription;
+    private final TextView headerTemperature;
+    private final TextView headerApparentTemperature;
+    private final TextView headerWind;
+    private final TextView headerWindDirection;
+    private final TextView headerRainSnow;
+    private final TextView headerHumidity;
+    private final TextView headerPressure;
 
-    private TextView headerTimeUnit;
-    private TextView headerIconUnit;
-    private TextView headerDescriptionUnit;
-    private TextView headerTemperatureUnit;
-    private TextView headerApparentTemperatureUnit;
-    private TextView headerWindUnit;
-    private TextView headerWindDirectionUnit;
-    private TextView headerRainSnowUnit;
-    private TextView headerHumidityUnit;
-    private TextView headerPressureUnit;
+    private final TextView headerTimeUnit;
+    private final TextView headerIconUnit;
+    private final TextView headerDescriptionUnit;
+    private final TextView headerTemperatureUnit;
+    private final TextView headerApparentTemperatureUnit;
+    private final TextView headerWindUnit;
+    private final TextView headerWindDirectionUnit;
+    private final TextView headerRainSnowUnit;
+    private final TextView headerHumidityUnit;
+    private final TextView headerPressureUnit;
 
     public WeatherForecastViewHolder(View itemView,
                                      Context context,

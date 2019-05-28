@@ -3,11 +3,9 @@ package org.thosp.yourlocalweather.utils;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProviderInfo;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -15,9 +13,7 @@ import android.support.v4.content.ContextCompat;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Display;
-import android.view.View;
 import android.view.WindowManager;
-import android.widget.RemoteViews;
 
 import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.components.Description;
@@ -34,15 +30,12 @@ import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 
 import org.thosp.yourlocalweather.R;
-import org.thosp.yourlocalweather.WidgetSettingsDialogue;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -50,7 +43,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class GraphUtils {
 
@@ -217,10 +209,8 @@ public class GraphUtils {
 
         if (d.getWidth() == d.getHeight()) {
             return false;
-        } else if (d.getWidth() < d.getHeight()) {
-            return true;
         } else {
-            return false;
+            return d.getWidth() < d.getHeight();
         }
     }
 

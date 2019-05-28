@@ -22,16 +22,13 @@ import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class WeatherForecastActivity extends ForecastingActivity {
 
     private final String TAG = "WeatherForecastActivity";
 
-    private Map<Long, Long> locationWeatherForecastLastUpdate = new HashMap<>();
     private RecyclerView mRecyclerView;
     private Set<Integer> visibleColumns = new HashSet<>();
 
@@ -54,6 +51,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
                 GraphsActivity.class, this));
     }
 
+    @Override
     protected void updateUI() {
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
         long locationId = AppPreference.getCurrentLocationId(this);
@@ -142,7 +140,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
                                     mSelectedItems.add(which);
                                 } else if (mSelectedItems.contains(which)) {
                                     // Else, if the item is already in the array, remove it
-                                    mSelectedItems.remove(Integer.valueOf(which));
+                                    mSelectedItems.remove(which);
                                 }
                             }
                         })

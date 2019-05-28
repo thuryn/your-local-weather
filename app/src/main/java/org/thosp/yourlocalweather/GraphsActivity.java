@@ -3,7 +3,6 @@ package org.thosp.yourlocalweather;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,8 +14,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -24,7 +21,6 @@ import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.CombinedChart;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
@@ -35,11 +31,9 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
-import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.service.ForecastWeatherService;
 import org.thosp.yourlocalweather.settings.GraphValuesSwitchListener;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.CustomValueFormatter;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.GraphUtils;
@@ -47,7 +41,6 @@ import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.RainSnowYAxisValueFormatter;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
-import org.thosp.yourlocalweather.utils.XAxisValueFormatter;
 import org.thosp.yourlocalweather.utils.YAxisValueFormatter;
 
 import java.util.ArrayList;
@@ -76,8 +69,6 @@ public class GraphsActivity extends ForecastingActivity {
     private CardView rainBarCard;
     private BarChart snowBarChart;
     private CardView snowBarCard;
-    private String[] mDatesArray;
-    private int daysCount;
     private CustomValueFormatter mValueFormatter;
     private RainSnowYAxisValueFormatter rainSnowYAxisValueFormatter;
     private Set<Integer> visibleGraphs = new HashSet<>();
@@ -839,6 +830,7 @@ public class GraphsActivity extends ForecastingActivity {
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
                     public void onClick(DialogInterface dialog, int id) {
                         finish();
                     }
@@ -867,7 +859,7 @@ public class GraphsActivity extends ForecastingActivity {
                                     mSelectedItems.add(which);
                                 } else if (mSelectedItems.contains(which)) {
                                     // Else, if the item is already in the array, remove it
-                                    mSelectedItems.remove(Integer.valueOf(which));
+                                    mSelectedItems.remove(which);
                                 }
                             }
                         })
@@ -929,6 +921,7 @@ public class GraphsActivity extends ForecastingActivity {
         mPressureChart.invalidate();
     }
 
+    @Override
     protected void updateUI() {
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
         long locationId = AppPreference.getCurrentLocationId(this);

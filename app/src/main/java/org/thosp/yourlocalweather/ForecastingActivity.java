@@ -4,14 +4,12 @@ import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
-import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.service.ForecastWeatherService;
 import org.thosp.yourlocalweather.utils.Constants;
@@ -75,6 +73,7 @@ public abstract class ForecastingActivity extends BaseActivity {
         unregisterReceiver(mWeatherUpdateReceiver);
     }
 
+    @Override
     protected abstract void updateUI();
 
     protected void setVisibleUpdating(boolean visible) {

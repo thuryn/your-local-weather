@@ -110,12 +110,14 @@
         <item>@string/pressure_measurement_mmhg</item>
         <item>@string/pressure_measurement_inhg</item>
         <item>@string/pressure_measurement_mbar</item>
+        <item>@string/pressure_measurement_psi</item>
     </string-array>
     <string-array name="pref_pressure_units_values" translatable="false">
         <item>hpa</item>
         <item>mmhg</item>
         <item>inhg</item>
         <item>mbar</item>
+        <item>psi</item>
     </string-array>
     <string-array name="pref_rain_snow_units_entries" translatable="false">
         <item>@string/millimetre_label</item>
@@ -299,8 +301,10 @@
         <item name="basque">@string/pref_language_eu</item>
         <item name="belarusian">@string/pref_language_be</item>
         <item name="belarusian_latin">@string/pref_language_be_latn</item>
+        <item name="bulgarian">@string/pref_language_bg</item>
         <item name="catalan">@string/pref_language_ca</item>
         <item name="chinese">@string/pref_language_zh_rcn</item>
+        <item name="chinese_traditional">@string/pref_language_zh_rtw</item>
         <item name="czech">@string/pref_language_cs</item>
         <item name="danish">@string/pref_language_da</item>
         <item name="dutch">@string/pref_language_nl</item>
@@ -322,6 +326,7 @@
         <item name="romanian">@string/pref_language_ro</item>
         <item name="russian">@string/pref_language_ru</item>
         <item name="serbian">@string/pref_language_sr</item>
+        <item name="sindhis">@string/pref_language_sd</item>
         <item name="slovenian">@string/pref_language_sl</item>
         <item name="spanish">@string/pref_language_es</item>
         <item name="swahili">@string/pref_language_sw</item>
@@ -336,8 +341,10 @@
         <item name="basque">eu</item>
         <item name="belarusian">be</item>
         <item name="belarusian_latin">be_Latn</item>
+        <item name="bulgarian">bg</item>
         <item name="catalan">ca</item>
         <item name="chinese">zh-rCN</item>
+        <item name="chinese_traditional">zh-rTW</item>
         <item name="czech">cs</item>
         <item name="danish">da</item>
         <item name="dutch">nl</item>
@@ -359,6 +366,7 @@
         <item name="romanian">ro</item>
         <item name="russian">ru</item>
         <item name="serbian">sr</item>
+        <item name="sindhis">sd</item>
         <item name="slovenian">sl</item>
         <item name="spanish">es</item>
         <item name="swahili">sw</item>
