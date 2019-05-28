@@ -473,4 +473,8 @@
     <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Localização do interruptor</string>
     <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Mostrar localização no widget</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Atualmente não é permitido ter mais de %1$d de locais.</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">Psi</string>
+    <string name="pref_language_bg" tools:ignore="MissingTranslation">Búlgaro</string>
+    <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Chinês (tradicional)</string>
+    <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhis</string>
 </resources>
