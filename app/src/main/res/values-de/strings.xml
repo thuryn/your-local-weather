@@ -491,4 +491,8 @@
     <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Standort wechseln</string>
     <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Standort im Widget anzeigen</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Sie dürfen im Moment nicht mehr als %1$d Orte haben.</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">Psi</string>
+    <string name="pref_language_bg" tools:ignore="MissingTranslation">Bulgarisch</string>
+    <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Chinesisch (traditionell)</string>
+    <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhis</string>
 </resources>
