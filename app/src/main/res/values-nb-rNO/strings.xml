@@ -469,4 +469,8 @@
     <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Innstillingsknapp for miniprogramsplassering</string>
     <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Innstillingsknapp for miniprogramshandling</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Du tillates ikke å ha mer enn %1$d plasseringer for øyeblikket.</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">psi</string>
+    <string name="pref_language_bg" tools:ignore="MissingTranslation">Bulgarsk</string>
+    <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Kinesisk (tradisjonell)</string>
+    <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhi</string>
 </resources>
