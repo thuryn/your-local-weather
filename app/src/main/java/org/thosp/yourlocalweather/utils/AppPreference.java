@@ -200,8 +200,18 @@ public class AppPreference {
         return new WindWithUnit(context, windDirection, locale).getWindDirection();
     }
 
+    private static String getWindFormat(Context context) {
+        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_WIND_UNITS, "m_per_second");
+        if (unitsFromPreferences.contains("beaufort") ) {
+            return "%.0f";
+        } else {
+            return "%.1f";
+        }
+    }
+
     public static String getWindInString(Context context, double stringValue, Locale locale) {
-        return String.format(locale, "%.1f", getWind(context, stringValue));
+        return String.format(locale, getWindFormat(context), getWind(context, stringValue));
     }
 
     public static double getWind(Context context, double windSpeed) {
