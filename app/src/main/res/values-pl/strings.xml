@@ -474,4 +474,6 @@
     <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Zmień lokalizację</string>
     <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Pokaż lokalizację w widżecie</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">W tej chwili nie możesz mieć więcej niż %1$d lokalizacji.</string>
+    <string name="pref_language_bg" tools:ignore="MissingTranslation">Bułgarski</string>
+    <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Chiński (tradycyjny)</string>
 </resources>
