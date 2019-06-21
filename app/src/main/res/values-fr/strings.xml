@@ -279,7 +279,7 @@
     <string name="locations_disabled" tools:ignore="MissingTranslation">Désactivée</string>
     <string name="search_location_add" tools:ignore="MissingTranslation">Ajouter</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Appuyez sur la carte à l\'emplacement désiré et attendez que l\'adresse soit résolue.</string>
-    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">La météo actuelle n\'a pas encore été mise à jour. Commencez par mettre à jour la météo avec le bouton de rafraîchissement.</string>
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Commencez par mettre à jour la météo avec le bouton de rafraîchissement.</string>
     <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Température ressentie : %s</string>
     <string name="label_measured_temperature" tools:ignore="MissingTranslation">Température mesurée : %s</string>
     <string name="label_pressure" tools:ignore="MissingTranslation">Pression</string>
@@ -289,7 +289,7 @@
     <string name="appearance_only" tools:ignore="MissingTranslation">Valeur ressentie uniquement</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Montrer la température comme</string>
     <string name="permission_location_need" tools:ignore="MissingTranslation">Accorder les permissions de localisation</string>
-    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">La langue de la description météo actuelle et l\'adresse changeront lors de la prochaine mise à jour ou vous pouvez le forcer manuellement.</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">La langue de la description météo actuelle et l\'adresse changeront lors de la prochaine mise à jour, vous pouvez sinon les mettre à jour manuellement.</string>
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Choisissez un dossier de journalisation</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Options de débogage</string>
     <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Le fichier de journal sera recréé après un certain temps</string>
@@ -322,8 +322,8 @@
     <string name="pref_language_sv" tools:ignore="MissingTranslation">Svenska (Suédois)</string>
     <string name="pref_language_he" tools:ignore="MissingTranslation">עברית (Hébreu)</string>
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Désactivées</string>
-    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abrév N, NE, …</string>
-    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Degrés à partir du Nord</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abrévié N↓, NE↙, …</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Degrés à partir du nord</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Partager la météo</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Appli de communication introuvable</string>
     <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Ville : %1$s
@@ -449,12 +449,12 @@
     <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (Serbe)</string>
     <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (Slovène)</string>
     <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (Turc)</string>
-    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Bouton de réglage des paramètres graphiques des widgets</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Bouton des paramètres graphiques des widgets</string>
     <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Afficher le jour par abréviation</string>
     <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Nombre de jours pour la prévision</string>
     <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Réglage de l\'emplacement</string>
-    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Bouton de réglage des paramètres de localisation du widget</string>
-    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Bouton Paramètres d’action du widget</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Bouton des paramètres de localisation du widget</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Bouton des paramètres d’action du widget</string>
     <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">Étiquette de la ville</string>
     <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">Icône de la météo actuelle</string>
     <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">Prévisions météo</string>
@@ -463,4 +463,12 @@
     <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">Écran de prévision météo</string>
     <string name="widget_action_switch_location" tools:ignore="MissingTranslation">changer de lieu</string>
     <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Afficher l’emplacement dans le widget</string>
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">Fichier journal</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">Ne pas enregistrer un fichier journal</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">Enregistrer un fichier journal</string>
+    <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">Écran des graphiques</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">psi</string>
+    <string name="pref_language_bg" tools:ignore="MissingTranslation">Bulgare</string>
+    <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Chinois (traditionnel)</string>
+    <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhi</string>
 </resources>
