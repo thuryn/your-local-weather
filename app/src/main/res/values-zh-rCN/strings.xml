@@ -432,4 +432,5 @@
     <string name="widget_action_switch_location" tools:ignore="MissingTranslation">切换位置</string>
     <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">在微件中显示位置</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">目前，您不能有超过 %1$d 个位置。</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">下雪</string>
 </resources>
