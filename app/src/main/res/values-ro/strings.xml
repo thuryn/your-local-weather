@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Vremea locală</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="MissingTranslation">Vremea locală</string>
     <string name="enter_city_hint">Introduceți orașul</string>
     <string name="label_current_city">Oraș Actual</string>
     <string name="label_choose_city">Alege orașul</string>
@@ -17,5 +18,5 @@
     <string name="log_file_72_label" tools:ignore="MissingTranslation">trei zile</string>
     <string name="log_file_168_label" tools:ignore="MissingTranslation">o săptămână</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">o lună</string>
-
-    </resources>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Optimizare baterie</string>
+</resources>
