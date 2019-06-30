@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="enter_city_hint">Idatzi hiria</string>
     <string name="label_current_city">Uneko hiria</string>
@@ -8,21 +8,18 @@
     <string name="alertDialog_location_permission_negativeButton">Utzi</string>
     <string name="progressDialog_gps_locate">Aurkitu uneko kokapena</string>
     <string name="load_progress">Kargatzen…</string>
-
     <!-- Activity names -->
     <string name="title_activity_search">Kokapena bilatu</string>
     <string name="label_activity_main">Uneko eguraldia</string>
     <string name="label_activity_weather_forecast">Eguneroko iragarpena</string>
     <string name="label_activity_graphs">Eguraldiaren grafikoak</string>
     <string name="title_activity_license">%s(e)rako lizentzia</string>
-
     <!-- Toolbar menu -->
     <string name="toolbar_menu_refresh">Eguneratu</string>
     <string name="toolbar_menu_search_city">Bilatu hiria</string>
     <string name="toolbar_menu_detect_location">Antzeman kokalekua</string>
     <string name="menu_action_toggle_values">Alderantzikatu balioak</string>
     <string name="menu_action_toggle_yaxis">Alderantzikatu Y ardatza</string>
-
     <!-- Navigation drawer -->
     <string name="nav_menu_current_weather">Uneko eguraldia</string>
     <string name="nav_menu_daily_forecast">Eguneroko iragarpena</string>
@@ -30,20 +27,16 @@
     <string name="nav_menu_settings">Ezarpenak</string>
     <string name="nav_feedback">Iritzia</string>
     <string name="nav_menu_bitcoin_donation">Bitcoin dohaintza</string>
-
     <!-- Toast messages -->
     <string name="connection_not_found">Egiaztatu zure Internet konexioa</string>
     <string name="toast_parse_error">Errore bat gertatu da. Saiatu geroago!</string>
-
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
     <string name="wind_speed_miles">m/o</string>
     <string name="millimetre_label">mm</string>
-
     <!-- Search Screen strings -->
     <string name="hint_activity_search">Bilatu kokalekua</string>
-
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Ezarpenak</string>
     <string name="pref_title_temperature">Tenperatura</string>
@@ -62,14 +55,12 @@
     <string name="preference_widget_title_update_period">Eguraldia eguneratzeko tartea (Kokalekua 1,2,3...)</string>
     <string name="preference_title_activity_general">Ezarpen orokorrak</string>
     <string name="preference_title_activity_widget">Trepetaren ezarpenak</string>
-
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">Honi buruz</string>
     <string name="about_version_pref_title">Bertsioa</string>
     <string name="about_source_code_pref_title">Iturburu kodea</string>
     <string name="about_app_license_pref_title">Lizentzia</string>
     <string name="about_open_source_licenses_pref_title">Iturri irekiko lizentziak</string>
-
     <!-- Weather conditions label strings -->
     <string name="wind_label">Haizea: %1$s %2$s %3$s</string>
     <string name="rain_label">Euria: %1$s %2$s</string>
@@ -88,13 +79,10 @@
     <string name="label_wind">Haizea</string>
     <string name="label_rain">Euria</string>
     <string name="label_snow">Elurra</string>
-
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description">Uneko eguraldi ikonoa</string>
     <string name="widget_refresh_button">Trepeta freskatzeko botoia</string>
-
     <!-- Donation Bitcoin dialog -->
-
     <!-- Wind directions -->
     <string name="wind_direction_north">I↓</string>
     <string name="wind_direction_north_east">IE↙</string>
@@ -104,7 +92,6 @@
     <string name="wind_direction_south_west">HM↗</string>
     <string name="wind_direction_west">M→</string>
     <string name="wind_direction_north_west">IM↘</string>
-
     <!-- Permission strings -->
     <string name="permission_location_rationale">Kokapen baimenak behar dira uneko hiria zehazteko</string>
     <string name="permission_not_granted">Baimenak ez dira eman!</string>
@@ -112,17 +99,15 @@
     <string name="pref_language_default">Sisteman lehenetsia</string>
     <string name="pref_title_language">Hizkuntza</string>
     <string name="preference_title_category_display">Erakutsi</string>
-<string name="preference_widget_update_location">Eguneratu kokalekua</string>
+    <string name="preference_widget_update_location">Eguneratu kokalekua</string>
     <string name="preference_widget_use_geocoder">Erabili geokokapena erakusteko</string>
     <string name="preference_widget_theme_title">Trepetaren gaia</string>
     <string name="theme_dark">Iluna</string>
     <string name="theme_light">Argia</string>
     <string name="theme_transparent">Gardena</string>
     <string name="pref_title_theme">Gaia</string>
-    
     <string name="permission_location_need">Eman kokapen baimenak</string>
-
-    <string name="app_name" tools:ignore="MissingTranslation">Zure tokiko eguraldia</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Yorecast</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Kokaleku eta baimenen ezarpenak</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Aplikazioak GPS bidez kokalekua eguneratzeko baimena behar du.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Aplikazioak Wi-Fi eta GSM sareen bidez kokalekua eguneratzeko baimena behar du.</string>
@@ -130,7 +115,6 @@
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Eskatu baimenak</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Kokalekua ez da aurkitu</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Ez dira oraindik baimenak eman - Sakatu kokalekuaren sinboloa aplikazioan</string>
-
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Itxi</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Hurrengoa</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Aurrekoa</string>
@@ -162,10 +146,13 @@
     <string name="help_page_2_title" tools:ignore="MissingTranslation">Trepetak</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Ezarpen orokorrak</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">Aukera honek aplikazio osoan du eragina.</string>
-    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Ezkutatu eguraldiaren deskripzioa</b> - oraingo eguraldiaren deskripzioa ezkutatuta dago. Oraingo eguraldia ikono aldakorraren bidez besterik ezin duzu ikusi.</string>
-    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Kokaleku eta helbideen iturburua</b>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">
+        <b>Ezkutatu eguraldiaren deskripzioa</b> - oraingo eguraldiaren deskripzioa ezkutatuta dago. Oraingo eguraldia ikono aldakorraren bidez besterik ezin duzu ikusi.</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">
+        <b>Kokaleku eta helbideen iturburua</b>
 \nAplikazioak kokalekua eta helbidea nondik hartzen duen aukeratu dezakezu.</string>
-    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"><b>Sistema</b>" - Aplikazioak kokalekua  eta helbidea Android sistemako zerbitzuen bidez eskuratzen du (Gehienetan Google kokapen zerbitzuak dira)."</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
+        <b>Sistema</b>" - Aplikazioak kokalekua  eta helbidea Android sistemako zerbitzuen bidez eskuratzen du (Gehienetan Google kokapen zerbitzuak dira)."</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Presioa</string>
     <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Kokalekua eguneratzeko ezarpena</string>
     <string name="update_location_none" tools:ignore="MissingTranslation">Ez eguneratu kokalekua</string>
@@ -194,19 +181,18 @@
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Balioa oraintxe eguneratu da</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Balioa eguneratu da kokalekuaren iturburuarekin</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">hilabete bat</string>
-
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Ikono multzoa</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Tipografian oinarrituko ikonoak</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin gorria ikonoak</string>
-<string name="help_page_1_content_2" tools:ignore="MissingTranslation">Eguraldi iragarpena aurkituko duzu hurrengo pantailan (hautatu hurrengo pantaila menuan edo pasatu hatza ezkerretik eskuinera). Eguraldi iragarpena eguneratu botoiarekin edo pantailara sartzean eguneratzen da (baina ez onduan behin baino sarriago).</string>
-    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Tenperatura</b> - Tenperaturaren unitatea aukeratu dezakezu, <b>Haizea</b> - Haizearen abiaduraren unitatea aukeratu dezakezu eta <b>Presioa</b>- Presioaren unitatea aukeratu dezakezu. Balioak aukera hauek erabiliz birkalkulatuko dira.</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Eguraldi iragarpena aurkituko duzu hurrengo pantailan (hautatu hurrengo pantaila menuan edo pasatu hatza ezkerretik eskuinera). Eguraldi iragarpena eguneratu botoiarekin edo pantailara sartzean eguneratzen da (baina ez onduan behin baino sarriago).</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
+        <b>Tenperatura</b> - Tenperaturaren unitatea aukeratu dezakezu, <b>Haizea</b> - Haizearen abiaduraren unitatea aukeratu dezakezu eta <b>Presioa</b>- Presioaren unitatea aukeratu dezakezu. Balioak aukera hauek erabiliz birkalkulatuko dira.</string>
     <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Helbideen cachea ezabatu dezakezu <b>Garbitu cachea</b> botoiarekin.</string>
     <string name="help_page_4_title" tools:ignore="MissingTranslation">Trepeten ezarpenak</string>
     <string name="help_page_4_content" tools:ignore="MissingTranslation">Trepeten ezarpenak atalean trepeta guztien konfigurazio aukerak daude.</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Arazketa aukerak</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">Laguntza</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Kokalekuak</string>
-
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Zutabe-ezarpenak</string>
     <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Erakutsi beharreko zutabeak</string>
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikonoa</string>
@@ -219,11 +205,9 @@
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Presioa</string>
     <string name="ok" tools:ignore="MissingTranslation">Ados</string>
     <string name="cancel" tools:ignore="MissingTranslation">Utzi</string>
-
     <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Ireki nabigazioaren tiradera</string>
     <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Itxi nabigazioaren tiradera</string>
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Laguntza</string>
-
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">korapilo</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
@@ -256,13 +240,18 @@
     <string name="search_location_add" tools:ignore="MissingTranslation">Gehitu</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Sakatu mapan nahi duzn kokalekua eskuratzeko eta itxaron helbidea ebatzi arte.</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">Aplikazio honek uneko eguraldiaren oinarrizko balioak (esaterako tenperatura) dituzten hiru trepeta ditu eskuragarri. Balio batzuk trepeta batean besterik ez dira agertzen (esaterako eguzki-sarrera). Trepeta bakoitzaren eskumako ertzean azken eguneraketa ordua agertzen da. Azken aldian zer eguneratu den ikusi dezakezu (ezarpenen menuan aukera hau gaitu baduzu). Eguneratzeko botoia azken eguneraketaren orduan aurkituko duzu. Botoi hau sakatzean, eguraldia eguneratuko da (eta kokalekua hau ere eguneratzea aukeratu baduzu). Trepeten azken aukera kokalekua aldatzea da, kokalekua sakatzen duzunean hurrengora aldatzen da.</string>
-    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation"><b>Piztu GPS-a behar denean</b> aukera gaitzen bada, aplikazioak, aplikazioa aurretik zelular eta WiFi bidez saiatuko da kokalekua antzematen, eta ez bada lortzen sare zerbitzuen bitartez eskuratzea, aplikazioak GPS-a piztuko du segundo batzuez kokalekua antzemateko.</string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">
+        <b>Piztu GPS-a behar denean</b> aukera gaitzen bada, aplikazioak, aplikazioa aurretik zelular eta WiFi bidez saiatuko da kokalekua antzematen, eta ez bada lortzen sare zerbitzuen bitartez eskuratzea, aplikazioak GPS-a piztuko du segundo batzuez kokalekua antzemateko.</string>
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Menuko aukera hauek aplikazio nagusiaren <b>hizkuntza</b>, <b>itxura</b> eta aplikazio zein trepetetan erabilitako <b>ikonoak</b> ezartzen dituzte.</string>
-    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"><b>Jakinarazpenak</b>"
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">
+        <b>Jakinarazpenak</b>"
 \nJakinarazpenen aukera hartzean, aplikazioak uneko eguraldia aldiro eguneratzen du. Oraingo eguraldia jakinarazpenen tiraderan bistaratzen da. Bibrazioa gaitu dezakezu ere  eta aplikazioa eguneratzean gailuak dardar egingo du."</string>
     <string name="location_not_initialized" tools:ignore="MissingTranslation">Kokatzea ez dago gaituta. Sakatu kokalekuaren zirkulua aurretik.</string>
     <string name="pref_language_uk" tools:ignore="MissingTranslation">Ukrainera</string>
     <string name="pref_language_ro" tools:ignore="MissingTranslation">Errumaniera</string>
     <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portugesa (Portugal)</string>
     <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portugesa (Brasil)</string>
-    </resources>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Bateria optimizazioa</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Jarraitu</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Utzi</string>
+</resources>
