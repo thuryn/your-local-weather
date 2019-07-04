@@ -94,6 +94,36 @@ public class AppPreference {
         }
     }
 
+    private static short mpsToBft(double speed) {
+        if (speed < 0.51d) {
+            return 0;
+        } else if (speed < 2.06d) {
+            return 1;
+        } else if (speed < 3.60d) {
+            return 2;
+        } else if (speed < 5.66d) {
+            return 3;
+        } else if (speed < 8.23d) {
+            return 4;
+        } else if (speed < 11.32d) {
+            return 5;
+        } else if (speed < 14.40d) {
+            return 6;
+        } else if (speed < 17.49d) {
+            return 7;
+        } else if (speed < 21.09d) {
+            return 8;
+        } else if (speed < 24.69d) {
+            return 9;
+        } else if (speed < 28.81d) {
+            return 10;
+        } else if (speed < 32.92d) {
+            return 11;
+        } else {
+            return 12;
+        }
+    }
+
     public static WindWithUnit getWindWithUnit(Context context, float value, float direction, Locale locale) {
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_WIND_UNITS, "m_per_second");
@@ -106,6 +136,9 @@ public class AppPreference {
         } else if (unitsFromPreferences.contains("knots") ) {
             double knotsValue = 1.9438445d * value;
             return new WindWithUnit(context, knotsValue, context.getString(R.string.wind_speed_knots), direction, locale);
+        } else if (unitsFromPreferences.contains("beaufort") ) {
+            double beaufortValue = mpsToBft(value);
+            return new WindWithUnit(context, beaufortValue, context.getString(R.string.wind_speed_beaufort), direction, locale);
         } else {
             return new WindWithUnit(context, value, context.getString(R.string.wind_speed_meters), direction, locale);
         }
@@ -167,8 +200,18 @@ public class AppPreference {
         return new WindWithUnit(context, windDirection, locale).getWindDirection();
     }
 
+    private static String getWindFormat(Context context) {
+        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_WIND_UNITS, "m_per_second");
+        if (unitsFromPreferences.contains("beaufort") ) {
+            return "%.0f";
+        } else {
+            return "%.1f";
+        }
+    }
+
     public static String getWindInString(Context context, double stringValue, Locale locale) {
-        return String.format(locale, "%.1f", getWind(context, stringValue));
+        return String.format(locale, getWindFormat(context), getWind(context, stringValue));
     }
 
     public static double getWind(Context context, double windSpeed) {
@@ -180,6 +223,8 @@ public class AppPreference {
             return 2.2369d * windSpeed;
         } else if (unitsFromPreferences.contains("knots") ) {
             return 1.9438445d * windSpeed;
+        } else if (unitsFromPreferences.contains("beaufort") ) {
+            return mpsToBft(windSpeed);
         } else {
             return windSpeed;
         }
@@ -194,6 +239,8 @@ public class AppPreference {
             return context.getString(R.string.wind_speed_miles);
         } else if (unitsFromPreferences.contains("knots") ) {
             return context.getString(R.string.wind_speed_knots);
+        } else if (unitsFromPreferences.contains("beaufort") ) {
+            return context.getString(R.string.wind_speed_beaufort);
         } else {
             return context.getString(R.string.wind_speed_meters);
         }
