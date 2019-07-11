@@ -191,7 +191,7 @@
     <string name="wind_speed_miles" tools:ignore="MissingTranslation">mph</string>
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">knots</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
-    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">beaufort</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Beaufort</string>
     <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
     <string name="inches_label" tools:ignore="MissingTranslation">inches</string>
     <!-- Time style setting -->
