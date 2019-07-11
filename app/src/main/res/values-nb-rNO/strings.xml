@@ -473,4 +473,5 @@
     <string name="pref_language_bg" tools:ignore="MissingTranslation">Bulgarsk</string>
     <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Kinesisk (tradisjonell)</string>
     <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhi</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Beaufort</string>
 </resources>
