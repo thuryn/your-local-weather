@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" tools:ignore="MissingTranslation">Yorecast</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Sua previsão</string>
     <string name="enter_city_hint">Introduza a cidade</string>
     <string name="label_current_city">Cidade atual</string>
     <string name="label_choose_city">Escolha a cidade</string>
@@ -477,4 +477,5 @@
     <string name="pref_language_bg" tools:ignore="MissingTranslation">Búlgaro</string>
     <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Chinês (tradicional)</string>
     <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhis</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Beaufort</string>
 </resources>
