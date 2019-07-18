@@ -6,7 +6,6 @@
         android:title="@string/pref_title_notification"/>
     <ListPreference
         android:defaultValue="when_updated"
-        android:dependency="notification_pref_key"
         android:dialogTitle="@string/pref_title_notification_presence"
         android:entries="@array/notification_presence_entries"
         android:entryValues="@array/notification_presence_values"
@@ -14,7 +13,6 @@
         android:title="@string/pref_title_notification_presence"/>
     <ListPreference
         android:defaultValue="icon_sun"
-        android:dependency="notification_pref_key"
         android:dialogTitle="@string/pref_title_notification_status_icon"
         android:entries="@array/notification_status_icon_entries"
         android:entryValues="@array/notification_status_icon_values"
@@ -22,7 +20,6 @@
         android:title="@string/pref_title_notification_status_icon"/>
     <ListPreference
         android:defaultValue="build_in"
-        android:dependency="notification_pref_key"
         android:dialogTitle="@string/pref_title_notification_visual_style"
         android:entries="@array/notification_visual_style_entries"
         android:entryValues="@array/notification_visual_style_values"
@@ -30,7 +27,6 @@
         android:title="@string/pref_title_notification_visual_style"/>
     <ListPreference
         android:defaultValue="60"
-        android:dependency="notification_pref_key"
         android:dialogTitle="@string/pref_title_notification_refresh_interval"
         android:entries="@array/notification_refresh_intervals_entries"
         android:entryValues="@array/notification_refresh_interval_values"
@@ -38,7 +34,6 @@
         android:title="@string/pref_title_notification_refresh_interval"/>
     <SwitchPreference
         android:defaultValue="false"
-        android:dependency="notification_pref_key"
         android:key="notification_vibrate_pref_key"
         android:title="@string/pref_title_vibrate"/>
 </PreferenceScreen>

@@ -27,28 +27,41 @@ public class NotificationUtils {
     private static final String TAG = "NotificationUtils";
 
     public static void weatherNotification(Context context, Long locationId) {
+        String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(context);
+        boolean updateBySensor = "0".equals(updateAutoPeriodStr);
+        if (updateBySensor) {
+            return;
+        }
+        Notification notification = getWeatherNotification(context, locationId);
+        if (notification == null) {
+            return;
+        }
+        showNotification(context, notification);
+    }
+    
+    public static Notification getWeatherNotification(Context context, Long locationId) {
         if (locationId == null) {
             appendLog(context, TAG, "showNotification - locationId is null");
-            return;
+            return null;
         }
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
         final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
         Location currentLocation = locationsDbHelper.getLocationById(locationId);
         if (currentLocation == null) {
             appendLog(context, TAG, "showNotification - current location is null");
-            return;
+            return null;
         }
         CurrentWeatherDbHelper.WeatherRecord weatherRecord =
                 currentWeatherDbHelper.getWeather(currentLocation.getId());
 
         if (weatherRecord == null) {
             appendLog(context, TAG, "showNotification - current weather record is null");
-            return;
+            return null;
         }
-        showNotification(context, currentLocation, weatherRecord);
+        return getNotification(context, currentLocation, weatherRecord);
     }
-
-    public static void showNotification(Context context, Location location, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
+    
+    public static Notification getNotification(Context context, Location location, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -97,6 +110,12 @@ public class NotificationUtils {
             default:
                 notification = regularNotification(context, location, notificationIcon, isOutgoing, weatherRecord); break;
         }
+        return notification;
+    }
+
+    public static void showNotification(Context context, Notification notification) {
+        NotificationManager notificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(0, notification);
     }
 

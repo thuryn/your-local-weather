@@ -1,7 +1,5 @@
 package org.thosp.yourlocalweather.service;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +10,6 @@ import android.net.wifi.ScanResult;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
-import android.os.SystemClock;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -26,7 +23,6 @@ import org.thosp.yourlocalweather.utils.PreferenceUtil;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Queue;
 
 import cz.msebera.android.httpclient.Header;
@@ -70,8 +66,7 @@ public class MozillaLocationService {
 
     public synchronized void getLocationFromCellsAndWifis(final Context context,
                                                           List<Cell> cells,
-                                                          List<ScanResult> wiFis,
-                                                          final boolean resolveAddress) {
+                                                          List<ScanResult> wiFis) {
         appendLog(context, TAG,
                 "getLocationFromCellsAndWifis:wifi=",
                 wiFis,
@@ -79,7 +74,7 @@ public class MozillaLocationService {
                 cells);
         if ((cells == null || cells.isEmpty()) && (wiFis == null || wiFis.size() < 2)) {
             appendLog(context, TAG, "THERE IS NO CELL AND JUST ONE WIFI NETWORK - THIS IS NOT ENOUGH FOR MLS TO GET THE LOCATION");
-            processUpdateOfLocation(context, null, false);
+            processUpdateOfLocation(context, null);
             return;
         }
         try {
@@ -111,17 +106,17 @@ public class MozillaLocationService {
                                 double lon = responseJson.getJSONObject("location").getDouble("lng");
                                 double acc = responseJson.getDouble("accuracy");
                                 response = create(PROVIDER, lat, lon, (float) acc);
-                                processUpdateOfLocation(context, response, resolveAddress);
+                                processUpdateOfLocation(context, response);
                             } catch (JSONException e) {
                                 appendLog(context, TAG, e.toString());
-                                processUpdateOfLocation(context, null, resolveAddress);
+                                processUpdateOfLocation(context, null);
                             }
                         }
 
                         @Override
                         public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                             appendLog(context, TAG, "onFailure:", statusCode);
-                            processUpdateOfLocation(context, null, resolveAddress);
+                            processUpdateOfLocation(context, null);
                         }
 
                         @Override
@@ -138,10 +133,9 @@ public class MozillaLocationService {
     }
 
     public void processUpdateOfLocation(final Context context,
-                                         Location location,
-                                         boolean resolveAddress) {
-        appendLog(context, TAG, "processUpdateOfLocation:resolveAddress:", resolveAddress);
-        if (resolveAddress && (location != null)) {
+                                         Location location) {
+        appendLog(context, TAG, "processUpdateOfLocation");
+        if (location != null) {
             String locale = PreferenceUtil.getLanguage(context);
             appendLog(context, TAG,
                     "processUpdateOfLocation:location:",

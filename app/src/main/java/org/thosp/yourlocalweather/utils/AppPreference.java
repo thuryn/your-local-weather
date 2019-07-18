@@ -1,30 +1,19 @@
 package org.thosp.yourlocalweather.utils;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
 import android.text.format.DateFormat;
 
 import org.thosp.yourlocalweather.R;
-import org.thosp.yourlocalweather.model.CurrentWeather;
-import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.model.Weather;
-import org.thosp.yourlocalweather.model.WeatherForecast;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -324,6 +313,11 @@ public class AppPreference {
     public static String getNotificationPresence(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(Constants.KEY_PREF_NOTIFICATION_PRESENCE, "when_updated");
+    }
+    
+    public static void setNotificationPresence(Context context, String notificationPresence) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString(Constants.KEY_PREF_NOTIFICATION_PRESENCE, notificationPresence).apply();
     }
 
     public static String getNotificationStatusIconStyle(Context context) {

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.location.Address;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
@@ -14,7 +15,6 @@ import android.os.Messenger;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
-import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
@@ -71,7 +71,6 @@ public class AbstractCommonService extends Service {
                     new LocationUpdateServiceActionsWithParams(
                             LocationUpdateService.LocationUpdateServiceActions.START_LOCATION_ONLY_UPDATE,
                             byLastLocationOnly));
-            return;
         } else {
             locationUpdateService.updateNetworkLocation(
                     byLastLocationOnly,
@@ -553,6 +552,16 @@ public class AbstractCommonService extends Service {
             reconciliationDbServiceLock.unlock();
         }
     }
+    
+    protected void sendIntent(String intent) {
+        Intent sendIntent = new Intent(intent);
+        sendIntent.setPackage("org.thosp.yourlocalweather");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(sendIntent);
+        } else {
+            startService(sendIntent);
+        }
+    }
 
     private boolean checkIfReconciliationDbServiceIsNotBound() {
         if (reconciliationDbService != null) {
@@ -581,6 +590,7 @@ public class AbstractCommonService extends Service {
     }
 
     private ServiceConnection reconciliationDbServiceConnection = new ServiceConnection() {
+        @Override
         public void onServiceConnected(ComponentName className, IBinder binderService) {
             reconciliationDbService = new Messenger(binderService);
             reconciliationDbServiceLock.lock();
@@ -594,6 +604,7 @@ public class AbstractCommonService extends Service {
                 reconciliationDbServiceLock.unlock();
             }
         }
+        @Override
         public void onServiceDisconnected(ComponentName className) {
             reconciliationDbService = null;
         }

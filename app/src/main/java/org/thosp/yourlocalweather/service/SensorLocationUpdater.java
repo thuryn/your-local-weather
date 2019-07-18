@@ -24,7 +24,7 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLogSensorsEnd;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLogSensorsCheck;
 
-public class SensorLocationUpdater implements SensorEventListener {
+public class SensorLocationUpdater extends AbstractCommonService implements SensorEventListener {
 
     private static final String TAG = "SensorLocationUpdater";
 
@@ -40,46 +40,36 @@ public class SensorLocationUpdater implements SensorEventListener {
     private float currentLengthLowPassed = 0;
     private float gravity[] = new float[3];
     private MoveVector lastMovement;
+    protected float sensorResolutionMultiplayer = 1;
 
     public static volatile boolean autolocationForSensorEventAddressFound;
 
     private Messenger widgetRefreshIconService;
     private Queue<Message> unsentMessages = new LinkedList<>();
     private Lock widgetRotationServiceLock = new ReentrantLock();
-    private Context context;
     private volatile boolean processLocationUpdate;
-    private static SensorLocationUpdater instance;
-    private LocationUpdateService locationUpdateService;
-    private static Queue<LocationUpdateService.LocationUpdateServiceActions> locationUpdateServiceActions = new LinkedList<>();
-
-    public synchronized static SensorLocationUpdater getInstance(Context context) {
-        if (instance == null) {
-            instance = new SensorLocationUpdater(context);
-        }
-        return instance;
-    }
+    private static final Queue<LocationUpdateService.LocationUpdateServiceActions> locationUpdateServiceActions = new LinkedList<>();
 
     @Override
-    protected void finalize() throws Throwable {
-        if (locationUpdateService != null) {
-            unbindLocationUpdateService();
-        }
-        if (widgetRefreshIconService != null) {
-            unbindWidgetRefreshIconService();
-        }
-        super.finalize();
-    }
-
-    public SensorLocationUpdater(Context context) {
-        super();
-        appendLog(context, TAG, "SensorLocationUpdater created");
-        this.context = context;
+    public int onStartCommand(Intent intent, int flags, final int startId) {
         currentLength = 0;
         currentLengthLowPassed = 0;
         lastUpdate = 0;
         gravity[0] = 0;
         gravity[1] = 0;
         gravity[2] = 0;
+        return super.onStartCommand(intent, flags, startId);
+    }
+    
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (locationUpdateService != null) {
+            unbindLocationUpdateService();
+        }
+        if (widgetRefreshIconService != null) {
+            unbindWidgetRefreshIconService();
+        }
     }
 
     @Override
@@ -92,7 +82,7 @@ public class SensorLocationUpdater implements SensorEventListener {
             }
             processSensorEvent(sensorEvent);
         } catch (Exception e) {
-            appendLog(context, TAG, "Exception on onSensorChanged", e);
+            appendLog(getBaseContext(), TAG, "Exception on onSensorChanged", e);
         }
     }
 
@@ -101,8 +91,8 @@ public class SensorLocationUpdater implements SensorEventListener {
     }
 
     private void processSensorEvent(SensorEvent sensorEvent) {
-        double countedLength = 0;
-        double countedAcc = 0;
+        double countedLength;
+        double countedAcc;
         long now = sensorEvent.timestamp;
         try {
             final float dT = (float) (now - lastUpdate) / 1000000000.0f;
@@ -114,9 +104,9 @@ public class SensorLocationUpdater implements SensorEventListener {
 
                 float lowPassConst = 0.1f;
 
-                if (countedAcc < lowPassConst) {
+                if ((countedAcc < lowPassConst) || (dT > 1000f)) {
                     if (dT > 1.0f) {
-                        appendLogSensorsCheck(context,
+                        appendLogSensorsCheck(getBaseContext(),
                                               TAG,
                                   "acc under limit",
                                               currentLength,
@@ -136,9 +126,9 @@ public class SensorLocationUpdater implements SensorEventListener {
             lastMovement = highPassFilter(sensorEvent);
 
             if ((lastUpdate%1000 < 5) || (countedLength > 10)) {
-                appendLogSensorsCheck(context, TAG, "current", currentLength, countedLength, countedAcc, dT);
+                appendLogSensorsCheck(getBaseContext(), TAG, "current", currentLength, countedLength, countedAcc, dT);
             }
-            float absCurrentLength = Math.abs(currentLength);
+            float absCurrentLength = Math.abs(currentLength) * sensorResolutionMultiplayer;
 
             long lastUpdatedPosition = getLastPossitionUodateTime();
             long nowInMillis = System.currentTimeMillis();
@@ -157,7 +147,7 @@ public class SensorLocationUpdater implements SensorEventListener {
                 return;
             }
             processLocationUpdate = true;
-            appendLogSensorsEnd(context,
+            appendLogSensorsEnd(getBaseContext(),
                              TAG,
                              absCurrentLength,
                              currentLengthLowPassed,
@@ -171,7 +161,7 @@ public class SensorLocationUpdater implements SensorEventListener {
                              nowIsBeforeTheLastUpdatedAndTimeSpanNoLocation,
                              currentLengthIsUnderNoLocationLimit);
         } catch (Exception e) {
-            appendLog(context, TAG, "Exception when processSensorQueue", e);
+            appendLog(getBaseContext(), TAG, "Exception when processSensorQueue", e);
             processLocationUpdate = false;
             return;
         }
@@ -179,7 +169,6 @@ public class SensorLocationUpdater implements SensorEventListener {
         if (!locationUpdateServiceActions.isEmpty()) {
             return;
         }
-
 
         if (updateNetworkLocation()) {
             clearMeasuredLength();
@@ -208,11 +197,13 @@ public class SensorLocationUpdater implements SensorEventListener {
         }
     }
 
+    @Override
     protected void startRefreshRotation(String where, int rotationSource) {
-        appendLog(context, TAG, "startRefreshRotation:", where);
+        appendLog(getBaseContext(), TAG, "startRefreshRotation:", where);
         sendMessageToWidgetIconService(WidgetRefreshIconService.START_ROTATING_UPDATE, rotationSource);
     }
 
+    @Override
     protected void sendMessageToWidgetIconService(int action, int rotationsource) {
         widgetRotationServiceLock.lock();
         try {
@@ -225,14 +216,14 @@ public class SensorLocationUpdater implements SensorEventListener {
             //appendLog(getBaseContext(), TAG, "sendMessageToService:");
             widgetRefreshIconService.send(msg);
         } catch (RemoteException e) {
-            appendLog(context, TAG, e.getMessage(), e);
+            appendLog(getBaseContext(), TAG, e.getMessage(), e);
         } finally {
             widgetRotationServiceLock.unlock();
         }
     }
 
     private long getLastPossitionUodateTime() {
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context.getApplicationContext());
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext().getApplicationContext());
         org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
         return currentLocationForSensorEvent.getLastLocationUpdate();
     }
@@ -244,14 +235,14 @@ public class SensorLocationUpdater implements SensorEventListener {
         try {
             bindWidgetRefreshIconService();
         } catch (Exception ie) {
-            appendLog(context, TAG, "checkIfWidgetIconServiceIsNotBound interrupted:", ie);
+            appendLog(getBaseContext(), TAG, "checkIfWidgetIconServiceIsNotBound interrupted:", ie);
         }
         return (widgetRefreshIconService == null);
     }
 
     private void bindWidgetRefreshIconService() {
-        context.getApplicationContext().bindService(
-                new Intent(context.getApplicationContext(), WidgetRefreshIconService.class),
+        getBaseContext().getApplicationContext().bindService(
+                new Intent(getBaseContext().getApplicationContext(), WidgetRefreshIconService.class),
                 widgetRefreshIconConnection,
                 Context.BIND_AUTO_CREATE);
     }
@@ -260,10 +251,11 @@ public class SensorLocationUpdater implements SensorEventListener {
         if (widgetRefreshIconService == null) {
             return;
         }
-        context.getApplicationContext().unbindService(widgetRefreshIconConnection);
+        getBaseContext().getApplicationContext().unbindService(widgetRefreshIconConnection);
     }
 
-    private ServiceConnection widgetRefreshIconConnection = new ServiceConnection() {
+    private final ServiceConnection widgetRefreshIconConnection = new ServiceConnection() {
+        @Override
         public void onServiceConnected(ComponentName className, IBinder binderService) {
             widgetRefreshIconService = new Messenger(binderService);
             widgetRotationServiceLock.lock();
@@ -272,29 +264,30 @@ public class SensorLocationUpdater implements SensorEventListener {
                     widgetRefreshIconService.send(unsentMessages.poll());
                 }
             } catch (RemoteException e) {
-                appendLog(context, TAG, e.getMessage(), e);
+                appendLog(getBaseContext(), TAG, e.getMessage(), e);
             } finally {
                 widgetRotationServiceLock.unlock();
             }
         }
+        @Override
         public void onServiceDisconnected(ComponentName className) {
             widgetRefreshIconService = null;
         }
     };
 
     private void bindLocationUpdateService() {
-        Intent intent = new Intent(context.getApplicationContext(), LocationUpdateService.class);
-        context.getApplicationContext().bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+        Intent intent = new Intent(getBaseContext().getApplicationContext(), LocationUpdateService.class);
+        getBaseContext().getApplicationContext().bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
     }
 
     private void unbindLocationUpdateService() {
         if (locationUpdateService == null) {
             return;
         }
-        context.getApplicationContext().unbindService(locationUpdateServiceConnection);
+        getBaseContext().getApplicationContext().unbindService(locationUpdateServiceConnection);
     }
 
-    private ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {
+    private final ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName className,

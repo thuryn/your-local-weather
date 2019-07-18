@@ -2,13 +2,9 @@ package org.thosp.yourlocalweather;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -32,8 +28,6 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
-import android.os.SystemClock;
-import android.preference.CheckBoxPreference;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.Preference;
@@ -61,8 +55,6 @@ import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.ReverseGeocodingCacheContract;
 import org.thosp.yourlocalweather.model.ReverseGeocodingCacheDbHelper;
-import org.thosp.yourlocalweather.service.CurrentWeatherService;
-import org.thosp.yourlocalweather.service.NotificationService;
 import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
@@ -73,7 +65,6 @@ import org.thosp.yourlocalweather.utils.LogToFile;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
-import org.yaml.snakeyaml.scanner.Constant;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -133,6 +124,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         }
     }
 
+    @Override
     protected boolean isValidFragment(String fragmentName) {
         return PreferenceFragment.class.getName().equals(fragmentName)
                 || GeneralPreferenceFragment.class.getName().equals(fragmentName)
@@ -348,7 +340,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             getActivity().getApplicationContext().unbindService(reconciliationDbServiceConnection);
         }
 
-        private ServiceConnection reconciliationDbServiceConnection = new ServiceConnection() {
+        private final ServiceConnection reconciliationDbServiceConnection = new ServiceConnection() {
+            @Override
             public void onServiceConnected(ComponentName className, IBinder binderService) {
                 reconciliationDbService = new Messenger(binderService);
                 reconciliationDbServiceLock.lock();
@@ -362,6 +355,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     reconciliationDbServiceLock.unlock();
                 }
             }
+            @Override
             public void onServiceDisconnected(ComponentName className) {
                 reconciliationDbService = null;
             }
@@ -528,6 +522,18 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 return;
             }
             preference.setSummary(preference.getEntry());
+            if (Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD.equals(key)) {
+                if ("0".equals(preference.getValue())) {
+                    AppPreference.setNotificationEnabled(getActivity(), true);
+                    AppPreference.setNotificationPresence(getActivity(), "permanent");
+                } else {
+                    AppPreference.setNotificationEnabled(getActivity(), false);
+                    AppPreference.setNotificationPresence(getActivity(), "when_updated");
+                    NotificationManager notificationManager =
+                        (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                        notificationManager.cancelAll();
+                }
+            }
         }
 
         private void updateSummary(String key, boolean changing) {
@@ -572,7 +578,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             }
         }
 
-        private SensorEventListener sensorListener = new SensorEventListener() {
+        private final SensorEventListener sensorListener = new SensorEventListener() {
 
             @Override
             public void onSensorChanged(SensorEvent sensorEvent) {
@@ -587,7 +593,17 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
     public static class NotificationPreferenceFragment extends PreferenceFragment implements
             SharedPreferences.OnSharedPreferenceChangeListener {
 
+        private boolean updateBySensor;
+        
         private final String[] SUMMARIES_TO_UPDATE = {
+                Constants.KEY_PREF_IS_NOTIFICATION_ENABLED,
+                Constants.KEY_PREF_INTERVAL_NOTIFICATION,
+                Constants.KEY_PREF_NOTIFICATION_PRESENCE,
+                Constants.KEY_PREF_NOTIFICATION_STATUS_ICON,
+                Constants.KEY_PREF_NOTIFICATION_VISUAL_STYLE
+        };
+
+        private final String[] ENABLED_TO_UPDATE = {
                 Constants.KEY_PREF_INTERVAL_NOTIFICATION,
                 Constants.KEY_PREF_NOTIFICATION_PRESENCE,
                 Constants.KEY_PREF_NOTIFICATION_STATUS_ICON,
@@ -598,7 +614,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.pref_notification);
-
             final SwitchPreference notificationSwitch = (SwitchPreference) findPreference(
                     Constants.KEY_PREF_IS_NOTIFICATION_ENABLED);
             notificationSwitch.setOnPreferenceChangeListener(notificationListener);
@@ -626,43 +641,74 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                         Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_NOTIFICATION_ALARM_SERVICE");
                         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
                         getActivity().startService(intentToStartUpdate);
+                        updateSummaries(isEnabled);
+                        NotificationManager notificationManager =
+                            (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                        notificationManager.cancelAll();
                         return true;
                     }
                 };
 
         private void entrySummary(String key, boolean changing) {
-            ListPreference preference = (ListPreference) findPreference(key);
-            if (preference == null) {
-                return;
-            }
-            preference.setSummary(preference.getEntry());
-
-            if (Constants.KEY_PREF_NOTIFICATION_PRESENCE.equals(key)) {
-                if ("permanent".equals(preference.getValue()) || "on_lock_screen".equals(preference.getValue())) {
-                    SwitchPreference vibrate = (SwitchPreference) findPreference(Constants.KEY_PREF_VIBRATE);
-                    vibrate.setEnabled(false);
-                    vibrate.setChecked(false);
+            if (Constants.KEY_PREF_IS_NOTIFICATION_ENABLED.equals(key)) {
+                SwitchPreference switchPreference = (SwitchPreference) findPreference(key);
+                if (switchPreference == null) {
+                    return;
+                }
+                if (updateBySensor) {
+                    switchPreference.setEnabled(false);
                 } else {
-                    SwitchPreference vibrate = (SwitchPreference) findPreference(Constants.KEY_PREF_VIBRATE);
-                    vibrate.setEnabled(true);
+                    switchPreference.setEnabled(true);
+                }
+            } else {
+                SwitchPreference switchPreference = (SwitchPreference) findPreference(Constants.KEY_PREF_IS_NOTIFICATION_ENABLED);
+                
+                ListPreference preference = (ListPreference) findPreference(key);
+                if (preference == null) {
+                    return;
+                }
+                preference.setSummary(preference.getEntry());
+                if (Constants.KEY_PREF_NOTIFICATION_PRESENCE.equals(key)) {
+                    if (updateBySensor || !switchPreference.isChecked()) {
+                        preference.setValue("permanent");
+                        preference.setEnabled(false);
+                    } else {
+                        preference.setEnabled(true);
+                    }
+                    if ("permanent".equals(preference.getValue()) || "on_lock_screen".equals(preference.getValue())) {
+                        SwitchPreference vibrate = (SwitchPreference) findPreference(Constants.KEY_PREF_VIBRATE);
+                        vibrate.setEnabled(false);
+                        vibrate.setChecked(false);
+                    } else {
+                        SwitchPreference vibrate = (SwitchPreference) findPreference(Constants.KEY_PREF_VIBRATE);
+                        vibrate.setEnabled(true);
+                    }
+                    if (!"permanent".equals(preference.getValue())) {
+                        NotificationManager notificationManager =
+                                (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                        notificationManager.cancelAll();
+                    }
+                } else if (Constants.KEY_PREF_INTERVAL_NOTIFICATION.equals(key)) {
+                    if (updateBySensor || !switchPreference.isChecked()) {
+                        preference.setEnabled(false);
+                    } else {
+                        preference.setEnabled(true);
+                    }
+                } else {
+                    preference.setEnabled(true);
                 }
             }
             if ("permanent".equals(AppPreference.getNotificationPresence(getActivity()))) {
                 NotificationUtils.weatherNotification(getActivity(),
                         NotificationUtils.getLocationForNotification(getActivity()).getId());
             }
-            if ((Constants.KEY_PREF_NOTIFICATION_PRESENCE.equals(key)) && changing) {
-                if (!"permanent".equals(preference.getValue())) {
-                    NotificationManager notificationManager =
-                            (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
-                    notificationManager.cancelAll();
-                }
-
-            }
         }
 
         private void updateSummary(String key, boolean changing) {
             switch (key) {
+                case Constants.KEY_PREF_IS_NOTIFICATION_ENABLED:
+                    entrySummary(key, changing);
+                    break;
                 case Constants.KEY_PREF_INTERVAL_NOTIFICATION:
                     entrySummary(key, changing);
                     if (changing) {
@@ -688,6 +734,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             super.onResume();
             getPreferenceScreen().getSharedPreferences()
                     .registerOnSharedPreferenceChangeListener(this);
+            String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getActivity());
+            updateBySensor = "0".equals(updateAutoPeriodStr);
             updateSummaries();
         }
 
@@ -701,6 +749,45 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         private void updateSummaries() {
             for (String key : SUMMARIES_TO_UPDATE) {
                 updateSummary(key, false);
+            }
+        }
+
+        private void updateSummaries(boolean isNotificationEnabled) {
+            for (String key : ENABLED_TO_UPDATE) {
+                ListPreference preference = (ListPreference) findPreference(key);
+                if (preference == null) {
+                    return;
+                }
+                preference.setSummary(preference.getEntry());
+                if (Constants.KEY_PREF_NOTIFICATION_PRESENCE.equals(key)) {
+                    if (updateBySensor || !isNotificationEnabled) {
+                        preference.setValue("permanent");
+                        preference.setEnabled(false);
+                    } else {
+                        preference.setEnabled(true);
+                    }
+                    if ("permanent".equals(preference.getValue()) || "on_lock_screen".equals(preference.getValue())) {
+                        SwitchPreference vibrate = (SwitchPreference) findPreference(Constants.KEY_PREF_VIBRATE);
+                        vibrate.setEnabled(false);
+                        vibrate.setChecked(false);
+                    } else {
+                        SwitchPreference vibrate = (SwitchPreference) findPreference(Constants.KEY_PREF_VIBRATE);
+                        vibrate.setEnabled(true);
+                    }
+                    if (!"permanent".equals(preference.getValue())) {
+                        NotificationManager notificationManager =
+                                (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                        notificationManager.cancelAll();
+                    }
+                } else if (Constants.KEY_PREF_INTERVAL_NOTIFICATION.equals(key)) {
+                    if (updateBySensor || !isNotificationEnabled) {
+                        preference.setEnabled(false);
+                    } else {
+                        preference.setEnabled(true);
+                    }
+                } else {
+                    preference.setEnabled(true);
+                }
             }
         }
     }

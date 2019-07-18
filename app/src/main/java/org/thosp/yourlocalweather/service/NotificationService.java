@@ -1,25 +1,14 @@
 package org.thosp.yourlocalweather.service;
 
 import android.app.AlarmManager;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.SystemClock;
-import android.support.v4.app.NotificationCompat;
-
-import org.thosp.yourlocalweather.MainActivity;
-import org.thosp.yourlocalweather.R;
-import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
-import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
-import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
@@ -44,7 +33,9 @@ public class NotificationService extends AbstractCommonService {
 
     public void startWeatherCheck() {
         boolean isNotificationEnabled = AppPreference.isNotificationEnabled(getBaseContext());
-        if (!isNotificationEnabled) {
+        String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
+        boolean updateBySensor = "0".equals(updateAutoPeriodStr);
+        if (!isNotificationEnabled || updateBySensor) {
             return;
         }
         Location currentLocation = NotificationUtils.getLocationForNotification(this);

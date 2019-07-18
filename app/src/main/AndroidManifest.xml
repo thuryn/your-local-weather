@@ -16,6 +16,7 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -291,7 +292,9 @@
             </intent-filter>
         </service>
         <service
-            android:name=".service.SensorLocationUpdateService" >
+            android:name=".service.SensorLocationUpdateService"
+            android:enabled="true"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.START_SENSOR_BASED_UPDATES" />
                 <action android:name="android.intent.action.STOP_SENSOR_BASED_UPDATES" />

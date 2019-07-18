@@ -7,12 +7,9 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.location.Location;
 import android.os.Build;
 import android.os.IBinder;
 
-import java.util.LinkedList;
-import java.util.Queue;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -45,7 +42,7 @@ public class NetworkLocationCellsOnlyJob extends JobService {
         return true;
     }
 
-    private ServiceConnection networkLocationProviderConnection = new ServiceConnection() {
+    private final ServiceConnection networkLocationProviderConnection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName className,

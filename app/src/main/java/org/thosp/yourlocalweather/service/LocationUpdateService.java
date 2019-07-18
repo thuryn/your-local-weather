@@ -23,7 +23,6 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.PersistableBundle;
-import android.os.PowerManager;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
@@ -287,7 +286,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                         AppWakeUpManager.FALL_DOWN,
                         AppWakeUpManager.SOURCE_LOCATION_UPDATE
                 );
-                SensorLocationUpdater.getInstance(getBaseContext()).clearMeasuredLength();
+                sendIntent("android.intent.action.CLEAR_SENSOR_VALUES");
                 updateLocationInProcess = false;
             } else {
                 updateNetworkLocation(false, null, 0);
@@ -313,7 +312,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             locationManager.removeUpdates(gpsLocationListener);
             timerHandlerGpsLocation.removeCallbacksAndMessages(null);
             appendLog(getBaseContext(), TAG, "start START_LOCATION_UPDATE:locationsource is N or G");
-            startLocationUpdate(location, true);
+            startLocationUpdate(location);
             appendLog(getBaseContext(), TAG, "start START_LOCATION_UPDATE:locationSource G");
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
             org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
@@ -586,7 +585,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         }
 
         appendLog(getBaseContext(), TAG, "start START_LOCATION_UPDATE:locationsource is N or G");
-        startLocationUpdate(inputLocation, true);
+        startLocationUpdate(inputLocation);
         timerHandler.postDelayed(timerRunnable, LOCATION_TIMEOUT_IN_MS);
     }
 
@@ -756,19 +755,18 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                 SystemClock.elapsedRealtime() + timeInMilis, pendingIntent);
     }
 
-    private void startLocationUpdate(Location inputLocation, boolean resolveAddress) {
+    private void startLocationUpdate(Location inputLocation) {
         appendLog(getBaseContext(), TAG, "startLocationUpdate");
         if (networkLocationProvider == null) {
             networkLocationProviderActions.add(new NetworkLocationProviderActionData(
                     NetworkLocationProvider.NetworkLocationProviderActions.START_LOCATION_UPDATE,
-                    inputLocation,
-                    resolveAddress));
+                    inputLocation));
             return;
         }
-        networkLocationProvider.startLocationUpdate(inputLocation, resolveAddress);
+        networkLocationProvider.startLocationUpdate(inputLocation);
     }
 
-    private ServiceConnection networkLocationProviderConnection = new ServiceConnection() {
+    private final ServiceConnection networkLocationProviderConnection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName className,
@@ -780,7 +778,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
             while ((bindedServiceActions = networkLocationProviderActions.poll()) != null) {
                 switch (bindedServiceActions.getAction()) {
                     case START_LOCATION_UPDATE:
-                        networkLocationProvider.startLocationUpdate(bindedServiceActions.getInputLocation(), bindedServiceActions.isResolveAddress());
+                        networkLocationProvider.startLocationUpdate(bindedServiceActions.getInputLocation());
                         break;
                 }
             }
@@ -801,14 +799,11 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
     private class NetworkLocationProviderActionData {
         NetworkLocationProvider.NetworkLocationProviderActions action;
         Location inputLocation;
-        boolean resolveAddress;
 
         public NetworkLocationProviderActionData(NetworkLocationProvider.NetworkLocationProviderActions action,
-                                                 Location inputLocation,
-                                                 boolean resolveAddress) {
+                                                 Location inputLocation) {
             this.action = action;
             this.inputLocation = inputLocation;
-            this.resolveAddress = resolveAddress;
         }
 
         public NetworkLocationProvider.NetworkLocationProviderActions getAction() {
@@ -817,10 +812,6 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
 
         public Location getInputLocation() {
             return inputLocation;
-        }
-
-        public boolean isResolveAddress() {
-            return resolveAddress;
         }
     }
 }

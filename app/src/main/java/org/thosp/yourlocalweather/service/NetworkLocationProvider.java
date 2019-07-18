@@ -34,8 +34,6 @@ public class NetworkLocationProvider extends Service {
 
     private final IBinder binder = new NetworkLocationProviderBinder();
 
-    boolean resolveAddress;
-
     public TelephonyManager mTelephonyManager;
     WifiManager.WifiLock mWifiLock;
     private WifiManager wifiManager;
@@ -152,8 +150,7 @@ public class NetworkLocationProvider extends Service {
         getLocationFromWifisAndCells(null);
     }
 
-    public void startLocationUpdate(Location inputLocation, boolean resolveAddress) {
-        this.resolveAddress = resolveAddress;
+    public void startLocationUpdate(Location inputLocation) {
         if (nextScanningAllowedFrom != null) {
             Calendar now = Calendar.getInstance();
             if (now.before(nextScanningAllowedFrom)) {
@@ -161,11 +158,10 @@ public class NetworkLocationProvider extends Service {
             }
         }
         if (inputLocation != null) {
-            MozillaLocationService.getInstance(getBaseContext()).processUpdateOfLocation(getBaseContext(), inputLocation, resolveAddress);
+            MozillaLocationService.getInstance(getBaseContext()).processUpdateOfLocation(getBaseContext(), inputLocation);
         } else {
             sendUpdateToLocationBackends();
         }
-        return;
     }
 
     private void sendUpdateToLocationBackends() {
@@ -214,8 +210,7 @@ public class NetworkLocationProvider extends Service {
         MozillaLocationService.getInstance(getBaseContext()).getLocationFromCellsAndWifis(getBaseContext(),
                                                                           LocationNetworkSourcesService.getInstance().getCells(getBaseContext(),
                                                                           mTelephonyManager),
-                                                                          scans,
-                                                                          resolveAddress);
+                                                                          scans);
     }
 
     private PendingIntent getIntentToGetCellsOnly() {
