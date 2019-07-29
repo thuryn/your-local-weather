@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="enter_city_hint">Увядзіце горад</string>
     <string name="label_current_city">Цяперашні горад</string>
@@ -8,20 +8,17 @@
     <string name="alertDialog_location_permission_negativeButton">Адмяніць</string>
     <string name="progressDialog_gps_locate">Вызначаем цяперашняе месцазнаходжанне</string>
     <string name="load_progress">Загрузка…</string>
-
     <!-- Activity names -->
     <string name="title_activity_search">Пошук</string>
     <string name="label_activity_main">Актуальнае надвор\'е</string>
     <string name="label_activity_weather_forecast">Штодзённы прагноз</string>
     <string name="label_activity_graphs">Графікі</string>
     <string name="title_activity_license">Ліцэнзія на %s</string>
-
     <!-- Toolbar menu -->
     <string name="toolbar_menu_search_city">Знайсці горад</string>
     <string name="toolbar_menu_detect_location">Вызначыць месцазнахадженне</string>
     <string name="menu_action_toggle_values">Пераключэнне значэнняў</string>
     <string name="menu_action_toggle_yaxis">Пераключэнне восі Y</string>
-
     <!-- Navigation drawer -->
     <string name="nav_menu_current_weather">Актуальнае надвор\'е</string>
     <string name="nav_menu_daily_forecast">Штодзённы прагноз</string>
@@ -29,20 +26,16 @@
     <string name="nav_menu_settings">Налады</string>
     <string name="nav_feedback">Зваротная сувязь</string>
     <string name="nav_menu_bitcoin_donation">Ахвяраваць bitcoin</string>
-
     <!-- Toast messages -->
     <string name="connection_not_found">Адсутнічае падлучэнне да Інтэрнэту</string>
     <string name="toast_parse_error">Адбылася памылка. Паспрабуйце пазней.</string>
-
     <!-- Units and Measurement-->
     <string name="pressure_measurement">гПа</string>
     <string name="wind_speed_meters">м/с</string>
     <string name="wind_speed_miles">міль/г</string>
     <string name="millimetre_label">мм</string>
-
     <!-- Search Screen strings -->
     <string name="hint_activity_search">Пошук месцазнаходжання</string>
-
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Налады</string>
     <string name="pref_title_temperature">Тэмпература</string>
@@ -60,14 +53,12 @@
     <string name="preference_widget_title_update_period">Інтэрвал абнаўлення надвор\'я (мясціна 1, 2, 3, …)</string>
     <string name="preference_title_activity_general">Галоўныя налады</string>
     <string name="preference_title_activity_widget">Налады віджэтаў</string>
-
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">Аб дадатку</string>
     <string name="about_version_pref_title">Версія</string>
     <string name="about_source_code_pref_title">Зыходны код</string>
     <string name="about_app_license_pref_title">Ліцэнзія</string>
     <string name="about_open_source_licenses_pref_title">Вольныя праграмныя ліцэнзіі</string>
-
     <!-- Weather conditions label strings -->
     <string name="wind_label">Вецер: %1$s %2$s %3$s</string>
     <string name="rain_label">Дождж: %1$s %2$s</string>
@@ -86,13 +77,10 @@
     <string name="label_wind">Вецер</string>
     <string name="label_rain">Дождж</string>
     <string name="label_snow">Снег</string>
-
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description">Значок надвор\'я</string>
     <string name="widget_refresh_button">Кнопка абнаўлення</string>
-
     <!-- Donation Bitcoin dialog -->
-
     <!-- Wind directions -->
     <string name="wind_direction_north">Пн↓</string>
     <string name="wind_direction_north_east">ПнЎ↙</string>
@@ -104,7 +92,6 @@
     <string name="wind_direction_north_west">ПнЗ↘</string>
     <string name="toolbar_menu_refresh">Абнавіць</string>
     <string name="preference_hide_desc">Схаваць апісанне надвор\'я</string>
-
     <!-- Permission strings -->
     <string name="permission_location_rationale">Дазвол на атрыманне месцазнаходжання неабходны для вызначэння горада</string>
     <string name="permission_not_granted">Дазвол не атрыманы!</string>
@@ -112,17 +99,15 @@
     <string name="pref_language_default">System Default</string>
     <string name="pref_title_language">Мова</string>
     <string name="preference_title_category_display">Выгляд</string>
-<string name="theme_dark">Цёмная</string>
+    <string name="theme_dark">Цёмная</string>
     <string name="theme_light">Светлая</string>
     <string name="theme_transparent">Празрыстая</string>
     <string name="pref_title_theme">Тэма</string>
-    
     <string name="preference_widget_update_location">Абнавіць месцазнаходжанне</string>
     <string name="preference_widget_use_geocoder">Выкарыстоўваць геалакацыю для адлюстравання</string>
     <string name="preference_widget_theme_title">Тэма</string>
     <string name="permission_location_need">Даць дазвол на атрымання месцазнаходжання</string>
-
-    <string name="app_name" tools:ignore="MissingTranslation">Мясцовае надвор\'е</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Ваша надвор\'е</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Налады месцазнаходжання і дазволаў</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Прыкладанню патрабуецца дазвол на абнаўленне месцазнаходжання праз GPS.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Прыкладанню патрабуецца дазвол на абнаўленне месцазнаходжання праз Wi-Fi і GSM-сеткі.</string>
@@ -130,7 +115,6 @@
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Запыт дазволаў</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Месцазнаходжанне не знойдзена</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Дазволы не атрыманыя — у прыкладанні націсніце на сімвал месцазнаходжання</string>
-
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Закрыць</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Далей</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Назад</string>
@@ -167,9 +151,7 @@
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Ціск</string>
     <string name="ok" tools:ignore="MissingTranslation">Добра</string>
     <string name="cancel" tools:ignore="MissingTranslation">Адмяніць</string>
-
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Дапамога</string>
-
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">мм рт. сл.</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">км/г</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Вецер</string>
@@ -181,4 +163,5 @@
 \nНаступны экран дасць тлумачэнне аб запытаных дазволах і даць вам магчымасць дазволіць іх. 
 \n  
 \nАтрымлівайце асалоду ад прыкладання.</string>
-    </resources>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Аптымізацыя батарэі</string>
+</resources>
