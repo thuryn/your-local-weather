@@ -99,7 +99,7 @@
     <string name="pref_language_default">Langue par défaut du système</string>
     <string name="pref_title_language">Langue</string>
     <string name="preference_title_category_display">Affichage</string>
-    <string name="app_name" tools:ignore="MissingTranslation">Votre météo locale</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Vos prévisions</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Paramètres de Localisation et de Permissions</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">L\'application nécessite une autorisation pour mettre à jour la localisation par GPS.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">L\'application nécessite une autorisation pour mettre à jour la localisation par réseaux Wi-Fi et GSM.</string>
@@ -173,7 +173,7 @@
         <b>Localisation et source d\'adresse</b>
 \nVous pouvez sélectionner le moyen de récupération de la localisation et de l\'adresse.</string>
     <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">
-        <b>MLS local et Nominatim</b> — L\'application récupère l\'emplacement par les services de localisation de Mozilla. L\'application utiliser les informations sur les stations de bases actives et disponibles du réseau cellulaire. La permission de passer des appels téléphoniques est requise pour récupérer cette information. L\'application utilise les réseau wifi aux alentours pour deviner votre emplacement avec plus de précision. L\'application récupère les coordonnées à partir du service de localisation de Mozilla. Elle utilise Nominatim pour récupère l’adresse à partir des coordonnées. Si vous voulez aider à avoir une meilleure précision du service de localisation de Mozilla, vous pouvez contribuer en installant l\'application Mozilla Stumbler (disponible sur https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler).</string>
+        <b>MLS local et Nominatim</b> — L\'application récupère l\'emplacement et les coordonnées géographiques par les services de localisation de Mozilla. Nominatim récupère l\'adresse à partir de ces coordonnées. vous pouvez contribuer à améliorer MLS en installant Mozilla Stumbler (disponible sur https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler). Vous pouvez accéder aux informations sur les stations de base actives et disponibles du réseau cellulaire en donnant la permission de passer des appels téléphoniques. Les réseaux Wi-Fi autour de vous sont utilisés pour trouver une position plus précise.</string>
     <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
         <b>Système</b> — L\'application récupère la localisation et l\'adresse par les services système d\'Android (habituellement les services de localisation de Google).</string>
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Ces options paramètres la <b>langue</b>, le <b>thème</b> de l\'application principale et le <b>thème d\'icônes</b> utilisés dans l\'application et les widgets.</string>
@@ -363,7 +363,7 @@
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 jours</string>
     <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 jours</string>
     <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Licenses libres</string>
-    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Quelle régularité de mise à jour</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Régularité de mise à jour</string>
     <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Présence de la notification</string>
     <string name="notification_when_updated" tools:ignore="MissingTranslation">À la mise à jour</string>
     <string name="notification_permanent" tools:ignore="MissingTranslation">En permanence</string>
@@ -414,7 +414,7 @@
     <string name="weather_condition_description_601" tools:ignore="MissingTranslation">neige</string>
     <string name="weather_condition_description_602" tools:ignore="MissingTranslation">neige abondante</string>
     <string name="weather_condition_description_611" tools:ignore="MissingTranslation">neige fondue</string>
-    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">Pluie et neige</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">pluie et neige</string>
     <string name="weather_condition_description_701" tools:ignore="MissingTranslation">brouillard</string>
     <string name="weather_condition_description_711" tools:ignore="MissingTranslation">fumée</string>
     <string name="weather_condition_description_721" tools:ignore="MissingTranslation">brume</string>
@@ -471,4 +471,26 @@
     <string name="pref_language_bg" tools:ignore="MissingTranslation">Bulgare</string>
     <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Chinois (traditionnel)</string>
     <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhi</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">orage turbulent</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">orage avec forte bruine</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">légère bruine</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">forte bruine</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">légère pluie</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">pluie</string>
+    <string name="weather_condition_description_312" tools:ignore="MissingTranslation">forte pluie</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">averse et bruine</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">forte averse et bruine</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">averse</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">faibles averses</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">averse</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">très fortes averses</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">averses turbulentes</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">averse de neige fondue</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">légères pluies et neige</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">légère averse de neige</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">averse de neige</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">forte averse de neige</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">nuages fragmentés</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">ciel couvert</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Beaufort</string>
 </resources>
