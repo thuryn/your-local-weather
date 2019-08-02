@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="enter_city_hint">Увядзіце горад</string>
-    <string name="label_current_city">Цяперашні горад</string>
-    <string name="label_choose_city">Выбраць горад</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings">Прыкладанне наладжанае на абнаўленне месцазнаходжання. Павінен быць доступ для яго атрымання. Ідзіце ў налады прылады і ўключыце вызначэнне месцазнаходжання ці выключыце гэта ў прыкладанні.</string>
+    <string name="label_current_city">Бягучы горад</string>
+    <string name="label_choose_city">Абраць горад</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">Дадатак наладжаны на абнаўленне месцазнаходжання. Павінен быць доступ для яго атрымання. Перайдзіце ў налады прылады і ўключыце вызначэнне месцазнаходжання ці выключыце гэта ў дадатку.</string>
     <string name="alertDialog_location_permission_positiveButton_settings">Налады прылады</string>
-    <string name="alertDialog_location_permission_negativeButton">Адмяніць</string>
-    <string name="progressDialog_gps_locate">Вызначаем цяперашняе месцазнаходжанне</string>
+    <string name="alertDialog_location_permission_negativeButton">Скасаваць</string>
+    <string name="progressDialog_gps_locate">Вызначыць бягучае месцазнаходжанне</string>
     <string name="load_progress">Загрузка…</string>
     <!-- Activity names -->
     <string name="title_activity_search">Пошук</string>
@@ -109,29 +109,29 @@
     <string name="permission_location_need">Даць дазвол на атрымання месцазнаходжання</string>
     <string name="app_name" tools:ignore="MissingTranslation">Ваша надвор\'е</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Налады месцазнаходжання і дазволаў</string>
-    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Прыкладанню патрабуецца дазвол на абнаўленне месцазнаходжання праз GPS.</string>
-    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Прыкладанню патрабуецца дазвол на абнаўленне месцазнаходжання праз Wi-Fi і GSM-сеткі.</string>
-    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Прыкладанню патрабуецца дазвол на чытанне звестак з прылады для абнаўлення месцазнаходжання праз Wi-Fi і GSM-сеткі. Гэта дазваляе атрымоўваць звесткі аб падключанай базавай станцыі GSM.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Дадатку патрабуецца дазвол на абнаўленне месцазнаходжання па GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Дадатку патрабуецца дазвол на абнаўленне месцазнаходжання праз Wi-Fi і GSM-сеткі.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Дадатку патрабуецца дазвол на чытанне звестак з прылады для абнаўлення месцазнаходжання праз Wi-Fi і GSM-сеткі. Гэта дазваляе атрымліваць звесткі пра падключаную базавую станцыю GSM.</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Запыт дазволаў</string>
-    <string name="location_not_found" tools:ignore="MissingTranslation">Месцазнаходжанне не знойдзена</string>
-    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Дазволы не атрыманыя — у прыкладанні націсніце на сімвал месцазнаходжання</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Месцазнаходжанне не вызначана</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Дазволы не атрыманыя — у дадатку націсніце на сімвал месцазнаходжання</string>
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Закрыць</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Далей</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Назад</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Завяршыць</string>
-    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Кіраўніцтва па пачатковай канфігурацыі</string>
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Змяняючы прыкладанне ў адпаведнасці з вашымі патрэбамі, вы можаце абраць наступную стратэгію абнаўлення. 
-\nКаб адступіць ад агаданага значэння абнаўляння, вы можаце скарыстацца <i>Не абнаўляць месцазнаходжанне</i>.</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Дапаможнік па пачатковай наладцы</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Падладжваючы дадатак адпаведна вашым патрэбам, вы можаце абраць наступную стратэгію абнаўлення. 
+\nКаб адхіліцца ад прадвызначанага значэння абнаўлення, вы можаце абраць <i>Не абнаўляць месцазнаходжанне</i>.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Абнавіць налады месцазнаходжання</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Крыніцы месцазнаходжання</string>
-    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Вы можаце абраць метад атрымання месцазнаходжання. <i>Сістэма</i> — выкарыстоўваць сервісы Google для атрымання месцазнаходжання па сеткам (сотавам ці Wi-Fi). <i>Лакальны MLS і Nominatim</i> — выкарыстоўваць сервіс месцазнаходжання Mozilla для атрымання каардынат і сервіс Nominatim для атрымання назваў мясцін. Другі варыянт патрабуе дазвол на кіраванне тэлефоннымі выклікамі, каб атрымаць інфармацыю аб сотавай сетцы. Пажаданы варыянт абраны загадзя.</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Вы можаце абраць метад атрымання месцазнаходжання. <i>Сістэма</i> — выкарыстоўвае службы Google для атрымання месцазнаходжання па сетках (сотавых ці Wi-Fi). <i>Лакальны MLS і Nominatim</i> — выкарыстоўвае службу месцазнаходжання Mozilla для атрымання каардынат і службу Nominatim для атрымання назваў мясцін. Другі варыянт патрабуе дазвол на кіраванне тэлефоннымі выклікамі, каб атрымаць інфармацыю пра сотавую сетку. Пажаданы варыянт абраны загадзя.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Крыніца месцазнаходжання і адраса</string>
-    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Варыянт стратэгіі пабудкі</string>
-    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Некаторыя мадэлі тэлефонаў не паведамляюць аб злучаных сотах, калі экран выключаны. Пераважны варыянт (з уключаным экранам) мае недахоп, што тэлефон уключыць экран на некалькі секунд. Гэта аказвае невялікі ўплыў на зарад батарэі. Пачніце з уключанай опцыяй, а пазней паспрабуйце выключыць яе і паназіраць за абнаўленнем месцазнаходжання.</string>
-    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Стратэгія пабудкі</string>
-    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Варыянты кэшу атрыманых адрасоў</string>
-    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Вы можаце зберагчы сеткавы трафік захоўваючы ў кэшы атрыманае месцазнаходжанне. Месцы захоўваюцца ў прыкладанні — не перадаюцца, і не захоўваюцца ў іншым месцы ў сетцы.</string>
-    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Кэшавання атрыманых адрасоў</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Варыянт стратэгіі абуджэння</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Некаторыя мадэлі тэлефонаў не могуць адлюстроўваць падлучэнне да сотаў, калі экран выключаны. Пераважны варыянт (з уключаным экранам) мае недахоп, што тэлефон уключыць экран на некалькі секунд. Гэта аказвае невялікі ўплыў на зарад батарэі. Пачніце з уключаным параметрам, а пазней паспрабуйце выключыць яго і паназіраць за абнаўленнем месцазнаходжання.</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Стратэгія абуджэння</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Параметр дазволенага адрасу кэшу</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Вы можаце зберагчы трафік захоўваючы ў кэшы атрыманыя месцазнаходжанні. Мясціны нікуды не перадаюцца, і не захоўваюцца ў іншым месцы ў сетцы.</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Кэшаванне атрыманых адрасоў</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Віншуем</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Асноўнае</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Асноўнае прыкладанне</string>
@@ -159,9 +159,30 @@
     <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Налады абнаўлення месцазнаходжання</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Паказаць меткі ў віджыце</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Сістэмная</string>
-    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">На гэтым завяршаецца кіраўніцтва па наладам. Вы можаце знайсці іншыя параметры ў меню налад (напрыклад, мова, адзінкі вымярэння і г.д.). 
-\nНаступны экран дасць тлумачэнне аб запытаных дазволах і даць вам магчымасць дазволіць іх. 
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Вы завяршылі першапачатковую наладку. Вы можаце знайсці іншыя параметры ў меню налад (напрыклад, мова, адзінкі вымярэння і г.д.). 
+\nНа наступным экране можна знайсці тлумачэнні пра дазволы і атрымаць магчымасць наладзіць іх. 
 \n  
-\nАтрымлівайце асалоду ад прыкладання.</string>
+\nАтрымлівайце асалоду ад выкарыстання.</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Аптымізацыя батарэі</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Доступ сыйшоў. Калі ласка, абнавіце дадатак.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Ваш OpenweathermapApiKey не зарэгістраваны.</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Дадатак папросіць вас адключыць аптымізацыю батарэю для абнаўлення месцазнаходжання, надвор\'я або, каб вызначыць месцазнаходжанне пры дапамозе акселерометра ў фонавым рэжыме.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Працягнуць</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Скасаваць</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Падзяліцца надвор’ем</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Дадаткаў камунікацыі не знойдзена</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Горад: %1$s
+\nТэмпература: %2$s
+\nАпісанне: %3$s
+\nВецер: %4$s %5$s
+\nУзыход: %6$s
+\nЗаход: %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Ваша мясцовае надвор’е</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Апавяшчэнні пра ваша надвор\'е</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Тэмпература</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Вецер</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Дождж</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Снег</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Ціск</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">На дадзены момант вам не дазволена мець больш за %1$d мясцін.</string>
 </resources>
