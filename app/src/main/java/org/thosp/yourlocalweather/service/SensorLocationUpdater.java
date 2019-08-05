@@ -170,8 +170,14 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
             return;
         }
 
-        if (updateNetworkLocation()) {
-            clearMeasuredLength();
+        clearMeasuredLength();
+
+        if (!updateNetworkLocation()) {
+            stopRefreshRotation("updateNetworkLocation", 3);
+            sendMessageToWakeUpService(
+                    AppWakeUpManager.FALL_DOWN,
+                    AppWakeUpManager.SOURCE_LOCATION_UPDATE
+            );
         }
     }
 
