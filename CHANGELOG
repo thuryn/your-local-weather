@@ -1,3 +1,6 @@
+v4,7,7
+Several small fixies regarding the update of location, fix accelerometer on Android PIE, added translations
+
 v4.7.6
 Added PSI unit for the pressure
 
