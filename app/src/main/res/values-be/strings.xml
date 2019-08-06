@@ -79,7 +79,7 @@
     <string name="label_snow">Снег</string>
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description">Значок бягучага надвор\'я</string>
-    <string name="widget_refresh_button">Кнопка абнаўлення віджэту</string>
+    <string name="widget_refresh_button">Кнопка абнаўлення віджэта</string>
     <!-- Donation Bitcoin dialog -->
     <!-- Wind directions -->
     <string name="wind_direction_north">Пн↓</string>
@@ -105,7 +105,7 @@
     <string name="pref_title_theme">Тэма</string>
     <string name="preference_widget_update_location">Абнавіць месцазнаходжанне</string>
     <string name="preference_widget_use_geocoder">Выкарыстоўваць геалакацыю для адлюстравання</string>
-    <string name="preference_widget_theme_title">Тэма віджэту</string>
+    <string name="preference_widget_theme_title">Тэма віджэта</string>
     <string name="permission_location_need">Даць дазвол на атрыманне месцазнаходжання</string>
     <string name="app_name" tools:ignore="MissingTranslation">Ваша надвор\'е</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Налады месцазнаходжання і дазволаў</string>
@@ -157,8 +157,8 @@
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Вецер</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Ціск</string>
     <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Налады абнаўлення месцазнаходжання</string>
-    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Паказваць адмеціны ў віджэце</string>
-    <string name="location_geocoder_system" tools:ignore="MissingTranslation">Сістэма</string>
+    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Паказваць адмеціны на віджэце</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">Сістэмны</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Вы завяршылі першапачатковую наладку. Вы можаце знайсці іншыя параметры ў меню налад (напрыклад, мова, адзінкі вымярэння і г.д.). 
 \nНа наступным экране можна знайсці тлумачэнні пра дазволы і атрымаць магчымасць наладзіць іх. 
 \n  
@@ -191,14 +191,14 @@
     <string name="update_period_by_sensors" tools:ignore="MissingTranslation">Праз акселерометр</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Крыніца месцазнаходжання і адрасу</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Local MLS і Nominatim (рэкамендуецца)</string>
-    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Паказаць зводку абнаўлення</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Паказваць статус абнаўлення</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Нічога</string>
-    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Абноўлены толькі значэнні</string>
-    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Абноўленае значэнне з крыніцай месцазнаходжання</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Толькі абнаўленне значэння</string>
+    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Значэнне з крыніцай месцазнаходжання</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Стратэгія абуджэння</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">Не абуджаць</string>
-    <string name="wakeuppartial_label" tools:ignore="MissingTranslation">Абуджаць толькі з ЦП</string>
-    <string name="wakeupfull_label" tools:ignore="MissingTranslation">Абуджаць з дысплеям</string>
+    <string name="wakeuppartial_label" tools:ignore="MissingTranslation">Абуджаць ЦП</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">Абуджаць дысплей</string>
     <string name="clear_cache_button" tools:ignore="MissingTranslation">Ачысціць кэш</string>
     <string name="db_info" tools:ignore="MissingTranslation">Інфармацыя пра кэш</string>
     <string name="db_header" tools:ignore="MissingTranslation">Кэш базы даных адрасоў</string>
@@ -226,12 +226,12 @@
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Значкі на аснове шрыфту</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Чырвоныя значкі Merlin</string>
     <string name="help_page_general_content" tools:ignore="MissingTranslation">Дадатак для вызначэння месцазнаходжання выкарыстоўвае сотавую сетку, Wi-Fi, а калі не атрымалася, то GPS, атрымліваючы каардынаты ад службы Mozilla. Дадатку патрабуецца: адна базавая станцыя сеткі GSM, або дзве дасягальныя сеткі WiFi, або любое спалучэнне сетак GSM і Wi-Fi. Выкарыстоўваючы віджэт на вашым тэлефоне або планшэце, вы можаце ўбачыць сваё месцазнаходжанне і бягучае надвор\'е на галоўным экране. Абнаўленне месцазнаходжання можа быць перыядычным, або дадатак можа выкарыстоўваць акселерометр для выяўлення перамяшчэнняў. Вы можаце выключыць абнаўленне месцазнаходжання, і абнаўляць пры неабходнасці. Дадатак абнаўляе месцазнаходжанне і надвор\'е ў пэўныя прамежкі часу. Вы можаце наладзіць перыяд абнаўлення, напрыклад, штогадзіну. Надвор\'е абнаўляецца адразу пасля абнаўлення месцазнаходжання, або калі экран уключаны - але не часцей, чым раз на 15 хвілін (і калі надвор\'е не абнаўляецца апошнія 15 хвілін). Гэтыя звесткі выкарыстоўваюцца для атрымання каардынат месцазнаходжання пры дапамозе службы вызначэння месцазнаходжання Mozilla. Дадатак спрабуе выкарыстоўваць GPS, калі сотавыя сеткі і сеткі Wi-Fi недаступныя. Каардынаты выкарыстоўваюцца для атрымання адрасу службай Nominatim. Адрас выкарыстоўваецца ў дадатку або віджэтах. Дадатак для вызначэння надвор\'я выкарыстоўвае службу openweathermap.org.</string>
-    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Галоўны дадатак змяшчае агляд бягучага надвор\'я. Вы можаце абнавіць даныя пра надвор\'е кропкай на панэлі або пацягнуўшы ўніз. Вы можаце знайсці кнопку абнаўлення месцазнаходжання побач з кнопкай абнаўлення надвор\'я. Гэтая кнопка даступная толькі тады, калі ў наладах абнаўлення абрана значэнне 0 (0 - аўтаматычнае абнаўлення месцазнаходжання).</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Галоўны дадатак змяшчае агляд бягучага надвор\'я. Вы можаце абнавіць даныя пра надвор\'е кнопкай на панэлі або пацягнуўшы ўніз. Вы можаце знайсці кнопку абнаўлення месцазнаходжання побач з кнопкай абнаўлення надвор\'я. Гэтая кнопка даступная толькі тады, калі ў наладах абнаўлення абрана значэнне 0 (0 - аўтаматычнае абнаўлення месцазнаходжання).</string>
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Трэці экран змяшчае прагноз надвор’я ў выглядзе графікаў.</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">Гэтыя параметры ўплываюць на ўвесь дадатак.</string>
     <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Вы можаце выдаліць адрасы з кэшу кнопкай <b>Ачысціць кэш</b>.</string>
     <string name="help_page_4_content" tools:ignore="MissingTranslation">Налады віджэтаў змяшчаюць канфігурацыю для ўсіх віджэтаў.</string>
-    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Месцазнаходжанне кэшу</string>
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Кэшаванне мясцін</string>
     <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Знойдзеныя мясціны захоўваюцца ў кэшы</string>
     <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Знойдзеныя мясціны не захоўваюцца ў кэшы</string>
     <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Адкрыць меню навігацыі</string>
@@ -249,7 +249,7 @@
     <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Уключаць GPS пры неабходнасці</string>
     <string name="update_period_nothing" tools:ignore="MissingTranslation">Толькі ўласнаручна</string>
     <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Перыяд абнаўлення месцазнаходжання (Мясціна 0)</string>
-    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Абнавіць месцазнаходжанне і надвор\'е</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Абнаўленне месцазнаходжання і надвор\'я</string>
     <string name="locations_delete_location" tools:ignore="MissingTranslation">Выдаліць</string>
     <string name="locations_disable_location" tools:ignore="MissingTranslation">Выключыць</string>
     <string name="locations_enable_location" tools:ignore="MissingTranslation">Уключыць</string>
@@ -288,7 +288,7 @@
     <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Напрамак ветру</string>
     <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
     <string name="pref_title_time_style" tools:ignore="MissingTranslation">Фармат часу</string>
-    <string name="time_style_system" tools:ignore="MissingTranslation">Сістэма</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">Сістэмны</string>
     <string name="time_style_12_h" tools:ignore="MissingTranslation">12 гадзін AM / PM</string>
     <string name="time_style_24_h" tools:ignore="MissingTranslation">24 гадзіны</string>
     <string name="pref_language_sv" tools:ignore="MissingTranslation">Svenska (Шведская)</string>
@@ -343,7 +343,7 @@
     <string name="weather_condition_description_762" tools:ignore="MissingTranslation">вулканічны попел</string>
     <string name="weather_condition_description_771" tools:ignore="MissingTranslation">шквалы</string>
     <string name="weather_condition_description_781" tools:ignore="MissingTranslation">тарнада</string>
-    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">чыстае неба</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">яснае неба</string>
     <string name="weather_condition_description_801" tools:ignore="MissingTranslation">невялікія аблокі</string>
     <string name="weather_condition_description_802" tools:ignore="MissingTranslation">рассеяныя аблокі</string>
     <string name="weather_condition_description_803" tools:ignore="MissingTranslation">раскіданыя хмары</string>
@@ -445,4 +445,50 @@
     <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Кітайская (традыцыйная)</string>
     <string name="pref_language_sd" tools:ignore="MissingTranslation">Сіндзі</string>
     <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Бафорт</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">"- - абнаўленне месцазнаходжання і/або надвор\'я 
+\n. - месцазнаходжанне недаступна, надвор\'е абнавілася па апошняй мясціне
+\nW - абнавілася толькі надвор\'е  
+\n L - абнавілася толькі месцазнаходжанне
+\nG - абнавілася месцазнаходжанне і надвор\'е па GPS
+\nN -  абнавіліся месцазнаходжанне і надвор\'е па сетцы
+\nB - доступ да openweathermap.org быў забаронены, калі ласка,  паспрабуйце абнавіць надвор\'е пазней 
+\nЕ - токен доступу да Openweathermap.org сыйшоў. Абнавіце дадатак, каб атрымаць доступ зноў"</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">"W - абнавілася толькі надвор\'е  
+\n L - абнавілася толькі месцазнаходжанне
+\nG - абнавіліся месцазнаходжанне і надвор\'е па GPS
+\nN -  абнавіліся месцазнаходжанне і надвор\'е па сетцы
+\nNi - абнавілася месцазнаходжанне па сотавай сетцы і надвор\'е, месцазнаходжанне вызначана службай Mozilla 
+\nB - доступ да openweathermap.org быў забаронены, калі ласка,  паспрабуйце абнавіць надвор\'е пазней 
+\nЕ - токен доступу да Openweathermap.org сыйшоў. Абнавіце дадатак, каб атрымаць доступ зноў"</string>
+    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Калі вызначэнне месцазнаходжання схібіла падчас сну прылады, вы можаце паспрабаваць узнавіць яго, калі пачнецца пошук сотавай сеткі</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Вы можаце знайсці прагноз надвор\'я на наступным экране (абярыце наступны экран у меню або правядзіце па экране злева направа). Прагноз надвор\'я абнаўляецца кнопкай абнаўлення або пры ўваходзе на экран (але не больш за адно абнаўленне за гадзіну).</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">"Дадатак мае тры віджэты, на якіх змяшчаюцца сярэднія значэнні бягучага надвор\'я (напрыклад, тэмпература). Некаторыя значэнні характэрныя толькі для пэўнага віджэта (напрыклад, заход). У правым куце кожнага віджэта адлюстроўваецца час апошняга абнаўлення. Вы можаце паглядзець, што было абноўлена апошнім разам (калі ўключылі гэты параметр у меню налад). Вы можаце знайсці кнопку абнаўлення побач з апошнім часам абнаўлення. Пры націсканні на гэтую кнопку надвор\'е (мясціна,  пры абраным параметры абнаўлення мясціны) абновіцца. Апошні параметр на віджэце - змена месцазнаходжання, пры націску на тэкст бягучай мясціны яна зменіцца на наступную."</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
+        <b>Тэмпература</b> - Можна абраць адзінкі вымярэння тэмпературы, <b>Вецер</b> - Можна абраць адзінкі вымярэння хуткасці і <b>Ціск</b> - Можна абраць адзінкі вымярэння. Значэнні пералічацца згодна абраных параметраў.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">
+        <b>Хаваць апісанне надвор\'я</b> - апісанне бягучага надвор\'я схавана. Вы можаце бачыць надвор\'е толькі па значках.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation">
+        <b>Перыяд абнаўлення месцазнаходжання (Мясціна 0)</b> - вы можаце вызначыць перыяд абнаўлення мясціны 0 - мясціна 0 можа абнавіць месцазнаходжанне па сотавай сетцы, сетках Wi-Fi і GPS. Калі вы націскаеце абнавіць <i>па акселерометры</i>" дадатак выкарыстоўвае яго для выяўлення руху. Так разлічваецца адлегласць. Калі дасягаецца ліміт адлегласці, і цягам 15 хвілін не было абнаўленняў, месцазнаходжанне і надвор\'е абновяцца. Калі дадатак не можа вызначыць месцазнаходжанне, на віджэце з’явіцца значок невядомай мясціны. Калі ў дадатку не атрымалася вызначыць месцазнаходжанне, ён паспрабуе зноў праз 5 хвілін.  Таксама вы можаце наладзіць абнаўленне па інтэрвалах у"<b>Інтэрвал абнаўлення надвор\'я (Мясціна 1,2,3...)</b>, дзе можаце наладзіць абнаўленне ўласнаручна дададзеных мясцін.</string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Калі вы абіраеце параметр<b>Уключаць GPS пры неабходнасці</b>, дадатак спрабуе вызначыць месцазнаходжанне па сотавай сетцы ці сетках wifi. Калі гэта будзе немагчыма, дадатак на некалькі секунд уключыць GPS, каб вызначыць месцазнаходжанне.</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">
+        <b>Месцазнаходжанне і крыніца адрасу</b> 
+\nВы можаце абраць крыніцу вызначэння месцазнаходжання.</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">
+        <b> Лакальныя MLS і Nominatim </b> - Дадатак атрымлівае месцазнаходжанне і геаграфічныя каардынаты ад службаў вызначэння месцазнаходжання Mozilla. Службы Nominatim бяруць адрас з гэтых каардынатаў. Вы можаце дапамагчы палепшыць MLS, усталяваўшы Mozilla Stumbler (даступны на https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler). Атрымайце інфармацыю пра бягучыя актыўныя і даступныя базавыя станцыі сотавай сеткі, даўшы дазвол на тэлефонны выклік. Сеткі Wi-Fi вакол вас выкарыстоўваюцца для больш дакладнага вызначэння вашага месцазнаходжання.</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
+        <b>System</b> - Дадатак атрымлівае звесткі пра месцазнаходжанне і адрас праз сістэмныя службы Android (звычайна Google location services).</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">У гэтым меню можна абраць <b>мова</b>, <b>тэма</b> дадатку і <b>набор значкоў</b> і віджэты.</string>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">
+        <b>Апавяшчэнні</b> 
+\nКалі вы абіраеце параметр апавяшчэнняў, дадатак абнаўляе надвор\'е перыядычна. Бягучае надвор\'е размяшчаецца на прасторы апавяшчэнняў. Таксама можна ўключыць вібрацыю падчас абнаўленняў.</string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">Каб захаваць сеткавы трафік і паскорыць абнаўленне месцазнаходжання, вы можаце ўключыць <b> Кэшаванне мясцін </b>". У кэшы будуць захоўвацца геаграфічныя каардынаты і адрас. Дадатак будзе апрошваць  сетку незалежна ад гэтага параметра, але звяртацца да Nominatim будзе толькі ў тым выпадку, калі адрасу няма ў кэшы. Пры ўключэнні параметра вы мусіце прыняць той факт, што адрасы, якія вы наведалі, захоўваюцца ў дадатку. Ніякая інфармацыя не адпраўляецца па-за межы дадатку."</string>
+    <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Побач з параметрам ёсць яшчэ адзін <b>Час захоўвання кэшу</b>. Кожны адрас захоўваецца пэўны час. Калі час захоўвання большы за вызначаны ў наладах, дадатак будзе звяртацца да Nominatim для абнаўлення.</string>
+    <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">Вы можаце ўбачыць запісы кэшу ў раздзеле<b>Інфармацыя пра кэш</b> .</string>
+    <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Калі вы ўключыце параметр <b>Паказваць адмеціны на віджэце</b> , замест значкоў будуць адлюстроўвацца адмеціны са значэннямі.</string>
+    <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Вы можаце кіраваць колерам фону віджэта <b>Тэма віджэта</b>.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">Параметр <b>Стратэгія абуджэння </b> патрэбны для пераадолення няправільнай рэалізацыі службы Android рознымі пастаўшчыкамі. Калі вы абіраеце параметр <i> Не абуджаць </i> і месцазнаходжанне абнаўляецца правільна, у вас правільная рэалізацыя. Калі месцазнаходжанне не абнаўляецца належным чынам, вы можаце паспрабаваць <i> Абуджаць ЦП </i>. Гэтая параметр абудзіць працэсар і паспрабуе прачытаць стан сотавай сеткі і Wi-Fi. Апошні параметр <i> Абуджаць дысплей </i> - гэта параметр, які ўключае экран на некалькі секунд падчас абнаўлення месцазнаходжання. На некаторых тэлефонах з Android гэта адзіная магчымасць атрымаць правільную інфармацыю пра сотавыя і Wi-Fi сеткі. Пры гэтым спажываецца пэўная колькасць зараду батарэі, але яна нязначная.</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Калі выконваецца абнаўленне месцазнаходжання і бягучага надвор\'я, вы можаце бачыць статус абнаўлення побач з часам абнаўлення на віджэце. Вы можаце кіраваць адлюстроўваемымі значэннямі ў параметры <b> Паказваць статус абнаўлення </b>. Ніжэй падаюцца значэнні варыянтаў:</string>
+    <string name="help_page_5_content" tools:ignore="MissingTranslation">Ёсць параметры для ўключэння адладачнай інфармацыі ў файл журнала. Гэты параметр карысны, калі з дадаткам ўзнікаюць праблемы.</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">"Побач з кнопкай абнаўлення месцазнаходжання ёсць кнопка кіравання мясцінамі (значок лупы). Вы можаце кіраваць даступнымі мясцінамі ў дадатку і віджэце. Ёсць адна прадвызначана даступная мясціна (0), прызначаная для аўтаматычнага абнаўлення месцазнаходжання. Вы можаце знайсці кнопку ўключэння/выключэння, ссоўваючы мясціну ўлева. Вы таксама можаце дадаць мясціну ўласнаручна. Націснуўшы \" + \",  можна абраць сваё месцазнаходжанне на мапе. Вы таксама можаце выдаліць месцазнаходжанне пры дапамозе кнопкі \"Выдаліць\", якую можна знайсці ссунуўшы месцазнаходжанне ўлева."</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Кнопка налад дзеянняў віджэта</string>
 </resources>
