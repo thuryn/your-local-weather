@@ -346,7 +346,7 @@
     <string name="weather_condition_description_800" tools:ignore="MissingTranslation">яснае неба</string>
     <string name="weather_condition_description_801" tools:ignore="MissingTranslation">невялікія аблокі</string>
     <string name="weather_condition_description_802" tools:ignore="MissingTranslation">рассеяныя аблокі</string>
-    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">раскіданыя хмары</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">рассеяныя аблокі</string>
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">пахмурна</string>
     <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Ліцэнзіі вольнага праграмнага забеспячэння</string>
     <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
