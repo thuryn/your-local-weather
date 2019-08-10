@@ -304,10 +304,10 @@ public class TemperatureUtil {
         int roundedNumber = Math.round(number);
         if (roundedNumber == 0) {
             return R.drawable.zero0;
-        } else if (roundedNumber < -50) {
-            return R.drawable.less_minus50;
-        } else if (roundedNumber > 50) {
-            return R.drawable.more50;
+        } else if (roundedNumber < -60) {
+            return R.drawable.less_minus60;
+        } else if (roundedNumber > 120) {
+            return R.drawable.more120;
         }
         try {
             String fileName;
