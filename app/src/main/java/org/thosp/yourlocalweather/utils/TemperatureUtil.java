@@ -8,12 +8,16 @@ import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.Weather;
 
+import java.lang.reflect.Field;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 public class TemperatureUtil {
 
+    private static final String TAG = "TemperatureUtil";
     private static double SOLAR_CONSTANT = 1395; // solar constant (w/m2)
     private static double transmissionCoefficientClearDay = 0.81;
     private static double transmissionCoefficientCloudy = 0.62;
@@ -297,117 +301,26 @@ public class TemperatureUtil {
     }
 
     private static int getResourceForNumber(Context context, float number) {
-        String fileName;
         int roundedNumber = Math.round(number);
-        if (roundedNumber < -50) {
-            return R.drawable.minus50;
+        if (roundedNumber == 0) {
+            return R.drawable.zero0;
+        } else if (roundedNumber < -50) {
+            return R.drawable.less_minus50;
         } else if (roundedNumber > 50) {
-            return R.drawable.plus50;
+            return R.drawable.more50;
         }
-        switch (roundedNumber) {
-            case 1: return R.drawable.plus1;
-            case 2: return R.drawable.plus2;
-            case 3: return R.drawable.plus3;
-            case 4: return R.drawable.plus4;
-            case 5: return R.drawable.plus5;
-            case 6: return R.drawable.plus6;
-            case 7: return R.drawable.plus7;
-            case 8: return R.drawable.plus8;
-            case 9: return R.drawable.plus9;
-            case 10: return R.drawable.plus10;
-            case 11: return R.drawable.plus11;
-            case 12: return R.drawable.plus12;
-            case 13: return R.drawable.plus13;
-            case 14: return R.drawable.plus14;
-            case 15: return R.drawable.plus15;
-            case 16: return R.drawable.plus16;
-            case 17: return R.drawable.plus17;
-            case 18: return R.drawable.plus18;
-            case 19: return R.drawable.plus19;
-            case 20: return R.drawable.plus20;
-            case 21: return R.drawable.plus21;
-            case 22: return R.drawable.plus22;
-            case 23: return R.drawable.plus23;
-            case 24: return R.drawable.plus24;
-            case 25: return R.drawable.plus25;
-            case 26: return R.drawable.plus26;
-            case 27: return R.drawable.plus27;
-            case 28: return R.drawable.plus28;
-            case 29: return R.drawable.plus29;
-            case 30: return R.drawable.plus30;
-            case 31: return R.drawable.plus31;
-            case 32: return R.drawable.plus32;
-            case 33: return R.drawable.plus33;
-            case 34: return R.drawable.plus34;
-            case 35: return R.drawable.plus35;
-            case 36: return R.drawable.plus36;
-            case 37: return R.drawable.plus37;
-            case 38: return R.drawable.plus38;
-            case 39: return R.drawable.plus39;
-            case 40: return R.drawable.plus40;
-            case 41: return R.drawable.plus41;
-            case 42: return R.drawable.plus42;
-            case 43: return R.drawable.plus43;
-            case 44: return R.drawable.plus44;
-            case 45: return R.drawable.plus45;
-            case 46: return R.drawable.plus46;
-            case 47: return R.drawable.plus47;
-            case 48: return R.drawable.plus48;
-            case 49: return R.drawable.plus49;
-            case 50: return R.drawable.plus50;
-            case -1: return R.drawable.minus1;
-            case -2: return R.drawable.minus2;
-            case -3: return R.drawable.minus3;
-            case -4: return R.drawable.minus4;
-            case -5: return R.drawable.minus5;
-            case -6: return R.drawable.minus6;
-            case -7: return R.drawable.minus7;
-            case -8: return R.drawable.minus8;
-            case -9: return R.drawable.minus9;
-            case -10: return R.drawable.minus10;
-            case -11: return R.drawable.minus11;
-            case -12: return R.drawable.minus12;
-            case -13: return R.drawable.minus13;
-            case -14: return R.drawable.minus14;
-            case -15: return R.drawable.minus15;
-            case -16: return R.drawable.minus16;
-            case -17: return R.drawable.minus17;
-            case -18: return R.drawable.minus18;
-            case -19: return R.drawable.minus19;
-            case -20: return R.drawable.minus20;
-            case -21: return R.drawable.minus21;
-            case -22: return R.drawable.minus22;
-            case -23: return R.drawable.minus23;
-            case -24: return R.drawable.minus24;
-            case -25: return R.drawable.minus25;
-            case -26: return R.drawable.minus26;
-            case -27: return R.drawable.minus27;
-            case -28: return R.drawable.minus28;
-            case -29: return R.drawable.minus29;
-            case -30: return R.drawable.minus30;
-            case -31: return R.drawable.minus31;
-            case -32: return R.drawable.minus32;
-            case -33: return R.drawable.minus33;
-            case -34: return R.drawable.minus34;
-            case -35: return R.drawable.minus35;
-            case -36: return R.drawable.minus36;
-            case -37: return R.drawable.minus37;
-            case -38: return R.drawable.minus38;
-            case -39: return R.drawable.minus39;
-            case -40: return R.drawable.minus40;
-            case -41: return R.drawable.minus41;
-            case -42: return R.drawable.minus42;
-            case -43: return R.drawable.minus43;
-            case -44: return R.drawable.minus44;
-            case -45: return R.drawable.minus45;
-            case -46: return R.drawable.minus46;
-            case -47: return R.drawable.minus47;
-            case -48: return R.drawable.minus48;
-            case -49: return R.drawable.minus49;
-            case -50: return R.drawable.minus50;
-            case 0:
-            default:
-                return R.drawable.zero0;
+        try {
+            String fileName;
+            if (roundedNumber > 0){
+                fileName = "plus" + roundedNumber;
+            } else {
+                fileName = "minus" + (-roundedNumber);
+            }
+            Field idField = R.drawable.class.getDeclaredField(fileName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            appendLog(context, TAG, "Error getting temperature icon", e);
+            return R.drawable.small_icon;
         }
     }
 }
