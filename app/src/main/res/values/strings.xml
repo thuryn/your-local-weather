@@ -52,7 +52,7 @@
     <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Cache resolved address option</string>
     <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">You can save network traffic by caching found locations. Locations are then stored in the app. They are not sent or stored other places in the network.</string>
     <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Cache resolved address</string>
-    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Congratulation</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Congratulations</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">This concludes the guide. You can find other settings in the Settings menu (for example language, units etc.). 
 \nThe next screen will explain the requested permissions and give you the option to request them. 
 \n 
