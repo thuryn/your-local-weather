@@ -433,4 +433,10 @@
     <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">在微件中显示位置</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">目前，您不能有超过 %1$d 个位置。</string>
     <string name="weather_condition_description_601" tools:ignore="MissingTranslation">下雪</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">轻雷暴</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">雷暴伴有大雨</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">PSI</string>
+    <string name="pref_language_bg" tools:ignore="MissingTranslation">保加利亚语</string>
+    <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">中文（繁体）</string>
+    <string name="pref_language_sd" tools:ignore="MissingTranslation">信德人</string>
 </resources>
