@@ -117,7 +117,9 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
     }
 
     private void unregisterListener() {
-        senSensorManager.unregisterListener(this);
+        if (senSensorManager != null) {
+            senSensorManager.unregisterListener(this);
+        }
     }
     
     public BroadcastReceiver mReceiver = new BroadcastReceiver() {
