@@ -226,11 +226,15 @@
     <string name="rain_label" tools:ignore="MissingTranslation">Shiu: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Bora: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Lagështia: %1$s%2$s</string>
+    <string name="label_humidity" tools:ignore="MissingTranslation">Lagështia</string>
     <string name="pressure_label" tools:ignore="MissingTranslation">Presioni: %1$s %2$s</string>
     <string name="cloudiness_label" tools:ignore="MissingTranslation">Retë: %1$s%2$s</string>
+    <string name="label_cloudiness" tools:ignore="MissingTranslation">Retë</string>
     <string name="last_update_label" tools:ignore="MissingTranslation">Përditësimi i fundit: %s</string>
     <string name="sunrise_label" tools:ignore="MissingTranslation">Agimi: %s</string>
     <string name="sunset_label" tools:ignore="MissingTranslation">Perëndimi: %s</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">Agimi</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">Perëndimi</string>
     <string name="temperature_morning_title" tools:ignore="MissingTranslation">Mëngjesi</string>
     <string name="temperature_day_title" tools:ignore="MissingTranslation">Dita</string>
     <string name="temperature_evening_title" tools:ignore="MissingTranslation">Mbrëmja</string>

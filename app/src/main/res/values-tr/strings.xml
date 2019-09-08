@@ -77,11 +77,15 @@
     <string name="rain_label">Yağmur: %1$s %2$s</string>
     <string name="snow_label">Kar: %1$s %2$s</string>
     <string name="humidity_label">Nem: %1$s%2$s</string>
+    <string name="label_humidity">Nem</string>
     <string name="pressure_label">Basınç: %1$s %2$s</string>
     <string name="cloudiness_label">Kapalılık: %1$s%2$s</string>
+    <string name="label_cloudiness">Kapalılık</string>
     <string name="last_update_label">Son güncelleme: %s</string>
     <string name="sunrise_label">Gün doğumu: %s</string>
     <string name="sunset_label">Gün batımı: %s</string>
+    <string name="label_sunrise">Gün doğumu</string>
+    <string name="label_sunset">Gün batımı</string>
     <string name="temperature_morning_title">Sabah</string>
     <string name="temperature_day_title">Gün</string>
     <string name="temperature_evening_title">Akşam</string>

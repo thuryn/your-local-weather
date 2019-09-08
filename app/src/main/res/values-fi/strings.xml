@@ -84,9 +84,12 @@
     <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Vapaan ohjelmiston lisenssit</string>
 
     <string name="cloudiness_label" tools:ignore="MissingTranslation">Pilvisyys: %1$s%2$s</string>
+    <string name="label_cloudiness" tools:ignore="MissingTranslation">Pilvisyys</string>
     <string name="last_update_label" tools:ignore="MissingTranslation">Viimeisin päivitys: %s</string>
     <string name="sunrise_label" tools:ignore="MissingTranslation">Auringonnousu: %s</string>
     <string name="sunset_label" tools:ignore="MissingTranslation">Auringonlasku: %s</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">Auringonnousu</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">Auringonlasku</string>
     <string name="temperature_morning_title" tools:ignore="MissingTranslation">Aamu</string>
     <string name="temperature_day_title" tools:ignore="MissingTranslation">Päivä</string>
     <string name="temperature_evening_title" tools:ignore="MissingTranslation">Ilta</string>

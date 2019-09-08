@@ -75,11 +75,15 @@
     <string name="rain_label">imvura: %1$s %2$s</string>
     <string name="snow_label">Ibicu: %1$s %2$s</string>
     <string name="humidity_label">ubuhehere: %1$s%2$s</string>
+    <string name="label_humidity">ubuhehere</string>
     <string name="pressure_label">ubutsikamire: %1$s %2$s</string>
     <string name="cloudiness_label">Ibicu: %1$s%2$s</string>
+    <string name="label_cloudiness">Ibicu</string>
     <string name="last_update_label">Ibishya biheruka: %s</string>
     <string name="sunrise_label">kurasa kw\'Izuba: %s</string>
     <string name="sunset_label">Izuba: %s</string>
+    <string name="label_sunrise">kurasa kw\'Izuba</string>
+    <string name="label_sunset">Izuba</string>
     <string name="temperature_morning_title">igitongo</string>
     <string name="temperature_day_title">umunsi</string>
     <string name="temperature_evening_title">Ikigoroba</string>

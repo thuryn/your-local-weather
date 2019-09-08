@@ -28,6 +28,9 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
 
     private static final String WIDGET_NAME = "MORE_WIDGET";
 
+    private static final String DEFAULT_CURRENT_WEATHER_DETAILS = "0,1,2,3";
+    private static final int MAX_CURRENT_WEATHER_DETAILS = 4;
+
     @Override
     protected void preLoadWeather(Context context, RemoteViews remoteViews, int appWidgetId) {
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
@@ -50,6 +53,14 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
         }
 
         CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
+
+        WidgetUtils.updateCurrentWeatherDetails(
+                context,
+                remoteViews,
+                weatherRecord,
+                currentLocation.getLocale(),
+                appWidgetId,
+                DEFAULT_CURRENT_WEATHER_DETAILS);
 
         if (weatherRecord != null) {
             Weather weather = weatherRecord.getWeather();
@@ -78,26 +89,6 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
                                                                     currentLocation.getLocaleAbbrev(),
                                                                     weather));
 
-            WidgetUtils.setWind(context,
-                                remoteViews,
-                                weather.getWindSpeed(),
-                                weather.getWindDirection(),
-                                currentLocation.getLocale(),
-                    R.id.widget_more_3x3_widget_wind,
-                    R.id.widget_more_3x3_widget_wind_icon);
-            WidgetUtils.setHumidity(context, remoteViews, weather.getHumidity(),
-                    R.id.widget_more_3x3_widget_humidity,
-                    R.id.widget_more_3x3_widget_humidity_icon);
-            WidgetUtils.setPressure(context,
-                                    remoteViews,
-                                    weather.getPressure(),
-                                    currentLocation.getLocale(),
-                    R.id.widget_more_3x3_widget_pressure,
-                    R.id.widget_more_3x3_widget_pressure_icon);
-            WidgetUtils.setClouds(context, remoteViews, weather.getClouds(),
-                    R.id.widget_more_3x3_widget_clouds,
-                    R.id.widget_more_3x3_widget_clouds_icon);
-
             Utils.setWeatherIcon(remoteViews, context, weatherRecord,
                     R.id.widget_more_3x3_widget_icon);
             String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, currentLocation);
@@ -118,26 +109,6 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
                     currentLocation.getLocale()));
             remoteViews.setTextViewText(R.id.widget_more_3x3_widget_description, "");
 
-            WidgetUtils.setWind(context,
-                                remoteViews,
-                            0,
-                        0,
-                                currentLocation.getLocale(),
-                    R.id.widget_more_3x3_widget_wind,
-                    R.id.widget_more_3x3_widget_wind_icon);
-            WidgetUtils.setHumidity(context, remoteViews, 0,
-                    R.id.widget_more_3x3_widget_humidity,
-                    R.id.widget_more_3x3_widget_humidity_icon);
-            WidgetUtils.setPressure(context,
-                                    remoteViews,
-                                0,
-                                    currentLocation.getLocale(),
-                    R.id.widget_more_3x3_widget_pressure,
-                    R.id.widget_more_3x3_widget_pressure_icon);
-            WidgetUtils.setClouds(context, remoteViews, 0,
-                    R.id.widget_more_3x3_widget_clouds,
-                    R.id.widget_more_3x3_widget_clouds_icon);
-
             Utils.setWeatherIcon(remoteViews, context, weatherRecord,
                     R.id.widget_more_3x3_widget_icon);
             remoteViews.setTextViewText(R.id.widget_more_3x3_widget_last_update, "");
@@ -154,10 +125,6 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
         remoteViews.setTextColor(R.id.widget_more_3x3_widget_second_temperature, textColorId);
         remoteViews.setTextColor(R.id.widget_more_3x3_widget_description, textColorId);
         remoteViews.setTextColor(R.id.widget_more_3x3_widget_description, textColorId);
-        remoteViews.setTextColor(R.id.widget_more_3x3_widget_wind, textColorId);
-        remoteViews.setTextColor(R.id.widget_more_3x3_widget_humidity, textColorId);
-        remoteViews.setTextColor(R.id.widget_more_3x3_widget_pressure, textColorId);
-        remoteViews.setTextColor(R.id.widget_more_3x3_widget_clouds, textColorId);
         remoteViews.setInt(R.id.widget_more_3x3_header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
     }
 
@@ -167,6 +134,14 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
         enabledWidgetActions.add("action_city");
         enabledWidgetActions.add("action_current_weather_icon");
         return enabledWidgetActions;
+    }
+
+    public static int getNumberOfCurrentWeatherDetails() {
+        return MAX_CURRENT_WEATHER_DETAILS;
+    }
+
+    public static String getDefaultCurrentWeatherDetails() {
+        return DEFAULT_CURRENT_WEATHER_DETAILS;
     }
 
     @Override

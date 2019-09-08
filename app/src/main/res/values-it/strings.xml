@@ -85,11 +85,15 @@
     <string name="rain_label">Pioggia: %1$s %2$s</string>
     <string name="snow_label">Neve: %1$s %2$s</string>
     <string name="humidity_label">Umidità: %1$s%2$s</string>
+    <string name="label_humidity">Umidità</string>
     <string name="pressure_label">Pressione: %1$s %2$s</string>
     <string name="cloudiness_label">Nuvolosità: %1$s%2$s</string>
+    <string name="label_cloudiness">Nuvolosità</string>
     <string name="last_update_label">Ultimo aggiornamento: %s</string>
     <string name="sunrise_label">Alba: %s</string>
     <string name="sunset_label">Tramonto: %s</string>
+    <string name="label_sunrise">Alba</string>
+    <string name="label_sunset">Tramonto</string>
     <string name="temperature_morning_title">Mattina</string>
     <string name="temperature_day_title">Giorno</string>
     <string name="temperature_evening_title">Sera</string>

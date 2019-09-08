@@ -66,11 +66,15 @@
     <string name="rain_label">Euria: %1$s %2$s</string>
     <string name="snow_label">Elurra: %1$s %2$s</string>
     <string name="humidity_label">Hezetasuna: %1$s%2$s</string>
+    <string name="label_humidity">Hezetasuna</string>
     <string name="pressure_label">Presioa: %1$s %2$s</string>
     <string name="cloudiness_label">Hodeiak: %1$s%2$s</string>
+    <string name="label_cloudiness">Hodeiak</string>
     <string name="last_update_label">Azken eguneraketa: %s</string>
     <string name="sunrise_label">Egunsentia: %s</string>
     <string name="sunset_label">Ilunabarra: %s</string>
+    <string name="label_sunrise">Egunsentia</string>
+    <string name="label_sunset">Ilunabarra</string>
     <string name="temperature_morning_title">Goiza</string>
     <string name="temperature_day_title">Eguna</string>
     <string name="temperature_evening_title">Arratsaldea</string>

@@ -28,11 +28,18 @@ import org.osmdroid.config.Configuration;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
+import org.thosp.yourlocalweather.settings.CurrentWeatherDetailSwitchListener;
 import org.thosp.yourlocalweather.settings.GraphValuesSwitchListener;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
+import org.thosp.yourlocalweather.widget.AbstractWidgetProvider;
+import org.thosp.yourlocalweather.widget.ExtLocationWidgetProvider;
+import org.thosp.yourlocalweather.widget.ExtLocationWithForecastGraphWidgetProvider;
+import org.thosp.yourlocalweather.widget.ExtLocationWithForecastWidgetProvider;
+import org.thosp.yourlocalweather.widget.ExtLocationWithGraphWidgetProvider;
+import org.thosp.yourlocalweather.widget.MoreWidgetProvider;
 import org.thosp.yourlocalweather.widget.WeatherForecastWidgetProvider;
 import org.thosp.yourlocalweather.widget.WeatherGraphWidgetProvider;
 import org.thosp.yourlocalweather.widget.WidgetActions;
@@ -49,6 +56,9 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class WidgetSettingsDialogue extends Activity {
 
+    private static final int NUMBER_OF_WEATHER_DETAIL_OPTIONS = 7;
+    private static final int DEFAULT_NUMBER_OF_AVAILABLE_DETAIL_OPTIONS_IN_WIDGET = 4;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +68,7 @@ public class WidgetSettingsDialogue extends Activity {
         ArrayList<String> widgetActionPlaces = getIntent().getStringArrayListExtra("widget_action_places");
 
         switch (settingOption) {
+            case "detailsSetting": createDetailsSettingsDialog(getIntent().getIntExtra("widgetId", 0)); break;
             case "graphSetting": createGraphSettingDialog(getIntent().getIntExtra("widgetId", 0)); break;
             case "forecastSettings": createForecastSettingsDialog(getIntent().getIntExtra("widgetId", 0)); break;
             case "locationSettings": createLocationSettingsDialog(getIntent().getIntExtra("widgetId", 0)); break;
@@ -65,6 +76,135 @@ public class WidgetSettingsDialogue extends Activity {
                     getIntent().getIntExtra("widgetId", 0),
                     widgetActionPlaces); break;
         }
+    }
+
+    private WidgetDefaultDetailsResult getNumberOfCurrentWeatherDetails(int widgetId) {
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
+        ComponentName widgetComponent = new ComponentName(this, ExtLocationWithForecastGraphWidgetProvider.class);
+        int[] widgetIds = appWidgetManager.getAppWidgetIds(widgetComponent);
+        for (int currentWidgetId: widgetIds) {
+            if (currentWidgetId == widgetId) {
+                return new WidgetDefaultDetailsResult(
+                        ExtLocationWithForecastGraphWidgetProvider.getNumberOfCurrentWeatherDetails(),
+                        ExtLocationWithForecastGraphWidgetProvider.getDefaultCurrentWeatherDetails());
+            }
+        }
+        widgetComponent = new ComponentName(this, ExtLocationWidgetProvider.class);
+        widgetIds = appWidgetManager.getAppWidgetIds(widgetComponent);
+        for (int currentWidgetId: widgetIds) {
+            if (currentWidgetId == widgetId) {
+                return new WidgetDefaultDetailsResult(
+                        ExtLocationWidgetProvider.getNumberOfCurrentWeatherDetails(),
+                        ExtLocationWidgetProvider.getDefaultCurrentWeatherDetails());
+            }
+        }
+        widgetComponent = new ComponentName(this, ExtLocationWithForecastWidgetProvider.class);
+        widgetIds = appWidgetManager.getAppWidgetIds(widgetComponent);
+        for (int currentWidgetId: widgetIds) {
+            if (currentWidgetId == widgetId) {
+                return new WidgetDefaultDetailsResult(
+                        ExtLocationWithForecastWidgetProvider.getNumberOfCurrentWeatherDetails(),
+                        ExtLocationWithForecastWidgetProvider.getDefaultCurrentWeatherDetails());
+            }
+        }
+        widgetComponent = new ComponentName(this, ExtLocationWithGraphWidgetProvider.class);
+        widgetIds = appWidgetManager.getAppWidgetIds(widgetComponent);
+        for (int currentWidgetId: widgetIds) {
+            if (currentWidgetId == widgetId) {
+                return new WidgetDefaultDetailsResult(
+                        ExtLocationWithGraphWidgetProvider.getNumberOfCurrentWeatherDetails(),
+                        ExtLocationWithGraphWidgetProvider.getDefaultCurrentWeatherDetails());
+            }
+        }
+        widgetComponent = new ComponentName(this, MoreWidgetProvider.class);
+        widgetIds = appWidgetManager.getAppWidgetIds(widgetComponent);
+        for (int currentWidgetId: widgetIds) {
+            if (currentWidgetId == widgetId) {
+                return new WidgetDefaultDetailsResult(
+                        MoreWidgetProvider.getNumberOfCurrentWeatherDetails(),
+                        MoreWidgetProvider.getDefaultCurrentWeatherDetails());
+            }
+        }
+        return new WidgetDefaultDetailsResult(
+                DEFAULT_NUMBER_OF_AVAILABLE_DETAIL_OPTIONS_IN_WIDGET,
+                "0,1,2,3");
+    }
+
+    private void createDetailsSettingsDialog(final int widgetId) {
+        final Set<Integer> mSelectedItems = new HashSet<>();
+        final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(WidgetSettingsDialogue.this);
+
+        WidgetDefaultDetailsResult currentWeatherDetailsAvailableInWidget = getNumberOfCurrentWeatherDetails(widgetId);
+
+        Set<Integer> currentWeatherDetailValues = WidgetUtils.getCurrentWeatherDetailsFromSettings(
+                widgetSettingsDbHelper,
+                widgetId,
+                currentWeatherDetailsAvailableInWidget.getDefaultDetails());
+
+        boolean[] checkedItems = new boolean[NUMBER_OF_WEATHER_DETAIL_OPTIONS];
+        for (Integer visibleDetail: currentWeatherDetailValues) {
+            mSelectedItems.add(visibleDetail);
+            checkedItems[visibleDetail] = true;
+        }
+
+        boolean fullSetOfOptions = currentWeatherDetailValues.size() >= currentWeatherDetailsAvailableInWidget.getMaxNumberOfDetails();
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = getLayoutInflater();
+        View forecastSettingView = inflater.inflate(R.layout.widget_setting_weather_detail, null);
+        Switch[] switches = new Switch[NUMBER_OF_WEATHER_DETAIL_OPTIONS];
+        final CurrentWeatherDetailSwitchListener[] switchListeners = new CurrentWeatherDetailSwitchListener[NUMBER_OF_WEATHER_DETAIL_OPTIONS];
+        switches[0] = forecastSettingView.findViewById(R.id.widget_setting_weather_detail_wind_switch);
+        switches[1] = forecastSettingView.findViewById(R.id.widget_setting_weather_detail_humidity_switch);
+        switches[2] = forecastSettingView.findViewById(R.id.widget_setting_weather_detail_pressure_switch);
+        switches[3] = forecastSettingView.findViewById(R.id.widget_setting_weather_detail_cloudiness_switch);
+        switches[4] = forecastSettingView.findViewById(R.id.widget_setting_weather_detail_dew_point_switch);
+        switches[5] = forecastSettingView.findViewById(R.id.widget_setting_weather_detail_sunrise_switch);
+        switches[6] = forecastSettingView.findViewById(R.id.widget_setting_weather_detail_sunset_switch);
+        for (int i = 0; i < NUMBER_OF_WEATHER_DETAIL_OPTIONS; i++) {
+            if (!checkedItems[i] && fullSetOfOptions) {
+                switches[i].setEnabled(false);
+            } else {
+                switches[i].setEnabled(true);
+            }
+            switches[i].setChecked(checkedItems[i]);
+            switchListeners[i] = new CurrentWeatherDetailSwitchListener(
+                    checkedItems[i],
+                    switches,
+                    i,
+                    currentWeatherDetailsAvailableInWidget.getMaxNumberOfDetails());
+            switches[i].setOnCheckedChangeListener(switchListeners[i]);
+        }
+        
+        builder.setTitle(R.string.widget_details_setting_button)
+                .setView(forecastSettingView)
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        StringBuilder valuesToStore = new StringBuilder();
+
+                        for (int i = 0; i < NUMBER_OF_WEATHER_DETAIL_OPTIONS; i++) {
+                            if (switchListeners[i].isChecked()) {
+                                valuesToStore.append(i);
+                                valuesToStore.append(",");
+                            }
+                        }
+
+                        widgetSettingsDbHelper.saveParamString(widgetId, "currentWeatherDetails", valuesToStore.toString());
+
+                        Intent refreshWidgetIntent = new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
+                        refreshWidgetIntent.setPackage("org.thosp.yourlocalweather");
+                        sendBroadcast(refreshWidgetIntent);
+                        finish();
+                    }
+                })
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        finish();
+                    }
+                });
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void createWidgetActionSettingsDialog(final int widgetId, final ArrayList<String> widgetActionPlaces) {
@@ -590,6 +730,24 @@ public class WidgetSettingsDialogue extends Activity {
 
         public WidgetActions getWidgetAction() {
             return widgetAction;
+        }
+    }
+
+    private class WidgetDefaultDetailsResult {
+        int maxNumberOfDetails;
+        String defaultDetails;
+
+        public WidgetDefaultDetailsResult(int maxNumberOfDetails, String defaultDetails) {
+            this.maxNumberOfDetails = maxNumberOfDetails;
+            this.defaultDetails = defaultDetails;
+        }
+
+        public int getMaxNumberOfDetails() {
+            return maxNumberOfDetails;
+        }
+
+        public String getDefaultDetails() {
+            return defaultDetails;
         }
     }
 }

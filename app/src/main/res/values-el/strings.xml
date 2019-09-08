@@ -62,11 +62,15 @@
     <string name="rain_label">Βροχή: %1$s %2$s</string>
     <string name="snow_label">Χιόνι: %1$s %2$s</string>
     <string name="humidity_label">Υγρασία: %1$s%2$s</string>
+    <string name="label_humidity">Υγρασία</string>
     <string name="pressure_label">Πίεση: %1$s %2$s</string>
     <string name="cloudiness_label">Συννεφιά: %1$s%2$s</string>
+    <string name="label_cloudiness">Συννεφιά</string>
     <string name="last_update_label">Τελευταία ενημέρωση: %s</string>
     <string name="sunrise_label">Ανατολή Ηλίου: %s</string>
     <string name="sunset_label">Δύση Ηλίου: %s</string>
+    <string name="label_sunrise">Ανατολή Ηλίου</string>
+    <string name="label_sunset">Δύση Ηλίου</string>
     <string name="temperature_morning_title">Πρωί</string>
     <string name="temperature_day_title">Ημέρα</string>
     <string name="temperature_evening_title">Απόγευμα</string>

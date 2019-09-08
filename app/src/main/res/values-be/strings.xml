@@ -64,11 +64,15 @@
     <string name="rain_label">Дождж: %1$s %2$s</string>
     <string name="snow_label">Снег: %1$s %2$s</string>
     <string name="humidity_label">Вільготнасць: %1$s%2$s</string>
+    <string name="label_humidity">Вільготнасць</string>
     <string name="pressure_label">Ціск: %1$s %2$s</string>
     <string name="cloudiness_label">Воблачнасць: %1$s%2$s</string>
+    <string name="label_cloudiness">Воблачнасць</string>
     <string name="last_update_label">Апошняе абнаўленне: %s</string>
     <string name="sunrise_label">Узыход: %s</string>
     <string name="sunset_label">Заход: %s</string>
+    <string name="label_sunrise">Узыход</string>
+    <string name="label_sunset">Заход</string>
     <string name="temperature_morning_title">Раніца</string>
     <string name="temperature_day_title">Дзень</string>
     <string name="temperature_evening_title">Вечар</string>

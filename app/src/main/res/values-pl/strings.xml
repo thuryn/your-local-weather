@@ -18,7 +18,9 @@
     <string name="title_activity_settings">Ustawienia</string>
     <string name="title_activity_search">Szukanie Lokalizacji</string>
     <string name="cloudiness_label">Zachmurzenie: %1$s%2$s</string>
+    <string name="label_cloudiness">Zachmurzenie</string>
     <string name="humidity_label">Wilgotność: %1$s%2$s</string>
+    <string name="label_humidity">Wilgotność</string>
     <string name="pressure_label">Ciśnienie: %1$s %2$s</string>
     <string name="wind_label">Wiatr: %1$s %2$s %3$s</string>
     <string name="pref_title_category_notification">Ustawienia powiadomień</string>
@@ -78,6 +80,8 @@
     <string name="menu_action_toggle_yaxis">Przełącznik Y-Axis</string>
     <string name="sunset_label">Zachód słońca: %s</string>
     <string name="sunrise_label">Wschód słońca: %s</string>
+    <string name="label_sunset">Zachód słońca</string>
+    <string name="label_sunrise">Wschód słońca</string>
     <string name="title_activity_license">Licencja dla %s</string>
     <string name="preference_hide_desc">Ukryj opis pogody</string>
     <!-- Permission strings -->

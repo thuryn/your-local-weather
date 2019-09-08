@@ -117,9 +117,12 @@
     <string name="location_cache_88888_label" tools:ignore="MissingTranslation">nunca</string>
     <string name="pressure_label" tools:ignore="MissingTranslation">Pressão atmosférica: %1$s %2$s</string>
     <string name="cloudiness_label" tools:ignore="MissingTranslation">Nebulosidade: %1$s%2$s</string>
+    <string name="label_cloudiness" tools:ignore="MissingTranslation">Nebulosidade</string>
     <string name="last_update_label" tools:ignore="MissingTranslation">Última actualização: %s</string>
     <string name="sunrise_label" tools:ignore="MissingTranslation">Nascer do sol: %s</string>
     <string name="sunset_label" tools:ignore="MissingTranslation">Pôr do sol: %s</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">Nascer do sol</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">Pôr do sol</string>
     <string name="temperature_morning_title" tools:ignore="MissingTranslation">Manhã</string>
     <string name="temperature_day_title" tools:ignore="MissingTranslation">Dia</string>
     <string name="temperature_evening_title" tools:ignore="MissingTranslation">Tarde</string>
@@ -217,6 +220,7 @@
     <string name="rain_label" tools:ignore="MissingTranslation">Chuva: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Neve: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Humidade: %1$s%2$s</string>
+    <string name="label_humidity" tools:ignore="MissingTranslation">Humidade</string>
     <string name="widget_refresh_button" tools:ignore="MissingTranslation">Botão de atualização do widget</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Pode escolher o método de localização - a de <i>Sistema</i> apenas utiliza os serviços da Google para obter a localização por redes (de telemóveis e Wi-Fi). A opção <i>Mozilla local e Nominatim</i> utiliza o serviço de localização da Mozilla para obter as coordenadas de localização e o serviço Nominatim para obter os nomes das localizações. A segunda opção necessita da permissão de chamadas para obter a informação sobre da rede de telemóveis. A opção preferida é pré-selecionada.</string>
     <string name="help_page_general_content" tools:ignore="MissingTranslation">A aplicação determina a localização utilizando a rede de telemóveis (BTS), Wi-Fi e se essas falharem, o GPS para mostrar a previsão meteorológica local, utilizando as coordenadas do serviço de localização da Mozilla. A aplicação precisa de pelo menos: uma estação-base de rede GSM ou duas redes Wi-Fi acessíveis ou qualquer combinação de redes GSM e Wi-Fi. Utilizando o widget no seu telemóvel ou tablet, pode ver a sua localização e clima atual no ecrã principal. As atualizações da localização podem ser periódicas (por ex. horárias), ou a aplicação pode utilizar o acelerómetro para detetar o movimento de distâncias maiores que um valor. Transportado no seu bolso, a distância aumenta mais rapidamente. Pode desativar as atualizações de localização - nesse caso apenas o clima será atualizado. A aplicação atualiza a localização e o clima em intervalos específicos. Pode, por exemplo, especificar o período de atualização para uma hora. O clima é atualizado automaticamente após a atualização da localização ou quando o ecrã é ligado - mas não mais do que uma vez a cada 15 minutos (e quando o clima não foi atualizado nos últimos 15 minutos). Esta informação é utilizada para obter as coordenadas de localização pelo serviço de localização da Mozilla. A aplicação tenta utilizar o GPS quando a localização não está disponível a partir da rede de telemóveis e redes Wi-Fi. As coordenadas de localização são utilizadas para obter endereços pelo serviço Nominatim. O endereço é utilizado na aplicação ou no widget. A aplicação utiliza o serviço OpenWeatherMap.org para obter as informações meteorológicas atuais.</string>

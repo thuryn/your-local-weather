@@ -33,6 +33,9 @@ public class ExtLocationWithGraphWidgetProvider extends AbstractWidgetProvider {
 
     private static final String WIDGET_NAME = "EXT_LOC_WITH_GRAPH_WIDGET";
 
+    private static final String DEFAULT_CURRENT_WEATHER_DETAILS = "0,1,5,6";
+    private static final int MAX_CURRENT_WEATHER_DETAILS = 4;
+
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
@@ -67,6 +70,14 @@ public class ExtLocationWithGraphWidgetProvider extends AbstractWidgetProvider {
 
         CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
 
+        WidgetUtils.updateCurrentWeatherDetails(
+                context,
+                remoteViews,
+                weatherRecord,
+                currentLocation.getLocale(),
+                appWidgetId,
+                DEFAULT_CURRENT_WEATHER_DETAILS);
+
         if (weatherRecord != null) {
             Weather weather = weatherRecord.getWeather();
 
@@ -94,26 +105,6 @@ public class ExtLocationWithGraphWidgetProvider extends AbstractWidgetProvider {
                                                                     currentLocation.getLocaleAbbrev(),
                                                                     weather));
 
-            WidgetUtils.setWind(context,
-                                remoteViews,
-                                weather.getWindSpeed(),
-                                weather.getWindDirection(),
-                                currentLocation.getLocale(),
-                    R.id.widget_ext_loc_graph_3x3_widget_wind,
-                    R.id.widget_ext_loc_graph_3x3_widget_wind_icon);
-            WidgetUtils.setHumidity(context, remoteViews, weather.getHumidity(),
-                    R.id.widget_ext_loc_graph_3x3_widget_humidity,
-                    R.id.widget_ext_loc_graph_3x3_widget_humidity_icon);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(1000 * weather.getSunrise());
-            WidgetUtils.setSunrise(context, remoteViews, AppPreference.getLocalizedTime(context, calendar.getTime(), currentLocation.getLocale()),
-                    R.id.widget_ext_loc_graph_3x3_widget_sunrise,
-                    R.id.widget_ext_loc_graph_3x3_widget_sunrise_icon);
-            calendar.setTimeInMillis(1000 * weather.getSunset());
-            WidgetUtils.setSunset(context, remoteViews, AppPreference.getLocalizedTime(context, calendar.getTime(), currentLocation.getLocale()),
-                    R.id.widget_ext_loc_graph_3x3_widget_sunset,
-                    R.id.widget_ext_loc_graph_3x3_widget_sunset_icon);
-
             Utils.setWeatherIcon(remoteViews, context, weatherRecord, R.id.widget_ext_loc_graph_3x3_widget_icon);
         } else {
             remoteViews.setTextViewText(R.id.widget_ext_loc_graph_3x3_widget_city, context.getString(R.string.location_not_found));
@@ -136,23 +127,6 @@ public class ExtLocationWithGraphWidgetProvider extends AbstractWidgetProvider {
                 remoteViews.setViewVisibility(R.id.widget_ext_loc_graph_3x3_widget_second_temperature, View.GONE);
             }
             remoteViews.setTextViewText(R.id.widget_ext_loc_graph_3x3_widget_description, "");
-
-            WidgetUtils.setWind(context,
-                                remoteViews,
-                            0,
-                        0,
-                                currentLocation.getLocale(),
-                    R.id.widget_ext_loc_graph_3x3_widget_wind,
-                    R.id.widget_ext_loc_graph_3x3_widget_wind_icon);
-            WidgetUtils.setHumidity(context, remoteViews, 0,
-                    R.id.widget_ext_loc_graph_3x3_widget_humidity,
-                    R.id.widget_ext_loc_graph_3x3_widget_humidity_icon);
-            WidgetUtils.setSunrise(context, remoteViews, "",
-                    R.id.widget_ext_loc_graph_3x3_widget_sunrise,
-                    R.id.widget_ext_loc_graph_3x3_widget_sunrise_icon);
-            WidgetUtils.setSunset(context, remoteViews, "",
-                    R.id.widget_ext_loc_graph_3x3_widget_sunset,
-                    R.id.widget_ext_loc_graph_3x3_widget_sunset_icon);
 
             Utils.setWeatherIcon(remoteViews, context, weatherRecord, R.id.widget_ext_loc_graph_3x3_widget_icon);
         }
@@ -186,10 +160,6 @@ public class ExtLocationWithGraphWidgetProvider extends AbstractWidgetProvider {
         remoteViews.setTextColor(R.id.widget_ext_loc_graph_3x3_widget_temperature, textColorId);
         remoteViews.setTextColor(R.id.widget_ext_loc_graph_3x3_widget_description, textColorId);
         remoteViews.setTextColor(R.id.widget_ext_loc_graph_3x3_widget_description, textColorId);
-        remoteViews.setTextColor(R.id.widget_ext_loc_graph_3x3_widget_wind, textColorId);
-        remoteViews.setTextColor(R.id.widget_ext_loc_graph_3x3_widget_humidity, textColorId);
-        remoteViews.setTextColor(R.id.widget_ext_loc_graph_3x3_widget_sunrise, textColorId);
-        remoteViews.setTextColor(R.id.widget_ext_loc_graph_3x3_widget_sunset, textColorId);
         remoteViews.setTextColor(R.id.widget_ext_loc_graph_3x3_widget_second_temperature, textColorId);
         remoteViews.setInt(R.id.widget_ext_loc_graph_3x3_header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
 
@@ -220,6 +190,14 @@ public class ExtLocationWithGraphWidgetProvider extends AbstractWidgetProvider {
         enabledWidgetActions.add("action_current_weather_icon");
         enabledWidgetActions.add("action_graph");
         return enabledWidgetActions;
+    }
+
+    public static int getNumberOfCurrentWeatherDetails() {
+        return MAX_CURRENT_WEATHER_DETAILS;
+    }
+
+    public static String getDefaultCurrentWeatherDetails() {
+        return DEFAULT_CURRENT_WEATHER_DETAILS;
     }
 
     @Override

@@ -67,11 +67,15 @@
     <string name="rain_label">降雨量：%1$s %2$s</string>
     <string name="snow_label">降雪量：%1$s %2$s</string>
     <string name="humidity_label">"湿度：%1$s  %2$s"</string>
+    <string name="label_humidity">"湿度"</string>
     <string name="pressure_label">气压：%1$s %2$s</string>
     <string name="cloudiness_label">云量：%1$s %2$s</string>
+    <string name="label_cloudiness">云量</string>
     <string name="last_update_label">最后更新：%s</string>
     <string name="sunrise_label">日出：%s</string>
     <string name="sunset_label">日落：%s</string>
+    <string name="label_sunrise">日出</string>
+    <string name="label_sunset">日落</string>
     <string name="temperature_morning_title">早上</string>
     <string name="temperature_day_title">天</string>
     <string name="temperature_evening_title">傍晚</string>

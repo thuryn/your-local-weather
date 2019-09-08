@@ -140,11 +140,15 @@
     <string name="rain_label">Déšť: %1$s %2$s</string>
     <string name="snow_label">Sníh: %1$s %2$s</string>
     <string name="humidity_label">Vlhkost: %1$s%2$s</string>
+    <string name="label_humidity">Vlhkost</string>
     <string name="pressure_label">Tlak: %1$s %2$s</string>
     <string name="cloudiness_label">Oblačnost: %1$s%2$s</string>
+    <string name="label_cloudiness">Oblačnost</string>
     <string name="last_update_label">Poslední aktualizace: %s</string>
     <string name="sunrise_label">Východ slunce: %s</string>
     <string name="sunset_label">Západ slunce: %s</string>
+    <string name="label_sunrise">Východ slunce</string>
+    <string name="label_sunset">Západ slunce</string>
     <string name="temperature_morning_title">Ráno</string>
     <string name="temperature_day_title">Během dne</string>
     <string name="temperature_evening_title">Večer</string>
@@ -153,6 +157,8 @@
     <string name="label_wind">Vítr</string>
     <string name="label_rain">Déšť</string>
     <string name="label_snow">Sníh</string>
+    <string name="dew_point_label">Rosný bod: %s</string>
+    <string name="label_dew_point">Rosný bod</string>
 
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description">Aktuální ikona počasí</string>
@@ -440,6 +446,7 @@
     <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Počet dní předpovědi</string>
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Zobrazit nastavení na widgetech</string>
     <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Tlačítko nastavení grafu na widgetech</string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Tlačítko nastavení detailu počasí na widgetech</string>
     <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Nastavení polohy</string>
     <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Tlačítko nastavení polohy pro widget</string>
     <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Tlačítko pro nastavení akce ve widgetu</string>

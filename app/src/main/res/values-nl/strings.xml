@@ -217,11 +217,15 @@
     <string name="rain_label" tools:ignore="MissingTranslation">Regen: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Sneeuw: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Luchtvochtigheid: %1$s%2$s</string>
+    <string name="label_humidity" tools:ignore="MissingTranslation">Luchtvochtigheid</string>
     <string name="pressure_label" tools:ignore="MissingTranslation">Luchtdruk: %1$s %2$s</string>
     <string name="cloudiness_label" tools:ignore="MissingTranslation">Bewolkingsdichtheid: %1$s%2$s</string>
+    <string name="label_cloudiness" tools:ignore="MissingTranslation">Bewolkingsdichtheid</string>
     <string name="last_update_label" tools:ignore="MissingTranslation">Laatst bijgewerkt: %s</string>
     <string name="sunrise_label" tools:ignore="MissingTranslation">Zonsopkomst: %s</string>
     <string name="sunset_label" tools:ignore="MissingTranslation">Zonsondergang: %s</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">Zonsopkomst</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">Zonsondergang</string>
     <string name="temperature_morning_title" tools:ignore="MissingTranslation">Ochtend</string>
     <string name="temperature_day_title" tools:ignore="MissingTranslation">Dag</string>
     <string name="temperature_evening_title" tools:ignore="MissingTranslation">Avond</string>

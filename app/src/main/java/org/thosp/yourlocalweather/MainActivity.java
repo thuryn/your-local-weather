@@ -82,6 +82,7 @@ public class MainActivity extends BaseActivity
 
     private ImageView mIconWeatherView;
     private TextView mTemperatureView;
+    private TextView dewPointView;
     private TextView secondTemperatureView;
     private TextView mDescriptionView;
     private TextView mHumidityView;
@@ -99,6 +100,7 @@ public class MainActivity extends BaseActivity
     private TextView mIconCloudinessView;
     private TextView mIconSunriseView;
     private TextView mIconSunsetView;
+    private TextView mIconDewPointView;
 
     private ConnectionDetector connectionDetector;
     private Boolean isNetworkAvailable;
@@ -120,6 +122,7 @@ public class MainActivity extends BaseActivity
     private String mIconCloudiness;
     private String mIconSunrise;
     private String mIconSunset;
+    private String mIconDewPoint;
     private String mPercentSign;
 
     private static final int REQUEST_LOCATION = 0;
@@ -347,6 +350,7 @@ public class MainActivity extends BaseActivity
 
         if (weatherRecord == null) {
             mTemperatureView.setText(getString(R.string.temperature_with_degree,""));
+            dewPointView.setText(getString(R.string.dew_point_label, ""));
             String temperatureTypeFromPreferences = PreferenceManager.getDefaultSharedPreferences(this).getString(
                     Constants.KEY_PREF_TEMPERATURE_TYPE, "measured_only");
             if ("measured_only".equals(temperatureTypeFromPreferences) ||
@@ -395,6 +399,8 @@ public class MainActivity extends BaseActivity
                         currentLocation.getLatitude(),
                         weatherRecord.getLastUpdatedTime(),
                         currentLocation.getLocale())));
+        dewPointView.setText(getString(R.string.dew_point_label, 
+                             TemperatureUtil.getDewPointWithUnit(this, weather, currentLocation.getLocale())));
         String secondTemperature = TemperatureUtil.getSecondTemperatureWithLabel(this,
                 weather,
                 currentLocation.getLatitude(),
@@ -441,6 +447,7 @@ public class MainActivity extends BaseActivity
 
         mIconWeatherView = (ImageView) findViewById(R.id.main_weather_icon);
         mTemperatureView = (TextView) findViewById(R.id.main_temperature);
+	    dewPointView = (TextView) findViewById(R.id.main_dew_point);
         secondTemperatureView = (TextView) findViewById(R.id.main_second_temperature);
         mDescriptionView = (TextView) findViewById(R.id.main_description);
         mPressureView = (TextView) findViewById(R.id.main_pressure);
@@ -454,6 +461,7 @@ public class MainActivity extends BaseActivity
         localityView = (TextView) findViewById(R.id.main_locality);
 
         mTemperatureView.setTypeface(robotoThin);
+        dewPointView.setTypeface(robotoLight);
         secondTemperatureView.setTypeface(robotoLight);
         mWindSpeedView.setTypeface(robotoLight);
         mHumidityView.setTypeface(robotoLight);
@@ -486,6 +494,9 @@ public class MainActivity extends BaseActivity
         mIconSunsetView = (TextView) findViewById(R.id.main_sunset_icon);
         mIconSunsetView.setTypeface(weatherFontIcon);
         mIconSunsetView.setText(mIconSunset);
+        mIconDewPointView = (TextView) findViewById(R.id.main_dew_point_icon);
+        mIconDewPointView.setTypeface(weatherFontIcon);
+        mIconDewPointView.setText(mIconDewPoint);
     }
 
     private void weatherConditionsIcons() {
@@ -497,6 +508,7 @@ public class MainActivity extends BaseActivity
         mIconSunrise = getString(R.string.icon_sunrise);
         mIconSunset = getString(R.string.icon_sunset);
         iconSecondTemperature = getString(R.string.icon_thermometer);
+        mIconDewPoint = getString(R.string.icon_dew_point);
     }
 
     private void setUpdateButtonState(boolean isUpdate) {

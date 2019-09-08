@@ -211,11 +211,15 @@
     <string name="wind_label" tools:ignore="MissingTranslation">Vind: %1$s %2$s %3$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Snö: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Luftfuktighet: %1$s%2$s</string>
+    <string name="label_humidity" tools:ignore="MissingTranslation">Luftfuktighet</string>
     <string name="pressure_label" tools:ignore="MissingTranslation">Tryck: %1$s %2$s</string>
     <string name="cloudiness_label" tools:ignore="MissingTranslation">Molnighet: %1$s%2$s</string>
+    <string name="label_cloudiness" tools:ignore="MissingTranslation">Molnighet</string>
     <string name="last_update_label" tools:ignore="MissingTranslation">Senaste uppdatering: %s</string>
     <string name="sunrise_label" tools:ignore="MissingTranslation">Gryning: %s</string>
     <string name="sunset_label" tools:ignore="MissingTranslation">Skymning: %s</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">Gryning</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">Skymning</string>
     <string name="label_temperature" tools:ignore="MissingTranslation">Temperatur</string>
     <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Upplevd temperatur: %s</string>
     <string name="label_measured_temperature" tools:ignore="MissingTranslation">Uppmätt temperatur: %s</string>

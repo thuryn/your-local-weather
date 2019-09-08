@@ -261,11 +261,15 @@
     <string name="rain_label" tools:ignore="MissingTranslation">Киша: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Снег: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Влажност: %1$s%2$s</string>
+    <string name="label_humidity" tools:ignore="MissingTranslation">Влажност</string>
     <string name="pressure_label" tools:ignore="MissingTranslation">Притисак: %1$s %2$s</string>
     <string name="cloudiness_label" tools:ignore="MissingTranslation">Облачност: %1$s%2$s</string>
+    <string name="label_cloudiness" tools:ignore="MissingTranslation">Облачност</string>
     <string name="last_update_label" tools:ignore="MissingTranslation">Последње ажурирање: %s</string>
     <string name="sunrise_label" tools:ignore="MissingTranslation">Излазак сунца: %s</string>
     <string name="sunset_label" tools:ignore="MissingTranslation">Залазак сунца: %s</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">Излазак сунца</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">Залазак сунца</string>
     <string name="temperature_morning_title" tools:ignore="MissingTranslation">Јутро</string>
     <string name="temperature_day_title" tools:ignore="MissingTranslation">Дан</string>
     <string name="temperature_evening_title" tools:ignore="MissingTranslation">Вече</string>

@@ -12,8 +12,20 @@
         android:background="@color/swipe_red"
         android:orientation="horizontal">
 
+        <ImageView android:id="@+id/widget_ext_loc_forecast_3x3.button_details_setting"
+            android:layout_width="@dimen/widget_settings_button_width"
+            android:layout_height="@dimen/widget_refresh_icon_size"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_current_weather_details"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/widget_details_setting_button"
+            android:paddingLeft="@dimen/widget_settings_button_padding_left"
+            android:paddingStart="@dimen/widget_settings_button_padding_left"
+            android:paddingTop="@dimen/widget_refresh_icon_padding_top"
+            android:gravity="top"/>
+
         <ImageView android:id="@+id/widget_ext_loc_forecast_3x3.button_days_setting"
-            android:layout_width="@dimen/widget_refresh_icon_size"
+            android:layout_width="@dimen/widget_settings_button_width"
             android:layout_height="@dimen/widget_refresh_icon_size"
             android:scaleType="fitXY"
             android:src="@drawable/ic_daily_forecast_dark_24dp"
@@ -25,7 +37,7 @@
             android:gravity="top"/>
 
         <ImageView android:id="@+id/widget_ext_loc_forecast_3x3.button_location_setting"
-            android:layout_width="@dimen/widget_refresh_icon_size"
+            android:layout_width="@dimen/widget_settings_button_width"
             android:layout_height="@dimen/widget_refresh_icon_size"
             android:scaleType="fitXY"
             android:src="@drawable/ic_my_location_black_24dp"
@@ -37,7 +49,7 @@
             android:gravity="top"/>
 
         <ImageView android:id="@+id/widget_ext_loc_forecast_3x3.button_action_setting"
-            android:layout_width="@dimen/widget_refresh_icon_size"
+            android:layout_width="@dimen/widget_settings_button_width"
             android:layout_height="@dimen/widget_refresh_icon_size"
             android:scaleType="fitXY"
             android:src="@drawable/ic_menu_settings"
@@ -131,77 +143,7 @@
                     android:paddingLeft="8sp"/>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:id="@+id/widget_ext_loc_forecast_3x3.widget_wind_icon"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginTop="3dp" />
-
-                <TextView
-                    android:id="@+id/widget_ext_loc_forecast_3x3.widget_wind"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:textSize="@dimen/widget_3x3_text_size"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:id="@+id/widget_ext_loc_forecast_3x3.widget_humidity_icon"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginTop="3dp" />
-
-                <TextView
-                    android:id="@+id/widget_ext_loc_forecast_3x3.widget_humidity"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:textSize="@dimen/widget_3x3_text_size"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:id="@+id/widget_ext_loc_forecast_3x3.widget_sunrise_icon"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginTop="3dp" />
-
-                <TextView
-                    android:id="@+id/widget_ext_loc_forecast_3x3.widget_sunrise"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:textSize="@dimen/widget_3x3_text_size"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <ImageView
-                    android:id="@+id/widget_ext_loc_forecast_3x3.widget_sunset_icon"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginTop="3dp" />
-
-                <TextView
-                    android:id="@+id/widget_ext_loc_forecast_3x3.widget_sunset"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:lines="1"
-                    android:textSize="@dimen/widget_3x3_text_size"/>
-            </LinearLayout>
+            <include layout="@layout/widget_current_details" />
         </LinearLayout>
 
         <LinearLayout

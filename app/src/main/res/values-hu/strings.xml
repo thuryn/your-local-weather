@@ -75,11 +75,15 @@
     <string name="rain_label">Eső: %1$s %2$s</string>
     <string name="snow_label">Hó: %1$s %2$s</string>
     <string name="humidity_label">Páratartalom: %1$s%2$s</string>
+    <string name="label_humidity">Páratartalom</string>
     <string name="pressure_label">Légnyomás: %1$s %2$s</string>
     <string name="cloudiness_label">Felhőzet: %1$s%2$s</string>
+    <string name="label_cloudiness">Felhőzet</string>
     <string name="last_update_label">Legutóbb frissítve: %s</string>
     <string name="sunrise_label">Napfelkelte: %s</string>
     <string name="sunset_label">Naplemente: %s</string>
+    <string name="label_sunrise">Napfelkelte</string>
+    <string name="label_sunset">Naplemente</string>
     <string name="temperature_morning_title">Reggel</string>
     <string name="temperature_day_title">Napközben</string>
     <string name="temperature_evening_title">Este</string>

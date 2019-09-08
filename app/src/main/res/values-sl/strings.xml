@@ -203,11 +203,15 @@
     <string name="rain_label" tools:ignore="MissingTranslation">"Dež: %1$s  %2$s"</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Sneg: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Vlažnost: %1$s%2$s</string>
+    <string name="label_humidity" tools:ignore="MissingTranslation">Vlažnost</string>
     <string name="pressure_label" tools:ignore="MissingTranslation">Tlak: %1$s %2$s</string>
     <string name="cloudiness_label" tools:ignore="MissingTranslation">Oblačnost: %1$s%2$s</string>
+    <string name="label_cloudiness" tools:ignore="MissingTranslation">Oblačnost</string>
     <string name="last_update_label" tools:ignore="MissingTranslation">Zadnja posodobitev: %s</string>
     <string name="sunrise_label" tools:ignore="MissingTranslation">Sončni vzhod: %s</string>
     <string name="sunset_label" tools:ignore="MissingTranslation">Sončni zahod: %s</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">Sončni vzhod</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">Sončni zahod</string>
     <string name="temperature_morning_title" tools:ignore="MissingTranslation">Jutro</string>
     <string name="temperature_day_title" tools:ignore="MissingTranslation">Dan</string>
     <string name="temperature_evening_title" tools:ignore="MissingTranslation">Večer</string>

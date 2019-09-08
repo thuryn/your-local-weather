@@ -20,6 +20,7 @@ import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Set;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -28,6 +29,9 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
     private static final String TAG = "ExtLocationWithForecastGraphWidgetProvider";
 
     private static final String WIDGET_NAME = "EXT_LOC_WITH_FORECAST_GRAPH_WIDGET";
+
+    private static final String DEFAULT_CURRENT_WEATHER_DETAILS = "0,1";
+    private static final int MAX_CURRENT_WEATHER_DETAILS = 2;
 
     @Override
     protected void preLoadWeather(Context context, RemoteViews remoteViews, int appWidgetId) {
@@ -52,6 +56,14 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
         }
 
         CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
+
+        WidgetUtils.updateCurrentWeatherDetails(
+                context,
+                remoteViews,
+                weatherRecord,
+                currentLocation.getLocale(),
+                appWidgetId,
+                DEFAULT_CURRENT_WEATHER_DETAILS);
 
         appendLog(context, TAG, "Updating weather in widget, currentLocation.id=" + currentLocation.getId() + ", weatherRecord=" + weatherRecord);
 
@@ -82,17 +94,6 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
                                                                     currentLocation.getLocaleAbbrev(),
                                                                     weather));
 
-            WidgetUtils.setWind(context,
-                                remoteViews,
-                                weather.getWindSpeed(),
-                                weather.getWindDirection(),
-                                currentLocation.getLocale(),
-                    R.id.widget_ext_loc_forecast_graph_3x3_widget_wind,
-                    R.id.widget_ext_loc_forecast_graph_3x3_widget_wind_icon);
-            WidgetUtils.setHumidity(context, remoteViews, weather.getHumidity(),
-                    R.id.widget_ext_loc_forecast_graph_3x3_widget_humidity,
-                    R.id.widget_ext_loc_forecast_graph_3x3_widget_humidity_icon);
-
             Utils.setWeatherIcon(remoteViews, context, weatherRecord,
                     R.id.widget_ext_loc_forecast_graph_3x3_widget_icon);
         } else {
@@ -116,17 +117,6 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
                 remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_graph_3x3_widget_second_temperature, View.GONE);
             }
             remoteViews.setTextViewText(R.id.widget_ext_loc_forecast_graph_3x3_widget_description, "");
-
-            WidgetUtils.setWind(context,
-                                remoteViews,
-                            0,
-                        0,
-                                currentLocation.getLocale(),
-                    R.id.widget_ext_loc_forecast_graph_3x3_widget_wind,
-                    R.id.widget_ext_loc_forecast_graph_3x3_widget_wind_icon);
-            WidgetUtils.setHumidity(context, remoteViews, 0,
-                    R.id.widget_ext_loc_forecast_graph_3x3_widget_humidity,
-                    R.id.widget_ext_loc_forecast_graph_3x3_widget_humidity_icon);
 
             Utils.setWeatherIcon(remoteViews, context, weatherRecord,
                     R.id.widget_ext_loc_forecast_graph_3x3_widget_icon);
@@ -182,8 +172,6 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
         remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_widget_temperature, textColorId);
         remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_widget_description, textColorId);
         remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_widget_description, textColorId);
-        remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_widget_wind, textColorId);
-        remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_widget_humidity, textColorId);
         remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_widget_second_temperature, textColorId);
         remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_forecast_1_widget_day, textColorId);
         remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_forecast_1_widget_temperatures, textColorId);
@@ -198,6 +186,14 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
         remoteViews.setInt(R.id.widget_ext_loc_forecast_graph_3x3_header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
 
         appendLog(context, TAG, "setWidgetTheme:end");
+    }
+
+    public static int getNumberOfCurrentWeatherDetails() {
+        return MAX_CURRENT_WEATHER_DETAILS;
+    }
+
+    public static String getDefaultCurrentWeatherDetails() {
+        return DEFAULT_CURRENT_WEATHER_DETAILS;
     }
 
     @Override

@@ -75,11 +75,15 @@
     <string name="rain_label">Pluja: %1$s %2$s</string>
     <string name="snow_label">Neu: %1$s %2$s</string>
     <string name="humidity_label">Humitat: %1$s%2$s</string>
+    <string name="label_humidity">Humitat</string>
     <string name="pressure_label">Pressió: %1$s %2$s</string>
     <string name="cloudiness_label">Nuvolositat: %1$s%2$s</string>
+    <string name="label_cloudiness">Nuvolositat</string>
     <string name="last_update_label">Última actualització: %s</string>
     <string name="sunrise_label">Sortida del sol: %s</string>
     <string name="sunset_label">Posta del sol: %s</string>
+    <string name="label_sunrise">Sortida del sol</string>
+    <string name="label_sunset">Posta del sol</string>
     <string name="temperature_morning_title">Demà</string>
     <string name="temperature_day_title">Dia</string>
     <string name="temperature_evening_title">Tarda</string>

@@ -18,7 +18,9 @@
     <string name="title_activity_settings">Настройки</string>
     <string name="title_activity_search">Поиск местоположения</string>
     <string name="cloudiness_label">Облачность: %1$s%2$s</string>
+    <string name="label_cloudiness">Облачность</string>
     <string name="humidity_label">Влажность: %1$s%2$s</string>
+    <string name="label_humidity">Влажность</string>
     <string name="pressure_label">Давление: %1$s %2$s</string>
     <string name="wind_label">Ветер: %1$s %2$s %3$s</string>
     <string name="pref_title_category_notification">Настройки уведомлений</string>
@@ -78,6 +80,8 @@
     <string name="menu_action_toggle_yaxis">Переключение Y-оси координат</string>
     <string name="sunset_label">Закат: %s</string>
     <string name="sunrise_label">Восход: %s</string>
+    <string name="label_sunset">Закат</string>
+    <string name="label_sunrise">Восход</string>
     <string name="title_activity_license">Лицензия для %s</string>
     <string name="preference_hide_desc">Убрать описание погоды</string>
     <!-- Permission strings -->

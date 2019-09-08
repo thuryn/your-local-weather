@@ -20,8 +20,10 @@ import android.widget.Toast;
 
 import org.thosp.yourlocalweather.WidgetSettingsDialogue;
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.service.LocationUpdateService;
@@ -30,10 +32,14 @@ import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
+import org.thosp.yourlocalweather.utils.TemperatureUtil;
+import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -354,11 +360,16 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         }
 
         setSettingButtonAction(context, widgetId, "forecastSettings", R.id.widget_ext_loc_forecast_3x3_button_days_setting, remoteViews, ExtLocationWithForecastWidgetProvider.class);
-        setSettingButtonAction(context, widgetId, "graphSetting", R.id.widget_ext_loc_graph_3x3_button_graph_setting, remoteViews, ExtLocationWithGraphWidgetProvider.class);
-        setSettingButtonAction(context, widgetId, "graphSetting", R.id.widget_weather_graph_1x3_button_graph_setting, remoteViews, WeatherGraphWidgetProvider.class);
         setSettingButtonAction(context, widgetId, "forecastSettings", R.id.widget_weather_forecast_1x3_button_days_setting, remoteViews, WeatherForecastWidgetProvider.class);
         setSettingButtonAction(context, widgetId, "forecastSettings", R.id.widget_ext_loc_forecast_graph_3x3_button_days_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "graphSetting", R.id.widget_ext_loc_graph_3x3_button_graph_setting, remoteViews, ExtLocationWithGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "graphSetting", R.id.widget_weather_graph_1x3_button_graph_setting, remoteViews, WeatherGraphWidgetProvider.class);
         setSettingButtonAction(context, widgetId, "graphSetting", R.id.widget_ext_loc_forecast_graph_3x3_button_graph_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "detailsSetting", R.id.widget_ext_loc_3x3_button_details_setting, remoteViews, ExtLocationWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "detailsSetting", R.id.widget_ext_loc_forecast_3x3_button_details_setting, remoteViews, ExtLocationWithForecastWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "detailsSetting", R.id.widget_ext_loc_forecast_graph_3x3_button_details_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "detailsSetting", R.id.widget_ext_loc_graph_3x3_button_details_setting, remoteViews, ExtLocationWithGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, "detailsSetting", R.id.widget_more_3x3_button_details_setting, remoteViews, MoreWidgetProvider.class);
 
         setSettingButtonAction(context, widgetId, "locationSettings", R.id.widget_ext_loc_forecast_3x3_button_location_setting, remoteViews, ExtLocationWithForecastWidgetProvider.class);
         setSettingButtonAction(context, widgetId, "locationSettings", R.id.widget_weather_forecast_1x3_button_location_setting, remoteViews, WeatherForecastWidgetProvider.class);

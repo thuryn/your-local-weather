@@ -66,11 +66,15 @@
     <string name="rain_label">Lluvia: %1$s %2$s</string>
     <string name="snow_label">Nieve: %1$s %2$s</string>
     <string name="humidity_label">Humedad: %1$s%2$s</string>
+    <string name="label_humidity">Humedad</string>
     <string name="pressure_label">Presión: %1$s %2$s</string>
     <string name="cloudiness_label">Nubosidad: %1$s%2$s</string>
+    <string name="label_cloudiness">Nubosidad</string>
     <string name="last_update_label">Última actualización: %s</string>
     <string name="sunrise_label">Amanecer: %s</string>
     <string name="sunset_label">Puesta del sol: %s</string>
+    <string name="label_sunrise">Amanecer</string>
+    <string name="label_sunset">Puesta del sol</string>
     <string name="temperature_morning_title">Mañana</string>
     <string name="temperature_day_title">Día</string>
     <string name="temperature_evening_title">Tarde</string>

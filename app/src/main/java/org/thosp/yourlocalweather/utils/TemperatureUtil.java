@@ -9,8 +9,9 @@ import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.Weather;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
+
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class TemperatureUtil {
 
@@ -152,6 +153,27 @@ public class TemperatureUtil {
         }
     }
 
+    public static String getDewPointWithUnit(Context context, Weather weather, Locale locale) {
+        if (weather == null) {
+            return null;
+        }
+        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
+        double humidityLogarithm = Math.log(weather.getHumidity() / 100) / Math.log(Math.E);
+        double dewPointPart = humidityLogarithm + ((17.67 * weather.getTemperature())/(243.5 + weather.getTemperature()));
+        double dewPoint = (243.5 * dewPointPart) / (17.67 - dewPointPart);
+        appendLog(context, "TemperatureUtil", "humidityLogarithm=" + humidityLogarithm + ", dewPointPart=" + dewPointPart +
+                ", dewPoint=" + dewPoint);
+        if (unitsFromPreferences.contains("fahrenheit") ) {
+            double fahrenheitValue = (dewPoint * 1.8f) + 32;
+            return String.format(locale, "%d",
+                    Math.round(fahrenheitValue)) + getTemperatureUnit(context);
+        } else {
+            return String.format(locale, "%d",
+                    Math.round(dewPoint)) + getTemperatureUnit(context);
+        }
+    }
+    
     public static String getForecastedTemperatureWithUnit(Context context, DetailedWeatherForecast weather, Locale locale) {
         if (weather == null) {
             return null;

@@ -248,11 +248,15 @@
     <string name="rain_label" tools:ignore="MissingTranslation">Дощ: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Сніг: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Вологість: %1$s %2$s</string>
+    <string name="label_humidity" tools:ignore="MissingTranslation">Вологість</string>
     <string name="pressure_label" tools:ignore="MissingTranslation">Тиск: %1$s %2$s</string>
     <string name="cloudiness_label" tools:ignore="MissingTranslation">Хмарність: %1$s %2$s</string>
+    <string name="label_cloudiness" tools:ignore="MissingTranslation">Хмарність</string>
     <string name="last_update_label" tools:ignore="MissingTranslation">Останнє оновлення: %s</string>
     <string name="sunrise_label" tools:ignore="MissingTranslation">Схід сонця: %s</string>
     <string name="sunset_label" tools:ignore="MissingTranslation">Захід сонця: %s</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">Схід сонця</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">Захід сонця</string>
     <string name="temperature_morning_title" tools:ignore="MissingTranslation">Ранок</string>
     <string name="temperature_day_title" tools:ignore="MissingTranslation">День</string>
     <string name="temperature_evening_title" tools:ignore="MissingTranslation">Вечір</string>

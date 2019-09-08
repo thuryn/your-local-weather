@@ -99,11 +99,15 @@
     <string name="rain_label" tools:ignore="MissingTranslation">Regn: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Snø: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Luftfuktighet: %1$s %2$s</string>
+    <string name="label_humidity" tools:ignore="MissingTranslation">Luftfuktighet</string>
     <string name="pressure_label" tools:ignore="MissingTranslation">Trykk: %1$s %2$s</string>
     <string name="cloudiness_label" tools:ignore="MissingTranslation">Skydekke: %1$s %2$s</string>
+    <string name="label_cloudiness" tools:ignore="MissingTranslation">Skydekke</string>
     <string name="last_update_label" tools:ignore="MissingTranslation">Siste oppdatering: %s</string>
     <string name="sunrise_label" tools:ignore="MissingTranslation">Soloppgang: %s</string>
     <string name="sunset_label" tools:ignore="MissingTranslation">Solnedgang: %s</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">Soloppgang</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">Solnedgang</string>
     <string name="temperature_morning_title" tools:ignore="MissingTranslation">Morgen</string>
     <string name="temperature_day_title" tools:ignore="MissingTranslation">Dag</string>
     <string name="temperature_evening_title" tools:ignore="MissingTranslation">Kveld</string>

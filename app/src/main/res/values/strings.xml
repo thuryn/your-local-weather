@@ -179,6 +179,7 @@
     <string name="icon_sunrise" translatable="false"></string>
     <string name="icon_sunset" translatable="false"></string>
     <string name="icon_thermometer" translatable="false">\uf055</string>
+    <string name="icon_dew_point" translatable="false"></string>
     <!-- Units and Measurement-->
     <string name="percent_sign" translatable="false">\u0025</string>
     <string name="temperature_with_degree" translatable="false">%s</string>
@@ -374,11 +375,15 @@
     <string name="rain_label" tools:ignore="MissingTranslation">Rain: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Snow: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Humidity: %1$s%2$s</string>
+    <string name="label_humidity" tools:ignore="MissingTranslation">Humidity</string>
     <string name="pressure_label" tools:ignore="MissingTranslation">Pressure: %1$s %2$s</string>
     <string name="cloudiness_label" tools:ignore="MissingTranslation">Cloudiness: %1$s%2$s</string>
+    <string name="label_cloudiness" tools:ignore="MissingTranslation">Cloudiness</string>
     <string name="last_update_label" tools:ignore="MissingTranslation">Last update: %s</string>
     <string name="sunrise_label" tools:ignore="MissingTranslation">Sunrise: %s</string>
     <string name="sunset_label" tools:ignore="MissingTranslation">Sunset: %s</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">Sunrise</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">Sunset</string>
     <string name="temperature_morning_title" tools:ignore="MissingTranslation">Morning</string>
     <string name="temperature_day_title" tools:ignore="MissingTranslation">Day</string>
     <string name="temperature_evening_title" tools:ignore="MissingTranslation">Evening</string>
@@ -391,6 +396,8 @@
     <string name="label_rain" tools:ignore="MissingTranslation">Rain</string>
     <string name="label_snow" tools:ignore="MissingTranslation">Snow</string>
     <string name="label_pressure" tools:ignore="MissingTranslation">Pressure</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">Dew point: %s</string>
+    <string name="label_dew_point" tools:ignore="MissingTranslation">Dew point</string>
     <string name="measured_only" tools:ignore="MissingTranslation">Measured value only</string>
     <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Both, measured primary</string>
     <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Both, appearance primary</string>
@@ -410,6 +417,7 @@
     <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Current weather icon</string>
     <string name="widget_refresh_button" tools:ignore="MissingTranslation">Widget refresh button</string>
     <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Widget graph settings button</string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Widget weather detail settings button</string>
     <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Widget location settings button</string>
     <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Widget action settings button</string>
     <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Show day by abbreviation</string>
