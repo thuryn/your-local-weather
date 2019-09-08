@@ -482,4 +482,7 @@
     <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Chinês (tradicional)</string>
     <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhis</string>
     <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Beaufort</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">Ponto de condensação: %s</string>
+    <string name="label_dew_point" tools:ignore="MissingTranslation">Ponto de condensação</string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Botão de definições de detalhes de tempo de widget</string>
 </resources>
