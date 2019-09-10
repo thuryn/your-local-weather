@@ -282,7 +282,7 @@
     <string name="pref_language_ro" tools:ignore="MissingTranslation">Rumensk</string>
     <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portugisisk (Portugal)</string>
     <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portugisisk (Brasil)</string>
-    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Lokalet for nåværende værbeskrivelse og addressen vil oppdateres ved vanlig oppdatering, eller du kan påtvinge den manuelt.</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Språket brukt for nåværende værbeskrivelse og adressen vil oppdateres ved vanlig oppdatering, eller du kan påtvinge det manuelt.</string>
     <string name="location_not_initialized" tools:ignore="MissingTranslation">Plassering ikke igangsatt. Klikk på plasseringssirkelen først.</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Tilgangsutløp. Oppgrader programmet.</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Din OpenweathermapApiKey er ikke registrert.</string>
