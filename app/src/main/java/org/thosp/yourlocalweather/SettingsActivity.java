@@ -698,7 +698,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     preference.setEnabled(true);
                 }
             }
-            if ("permanent".equals(AppPreference.getNotificationPresence(getActivity()))) {
+            if (AppPreference.isNotificationEnabled(getActivity()) &&
+                "permanent".equals(AppPreference.getNotificationPresence(getActivity()))) {
                 NotificationUtils.weatherNotification(getActivity(),
                         NotificationUtils.getLocationForNotification(getActivity()).getId());
             }

@@ -1,5 +1,6 @@
 package org.thosp.yourlocalweather.service;
 
+import android.app.Notification;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -156,9 +157,12 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
         if (!autoLocation.isEnabled()) {
             return;
         }
-        
-        startForeground(android.os.Process.myPid(), NotificationUtils.getWeatherNotification(this, autoLocation.getId()));
-        
+
+        Notification notification = NotificationUtils.getWeatherNotification(this, autoLocation.getId());
+        if (notification != null) {
+            startForeground(android.os.Process.myPid(), notification);
+        }
+
         sensorResolutionMultiplayer = 1 / senAccelerometer.getResolution();
         int maxDelay = 10000;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

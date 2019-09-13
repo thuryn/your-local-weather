@@ -53,7 +53,8 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         public void onReceive(Context context, Intent intent) {
             appendLog(context, TAG, "receive intent: ", intent);
             String notificationPresence = AppPreference.getNotificationPresence(context);
-            if ("on_lock_screen".equals(notificationPresence)) {
+            if (AppPreference.isNotificationEnabled(context) &&
+                    "on_lock_screen".equals(notificationPresence)) {
                 NotificationManager notificationManager =
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                 notificationManager.cancelAll();
@@ -80,7 +81,8 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         public void onReceive(Context context, Intent intent) {
             appendLog(context, TAG, "receive intent: ", intent);
             String notificationPresence = AppPreference.getNotificationPresence(context);
-            if ("on_lock_screen".equals(notificationPresence)) {
+            if (AppPreference.isNotificationEnabled(context) &&
+                    "on_lock_screen".equals(notificationPresence)) {
                 NotificationUtils.weatherNotification(context, getLocationForNotification().getId());
             }
             timerScreenOnHandler.removeCallbacksAndMessages(null);

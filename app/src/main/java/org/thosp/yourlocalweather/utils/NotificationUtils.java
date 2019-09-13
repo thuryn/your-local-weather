@@ -62,6 +62,11 @@ public class NotificationUtils {
     }
     
     public static Notification getNotification(Context context, Location location, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
+
+        if (!AppPreference.isNotificationEnabled(context)) {
+            return null;
+        }
+
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
