@@ -335,6 +335,7 @@
         <item name="swedish">@string/pref_language_sv</item>
         <item name="turkish">@string/pref_language_tr</item>
         <item name="ukrainian">@string/pref_language_uk</item>
+        <item name="vietnamese">@string/pref_language_vi</item>
     </string-array>
     <string-array name="language_values" translatable="false">
         <item name="default">default</item>
@@ -375,6 +376,7 @@
         <item name="swedish">sv</item>
         <item name="turkish">tr</item>
         <item name="ukrainian">uk</item>
+        <item name="vietnamese">vi</item>
     </string-array>
 
     <!-- Themes array -->
