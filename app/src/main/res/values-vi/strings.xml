@@ -1,2 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="enter_city_hint" tools:ignore="MissingTranslation">Nhập tên thành phố</string>
+    <string name="label_current_city" tools:ignore="MissingTranslation">Thành phố hiện tại</string>
+    <string name="label_choose_city" tools:ignore="MissingTranslation">Chọn thành phố</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Tối ưu hoá pin</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Ứng dụng sẽ đề nghị bạn tắt tính năng tối ưu hoá pin để cập nhật vị trí, thời tiết hoặc theo dõi vị trí bằng cảm biến gia tốc khi chạy ngầm.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Tiếp tục</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Huỷ</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Cài đặt định vị và quyền hạn</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Bạn đã bật tính năng cập nhật vị trí. Do đó, ứng dụng cần truy cập thông tin vị trí. Hãy mở phần cài đặt của thiết bị để bật dịch vụ định vị hoặc tắt tính năng của ứng dụng.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Ứng dụng cần bạn cấp quyền để cập nhật vị trí bằng GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Ứng dụng cần bạn cấp quyền để cập nhật vị trí bằng mạng Wi-Fi và GSM.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Ứng dụng cần quyền đọc thông tin thiết bị để cập nhật vị trí thông qua mạng Wi-Fi và GSM. Cụ thể, ứng dụng lấy thông tin về các trạm thu phát sóng mà thiết bị có kết nối đến.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Cài đặt thiết bị</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Yêu cầu cấp quyền</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Huỷ</string>
+    <string name="progressDialog_gps_locate" tools:ignore="MissingTranslation">Tìm vị trí hiện tại</string>
+    <string name="load_progress" tools:ignore="MissingTranslation">Đang tải…</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Không định vị được</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Bạn chưa cấp quyền - hãy nhấn vào biểu tượng vị trí trong ứng dụng</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">OpenweathermapApiKey của bạn chưa được đăng kí.</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Chia sẻ thông tin thời tiết</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Không tìm được ứng dụng liên lạc nào</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Thành phố: %1$s
+\nNhiệt độ: %2$s
+\nMô tả: %3$s
+\nGIó: %4$s %5$s
+\nMặt trời mọc: %6$s
+\nMặt trời lặn: %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Thời tiết địa phương</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Thông báo thời tiết địa phương</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Nhiệt độ</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Gió</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Mưa</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Tuyết</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Áp suất không khí</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Hiện tại bạn không thể có nhiều hơn %1$d vị trí.</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Đóng</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Tiếp tục</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Quay lại</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Hoàn tất</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Hướng dẫn cài đặt ban đầu</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Để điều chỉnh ứng dụng cho phù hợp nhu cầu bản thân, bạn có thể chọn chế độ cập nhật trong màn hình tiếp theo.
+\nNếu không muốn cập nhật khi thay đổi vị trí, bạn có thể chọn <i>Không cập nhật vị trí</i>.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Cài đặt cập nhật vị trí</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Chọn nguồn định vị</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Bạn có thể chọn nguồn cung cấp thông tin vị trí — lựa chọn <i>Hệ thống</i> sử dụng dịch vụ của Google để định vị thông qua mạng di động và Wi-Fi. Lựa chọn <i>MLS địa phương và Nominatim</i> dùng dịch vụ của Mozilla để lấy kinh độ, vĩ độ và sử dụng dịch vụ Nominatim để lấy tên địa điểm. Lựa chọn này cần quyền truy cập cuộc gọi để lấy thông tin các trạm thu phát sóng. Lựa chọn khuyên dùng đã được chọn trước.</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Nguồn cung cấp vị trí và địa chỉ</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Cài đặt cách đánh thức điện thoại</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Một số dòng điện thoại báo sai thông tin trạm phát sóng nếu màn hình không bật. Lựa chọn được khuyến nghị sử dụng (bật màn hình) có nhược điểm là điện thoại sẽ bật màn hình lên vài giây và giảm thời lượng dùng pin một chút. Ban đầu, bạn hãy bật lựa chọn này, sau đó thử tắt đi xem điện thoại còn cập nhật được vị trí hay không.</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Cách đánh thức điện thoại</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Cài đặt lưu địa chỉ đã tìm được</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Bạn có thể tiết kiệm một lượng dữ liệu mạng bằng cách bật lựa chọn lưu các địa chỉ đã tìm được. Khi đó, địa chỉ sẽ được lưu trong ứng dụng, không được gửi hoặc lưu trên mạng.</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Lưu địa chỉ đã tìm</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Chúc mừng</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Hướng dẫn kết thúc tại đây. Bạn có thể tìm các tuỳ chọn khác trong mục Cài đặt (vd. ngôn ngữ, đơn vị đo, v.v.).
+\nMàn hình ngay sau đây sẽ giải thích các quyền ứng dụng cần để bạn chấp nhận hoặc từ chối các quyền đó.
+\n
+\nHi vọng ứng dụng sẽ giúp ích cho bạn.</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Chung</string>
+</resources>
