@@ -1,6 +1,7 @@
 package org.thosp.yourlocalweather.service;
 
 import android.app.AlarmManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
@@ -162,17 +163,26 @@ public class AppAlarmService extends AbstractCommonService {
 
     private void scheduleNextNotificationAlarm() {
         boolean isNotificationEnabled = AppPreference.isNotificationEnabled(getBaseContext());
+        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         if (!isNotificationEnabled) {
+            alarmManager.cancel(getPendingIntentForNotifiation());
+            NotificationManager notificationManager =
+                    (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            notificationManager.cancelAll();
             return;
         }
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
         String intervalPref = AppPreference.getInterval(getBaseContext());
         if ("regular_only".equals(intervalPref)) {
             return;
         }
         long intervalMillis = Utils.intervalMillisForAlarm(intervalPref);
         appendLog(this, TAG, "Build.VERSION.SDK_INT:", Build.VERSION.SDK_INT);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + intervalMillis,
+                    getPendingIntentForNotifiation());
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + intervalMillis,
                     getPendingIntentForNotifiation());
@@ -194,7 +204,11 @@ public class AppAlarmService extends AbstractCommonService {
     private static void scheduleNextRegularAlarm(Context context, boolean autoLocation, long updatePeriodMilis) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         appendLog(context, TAG, "Build.VERSION.SDK_INT:", Build.VERSION.SDK_INT);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + updatePeriodMilis,
+                    getPendingIntent(context, autoLocation));
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + updatePeriodMilis,
                     getPendingIntent(context, autoLocation));

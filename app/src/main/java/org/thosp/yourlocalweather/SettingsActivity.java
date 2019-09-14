@@ -2,9 +2,11 @@ package org.thosp.yourlocalweather;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -708,8 +710,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         private void updateSummary(String key, boolean changing) {
             switch (key) {
                 case Constants.KEY_PREF_IS_NOTIFICATION_ENABLED:
-                    entrySummary(key, changing);
-                    break;
                 case Constants.KEY_PREF_INTERVAL_NOTIFICATION:
                     entrySummary(key, changing);
                     if (changing) {
