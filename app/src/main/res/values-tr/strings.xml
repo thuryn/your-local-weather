@@ -505,4 +505,5 @@
     <string name="dew_point_label" tools:ignore="MissingTranslation">Çiy noktası: %s</string>
     <string name="label_dew_point" tools:ignore="MissingTranslation">Çiy noktası</string>
     <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Widget hava detay ayarları düğmesi</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamca</string>
 </resources>
