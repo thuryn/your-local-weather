@@ -500,4 +500,8 @@
     <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Chinesisch (traditionell)</string>
     <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhis</string>
     <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Beaufort</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">Taupunkt: %s</string>
+    <string name="label_dew_point" tools:ignore="MissingTranslation">Taupunkt</string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Schaltfläche für Widget-Wetterdetail-Einstellungen</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamesisch</string>
 </resources>
