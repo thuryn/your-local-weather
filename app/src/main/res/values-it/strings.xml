@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="enter_city_hint">Inserisci città</string>
     <string name="label_current_city">Città corrente</string>
@@ -8,21 +8,18 @@
     <string name="alertDialog_location_permission_negativeButton">Annulla</string>
     <string name="progressDialog_gps_locate">Trova la posizione corrente</string>
     <string name="load_progress">Caricamento in corso…</string>
-
     <!-- Activity names -->
     <string name="title_activity_search">Ricerca località</string>
     <string name="label_activity_main">Meteo attuale</string>
     <string name="label_activity_weather_forecast">Previsioni giornaliere</string>
     <string name="label_activity_graphs">Grafici meteo</string>
     <string name="title_activity_license">Licenza per %s</string>
-
     <!-- Toolbar menu -->
     <string name="toolbar_menu_refresh">Aggiorna</string>
     <string name="toolbar_menu_search_city">Cerca località</string>
     <string name="toolbar_menu_detect_location">Geolocalizzazione</string>
     <string name="menu_action_toggle_values">Valori sul grafico</string>
     <string name="menu_action_toggle_yaxis">Valori sull\'asse Y</string>
-
     <!-- Navigation drawer -->
     <string name="nav_menu_current_weather">Meteo attuale</string>
     <string name="nav_menu_daily_forecast">Previsioni giornaliere</string>
@@ -30,20 +27,16 @@
     <string name="nav_menu_settings">Impostazioni</string>
     <string name="nav_feedback">Riscontro</string>
     <string name="nav_menu_bitcoin_donation">Dona Bitcoin</string>
-
     <!-- Toast messages -->
     <string name="connection_not_found">Controlla la tua connessione internet</string>
     <string name="toast_parse_error">Si è verificato un errore. Prova più tardi!</string>
-
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
     <string name="wind_speed_miles">mph</string>
     <string name="millimetre_label">mm</string>
-
     <!-- Search Screen strings -->
     <string name="hint_activity_search">Ricerca località</string>
-
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Impostazioni</string>
     <string name="pref_title_temperature">Temperatura</string>
@@ -72,14 +65,12 @@
     <string name="pref_title_language">Lingua</string>
     <string name="pref_language_default">Default del sistema</string>
     <string name="pref_title_theme">Tema</string>
-    
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">Informazioni</string>
     <string name="about_version_pref_title">Versione</string>
     <string name="about_source_code_pref_title">Codice sorgente</string>
     <string name="about_app_license_pref_title">Licenza</string>
     <string name="about_open_source_licenses_pref_title">Licenze Open Source</string>
-
     <!-- Weather conditions label strings -->
     <string name="wind_label">Vento: %1$s %2$s %3$s</string>
     <string name="rain_label">Pioggia: %1$s %2$s</string>
@@ -102,13 +93,10 @@
     <string name="label_wind">Vento</string>
     <string name="label_rain">Pioggia</string>
     <string name="label_snow">Neve</string>
-
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description">Icona del meteo attuale</string>
     <string name="widget_refresh_button">Pulsante di aggiornamento del widget</string>
-
     <!-- Donation Bitcoin dialog -->
-
     <!-- Wind directions -->
     <string name="wind_direction_north">N</string>
     <string name="wind_direction_north_east">NE</string>
@@ -118,15 +106,13 @@
     <string name="wind_direction_south_west">SO</string>
     <string name="wind_direction_west">O</string>
     <string name="wind_direction_north_west">NO</string>
-
     <!-- Permission strings -->
     <string name="permission_location_rationale">Per determinare la tua posizione sono necessari i permessi per la geolocalizzazione</string>
     <string name="permission_not_granted">Le autorizzazioni non sono state concesse!</string>
     <string name="permission_available_location">Permessi per la geolocalizzazione concessi</string>
     <string name="permission_location_need">È necessario concedere le autorizzazioni di geolocalizzazione</string>
-
     <!-- Dialog strings -->
-<string name="app_name" tools:ignore="MissingTranslation">Meteo locale</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Meteo locale</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Impostazioni posizione e permessi</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">L\'applicazione necessita di un\'autorizzazione per aggiornare la posizione tramite GPS.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">L\'applicazione necessita di un\'autorizzazione per aggiornare la posizione tramite reti WIFI e GSM.</string>
@@ -134,7 +120,6 @@
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Richiesta permessi</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Località non trovata</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Le autorizzazioni non sono concesse - vai all\'applicazione e clicca sul simbolo della località</string>
-
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Chiudi</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Prossimo</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Precedente</string>
@@ -169,9 +154,7 @@
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Pressione</string>
     <string name="ok" tools:ignore="MissingTranslation">OK</string>
     <string name="cancel" tools:ignore="MissingTranslation">Annulla</string>
-
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Guida</string>
-
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">nodi</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
@@ -199,7 +182,6 @@
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Fonte della posizione e dell’indirizzo</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Accesso scaduto. Si prega di aggiornare l\'applicazione.</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">La tua OpenweathermapApiKey non è registrata.</string>
-
     <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Regolando l\'applicazione alle proprie esigenze, è possibile scegliere la strategia dell\'aggiornamento successivo.
 \nDeviando dall\'impostazione predefinita dell\'aggiornamento quando la posizione cambia, è possibile selezionare<i>Non aggiornare la posizione</i>.</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">E\' possibile scegliere il metodo di localizzazione - il<i>Sistema</i> Utilizzare i servizi Google per ottenere la posizione tramite reti (reti cellulari e Wi-Fi). Il <i> Locale MLS e Nominatim</i>utilizzare il servizio di localizzazione di Mozilla per ottenere le coordinate della posizione e il servizio di Nominatim per ottenere i nomi delle località. La seconda opzione richiede l\'autorizzazione alle telefonate per recuperare informazioni sulla rete cellulare. L\'opzione preferita è preselezionata.</string>
@@ -211,7 +193,8 @@
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">La terza schermata contiene le previsioni del tempo visualizzate dai grafici.</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">L\'applicazione ha tre widget disponibili, contenenti alcuni valori comuni del tempo attuale (ad esempio la temperatura). Alcuni valori sono unici per il widget specifico (ad esempio il tramonto). L\'ora dell\'ultimo aggiornamento è nell\'angolo destro di ogni widget. Si può vedere cosa è stato aggiornato l\'ultima volta (abilitando questa opzione nelle impostazioni del menu). Il pulsante aggiorna si trova accanto all\'ora dell\'ultimo aggiornamento. Premendo questo pulsante, il meteo (e la posizione quando è selezionata l\'opzione di aggiornamento posizione) viene aggiornato incondizionatamente. L\'ultima opzione nei widget è il cambio della posizione - quando si preme il testo della posizione corrente, viene selezionata la posizione successiva.</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">Questa opzione ha influenza sull\'intera applicazione.</string>
-    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Temperatura</b> - È possibile selezionare l\'unità di temperatura,
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
+        <b>Temperatura</b> - È possibile selezionare l\'unità di temperatura,
 \n<b>Vento</b> - E\' possibile selezionare l\'unità di velocità del vento e
 \n<b>Pressione</b> È possibile selezionare l\'unità di pressione dell\'aria. I valori vengono ricalcolati usando queste opzioni.</string>
     <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Rotazione del file di log</string>
@@ -221,8 +204,11 @@
     <string name="log_file_72_label" tools:ignore="MissingTranslation">tre giorni</string>
     <string name="log_file_168_label" tools:ignore="MissingTranslation">una settimana</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">un mese</string>
-
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Set di icone</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Icone basate sui caratteri</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Icone rosse di Merlino</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Ottimizzazione batteria</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">L\'app ti chiederà di disattivare l\'ottimizzazione della batteria per aggiornare posizione, condizioni meteorologiche o tracciare la posizione tramite accelerometro in background.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Procedi</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Annulla</string>
 </resources>
