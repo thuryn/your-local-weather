@@ -2,11 +2,12 @@ package org.thosp.yourlocalweather.utils;
 
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class YAxisValueFormatter implements IAxisValueFormatter {
+public class YAxisValueFormatter extends ValueFormatter {
 
     private NumberFormat decimalFormat;
     private String unit;
@@ -19,7 +20,7 @@ public class YAxisValueFormatter implements IAxisValueFormatter {
     }
 
     @Override
-    public String getFormattedValue(float value, AxisBase axis) {
+    public String getAxisLabel(float value, AxisBase axis) {
         if (axis.mEntries[axis.mEntries.length -1] == value) {
             return unit;
         }

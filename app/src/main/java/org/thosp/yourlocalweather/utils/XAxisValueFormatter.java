@@ -2,12 +2,13 @@ package org.thosp.yourlocalweather.utils;
 
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Map;
-public class XAxisValueFormatter implements IAxisValueFormatter {
+public class XAxisValueFormatter extends ValueFormatter {
 
     private Map<Integer, Long> hourIndexes;
     private Calendar calendar = Calendar.getInstance();
@@ -20,7 +21,7 @@ public class XAxisValueFormatter implements IAxisValueFormatter {
     }
 
     @Override
-    public String getFormattedValue(float value, AxisBase axis) {
+    public String getAxisLabel(float value, AxisBase axis) {
         int valuesIndex = (int) value;
         Long dataTime = hourIndexes.get(valuesIndex);
         if (dataTime == null) {

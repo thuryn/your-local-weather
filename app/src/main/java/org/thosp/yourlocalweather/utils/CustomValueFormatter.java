@@ -1,13 +1,15 @@
 package org.thosp.yourlocalweather.utils;
 
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.formatter.IValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 import com.github.mikephil.charting.utils.ViewPortHandler;
 
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class CustomValueFormatter implements IValueFormatter {
+public class CustomValueFormatter extends ValueFormatter {
 
     private NumberFormat decimalFormat;
 
@@ -18,8 +20,7 @@ public class CustomValueFormatter implements IValueFormatter {
     }
 
     @Override
-    public String getFormattedValue(float value, Entry entry, int dataSetIndex,
-                                    ViewPortHandler viewPortHandler) {
+    public String getAxisLabel(float value, AxisBase axis) {
         return decimalFormat.format(value);
     }
 }

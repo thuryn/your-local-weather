@@ -4,11 +4,12 @@ import android.content.Context;
 
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
+import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class RainSnowYAxisValueFormatter implements IAxisValueFormatter {
+public class RainSnowYAxisValueFormatter extends ValueFormatter {
 
     private NumberFormat decimalFormat;
 
@@ -20,7 +21,7 @@ public class RainSnowYAxisValueFormatter implements IAxisValueFormatter {
     }
 
     @Override
-    public String getFormattedValue(float value, AxisBase axis) {
+    public String getAxisLabel(float value, AxisBase axis) {
         return decimalFormat.format(value);
     }
 }
