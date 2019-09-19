@@ -778,15 +778,7 @@ public class Utils {
         if (address == null) {
             return "";
         }
-        String geoCity;
-        if((address.getLocality() != null) && !"".equals(address.getLocality())) {
-            geoCity = address.getLocality();
-        } else {
-            geoCity = address.getSubAdminArea();
-        }
-        if (geoCity == null) {
-            geoCity = "";
-        }
+        String geoCity = getCityFromAddress(address);
         String geoCountryDistrict = null;
         if(address.getAdminArea() != null) {
             geoCountryDistrict = address.getAdminArea();
@@ -800,6 +792,31 @@ public class Utils {
             return formatLocalityToTwoLines((("".equals(geoCity))?"":(geoCity + ", ")) + geoCountryDistrict + (("".equals(geoCountryName))?"":(", " + geoCountryName)));
         }
         return formatLocalityToTwoLines((("".equals(geoCity))?"":(geoCity + " - ")) + geoDistrictOfCity + (("".equals(geoCountryName))?"":(", " + geoCountryName)));
+    }
+
+    public static String getCityFromAddress(Address address) {
+        if (address == null) {
+            return "";
+        }
+        String geoCity;
+        if ((address.getLocality() != null) && !"".equals(address.getLocality())) {
+            geoCity = address.getLocality();
+        } else {
+            geoCity = address.getSubAdminArea();
+        }
+        if (geoCity == null) {
+            geoCity = "";
+        }
+        return geoCity;
+    }
+
+    public static String getLocationForSharingFromAddress(Address address) {
+        String geoCity = getCityFromAddress(address);
+        String geoDistrictOfCity = address.getSubLocality();
+        if ((geoDistrictOfCity == null) || "".equals(geoDistrictOfCity) || geoCity.equalsIgnoreCase(geoDistrictOfCity)) {
+            return geoCity;
+        }
+        return (("".equals(geoCity))?"":(geoCity + " - ")) + geoDistrictOfCity;
     }
 
     private static String formatLocalityToTwoLines(String inputLocation) {

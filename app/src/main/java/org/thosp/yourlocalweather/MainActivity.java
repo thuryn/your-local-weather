@@ -596,7 +596,7 @@ public class MainActivity extends BaseActivity
             sunrise = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunrise(), currentLocation.getLocale());
             sunset = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunset(), currentLocation.getLocale());
             String weatherDescription = getString(R.string.share_weather_descritpion,
-                                                  getCityNameFromAddress(),
+                                                  Utils.getLocationForSharingFromAddress(currentLocation.getAddress()),
                                                   temperatureWithUnit,
                                                   description,
                                                   windWithUnit.getWindSpeed(1),
@@ -616,10 +616,6 @@ public class MainActivity extends BaseActivity
             }
         }
     };
-
-    private String getCityNameFromAddress() {
-        return (currentLocation.getAddress() != null)?currentLocation.getAddress().getLocality():getString(R.string.location_not_found);
-    }
 
     private void detectLocation() {
         if (WidgetRefreshIconService.isRotationActive) {
