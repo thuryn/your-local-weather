@@ -43,6 +43,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -101,6 +102,7 @@ public class MainActivity extends BaseActivity
     private TextView mIconSunriseView;
     private TextView mIconSunsetView;
     private TextView mIconDewPointView;
+    private Button switchLocationButton;
 
     private ConnectionDetector connectionDetector;
     private Boolean isNetworkAvailable;
@@ -459,6 +461,7 @@ public class MainActivity extends BaseActivity
         mSunsetView = (TextView) findViewById(R.id.main_sunset);
         mAppBarLayout = (AppBarLayout) findViewById(R.id.main_app_bar);
         localityView = (TextView) findViewById(R.id.main_locality);
+        switchLocationButton = (Button) findViewById(R.id.main_switch_location);
 
         mTemperatureView.setTypeface(robotoThin);
         dewPointView.setTypeface(robotoLight);
@@ -469,6 +472,7 @@ public class MainActivity extends BaseActivity
         mCloudinessView.setTypeface(robotoLight);
         mSunriseView.setTypeface(robotoLight);
         mSunsetView.setTypeface(robotoLight);
+        localityView.setTypeface(robotoLight);
 
         /**
          * Initialize and configure weather icons
@@ -1028,6 +1032,13 @@ public class MainActivity extends BaseActivity
             }
         }
         AppPreference.setCurrentLocationId(this, currentLocation);
+        int maxOrderId = locationsDbHelper.getMaxOrderId();
+        if ((maxOrderId > 1) ||
+                ((maxOrderId == 1) && (locationsDbHelper.getLocationByOrderId(0).isEnabled()))) {
+            switchLocationButton.setVisibility(View.VISIBLE);
+        } else {
+            switchLocationButton.setVisibility(View.GONE);
+        }
     }
 
     protected void sendMessageToCurrentWeatherService(Location location, String updateSource) {
