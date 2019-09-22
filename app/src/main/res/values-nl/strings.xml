@@ -1,21 +1,21 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Mijn weer</string>
-    <string name="enter_city_hint">Voer stadsnaam in</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="MissingTranslation">Mijn weersverwachting</string>
+    <string name="enter_city_hint">Geef stad</string>
     <string name="label_current_city">Huidige stad</string>
-    <string name="label_choose_city">Stad kiezen</string>
+    <string name="label_choose_city">Kies stad</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Locatie- en machtigingsinstellingen</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Standaard werkt de app de locatie automatisch bij; hiervoor moet toegang worden gegeven. Ga naar de apparaatinstellingen en schakel je locatie in of schakel automatische locatiedetectie uit.</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Standaard werkt de app de locatie automatisch bij. Hiervoor moet toegang worden gegeven. Ga naar de apparaatinstellingen en schakel je locatie in of schakel automatische locatiedetectie uit.</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">De app vereist een machtiging om de locatie bij te werken via GPS.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">De app vereist een machtiging om de locatie bij te werken via mobiele en Wi-Fi-netwerken.</string>
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Machtiging om apparaatinformatie te lezen is nodig om de locatie bij te werken via mobiele en Wi-Fi-netwerken. Dit haalt informatie op over de GSM-masten waarmee het apparaat verbonden is.</string>
     <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Apparaatinstellingen</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Machtigingsverzoeken</string>
-    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Annuleren</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Annuleer</string>
     <string name="progressDialog_gps_locate">Huidige locatie opvragen</string>
     <string name="load_progress">Bezig met laden…</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Locatie niet gevonden</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Machtigingen nog niet toegekend - klik op het locatiepictogram in de app</string>
-
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Sluiten</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Volgende</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Vorige</string>
@@ -28,9 +28,9 @@
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Je kunt de locatiemethode kiezen. De <i>Systeem</i>-methode gebruikt Google-diensten om de locatie te verkrijgen via netwerken (mobiele en Wi-Fi-netwerken); de <i>Lokale MLS en Nominatim</i>-optie gebruikt de Mozilla-locatiedienst om de locatiecoördinaten te verkrijgen en de Nominatim-dienst om de locatienamen te verkrijgen. De tweede optie vereist de machtiging om oproepen te beheren om informatie te verkrijgen over het mobiele netwerk. De voorkeursoptie is voorgeselecteerd.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Locatie- en adresbron</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Ontwaakstrategie-optie</string>
-    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Sommige toestellen rapporteren onjuiste mobiele netwerken tenzij het scherm aanstaat. De voorkeursoptie (het scherm aanzetten) heeft als nadeel dat het scherm enkele seconden wordt aangezet. Dit zorgt voor een iets kortere batterijduur. Begin met de aanbevolen optie en schakel deze later uit om te kijken of de locatie nog steeds wordt bijgewerkt.</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Sommige toestellen rapporteren onjuiste mobiele netwerken tenzij het scherm aanstaat. De voorkeursoptie (het scherm aanzetten) heeft als nadeel dat het scherm enkele seconden wordt aangezet. Dit zorgt voor een iets kortere batterijduur. Begin met de aanbevolen optie en schakel deze later uit om te zien of de locatie dan nog steeds wordt bijgewerkt.</string>
     <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Ontwaakstrategie</string>
-    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Herleide adresoptie opslaan in cache</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Herleidde adresoptie opslaan in cache</string>
     <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Je kunt netwerkverkeer besparen door gevonden locaties op te slaan in de cache; locaties worden dan opgeslagen in de app. De locaties worden niet verstuurd of elders in het netwerk opgeslagen.</string>
     <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Herleid adres opslaan in cache</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Gefeliciteerd</string>
@@ -41,94 +41,93 @@
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Algemeen</string>
     <string name="help_page_general_content" tools:ignore="MissingTranslation">De applicatie gebruikt het mobiele netwerk, Wi-Fi en GPS om uw locatie op te vragen en het weer te weergeven op uw daadwerkelijke locatie. Als u de widget gebruikt op uw telefoon of tablet, dan kunt u uw locatie en de huidige weersomstandigheden zien. Het bijwerken van de locatie kan periodiek worden gedaan (bijv. ieder uur) of d.m.v. de versnellingsmeter die uw bewegingen detecteert. U kunt automatisch bijwerken van de locatie uitschakelen; in dat geval wordt alleen het weer bijgewerkt. Periodiek bijwerken: de applicatie werkt de locatie en het weer bij in de opgegeven tussenpoos. U kunt bijv. instellen dat er ieder uur moet worden bijgewerkt. Bijwerken d.m.v. versnellingsmeter: de locatie wordt bijgewerkt op basis van de door de versnellingsmeter gemeten afstand. Als de afstand langer dan de minimale waarde is, dan wordt uw locatie bijgewerkt. De afstand is afhankelijk van hoe u uw telefoon bij u draagt: als u uw telefoon in een zak meeneemt, dan wordt de afstand sneller berekend omdat de telefoon beweegt terwijl u onderweg bent. Het weer wordt onmiddellijk bijgewerkt na het bijwerken van uw locatie. Het weer wordt ook bijgewerkt als het scherm wordt aangezet, maar niet meer dan eens per 15 minuten (en het weer niet is bijgewerkt in de laatste 15 minuten). Om de locatie op te vragen wordt gebruik gemaakt van het mobiele netwerk (BTS) en Wi-Fi. Deze informatie wordt gebruikt om de locatiecoördinaten op de vragen bij Mozilla\'s locatiedienst. De applicatie probeert GPS te gebruiken als er geen locatie kan worden gevonden via een netwerk. De locatiecoördinaten worden gebruikt om een adres op te vragen bij Nominatim\'s dienst. Het adres wordt gebruikt in de applicatie of widget. De applicatie gebruikt OpenWeatherMap.org om het huidige weer op te vragen.</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Hoofdscherm</string>
-    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Het hoofdscherm bevat een overzicht van het actuele weer. Je kunt het weer bijwerken door op de knop Bijwerken op de werkbalk te drukken of door omlaag te vegen. De bijwerken-knop bevindt zich naast de verversknop. Deze knop is alleen beschikbaar als locatie 0 beschikbaar is (locatie 0 is bestemd voor automatisch bijwerken van de locatie).</string>
-    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">De weersvoorspelling is te vinden op het volgende scherm (selecteer het in het menu of veeg van links naar rechts). De weersvoorspelling kan worden bijgewerkt door op de knop Bijwerken te drukken of gebeurt automatisch als je op het scherm komt (maar niet vaker dan eens per uur).</string>
-    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Het derde scherm bevat de weersvoorspelling, getoond als grafieken.</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Het hoofdscherm bevat een overzicht van het huidige weer. Je kunt het weer bijwerken door op de knop Bijwerken op de werkbalk te drukken of door omlaag te vegen. De bijwerken-knop bevindt zich naast de verversknop. Deze knop is alleen beschikbaar als locatie 0 beschikbaar is (locatie 0 is bestemd voor automatisch bijwerken van de locatie).</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">De weersverwachting is te vinden op het volgende scherm (selecteer het in het menu of veeg van links naar rechts). De weersverwachting kan worden bijgewerkt door op de knop Bijwerken te drukken of gebeurt automatisch als je op het scherm komt (maar niet vaker dan eens per uur).</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Het derde scherm bevat de weersverwachting, getoond als grafieken.</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">Widgets</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">De app heeft drie widgets. Ze bevatten enkele gezamenlijke kenmerken (zoals bijv. de huidige temperatuur), maar sommige widgets hebben eigen kenmerken (zoals bijv. de zonsondergang). Op elke widget bevindt zich rechts onderaan de tijd waarop het weer voor het laatst is bijgewerkt. Je kunt zien wat er is bijgewerkt (als je dit hebt ingeschakeld in de instellingen). Daarnaast bevindt zich ook de knop Bijwerken. Als je op deze knop drukt, dan wordt het weer (en de locatie, als je daarvoor gekozen hebt) bijgewerkt. En als je op de huidige locatietekst drukt, dan wordt de volgende locatie geselecteerd.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Algemene instellingen</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">Deze opties zijn van toepassing op de gehele app.</string>
-    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Temperatuur</b> - Je kunt de temperatuureenheid selecteren. <b>Wind</b> - Je kunt de windeenheid selecteren. <b>Luchtdruk</b> - Je kunt de luchtdrukeenheid selecteren.
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
+        <b>Temperatuur</b> - Je kunt de temperatuureenheid selecteren. <b>Wind</b> - Je kunt de windeenheid selecteren. <b>Luchtdruk</b> - Je kunt de luchtdrukeenheid selecteren. 
 \nDe waarden worden herberekend na het wijzigen.</string>
-    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Weersomschrijving verbergen</b> - de omschrijving van het actuele weer wordt verborgen. Je kunt het actuele weer alleen herkennen aan het pictogram.</string>
-    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Locatie bijwerken</b> 
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">
+        <b>Weersomschrijving verbergen</b> - de beschrijving van het huidige weerbeeld wordt verborgen. Je kunt het actuele weer alleen herkennen aan het pictogram.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation">
+        <b>Locatie bijwerken</b> 
 \nJe kunt ervoor kiezen om alleen het weer bij te werken. Als je dit doet, dan kun je de zoekknop gebruiken op het hoofdscherm, alwaar je kunt zoeken naar de locatie die je wilt tonen; de applicatie zoekt dan niet naar uw locatie.</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Als u <b>locatie bijwerken zonder GPS</b> selecteert, dan probeert de applicatie alleen om uw locatie te vinden via mobiele en Wi-Fi-netwerken. De applicatie schakelt dan nooit GPS in.</string>
-    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Locatie- en adresbron</b>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">
+        <b>Locatie- en adresbron</b>
 \nU kunt selecteren waar de applicatie de locatie en het adres moet verkrijgen.</string>
-    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"><b>Lokale MLS en Nominatim</b> - de applicatie verkrijgt de locatie middels de Mozilla-locatiediensten. De applicatie gebruikt het mobiele netwerk voor informatie over de actieve en beschikbare zendmasten. Hiervoor de machtiging voor telefoonoproepen benodigd. De applicatie gebruikt Wi-Fi-netwerken om uw locatie preciezer op te vragen. De applicatie verkrijgt geografische coördinaten van Mozilla\'s locatiedienst. De applicatie gebruikt Nominatim-diensten om uw adres te verkrijgen middels coördinaten. Als u de locatie preciezer wilt verkrijgen van de Mozilla-locatiedienst, dan kunt u bijdragen aan de Mozilla Stumbler-applicatie (https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler).</string>
-    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"><b>Systeem</b> - de applicatie verkrijgt de locatie en het adres middels de systeemdiensten van Android (meestal m.b.v. de Google-locatiediensten).</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">
+        <b>Lokale MLS en Nominatim</b> - de applicatie verkrijgt de locatie doormiddel van de Mozilla-locatiediensten. De applicatie gebruikt het mobiele netwerk voor informatie over de actieve en beschikbare zendmasten. Hiervoor de machtiging voor telefoonoproepen benodigd. De applicatie gebruikt Wi-Fi-netwerken om uw locatie preciezer op te vragen. De applicatie verkrijgt geografische coördinaten van Mozilla\'s locatiedienst. De applicatie gebruikt Nominatim-diensten om uw adres te verkrijgen middels coördinaten. Als u de locatie preciezer wilt verkrijgen van de Mozilla-locatiedienst, dan kunt u bijdragen aan de Mozilla Stumbler-applicatie (https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler).</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
+        <b>Systeem</b> - de applicatie verkrijgt de locatie en het adres door middel van de systeemdiensten van Android (meestal m.b.v. de Google-locatiediensten).</string>
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Deze menu-opties zijn voor het instellen van de <b>taal</b>, het <b>thema</b> van de hoofdapplicatie en de <b>pictogramset</b> die wordt gebruikt in de applicatie en op de widgets.</string>
-    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"><b>Meldingen</b> 
-\nAls je een meldingsoptie selecteert, dan wordt het weer periodiek bijgewerkt. Het actuele weer wordt dan in de meldingsbalk getoond. Je kunt ook trillen inschakelen zodat de app trilt als het weer is bijgewerkt.</string>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">
+        <b>Meldingen</b> 
+\nAls je een meldingsoptie selecteert, dan wordt het weer periodiek bijgewerkt. Het huidige weer wordt dan in de meldingsbalk getoond. Je kunt ook trillen inschakelen zodat je apparaat trilt als het weer is bijgewerkt.</string>
     <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">Je kunt, om netwerkverkeer te besparen en het bijwerken van de locatie te versnellen, <b>Locaties cachen</b> inschakelen. Deze cache slaat geografische coördinaten en een adres op. De app moet hoe dan ook verbinding maken met de netwerk-oplosdienst. De Nominatim-adresoplossing wordt gedaan als het adres zich niet in de cache bevindt. Als je de optie Locaties cachen inschakelt, dan moet je accepteren dat adressen die je bezocht hebt worden opgeslagen in de app. Er wordt geen informatie gedeeld met andere apps of diensten.</string>
     <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Naast de Locaties cachen-optie (selectievakje) is een instellingen voor <b>De bewaartijd van gecachete waarden</b>. Elk opgeslagen adres heeft een tijdstempel. Als het tijdstempel ouder is dan de waarde die bij bovenstaande instelling is ingesteld, dan maakt de app verbinding met Nominatim om het geheugen te verversen.</string>
-    <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Je kunt de adrescache legen middels de <b>Cache wissen</b>-knop.</string>
+    <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Je kunt de adrescache legen door middel van de <b>Cache wissen</b>-knop.</string>
     <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">Je kunt verschillende rijen van gecachete waarden zien in de sectie <b>Informatie over de cache</b>. Je kunt ook het totaal aantal rijen zien.</string>
     <string name="help_page_4_title" tools:ignore="MissingTranslation">Widget-instellingen</string>
     <string name="help_page_4_content" tools:ignore="MissingTranslation">Widget-instellingen bevat configuratie-opties voor alle widgets.</string>
     <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Als je de optie <b>Labels tonen op widgets</b> inschakelt, dan zie je tekst i.p.v. pictogrammen voor de weersomstandigheden.</string>
-    <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Je kunt de widget-achtergrond aanpassen middels de optie <b>Widget-thema</b>.</string>
+    <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Je kunt de widget-achtergrond aanpassen door middel van de optie <b>Widget-thema</b>.</string>
     <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">De optie <b>Ontwaakstrategie</b> is aanwezig om slechte implementatie van de Android-dienst, zoals gedaan door sommige makers, te voorkomen. Als je de optie <i>Niet ontwaken</i> selecteert en de locatie is correct bijgewerkt, dan is de implementatie goed. Als de locatie onjuist is is, dan kun je de optie <i>Alleen ontwaken door processor</i> proberen. Deze optie ontwaakt de processor en probeert de status van het mobiele en Wi-Fi-netwerk uit te lezen. De laatste optie, <i>Ontwaken met scherm</i>, is de optie die het scherm enkele seconden inschakelt tijdens het bijwerken van de locatie. Dit is op sommige Android-telefoons de enige mogelijkheid om de juiste informatie te verkrijgen over mobiele en Wi-Fi-netwerken. Deze optie heeft enige impact op de accuduur, maar niet veel.</string>
-    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Als de locatie en het weer worden bijgewerkt, dan kun je de status ervan zien op de widget, naast de bijwerktijd. Je kunt aangeven wat je wilt zien middels de optie <b>Bijwerksamenvatting tonen</b>. De uitleg van de meest geavanceerde optie volgt:</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Als de locatie en het weer worden bijgewerkt, dan kun je de status ervan zien op de widget, naast de bijwerktijd. Je kunt aangeven wat je wilt zien door middel van de optie <b>Bijwerksamenvatting tonen</b>. De uitleg van de meest geavanceerde optie volgt:</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Foutopsporingsopties</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Er zijn opties om fouten op te slaan in een logbestand. Deze optie is handig als je problemen ondervindt met de app.</string>
-
     <string name="title_activity_search" tools:ignore="MissingTranslation">Locatie zoeken</string>
-    <string name="label_activity_main" tools:ignore="MissingTranslation">Actueel weer</string>
-    <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Weersvoorspelling</string>
+    <string name="label_activity_main" tools:ignore="MissingTranslation">Huidig weerbeeld</string>
+    <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Weersverwachting</string>
     <string name="label_activity_graphs" tools:ignore="MissingTranslation">Weergrafieken</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">Hulp</string>
     <string name="title_activity_license" tools:ignore="MissingTranslation">Licentie voor %s</string>
-
     <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Bijwerken</string>
     <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Stad zoeken</string>
     <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Locatie opvragen</string>
     <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Waarden inschakelen/uitschakelen</string>
     <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">"Y-Axis "</string>
-
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Kolominstelling</string>
     <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Getoonde kolommen</string>
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Pictogram</string>
-    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Omschrijving</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Beschrijving</string>
     <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperatuur</string>
     <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Wind</string>
-    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Regen/Sneeuw</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Regen en/of sneeuw</string>
     <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Luchtvochtigheid</string>
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Luchtdruk</string>
-    <string name="ok" tools:ignore="MissingTranslation">Oké</string>
+    <string name="ok" tools:ignore="MissingTranslation">OK</string>
     <string name="cancel" tools:ignore="MissingTranslation">Annuleren</string>
-
     <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Navigatiemenu openen</string>
     <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Navigatiemenu sluiten</string>
-    <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">Actueel weer</string>
-    <string name="nav_menu_daily_forecast" tools:ignore="MissingTranslation">Weersvoorspelling</string>
+    <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">Huidig weerbeeld</string>
+    <string name="nav_menu_daily_forecast" tools:ignore="MissingTranslation">Weersverwachting</string>
     <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Grafieken</string>
     <string name="nav_menu_settings" tools:ignore="MissingTranslation">Instellingen</string>
     <string name="nav_feedback" tools:ignore="MissingTranslation">Feedback</string>
     <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">Bitcoins doneren</string>
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Hulp</string>
-
     <string name="connection_not_found" tools:ignore="MissingTranslation">Controleer je internetverbinding</string>
-    <string name="toast_parse_error" tools:ignore="MissingTranslation">Er is een fout opgetreden; probeer het later opnieuw.</string>
-
+    <string name="toast_parse_error" tools:ignore="MissingTranslation">Er is een fout opgetreden. Probeer het later opnieuw.</string>
     <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
     <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
     <string name="wind_speed_miles" tools:ignore="MissingTranslation">mpu</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/u</string>
     <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
-
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Locatie zoeken</string>
-
     <string name="title_activity_settings" tools:ignore="MissingTranslation">Instellingen</string>
     <string name="pref_title_temperature" tools:ignore="MissingTranslation">Temperatuur</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Wind</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Luchtdruk</string>
-    <string name="preference_hide_desc" tools:ignore="MissingTranslation">Weersomschrijving verbergen</string>
+    <string name="preference_hide_desc" tools:ignore="MissingTranslation">Weerbeeld verbergen</string>
     <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Meldingen</string>
     <string name="pref_title_notification" tools:ignore="MissingTranslation">Meldingen inschakelen</string>
-    <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">Ververstussenpoos</string>
+    <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">Verversingsperiode</string>
     <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Locatie bijwerken-instelling</string>
     <string name="update_location_none" tools:ignore="MissingTranslation">Locatie niet bijwerken</string>
     <string name="update_location_full" tools:ignore="MissingTranslation">Locatie bijwerken (aanbevolen)</string>
@@ -136,18 +135,18 @@
     <string name="update_period_by_sensors" tools:ignore="MissingTranslation">Via de versnellingsmeter</string>
     <string name="update_period_15min" tools:ignore="MissingTranslation">15 minuten</string>
     <string name="update_period_30min" tools:ignore="MissingTranslation">30 minuten</string>
-    <string name="update_period_1hour" tools:ignore="MissingTranslation">Elk uur</string>
+    <string name="update_period_1hour" tools:ignore="MissingTranslation">Ieder uur</string>
     <string name="update_period_3hours" tools:ignore="MissingTranslation">3 uur</string>
     <string name="update_period_6hours" tools:ignore="MissingTranslation">6 uur</string>
     <string name="update_period_12hours" tools:ignore="MissingTranslation">12 uur</string>
     <string name="update_period_24hours" tools:ignore="MissingTranslation">24 uur</string>
     <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Trillen</string>
-    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Bijwerkperiode voor weer (locatie 1, 2, 3...)</string>
+    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Bijwerkperiode voor (locatie 1, 2, 3...)</string>
     <string name="preference_title_activity_general" tools:ignore="MissingTranslation">Algemene instellingen</string>
     <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Widget-instellingen</string>
     <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Locatie bijwerken</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Labels tonen op widgets</string>
-    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Huidige locatie tonen</string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Gebruik de geolocatie</string>
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Widget-thema</string>
     <string name="theme_dark" tools:ignore="MissingTranslation">Donker</string>
     <string name="theme_light" tools:ignore="MissingTranslation">Licht</string>
@@ -170,7 +169,7 @@
     <string name="pref_title_theme" tools:ignore="MissingTranslation">Thema</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Bijwerksamenvatting tonen</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Niets</string>
-    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Alleen \'bijgewerkt\'</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Alleen de bijgewerkte gegevens</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Alleen \'bijgewerkt\' en de locatiebron</string>
     <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - weer is bijgewerkt 
 \nL - locatie is bijgewerkt 
@@ -206,13 +205,11 @@
     <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Locaties opslaan in cache</string>
     <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Gevonden locaties worden opgeslagen in de cache</string>
     <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Gevonden locaties worden niet opgeslagen in de cache</string>
-    
     <string name="preference_title_activity_about" tools:ignore="MissingTranslation">Over</string>
     <string name="about_version_pref_title" tools:ignore="MissingTranslation">Versie</string>
     <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Broncode</string>
     <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Licentie</string>
-    <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Open bron-licenties</string>
-
+    <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Open software-licenties</string>
     <string name="wind_label" tools:ignore="MissingTranslation">Wind: %1$s %2$s %3$s</string>
     <string name="rain_label" tools:ignore="MissingTranslation">Regen: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Sneeuw: %1$s %2$s</string>
@@ -234,10 +231,8 @@
     <string name="label_wind" tools:ignore="MissingTranslation">Wind</string>
     <string name="label_rain" tools:ignore="MissingTranslation">Regen</string>
     <string name="label_snow" tools:ignore="MissingTranslation">Sneeuw</string>
-
-    <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Actueel weer-pictogram</string>
+    <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Huidig weer-pictogram</string>
     <string name="widget_refresh_button" tools:ignore="MissingTranslation">Widget-verversknop</string>
-
     <string name="wind_direction_north" tools:ignore="MissingTranslation">N↓</string>
     <string name="wind_direction_north_east" tools:ignore="MissingTranslation">NO↙</string>
     <string name="wind_direction_east" tools:ignore="MissingTranslation">O←</string>
@@ -246,15 +241,13 @@
     <string name="wind_direction_south_west" tools:ignore="MissingTranslation">ZW↗</string>
     <string name="wind_direction_west" tools:ignore="MissingTranslation">W→</string>
     <string name="wind_direction_north_west" tools:ignore="MissingTranslation">NW↘</string>
-
     <string name="permission_location_rationale" tools:ignore="MissingTranslation">Locatiemachtiging is benodigd voor het bepalen van de huidige stad</string>
     <string name="permission_not_granted" tools:ignore="MissingTranslation">De machtigingen zijn niet verleend!</string>
     <string name="permission_available_location" tools:ignore="MissingTranslation">De locatiemachtiging is verleend</string>
     <string name="permission_location_need" tools:ignore="MissingTranslation">Locatiemachtiging verlenen</string>
-
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Selecteer de logmap</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Foutopsporingsopties</string>
-    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Het logbestand zal opnieuw worden gecreëerd na de opgegeven tijd</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Het logbestand zal opnieuw worden gemaakt na de opgegeven tijd</string>
     <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Hergebruik van logbestand</string>
     <string name="log_file_12_label" tools:ignore="MissingTranslation">12 uur</string>
     <string name="log_file_24_label" tools:ignore="MissingTranslation">één dag</string>
@@ -262,12 +255,10 @@
     <string name="log_file_72_label" tools:ignore="MissingTranslation">drie dagen</string>
     <string name="log_file_168_label" tools:ignore="MissingTranslation">één week</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">één maand</string>
-
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Pictogramset</string>
-    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Op lettertype-gebaseerde pictogrammen</string>
-    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlijn de Rode-pictogrammen</string>
-<string name="title_activity_locations" tools:ignore="MissingTranslation">Locaties</string>
-
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Lettertype-gebaseerd</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlijn de Rode</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Locaties</string>
     <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">GPS inschakelen indien nodig</string>
     <string name="update_period_nothing" tools:ignore="MissingTranslation">Alleen handmatig</string>
     <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Bijwerkperiode voor locatie (locatie 0)</string>
@@ -279,11 +270,9 @@
     <string name="locations_disabled" tools:ignore="MissingTranslation">Uitgeschakeld</string>
     <string name="search_location_add" tools:ignore="MissingTranslation">Toevoegen</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Druk op de kaart om de gewenste locatie te verkrijgen en wacht totdat het adres is verwerkt.</string>
-    
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Naast de bijwerk-knop bevindt zich de locatiebeheer-knop (vergrootglas). Je kunt locaties beheren in de app en widgets. Standaard is er één locatie beschikbaar (locatie 0). Deze locatie is bestemd voor het automatisch bijwerken van de locatie. Je kunt de knop inschakelen/uitschakelen vinden door de locatie naar links te vegen. Je kunt ook handmatig een locatie toevoegen. Als je op de knop \'+\' drukt, dan kun je een locatie kiezen op de kaart. Je kunt de locatie ook verwijderen door te drukken op de knop Verwijderen, die verschijnt door de locatie naar links te vegen.</string>
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">knopen</string>
-    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Het actuele weer is nog niet bijgewerkt; werk het bij door te drukken op de verversknop.</string>
-
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Het huidige weer is nog niet bijgewerkt. Werk het bij met de verversknop.</string>
     <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Gevoelstemperatuur: %s</string>
     <string name="label_measured_temperature" tools:ignore="MissingTranslation">Gemeten temperatuur: %s</string>
     <string name="measured_only" tools:ignore="MissingTranslation">Alleen gemeten waarde</string>
@@ -291,18 +280,15 @@
     <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Beide, maar gevoelstemperatuur eerst</string>
     <string name="appearance_only" tools:ignore="MissingTranslation">Alleen gevoelstemperatuur</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Temperatuurweergave</string>
-
     <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Gevoelstemperatuur</string>
     <string name="pref_language_uk" tools:ignore="MissingTranslation">Oekraïens</string>
     <string name="pref_language_ro" tools:ignore="MissingTranslation">Roemeens</string>
     <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portugees (Portugal)</string>
     <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portugees (Brazilië)</string>
-    <string name="label_pressure" tools:ignore="MissingTranslation">Druk</string>
-    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">De actuele weersomschrijvingtaal en het adres worden bijgewerkt met de volgende geplande bijwerking, maar het bijwerken kan ook handmatig.</string>
-
-    <string name="subscription_expired" tools:ignore="MissingTranslation">Toegang verlopen. Werk de app bij.</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Luchtdruk</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Het huidige weerbeeld en de locatie worden bijgewerkt tijdens de volgende geplande bijwerking, maar het bijwerken kan ook handmatig.</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Toegang is verlopen. De app updaten, aub.</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Je OpenWeatherMap API-sleutel is niet geregistreerd.</string>
-
     <string name="location_not_initialized" tools:ignore="MissingTranslation">Geen locatie ingesteld. Druk op het locatiepictogram.</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Systeeminstellingen</string>
     <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API-sleutel</string>
@@ -310,25 +296,173 @@
     <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
     <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
     <string name="inches_label" tools:ignore="MissingTranslation">inches</string>
-
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Regen en sneeuw</string>
-    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation"></string>
-    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation"></string>
-    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation"></string>
-    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation"></string>
-    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation"></string>
-    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation"></string>
-    <string name="pref_title_time_style" tools:ignore="MissingTranslation"></string>
-    <string name="time_style_system" tools:ignore="MissingTranslation"></string>
-    <string name="time_style_12_h" tools:ignore="MissingTranslation"></string>
-    <string name="time_style_24_h" tools:ignore="MissingTranslation"></string>
-
-    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation"></string>
-    <string name="pref_language_sv" tools:ignore="MissingTranslation"></string>
-    <string name="pref_language_he" tools:ignore="MissingTranslation"></string>
-    <string name="wind_direction_nothing" tools:ignore="MissingTranslation"></string>
-    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation"></string>
-    <string name="wind_direction_deg" tools:ignore="MissingTranslation"></string>
-    <string name="weather_condition_description_none" tools:ignore="MissingTranslation"></string>
-    <string name="weather_condition_description_200" tools:ignore="MissingTranslation"></string>
-    </resources>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Batterij optimalisatie</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Om updates op locatie, weer of locatie door de accelerometer op de achtergrond te kunnen uitvoeren, vraagt de app om de batterij-optimalistie uit te schakelen.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Verder</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Annuleer</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Windrichting</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">Tijdformaat</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">Systeem</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12 uur am/pm</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24 uur</string>
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Windrichting-stijl</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Zweeds (Zweden)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">Ivriet (Israël)</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Uitgeschakeld</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Afgekort N↓, NO↙, …</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">In graden</string>
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">geen</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">onweer met lichte regen</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">onweer met regen</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">onweer met hevige regen</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">lichte onweersbui</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">onweersbui</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">zware onweersbui</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">haveloze onweersbui</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">onweersbui met lichte motregen</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">onweersbui met motregen</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">onweersbui met zware regen</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">lichte regen</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">motregen</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">zware motregen</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">licht intense motregen</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">motregen</string>
+    <string name="weather_condition_description_312" tools:ignore="MissingTranslation">hevige motregen</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">stortbui en motregen</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">hevige stortbuien en motregen</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">hevige motregen</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">lichte regen</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">regen</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">hevige regenbui</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">hoosbui</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">extreme regen</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">ijzel</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">lichte regenbui</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">hoosbui</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">zware hoosbui</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">regenvlagen</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">lichte sneeuw</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">sneeuw</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">zware sneeuw</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">ijzel</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">zware ijzel</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">lichte regen en sneeuw</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">regen en sneeuw</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">lichte sneeuwbui</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">sneeuwbui</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">zware sneeuwval</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">nevel</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">rook</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">hagel</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">zand- en stofwervels</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">mist</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">zand</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">stof</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">vulkanische as</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">rukwinden</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">tornado</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">heldere hemel</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">licht bewolkt</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">verspreide bewolking</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">gebroken wolkendek</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">bewolkt</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Deel de weer-informatie</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Er is geen communicatie-app gevonden</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Stad: %1$s
+\nTemperatuur: %2$s
+\nBeschrijving: %3$s
+\nWind: %4$s %5$s
+\nZonsopkomst: %6$s
+\nZonsondergang: %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Je lokale weer</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Meldingen mbt het lokale weer</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Temperatuur</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Wind</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Regen</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Sneeuw</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Luchtdruk</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Open software-licenties</string>
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">L</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">N</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">Log naar bestand schrijven</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">Geen logbestand schrijven</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">Log naar een bestand</string>
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">Datumformaat</string>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm.(jj)</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/jj)</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/jj)</string>
+    <string name="pref_language_de" tools:ignore="MissingTranslation">Duitsland (Duits)</string>
+    <string name="preference_title_category_units" tools:ignore="MissingTranslation">Eenheden</string>
+    <string name="preference_title_power_save" tools:ignore="MissingTranslation">Energiebesparing</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Indien regelmatig bijgewerkt</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Melding tonen</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">Indien bijgewerkt</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">Permanent</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">Op het vergrendelscherm</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">Zon</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">Temperatuur</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">Onzichtbaar</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Klassiek</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Aangepast met een verwachting</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Visuele notificatie</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Statusbalk pictogram</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">Visuele graphics</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">Gecombineerde graphics</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Gecombineerd</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Temperatuur</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Wind</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Regen</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Regen (diagram)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Sneeuw</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Sneeuw (diagram)</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Luchtdruk</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Temperatuur</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Wind</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Regen en/of sneeuw</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Luchtdruk</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Te tonen grafieken</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Gegevens voor de gecombineerde grafiek</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Grafiek in eigen resolutie weergeven (als de grafiek te klein is)</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 dagen</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 dagen</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 dagen</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Toon settings in widget</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Widget grafische instellingen</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Kort de dag af</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Aantal dagen vooruitzicht</string>
+    <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Locatie instelling</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (3 uur interval)</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (3 uur interval)</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (3 uur interval)</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Widget locatieinstellingen</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Widget actieinstellingen</string>
+    <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">Stad</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">Huidige weer-pictogram</string>
+    <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">Weer vooruitzicht</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">Grafiek</string>
+    <string name="widget_action_main_screen" tools:ignore="MissingTranslation">Hoofdscherm</string>
+    <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">Weersverwachting</string>
+    <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">Grafieken</string>
+    <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Andere locatie</string>
+    <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Laat legenda zien</string>
+    <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Toon de locatie in de widget</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Je kan momenteel niet meer dan %1$d locaties instellen.</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">psi</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Beaufort</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">Dauwpunt: %s</string>
+    <string name="label_dew_point" tools:ignore="MissingTranslation">Dauwpunt</string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Widget detail-instellingen</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamees (Vietnam)</string>
+</resources>
