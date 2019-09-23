@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" tools:ignore="MissingTranslation">Sua previsão</string>
+    <string name="app_name" tools:ignore="MissingTranslation">O seu clima local</string>
     <string name="enter_city_hint">Introduza a cidade</string>
     <string name="label_current_city">Cidade atual</string>
     <string name="label_choose_city">Escolha a cidade</string>
@@ -486,4 +486,5 @@
     <string name="label_dew_point" tools:ignore="MissingTranslation">Ponto de condensação</string>
     <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Botão de definições de detalhes de tempo de widget</string>
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamita</string>
+    <string name="pref_language_bn-rBD" tools:ignore="MissingTranslation">Bengali (Bangladesh)</string>
 </resources>
