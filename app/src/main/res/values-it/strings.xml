@@ -4,7 +4,7 @@
     <string name="label_current_city">Città corrente</string>
     <string name="label_choose_city">Scegli la città</string>
     <string name="alertDialog_location_permission_message_location_phone_settings">L\'app è impostata per aggiornare la posizione. Per funzionare occorre garantirne l\'accesso. Vai nelle impostazioni del dispositivo e abilita i servizi di localizzazione oppure disattiva questa funzione nell\'app.</string>
-    <string name="alertDialog_location_permission_positiveButton_settings">Impostazioni</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Impostazioni dispositivo</string>
     <string name="alertDialog_location_permission_negativeButton">Annulla</string>
     <string name="progressDialog_gps_locate">Trova la posizione corrente</string>
     <string name="load_progress">Caricamento in corso…</string>
@@ -28,7 +28,7 @@
     <string name="nav_feedback">Riscontro</string>
     <string name="nav_menu_bitcoin_donation">Dona Bitcoin</string>
     <!-- Toast messages -->
-    <string name="connection_not_found">Controlla la tua connessione internet</string>
+    <string name="connection_not_found">Controlla la tua connessione a Internet</string>
     <string name="toast_parse_error">Si è verificato un errore. Prova più tardi!</string>
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
@@ -41,7 +41,7 @@
     <string name="title_activity_settings">Impostazioni</string>
     <string name="pref_title_temperature">Temperatura</string>
     <string name="preference_hide_desc">Nascondi la descrizione</string>
-    <string name="pref_title_category_notification">Notifiche</string>
+    <string name="pref_title_category_notification">Impostazioni notifiche</string>
     <string name="pref_title_notification">Abilita notifiche</string>
     <string name="pref_title_notification_refresh_interval">Intervallo d\'aggiornamento</string>
     <string name="update_period_15min">15 minuti</string>
@@ -114,8 +114,8 @@
     <!-- Dialog strings -->
     <string name="app_name" tools:ignore="MissingTranslation">Meteo locale</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Impostazioni posizione e permessi</string>
-    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">L\'applicazione necessita di un\'autorizzazione per aggiornare la posizione tramite GPS.</string>
-    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">L\'applicazione necessita di un\'autorizzazione per aggiornare la posizione tramite reti WIFI e GSM.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">L\'applicazione necessita dell\'autorizzazione per aggiornare la posizione tramite GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">L\'applicazione necessita dell\'autorizzazione per aggiornare la posizione tramite reti Wi-Fi e GSM.</string>
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">L\'applicazione deve essere autorizzata a leggere le informazioni dal telefono. Questa autorizzazione è necessaria per aggiornare la posizione tramite reti WIFI e GSM. L\'applicazione utilizza questa autorizzazione per ottenere informazioni sulle stazioni base GSM collegate al telefono.</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Richiesta permessi</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Località non trovata</string>
@@ -207,8 +207,33 @@
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Set di icone</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Icone basate sui caratteri</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Icone rosse di Merlino</string>
-    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Ottimizzazione batteria</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Ottimizzazione della batteria</string>
     <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">L\'app ti chiederà di disattivare l\'ottimizzazione della batteria per aggiornare posizione, condizioni meteorologiche o tracciare la posizione tramite accelerometro in background.</string>
-    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Procedi</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Continua</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Annulla</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Località</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Temperatura percepita</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">pollici</string>
+    <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Pioggia e neve</string>
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Stile direzione del vento</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Direzione del vento</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12 ore AM/PM</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24 ore</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Condividi il meteo</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Città: %1$s
+\nTemperatura: %2$s
+\nDescrizione: %3$s
+\nVento: %4$s %5$s
+\nAlba: %6$s
+\nTramonto: %7$s</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Vento</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Pioggia</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Neve</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Pressione atmosferica</string>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">Formato data</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 giorni</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 giorni</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 giorni</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Al momento non puoi aggiungere più di %1$d località.</string>
 </resources>
