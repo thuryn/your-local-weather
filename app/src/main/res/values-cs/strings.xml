@@ -20,7 +20,6 @@
     <string name="load_progress">Nahrávám…</string>
     <string name="location_not_found">Poloha nenalezena</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Oprávnění nejsou udělena - přejděte do hlavní aplikace klikněte na ikonu polohy</string>
-
     <!-- Activity names -->
     <string name="title_activity_search">Najít pozici</string>
     <string name="label_activity_main">Aktuální počasí</string>
@@ -28,14 +27,12 @@
     <string name="label_activity_graphs">Počasí v grafech</string>
     <string name="title_activity_license">Licence pro %s</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Místa</string>
-
     <!-- Toolbar menu -->
     <string name="toolbar_menu_refresh">Aktualizace</string>
     <string name="toolbar_menu_search_city">Najít město</string>
     <string name="toolbar_menu_detect_location">Zjistit lokalitu</string>
     <string name="menu_action_toggle_values">Přepnout hodnoty</string>
     <string name="menu_action_toggle_yaxis">Přepnout osu Y</string>
-
     <!-- Weather forecast -->
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Nastavení sloupců</string>
     <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Zobrazení sloupců</string>
@@ -50,8 +47,6 @@
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Tlak</string>
     <string name="ok" tools:ignore="MissingTranslation">OK</string>
     <string name="cancel" tools:ignore="MissingTranslation">Zrušit</string>
-
-
     <!-- Navigation drawer -->
     <string name="nav_menu_current_weather">Aktuální počasí</string>
     <string name="nav_menu_daily_forecast">Denní předpověd</string>
@@ -59,27 +54,22 @@
     <string name="nav_menu_settings">Nastavení</string>
     <string name="nav_feedback">Zpětná vazba</string>
     <string name="nav_menu_bitcoin_donation">Přispět Bitcoiny</string>
-
     <!-- Toast messages -->
     <string name="connection_not_found">Zkontrolujte své připojení na Internet</string>
     <string name="toast_parse_error">Vyskytla se chyba. Zkuste to znovu později!</string>
-
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
     <string name="wind_speed_miles">mph</string>
     <string name="wind_speed_knots">uzly</string>
     <string name="millimetre_label">mm</string>
-
     <!-- Time style setting -->
     <string name="pref_title_time_style" tools:ignore="MissingTranslation">Formát času</string>
     <string name="time_style_system" tools:ignore="MissingTranslation">Dle systému</string>
     <string name="time_style_12_h" tools:ignore="MissingTranslation">12-hodinový</string>
     <string name="time_style_24_h" tools:ignore="MissingTranslation">24-hodinový</string>
-
     <!-- Search Screen strings -->
     <string name="hint_activity_search">Najít polohu</string>
-
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">Nastavení</string>
     <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Licence Open source</string>
@@ -127,14 +117,12 @@
 \nNi - aktualizována poloha z GSM sítě a počasí
         \nB - přístup do služby Openweathermap.org byl zakázán, zkuste aktualizaci počasí později, prosím
         \nE - platnost přístupového kódu pro službu Openweathermap.org vypršela. Pro opětovné získání přístupu je třeba aktualizovat aplikaci na novější verzi.</string>
-
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">O aplikaci</string>
     <string name="about_version_pref_title">Verze</string>
     <string name="about_source_code_pref_title">Zdrojový kód</string>
     <string name="about_app_license_pref_title">Licence</string>
     <string name="about_open_source_licenses_pref_title">Licence Open Source</string>
-
     <!-- Weather conditions label strings -->
     <string name="wind_label">Vítr: %1$s %2$s %3$s</string>
     <string name="rain_label">Déšť: %1$s %2$s</string>
@@ -159,13 +147,10 @@
     <string name="label_snow">Sníh</string>
     <string name="dew_point_label">Rosný bod: %s</string>
     <string name="label_dew_point">Rosný bod</string>
-
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description">Aktuální ikona počasí</string>
     <string name="widget_refresh_button">Tlačítko obnovení ve widgetu</string>
-
     <!-- Donation Bitcoin dialog -->
-
     <!-- Wind directions -->
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Nezobrazovat</string>
     <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Zkratka S, SV, ...</string>
@@ -178,12 +163,11 @@
     <string name="wind_direction_south_west">JZ↙</string>
     <string name="wind_direction_west">Z←</string>
     <string name="wind_direction_north_west">SZ↖</string>
-
     <!-- Permission strings -->
     <string name="permission_location_rationale">Oprávnění pro získání polohy je třeba pro nalezení aktuálního města</string>
     <string name="permission_not_granted">Oprávnění nejsou udělena!</string>
     <string name="permission_available_location">Bylo uděleno oprávnění pro získání polohy</string>
-<string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Displej</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Aktualizace polohy a počasí</string>
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Nastavení jednotek</string>
@@ -211,11 +195,8 @@
     <string name="location_cache_4380_label" tools:ignore="MissingTranslation">šest měsíců</string>
     <string name="location_cache_8760_label" tools:ignore="MissingTranslation">rok</string>
     <string name="location_cache_88888_label" tools:ignore="MissingTranslation">nikdy</string>
-    
     <string name="permission_location_need" tools:ignore="MissingTranslation">Je třeba udělit oprávnění pro získání polohy</string>
-
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Pro aplikaci změn vyčkejte na automatickou aktualizaci počasí a polohy nebo tuto aktualizaci proveďte ručně</string>
-
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Vybrat adresář pro logování</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Volby pro ladění</string>
     <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Po nastaveném čase bude soubor s logy znovu vytvořen</string>
@@ -229,7 +210,6 @@
     <string name="log_to_file_label" tools:ignore="MissingTranslation">Zápis logů do souboru</string>
     <string name="log_to_file_off" tools:ignore="MissingTranslation">Nezapisovat</string>
     <string name="log_to_file_on" tools:ignore="MissingTranslation">Zapisovat</string>
-
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Sada ikon</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Jednoduché ikony</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">"Ikony Merlin the red"</string>
@@ -277,22 +257,28 @@
     <string name="help_page_2_content" tools:ignore="MissingTranslation">Aplikace obsahuje tři widgety. Widgety obsahují některé společné hodnoty aktuálního počasí (např. teplotu). Některé hodnoty jsou pro daný widget unikátní (např. západ slunce). V pravém horním rohu každého widgetu je čas poslední aktualizace. Dále můžete vidět, co bylo naposledy aktualizováno (pokud máte tuto volbu povolenu v menu Nastavení). Vedle času poslední aktualizace se nachází tlačítko pro aktualizaci. Pokud je tlačítko aktualizace stisknuto, aktuální počasí (a případně poloha, pokud byla nastavena tato volba) je bezpodmínečně aktualizována. Poslední volba ve widgetech je změna polohy - pokud stisknete aktuální polohu, poloha bude změněna na následující v pořadí.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Obecná nastavení</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">Tato nastavení mají vliv na celou aplikaci.</string>
-    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"><b>Teplota</b> - Zde je možné vybrat jednotky pro teplotu, <b>Rychlost větru</b> a <b>Tlak</b>. Hodnoty jsou přepočítány dle tohoto nastavení.</string>
-    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"><b>Skrýt popis počasí</b> - popis počasí se nebude zobrazovat. Aktuální počasí je zřejmé jen z ikony.</string>
-    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"><b>Interval aktualizace pro polohu (Poloha 0)</b>" - zde můžete nastavit interval aktualizace pro polohu 0 - poloha 0 má schopnost aktualizace polohy dle mobilní a wifi sítě a dle GPS. Pokud zvolíte volbu  "<i>Dle akcelerometru</i>", aplikace používá akcelerometr pro detekci pohybu. Pokud je zaznamenán pohyb, aplikace počítá vzdálenost. Pokud je překročen limit délky a poslední aktualizace byla provedena za déle než 15 minut, aplikace provede aktualizaci polohy a aktuálního počasí. Pokud aplikace není schopna zjistit polohu, zobrazí se nápis Neznámá poloha ve widgetu. Pokud se aplikace nachází ve stavu s nezjištěnou polohou, další aktualizace se provede již za 5 minut. Též můžete zvolit aktualizaci polohy dle zadaného intervalu. Volbou  "<b> Interval aktualizace pro počasí (Polohy 1, 2, 3...)</b> nastavíte interval aktualizace počasí pro ručně vyhledané polohy.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
+        <b>Teplota</b> - Zde je možné vybrat jednotky pro teplotu, <b>Rychlost větru</b> a <b>Tlak</b>. Hodnoty jsou přepočítány dle tohoto nastavení.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">
+        <b>Skrýt popis počasí</b> - popis počasí se nebude zobrazovat. Aktuální počasí je zřejmé jen z ikony.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation">
+        <b>Interval aktualizace pro polohu (Poloha 0)</b>" - zde můžete nastavit interval aktualizace pro polohu 0 - poloha 0 má schopnost aktualizace polohy dle mobilní a wifi sítě a dle GPS. Pokud zvolíte volbu  "<i>Dle akcelerometru</i>", aplikace používá akcelerometr pro detekci pohybu. Pokud je zaznamenán pohyb, aplikace počítá vzdálenost. Pokud je překročen limit délky a poslední aktualizace byla provedena za déle než 15 minut, aplikace provede aktualizaci polohy a aktuálního počasí. Pokud aplikace není schopna zjistit polohu, zobrazí se nápis Neznámá poloha ve widgetu. Pokud se aplikace nachází ve stavu s nezjištěnou polohou, další aktualizace se provede již za 5 minut. Též můžete zvolit aktualizaci polohy dle zadaného intervalu. Volbou  "<b> Interval aktualizace pro počasí (Polohy 1, 2, 3...)</b> nastavíte interval aktualizace počasí pro ručně vyhledané polohy.</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Pokud zaškrtnete volbu <b>Zapnout GPS, pokud je to nezbytné</b>, aplikace se pokusí najít polohu nejprve pomocí mobilní a wifi sítě. Pokud se vyhledání polohy nezdaří, aplikace zapne GPS na několik vteřin a pokusí se najít polohu pomocí GPS.</string>
-    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Zdroj polohy a adresy</b>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">
+        <b>Zdroj polohy a adresy</b>
 \nZde je možné vybrat, pomocí které služby bude vyhledávána poloha a adresa.</string>
-    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"><b>Místní MLS a Nominatim</b> - aplikace získává polohu pomocí služby polohy společnosti Mozilla. Aplikace využívá informace z mobilních sítí - aktivní a dostupné základnové stanice. Pro získání těchto informací je třeba oprávnění pro ovládání telefonních hovorů. Dále aplikace využívá wifi sítě v okolí pro upřesnění Vaší polohy. Služby polohy společnosti Mozilla jsou pak využity pro získání geografických souřadnic. Dále aplikace využívá služby Nominatim pro získání adresy z geografických souřadnic. Pokud chcete přispívat do služby zjišťování polohy Mozilla (pro zpřesnění vyhledávání polohy), nainstalujte si aplikaci Mozilla Stumbler (dostupná zde https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler).</string>
-    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"><b>Systém</b> - aplikace získává polohu a adresu pomocí systémových služeb v Androidu (obvykle služby společnosti Google).</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">
+        <b>Místní MLS a Nominatim</b> - aplikace získává polohu pomocí služby polohy společnosti Mozilla. Aplikace využívá informace z mobilních sítí - aktivní a dostupné základnové stanice. Pro získání těchto informací je třeba oprávnění pro ovládání telefonních hovorů. Dále aplikace využívá wifi sítě v okolí pro upřesnění Vaší polohy. Služby polohy společnosti Mozilla jsou pak využity pro získání geografických souřadnic. Dále aplikace využívá služby Nominatim pro získání adresy z geografických souřadnic. Pokud chcete přispívat do služby zjišťování polohy Mozilla (pro zpřesnění vyhledávání polohy), nainstalujte si aplikaci Mozilla Stumbler (dostupná zde https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler).</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
+        <b>Systém</b> - aplikace získává polohu a adresu pomocí systémových služeb v Androidu (obvykle služby společnosti Google).</string>
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Tyto volby nastavují <b>Jazyk</b>, <b>Téma</b> pro hlavní aplikaci a <b>Sada ikon</b>, která se využívá v hlavní aplikaci i ve widgetech.</string>
-    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"><b>Upozornění</b>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">
+        <b>Upozornění</b>
 \nPokud vyberete volbu upozornění, aplikace aktualizuje polohu po uplynutí nastaveného času. Aktuální počasí je vloženo do oblasti pro upozornění (notifikace). Dále můžete nastavit vibraci po aktualizaci.</string>
     <string name="help_page_4_title" tools:ignore="MissingTranslation">Nastavení widgetů</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Volby pro ladění</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">Nápověda</string>
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Nápověda</string>
-
     <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">Pro úsporu připojení k síti a zrychlení aktualizace polohy můžete zapnout volbu <b>Ukládání polohy do vyrovnávací paměti</b>. Tato vyrovnávací paměť ukládá geografické souřadnice a adresu. Aplikace musí volat službu pro získání geografických souřadnic bez ohledu na tomto nastavení. Avšak volání služby Nominatim pro získání adresy se provede pouze v případě, že adresa není uložena ve vyrovnávací paměti. Pokud zapnete volbu pro ukládání polohy, musíte akceptovat fakt, že adresy, které jste navštívili, jsou ukládány do aplikace. Avšak žádné informace o uložené adrese není posílána mimo aplikaci.</string>
     <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Vedle volby pro ukládání adresy do vyrovnávací paměti (zaškrtávací políčko) je nastavení <b>Doba platnosti uložených hodnot</b>. Každá uložená adresa má časové razítko. Pokud časová značka je starší než hodnota nastavená volbou Doba platnosti uložených hodnot, aplikace získá adresu ze služby Nominatim a uložený záznam aktualizuje.</string>
     <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Pomocí tlačítka <b>Vymazat vyrovnávací paměť</b> je možné smazat všechny uložené záznamy ve vyrovnávací paměti adres.</string>
@@ -303,7 +289,6 @@
     <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">Volba <b>Strategie aktivace</b> slouží pro překonání problémů s chybnou implementací služeb v Androidu od různých výrobců. Pokud zvolíte <i>Neaktivovat</i> a poloha je aktualizována správně, máte funkční implementaci. Pokud však poloha není aktualizována správně, můžete zkusit volbu <i>Aktivovat jen CPU</i>. Tato volba způsobí jen aktivaci mikroprocesoru (CPU) a pak se pokusí získat stav mobilní a wifi sítě. Poslední volba <i>Aktivace se zapnutým displejem</i> způsobí, že displej se během aktualizace polohy zapne na několik vteřin. Na některých modelech telefonu je toto jediná volba, během které je aplikace schopna zjistit skutečný stav mobilní a wifi sítí. Tato volba spotřebuje nějaké množství baterie, avšak vliv na životnost baterie je skutečně velice malý.</string>
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Po aktualizaci polohy a aktuálního počasí je možné vidět stav po aktualizaci vedle času poslední aktualizace ve widgetu. Pomocí volby <b>Zobrazení přehledu aktualizace</b> můžete ovlivnit, jak se přehled zobrazuje. Zde je vysvětlivka, pokud zvolíte nejpopisnější volbu:</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Zde se nacházejí volby pro ladění aplikace. Tato volba je užitečná, pokud nastanou s aplikací problémy.</string>
-
     <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Ukládání polohy do vyrovnávací paměti</string>
     <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Nalezené polohy jsou ukládány</string>
     <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Nalezené polohy nejsou ukládány</string>
@@ -315,7 +300,6 @@
     <string name="search_location_add" tools:ignore="MissingTranslation">Přidat</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Dotekem na mapě vyberete požadovanou polohu a pak vyčkejte na rozpoznání adresy.</string>
     <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Aktuální počasí nebylo ještě načteno. Proveďte, prosím, nejprve aktualizaci počasí pomocí tlačítka v horní části obrazovky.</string>
-    
     <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Otevřít navigační panel</string>
     <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Zavřít navigační panel</string>
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
@@ -350,7 +334,6 @@
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Sníh</string>
     <string name="graph_pressure_label" tools:ignore="MissingTranslation">Tlak</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Momentálně nemůžete mít více než %1$d polohy.</string>
-
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Déšť a sníh</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Nastavení systému</string>
     <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">API klíč pro Openweathermap.org</string>
@@ -370,7 +353,6 @@
     <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Obojí, primárně pocitová</string>
     <string name="appearance_only" tools:ignore="MissingTranslation">Pouze pocitová teplota</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Zobrazit teplotu jako</string>
-
     <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
     <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
     <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
@@ -381,7 +363,6 @@
     <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
     <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
     <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
-
     <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
     <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
     <string name="pref_title_date_style" tools:ignore="MissingTranslation">Formát data</string>
@@ -394,7 +375,6 @@
     <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (3 hodinový interval)</string>
     <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (3 hodinový interval)</string>
     <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (3 hodinový interval)</string>
-
     <string name="update_period_regular_only" tools:ignore="MissingTranslation">S pravidelnou aktualizací</string>
     <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Vzhled upozornění</string>
     <string name="notification_when_updated" tools:ignore="MissingTranslation">Při aktualizaci</string>
@@ -461,4 +441,8 @@
     <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Přepnout polohu</string>
     <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Zobrazit legendu v grafu</string>
     <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Zobrazit polohu ve widgetu</string>
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">Žádné</string>
+    <string name="pref_language_bg" tools:ignore="MissingTranslation">Bulharština</string>
+    <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Čínština (tradiční)</string>
+    <string name="pref_language_bn-rBD" tools:ignore="MissingTranslation">Bengálština (Bangladéš)</string>
 </resources>
