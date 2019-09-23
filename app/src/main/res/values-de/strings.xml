@@ -286,7 +286,7 @@
     <string name="appearance_only" tools:ignore="MissingTranslation">Nur gefühlter Wert</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Zeige Temperatur als</string>
     <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Gefühlte Temperatur</string>
-    <string name="app_name" tools:ignore="MissingTranslation">Ihre Vorhersage</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Ihr lokales Wetter</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (Chinesisch)</string>
     <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (Bokmål) (Norwegisch (Bokmål))</string>
     <string name="pref_language_es" tools:ignore="MissingTranslation">Español (Spanisch)</string>
@@ -504,4 +504,5 @@
     <string name="label_dew_point" tools:ignore="MissingTranslation">Taupunkt</string>
     <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Schaltfläche für Widget-Wetterdetail-Einstellungen</string>
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamesisch</string>
+    <string name="pref_language_bn-rBD" tools:ignore="MissingTranslation">Bengalisch (Bangladesch)</string>
 </resources>
