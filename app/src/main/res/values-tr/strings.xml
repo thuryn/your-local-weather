@@ -113,7 +113,7 @@
     <string name="permission_available_location">Konum İzni verildi</string>
     <string name="permission_location_need">Konum İzni Ver</string>
     <!-- Dialog strings -->
-    <string name="app_name" tools:ignore="MissingTranslation">Tahmininiz</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Yerel hava durumu</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Konum ve İzin Ayarları</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Uygulamanın GPS ile konumu güncellemesi için izin gerekiyor.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Uygulamanın konumu Wi-Fi ve GSM ağlarıyla güncellemesi için izin gerekiyor.</string>
@@ -506,4 +506,5 @@
     <string name="label_dew_point" tools:ignore="MissingTranslation">Çiy noktası</string>
     <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Widget hava detay ayarları düğmesi</string>
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamca</string>
+    <string name="pref_language_bn-rBD" tools:ignore="MissingTranslation">Bengalce (Bangladeş)</string>
 </resources>
