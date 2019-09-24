@@ -303,7 +303,7 @@
         <item name="basque">@string/pref_language_eu</item>
         <item name="belarusian">@string/pref_language_be</item>
         <item name="belarusian_latin">@string/pref_language_be_latn</item>
-        <item name="bengali_bangladesh">@string/pref_language_bn-rBD</item>
+        <item name="bengali_bangladesh">@string/pref_language_bn_rBD</item>
         <item name="bulgarian">@string/pref_language_bg</item>
         <item name="catalan">@string/pref_language_ca</item>
         <item name="chinese">@string/pref_language_zh_rcn</item>

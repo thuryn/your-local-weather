@@ -506,5 +506,5 @@
     <string name="label_dew_point" tools:ignore="MissingTranslation">Çiy noktası</string>
     <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Widget hava detay ayarları düğmesi</string>
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamca</string>
-    <string name="pref_language_bn-rBD" tools:ignore="MissingTranslation">Bengalce (Bangladeş)</string>
+    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengalce (Bangladeş)</string>
 </resources>

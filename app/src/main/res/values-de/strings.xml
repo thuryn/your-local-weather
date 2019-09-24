@@ -504,5 +504,5 @@
     <string name="label_dew_point" tools:ignore="MissingTranslation">Taupunkt</string>
     <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Schaltfläche für Widget-Wetterdetail-Einstellungen</string>
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamesisch</string>
-    <string name="pref_language_bn-rBD" tools:ignore="MissingTranslation">Bengalisch (Bangladesch)</string>
+    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengalisch (Bangladesch)</string>
 </resources>

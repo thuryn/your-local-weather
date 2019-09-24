@@ -293,7 +293,7 @@
     <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (Basque)</string>
     <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (Belarusian)</string>
     <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (Belarusian, latin script)</string>
-    <string name="pref_language_bn-rBD" tools:ignore="MissingTranslation">Bengali (Bangladesh)</string>
+    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengali (Bangladesh)</string>
     <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (Catalan)</string>
     <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (Czech)</string>
     <string name="pref_language_da" tools:ignore="MissingTranslation">Dansk (Danish)</string>
