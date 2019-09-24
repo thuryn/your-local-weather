@@ -1,0 +1,31 @@
+#!/bin/sh
+
+MIN=-60
+MAX=120
+
+cd $1
+
+mkdir -p res/drawable-mdpi res/drawable-hdpi res/drawable-xhdpi res/drawable-xxhdpi res/drawable-xxxhdpi
+
+function genIcon(){
+    convert -size 24x24 xc:transparent -font "DejaVu-Sans-Bold" -background none -fill black -gravity center -extent 24x24 -composite caption:"$1" +repage "res/drawable-mdpi/$2"
+    convert -size 36x36 xc:transparent -font "DejaVu-Sans-Bold" -background none -fill black -gravity center -extent 36x36 -composite caption:"$1" +repage "res/drawable-hdpi/$2"
+    convert -size 48x48 xc:transparent -font "DejaVu-Sans-Bold" -background none -fill black -gravity center -extent 48x48 -composite caption:"$1" +repage "res/drawable-xhdpi/$2"
+    convert -size 72x72 xc:transparent -font "DejaVu-Sans-Bold" -background none -fill black -gravity center -extent 72x72 -composite caption:"$1" +repage "res/drawable-xxhdpi/$2"
+    convert -size 96x96 xc:transparent -font "DejaVu-Sans-Bold" -background none -fill black -gravity center -extent 96x96 -composite caption:"$1" +repage "res/drawable-xxxhdpi/$2"
+}
+
+for i in $(seq $MIN $MAX); do
+    if [ $i -eq 0 ]; then
+        filename="zero0.png"
+    elif [ $i -ge 0 ]; then
+        filename="plus$i.png"
+    else
+        filename="minus$((- i)).png"
+    fi
+    genIcon $i $filename
+done
+
+genIcon ">$MAX" "more$MAX.png"
+genIcon "<$MIN" "less_minus$((- MIN)).png"
+
