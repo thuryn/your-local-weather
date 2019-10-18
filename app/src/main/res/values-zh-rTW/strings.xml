@@ -62,4 +62,5 @@
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">第三個螢幕包含圖形顯示的天氣預報。</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">該應用程式有三個小部件可用, 包含當前天氣的一些常見值 (例如溫度)。某些值對於特定的小部件是唯一的 (例如日落)。每個小部件的右上角都有最後一次更新的時間。您可以查看上次更新的內容 (當您在設置功能表中啟用此選項時)。您可以在上次更新時間旁邊找到 \"更新\" 按鈕。按下此按鈕時, 天氣 (以及選定更新位置選項時的位置) 將無條件更新。小部件中的最後一個選項是更改位置-當您按下當前位置文本時, 位置將更改為下一個位置。</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">常規設置</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">不能有多於 %1$d 個位置。</string>
 </resources>
