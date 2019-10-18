@@ -79,8 +79,8 @@
     <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Përditësoje</string>
     <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Kërko Qytet</string>
     <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Pikas Vendndodhjen</string>
-    <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Ndrysho Vlerat</string>
-    <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Ndrysho Aksin Vertikal</string>
+    <string name="menu_action_toggle_values" tools:ignore="MissingTranslation"></string>
+    <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation"></string>
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Rregullime shtylle</string>
     <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Shtylla për shfaqje</string>
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikonë</string>
@@ -173,7 +173,7 @@
     <string name="pref_language_he" tools:ignore="MissingTranslation">עברית (Hebraisht)</string>
     <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (Bokmål) (Norvegjishte (Bokmål))</string>
     <string name="pref_language_nl" tools:ignore="MissingTranslation">Nederlands (Hollandisht)</string>
-    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation"></string>
     <string name="pref_language_hu" tools:ignore="MissingTranslation">Magyar (Hungarisht)</string>
     <string name="pref_language_es" tools:ignore="MissingTranslation">Español (Spanjisht)</string>
     <string name="pref_language_el" tools:ignore="MissingTranslation">Ελληνικά (Greqisht)</string>
@@ -191,7 +191,7 @@
     <string name="wakeupfull_label" tools:ignore="MissingTranslation">Zgjo ekranin</string>
     <string name="clear_cache_button" tools:ignore="MissingTranslation">Spastro fshehtinën</string>
     <string name="db_info" tools:ignore="MissingTranslation">Të dhëna rreth fshehtinës</string>
-    <string name="db_header" tools:ignore="MissingTranslation">Databaza e adresave të memorjes</string>
+    <string name="db_header" tools:ignore="MissingTranslation"></string>
     <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Jetëgjatësi Vlerash Fsheftine</string>
     <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 orë</string>
     <string name="location_cache_24_label" tools:ignore="MissingTranslation">një ditë</string>
@@ -303,7 +303,7 @@
     <string name="weather_condition_description_312" tools:ignore="MissingTranslation">shi i hollë me intensitet të lartë</string>
     <string name="weather_condition_description_313" tools:ignore="MissingTranslation">rrebesh dhe shi i imët</string>
     <string name="weather_condition_description_314" tools:ignore="MissingTranslation">rrebesh dhe shi i imët i fortë</string>
-    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">ves me gjyma</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation"></string>
     <string name="weather_condition_description_500" tools:ignore="MissingTranslation">shi i lehtë</string>
     <string name="weather_condition_description_501" tools:ignore="MissingTranslation">shi i shtruar</string>
     <string name="weather_condition_description_502" tools:ignore="MissingTranslation">shi me intensitet të lartë</string>
@@ -353,7 +353,7 @@
         <b>Burim vendndodhjesh dhe adresash</b> 
 \nMund të përzgjidhni prej nga të marrë vendndodhje dhe adresa aplikacioni.</string>
     <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">
-        <b>Local MLS and Nominatim</b> - The app gets location and geographical coordinates from the Mozilla location services. Nominatim services fetches the address from those coordinates. You can contribute to future improvements to MLS by installing Mozilla Stumbler (available at https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler). Get info about current active and available network base stations from the cell network by granting phone call permission. Wi-Fi networks around you are used to guess your location more precisely.</string>
+        <b>MLS vendore dhe Nominatim</b> - Aplikacioni i merr vendndodhjen dhe koordinatat gjeografike prej shërbimeve Mozilla të lokalizimit. Shërbimet Nominatim sjellin adresën bazuar në këto koordinata. Mund të jepni ndihmesë për përmirësime të ardhshme të MLS-s duke instaluar Mozilla Stumbler (i gatshëm te https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler). Merrni të dhëna rreth stacionesh rrjeti të tanishëm aktivë dhe të passhëm prej rrjetit celular duke akorduar leje thirrjesh telefonike. Rrjetet Wi-Fi përreth jush përdoren për të hamendësuar më saktë vendndodhjen tuaj.</string>
     <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
         <b>Sistemi</b> - Aplikacioni e merr vendndodhjen dhe adresën prej shërbimeve të sistemit në Android (zakonisht nga shërbime Google për vendndodhje).</string>
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Këto mundësi menuje ujdisin <b>gjuhën</b>, <b>temën</b>e aplikacionit kryesor dhe <b>grupin e ikonave</b> të përdorura te aplikacioni dhe widget-et.</string>
@@ -486,4 +486,5 @@
     <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Buton rregullimesh hollësish moti te widget-i</string>
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamisht</string>
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengalisht (Bangladesh)</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Grafikun shfaqe me qartësinë origjinale (kur grafiku është shumë i vogël)</string>
 </resources>
