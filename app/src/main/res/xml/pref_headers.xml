@@ -18,6 +18,10 @@
     <header
         android:fragment="org.thosp.yourlocalweather.SettingsActivity$WidgetPreferenceFragment"
         android:title="@string/preference_title_activity_widget"/>
+    <header android:title="@string/preference_title_tts" >
+        <intent android:targetPackage="org.thosp.yourlocalweather"
+                android:targetClass="org.thosp.yourlocalweather.VoiceSettingsActivity" />
+    </header>
     <header
         android:fragment="org.thosp.yourlocalweather.SettingsActivity$DebugOptionsPreferenceFragment"
         android:title="@string/debug_category_title"/>

@@ -97,6 +97,7 @@
     <string name="preference_widget_title_update_auto_period">Interval aktualizace polohy (Poloha 0)</string>
     <string name="preference_title_activity_general">Obecná nastavení</string>
     <string name="preference_title_activity_widget">Nastavení widgetu</string>
+    <string name="preference_title_tts">Nastavení hlasu</string>
     <string name="preference_widget_update_location">Aktualizace polohy</string>
     <string name="preference_widget_show_labels">Zobrazit popisek ve widgetu</string>
     <string name="preference_widget_use_geocoder">Použít geolokaci pro zobrazení</string>
@@ -123,8 +124,32 @@
     <string name="about_source_code_pref_title">Zdrojový kód</string>
     <string name="about_app_license_pref_title">Licence</string>
     <string name="about_open_source_licenses_pref_title">Licence Open Source</string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Povolit hlas do reproduktoru</string>
+    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Povolit hlas do headsetu po kabelu</string>
+    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Povolit hlas do bluetooth headsetu</string>
+    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Všechna</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Říci pozdrav</string>
+    <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">Říci polohu</string>
+    <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">Říci popis počasí</string>
+    <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">Říci teplotu</string>
+    <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">Říci vítr</string>
+    <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">Říci:</string>
+    <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Čas</string>
     <!-- Weather conditions label strings -->
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Řeknu:</string>
+    <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">Dobré ráno</string>
+    <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Dobrý den</string>
+    <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">Dobrý večer</string>
+    <string name="tts_say_current_weather" tools:ignore="MissingTranslation">aktuální počasí</string>
+    <string name="tts_say_current_weather_with_location">aktuální počasí pro polohu %s</string>
+    <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">Pro polohu:</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Vlastní</string>
+    <string name="voice_setting_trigger_on_weather_update">Když je počasí aktualizováno</string>
+    <string name="voice_setting_trigger_when_bt_connected">Když je připojeno zařízení Bluetooth</string>
+    <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">V čas</string>
     <string name="wind_label">Vítr: %1$s %2$s %3$s</string>
+    <string name="tty_say_wind">%3$s vítr %1$s %2$s</string>
+    <string name="tty_say_temperature">teplota %s</string>
     <string name="rain_label">Déšť: %1$s %2$s</string>
     <string name="snow_label">Sníh: %1$s %2$s</string>
     <string name="humidity_label">Vlhkost: %1$s%2$s</string>
@@ -163,6 +188,14 @@
     <string name="wind_direction_south_west">JZ↙</string>
     <string name="wind_direction_west">Z←</string>
     <string name="wind_direction_north_west">SZ↖</string>
+    <string name="tts_say_wind_direction_north">severní</string>
+    <string name="tts_say_wind_direction_north_east">severo-východní</string>
+    <string name="tts_say_wind_direction_east">východní</string>
+    <string name="tts_say_wind_direction_south_east">jiho-východní</string>
+    <string name="tts_say_wind_direction_south">jižní</string>
+    <string name="tts_say_wind_direction_south_west">jiho-západní</string>
+    <string name="tts_say_wind_direction_west">západní</string>
+    <string name="tts_say_wind_direction_north_west">severo-západní</string>
     <!-- Permission strings -->
     <string name="permission_location_rationale">Oprávnění pro získání polohy je třeba pro nalezení aktuálního města</string>
     <string name="permission_not_granted">Oprávnění nejsou udělena!</string>

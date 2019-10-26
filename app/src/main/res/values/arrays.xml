@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="voice_trigger_type">
+        <item>@string/voice_setting_trigger_on_weather_update</item>
+        <item>@string/voice_setting_trigger_when_bt_connected</item>
+        <item>@string/voice_setting_trigger_at_time</item>
+    </string-array>
     <string-array name="widget_actions">
         <item>@string/widget_action_main_screen</item>
         <item>@string/widget_action_forecast_screen</item>

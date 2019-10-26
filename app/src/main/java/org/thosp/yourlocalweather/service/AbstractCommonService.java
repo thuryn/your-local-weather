@@ -505,7 +505,7 @@ public class AbstractCommonService extends Service {
             while ((bindedServiceAction = locationUpdateServiceActions.poll()) != null) {
                 switch (bindedServiceAction.getLocationUpdateServiceAction()) {
                     case START_LOCATION_AND_WEATHER_UPDATE:
-                        locationUpdateService.startLocationAndWeatherUpdate();
+                        locationUpdateService.startLocationAndWeatherUpdate(false);
                         break;
                     case START_LOCATION_ONLY_UPDATE:
                         locationUpdateService.updateNetworkLocation(

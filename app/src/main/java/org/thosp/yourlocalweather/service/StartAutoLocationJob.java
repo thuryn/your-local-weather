@@ -121,7 +121,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
                 AppPreference.setLastNotificationTimeInMs(getBaseContext(), now.getTimeInMillis());
                 return Updated.BY_NOTIFICATION;
             } else {
-                locationUpdateService.startLocationAndWeatherUpdate();
+                locationUpdateService.startLocationAndWeatherUpdate(false);
                 return Updated.REGULARLY;
             }
         }

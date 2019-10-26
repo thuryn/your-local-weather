@@ -255,6 +255,8 @@
     <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Update period for location (Location 0)</string>
     <string name="preference_title_activity_general" tools:ignore="MissingTranslation">General Settings</string>
     <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Widget Settings</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Voice Settings</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">New voice Settings</string>
     <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Update Location</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Show labels in widget</string>
     <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Show graph in native resolution (when the graph is too small)</string>
@@ -364,6 +366,22 @@
     <string name="search_location_add" tools:ignore="MissingTranslation">Add</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Tap on map to get desired location and wait to get address resolved.</string>
     <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Please click the refresh button to update the weather first.</string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Enable voice to speaker</string>
+    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Enable voice to wired headset</string>
+    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Enable voice to bluetooth headset</string>
+    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">All</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Say greeting</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Custom</string>
+    <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">Say location</string>
+    <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">Say weather description</string>
+    <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">Say temperature</string>
+    <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">Say wind</string>
+    <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">Say:</string>
+    <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Time</string>
+    <string name="pref_title_tts_trigger_bt_devices" tools:ignore="MissingTranslation">For device(s):</string>
+    <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">Enabled device(s):</string>
+    <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">For location:</string>
+    <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">What to say:</string>
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about" tools:ignore="MissingTranslation">About</string>
     <string name="about_version_pref_title" tools:ignore="MissingTranslation">Version</string>
@@ -373,7 +391,18 @@
     <string name="about_google_play_pref_title" translatable="false">Google Play</string>
     <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Libre software Licenses</string>
     <!-- Weather conditions label strings -->
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">To say:</string>
+    <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">Good morning</string>
+    <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Hello</string>
+    <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">Good evening</string>
+    <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">Current weather for location %s</string>
+    <string name="tts_say_current_weather" tools:ignore="MissingTranslation">Current weather</string>
+    <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">When weather is updated</string>
+    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">When Bluetooth device is connected</string>
+    <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">At Time</string>
     <string name="wind_label" tools:ignore="MissingTranslation">Wind: %1$s %2$s %3$s</string>
+    <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s wind %1$s %2$s</string>
+    <string name="tty_say_temperature" tools:ignore="MissingTranslation">temperature %s</string>
     <string name="rain_label" tools:ignore="MissingTranslation">Rain: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Snow: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Humidity: %1$s%2$s</string>
@@ -446,6 +475,14 @@
     <string name="wind_direction_south_west" tools:ignore="MissingTranslation">SW↗</string>
     <string name="wind_direction_west" tools:ignore="MissingTranslation">W→</string>
     <string name="wind_direction_north_west" tools:ignore="MissingTranslation">NW↘</string>
+    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">nothern</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">north-eastern</string>
+    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">eastern</string>
+    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">south-eastern</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">southern</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">south-western</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">western</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">severo-západní</string>
     <string name="default_daily_forecast" translatable="false">[{"cloudiness":"6","windSpeed":"1.5","description":"Clear","humidity":"45","icon":"10d","pressure":"1000","windDegree":"303","temperatureEvening":"14.63","dateTime":"1471673520","temperatureMin":"10.38","temperatureMorning":"15.9","temperatureNight":"10.38","temperatureDay":"15.9","temperatureMax":"16.52","rain":"2","snow":"5"}]</string>
     <!-- Permission strings -->
     <string name="permission_location_rationale" tools:ignore="MissingTranslation">Location permissions needed to determine city</string>

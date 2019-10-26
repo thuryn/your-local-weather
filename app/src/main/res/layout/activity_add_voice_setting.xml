@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/search.app_bar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:navigationIcon="?homeAsUpIndicator"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            tools:targetApi="lollipop">
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <LinearLayout
+            android:id="@+id/add.voice.setting.panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:paddingBottom="@dimen/settings_content_marginBottom"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/settings_text_size"
+                    android:text="@string/pref_title_tts_trigger_type_label" />
+                <Spinner
+                    android:id="@+id/trigger_type"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/settings_text_size"/>
+            </LinearLayout>
+            <Button
+                android:id="@+id/button.voice.setting.time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/pref_title_tts_time"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@android:color/holo_blue_dark"
+                android:onClick="showTimePickerDialog"
+                android:paddingBottom="@dimen/settings_content_related_marginBottom"/>
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/pref_title_tts_trigger_days_panel"
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <CheckBox android:id="@+id/voice_trigger_mon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mon"
+                    android:onClick="onRadioButtonClicked"/>
+                <CheckBox android:id="@+id/voice_trigger_tue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tue"
+                    android:onClick="onRadioButtonClicked"/>
+                <CheckBox android:id="@+id/voice_trigger_wed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wed"
+                    android:onClick="onRadioButtonClicked"/>
+                <CheckBox android:id="@+id/voice_trigger_thu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Thu"
+                    android:onClick="onRadioButtonClicked"/>
+                <CheckBox android:id="@+id/voice_trigger_fri"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fri"
+                    android:onClick="onRadioButtonClicked"/>
+                <CheckBox android:id="@+id/voice_trigger_sat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sat"
+                    android:onClick="onRadioButtonClicked"/>
+                <CheckBox android:id="@+id/voice_trigger_sun"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Sun"
+                    android:onClick="onRadioButtonClicked"/>
+            </LinearLayout>
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/pref_title_tts_bt_trigger_panel"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:text="@string/pref_title_tts_trigger_bt_devices"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <CheckBox android:id="@+id/trigger_bt_all_devices"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pref_title_tts_bt_all"
+                        android:onClick="onTriggerAllBtDevicesButtonClicked" />
+                </LinearLayout>
+                <org.thosp.yourlocalweather.MultiSelectionTriggerSpinner
+                    android:id="@+id/trigger_bt_when_devices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/settings_content_marginBottom"
+                    android:layout_weight="2"
+                    android:spinnerMode="dropdown" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/settings_content_marginBottom"
+                    android:paddingBottom="@dimen/settings_content_marginBottom"
+                    android:id="@+id/enabled_devices_panel" >
+                    <TextView
+                        android:text="@string/pref_title_tts_enabled_devices"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                    <CheckBox android:id="@+id/tts_to_speaker_enabled"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pref_title_tts_speaker_enabled"
+                        android:onClick="onTtsDeviceEnabledButtonClicked" />
+                    <CheckBox android:id="@+id/tts_when_wired_enabled"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pref_title_tts_wired_headset"
+                        android:onClick="onTtsDeviceEnabledButtonClicked" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <CheckBox android:id="@+id/tts_when_bt_enabled"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pref_title_tts_bt"
+                            android:onClick="onTtsDeviceEnabledButtonClicked" />
+                        <CheckBox android:id="@+id/bt_all_devices"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pref_title_tts_bt_all"
+                            android:onClick="onAllBtDevicesButtonClicked" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/tts_when_bt_enabled_panel"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <org.thosp.yourlocalweather.MultiSelectionSpinner
+                            android:id="@+id/bt_when_devices"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="2"
+                            android:spinnerMode="dropdown" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:paddingBottom="@dimen/settings_content_marginBottom"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="@string/pref_title_tts_location_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                        <CheckBox android:id="@+id/tts_setting_all_locations"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/pref_title_tts_bt_all"
+                            android:onClick="onAllLocationsButtonClicked" />
+                    </LinearLayout>
+                    <org.thosp.yourlocalweather.MultiSelectionLocationSpinner
+                        android:id="@+id/tts_setting_locations"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:spinnerMode="dropdown" />
+                </LinearLayout>
+                <TextView
+                    android:text="@string/pref_title_tts_what_to_say"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox android:id="@+id/tts_say_greeting_enabled"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pref_title_tts_say_greeting"
+                        android:onClick="onTtsSeySettingButtonClicked" />
+                    <CheckBox android:id="@+id/tts_say_greeting_custom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/pref_title_tts_say_custom"
+                        android:onClick="onTtsSeySettingButtonClicked" />
+                </LinearLayout>
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/settings_content_marginBottom"
+                    android:id="@+id/tts_say_greeting_custom_panel" >
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="@string/tts_say_text_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/settings_content_label_padding"
+                            android:paddingLeft="@dimen/settings_content_label_padding"
+                            android:paddingEnd="@dimen/settings_content_label_padding"
+                            android:paddingRight="@dimen/settings_content_label_padding"/>
+                        <TextView
+                            android:id="@+id/tts_say_greeting_morning_original_text"
+                            android:text="@string/tts_say_greeting_morning"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <EditText
+                        android:id="@+id/tts_say_greeting_custom_text_morning"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:inputType="text" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="@string/tts_say_text_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/settings_content_label_padding"
+                            android:paddingLeft="@dimen/settings_content_label_padding"
+                            android:paddingEnd="@dimen/settings_content_label_padding"
+                            android:paddingRight="@dimen/settings_content_label_padding"/>
+                        <TextView
+                            android:id="@+id/tts_say_greeting_day_original_text"
+                            android:text="@string/tts_say_greeting_day"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <EditText
+                        android:id="@+id/tts_say_greeting_custom_text_day"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:inputType="text"/>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="@string/tts_say_text_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/settings_content_label_padding"
+                            android:paddingLeft="@dimen/settings_content_label_padding"
+                            android:paddingEnd="@dimen/settings_content_label_padding"
+                            android:paddingRight="@dimen/settings_content_label_padding"/>
+                        <TextView
+                            android:id="@+id/tts_say_greeting_evening_original_text"
+                            android:text="@string/tts_say_greeting_evening"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <EditText
+                        android:id="@+id/tts_say_greeting_custom_text_evening"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:inputType="text"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox android:id="@+id/tts_say_location_enabled"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/pref_title_tts_say_location"
+                        android:onClick="onTtsSeySettingButtonClicked" />
+                    <CheckBox android:id="@+id/tts_say_location_custom"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/pref_title_tts_say_custom"
+                        android:onClick="onTtsSeySettingButtonClicked" />
+                </LinearLayout>
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/settings_content_marginBottom"
+                    android:id="@+id/tts_say_location_custom_panel" >
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="@string/tts_say_text_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/settings_content_label_padding"
+                            android:paddingLeft="@dimen/settings_content_label_padding"
+                            android:paddingEnd="@dimen/settings_content_label_padding"
+                            android:paddingRight="@dimen/settings_content_label_padding"/>
+                        <TextView
+                            android:id="@+id/tts_say_location_original_text"
+                            android:text="@string/tts_say_current_weather_with_location"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <EditText
+                        android:id="@+id/tts_say_location_custom_text"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:inputType="text"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox android:id="@+id/tts_say_weather_description_enabled"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/pref_title_tts_say_weather_description"
+                        android:onClick="onTtsSeySettingButtonClicked" />
+                    <CheckBox android:id="@+id/tts_say_weather_description_custom"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/pref_title_tts_say_custom"
+                        android:onClick="onTtsSeySettingButtonClicked" />
+                </LinearLayout>
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/settings_content_marginBottom"
+                    android:id="@+id/tts_say_weather_description_custom_panel" >
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="@string/tts_say_text_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/settings_content_label_padding"
+                            android:paddingLeft="@dimen/settings_content_label_padding"
+                            android:paddingEnd="@dimen/settings_content_label_padding"
+                            android:paddingRight="@dimen/settings_content_label_padding"/>
+                        <TextView
+                            android:id="@+id/tts_say_weather_description_original_text"
+                            android:text="@string/tts_say_current_weather"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <EditText
+                        android:id="@+id/tts_say_weather_description_custom_text"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:inputType="text"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox android:id="@+id/tts_say_temperature_enabled"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/pref_title_tts_say_temperature"
+                        android:onClick="onTtsSeySettingButtonClicked" />
+                    <CheckBox android:id="@+id/tts_say_temperature_custom"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/pref_title_tts_say_custom"
+                        android:onClick="onTtsSeySettingButtonClicked" />
+                </LinearLayout>
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/settings_content_marginBottom"
+                    android:id="@+id/tts_say_temperature_custom_panel" >
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="@string/tts_say_text_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/settings_content_label_padding"
+                            android:paddingLeft="@dimen/settings_content_label_padding"
+                            android:paddingEnd="@dimen/settings_content_label_padding"
+                            android:paddingRight="@dimen/settings_content_label_padding"/>
+                        <TextView
+                            android:id="@+id/tts_say_temperature_original_text"
+                            android:text="@string/tty_say_temperature"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <EditText
+                        android:id="@+id/tts_say_temperature_custom_text"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:inputType="text"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox android:id="@+id/tts_say_wind_enabled"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/pref_title_tts_say_wind"
+                        android:onClick="onTtsSeySettingButtonClicked" />
+                    <CheckBox android:id="@+id/tts_say_wind_custom"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/pref_title_tts_say_custom"
+                        android:onClick="onTtsSeySettingButtonClicked" />
+                </LinearLayout>
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/settings_content_marginBottom"
+                    android:id="@+id/tts_say_wind_custom_panel" >
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:text="@string/tts_say_text_label"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="@dimen/settings_content_label_padding"
+                            android:paddingLeft="@dimen/settings_content_label_padding"
+                            android:paddingEnd="@dimen/settings_content_label_padding"
+                            android:paddingRight="@dimen/settings_content_label_padding"/>
+                        <TextView
+                            android:id="@+id/tts_say_wind_original_text"
+                            android:text="@string/tty_say_wind"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                    <EditText
+                        android:id="@+id/tts_say_wind_custom_text"
+                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:inputType="text"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</android.support.design.widget.CoordinatorLayout>

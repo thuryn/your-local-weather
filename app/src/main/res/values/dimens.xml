@@ -1,8 +1,11 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="settings_text_size">16sp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="settings_content_marginBottom">30dp</dimen>
+    <dimen name="settings_content_related_marginBottom">15dp</dimen>
+    <dimen name="settings_content_label_padding">4dp</dimen>
     <dimen name="widget_3x3_text_size">15sp</dimen>
     <dimen name="widget_main_temperature_text_size">30sp</dimen>
     <dimen name="widget_main_weather_panel_width">170dp</dimen>

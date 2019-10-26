@@ -1,6 +1,10 @@
 package org.thosp.yourlocalweather.utils;
 
 import android.app.AlarmManager;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
+import android.bluetooth.BluetoothProfile;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ContentValues;
@@ -14,6 +18,7 @@ import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -819,6 +824,15 @@ public class Utils {
         return (("".equals(geoCity))?"":(geoCity + " - ")) + geoDistrictOfCity;
     }
 
+    public static String getLocationForVoiceFromAddress(Address address) {
+        String geoCity = getCityFromAddress(address);
+        String geoDistrictOfCity = address.getSubLocality();
+        if ((geoDistrictOfCity == null) || "".equals(geoDistrictOfCity) || geoCity.equalsIgnoreCase(geoDistrictOfCity)) {
+            return geoCity;
+        }
+        return (("".equals(geoCity))?"":(geoCity + " ")) + geoDistrictOfCity;
+    }
+
     private static String formatLocalityToTwoLines(String inputLocation) {
         if (inputLocation.length() < 30) {
             return inputLocation;
@@ -832,4 +846,34 @@ public class Utils {
     public static int spToPx(float sp, Context context) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics());
     }
+
+    public static BluetoothAdapter getBluetoothAdapter(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
+            if (bluetoothManager == null) {
+                return null;
+            }
+            return bluetoothManager.getAdapter();
+        }
+        return BluetoothAdapter.getDefaultAdapter();
+    }
+
+    public static boolean isBluetoothHeadsetEnabledConnected(Context context) {
+        BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(context);
+        return (bluetoothAdapter != null && (
+                BluetoothProfile.STATE_CONNECTED == bluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET) ||
+                        BluetoothProfile.STATE_CONNECTED == bluetoothAdapter.getProfileConnectionState(BluetoothProfile.A2DP)));
+    }
+
+    public static List<BluetoothDevice> getAllConnectedBtDevices(Context context) {
+        List<BluetoothDevice> bluetoothDevices = new ArrayList<>();
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            return bluetoothDevices;
+        }
+        BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
+        bluetoothDevices.addAll(bluetoothManager.getConnectedDevices(BluetoothProfile.A2DP));
+        bluetoothDevices.addAll(bluetoothManager.getConnectedDevices(BluetoothProfile.HEADSET));
+        return bluetoothDevices;
+    }
+
 }

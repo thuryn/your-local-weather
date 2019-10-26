@@ -12,6 +12,7 @@ import android.os.Build;
 import org.thosp.yourlocalweather.service.StartAutoLocationJob;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.TimeUtils;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -30,6 +31,7 @@ public class StartupReceiver extends BroadcastReceiver {
         Intent intentToStartUpdate = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
         context.startService(intentToStartUpdate);
+        TimeUtils.setupAlarmForVoice(context);
     }
 
     private void scheduleStart(Context context) {

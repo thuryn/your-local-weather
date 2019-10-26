@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:clickable="true"
+    android:layout_margin="8dp"
+    android:background="?android:attr/selectableItemBackground">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+            <TextView
+                android:id="@+id/voice_setting_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="London"
+                android:fontFamily="sans-serif"
+                android:textSize="16sp"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textAppearance="?android:attr/textAppearanceListItem"/>
+
+            <TextView
+                android:id="@+id/voice_setting_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:textSize="14sp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                tools:text="GB"/>
+        </LinearLayout>
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+            <TextView
+                android:id="@+id/voice_setting_add_info_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="London"
+                android:fontFamily="sans-serif"
+                android:textSize="16sp"
+                android:textColor="?android:attr/textColorPrimary"
+                android:textAppearance="?android:attr/textAppearanceListItem"/>
+
+            <TextView
+                android:id="@+id/voice_setting_add_info_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp"
+                android:textSize="14sp"
+                android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                tools:text="GB"/>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
