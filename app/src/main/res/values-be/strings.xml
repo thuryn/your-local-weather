@@ -495,7 +495,7 @@
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Ёсць параметры для ўключэння адладачнай інфармацыі ў файл журнала. Гэты параметр карысны, калі з дадаткам ўзнікаюць праблемы.</string>
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">"Побач з кнопкай абнаўлення месцазнаходжання ёсць кнопка кіравання мясцінамі (значок лупы). Вы можаце кіраваць даступнымі мясцінамі ў дадатку і віджэце. Ёсць адна прадвызначана даступная мясціна (0), прызначаная для аўтаматычнага абнаўлення месцазнаходжання. Вы можаце знайсці кнопку ўключэння/выключэння, ссоўваючы мясціну ўлева. Вы таксама можаце дадаць мясціну ўласнаручна. Націснуўшы \" + \",  можна абраць сваё месцазнаходжанне на мапе. Вы таксама можаце выдаліць месцазнаходжанне пры дапамозе кнопкі \"Выдаліць\", якую можна знайсці ссунуўшы месцазнаходжанне ўлева."</string>
     <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Кнопка налад дзеянняў віджэта</string>
-    <string name="dew_point_label" tools:ignore="MissingTranslation">Кропка расы: % s</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">Кропка расы: %s</string>
     <string name="label_dew_point" tools:ignore="MissingTranslation">Кропка расы</string>
     <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Кнопка налад інфармацыі віджэта</string>
     <string name="pref_language_vi" tools:ignore="MissingTranslation">В’етнамская</string>
