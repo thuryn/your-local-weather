@@ -91,7 +91,7 @@
     <string name="pref_language_default">Язык системы</string>
     <string name="pref_title_language">Язык</string>
     <string name="preference_title_category_display">Отображение</string>
-    <string name="app_name" tools:ignore="MissingTranslation">Местная погода</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Твоя местная погода</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Положение и Настройка Разрешений</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Приложению требуется разрешения для обновления данных по GPS.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Приложению требуется разрешения для обновления данных по WiFi и 3G.</string>
@@ -485,4 +485,10 @@
     <string name="pref_language_bg" tools:ignore="MissingTranslation">Болгарский</string>
     <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Китайский (традиционный)</string>
     <string name="pref_language_sd" tools:ignore="MissingTranslation">Синдхов</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Бофорт</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">Точка конденсации: %s</string>
+    <string name="label_dew_point" tools:ignore="MissingTranslation">Точка конденсации</string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Кнопка настроек виджета деталей погоды</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamese (Вьетнамский)</string>
+    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengali (Бангладеш)</string>
 </resources>
