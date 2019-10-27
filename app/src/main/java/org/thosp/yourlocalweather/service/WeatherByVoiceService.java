@@ -250,29 +250,43 @@ public class WeatherByVoiceService extends Service {
         }
         if (TimeUtils.isCurrentSettingIndex(partsToSay, 2)) {
             if (TimeUtils.isCurrentSettingIndex(partsToSay, 3)) {
+                textToSay.add(String.format(voiceSettingParametersDbHelper.getStringParam(
+                        voiceSettingIdFromSettings,
+                        VoiceSettingParamType.VOICE_SETTING_LOCATION_CUSTOM.getVoiceSettingParamTypeId()),
+                        Utils.getLocationForVoiceFromAddress(currentLocation.getAddress())));
             } else {
                 textToSay.add(getString(R.string.tts_say_current_weather_with_location,
                         Utils.getLocationForVoiceFromAddress(currentLocation.getAddress())));
             }
-        } else {
-            textToSay.add(getString(R.string.tts_say_current_weather));
-        }
-        if (TimeUtils.isCurrentSettingIndex(partsToSay, 4)) {
+        } else if (TimeUtils.isCurrentSettingIndex(partsToSay, 4)) {
             if (TimeUtils.isCurrentSettingIndex(partsToSay, 5)) {
+                textToSay.add(voiceSettingParametersDbHelper.getStringParam(
+                        voiceSettingIdFromSettings,
+                        VoiceSettingParamType.VOICE_SETTING_WEATHER_DESCRIPTION_CUSTOM.getVoiceSettingParamTypeId()));
             } else {
-                textToSay.add(TTS_DELAY_BETWEEN_ITEM);
-                StringBuilder weatherDescriptionToSay = new StringBuilder();
-                weatherDescriptionToSay.append(" ");
-                weatherDescriptionToSay.append(Utils.getWeatherDescription(getBaseContext(), currentLocation.getLocaleAbbrev(), weather));
-                weatherDescriptionToSay.append(" ");
-                textToSay.add(weatherDescriptionToSay.toString());
+                textToSay.add(getString(R.string.tts_say_current_weather));
             }
+        }
+        if (TimeUtils.isCurrentSettingIndex(partsToSay, 4) || TimeUtils.isCurrentSettingIndex(partsToSay, 2)) {
+            textToSay.add(TTS_DELAY_BETWEEN_ITEM);
+            StringBuilder weatherDescriptionToSay = new StringBuilder();
+            weatherDescriptionToSay.append(" ");
+            weatherDescriptionToSay.append(Utils.getWeatherDescription(getBaseContext(), currentLocation.getLocaleAbbrev(), weather));
+            weatherDescriptionToSay.append(" ");
+            textToSay.add(weatherDescriptionToSay.toString());
         }
         if (TimeUtils.isCurrentSettingIndex(partsToSay, 6)) {
             textToSay.add(TTS_DELAY_BETWEEN_ITEM);
             StringBuilder temperatureToSay = new StringBuilder();
-            temperatureToSay.append(getString(R.string.tty_say_temperature,
-                                    TemperatureUtil.getTemperatureWithUnit(getBaseContext(), weather, currentLocation.getLatitude(), now, currentLocation.getLocale())));
+            if (TimeUtils.isCurrentSettingIndex(partsToSay, 7)) {
+                temperatureToSay.append(String.format(voiceSettingParametersDbHelper.getStringParam(
+                        voiceSettingIdFromSettings,
+                        VoiceSettingParamType.VOICE_SETTING_TEMPERATURE_CUSTOM.getVoiceSettingParamTypeId()),
+                        TemperatureUtil.getTemperatureWithUnit(getBaseContext(), weather, currentLocation.getLatitude(), now, currentLocation.getLocale())));
+            } else {
+                temperatureToSay.append(getString(R.string.tty_say_temperature,
+                        TemperatureUtil.getTemperatureWithUnit(getBaseContext(), weather, currentLocation.getLatitude(), now, currentLocation.getLocale())));
+            }
             temperatureToSay.append(" ");
             textToSay.add(temperatureToSay.toString());
         }
@@ -284,10 +298,19 @@ public class WeatherByVoiceService extends Service {
                     weather.getWindSpeed(),
                     weather.getWindDirection(),
                     currentLocation.getLocale());
-            windToSay.append(getString(R.string.tty_say_wind,
-                    windWithUnit.getWindSpeed(0),
-                    windWithUnit.getWindUnit(),
-                    windWithUnit.getWindDirectionByVoice()));
+            if (TimeUtils.isCurrentSettingIndex(partsToSay, 9)) {
+                windToSay.append(String.format(voiceSettingParametersDbHelper.getStringParam(
+                        voiceSettingIdFromSettings,
+                        VoiceSettingParamType.VOICE_SETTING_WIND_CUSTOM.getVoiceSettingParamTypeId()),
+                        windWithUnit.getWindSpeed(0),
+                        windWithUnit.getWindUnit(),
+                        windWithUnit.getWindDirectionByVoice()));
+            } else {
+                windToSay.append(getString(R.string.tty_say_wind,
+                        windWithUnit.getWindSpeed(0),
+                        windWithUnit.getWindUnit(),
+                        windWithUnit.getWindDirectionByVoice()));
+            }
             windToSay.append(" ");
             textToSay.add(windToSay.toString());
         }

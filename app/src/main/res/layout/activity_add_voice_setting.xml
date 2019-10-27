@@ -308,6 +308,7 @@
                         android:inputType="text"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/tts_say_location_enabled_panel"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
@@ -353,6 +354,7 @@
                         android:inputType="text"/>
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/tts_say_weather_description_panel"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">

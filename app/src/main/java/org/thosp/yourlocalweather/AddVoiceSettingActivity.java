@@ -636,6 +636,8 @@ public class AddVoiceSettingActivity extends BaseActivity {
             ((CheckBox) findViewById(R.id.tts_say_location_enabled)).setChecked(true);
             findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.VISIBLE);
             findViewById(R.id.tts_say_location_custom).setVisibility(View.VISIBLE);
+            findViewById(R.id.tts_say_weather_description_panel).setVisibility(View.GONE);
+            findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.GONE);
         } else {
             findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.GONE);
             findViewById(R.id.tts_say_location_custom).setVisibility(View.GONE);
@@ -654,6 +656,8 @@ public class AddVoiceSettingActivity extends BaseActivity {
             ((CheckBox) findViewById(R.id.tts_say_weather_description_enabled)).setChecked(true);
             findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.VISIBLE);
             findViewById(R.id.tts_say_weather_description_custom).setVisibility(View.VISIBLE);
+            findViewById(R.id.tts_say_location_enabled_panel).setVisibility(View.GONE);
+            findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.GONE);
         } else {
             findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.GONE);
             findViewById(R.id.tts_say_weather_description_custom).setVisibility(View.GONE);
@@ -768,10 +772,14 @@ public class AddVoiceSettingActivity extends BaseActivity {
                     partsToSay += TimeUtils.getTwoPower(2);
                     findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.VISIBLE);
                     findViewById(R.id.tts_say_location_custom).setVisibility(View.VISIBLE);
+                    findViewById(R.id.tts_say_weather_description_panel).setVisibility(View.GONE);
+                    findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.GONE);
                 } else {
                     partsToSay -= TimeUtils.getTwoPower(2);
                     findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.GONE);
                     findViewById(R.id.tts_say_location_custom).setVisibility(View.GONE);
+                    findViewById(R.id.tts_say_weather_description_panel).setVisibility(View.VISIBLE);
+                    //findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.VISIBLE);
                 }
                 break;
             case R.id.tts_say_location_custom:
@@ -788,10 +796,14 @@ public class AddVoiceSettingActivity extends BaseActivity {
                     partsToSay += TimeUtils.getTwoPower(4);
                     findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.VISIBLE);
                     findViewById(R.id.tts_say_weather_description_custom).setVisibility(View.VISIBLE);
+                    findViewById(R.id.tts_say_location_enabled_panel).setVisibility(View.GONE);
+                    findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.GONE);
                 } else {
                     partsToSay -= TimeUtils.getTwoPower(4);
                     findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.GONE);
                     findViewById(R.id.tts_say_weather_description_custom).setVisibility(View.GONE);
+                    findViewById(R.id.tts_say_location_enabled_panel).setVisibility(View.VISIBLE);
+                    //findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.VISIBLE);
                 }
                 break;
             case R.id.tts_say_weather_description_custom:

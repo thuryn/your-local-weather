@@ -99,7 +99,7 @@ public class VoiceSettingsActivity extends BaseActivity {
         voiceSettingParametersDbHelper.saveLongParam(
                 newVoiceSettingId,
                 VoiceSettingParamType.VOICE_SETTING_PARTS_TO_SAY.getVoiceSettingParamTypeId(),
-                341);
+                325);
         voiceSettingParametersDbHelper.saveLongParam(
                 newVoiceSettingId,
                 VoiceSettingParamType.VOICE_SETTING_TRIGGER_DAY_IN_WEEK.getVoiceSettingParamTypeId(),
