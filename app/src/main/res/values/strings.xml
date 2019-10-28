@@ -478,13 +478,13 @@
     <string name="wind_direction_west" tools:ignore="MissingTranslation">W→</string>
     <string name="wind_direction_north_west" tools:ignore="MissingTranslation">NW↘</string>
     <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">nothern</string>
-    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">north-eastern</string>
-    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">eastern</string>
-    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">south-eastern</string>
-    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">southern</string>
-    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">south-western</string>
-    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">western</string>
-    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">severo-západní</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">northeast</string>
+    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">east</string>
+    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">southeast</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">south</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">southwest</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">west</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">north-west</string>
     <string name="default_daily_forecast" translatable="false">[{"cloudiness":"6","windSpeed":"1.5","description":"Clear","humidity":"45","icon":"10d","pressure":"1000","windDegree":"303","temperatureEvening":"14.63","dateTime":"1471673520","temperatureMin":"10.38","temperatureMorning":"15.9","temperatureNight":"10.38","temperatureDay":"15.9","temperatureMax":"16.52","rain":"2","snow":"5"}]</string>
     <!-- Permission strings -->
     <string name="permission_location_rationale" tools:ignore="MissingTranslation">Location permissions needed to determine city</string>
