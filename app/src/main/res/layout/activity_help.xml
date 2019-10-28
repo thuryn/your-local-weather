@@ -212,6 +212,19 @@
                     android:textStyle="bold"
                     android:textSize="24sp"
                     android:paddingTop="24sp"
+                    android:text="@string/alertDialog_voice_disclaimer_title" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/alertDialog_voice_disclaimer_message" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    android:paddingTop="24sp"
                     android:text="@string/help_page_5_title" />
 
                 <TextView

@@ -5,6 +5,8 @@
     <string name="label_current_city" tools:ignore="MissingTranslation">Current city</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">Choose city</string>
     <string name="feedback_email" translatable="false">thuryn1@gmail.com</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Text and voice direction translations</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">This application has voice output feature. To enable this feature, you need a TTS (Text-to-speech) system installed and set the voice output by the application settings. Consider, please, that text translations as well as voice commands are translated by volunteers by https://hosted.weblate.org/projects/your-local-weather service. You can set your own voice commands by the application settings also. The developers of this application do not guarantee the quality and correctness of the translations as well as what the application says - you are accepting this statement by using this application.</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Battery optimization</string>
     <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">The app will ask you to turn off battery optimization to update location, weather or track location by accelerometer in the background.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Proceed</string>

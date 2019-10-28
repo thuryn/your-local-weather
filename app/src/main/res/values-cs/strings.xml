@@ -4,6 +4,8 @@
     <string name="enter_city_hint">Zadejte město</string>
     <string name="label_current_city">Aktuální město</string>
     <string name="label_choose_city">Vyberte město</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Překlad textů a hlasových pokynů</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Tato aplikace má funkci hlasového výstupu. Tato funkce vyžaduje nainstalovaný systém TTS (Text-to-speech) a nastavení v této aplikaci. Vezměte, prosím, v úvahu, že překlady textů i hlasových pokynů dělají dobrovolníci pomocí služby https://hosted.weblate.org/projects/your-local-weather. Můžete též nastavit své vlastní hlasové pokyny v nastavení aplikace. Vývojáři této aplikace negarantují kvalitu a správnost překladů, stejně jako to, co aplikace řekne - používáním této aplikace berete na vědomí toto prohlášení.</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Optimalizace baterie</string>
     <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Aplikace spouští na pozadí procesy pro aktualizaci polohy, počasí nebo pro sledování polohy akcelerometrem. Aplikace Vás tedy požádá o vypnutí optimalizace baterie, aby byla schopna spouštět procesy na pozadí.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Pokračovat</string>
