@@ -507,4 +507,10 @@
     <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Widget hava detay ayarları düğmesi</string>
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamca</string>
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengalce (Bangladeş)</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Metin ve ses yönü çevirileri</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Ses ayarları</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Yeni ses Ayarları</string>
+    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Tüm</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Özel</string>
+    <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">Konum söyle</string>
 </resources>
