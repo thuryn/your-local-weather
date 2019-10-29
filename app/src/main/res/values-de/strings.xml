@@ -505,4 +505,23 @@
     <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Schaltfläche für Widget-Wetterdetail-Einstellungen</string>
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamesisch</string>
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengalisch (Bangladesch)</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Übersetzungen von Text- und Sprachanweisungen</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Diese Anwendung verfügt über eine Sprachausgabe. Um diese Funktion zu aktivieren, muss ein TTS-System (Text-to-Speech) installiert und die Sprachausgabe über die Anwendungseinstellungen eingestellt sein. Bitte beachten Sie, dass sowohl Textübersetzungen als auch Sprachbefehle von Freiwilligen des Dienstes https://hosted.weblate.org/projects/your-local-weather übersetzt werden. Sie können Ihre eigenen Sprachbefehle auch über die Anwendungseinstellungen einrichten. Die Entwickler dieser Anwendung garantieren nicht für die Qualität und Richtigkeit der Übersetzungen sowie für das, was die Anwendung sagt - Sie akzeptieren diese Aussage durch Nutzung dieser Anwendung.</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Spracheinstellungen</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Neue Spracheinstellungen</string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Aktivieren von Sprache zum Lautsprecher</string>
+    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Aktivieren von Sprache zum kabelgebundenen Headset</string>
+    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Aktivieren von Sprache zum Bluetooth-Headset</string>
+    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Alle</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Begrüßung sagen</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Benutzerdefiniert</string>
+    <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">Standort sagen</string>
+    <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">Wetterbeschreibung sagen</string>
+    <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">Temperatur sagen</string>
+    <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">Wind sagen</string>
+    <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">Sagen:</string>
+    <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Zeit</string>
+    <string name="pref_title_tts_trigger_bt_devices" tools:ignore="MissingTranslation">Für Gerät(e):</string>
+    <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">Aktivierte(s) Gerät(e):</string>
+    <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">Für Standort:</string>
 </resources>
