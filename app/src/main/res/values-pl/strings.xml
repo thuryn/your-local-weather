@@ -480,4 +480,9 @@
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">W tej chwili nie możesz mieć więcej niż %1$d lokalizacji.</string>
     <string name="pref_language_bg" tools:ignore="MissingTranslation">Bułgarski</string>
     <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Chiński (tradycyjny)</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">Wietnamski</string>
+    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengalski (Bangladesz)</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Tłumaczenie tekstowe i pisemne</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Ustawienia głosu</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Nowe ustawienia głosu</string>
 </resources>
