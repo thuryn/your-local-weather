@@ -57,6 +57,8 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class Utils {
 
+    private static final String TAG = "Utils";
+
     public static Bitmap createWeatherIcon(Context context, String text) {
         Bitmap bitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_4444);
         Canvas canvas = new Canvas(bitmap);
@@ -865,15 +867,9 @@ public class Utils {
                         BluetoothProfile.STATE_CONNECTED == bluetoothAdapter.getProfileConnectionState(BluetoothProfile.A2DP)));
     }
 
-    public static List<BluetoothDevice> getAllConnectedBtDevices(Context context) {
-        List<BluetoothDevice> bluetoothDevices = new ArrayList<>();
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            return bluetoothDevices;
-        }
-        BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
-        bluetoothDevices.addAll(bluetoothManager.getConnectedDevices(BluetoothProfile.A2DP));
-        bluetoothDevices.addAll(bluetoothManager.getConnectedDevices(BluetoothProfile.HEADSET));
-        return bluetoothDevices;
+    public static Set<String> getAllConnectedBtDevices(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<String>());
     }
 
 }

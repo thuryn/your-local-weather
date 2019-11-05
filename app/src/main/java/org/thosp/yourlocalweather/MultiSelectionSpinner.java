@@ -13,9 +13,12 @@ import org.thosp.yourlocalweather.utils.VoiceSettingParamType;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 
 public class MultiSelectionSpinner extends android.support.v7.widget.AppCompatSpinner implements DialogInterface.OnMultiChoiceClickListener {
+
+    private static final String TAG = "MultiSelectionSpinner";
 
     ArrayList<MultiselectionItem> items = null;
 
@@ -55,15 +58,18 @@ public class MultiSelectionSpinner extends android.support.v7.widget.AppCompatSp
         StringBuilder selectedBtDevices = new StringBuilder();
         for (int i = 0; i < selection.length; i++) {
             if (selection[i]) {
-                selectedBtDevices.append(items.get(i).getName());
+                selectedBtDevices.append(items.get(i).getAddress());
                 selectedBtDevices.append(",");
             }
         }
+        String selectedBtDevicesString = selectedBtDevices.toString();
+        appendLog(getContext(), TAG, "writeCurrentSetting: voiceSettingId=", voiceSettingId, ", selectedBtDevicesString=", selectedBtDevicesString);
         VoiceSettingParametersDbHelper voiceSettingParametersDbHelper = VoiceSettingParametersDbHelper.getInstance(getContext());
         voiceSettingParametersDbHelper.saveStringParam(
                 voiceSettingId,
                 VoiceSettingParamType.VOICE_SETTING_ENABLED_WHEN_BT_DEVICES.getVoiceSettingParamTypeId(),
-                selectedBtDevices.toString());
+                selectedBtDevicesString);
+        appendLog(getContext(), TAG, "writeCurrentSetting saved");
     }
 
     @Override

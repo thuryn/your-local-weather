@@ -8,11 +8,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.preference.PreferenceManager;
 
 import org.thosp.yourlocalweather.service.StartAutoLocationJob;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.TimeUtils;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -23,6 +27,8 @@ public class StartupReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         appendLog(context, TAG, "onReceive start");
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        sharedPreferences.edit().putStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<String>()).apply();
         removeOldPreferences(context);
         appendLog(context, TAG, "scheduleStart start");
         AppPreference.setLastSensorServicesCheckTimeInMs(context, 0);

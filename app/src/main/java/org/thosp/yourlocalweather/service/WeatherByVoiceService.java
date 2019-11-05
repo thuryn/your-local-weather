@@ -30,6 +30,7 @@ import org.thosp.yourlocalweather.model.VoiceSettingParametersDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.TimeUtils;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -315,13 +316,13 @@ public class WeatherByVoiceService extends Service {
             textToSay.add(windToSay.toString());
         }
         textToSay.add(TTS_END);
-        sayWeather(textToSay, currentLocation.getLocale());
+        sayWeather(textToSay);
     }
 
-    private void sayWeather(final LinkedList<String> what, final Locale locale) {
+    private void sayWeather(final LinkedList<String> what) {
         appendLog(getBaseContext(), TAG, "Going to say: " + what);
         if (tts != null) {
-            say(what, locale);
+            say(what);
             return;
         }
         TextToSpeech.OnInitListener onInitListener = new TextToSpeech.OnInitListener() {
@@ -329,37 +330,25 @@ public class WeatherByVoiceService extends Service {
             public void onInit(int status) {
                 appendLog(getBaseContext(), TAG, "TextToSpeech initialized with status: " + status);
                 if (status == TextToSpeech.SUCCESS) {
-                    tts.setLanguage(Locale.US);
-                    say(what, locale);
+                    say(what);
                 }
             }
         };
         tts = new TextToSpeech(getBaseContext(), onInitListener);
-        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            tts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
-                @Override
-                public void onStart(String utteranceId) {
-                }
+    }
 
-                @Override
-                public void onDone(String utteranceId) {
-                    if (!TTS_END.equals(utteranceId)) {
-                        return;
-                    }
-                    tts.shutdown();
-                    tts = null;
-                }
-
-                @Override
-                public void onError(String utteranceId) {
-                    tts.shutdown();
-                    tts = null;
-                }
-            });
+    private Locale getLocaleForVoice() {
+        VoiceSettingParametersDbHelper voiceSettingParametersDbHelper = VoiceSettingParametersDbHelper.getInstance(getBaseContext());
+        String localeForVoiceId = voiceSettingParametersDbHelper.getGeneralStringParam(VoiceSettingParamType.VOICE_SETTING_VOICE_LANG.getVoiceSettingParamTypeId());
+        if ((localeForVoiceId == null) || ("Default".equals(localeForVoiceId))) {
+            return new Locale(PreferenceUtil.getLanguage(this));
+        } else {
+            return new Locale(localeForVoiceId);
         }
     }
 
-    private boolean say(LinkedList<String> texts, Locale locale) {
+    private boolean say(LinkedList<String> texts) {
+        Locale locale = getLocaleForVoice();
         int available = tts.isLanguageAvailable(locale);
         if (available >= TextToSpeech.LANG_AVAILABLE) {
             tts.setLanguage(locale);
@@ -454,18 +443,23 @@ public class WeatherByVoiceService extends Service {
         Boolean allBtDevices = voiceSettingParametersDbHelper.getBooleanParam(
                 voiceSettingId,
                 VoiceSettingParamType.VOICE_SETTING_ENABLED_WHEN_BT_DEVICES.getVoiceSettingParamTypeId());
+        appendLog(getBaseContext(), TAG, "isBtDeviceEnabled:allBtDevices:", allBtDevices);
         if ((allBtDevices != null) && allBtDevices) {
             return true;
         }
         String enabledBtDevices = voiceSettingParametersDbHelper.getStringParam(
                 voiceSettingId,
                 VoiceSettingParamType.VOICE_SETTING_ENABLED_WHEN_BT_DEVICES.getVoiceSettingParamTypeId());
-        List<BluetoothDevice> bluetoothDevices = Utils.getAllConnectedBtDevices(getBaseContext());
+        appendLog(getBaseContext(), TAG, "isBtDeviceEnabled:enabledBtDevices:", enabledBtDevices);
+        Set<String> bluetoothDevices = Utils.getAllConnectedBtDevices(getBaseContext());
         if (bluetoothDevices.isEmpty()) {
+            appendLog(getBaseContext(), TAG, "isBtDeviceEnabled:enabledBtDevices is empty");
             return false;
         }
-        for (BluetoothDevice bluetoothDevice: bluetoothDevices) {
-            if (enabledBtDevices.contains(bluetoothDevice.getName())) {
+        appendLog(getBaseContext(), TAG, "isBtDeviceEnabled:bluetoothDevices:" + bluetoothDevices);
+        for (String bluetoothDevice: bluetoothDevices) {
+            appendLog(getBaseContext(), TAG, "isBtDeviceEnabled:bluetoothDevice.getName():", bluetoothDevice);
+            if (enabledBtDevices.contains(bluetoothDevice)) {
                 return true;
             }
         }

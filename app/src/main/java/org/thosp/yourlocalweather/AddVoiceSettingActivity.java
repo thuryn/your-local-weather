@@ -74,12 +74,6 @@ public class AddVoiceSettingActivity extends BaseActivity {
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }
 
-        Configuration.getInstance().setOsmdroidBasePath(getCacheDir());
-        Configuration.getInstance().setOsmdroidTileCache(getCacheDir());
-        Configuration.getInstance().setUserAgentValue(String.format("YourLocalWeather/%s (Linux; Android %s)",
-                BuildConfig.VERSION_NAME,
-                Build.VERSION.RELEASE));
-
         setContentView(R.layout.activity_add_voice_setting);
         setupActionBar();
 
@@ -177,19 +171,20 @@ public class AddVoiceSettingActivity extends BaseActivity {
         }
 
         if (enabledBtDevices != null) {
-            for (String btDeviceName: enabledBtDevices.split(",")) {
-                selectedItems.add(btDeviceName);
+            for (String btDeviceAddress: enabledBtDevices.split(",")) {
+                selectedItems.add(btDeviceAddress);
             }
         }
 
         for(BluetoothDevice bluetoothDevice: bluetoothDeviceSet) {
             String currentDeviceName = bluetoothDevice.getName();
+            String currentDeviceAddress = bluetoothDevice.getAddress();
             MultiselectionItem multiselectionItem;
-            if (selectedItems.contains(currentDeviceName)) {
-                multiselectionItem = new MultiselectionItem(currentDeviceName, true);
+            if (selectedItems.contains(currentDeviceAddress)) {
+                multiselectionItem = new MultiselectionItem(currentDeviceName, currentDeviceAddress, true);
                 selection.add(multiselectionItem);
             } else {
-                multiselectionItem = new MultiselectionItem(currentDeviceName, false);
+                multiselectionItem = new MultiselectionItem(currentDeviceName, currentDeviceAddress,false);
             }
             items.add(multiselectionItem);
         }
@@ -234,12 +229,13 @@ public class AddVoiceSettingActivity extends BaseActivity {
 
         for(BluetoothDevice bluetoothDevice: bluetoothDeviceSet) {
             String currentDeviceName = bluetoothDevice.getName();
+            String currentDeviceAddress = bluetoothDevice.getAddress();
             MultiselectionItem multiselectionItem;
-            if (selectedItems.contains(currentDeviceName)) {
-                multiselectionItem = new MultiselectionItem(currentDeviceName, true);
+            if (selectedItems.contains(currentDeviceAddress)) {
+                multiselectionItem = new MultiselectionItem(currentDeviceName, currentDeviceAddress, true);
                 selection.add(multiselectionItem);
             } else {
-                multiselectionItem = new MultiselectionItem(currentDeviceName, false);
+                multiselectionItem = new MultiselectionItem(currentDeviceName, currentDeviceAddress,false);
             }
             items.add(multiselectionItem);
         }
@@ -313,46 +309,46 @@ public class AddVoiceSettingActivity extends BaseActivity {
         }
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE", applicationLocale);
+        CheckBox triggerCheckBox = findViewById(R.id.voice_trigger_mon);
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
         if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 6)) {
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-            CheckBox triggerCheckBox = findViewById(R.id.voice_trigger_mon);
-            triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
             triggerCheckBox.setChecked(true);
         }
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
+        triggerCheckBox = findViewById(R.id.voice_trigger_tue);
+        triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
         if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 5)) {
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
-            CheckBox triggerCheckBox = findViewById(R.id.voice_trigger_tue);
-            triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
             triggerCheckBox.setChecked(true);
         }
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
+        triggerCheckBox = findViewById(R.id.voice_trigger_wed);
+        triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
         if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 4)) {
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
-            CheckBox triggerCheckBox = findViewById(R.id.voice_trigger_wed);
-            triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
             triggerCheckBox.setChecked(true);
         }
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
+        triggerCheckBox = findViewById(R.id.voice_trigger_thu);
+        triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
         if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 3)) {
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
-            CheckBox triggerCheckBox = findViewById(R.id.voice_trigger_thu);
-            triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
             triggerCheckBox.setChecked(true);
         }
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
+        triggerCheckBox = findViewById(R.id.voice_trigger_fri);
+        triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
         if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 2)) {
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
-            CheckBox triggerCheckBox = findViewById(R.id.voice_trigger_fri);
-            triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
             triggerCheckBox.setChecked(true);
         }
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+        triggerCheckBox = findViewById(R.id.voice_trigger_sat);
+        triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
         if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 1)) {
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
-            CheckBox triggerCheckBox = findViewById(R.id.voice_trigger_sat);
-            triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
             triggerCheckBox.setChecked(true);
         }
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+        triggerCheckBox = findViewById(R.id.voice_trigger_sun);
+        triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
         if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 0)) {
-            calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-            CheckBox triggerCheckBox = findViewById(R.id.voice_trigger_sun);
-            triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
             triggerCheckBox.setChecked(true);
         }
     }

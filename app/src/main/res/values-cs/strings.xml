@@ -30,6 +30,7 @@
     <string name="title_activity_license">Licence pro %s</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Místa</string>
     <!-- Toolbar menu -->
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Nastavení jazyka</string>
     <string name="toolbar_menu_refresh">Aktualizace</string>
     <string name="toolbar_menu_search_city">Najít město</string>
     <string name="toolbar_menu_detect_location">Zjistit lokalitu</string>
@@ -100,6 +101,11 @@
     <string name="preference_title_activity_general">Obecná nastavení</string>
     <string name="preference_title_activity_widget">Nastavení widgetu</string>
     <string name="preference_title_tts">Nastavení hlasu</string>
+    <string name="preference_title_tts_lang">Nastavení jazyka hlasu</string>
+    <string name="pref_title_tts_lang_app_default" >Dle jazyka aplikace</string>
+    <string name="pref_title_tts_not_supported" >Jazyk aplikace není podporován systémem TTS (Text-to-speech). Přejděte do nastavení jazyka v pravém horním rohu této obrazovky.</string>
+    <string name="pref_title_tts_presence" >Jazyk aplikace není podporován systémem TTS (Text-to-speech). Níže můžete vybrat jazyk pro hlas z podporovaných jazyků.</string>
+    <string name="pref_title_tts_app_general_info">Applikace jen posílá příkazy do systému TTS (Text-to-speech). TTS je odpovědný za převod textu na řeč. TTS je obvykle automaticky přítomen v systému. Pokud ne nebo pokud TTS nepodporuje Vámi požadovaný jazyk, můžete si TTS nainstalovat z obchodu s aplikacemi (např.: https://play.google.com/store/search?q=TTS ).</string>
     <string name="preference_widget_update_location">Aktualizace polohy</string>
     <string name="preference_widget_show_labels">Zobrazit popisek ve widgetu</string>
     <string name="preference_widget_use_geocoder">Použít geolokaci pro zobrazení</string>

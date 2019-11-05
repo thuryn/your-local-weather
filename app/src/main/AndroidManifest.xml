@@ -74,6 +74,14 @@
                 android:value=".MainActivity"/>
         </activity>
         <activity
+            android:name=".VoiceLanguageOptionsActivity"
+            android:label="@string/preference_title_tts_lang"
+            android:parentActivityName=".VoiceSettingsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".VoiceSettingsActivity"/>
+        </activity>
+        <activity
             android:name=".AddVoiceSettingActivity"
             android:label="@string/preference_title_add_tts"
             android:parentActivityName=".VoiceSettingsActivity">

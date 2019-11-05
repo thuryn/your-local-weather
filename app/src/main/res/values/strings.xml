@@ -109,6 +109,7 @@
     <string name="title_activity_license" tools:ignore="MissingTranslation">License for %s</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Locations</string>
     <!-- Toolbar menu -->
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Language setting</string>
     <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Update</string>
     <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Search City</string>
     <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Detect Location</string>
@@ -258,6 +259,7 @@
     <string name="preference_title_activity_general" tools:ignore="MissingTranslation">General Settings</string>
     <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Widget Settings</string>
     <string name="preference_title_tts" tools:ignore="MissingTranslation">Voice Settings</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Voice language options</string>
     <string name="preference_title_add_tts" tools:ignore="MissingTranslation">New voice Settings</string>
     <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Update Location</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Show labels in widget</string>
@@ -338,7 +340,7 @@
 \nN - location from network and weather updated 
 \nNi - location from cellular network and weather updated, location discovered by Mozilla location service 
 \nB - access to Openweathermap.org service has been banned, try to update weather later, please
-\nE - the acceess token for Openweathermap.org service has been expired. You need to upgrade the appliaction to get access again</string>
+\nE - the access token for Openweathermap.org service has been expired. You need to upgrade the application to get access again</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">When location gets stuck during device sleep, you can try to wake it up when it is looking for a cellular network</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Wake-Up Strategy</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">No wake up</string>
@@ -369,8 +371,11 @@
     <string name="search_location_info" tools:ignore="MissingTranslation">Tap on map to get desired location and wait to get address resolved.</string>
     <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Please click the refresh button to update the weather first.</string>
     <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Enable voice to speaker</string>
+    <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">speaker</string>
     <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Enable voice to wired headset</string>
+    <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">wired headset</string>
     <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Enable voice to bluetooth headset</string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">bluetooth</string>
     <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">All</string>
     <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Say greeting</string>
     <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Custom</string>
@@ -384,6 +389,12 @@
     <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">Enabled device(s):</string>
     <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">For location:</string>
     <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">What to say:</string>
+    <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">Application\'s locale:</string>
+    <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">Selected locale vor voice:</string>
+    <string name="pref_title_tts_app_general_info" tools:ignore="MissingTranslation">The application just sends text commands to TTS system (Text-to-speech). TTS is responsible to convert text commands to voice. TTS is usually present on the system by default. If not or if installed TTS does not support your desired language, you can install one from application store (for example: https://play.google.com/store/search?q=TTS ).</string>
+    <string name="pref_title_tts_lang_app_default" tools:ignore="MissingTranslation">By app locale</string>
+    <string name="pref_title_tts_presence" tools:ignore="MissingTranslation">Your application locale is not supported by TTS (Text-to-speech). You can select language for voice from the supported bellow.</string>
+    <string name="pref_title_tts_not_supported" tools:ignore="MissingTranslation">Your application locale is not supported by TTS (Text-to-speech). Go to Voice language settings on the top right corner of this screen.</string>
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about" tools:ignore="MissingTranslation">About</string>
     <string name="about_version_pref_title" tools:ignore="MissingTranslation">Version</string>

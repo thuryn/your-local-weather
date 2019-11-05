@@ -13,12 +13,16 @@ import java.util.Map;
 
 import static org.thosp.yourlocalweather.model.VoiceSettingParameterContract.SQL_CREATE_TABLE;
 import static org.thosp.yourlocalweather.model.VoiceSettingParameterContract.SQL_DELETE_TABLE;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
+
+    private static final String TAG = "VoiceSettingParametersDbHelper";
 
     public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "VoiceSettingParameters.db";
     private static VoiceSettingParametersDbHelper instance;
+    private Context context;
 
     public static VoiceSettingParametersDbHelper getInstance(Context ctx) {
         if (instance == null) {
@@ -29,6 +33,7 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
 
     private VoiceSettingParametersDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.context = context;
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -106,11 +111,9 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         try {
-            String oldValue = getStringParam(voiceSettingId, paramType);
-
             ContentValues values = new ContentValues();
             values.put(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_STRING_VALUE, value);
-            if (oldValue == null) {
+            if (!dbRecordExists(voiceSettingId, paramType)) {
                 values.put(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID, paramType);
                 values.put(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID, voiceSettingId);
                 db.insert(VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME, null, values);
@@ -122,6 +125,28 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
                         null,
                         SQLiteDatabase.CONFLICT_IGNORE);
             }
+        } catch (Exception e) {
+            appendLog(context, TAG, "Error:", e);
+        } finally {
+        }
+    }
+
+    public void saveGeneralStringParam(int paramType, String value) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        try {
+            ContentValues values = new ContentValues();
+            values.put(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_STRING_VALUE, value);
+            if (!dbRecordExists(paramType)) {
+                values.put(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID, paramType);
+                db.insert(VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME, null, values);
+            } else {
+                db.updateWithOnConflict(VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
+                        values,
+                        VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
+                        null,
+                        SQLiteDatabase.CONFLICT_IGNORE);
+            }
         } finally {
         }
     }
@@ -130,8 +155,6 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         try {
-            Boolean oldValue = getBooleanParam(voiceSettingId, paramType);
-
             ContentValues values = new ContentValues();
             Long valueToStore;
             if (value == null) {
@@ -142,7 +165,7 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
                 valueToStore = 0l;
             }
             values.put(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_LONG_VALUE, valueToStore);
-            if (oldValue == null) {
+            if (!dbRecordExists(voiceSettingId, paramType)) {
                 values.put(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID, paramType);
                 values.put(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID, voiceSettingId);
                 db.insert(VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME, null, values);
@@ -162,11 +185,9 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
 
         try {
-            Long oldValue = getLongParam(voiceSettingId, paramType);
-
             ContentValues values = new ContentValues();
             values.put(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_LONG_VALUE, value);
-            if (oldValue == null) {
+            if (!dbRecordExists(voiceSettingId, paramType)) {
                 values.put(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID, paramType);
                 values.put(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID, voiceSettingId);
                 db.insert(VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME, null, values);
@@ -314,6 +335,36 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
         return result;
     }
 
+    public String getGeneralStringParam(int paramType) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] projection = {
+                VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_STRING_VALUE
+        };
+
+        Cursor cursor = null;
+        try {
+            cursor = db.query(
+                    VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
+                    projection,
+                    VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
+                    null,
+                    null,
+                    null,
+                    null
+            );
+
+            while (cursor.moveToNext()) {
+                return cursor.getString(cursor.getColumnIndexOrThrow(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_STRING_VALUE));
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+        return null;
+    }
+
     public Boolean getBooleanParam(Long voiceSettingId, int paramType) {
         SQLiteDatabase db = getReadableDatabase();
 
@@ -392,5 +443,60 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
             }
         }
         return result;
+    }
+
+    private boolean dbRecordExists(Long voiceSettingId, int paramType) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] projection = {
+                VoiceSettingParameterContract.VoiceSettingParameters._ID
+        };
+
+        Cursor cursor = null;
+        try {
+            cursor = db.query(
+                    VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
+                    projection,
+                    VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID + "=" + voiceSettingId +
+                            " AND " + VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
+                    null,
+                    null,
+                    null,
+                    null
+            );
+
+            return cursor.moveToNext();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
+
+    private boolean dbRecordExists(int paramType) {
+        SQLiteDatabase db = getReadableDatabase();
+
+        String[] projection = {
+                VoiceSettingParameterContract.VoiceSettingParameters._ID
+        };
+
+        Cursor cursor = null;
+        try {
+            cursor = db.query(
+                    VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
+                    projection,
+                    VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
+                    null,
+                    null,
+                    null,
+                    null
+            );
+
+            return cursor.moveToNext();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
     }
 }

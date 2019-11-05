@@ -4,10 +4,12 @@ public class MultiselectionItem {
 
     private String name;
     private Boolean value;
+    private String address;
 
-    public MultiselectionItem(String name, Boolean value) {
+    public MultiselectionItem(String name, String address, Boolean value) {
         this.name = name;
         this.value = value;
+        this.address = address;
     }
 
     public String getName() {
@@ -16,5 +18,9 @@ public class MultiselectionItem {
 
     public Boolean getValue() {
         return value;
+    }
+
+    public String getAddress() {
+        return address;
     }
 }

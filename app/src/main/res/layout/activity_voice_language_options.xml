@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/voice_language_options.root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/voice_setting_lang_opt.app_bar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/voice_setting_lang_opt.toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            android:navigationIcon="?homeAsUpIndicator"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            tools:targetApi="lollipop">
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <ScrollView
+        android:id="@+id/voice_setting_scroll_view"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:paddingTop="@dimen/settings_content_related_marginBottom"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/pref_title_tts_lang_app_locale_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/settings_text_size"
+                android:layout_marginLeft="@dimen/settings_content_label_padding"
+                android:layout_marginStart="@dimen/settings_content_label_padding"
+                android:paddingBottom="@dimen/settings_content_related_marginBottom"
+                android:text="@string/pref_title_tts_lang_app_locale" />
+
+            <TextView
+                android:id="@+id/voice_language_options_tts_does_not_support_lang"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone"
+                android:textColor="@android:color/holo_red_light"
+                android:layout_marginLeft="@dimen/settings_content_label_padding"
+                android:layout_marginStart="@dimen/settings_content_label_padding"
+                android:paddingBottom="@dimen/settings_content_related_marginBottom"
+                android:textSize="@dimen/settings_text_size" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="@dimen/settings_text_size"
+                android:layout_marginLeft="@dimen/settings_content_label_padding"
+                android:layout_marginStart="@dimen/settings_content_label_padding"
+                android:text="@string/pref_title_tts_lang_select_locale"/>
+
+            <Spinner
+                android:id="@+id/tts_languages"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/settings_content_related_marginBottom"
+                android:textSize="@dimen/settings_text_size"/>
+
+            <TextView
+                android:id="@+id/pref_title_tts_app_general_info_id"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/settings_content_label_padding"
+                android:layout_marginStart="@dimen/settings_content_label_padding"
+                android:layout_marginTop="@dimen/settings_content_marginBottom"
+                android:textSize="@dimen/settings_text_size"
+                android:text="@string/pref_title_tts_app_general_info"/>
+
+        </LinearLayout>
+    </ScrollView>
+</android.support.design.widget.CoordinatorLayout>
