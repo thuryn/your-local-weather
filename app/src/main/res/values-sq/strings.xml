@@ -79,8 +79,8 @@
     <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Përditësoje</string>
     <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Kërko Qytet</string>
     <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Pikas Vendndodhjen</string>
-    <string name="menu_action_toggle_values" tools:ignore="MissingTranslation"></string>
-    <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation"></string>
+    <string name="menu_action_toggle_values" tools:ignore="MissingTranslation"/>
+    <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation"/>
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Rregullime shtylle</string>
     <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Shtylla për shfaqje</string>
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikonë</string>
@@ -173,7 +173,7 @@
     <string name="pref_language_he" tools:ignore="MissingTranslation">עברית (Hebraisht)</string>
     <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (Bokmål) (Norvegjishte (Bokmål))</string>
     <string name="pref_language_nl" tools:ignore="MissingTranslation">Nederlands (Hollandisht)</string>
-    <string name="pref_language_ny" tools:ignore="MissingTranslation"></string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation"/>
     <string name="pref_language_hu" tools:ignore="MissingTranslation">Magyar (Hungarisht)</string>
     <string name="pref_language_es" tools:ignore="MissingTranslation">Español (Spanjisht)</string>
     <string name="pref_language_el" tools:ignore="MissingTranslation">Ελληνικά (Greqisht)</string>
@@ -191,7 +191,7 @@
     <string name="wakeupfull_label" tools:ignore="MissingTranslation">Zgjo ekranin</string>
     <string name="clear_cache_button" tools:ignore="MissingTranslation">Spastro fshehtinën</string>
     <string name="db_info" tools:ignore="MissingTranslation">Të dhëna rreth fshehtinës</string>
-    <string name="db_header" tools:ignore="MissingTranslation"></string>
+    <string name="db_header" tools:ignore="MissingTranslation"/>
     <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Jetëgjatësi Vlerash Fsheftine</string>
     <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 orë</string>
     <string name="location_cache_24_label" tools:ignore="MissingTranslation">një ditë</string>
@@ -303,7 +303,7 @@
     <string name="weather_condition_description_312" tools:ignore="MissingTranslation">shi i hollë me intensitet të lartë</string>
     <string name="weather_condition_description_313" tools:ignore="MissingTranslation">rrebesh dhe shi i imët</string>
     <string name="weather_condition_description_314" tools:ignore="MissingTranslation">rrebesh dhe shi i imët i fortë</string>
-    <string name="weather_condition_description_321" tools:ignore="MissingTranslation"></string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation"/>
     <string name="weather_condition_description_500" tools:ignore="MissingTranslation">shi i lehtë</string>
     <string name="weather_condition_description_501" tools:ignore="MissingTranslation">shi i shtruar</string>
     <string name="weather_condition_description_502" tools:ignore="MissingTranslation">shi me intensitet të lartë</string>
@@ -487,4 +487,38 @@
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamisht</string>
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengalisht (Bangladesh)</string>
     <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Grafikun shfaqe me qartësinë origjinale (kur grafiku është shumë i vogël)</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Rregullime Zëri</string>
+    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Aktivizoni zë te kufje me kabëll</string>
+    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Aktivizoni zë te kufje Bluetooth</string>
+    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Krejt</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Thoni “përshëndetje”</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Vetjake</string>
+    <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">Thoni “vendndodhje”</string>
+    <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">Thoni “përshkrim moti”</string>
+    <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">Thoni “temperaturë”</string>
+    <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">Thoni “erë”</string>
+    <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">Thoni:</string>
+    <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Kohë</string>
+    <string name="pref_title_tts_trigger_bt_devices" tools:ignore="MissingTranslation">Për pajisje:</string>
+    <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">Pajisje të aktivizuara:</string>
+    <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">Për vendndodhjen:</string>
+    <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">Ç’të thuhet:</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Për t’u thënë:</string>
+    <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">Mirëmëngjes</string>
+    <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Tungjatjeta</string>
+    <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">Mirëmbrëma</string>
+    <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">Moti i tanishëm për vendndodhjen %s</string>
+    <string name="tts_say_current_weather" tools:ignore="MissingTranslation">Moti i tanishëm</string>
+    <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">Kur moti përditësohet</string>
+    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">Kur lidhet pajisje Bluetooth</string>
+    <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s era %1$s %2$s</string>
+    <string name="tty_say_temperature" tools:ignore="MissingTranslation">temperatura %s</string>
+    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">veriore</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">verilindje</string>
+    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">lindje</string>
+    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">juglindje</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">jug</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">jugperëndim</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">perëndim</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">veri-perëndim</string>
 </resources>
