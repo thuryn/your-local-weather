@@ -5,8 +5,8 @@
     <string name="label_choose_city" tools:ignore="MissingTranslation">Pilih kota</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Batal</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Pengaturan Izin dan Lokasi</string>
-    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Aplikasi ini membutuhkan izin untuk memperbarui lokasi melalui GPS</string>
-    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Aplikasi ini membutuhkan izin untuk memperbarui lokasi dengan Wi-Fi dan Jaringan GSM.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Apl membutuhkan izin untuk memperbarui lokasi melalui GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Apl membutuhkan izin untuk memperbarui lokasi melalui Wi-Fi dan jaringan GSM.</string>
     <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Pengaturan perangkat</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Minta izin</string>
     <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Batal</string>
@@ -14,19 +14,37 @@
     <string name="load_progress" tools:ignore="MissingTranslation">Harap tunggu…</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Lokasi tidak ditemukan</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Izin belum diberikan - tekan simbol lokasi pada perangkat anda</string>
-    <string name="subscription_expired" tools:ignore="MissingTranslation">Akses kadaluarsa, silahkan perbarui aplikasi ini</string>
-    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">OpenweathermapApiKey milik anda tidak teregistrasi</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Akses kedaluwarsa. Silakan perbarui apl ini.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">OpenweathermapApiKey milik anda tidak terdaftar.</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Bagikan cuaca</string>
     <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Temperatur</string>
     <string name="graph_wind_label" tools:ignore="MissingTranslation">Angin</string>
     <string name="graph_rain_label" tools:ignore="MissingTranslation">Hujan</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Salju</string>
     <string name="graph_pressure_label" tools:ignore="MissingTranslation">Tekanan</string>
-    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Kau tidak boleh menggunakan lebih dari %1$d lokasi secara bersamaan.</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Anda tidak boleh menggunakan lebih dari %1$d lokasi secara bersamaan.</string>
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Tutup</string>
-    <string name="initial_guide_next" tools:ignore="MissingTranslation">Lanjut</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Selanjutnya</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Sebelumnya</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Selesai</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Sumber lokasi dan alamat</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Pengaturan umum</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Pengoptimalan baterai</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Apl akan meminta anda untuk menonaktifkan pengoptimalan baterai untuk memperbarui lokasi, cuaca atau melacak lokasi berdasarkan akselerometer di latar belakang.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Lanjutkan</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Apl diatur untuk memperbarui lokasi. Izin akses lokasi dibutuhkan. Buka pengaturan perangkat dan aktifkan lokasi atau matikan pengaturan pembaruan lokasi apl.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Izin untuk membaca informasi perangkat dibutuhkan untuk memperbarui lokasi melalui Wi-Fi dan jaringan GSM. Fitur ini mengambil informasi lokasi BTS GSM yang tersambung dengan perangkat.</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Kota: %1$s
+\nTemperatur: %2$s
+\nDeskripsi: %3$s
+\nAngin: %4$s %5$s
+\nMatahari terbit: %6$s
+\nMatahari tenggelam: %7$s</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Panduan konfigurasi awal</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Pengaturan pembaruan lokasi</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Opsi sumber lokasi</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Umum</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Apl utama</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Widget</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Opsi ini mempengaruhi keseluruhan apl.</string>
 </resources>
