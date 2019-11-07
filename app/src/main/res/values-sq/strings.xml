@@ -521,4 +521,18 @@
     <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">jugperëndim</string>
     <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">perëndim</string>
     <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">veri-perëndim</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Ky aplikacion mund të japë përfundime me zë. Për ta aktivizuar këtë veçori, lypset të keni të instaluar një sistem TNF (Tekst-në-të-folur) dhe të caktoni ç’jepet me zë që nga rregullimet e aplikacionit. Ju lutemi, kini parasysh që përkthimet e tekstit, si edhe urdhrat me zë, janë përkthyer nga vullnetarë te shërbimi https://hosted.weblate.org/projects/your-local-weather. Mundeni edhe të caktoni urdhrat tuaj zanorë që nga rregullimet e aplikacionit. Zhvilluesit e këtij aplikacioni nuk garantojnë cilësinë dhe saktësinë e përkthimeve, as edhe se ç’thotë aplikacioni - duke përdorur aplikacionin, pajtoheni me këtë pohim.</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Rregullime të reja Zanore</string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Aktivizo zë folësi</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Rregullime gjuhe</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Mundësi gjuhe për zërin</string>
+    <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">folës</string>
+    <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">kufje me kabëll</string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">bluetooth</string>
+    <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">Vendore aplikacioni:</string>
+    <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">Vendore e përzgjedhur për zërin:</string>
+    <string name="pref_title_tts_app_general_info" tools:ignore="MissingTranslation">Ky aplikacion thjesht dërgon urdhra tekst te sistemi TNF (Tekst-në-të-folur). TNF-ja është përgjegjëse për shndërrim urdhrash tekst në zanorë. Zakonisht TNF-ja është i pranishëm në sistem si parazgjedhje. Nëse s’është, ose nëse TNF-ja e instaluar nuk e mbulon gjuhën tuaj të dëshiruar, mund të instaloni një prej shitoresh aplikacionesh (për shembull: https://play.google.com/store/search\?q=TTS ).</string>
+    <string name="pref_title_tts_lang_app_default" tools:ignore="MissingTranslation">Blini vendore aplikacioni</string>
+    <string name="pref_title_tts_presence" tools:ignore="MissingTranslation">Vendorja juaj e aplikacionit nuk mbulohet nga TNF (Tekst-në-të-folur). Gjuhë për zërin mund të përzgjidhni nga të mbuluarat më poshtë.</string>
+    <string name="pref_title_tts_not_supported" tools:ignore="MissingTranslation">Vendorja juaj e aplikacionit nuk mbulohet nga TNF (Tekst-në-të-folur). Shkoni te rregullimet e gjuhës së Zërit në cepin e sipërm djathtas të kësaj skene.</string>
 </resources>
