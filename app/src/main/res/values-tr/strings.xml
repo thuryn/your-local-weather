@@ -154,13 +154,13 @@
 \nN - ağ ve hava durumu konumundan güncellendi
 \nB - Openweathermap.org hizmetine giriş yasaklandı, daha sonra hava durumunu güncellemeye çalışın, lütfen
 \nE - Openweathermap.org hizmetinin erişim belirtecinin süresi doldu. Yeniden erişebilmek için uygulamayı yükseltmeniz gerekir</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - sadece hava durumu güncellendi
-\nL - sadece konum güncellendi
-\nG - GPS ve hava durumu bilgileri güncellendi
-\nN - ağ ve hava durumu konumundan güncellendi
-\nNi - hücresel şebeke ve hava durumu bilgileri güncellendi, Mozilla konum servisi tarafından keşfedilen yer
-\nB - Openweathermap.org hizmetine giriş yasaklandı, daha sonra hava durumunu güncellemeye çalışın, lütfen
-\nE - Openweathermap.org hizmetinin acce süresi doldu. Yeniden erişebilmek için uygulamayı yükseltmeniz gerekir</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - sadece hava durumu güncellendi 
+\nL - sadece konum güncellendi 
+\nG - GPS ve hava durumu bilgileri güncellendi 
+\nN - ağ ve hava durumu konumundan güncellendi 
+\nNi - hücresel şebeke ve hava durumu bilgileri güncellendi, Mozilla konum servisi tarafından keşfedilen yer 
+\nB - Openweathermap.org hizmetine giriş yasaklandı, daha sonra hava durumunu güncellemeye çalışın, lütfen 
+\nE - Openweathermap.org hizmetinin erişim belirtecinin süresi doldu. Yeniden erişebilmek için uygulamayı yükseltmeniz gerekir.</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">"Cihaz uykudayken konum takılı kalırsa, telefon ağı aranırken cihazı uyandırmayı deneyebilirsiniz. "</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Uyanma Stratejisi</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">Uyanma yok</string>
@@ -513,4 +513,10 @@
     <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Tüm</string>
     <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Özel</string>
     <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">Konum söyle</string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Hoparlöre sesi etkinleştir</string>
+    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Kablolu kulaklığa sesi etkinleştir</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Dil ayarı</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Ses dili seçenekleri</string>
+    <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">hoparlör</string>
+    <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">kablolu kulaklık</string>
 </resources>
