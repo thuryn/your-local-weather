@@ -422,8 +422,6 @@ public class WidgetUtils {
                     maxWind = weatherForecastForDay.getWindSpeed();
                 }
             }
-            maxTemp = TemperatureUtil.getTemperatureInPreferredUnit(context, maxTemp);
-            minTemp = TemperatureUtil.getTemperatureInPreferredUnit(context, minTemp);
             switch (dayCounter) {
                 case 1:
                     setForecastDayInfo(
@@ -741,7 +739,10 @@ public class WidgetUtils {
                 sdfDayOfWeek.format(forecastCalendar.getTime()));
         remoteViews.setTextViewText(
                 weatherIdForTemperatures,
-                Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
+                Math.round(TemperatureUtil.getTemperatureInPreferredUnit(context, minTemp)) +
+                        "/" +
+                        Math.round(TemperatureUtil.getTemperatureInPreferredUnit(context, maxTemp)) +
+                        TemperatureUtil.getTemperatureUnit(context));
     }
 
     public static Set<Integer> getCurrentWeatherDetailsFromSettings(
