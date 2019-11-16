@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
@@ -50,6 +51,20 @@ public class VoiceSettingsActivity extends BaseActivity {
     private VoiceSettingParametersDbHelper voiceSettingParametersDbHelper;
     private Locale applicationLocale;
     private TextToSpeech tts;
+
+    Handler timerHandler = new Handler();
+    Runnable timerRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (tts == null) {
+                return;
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Set<Locale> ttsAvailableLanguages = tts.getAvailableLanguages();
+                processTtsLanguages(ttsAvailableLanguages);
+            }
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -165,21 +180,39 @@ public class VoiceSettingsActivity extends BaseActivity {
     }
 
     private void checkTtsLanguages() {
+        Set<Locale> ttsAvailableLanguages;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Set<Locale> ttsAvailableLanguages = tts.getAvailableLanguages();
-            boolean supportedLanguage = false;
-            appendLog(getBaseContext(), TAG, "Locales:ttsAvailableLanguages: " + ttsAvailableLanguages + ":" + ((ttsAvailableLanguages != null) ? ttsAvailableLanguages.size() : ""));
-            for (Locale locale : ttsAvailableLanguages) {
-                appendLog(getBaseContext(), TAG, "Locales: ", locale.getISO3Language(), ":", applicationLocale.getISO3Language());
-                if (locale.getISO3Language().equals(applicationLocale.getISO3Language())) {
-                    supportedLanguage = true;
+            ttsAvailableLanguages = tts.getAvailableLanguages();
+            if (ttsAvailableLanguages.isEmpty()) {
+                timerHandler.postDelayed(timerRunnable, 1000);
+                return;
+            }
+        } else {
+            ttsAvailableLanguages = new HashSet<>();
+            Locale[] locales = Locale.getAvailableLocales();
+            for (Locale loc : locales) {
+                if (!loc.toString().toLowerCase().contains("os")
+                        && tts.isLanguageAvailable(loc) >= 0) {
+                    ttsAvailableLanguages.add(loc);
                 }
             }
-            if (!supportedLanguage) {
-                int duration = Toast.LENGTH_LONG;
-                Toast toast = Toast.makeText(getBaseContext(), getString(R.string.pref_title_tts_not_supported), duration);
-                toast.show();
+        }
+        processTtsLanguages(ttsAvailableLanguages);
+    }
+
+    private void processTtsLanguages(Set<Locale> ttsAvailableLanguages) {
+        boolean supportedLanguage = false;
+        appendLog(getBaseContext(), TAG, "Locales:ttsAvailableLanguages: " + ttsAvailableLanguages + ":" + ((ttsAvailableLanguages != null) ? ttsAvailableLanguages.size() : ""));
+        for (Locale locale : ttsAvailableLanguages) {
+            appendLog(getBaseContext(), TAG, "Locales: ", locale.getISO3Language(), ":", applicationLocale.getISO3Language());
+            if (locale.getISO3Language().equals(applicationLocale.getISO3Language())) {
+                supportedLanguage = true;
             }
+        }
+        if (!supportedLanguage) {
+            int duration = Toast.LENGTH_LONG;
+            Toast toast = Toast.makeText(getBaseContext(), getString(R.string.pref_title_tts_not_supported), duration);
+            toast.show();
         }
     }
 
@@ -359,6 +392,12 @@ public class VoiceSettingsActivity extends BaseActivity {
                         c.set(Calendar.HOUR_OF_DAY, hour);
                         c.set(Calendar.MINUTE, minute);
                         addInfo1 = AppPreference.getLocalizedTime(getBaseContext(), c.getTime(), applicationLocale);
+
+                        /*Long nextTimeDate = TimeUtils.setupAlarmForVoiceForVoiceSetting(getBaseContext(), voiceSettingId, voiceSettingParametersDbHelper);
+                        if (nextTimeDate != null) {
+                            c.setTimeInMillis(nextTimeDate);
+                            addInfo1 += " (next " + AppPreference.getLocalizedDateTime(getBaseContext(), c.getTime(), false, applicationLocale) + ")";
+                        }*/
                     }
                     Calendar calendar = Calendar.getInstance();
                     Long daysOfWeek = voiceSettingParametersDbHelper.getLongParam(

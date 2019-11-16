@@ -55,15 +55,28 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/settings_text_size"/>
             </LinearLayout>
-            <Button
-                android:id="@+id/button.voice.setting.time"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/pref_title_tts_time"
-                android:textColor="@android:color/white"
-                android:backgroundTint="@android:color/holo_blue_dark"
-                android:onClick="showTimePickerDialog"
-                android:paddingBottom="@dimen/settings_content_related_marginBottom"/>
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/button.voice.setting.time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/pref_title_tts_time"
+                    android:textColor="@android:color/white"
+                    android:backgroundTint="@android:color/holo_blue_dark"
+                    android:onClick="showTimePickerDialog"
+                    android:paddingBottom="@dimen/settings_content_related_marginBottom"/>
+                <TextView
+                    android:id="@+id/voice.setting.next.time"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="10dp"
+                    android:layout_marginStart="@dimen/settings_content_marginBottom"
+                    android:layout_marginLeft="@dimen/settings_content_marginBottom"
+                    android:textSize="@dimen/settings_text_size" />
+            </LinearLayout>
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/pref_title_tts_trigger_days_panel"
                 android:orientation="horizontal"
@@ -159,6 +172,7 @@
                         android:text="@string/pref_title_tts_wired_headset"
                         android:onClick="onTtsDeviceEnabledButtonClicked" />
                     <LinearLayout
+                        android:id="@+id/tts_bt_device_panel"
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">

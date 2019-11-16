@@ -1,25 +1,16 @@
 package org.thosp.yourlocalweather;
 
-import android.app.AlarmManager;
+import android.app.Activity;
 import android.app.Dialog;
-import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.SystemClock;
-import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -31,32 +22,25 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import org.osmdroid.config.Configuration;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.model.VoiceSettingParameterContract;
 import org.thosp.yourlocalweather.model.VoiceSettingParametersDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.TimeUtils;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.VoiceSettingParamType;
 
 import java.text.SimpleDateFormat;
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class AddVoiceSettingActivity extends BaseActivity {
 
@@ -143,12 +127,18 @@ public class AddVoiceSettingActivity extends BaseActivity {
 
     private void populateTriggerBtDevices(int spinnerViewId, int checkBoxViewId, VoiceSettingParamType voiceSettingParamType) {
         MultiSelectionTriggerSpinner btDevicesSpinner = findViewById(spinnerViewId);
+        CheckBox allBtCheckbox = findViewById(checkBoxViewId);
         btDevicesSpinner.setVoiceSettingId(voiceSettingId);
 
         BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(getBaseContext());
 
         if (bluetoothAdapter == null) {
+            btDevicesSpinner.setVisibility(View.GONE);
+            allBtCheckbox.setVisibility(View.GONE);
             return;
+        } else {
+            btDevicesSpinner.setVisibility(View.VISIBLE);
+            allBtCheckbox.setVisibility(View.VISIBLE);
         }
 
         Set<BluetoothDevice> bluetoothDeviceSet = bluetoothAdapter.getBondedDevices();
@@ -164,7 +154,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 voiceSettingId,
                 voiceSettingParamType.getVoiceSettingParamTypeId());
         if ((enabledVoiceDevices != null) && enabledVoiceDevices) {
-            ((CheckBox) findViewById(checkBoxViewId)).setChecked(true);
+            allBtCheckbox.setChecked(true);
             findViewById(R.id.trigger_bt_when_devices).setVisibility(View.GONE);
         } else {
             findViewById(R.id.trigger_bt_when_devices).setVisibility(View.VISIBLE);
@@ -194,12 +184,21 @@ public class AddVoiceSettingActivity extends BaseActivity {
 
     private void populateBtDevices(int spinnerViewId, int checkBoxViewId, VoiceSettingParamType voiceSettingParamType) {
         MultiSelectionSpinner btDevicesSpinner = findViewById(spinnerViewId);
+        CheckBox allBtCheckbox = findViewById(checkBoxViewId);
+        View btDevicePanel = findViewById(R.id.tts_bt_device_panel);
         btDevicesSpinner.setVoiceSettingId(voiceSettingId);
 
         BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(getBaseContext());
 
         if (bluetoothAdapter == null) {
+            btDevicesSpinner.setVisibility(View.GONE);
+            allBtCheckbox.setVisibility(View.GONE);
+            btDevicePanel.setVisibility(View.GONE);
             return;
+        } else {
+            btDevicesSpinner.setVisibility(View.VISIBLE);
+            allBtCheckbox.setVisibility(View.VISIBLE);
+            btDevicePanel.setVisibility(View.VISIBLE);
         }
 
         Set<BluetoothDevice> bluetoothDeviceSet = bluetoothAdapter.getBondedDevices();
@@ -215,7 +214,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 voiceSettingId,
                 voiceSettingParamType.getVoiceSettingParamTypeId());
         if ((enabledVoiceDevices != null) && enabledVoiceDevices) {
-            ((CheckBox) findViewById(checkBoxViewId)).setChecked(true);
+            allBtCheckbox.setChecked(true);
             findViewById(R.id.bt_when_devices).setVisibility(View.GONE);
         } else {
             findViewById(R.id.bt_when_devices).setVisibility(View.VISIBLE);
@@ -437,7 +436,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
 
             Button voiceSettingButton = (Button) getActivity().findViewById(R.id.button_voice_setting_time);
             voiceSettingButton.setText(AppPreference.getLocalizedTime(getContext(), c.getTime(), applicationLocale));
-            TimeUtils.setupAlarmForVoice(getActivity());
+            prepareNextTime(getActivity(), voiceSettingId, applicationLocale, voiceSettingParametersDbHelper);
         }
 
         public void setVoiceSettingId(Long voiceSettingId) {
@@ -454,9 +453,17 @@ public class AddVoiceSettingActivity extends BaseActivity {
     }
 
     public void populateTriggerType() {
-        Spinner spinner = (Spinner) findViewById(R.id.trigger_type);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.voice_trigger_type, android.R.layout.simple_spinner_item);
+        Spinner spinner = findViewById(R.id.trigger_type);
+        final BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(getBaseContext());
+
+        ArrayAdapter<CharSequence> adapter;
+        if (bluetoothAdapter == null) {
+            adapter = ArrayAdapter.createFromResource(this,
+                    R.array.voice_trigger_type_wo_bt, android.R.layout.simple_spinner_item);
+        } else {
+            adapter = ArrayAdapter.createFromResource(this,
+                    R.array.voice_trigger_type, android.R.layout.simple_spinner_item);
+        }
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         Long currentTriggerId = voiceSettingParametersDbHelper.getLongParam(
@@ -464,20 +471,27 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 VoiceSettingParamType.VOICE_SETTING_TRIGGER_TYPE.getVoiceSettingParamTypeId());
         if (currentTriggerId != null) {
             int currentTriggerIdInt = currentTriggerId.intValue();
+            if ((bluetoothAdapter == null) && (currentTriggerIdInt == 2)) {
+                currentTriggerIdInt = 1;
+            }
             spinner.setSelection(currentTriggerIdInt);
             triggerTypeChanged(currentTriggerIdInt);
         }
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int positionToSave = position;
+                if ((bluetoothAdapter == null) && (position == 1)) {
+                    positionToSave++;
+                }
                 voiceSettingParametersDbHelper.saveLongParam(
                         voiceSettingId,
                         VoiceSettingParamType.VOICE_SETTING_TRIGGER_TYPE.getVoiceSettingParamTypeId(),
-                        position);
+                        positionToSave);
 
-                triggerTypeChanged(position);
-                if (position == 2) {
-                    TimeUtils.setupAlarmForVoice(getBaseContext());
+                triggerTypeChanged(positionToSave);
+                if (positionToSave == 2) {
+                    prepareNextTime(AddVoiceSettingActivity.this, voiceSettingId, applicationLocale, voiceSettingParametersDbHelper);
                 }
             }
 
@@ -503,6 +517,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
             findViewById(R.id.pref_title_tts_bt_trigger_panel).setVisibility(View.VISIBLE);
             findViewById(R.id.enabled_devices_panel).setVisibility(View.GONE);
         }
+        prepareNextTime(this, voiceSettingId, applicationLocale, voiceSettingParametersDbHelper);
     }
 
     private void populateLocations() {
@@ -944,6 +959,17 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 voiceSettingId,
                 VoiceSettingParamType.VOICE_SETTING_TRIGGER_DAY_IN_WEEK.getVoiceSettingParamTypeId(),
                 daysOfWeek);
-        TimeUtils.setupAlarmForVoice(getBaseContext());
+        prepareNextTime(this, voiceSettingId, applicationLocale, voiceSettingParametersDbHelper);
+    }
+
+    private static void prepareNextTime(Activity context, Long voiceSettingId, Locale applicationLocale, VoiceSettingParametersDbHelper voiceSettingParametersDbHelper) {
+        TimeUtils.setupAlarmForVoice(context);
+        Calendar c  = Calendar.getInstance();
+        Long nextTimeDate = TimeUtils.setupAlarmForVoiceForVoiceSetting(context, voiceSettingId, voiceSettingParametersDbHelper);
+        if (nextTimeDate != null) {
+            TextView nextTimeView = context.findViewById(R.id.voice_setting_next_time);
+            c.setTimeInMillis(nextTimeDate);
+            nextTimeView.setText(" (-> " + AppPreference.getLocalizedDateTime(context, c.getTime(), false, applicationLocale) + ")");
+        }
     }
 }

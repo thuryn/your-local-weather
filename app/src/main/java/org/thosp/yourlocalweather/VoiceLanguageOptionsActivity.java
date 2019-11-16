@@ -1,50 +1,28 @@
 package org.thosp.yourlocalweather;
 
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.support.annotation.Nullable;
 import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.util.Linkify;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import org.thosp.yourlocalweather.model.Location;
-import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.VoiceSettingParametersDbHelper;
-import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
-import org.thosp.yourlocalweather.utils.TimeUtils;
-import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.VoiceSettingParamType;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -59,6 +37,20 @@ public class VoiceLanguageOptionsActivity extends BaseActivity {
     private Locale applicationLocale;
     private Set<Locale> ttsAvailableLanguages;
     private TextToSpeech tts;
+
+    Handler timerHandler = new Handler();
+    Runnable timerRunnable = new Runnable() {
+        @Override
+        public void run() {
+            if (tts == null) {
+                return;
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                ttsAvailableLanguages = tts.getAvailableLanguages();
+                populateLanguageOptionsSpinner();
+            }
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -173,6 +165,10 @@ public class VoiceLanguageOptionsActivity extends BaseActivity {
     private void prepareTtsLanguages() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ttsAvailableLanguages = tts.getAvailableLanguages();
+            if (ttsAvailableLanguages.isEmpty()) {
+                timerHandler.postDelayed(timerRunnable, 1000);
+                return;
+            }
         } else {
             ttsAvailableLanguages = new HashSet<>();
             Locale[] locales = Locale.getAvailableLocales();

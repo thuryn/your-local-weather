@@ -752,9 +752,9 @@ public class MainActivity extends BaseActivity
     private void checkBatteryOptimization() {
         int initialGuideVersion = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
                 .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
-        if (initialGuideVersion < 3) {
+        if (initialGuideVersion < 4) {
             SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(this).edit();
-            preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 3);
+            preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 4);
             preferences.apply();
         }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
@@ -829,12 +829,17 @@ public class MainActivity extends BaseActivity
         final AlertDialog.Builder settingsAlert = new AlertDialog.Builder(MainActivity.this);
         switch (pageNumber) {
             case 1:
+                settingsAlert.setTitle(R.string.alertDialog_voice_disclaimer_title);
+                settingsAlert.setMessage(R.string.alertDialog_voice_disclaimer_message);
+                setNextButton(settingsAlert, R.string.initial_guide_next);
+                break;
+            case 2:
                 settingsAlert.setTitle(R.string.initial_guide_title_1);
                 settingsAlert.setMessage(R.string.initial_guide_paragraph_1);
                 setNextButton(settingsAlert, R.string.initial_guide_next);
                 setPreviousButton(settingsAlert, R.string.initial_guide_close);
                 break;
-            case 2:
+            case 3:
                 settingsAlert.setTitle(R.string.initial_guide_title_2);
                 selectedUpdateLocationStrategy = 1;
                 settingsAlert.setSingleChoiceItems(R.array.location_update_strategy, selectedUpdateLocationStrategy,
@@ -850,13 +855,13 @@ public class MainActivity extends BaseActivity
                 setNextButton(settingsAlert, R.string.initial_guide_next);
                 setPreviousButton(settingsAlert, R.string.initial_guide_previous);
                 break;
-            case 3:
+            case 4:
                 settingsAlert.setTitle(R.string.initial_guide_title_3);
                 settingsAlert.setMessage(R.string.initial_guide_paragraph_3);
                 setNextButton(settingsAlert, R.string.initial_guide_next);
                 setPreviousButton(settingsAlert, R.string.initial_guide_previous);
                 break;
-            case 4:
+            case 5:
                 settingsAlert.setTitle(R.string.initial_guide_title_4);
                 selectedLocationAndAddressSourceStrategy = 0;
                 settingsAlert.setSingleChoiceItems(R.array.location_geocoder_source_entries, selectedLocationAndAddressSourceStrategy,
@@ -869,13 +874,13 @@ public class MainActivity extends BaseActivity
                 setNextButton(settingsAlert, R.string.initial_guide_next);
                 setPreviousButton(settingsAlert, R.string.initial_guide_previous);
                 break;
-            case 5:
+            case 6:
                 settingsAlert.setTitle(R.string.initial_guide_title_5);
                 settingsAlert.setMessage(R.string.initial_guide_paragraph_5);
                 setNextButton(settingsAlert, R.string.initial_guide_next);
                 setPreviousButton(settingsAlert, R.string.initial_guide_previous);
                 break;
-            case 6:
+            case 7:
                 settingsAlert.setTitle(R.string.initial_guide_title_6);
                 selectedWakeupStrategyStrategy = 2;
                 settingsAlert.setSingleChoiceItems(R.array.wake_up_strategy_entries, selectedWakeupStrategyStrategy,
@@ -888,13 +893,13 @@ public class MainActivity extends BaseActivity
                 setNextButton(settingsAlert, R.string.initial_guide_next);
                 setPreviousButton(settingsAlert, R.string.initial_guide_previous);
                 break;
-            case 7:
+            case 8:
                 settingsAlert.setTitle(R.string.initial_guide_title_7);
                 settingsAlert.setMessage(R.string.initial_guide_paragraph_7);
                 setNextButton(settingsAlert, R.string.initial_guide_next);
                 setPreviousButton(settingsAlert, R.string.initial_guide_previous);
                 break;
-            case 8:
+            case 9:
                 settingsAlert.setTitle(R.string.initial_guide_title_8);
                 selectedCacheLocationStrategy = 1;
                 settingsAlert.setSingleChoiceItems(R.array.location_cache_entries, selectedCacheLocationStrategy,
@@ -907,7 +912,7 @@ public class MainActivity extends BaseActivity
                 setNextButton(settingsAlert, R.string.initial_guide_next);
                 setPreviousButton(settingsAlert, R.string.initial_guide_previous);
                 break;
-            case 9:
+            case 10:
                 settingsAlert.setTitle(R.string.initial_guide_title_9);
                 settingsAlert.setMessage(R.string.initial_guide_paragraph_9);
                 setNextButton(settingsAlert, R.string.initial_guide_finish);
@@ -924,7 +929,7 @@ public class MainActivity extends BaseActivity
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                         initialGuidePage++;
-                        if (initialGuidePage > 9) {
+                        if (initialGuidePage > 10) {
                             initialGuideCompleted = true;
                             permissionsAndSettingsRequested = false;
                             saveInitialPreferences();
@@ -956,7 +961,7 @@ public class MainActivity extends BaseActivity
     private void closeInitialGuideAndCheckPermission() {
         permissionsAndSettingsRequested = false;
         SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(this).edit();
-        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 3);
+        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 4);
         preferences.apply();
         initialGuideCompleted = true;
         checkPermissionsSettingsAndShowAlert();
@@ -1000,7 +1005,7 @@ public class MainActivity extends BaseActivity
         }
         preferences.putBoolean(Constants.APP_SETTINGS_LOCATION_CACHE_ENABLED, selectedCacheLocationStrategyBoolean);
 
-        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 3);
+        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 4);
         preferences.apply();
     }
 
