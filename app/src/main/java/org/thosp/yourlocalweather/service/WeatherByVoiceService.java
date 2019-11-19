@@ -205,11 +205,6 @@ public class WeatherByVoiceService extends Service {
                     "weatherByVoiceMessages.size when request is old or null = ", weatherByVoiceMessages);
             return;
         }
-
-        appendLog(getBaseContext(),
-                TAG,
-                "TEST - weatherBy voice is STARTED");
-
         sayCurrentWeather(
                 updateRequest.getWeather(),
                 updateRequest.getLocation(),
