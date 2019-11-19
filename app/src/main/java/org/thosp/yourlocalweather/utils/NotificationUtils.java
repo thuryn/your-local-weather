@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -201,14 +202,16 @@ public class NotificationUtils {
         remoteViews.setTextViewText(R.id.notification_custom_weather_widget_description, weatherDescription);
         remoteViewsExpanded.setTextViewText(R.id.notification_weather_forecast_expanded_widget_description, weatherDescription);
 
-        Utils.setWeatherIcon(remoteViews, context, weatherRecord, R.id.notification_custom_weather_widget_icon);
-        Utils.setWeatherIcon(remoteViewsExpanded, context, weatherRecord, R.id.notification_weather_forecast_expanded_widget_icon);
+        int iconColorBlack = ContextCompat.getColor(context, R.color.widget_lightTheme_textColorPrimary);
+        Utils.setWeatherIconWithColor(remoteViews, context, weatherRecord, R.id.notification_custom_weather_widget_icon, iconColorBlack);
+        Utils.setWeatherIconWithColor(remoteViewsExpanded, context, weatherRecord, R.id.notification_weather_forecast_expanded_widget_icon, iconColorBlack);
 
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;
         try {
             weatherForecastRecord = WidgetUtils.updateWeatherForecast(
                     context,
                     location.getId(),
+                    iconColorBlack,
                     null,
                     remoteViewsExpanded,
                     null,

@@ -60,6 +60,10 @@ public class Utils {
     private static final String TAG = "Utils";
 
     public static Bitmap createWeatherIcon(Context context, String text) {
+        return createWeatherIconWithColor(context, text, AppPreference.getTextColor(context));
+    }
+
+    public static Bitmap createWeatherIconWithColor(Context context, String text, int iconColor) {
         Bitmap bitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_4444);
         Canvas canvas = new Canvas(bitmap);
         Paint paint = new Paint();
@@ -70,7 +74,7 @@ public class Utils {
         paint.setSubpixelText(true);
         paint.setTypeface(weatherFont);
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(AppPreference.getTextColor(context));
+        paint.setColor(iconColor);
         paint.setTextSize(180);
         paint.setTextAlign(Paint.Align.CENTER);
         canvas.drawText(text, 128, 200, paint);
@@ -151,14 +155,21 @@ public class Utils {
         return icon;
     }
 
-    public static void setWeatherIcon(ImageView imageView,
+    public static void setWeatherIconWithColor(ImageView imageView,
                                       Context context,
-                                      CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
+                                      CurrentWeatherDbHelper.WeatherRecord weatherRecord,
+                                      int fontColorId) {
         if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
-            imageView.setImageBitmap(createWeatherIcon(context, getStrIcon(context, weatherRecord)));
+            imageView.setImageBitmap(createWeatherIconWithColor(context, getStrIcon(context, weatherRecord), fontColorId));
         } else {
             imageView.setImageResource(Utils.getWeatherResourceIcon(weatherRecord));
         }
+    }
+
+    public static void setWeatherIcon(ImageView imageView,
+                                      Context context,
+                                      CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
+        setWeatherIconWithColor(imageView, context, weatherRecord, AppPreference.getTextColor(context));
     }
 
     public static void setForecastIcon(RemoteViews remoteViews,
@@ -167,22 +178,36 @@ public class Utils {
                                        Integer weatherId,
                                        String iconId,
                                        double maxTemp,
-                                       double maxWind) {
+                                       double maxWind,
+                                       int fontColorId) {
         if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
             remoteViews.setImageViewBitmap(viewIconId,
-                    createWeatherIcon(context, getStrIcon(context, iconId)));
+                    createWeatherIconWithColor(context, getStrIcon(context, iconId), fontColorId));
         } else {
             remoteViews.setImageViewResource(viewIconId, Utils.getWeatherResourceIcon(weatherId, maxTemp, maxWind));
         }
     }
 
     public static void setWeatherIcon(RemoteViews remoteViews,
-                                      Context context,
-                                      CurrentWeatherDbHelper.WeatherRecord weatherRecord,
-                                      int widgetIconId) {
+                                               Context context,
+                                               CurrentWeatherDbHelper.WeatherRecord weatherRecord,
+                                               int widgetIconId) {
         if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
             remoteViews.setImageViewBitmap(widgetIconId,
                     createWeatherIcon(context, getStrIcon(context, weatherRecord)));
+        } else {
+            remoteViews.setImageViewResource(widgetIconId, Utils.getWeatherResourceIcon(weatherRecord));
+        }
+    }
+
+    public static void setWeatherIconWithColor(RemoteViews remoteViews,
+                                      Context context,
+                                      CurrentWeatherDbHelper.WeatherRecord weatherRecord,
+                                      int widgetIconId,
+                                      int fontColorId) {
+        if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
+            remoteViews.setImageViewBitmap(widgetIconId,
+                    createWeatherIconWithColor(context, getStrIcon(context, weatherRecord), fontColorId));
         } else {
             remoteViews.setImageViewResource(widgetIconId, Utils.getWeatherResourceIcon(weatherRecord));
         }
@@ -818,6 +843,9 @@ public class Utils {
     }
 
     public static String getLocationForSharingFromAddress(Address address) {
+        if (address == null) {
+            return "";
+        }
         String geoCity = getCityFromAddress(address);
         String geoDistrictOfCity = address.getSubLocality();
         if ((geoDistrictOfCity == null) || "".equals(geoDistrictOfCity) || geoCity.equalsIgnoreCase(geoDistrictOfCity)) {

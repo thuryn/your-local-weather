@@ -237,6 +237,60 @@ public class WidgetUtils {
             int forecast_5_widget_icon,
             int forecast_5_widget_day,
             int forecast_5_widget_temperatures) {
+        return updateWeatherForecast(
+                context,
+                locationId,
+                AppPreference.getTextColor(context),
+                widgetId,
+                remoteViews,
+                forecast_1_widget_day_layout,
+                forecast_1_widget_icon,
+                forecast_1_widget_day,
+                forecast_1_widget_temperatures,
+                forecast_2_widget_day_layout,
+                forecast_2_widget_icon,
+                forecast_2_widget_day,
+                forecast_2_widget_temperatures,
+                forecast_3_widget_day_layout,
+                forecast_3_widget_icon,
+                forecast_3_widget_day,
+                forecast_3_widget_temperatures,
+                forecast_4_widget_day_layout,
+                forecast_4_widget_icon,
+                forecast_4_widget_day,
+                forecast_4_widget_temperatures,
+                forecast_5_widget_day_layout,
+                forecast_5_widget_icon,
+                forecast_5_widget_day,
+                forecast_5_widget_temperatures);
+    }
+
+    public static WeatherForecastDbHelper.WeatherForecastRecord updateWeatherForecast(
+            Context context,
+            long locationId,
+            int fontColorId,
+            Integer widgetId,
+            RemoteViews remoteViews,
+            Integer forecast_1_widget_day_layout,
+            int forecast_1_widget_icon,
+            int forecast_1_widget_day,
+            int forecast_1_widget_temperatures,
+            Integer forecast_2_widget_day_layout,
+            int forecast_2_widget_icon,
+            int forecast_2_widget_day,
+            int forecast_2_widget_temperatures,
+            Integer forecast_3_widget_day_layout,
+            int forecast_3_widget_icon,
+            int forecast_3_widget_day,
+            int forecast_3_widget_temperatures,
+            Integer forecast_4_widget_day_layout,
+            int forecast_4_widget_icon,
+            int forecast_4_widget_day,
+            int forecast_4_widget_temperatures,
+            Integer forecast_5_widget_day_layout,
+            int forecast_5_widget_icon,
+            int forecast_5_widget_day,
+            int forecast_5_widget_temperatures) {
         final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
         final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
         Location location = locationsDbHelper.getLocationById(locationId);
@@ -265,6 +319,7 @@ public class WidgetUtils {
             return createForecastByHours(
                     context,
                     location,
+                    fontColorId,
                     weatherForecastRecord,
                     daysCount,
                     remoteViews,
@@ -292,6 +347,7 @@ public class WidgetUtils {
         } else {
             return createForecastByDays(
                     context,
+                    fontColorId,
                     weatherForecastRecord,
                     sdfDayOfWeek,
                     daysCount,
@@ -321,6 +377,7 @@ public class WidgetUtils {
 
     private static WeatherForecastDbHelper.WeatherForecastRecord createForecastByDays(
             Context context,
+            int fontColorId,
             WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord,
             SimpleDateFormat sdfDayOfWeek,
             Long daysCount,
@@ -426,6 +483,7 @@ public class WidgetUtils {
                 case 1:
                     setForecastDayInfo(
                             context,
+                            fontColorId,
                             dayCounter,
                             daysCount,
                             remoteViews,
@@ -445,6 +503,7 @@ public class WidgetUtils {
                 case 2:
                     setForecastDayInfo(
                             context,
+                            fontColorId,
                             dayCounter,
                             daysCount,
                             remoteViews,
@@ -464,6 +523,7 @@ public class WidgetUtils {
                 case 3:
                     setForecastDayInfo(
                             context,
+                            fontColorId,
                             dayCounter,
                             daysCount,
                             remoteViews,
@@ -483,6 +543,7 @@ public class WidgetUtils {
                 case 4:
                     setForecastDayInfo(
                             context,
+                            fontColorId,
                             dayCounter,
                             daysCount,
                             remoteViews,
@@ -502,6 +563,7 @@ public class WidgetUtils {
                 case 5:
                     setForecastDayInfo(
                             context,
+                            fontColorId,
                             dayCounter,
                             daysCount,
                             remoteViews,
@@ -526,6 +588,7 @@ public class WidgetUtils {
     private static WeatherForecastDbHelper.WeatherForecastRecord createForecastByHours(
             Context context,
             Location location,
+            int fontColorId,
             WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord,
             long hoursCount,
             RemoteViews remoteViews,
@@ -556,6 +619,7 @@ public class WidgetUtils {
                 case 1:
                     setForecastHourInfo(
                             context,
+                            fontColorId,
                             hourCounter,
                             hoursCount,
                             remoteViews,
@@ -574,6 +638,7 @@ public class WidgetUtils {
                 case 2:
                     setForecastHourInfo(
                             context,
+                            fontColorId,
                             hourCounter,
                             hoursCount,
                             remoteViews,
@@ -592,6 +657,7 @@ public class WidgetUtils {
                 case 3:
                     setForecastHourInfo(
                             context,
+                            fontColorId,
                             hourCounter,
                             hoursCount,
                             remoteViews,
@@ -610,6 +676,7 @@ public class WidgetUtils {
                 case 4:
                     setForecastHourInfo(
                             context,
+                            fontColorId,
                             hourCounter,
                             hoursCount,
                             remoteViews,
@@ -628,6 +695,7 @@ public class WidgetUtils {
                 case 5:
                     setForecastHourInfo(
                             context,
+                            fontColorId,
                             hourCounter,
                             hoursCount,
                             remoteViews,
@@ -650,6 +718,7 @@ public class WidgetUtils {
 
     private static void setForecastHourInfo(
             Context context,
+            int fontColorId,
             int dayCounter,
             long daysCount,
             RemoteViews remoteViews,
@@ -683,7 +752,8 @@ public class WidgetUtils {
                 weatherIdForTheDay,
                 iconId,
                 maxTemp,
-                maxWind);
+                maxWind,
+                fontColorId);
         remoteViews.setTextViewText(
                 weatherIdForDayName,
                 AppPreference.getLocalizedHour(context, forecastCalendar.getTime(), location.getLocale()));
@@ -697,6 +767,7 @@ public class WidgetUtils {
 
     private static void setForecastDayInfo(
             Context context,
+            int fontColorId,
             int dayCounter,
             long daysCount,
             RemoteViews remoteViews,
@@ -731,7 +802,8 @@ public class WidgetUtils {
                 weatherIdForTheDay,
                 iconId,
                 maxTemp,
-                maxWind);
+                maxWind,
+                fontColorId);
         forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYearForList);
         forecastCalendar.set(Calendar.YEAR, yearForList);
         remoteViews.setTextViewText(
