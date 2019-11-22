@@ -390,11 +390,11 @@ public class CurrentWeatherService extends AbstractCommonService {
             if (!currentWeatherUpdateMessages.isEmpty()) {
                 resendTheIntentInSeveralSeconds(5);
             }
+            WidgetUtils.updateWidgets(getBaseContext());
             if (WidgetRefreshIconService.isRotationActive) {
                 return;
             }
             sendMessageToReconciliationDbService(false);
-            WidgetUtils.updateWidgets(getBaseContext());
         } catch (Throwable exception) {
             appendLog(context, TAG, "Exception occured when starting the service:", exception);
         }

@@ -121,8 +121,8 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             }
             for (int widgetIditer: widgetIds) {
                 performActionOnReceiveForWidget(context, intent, widgetIditer);
-                return;
             }
+            return;
         }
         performActionOnReceiveForWidget(context, intent, widgetId);
     }
