@@ -175,4 +175,8 @@
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Configuración general</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">Esta opción tiene influencia en toda la aplicación.</string>
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Junto al botón de actualizar ubicación, hay un botón de gestión de ubicación (icono de lupa). Puede administrar las ubicaciones disponibles en la aplicación y los widgets. Hay una ubicación (Ubicación 0) disponible de forma predeterminada: está destinada a las actualizaciones automáticas de ubicación. Puede encontrar el botón de habilitar/deshabilitar cuando desliza esta ubicación hacia la izquierda. También puede añadir la ubicación manualmente. Al hacer clic en el botón +, puede seleccionar su ubicación en el mapa. También puede eliminar la ubicación con el botón Eliminar, al que se accede cuando desliza la ubicación hacia la izquierda.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> Activity names </string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"> Activity names </string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"> Activity names </string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation"> Activity names </string>
 </resources>
