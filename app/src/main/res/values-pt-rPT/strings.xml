@@ -283,13 +283,13 @@
 \nN - atualizada a localização da rede e o tempo
 \nB - o acesso ao serviço Openweathermap.org foi bloqueado, por favor tente atualizar o tempo mais tarde 
 \nE - o token de acesso ao serviço Openweathermap.org expirou. Tem de atualizar a aplicação para ter acesso novamente</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - só foi atualizado o tempo
-\nL - só foi atualizada a localização
-\nG - atualizada a localização do GPS e o tempo
-\nN - atualizada a localização da rede e o tempo
-\nNi - atualizada a localização da rede de telemóveis e o tempo, localização descoberta pelo serviço de localização Mozilla 
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">"W - só o tempo foi atualizado 
+\nL - só a localização foi atualizada  
+\nG -  a localização do GPS e o tempo foi atualizada 
+\nN -  a localização da rede e o tempo foi atualizada 
+\nNi - a localização da rede de telemóveis e o tempo, localização descoberta pelo serviço de localização Mozilla foi atualizada
 \nB - o acesso ao serviço Openweathermap.org foi bloqueado, por favor tente atualizar o tempo mais tarde 
-\nE - o token de acesso ao serviço Openweathermap.org expirou. Tem de atualizar a aplicação para ter acesso novamente</string>
+\nE - o token de acesso ao serviço Openweathermap.org expirou. Tem de atualizar a aplicação para ter acesso novamente"</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Quando a localização fica bloqueada enquanto o dispositivo está adormecido, pode tentar acordá-lo quando está à procura de uma rede de telemóveis</string>
     <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Cache de localizações</string>
     <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Locais encontrados são armazenados na cache</string>
@@ -487,4 +487,10 @@
     <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Botão de definições de detalhes de tempo de widget</string>
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamita</string>
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengali (Bangladesh)</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Esta aplicação tem a função de saída de voz. Para ativar este recurso, precisa de um sistema TTS (Text-to-speech) instalado e definir a saída de voz pelas configurações da aplicação. Considere, por favor, que traduções de textos e comandos de voz são traduzidos por voluntários pelo serviço https://hosted.weblate.org/projects/your-local-weather. Também pode definir os seus próprios comandos de voz através das configurações da aplicação. Os programadores desta aplicação não garantem a qualidade e correção das traduções, bem como o que a aplicação diz - você está a aceitar esta declaração usando esta aplicação.</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Configurações de Voz</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Novas Configurações de voz</string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Ativar voz para alto-falante</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Configuração de idioma</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Opções de idioma de voz</string>
 </resources>
