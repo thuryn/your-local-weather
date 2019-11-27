@@ -29,7 +29,7 @@
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Selesai</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Sumber lokasi dan alamat</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Pengaturan umum</string>
-    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Pengoptimalan baterai</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Optimalisasi baterai</string>
     <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Apl akan meminta anda untuk menonaktifkan pengoptimalan baterai untuk memperbarui lokasi, cuaca atau melacak lokasi berdasarkan akselerometer di latar belakang.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Lanjutkan</string>
     <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Apl diatur untuk memperbarui lokasi. Izin akses lokasi dibutuhkan. Buka pengaturan perangkat dan aktifkan lokasi atau matikan pengaturan pembaruan lokasi apl.</string>
@@ -47,4 +47,47 @@
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Apl utama</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">Widget</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">Opsi ini mempengaruhi keseluruhan apl.</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Cuaca di tempat anda</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Notifikasi Your local weather</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Location and address source</b>
+\nYou can select where the app gets the location and address from.</string>
+    <string name="title_activity_search" tools:ignore="MissingTranslation">Cari Lokasi</string>
+    <string name="label_activity_main" tools:ignore="MissingTranslation">Cuaca Saat ini</string>
+    <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Cuaca Harian</string>
+    <string name="label_activity_graphs" tools:ignore="MissingTranslation">Grafik Cuaca</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Bantuan</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Lokasi</string>
+    <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Pembaruan</string>
+    <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Cari Kota</string>
+    <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Deteksi Lokasi</string>
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Pengatulan kolom</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Kolom yang ditampikan</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikon</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Deskripsi</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Suhu</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Angin</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Arah Angin</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Hujan/Salju</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Kelembaban</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Tekanan</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="ok" tools:ignore="MissingTranslation">OK</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Batal</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Suhu</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Angin</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Hujan</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Hujan (batang)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Salju</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Salju (batang)</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Tekanan</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Suhu</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Angin</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Hujan/Salju</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Tekanan</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Grafik yang ditampilkan</string>
+    <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Tampilkan legenda di grafik</string>
+    <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Grafik</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Terjemahan teks dan suara</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Aplikasi ini memiliki fitur keluaran suara, untuk mengaktifkan fitur ini, anda membutuhkan sistem TTS (Text-to-speech) yang sudah terpasang</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Pengaturan Bahasa</string>
 </resources>
