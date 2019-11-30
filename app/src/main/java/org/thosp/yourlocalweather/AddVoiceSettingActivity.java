@@ -719,6 +719,9 @@ public class AddVoiceSettingActivity extends BaseActivity {
         } else {
             findViewById(R.id.tts_say_wind_custom_text).setVisibility(View.GONE);
         }
+        if (TimeUtils.isCurrentSettingIndex(partsToSay, 10)) {
+            ((CheckBox) findViewById(R.id.tts_say_forecast_enabled)).setChecked(true);
+        }
     }
 
     public void onTtsSeySettingButtonClicked(View view) {
@@ -865,6 +868,13 @@ public class AddVoiceSettingActivity extends BaseActivity {
                         R.id.tts_say_wind_custom_text,
                         R.string.tty_say_wind,
                         R.id.tts_say_wind_original_text);
+                break;
+            case R.id.tts_say_forecast_enabled:
+                if (checked) {
+                    partsToSay += TimeUtils.getTwoPower(10);
+                } else {
+                    partsToSay -= TimeUtils.getTwoPower(10);
+                }
                 break;
         }
         voiceSettingParametersDbHelper.saveLongParam(

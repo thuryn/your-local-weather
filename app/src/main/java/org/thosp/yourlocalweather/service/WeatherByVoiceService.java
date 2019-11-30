@@ -30,6 +30,7 @@ import org.thosp.yourlocalweather.model.VoiceSettingParametersDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.TimeUtils;
@@ -39,6 +40,7 @@ import org.thosp.yourlocalweather.utils.WindWithUnit;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -278,10 +280,10 @@ public class WeatherByVoiceService extends Service {
                 temperatureToSay.append(String.format(voiceSettingParametersDbHelper.getStringParam(
                         voiceSettingIdFromSettings,
                         VoiceSettingParamType.VOICE_SETTING_TEMPERATURE_CUSTOM.getVoiceSettingParamTypeId()),
-                        TemperatureUtil.getTemperatureWithUnit(getBaseContext(), weather, currentLocation.getLatitude(), now, currentLocation.getLocale())));
+                        TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weather.getTemperature(), currentLocation.getLocale())));
             } else {
                 temperatureToSay.append(getString(R.string.tty_say_temperature,
-                        TemperatureUtil.getTemperatureWithUnit(getBaseContext(), weather, currentLocation.getLatitude(), now, currentLocation.getLocale())));
+                        TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weather.getTemperature(), currentLocation.getLocale())));
             }
             temperatureToSay.append(" ");
             textToSay.add(temperatureToSay.toString());
@@ -310,8 +312,260 @@ public class WeatherByVoiceService extends Service {
             windToSay.append(" ");
             textToSay.add(windToSay.toString());
         }
+        if (TimeUtils.isCurrentSettingIndex(partsToSay, 10)) {
+            ForecastUtil.WeatherForecastForVoice weatherForecastForVoice = ForecastUtil.calculateWeatherVoiceForecast(getBaseContext(), currentLocation.getId());
+            textToSay.add(TTS_DELAY_BETWEEN_ITEM);
+            StringBuilder forecastToSay = new StringBuilder();
+            forecastToSay.append("předpověď počasí dnes ");
+
+            String forecastCommonWeatherForecastToSay = sayCommonWeatherForecastParts(weatherForecastForVoice, currentLocation);
+            if (forecastCommonWeatherForecastToSay != null) {
+                forecastToSay.append(forecastCommonWeatherForecastToSay);
+            }
+
+            boolean commonPartsAreComplete = forecastCommonWeatherForecastToSay != null;
+            boolean morningWeather = weatherForecastForVoice.morningWeatherIds != null;
+            boolean afternoonWeather = weatherForecastForVoice.afternoonWeatherIds != null;
+            boolean eveningWeather = weatherForecastForVoice.eveningWeatherIds != null;
+
+            if (morningWeather && !commonPartsAreComplete) {
+                forecastToSay.append(" dopoledne ");
+                forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.mainWeatherId,
+                        weatherForecastForVoice.morningWeatherIds.mainWeatherDescriptionsFromOwm,
+                        currentLocation.getLocaleAbbrev(),
+                        getBaseContext()));
+                if (weatherForecastForVoice.morningWeatherIds.warningWeatherId != null) {
+                    forecastToSay.append(" ojediněle ");
+                    forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.warningWeatherId,
+                            weatherForecastForVoice.morningWeatherIds.warningWeatherDescriptionsFromOwm,
+                            currentLocation.getLocaleAbbrev(),
+                            getBaseContext()));
+                }
+                forecastToSay.append(sayRainSnow(weatherForecastForVoice.morningWeatherMaxMin.maxRain, weatherForecastForVoice.morningWeatherMaxMin.maxSnow, currentLocation));
+            }
+            if (afternoonWeather && !commonPartsAreComplete) {
+                forecastToSay.append(" odpoledne ");
+                forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.afternoonWeatherIds.mainWeatherId,
+                        weatherForecastForVoice.afternoonWeatherIds.mainWeatherDescriptionsFromOwm,
+                        currentLocation.getLocaleAbbrev(),
+                        getBaseContext()));
+                if (weatherForecastForVoice.afternoonWeatherIds.warningWeatherId != null) {
+                    forecastToSay.append(" ojediněle ");
+                    forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.afternoonWeatherIds.warningWeatherId,
+                            weatherForecastForVoice.afternoonWeatherIds.warningWeatherDescriptionsFromOwm,
+                            currentLocation.getLocaleAbbrev(),
+                            getBaseContext()));
+                }
+                forecastToSay.append(sayRainSnow(weatherForecastForVoice.afternoonWeatherMaxMin.maxRain, weatherForecastForVoice.afternoonWeatherMaxMin.maxSnow, currentLocation));
+            }
+            if (eveningWeather && !commonPartsAreComplete) {
+                forecastToSay.append(" večer ");
+                forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.eveningWeatherIds.mainWeatherId,
+                        weatherForecastForVoice.eveningWeatherIds.mainWeatherDescriptionsFromOwm,
+                        currentLocation.getLocaleAbbrev(),
+                        getBaseContext()));
+                if (weatherForecastForVoice.eveningWeatherIds.warningWeatherId != null) {
+                    forecastToSay.append(" ojediněle ");
+                    forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.eveningWeatherIds.warningWeatherId,
+                            weatherForecastForVoice.eveningWeatherIds.warningWeatherDescriptionsFromOwm,
+                            currentLocation.getLocaleAbbrev(),
+                            getBaseContext()));
+                }
+                forecastToSay.append(sayRainSnow(weatherForecastForVoice.eveningWeatherMaxMin.maxRain, weatherForecastForVoice.eveningWeatherMaxMin.maxSnow, currentLocation));
+            }
+            forecastToSay.append(TTS_DELAY_BETWEEN_ITEM);
+
+            if ( Math.round(weatherForecastForVoice.minTempForDay) == Math.round(weatherForecastForVoice.maxTempForDay)) {
+                if (weatherForecastForVoice.minTempForDay >= 0) {
+                    forecastToSay.append(getString(R.string.tty_say_temp_max,
+                            TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.minTempForDay, currentLocation.getLocale()),
+                            AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.minTempTime), currentLocation.getLocale())));
+                } else {
+                    forecastToSay.append(getString(R.string.tty_say_temp_min,
+                            TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.minTempForDay, currentLocation.getLocale()),
+                            AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.minTempTime), currentLocation.getLocale())));
+                }
+            } else {
+                forecastToSay.append(getString(R.string.tty_say_temp_min_max,
+                        TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.minTempForDay, currentLocation.getLocale()),
+                        AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.minTempTime), currentLocation.getLocale()),
+                        TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.maxTempForDay, currentLocation.getLocale()),
+                        AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.maxTempTime), currentLocation.getLocale())));
+            }
+            forecastToSay.append(TTS_DELAY_BETWEEN_ITEM);
+            WindWithUnit windWithUnit = AppPreference.getWindWithUnit(getBaseContext(),
+                    (float)weatherForecastForVoice.maxWindForDay,
+                    (float)weatherForecastForVoice.windDegreeForDay,
+                    currentLocation.getLocale());
+            forecastToSay.append(getString(R.string.tty_say_max_wind,
+                    windWithUnit.getWindSpeed(0),
+                    windWithUnit.getWindUnit(),
+                    windWithUnit.getWindDirectionByVoice()));
+            textToSay.add(forecastToSay.toString());
+        }
         textToSay.add(TTS_END);
         sayWeather(textToSay);
+    }
+
+    private String sayRainSnow(double rain, double snow, Location location) {
+        StringBuilder forecastToSay = new StringBuilder();
+        if (rain > MIN_RAIN_SNOW_MM) {
+            forecastToSay.append(TTS_DELAY_BETWEEN_ITEM);
+            forecastToSay.append(getString(R.string.tty_say_max_rain,
+                    AppPreference.getFormatedRainOrSnow(getBaseContext(), rain, location.getLocale())));
+        }
+        if (snow > MIN_RAIN_SNOW_MM) {
+            forecastToSay.append(TTS_DELAY_BETWEEN_ITEM);
+            forecastToSay.append(getString(R.string.tty_say_max_rain,
+                    AppPreference.getFormatedRainOrSnow(getBaseContext(), snow, location.getLocale())));
+        }
+        return forecastToSay.toString();
+    }
+
+    private double MIN_RAIN_SNOW_MM = 0.5;
+
+    private String sayCommonWeatherForecastParts(ForecastUtil.WeatherForecastForVoice weatherForecastForVoice,
+                                                 Location currentLocation) {
+
+        boolean morningWeather = weatherForecastForVoice.morningWeatherIds != null;
+        boolean afternoonWeather = weatherForecastForVoice.afternoonWeatherIds != null;
+        boolean eveningWeather = weatherForecastForVoice.eveningWeatherIds != null;
+        boolean morningAfternoonAreSame = false;
+        boolean morningEveningAreSame = false;
+        boolean afternoonEveningAreSame = false;
+        boolean morningAfternoonWarningAreSame = false;
+        boolean morningEveningWarningAreSame = false;
+        boolean afternoonEveningWarningAreSame = false;
+        double morningAfternoonAreSameMaxRain = 0;
+        double morningAfternoonAreSameMaxSnow = 0;
+        double morningEveningAreSameMaxRain = 0;
+        double morningEveningAreSameMaxSnow = 0;
+        double afternoonEveningAreSameMaxRain = 0;
+        double afternoonEveningAreSameMaxSnow = 0;
+
+        appendLog(getBaseContext(), TAG,"sayCommonWeatherForecastParts:" + morningWeather + ":" + afternoonWeather + ':' + eveningWeather);
+
+        if (morningWeather && afternoonWeather) {
+            appendLog(getBaseContext(), TAG,"sayCommonWeatherForecastParts:morningWeatherIds:afternoonWeatherIds:" + weatherForecastForVoice.morningWeatherIds.mainWeatherId + ":" + weatherForecastForVoice.afternoonWeatherIds.mainWeatherId);
+            morningAfternoonAreSame = weatherForecastForVoice.morningWeatherIds.mainWeatherId == weatherForecastForVoice.afternoonWeatherIds.mainWeatherId;
+            morningAfternoonWarningAreSame = weatherForecastForVoice.morningWeatherIds.warningWeatherId == weatherForecastForVoice.afternoonWeatherIds.warningWeatherId;
+
+            if ((weatherForecastForVoice.morningWeatherMaxMin.maxRain > MIN_RAIN_SNOW_MM) && (weatherForecastForVoice.afternoonWeatherMaxMin.maxRain < weatherForecastForVoice.morningWeatherMaxMin.maxRain)) {
+                morningAfternoonAreSameMaxRain = weatherForecastForVoice.morningWeatherMaxMin.maxRain;
+            } else if (weatherForecastForVoice.afternoonWeatherMaxMin.maxRain > MIN_RAIN_SNOW_MM) {
+                morningAfternoonAreSameMaxRain = weatherForecastForVoice.afternoonWeatherMaxMin.maxRain;
+            }
+            if ((weatherForecastForVoice.morningWeatherMaxMin.maxSnow > MIN_RAIN_SNOW_MM) && (weatherForecastForVoice.afternoonWeatherMaxMin.maxSnow < weatherForecastForVoice.morningWeatherMaxMin.maxSnow)) {
+                morningAfternoonAreSameMaxSnow = weatherForecastForVoice.morningWeatherMaxMin.maxSnow;
+            } else if (weatherForecastForVoice.afternoonWeatherMaxMin.maxSnow > MIN_RAIN_SNOW_MM) {
+                morningAfternoonAreSameMaxSnow = weatherForecastForVoice.afternoonWeatherMaxMin.maxSnow;
+            }
+        }
+        if (morningWeather && eveningWeather) {
+            appendLog(getBaseContext(), TAG,"sayCommonWeatherForecastParts:morningWeatherIds:eveningWeatherIds:" + weatherForecastForVoice.morningWeatherIds.mainWeatherId + ":" + weatherForecastForVoice.eveningWeatherIds.mainWeatherId);
+            morningEveningAreSame = weatherForecastForVoice.morningWeatherIds.mainWeatherId == weatherForecastForVoice.eveningWeatherIds.mainWeatherId;
+            morningEveningWarningAreSame = weatherForecastForVoice.morningWeatherIds.warningWeatherId == weatherForecastForVoice.eveningWeatherIds.warningWeatherId;
+
+            if ((weatherForecastForVoice.morningWeatherMaxMin.maxRain > MIN_RAIN_SNOW_MM) && (weatherForecastForVoice.eveningWeatherMaxMin.maxRain < weatherForecastForVoice.morningWeatherMaxMin.maxRain)) {
+                morningEveningAreSameMaxRain = weatherForecastForVoice.morningWeatherMaxMin.maxRain;
+            } else if (weatherForecastForVoice.eveningWeatherMaxMin.maxRain > MIN_RAIN_SNOW_MM) {
+                morningEveningAreSameMaxRain = weatherForecastForVoice.eveningWeatherMaxMin.maxRain;
+            }
+            if ((weatherForecastForVoice.morningWeatherMaxMin.maxSnow > MIN_RAIN_SNOW_MM) && (weatherForecastForVoice.eveningWeatherMaxMin.maxSnow < weatherForecastForVoice.morningWeatherMaxMin.maxSnow)) {
+                morningEveningAreSameMaxSnow = weatherForecastForVoice.morningWeatherMaxMin.maxSnow;
+            } else if (weatherForecastForVoice.eveningWeatherMaxMin.maxSnow > MIN_RAIN_SNOW_MM) {
+                morningEveningAreSameMaxSnow = weatherForecastForVoice.eveningWeatherMaxMin.maxSnow;
+            }
+        }
+        if (afternoonWeather && eveningWeather) {
+            appendLog(getBaseContext(), TAG,"sayCommonWeatherForecastParts:afternoonWeatherIds:eveningWeatherIds:" + weatherForecastForVoice.afternoonWeatherIds.mainWeatherId + ":" + weatherForecastForVoice.eveningWeatherIds.mainWeatherId);
+            afternoonEveningAreSame = weatherForecastForVoice.afternoonWeatherIds.mainWeatherId == weatherForecastForVoice.eveningWeatherIds.mainWeatherId;
+            afternoonEveningWarningAreSame = weatherForecastForVoice.afternoonWeatherIds.warningWeatherId == weatherForecastForVoice.eveningWeatherIds.warningWeatherId;
+
+            if ((weatherForecastForVoice.afternoonWeatherMaxMin.maxRain > MIN_RAIN_SNOW_MM) && (weatherForecastForVoice.eveningWeatherMaxMin.maxRain < weatherForecastForVoice.afternoonWeatherMaxMin.maxRain)) {
+                afternoonEveningAreSameMaxRain = weatherForecastForVoice.afternoonWeatherMaxMin.maxRain;
+            } else if (weatherForecastForVoice.eveningWeatherMaxMin.maxRain > MIN_RAIN_SNOW_MM) {
+                afternoonEveningAreSameMaxRain = weatherForecastForVoice.eveningWeatherMaxMin.maxRain;
+            }
+            if ((weatherForecastForVoice.afternoonWeatherMaxMin.maxSnow > MIN_RAIN_SNOW_MM) && (weatherForecastForVoice.eveningWeatherMaxMin.maxSnow < weatherForecastForVoice.afternoonWeatherMaxMin.maxSnow)) {
+                afternoonEveningAreSameMaxSnow = weatherForecastForVoice.afternoonWeatherMaxMin.maxSnow;
+            } else if (weatherForecastForVoice.eveningWeatherMaxMin.maxSnow > MIN_RAIN_SNOW_MM) {
+                afternoonEveningAreSameMaxSnow = weatherForecastForVoice.eveningWeatherMaxMin.maxSnow;
+            }
+        }
+
+        double maxRain = Math.max(Math.max(morningAfternoonAreSameMaxRain, morningEveningAreSameMaxRain), afternoonEveningAreSameMaxRain);
+        double maxSnow = Math.max(Math.max(morningAfternoonAreSameMaxSnow, morningEveningAreSameMaxSnow), afternoonEveningAreSameMaxSnow);
+
+        if (morningAfternoonAreSame && morningEveningAreSame && afternoonEveningAreSame) {
+            StringBuilder forecastToSay = null;
+            forecastToSay = new StringBuilder();
+            forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.mainWeatherId,
+                    weatherForecastForVoice.morningWeatherIds.mainWeatherDescriptionsFromOwm,
+                    currentLocation.getLocaleAbbrev(),
+                    getBaseContext()));
+            if (morningAfternoonWarningAreSame && morningEveningWarningAreSame && afternoonEveningWarningAreSame) {
+                forecastToSay.append(" ojediněle ");
+                forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.warningWeatherId,
+                        weatherForecastForVoice.morningWeatherIds.warningWeatherDescriptionsFromOwm,
+                        currentLocation.getLocaleAbbrev(),
+                        getBaseContext()));
+            }
+            forecastToSay.append(sayRainSnow(maxRain, maxSnow, currentLocation));
+            return forecastToSay.toString();
+        } else if (morningAfternoonAreSame) {
+            StringBuilder forecastToSay = null;
+            forecastToSay = new StringBuilder();
+            forecastToSay.append(" dopoledne a odpoledne ");
+            forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.mainWeatherId,
+                    weatherForecastForVoice.morningWeatherIds.mainWeatherDescriptionsFromOwm,
+                    currentLocation.getLocaleAbbrev(),
+                    getBaseContext()));
+            if (eveningWeather) {
+                forecastToSay.append(" večer ");
+                forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.eveningWeatherIds.mainWeatherId,
+                        weatherForecastForVoice.eveningWeatherIds.mainWeatherDescriptionsFromOwm,
+                        currentLocation.getLocaleAbbrev(),
+                        getBaseContext()));
+            }
+            forecastToSay.append(sayRainSnow(maxRain, maxSnow, currentLocation));
+            return forecastToSay.toString();
+        } else if (morningEveningAreSame) {
+            StringBuilder forecastToSay = null;
+            forecastToSay = new StringBuilder();
+            forecastToSay.append(" dopoledne a večer ");
+            forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.mainWeatherId,
+                    weatherForecastForVoice.morningWeatherIds.mainWeatherDescriptionsFromOwm,
+                    currentLocation.getLocaleAbbrev(),
+                    getBaseContext()));
+            if (afternoonWeather) {
+                forecastToSay.append(" odpoledne ");
+                forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.eveningWeatherIds.mainWeatherId,
+                        weatherForecastForVoice.eveningWeatherIds.mainWeatherDescriptionsFromOwm,
+                        currentLocation.getLocaleAbbrev(),
+                        getBaseContext()));
+            }
+            forecastToSay.append(sayRainSnow(maxRain, maxSnow, currentLocation));
+            return forecastToSay.toString();
+        } else if (afternoonEveningAreSame) {
+            StringBuilder forecastToSay = null;
+            forecastToSay = new StringBuilder();
+            if (morningWeather) {
+                forecastToSay.append(" dopoledne ");
+                forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.eveningWeatherIds.mainWeatherId,
+                        weatherForecastForVoice.eveningWeatherIds.mainWeatherDescriptionsFromOwm,
+                        currentLocation.getLocaleAbbrev(),
+                        getBaseContext()));
+            }
+            forecastToSay.append(" odpoledne a večer ");
+            forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.mainWeatherId,
+                    weatherForecastForVoice.morningWeatherIds.mainWeatherDescriptionsFromOwm,
+                    currentLocation.getLocaleAbbrev(),
+                    getBaseContext()));
+            forecastToSay.append(sayRainSnow(maxRain, maxSnow, currentLocation));
+            return forecastToSay.toString();
+        }
+        return null;
     }
 
     private void sayWeather(final LinkedList<String> what) {

@@ -503,6 +503,16 @@
                         android:layout_width="match_parent"
                         android:inputType="text"/>
                 </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <CheckBox android:id="@+id/tts_say_forecast_enabled"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:text="@string/pref_title_tts_say_forecast"
+                        android:onClick="onTtsSeySettingButtonClicked" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

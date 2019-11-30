@@ -663,16 +663,40 @@ public class Utils {
             if (!first) {
                 currentWeatherDescription.append(", ");
             }
-            String owmWeatherDescritpion;
-            if ((currentWeather.getDescription() == null) || !OWMLanguages.isLanguageSupportedByOWMAndNotTranslatedLocaly(locale)) {
-                owmWeatherDescritpion = context.getString(getWeatherDescriptionResourceId(currentWeather.getWeatherId()));
-            } else {
-                owmWeatherDescritpion = capitalizeFirstLetter(currentWeather.getDescription());
-            }
-            currentWeatherDescription.append(owmWeatherDescritpion);
+            currentWeatherDescription.append(getWeatherDescription(
+                    currentWeather.getWeatherId(),
+                    currentWeather.getDescription(),
+                    locale,
+                    context));
             first = false;
         }
         return currentWeatherDescription.toString();
+    }
+
+    public static String getWeatherDescription(int weatherId, String weatherDescriptionFromOwm, String locale, Context context) {
+        String weatherDescription;
+        if ((weatherDescriptionFromOwm == null) || !OWMLanguages.isLanguageSupportedByOWMAndNotTranslatedLocaly(locale)) {
+            weatherDescription = context.getString(getWeatherDescriptionResourceId(weatherId));
+        } else {
+            weatherDescription = capitalizeFirstLetter(weatherDescriptionFromOwm);
+        }
+        return weatherDescription;
+    }
+
+    public static boolean isWeatherDescriptionWithRain(int weatherId) {
+        if (weatherId < 600) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean isWeatherDescriptionWithSnow(int weatherId) {
+        if ((weatherId >= 600) && (weatherId < 700)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private static int getWeatherDescriptionResourceId(int weatherId) {

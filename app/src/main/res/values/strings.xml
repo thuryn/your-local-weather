@@ -383,6 +383,7 @@
     <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">Say weather description</string>
     <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">Say temperature</string>
     <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">Say wind</string>
+    <string name="pref_title_tts_say_forecast" tools:ignore="MissingTranslation">Say one day forecast</string>
     <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">Say:</string>
     <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Time</string>
     <string name="pref_title_tts_trigger_bt_devices" tools:ignore="MissingTranslation">For device(s):</string>
@@ -416,6 +417,12 @@
     <string name="wind_label" tools:ignore="MissingTranslation">Wind: %1$s %2$s %3$s</string>
     <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s wind %1$s %2$s</string>
     <string name="tty_say_temperature" tools:ignore="MissingTranslation">temperature %s</string>
+    <string name="tty_say_max_rain" tools:ignore="MissingTranslation">maximum rain precipitation %s millimeters</string>
+    <string name="tty_say_max_snow" tools:ignore="MissingTranslation">maximum snow precipitation %s millimeters</string>
+    <string name="tty_say_max_wind" tools:ignore="MissingTranslation">%3$s wind at maximum %1$s %2$s</string>
+    <string name="tty_say_temp_min_max" tools:ignore="MissingTranslation">the minimum temperature is %1$s at %2$s, the maximum temperature is %3$s at %4$s</string>
+    <string name="tty_say_temp_max" tools:ignore="MissingTranslation">the maximum temperature is %1$s at %2$s</string>
+    <string name="tty_say_temp_min" tools:ignore="MissingTranslation">the minimum temperature is %1$s at %2$s</string>
     <string name="rain_label" tools:ignore="MissingTranslation">Rain: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Snow: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Humidity: %1$s%2$s</string>

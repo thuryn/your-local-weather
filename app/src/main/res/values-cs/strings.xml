@@ -158,6 +158,13 @@
     <string name="wind_label">Vítr: %1$s %2$s %3$s</string>
     <string name="tty_say_wind">%3$s vítr %1$s %2$s</string>
     <string name="tty_say_temperature">teplota %s</string>
+    <string name="tty_say_max_rain">déšťové srážky maximálně %s milimetrů</string>
+    <string name="tty_say_max_snow">sněhové srážky maximálně %s milimetrů</string>
+    <string name="tty_say_max_wind">%3$s vítr maximálně %1$s %2$s</string>
+    <string name="tty_say_temp_min_max">minimální teplota %1$s nastane v %2$s, maximální teplota %3$s nastane %4$s</string>
+    <string name="tty_say_temp_max">maximální teplota %1$s nastane v %2$s</string>
+    <string name="tty_say_temp_min">minimální teplota %1$s nastane %2$s</string>
+    <string name="pref_title_tts_say_forecast">Říci jednodenní předpověď</string>
     <string name="rain_label">Déšť: %1$s %2$s</string>
     <string name="snow_label">Sníh: %1$s %2$s</string>
     <string name="humidity_label">Vlhkost: %1$s%2$s</string>
