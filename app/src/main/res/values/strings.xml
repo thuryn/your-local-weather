@@ -423,6 +423,15 @@
     <string name="tty_say_temp_min_max" tools:ignore="MissingTranslation">the minimum temperature is %1$s at %2$s, the maximum temperature is %3$s at %4$s</string>
     <string name="tty_say_temp_max" tools:ignore="MissingTranslation">the maximum temperature is %1$s at %2$s</string>
     <string name="tty_say_temp_min" tools:ignore="MissingTranslation">the minimum temperature is %1$s at %2$s</string>
+    <string name="tty_say_weather_forecast" tools:ignore="MissingTranslation">weather forecast</string>
+    <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">today</string>
+    <string name="tty_say_weather_forecast_tomorrow" tools:ignore="MissingTranslation">tomorrow</string>
+    <string name="tty_say_weather_forecast_night" tools:ignore="MissingTranslation">at night</string>
+    <string name="tty_say_weather_forecast_morning" tools:ignore="MissingTranslation">morning</string>
+    <string name="tty_say_weather_forecast_afternoon" tools:ignore="MissingTranslation">afternoon</string>
+    <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">evening</string>
+    <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">rarely</string>
+    <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">and</string>
     <string name="rain_label" tools:ignore="MissingTranslation">Rain: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Snow: %1$s %2$s</string>
     <string name="humidity_label" tools:ignore="MissingTranslation">Humidity: %1$s%2$s</string>

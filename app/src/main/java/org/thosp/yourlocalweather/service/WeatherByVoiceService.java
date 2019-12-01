@@ -316,7 +316,16 @@ public class WeatherByVoiceService extends Service {
             ForecastUtil.WeatherForecastForVoice weatherForecastForVoice = ForecastUtil.calculateWeatherVoiceForecast(getBaseContext(), currentLocation.getId());
             textToSay.add(TTS_DELAY_BETWEEN_ITEM);
             StringBuilder forecastToSay = new StringBuilder();
-            forecastToSay.append("předpověď počasí dnes ");
+            int currentDayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
+            forecastToSay.append(R.string.tty_say_weather_forecast);
+            forecastToSay.append(" ");
+            if (currentDayOfYear == weatherForecastForVoice.dayOfYear) {
+                forecastToSay.append(R.string.tty_say_weather_forecast_today);
+                forecastToSay.append(" ");
+            } else if ((currentDayOfYear + 1) == weatherForecastForVoice.dayOfYear) {
+                forecastToSay.append(R.string.tty_say_weather_forecast_tomorrow);
+                forecastToSay.append(" ");
+            }
 
             String forecastCommonWeatherForecastToSay = sayCommonWeatherForecastParts(weatherForecastForVoice, currentLocation);
             if (forecastCommonWeatherForecastToSay != null) {
@@ -324,18 +333,38 @@ public class WeatherByVoiceService extends Service {
             }
 
             boolean commonPartsAreComplete = forecastCommonWeatherForecastToSay != null;
+            boolean nightWeather = weatherForecastForVoice.nightWeatherIds != null;
             boolean morningWeather = weatherForecastForVoice.morningWeatherIds != null;
             boolean afternoonWeather = weatherForecastForVoice.afternoonWeatherIds != null;
             boolean eveningWeather = weatherForecastForVoice.eveningWeatherIds != null;
 
+            if (nightWeather && !commonPartsAreComplete) {
+                forecastToSay.append(R.string.tty_say_weather_forecast_night);
+                forecastToSay.append(" ");
+                forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.nightWeatherIds.mainWeatherId,
+                        weatherForecastForVoice.nightWeatherIds.mainWeatherDescriptionsFromOwm,
+                        currentLocation.getLocaleAbbrev(),
+                        getBaseContext()));
+                if (weatherForecastForVoice.nightWeatherIds.warningWeatherId != null) {
+                    forecastToSay.append(R.string.tty_say_weather_forecast_rarely);
+                    forecastToSay.append(" ");
+                    forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.nightWeatherIds.warningWeatherId,
+                            weatherForecastForVoice.nightWeatherIds.warningWeatherDescriptionsFromOwm,
+                            currentLocation.getLocaleAbbrev(),
+                            getBaseContext()));
+                }
+                forecastToSay.append(sayRainSnow(weatherForecastForVoice.nightWeatherMaxMin.maxRain, weatherForecastForVoice.nightWeatherMaxMin.maxSnow, currentLocation));
+            }
             if (morningWeather && !commonPartsAreComplete) {
-                forecastToSay.append(" dopoledne ");
+                forecastToSay.append(R.string.tty_say_weather_forecast_morning);
+                forecastToSay.append(" ");
                 forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.mainWeatherId,
                         weatherForecastForVoice.morningWeatherIds.mainWeatherDescriptionsFromOwm,
                         currentLocation.getLocaleAbbrev(),
                         getBaseContext()));
                 if (weatherForecastForVoice.morningWeatherIds.warningWeatherId != null) {
-                    forecastToSay.append(" ojediněle ");
+                    forecastToSay.append(R.string.tty_say_weather_forecast_rarely);
+                    forecastToSay.append(" ");
                     forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.warningWeatherId,
                             weatherForecastForVoice.morningWeatherIds.warningWeatherDescriptionsFromOwm,
                             currentLocation.getLocaleAbbrev(),
@@ -344,13 +373,15 @@ public class WeatherByVoiceService extends Service {
                 forecastToSay.append(sayRainSnow(weatherForecastForVoice.morningWeatherMaxMin.maxRain, weatherForecastForVoice.morningWeatherMaxMin.maxSnow, currentLocation));
             }
             if (afternoonWeather && !commonPartsAreComplete) {
-                forecastToSay.append(" odpoledne ");
+                forecastToSay.append(R.string.tty_say_weather_forecast_afternoon);
+                forecastToSay.append(" ");
                 forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.afternoonWeatherIds.mainWeatherId,
                         weatherForecastForVoice.afternoonWeatherIds.mainWeatherDescriptionsFromOwm,
                         currentLocation.getLocaleAbbrev(),
                         getBaseContext()));
                 if (weatherForecastForVoice.afternoonWeatherIds.warningWeatherId != null) {
-                    forecastToSay.append(" ojediněle ");
+                    forecastToSay.append(R.string.tty_say_weather_forecast_rarely);
+                    forecastToSay.append(" ");
                     forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.afternoonWeatherIds.warningWeatherId,
                             weatherForecastForVoice.afternoonWeatherIds.warningWeatherDescriptionsFromOwm,
                             currentLocation.getLocaleAbbrev(),
@@ -359,13 +390,15 @@ public class WeatherByVoiceService extends Service {
                 forecastToSay.append(sayRainSnow(weatherForecastForVoice.afternoonWeatherMaxMin.maxRain, weatherForecastForVoice.afternoonWeatherMaxMin.maxSnow, currentLocation));
             }
             if (eveningWeather && !commonPartsAreComplete) {
-                forecastToSay.append(" večer ");
+                forecastToSay.append(R.string.tty_say_weather_forecast_evening);
+                forecastToSay.append(" ");
                 forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.eveningWeatherIds.mainWeatherId,
                         weatherForecastForVoice.eveningWeatherIds.mainWeatherDescriptionsFromOwm,
                         currentLocation.getLocaleAbbrev(),
                         getBaseContext()));
                 if (weatherForecastForVoice.eveningWeatherIds.warningWeatherId != null) {
-                    forecastToSay.append(" ojediněle ");
+                    forecastToSay.append(R.string.tty_say_weather_forecast_rarely);
+                    forecastToSay.append(" ");
                     forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.eveningWeatherIds.warningWeatherId,
                             weatherForecastForVoice.eveningWeatherIds.warningWeatherDescriptionsFromOwm,
                             currentLocation.getLocaleAbbrev(),
@@ -427,15 +460,20 @@ public class WeatherByVoiceService extends Service {
     private String sayCommonWeatherForecastParts(ForecastUtil.WeatherForecastForVoice weatherForecastForVoice,
                                                  Location currentLocation) {
 
+        boolean nightWeather = weatherForecastForVoice.nightWeatherIds != null;
         boolean morningWeather = weatherForecastForVoice.morningWeatherIds != null;
         boolean afternoonWeather = weatherForecastForVoice.afternoonWeatherIds != null;
         boolean eveningWeather = weatherForecastForVoice.eveningWeatherIds != null;
+        boolean nightMorningAreSame = false;
+        boolean nightMorningWarningAreSame = false;
         boolean morningAfternoonAreSame = false;
         boolean morningEveningAreSame = false;
         boolean afternoonEveningAreSame = false;
         boolean morningAfternoonWarningAreSame = false;
         boolean morningEveningWarningAreSame = false;
         boolean afternoonEveningWarningAreSame = false;
+        double nightMorningAreSameMaxRain = 0;
+        double nightMorningAreSameMaxSnow = 0;
         double morningAfternoonAreSameMaxRain = 0;
         double morningAfternoonAreSameMaxSnow = 0;
         double morningEveningAreSameMaxRain = 0;
@@ -443,8 +481,24 @@ public class WeatherByVoiceService extends Service {
         double afternoonEveningAreSameMaxRain = 0;
         double afternoonEveningAreSameMaxSnow = 0;
 
-        appendLog(getBaseContext(), TAG,"sayCommonWeatherForecastParts:" + morningWeather + ":" + afternoonWeather + ':' + eveningWeather);
+        appendLog(getBaseContext(), TAG,"sayCommonWeatherForecastParts:" + nightWeather + ":" + morningWeather + ":" + afternoonWeather + ':' + eveningWeather);
 
+        if (nightWeather && morningWeather) {
+            appendLog(getBaseContext(), TAG,"sayCommonWeatherForecastParts:nightWeatherIds:morningWeatherIds:" + weatherForecastForVoice.nightWeatherIds.mainWeatherId + ":" + weatherForecastForVoice.morningWeatherIds.mainWeatherId);
+            nightMorningAreSame = weatherForecastForVoice.nightWeatherIds.mainWeatherId == weatherForecastForVoice.morningWeatherIds.mainWeatherId;
+            nightMorningWarningAreSame = weatherForecastForVoice.nightWeatherIds.warningWeatherId == weatherForecastForVoice.morningWeatherIds.warningWeatherId;
+
+            if ((weatherForecastForVoice.nightWeatherMaxMin.maxRain > MIN_RAIN_SNOW_MM) && (weatherForecastForVoice.morningWeatherMaxMin.maxRain < weatherForecastForVoice.nightWeatherMaxMin.maxRain)) {
+                nightMorningAreSameMaxRain = weatherForecastForVoice.nightWeatherMaxMin.maxRain;
+            } else if (weatherForecastForVoice.morningWeatherMaxMin.maxRain > MIN_RAIN_SNOW_MM) {
+                nightMorningAreSameMaxRain = weatherForecastForVoice.morningWeatherMaxMin.maxRain;
+            }
+            if ((weatherForecastForVoice.nightWeatherMaxMin.maxSnow > MIN_RAIN_SNOW_MM) && (weatherForecastForVoice.morningWeatherMaxMin.maxSnow < weatherForecastForVoice.nightWeatherMaxMin.maxSnow)) {
+                nightMorningAreSameMaxSnow = weatherForecastForVoice.nightWeatherMaxMin.maxSnow;
+            } else if (weatherForecastForVoice.morningWeatherMaxMin.maxSnow > MIN_RAIN_SNOW_MM) {
+                nightMorningAreSameMaxSnow = weatherForecastForVoice.morningWeatherMaxMin.maxSnow;
+            }
+        }
         if (morningWeather && afternoonWeather) {
             appendLog(getBaseContext(), TAG,"sayCommonWeatherForecastParts:morningWeatherIds:afternoonWeatherIds:" + weatherForecastForVoice.morningWeatherIds.mainWeatherId + ":" + weatherForecastForVoice.afternoonWeatherIds.mainWeatherId);
             morningAfternoonAreSame = weatherForecastForVoice.morningWeatherIds.mainWeatherId == weatherForecastForVoice.afternoonWeatherIds.mainWeatherId;
@@ -494,18 +548,19 @@ public class WeatherByVoiceService extends Service {
             }
         }
 
-        double maxRain = Math.max(Math.max(morningAfternoonAreSameMaxRain, morningEveningAreSameMaxRain), afternoonEveningAreSameMaxRain);
-        double maxSnow = Math.max(Math.max(morningAfternoonAreSameMaxSnow, morningEveningAreSameMaxSnow), afternoonEveningAreSameMaxSnow);
+        double maxRain = Math.max(Math.max(Math.max(nightMorningAreSameMaxRain, morningAfternoonAreSameMaxRain), morningEveningAreSameMaxRain), afternoonEveningAreSameMaxRain);
+        double maxSnow = Math.max(Math.max(Math.max(nightMorningAreSameMaxSnow, morningAfternoonAreSameMaxSnow), morningEveningAreSameMaxSnow), afternoonEveningAreSameMaxSnow);
 
-        if (morningAfternoonAreSame && morningEveningAreSame && afternoonEveningAreSame) {
+        if (nightMorningAreSame && morningAfternoonAreSame && morningEveningAreSame && afternoonEveningAreSame) {
             StringBuilder forecastToSay = null;
             forecastToSay = new StringBuilder();
             forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.mainWeatherId,
                     weatherForecastForVoice.morningWeatherIds.mainWeatherDescriptionsFromOwm,
                     currentLocation.getLocaleAbbrev(),
                     getBaseContext()));
-            if (morningAfternoonWarningAreSame && morningEveningWarningAreSame && afternoonEveningWarningAreSame) {
-                forecastToSay.append(" ojediněle ");
+            if (nightMorningWarningAreSame && morningAfternoonWarningAreSame && morningEveningWarningAreSame && afternoonEveningWarningAreSame) {
+                forecastToSay.append(R.string.tty_say_weather_forecast_rarely);
+                forecastToSay.append(" ");
                 forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.warningWeatherId,
                         weatherForecastForVoice.morningWeatherIds.warningWeatherDescriptionsFromOwm,
                         currentLocation.getLocaleAbbrev(),
@@ -513,16 +568,50 @@ public class WeatherByVoiceService extends Service {
             }
             forecastToSay.append(sayRainSnow(maxRain, maxSnow, currentLocation));
             return forecastToSay.toString();
-        } else if (morningAfternoonAreSame) {
+        }
+        if (nightMorningAreSame) {
             StringBuilder forecastToSay = null;
             forecastToSay = new StringBuilder();
-            forecastToSay.append(" dopoledne a odpoledne ");
+            if (morningAfternoonAreSame) {
+                forecastToSay.append(R.string.tty_say_weather_forecast_night);
+                forecastToSay.append(", ");
+                forecastToSay.append(R.string.tty_say_weather_forecast_morning);
+                forecastToSay.append(" ");
+                forecastToSay.append(R.string.tty_say_weather_forecast_and);
+                forecastToSay.append(" ");
+                forecastToSay.append(R.string.tty_say_weather_forecast_afternoon);
+                forecastToSay.append(" ");
+            } else {
+                forecastToSay.append(R.string.tty_say_weather_forecast_night);
+                forecastToSay.append(" ");
+                forecastToSay.append(R.string.tty_say_weather_forecast_and);
+                forecastToSay.append(" ");
+                forecastToSay.append(R.string.tty_say_weather_forecast_morning);
+                forecastToSay.append(" ");
+            }
             forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.mainWeatherId,
                     weatherForecastForVoice.morningWeatherIds.mainWeatherDescriptionsFromOwm,
                     currentLocation.getLocaleAbbrev(),
                     getBaseContext()));
+        }
+        if (morningAfternoonAreSame) {
+            StringBuilder forecastToSay = null;
+            forecastToSay = new StringBuilder();
+            if (!nightMorningAreSame) {
+                forecastToSay.append(R.string.tty_say_weather_forecast_morning);
+                forecastToSay.append(" ");
+                forecastToSay.append(R.string.tty_say_weather_forecast_and);
+                forecastToSay.append(" ");
+                forecastToSay.append(R.string.tty_say_weather_forecast_afternoon);
+                forecastToSay.append(" ");
+                forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.mainWeatherId,
+                        weatherForecastForVoice.morningWeatherIds.mainWeatherDescriptionsFromOwm,
+                        currentLocation.getLocaleAbbrev(),
+                        getBaseContext()));
+            }
             if (eveningWeather) {
-                forecastToSay.append(" večer ");
+                forecastToSay.append(R.string.tty_say_weather_forecast_evening);
+                forecastToSay.append(" ");
                 forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.eveningWeatherIds.mainWeatherId,
                         weatherForecastForVoice.eveningWeatherIds.mainWeatherDescriptionsFromOwm,
                         currentLocation.getLocaleAbbrev(),
@@ -533,13 +622,19 @@ public class WeatherByVoiceService extends Service {
         } else if (morningEveningAreSame) {
             StringBuilder forecastToSay = null;
             forecastToSay = new StringBuilder();
-            forecastToSay.append(" dopoledne a večer ");
+            forecastToSay.append(R.string.tty_say_weather_forecast_morning);
+            forecastToSay.append(" ");
+            forecastToSay.append(R.string.tty_say_weather_forecast_and);
+            forecastToSay.append(" ");
+            forecastToSay.append(R.string.tty_say_weather_forecast_evening);
+            forecastToSay.append(" ");
             forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.mainWeatherId,
                     weatherForecastForVoice.morningWeatherIds.mainWeatherDescriptionsFromOwm,
                     currentLocation.getLocaleAbbrev(),
                     getBaseContext()));
             if (afternoonWeather) {
-                forecastToSay.append(" odpoledne ");
+                forecastToSay.append(R.string.tty_say_weather_forecast_afternoon);
+                forecastToSay.append(" ");
                 forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.eveningWeatherIds.mainWeatherId,
                         weatherForecastForVoice.eveningWeatherIds.mainWeatherDescriptionsFromOwm,
                         currentLocation.getLocaleAbbrev(),
@@ -551,13 +646,19 @@ public class WeatherByVoiceService extends Service {
             StringBuilder forecastToSay = null;
             forecastToSay = new StringBuilder();
             if (morningWeather) {
-                forecastToSay.append(" dopoledne ");
+                forecastToSay.append(R.string.tty_say_weather_forecast_morning);
+                forecastToSay.append(" ");
                 forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.eveningWeatherIds.mainWeatherId,
                         weatherForecastForVoice.eveningWeatherIds.mainWeatherDescriptionsFromOwm,
                         currentLocation.getLocaleAbbrev(),
                         getBaseContext()));
             }
-            forecastToSay.append(" odpoledne a večer ");
+            forecastToSay.append(R.string.tty_say_weather_forecast_afternoon);
+            forecastToSay.append(" ");
+            forecastToSay.append(R.string.tty_say_weather_forecast_and);
+            forecastToSay.append(" ");
+            forecastToSay.append(R.string.tty_say_weather_forecast_evening);
+            forecastToSay.append(" ");
             forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.mainWeatherId,
                     weatherForecastForVoice.morningWeatherIds.mainWeatherDescriptionsFromOwm,
                     currentLocation.getLocaleAbbrev(),

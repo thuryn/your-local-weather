@@ -164,6 +164,15 @@
     <string name="tty_say_temp_min_max">minimální teplota %1$s nastane v %2$s, maximální teplota %3$s nastane %4$s</string>
     <string name="tty_say_temp_max">maximální teplota %1$s nastane v %2$s</string>
     <string name="tty_say_temp_min">minimální teplota %1$s nastane %2$s</string>
+    <string name="tty_say_weather_forecast">předpověď počasí</string>
+    <string name="tty_say_weather_forecast_today">dnes</string>
+    <string name="tty_say_weather_forecast_tomorrow">zítra</string>
+    <string name="tty_say_weather_forecast_night">v noci</string>
+    <string name="tty_say_weather_forecast_morning">dopoledne</string>
+    <string name="tty_say_weather_forecast_afternoon">odpoledne</string>
+    <string name="tty_say_weather_forecast_evening">večer</string>
+    <string name="tty_say_weather_forecast_rarely">ojediněle</string>
+    <string name="tty_say_weather_forecast_and">a</string>
     <string name="pref_title_tts_say_forecast">Říci jednodenní předpověď</string>
     <string name="rain_label">Déšť: %1$s %2$s</string>
     <string name="snow_label">Sníh: %1$s %2$s</string>
