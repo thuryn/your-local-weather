@@ -524,4 +524,10 @@
     <string name="pref_title_tts_trigger_bt_devices" tools:ignore="MissingTranslation">Für Gerät(e):</string>
     <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">Aktivierte(s) Gerät(e):</string>
     <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">Für Standort:</string>
+    <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">Was zu sagen:</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Spracheinstellung</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Optionen für die Sprachausgabe</string>
+    <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">Lautsprecher</string>
+    <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">kabelgebundenes Headset</string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>
 </resources>
