@@ -530,4 +530,39 @@
     <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">Lautsprecher</string>
     <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">kabelgebundenes Headset</string>
     <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Zu sagen:</string>
+    <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">Guten Morgen</string>
+    <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Hallo</string>
+    <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">Guten Abend</string>
+    <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">Aktuelles Wetter für Standort %s</string>
+    <string name="tts_say_current_weather" tools:ignore="MissingTranslation">Aktuelles Wetter</string>
+    <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">Wenn das Wetter aktualisiert wird</string>
+    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">Wenn das Bluetooth-Gerät angeschlossen ist</string>
+    <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">Zur Zeit</string>
+    <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s Wind %1$s %2$s</string>
+    <string name="tty_say_temperature" tools:ignore="MissingTranslation">Temperatur %s</string>
+    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">Nord</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">Nordost</string>
+    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">Ost</string>
+    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">Südost</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">Süd</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">Südwest</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">West</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">Nordwest</string>
+    <string name="pref_title_tts_say_forecast" tools:ignore="MissingTranslation">Tagesvorhersage sagen</string>
+    <string name="tty_say_max_rain" tools:ignore="MissingTranslation">maximale Niederschlagsmenge %s Millimeter</string>
+    <string name="tty_say_max_snow" tools:ignore="MissingTranslation">maximaler Schneefall %s Millimeter</string>
+    <string name="tty_say_max_wind" tools:ignore="MissingTranslation">%3$s Wind im Maximum %1$s %2$s</string>
+    <string name="tty_say_temp_min_max" tools:ignore="MissingTranslation">die minimale Temperatur beträgt %1$s bis %2$s, die maximale Temperatur beträgt %3$s bis %4$s</string>
+    <string name="tty_say_temp_max" tools:ignore="MissingTranslation">die maximale Temperatur beträgt %1$s bis %2$s</string>
+    <string name="tty_say_temp_min" tools:ignore="MissingTranslation">die minimale Temperatur beträgt %1$s bis %2$s</string>
+    <string name="tty_say_weather_forecast" tools:ignore="MissingTranslation">Wettervorhersage</string>
+    <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">heute</string>
+    <string name="tty_say_weather_forecast_tomorrow" tools:ignore="MissingTranslation">morgen</string>
+    <string name="tty_say_weather_forecast_night" tools:ignore="MissingTranslation">nachts</string>
+    <string name="tty_say_weather_forecast_morning" tools:ignore="MissingTranslation">morgens</string>
+    <string name="tty_say_weather_forecast_afternoon" tools:ignore="MissingTranslation">nachmittags</string>
+    <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">abends</string>
+    <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">selten</string>
+    <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">und</string>
 </resources>
