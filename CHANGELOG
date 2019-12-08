@@ -1,3 +1,6 @@
+v5.1.0
+Added voice output with one day forecast; fixed sharing a location when no address is present
+
 v5.0.0
 Added voice output for current weather, several small fixies
 
