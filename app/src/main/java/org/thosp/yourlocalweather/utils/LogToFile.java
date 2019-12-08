@@ -210,6 +210,14 @@ public class LogToFile {
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null", text2, String.valueOf(value2));
     }
 
+    public static void appendLog(Context context, String tag, String text1, Long value1, Long value2, double value3, double value4) {
+        checkPreferences(context);
+        if (!logToFileEnabled || (logFilePathname == null)) {
+            return;
+        }
+        appendLog(context, tag, text1 + ":" + value1 + ":" + value2 + ":" + value3 + ":" + value4);
+    }
+
     public static void appendLog(Context context, String tag, String text1, int value1, String text2, long value2, String text3, long value3, String text4, long value4) {
         checkPreferences(context);
         if (!logToFileEnabled || (logFilePathname == null)) {

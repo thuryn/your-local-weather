@@ -29,8 +29,11 @@ public class ForecastUtil {
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord =
                 weatherForecastDbHelper.getWeatherForecast(locationId);
         long now = Calendar.getInstance().getTimeInMillis();
-        if ((weatherForecastRecord == null) ||
-                (weatherForecastRecord.getLastUpdatedTime() +
+        if (weatherForecastRecord == null) {
+            return true;
+        }
+        long firstForecastTime = 1000 * weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList().get(0).getDateTime();
+        if ((firstForecastTime < now) || (weatherForecastRecord.getLastUpdatedTime() +
                         AUTO_FORECAST_UPDATE_TIME_MILIS) <  now) {
             return true;
         }
@@ -66,6 +69,9 @@ public class ForecastUtil {
             }
             dayCounter++;
             WeatherMaxMinForDay weatherMaxMinForDay = calculateWeatherMaxMinForDay(weatherList.get(dayInYearForList));
+            if (weatherMaxMinForDay == null) {
+                continue;
+            }
             WeatherIdsForDay weatherIdsForTheDay = getWeatherIdForDay(weatherList.get(dayInYearForList), weatherMaxMinForDay);
             result.add(new WeatherForecastPerDay(dayCounter, weatherIdsForTheDay, weatherMaxMinForDay, getWeatherIconId(weatherIdsForTheDay.mainWeatherId, weatherList.get(dayInYearForList)), dayInYearForList, yearForList));
         }
@@ -162,6 +168,9 @@ public class ForecastUtil {
                 continue;
             }
             WeatherMaxMinForDay weatherMaxMinForPeriod = calculateWeatherMaxMinForDay(periodWeatherCondition);
+            if (weatherMaxMinForPeriod == null) {
+                continue;
+            }
             WeatherIdsForDay weatherIdsForPeriod = getWeatherIdForDay(periodWeatherCondition, weatherMaxMinForPeriod);
             if (i == 0) {
                 result.nightWeatherIds = weatherIdsForPeriod;
@@ -283,6 +292,11 @@ public class ForecastUtil {
         Long minTempTime = null;
         Long maxWindTime = null;
         Integer dayOfYear = null;
+
+        if (forecastListForDay.isEmpty()) {
+            return null;
+        }
+
         Map <Double, Integer> windDirectionCounter = new HashMap<>();
         for (DetailedWeatherForecast weatherForecastForDay : forecastListForDay) {
                 //WeatherCondition weatherCondition = weatherForecastForDay.getFirstWeatherCondition();
@@ -291,7 +305,7 @@ public class ForecastUtil {
             long currentWeatherForecastDateTime = weatherForecastForDay.getDateTime() * 1000;
             if (dayOfYear == null) {
                 Calendar calendar = Calendar.getInstance();
-                calendar.setTime(new Date(currentWeatherForecastDateTime));
+                calendar.setTimeInMillis(currentWeatherForecastDateTime);
                 dayOfYear = calendar.get(Calendar.DAY_OF_YEAR);
             }
             double currentTemp = weatherForecastForDay.getTemperature();

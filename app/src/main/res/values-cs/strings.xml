@@ -161,7 +161,6 @@
     <string name="tty_say_max_rain">déšťové srážky maximálně %s milimetrů</string>
     <string name="tty_say_max_snow">sněhové srážky maximálně %s milimetrů</string>
     <string name="tty_say_max_wind">%3$s vítr maximálně %1$s %2$s</string>
-    <string name="tty_say_temp_min_max">minimální teplota %1$s nastane v %2$s, maximální teplota %3$s nastane %4$s</string>
     <string name="tty_say_temp_max">maximální teplota %1$s nastane v %2$s</string>
     <string name="tty_say_temp_min">minimální teplota %1$s nastane %2$s</string>
     <string name="tty_say_weather_forecast">předpověď počasí</string>

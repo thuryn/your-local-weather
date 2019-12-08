@@ -420,7 +420,6 @@
     <string name="tty_say_max_rain" tools:ignore="MissingTranslation">maximum rain precipitation %s millimeters</string>
     <string name="tty_say_max_snow" tools:ignore="MissingTranslation">maximum snow precipitation %s millimeters</string>
     <string name="tty_say_max_wind" tools:ignore="MissingTranslation">%3$s wind at maximum %1$s %2$s</string>
-    <string name="tty_say_temp_min_max" tools:ignore="MissingTranslation">the minimum temperature is %1$s at %2$s, the maximum temperature is %3$s at %4$s</string>
     <string name="tty_say_temp_max" tools:ignore="MissingTranslation">the maximum temperature is %1$s at %2$s</string>
     <string name="tty_say_temp_min" tools:ignore="MissingTranslation">the minimum temperature is %1$s at %2$s</string>
     <string name="tty_say_weather_forecast" tools:ignore="MissingTranslation">weather forecast</string>
