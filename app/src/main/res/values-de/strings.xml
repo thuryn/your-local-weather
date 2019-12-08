@@ -553,7 +553,6 @@
     <string name="tty_say_max_rain" tools:ignore="MissingTranslation">maximale Niederschlagsmenge %s Millimeter</string>
     <string name="tty_say_max_snow" tools:ignore="MissingTranslation">maximaler Schneefall %s Millimeter</string>
     <string name="tty_say_max_wind" tools:ignore="MissingTranslation">%3$s Wind im Maximum %1$s %2$s</string>
-    <string name="tty_say_temp_min_max" tools:ignore="MissingTranslation">die minimale Temperatur beträgt %1$s bis %2$s, die maximale Temperatur beträgt %3$s bis %4$s</string>
     <string name="tty_say_temp_max" tools:ignore="MissingTranslation">die maximale Temperatur beträgt %1$s bis %2$s</string>
     <string name="tty_say_temp_min" tools:ignore="MissingTranslation">die minimale Temperatur beträgt %1$s bis %2$s</string>
     <string name="tty_say_weather_forecast" tools:ignore="MissingTranslation">Wettervorhersage</string>
