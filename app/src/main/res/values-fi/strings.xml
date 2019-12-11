@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Paikallinen sää</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="MissingTranslation">Paikallinen sää</string>
     <string name="enter_city_hint" tools:ignore="MissingTranslation">Anna kaupunki</string>
     <string name="label_current_city" tools:ignore="MissingTranslation">Nykyinen kaupunki</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">Valitse kaupunki</string>
@@ -25,12 +26,11 @@
 \nAuringonnousu: %6$s
 \nAuringonlasku: %7$s</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">Paikallinen sää</string>
-    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Päivä</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Lämpötila</string>
     <string name="graph_wind_label" tools:ignore="MissingTranslation">Tuuli</string>
     <string name="graph_rain_label" tools:ignore="MissingTranslation">Sade</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Lumi</string>
     <string name="graph_pressure_label" tools:ignore="MissingTranslation">Paine</string>
-
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Sulje</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Seuraava</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Edellinen</string>
@@ -43,13 +43,11 @@
     <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Lämpötila</string>
     <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Tuulen suunta</string>
     <string name="cancel" tools:ignore="MissingTranslation">Peruuta</string>
-
     <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">Nykyinen sää</string>
     <string name="nav_menu_settings" tools:ignore="MissingTranslation">Asetukset</string>
-    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/t</string>
     <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
     <string name="inches_label" tools:ignore="MissingTranslation">tuumaa</string>
-
     <string name="pref_title_time_style" tools:ignore="MissingTranslation">Ajan muoto</string>
     <string name="time_style_12_h" tools:ignore="MissingTranslation">12-tuntinen AM/PM</string>
     <string name="time_style_24_h" tools:ignore="MissingTranslation">24-tuntinen
@@ -82,7 +80,6 @@
     <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Lähdekoodi</string>
     <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Lisenssi</string>
     <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Vapaan ohjelmiston lisenssit</string>
-
     <string name="cloudiness_label" tools:ignore="MissingTranslation">Pilvisyys: %1$s%2$s</string>
     <string name="label_cloudiness" tools:ignore="MissingTranslation">Pilvisyys</string>
     <string name="last_update_label" tools:ignore="MissingTranslation">Viimeisin päivitys: %s</string>
@@ -103,9 +100,10 @@
     <string name="log_file_168_label" tools:ignore="MissingTranslation">viikko</string>
     <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
     <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
-
     <string name="weather_condition_description_600" tools:ignore="MissingTranslation">kevyt lumisade</string>
     <string name="weather_condition_description_601" tools:ignore="MissingTranslation">lumisade</string>
     <string name="weather_condition_description_602" tools:ignore="MissingTranslation">rankka lumisade</string>
     <string name="weather_condition_description_711" tools:ignore="MissingTranslation">savu</string>
-    </resources>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Akun optimointi</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Käyttöoikeus vanhentunut. Päivitä sovellus.</string>
+</resources>
