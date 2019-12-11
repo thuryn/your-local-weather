@@ -493,4 +493,6 @@
     <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Ativar voz para alto-falante</string>
     <string name="voice_settings_language" tools:ignore="MissingTranslation">Configuração de idioma</string>
     <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Opções de idioma de voz</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Traduções de instruções de texto e voz</string>
+    <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">alto-falante</string>
 </resources>
