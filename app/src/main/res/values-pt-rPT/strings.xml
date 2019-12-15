@@ -284,10 +284,10 @@
 \nB - o acesso ao serviço Openweathermap.org foi bloqueado, por favor tente atualizar o tempo mais tarde 
 \nE - o token de acesso ao serviço Openweathermap.org expirou. Tem de atualizar a aplicação para ter acesso novamente</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">"W - só o tempo foi atualizado 
-\nL - só a localização foi atualizada  
-\nG -  a localização do GPS e o tempo foi atualizada 
-\nN -  a localização da rede e o tempo foi atualizada 
-\nNi - a localização da rede de telemóveis e o tempo, localização descoberta pelo serviço de localização Mozilla foi atualizada
+\nL - só a localização foi atualizada 
+\nG - a localização do GPS e o tempo foram atualizados 
+\nN -  a localização da rede e o tempo foram atualizados 
+\nNi - a localização da rede de telemóveis e o tempo, localização descoberta pelo serviço de localização Mozilla foram atualizados 
 \nB - o acesso ao serviço Openweathermap.org foi bloqueado, por favor tente atualizar o tempo mais tarde 
 \nE - o token de acesso ao serviço Openweathermap.org expirou. Tem de atualizar a aplicação para ter acesso novamente"</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Quando a localização fica bloqueada enquanto o dispositivo está adormecido, pode tentar acordá-lo quando está à procura de uma rede de telemóveis</string>
