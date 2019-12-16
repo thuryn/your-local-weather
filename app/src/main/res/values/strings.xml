@@ -375,7 +375,7 @@
     <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Enable voice to wired headset</string>
     <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">wired headset</string>
     <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Enable voice to bluetooth headset</string>
-    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">bluetooth</string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>
     <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">All</string>
     <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Say greeting</string>
     <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Custom</string>
