@@ -519,4 +519,56 @@
     <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Ses dili seçenekleri</string>
     <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">hoparlör</string>
     <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">kablolu kulaklık</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Bu uygulamanın ses çıktısı seçeneği vardır. Bu seçeneği açmak için bir TTS (Text-to-speech) (yazıdan sese) sisteminin kurulu olması ve ayarlarda ses çıktısı olarak ayarlanmış olması gerekir. Lütfen yazıların ve ses çıktılarının çevirisinin gönüllüler tarafından ( https://hosted.weblate.org/projects/your-local-weather service ) yapıldığını hesaba katınız. Ayarlarda kendi ses çıktılarınızı da yapabilirsiniz. Bu uygulamanın geliştiricileri çevirilerin veya uygulamanın beyanda bulunduklarının herhangi bir kalite veya doğruluk garantisini vermez, uygulamayı kullanarak bu ifadeyi kabul etmiş olursunuz.</string>
+    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Sesi Bluetooth kulaklık için aktifleştir</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Selam ver</string>
+    <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">Hava Durumu açıklamasını söyle</string>
+    <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">Sıcaklığı söyle</string>
+    <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">Rüzgarı söyle</string>
+    <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">Söyle:</string>
+    <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Saat</string>
+    <string name="pref_title_tts_trigger_bt_devices" tools:ignore="MissingTranslation">Bu cihaz(lar) için:</string>
+    <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">Aktif cihaz(lar):</string>
+    <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">Bu konum için:</string>
+    <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">Ne demeli:</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Söyleyecek:</string>
+    <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">Günaydın</string>
+    <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Merhaba</string>
+    <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">İyi akşamlar</string>
+    <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">%s konumu için şu anki hava durumu</string>
+    <string name="tts_say_current_weather" tools:ignore="MissingTranslation">Şu anki hava durumu</string>
+    <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">Hava durumu güncellendiğinde</string>
+    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">Bir Bluetooth cihazı bağlandığında</string>
+    <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">Şu Saatte</string>
+    <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s Rüzgar %1$s %2$s</string>
+    <string name="tty_say_temperature" tools:ignore="MissingTranslation">Sıcaklık %s</string>
+    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">kuzey</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">kuzeydoğu</string>
+    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">doğu</string>
+    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">güneydoğu</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">güney</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">güneybatı</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">batı</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">kuzeybatı</string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>
+    <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">Uygulamanın yerel ayarı:</string>
+    <string name="pref_title_tts_app_general_info" tools:ignore="MissingTranslation">Bu uygulama TTS (Text-to-speech) sistemine yazı komutları gönderir. TTS bu yazıyı sese dönüştürmekten sorumludur. Çoğu cihazda TTS halihazırda bulunur. Eğer halihazırda yoksa veya kurulu TTS arzuladığınız dili desteklemiyorsa uygulama mağazasından bir TTS indirebilirsiniz. (Örneğin: https://play.google.com/store/search\?q=TTS ).</string>
+    <string name="pref_title_tts_lang_app_default" tools:ignore="MissingTranslation">Uygulama yereline göre</string>
+    <string name="pref_title_tts_presence" tools:ignore="MissingTranslation">Uygulama yereliniz TTS (Text-to-speech) tarafından desteklenmiyor. Ses için aşağıdaki desteklenen dillerden birini seçiniz.</string>
+    <string name="pref_title_tts_not_supported" tools:ignore="MissingTranslation">Uygulama yereliniz TTS (Text-to-speech) tarafından desteklenmiyor. Ekranın sağ üst köşesinden ses ayarlarına gidin.</string>
+    <string name="pref_title_tts_say_forecast" tools:ignore="MissingTranslation">Bir günlük hava tahminini söyle</string>
+    <string name="tty_say_max_rain" tools:ignore="MissingTranslation">Maksimum Yağış Miktarı %s milimetre</string>
+    <string name="tty_say_max_snow" tools:ignore="MissingTranslation">Maksimum Kar Yağışı Miktarı %s milimetre</string>
+    <string name="tty_say_max_wind" tools:ignore="MissingTranslation">%3$s rüzgar en fazla %1$s %2$s \'da</string>
+    <string name="tty_say_temp_max" tools:ignore="MissingTranslation">En yüksek sıcaklık %1$s saat %2$s \'de</string>
+    <string name="tty_say_temp_min" tools:ignore="MissingTranslation">En düşük sıcaklık %1$s saat %2$s \'de</string>
+    <string name="tty_say_weather_forecast" tools:ignore="MissingTranslation">Hava tahmini</string>
+    <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">bugün</string>
+    <string name="tty_say_weather_forecast_tomorrow" tools:ignore="MissingTranslation">yarın</string>
+    <string name="tty_say_weather_forecast_night" tools:ignore="MissingTranslation">gece</string>
+    <string name="tty_say_weather_forecast_morning" tools:ignore="MissingTranslation">sabah</string>
+    <string name="tty_say_weather_forecast_afternoon" tools:ignore="MissingTranslation">öğleden sonra</string>
+    <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">akşam</string>
+    <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">nadiren</string>
+    <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">ve</string>
 </resources>
