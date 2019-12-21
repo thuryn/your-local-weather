@@ -115,7 +115,7 @@
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">更新位置设置</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">位置来源选项</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">位置及地址来源</string>
-    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">恭喜您</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">恭喜</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">通用</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">主应用</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">微件</string>
@@ -164,7 +164,7 @@
     <string name="pref_language_ar" tools:ignore="MissingTranslation">العَرَبِيَّة‎（阿拉伯语）</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">位置及地址来源</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">系统</string>
-    <string name="app_name" tools:ignore="MissingTranslation">Yorecast</string>
+    <string name="app_name" tools:ignore="MissingTranslation">您的本地天气</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">访问权限已过期。请升级应用。</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">您的 OpenweathermapApiKey 未注册。</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">您可以选择定位方法 - <i>系统</i> 选项使用 Google 服务通过网络（蜂窝网络和 Wi-Fi）获取位置。<i>本地 MLS 和 Nominatim</i> 选项使用 Mozilla 位置服务获取位置坐标并使用 Nominatim 服务获取地址名称。第二个选项需要电话呼叫权限以获取有关蜂窝网络的信息。已预选为首选项。</string>
@@ -240,13 +240,13 @@
 \nN - 位置来自网络且天气已更新 
 \nB - Openweathermap.org 服务访问已被禁止，请尝试稍后更新天气 
 \nE - Openweathermap.org 服务访问令牌已过期。您需要更新应用以再次获取令牌</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - 仅天气已更新
-\nL - 仅位置已更新 
-\nG - 位置来自 GPS 且天气已更新
-\nN - 位置来自网络且天气已更新
-\nNi - 位置来自蜂窝网络且天气已更新，位置发现来自 Mozilla 位置服务
-\nB - Openweathermap.org 服务访问已被禁止，请尝试稍后更新天气
-\nE - Openweathermap.org 服务访问令牌已过期。您需要升级应用以再次获取令牌</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - 仅天气更新时
+\nL - 仅位置更新时
+\nG - GPS位置及天气更新时
+\nN - 网络位置及天气更新时
+\nNi - 蜂窝网络位置及天气更新时，位置发现来自 Mozilla 位置服务 
+\nB - Openweathermap.org 服务访问已被禁止，请尝试稍后更新天气 
+\nE - Openweathermap.org 服务访问令牌已过期。您需要升级应用以再次获取访问许可</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">"当定位在设备休眠期间卡死时，您可以在它寻找蜂窝网络时尝试唤醒它 "</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">唤醒策略</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">无唤醒</string>
@@ -436,11 +436,118 @@
     <string name="widget_action_switch_location" tools:ignore="MissingTranslation">切换位置</string>
     <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">在微件中显示位置</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">目前，您不能有超过 %1$d 个位置。</string>
-    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">下雪</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">雪</string>
     <string name="weather_condition_description_221" tools:ignore="MissingTranslation">轻雷暴</string>
     <string name="weather_condition_description_232" tools:ignore="MissingTranslation">雷暴伴有大雨</string>
     <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">PSI</string>
     <string name="pref_language_bg" tools:ignore="MissingTranslation">保加利亚语</string>
-    <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">中文（繁体）</string>
+    <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">中文 (繁体）</string>
     <string name="pref_language_sd" tools:ignore="MissingTranslation">信德人</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">小毛雨</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">毛毛雨</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">下得很密的毛毛雨</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">小毛雨</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">毛毛雨</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">阵雨和毛毛雨</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">强阵雨和毛毛雨</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">时有时无的毛毛雨</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">小雨</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">中雨</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">大雨</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">暴雨</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">大暴雨</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">冻雨</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">小阵雨</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">阵雨</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">强阵雨</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">有时有阵雨</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">小雪</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">大雪</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">雨夹雪</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">时断时续的雨夹雪</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">小雨和雪</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">雨和雪</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">小阵雪</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">阵雪</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">强阵雪</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">薄雾</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">烟尘</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">雾霾</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">沙尘暴</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">浓雾</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">飞沙</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">灰尘</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">飑</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">块云</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">多云</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">蒲福氏风级</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">露点温度：%s</string>
+    <string name="label_dew_point" tools:ignore="MissingTranslation">露点</string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">微件 天气详情设置按钮</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">越南语</string>
+    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">孟加拉语</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">文本和声音指示翻译</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">本应用有声音输出功能。要启用该功能，你需要在本机安装一个文本转语音系统并按照应用设置设定语音输出。文本翻译及语音命令均由志愿者翻译(https://hosted.weblate.org/projects/your-local-weather service)。你也可以按照应用设置设定你自己的语音命令。本应用的开发者不保证翻译的质量和准确性以及应用说什么- 使用本应用代表您接受这份声明。</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">语音设置</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">新声音设置</string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">启用声音转扬声器</string>
+    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">启用声音转有线耳机</string>
+    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">启用声音转蓝牙耳机</string>
+    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">全部</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">问好</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">自定义</string>
+    <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">位置</string>
+    <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">描述天气</string>
+    <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">气温</string>
+    <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">风速</string>
+    <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">说：</string>
+    <string name="pref_title_tts_time" tools:ignore="MissingTranslation">时间</string>
+    <string name="pref_title_tts_trigger_bt_devices" tools:ignore="MissingTranslation">设备：</string>
+    <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">启用TTS的设备：</string>
+    <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">位置：</string>
+    <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">说什么：</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">说：</string>
+    <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">早上好</string>
+    <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">你好</string>
+    <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">下午好</string>
+    <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">所在位置%s的当前天气</string>
+    <string name="tts_say_current_weather" tools:ignore="MissingTranslation">当前天气</string>
+    <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">当天气更新时</string>
+    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">当连接到蓝牙设备时</string>
+    <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">在何时</string>
+    <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s风速%1$s %2$s</string>
+    <string name="tty_say_temperature" tools:ignore="MissingTranslation">气温%s</string>
+    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">北风</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">东北风</string>
+    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">东风</string>
+    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">东南风</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">南风</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">西南风</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">西风</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">西北风</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">语言设置</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">声音语言选项</string>
+    <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">扬声器</string>
+    <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">有线耳机</string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">蓝牙</string>
+    <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">程序语言:：</string>
+    <string name="pref_title_tts_app_general_info" tools:ignore="MissingTranslation">本应用只是发送文本命令到文本转语音系统。TTS负责将文本命令转换到声音。TTS通常内置于系统。如果系统没有安装TTS或者安装的TTS不支持你所中意的语言，你可以从应用商店安装一个，比如在谷歌商店以TTS为关键词进行搜索。</string>
+    <string name="pref_title_tts_lang_app_default" tools:ignore="MissingTranslation">按照应用语言</string>
+    <string name="pref_title_tts_presence" tools:ignore="MissingTranslation">TTS不支持您的应用语言。你可以从下方受支持的语言中选择声音语言。</string>
+    <string name="pref_title_tts_not_supported" tools:ignore="MissingTranslation">TTS不支持您的应用语言。前往本屏幕右上角的声音语言设定。</string>
+    <string name="pref_title_tts_say_forecast" tools:ignore="MissingTranslation">播报一天预报</string>
+    <string name="tty_say_max_rain" tools:ignore="MissingTranslation">最大降水量%s毫米</string>
+    <string name="tty_say_max_snow" tools:ignore="MissingTranslation">最大降雪量%s毫米</string>
+    <string name="tty_say_max_wind" tools:ignore="MissingTranslation">%3$s最大风速%1$s %2$s</string>
+    <string name="tty_say_temp_max" tools:ignore="MissingTranslation">最高气温是%2$s的%1$s</string>
+    <string name="tty_say_temp_min" tools:ignore="MissingTranslation">最低气温是%2$s的%1$s</string>
+    <string name="tty_say_weather_forecast" tools:ignore="MissingTranslation">天气预报</string>
+    <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">今日</string>
+    <string name="tty_say_weather_forecast_tomorrow" tools:ignore="MissingTranslation">明日</string>
+    <string name="tty_say_weather_forecast_night" tools:ignore="MissingTranslation">夜间</string>
+    <string name="tty_say_weather_forecast_morning" tools:ignore="MissingTranslation">早上</string>
+    <string name="tty_say_weather_forecast_afternoon" tools:ignore="MissingTranslation">午后</string>
+    <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">傍晚</string>
+    <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">罕见</string>
+    <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">和</string>
 </resources>
