@@ -328,6 +328,7 @@
         <item name="greek">@string/pref_language_el</item>
         <item name="hebrew">@string/pref_language_he</item>
         <item name="hungarian">@string/pref_language_hu</item>
+        <item name="indonesian">@string/pref_language_id</item>
         <item name="italian">@string/pref_language_it</item>
         <item name="japanese">@string/pref_language_jp</item>
         <item name="norwegian">@string/pref_language_nb_rNO</item>
@@ -370,6 +371,7 @@
         <item name="greek">el</item>
         <item name="hebrew">he</item>
         <item name="hungarian">hu</item>
+        <item name="indonesian">id</item>
         <item name="italian">it</item>
         <item name="japanese">ja</item>
         <item name="norwegian">nb-rNO</item>

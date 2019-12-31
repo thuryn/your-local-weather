@@ -66,6 +66,16 @@ public class WeatherByVoiceService extends Service {
     private static final Queue<WeatherByVoiceRequestDataHolder> weatherByVoiceMessages = new LinkedList<>();
     final Messenger messenger = new Messenger(new WeatherByVoiceMessageHandler());
 
+    public LinkedList<String> sayWhatWhenRecreated;
+
+    Handler timerHandler = new Handler();
+    Runnable timerRunnable = new Runnable() {
+        @Override
+        public void run() {
+            recreateTts(sayWhatWhenRecreated);
+        }
+    };
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -743,16 +753,7 @@ public class WeatherByVoiceService extends Service {
             say(what);
             return;
         }
-        TextToSpeech.OnInitListener onInitListener = new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                appendLog(getBaseContext(), TAG, "TextToSpeech initialized with status: " + status);
-                if (status == TextToSpeech.SUCCESS) {
-                    say(what);
-                }
-            }
-        };
-        tts = new TextToSpeech(getBaseContext(), onInitListener);
+        recreateTts(what);
     }
 
     private Locale getLocaleForVoice() {
@@ -765,7 +766,7 @@ public class WeatherByVoiceService extends Service {
         }
     }
 
-    private boolean say(LinkedList<String> texts) {
+    private void say(LinkedList<String> texts) {
         Locale locale = getLocaleForVoice();
         int available = tts.isLanguageAvailable(locale);
         if (available >= TextToSpeech.LANG_AVAILABLE) {
@@ -791,10 +792,14 @@ public class WeatherByVoiceService extends Service {
                     }
                 }
             }
-            return true;
+            sayWhatWhenRecreated = null;
         } else {
-            appendLog(getBaseContext(), TAG, "Locale " + locale.toString() + "is not available in TTS");
-            return false;
+            appendLog(getBaseContext(), TAG, "Locale " + locale.toString() + " is not available in TTS");
+            if (sayWhatWhenRecreated != null) {
+                return;
+            }
+            sayWhatWhenRecreated = texts;
+            timerHandler.postDelayed(timerRunnable, 1000);
         }
     }
 
@@ -922,6 +927,19 @@ public class WeatherByVoiceService extends Service {
                     voiceSettingId,
                     VoiceSettingParamType.VOICE_SETTING_GREETING_CUSTOM_DAY.getVoiceSettingParamTypeId());
         }
+    }
+
+    private void recreateTts(final LinkedList<String> what) {
+        TextToSpeech.OnInitListener onInitListener = new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                appendLog(getBaseContext(), TAG, "TextToSpeech initialized with status: " + status);
+                if ((tts != null) && (status == TextToSpeech.SUCCESS) && (what != null)) {
+                    say(what);
+                }
+            }
+        };
+        tts = new TextToSpeech(getBaseContext(), onInitListener);
     }
 
     private class WeatherByVoiceMessageHandler extends Handler {

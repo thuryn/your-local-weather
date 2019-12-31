@@ -309,6 +309,7 @@
     <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego (Galician)</string>
     <string name="pref_language_de" tools:ignore="MissingTranslation">Deutsch (German)</string>
     <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (Italian)</string>
+    <string name="pref_language_id" tools:ignore="MissingTranslation">Indonesian (Indonesian)</string>
     <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (Japanese)</string>
     <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (Polish)</string>
     <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (Russian)</string>

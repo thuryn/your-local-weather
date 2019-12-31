@@ -149,7 +149,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
+        if (mDrawerLayout != null) {
+            mDrawerToggle.onConfigurationChanged(newConfig);
+        }
     }
 
     private void configureNavView() {

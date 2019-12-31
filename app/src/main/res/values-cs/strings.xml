@@ -366,7 +366,7 @@
     <string name="pref_language_sw" tools:ignore="MissingTranslation">Svahilština (Swahili)</string>
     <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norština (Norwegian Bokmål)</string>
     <string name="pref_language_nl" tools:ignore="MissingTranslation">Holandština (Dutch)</string>
-    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Čičevština (Nyanja)</string>
     <string name="pref_language_hu" tools:ignore="MissingTranslation">Maďarština (Hungarian)</string>
     <string name="pref_language_es" tools:ignore="MissingTranslation">Španělština (Spanish)</string>
     <string name="pref_language_el" tools:ignore="MissingTranslation">Řečtina (Greek)</string>
@@ -456,6 +456,7 @@
     <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego (Galicijština)</string>
     <string name="pref_language_de" tools:ignore="MissingTranslation">Deutsch (Němčina)</string>
     <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (Italština)</string>
+    <string name="pref_language_id" >Indonéština</string>
     <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (Japonština)</string>
     <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (Polština)</string>
     <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (Ruština)</string>

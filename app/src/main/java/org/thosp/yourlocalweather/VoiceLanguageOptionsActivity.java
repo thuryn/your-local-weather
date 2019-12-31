@@ -42,9 +42,7 @@ public class VoiceLanguageOptionsActivity extends BaseActivity {
     Runnable timerRunnable = new Runnable() {
         @Override
         public void run() {
-            if (tts == null) {
-                return;
-            }
+            recreateTts();
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 ttsAvailableLanguages = tts.getAvailableLanguages();
                 populateLanguageOptionsSpinner();
@@ -150,6 +148,10 @@ public class VoiceLanguageOptionsActivity extends BaseActivity {
             prepareTtsLanguages();
             return;
         }
+        recreateTts();
+    }
+
+    private void recreateTts() {
         TextToSpeech.OnInitListener onInitListener = new TextToSpeech.OnInitListener() {
             @Override
             public void onInit(int status) {

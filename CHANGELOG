@@ -1,3 +1,6 @@
+v5.1.1
+Added better handling of initialization of TTS service, added indonesian language into list of available languages, added checks for service unbinding
+
 v5.1.0
 Added voice output with one day forecast; fixed sharing a location when no address is present
 
