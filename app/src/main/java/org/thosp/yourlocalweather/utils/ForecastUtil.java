@@ -153,7 +153,7 @@ public class ForecastUtil {
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
         Map<Integer, List<DetailedWeatherForecast>> weatherListForOneDay = getOneDayForecast(weatherForecastRecord);
         WeatherForecastForVoice result = new WeatherForecastForVoice();
-        double maxTemp = Double.MIN_VALUE;
+        double maxTemp = -Double.MAX_VALUE;
         double minTemp = Double.MAX_VALUE;
         double maxWind = 0;
         double windDegreeForDay = 0;
@@ -283,7 +283,7 @@ public class ForecastUtil {
     public static WeatherMaxMinForDay calculateWeatherMaxMinForDay(List<DetailedWeatherForecast> forecastListForDay) {
         double maxRain = Double.MIN_VALUE;
         double maxSnow = Double.MIN_VALUE;
-        double maxTemp = Double.MIN_VALUE;
+        double maxTemp = -Double.MAX_VALUE;
         double minTemp = Double.MAX_VALUE;
         double maxWind = 0;
         Long maxRainTime = null;
