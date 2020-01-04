@@ -71,6 +71,7 @@ public class Constants {
     public static final String KEY_PREF_COMBINED_GRAPH_VALUES = "graphs_activity_combined_values";
     public static final String KEY_PREF_WIDGET_GRAPH_NATIVE_SCALE = "widget_graphs_native_scale";
     public static final String KEY_PREF_WIDGET_SHOW_CONTROLS = "widget_show_controls";
+    public static final String CONNECTED_BT_DEVICES = "connected_bt_devices";
 
     /**
      * About preference screen constants

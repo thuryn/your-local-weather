@@ -1,0 +1,31 @@
+package org.thosp.yourlocalweather.utils;
+
+public enum VoiceSettingParamType {
+    VOICE_SETTING_TRIGGER_TYPE(1),
+    VOICE_SETTING_TIME_TO_START(2),
+    VOICE_SETTING_TRIGGER_DAY_IN_WEEK(3),
+    VOICE_SETTING_TRIGGER_BT_DEVICES(4),
+    VOICE_SETTING_ENABLED_WHEN_BT_DEVICES(5),
+    VOICE_SETTING_ENABLED_VOICE_DEVICES(6),
+    VOICE_SETTING_PARTS_TO_SAY(7),
+    VOICE_SETTING_GREETING_CUSTOM_MORNING(8),
+    VOICE_SETTING_GREETING_CUSTOM_DAY(9),
+    VOICE_SETTING_GREETING_CUSTOM_EVENING(10),
+    VOICE_SETTING_LOCATION_CUSTOM(10),
+    VOICE_SETTING_WEATHER_DESCRIPTION_CUSTOM(11),
+    VOICE_SETTING_TEMPERATURE_CUSTOM(12),
+    VOICE_SETTING_WIND_CUSTOM(13),
+    VOICE_SETTING_TRIGGER_ENABLED_BT_DEVICES(14),
+    VOICE_SETTING_LOCATIONS(15),
+    VOICE_SETTING_VOICE_LANG(16);
+
+    int voiceSettingParamTypeId;
+
+    VoiceSettingParamType(int voiceSettingParamTypeId) {
+        this.voiceSettingParamTypeId = voiceSettingParamTypeId;
+    }
+
+    public int getVoiceSettingParamTypeId() {
+        return voiceSettingParamTypeId;
+    }
+}

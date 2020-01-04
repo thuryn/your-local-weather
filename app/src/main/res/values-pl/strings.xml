@@ -480,4 +480,11 @@
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">W tej chwili nie możesz mieć więcej niż %1$d lokalizacji.</string>
     <string name="pref_language_bg" tools:ignore="MissingTranslation">Bułgarski</string>
     <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Chiński (tradycyjny)</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">Wietnamski</string>
+    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengalski (Bangladesz)</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Tłumaczenie tekstowe i pisemne</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Ustawienia głosu</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Nowe ustawienia głosu</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Ta aplikacja posiada funkcję wyjścia głosowego. Aby włączyć tę funkcję, potrzebny jest system TTS (Text-to-Speech) zainstalowany i ustawić wyjście głosowe przez ustawienia aplikacji. Rozważ, proszę, że tłumaczenia tekstu, jak również polecenia głosowe są tłumaczone przez wolontariuszy przez https://hosted.weblate.org/projects/your-local-weather usługi. Można również ustawić własne polecenia głosowe w ustawieniach aplikacji. Twórcy tej aplikacji nie gwarantują jakości i poprawności tłumaczeń, jak również to, co mówi aplikacja-akceptujesz tę instrukcję za pomocą tej aplikacji.</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Ustawienie języka</string>
 </resources>

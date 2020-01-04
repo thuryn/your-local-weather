@@ -1,6 +1,10 @@
 package org.thosp.yourlocalweather.utils;
 
 import android.app.AlarmManager;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
+import android.bluetooth.BluetoothProfile;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.ContentValues;
@@ -14,6 +18,7 @@ import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.net.Uri;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -52,7 +57,13 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class Utils {
 
+    private static final String TAG = "Utils";
+
     public static Bitmap createWeatherIcon(Context context, String text) {
+        return createWeatherIconWithColor(context, text, AppPreference.getTextColor(context));
+    }
+
+    public static Bitmap createWeatherIconWithColor(Context context, String text, int iconColor) {
         Bitmap bitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_4444);
         Canvas canvas = new Canvas(bitmap);
         Paint paint = new Paint();
@@ -63,7 +74,7 @@ public class Utils {
         paint.setSubpixelText(true);
         paint.setTypeface(weatherFont);
         paint.setStyle(Paint.Style.FILL);
-        paint.setColor(AppPreference.getTextColor(context));
+        paint.setColor(iconColor);
         paint.setTextSize(180);
         paint.setTextAlign(Paint.Align.CENTER);
         canvas.drawText(text, 128, 200, paint);
@@ -144,14 +155,21 @@ public class Utils {
         return icon;
     }
 
-    public static void setWeatherIcon(ImageView imageView,
+    public static void setWeatherIconWithColor(ImageView imageView,
                                       Context context,
-                                      CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
+                                      CurrentWeatherDbHelper.WeatherRecord weatherRecord,
+                                      int fontColorId) {
         if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
-            imageView.setImageBitmap(createWeatherIcon(context, getStrIcon(context, weatherRecord)));
+            imageView.setImageBitmap(createWeatherIconWithColor(context, getStrIcon(context, weatherRecord), fontColorId));
         } else {
             imageView.setImageResource(Utils.getWeatherResourceIcon(weatherRecord));
         }
+    }
+
+    public static void setWeatherIcon(ImageView imageView,
+                                      Context context,
+                                      CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
+        setWeatherIconWithColor(imageView, context, weatherRecord, AppPreference.getTextColor(context));
     }
 
     public static void setForecastIcon(RemoteViews remoteViews,
@@ -160,22 +178,36 @@ public class Utils {
                                        Integer weatherId,
                                        String iconId,
                                        double maxTemp,
-                                       double maxWind) {
+                                       double maxWind,
+                                       int fontColorId) {
         if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
             remoteViews.setImageViewBitmap(viewIconId,
-                    createWeatherIcon(context, getStrIcon(context, iconId)));
+                    createWeatherIconWithColor(context, getStrIcon(context, iconId), fontColorId));
         } else {
             remoteViews.setImageViewResource(viewIconId, Utils.getWeatherResourceIcon(weatherId, maxTemp, maxWind));
         }
     }
 
     public static void setWeatherIcon(RemoteViews remoteViews,
-                                      Context context,
-                                      CurrentWeatherDbHelper.WeatherRecord weatherRecord,
-                                      int widgetIconId) {
+                                               Context context,
+                                               CurrentWeatherDbHelper.WeatherRecord weatherRecord,
+                                               int widgetIconId) {
         if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
             remoteViews.setImageViewBitmap(widgetIconId,
                     createWeatherIcon(context, getStrIcon(context, weatherRecord)));
+        } else {
+            remoteViews.setImageViewResource(widgetIconId, Utils.getWeatherResourceIcon(weatherRecord));
+        }
+    }
+
+    public static void setWeatherIconWithColor(RemoteViews remoteViews,
+                                      Context context,
+                                      CurrentWeatherDbHelper.WeatherRecord weatherRecord,
+                                      int widgetIconId,
+                                      int fontColorId) {
+        if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
+            remoteViews.setImageViewBitmap(widgetIconId,
+                    createWeatherIconWithColor(context, getStrIcon(context, weatherRecord), fontColorId));
         } else {
             remoteViews.setImageViewResource(widgetIconId, Utils.getWeatherResourceIcon(weatherRecord));
         }
@@ -631,16 +663,40 @@ public class Utils {
             if (!first) {
                 currentWeatherDescription.append(", ");
             }
-            String owmWeatherDescritpion;
-            if ((currentWeather.getDescription() == null) || !OWMLanguages.isLanguageSupportedByOWMAndNotTranslatedLocaly(locale)) {
-                owmWeatherDescritpion = context.getString(getWeatherDescriptionResourceId(currentWeather.getWeatherId()));
-            } else {
-                owmWeatherDescritpion = capitalizeFirstLetter(currentWeather.getDescription());
-            }
-            currentWeatherDescription.append(owmWeatherDescritpion);
+            currentWeatherDescription.append(getWeatherDescription(
+                    currentWeather.getWeatherId(),
+                    currentWeather.getDescription(),
+                    locale,
+                    context));
             first = false;
         }
         return currentWeatherDescription.toString();
+    }
+
+    public static String getWeatherDescription(int weatherId, String weatherDescriptionFromOwm, String locale, Context context) {
+        String weatherDescription;
+        if ((weatherDescriptionFromOwm == null) || !OWMLanguages.isLanguageSupportedByOWMAndNotTranslatedLocaly(locale)) {
+            weatherDescription = context.getString(getWeatherDescriptionResourceId(weatherId));
+        } else {
+            weatherDescription = capitalizeFirstLetter(weatherDescriptionFromOwm);
+        }
+        return weatherDescription;
+    }
+
+    public static boolean isWeatherDescriptionWithRain(int weatherId) {
+        if (weatherId < 600) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean isWeatherDescriptionWithSnow(int weatherId) {
+        if ((weatherId >= 600) && (weatherId < 700)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private static int getWeatherDescriptionResourceId(int weatherId) {
@@ -811,12 +867,24 @@ public class Utils {
     }
 
     public static String getLocationForSharingFromAddress(Address address) {
+        if (address == null) {
+            return "";
+        }
         String geoCity = getCityFromAddress(address);
         String geoDistrictOfCity = address.getSubLocality();
         if ((geoDistrictOfCity == null) || "".equals(geoDistrictOfCity) || geoCity.equalsIgnoreCase(geoDistrictOfCity)) {
             return geoCity;
         }
         return (("".equals(geoCity))?"":(geoCity + " - ")) + geoDistrictOfCity;
+    }
+
+    public static String getLocationForVoiceFromAddress(Address address) {
+        String geoCity = getCityFromAddress(address);
+        String geoDistrictOfCity = address.getSubLocality();
+        if ((geoDistrictOfCity == null) || "".equals(geoDistrictOfCity) || geoCity.equalsIgnoreCase(geoDistrictOfCity)) {
+            return geoCity;
+        }
+        return (("".equals(geoCity))?"":(geoCity + " ")) + geoDistrictOfCity;
     }
 
     private static String formatLocalityToTwoLines(String inputLocation) {
@@ -832,4 +900,35 @@ public class Utils {
     public static int spToPx(float sp, Context context) {
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics());
     }
+
+    public static BluetoothAdapter getBluetoothAdapter(Context context) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            BluetoothManager bluetoothManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
+            if (bluetoothManager == null) {
+                return null;
+            }
+            return bluetoothManager.getAdapter();
+        }
+        return BluetoothAdapter.getDefaultAdapter();
+    }
+
+    public static boolean isBluetoothHeadsetEnabledConnected(Context context) {
+        BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(context);
+        boolean isBtConnected = (bluetoothAdapter != null && (
+                BluetoothProfile.STATE_CONNECTED == bluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET) ||
+                        BluetoothProfile.STATE_CONNECTED == bluetoothAdapter.getProfileConnectionState(BluetoothProfile.A2DP)));
+        if (!isBtConnected) {
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+            if (!sharedPreferences.getStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<String>()).isEmpty()) {
+                sharedPreferences.edit().putStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<String>()).apply();
+            }
+        }
+        return isBtConnected;
+    }
+
+    public static Set<String> getAllConnectedBtDevices(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        return sharedPreferences.getStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<String>());
+    }
+
 }

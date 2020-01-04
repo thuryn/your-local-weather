@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" tools:ignore="MissingTranslation">Yorecast</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Ditt lokala väder</string>
     <string name="enter_city_hint" tools:ignore="MissingTranslation">Ange stad</string>
     <string name="label_current_city" tools:ignore="MissingTranslation">Aktuell stad</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">Välj stad</string>
@@ -148,7 +148,7 @@
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Skärm</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Uppdatera plats och väder</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Systeminställningar</string>
-    <string name="help_page_2_content" tools:ignore="MissingTranslation"/>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">Appen har tre widgetar tillgängliga, som innehåller några vanliga värden för det aktuella vädret (till exempel temperatur). Vissa värden är unika för den specifika widgeten (till exempel solnedgång). Det finns en tid för den senaste uppdateringen i det högra hörnet av varje widget. Du kan se vad som har uppdaterats förra gången (när du har aktiverat det här alternativet i inställningsmenyn). Du hittar uppdateringsknappen bredvid den senast uppdaterade tiden. När du trycker på den här knappen uppdateras vädret (och platsen då det valda alternativet för uppdateringsplats) villkorligt. Det sista alternativet i widgetar är att ändra plats - när du trycker på aktuell plats text ändras platsen till nästa.</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">
         <b>Switch GPS on when necessary</b> option, application tries to find location by cell or wifi networks. When the location could not be find by network services application turns GPS on for a several seconds to get the location.</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Dela väder</string>
@@ -248,8 +248,8 @@
     <string name="weather_condition_description_602" tools:ignore="MissingTranslation">mycket snö</string>
     <string name="weather_condition_description_615" tools:ignore="MissingTranslation">lätt regn och snö</string>
     <string name="weather_condition_description_616" tools:ignore="MissingTranslation">regn och snö</string>
-    <string name="weather_condition_description_620" tools:ignore="MissingTranslation"/>
-    <string name="weather_condition_description_621" tools:ignore="MissingTranslation"/>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">lätt snöskur</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">snöskur</string>
     <string name="weather_condition_description_800" tools:ignore="MissingTranslation">klart</string>
     <string name="weather_condition_description_801" tools:ignore="MissingTranslation">lite molnigt</string>
     <string name="weather_condition_description_802" tools:ignore="MissingTranslation">spridda moln</string>
@@ -260,4 +260,10 @@
     <string name="wind_direction_south_east" tools:ignore="MissingTranslation">SO↖</string>
     <string name="wind_direction_south_west" tools:ignore="MissingTranslation">SV↗</string>
     <string name="wind_direction_north_west" tools:ignore="MissingTranslation">NV↘</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Cache-upplöst adressalternativ</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Cache-löst adress</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation">
+        <b> Uppdateringsperiod för plats (plats 0) </b> - du kan ställa in uppdateringsperiod för plats 0 - plats 0 har möjlighet att uppdatera plats enligt cell-, Wi-Fi-nätverk och GPS. När du väljer uppdatering <i> Med accelerometer </i> använder appen det för att upptäcka rörelse. Av detta beräknas avståndet. När avståndsgränsen uppnås, och ingen uppdatering har hänt på 15 minuter, uppdateras platsen och det aktuella vädret. När appen inte kan hämta plats kan du se okänd platsetikett i widgeten. När appen inte har något platsstillstånd kommer den att försöka igen om 5 minuter. Du kan också välja platsuppdatering baserat på tidsintervall i <b> Uppdateringsperiod för väder (plats 1,2,3 ...) </b> - där du kan ställa in väder för att uppdatera för manuellt upptäckta platser.</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">
+        <b> Lokala MLS och Nominatim </b> - Appen får plats och geografiska koordinater från Mozilla-lokationstjänster. Nominatim-tjänster hämtar adressen från dessa koordinater. Du kan bidra till framtida förbättringar av MLS genom att installera Mozilla Stumbler (finns på https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler). Få information om aktuella och tillgängliga nätverksbasstationer från mobilnätet genom att ge telefonsamtalstillstånd. Wi-Fi-nätverk omkring dig används för att gissa din plats mer exakt.</string>
 </resources>

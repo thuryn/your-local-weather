@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string-array name="voice_trigger_type">
+        <item>@string/voice_setting_trigger_on_weather_update</item>
+        <item>@string/voice_setting_trigger_when_bt_connected</item>
+        <item>@string/voice_setting_trigger_at_time</item>
+    </string-array>
+    <string-array name="voice_trigger_type_wo_bt">
+        <item>@string/voice_setting_trigger_on_weather_update</item>
+        <item>@string/voice_setting_trigger_at_time</item>
+    </string-array>
     <string-array name="widget_actions">
         <item>@string/widget_action_main_screen</item>
         <item>@string/widget_action_forecast_screen</item>
@@ -319,6 +328,7 @@
         <item name="greek">@string/pref_language_el</item>
         <item name="hebrew">@string/pref_language_he</item>
         <item name="hungarian">@string/pref_language_hu</item>
+        <item name="indonesian">@string/pref_language_id</item>
         <item name="italian">@string/pref_language_it</item>
         <item name="japanese">@string/pref_language_jp</item>
         <item name="norwegian">@string/pref_language_nb_rNO</item>
@@ -361,6 +371,7 @@
         <item name="greek">el</item>
         <item name="hebrew">he</item>
         <item name="hungarian">hu</item>
+        <item name="indonesian">id</item>
         <item name="italian">it</item>
         <item name="japanese">ja</item>
         <item name="norwegian">nb-rNO</item>

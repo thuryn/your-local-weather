@@ -3,8 +3,8 @@
     <string name="enter_city_hint">Introduce ciudad</string>
     <string name="label_current_city">Ciudad actual</string>
     <string name="label_choose_city">Escoge ciudad</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings">El GPS no está habilitado. ¿Quieres ir al menu de ajustes?</string>
-    <string name="alertDialog_location_permission_positiveButton_settings">Ajustes</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">La aplicación está configurada para actualizar la ubicación. Se necesita acceso a ella. Ve a la configuración del dispositivo y activa la ubicación o desactiva las actualizaciones de ubicación de la aplicación.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">Ajustes del dispositivo</string>
     <string name="alertDialog_location_permission_negativeButton">Cancelar</string>
     <string name="progressDialog_gps_locate">Encontrar ubicación actual</string>
     <string name="load_progress">Cargando…</string>
@@ -111,19 +111,72 @@
     <string name="theme_transparent">Transparente</string>
     <string name="pref_title_theme">Tema</string>
     <string name="permission_location_need">Tiene que conceder permiso de localización</string>
-    <string name="app_name" tools:ignore="MissingTranslation"/>
-    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Optimización de la pila</string>
-    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">La aplicación va a pedir que la optimización de la batería esté apagado para que pueda actualizar el lugar, el tiempo o el seguimiento de la ubicación del accelerómetro.</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Su meteorología local</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Optimización de la batería</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">La aplicación va a pedir que la optimización de la batería esté apagada para que pueda actualizar la ubicación, la meteoroligía, o el seguimiento de ubicación por acelerómetro en segundo plano.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Continuar</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Cancelar</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Configuración de ubicación y permisos</string>
-    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">La aplicación nececita permiso para actualizar la ubicación por GPS.</string>
-    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Su OpenweathermapApiKey no está registrado.</string>
-    <string name="share_weather_title" tools:ignore="MissingTranslation">Compartir tiempo</string>
-    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Ciudad: %1$s 
-\nTemperatura: %2$s 
-\nDescripción: %3$s 
-\nViento: %4$s %5$s 
-\nAmanecer: %6$s 
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">La aplicación necesita permisos para actualizar la ubicación usando el GPS.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Tu llave de la Api de Openweathermap no está registrada.</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Compartir la meteorología</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Ciudad: %1$s
+\nTemperatura: %2$s
+\nDescripción: %3$s
+\nViento: %4$s %5$s
+\nAmanecer: %6$s
 \nAtardecer: %7$s</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">La aplicación necesita permisos para actualizar la ubicación a través del Wi-Fi y redes GSM.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">El permiso para leer la información del dispositivo es necesario para actualizar la ubicación utilizando redes Wi-Fi y GSM. Se obtiene información sobre las estaciones base GSM a las que está conectado el dispositivo.</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Solicitud de permisos</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">No se encontró la ubicación</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Aún no se han concedido permisos - toca el símbolo de ubicación en la aplicación</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Cerrar</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Siguiente</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Anterior</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Terminar</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Guía de configuración inicial</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation"> Activity names </string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Actualizar la configuración de ubicación</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Opción de fuente de ubicación</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation"> Activity names </string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Ubicación y fuente de dirección</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Opción de estrategia de activación</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Algunos modelos de teléfonos no reportan correctamente las celdas conectadas a menos que la pantalla esté encendida. La opción preferida (con la pantalla activada) tiene el inconveniente de que el teléfono enciende la pantalla durante varios segundos. Esto tiene un pequeño impacto en la duración de la batería. Empiece con él, intente apagarlo y vea si la ubicación aún se actualiza.</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Estrategia de activación</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Opción de dirección resuelta en la caché</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Puede ahorrar tráfico de red almacenando en caché las ubicaciones encontradas. Las ubicaciones se almacenan en la aplicación. No se envían ni se almacenan en otros lugares de la red.</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Dirección resuelta en la caché</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Felicidades</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">El acceso expiró. Por favor, actualizar la aplicación.</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">La aplicación de comunicación no se encuentra</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Tu meteorología local</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Notificaciones sobre tu meteorología local</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Viento</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Lluvia</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Nieve</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Presión</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">No puedes tener más de %1$d ubicaciones por el momento.</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Traducciones de texto e indicaciones de voz</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Esta aplicación tiene la función de salida de voz. Para habilitar esta función, necesita un sistema TTS (Text-to-speech) instalado y configurar la salida de voz según la configuración de la aplicación. Tenga en cuenta, por favor, que las traducciones de texto, así como los comandos de voz son traducidos por voluntarios mediante el servicio https://hosted.weblate.org/projects/your-local-weather También puede establecer sus propias órdenes de voz mediante la configuración de la aplicación. Los desarrolladores de esta aplicación no garantizan la calidad y exactitud de las traducciones, así como lo que dice la aplicación - usted está aceptando esta declaración al usar esta aplicación.</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Con esto concluye la guía. Puede encontrar otros ajustes en el menú Configuración (por ejemplo, idioma, unidades, etc.).
+\nLa siguiente pantalla le explicará los permisos solicitados y le dará la opción de solicitarlos.
+\n 
+\nDisfruta de la aplicación.</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">General</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">La aplicación determina la ubicación usando la red celular (BTS), Wi-Fi, y si estos fallan; GPS para mostrar el clima local, a su vez obteniendo las coordenadas del servicio de localización de Mozilla. La aplicación necesita al menos: una estación base de red GSM o dos redes wifi accesibles o cualquier combinación de redes GSM y Wi-Fi. Utilizando el widget de tu teléfono o tableta, puedes ver tu ubicación y el tiempo actual en la pantalla principal. Las actualizaciones de ubicación pueden ser periódicas (por ejemplo, cada hora) o la aplicación puede utilizar el acelerómetro para detectar movimientos de mayor distancia que un valor. Llevado en el bolsillo, la distancia aumenta más rápidamente. Puede desactivar las actualizaciones de ubicación - sólo se actualiza el tiempo. La aplicación actualiza la ubicación y el tiempo en intervalos especificados. Por ejemplo, puede establecer el período de actualización en una hora en punto. El tiempo se actualiza inmediatamente después de la ubicación o cuando se enciende la pantalla, pero no más a menudo que una vez cada 15 minutos (y cuando el tiempo no se actualiza en los últimos 15 minutos). Esta información se utiliza para obtener las coordenadas de localización por el servicio de localización de Mozilla. La aplicación intenta utilizar el GPS cuando la localización no está disponible desde la red celular y las redes Wi-Fi. Las coordenadas de ubicación se utilizan para obtener la dirección por el servicio Nominatim. La dirección se utiliza en la aplicación o el widget. La aplicación utiliza el servicio OpenWeatherMap.org para obtener el tiempo actual.</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Aplicación principal</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">La aplicación principal contiene una visión general del tiempo actual. Puedes actualizar el tiempo usando el botón refrescar en el panel de aplicaciones o deslizándolo hacia abajo. Puede encontrar el botón de actualización de ubicación junto al botón de actualizar el tiempo. Este botón sólo está disponible cuando la ubicación 0 está habilitada (la ubicación 0 está destinada a la actualización automática de la ubicación).</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Puede encontrar el pronóstico del tiempo en la siguiente pantalla (seleccione la siguiente pantalla en el menú o deslice el dedo de izquierda a derecha). La previsión meteorológica se actualiza mediante el botón de actualización o cuando se entra en la pantalla (pero no más de una actualización por hora).</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">La tercera pantalla contiene el pronóstico del tiempo mostrado en forma de gráficos.</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Widgets</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">La aplicación tiene tres widgets disponibles, que contienen algunos valores comunes del tiempo actual (por ejemplo, la temperatura). Algunos valores son exclusivos del widget específico (por ejemplo, puesta del sol). Hay un momento de la última actualización en la esquina derecha de cada widget. Puede ver lo que se ha actualizado la última vez (cuando ha habilitado esta opción en el menú de configuración). Puede encontrar el botón de actualización junto a la última hora actualizada. Al pulsar este botón, el tiempo (y la ubicación cuando se selecciona la opción de ubicación de actualización) se actualiza incondicionalmente. La última opción en los widgets es cambiar de ubicación - cuando se presiona en el texto de ubicación actual la ubicación cambia a la siguiente.</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Configuración general</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Esta opción tiene influencia en toda la aplicación.</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Junto al botón de actualizar ubicación, hay un botón de gestión de ubicación (icono de lupa). Puede administrar las ubicaciones disponibles en la aplicación y los widgets. Hay una ubicación (Ubicación 0) disponible de forma predeterminada: está destinada a las actualizaciones automáticas de ubicación. Puede encontrar el botón de habilitar/deshabilitar cuando desliza esta ubicación hacia la izquierda. También puede añadir la ubicación manualmente. Al hacer clic en el botón +, puede seleccionar su ubicación en el mapa. También puede eliminar la ubicación con el botón Eliminar, al que se accede cuando desliza la ubicación hacia la izquierda.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> Activity names </string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"> Activity names </string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"> Activity names </string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation"> Activity names </string>
 </resources>

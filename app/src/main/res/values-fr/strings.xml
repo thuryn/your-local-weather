@@ -103,7 +103,7 @@
     <string name="pref_language_default">Langue par défaut du système</string>
     <string name="pref_title_language">Langue</string>
     <string name="preference_title_category_display">Affichage</string>
-    <string name="app_name" tools:ignore="MissingTranslation">Vos prévisions</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Votre météo locale</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Paramètres de Localisation et de Permissions</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">L\'application nécessite une autorisation pour mettre à jour la localisation par GPS.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">L\'application nécessite une autorisation pour mettre à jour la localisation par réseaux Wi-Fi et GSM.</string>
@@ -497,4 +497,9 @@
     <string name="weather_condition_description_803" tools:ignore="MissingTranslation">nuages fragmentés</string>
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">ciel couvert</string>
     <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Beaufort</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">Point de rosée : %s</string>
+    <string name="label_dew_point" tools:ignore="MissingTranslation">Point de rosée</string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Bouton de réglage des détails du widget de météo</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamien</string>
+    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengali (Bangladesh)</string>
 </resources>

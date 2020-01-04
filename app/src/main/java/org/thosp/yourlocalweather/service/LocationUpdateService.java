@@ -376,7 +376,8 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
         processLocationAndWeatherUpdate(null);
     }
 
-    public void startLocationAndWeatherUpdate() {
+    public void startLocationAndWeatherUpdate(boolean forceUpdate) {
+        this.forceUpdate = forceUpdate;
         processLocationAndWeatherUpdate(null);
     }
 
@@ -410,7 +411,7 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                     AppWakeUpManager.SOURCE_LOCATION_UPDATE
             );
             if ("location_geocoder_local".equals(geocoder)) {
-                updateNetworkLocation(false, intent, 0);
+                updateNetworkLocation(false, intent, 0, forceUpdate);
             } else {
                 detectLocation();
             }
@@ -458,9 +459,16 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
     }
 
     public boolean updateNetworkLocation(boolean bylastLocationOnly,
+                                         Intent originalIntent,
+                                         Integer attempts) {
+        return updateNetworkLocation(bylastLocationOnly, originalIntent, attempts, false);
+    }
+
+    public boolean updateNetworkLocation(boolean bylastLocationOnly,
                                       Intent originalIntent,
-                                      Integer attempts) {
-        forceUpdate = false;
+                                      Integer attempts,
+                                      boolean forceUpdate) {
+        this.forceUpdate = forceUpdate;
         updateLocationInProcess = true;
         startRefreshRotation("updateNetworkLocation", 3);
         boolean permissionsGranted = PermissionUtil.checkPermissionsAndSettings(this);
@@ -510,8 +518,8 @@ public class LocationUpdateService extends AbstractCommonService implements Loca
                 return false;
             }
             timerNetworkAvailabilityHandler.removeCallbacksAndMessages(null);
-            locationsDbHelper.updateLocationSource(currentLocationForSensorEvent.getId(),
-                    getString(R.string.location_weather_update_status_update_started));
+            /*locationsDbHelper.updateLocationSource(currentLocationForSensorEvent.getId(),
+                    getString(R.string.location_weather_update_status_update_started));*/
         } catch (Exception e) {
             appendLog(this, TAG, "Exception occured during database update", e);
             updateLocationInProcess = false;

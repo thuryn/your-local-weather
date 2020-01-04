@@ -121,8 +121,8 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             }
             for (int widgetIditer: widgetIds) {
                 performActionOnReceiveForWidget(context, intent, widgetIditer);
-                return;
             }
+            return;
         }
         performActionOnReceiveForWidget(context, intent, widgetId);
     }
@@ -631,7 +631,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             while ((bindedServiceAction = locationUpdateServiceActions.poll()) != null) {
                 switch (bindedServiceAction) {
                     case START_LOCATION_AND_WEATHER_UPDATE:
-                        locationUpdateService.startLocationAndWeatherUpdate();
+                        locationUpdateService.startLocationAndWeatherUpdate(true);
                         break;
                 }
             }

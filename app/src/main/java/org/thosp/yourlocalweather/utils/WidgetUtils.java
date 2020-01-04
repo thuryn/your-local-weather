@@ -7,9 +7,6 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.os.PowerManager;
 import android.os.SystemClock;
 import android.view.View;
@@ -22,10 +19,8 @@ import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
-import org.thosp.yourlocalweather.model.WeatherCondition;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
-import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetProvider;
 import org.thosp.yourlocalweather.widget.ExtLocationWithForecastGraphWidgetProvider;
 import org.thosp.yourlocalweather.widget.ExtLocationWithForecastWidgetProvider;
@@ -36,13 +31,9 @@ import org.thosp.yourlocalweather.widget.WeatherForecastWidgetProvider;
 import org.thosp.yourlocalweather.widget.WeatherGraphWidgetProvider;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Set;
 
 public class WidgetUtils {
@@ -237,6 +228,60 @@ public class WidgetUtils {
             int forecast_5_widget_icon,
             int forecast_5_widget_day,
             int forecast_5_widget_temperatures) {
+        return updateWeatherForecast(
+                context,
+                locationId,
+                AppPreference.getTextColor(context),
+                widgetId,
+                remoteViews,
+                forecast_1_widget_day_layout,
+                forecast_1_widget_icon,
+                forecast_1_widget_day,
+                forecast_1_widget_temperatures,
+                forecast_2_widget_day_layout,
+                forecast_2_widget_icon,
+                forecast_2_widget_day,
+                forecast_2_widget_temperatures,
+                forecast_3_widget_day_layout,
+                forecast_3_widget_icon,
+                forecast_3_widget_day,
+                forecast_3_widget_temperatures,
+                forecast_4_widget_day_layout,
+                forecast_4_widget_icon,
+                forecast_4_widget_day,
+                forecast_4_widget_temperatures,
+                forecast_5_widget_day_layout,
+                forecast_5_widget_icon,
+                forecast_5_widget_day,
+                forecast_5_widget_temperatures);
+    }
+
+    public static WeatherForecastDbHelper.WeatherForecastRecord updateWeatherForecast(
+            Context context,
+            long locationId,
+            int fontColorId,
+            Integer widgetId,
+            RemoteViews remoteViews,
+            Integer forecast_1_widget_day_layout,
+            int forecast_1_widget_icon,
+            int forecast_1_widget_day,
+            int forecast_1_widget_temperatures,
+            Integer forecast_2_widget_day_layout,
+            int forecast_2_widget_icon,
+            int forecast_2_widget_day,
+            int forecast_2_widget_temperatures,
+            Integer forecast_3_widget_day_layout,
+            int forecast_3_widget_icon,
+            int forecast_3_widget_day,
+            int forecast_3_widget_temperatures,
+            Integer forecast_4_widget_day_layout,
+            int forecast_4_widget_icon,
+            int forecast_4_widget_day,
+            int forecast_4_widget_temperatures,
+            Integer forecast_5_widget_day_layout,
+            int forecast_5_widget_icon,
+            int forecast_5_widget_day,
+            int forecast_5_widget_temperatures) {
         final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
         final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
         Location location = locationsDbHelper.getLocationById(locationId);
@@ -265,6 +310,7 @@ public class WidgetUtils {
             return createForecastByHours(
                     context,
                     location,
+                    fontColorId,
                     weatherForecastRecord,
                     daysCount,
                     remoteViews,
@@ -292,6 +338,7 @@ public class WidgetUtils {
         } else {
             return createForecastByDays(
                     context,
+                    fontColorId,
                     weatherForecastRecord,
                     sdfDayOfWeek,
                     daysCount,
@@ -321,6 +368,7 @@ public class WidgetUtils {
 
     private static WeatherForecastDbHelper.WeatherForecastRecord createForecastByDays(
             Context context,
+            int fontColorId,
             WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord,
             SimpleDateFormat sdfDayOfWeek,
             Long daysCount,
@@ -346,178 +394,72 @@ public class WidgetUtils {
             int forecast_5_widget_day,
             int forecast_5_widget_temperatures
     ) {
-        Integer firstDayOfYear = null;
-        Map<Integer, List<DetailedWeatherForecast>> weatherList = new HashMap<>();
-        Calendar forecastCalendar = Calendar.getInstance();
-        int initialYearForTheList = forecastCalendar.get(Calendar.YEAR);
-        for (DetailedWeatherForecast detailedWeatherForecast : weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
-            forecastCalendar.setTimeInMillis(detailedWeatherForecast.getDateTime() * 1000);
-            int forecastDay = forecastCalendar.get(Calendar.DAY_OF_YEAR);
-            if (firstDayOfYear == null) {
-                firstDayOfYear = forecastDay;
-            }
-            if (!weatherList.keySet().contains(forecastDay)) {
-                List<DetailedWeatherForecast> dayForecastList = new ArrayList<>();
-                weatherList.put(forecastDay, dayForecastList);
-            }
-            //appendLog(context, TAG, "preLoadWeather:forecastDay=" + forecastDay + ":detailedWeatherForecast=" + detailedWeatherForecast);
-            weatherList.get(forecastDay).add(detailedWeatherForecast);
-        }
-        int dayCounter = 0;
-        int daysInList = firstDayOfYear + weatherList.keySet().size();
-        for (int dayInYear = firstDayOfYear; dayInYear < daysInList; dayInYear++) {
-            int dayInYearForList;
-            int yearForList;
-            if (dayInYear > 365) {
-                dayInYearForList = dayInYear - 365;
-                yearForList = initialYearForTheList + 1;
-            } else {
-                dayInYearForList = dayInYear;
-                yearForList = initialYearForTheList;
-            }
-            if ((weatherList.get(dayInYearForList) == null) || (weatherList.get(dayInYearForList).size() < 3)) {
-                continue;
-            }
-            dayCounter++;
-            Map<Integer, Integer> weatherIdsInDay = new HashMap<>();
-            for (DetailedWeatherForecast weatherForecastForDay : weatherList.get(dayInYearForList)) {
-                WeatherCondition weatherCondition = weatherForecastForDay.getFirstWeatherCondition();
-                /*appendLog(context, TAG, "preLoadWeather:dayInYear=" + dayInYearForList + ":dayCounter=" + dayCounter +
-                        ":weatherCondition.getWeatherId()=" + weatherCondition.getWeatherId() +
-                        ":weatherIdsInDay.get(weatherCondition.getWeatherId())=" + weatherIdsInDay.get(weatherCondition.getWeatherId()));*/
-                if (weatherIdsInDay.get(weatherCondition.getWeatherId()) == null) {
-                    weatherIdsInDay.put(weatherCondition.getWeatherId(), 1);
-                } else {
-                    weatherIdsInDay.put(weatherCondition.getWeatherId(), 1 + weatherIdsInDay.get(weatherCondition.getWeatherId()));
-                }
-            }
-            Integer weatherIdForTheDay = 0;
-            int maxIconOccurrence = 0;
-            for (Integer weatherId : weatherIdsInDay.keySet()) {
-                int iconCount = weatherIdsInDay.get(weatherId);
-                if (iconCount > maxIconOccurrence) {
-                    weatherIdForTheDay = weatherId;
-                    maxIconOccurrence = iconCount;
-                }
-            }
-            String iconId = null;
-            double maxTemp = Double.MIN_VALUE;
-            double minTemp = Double.MAX_VALUE;
-            double maxWind = 0;
-            for (DetailedWeatherForecast weatherForecastForDay : weatherList.get(dayInYearForList)) {
-                WeatherCondition weatherCondition = weatherForecastForDay.getFirstWeatherCondition();
-                /*appendLog(context, TAG, "preLoadWeather:weatherIdForTheDay=" + weatherIdForTheDay +
-                        ":weatherForecastForDay.getTemperature()=" + weatherForecastForDay.getTemperature());*/
-                if (weatherCondition.getWeatherId().equals(weatherIdForTheDay)) {
-                    iconId = weatherCondition.getIcon();
-                }
-                double currentTemp = weatherForecastForDay.getTemperature();
-                if (maxTemp < currentTemp) {
-                    maxTemp = currentTemp;
-                }
-                if (minTemp > currentTemp) {
-                    minTemp = currentTemp;
-                }
-                if (maxWind < weatherForecastForDay.getWindSpeed()) {
-                    maxWind = weatherForecastForDay.getWindSpeed();
-                }
-            }
-            maxTemp = TemperatureUtil.getTemperatureInPreferredUnit(context, maxTemp);
-            minTemp = TemperatureUtil.getTemperatureInPreferredUnit(context, minTemp);
-            switch (dayCounter) {
+        Set<ForecastUtil.WeatherForecastPerDay> countedForecast = ForecastUtil.calculateWeatherForDays(weatherForecastRecord);
+        for (ForecastUtil.WeatherForecastPerDay countedForecastForDay: countedForecast) {
+            switch (countedForecastForDay.dayIndex) {
                 case 1:
                     setForecastDayInfo(
                             context,
-                            dayCounter,
+                            countedForecastForDay,
+                            fontColorId,
                             daysCount,
                             remoteViews,
                             forecast_1_widget_day_layout,
                             forecast_1_widget_icon,
-                            weatherIdForTheDay,
                             forecast_1_widget_day,
                             forecast_1_widget_temperatures,
-                            iconId,
-                            dayInYearForList,
-                            yearForList,
-                            maxTemp,
-                            minTemp,
-                            maxWind,
                             sdfDayOfWeek);
                     break;
                 case 2:
                     setForecastDayInfo(
                             context,
-                            dayCounter,
+                            countedForecastForDay,
+                            fontColorId,
                             daysCount,
                             remoteViews,
                             forecast_2_widget_day_layout,
                             forecast_2_widget_icon,
-                            weatherIdForTheDay,
                             forecast_2_widget_day,
                             forecast_2_widget_temperatures,
-                            iconId,
-                            dayInYearForList,
-                            yearForList,
-                            maxTemp,
-                            minTemp,
-                            maxWind,
                             sdfDayOfWeek);
                     break;
                 case 3:
                     setForecastDayInfo(
                             context,
-                            dayCounter,
+                            countedForecastForDay,
+                            fontColorId,
                             daysCount,
                             remoteViews,
                             forecast_3_widget_day_layout,
                             forecast_3_widget_icon,
-                            weatherIdForTheDay,
                             forecast_3_widget_day,
                             forecast_3_widget_temperatures,
-                            iconId,
-                            dayInYearForList,
-                            yearForList,
-                            maxTemp,
-                            minTemp,
-                            maxWind,
                             sdfDayOfWeek);
                     break;
                 case 4:
                     setForecastDayInfo(
                             context,
-                            dayCounter,
+                            countedForecastForDay,
+                            fontColorId,
                             daysCount,
                             remoteViews,
                             forecast_4_widget_day_layout,
                             forecast_4_widget_icon,
-                            weatherIdForTheDay,
                             forecast_4_widget_day,
                             forecast_4_widget_temperatures,
-                            iconId,
-                            dayInYearForList,
-                            yearForList,
-                            maxTemp,
-                            minTemp,
-                            maxWind,
                             sdfDayOfWeek);
                     break;
                 case 5:
                     setForecastDayInfo(
                             context,
-                            dayCounter,
+                            countedForecastForDay,
+                            fontColorId,
                             daysCount,
                             remoteViews,
                             forecast_5_widget_day_layout,
                             forecast_5_widget_icon,
-                            weatherIdForTheDay,
                             forecast_5_widget_day,
                             forecast_5_widget_temperatures,
-                            iconId,
-                            dayInYearForList,
-                            yearForList,
-                            maxTemp,
-                            minTemp,
-                            maxWind,
                             sdfDayOfWeek);
                     break;
             }
@@ -528,6 +470,7 @@ public class WidgetUtils {
     private static WeatherForecastDbHelper.WeatherForecastRecord createForecastByHours(
             Context context,
             Location location,
+            int fontColorId,
             WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord,
             long hoursCount,
             RemoteViews remoteViews,
@@ -558,6 +501,7 @@ public class WidgetUtils {
                 case 1:
                     setForecastHourInfo(
                             context,
+                            fontColorId,
                             hourCounter,
                             hoursCount,
                             remoteViews,
@@ -576,6 +520,7 @@ public class WidgetUtils {
                 case 2:
                     setForecastHourInfo(
                             context,
+                            fontColorId,
                             hourCounter,
                             hoursCount,
                             remoteViews,
@@ -594,6 +539,7 @@ public class WidgetUtils {
                 case 3:
                     setForecastHourInfo(
                             context,
+                            fontColorId,
                             hourCounter,
                             hoursCount,
                             remoteViews,
@@ -612,6 +558,7 @@ public class WidgetUtils {
                 case 4:
                     setForecastHourInfo(
                             context,
+                            fontColorId,
                             hourCounter,
                             hoursCount,
                             remoteViews,
@@ -630,6 +577,7 @@ public class WidgetUtils {
                 case 5:
                     setForecastHourInfo(
                             context,
+                            fontColorId,
                             hourCounter,
                             hoursCount,
                             remoteViews,
@@ -652,6 +600,7 @@ public class WidgetUtils {
 
     private static void setForecastHourInfo(
             Context context,
+            int fontColorId,
             int dayCounter,
             long daysCount,
             RemoteViews remoteViews,
@@ -685,7 +634,8 @@ public class WidgetUtils {
                 weatherIdForTheDay,
                 iconId,
                 maxTemp,
-                maxWind);
+                maxWind,
+                fontColorId);
         remoteViews.setTextViewText(
                 weatherIdForDayName,
                 AppPreference.getLocalizedHour(context, forecastCalendar.getTime(), location.getLocale()));
@@ -699,26 +649,20 @@ public class WidgetUtils {
 
     private static void setForecastDayInfo(
             Context context,
-            int dayCounter,
+            ForecastUtil.WeatherForecastPerDay countedForecastForDay,
+            int fontColorId,
             long daysCount,
             RemoteViews remoteViews,
             Integer dayViewId,
             int forecastIconId,
-            int weatherIdForTheDay,
             int weatherIdForDayName,
             int weatherIdForTemperatures,
-            String iconId,
-            int dayInYearForList,
-            int yearForList,
-            double maxTemp,
-            double minTemp,
-            double maxWind,
             SimpleDateFormat sdfDayOfWeek) {
 
         Calendar forecastCalendar = Calendar.getInstance();
 
         if (dayViewId != null) {
-            if (dayCounter > daysCount) {
+            if (countedForecastForDay.dayIndex > daysCount) {
                 remoteViews.setViewVisibility(dayViewId, View.GONE);
                 return;
             } else {
@@ -730,18 +674,22 @@ public class WidgetUtils {
                 remoteViews,
                 context,
                 forecastIconId,
-                weatherIdForTheDay,
-                iconId,
-                maxTemp,
-                maxWind);
-        forecastCalendar.set(Calendar.DAY_OF_YEAR, dayInYearForList);
-        forecastCalendar.set(Calendar.YEAR, yearForList);
+                countedForecastForDay.weatherIds.mainWeatherId,
+                countedForecastForDay.iconId,
+                countedForecastForDay.weatherMaxMinForDay.maxTemp,
+                countedForecastForDay.weatherMaxMinForDay.maxWind,
+                fontColorId);
+        forecastCalendar.set(Calendar.DAY_OF_YEAR, countedForecastForDay.dayInYear);
+        forecastCalendar.set(Calendar.YEAR, countedForecastForDay.year);
         remoteViews.setTextViewText(
                 weatherIdForDayName,
                 sdfDayOfWeek.format(forecastCalendar.getTime()));
         remoteViews.setTextViewText(
                 weatherIdForTemperatures,
-                Math.round(minTemp) + "/" + Math.round(maxTemp) + TemperatureUtil.getTemperatureUnit(context));
+                Math.round(TemperatureUtil.getTemperatureInPreferredUnit(context, countedForecastForDay.weatherMaxMinForDay.minTemp)) +
+                        "/" +
+                        Math.round(TemperatureUtil.getTemperatureInPreferredUnit(context, countedForecastForDay.weatherMaxMinForDay.maxTemp)) +
+                        TemperatureUtil.getTemperatureUnit(context));
     }
 
     public static Set<Integer> getCurrentWeatherDetailsFromSettings(

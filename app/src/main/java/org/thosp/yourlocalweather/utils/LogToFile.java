@@ -24,6 +24,7 @@ import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.Cell;
+import org.thosp.yourlocalweather.service.WeatherByVoiceRequestDataHolder;
 import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 
 import java.io.BufferedWriter;
@@ -207,6 +208,14 @@ public class LogToFile {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null", text2, String.valueOf(value2));
+    }
+
+    public static void appendLog(Context context, String tag, String text1, Long value1, Long value2, double value3, double value4) {
+        checkPreferences(context);
+        if (!logToFileEnabled || (logFilePathname == null)) {
+            return;
+        }
+        appendLog(context, tag, text1 + ":" + value1 + ":" + value2 + ":" + value3 + ":" + value4);
     }
 
     public static void appendLog(Context context, String tag, String text1, int value1, String text2, long value2, String text3, long value3, String text4, long value4) {
@@ -394,6 +403,14 @@ public class LogToFile {
     }
 
     public static void appendLog(Context context, String tag, String text1, int value1, String text2, WeatherRequestDataHolder value2) {
+        checkPreferences(context);
+        if (!logToFileEnabled || (logFilePathname == null)) {
+            return;
+        }
+        appendLog(context, tag, text1, String.valueOf(value1), text2, (value2 != null)? value2.toString() : "null");
+    }
+
+    public static void appendLog(Context context, String tag, String text1, int value1, String text2, WeatherByVoiceRequestDataHolder value2) {
         checkPreferences(context);
         if (!logToFileEnabled || (logFilePathname == null)) {
             return;

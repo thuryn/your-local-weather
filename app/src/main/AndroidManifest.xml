@@ -4,6 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.thosp.yourlocalweather">
 
+    <uses-feature android:name="android.hardware.bluetooth" android:required="false" />
+
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
@@ -17,6 +19,8 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
 
     <application
         android:allowBackup="true"
@@ -61,6 +65,30 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
+        </activity>
+        <activity
+            android:name=".VoiceSettingsActivity"
+            android:label="@string/preference_title_tts"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <activity
+            android:name=".VoiceLanguageOptionsActivity"
+            android:label="@string/preference_title_tts_lang"
+            android:parentActivityName=".VoiceSettingsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".VoiceSettingsActivity"/>
+        </activity>
+        <activity
+            android:name=".AddVoiceSettingActivity"
+            android:label="@string/preference_title_add_tts"
+            android:parentActivityName=".VoiceSettingsActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".VoiceSettingsActivity"/>
         </activity>
         <activity
             android:name=".WeatherForecastActivity"
@@ -241,6 +269,14 @@
                 android:resource="@xml/widget_provider_ext_loc_forecast_graph"/>
         </receiver>
 
+        <receiver android:name=".service.BluetoothEventsReceiver">
+            <intent-filter>
+		        <action android:name="android.bluetooth.device.action.ACL_CONNECTED" />
+                <action android:name="android.bluetooth.device.action.ACL_DISCONNECTED" />
+                <action android:name="android.bluetooth.device.action.ACL_DISCONNECT_REQUESTED" />
+            </intent-filter>
+        </receiver>
+
         <service
             android:name=".service.WeatherForecastResendJob"
             android:label="Weather forecast retry job"
@@ -280,6 +316,12 @@
             android:name=".service.AppWakeUpManager" />
         <service
             android:name=".service.CurrentWeatherService" />
+        <service
+            android:name=".service.WeatherByVoiceService" >
+            <intent-filter>
+                <action android:name="android.intent.action.SAY_WEATHER" />
+            </intent-filter>
+        </service>
         <service
             android:name=".service.ForecastWeatherService" />
         <service android:name=".service.AppAlarmService" >

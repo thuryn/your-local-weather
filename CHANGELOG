@@ -1,3 +1,15 @@
+v5.1.2
+Fixed calculation of the max temperature when all values are negative, fixed days calculation when a year ends
+
+v5.1.1
+Added better handling of initialization of TTS service, added indonesian language into list of available languages, added checks for service unbinding
+
+v5.1.0
+Added voice output with one day forecast; fixed sharing a location when no address is present
+
+v5.0.0
+Added voice output for current weather, several small fixies
+
 v4.7.9
 Added dew point, added possibility to set values visible in widget, Fixed location switch button in the main app, fix city name when sharing the weather, add check for notification settings, translations
 

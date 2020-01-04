@@ -4,22 +4,32 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothProfile;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.media.AudioManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.os.Messenger;
+import android.os.RemoteException;
 import android.os.SystemClock;
+import android.preference.PreferenceManager;
+import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.json.JSONException;
 import org.thosp.yourlocalweather.ConnectionDetector;
+import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.WeatherJSONParser;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
@@ -29,13 +39,20 @@ import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
+import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
+import org.thosp.yourlocalweather.utils.WindWithUnit;
 import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.net.MalformedURLException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.Queue;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -56,6 +73,10 @@ public class CurrentWeatherService extends AbstractCommonService {
     private static volatile boolean gettingWeatherStarted;
     private static final Queue<WeatherRequestDataHolder> currentWeatherUpdateMessages = new LinkedList<>();
     final Messenger messenger = new Messenger(new CurrentweatherMessageHandler());
+
+    private Messenger weatherByVoiceService;
+    private Lock weatherByVoiceServiceLock = new ReentrantLock();
+    private Queue<Message> weatherByvOiceUnsentMessages = new LinkedList<>();
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -133,6 +154,7 @@ public class CurrentWeatherService extends AbstractCommonService {
 
     @Override
     public boolean onUnbind(Intent intent) {
+        unbindWeatherByVoiceService();
         return false;
     }
 
@@ -368,11 +390,11 @@ public class CurrentWeatherService extends AbstractCommonService {
             if (!currentWeatherUpdateMessages.isEmpty()) {
                 resendTheIntentInSeveralSeconds(5);
             }
+            WidgetUtils.updateWidgets(getBaseContext());
             if (WidgetRefreshIconService.isRotationActive) {
                 return;
             }
             sendMessageToReconciliationDbService(false);
-            WidgetUtils.updateWidgets(getBaseContext());
         } catch (Throwable exception) {
             appendLog(context, TAG, "Exception occured when starting the service:", exception);
         }
@@ -425,6 +447,8 @@ public class CurrentWeatherService extends AbstractCommonService {
         long now = System.currentTimeMillis();
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
         currentWeatherDbHelper.saveWeather(locationId, now, weather);
+
+        sendMessageToWeatherByVoiceService(currentLocation, weather, now);
         locationsDbHelper.updateLastUpdatedAndLocationSource(locationId, now, locationSource);
         sendResult(ACTION_WEATHER_UPDATE_OK, context, locationId);
     }
@@ -487,4 +511,73 @@ public class CurrentWeatherService extends AbstractCommonService {
             }
         }
     }
+
+    protected void sendMessageToWeatherByVoiceService(Location location,
+                                                      Weather weather,
+                                                      long now) {
+        weatherByVoiceServiceLock.lock();
+        try {
+            Message msg = Message.obtain(
+                    null,
+                    WeatherByVoiceService.START_VOICE_WEATHER_UPDATED,
+                    new WeatherByVoiceRequestDataHolder(location, weather, now)
+            );
+            if (checkIfWeatherByVoiceServiceIsNotBound()) {
+                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
+                weatherByvOiceUnsentMessages.add(msg);
+                return;
+            }
+            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
+            weatherByVoiceService.send(msg);
+        } catch (RemoteException e) {
+            appendLog(getBaseContext(), TAG, e.getMessage(), e);
+        } finally {
+            weatherByVoiceServiceLock.unlock();
+        }
+    }
+
+    private boolean checkIfWeatherByVoiceServiceIsNotBound() {
+        if (weatherByVoiceService != null) {
+            return false;
+        }
+        try {
+            bindWeatherByVoiceService();
+        } catch (Exception ie) {
+            appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
+        }
+        return (weatherByVoiceService == null);
+    }
+
+    private void bindWeatherByVoiceService() {
+        getApplicationContext().bindService(
+                new Intent(getApplicationContext(), WeatherByVoiceService.class),
+                weatherByVoiceServiceConnection,
+                Context.BIND_AUTO_CREATE);
+    }
+
+    private void unbindWeatherByVoiceService() {
+        if (weatherByVoiceService == null) {
+            return;
+        }
+        getApplicationContext().unbindService(weatherByVoiceServiceConnection);
+    }
+
+    private ServiceConnection weatherByVoiceServiceConnection = new ServiceConnection() {
+        public void onServiceConnected(ComponentName className, IBinder binderService) {
+            weatherByVoiceService = new Messenger(binderService);
+            weatherByVoiceServiceLock.lock();
+            try {
+                while (!weatherByvOiceUnsentMessages.isEmpty()) {
+                    weatherByVoiceService.send(weatherByvOiceUnsentMessages.poll());
+                }
+            } catch (RemoteException e) {
+                appendLog(getBaseContext(), TAG, e.getMessage(), e);
+            } finally {
+                weatherByVoiceServiceLock.unlock();
+            }
+        }
+        public void onServiceDisconnected(ComponentName className) {
+            weatherByVoiceService = null;
+        }
+    };
 }
