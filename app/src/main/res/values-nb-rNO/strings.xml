@@ -484,4 +484,14 @@
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamesisk</string>
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengali (Bangladesh)</string>
     <string name="voice_settings_language" tools:ignore="MissingTranslation">Språk</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Egendefinert</string>
+    <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">Si plassering</string>
+    <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">Si værbeskrivelse</string>
+    <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">Si temperatur</string>
+    <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">Si vind</string>
+    <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">Si:</string>
+    <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Tid</string>
+    <string name="pref_title_tts_trigger_bt_devices" tools:ignore="MissingTranslation">For enhet(er):</string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Blåtann</string>
+    <string name="pref_title_tts_say_forecast" tools:ignore="MissingTranslation">Si éndagsforvarsel</string>
 </resources>
