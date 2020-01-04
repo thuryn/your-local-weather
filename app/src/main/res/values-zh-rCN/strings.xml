@@ -550,4 +550,6 @@
     <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">傍晚</string>
     <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">罕见</string>
     <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">和</string>
+    <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">为语音选中的语言：</string>
+    <string name="pref_language_id" tools:ignore="MissingTranslation">印尼语</string>
 </resources>
