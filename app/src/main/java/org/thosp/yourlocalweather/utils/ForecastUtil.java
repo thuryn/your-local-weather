@@ -64,16 +64,16 @@ public class ForecastUtil {
                 dayInYearForList = dayInYear;
                 yearForList = initialYearForTheList;
             }
-            if ((weatherList.get(dayInYearForList) == null) || (weatherList.get(dayInYearForList).size() < 3)) {
+            if ((weatherList.get(dayInYear) == null) || (weatherList.get(dayInYear).size() < 3)) {
                 continue;
             }
             dayCounter++;
-            WeatherMaxMinForDay weatherMaxMinForDay = calculateWeatherMaxMinForDay(weatherList.get(dayInYearForList));
+            WeatherMaxMinForDay weatherMaxMinForDay = calculateWeatherMaxMinForDay(weatherList.get(dayInYear));
             if (weatherMaxMinForDay == null) {
                 continue;
             }
-            WeatherIdsForDay weatherIdsForTheDay = getWeatherIdForDay(weatherList.get(dayInYearForList), weatherMaxMinForDay);
-            result.add(new WeatherForecastPerDay(dayCounter, weatherIdsForTheDay, weatherMaxMinForDay, getWeatherIconId(weatherIdsForTheDay.mainWeatherId, weatherList.get(dayInYearForList)), dayInYearForList, yearForList));
+            WeatherIdsForDay weatherIdsForTheDay = getWeatherIdForDay(weatherList.get(dayInYear), weatherMaxMinForDay);
+            result.add(new WeatherForecastPerDay(dayCounter, weatherIdsForTheDay, weatherMaxMinForDay, getWeatherIconId(weatherIdsForTheDay.mainWeatherId, weatherList.get(dayInYear)), dayInYearForList, yearForList));
         }
         return result;
     }
@@ -81,9 +81,14 @@ public class ForecastUtil {
     public static Map<Integer, List<DetailedWeatherForecast>> createWeatherList(WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord) {
         Map<Integer, List<DetailedWeatherForecast>> weatherList = new HashMap<>();
         Calendar forecastCalendar = Calendar.getInstance();
+        int maxForecastDay = 0;
         for (DetailedWeatherForecast detailedWeatherForecast : weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
             forecastCalendar.setTimeInMillis(detailedWeatherForecast.getDateTime() * 1000);
             int forecastDay = forecastCalendar.get(Calendar.DAY_OF_YEAR);
+            if (maxForecastDay > forecastDay) {
+                forecastDay += 365;
+            }
+            maxForecastDay = forecastDay;
             if (!weatherList.keySet().contains(forecastDay)) {
                 List<DetailedWeatherForecast> dayForecastList = new ArrayList<>();
                 weatherList.put(forecastDay, dayForecastList);

@@ -43,11 +43,14 @@ public class ForecastUtilTest {
     }
 
     @Test
-    public void addition_isCorrect() throws Exception {
-        //when
+    public void calculateMaxTemperatureWhenAllValuesAreNegative() throws Exception {
+        //given
         createDetailedWeatherForecastForDayWithNegativeTemperatures();
 
+        //when
         Set<ForecastUtil.WeatherForecastPerDay> result = ForecastUtil.calculateWeatherForDays(weatherForecastRecord);
+
+        //then
         assertEquals(1, result.size());
         ForecastUtil.WeatherForecastPerDay firstDay = result.iterator().next();
         assertTrue(firstDay.weatherMaxMinForDay.maxTemp > firstDay.weatherMaxMinForDay.minTemp);
@@ -55,19 +58,49 @@ public class ForecastUtilTest {
         assertTrue(0 > firstDay.weatherMaxMinForDay.maxTemp);
     }
 
-    private void createDetailedWeatherForecastForDayWithNegativeTemperatures() {
-        for (int i = 1; i < 24; i += 3) {
-            double temp = -1.0 * i;
-            detailedWeatherForecasts.add(createDetailedWeatherForecast(i, temp));
-        }
+    @Test
+    public void createForecastFor5DaysAtTheEndOfYear() throws Exception {
+        //given
+        createDetailedWeatherForecastForDay();
+
+        //when
+        Set<ForecastUtil.WeatherForecastPerDay> result = ForecastUtil.calculateWeatherForDays(weatherForecastRecord);
+
+        //then
+        assertEquals(5, result.size());
     }
 
-    private DetailedWeatherForecast createDetailedWeatherForecast(int hour, double temp) {
+    private void createDetailedWeatherForecastForDay() {
         Calendar forecastDay = Calendar.getInstance();
-        forecastDay.set(Calendar.HOUR_OF_DAY, hour);
+        forecastDay.set(Calendar.YEAR, 2019);
+        forecastDay.set(Calendar.MONTH, 11);
+        forecastDay.set(Calendar.DAY_OF_MONTH, 28);
         forecastDay.set(Calendar.MINUTE, 0);
         forecastDay.set(Calendar.SECOND, 0);
         forecastDay.set(Calendar.MILLISECOND, 0);
+        for (int dayCounter = 0; dayCounter < 5; dayCounter++) {
+            for (int i = 1; i < 24; i += 3) {
+                double temp = -1.0 * i;
+                forecastDay.set(Calendar.HOUR_OF_DAY, i);
+                detailedWeatherForecasts.add(createDetailedWeatherForecast(forecastDay, temp));
+            }
+            forecastDay.add(Calendar.DAY_OF_YEAR, 1);
+        }
+    }
+
+    private void createDetailedWeatherForecastForDayWithNegativeTemperatures() {
+        Calendar forecastDay = Calendar.getInstance();
+        forecastDay.set(Calendar.MINUTE, 0);
+        forecastDay.set(Calendar.SECOND, 0);
+        forecastDay.set(Calendar.MILLISECOND, 0);
+        for (int i = 1; i < 24; i += 3) {
+            double temp = -1.0 * i;
+            forecastDay.set(Calendar.HOUR_OF_DAY, i);
+            detailedWeatherForecasts.add(createDetailedWeatherForecast(forecastDay, temp));
+        }
+    }
+
+    private DetailedWeatherForecast createDetailedWeatherForecast(Calendar forecastDay, double temp) {
         DetailedWeatherForecast detailedWeatherForecast = new DetailedWeatherForecast();
         detailedWeatherForecast.setDateTime(forecastDay.getTimeInMillis()/1000);
         detailedWeatherForecast.setTemperature(temp);
