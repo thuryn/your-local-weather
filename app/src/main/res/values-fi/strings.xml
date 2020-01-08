@@ -104,6 +104,16 @@
     <string name="weather_condition_description_601" tools:ignore="MissingTranslation">lumisade</string>
     <string name="weather_condition_description_602" tools:ignore="MissingTranslation">rankka lumisade</string>
     <string name="weather_condition_description_711" tools:ignore="MissingTranslation">savu</string>
-    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Akkuoptimisaatio</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Akun optimisointi</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Käyttöoikeus vanhentunut. Päivitä sovellus.</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Valmis</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Alkuasetukset</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Päivitä sijaintiasetus</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Sijainti ja osoitelähde</string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Käytä Geopaikannusta näytössä</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Juuri päivitetty arvo</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abbrev N↓, NE↙, …</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">sumu</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Näytä asetukset widgetissä</string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Widget-säätietojen asetuspainike</string>
 </resources>
