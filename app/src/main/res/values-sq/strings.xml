@@ -50,7 +50,7 @@
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Mundësi strategjie zgjimesh</string>
     <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Strategji zgjimi</string>
     <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Mundësi për Adresë të ftilluar nga fshehtina</string>
-    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Mund të kurseni trafik rrjeti duke ruajtur në fshehtinë vendondodhjet e gjetura. Vendndodhjet më pas ruhen në aplikacion. Ato nuk dërgohen apo depozitohet në vende të tjera në rrjet.</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Mund të kurseni përdorim të dhënash duke ruajtur në fshehtinë vendndodhjet e gjetura. Vendndodhjet më pas ruhen në aplikacion. Ato nuk dërgohen apo depozitohet në vende të tjera në rrjet.</string>
     <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Adresë e ftilluar nga fshehtina</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Përgëzime</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Kjo përmbyll udhërrëfyesin. Rregullime të tjera mund të gjeni te menuja Rregullime (për shembull gjuha, njësitë, etj.). 
@@ -62,7 +62,7 @@
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Skena e tretë përmban parashikimin e motit të shfaqur përmes grafikësh.</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">Widget-e</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Rregullime të përgjithshme</string>
-    <string name="help_page_3_content" tools:ignore="MissingTranslation">Kjo mundësi ka ndikim mbi krejt aplikacionin.</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Këto mundësi kanë ndikim mbi krejt aplikacionin.</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
         <b>Temperaturë</b> - Mund të përzgjidhni njësi temperaturash, <b>Erë</b> - Mund të përzgjidhni njësi shpejtësie erërash dhe <b>Trysni</b> - Mund të përzgjidhni njësinë për trysninë. Vlerat rinjehsohen duke përdor këto mundësi.</string>
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">
@@ -191,7 +191,7 @@
     <string name="wakeupfull_label" tools:ignore="MissingTranslation">Zgjo ekranin</string>
     <string name="clear_cache_button" tools:ignore="MissingTranslation">Spastro fshehtinën</string>
     <string name="db_info" tools:ignore="MissingTranslation">Të dhëna rreth fshehtinës</string>
-    <string name="db_header" tools:ignore="MissingTranslation"/>
+    <string name="db_header" tools:ignore="MissingTranslation">Bazë të dhënash fshehtine adresash</string>
     <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Jetëgjatësi Vlerash Fsheftine</string>
     <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 orë</string>
     <string name="location_cache_24_label" tools:ignore="MissingTranslation">një ditë</string>
@@ -340,33 +340,31 @@
     <string name="weather_condition_description_803" tools:ignore="MissingTranslation">re fragmentare</string>
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">re të dendura</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Mund të zgjidhni metodën për vendndodhje - <i>Sistemi</i> një përdor shërbime Google për ta marrë vendndodhjen nga rrjete (rrjete celularë dhe Wi-Fi). Mundësia <i>MLS dhe Nominatim vendor</i> përdor shërbim lokalizimi të Mozilla-s për të marrë koordinata vendndodhjesh dhe shërbimin Nominatim për të marrë emra vendndodhjesh. Mundësia e dytë lyp leje për thirrje telefonike për të sjellë të dhëna rreth rrjetit celular. Mundësia e parapëlqyer është parapërzgjedhur.</string>
-    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Disa modele telefonash nuk raportojnë mbi celularë të lidhur, po qe se ekrani nuk është në punë. Mundësia e parapëlqyer (me ekranin në punë) ka mangësinë se telefoni e ndez ekranin për disa sekonda. Kjo ka një ndikim të vockël në kohëzgjatjen e baterisë. Fillojani me ekran të ndezur, dhe provoni ta fikni dhe shihni nëse vendndodhja ende përditësohet.</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Disa telefona nuk raportojnë mbi celularë të lidhur, po qe se ekrani nuk është në punë. Mundësia e parapëlqyer (me ekranin në punë) ka mangësinë se telefoni e ndez ekranin për disa sekonda. Kjo ka një ndikim të vockël në kohëzgjatjen e baterisë. Fillojani me ekran të ndezur, dhe provoni ta fikni dhe shihni nëse vendndodhja ende përditësohet.</string>
     <string name="help_page_general_content" tools:ignore="MissingTranslation">Aplikacioni e përcakton vendndodhjen duke përdorur rrjete celularësh (BTS), Wi-Fi dhe, nëse me këta s\\’arrihet gjë, GPS për të shfaqur motin vendor, duke i marrë kështu të dhënat nga shërbimi Mozilla i lokalizimit. Aplikacioni ka nevojë të paktën për: një stacion bazë të rrjetit GSM ose dy rrjete të kapshëm wifi ose çfarëdo kombinimi rrjetesh GSM dhe Wi-Fi. Duke përdorur widget-in në telefonin apo tabletin tuaj, mund të shihni në skenën kryesore vendndodhjen tuaj dhe motin atë çast. Përditësimet e vendndodhjes mund të jenë periodike, (p.sh., çdo orë) ose aplikacioni mund të përdorë akselerometrin për të pikasur zhvendosje në një distancë më të madhe se sa një vlerë e dhënë. Duke e mbajtur në xhep, distanca rritet më shpejt. Mund t’i çaktivizoni përditësimet e vendndodhjes - atëherë përditësohet vetëm moti. Aplikacioni përditëson vendndodhjen dhe motin në intervale të caktuar. Mundeni, për shembull, të caktoni si periudhë përditësimesh një orë fiks. Moti përditësohet menjëherë The weather is updated immediately after location is, ose kur ekrani është i ndezur - por jo më shpesh se një herë në 15 minuta (dhe kur moti s’është përditësuar gjatë 15 minutave të fundit). Këto të dhëna përdoren për të marrë koordinata vendndodhjesh nga shërbimi Mozilla i lokalizimit. Aplikacioni provon të përdorë GPS, kur vendndodhja s’merret dot nga rrjet celular dhe rrjete Wi-Fi. Koordinatat e vendndodhjes përdoren për të marrë adresë nga shërbimi Nominatim. Adresa përdoret te aplikacioni ose widget-i. Për të marrë motin e atëçastshëm, aplikacioni përdor shërbimin OpenWeatherMap.org.</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Aplikacioni bazë përmban një përmbledhje të motit atë çast. Motin mund ta përditësoni duke përdorur butonin e rifreskimit te paneli i aplikacionit ose duke e rrëshqitur poshtë. Butonin e përditësimit të vendndodhjes mund ta gjeni në krah të butonit të rifreskimit të motit. Ky buton është i përdorshëm vetëm kur vendndodhja 0 është e aktivizuar (vendndodhja 0 është e menduar për përditësim të vetvetishëm të vendndodhjes).</string>
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Në krah të butoni të përditësimit të vendndodhjes gjendet një buton administrimi vendndodhjesh (ikonë thjerrëze zmadhimi). Mund të administroni vendndodhjet e përdorura te aplikacione dhe te widget-e. Si parazgjedhje, ka të gatshme një vendndodhje (Vendndodhja 0) - kjo është menduar për përditësime automatike të vendndodhjes. Butonin aktivizoje/çaktivizoje mund ta shihni kur e shtyni majtas këtë vendndodhje. Vendndodhje mund të shtoni edhe dorazi. Kur klikoni mbi butonin +, mund të zgjidhni vendndodhjen në hartë. Mundeni edhe të fshini vendndodhje me butonin Fshije - që shfaqet kur e shtyni vendndodhjen majtas.</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Parashikimin e motit e gjeni në skenën pasuese (përzgjidhni në menu skenën pasuese ose rrëshqitni gishtin nga e majta në të djathtë). Parashikimi i motit përditësohet përmes butonit të përditësimeve ose kur hyni te skena (por jo më shumë se një përditësim në orë).</string>
-    <string name="help_page_2_content" tools:ignore="MissingTranslation">Aplikacioni ka tre widget-e, që përmbajnë disa parametra të rëndomtë të motit atë çast (për shembull, temperaturën). Disa parametra janë unikë për widget-in përkatës (për shembull, koha e perëndimit të diellit). Në çdo widget shfaqet koha e përditësimit të fundit, në cepin e djathtë. Mund të shihni se ç\\’u përditësua herën e fundit (kur e keni aktivizuar këtë mundësi te menuja e rregullimeve). Butonin e përditësimeve e gjeni në krah të kohës së përditësimit të fundit. Kur shtypni këtë buton, moti (dhe vendndodhja, kur është përzgjedhur mundësia e përditësimit të vendndodhjes) përditësohet domosdo. Mundësia e fundit te widgete-t është ndryshimi i vendndodhjes - kur shtypni mbi tekstin e vendndodhjes së atëçastme, vendndodhja kalohet te pasuesja.</string>
-    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation">
-        <b>Periudhë përditësimi për vendndodhjen (Vendndodhja 0)</b> - mund të caktoni periudhë përditësimesh për vendndodhjen 0 - për vendndodhjen 0 aplikacioni është i aftë të përditësojë vendndodhjen sipas rrjetesh celularësh, Wi-Fi dhe GPS. Kur përzgjidhni përditësim <i>Sipas akelerometri</i> aplikacioni përdor atë për të pikasur lëvizje. Prej këtej përllogaritet largësia. Kur mbërrihet në kufirin e largësisë, dhe nuk ndodh përditësim për 15 minuta, vendndodhja dhe moti atë çast përditësohen. Kur aplikacioni s\\’mund të sjellë dot vendndodhjen, mund të shihni te widget-i etiketën për vendndodhje të panjohur. Kur aplikacioni nuk ka të dhëna vendndodhjeje, do të riprovojë pas 5 minutash. Mund të përzgjidhni edhe përditësim vendndodhjeje bazuar në intervale kohore te <b>Periudhë përditësimi për motin (Vendndodhja 1,2,3…)</b> - ku mund të caktoni që moti të përditësohet për vendndodhje të pikasura dorazi.</string>
-    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Kur zgjidhni mundësinë <b>Aktivizo GPS-n kur të jetë e nevojshme</b>, aplikacioni provon ta gjejë vendndodhjen përmes rrjetesh celularësh ose wifi. Kur vendndodhja nuk gjendet dot përmes shërbimesh rrjeti, aplikacioni aktivizon GPS-në për disa sekonda që të marrë vendndodhjen.</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">Aplikacioni ka tre widget-e, që përmbajnë disa parametra të rëndomtë të motit atë çast (për shembull, temperaturën). Disa parametra janë unikë për widget-in përkatës (për shembull, koha e perëndimit të diellit). Në çdo <em>widget</em> shfaqet koha e përditësimit të fundit, në cepin e djathtë. Mund të shihni se ç\\’u përditësua që herën e fundit (kur e keni aktivizuar këtë mundësi te menuja e rregullimeve). Butonin e përditësimeve e gjeni në krah të kohës së përditësimit të fundit. Kur shtypni këtë buton, moti (dhe vendndodhja, kur është përzgjedhur mundësia e përditësimit të vendndodhjes) përditësohet domosdo. Mundësia e fundit te widgete-t është ndryshimi i vendndodhjes - kur shtypni mbi tekstin e vendndodhjes së atëçastme, vendndodhja kalohet te pasuesja.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"> <b>Periudhë përditësimi për vendndodhjen (Vendndodhja 0)</b> - mund të caktoni periudhë përditësimesh për vendndodhjen 0 - për vendndodhjen 0 aplikacioni është i aftë të përditësojë vendndodhjen sipas rrjetesh celularësh, Wi-Fi dhe GPS. Kur përzgjidhni përditësim <i>Sipas akelerometri</i> aplikacioni përdor atë për të pikasur lëvizje. Prej këtej përllogaritet largësia. Kur mbërrihet në kufirin e largësisë, dhe nuk ndodh përditësim për 15 minuta, vendndodhja dhe moti atë çast përditësohen. Kur aplikacioni s\\’mund të sjellë dot vendndodhjen tuaj, mund të shihni te widget-i etiketën për vendndodhje të panjohur. Kur aplikacioni nuk ka të dhëna vendndodhjeje, do të riprovojë pas 5 minutash. Mund të përzgjidhni edhe përditësim vendndodhjeje bazuar në intervale kohore te <b>Periudhë përditësimi për motin (Vendndodhja 1,2,3…)</b> - ku mund të caktoni që moti të përditësohet për vendndodhje të pikasura dorazi.</string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Kur zgjidhni mundësinë <b>Aktivizo GPS-n kur të jetë e nevojshme</b>, aplikacioni do të provojë ta gjejë vendndodhjen tuaj duke përdorur rrjete celularësh ose wifi. Kur vendndodhja nuk gjendet dot përmes shërbimesh rrjeti, aplikacioni aktivizon GPS-në për disa sekonda, që të marrë vendndodhjen.</string>
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">
         <b>Burim vendndodhjesh dhe adresash</b> 
 \nMund të përzgjidhni prej nga të marrë vendndodhje dhe adresa aplikacioni.</string>
-    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">
-        <b>MLS vendore dhe Nominatim</b> - Aplikacioni i merr vendndodhjen dhe koordinatat gjeografike prej shërbimeve Mozilla të lokalizimit. Shërbimet Nominatim sjellin adresën bazuar në këto koordinata. Mund të jepni ndihmesë për përmirësime të ardhshme të MLS-s duke instaluar Mozilla Stumbler (i gatshëm te https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler). Merrni të dhëna rreth stacionesh rrjeti të tanishëm aktivë dhe të passhëm prej rrjetit celular duke akorduar leje thirrjesh telefonike. Rrjetet Wi-Fi përreth jush përdoren për të hamendësuar më saktë vendndodhjen tuaj.</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"> <b>MLS vendore dhe Nominatim</b> - Aplikacioni i merr vendndodhjen dhe koordinatat gjeografike prej shërbimeve Mozilla të lokalizimit. Shërbimet Nominatim sjellin adresën bazuar në këto koordinata. Mund të jepni ndihmesë për përmirësime të ardhshme të MLS-s duke instaluar Mozilla Stumbler (i gatshëm te https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler). Merrni të dhëna rreth stacionesh rrjeti të tanishëm aktivë dhe të passhëm prej rrjetit celular duke i akorduar leje thirrjesh telefonike. Rrjetet Wi-Fi përreth jush përdoren për të hamendësuar më saktë vendndodhjen tuaj.</string>
     <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
         <b>Sistemi</b> - Aplikacioni e merr vendndodhjen dhe adresën prej shërbimeve të sistemit në Android (zakonisht nga shërbime Google për vendndodhje).</string>
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Këto mundësi menuje ujdisin <b>gjuhën</b>, <b>temën</b>e aplikacionit kryesor dhe <b>grupin e ikonave</b> të përdorura te aplikacioni dhe widget-et.</string>
     <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">
         <b>Njoftime</b> 
 \nKur përzgjidhni mundësinë e njoftimeve, aplikacioni e përditëson motin në mënyrë periodike. Moti atë çast mandej vendoset se zona e njoftimeve. Mundeni edhe të aktivizoni dridhjen - aplikacioni dridhet kur bëhet përditësim i motit.</string>
-    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">Për të kursyer trafik rrjeti dhe për të përshpejtuar përditësime të vendndodhjes, mund të aktivizoni <b>Ruaji vendndodhjet në fshehtinë</b>. Në këtë fshehtinë depozitohen koordinata gjeografike dhe një adresë. Aplikacionit i duhet të përdorë shërbim ftillimi rrjeti, pavarësisht nga ky rregullim. Por kërkesa për ftillim adrese Nominatim ndodh vetëm në rast se adresa nuk gjendet në fshehtinë. Kur aktivizoni mundësinë e ruajtjes së vendndodhjeve në fshehtinë, duhet të mësoheni me faktin që adresa që keni vizituar, depozitohet në aplikacion. Prej fshehtine nuk dërgohen të dhëna jashtë aplikacionit.</string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">Për të kursyer trafik rrjeti dhe për të përshpejtuar përditësime të vendndodhjes, mund të aktivizoni <b>Ruaji vendndodhjet në fshehtinë</b>. Në këtë fshehtinë depozitohen koordinata gjeografike dhe një adresë. Aplikacionit i duhet të përdorë shërbim ftillimi rrjeti, pavarësisht nga ky rregullim. Por kërkesa për ftillim adrese Nominatim ndodh vetëm në rast se adresa nuk gjendet në fshehtinë. Kur aktivizoni mundësinë e ruajtjes së vendndodhjeve në fshehtinë, adresa që keni vizituar, depozitohet në aplikacion. Prej fshehtine nuk dërgohen të dhëna jashtë aplikacionit.</string>
     <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Në krah të (kutizës) mundësisë së ruajtjes në fshehtinë të vendndodhjeve gjendet një rregullim për <b>Moshën e vlerave të ruajtura në fshehtinë</b>. Çdo adresë e depozituar ka një vulë kohore. Kur vula kohore është më e vjetër se vlera e caktuar për Moshën e vlera të ruajtura në fshehtinë, aplikacioni lidhet me Nominatim-in për të rifreskuar zërin përkatës.</string>
     <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Fshehtinën e adresave mund ta spastroni përmes butonit <b>Spastro fshehtinën</b>.</string>
     <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">Te ndarja <b>Të dhëna rreth fshehtinës</b> mund të shihni disa prej rreshtave me vlera të ruajtura në fshehtinë së fundi. Mund të shihni edhe numrin gjithsej të rreshtave.</string>
-    <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Kur i vini shenjë mundësisë <b>Shfaq etiketa në widget</b>, mund të shihni etiketa, në vend se ikona për vlera kushtesh moti.</string>
+    <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Kur aktivizoni mundësisë <b>Shfaq etiketa në widget</b>, mund të shihni etiketa, në vend se ikona për vlera kushtesh moti.</string>
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Sfondin e widget-eve mund ta kontrolloni përmes <b>mundësisë Temë widget-i</b>.</string>
-    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">Mundësia <b>Strategji zgjimi</b> jepet për të zgjidhur sendërtim me të meta të shërbimit Android nga tregtues të ndryshëm. Kur përzgjidhni mundësinë <i>Pa zgjim</i> dhe vendndodhja përditësohet si duhet, keni sendërtimin e saktë. Kur vendndodhja nuk përditësohet saktë, mund të provoni <i>Zgjo vetëm CPU-në</i>. Me këtë mundësi bëhet zgjimi i CPU-së dhe provohet të lexohet gjendja e rrjetit celular dhe wifi. Mundësia e fundit, <i>Zgjoje me shfaqje</i>, është mundësia me të cilën hapet ekrani për disa sekonda gjatë përditësimit të vendndodhjes. Në disa telefona Android, kjo është e vetmja mundësi për të marrë të dhëna të sakta rreth rrjetesh celularë dhe wifi. Kjo sjell harxhimin e ca baterie - por ndikimi në jetëgjatësinë e baterisë është përnjëmend i vogël.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">Mundësia <b>Strategji zgjimi</b> jepet për të zgjidhur sendërtim me të meta të shërbimit Android nga tregtues të ndryshëm. Kur përzgjidhni <i>Pa zgjim</i> dhe vendndodhja përditësohet si duhet, keni sendërtimin e saktë. Kur vendndodhja nuk përditësohet saktë, mund të provoni <i>Zgjo vetëm CPU-në</i>. Me këtë mundësi bëhet zgjimi i CPU-së dhe provohet të lexohet gjendja e rrjetit celular dhe wifi. Mundësia e fundit, <i>Zgjoje me shfaqje</i>, hap ekranin për disa sekonda gjatë përditësimit të vendndodhjes. Në disa telefona Android, kjo është e vetmja mundësi për të marrë të dhëna të sakta rreth rrjetesh celularë dhe wifi. Kjo sjell harxhimin e ca baterie - por ndikimi në jetëgjatësinë e baterisë do të duhej të ishte i vogël.</string>
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Kur kryhet përditësim i vendndodhjesh dhe motit atë çast, mund të shihni gjendjen e përditësimit në krah përditësimit të kohës te widget-i. Se çfarë shfaqet, mund ta kontrolloni përmes mundësisë <b>Shfaq përmbledhje përditësimi</b>. Vijon shpjegimi i mundësive më të thelluara:</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Mundësi diagnostikimi</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Ka mundësi për aktivizim të regjistrimit në një kartelë të përfundimeve të diagnostikimit. Kjo mundësi është e dobishme kur ka ndonjë problem me aplikacionin.</string>
@@ -377,8 +375,8 @@
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">MLS dhe Nominatim vendor (e këshilluar)</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Shfaq Përmbledhje Përditësimi</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Përditësoje vlerën me burim vendndodhjeje</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - do të përditësohet vendndodhja dhe/ose moti
-\n. - s\\’kapet dot vendndodhja, do të përditësohet moti sipas vendndodhjes së fundit 
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - do të përditësohet vendndodhja dhe/ose moti 
+\n. - s\\’kapet dot vendndodhja, përditësim i motit sipas vendndodhjes së fundit 
 \nM - përditësim vetëm i motit 
 \nV - përditësim vetëm i vendndodhjes 
 \nG - përditësim i vendndodhjes nga GPS dhe i motit 
@@ -391,7 +389,7 @@
 \nR - përditësim i vendndodhjes nga rrjeti dhe i motit 
 \nNi - përditësim i vendndodhjes nga rrjeti celular dhe i motit, vendndodhje e pikasur nga shërbim Mozilla vendndodhjesh 
 \nD - është ndaluar hyrja te shërbimi Openweathermap.org, ju lutemi, provoni ta përditësoni motin më vonë 
-\nS - token-i i hyrjes në Openweathermap.org ka skaduar. Lypset të përmirësoni aplikacionin që të rifitoni hyrje</string>
+\nS - token-i i hyrjes në Openweathermap.org ka skaduar. Lypset të pëditësoni aplikacionin që të rifitoni hyrje</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Kur venndodhja ngec gjatë dremitjesh të pajisjes, mund të provoni ta zgjoni kur është duke kërkuar për një rrjet celularësh</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Strategji Zgjimi</string>
     <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Pas sasisë së dhënë të kohës, vlerat e ruajtura në fshehtinë do të hiqen</string>
@@ -487,11 +485,11 @@
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamisht</string>
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengalisht (Bangladesh)</string>
     <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Grafikun shfaqe me qartësinë origjinale (kur grafiku është shumë i vogël)</string>
-    <string name="preference_title_tts" tools:ignore="MissingTranslation">Rregullime Zëri</string>
-    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Aktivizoni zë te kufje me kabëll</string>
-    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Aktivizoni zë te kufje Bluetooth</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Rregullime drejtimi</string>
+    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Aktivizoni drejtim përmes kufjesh me kabëll</string>
+    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Aktivizoni drejtim përmes kufjesh Bluetooth</string>
     <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Krejt</string>
-    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Thoni “përshëndetje”</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Përshëndetje</string>
     <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Vetjake</string>
     <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">Thoni “vendndodhje”</string>
     <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">Thoni “përshkrim moti”</string>
@@ -503,7 +501,7 @@
     <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">Pajisje të aktivizuara:</string>
     <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">Për vendndodhjen:</string>
     <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">Ç’të thuhet:</string>
-    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Për t’u thënë:</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Ç’të thuhet:</string>
     <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">Mirëmëngjes</string>
     <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Tungjatjeta</string>
     <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">Mirëmbrëma</string>
@@ -520,19 +518,37 @@
     <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">jug</string>
     <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">jugperëndim</string>
     <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">perëndim</string>
-    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">veri-perëndim</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Ky aplikacion mund të japë përfundime me zë. Për ta aktivizuar këtë veçori, lypset të keni të instaluar një sistem TNF (Tekst-në-të-folur) dhe të caktoni ç’jepet me zë që nga rregullimet e aplikacionit. Ju lutemi, kini parasysh që përkthimet e tekstit, si edhe urdhrat me zë, janë përkthyer nga vullnetarë te shërbimi https://hosted.weblate.org/projects/your-local-weather. Mundeni edhe të caktoni urdhrat tuaj zanorë që nga rregullimet e aplikacionit. Zhvilluesit e këtij aplikacioni nuk garantojnë cilësinë dhe saktësinë e përkthimeve, as edhe se ç’thotë aplikacioni - duke përdorur aplikacionin, pajtoheni me këtë pohim.</string>
-    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Rregullime të reja Zanore</string>
-    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Aktivizo zë folësi</string>
-    <string name="voice_settings_language" tools:ignore="MissingTranslation">Rregullime gjuhe</string>
-    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Mundësi gjuhe për zërin</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">veriperëndim</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Ky aplikacion përmban drejtim përmes zërit, bazuar në përkthime teksti dhe urdhra zanorë, falë vullnetarëve te https://hosted.weblate.org/projects/your-local-weather. Zhvilluesit e aplikacionit nuk garantojnë që ato janë të sakta - duke përdorur aplikacionin, pajtoheni me këtë pohim. Për ta përdorur, ju duhet i instaluar një sistem TTS (Tekst-në-të-folur) dhe drejtimi i aktivizuar zë që nga rregullimet e aplikacionit, prej nga ku mund të ujdisni urdhrat tuaj zanorë. "</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Rregullime të reja drejtimi</string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation"></string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Gjuhë</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Mundësi gjuhe drejtimi</string>
     <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">folës</string>
     <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">kufje me kabëll</string>
-    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">bluetooth</string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>
     <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">Vendore aplikacioni:</string>
-    <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">Vendore e përzgjedhur për zërin:</string>
-    <string name="pref_title_tts_app_general_info" tools:ignore="MissingTranslation">Ky aplikacion thjesht dërgon urdhra tekst te sistemi TNF (Tekst-në-të-folur). TNF-ja është përgjegjëse për shndërrim urdhrash tekst në zanorë. Zakonisht TNF-ja është i pranishëm në sistem si parazgjedhje. Nëse s’është, ose nëse TNF-ja e instaluar nuk e mbulon gjuhën tuaj të dëshiruar, mund të instaloni një prej shitoresh aplikacionesh (për shembull: https://play.google.com/store/search\?q=TTS ).</string>
+    <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">Vendore e përzgjedhur për drejtim:</string>
+    <string name="pref_title_tts_app_general_info" tools:ignore="MissingTranslation">Aplikacion dërgon urdhra tekst te sistemi TNF (Tekst-në-të-folur), i cili i shndërron në zë. Zakonisht TNF-ja është i pranishëm në sistem, si parazgjedhje. Nëse s’është, ose nëse TNF-ja i instaluar nuk e mbulon gjuhën tuaj të dëshiruar, instaloni një prej shitoresh aplikacionesh (për shembull: https://search.f-droid.org/\?q=TTS ).</string>
     <string name="pref_title_tts_lang_app_default" tools:ignore="MissingTranslation">Blini vendore aplikacioni</string>
-    <string name="pref_title_tts_presence" tools:ignore="MissingTranslation">Vendorja juaj e aplikacionit nuk mbulohet nga TNF (Tekst-në-të-folur). Gjuhë për zërin mund të përzgjidhni nga të mbuluarat më poshtë.</string>
-    <string name="pref_title_tts_not_supported" tools:ignore="MissingTranslation">Vendorja juaj e aplikacionit nuk mbulohet nga TNF (Tekst-në-të-folur). Shkoni te rregullimet e gjuhës së Zërit në cepin e sipërm djathtas të kësaj skene.</string>
+    <string name="pref_title_tts_presence" tools:ignore="MissingTranslation">Vendorja juaj e aplikacionit nuk mbulohet nga TNF (Tekst-në-të-folur). Përzgjidhni gjuhë për drejtimin që nga lista e të mbuluarave, më poshtë.</string>
+    <string name="pref_title_tts_not_supported" tools:ignore="MissingTranslation">Vendorja juaj e aplikacionit nuk mbulohet nga TNF (Tekst-në-të-folur). Shkoni te “Rregullime gjuhe drejtimi”, në cepin e sipërm djathtas.</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Përkthime tekstesh dhe udhëzimesh</string>
+    <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">Kohë e ditës</string>
+    <string name="pref_title_tts_say_forecast" tools:ignore="MissingTranslation">Thoni “parashikim për një ditë”</string>
+    <string name="tty_say_max_rain" tools:ignore="MissingTranslation">reshje shiu maksimum %s milimetra</string>
+    <string name="tty_say_max_snow" tools:ignore="MissingTranslation">reshje bore maksimum %s milimetra</string>
+    <string name="tty_say_max_wind" tools:ignore="MissingTranslation">Erë %3$s maksimumi %1$s %2$s</string>
+    <string name="tty_say_temp_max" tools:ignore="MissingTranslation">temperatura maksimum është %1$s në %2$s</string>
+    <string name="tty_say_temp_min" tools:ignore="MissingTranslation">temperatura minimum është %1$s në %2$s</string>
+    <string name="tty_say_weather_forecast" tools:ignore="MissingTranslation">parashikim moti</string>
+    <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">sot</string>
+    <string name="tty_say_weather_forecast_tomorrow" tools:ignore="MissingTranslation">nesër</string>
+    <string name="tty_say_weather_forecast_night" tools:ignore="MissingTranslation">natën</string>
+    <string name="tty_say_weather_forecast_morning" tools:ignore="MissingTranslation">mëngjes</string>
+    <string name="tty_say_weather_forecast_afternoon" tools:ignore="MissingTranslation">pasdite</string>
+    <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">mbrëmje</string>
+    <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">rrallë</string>
+    <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">dhe</string>
+    <string name="pref_language_id" tools:ignore="MissingTranslation">Indonezisht (Indonesian)</string>
 </resources>
