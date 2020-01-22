@@ -494,4 +494,59 @@
     <string name="pref_title_tts_trigger_bt_devices" tools:ignore="MissingTranslation">For enhet(er):</string>
     <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Blåtann</string>
     <string name="pref_title_tts_say_forecast" tools:ignore="MissingTranslation">Si éndagsforvarsel</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Tekst og veiledningsoversettelser</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Dette programmet har stemmeveiledning av tekstoversettelser og stemmekommandoer på vegne av frivillige på https://hosted.weblate.org/projects/your-local-weather. Programutvikleren kan ikke garantere at de stemmer - du godtar dette ved å bruke programmet. For å bruke det trenger du TTS (tekst-til-tale) installert og veiledning skrudd på i innstillingene, der du også kan sette egne stemmekommandoer. "</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Veiledningsinnstillinger</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Nye veiledningsinnstillinger</string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Veiledningsavspilling</string>
+    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Skru på veiledning til trådbundet hodesett</string>
+    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Skru på veiledning til Blåtannshodesett</string>
+    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Alle</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Velkomsthilsen</string>
+    <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">Påskrudd(e) enhet(er):</string>
+    <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">For plassering:</string>
+    <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">Hva som skal sies:</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Hva som skal sies:</string>
+    <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">God morgen</string>
+    <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Hallo</string>
+    <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">God kveld</string>
+    <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">Nåværende vær for plasseringen %s</string>
+    <string name="tts_say_current_weather" tools:ignore="MissingTranslation">Været nå</string>
+    <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">Når vær oppdateres</string>
+    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">Når Blåtannsenhet kobles til</string>
+    <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">Tid på dagen</string>
+    <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s vind %1$s %2$s</string>
+    <string name="tty_say_temperature" tools:ignore="MissingTranslation">Temperatur %s</string>
+    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">nordllig</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">nordøst</string>
+    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">østlig</string>
+    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">sørøstlig</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">sørlig</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">sørvestlig</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">vestlig</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">nordvestlig</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Veiledningsspråkvalg</string>
+    <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">høyttaler</string>
+    <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">trådbundet hodesett</string>
+    <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">Programlokalitet:</string>
+    <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">Velg lokalitet for veiledning:</string>
+    <string name="pref_title_tts_app_general_info" tools:ignore="MissingTranslation">Programmer sender tekstkommandoer til TTS (tekst-til-tale) systemet, som konverterer det til en stemme. Det finnes vanligvis forhåndsinstallert. Hvis så ikke er tilfelle, eller installert TTS ikke støtter titt foretrukne språk, installer det fra en programbutikk (for eksempel: https://search.f-droid.org/\?q=TTS ).</string>
+    <string name="pref_title_tts_lang_app_default" tools:ignore="MissingTranslation">Gitt av programlokalitet</string>
+    <string name="pref_title_tts_presence" tools:ignore="MissingTranslation">Din programlokalitet støttes ikke av ditt TTS (tekst-til-tale) system. Velg veiledningsspråk fra listen av støttede nedenfor.</string>
+    <string name="pref_title_tts_not_supported" tools:ignore="MissingTranslation">Din programlokalitet støttes ikke av ditt TTS (tekst-til-tale) system. Gå til \"Språkveiledningsinnstillinger\" øverst til høyre.</string>
+    <string name="tty_say_max_rain" tools:ignore="MissingTranslation">maksimalt nedbør %s millimeter</string>
+    <string name="tty_say_max_snow" tools:ignore="MissingTranslation">maksimalt snøfall %s millimeter</string>
+    <string name="tty_say_max_wind" tools:ignore="MissingTranslation">%3$s vind, maksimalt %1$s %2$s</string>
+    <string name="tty_say_temp_max" tools:ignore="MissingTranslation">maksimaltemperaturen er %1$s klokken %2$s</string>
+    <string name="tty_say_temp_min" tools:ignore="MissingTranslation">minimumstemperatur er %1$s klokken %2$s</string>
+    <string name="tty_say_weather_forecast" tools:ignore="MissingTranslation">værmelding</string>
+    <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">i dag</string>
+    <string name="tty_say_weather_forecast_tomorrow" tools:ignore="MissingTranslation">i morgen</string>
+    <string name="tty_say_weather_forecast_night" tools:ignore="MissingTranslation">nattestid</string>
+    <string name="tty_say_weather_forecast_morning" tools:ignore="MissingTranslation">morgen</string>
+    <string name="tty_say_weather_forecast_afternoon" tools:ignore="MissingTranslation">formiddag</string>
+    <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">kveld</string>
+    <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">sjeldent</string>
+    <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">og</string>
+    <string name="pref_language_id" tools:ignore="MissingTranslation">Indonesian (Indonesisk)</string>
 </resources>
