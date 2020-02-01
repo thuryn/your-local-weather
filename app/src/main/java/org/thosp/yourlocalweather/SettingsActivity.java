@@ -42,13 +42,18 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.text.style.URLSpan;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.obsez.android.lib.filechooser.ChooserDialog;
@@ -1371,13 +1376,86 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 textView.setPadding(padding, padding, padding, padding);
                 textView.setLineSpacing(0, 1.2f);
                 textView.setLinkTextColor(ContextCompat.getColor(getActivity(), R.color.link_color));
-                textView.setText(R.string.licenses);
-                textView.setMovementMethod(LinkMovementMethod.getInstance());
+                setTextViewHTML(getActivity(), textView, getString(R.string.licenses));
                 return new AlertDialog.Builder(getActivity())
                         .setTitle(getString(R.string.title_open_source_licenses))
                         .setView(textView)
                         .setPositiveButton(android.R.string.ok, null)
                         .create();
+            }
+
+            /**
+             * Since Android 24, apps banned from using file:// scheme
+             * (https://stackoverflow.com/q/38200282)
+             * <p>
+             *     This method sets licenses text as html with clickable links
+             * </p><p>
+             *     Link clicks processed in makeLinkClickable() method
+             * </p>
+             *
+             *
+             * @param context
+             * @param text
+             * @param html
+             */
+            protected void setTextViewHTML(Context context, TextView text, String html) {
+                CharSequence sequence = Html.fromHtml(html);
+                SpannableStringBuilder strBuilder = new SpannableStringBuilder(sequence);
+                URLSpan[] urls = strBuilder.getSpans(0, sequence.length(), URLSpan.class);
+                for(URLSpan span : urls) {
+                    makeLinkClickable(context, strBuilder, span);
+                }
+                text.setText(strBuilder);
+                text.setMovementMethod(LinkMovementMethod.getInstance());
+            }
+
+            /**
+             * Opens file:/// urls in built-in WebView and launches browser for any other url type
+             *
+             * @param context
+             * @param strBuilder
+             * @param span
+             */
+            protected void makeLinkClickable(final Context context, SpannableStringBuilder strBuilder, final URLSpan span) {
+                int start = strBuilder.getSpanStart(span);
+                int end = strBuilder.getSpanEnd(span);
+                int flags = strBuilder.getSpanFlags(span);
+                ClickableSpan clickable = new ClickableSpan() {
+                    public void onClick(View view) {
+                        if(span.getURL().startsWith("file:///"))
+                            openLinkInWebView(context, span.getURL());
+                        else
+                            openLinkInBrowser(context, span.getURL());
+                    }
+                };
+                strBuilder.setSpan(clickable, start, end, flags);
+                strBuilder.removeSpan(span);
+            }
+
+            /**
+             * Opens link in simple dialog with WebView
+             *
+             * @param context
+             * @param link
+             */
+            private static void openLinkInWebView(Context context, String link){
+                WebView webView = new WebView(context);
+                webView.loadUrl(link);
+                new AlertDialog.Builder(context)
+                        .setView(webView)
+                        .setPositiveButton(R.string.ok, null)
+                        .show();
+            }
+
+            /**
+             * Opens link in external browser
+             *
+             * @param context
+             * @param link
+             */
+            private static void openLinkInBrowser(Context context, String link){
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
+                context.startActivity(browserIntent);
             }
         }
     }
