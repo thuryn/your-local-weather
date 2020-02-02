@@ -539,10 +539,9 @@ public class GraphUtils {
         }
         yLeft.setXOffset(15);
         if (yAxisValues != null) {
-            yLeft.setLabelCount(yAxisValues, true);
+            yLeft.setLabelCount(yAxisValues);
         }
         if (leftYaxis == CombinedGraph.TEMPERATURE) {
-            yLeft.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, TemperatureUtil.getTemperatureUnit(context)));
             double axisMaximum = Math.ceil(maxValueOnGraph);
             double axisMinimum = Math.floor(minTemperatureValue);
             if (yAxisValues != null) {
@@ -554,18 +553,11 @@ public class GraphUtils {
             }
             yLeft.setAxisMaximum((float) (axisMaximum));
             yLeft.setAxisMinimum((float) (axisMinimum));
+            yLeft.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, TemperatureUtil.getTemperatureUnit(context)));
         } else if (leftYaxis == CombinedGraph.WIND) {
-            double axisMaximum = Math.ceil((maxWindValue + 1));
-            double axisMinimum = Math.floor(minWindValue);
-            if (yAxisValues != null) {
-                int restForRange = (yAxisValues - 1) - (((int) (axisMaximum - axisMinimum)) % (yAxisValues - 1));
-                int halfOfTHeDifference = restForRange / 2;
-                int restOfTheDifference = restForRange % 2;
-                axisMaximum += halfOfTHeDifference + restOfTheDifference;
-                axisMinimum -= halfOfTHeDifference;
-            }
+            double axisMaximum = Math.ceil(maxWindValue);
             yLeft.setAxisMaximum((float) (axisMaximum));
-            yLeft.setAxisMinimum((float) (axisMinimum));
+            yLeft.setAxisMinimum(0f);
             yLeft.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, AppPreference.getWindUnit(context)));
         } else if (leftYaxis == CombinedGraph.PRESSURE) {
             double axisMaximum = Math.ceil(((maxPressureValue + 2) / multiplier));
@@ -581,17 +573,9 @@ public class GraphUtils {
             yLeft.setAxisMinimum((float) (axisMinimum));
             yLeft.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, AppPreference.getPressureUnit(context)));
         } else if (leftYaxis == CombinedGraph.RAINSNOW) {
-            double axisMaximum = Math.ceil((maxRainSnowValue + 1));
-            double axisMinimum = Math.floor(minRainSnowValue);
-            if (yAxisValues != null) {
-                int restForRange = (yAxisValues - 1) - (((int) (axisMaximum - axisMinimum)) % (yAxisValues - 1));
-                int halfOfTHeDifference = restForRange / 2;
-                int restOfTheDifference = restForRange % 2;
-                axisMaximum += halfOfTHeDifference + restOfTheDifference;
-                axisMinimum -= halfOfTHeDifference;
-            }
+            double axisMaximum = Math.ceil(maxRainSnowValue);
             yLeft.setAxisMaximum((float) (axisMaximum));
-            yLeft.setAxisMinimum((float) (axisMinimum));
+            yLeft.setAxisMinimum(0f);
             yLeft.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, context.getString(AppPreference.getRainOrSnowUnit(context))));
         }
         LimitLine zerolimitLine = new LimitLine(0);
@@ -613,20 +597,12 @@ public class GraphUtils {
         }
         yRight.setXOffset(15);
         if (yAxisValues != null) {
-            yRight.setLabelCount(yAxisValues, true);
+            yRight.setLabelCount(yAxisValues);
         }
         if (rightYaxis == CombinedGraph.WIND) {
-            double axisMaximum = Math.ceil((maxWindValue + 1));
-            double axisMinimum = Math.floor(minWindValue);
-            if (yAxisValues != null) {
-                int restForRange = (yAxisValues - 1) - (((int) (axisMaximum - axisMinimum)) % (yAxisValues - 1));
-                int halfOfTHeDifference = restForRange / 2;
-                int restOfTheDifference = restForRange % 2;
-                axisMaximum += halfOfTHeDifference + restOfTheDifference;
-                axisMinimum -= halfOfTHeDifference;
-            }
+            double axisMaximum = Math.ceil(maxWindValue);
             yRight.setAxisMaximum((float) (axisMaximum));
-            yRight.setAxisMinimum((float) (axisMinimum));
+            yRight.setAxisMinimum(0f);
             yRight.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, AppPreference.getWindUnit(context)));
         } else if (rightYaxis == CombinedGraph.PRESSURE) {
             double axisMaximum = Math.ceil(((maxPressureValue + 1) / multiplier));
@@ -642,17 +618,9 @@ public class GraphUtils {
             yRight.setAxisMinimum((float) (axisMinimum));
             yRight.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, AppPreference.getPressureUnit(context)));
         } else if (rightYaxis == CombinedGraph.RAINSNOW) {
-            double axisMaximum = Math.ceil((maxRainSnowValue + 1));
-            double axisMinimum = Math.floor(minRainSnowValue);
-            if (yAxisValues != null) {
-                int restForRange = (yAxisValues - 1) - (((int) (axisMaximum - axisMinimum)) % (yAxisValues - 1));
-                int halfOfTHeDifference = restForRange / 2;
-                int restOfTheDifference = restForRange % 2;
-                axisMaximum += halfOfTHeDifference + restOfTheDifference;
-                axisMinimum -= halfOfTHeDifference;
-            }
+            double axisMaximum = Math.ceil(maxRainSnowValue);
             yRight.setAxisMaximum((float) (axisMaximum));
-            yRight.setAxisMinimum((float) (axisMinimum));
+            yRight.setAxisMinimum(0f);
             yRight.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, context.getString(AppPreference.getRainOrSnowUnit(context))));
         }
         if (rightYaxis == null) {
@@ -738,7 +706,7 @@ public class GraphUtils {
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
         x.setDrawGridLines(false);
-        x.setLabelCount(25, true);
+        x.setLabelCount(25);
         x.setTextColor(textColorId);
         x.setValueFormatter(new XAxisValueFormatter(hourIndexes, locale));
         x.setDrawLimitLinesBehindData(true);
