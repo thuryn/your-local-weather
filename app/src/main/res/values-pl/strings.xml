@@ -487,4 +487,7 @@
     <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Nowe ustawienia głosu</string>
     <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Ta aplikacja posiada funkcję wyjścia głosowego. Aby włączyć tę funkcję, potrzebny jest system TTS (Text-to-Speech) zainstalowany i ustawić wyjście głosowe przez ustawienia aplikacji. Rozważ, proszę, że tłumaczenia tekstu, jak również polecenia głosowe są tłumaczone przez wolontariuszy przez https://hosted.weblate.org/projects/your-local-weather usługi. Można również ustawić własne polecenia głosowe w ustawieniach aplikacji. Twórcy tej aplikacji nie gwarantują jakości i poprawności tłumaczeń, jak również to, co mówi aplikacja-akceptujesz tę instrukcję za pomocą tej aplikacji.</string>
     <string name="voice_settings_language" tools:ignore="MissingTranslation">Ustawienie języka</string>
+    <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">Powiedz:</string>
+    <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Czas</string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>
 </resources>
