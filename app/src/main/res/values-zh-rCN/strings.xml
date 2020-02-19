@@ -116,7 +116,7 @@
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">位置来源选项</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">位置及地址来源</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">恭喜</string>
-    <string name="help_page_general_title" tools:ignore="MissingTranslation">通用</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">常规</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">主应用</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">微件</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">通用设置</string>
@@ -164,7 +164,7 @@
     <string name="pref_language_ar" tools:ignore="MissingTranslation">العَرَبِيَّة‎（阿拉伯语）</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">位置及地址来源</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">系统</string>
-    <string name="app_name" tools:ignore="MissingTranslation">您的本地天气</string>
+    <string name="app_name" tools:ignore="MissingTranslation">天气</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">访问权限已过期。请升级应用。</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">您的 OpenweathermapApiKey 未注册。</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">您可以选择定位方法 - <i>系统</i> 选项使用 Google 服务通过网络（蜂窝网络和 Wi-Fi）获取位置。<i>本地 MLS 和 Nominatim</i> 选项使用 Mozilla 位置服务获取位置坐标并使用 Nominatim 服务获取地址名称。第二个选项需要电话呼叫权限以获取有关蜂窝网络的信息。已预选为首选项。</string>
@@ -487,7 +487,7 @@
     <string name="pref_language_vi" tools:ignore="MissingTranslation">越南语</string>
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">孟加拉语</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">文本和声音指示翻译</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">本应用有声音输出功能。要启用该功能，你需要在本机安装一个文本转语音系统并按照应用设置设定语音输出。文本翻译及语音命令均由志愿者翻译(https://hosted.weblate.org/projects/your-local-weather service)。你也可以按照应用设置设定你自己的语音命令。本应用的开发者不保证翻译的质量和准确性以及应用说什么- 使用本应用代表您接受这份声明。</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"本应用有声音输出功能。要启用该功能，你需要在本机安装一个文本转语音系统并按照应用设置设定语音输出。文本翻译及语音命令均由志愿者翻译(https://hosted.weblate.org/projects/your-local-weather service)。你也可以按照应用设置设定你自己的语音命令。本应用的开发者不保证翻译的质量和准确性以及应用说什么- 使用本应用代表您接受这份声明。 "</string>
     <string name="preference_title_tts" tools:ignore="MissingTranslation">语音设置</string>
     <string name="preference_title_add_tts" tools:ignore="MissingTranslation">新声音设置</string>
     <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">启用声音转扬声器</string>
@@ -525,7 +525,7 @@
     <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">西南风</string>
     <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">西风</string>
     <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">西北风</string>
-    <string name="voice_settings_language" tools:ignore="MissingTranslation">语言设置</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">语言</string>
     <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">声音语言选项</string>
     <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">扬声器</string>
     <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">有线耳机</string>
