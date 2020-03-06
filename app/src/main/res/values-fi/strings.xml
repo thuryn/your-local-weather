@@ -116,4 +116,18 @@
     <string name="weather_condition_description_701" tools:ignore="MissingTranslation">sumu</string>
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Näytä asetukset widgetissä</string>
     <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Widget-säätietojen asetuspainike</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Lupa lukea tietoa laitteesta tarvitaan päivittämään sijainti käyttäen Wi-Fi ja GSM verkkoja.Tämä noutaa tietoa siitä, mihin GSM- tukiasemiin laite on kytketty.</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Käyttöoikeuksia ei ole vielä myönnetty - napsauta sovelluksen sijaintisymbolia</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">OpenweathermapApiKey-avainta ei ole rekisteröity.</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Paikalliset sääilmoitukset</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Kun säädät sovelluksen tarpeidesi mukaan, voit valita seuraavaksi päivitysstrategian. 
+\nSiirtyminen oletuspäivityksestä sijainnin muuttuessa voit valita <i>Älä päivitä sijaintia</i>.</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Voit valita paikannusmenetelmän -<i>Järjestelmä</i> Google käyttää palveluita sijainnin saamiseksi verkkojen (matkapuhelin- ja Wi-Fi-verkot) avulla. ). <i>Paikallinen MLS ja Nominatim</i> -vaihtoehto käyttää Mozilla-sijaintipalvelua sijaintikoordinaattien saamiseen ja Nominatim-palvelua sijaintien nimien saamiseen. Toinen vaihtoehto vaatii puhelinsoitoluvat hakeaksesi tietoja matkapuhelinverkosta. Edullinen vaihtoehto on esivalittu.</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Herätys strategiavaihtoehto</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Jotkut puhelimet eivät ilmoita kytkettyjä soluja oikein, ellei näyttö ole päällä. Ensisijaisella vaihtoehdolla (näytön ollessa päällä) on haittapuoli, että puhelin kytkee näytön päälle useita sekunteja. Tällä on pieni vaikutus akun käyttöikään. Aloita siitä ja yritä kytkeä se pois päältä ja katso päivittyykö sijainti edelleen.</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Herätyksen strategia</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Välimuistin ratkaistu osoitevaihtoehto</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Sinulla ei saa olla enempää kuin %1$d sijaintia tällä hetkellä.</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Tekstin ja oppaan käännökset</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Tämä sovellus tarjoaa ääniohjeet tekstin käännösten ja äänikomentojen kautta vapaaehtoisten suosituksella osoitteessa https://hosted.weblate.org/projects/your-local-weather. Sovelluskehittäjä ei voi taata niiden oikeellisuutta - hyväksyt tämän käyttämällä sovellusta. Sen käyttämiseksi sinun on asennettava TTS (teksti puheeksi) ja opastus kytketty päälle asetuksiin, missä voit asettaa omat äänikomennot. "</string>
 </resources>
