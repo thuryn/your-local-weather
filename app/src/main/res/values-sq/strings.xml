@@ -254,7 +254,7 @@
     <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
     <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Ikona e motit aktual</string>
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">E çaktivizuar</string>
-    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Shkurtimi V, VL, …</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Shkurt V↓, VL↙, …</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Gradët nga Veriu</string>
     <string name="wind_direction_north" tools:ignore="MissingTranslation">V↓</string>
     <string name="wind_direction_north_east" tools:ignore="MissingTranslation">VL↙</string>
@@ -521,7 +521,7 @@
     <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">veriperëndim</string>
     <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Ky aplikacion përmban drejtim përmes zërit, bazuar në përkthime teksti dhe urdhra zanorë, falë vullnetarëve te https://hosted.weblate.org/projects/your-local-weather. Zhvilluesit e aplikacionit nuk garantojnë që ato janë të sakta - duke përdorur aplikacionin, pajtoheni me këtë pohim. Për ta përdorur, ju duhet i instaluar një sistem TTS (Tekst-në-të-folur) dhe drejtimi i aktivizuar zë që nga rregullimet e aplikacionit, prej nga ku mund të ujdisni urdhrat tuaj zanorë. "</string>
     <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Rregullime të reja drejtimi</string>
-    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation"></string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation"/>
     <string name="voice_settings_language" tools:ignore="MissingTranslation">Gjuhë</string>
     <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Mundësi gjuhe drejtimi</string>
     <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">folës</string>
