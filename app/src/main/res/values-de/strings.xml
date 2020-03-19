@@ -401,7 +401,7 @@
     <string name="graph_rain_label" tools:ignore="MissingTranslation">Regen</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Schnee</string>
     <string name="graph_pressure_label" tools:ignore="MissingTranslation">Druck</string>
-    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Open-Source-Lizenzen</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Freie-Softwarelizenzen</string>
     <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
     <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
     <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
