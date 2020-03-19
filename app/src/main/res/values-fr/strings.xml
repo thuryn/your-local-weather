@@ -71,10 +71,10 @@
     <string name="cloudiness_label">Nébulosité : %1$s%2$s</string>
     <string name="label_cloudiness">Nébulosité</string>
     <string name="last_update_label">Dernière màj : %s</string>
-    <string name="sunrise_label">Lever : %s</string>
-    <string name="sunset_label">Coucher : %s</string>
-    <string name="label_sunrise">Lever</string>
-    <string name="label_sunset">Coucher</string>
+    <string name="sunrise_label">Aube : %s</string>
+    <string name="sunset_label">Crépuscule : %s</string>
+    <string name="label_sunrise">Aube</string>
+    <string name="label_sunset">Crépuscule</string>
     <string name="temperature_morning_title">Matin</string>
     <string name="temperature_day_title">Jour</string>
     <string name="temperature_evening_title">Soir</string>
@@ -195,7 +195,7 @@
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Lors de la mise à jour de la localisation et de la météo vous pouvez voir l\'état de la mise à jour à côté de l\'heure de dernière mise à jour sur le widget. Vous pouvez contrôler ce qui est affiché avec l\'option <b>Afficher le résumé des mises à jour</b>. Voici l\'explication de l\'option la plus avancée :</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Options de débogage</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Il y a des options pour activer le débogage dans un fichier de journal. Cette option est utile lorsqu\'il y a une problème avec l\'application.</string>
-    <string name="title_activity_locations" tools:ignore="MissingTranslation">Localisations</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Emplacements</string>
     <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Ouvrir le tiroir de navigation</string>
     <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Fermer le tiroir de navigation</string>
     <string name="location_not_initialized" tools:ignore="MissingTranslation">La localisation n\'est pas activée. Cliquez d\'abord sur le réticule.</string>
@@ -221,8 +221,8 @@
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Intégrée</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (Chinois)</string>
     <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili (Swahili)</string>
-    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (Bokmål) (Norvégien Bokmål)</string>
-    <string name="pref_language_nl" tools:ignore="MissingTranslation">Nederlands (Hollandais)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (Bokmål) (Norvégien bokmål)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Nederlands (Néerlandais)</string>
     <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
     <string name="pref_language_hu" tools:ignore="MissingTranslation">Magyar (Hongrois)</string>
     <string name="pref_language_es" tools:ignore="MissingTranslation">Español (Espagnol)</string>
@@ -330,12 +330,12 @@
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Degrés à partir du nord</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Partager la météo</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Appli de communication introuvable</string>
-    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Ville : %1$s
-\nTempérature : %2$s
-\nDescription : %3$s
-\nVent %4$s %5$s
-\nLevé du soleil : %6$s
-\nCouché du soleil : %7$s</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Ville : %1$s 
+\nTempérature : %2$s 
+\nDescription : %3$s 
+\nVent : %4$s %5$s 
+\nAube : %6$s 
+\nCrépuscule : %7$s</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">Votre météo locale</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">Notifications de votre météo locale</string>
     <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Température</string>
@@ -366,7 +366,7 @@
     <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 jours</string>
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 jours</string>
     <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 jours</string>
-    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Licenses libres</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Licences de logiciel libre</string>
     <string name="update_period_regular_only" tools:ignore="MissingTranslation">Régularité de mise à jour</string>
     <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Présence de la notification</string>
     <string name="notification_when_updated" tools:ignore="MissingTranslation">À la mise à jour</string>
@@ -502,4 +502,59 @@
     <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Bouton de réglage des détails du widget de météo</string>
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamien</string>
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengali (Bangladesh)</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Traductions du texte et du guide</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Paramètres du guide</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Nouveaux paramètres du guide</string>
+    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Allumer le guide du casque en Bluetooth</string>
+    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Tous</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Salutations</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Personnalisé</string>
+    <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">Dire un lieu</string>
+    <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">Dire la description du temps</string>
+    <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">Dire la température</string>
+    <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">Dire le vent</string>
+    <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">Dire :</string>
+    <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Heure</string>
+    <string name="pref_title_tts_trigger_bt_devices" tools:ignore="MissingTranslation">Pour le ou les appareils :</string>
+    <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">Appareil(s) autorisé(s) :</string>
+    <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">Pour l\'emplacement :</string>
+    <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">Quoi dire :</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Quoi dire :</string>
+    <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">Bonjour</string>
+    <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Bonjour</string>
+    <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">Bonsoir</string>
+    <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">Météo actuelle pour %s</string>
+    <string name="tts_say_current_weather" tools:ignore="MissingTranslation">Météo actuelle</string>
+    <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">Quand la météo est mise à jour</string>
+    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">Quand un appareil Bluetooth est connecté</string>
+    <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">Heure de la journée</string>
+    <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s vent %1$s %2$s</string>
+    <string name="tty_say_temperature" tools:ignore="MissingTranslation">température %s</string>
+    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">nord</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">nord-est</string>
+    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">sud-est</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">sud</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">sud-ouest</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">ouest</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Langue</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Options linguistiques du guide</string>
+    <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">haut-parleur</string>
+    <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">casque audio branché</string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>
+    <string name="pref_title_tts_say_forecast" tools:ignore="MissingTranslation">Dire la prévision d\'une journée</string>
+    <string name="tty_say_max_rain" tools:ignore="MissingTranslation">précipitation pluvieuse maximale %s millimètres</string>
+    <string name="tty_say_max_snow" tools:ignore="MissingTranslation">précipitation neigeuse maximale %s millimètres</string>
+    <string name="tty_say_max_wind" tools:ignore="MissingTranslation">%3$s vent au maximum %1$s %2$s</string>
+    <string name="tty_say_temp_max" tools:ignore="MissingTranslation">la température maximale est %1$s à %2$s</string>
+    <string name="tty_say_temp_min" tools:ignore="MissingTranslation">la température minimale est %1$s à %2$s</string>
+    <string name="tty_say_weather_forecast" tools:ignore="MissingTranslation">prévision météo</string>
+    <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">aujourd\'hui</string>
+    <string name="tty_say_weather_forecast_tomorrow" tools:ignore="MissingTranslation">demain</string>
+    <string name="tty_say_weather_forecast_night" tools:ignore="MissingTranslation">la nuit</string>
+    <string name="tty_say_weather_forecast_morning" tools:ignore="MissingTranslation">le matin</string>
+    <string name="tty_say_weather_forecast_afternoon" tools:ignore="MissingTranslation">l\'après-midi</string>
+    <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">le soir</string>
+    <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">rarement</string>
+    <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">et</string>
+    <string name="pref_language_id" tools:ignore="MissingTranslation">Indonesia (Indonésien)</string>
 </resources>
