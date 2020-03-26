@@ -130,4 +130,5 @@
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Sinulla ei saa olla enempää kuin %1$d sijaintia tällä hetkellä.</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Tekstin ja oppaan käännökset</string>
     <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Tämä sovellus tarjoaa ääniohjeet tekstin käännösten ja äänikomentojen kautta vapaaehtoisten suosituksella osoitteessa https://hosted.weblate.org/projects/your-local-weather. Sovelluskehittäjä ei voi taata niiden oikeellisuutta - hyväksyt tämän käyttämällä sovellusta. Sen käyttämiseksi sinun on asennettava TTS (teksti puheeksi) ja opastus kytketty päälle asetuksiin, missä voit asettaa omat äänikomennot. "</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Voit vähentää tietojen käyttöä välimuistissa olevien sijaintien avulla. Sijainnit tallennetaan sitten sovellukseen. Niitä ei lähetetä tai tallenneta muihin paikkoihin verkossa.</string>
 </resources>
