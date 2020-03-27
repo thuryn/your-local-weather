@@ -144,6 +144,14 @@ public class LogToFile {
         appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2));
     }
 
+    public static void appendLog(Context context, String tag, String text1, boolean value1, String text2, int value2) {
+        checkPreferences(context);
+        if (!logToFileEnabled || (logFilePathname == null)) {
+            return;
+        }
+        appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2));
+    }
+
     public static void appendLog(Context context, String tag, String text1, Intent value1, String text2, Class value2) {
         checkPreferences(context);
         if (!logToFileEnabled || (logFilePathname == null)) {
@@ -456,6 +464,14 @@ public class LogToFile {
     }
 
     public static void appendLog(Context context, String tag, String text1, CurrentWeatherDbHelper.WeatherRecord value1) {
+        checkPreferences(context);
+        if (!logToFileEnabled || (logFilePathname == null)) {
+            return;
+        }
+        appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
+    }
+
+    public static void appendLog(Context context, String tag, String text1, WeatherForecastDbHelper.WeatherForecastRecord value1) {
         checkPreferences(context);
         if (!logToFileEnabled || (logFilePathname == null)) {
             return;

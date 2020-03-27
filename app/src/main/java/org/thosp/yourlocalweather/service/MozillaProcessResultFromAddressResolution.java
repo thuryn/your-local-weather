@@ -22,7 +22,7 @@ public class MozillaProcessResultFromAddressResolution implements ProcessResultF
         this.mozillaLocationService = mozillaLocationService;
     }
 
-    public void processAddresses(List<Address> addresses) {
+    public void processAddresses(Location location, List<Address> addresses) {
         appendLog(context, TAG, "processUpdateOfLocation:addresses:", addresses);
         Address resolvedAddress = null;
         if ((addresses != null) && (addresses.size() > 0)) {

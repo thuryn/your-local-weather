@@ -288,7 +288,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
                     "next scheduler time:", nextTimeForLog);
             reScheduleNextAlarm(JOB_ID, nextAlarmWakeup, StartAutoLocationJob.class);
             serviceConnected(sensorLocationUpdateServiceConnection);
-            if (currentWeatherUnsentMessages.isEmpty() && weatherForecastUnsentMessages.isEmpty()) {
+            if (currentWeatherUnsentMessages.isEmpty()) {
                 jobFinished(params, false);
             }
         }

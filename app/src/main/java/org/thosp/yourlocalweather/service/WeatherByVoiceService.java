@@ -598,10 +598,10 @@ public class WeatherByVoiceService extends Service {
                 (!afternoonWeather || afternoonEveningAreSame)) {
             StringBuilder forecastToSay = null;
             forecastToSay = new StringBuilder();
-            Integer mainWeatherId;
-            String mainWeatherDescription;
-            Integer warningWeatherId;
-            String warningWeatherDescription;
+            Integer mainWeatherId = null;
+            String mainWeatherDescription = null;
+            Integer warningWeatherId = null;
+            String warningWeatherDescription = null;
             if (weatherForecastForVoice.nightWeatherIds != null) {
                 mainWeatherId = weatherForecastForVoice.nightWeatherIds.mainWeatherId;
                 mainWeatherDescription = weatherForecastForVoice.nightWeatherIds.mainWeatherDescriptionsFromOwm;
@@ -617,12 +617,16 @@ public class WeatherByVoiceService extends Service {
                 mainWeatherDescription = weatherForecastForVoice.afternoonWeatherIds.mainWeatherDescriptionsFromOwm;
                 warningWeatherId = weatherForecastForVoice.afternoonWeatherIds.warningWeatherId;
                 warningWeatherDescription = weatherForecastForVoice.afternoonWeatherIds.warningWeatherDescriptionsFromOwm;
-            } else {
+            } else if (weatherForecastForVoice.nightWeatherIds != null) {
                 mainWeatherId = weatherForecastForVoice.nightWeatherIds.mainWeatherId;
                 mainWeatherDescription = weatherForecastForVoice.nightWeatherIds.mainWeatherDescriptionsFromOwm;
                 warningWeatherId = weatherForecastForVoice.nightWeatherIds.warningWeatherId;
                 warningWeatherDescription = weatherForecastForVoice.nightWeatherIds.warningWeatherDescriptionsFromOwm;
             }
+            if (mainWeatherId == null) {
+                return "";
+            }
+
             forecastToSay.append(Utils.getWeatherDescription(mainWeatherId,
                     mainWeatherDescription,
                     currentLocation.getLocaleAbbrev(),

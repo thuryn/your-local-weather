@@ -12,18 +12,24 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
+import org.thosp.yourlocalweather.adapter.LongWeatherForecastAdapter;
 import org.thosp.yourlocalweather.adapter.WeatherForecastAdapter;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
-import org.thosp.yourlocalweather.service.ForecastWeatherService;
+import org.thosp.yourlocalweather.service.UpdateWeatherService;
+import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class WeatherForecastActivity extends ForecastingActivity {
 
@@ -35,7 +41,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initializeWeatherForecastReceiver(ForecastWeatherService.ACTION_FORECAST_UPDATE_RESULT);
+        initializeWeatherForecastReceiver(UpdateWeatherService.ACTION_FORECAST_UPDATE_RESULT);
         setContentView(R.layout.activity_weather_forecast);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.forecast_recycler_view);
@@ -43,8 +49,16 @@ public class WeatherForecastActivity extends ForecastingActivity {
         localityView = (TextView) findViewById(R.id.forecast_locality);
         visibleColumns = AppPreference.getForecastActivityColumns(this);
         connectionDetector = new ConnectionDetector(WeatherForecastActivity.this);
-        updateUI();
+        forecastType = (Switch) findViewById(R.id.forecast_forecastType);
 
+        forecastType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                AppPreference.setForecastType(getBaseContext(), isChecked ? 2 : 1);
+                updateUI();
+            }
+        });
+
+        updateUI();
 
         mRecyclerView.setOnTouchListener(new ActivityTransitionTouchListener(
                 MainActivity.class,
@@ -53,18 +67,39 @@ public class WeatherForecastActivity extends ForecastingActivity {
 
     @Override
     protected void updateUI() {
+        View switchPanel = findViewById(R.id.forecast_switch_panel);
+        if (ApiKeys.isWeatherForecastFeaturesFree(this)) {
+            switchPanel.setVisibility(View.INVISIBLE);
+        } else {
+            switchPanel.setVisibility(View.VISIBLE);
+        }
+
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
         long locationId = AppPreference.getCurrentLocationId(this);
         currentLocation = locationsDbHelper.getLocationById(locationId);
         if (currentLocation == null) {
             return;
         }
-        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
+        forecastType.setChecked(2 == AppPreference.getForecastType(getBaseContext()));
+        int forecastTypeRecord = (forecastType.isChecked() ? 2 : 1);
+        appendLog(getBaseContext(), TAG, "updateUI with forecastType:", forecastType.isChecked(), ", ", forecastTypeRecord);
+        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId, forecastTypeRecord);
+        appendLog(getBaseContext(), TAG, "Weather forecast record:", weatherForecastRecord);
         if (weatherForecastRecord != null) {
             weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
             locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());
         } else if (ForecastUtil.shouldUpdateForecast(this, locationId)) {
-            updateWeatherForecastFromNetwork("FORECAST", WeatherForecastActivity.this);
+            if (forecastType.isChecked()) {
+                updateLongWeatherForecastFromNetwork("FORECAST");
+            } else {
+                updateWeatherForecastFromNetwork("FORECAST");
+            }
+            return;
+        }
+
+        localityView.setText(Utils.getCityAndCountry(this, currentLocation.getOrderId()));
+
+        if (weatherForecastList.get(locationId) == null) {
             return;
         }
 
@@ -76,13 +111,21 @@ public class WeatherForecastActivity extends ForecastingActivity {
             mRecyclerView.setVisibility(View.VISIBLE);
             android.setVisibility(View.GONE);
         }
-        WeatherForecastAdapter adapter = new WeatherForecastAdapter(this,
-                                                                    weatherForecastList.get(locationId),
-                                                                    currentLocation.getLatitude(),
-                                                                    currentLocation.getLocale(),
-                                                                    visibleColumns);
-        mRecyclerView.setAdapter(adapter);
-        localityView.setText(Utils.getCityAndCountry(this, currentLocation.getOrderId()));
+        if (forecastType.isChecked()) {
+            LongWeatherForecastAdapter adapter = new LongWeatherForecastAdapter(this,
+                    weatherForecastList.get(locationId),
+                    currentLocation.getLatitude(),
+                    currentLocation.getLocale(),
+                    visibleColumns);
+            mRecyclerView.setAdapter(adapter);
+        } else {
+            WeatherForecastAdapter adapter = new WeatherForecastAdapter(this,
+                    weatherForecastList.get(locationId),
+                    currentLocation.getLatitude(),
+                    currentLocation.getLocale(),
+                    visibleColumns);
+            mRecyclerView.setAdapter(adapter);
+        }
     }
 
     @Override
@@ -90,7 +133,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
         super.onResume();
         registerReceiver(mWeatherUpdateReceiver,
                 new IntentFilter(
-                        ForecastWeatherService.ACTION_FORECAST_UPDATE_RESULT));
+                        UpdateWeatherService.ACTION_FORECAST_UPDATE_RESULT));
         updateUI();
     }
 
@@ -105,7 +148,11 @@ public class WeatherForecastActivity extends ForecastingActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_forecast_refresh:
-                updateWeatherForecastFromNetwork("FORECAST", WeatherForecastActivity.this);
+                if (forecastType.isChecked()) {
+                    updateLongWeatherForecastFromNetwork("FORECAST");
+                } else {
+                    updateWeatherForecastFromNetwork("FORECAST");
+                }
                 return true;
             case R.id.menu_forecast_settings:
                 showSettings();

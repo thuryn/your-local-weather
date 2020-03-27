@@ -4,6 +4,8 @@ import android.content.Context;
 import android.preference.PreferenceManager;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.model.LicenseKey;
+import org.thosp.yourlocalweather.model.LicenseKeysDbHelper;
 
 public class ApiKeys {
 
@@ -54,6 +56,42 @@ public class ApiKeys {
             return DEFAULT_AVAILABLE_LOCATIONS;
         } else {
             return MAX_AVAILABLE_LOCATIONS;
+        }
+    }
+
+    public static boolean isWeatherForecastFeaturesFree(Context context) {
+        String weatherForecastFeatures = PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getString(
+                        Constants.KEY_PREF_WEATHER_FORECAST_FEATURES,
+                        "weather_forecast_features_free"
+                );
+        if ((weatherForecastFeatures == null) ||
+                "".equals(weatherForecastFeatures) ||
+                "weather_forecast_features_free".equals(weatherForecastFeatures)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static String getInitialLicenseKey(Context context) {
+        return PreferenceManager
+                .getDefaultSharedPreferences(context)
+                .getString(
+                        Constants.KEY_PREF_WEATHER_LICENSE_KEY,
+                        ""
+                );
+    }
+
+    public static String getLicenseKey(Context context, LicenseKey licenseKey ) {
+        if (ApiKeys.isWeatherForecastFeaturesFree(context)) {
+            return null;
+        }
+        final LicenseKeysDbHelper licenseKeysDbHelper = LicenseKeysDbHelper.getInstance(context);
+        if ((licenseKey != null) && (licenseKey.getToken() != null)) {
+            return licenseKey.getToken();
+        } else {
+            return getInitialLicenseKey(context);
         }
     }
 }

@@ -20,7 +20,7 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
 
     private static final String TAG = "WeatherForecastDbHelper";
 
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "WeatherForecast.db";
     private static WeatherForecastDbHelper instance;
     private Context context;
@@ -64,7 +64,7 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
         db.delete(WeatherForecastContract.WeatherForecast.TABLE_NAME, selection, selectionArgs);
     }
 
-    public void saveWeatherForecast(long locationId, long weatherUpdateTime, CompleteWeatherForecast completeWeatherForecast) {
+    public void saveWeatherForecast(long locationId, int forecastType, long weatherUpdateTime, CompleteWeatherForecast completeWeatherForecast) {
         SQLiteDatabase db = getWritableDatabase();
 
         WeatherForecastRecord oldWeatherForecast = getWeatherForecast(locationId);
@@ -74,6 +74,7 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
                    getCompleteWeatherForecastAsBytes(completeWeatherForecast));
         values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID, locationId);
         values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_LAST_UPDATED_IN_MS, weatherUpdateTime);
+        values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_FORECAST_TYPE, forecastType);
         if (oldWeatherForecast == null) {
             db.insert(WeatherForecastContract.WeatherForecast.TABLE_NAME, null, values);
         } else {
@@ -86,6 +87,10 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
     }
 
     public WeatherForecastRecord getWeatherForecast(long locationId) {
+        return getWeatherForecast(locationId, 1);
+    }
+
+    public WeatherForecastRecord getWeatherForecast(long locationId, int forecastType) {
 
         checkVersionOfStoredForecastInDb();
 
@@ -101,7 +106,8 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
             cursor = db.query(
                 WeatherForecastContract.WeatherForecast.TABLE_NAME,
                 projection,
-                WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + "=" + locationId,
+                WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + "=" + locationId +
+                    " AND " + WeatherForecastContract.WeatherForecast.COLUMN_NAME_FORECAST_TYPE + "=" + forecastType,
                 null,
                 null,
                 null,

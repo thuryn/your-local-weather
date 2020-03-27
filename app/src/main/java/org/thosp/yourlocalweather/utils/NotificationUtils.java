@@ -28,11 +28,11 @@ public class NotificationUtils {
     private static final String TAG = "NotificationUtils";
 
     public static void weatherNotification(Context context, Long locationId) {
-        String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(context);
+        /*String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(context);
         boolean updateBySensor = "0".equals(updateAutoPeriodStr);
         if (updateBySensor) {
             return;
-        }
+        }*/
         Notification notification = getWeatherNotification(context, locationId);
         if (notification == null) {
             return;
@@ -61,43 +61,55 @@ public class NotificationUtils {
         }
         return getNotification(context, currentLocation, weatherRecord);
     }
-    
+
+    public static Notification getNotificationForActivity(Context context) {
+        checkAndCreateNotificationChannel(context);
+        return new NotificationCompat.Builder(context, "yourLocalWeather")
+                .setSmallIcon(R.drawable.ic_refresh_white_18dp_1)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setAutoCancel(true)
+                .setOngoing(false)
+                .build();
+    }
+
+    public static void checkAndCreateNotificationChannel(Context context) {
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.O) {
+            return;
+        }
+        NotificationManager notificationManager =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationChannel notificationChannel = notificationManager.getNotificationChannel("yourLocalWeather");
+        boolean createNotification = notificationChannel == null;
+        if (!createNotification &&
+                ((notificationChannel.getImportance() == NotificationManager.IMPORTANCE_LOW) ||
+                        (AppPreference.isVibrateEnabled(context) && (notificationChannel.getVibrationPattern() == null)))) {
+            notificationManager.deleteNotificationChannel("yourLocalWeather");
+            createNotification = true;
+        }
+        if (createNotification) {
+            NotificationChannel channel = new NotificationChannel("yourLocalWeather",
+                    context.getString(R.string.notification_channel_name),
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            channel.setDescription(context.getString(R.string.notification_channel_description));
+            channel.setVibrationPattern(isVibrateEnabled(context));
+            channel.enableVibration(AppPreference.isVibrateEnabled(context));
+            channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
+            channel.setSound(null, null);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
     public static Notification getNotification(Context context, Location location, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
 
         if (!AppPreference.isNotificationEnabled(context)) {
             return null;
         }
-
-        NotificationManager notificationManager =
-                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-
         boolean isOutgoing = false;
         String notificationPresence = AppPreference.getNotificationPresence(context);
         if ("permanent".equals(notificationPresence) || "on_lock_screen".equals(notificationPresence)) {
             isOutgoing = true;
         }
-
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationChannel notificationChannel = notificationManager.getNotificationChannel("yourLocalWeather");
-            boolean createNotification = notificationChannel == null;
-            if (!createNotification &&
-                    ((notificationChannel.getImportance() == NotificationManager.IMPORTANCE_LOW) ||
-                            (AppPreference.isVibrateEnabled(context) && (notificationChannel.getVibrationPattern() == null)))) {
-                notificationManager.deleteNotificationChannel("yourLocalWeather");
-                createNotification = true;
-            }
-            if (createNotification) {
-                NotificationChannel channel = new NotificationChannel("yourLocalWeather",
-                        context.getString(R.string.notification_channel_name),
-                        NotificationManager.IMPORTANCE_DEFAULT);
-                channel.setDescription(context.getString(R.string.notification_channel_description));
-                channel.setVibrationPattern(isVibrateEnabled(context));
-                channel.enableVibration(AppPreference.isVibrateEnabled(context));
-                channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
-                channel.setSound(null, null);
-                notificationManager.createNotificationChannel(channel);
-            }
-        }
+        checkAndCreateNotificationChannel(context);
 
         String notificationIconStyle = AppPreference.getNotificationStatusIconStyle(context);
         int notificationIcon;
@@ -122,7 +134,7 @@ public class NotificationUtils {
     public static void showNotification(Context context, Notification notification) {
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(0, notification);
+        notificationManager.notify(android.os.Process.myPid(), notification);
     }
 
     private static Notification regularNotification(Context context,

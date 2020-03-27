@@ -278,12 +278,7 @@
         </receiver>
 
         <service
-            android:name=".service.WeatherForecastResendJob"
-            android:label="Weather forecast retry job"
-            android:permission="android.permission.BIND_JOB_SERVICE" >
-        </service>
-        <service
-            android:name=".service.CurrentWeatherResendJob"
+            android:name=".service.UpdateWeatherResendJob"
             android:label="Current weather retry job"
             android:permission="android.permission.BIND_JOB_SERVICE" >
         </service>
@@ -315,15 +310,13 @@
         <service
             android:name=".service.AppWakeUpManager" />
         <service
-            android:name=".service.CurrentWeatherService" />
+            android:name=".service.UpdateWeatherService" />
         <service
             android:name=".service.WeatherByVoiceService" >
             <intent-filter>
                 <action android:name="android.intent.action.SAY_WEATHER" />
             </intent-filter>
         </service>
-        <service
-            android:name=".service.ForecastWeatherService" />
         <service android:name=".service.AppAlarmService" >
             <intent-filter>
                 <action android:name="org.thosp.yourlocalweather.action.START_ALARM_SERVICE" />

@@ -29,7 +29,7 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
     private final IBinder binder = new SensorLocationUpdateServiceBinder();
 
     private final Lock receiversLock = new ReentrantLock();
-    private boolean receiversRegistered;
+    private static volatile boolean receiversRegistered;
 
     private SensorManager senSensorManager;
     private Sensor senAccelerometer;
@@ -58,7 +58,7 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
     public void onDestroy() {
         super.onDestroy();
         if (receiversRegistered) {
-            unregisterReceiver(mReceiver);
+            //unregisterReceiver(mReceiver);
             unregisterListener();
         }
         stopForeground(true);
@@ -118,39 +118,21 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
     }
 
     private void unregisterListener() {
-        if (senSensorManager != null) {
-            senSensorManager.unregisterListener(this);
+        receiversLock.lock();
+        try {
+            receiversRegistered = false;
+            if (senSensorManager != null) {
+                senSensorManager.unregisterListener(this);
+            }
+        } finally {
+            receiversLock.unlock();
         }
     }
-    
-    public BroadcastReceiver mReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            appendLog(getBaseContext(), TAG, "onReceive("+intent+")");
-
-            if (!intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
-                return;
-            }
-             
-            Runnable runnable = new Runnable() {
-                @Override
-                public void run() {
-                    appendLog(getBaseContext(), TAG, "Runnable executing.");
-                    unregisterListener();
-                    registerSensorListener();
-                }
-            };
-
-            new Handler().postDelayed(runnable, SCREEN_OFF_RECEIVER_DELAY);
-        }
-};
     
     private void registerSensorListener() {
         appendLog(getBaseContext(), TAG, "START_SENSOR_BASED_UPDATES recieved");
         senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        
-        registerReceiver(mReceiver, new IntentFilter(Intent.ACTION_SCREEN_OFF));
         
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         org.thosp.yourlocalweather.model.Location autoLocation = locationsDbHelper.getLocationByOrderId(0);

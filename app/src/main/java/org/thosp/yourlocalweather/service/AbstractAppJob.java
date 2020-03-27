@@ -34,9 +34,6 @@ public abstract class AbstractAppJob extends JobService {
     protected Messenger currentWeatherService;
     protected Lock currentWeatherServiceLock = new ReentrantLock();
     protected Queue<Message> currentWeatherUnsentMessages = new LinkedList<>();
-    protected Messenger weatherForecastService;
-    protected Lock weatherForecastServiceLock = new ReentrantLock();
-    protected Queue<Message> weatherForecastUnsentMessages = new LinkedList<>();
     private Messenger wakeUpService;
     private Lock wakeUpServiceLock = new ReentrantLock();
     private Queue<Message> wakeUpUnsentMessages = new LinkedList<>();
@@ -70,30 +67,29 @@ public abstract class AbstractAppJob extends JobService {
         if (!ForecastUtil.shouldUpdateForecast(this, locationId)) {
             return;
         }
-        weatherForecastServiceLock.lock();
+        currentWeatherServiceLock.lock();
         try {
             Message msg = Message.obtain(
                     null,
-                    ForecastWeatherService.START_WEATHER_FORECAST_UPDATE,
-                    new WeatherRequestDataHolder(locationId, updateSource)
+                    UpdateWeatherService.START_WEATHER_FORECAST_UPDATE,
+                    new WeatherRequestDataHolder(locationId, updateSource, UpdateWeatherService.START_WEATHER_FORECAST_UPDATE)
             );
-            if (checkIfWeatherForecastServiceIsNotBound()) {
+            if (checkIfCurrentWeatherServiceIsNotBound()) {
                 //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
-                weatherForecastUnsentMessages.add(msg);
+                currentWeatherUnsentMessages.add(msg);
                 return;
             }
             //appendLog(getBaseContext(), TAG, "sendMessageToService:");
-            weatherForecastService.send(msg);
+            currentWeatherService.send(msg);
         } catch (RemoteException e) {
             appendLog(getBaseContext(), TAG, e.getMessage(), e);
         } finally {
-            weatherForecastServiceLock.unlock();
+            currentWeatherServiceLock.unlock();
         }
     }
 
     protected void unbindAllServices() {
         unbindCurrentWeatherService();
-        unbindWeatherForecastService();
         unbindWakeUpService();
     }
 
@@ -105,52 +101,6 @@ public abstract class AbstractAppJob extends JobService {
             appendLog(this, "TAG", e.getMessage(), e);
         }
     }
-
-    protected boolean checkIfWeatherForecastServiceIsNotBound() {
-        if (weatherForecastService != null) {
-            return false;
-        }
-        try {
-            bindWeatherForecastService();
-        } catch (Exception ie) {
-            appendLog(getBaseContext(), TAG, "weatherForecastServiceIsNotBound interrupted:", ie);
-        }
-        return (weatherForecastService == null);
-    }
-
-    private void bindWeatherForecastService() {
-        getApplicationContext().bindService(
-                new Intent(getApplicationContext(), ForecastWeatherService.class),
-                weatherForecastServiceConnection,
-                Context.BIND_AUTO_CREATE);
-    }
-
-    private void unbindWeatherForecastService() {
-        if (weatherForecastService == null) {
-            return;
-        }
-        getApplicationContext().unbindService(weatherForecastServiceConnection);
-    }
-
-    private ServiceConnection weatherForecastServiceConnection = new ServiceConnection() {
-        public void onServiceConnected(ComponentName className, IBinder binderService) {
-            weatherForecastService = new Messenger(binderService);
-            weatherForecastServiceLock.lock();
-            try {
-                while (!weatherForecastUnsentMessages.isEmpty()) {
-                    weatherForecastService.send(weatherForecastUnsentMessages.poll());
-                }
-            } catch (RemoteException e) {
-                appendLog(getBaseContext(), TAG, e.getMessage(), e);
-            } finally {
-                weatherForecastServiceLock.unlock();
-            }
-            serviceConnected(currentWeatherServiceConnection);
-        }
-        public void onServiceDisconnected(ComponentName className) {
-            weatherForecastService = null;
-        }
-    };
 
     protected void sendMessageToCurrentWeatherService(Location location,
                                                       int wakeUpSource,
@@ -170,8 +120,8 @@ public abstract class AbstractAppJob extends JobService {
         try {
             Message msg = Message.obtain(
                     null,
-                    CurrentWeatherService.START_CURRENT_WEATHER_UPDATE,
-                    new WeatherRequestDataHolder(location.getId(), updateSource, updateWeatherOnly)
+                    UpdateWeatherService.START_CURRENT_WEATHER_UPDATE,
+                    new WeatherRequestDataHolder(location.getId(), updateSource, updateWeatherOnly, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE)
             );
             if (checkIfCurrentWeatherServiceIsNotBound()) {
                 currentWeatherUnsentMessages.add(msg);
@@ -201,7 +151,7 @@ public abstract class AbstractAppJob extends JobService {
     private void bindCurrentWeatherService() {
         appendLog(getBaseContext(), getClass().getSimpleName(), "bind current weather service:", this.toString());
         getApplicationContext().bindService(
-                new Intent(getApplicationContext(), CurrentWeatherService.class),
+                new Intent(getApplicationContext(), UpdateWeatherService.class),
                 currentWeatherServiceConnection,
                 Context.BIND_AUTO_CREATE);
     }

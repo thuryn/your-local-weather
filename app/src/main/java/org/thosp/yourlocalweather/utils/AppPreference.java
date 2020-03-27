@@ -310,6 +310,11 @@ public class AppPreference {
                                 .getString(Constants.KEY_PREF_INTERVAL_NOTIFICATION, "60");
     }
 
+    public static void setRegularOnlyInterval(Context context) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString(Constants.KEY_PREF_INTERVAL_NOTIFICATION, "regular_only").apply();
+    }
+
     public static String getNotificationPresence(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getString(Constants.KEY_PREF_NOTIFICATION_PRESENCE, "when_updated");
@@ -412,6 +417,16 @@ public class AppPreference {
         }
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(
                 Constants.KEY_PREF_FORECAST_ACTIVITY_COLUMNS, columnsToStore).apply();
+    }
+
+    public static int getForecastType(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getInt(
+                Constants.KEY_PREF_FORECAST_TYPE, 1);
+    }
+
+    public static void setForecastType(Context context, int forecastType) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putInt(
+                Constants.KEY_PREF_FORECAST_TYPE, forecastType).apply();
     }
 
     public static Set<Integer> getGraphsActivityVisibleGraphs(Context context) {

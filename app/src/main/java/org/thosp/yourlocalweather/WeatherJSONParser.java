@@ -5,6 +5,8 @@ import android.content.Context;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.thosp.yourlocalweather.licence.LicenseNotValidException;
+import org.thosp.yourlocalweather.licence.TooEarlyUpdateException;
 import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.Weather;
@@ -14,7 +16,19 @@ public class WeatherJSONParser {
 
     private static final String TAG = "WeatherJSONParser";
 
-    public static Weather getWeather(Context context, String data, String locale) throws JSONException {
+    public static JSONParseResult parseServerResult(String serverResult) throws JSONException,
+                                                                                LicenseNotValidException,
+                                                                                TooEarlyUpdateException {
+        JSONObject serverResponse = new JSONObject(serverResult);
+        String result = serverResponse.getString("result");
+        switch (result) {
+            case "TOO_EARLY_UPDATE": throw new TooEarlyUpdateException();
+            case "OK": return new JSONParseResult(serverResponse.getString("token"), serverResponse.getString("owm"));
+        }
+        throw new LicenseNotValidException("Result is not OK. Result = " + result);
+    }
+
+    public static Weather getWeather(String data, String locale) throws JSONException {
         Weather weather = new Weather();
 
         JSONObject weatherData = new JSONObject(data);
@@ -79,9 +93,39 @@ public class WeatherJSONParser {
         return weather;
     }
 
-    public static CompleteWeatherForecast getWeatherForecast(Context context,
-                                            long locationId,
-                                            String weatherForecastResponseTxt) throws JSONException {
+    public static CompleteWeatherForecast getLongWeatherForecast(String weatherForecastResponseTxt) throws JSONException {
+        CompleteWeatherForecast completeWeatherForecast = new CompleteWeatherForecast();
+        JSONObject weatherForecastResponse = new JSONObject(weatherForecastResponseTxt);
+        JSONArray weatherForecastList = weatherForecastResponse.getJSONArray("list");
+        for (int weatherForecastCounter = 0; weatherForecastCounter < weatherForecastList.length(); weatherForecastCounter++) {
+            DetailedWeatherForecast weatherForecast = new DetailedWeatherForecast();
+            JSONObject weatherForecastCase = weatherForecastList.getJSONObject(weatherForecastCounter);
+            weatherForecast.setDateTime(weatherForecastCase.getLong("dt"));
+            JSONObject weatherForecastTemp = weatherForecastCase.getJSONObject("temp");
+
+            weatherForecast.setTemperatureMin(weatherForecastTemp.getDouble("min"));
+            weatherForecast.setTemperatureMax(weatherForecastTemp.getDouble("max"));
+            weatherForecast.setTemperature(weatherForecastTemp.getDouble("day"));
+
+            weatherForecast.setPressure(weatherForecastCase.getDouble("pressure"));
+            weatherForecast.setHumidity(weatherForecastCase.getInt("humidity"));
+            weatherForecast.setWindSpeed(weatherForecastCase.getDouble("speed"));
+            weatherForecast.setWindDegree(weatherForecastCase.getDouble("deg"));
+            weatherForecast.setCloudiness(weatherForecastCase.getInt("clouds"));
+
+            JSONArray weatherConditionList = weatherForecastCase.getJSONArray("weather");
+            for (int weatherConditionCounter = 0; weatherConditionCounter < weatherConditionList.length(); weatherConditionCounter++) {
+                JSONObject weatherCondition = weatherConditionList.getJSONObject(weatherConditionCounter);
+                weatherForecast.addWeatherCondition(weatherCondition.getInt("id"),
+                        weatherCondition.getString("icon"),
+                        weatherCondition.getString("description"));
+            }
+            completeWeatherForecast.addDetailedWeatherForecast(weatherForecast);
+        }
+        return completeWeatherForecast;
+    }
+
+    public static CompleteWeatherForecast getWeatherForecast(String weatherForecastResponseTxt) throws JSONException {
         CompleteWeatherForecast completeWeatherForecast = new CompleteWeatherForecast();
         JSONObject weatherForecastResponse = new JSONObject(weatherForecastResponseTxt);
         JSONArray weatherForecastList = weatherForecastResponse.getJSONArray("list");
@@ -127,5 +171,23 @@ public class WeatherJSONParser {
             completeWeatherForecast.addDetailedWeatherForecast(weatherForecast);
         }
         return completeWeatherForecast;
+    }
+
+    public static class JSONParseResult {
+        String token;
+        String owmResponse;
+
+        public JSONParseResult(String token, String owmResponse) {
+            this.token = token;
+            this.owmResponse = owmResponse;
+        }
+
+        public String getToken() {
+            return token;
+        }
+
+        public String getOwmResponse() {
+            return owmResponse;
+        }
     }
 }

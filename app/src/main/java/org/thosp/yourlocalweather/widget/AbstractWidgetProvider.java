@@ -18,28 +18,22 @@ import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
-import org.thosp.yourlocalweather.WidgetSettingsDialogue;
 import org.thosp.yourlocalweather.R;
-import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
+import org.thosp.yourlocalweather.WidgetSettingsDialogue;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
-import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.service.LocationUpdateService;
+import org.thosp.yourlocalweather.service.UpdateWeatherService;
 import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
-import org.thosp.yourlocalweather.utils.TemperatureUtil;
-import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Set;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -523,8 +517,8 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         try {
             Message msg = Message.obtain(
                     null,
-                    CurrentWeatherService.START_CURRENT_WEATHER_UPDATE,
-                    new WeatherRequestDataHolder(location.getId(), updateSource, forceUpdate, updateWeatherOnly)
+                    UpdateWeatherService.START_CURRENT_WEATHER_UPDATE,
+                    new WeatherRequestDataHolder(location.getId(), updateSource, forceUpdate, updateWeatherOnly, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE)
             );
             if (checkIfCurrentWeatherServiceIsNotBound(context)) {
                 //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
@@ -554,7 +548,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     private void bindCurrentWeatherService(Context context) {
         context.getApplicationContext().bindService(
-                new Intent(context.getApplicationContext(), CurrentWeatherService.class),
+                new Intent(context.getApplicationContext(), UpdateWeatherService.class),
                 currentWeatherServiceConnection,
                 Context.BIND_AUTO_CREATE);
     }

@@ -7,12 +7,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.service.ForecastWeatherService;
+import org.thosp.yourlocalweather.service.UpdateWeatherService;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +34,7 @@ public abstract class ForecastingActivity extends BaseActivity {
     private ProgressDialog mGetWeatherProgress;
     private Handler mHandler;
     protected BroadcastReceiver mWeatherUpdateReceiver;
+    protected Switch forecastType;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,6 +56,12 @@ public abstract class ForecastingActivity extends BaseActivity {
                     case Constants.PARSE_RESULT_ERROR:
                         Toast.makeText(ForecastingActivity.this,
                                 R.string.toast_parse_error,
+                                Toast.LENGTH_SHORT).show();
+                        setVisibleUpdating(false);
+                        break;
+                    case Constants.TOO_EARLY_UPDATE_ERROR:
+                        Toast.makeText(ForecastingActivity.this,
+                                R.string.too_early_update_error,
                                 Toast.LENGTH_SHORT).show();
                         setVisibleUpdating(false);
                         break;
@@ -88,8 +99,8 @@ public abstract class ForecastingActivity extends BaseActivity {
         }
     }
 
-    protected void updateWeatherForecastFromNetwork(String updateSource, Context context) {
-        if (currentLocation == null) {
+    protected void updateWeatherForecastFromNetwork(String updateSource) {
+        if ((currentLocation == null) || WidgetRefreshIconService.isRotationActive) {
             return;
         }
         boolean isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
@@ -103,7 +114,23 @@ public abstract class ForecastingActivity extends BaseActivity {
         }
     }
 
+    protected void updateLongWeatherForecastFromNetwork(String updateSource) {
+        if ((currentLocation == null) || WidgetRefreshIconService.isRotationActive) {
+            return;
+        }
+        boolean isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
+        if (isNetworkAvailable) {
+            setVisibleUpdating(true);
+            sendMessageToLongWeatherForecastService(currentLocation.getId(), updateSource);
+        } else {
+            Toast.makeText(this,
+                    R.string.connection_not_found,
+                    Toast.LENGTH_SHORT).show();
+        }
+    }
+
     protected void initializeWeatherForecastReceiver(final String actionResult) {
+        appendLog(this, TAG, "Initializing BroadcastReceiver for action result:", actionResult);
         mWeatherUpdateReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
@@ -118,10 +145,10 @@ public abstract class ForecastingActivity extends BaseActivity {
                     });
                 }
                 switch (intent.getStringExtra(actionResult)) {
-                    case ForecastWeatherService.ACTION_WEATHER_UPDATE_OK:
+                    case UpdateWeatherService.ACTION_WEATHER_UPDATE_OK:
                         updateUI();
                         break;
-                    case ForecastWeatherService.ACTION_WEATHER_UPDATE_FAIL:
+                    case UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL:
                         Toast.makeText(ForecastingActivity.this,
                                 getString(R.string.toast_parse_error),
                                 Toast.LENGTH_SHORT).show();

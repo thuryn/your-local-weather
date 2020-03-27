@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
+import android.location.Location;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcel;
@@ -82,18 +83,19 @@ public class NominatimLocationService {
     private static Formatter formatter;
 
     public void getFromLocation(final Context context,
-                                            final double latitude,
-                                            final double longitude,
-                                            int maxResults,
-                                            final String locale,
-                                            final ProcessResultFromAddressResolution processResultFromAddressResolution) {
+                                final double latitude,
+                                final double longitude,
+                                int maxResults,
+                                final String locale,
+                                final ProcessResultFromAddressResolution processResultFromAddressResolution,
+                                final Location location) {
 
         appendLog(context, TAG, "getFromLocation:", latitude, ", ", longitude, ", ", locale);
         final ReverseGeocodingCacheDbHelper mDbHelper = ReverseGeocodingCacheDbHelper.getInstance(context);
 
         List<Address> addressesFromCache = retrieveLocationFromCache(context, mDbHelper, latitude, longitude, locale);
         if (addressesFromCache != null) {
-            processResultFromAddressResolution.processAddresses(addressesFromCache);
+            processResultFromAddressResolution.processAddresses(location, addressesFromCache);
             return;
         }
 
@@ -135,7 +137,7 @@ public class NominatimLocationService {
                                 List<Address> addresses = new ArrayList<>();
                                 addresses.add(address);
                                 storeAddressToCache(context, mDbHelper, latitude, longitude, locale, address);
-                                processResultFromAddressResolution.processAddresses(addresses);
+                                processResultFromAddressResolution.processAddresses(location, addresses);
                             }
                         } catch (JSONException jsonException) {
                             appendLog(context, TAG, "jsonException:", jsonException);
@@ -145,7 +147,7 @@ public class NominatimLocationService {
                     @Override
                     public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                         appendLog(context, TAG, "onFailure:", statusCode);
-                        processResultFromAddressResolution.processAddresses(null);
+                        processResultFromAddressResolution.processAddresses(location, null);
                     }
 
                     @Override
@@ -230,7 +232,12 @@ public class NominatimLocationService {
         return addresses;
     }
 
-    private void storeAddressToCache(Context context, ReverseGeocodingCacheDbHelper mDbHelper, double latitude, double longitude, String locale, Address address) {
+    private void storeAddressToCache(final Context context,
+                                     final ReverseGeocodingCacheDbHelper mDbHelper,
+                                     final double latitude,
+                                     final double longitude,
+                                     final String locale,
+                                     final Address address) {
 
         boolean useCache = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(Constants.APP_SETTINGS_LOCATION_CACHE_ENABLED, false);
 
@@ -238,20 +245,24 @@ public class NominatimLocationService {
             return;
         }
 
-        // Gets the data repository in write mode
-        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
-        // Create a new map of values, where column names are the keys
-        ContentValues values = new ContentValues();
-        values.put(LocationAddressCache.COLUMN_NAME_ADDRESS, getAddressAsBytes(address));
-        values.put(LocationAddressCache.COLUMN_NAME_LONGITUDE, longitude);
-        values.put(LocationAddressCache.COLUMN_NAME_LATITUDE, latitude);
-        values.put(LocationAddressCache.COLUMN_NAME_LOCALE, locale);
-        values.put(LocationAddressCache.COLUMN_NAME_CREATED, new Date().getTime());
+                ContentValues values = new ContentValues();
+                values.put(LocationAddressCache.COLUMN_NAME_ADDRESS, getAddressAsBytes(address));
+                values.put(LocationAddressCache.COLUMN_NAME_LONGITUDE, longitude);
+                values.put(LocationAddressCache.COLUMN_NAME_LATITUDE, latitude);
+                values.put(LocationAddressCache.COLUMN_NAME_LOCALE, locale);
+                values.put(LocationAddressCache.COLUMN_NAME_CREATED, new Date().getTime());
 
-        long newLocationRowId = db.insert(LocationAddressCache.TABLE_NAME, null, values);
+                long newLocationRowId = db.insert(LocationAddressCache.TABLE_NAME, null, values);
 
-        appendLog(context, TAG, "storedAddress:", latitude, ", ", longitude, ", ", newLocationRowId, ", ", address);
+                appendLog(context, TAG, "storedAddress:", latitude, ", ", longitude, ", ", newLocationRowId, ", ", address);
+            }
+        };
+        thread.start();
     }
 
     private Address getResultFromCache(ReverseGeocodingCacheDbHelper mDbHelper, double latitude, double longitude, String locale) {

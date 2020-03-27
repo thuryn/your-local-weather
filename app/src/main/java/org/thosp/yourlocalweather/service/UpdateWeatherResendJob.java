@@ -10,7 +10,7 @@ import android.os.RemoteException;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 @TargetApi(Build.VERSION_CODES.M)
-public class CurrentWeatherResendJob extends AbstractAppJob {
+public class UpdateWeatherResendJob extends AbstractAppJob {
     private static final String TAG = "CurrentWeatherResendJob";
     public static final int JOB_ID = 1537091709;
 
@@ -44,7 +44,7 @@ public class CurrentWeatherResendJob extends AbstractAppJob {
         try {
             Message msg = Message.obtain(
                     null,
-                    CurrentWeatherService.START_CURRENT_WEATHER_RETRY
+                    UpdateWeatherService.START_PROCESS_CURRENT_QUEUE
             );
             if (checkIfCurrentWeatherServiceIsNotBound()) {
                 appendLog(getBaseContext(), TAG, "sendRetryMessageToCurrentWeatherService:pushing into messages");

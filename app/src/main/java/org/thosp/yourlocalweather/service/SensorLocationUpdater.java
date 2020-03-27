@@ -28,6 +28,7 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
 
     private static final String TAG = "SensorLocationUpdater";
 
+    private static final float REFERENCE_ACCELEROMETER_RESOLUTION = 104.418936291f;
     private static final float LENGTH_UPDATE_LOCATION_LIMIT = 1500;
     private static final float LENGTH_UPDATE_LOCATION_SECOND_LIMIT = 10000;
     private static final float LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION = 200;
@@ -47,7 +48,7 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
     private Messenger widgetRefreshIconService;
     private Queue<Message> unsentMessages = new LinkedList<>();
     private Lock widgetRotationServiceLock = new ReentrantLock();
-    private volatile boolean processLocationUpdate;
+    private static volatile boolean processLocationUpdate;
     private static final Queue<LocationUpdateService.LocationUpdateServiceActions> locationUpdateServiceActions = new LinkedList<>();
 
     @Override
@@ -128,7 +129,7 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
             if ((lastUpdate%1000 < 5) || (countedLength > 10)) {
                 appendLogSensorsCheck(getBaseContext(), TAG, "current", currentLength, countedLength, countedAcc, dT);
             }
-            float absCurrentLength = Math.abs(currentLength) * sensorResolutionMultiplayer;
+            float absCurrentLength = Math.abs(currentLength) * (REFERENCE_ACCELEROMETER_RESOLUTION + sensorResolutionMultiplayer);
 
             long lastUpdatedPosition = getLastPossitionUodateTime();
             long nowInMillis = System.currentTimeMillis();
@@ -166,11 +167,11 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
             return;
         }
 
+        clearMeasuredLength();
+
         if (!locationUpdateServiceActions.isEmpty()) {
             return;
         }
-
-        clearMeasuredLength();
 
         if (!updateNetworkLocation()) {
             stopRefreshRotation("updateNetworkLocation", 3);
@@ -201,12 +202,6 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
             bindLocationUpdateService();
             return false;
         }
-    }
-
-    @Override
-    protected void startRefreshRotation(String where, int rotationSource) {
-        appendLog(getBaseContext(), TAG, "startRefreshRotation:", where);
-        sendMessageToWidgetIconService(WidgetRefreshIconService.START_ROTATING_UPDATE, rotationSource);
     }
 
     @Override

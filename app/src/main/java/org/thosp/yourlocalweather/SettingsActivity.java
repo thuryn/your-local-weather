@@ -162,7 +162,8 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 Constants.PREF_LANGUAGE,
                 Constants.PREF_THEME,
                 Constants.KEY_PREF_WEATHER_ICON_SET,
-                Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY
+                Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY,
+                Constants.KEY_PREF_WEATHER_FORECAST_FEATURES
         };
 
         @Override
@@ -173,6 +174,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             EditTextPreference openWeatherMapApiKey =
                     (EditTextPreference) findPreference(Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY);
             openWeatherMapApiKey.setSummary(ApiKeys.getOpenweathermapApiKeyForPreferences(getActivity()));
+            checkApiKeyMenuOptionPresence();
         }
 
         @Override
@@ -232,6 +234,10 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                     findPreference(key).setSummary(ApiKeys.getOpenweathermapApiKeyForPreferences(getActivity()));
                     checkAndDeleteLocations();
                     break;
+                case Constants.KEY_PREF_WEATHER_FORECAST_FEATURES:
+                    entrySummary(key);
+                    checkApiKeyMenuOptionPresence();
+                    break;
             }
         }
 
@@ -289,6 +295,16 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 }
             }
             sendMessageToReconciliationDbService(true);
+        }
+
+        private void checkApiKeyMenuOptionPresence() {
+            if (ApiKeys.isWeatherForecastFeaturesFree(getActivity())) {
+                findPreference(Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY).setEnabled(true);
+                findPreference(Constants.KEY_PREF_WEATHER_LICENSE_KEY).setEnabled(false);
+            } else {
+                findPreference(Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY).setEnabled(false);
+                findPreference(Constants.KEY_PREF_WEATHER_LICENSE_KEY).setEnabled(true);
+            }
         }
 
         protected void sendMessageToReconciliationDbService(boolean force) {
@@ -528,6 +544,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 if ("0".equals(preference.getValue())) {
                     AppPreference.setNotificationEnabled(getActivity(), true);
                     AppPreference.setNotificationPresence(getActivity(), "permanent");
+                    AppPreference.setRegularOnlyInterval(getActivity());
                 } else {
                     AppPreference.setNotificationEnabled(getActivity(), false);
                     AppPreference.setNotificationPresence(getActivity(), "when_updated");

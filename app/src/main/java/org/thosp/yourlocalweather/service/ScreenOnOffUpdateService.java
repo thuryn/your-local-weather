@@ -24,6 +24,7 @@ import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -47,6 +48,8 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     private NetworkConnectionReceiver networkConnectionReceiver;
 
     private volatile int screenOnRetryCounter;
+    private volatile long lastOnscreenEvent;
+    private volatile Lock lastOnscreenEventLock = new ReentrantLock();
 
     private BroadcastReceiver userUnlockedReceiver = new BroadcastReceiver() {
         @Override
@@ -66,6 +69,14 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         @Override
         public void onReceive(Context context, Intent intent) {
             appendLog(context, TAG, "receive intent: ", intent);
+            lastOnscreenEventLock.lock();
+            long now = Calendar.getInstance().getTimeInMillis();
+            if ((lastOnscreenEvent + 60000) > now) {
+                lastOnscreenEventLock.unlock();
+                return;
+            }
+            lastOnscreenEvent = now;
+            lastOnscreenEventLock.unlock();
             try {
                 processScreenOn(context);
             } catch (Exception e) {

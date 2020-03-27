@@ -11,7 +11,7 @@ import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
-import org.thosp.yourlocalweather.service.ForecastWeatherService;
+import org.thosp.yourlocalweather.service.UpdateWeatherService;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
@@ -19,8 +19,6 @@ import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Set;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -206,7 +204,8 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
             return;
         }
         if (currentLocation.getOrderId() != 0) {
-            Intent intentToCheckWeather = new Intent(context, ForecastWeatherService.class);
+            Intent intentToCheckWeather =new Intent(context, UpdateWeatherService.class);
+            intentToCheckWeather.putExtra("updateType", UpdateWeatherService.START_WEATHER_FORECAST_UPDATE);
             intentToCheckWeather.putExtra("locationId", currentLocation.getId());
             intentToCheckWeather.putExtra("forceUpdate", true);
             startServiceWithCheck(context, intentToCheckWeather);

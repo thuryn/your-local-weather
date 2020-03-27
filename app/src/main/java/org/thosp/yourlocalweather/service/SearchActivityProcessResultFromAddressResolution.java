@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
+import android.location.Location;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class SearchActivityProcessResultFromAddressResolution implements Process
         this.mProgressDialog = mProgressDialog;
     }
 
-    public void processAddresses(List<Address> addresses) {
+    public void processAddresses(Location location, List<Address> addresses) {
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
             mProgressDialog = null;
@@ -40,6 +41,6 @@ public class SearchActivityProcessResultFromAddressResolution implements Process
 
     @Override
     public void processCanceledRequest() {
-        processAddresses(null);
+        processAddresses(null, null);
     }
 }

@@ -1,5 +1,6 @@
 package org.thosp.yourlocalweather.service;
 
+import android.app.NotificationManager;
 import android.app.Service;
 import android.content.ComponentName;
 import android.content.Context;
@@ -38,9 +39,6 @@ public class AbstractCommonService extends Service {
     private Messenger currentWeatherService;
     private Lock currentWeatherServiceLock = new ReentrantLock();
     private Queue<Message> currentWeatherUnsentMessages = new LinkedList<>();
-    private Messenger weatherForecastService;
-    private Lock weatherForecastServiceLock = new ReentrantLock();
-    private Queue<Message> weatherForecastUnsentMessages = new LinkedList<>();
     private Messenger wakeUpService;
     private Lock wakeUpServiceLock = new ReentrantLock();
     private Queue<Message> wakeUpUnsentMessages = new LinkedList<>();
@@ -121,24 +119,24 @@ public class AbstractCommonService extends Service {
     }
 
     protected void sendIntentToMain() {
-        Intent intent = new Intent(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT);
+        Intent intent = new Intent(UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT);
         intent.putExtra(
-                CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT,
-                CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL);
+                UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT,
+                UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL);
         WidgetUtils.startBackgroundService(getBaseContext(), intent);
     }
 
     protected void sendIntentToMain(String result) {
-        Intent intent = new Intent(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT);
+        Intent intent = new Intent(UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT);
         intent.setPackage("org.thosp.yourlocalweather");
-        if (result.equals(CurrentWeatherService.ACTION_WEATHER_UPDATE_OK)) {
+        if (result.equals(UpdateWeatherService.ACTION_WEATHER_UPDATE_OK)) {
             intent.putExtra(
-                    CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT,
-                    CurrentWeatherService.ACTION_WEATHER_UPDATE_OK);
-        } else if (result.equals(CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL)) {
+                    UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT,
+                    UpdateWeatherService.ACTION_WEATHER_UPDATE_OK);
+        } else if (result.equals(UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL)) {
             intent.putExtra(
-                    CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT,
-                    CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL);
+                    UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT,
+                    UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL);
         }
         sendBroadcast(intent);
     }
@@ -236,7 +234,6 @@ public class AbstractCommonService extends Service {
                 getApplicationContext().unbindService(locationUpdateServiceConnection);
             }
             unbindCurrentWeatherService();
-            unbindWeatherForecastService();
             unbindwakeUpService();
             unbindReconciliationDbService();
         } catch (Exception e) {
@@ -282,8 +279,8 @@ public class AbstractCommonService extends Service {
         try {
             Message msg = Message.obtain(
                     null,
-                    CurrentWeatherService.START_CURRENT_WEATHER_UPDATE,
-                    new WeatherRequestDataHolder(location.getId(), updateSource, forceUpdate, updateWeatherOnly)
+                    UpdateWeatherService.START_CURRENT_WEATHER_UPDATE,
+                    new WeatherRequestDataHolder(location.getId(), updateSource, forceUpdate, updateWeatherOnly, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE)
             );
             if (checkIfCurrentWeatherServiceIsNotBound()) {
                 //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
@@ -313,7 +310,7 @@ public class AbstractCommonService extends Service {
 
     private void bindCurrentWeatherService() {
         getApplicationContext().bindService(
-                new Intent(getApplicationContext(), CurrentWeatherService.class),
+                new Intent(getApplicationContext(), UpdateWeatherService.class),
                 currentWeatherServiceConnection,
                 Context.BIND_AUTO_CREATE);
     }
@@ -361,71 +358,38 @@ public class AbstractCommonService extends Service {
         appendLog(this,
                 TAG,
                 "sending message to get weather forecast");
-        weatherForecastServiceLock.lock();
+        currentWeatherServiceLock.lock();
         try {
             Message msg = Message.obtain(
                     null,
-                    ForecastWeatherService.START_WEATHER_FORECAST_UPDATE,
-                    new WeatherRequestDataHolder(locationId, updateSource, forceUpdate)
+                    UpdateWeatherService.START_WEATHER_FORECAST_UPDATE,
+                    new WeatherRequestDataHolder(locationId, updateSource, forceUpdate, UpdateWeatherService.START_WEATHER_FORECAST_UPDATE)
             );
-            if (checkIfWeatherForecastServiceIsNotBound()) {
+            if (checkIfCurrentWeatherServiceIsNotBound()) {
                 //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
-                weatherForecastUnsentMessages.add(msg);
+                currentWeatherUnsentMessages.add(msg);
                 return;
             }
             //appendLog(getBaseContext(), TAG, "sendMessageToService:");
-            weatherForecastService.send(msg);
+            currentWeatherService.send(msg);
+            msg = Message.obtain(
+                    null,
+                    UpdateWeatherService.START_LONG_WEATHER_FORECAST_UPDATE,
+                    new WeatherRequestDataHolder(locationId, updateSource, forceUpdate, UpdateWeatherService.START_LONG_WEATHER_FORECAST_UPDATE)
+            );
+            if (checkIfCurrentWeatherServiceIsNotBound()) {
+                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
+                currentWeatherUnsentMessages.add(msg);
+                return;
+            }
+            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
+            currentWeatherService.send(msg);
         } catch (RemoteException e) {
             appendLog(getBaseContext(), TAG, e.getMessage(), e);
         } finally {
-            weatherForecastServiceLock.unlock();
+            currentWeatherServiceLock.unlock();
         }
     }
-
-    private boolean checkIfWeatherForecastServiceIsNotBound() {
-        if (weatherForecastService != null) {
-            return false;
-        }
-        try {
-            bindWeatherForecastService();
-        } catch (Exception ie) {
-            appendLog(getBaseContext(), TAG, "weatherForecastServiceIsNotBound interrupted:", ie);
-        }
-        return (weatherForecastService == null);
-    }
-
-    private void bindWeatherForecastService() {
-        getApplicationContext().bindService(
-                new Intent(getApplicationContext(), ForecastWeatherService.class),
-                weatherForecastServiceConnection,
-                Context.BIND_AUTO_CREATE);
-    }
-
-    private void unbindWeatherForecastService() {
-        if (weatherForecastService == null) {
-            return;
-        }
-        getApplicationContext().unbindService(weatherForecastServiceConnection);
-    }
-
-    private ServiceConnection weatherForecastServiceConnection = new ServiceConnection() {
-        public void onServiceConnected(ComponentName className, IBinder binderService) {
-            weatherForecastService = new Messenger(binderService);
-            weatherForecastServiceLock.lock();
-            try {
-                while (!weatherForecastUnsentMessages.isEmpty()) {
-                    weatherForecastService.send(weatherForecastUnsentMessages.poll());
-                }
-            } catch (RemoteException e) {
-                appendLog(getBaseContext(), TAG, e.getMessage(), e);
-            } finally {
-                weatherForecastServiceLock.unlock();
-            }
-        }
-        public void onServiceDisconnected(ComponentName className) {
-            weatherForecastService = null;
-        }
-    };
 
     protected void sendMessageToWakeUpService(int wakeAction, int wakeupSource) {
         wakeUpServiceLock.lock();

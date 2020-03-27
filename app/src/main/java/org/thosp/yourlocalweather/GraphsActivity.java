@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -31,8 +32,9 @@ import com.github.mikephil.charting.data.LineDataSet;
 import com.github.mikephil.charting.interfaces.datasets.IDataSet;
 
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
-import org.thosp.yourlocalweather.service.ForecastWeatherService;
+import org.thosp.yourlocalweather.service.UpdateWeatherService;
 import org.thosp.yourlocalweather.settings.GraphValuesSwitchListener;
+import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.CustomValueFormatter;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
@@ -48,6 +50,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class GraphsActivity extends ForecastingActivity {
 
@@ -77,7 +81,7 @@ public class GraphsActivity extends ForecastingActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initializeWeatherForecastReceiver(ForecastWeatherService.ACTION_GRAPHS_UPDATE_RESULT);
+        initializeWeatherForecastReceiver(UpdateWeatherService.ACTION_GRAPHS_UPDATE_RESULT);
         setContentView(R.layout.activity_graphs);
         localityView = (TextView) findViewById(R.id.graph_locality);
         combinedChart = (CombinedChart) findViewById(R.id.combined_chart);
@@ -114,7 +118,14 @@ public class GraphsActivity extends ForecastingActivity {
         pressureLabel.setText(getString(R.string.label_pressure) + ", " + AppPreference.getPressureUnit(this));
         visibleGraphs = AppPreference.getGraphsActivityVisibleGraphs(this);
         combinedGraphValues = AppPreference.getCombinedGraphValues(this);
+        forecastType = (Switch) findViewById(R.id.forecast_forecastType);
 
+        forecastType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                AppPreference.setForecastType(getBaseContext(), isChecked ? 2 : 1);
+                updateUI();
+            }
+        });
         updateUI();
         android.support.v4.widget.NestedScrollView mRecyclerView = (android.support.v4.widget.NestedScrollView) findViewById(R.id.graph_scroll_view);
         mRecyclerView.setOnTouchListener(new ActivityTransitionTouchListener(
@@ -127,7 +138,7 @@ public class GraphsActivity extends ForecastingActivity {
         super.onResume();
         registerReceiver(mWeatherUpdateReceiver,
                 new IntentFilter(
-                        ForecastWeatherService.ACTION_GRAPHS_UPDATE_RESULT));
+                        UpdateWeatherService.ACTION_GRAPHS_UPDATE_RESULT));
         updateUI();
     }
 
@@ -755,7 +766,11 @@ public class GraphsActivity extends ForecastingActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                updateWeatherForecastFromNetwork("GRAPHS", GraphsActivity.this);
+                if (forecastType.isChecked()) {
+                    updateLongWeatherForecastFromNetwork("GRAPHS");
+                } else {
+                    updateWeatherForecastFromNetwork("GRAPHS");
+                }
                 return true;
             case R.id.action_toggle_values:
                 toggleValues();
@@ -923,6 +938,13 @@ public class GraphsActivity extends ForecastingActivity {
 
     @Override
     protected void updateUI() {
+        View switchPanel = findViewById(R.id.graph_switch_panel);
+        if (ApiKeys.isWeatherForecastFeaturesFree(this)) {
+            switchPanel.setVisibility(View.INVISIBLE);
+        } else {
+            switchPanel.setVisibility(View.VISIBLE);
+        }
+
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
         long locationId = AppPreference.getCurrentLocationId(this);
         currentLocation = locationsDbHelper.getLocationById(locationId);
@@ -931,12 +953,18 @@ public class GraphsActivity extends ForecastingActivity {
         }
         mValueFormatter = new CustomValueFormatter(currentLocation.getLocale());
         rainSnowYAxisValueFormatter = new RainSnowYAxisValueFormatter(this, currentLocation.getLocale());
-        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
+        forecastType.setChecked(2 == AppPreference.getForecastType(getBaseContext()));
+        appendLog(getBaseContext(), TAG, "updateUI with forecastType:", forecastType.isChecked());
+        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId, (forecastType.isChecked() ? 2 : 1));
         if (weatherForecastRecord != null) {
             weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
             locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());
         } else if (ForecastUtil.shouldUpdateForecast(this, locationId)) {
-            updateWeatherForecastFromNetwork("GRAPHS", GraphsActivity.this);
+            if (forecastType.isChecked()) {
+                updateLongWeatherForecastFromNetwork("GRAPHS");
+            } else {
+                updateWeatherForecastFromNetwork("GRAPHS");
+            }
             return;
         }
 

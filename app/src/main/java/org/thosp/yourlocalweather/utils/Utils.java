@@ -37,6 +37,8 @@ import org.thosp.yourlocalweather.model.ReverseGeocodingCacheContract;
 import org.thosp.yourlocalweather.model.ReverseGeocodingCacheDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
+import org.thosp.yourlocalweather.service.LocationNetworkSourcesService;
+import org.thosp.yourlocalweather.service.MozillaLocationService;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -591,21 +593,36 @@ public class Utils {
         return directions[index] + " " + arrows[index];
     }
 
-    public static URL getWeatherForecastUrl(Context context,
+    public static URL getOwmUrl(Context context,
                                             String endpoint,
-                                            double lat,
-                                            double lon,
+                                            Location location,
                                             String units,
-                                            String lang) throws MalformedURLException {
-        String url = Uri.parse(endpoint)
-                        .buildUpon()
-                        .appendQueryParameter("appid", ApiKeys.getOpenweathermapApiKey(context))
-                        .appendQueryParameter("lat", String.valueOf(lat).replace(",", "."))
-                        .appendQueryParameter("lon", String.valueOf(lon).replace(",", "."))
-                        .appendQueryParameter("units", units)
-                        .appendQueryParameter("lang", OWMLanguages.getOwmLanguage(lang))
-                        .build()
-                        .toString();
+                                            String lang,
+                                            final String license) throws MalformedURLException {
+        String url;
+        if (ApiKeys.isWeatherForecastFeaturesFree(context)) {
+            url = Uri.parse(endpoint)
+                    .buildUpon()
+                    .appendQueryParameter("appid", ApiKeys.getOpenweathermapApiKey(context))
+                    .appendQueryParameter("lat", String.valueOf(location.getLatitude()).replace(",", "."))
+                    .appendQueryParameter("lon", String.valueOf(location.getLongitude()).replace(",", "."))
+                    .appendQueryParameter("units", units)
+                    .appendQueryParameter("lang", OWMLanguages.getOwmLanguage(lang))
+                    .build()
+                    .toString();
+        } else {
+            url = Uri.parse(endpoint)
+                    .buildUpon()
+                    .appendQueryParameter("appid", ApiKeys.getOpenweathermapApiKey(context))
+                    .appendQueryParameter("lat", String.valueOf(location.getLatitude()).replace(",", "."))
+                    .appendQueryParameter("lon", String.valueOf(location.getLongitude()).replace(",", "."))
+                    .appendQueryParameter("units", units)
+                    .appendQueryParameter("lang", OWMLanguages.getOwmLanguage(lang))
+                    .appendQueryParameter("license", license)
+                    .build()
+                    .toString();
+        }
+        appendLog(context, TAG, url);
         return new URL(url);
     }
     

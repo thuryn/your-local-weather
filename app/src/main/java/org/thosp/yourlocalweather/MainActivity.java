@@ -12,7 +12,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
@@ -22,10 +21,8 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
-import android.os.Messenger;
 import android.os.PowerManager;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
@@ -54,8 +51,8 @@ import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
-import org.thosp.yourlocalweather.service.CurrentWeatherService;
 import org.thosp.yourlocalweather.service.StartAutoLocationJob;
+import org.thosp.yourlocalweather.service.UpdateWeatherService;
 import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
@@ -67,11 +64,7 @@ import org.thosp.yourlocalweather.utils.WindWithUnit;
 import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -112,9 +105,6 @@ public class MainActivity extends BaseActivity
     private BroadcastReceiver mWeatherUpdateReceiver;
     private CurrentWeatherDbHelper currentWeatherDbHelper;
     private WeatherForecastDbHelper weatherForecastDbHelper;
-    private Messenger currentWeatherService;
-    private Lock currentWeatherServiceLock = new ReentrantLock();
-    private Queue<Message> currentWeatherUnsentMessages = new LinkedList<>();
 
     private WindWithUnit windWithUnit;
     private String iconSecondTemperature;
@@ -170,7 +160,7 @@ public class MainActivity extends BaseActivity
         this.storedContext = this;
         fab.setOnClickListener(fabListener);
         checkSettingsAndPermisions();
-        startAlarms();
+        //startAlarms();
         StartAlarmsTask startAlarmsTask = new StartAlarmsTask();
         startAlarmsTask.execute(new Integer[0]);
     }
@@ -223,13 +213,12 @@ public class MainActivity extends BaseActivity
         mAppBarLayout.addOnOffsetChangedListener(this);
         registerReceiver(mWeatherUpdateReceiver,
                 new IntentFilter(
-                        CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT));
+                        UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT));
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        unbindCurrentWeatherService();
         if (mProgressDialog != null) {
             mProgressDialog.dismiss();
         }
@@ -263,10 +252,6 @@ public class MainActivity extends BaseActivity
         switch (item.getItemId()) {
             case R.id.main_menu_refresh:
                 if (connectionDetector.isNetworkAvailableAndConnected()) {
-                    locationsDbHelper.updateLastUpdatedAndLocationSource(
-                            currentLocation.getId(),
-                            System.currentTimeMillis(),
-                            getString(R.string.location_weather_update_status_update_started));
                     if ((currentLocation.getLatitude() == 0.0) && (currentLocation.getLongitude() == 0.0)) {
                         Toast.makeText(MainActivity.this,
                                 R.string.location_not_initialized,
@@ -301,10 +286,6 @@ public class MainActivity extends BaseActivity
                 public void onRefresh() {
                     isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
                     if (isNetworkAvailable) {
-                        locationsDbHelper.updateLastUpdatedAndLocationSource(
-                                currentLocation.getId(),
-                                System.currentTimeMillis(),
-                                getString(R.string.location_weather_update_status_update_started));
                         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
                         sendMessageToCurrentWeatherService(currentLocation, "MAIN");
                     } else {
@@ -543,14 +524,14 @@ public class MainActivity extends BaseActivity
                         }
                     });
                 }
-                switch (intent.getStringExtra(CurrentWeatherService.ACTION_WEATHER_UPDATE_RESULT)) {
-                    case CurrentWeatherService.ACTION_WEATHER_UPDATE_OK:
+                switch (intent.getStringExtra(UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT)) {
+                    case UpdateWeatherService.ACTION_WEATHER_UPDATE_OK:
                         mSwipeRefresh.setRefreshing(false);
                         setUpdateButtonState(false);
 
                         updateUI();
                         break;
-                    case CurrentWeatherService.ACTION_WEATHER_UPDATE_FAIL:
+                    case UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL:
                         mSwipeRefresh.setRefreshing(false);
                         setUpdateButtonState(false);
                         updateLocationCityTimeAndSource();
@@ -721,6 +702,7 @@ public class MainActivity extends BaseActivity
                     public void onClick(DialogInterface dialog, int which) {
                         permissionsAndSettingsRequested = false;
                         dialog.cancel();
+                        checkSettingsAndPermisions();
                     }
                 });
         settingsAlert.show();
@@ -744,6 +726,30 @@ public class MainActivity extends BaseActivity
                         SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(localContext).edit();
                         preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 4);
                         preferences.apply();
+                        checkAndShowInitialGuide();
+                    }
+                });
+        settingsAlert.show();
+    }
+
+    private void showMLSLimitedServiceDisclaimer() {
+        int initialGuideVersion = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
+                .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
+        if (initialGuideVersion != 4) {
+            return;
+        }
+        final Context localContext = getBaseContext();
+        final AlertDialog.Builder settingsAlert = new AlertDialog.Builder(MainActivity.this);
+        settingsAlert.setTitle(R.string.alertDialog_mls_service_title);
+        settingsAlert.setMessage(R.string.alertDialog_mls_service_message);
+        settingsAlert.setNeutralButton(R.string.alertDialog_battery_optimization_proceed,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(localContext).edit();
+                        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 5);
+                        preferences.apply();
+                        checkAndShowInitialGuide();
                     }
                 });
         settingsAlert.show();
@@ -752,12 +758,14 @@ public class MainActivity extends BaseActivity
     private void checkBatteryOptimization() {
         int initialGuideVersion = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
                 .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
-        if (initialGuideVersion < 4) {
-            SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(this).edit();
-            preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 4);
-            preferences.apply();
+        if (initialGuideVersion != 2) {
+            return;
         }
+        final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            SharedPreferences.Editor initGuidePreferences = preferences.edit();
+            initGuidePreferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 3);
+            initGuidePreferences.apply();
             return;
         }
         AlertDialog.Builder settingsAlert = new AlertDialog.Builder(MainActivity.this);
@@ -767,6 +775,9 @@ public class MainActivity extends BaseActivity
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
+                            SharedPreferences.Editor initGuidePreferences = preferences.edit();
+                            initGuidePreferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 3);
+                            initGuidePreferences.apply();
                             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
                                 return;
                             }
@@ -788,6 +799,10 @@ public class MainActivity extends BaseActivity
                     public void onClick(DialogInterface dialog, int which) {
                         permissionsAndSettingsRequested = false;
                         dialog.cancel();
+                        SharedPreferences.Editor initGuidePreferences = preferences.edit();
+                        initGuidePreferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 3);
+                        initGuidePreferences.apply();
+                        checkSettingsAndPermisions();
                     }
                 });
         settingsAlert.show();
@@ -811,11 +826,15 @@ public class MainActivity extends BaseActivity
         int initialGuideVersion = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
                 .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
         if (initialGuideVersion > 0) {
-            initialGuideCompleted = true;
-            if (initialGuideVersion < 3) {
-                checkBatteryOptimization();
-            }
+            checkBatteryOptimization();
             showVoiceAndSourcesDisclaimer();
+            showMLSLimitedServiceDisclaimer();
+            if (initialGuideVersion >= 5) {
+                initialGuideCompleted = true;
+                if (initialGuidePage > 0) {
+                    detectLocation();
+                }
+            }
             return;
         }
         if (initialGuidePage > 0) {
@@ -829,17 +848,11 @@ public class MainActivity extends BaseActivity
         final AlertDialog.Builder settingsAlert = new AlertDialog.Builder(MainActivity.this);
         switch (pageNumber) {
             case 1:
-                settingsAlert.setTitle(R.string.alertDialog_voice_disclaimer_title);
-                settingsAlert.setMessage(R.string.alertDialog_voice_disclaimer_message);
-                setNextButton(settingsAlert, R.string.initial_guide_next);
-                break;
-            case 2:
                 settingsAlert.setTitle(R.string.initial_guide_title_1);
                 settingsAlert.setMessage(R.string.initial_guide_paragraph_1);
                 setNextButton(settingsAlert, R.string.initial_guide_next);
-                setPreviousButton(settingsAlert, R.string.initial_guide_close);
                 break;
-            case 3:
+            case 2:
                 settingsAlert.setTitle(R.string.initial_guide_title_2);
                 selectedUpdateLocationStrategy = 1;
                 settingsAlert.setSingleChoiceItems(R.array.location_update_strategy, selectedUpdateLocationStrategy,
@@ -855,13 +868,13 @@ public class MainActivity extends BaseActivity
                 setNextButton(settingsAlert, R.string.initial_guide_next);
                 setPreviousButton(settingsAlert, R.string.initial_guide_previous);
                 break;
-            case 4:
+            case 3:
                 settingsAlert.setTitle(R.string.initial_guide_title_3);
                 settingsAlert.setMessage(R.string.initial_guide_paragraph_3);
                 setNextButton(settingsAlert, R.string.initial_guide_next);
                 setPreviousButton(settingsAlert, R.string.initial_guide_previous);
                 break;
-            case 5:
+            case 4:
                 settingsAlert.setTitle(R.string.initial_guide_title_4);
                 selectedLocationAndAddressSourceStrategy = 0;
                 settingsAlert.setSingleChoiceItems(R.array.location_geocoder_source_entries, selectedLocationAndAddressSourceStrategy,
@@ -874,13 +887,13 @@ public class MainActivity extends BaseActivity
                 setNextButton(settingsAlert, R.string.initial_guide_next);
                 setPreviousButton(settingsAlert, R.string.initial_guide_previous);
                 break;
-            case 6:
+            case 5:
                 settingsAlert.setTitle(R.string.initial_guide_title_5);
                 settingsAlert.setMessage(R.string.initial_guide_paragraph_5);
                 setNextButton(settingsAlert, R.string.initial_guide_next);
                 setPreviousButton(settingsAlert, R.string.initial_guide_previous);
                 break;
-            case 7:
+            case 6:
                 settingsAlert.setTitle(R.string.initial_guide_title_6);
                 selectedWakeupStrategyStrategy = 2;
                 settingsAlert.setSingleChoiceItems(R.array.wake_up_strategy_entries, selectedWakeupStrategyStrategy,
@@ -893,13 +906,13 @@ public class MainActivity extends BaseActivity
                 setNextButton(settingsAlert, R.string.initial_guide_next);
                 setPreviousButton(settingsAlert, R.string.initial_guide_previous);
                 break;
-            case 8:
+            case 7:
                 settingsAlert.setTitle(R.string.initial_guide_title_7);
                 settingsAlert.setMessage(R.string.initial_guide_paragraph_7);
                 setNextButton(settingsAlert, R.string.initial_guide_next);
                 setPreviousButton(settingsAlert, R.string.initial_guide_previous);
                 break;
-            case 9:
+            case 8:
                 settingsAlert.setTitle(R.string.initial_guide_title_8);
                 selectedCacheLocationStrategy = 1;
                 settingsAlert.setSingleChoiceItems(R.array.location_cache_entries, selectedCacheLocationStrategy,
@@ -912,7 +925,7 @@ public class MainActivity extends BaseActivity
                 setNextButton(settingsAlert, R.string.initial_guide_next);
                 setPreviousButton(settingsAlert, R.string.initial_guide_previous);
                 break;
-            case 10:
+            case 9:
                 settingsAlert.setTitle(R.string.initial_guide_title_9);
                 settingsAlert.setMessage(R.string.initial_guide_paragraph_9);
                 setNextButton(settingsAlert, R.string.initial_guide_finish);
@@ -929,8 +942,7 @@ public class MainActivity extends BaseActivity
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();
                         initialGuidePage++;
-                        if (initialGuidePage > 10) {
-                            initialGuideCompleted = true;
+                        if (initialGuidePage > 9) {
                             permissionsAndSettingsRequested = false;
                             saveInitialPreferences();
                             updateCurrentLocationAndButtonVisibility();
@@ -961,11 +973,11 @@ public class MainActivity extends BaseActivity
     private void closeInitialGuideAndCheckPermission() {
         permissionsAndSettingsRequested = false;
         SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(this).edit();
-        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 4);
+        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 2);
         preferences.apply();
-        initialGuideCompleted = true;
         checkPermissionsSettingsAndShowAlert();
         updateCurrentLocationAndButtonVisibility();
+        checkAndShowInitialGuide();
     }
 
     private void saveInitialPreferences() {
@@ -1005,7 +1017,7 @@ public class MainActivity extends BaseActivity
         }
         preferences.putBoolean(Constants.APP_SETTINGS_LOCATION_CACHE_ENABLED, selectedCacheLocationStrategyBoolean);
 
-        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 4);
+        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 2);
         preferences.apply();
     }
 
@@ -1014,7 +1026,11 @@ public class MainActivity extends BaseActivity
         startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
         startLocationUpdateIntent.putExtra("updateSource", "MAIN");
         startLocationUpdateIntent.putExtra("locationId", currentLocation.getId());
-        storedContext.startService(startLocationUpdateIntent);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
+            storedContext.startForegroundService(startLocationUpdateIntent);
+        } else {
+            storedContext.startService(startLocationUpdateIntent);
+        }
     }
     
     private void requestLocation() {
@@ -1035,7 +1051,6 @@ public class MainActivity extends BaseActivity
                 break;
             default:
                 super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-                checkBatteryOptimization();
                 break;
         }
     }
@@ -1074,74 +1089,25 @@ public class MainActivity extends BaseActivity
             detectLocation();
             return;
         }
-        currentWeatherServiceLock.lock();
+        weatherForecastServiceLock.lock();
         try {
             Message msg = Message.obtain(
                     null,
-                    CurrentWeatherService.START_CURRENT_WEATHER_UPDATE,
-                    new WeatherRequestDataHolder(location.getId(), updateSource)
+                    UpdateWeatherService.START_CURRENT_WEATHER_UPDATE,
+                    new WeatherRequestDataHolder(location.getId(), updateSource, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE)
             );
-            if (checkIfCurrentWeatherServiceIsNotBound()) {
+            if (checkIfWeatherForecastServiceIsNotBound()) {
                 //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
-                currentWeatherUnsentMessages.add(msg);
+                weatherForecastUnsentMessages.add(msg);
                 return;
             }
             //appendLog(getBaseContext(), TAG, "sendMessageToService:");
-            currentWeatherService.send(msg);
+            weatherForecastService.send(msg);
         } catch (RemoteException e) {
             appendLog(getBaseContext(), TAG, e.getMessage(), e);
         } finally {
-            currentWeatherServiceLock.unlock();
+            weatherForecastServiceLock.unlock();
         }
         sendMessageToWeatherForecastService(location.getId());
     }
-
-    private boolean checkIfCurrentWeatherServiceIsNotBound() {
-        if (currentWeatherService != null) {
-            return false;
-        }
-        try {
-            bindCurrentWeatherService();
-        } catch (Exception ie) {
-            appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
-        }
-        return (currentWeatherService == null);
-    }
-
-    private void bindCurrentWeatherService() {
-        getApplicationContext().bindService(
-                new Intent(getApplicationContext(), CurrentWeatherService.class),
-                currentWeatherServiceConnection,
-                Context.BIND_AUTO_CREATE);
-    }
-
-    private void unbindCurrentWeatherService() {
-        if (currentWeatherService == null) {
-            return;
-        }
-        try {
-            getApplicationContext().unbindService(currentWeatherServiceConnection);
-        } catch (Exception e) {
-            appendLog(this, "TAG", e.getMessage(), e);
-        }
-    }
-
-    private ServiceConnection currentWeatherServiceConnection = new ServiceConnection() {
-        public void onServiceConnected(ComponentName className, IBinder binderService) {
-            currentWeatherService = new Messenger(binderService);
-            currentWeatherServiceLock.lock();
-            try {
-                while (!currentWeatherUnsentMessages.isEmpty()) {
-                    currentWeatherService.send(currentWeatherUnsentMessages.poll());
-                }
-            } catch (RemoteException e) {
-                appendLog(getBaseContext(), TAG, e.getMessage(), e);
-            } finally {
-                currentWeatherServiceLock.unlock();
-            }
-        }
-        public void onServiceDisconnected(ComponentName className) {
-            currentWeatherService = null;
-        }
-    };
 }

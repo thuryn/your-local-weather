@@ -25,15 +25,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.thosp.yourlocalweather.help.HelpActivity;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.service.CurrentWeatherService;
-import org.thosp.yourlocalweather.service.ForecastWeatherService;
 import org.thosp.yourlocalweather.service.ReconciliationDbService;
+import org.thosp.yourlocalweather.service.UpdateWeatherService;
 import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
@@ -57,9 +57,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private TextView mHeaderCity;
     protected LocationsDbHelper locationsDbHelper;
-    private Messenger weatherForecastService;
-    private Lock weatherForecastServiceLock = new ReentrantLock();
-    private Queue<Message> weatherForecastUnsentMessages = new LinkedList<>();
+    protected Messenger weatherForecastService;
+    protected Lock weatherForecastServiceLock = new ReentrantLock();
+    protected Queue<Message> weatherForecastUnsentMessages = new LinkedList<>();
     protected Location currentLocation;
     protected TextView localityView;
 
@@ -268,16 +268,16 @@ public abstract class BaseActivity extends AppCompatActivity {
         try {
             Message msg = Message.obtain(
                     null,
-                    ForecastWeatherService.START_WEATHER_FORECAST_UPDATE,
-                    new WeatherRequestDataHolder(locationId, updateSource)
+                    UpdateWeatherService.START_WEATHER_FORECAST_UPDATE,
+                    new WeatherRequestDataHolder(locationId, updateSource, UpdateWeatherService.START_WEATHER_FORECAST_UPDATE)
             );
             if (checkIfWeatherForecastServiceIsNotBound()) {
                 //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
                 weatherForecastUnsentMessages.add(msg);
-                return;
+            } else {
+                //appendLog(getBaseContext(), TAG, "sendMessageToService:");
+                weatherForecastService.send(msg);
             }
-            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
-            weatherForecastService.send(msg);
         } catch (RemoteException e) {
             appendLog(getBaseContext(), TAG, e.getMessage(), e);
         } finally {
@@ -285,7 +285,29 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    private boolean checkIfWeatherForecastServiceIsNotBound() {
+    protected void sendMessageToLongWeatherForecastService(Long locationId, String updateSource) {
+        weatherForecastServiceLock.lock();
+        try {
+            Message msg = Message.obtain(
+                    null,
+                    UpdateWeatherService.START_LONG_WEATHER_FORECAST_UPDATE,
+                    new WeatherRequestDataHolder(locationId, updateSource, UpdateWeatherService.START_LONG_WEATHER_FORECAST_UPDATE)
+            );
+            if (checkIfWeatherForecastServiceIsNotBound()) {
+                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
+                weatherForecastUnsentMessages.add(msg);
+            } else {
+                //appendLog(getBaseContext(), TAG, "sendMessageToService:");
+                weatherForecastService.send(msg);
+            }
+        } catch (RemoteException e) {
+            appendLog(getBaseContext(), TAG, e.getMessage(), e);
+        } finally {
+            weatherForecastServiceLock.unlock();
+        }
+    }
+
+    protected boolean checkIfWeatherForecastServiceIsNotBound() {
         if (weatherForecastService != null) {
             return false;
         }
@@ -299,7 +321,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private void bindWeatherForecastService() {
         getApplicationContext().bindService(
-                new Intent(getApplicationContext(), ForecastWeatherService.class),
+                new Intent(getApplicationContext(), UpdateWeatherService.class),
                 weatherForecastServiceConnection,
                 Context.BIND_AUTO_CREATE);
     }

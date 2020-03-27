@@ -79,6 +79,7 @@ public class MozillaLocationService {
         }
         try {
             final String request = createRequest(cells, wiFis);
+            appendLog(context, TAG, "MLS request = " + request);
             final StringEntity entity = new StringEntity(request);
             Handler mainHandler = new Handler(Looper.getMainLooper());
             Runnable myRunnable = new Runnable() {
@@ -152,7 +153,8 @@ public class MozillaLocationService {
                     location.getLongitude(),
                     1,
                     locale,
-                    new MozillaProcessResultFromAddressResolution(context, location, this));
+                    new MozillaProcessResultFromAddressResolution(context, location, this),
+                    location);
             return;
         }
         appendLog(context, TAG, "processUpdateOfLocation:reportNewLocation:", location);

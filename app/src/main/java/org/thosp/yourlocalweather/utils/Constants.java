@@ -34,6 +34,8 @@ public class Constants {
     public static final String LAST_SENSOR_SERVICES_CHECK_TIME_IN_MS = "last_weather_update";
     public static final String CURRENT_LOCATION_ID = "current_location_id";
     public static final String KEY_PREF_OPEN_WEATHER_MAP_API_KEY = "open_weather_map_api_key";
+    public static final String KEY_PREF_WEATHER_FORECAST_FEATURES = "weather_forecast_features_pref_key";
+    public static final String KEY_PREF_WEATHER_LICENSE_KEY = "weather_forecast_license_key_pref_key";
 
     public static final String KEY_PREF_TIME_STYLE = "time_style_pref_key";
     public static final String KEY_PREF_DATE_STYLE = "date_style_pref_key";
@@ -66,6 +68,7 @@ public class Constants {
     public static final String KEY_DEBUG_TO_FILE = "debug.to.file";
     public static final String KEY_DEBUG_FILE_LASTING_HOURS = "debug.file.lasting.hours";
     public static final String KEY_WAKE_UP_STRATEGY = "wake.up.strategy";
+    public static final String KEY_PREF_FORECAST_TYPE = "forecast_type_pref_key";
     public static final String KEY_PREF_FORECAST_ACTIVITY_COLUMNS = "forecast_activity_columns_pref_key";
     public static final String KEY_PREF_GRAPHS_ACTIVITY_VISIBLE_GRAPHS = "graphs_activity_visible_graphs";
     public static final String KEY_PREF_COMBINED_GRAPH_VALUES = "graphs_activity_combined_values";
@@ -123,10 +126,13 @@ public class Constants {
             "https://play.google.com/store/apps/details?id=%s";
     public static final String F_DROID_WEB_URI = "https://f-droid.org/repository/browse/?fdid=%s";
     public static final String WEATHER_ENDPOINT = "https://api.openweathermap.org/data/2.5/weather";
-    public static final String WEATHER_FORECAST_ENDPOINT_DAILY = "https://api.openweathermap.org/data/2.5/forecast/daily";
+    public static final String SERVICE_WEATHER_FORECAST_ENDPOINT_DAILY = "http://usve267973.serverprofi24.com/webresources/owm/forecast/daily";
     public static final String WEATHER_FORECAST_ENDPOINT = "https://api.openweathermap.org/data/2.5/forecast";
+    public static final String SERVICE_WEATHER_ENDPOINT = "http://usve267973.serverprofi24.com/webresources/owm/weather";
+    public static final String SERVICE_WEATHER_FORECAST_ENDPOINT = "http://usve267973.serverprofi24.com/webresources/owm/forecast";
 
     public static final int PARSE_RESULT_SUCCESS = 0;
     public static final int TASK_RESULT_ERROR = -1;
     public static final int PARSE_RESULT_ERROR = -2;
+    public static final int TOO_EARLY_UPDATE_ERROR = -3;
 }

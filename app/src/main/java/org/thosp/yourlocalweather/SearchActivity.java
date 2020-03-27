@@ -119,7 +119,7 @@ public class SearchActivity extends BaseActivity {
 
         MapEventsReceiver mReceive = new MapEventsReceiver() {
             @Override
-            public boolean singleTapConfirmedHelper(GeoPoint p) {
+            public boolean singleTapConfirmedHelper(final GeoPoint p) {
 
                 mProgressDialog = new ProgressDialog(SearchActivity.this);
                 mProgressDialog.setMessage(getString(R.string.progressDialog_gps_locate));
@@ -142,15 +142,23 @@ public class SearchActivity extends BaseActivity {
                 latitude = p.getLatitude();
                 longitude = p.getLongitude();
                 locale = PreferenceUtil.getLanguage(getApplicationContext());
-                Intent resultionResult = new Intent(ACTION_ADDRESS_RESOLUTION_RESULT);
+                final Intent resultionResult = new Intent(ACTION_ADDRESS_RESOLUTION_RESULT);
                 resultionResult.setPackage("org.thosp.yourlocalweather");
-                NominatimLocationService.getInstance().getFromLocation(
-                        mContext,
-                        p.getLatitude(),
-                        p.getLongitude(),
-                        1,
-                        locale,
-                        new SearchActivityProcessResultFromAddressResolution(mContext, resultionResult, mProgressDialog));
+
+                Thread thread = new Thread() {
+                    @Override
+                    public void run() {
+                            NominatimLocationService.getInstance().getFromLocation(
+                                    mContext,
+                                    p.getLatitude(),
+                                    p.getLongitude(),
+                                    1,
+                                    locale,
+                                    new SearchActivityProcessResultFromAddressResolution(mContext, resultionResult, mProgressDialog),
+                                    null);
+                    }
+                };
+                thread.start();
                 return false;
             }
 

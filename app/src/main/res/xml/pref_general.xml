@@ -32,6 +32,16 @@
     <PreferenceCategory
         android:key="system_category_pref_key"
         android:title="@string/preference_title_category_system">
+        <ListPreference
+            android:defaultValue="weather_forecast_features_free"
+            android:dialogTitle="@string/preference_weather_weather_forecast_features_title"
+            android:entries="@array/weather_forecast_features_entries"
+            android:entryValues="@array/weather_forecast_features_values"
+            android:key="weather_forecast_features_pref_key"
+            android:title="@string/preference_weather_weather_forecast_features_title"/>
+        <EditTextPreference
+            android:key="weather_forecast_license_key_pref_key"
+            android:title="@string/weather_forecast_license_key_title" />
         <EditTextPreference
             android:key="open_weather_map_api_key"
             android:title="@string/open_weather_map_api_key" />

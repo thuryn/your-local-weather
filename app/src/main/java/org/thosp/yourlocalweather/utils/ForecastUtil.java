@@ -82,6 +82,9 @@ public class ForecastUtil {
         Map<Integer, List<DetailedWeatherForecast>> weatherList = new HashMap<>();
         Calendar forecastCalendar = Calendar.getInstance();
         int maxForecastDay = 0;
+        if ((weatherForecastRecord == null) || (weatherForecastRecord.getCompleteWeatherForecast() == null)) {
+            return weatherList;
+        }
         for (DetailedWeatherForecast detailedWeatherForecast : weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
             forecastCalendar.setTimeInMillis(detailedWeatherForecast.getDateTime() * 1000);
             int forecastDay = forecastCalendar.get(Calendar.DAY_OF_YEAR);
