@@ -3,7 +3,7 @@
     <string name="enter_city_hint">Introdueix ciutat</string>
     <string name="label_current_city">Ciutat actual</string>
     <string name="label_choose_city">Escull ciutat</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings">El GPS no està habilitat. ¿Vols anar al menú de configuració?</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">L’aplicació està configurada per actualitzar la ubicació. És necessari accedir-hi. Vés a la configuració del dispositiu i activa la ubicació o desactiva les actualitzacions.</string>
     <string name="alertDialog_location_permission_positiveButton_settings">Paràmetres</string>
     <string name="alertDialog_location_permission_negativeButton">Cancel\·lar</string>
     <string name="progressDialog_gps_locate">Trobar l\'ubicació actual</string>
@@ -112,5 +112,42 @@
     <string name="pref_title_theme">Tema</string>
     <string name="permission_location_need">Hauries de donar permisos de localització</string>
     <string name="app_name" tools:ignore="MissingTranslation">El temps local</string>
-    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Traduccions directes de text i veu</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Traduccions de text i orientació</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Guia de configuració inicial</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Acabar</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Anterior</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Següent</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Tancar</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">No teniu permís per tenir més de %1$d ubicacions actualment.</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Pressió</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Neu</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Pluja</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Vent</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Notificacions del teu temps local</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">El teu temps local</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Ciutat: %1$s
+\nTemperatura: %2$s
+\nDescripció: %3$s
+\nVent: %4$s %5$s
+\nAlba: %6$s
+\nCapvespre: %7$s</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">No s\'ha trobat l\'aplicació de comunicació</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Comparteix el temps</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">El vostre OpenweathermapApiKey no està registrat.</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">L’accés ha caducat. Actualitzeu l’aplicació, si us plau.</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Permisos no establerts - feu clic al símbol de la ubicació en l\'aplicació</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Ubicació no trobada</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Sol·licitar permisos</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">L\'aplicació necessita permís per llegir informació del dispositiu per actualitzar la ubicació mitjançant xarxes Wi-Fi i GSM. Això proporciona informació sobre les estacions base GSM amb què està connectat el dispositiu.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">L’aplicació necessita un permís per actualitzar la ubicació utilitzant Wi-Fi i GSM.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">L’aplicació necessita permís per actualitzar la ubicació utilitzant el GPS.</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Configuració de la ubicació i dels permísos</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Cancel · lar</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Continuar</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">L’aplicació us demanarà que desactiveu l’optimització de la bateria per actualitzar la ubicació, el clima o el seguiment mitjançant un acceleròmetre en segon pla.</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Optimització de la bateria</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">L’accés al servei d’ubicació de Mozilla ha caducat des.de l’1.3.2020. L’aplicació es veu obligada a utilitzar el sistema natiu d\'Andorid per la gestió de les coordenades d’ubicació. Nominatim encara resol la direcció. Tingueu en compte aquest fet utilitzant aquesta aplicació.</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Limitació del servei d\'ubicació de Mozilla</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Aquesta aplicació ofereix una guia a través de traduccions de text i comandes de veu cortesia dels voluntaris en https://hosted.weblate.org/projects/your-local-weather. L\'aplicació no pot garantir que siguin correctes, ho accepteu des que utilitzeu l\'aplicació. Per utilitzar-lo, necessiteu instal·lar TTS (Text a veu) i activar la guia a la configuració, on podeu configurar els vostres propis ordres de veu. "</string>
 </resources>
