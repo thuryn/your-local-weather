@@ -549,4 +549,6 @@
     <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">sjeldent</string>
     <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">og</string>
     <string name="pref_language_id" tools:ignore="MissingTranslation">Indonesian (Indonesisk)</string>
+    <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Værvarselstype</string>
+    <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Lisensnøkkel</string>
 </resources>
