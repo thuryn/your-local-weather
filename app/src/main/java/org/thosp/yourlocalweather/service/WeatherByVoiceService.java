@@ -113,6 +113,47 @@ public class WeatherByVoiceService extends Service {
         sayForLocation(voiceSettingId, false);
     }
 
+    private void sayCurrentWeatherForLocation(WeatherByVoiceRequestDataHolder updateRequest) {
+        VoiceSettingParametersDbHelper voiceSettingParametersDbHelper = VoiceSettingParametersDbHelper.getInstance(getBaseContext());
+        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+
+        Map<Long, Boolean> allLocations = voiceSettingParametersDbHelper.getBooleanParam(
+                VoiceSettingParamType.VOICE_SETTING_LOCATIONS.getVoiceSettingParamTypeId());
+        appendLog(getBaseContext(), TAG, "sayForLocation:allLocations:" + allLocations);
+        for (Long voiceSettingId: allLocations.keySet()) {
+            Long triggerType = voiceSettingParametersDbHelper.getLongParam(
+                    voiceSettingId,
+                    VoiceSettingParamType.VOICE_SETTING_TRIGGER_TYPE.getVoiceSettingParamTypeId());
+            if (triggerType != 0) {
+                continue;
+            }
+            Boolean locations = allLocations.get(voiceSettingId);
+            if ((locations != null) && locations) {
+                sayCurrentWeather(
+                        updateRequest.getWeather(),
+                        updateRequest.getLocation(),
+                        updateRequest.getTimestamp(),
+                        voiceSettingId,
+                        false);
+                return;
+            }
+            String enabledLocationIds = voiceSettingParametersDbHelper.getStringParam(
+                    voiceSettingId,
+                    VoiceSettingParamType.VOICE_SETTING_LOCATIONS.getVoiceSettingParamTypeId());
+            appendLog(getBaseContext(), TAG, "sayForLocation:enabledLocationIds:" + enabledLocationIds);
+            if (enabledLocationIds.contains(updateRequest.getLocation().getId().toString())) {
+                sayCurrentWeather(
+                        updateRequest.getWeather(),
+                        updateRequest.getLocation(),
+                        updateRequest.getTimestamp(),
+                        voiceSettingId,
+                        false);
+                return;
+            }
+        }
+        startVoiceCommand();
+    }
+
     private void sayForLocation(Long voiceSettingId, boolean initiatedFromBtDEvice) {
         VoiceSettingParametersDbHelper voiceSettingParametersDbHelper = VoiceSettingParametersDbHelper.getInstance(getBaseContext());
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
@@ -153,76 +194,56 @@ public class WeatherByVoiceService extends Service {
                         initiatedFromBtDEvice);
             }
         }
-        return;
+        startVoiceCommand();
     }
 
-    public void startAllLocationsVoiceCommand(long incomingMessageTimestamp,
-                                              Long voiceSettingId) {
+    public void startAllLocationsVoiceCommand(Long voiceSettingId) {
         appendLog(getBaseContext(), TAG, "startVoiceCommand");
 
         appendLog(getBaseContext(),
                 TAG,
                 "weatherByVoiceMessages.size before peek = ", weatherByVoiceMessages);
 
-        WeatherByVoiceRequestDataHolder updateRequest = weatherByVoiceMessages.peek();
+        WeatherByVoiceRequestDataHolder updateRequest = weatherByVoiceMessages.poll();
 
         appendLog(getBaseContext(),
                 TAG,
                 "weatherByVoiceMessages.size after peek = ", weatherByVoiceMessages);
 
-        if ((updateRequest == null) || (updateRequest.getTimestamp() < incomingMessageTimestamp)) {
-            if (updateRequest != null) {
-                appendLog(getBaseContext(),
-                        TAG,
-                        "updateRequest is older than current");
-            } else {
-                appendLog(getBaseContext(),
-                        TAG,
-                        "updateRequest is null");
-            }
+        if (updateRequest == null) {
             appendLog(getBaseContext(),
                     TAG,
-                    "weatherByVoiceMessages.size when request is old or null = ", weatherByVoiceMessages);
+                    "updateRequest is null");
             return;
         }
         sayForLocation(voiceSettingId, true);
     }
 
 
-    public void startVoiceCommand(long incommingMessageTimestamp) {
+    public void startVoiceCommand() {
         appendLog(getBaseContext(), TAG, "startVoiceCommand");
 
         appendLog(getBaseContext(),
                 TAG,
                 "weatherByVoiceMessages.size before peek = ", weatherByVoiceMessages);
 
-        WeatherByVoiceRequestDataHolder updateRequest = weatherByVoiceMessages.peek();
+        WeatherByVoiceRequestDataHolder updateRequest = weatherByVoiceMessages.poll();
 
         appendLog(getBaseContext(),
                 TAG,
                 "weatherByVoiceMessages.size after peek = ", weatherByVoiceMessages);
 
-        if ((updateRequest == null) || (updateRequest.getTimestamp() < incommingMessageTimestamp)) {
-            if (updateRequest != null) {
-                appendLog(getBaseContext(),
-                        TAG,
-                        "updateRequest is older than current");
-            } else {
-                appendLog(getBaseContext(),
-                        TAG,
-                        "updateRequest is null");
-            }
+        if (updateRequest == null) {
             appendLog(getBaseContext(),
                     TAG,
-                    "weatherByVoiceMessages.size when request is old or null = ", weatherByVoiceMessages);
+                    "updateRequest is null");
             return;
         }
-        sayCurrentWeather(
-                updateRequest.getWeather(),
-                updateRequest.getLocation(),
-                updateRequest.getTimeNow(),
-                null,
-                false);
+        if (updateRequest.getVoiceSettingsId() != null) {
+            sayForLocation(updateRequest.getVoiceSettingsId(), true);
+        } else {
+            sayCurrentWeatherForLocation(updateRequest);
+        }
     }
 
     private void sayCurrentWeather(Weather weather,
@@ -230,7 +251,6 @@ public class WeatherByVoiceService extends Service {
                                    long now,
                                    Long voiceSettingId,
                                    boolean initiatedFromBtDevice) {
-        weatherByVoiceMessages.clear();
         appendLog(getBaseContext(), TAG, "sayCurrentWeather voiceSettingIdFromSettings: " + voiceSettingId + ":" + now + ":" + currentLocation);
         Long voiceSettingIdFromSettings = isAnySettingValidToTellWeather(voiceSettingId, initiatedFromBtDevice);
         appendLog(getBaseContext(), TAG, "sayCurrentWeather voiceSettingIdFromSettings: " + voiceSettingIdFromSettings);
@@ -956,16 +976,12 @@ public class WeatherByVoiceService extends Service {
                     "weatherByVoiceMessages.size when adding new message = ", weatherByVoiceMessages);
             switch (msg.what) {
                 case START_VOICE_WEATHER_UPDATED:
-                    if (!weatherByVoiceMessages.contains(weatherRequestDataHolder)) {
-                        weatherByVoiceMessages.add(weatherRequestDataHolder);
-                    }
-                    startVoiceCommand(weatherRequestDataHolder.getTimestamp());
-                    break;
                 case START_VOICE_WEATHER_ALL:
                     if (!weatherByVoiceMessages.contains(weatherRequestDataHolder)) {
                         weatherByVoiceMessages.add(weatherRequestDataHolder);
                     }
-                    startAllLocationsVoiceCommand(weatherRequestDataHolder.getTimestamp(), weatherRequestDataHolder.getVoiceSettingsId());
+                    startVoiceCommand();
+                    break;
                 default:
                     super.handleMessage(msg);
             }

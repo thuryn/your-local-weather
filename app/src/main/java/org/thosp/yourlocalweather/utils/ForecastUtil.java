@@ -24,10 +24,10 @@ public class ForecastUtil {
 
     public static long AUTO_FORECAST_UPDATE_TIME_MILIS = 3600000; // 1h
 
-    public static boolean shouldUpdateForecast(Context context, long locationId) {
+    public static boolean shouldUpdateForecast(Context context, long locationId, int forecastType) {
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord =
-                weatherForecastDbHelper.getWeatherForecast(locationId);
+                weatherForecastDbHelper.getWeatherForecast(locationId, forecastType);
         long now = Calendar.getInstance().getTimeInMillis();
         if (weatherForecastRecord == null) {
             return true;

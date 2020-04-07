@@ -64,7 +64,7 @@ public abstract class AbstractAppJob extends JobService {
     }
 
     protected void sendMessageToWeatherForecastService(long locationId, String updateSource) {
-        if (!ForecastUtil.shouldUpdateForecast(this, locationId)) {
+        if (!ForecastUtil.shouldUpdateForecast(this, locationId, UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
             return;
         }
         currentWeatherServiceLock.lock();

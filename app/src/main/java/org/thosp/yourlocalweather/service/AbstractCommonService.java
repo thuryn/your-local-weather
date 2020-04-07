@@ -349,7 +349,7 @@ public class AbstractCommonService extends Service {
         appendLog(this,
                   TAG,
                 "going to check weather forecast");
-        if (!ForecastUtil.shouldUpdateForecast(this, locationId)) {
+        if (!ForecastUtil.shouldUpdateForecast(this, locationId, UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
             appendLog(this,
                     TAG,
                     "weather forecast is recent enough");

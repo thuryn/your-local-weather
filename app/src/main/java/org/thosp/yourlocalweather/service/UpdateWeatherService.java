@@ -72,6 +72,9 @@ public class UpdateWeatherService extends AbstractCommonService {
     public static final String ACTION_FORECAST_UPDATE_RESULT = "org.thosp.yourlocalweather.action.FORECAST_UPDATE_RESULT";
     public static final String ACTION_GRAPHS_UPDATE_RESULT = "org.thosp.yourlocalweather.action.GRAPHS_UPDATE_RESULT";
 
+    public static final int WEATHER_FORECAST_TYPE = 1;
+    public static final int LONG_WEATHER_FORECAST_TYPE = 2;
+
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     private static volatile boolean gettingWeatherStarted;
@@ -147,7 +150,7 @@ public class UpdateWeatherService extends AbstractCommonService {
         Long locationId = null;
         String updateSource = null;
         boolean updateWeatherOnly = false;
-        int updateType = 1;
+        int updateType = WEATHER_FORECAST_TYPE;
         if (intent.hasExtra("forceUpdate")) {
             forceUpdate = intent.getBooleanExtra("forceUpdate", false);
         }
@@ -161,7 +164,7 @@ public class UpdateWeatherService extends AbstractCommonService {
             updateWeatherOnly = intent.getBooleanExtra("updateWeatherOnly", false);
         }
         if (intent.hasExtra("updateType")) {
-            updateType = intent.getIntExtra("updateType", 1);
+            updateType = intent.getIntExtra("updateType", WEATHER_FORECAST_TYPE);
         }
         if (locationId != null) {
             updateWeatherUpdateMessages.add(new WeatherRequestDataHolder(locationId, updateSource, forceUpdate, updateWeatherOnly, updateType));
@@ -189,22 +192,10 @@ public class UpdateWeatherService extends AbstractCommonService {
                 TAG,
                 "currentWeatherUpdateMessages.size after peek = ", updateWeatherUpdateMessages);
 
-        if ((updateRequest == null)/* || (updateRequest.getTimestamp() < incommingMessageTimestamp)*/) {
-            /*if (updateRequest != null) {
-                appendLog(getBaseContext(),
-                        TAG,
-                        "updateRequest is older than current");
-                if (!gettingWeatherStarted) {
-                    resendTheIntentInSeveralSeconds(1, updateType);
-                }
-            } else {*/
-                appendLog(getBaseContext(),
-                        TAG,
-                        "updateRequest is null");
-            //}
+        if (updateRequest == null) {
             appendLog(getBaseContext(),
                     TAG,
-                    "currentWeatherUpdateMessages.size when request is old or null = ", updateWeatherUpdateMessages);
+                    "updateRequest is null");
             gettingWeatherStarted = false;
             return;
         }
@@ -254,7 +245,9 @@ public class UpdateWeatherService extends AbstractCommonService {
                     lastUpdateTimeInMilis);
             readyForUpdate =  !(now <= (lastUpdateTimeInMilis + updatePeriodForLocation));
         } else {
-            readyForUpdate = ForecastUtil.shouldUpdateForecast(this, locationToCheck.getId());
+            boolean longForecast = isLongWeatherForecast(updateRequest.getUpdateType());
+            readyForUpdate = ForecastUtil.shouldUpdateForecast(this, locationToCheck.getId(),
+                    longForecast ? UpdateWeatherService.LONG_WEATHER_FORECAST_TYPE : UpdateWeatherService.WEATHER_FORECAST_TYPE);
         }
 
         if (!updateRequest.isForceUpdate() &&
@@ -431,13 +424,13 @@ public class UpdateWeatherService extends AbstractCommonService {
                                         licenseKeysDbHelper.updateToken("forecast", parseResult.getToken());
                                         completeWeatherForecast = WeatherJSONParser.getWeatherForecast(parseResult.getOwmResponse());
                                     }
-                                    saveWeatherAndSendResult(context, completeWeatherForecast, 1, updateType);
+                                    saveWeatherAndSendResult(context, completeWeatherForecast, WEATHER_FORECAST_TYPE, updateType);
                                 } else if (isLongWeatherForecast(updateType)) {
                                     appendLog(context, TAG, "Weather long forecast type");
                                     WeatherJSONParser.JSONParseResult parseResult = WeatherJSONParser.parseServerResult(weatherRaw);
                                     licenseKeysDbHelper.updateToken("forecast/daily", parseResult.getToken());
                                     CompleteWeatherForecast completeWeatherForecast = WeatherJSONParser.getLongWeatherForecast(parseResult.getOwmResponse());
-                                    saveWeatherAndSendResult(context, completeWeatherForecast, 2, updateType);
+                                    saveWeatherAndSendResult(context, completeWeatherForecast, LONG_WEATHER_FORECAST_TYPE, updateType);
                                 } else {
                                     sendResult(ACTION_WEATHER_UPDATE_FAIL, context, updateType);
                                 }
@@ -770,8 +763,6 @@ public class UpdateWeatherService extends AbstractCommonService {
                 case START_LONG_WEATHER_FORECAST_RETRY:
                 case START_CURRENT_WEATHER_RETRY:
                 case START_WEATHER_FORECAST_RETRY:
-                    startWeatherUpdate();
-                    break;
                 case START_WEATHER_FORECAST_UPDATE:
                 case START_CURRENT_WEATHER_UPDATE:
                 case START_LONG_WEATHER_FORECAST_UPDATE:

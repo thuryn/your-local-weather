@@ -260,7 +260,7 @@ public class AppAlarmService extends AbstractCommonService {
     }
 
     private void scheduleNextLocationWeatherForecastUpdate(long locationId) {
-        if (!ForecastUtil.shouldUpdateForecast(this, locationId)) {
+        if (!ForecastUtil.shouldUpdateForecast(this, locationId, UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
             return;
         }
         sendMessageToWeatherForecastService(locationId);

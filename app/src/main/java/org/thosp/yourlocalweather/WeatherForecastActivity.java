@@ -88,7 +88,8 @@ public class WeatherForecastActivity extends ForecastingActivity {
         if (weatherForecastRecord != null) {
             weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
             locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());
-        } else if (ForecastUtil.shouldUpdateForecast(this, locationId)) {
+        } else if (ForecastUtil.shouldUpdateForecast(this, locationId,
+                forecastType.isChecked() ? UpdateWeatherService.LONG_WEATHER_FORECAST_TYPE : UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
             if (forecastType.isChecked()) {
                 updateLongWeatherForecastFromNetwork("FORECAST");
             } else {

@@ -57,17 +57,10 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
         db.delete(WeatherForecastContract.WeatherForecast.TABLE_NAME, selection, selectionArgs);
     }
 
-    public void deleteRecordFromTable(Integer recordId) {
-        SQLiteDatabase db = getWritableDatabase();
-        String selection = WeatherForecastContract.WeatherForecast._ID + " = ?";
-        String[] selectionArgs = {recordId.toString()};
-        db.delete(WeatherForecastContract.WeatherForecast.TABLE_NAME, selection, selectionArgs);
-    }
-
     public void saveWeatherForecast(long locationId, int forecastType, long weatherUpdateTime, CompleteWeatherForecast completeWeatherForecast) {
         SQLiteDatabase db = getWritableDatabase();
 
-        WeatherForecastRecord oldWeatherForecast = getWeatherForecast(locationId);
+        WeatherForecastRecord oldWeatherForecast = getWeatherForecast(locationId, forecastType);
 
         ContentValues values = new ContentValues();
         values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_WEATHER_FORECAST,
@@ -80,7 +73,8 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
         } else {
             db.updateWithOnConflict(WeatherForecastContract.WeatherForecast.TABLE_NAME,
                     values,
-                    WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + "=" + locationId,
+                    WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + "=" + locationId +
+                    " AND " + WeatherForecastContract.WeatherForecast.COLUMN_NAME_FORECAST_TYPE + "=" + forecastType,
                     null,
                     SQLiteDatabase.CONFLICT_IGNORE);
         }
@@ -91,8 +85,6 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
     }
 
     public WeatherForecastRecord getWeatherForecast(long locationId, int forecastType) {
-
-        checkVersionOfStoredForecastInDb();
 
         SQLiteDatabase db = getReadableDatabase();
 
@@ -175,20 +167,5 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
         public CompleteWeatherForecast getCompleteWeatherForecast() {
             return completeWeatherForecast;
         }
-    }
-
-    private void checkVersionOfStoredForecastInDb() {
-
-        int initialGuideVersion = PreferenceManager.getDefaultSharedPreferences(context)
-                .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
-        if (initialGuideVersion != 1) {
-            return;
-        }
-        appendLog(context, TAG, "Old version of stored forecast, clearing forecast DB");
-        SQLiteDatabase db = getWritableDatabase();
-        onUpgrade(db, 0, 1);
-        SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(context).edit();
-        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 2);
-        preferences.apply();
     }
 }

@@ -257,7 +257,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void sendMessageToWeatherForecastService(Long locationId) {
-        if (!ForecastUtil.shouldUpdateForecast(this, locationId)) {
+        if (!ForecastUtil.shouldUpdateForecast(this, locationId, UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
             return;
         }
         sendMessageToWeatherForecastService(locationId, null);
