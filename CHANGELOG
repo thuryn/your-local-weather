@@ -1,3 +1,6 @@
+v5.5.0
+Remove getting of location from Mozilla Location Service, weather downloader rewritten, fix voice output, many small fixies, translations
+
 v5.1.2
 Fixed calculation of the max temperature when all values are negative, fixed days calculation when a year ends
 
