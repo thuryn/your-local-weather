@@ -63,4 +63,11 @@
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Основното приложение съдържа преглед на текущите данни за времето. Можете да актуализирате данните като използвате бутона за опресняване в панела на приложението или с плъзгане надолу. Бутонът за опресняване на местоположението се намира до бутона за опресняване на прогнозата. Този бутон е достъпен само когато е избрано локация 0 (локация 0 се използва за автоматично определяне на локацията).</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Основно приложение</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Не е разрешено да имате повече от %1$d местоположения в момента.</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation"></string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation"></string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation"></string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation"></string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation"></string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation"></string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation"></string>
 </resources>
