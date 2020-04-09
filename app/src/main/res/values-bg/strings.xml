@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Твоето местно време</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="MissingTranslation">Твоето местно време</string>
     <string name="enter_city_hint" tools:ignore="MissingTranslation">Въведете град</string>
     <string name="label_current_city" tools:ignore="MissingTranslation">Текущ град</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">Изберете град</string>
@@ -31,7 +32,7 @@
 \nЗалез: %7$s</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">Твоето локално време</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">Местно време - известия</string>
-    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Ден</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Температура</string>
     <string name="graph_wind_label" tools:ignore="MissingTranslation">Вятър</string>
     <string name="graph_rain_label" tools:ignore="MissingTranslation">Дъжд</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Сняг</string>
@@ -41,8 +42,8 @@
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Предишен</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Край</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Ръководство за първоначална конфигурация</string>
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Може да изберете стратегия за обновяване.
-\nАко не искате обновяване при промяна на местоположиенито, може да изберете <i>Не обновявай местоположението</i>.</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Може да изберете стратегия за обновяване. 
+\nАко не искате обновяване при промяна на местоположението, може да изберете &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;Не обновявай местоположението&lt;/i&gt;.<i>Не обновявай местоположението</i>.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Използвай настройките за местоположение</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Вариант за източник на местоположение</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Услуги за откриване на местоположението - <i>Системна</i> използва услугите на Гугъл за да извлече местоположение от мрежата (клетъчни и Wi-Fi). <i>MLS и Nominatim</i> използва услигите на Mozilla. За втория вариант са необходими позволения за извличане на информация за клетъчните мрежи. Предпочитаният вариант е предварително избран.</string>
@@ -59,4 +60,7 @@
 \n
 \nПриятно използване на приложението.</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Общи</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Основното приложение съдържа преглед на текущите данни за времето. Можете да актуализирате данните като използвате бутона за опресняване в панела на приложението или с плъзгане надолу. Бутонът за опресняване на местоположението се намира до бутона за опресняване на прогнозата. Този бутон е достъпен само когато е избрано локация 0 (локация 0 се използва за автоматично определяне на локацията).</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Основно приложение</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Не е разрешено да имате повече от %1$d местоположения в момента.</string>
 </resources>
