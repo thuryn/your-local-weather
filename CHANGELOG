@@ -1,3 +1,6 @@
+v5.5.1
+Fixis handling of exceptions when updated weather
+
 v5.5.0
 Remove getting of location from Mozilla Location Service, weather downloader rewritten, fix voice output, many small fixies, translations
 

@@ -445,7 +445,7 @@ public class UpdateWeatherService extends AbstractCommonService {
                                 resendTheIntentInSeveralSeconds(70);
                                 sendResult(ACTION_WEATHER_UPDATE_FAIL, context, updateType);
                             } catch (LicenseNotValidException lnve) {
-                                if (!license.equals(ApiKeys.getInitialLicenseKey(getBaseContext()))) {
+                                if ((license == null) || !license.equals(ApiKeys.getInitialLicenseKey(getBaseContext()))) {
                                     timerHandler.removeCallbacksAndMessages(null);
                                     sendResult(ACTION_WEATHER_UPDATE_FAIL, context, updateType);
                                 } else {

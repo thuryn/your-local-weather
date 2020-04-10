@@ -400,7 +400,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         this.updateSource = intent.getStringExtra("updateSource");
         this.forceUpdate = intent.getBooleanExtra("forceUpdate", false);
 
-        if (updateSource.equals("MAIN")) {
+        if ("MAIN".equals(updateSource)) {
             startForeground(1, NotificationUtils.getNotificationForActivity(getBaseContext()));
         }
         processLocationAndWeatherUpdate(intent);
