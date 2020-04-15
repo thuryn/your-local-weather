@@ -553,14 +553,14 @@
     <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">为语音选中的语言：</string>
     <string name="pref_language_id" tools:ignore="MissingTranslation">印尼语</string>
     <string name="weather_condition_description_312" tools:ignore="MissingTranslation">极密的毛毛雨</string>
-    <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">付费/扩展特性</string>
+    <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">付费/扩展功能</string>
     <string name="weather_forecast_features_free" tools:ignore="MissingTranslation">免费/受限功能</string>
     <string name="preference_weather_weather_forecast_features_title" tools:ignore="MissingTranslation">天气预报特性</string>
     <string name="location_weather_update_status_location_from_last_location" tools:ignore="MissingTranslation">l</string>
     <string name="location_weather_update_status_too_early_update" tools:ignore="MissingTranslation">O</string>
     <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">许可密钥</string>
     <string name="too_early_update_error" tools:ignore="MissingTranslation">过早更新！</string>
-    <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">-天气预报</string>
-    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">截至1.3.2020，对Mozilla定位服务的访问已过期。 本应用程序被迫使用Andorid系统进行位置坐标发现。 该地址仍由Nominatim解析。使用本应用前请考虑这一事实。</string>
+    <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">预报类型</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">截至2020年1月3日，对Mozilla位置服务的访问已过期。本应用被迫使用安卓系统进行位置协同发现。地址仍由Nominatim解析。使用本应用前请考虑这一事实。</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Mozilla位置服务限制</string>
 </resources>
