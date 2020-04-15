@@ -372,7 +372,7 @@
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Shfaq etiketa në widget</string>
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Temë widget-i</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Burim Vendndodhjeje dhe Adrese</string>
-    <string name="location_geocoder_local" tools:ignore="MissingTranslation">MLS dhe Nominatim vendor (e këshilluar)</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Sistemi, për të marrë vendndodhjen, Nominatim për të marrë adresën (e këshilluar)</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Shfaq Përmbledhje Përditësimi</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Përditësoje vlerën me burim vendndodhjeje</string>
     <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - do të përditësohet vendndodhja dhe/ose moti 
@@ -551,4 +551,12 @@
     <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">rrallë</string>
     <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">dhe</string>
     <string name="pref_language_id" tools:ignore="MissingTranslation">Indonezisht (Indonesian)</string>
+    <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">Veçori me pagesë/të thelluara</string>
+    <string name="weather_forecast_features_free" tools:ignore="MissingTranslation">Veçori të lira/të kufizuara</string>
+    <string name="preference_weather_weather_forecast_features_title" tools:ignore="MissingTranslation">Veçori parashikimi moti</string>
+    <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Kyç licence</string>
+    <string name="too_early_update_error" tools:ignore="MissingTranslation">Përditësim shumë herët!</string>
+    <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Parashikim moti</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Përdorimi i shërbimit Mozilla të lokalizimeve ka skaduar pas 1.3.2020. Aplikacioni është detyruar të përdorë sistemin Android për zbulim koordinatash lokalizimi. Adresa ende ftillohet nga Nominatim. Ju lutemi, kijeni parasysh këtë teksa përdorni aplikacionin.</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Kufizim shërbimi lokalizimi Mozilla</string>
 </resources>
