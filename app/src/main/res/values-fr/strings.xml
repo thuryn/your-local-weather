@@ -146,7 +146,8 @@
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Paramètres de sortie de veille</string>
     <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Certains téléphones ne rapportent pas correctement la connexion aux antennes tant que l\'écran n\'est pas allumé. Le paramètre par défaut (avec écran allumé) à le désavantage d\'allumer l\'écran du téléphone quelques secondes. Ce qui a un léger impacte sur l\'autonomie. Commencez avec puis essayez sans et vérifiez que la localisation se met toujours à jour.</string>
     <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Paramètres de sortie de veille</string>
-    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Vous pouvez économiser votre forfait en mettant en cache les localisations trouvées. Les localisations sont stockées dans l\'application. Elles ne sont pas envoyées ou stockées ailleurs sur le réseau.</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Vous pouvez préserver votre data en sauvegardant vos localisations.
+\nElles ne sont pas enregistré dans l\'app et ne sont pas envoyé où stocké sur internet.</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Félicitations</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Ceci conclut l\'introduction. Vous pouvez trouver d\'autres options dans le menu Paramètres (par exemple la langue, les unités, etc). 
 \nL\'écran suivant vous expliquera les autorisations demandées et vous donne la possibilité de les accepter. 
