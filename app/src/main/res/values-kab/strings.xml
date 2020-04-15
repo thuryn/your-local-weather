@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">L\'application nécessite de lire des informations du téléphone pour mettre à jour la localisation par réseaux Wi-Fi et GSM. Cela permet de recevoir des informations sur les stations de base GSM auxquelles le téléphone est connecté. ...Asnas yeḥwaǧ taɣuri n isallen n tilifun i uleqqem n usideg s ttawil n uẓeṭṭa Wi-Fi akked GSM. Ayagi ad yeǧǧ isallen ad d-awḍen ɣer tɣerɣert GSM ɣur ueqqen tilifun.</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Liḥala n tegnawt n temnaṭ</string>
+</resources>
