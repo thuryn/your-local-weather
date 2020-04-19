@@ -563,4 +563,5 @@
     <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">预报类型</string>
     <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">截至2020年1月3日，对Mozilla位置服务的访问已过期。本应用被迫使用安卓系统进行位置协同发现。地址仍由Nominatim解析。使用本应用前请考虑这一事实。</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Mozilla位置服务限制</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">疏云，零星散落的云朵</string>
 </resources>
