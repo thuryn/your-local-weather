@@ -27,14 +27,14 @@
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Föregående</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Klar</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Initial konfigurationsguide</string>
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Justera appen till dina behov, du välja att uppdateringsstrategi som nästa. 
-\nOmdirigering från standardvärdet för uppdatering när platsen ändras, du kan välja <i>Uppdatera inte plats</i>.</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Om du anpassar appen till dina behov kan du välja uppdateringsstrategi nästa. 
+\nOm du vill avvika från standarduppdateringen när platsen ändras kan du välja <i>Uppdatera inte plats</i>.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Uppdatera platsinställning</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Platskälla alternativ</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Du kan välja platsmetoden - <i>Systemet</i> använder Google-tjänster för att få platsen via nätverk (cell-och Wi-Fi-nätverk). <i>Lokala MLS och Nominatim</i> inställningen använder Mozilla-platsentjänst för att få koordinaterna för platsen och Nominatim-tjänst för att få platsnamn. Den andra inställningen kräver telefonsamtalstillstånd för att hämta information om mobilnätet. Den föredragna inställningen är förvald.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Plats- och adresskälla</string>
-    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Vissa telefonmodeller rapporterar inte anslutna celler korrekt om inte skärmen är på. Den föredragna inställninge (med skärm påslagen) har en nackdel att telefonen slår på skärmen i flera sekunder. Detta har en liten inverkan på batteriets livslängd. Börja med det på, och försök att stänga av det och se om platsen fortfarande uppdateras.</string>
-    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Du kan spara nätverkstrafik genom att cacha hittade platser. Platser lagras sedan i appen. De skickas inte eller lagras på andra platser i nätverket.</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Några telefoner rapporterar inte anslutna celler korrekt om inte skärmen är på. Det föredragna alternativet (med skärm påslagen) har en nackdel att telefonen slår på skärmen i flera sekunder. Detta har en liten inverkan på batteriets livslängd. Börja med det på och försök att stänga av det och se om platsen fortfarande uppdateras.</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Du kan minska dataanvändningen genom att mellanlagra hittade platser. Platserna lagras sedan i appen. De skickas eller lagras inte på andra platser i nätverket.</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Grattis</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Vakna upp-strategi alternativ</string>
     <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Vakna upp-strategi</string>
@@ -266,4 +266,5 @@
         <b> Uppdateringsperiod för plats (plats 0) </b> - du kan ställa in uppdateringsperiod för plats 0 - plats 0 har möjlighet att uppdatera plats enligt cell-, Wi-Fi-nätverk och GPS. När du väljer uppdatering <i> Med accelerometer </i> använder appen det för att upptäcka rörelse. Av detta beräknas avståndet. När avståndsgränsen uppnås, och ingen uppdatering har hänt på 15 minuter, uppdateras platsen och det aktuella vädret. När appen inte kan hämta plats kan du se okänd platsetikett i widgeten. När appen inte har något platsstillstånd kommer den att försöka igen om 5 minuter. Du kan också välja platsuppdatering baserat på tidsintervall i <b> Uppdateringsperiod för väder (plats 1,2,3 ...) </b> - där du kan ställa in väder för att uppdatera för manuellt upptäckta platser.</string>
     <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">
         <b> Lokala MLS och Nominatim </b> - Appen får plats och geografiska koordinater från Mozilla-lokationstjänster. Nominatim-tjänster hämtar adressen från dessa koordinater. Du kan bidra till framtida förbättringar av MLS genom att installera Mozilla Stumbler (finns på https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler). Få information om aktuella och tillgängliga nätverksbasstationer från mobilnätet genom att ge telefonsamtalstillstånd. Wi-Fi-nätverk omkring dig används för att gissa din plats mer exakt.</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Översättningar av text och vägledning</string>
 </resources>
