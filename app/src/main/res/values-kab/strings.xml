@@ -33,4 +33,20 @@
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Iɣewwaṛen n wadeg akked tsirag</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Asnas yeḥwaǧ ttesriḥ i uleqqem n wadeg s ttawil n yiẓedwa Wi-Fi akked GSM .</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Adig ur yettwaf ara</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Tamdint: %1$s
+\nTaseddart: %2$s
+\nAglam: %3$s
+\nAḍu: %4$s %5$s
+\nAlluyiṭṭij: %6$s
+\nAɣelluyiṭṭij: %7$s</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Asnas n taywalt ur yettwufa ara</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Bḍu lḥal n tegnawt</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">OpenweathermapApiKey inek ur tettwasekles ara.</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Anekcum ifut. Leqqem asnas, ma ulac aɣilif;</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Tisirag ur ttwaqeblent ara yakan - sit ɣef uzamul n wadeg deg usnas</string>
+    <string name="load_progress" tools:ignore="MissingTranslation">Asali...</string>
+    <string name="progressDialog_gps_locate" tools:ignore="MissingTranslation">Af-d adeg amiran</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Sefsex</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Asuter n tisirag</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Iɣewwaṛen n yibenk</string>
 </resources>
