@@ -37,8 +37,8 @@
 \nTaseddart: %2$s
 \nAglam: %3$s
 \nAḍu: %4$s %5$s
-\nAlluyiṭṭij: %6$s
-\nAɣelluyiṭṭij: %7$s</string>
+\nAlluy n yiṭṭij: %6$s
+\nAɣelluy n yiṭṭij: %7$s</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Asnas n taywalt ur yettwufa ara</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Bḍu lḥal n tegnawt</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">OpenweathermapApiKey inek ur tettwasekles ara.</string>
