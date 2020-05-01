@@ -31,5 +31,6 @@
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Asnas yeḥwaǧ ttesriḥ i ulqqem n wadig s ttawil n GPS.</string>
     <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">"Asnas yettuswel iwakken ad yelqem adeg. Ilaq unekcum ɣur-s. Kcem ɣur iɣewwaṛen n yibenk sakin rmed adeg neɣ sens armad n ileqman n wadeg n usnas. "</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Iɣewwaṛen n wadeg akked tsirag</string>
-    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Asnas yeḥwaǧ ttesriḥ i uleqqem n wadeg s ttawil n Wi-Fi akked GSM networks.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Asnas yeḥwaǧ ttesriḥ i uleqqem n wadeg s ttawil n yiẓedwa Wi-Fi akked GSM .</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Adig ur yettwaf ara</string>
 </resources>
