@@ -2,4 +2,30 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">L\'application nécessite de lire des informations du téléphone pour mettre à jour la localisation par réseaux Wi-Fi et GSM. Cela permet de recevoir des informations sur les stations de base GSM auxquelles le téléphone est connecté. ...Asnas yeḥwaǧ taɣuri n isallen n tilifun i uleqqem n usideg s ttawil n uẓeṭṭa Wi-Fi akked GSM. Ayagi ad yeǧǧ isallen ad d-awḍen ɣer tɣerɣert GSM ɣur ueqqen tilifun.</string>
     <string name="app_name" tools:ignore="MissingTranslation">Liḥala n tegnawt n temnaṭ</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Sefsex</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Kemmel</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Asnas ad ak-d-yessuter ad tsenseḍ aṣeggem n tbatrit akken ad tgeḍ ileqman n wadig, tagnawt, neɣ ad kemmleḍ ad tefreḍ agid s uksilirumitr.</string>
+    <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Asideg yettwafen ur yuɣal ara ɣer tuffirt</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Asideg yettwafen yuɣal ɣer tuffirt</string>
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Err asideg deg tuffirt</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">urǧin</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">kraḍ n wayyuren</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">ayyur</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">imalas</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">ass</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 n yisragen</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Awtay n wazalen deg tuffirt</string>
+    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Azalen n tuffirt ad ttwakksen seld tanzagt ittunefken</string>
+    <string name="db_header" tools:ignore="MissingTranslation">Taffa n yisefka n tansiwin n tuffirt</string>
+    <string name="db_info" tools:ignore="MissingTranslation">Talɣut ɣef tkatut</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Sfeḍ takatut</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">sḍis n wayyuren</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Aṣeggem n tbatrit</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Ankcum ɣer umeẓlu n useideg n Mozilla yemmut deg 01/03/2020. Asnas-a ittuḥettem ad iseqdec anagraw Android i tifin n tsidag n umkan. Maca tansa ad tt-yefru Nominatim. Ma ulac aɣilif, err deg uqerru-k aya ticki tseqdsaceḍ asnas-a.</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Tilisa n umeẓlu n usideg Mozilla</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Asnas-a yegber aɛqal n taɣect s useqdec n tsuqilin n uḍris akked tiludna n taɣect i d-ttmuddun iwiziwen deg https://hosted.weblate.org/projects/your-local-weather. Aneflay n usnas ur izmir ara ad yeḍmen d akken ṣeḥḥant - ad t-tqebleḍ ds useqdec n usnas-a. Akken ad tesqedceḍ-t, aɛqal n taɣect issefk ad ibedd daɣen ad yermed deg yiɣewwaṛen, anida i tsefrakeḍ neɣ tettṣeggimeḍ tiludna n taɣect. "</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Tisuqilin n uḍris akked umnir</string>
+    <string name="label_choose_city" tools:ignore="MissingTranslation">Fren tamdint</string>
+    <string name="label_current_city" tools:ignore="MissingTranslation">Tamdint tamirant</string>
+    <string name="enter_city_hint" tools:ignore="MissingTranslation">Kcem ɣer temdint</string>
 </resources>
