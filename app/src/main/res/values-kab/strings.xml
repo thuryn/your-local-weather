@@ -49,4 +49,8 @@
     <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Sefsex</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Asuter n tisirag</string>
     <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Iɣewwaṛen n yibenk</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Aḍu</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Taseddart n lḥamu</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Talɣutin n lḥal n tegnawt di temnaṭ-inek</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Lḥal n tegnawt di temnaṭ-inek</string>
 </resources>
