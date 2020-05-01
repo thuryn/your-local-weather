@@ -28,4 +28,7 @@
     <string name="label_choose_city" tools:ignore="MissingTranslation">Fren tamdint</string>
     <string name="label_current_city" tools:ignore="MissingTranslation">Tamdint tamirant</string>
     <string name="enter_city_hint" tools:ignore="MissingTranslation">Kcem ɣer temdint</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Asnas yeḥwaǧ ttesriḥ i welqqem n wadeg s ttawil n GPS.</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">"Asnas yettuswel iwakken ad yelqem adeg. Ilaq unekcum ɣur-s. Kcem ɣur iɣewwaṛen n yibenk sakin rmed adeg neɣ sens armad n ileqman n wadeg n usnas. "</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Iɣewwaṛen n wadeg akked tsirag</string>
 </resources>
