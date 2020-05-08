@@ -29,7 +29,7 @@
     <string name="nav_menu_bitcoin_donation">Dona Bitcoin</string>
     <!-- Toast messages -->
     <string name="connection_not_found">Controlla la tua connessione a Internet</string>
-    <string name="toast_parse_error">Si è verificato un errore. Prova più tardi!</string>
+    <string name="toast_parse_error">Si è verificato un errore. Prova più tardi.</string>
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
@@ -236,4 +236,47 @@
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 giorni</string>
     <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 giorni</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Al momento non puoi aggiungere più di %1$d località.</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Stile visivo notifiche</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Personalizzato con previsione</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Classico</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">Invisibile</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">Icona sole</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">Sullo schermo bloccato</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">Permanente</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">Quando aggiornato</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Presenza notifiche</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Quando si aggiorna regolarmente</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (intervallo 3 ore)</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (intervallo 3 ore)</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (intervallo 3 ore)</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">gg/mm(/aa)</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/gg(/aa)</string>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">gg.mm.(aa)</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">Sistema</string>
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">Formato ora</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Beaufort</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">psi</string>
+    <string name="too_early_update_error" tools:ignore="MissingTranslation">Aggiornamento troppo presto!</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Chiudi pannello di navigazione</string>
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Apri pannello di navigazione</string>
+    <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Mostra legenda nel grafico</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Grafici da mostrare</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Pressione</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Pioggia/Neve</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Vento</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Pressione</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Neve (barra)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Neve</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Pioggia (barra)</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Pioggia</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Vento</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Combinato</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Colonne da mostrare</string>
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Impostazioni colonna</string>
+    <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Tipo di previsione</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Le notifiche del tuo meteo locale</string>
 </resources>
