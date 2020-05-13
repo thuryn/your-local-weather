@@ -55,4 +55,211 @@
     <string name="notification_channel_name" tools:ignore="MissingTranslation">Lḥal n tegnawt di temnaṭ-inek</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Adeffel</string>
     <string name="graph_rain_label" tools:ignore="MissingTranslation">Ageffur</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Mdel</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Amnir n twila amezwaru</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">asigna iɣummen</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">asigna yeṛzen</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">asigna iferqen</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">kra n usigna</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">igenni yeṣfan</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">aṭurnad</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">taburaskt</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">iɣiɣden n uvulkan</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">aɣebbaṛ</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">rmel</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">Tagut</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">rmel, aɣebbaṛ</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">tagut</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">ddexxan</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">agu</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">adfel n ucuef yeqwan</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">adfel n ucucef</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">adfel n ucucef fessusen</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">ageffur d udfel</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">ageffur d udfel fessusen</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">adfel yefsin n ucucef</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">adfel yefsin</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">adfel yeqwan</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">adfel</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">adfel fessusen</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">ageffur n ucucef ur yerkiden ara</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">ageffur n ucucef yeqwan</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">ageffur n ucucef</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">ageffur n ucucef fessusen</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">ageffur asemmaḍ</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">ageffur d icercuṛen</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">ageffur yeqwan aṭas</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">ageffur yeqwan</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">ageffur alemmas</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">ageffur fessusen</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">timeqwa n ucucef</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">ageffur d timeqwa n ucucef yeqwan</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">ageffur d timeqwa n ucucef</string>
+    <string name="weather_condition_description_312" tools:ignore="MissingTranslation">ageffur s timeqwa yeqwan</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">ageffur s timeqwa</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">ageffur s timeqwa fessusen</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">timeqwa yeqwan</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">timeqwa</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">timeqwa fessusen</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">azayaḍ s timeqwa yeqwan</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">azayaḍ s timeqwa</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">Azayaḍ s tmeqwa fessusen</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">azayaḍ s waḍu</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">azayaḍ yeqwan</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">azayaḍ</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">azayaḍ fessusen</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">Azaʸaḍ s geffur yeqwan</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">Azayaḍ s ugeffur</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">Aẓayaḍ s ugeffur fessusen</string>
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">aucun</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 n yisragen</string>
+    <string name="permission_available_location" tools:ignore="MissingTranslation">Tisirag n wadeg ttunefkent</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">agafa-utaram</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">ataram</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">anẓul-utaram</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">anẓul</string>
+    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">agemmuḍ</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">agafa-ugemmuḍ</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Yensa</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">Tignit n tegnawt tamirant</string>
+    <string name="widget_refresh_button" tools:ignore="MissingTranslation">Taqeffalt n usmiren n Usfaylurar</string>
+    <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Tignit n tegnawt tamirant</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">S</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">L</string>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">M</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Asuded</string>
+    <string name="label_snow" tools:ignore="MissingTranslation">Adfel</string>
+    <string name="label_rain" tools:ignore="MissingTranslation">Ageffur</string>
+    <string name="label_wind" tools:ignore="MissingTranslation">Aḍu</string>
+    <string name="label_temperature" tools:ignore="MissingTranslation">Lḥamu</string>
+    <string name="temperature_night_title" tools:ignore="MissingTranslation">Iḍ</string>
+    <string name="temperature_evening_title" tools:ignore="MissingTranslation">Tameddit</string>
+    <string name="temperature_day_title" tools:ignore="MissingTranslation">Ass</string>
+    <string name="temperature_morning_title" tools:ignore="MissingTranslation">Azal</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">Ɣelluy n yiṭij</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">Alluy n yiṭṭij</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">Aɣelluy n yiṭij: %s</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">Alluy n yiṭij: %s</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">Asedɣi aneggaru : %s</string>
+    <string name="cloudiness_label" tools:ignore="MissingTranslation">Asigna: %1$s%2$s</string>
+    <string name="pressure_label" tools:ignore="MissingTranslation">Asuded: %1$s %2$s</string>
+    <string name="label_humidity" tools:ignore="MissingTranslation">Agri</string>
+    <string name="humidity_label" tools:ignore="MissingTranslation">Agri: %1$s%2$s</string>
+    <string name="snow_label" tools:ignore="MissingTranslation">Adfel: %1$s %2$s</string>
+    <string name="rain_label" tools:ignore="MissingTranslation">Ageffur: %1$s %2$s</string>
+    <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">akked</string>
+    <string name="tty_say_weather_forecast_tomorrow" tools:ignore="MissingTranslation">azekka</string>
+    <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">Ass-a</string>
+    <string name="tts_say_current_weather" tools:ignore="MissingTranslation">Tagnawt tamirant</string>
+    <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Licence</string>
+    <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Tangalt aγbalu</string>
+    <string name="about_version_pref_title" tools:ignore="MissingTranslation">Version</string>
+    <string name="preference_title_activity_about" tools:ignore="MissingTranslation">Ɣef</string>
+    <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Akud</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Udmawan</string>
+    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Kullec</string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Rnu</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Yensa</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Rmed</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Sexsi</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Kkes</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Ulac</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">Asentel</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">Anagraw</string>
+    <string name="pref_language_bg" tools:ignore="MissingTranslation">Tabulgarit</string>
+    <string name="pref_language_en" tools:ignore="MissingTranslation">Tagnizit</string>
+    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Tabengalit (Bangladic)</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">Tabyatnamit</string>
+    <string name="pref_language_default" tools:ignore="MissingTranslation">Amezwer n unagraw</string>
+    <string name="pref_title_language" tools:ignore="MissingTranslation">"Langue "</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Iɣewwaṛen n unagraw</string>
+    <string name="preference_title_category_display" tools:ignore="MissingTranslation">Beqqeḍ</string>
+    <string name="theme_transparent" tools:ignore="MissingTranslation">Afrawan</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">Aceɛlal</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">Ubrik</string>
+    <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Asentel n usfaylurar</string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">"Seqdec asideg aseknakalan  i uskan"</string>
+    <string name="preference_title_activity_general" tools:ignore="MissingTranslation">Iɣewwaren imuta</string>
+    <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Senhez</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Aklasik</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">Lḥamu</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">Ameɣlal</string>
+    <string name="update_period_24hours" tools:ignore="MissingTranslation">24 n isragen</string>
+    <string name="update_period_12hours" tools:ignore="MissingTranslation">12 n yisragen</string>
+    <string name="update_period_6hours" tools:ignore="MissingTranslation">6 n isragen</string>
+    <string name="update_period_3hours" tools:ignore="MissingTranslation">3 n isragen</string>
+    <string name="update_period_1hour" tools:ignore="MissingTranslation">Yal asrag</string>
+    <string name="update_period_30min" tools:ignore="MissingTranslation">30 n tisdatin</string>
+    <string name="update_period_15min" tools:ignore="MissingTranslation">15 n tisdatin</string>
+    <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">Azilal n usmiren</string>
+    <string name="pref_title_notification" tools:ignore="MissingTranslation">Rmed ulɣu</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Iɣewwaṛen n yilɣa</string>
+    <string name="preference_hide_desc" tools:ignore="MissingTranslation">Ffer aglam n tegnawt</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Asuded</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">Aḍu</string>
+    <string name="pref_title_temperature" tools:ignore="MissingTranslation">Lḥamu</string>
+    <string name="title_activity_settings" tools:ignore="MissingTranslation">Iɣewwaren</string>
+    <string name="hint_activity_search" tools:ignore="MissingTranslation">Nadi adeg</string>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">Amasal n wazemz</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">Anagraw</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">Idebbuzen</string>
+    <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
+    <string name="wind_speed_miles" tools:ignore="MissingTranslation">m/tasint</string>
+    <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
+    <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Tallelt</string>
+    <string name="nav_feedback" tools:ignore="MissingTranslation">Tikti</string>
+    <string name="nav_menu_settings" tools:ignore="MissingTranslation">Iɣewwaren</string>
+    <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Idlifen</string>
+    <string name="nav_menu_daily_forecast" tools:ignore="MissingTranslation">Arid n wass</string>
+    <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">Tagnawt tamirant</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Asuded</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Aḍu</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Lḥamu</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Asuded</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Adfel</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Ageffur</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Aḍu</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Lḥamu</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Sefsex</string>
+    <string name="ok" tools:ignore="MissingTranslation">Ih</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Asuded</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Agri</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Tanila n waḍu</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Aḍu</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Lḥamu</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Description</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">D tignit n wesnas</string>
+    <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Sembaddel agellus Y</string>
+    <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Sembaddel azalen</string>
+    <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Ṭṭef-d adeg</string>
+    <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Nadi tamdint</string>
+    <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Sedɣi</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">"Langue "</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Idɣaren</string>
+    <string name="title_activity_license" tools:ignore="MissingTranslation">Turagt i %s</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Tallelt</string>
+    <string name="label_activity_graphs" tools:ignore="MissingTranslation">Idlifen n tegnawt</string>
+    <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Arid n wass</string>
+    <string name="label_activity_main" tools:ignore="MissingTranslation">Tagnawt tamirant</string>
+    <string name="title_activity_search" tools:ignore="MissingTranslation">Nadi adeg</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">Iɣewwaṛen n usfaylurar</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"> <b>Ffer aglam n tegnawt</b> - aglam namiran n tegnawt yeffer. Tzemreḍ kan ad twaliḍ tangnawt tamirant s ubeddel n tignit.</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Iɣewwaṛen Imuta</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Iwiǧiten</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Amatu</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Ayuz!</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Fakk</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Précédent</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Ɣer sdat</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Asuded</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Ur tesɛiḍ ara tasiret ad twaliḍ ugar n %1$d n wadigen itikkelt.</string>
 </resources>
