@@ -53,4 +53,6 @@
     <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Taseddart n lḥamu</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">Talɣutin n lḥal n tegnawt di temnaṭ-inek</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">Lḥal n tegnawt di temnaṭ-inek</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Adeffel</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Ageffur</string>
 </resources>
