@@ -559,4 +559,6 @@
     <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Parashikim moti</string>
     <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Përdorimi i shërbimit Mozilla të lokalizimeve ka skaduar pas 1.3.2020. Aplikacioni është detyruar të përdorë sistemin Android për zbulim koordinatash lokalizimi. Adresa ende ftillohet nga Nominatim. Ju lutemi, kijeni parasysh këtë teksa përdorni aplikacionin.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Kufizim shërbimi lokalizimi Mozilla</string>
+    <string name="location_weather_update_status_location_from_last_location" tools:ignore="MissingTranslation">l</string>
+    <string name="location_weather_update_status_too_early_update" tools:ignore="MissingTranslation">O</string>
 </resources>
