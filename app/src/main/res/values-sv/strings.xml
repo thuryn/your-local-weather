@@ -267,4 +267,6 @@
     <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">
         <b> Lokala MLS och Nominatim </b> - Appen får plats och geografiska koordinater från Mozilla-lokationstjänster. Nominatim-tjänster hämtar adressen från dessa koordinater. Du kan bidra till framtida förbättringar av MLS genom att installera Mozilla Stumbler (finns på https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler). Få information om aktuella och tillgängliga nätverksbasstationer från mobilnätet genom att ge telefonsamtalstillstånd. Wi-Fi-nätverk omkring dig används för att gissa din plats mer exakt.</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Översättningar av text och vägledning</string>
+    <string name="label_dew_point" tools:ignore="MissingTranslation">Daggpunkt</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">Daggpunkt: %s</string>
 </resources>
