@@ -551,4 +551,5 @@
     <string name="pref_language_id" tools:ignore="MissingTranslation">Indonesian (Indonesisk)</string>
     <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Værvarselstype</string>
     <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Lisensnøkkel</string>
+    <string name="preference_weather_weather_forecast_features_title" tools:ignore="MissingTranslation">Værmeldingsfunksjoner</string>
 </resources>
