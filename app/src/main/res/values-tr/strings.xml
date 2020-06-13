@@ -140,27 +140,27 @@
     <string name="update_period_by_sensors" tools:ignore="MissingTranslation">İvme ölçerle</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Widget\'ta etiketleri göster</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Konum ve Adres Kaynağı</string>
-    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Yerel MLS ve Nominatim (önerilen)</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Konumu almak için sistem, adresi almak için Nominatim (tavsiye edilen)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistem</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Güncelleme Özetini Göster</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Yok</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Sadece güncellenmiş değer</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Konum kaynağıyla güncellenmiş değer</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - konum ve / veya hava durumunu güncelleyecek
-\n. - konum ulaşılamıyor, hava durumunu son konuma göre güncelleyecek
-\nW - sadece hava durumu güncellendi
-\nL - sadece konum güncellendi
-\nG - GPS ve hava durumu bilgileri güncellendi
-\nN - ağ ve hava durumu konumundan güncellendi
-\nB - Openweathermap.org hizmetine giriş yasaklandı, daha sonra hava durumunu güncellemeye çalışın, lütfen
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - konum ve/veya hava durumunu güncelleyecek 
+\n. - konuma ulaşılamıyor, hava durumu son konuma göre güncelleniyor 
+\nW - sadece hava durumu güncellendi 
+\nL - sadece konum güncellendi 
+\nG - GPS\'ten konum ve hava durumu güncellendi 
+\nN - ağdan konum ve hava durumu güncellendi 
+\nB - Openweathermap.org hizmetine erişim yasaklandı, lütfen hava durumunu daha sonra güncellemeyi deneyin 
 \nE - Openweathermap.org hizmetinin erişim belirtecinin süresi doldu. Yeniden erişebilmek için uygulamayı yükseltmeniz gerekir</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - sadece hava durumu güncellendi 
 \nL - sadece konum güncellendi 
-\nG - GPS ve hava durumu bilgileri güncellendi 
-\nN - ağ ve hava durumu konumundan güncellendi 
-\nNi - hücresel şebeke ve hava durumu bilgileri güncellendi, Mozilla konum servisi tarafından keşfedilen yer 
-\nB - Openweathermap.org hizmetine giriş yasaklandı, daha sonra hava durumunu güncellemeye çalışın, lütfen 
-\nE - Openweathermap.org hizmetinin erişim belirtecinin süresi doldu. Yeniden erişebilmek için uygulamayı yükseltmeniz gerekir.</string>
+\nG - GPS\'ten konum ve hava durumu güncellendi 
+\nN - ağdan konum ve hava durumu güncellendi 
+\nNi - hücresel şebekeden konum ve hava durumu güncellendi, konum Mozilla konum hizmeti ile keşfedildi 
+\nB - Openweathermap.org hizmetine erişim yasaklandı, lütfen hava durumunu daha sonra güncellemeyi deneyin 
+\nE - Openweathermap.org hizmetinin erişim belirtecinin süresi doldu. Yeniden erişebilmek için uygulamayı yükseltmeniz gerekir</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">"Cihaz uykudayken konum takılı kalırsa, telefon ağı aranırken cihazı uyandırmayı deneyebilirsiniz. "</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Uyanma Stratejisi</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">Uyanma yok</string>
@@ -210,7 +210,7 @@
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Üçüncü ekranda grafiklerle gösterilen hava tahmini içerir.</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">Widget\'lar</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Genel ayarlar</string>
-    <string name="help_page_3_content" tools:ignore="MissingTranslation">Bu seçenek tüm uygulama üzerinde etkilidir.</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Bu seçenekler tüm uygulama üzerinde etkilidir.</string>
     <string name="help_page_4_title" tools:ignore="MissingTranslation">Widget ayarları</string>
     <string name="help_page_4_content" tools:ignore="MissingTranslation">Widget ayarları tüm widget\'lar için yapılandırma seçenekleri içerir.</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Hata ayıklama seçenekleri</string>
@@ -269,7 +269,7 @@
     <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Gezinti çekmecesini kapa</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (Çince)</string>
     <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili (Svahilice)</string>
-    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (Norveççe) (Norwegian (Norveççe))</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (Bokmål) (Norveççe (Bokmål))</string>
     <string name="pref_language_nl" tools:ignore="MissingTranslation">Dutch (Flemenkçe)</string>
     <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
     <string name="pref_language_hu" tools:ignore="MissingTranslation">Magyar (Macarca)</string>
@@ -303,8 +303,8 @@
     <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Hissedilen sıcaklık</string>
     <string name="pref_language_uk" tools:ignore="MissingTranslation">Українська (Ukraynaca)</string>
     <string name="pref_language_ro" tools:ignore="MissingTranslation">Română (Rumence)</string>
-    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Português (Portekizce) (Portugese (Portekizce))</string>
-    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Português (Brasil) (Portekizce(Brazil))</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Português (Portugal) (Portekizce (Portekiz))</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Português (Brasil) (Portekizce (Brezilya))</string>
     <string name="label_pressure" tools:ignore="MissingTranslation">Basınç</string>
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Mevcut hava durumu açıklama dili ve adres bir sonraki güncellemeyle değişecektir isterseniz şimdi de değiştirtebilirsiniz.</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Pil İyileştirmesi</string>
@@ -457,7 +457,7 @@
     <string name="pref_language_fi" tools:ignore="MissingTranslation">Suomi (Fince)</string>
     <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego (Galiçyaca)</string>
     <string name="pref_language_de" tools:ignore="MissingTranslation">Deutsch (Almanca)</string>
-    <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (İtalianca)</string>
+    <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (İtalyanca)</string>
     <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (Japonca)</string>
     <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (Lehçe)</string>
     <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (Rusça)</string>
@@ -508,19 +508,19 @@
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamca</string>
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengalce (Bangladeş)</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Metin ve Sesli Yönlendirme Çevirileri</string>
-    <string name="preference_title_tts" tools:ignore="MissingTranslation">Ses ayarları</string>
-    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Yeni ses Ayarları</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Yönlendirme ayarları</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Yeni yönlendirme ayarları</string>
     <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Tüm</string>
     <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Özel</string>
     <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">Konum söyle</string>
     <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Hoparlöre sesi etkinleştir</string>
-    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Kablolu kulaklığa sesi etkinleştir</string>
-    <string name="voice_settings_language" tools:ignore="MissingTranslation">Dil ayarı</string>
-    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Ses dili seçenekleri</string>
+    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Kablolu kulaklık yönlendirmesini aç</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Dil</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Yönlendirme dili seçenekleri</string>
     <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">hoparlör</string>
     <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">kablolu kulaklık</string>
     <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Bu uygulamanın ses çıktısı seçeneği vardır. Bu seçeneği açmak için bir TTS (Text-to-speech) (yazıdan sese) sisteminin kurulu olması ve ayarlarda ses çıktısı olarak ayarlanmış olması gerekir. Lütfen yazıların ve ses çıktılarının çevirisinin gönüllüler tarafından ( https://hosted.weblate.org/projects/your-local-weather service ) yapıldığını hesaba katınız. Ayarlarda kendi ses çıktılarınızı da yapabilirsiniz. Bu uygulamanın geliştiricileri çevirilerin veya uygulamanın beyanda bulunduklarının herhangi bir kalite veya doğruluk garantisini vermez, uygulamayı kullanarak bu ifadeyi kabul etmiş olursunuz.</string>
-    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Sesi Bluetooth kulaklık için aktifleştir</string>
+    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Bluetooth kulaklık yönlendirmesini aç</string>
     <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Selam ver</string>
     <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">Hava Durumu açıklamasını söyle</string>
     <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">Sıcaklığı söyle</string>
@@ -531,7 +531,7 @@
     <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">Aktif cihaz(lar):</string>
     <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">Bu konum için:</string>
     <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">Ne demeli:</string>
-    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Söyleyecek:</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Ne demeli:</string>
     <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">Günaydın</string>
     <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Merhaba</string>
     <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">İyi akşamlar</string>
@@ -539,7 +539,7 @@
     <string name="tts_say_current_weather" tools:ignore="MissingTranslation">Şu anki hava durumu</string>
     <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">Hava durumu güncellendiğinde</string>
     <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">Bir Bluetooth cihazı bağlandığında</string>
-    <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">Şu Saatte</string>
+    <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">Günün zamanı</string>
     <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s Rüzgar %1$s %2$s</string>
     <string name="tty_say_temperature" tools:ignore="MissingTranslation">Sıcaklık %s</string>
     <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">kuzey</string>
@@ -572,7 +572,15 @@
     <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">nadiren</string>
     <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">ve</string>
     <string name="too_early_update_error" tools:ignore="MissingTranslation">Çok erken güncelleme!</string>
-    <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Hava Tahmini</string>
-    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Mozilla Konum Servisine erişim 1.3.2020 itibariyle durmuştur. Uygulama, konum koordinatları keşfi için Andorid sistemini kullanmak zorunda. Adres hala Uygulama tarafından çözülüyor. Bu uygulamayı kullanırken lütfen bu durumu gözönünde bulundurun.</string>
-    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Mozilla konum servisi limiti</string>
+    <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Tahmin türü</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Mozilla konum hizmetine erişim 1.3.2020 itibariyle durmuştur. Uygulama, konum koordinatları keşfi için Andorid sistemini kullanmak zorunda. Adres hala Nominatim tarafından çözülüyor. Bu uygulamayı kullanırken lütfen bu durumu göz önünde bulundurun.</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Mozilla konum hizmeti sınırlaması</string>
+    <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">Ücretli/ilave özellikler</string>
+    <string name="weather_forecast_features_free" tools:ignore="MissingTranslation">Ücretsiz/sınırlı özellikler</string>
+    <string name="preference_weather_weather_forecast_features_title" tools:ignore="MissingTranslation">Hava tahmini özellikleri</string>
+    <string name="location_weather_update_status_location_from_last_location" tools:ignore="MissingTranslation">l</string>
+    <string name="location_weather_update_status_too_early_update" tools:ignore="MissingTranslation">O</string>
+    <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">Yönlendirme için seçilen yerel ayar:</string>
+    <string name="pref_language_id" tools:ignore="MissingTranslation">Indonesian (Endonezce)</string>
+    <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Lisans anahtarı</string>
 </resources>
