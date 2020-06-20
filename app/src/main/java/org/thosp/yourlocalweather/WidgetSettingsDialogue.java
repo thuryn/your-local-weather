@@ -56,6 +56,8 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class WidgetSettingsDialogue extends Activity {
 
+    private static final String TAG = "WidgetSettingsDialogue";
+
     private static final int NUMBER_OF_WEATHER_DETAIL_OPTIONS = 7;
     private static final int DEFAULT_NUMBER_OF_AVAILABLE_DETAIL_OPTIONS_IN_WIDGET = 4;
 
@@ -376,10 +378,16 @@ public class WidgetSettingsDialogue extends Activity {
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, locationLabels);
         //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         numberOfDaysSpinner.setAdapter(adapter);
-        numberOfDaysSpinner.setSelection(currentLocation.getOrderId());
-        final LocationsListener locationListener = new LocationsListener(currentLocation.getOrderId());
-        numberOfDaysSpinner.setOnItemSelectedListener(locationListener);
+        final LocationsListener locationListener;
 
+        if (currentLocation == null) {
+            appendLog(getBaseContext(), TAG, "No enabled location found to show");
+            locationListener = new LocationsListener(0);
+        } else {
+            numberOfDaysSpinner.setSelection(currentLocation.getOrderId());
+            locationListener = new LocationsListener(currentLocation.getOrderId());
+        }
+        numberOfDaysSpinner.setOnItemSelectedListener(locationListener);
         boolean hasLocationToHide = false;
         AppWidgetManager widgetManager = AppWidgetManager.getInstance(this);
         ComponentName widgetGraphComponent = new ComponentName(this, WeatherGraphWidgetProvider.class);

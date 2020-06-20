@@ -896,6 +896,9 @@ public class Utils {
     }
 
     public static String getLocationForVoiceFromAddress(Address address) {
+        if (address == null) {
+            return "";
+        }
         String geoCity = getCityFromAddress(address);
         String geoDistrictOfCity = address.getSubLocality();
         if ((geoDistrictOfCity == null) || "".equals(geoDistrictOfCity) || geoCity.equalsIgnoreCase(geoDistrictOfCity)) {

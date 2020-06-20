@@ -100,6 +100,8 @@ public abstract class ForecastingActivity extends BaseActivity {
     }
 
     protected void updateWeatherForecastFromNetwork(String updateSource) {
+        appendLog(getBaseContext(), TAG, "Current location:", currentLocation,
+                ", is rotetion active:", WidgetRefreshIconService.isRotationActive);
         if ((currentLocation == null) || WidgetRefreshIconService.isRotationActive) {
             return;
         }
@@ -115,6 +117,8 @@ public abstract class ForecastingActivity extends BaseActivity {
     }
 
     protected void updateLongWeatherForecastFromNetwork(String updateSource) {
+        appendLog(getBaseContext(), TAG, "Current location:", currentLocation,
+                ", is rotetion active:", WidgetRefreshIconService.isRotationActive);
         if ((currentLocation == null) || WidgetRefreshIconService.isRotationActive) {
             return;
         }

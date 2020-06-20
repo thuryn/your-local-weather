@@ -161,7 +161,7 @@
     <string name="wind_label">Vítr: %1$s %2$s %3$s</string>
     <string name="tty_say_wind">%3$s vítr %1$s %2$s</string>
     <string name="tty_say_temperature">teplota %s</string>
-    <string name="tty_say_max_rain">déšťové srážky maximálně %s milimetrů</string>
+    <string name="tty_say_max_rain">dešťové srážky maximálně %s milimetrů</string>
     <string name="tty_say_max_snow">sněhové srážky maximálně %s milimetrů</string>
     <string name="tty_say_max_wind">%3$s vítr maximálně %1$s %2$s</string>
     <string name="tty_say_temp_max">maximální teplota %1$s nastane v %2$s</string>

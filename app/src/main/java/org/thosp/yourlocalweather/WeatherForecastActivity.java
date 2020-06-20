@@ -82,9 +82,9 @@ public class WeatherForecastActivity extends ForecastingActivity {
         }
         forecastType.setChecked(2 == AppPreference.getForecastType(getBaseContext()));
         int forecastTypeRecord = (forecastType.isChecked() ? 2 : 1);
-        appendLog(getBaseContext(), TAG, "updateUI with forecastType:", forecastType.isChecked(), ", ", forecastTypeRecord);
+        appendLog(getBaseContext(), TAG, "updateUI with forecastType:", forecastTypeRecord);
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId, forecastTypeRecord);
-        appendLog(getBaseContext(), TAG, "Weather forecast record:", weatherForecastRecord);
+        appendLog(getBaseContext(), TAG, "Weather forecast record: ", weatherForecastRecord, ", forecastType: ", forecastType);
         if (weatherForecastRecord != null) {
             weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
             locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());

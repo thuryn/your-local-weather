@@ -186,6 +186,9 @@ public class WeatherByVoiceService extends Service {
         for (Location location: locations) {
             if (enabledLocationIds.contains(location.getId().toString())) {
                 CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(location.getId());
+                if (weatherRecord == null) {
+                    continue;
+                }
                 sayCurrentWeather(
                         weatherRecord.getWeather(),
                         location,

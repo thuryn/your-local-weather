@@ -18,6 +18,7 @@ import android.os.PowerManager;
 import android.preference.PreferenceManager;
 import android.telephony.CellLocation;
 import android.util.Log;
+import android.widget.Switch;
 
 import org.thosp.yourlocalweather.SettingsActivity;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
@@ -392,6 +393,14 @@ public class LogToFile {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
+    }
+
+    public static void appendLog(Context context, String tag, String text1, WeatherForecastDbHelper.WeatherForecastRecord value1, String text2, Switch value2) {
+        checkPreferences(context);
+        if (!logToFileEnabled || (logFilePathname == null)) {
+            return;
+        }
+        appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null", text2, (value2 != null)? value2.toString() : "null");
     }
 
     public static void appendLog(Context context, String tag, String text1, android.location.Location value1, String text2, Address value2) {
