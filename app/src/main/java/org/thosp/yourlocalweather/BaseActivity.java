@@ -12,6 +12,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 import android.os.RemoteException;
+import android.preference.PreferenceActivity;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -182,6 +183,17 @@ public abstract class BaseActivity extends AppCompatActivity {
                         case R.id.nav_settings:
                             createBackStack(new Intent(BaseActivity.this,
                                                        SettingsActivity.class));
+                            break;
+                        case R.id.nav_about:
+                            Intent intent = new Intent(BaseActivity.this,
+                                    SettingsActivity.class);
+                            intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT,
+                                    SettingsActivity.AboutPreferenceFragment.class.getName());
+                            intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_TITLE,
+                                    R.string.preference_title_activity_about);
+                            intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_SHORT_TITLE,
+                                    R.string.preference_title_activity_about);
+                            createBackStack(intent);
                             break;
                         case R.id.nav_menu_help:
                             createBackStack(new Intent(BaseActivity.this,

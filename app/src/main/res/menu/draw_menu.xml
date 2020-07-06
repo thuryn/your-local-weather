@@ -22,6 +22,10 @@
             android:icon="@drawable/ic_menu_settings"
             android:title="@string/nav_menu_settings"/>
         <item
+            android:id="@+id/nav_about"
+            android:icon="@mipmap/ic_about"
+            android:title="@string/preference_title_activity_about" />
+        <item
             android:id="@+id/nav_menu_help"
             android:icon="@drawable/ic_feedback"
             android:title="@string/nav_menu_help"/>
