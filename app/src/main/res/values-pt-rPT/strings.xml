@@ -33,7 +33,7 @@
     <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">A aplicação está configurada para atualizar a localização, por issoa permissão é necessária. Aceda às configurações do aparelho e ative a localização ou então desative as atualizações de localização.</string>
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Permissão para ler a informação do aparelho é necessária para atualizar a localização utilizando as redes Wi-Fi e GSM. Isto pesquisa informação sobre as estações-base GSM a que o aparelho está conectado.</string>
     <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Ajuste a app às suas necessidades. A seguir pode escolher a estratégia de atualização. 
-\nPara alterar o comportamento de atualizar padrão quando a localização muda, pode escolher <i>Não atualizar localização</i>.</string>
+\nPara alterar o comportamento de atualizar a predefinição quando a localização muda, pode escolher <i>Não atualizar localização</i>.</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Opção de fonte da localização</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Fonte da localização e endereço</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Opção de estratégia de despertar</string>
@@ -206,7 +206,7 @@
     <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Usar geolocalização para visualizar</string>
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Tema do widget</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Mostrar resumo da atualização</string>
-    <string name="locations_delete_location" tools:ignore="MissingTranslation">Eliminar</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Apagar</string>
     <string name="locations_disable_location" tools:ignore="MissingTranslation">Desativar</string>
     <string name="locations_enable_location" tools:ignore="MissingTranslation">Ativar</string>
     <string name="locations_disabled" tools:ignore="MissingTranslation">Desativado</string>
@@ -230,8 +230,8 @@
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Cancelar</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">O acesso expirou. Por favor atualize a app.</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">A sua chave da API do Openweathermap não está registada.</string>
-    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Ao lado do botão de atualização de local, há um botão de gestão do local (ícone da lupa). Pode gerir os locais disponíveis na app e nos widgets. Há um local (local 0) disponível por padrão - isso destina-se a atualizações automáticas de localização. Pode encontrar o botão ativar/desativar quando desliza este local para a esquerda. Também pode adicionar o local manualmente. Quando clicar no botão + pode procurar a sua localização do mapa. Também pode eliminar o local com o botão Eliminar - que está acessível quando desliza o local para a esquerda.</string>
-    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Quando marcar a opção <b>Ligar GPS quando necessário</b>, a app tentará encontrar a sua localização usando redes celulares ou wifi. Quando a localização não pode ser encontrada a usar serviços de rede, a app liga o GPS por alguns segundos para obter a localização.</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Ao lado do botão de atualização de local, há um botão de gestão do local (ícone da lupa). Pode gerir os locais disponíveis na app e nos widgets. Há um local (local 0) disponível por predefinição - isso destina-se a atualizações automáticas de localização. Pode encontrar o botão ativar/desativar quando desliza este local para a esquerda. Também pode adicionar o local manualmente. Quando clicar no botão + pode procurar a sua localização do mapa. Também pode apagar o local com o botão Apagar - que está acessível quando desliza o local para a esquerda.</string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Quando marcar a opção <b>Ligar GPS quando necessário</b>, a app tentará encontrar a sua localização usando redes celulares ou wifi. Quando a localização não encontra-se a usar serviços de rede, a app liga o GPS por alguns segundos para obter a localização.</string>
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"> <b>Fonte da localização e endereço</b> 
 \nPode escolher de onde a app obtém a localização e o endereço.</string>
     <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
@@ -241,7 +241,7 @@
 \nQuando seleciona a opção de notificações, a aplicação atualiza o tempo atual periodicamente. O tempo atual é então mostrado na área de notificações. Também pode ativar a vibração - a aplicação vibra quando é atualizada.</string>
     <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Próximo à opção de cache de localizações (caixa de visto) há uma configuração para <b>Idade dos valores na cache</b>. Cada endereço armazenado tem um carimbo de data/hora. Quando o carimbo de data/hora é mais antigo que o valor definido, a app chama o Nominatim para atualizar o registo.</string>
     <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Pode limpar a cache de endereços através do botão <b>Limpar cache</b>.</string>
-    <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">Pode ver várias linhas dos valores armazenados em cache na secção <b>Informações sobre a cache</b>. Também pode ver o número total de linhas.</string>
+    <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">Pode ver várias linhas dos valores armazenados em cache na secção <b>Informações sobre a cache</b>. Também pode ver a quantidade total de linhas.</string>
     <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Quando ativa a opção <b>Mostrar etiquetas no widget</b>, pode ver etiquetas em vez de ícones para os valores das condições meteorológicas.</string>
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Pode controlar o widget de fundo através da <b>Opção de tema do widget</b>.</string>
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Quando umaa atualização da localização e do tempo atual é executada, pode ver o estado da atualização ao lado do tempo de atualização no widget. Pode controlar o que é mostrado pela opção <b>Mostrar resumo da atualização</b>. Segue-se a explicação da opção mais avançada:</string>
@@ -461,7 +461,7 @@
     <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Botão widget de configurações de localização</string>
     <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Botão widget de configurações de ação</string>
     <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Mostrar dia com abreviatura</string>
-    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Número de dias para a previsão</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Quantidade de dias para a previsão</string>
     <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Configuração da localização</string>
     <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">Etiqueta da cidade</string>
     <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">Ícone do tempo atual</string>
@@ -483,7 +483,7 @@
     <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Botão de definições de detalhes de tempo de widget</string>
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamita</string>
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengali (Bangladesh)</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Esta app tem orientação de voz através de traduções de texto e comandos de voz cortesia de voluntários em https://hosted.weblate.org/projects/your-local-weather. A app dev não pode garantir que eles estão corretos - você aceita-o usando a app. Para utilizá-la precisa ter o TTS (Text-to-speech) instalado e o guia ligado nas configurações, onde pode definir os seus próprios comandos de voz. "</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Esta app tem orientação de voz através de traduções de texto e comandos de voz cortesia de voluntários em https://hosted.weblate.org/projects/your-local-weather. A app dev não pode garantir que eles estão corretos - aceita-o usando a app. Para utilizá-la precisa ter o TTS (Text-to-speech) instalado e o guia ligado nas configurações, onde pode definir os seus próprios comandos de voz. "</string>
     <string name="preference_title_tts" tools:ignore="MissingTranslation">Configurações de orientação</string>
     <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Novas configurações de orientação</string>
     <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Reprodução de altifalantes de orientação</string>
