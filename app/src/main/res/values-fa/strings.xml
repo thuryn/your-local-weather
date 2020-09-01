@@ -1,2 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="label_choose_city" tools:ignore="MissingTranslation">شهر را انتخاب کنید</string>
+    <string name="label_current_city" tools:ignore="MissingTranslation">شهر فعلی</string>
+    <string name="enter_city_hint" tools:ignore="MissingTranslation">اسم شهر را وارد کنید</string>
+    <string name="app_name" tools:ignore="MissingTranslation">آب و هوای محلی شما</string>
+</resources>
