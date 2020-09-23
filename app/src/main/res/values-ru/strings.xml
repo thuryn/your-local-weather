@@ -179,7 +179,7 @@
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Давление</string>
     <string name="ok" tools:ignore="MissingTranslation">Ок</string>
     <string name="cancel" tools:ignore="MissingTranslation">Отмена</string>
-    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Выпадающее меню</string>
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Открыть панель навигации</string>
     <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Закрыть выпадающее меню</string>
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Помощь</string>
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">мм рт.ст.</string>
