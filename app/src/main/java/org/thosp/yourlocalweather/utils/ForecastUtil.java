@@ -160,6 +160,9 @@ public class ForecastUtil {
         final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
         Map<Integer, List<DetailedWeatherForecast>> weatherListForOneDay = getOneDayForecast(weatherForecastRecord);
+        if (weatherListForOneDay == null) {
+            return null;
+        }
         WeatherForecastForVoice result = new WeatherForecastForVoice();
         double maxTemp = -Double.MAX_VALUE;
         double minTemp = Double.MAX_VALUE;
@@ -263,6 +266,9 @@ public class ForecastUtil {
 
     public static Map<Integer, List<DetailedWeatherForecast>> getOneDayForecast(WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord) {
         Map<Integer, List<DetailedWeatherForecast>> weatherList = createWeatherList(weatherForecastRecord);
+        if (weatherList.keySet().isEmpty()) {
+            return null;
+        }
         Integer firstDayInForecast = Collections.min(weatherList.keySet());
         List<DetailedWeatherForecast> wholeDayForecast = weatherList.get(firstDayInForecast);
         Map<Integer, List<DetailedWeatherForecast>> oneDayForecastMap = new HashMap<>();
