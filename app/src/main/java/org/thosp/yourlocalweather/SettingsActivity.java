@@ -1221,7 +1221,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             buttonFileLog.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(final Preference preference) {
-                    new ChooserDialog().with(getActivity())
+                    new ChooserDialog(getActivity())
                             .withFilter(true, false)
                             .withStartFile("/mnt")
                             .withChosenListener(new ChooserDialog.Result() {

@@ -24,6 +24,7 @@ import org.osmdroid.config.Configuration;
 import org.osmdroid.events.MapEventsReceiver;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.thosp.yourlocalweather.model.Location;
@@ -97,11 +98,11 @@ public class SearchActivity extends BaseActivity {
 
         map = (MapView) findViewById(R.id.map);
         map.setTileSource(TileSourceFactory.MAPNIK);
-        map.setBuiltInZoomControls(true);
+        map.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.SHOW_AND_FADEOUT);
         map.setMultiTouchControls(true);
 
         IMapController mapController = map.getController();
-        mapController.setZoom(11);
+        mapController.setZoom(11.0);
         GeoPoint startPoint;
         if ((lastLocation.getLongitude() == 0) && (lastLocation.getLatitude() == 0)) {
             startPoint = new GeoPoint(51.5072, -0.1267);
