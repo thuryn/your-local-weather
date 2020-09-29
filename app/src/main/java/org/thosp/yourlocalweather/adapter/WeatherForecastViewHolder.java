@@ -2,8 +2,8 @@ package org.thosp.yourlocalweather.adapter;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.format.DateFormat;
 import android.view.View;
 import android.view.ViewGroup;

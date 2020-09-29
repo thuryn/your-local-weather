@@ -7,8 +7,8 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.LocaleList;
 import android.preference.PreferenceManager;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.os.LocaleListCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.os.LocaleListCompat;
 
 import org.thosp.yourlocalweather.R;
 

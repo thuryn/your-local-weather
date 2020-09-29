@@ -6,9 +6,10 @@ import android.content.DialogInterface;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.NavUtils;
-import android.support.v7.widget.CardView;
+import androidx.annotation.Nullable;
+import androidx.core.app.NavUtils;
+import androidx.cardview.widget.CardView;
+import androidx.core.widget.NestedScrollView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -127,7 +128,7 @@ public class GraphsActivity extends ForecastingActivity {
             }
         });
         updateUI();
-        android.support.v4.widget.NestedScrollView mRecyclerView = (android.support.v4.widget.NestedScrollView) findViewById(R.id.graph_scroll_view);
+        NestedScrollView mRecyclerView = (NestedScrollView) findViewById(R.id.graph_scroll_view);
         mRecyclerView.setOnTouchListener(new ActivityTransitionTouchListener(
                 WeatherForecastActivity.class,
                 null, this));

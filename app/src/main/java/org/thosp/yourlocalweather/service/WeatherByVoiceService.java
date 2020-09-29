@@ -18,7 +18,7 @@ import android.os.Messenger;
 import android.preference.PreferenceManager;
 import android.speech.tts.TextToSpeech;
 import android.speech.tts.UtteranceProgressListener;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.widget.CheckBox;
 
 import org.thosp.yourlocalweather.AddVoiceSettingActivity;
