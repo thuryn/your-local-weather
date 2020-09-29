@@ -195,11 +195,11 @@ public class TemperatureUtil {
         }
         if (unitsFromPreferences.contains("fahrenheit") ) {
             double fahrenheitValue = (value * 1.8f) + 32;
-            return apparentSign + String.format(locale, "%d",
-                    Math.round(fahrenheitValue)) + getTemperatureUnit(context);
+            return apparentSign + String.format(locale, "%.1f",
+                    fahrenheitValue) + getTemperatureUnit(context);
         } else {
-            return apparentSign + String.format(locale, "%d",
-                    Math.round(value)) + getTemperatureUnit(context);
+            return apparentSign + String.format(locale, "%.1f",
+                    value) + getTemperatureUnit(context);
         }
     }
 

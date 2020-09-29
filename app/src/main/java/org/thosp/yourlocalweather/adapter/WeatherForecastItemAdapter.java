@@ -21,6 +21,7 @@ public class WeatherForecastItemAdapter extends RecyclerView.Adapter<WeatherFore
     private List<DetailedWeatherForecast> mWeatherList;
     private double latitude;
     private Locale locale;
+    double minTemp, maxTemp;
 
     public WeatherForecastItemAdapter(Context context,
                                       List<DetailedWeatherForecast> weather,
@@ -32,6 +33,14 @@ public class WeatherForecastItemAdapter extends RecyclerView.Adapter<WeatherFore
         this.visibleColumns = visibleColumns;
         this.latitude = latitude;
         this.locale = locale;
+
+        minTemp = Integer.MAX_VALUE;
+        maxTemp = Integer.MIN_VALUE;
+        for(DetailedWeatherForecast item : weather){
+            double temp = item.getTemperature();
+            if(temp > maxTemp) maxTemp = temp;
+            if(temp < minTemp) minTemp = temp;
+        }
     }
 
     @Override
@@ -44,7 +53,10 @@ public class WeatherForecastItemAdapter extends RecyclerView.Adapter<WeatherFore
     @Override
     public void onBindViewHolder(WeatherForecastItemViewHolder holder, int position) {
         DetailedWeatherForecast weather = mWeatherList.get(position);
-        holder.bindWeather(mContext, latitude, locale, weather, visibleColumns);
+        double temp = weather.getTemperature();
+        boolean isMin = temp == minTemp;
+        boolean isMax = temp == maxTemp;
+        holder.bindWeather(mContext, latitude, locale, weather, visibleColumns, isMin, isMax);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package org.thosp.yourlocalweather.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Set;
 
-public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
+public class WeatherForecastItemViewHolder extends RecyclerView.ViewHolder {
 
     private final String TAG = "ForecastViewHolder";
 
@@ -54,15 +55,10 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
         mDescription = (TextView) itemView.findViewById(R.id.forecast_description);
     }
 
-    void bindWeather(Context context,
-                     double latitude,
-                     Locale locale,
-                     DetailedWeatherForecast weather,
-                     Set<Integer> visibleColumns) {
+    void bindWeather(Context context, double latitude, Locale locale, DetailedWeatherForecast weather, Set<Integer> visibleColumns, boolean isMin, boolean isMax) {
         mWeatherForecast = weather;
 
-        Typeface typeface = Typeface.createFromAsset(mContext.getAssets(),
-                "fonts/weathericons-regular-webfont.ttf");
+        Typeface typeface = Typeface.createFromAsset(mContext.getAssets(), "fonts/weathericons-regular-webfont.ttf");
         WeatherCondition weatherCondition = weather.getFirstWeatherCondition();
 
         if (visibleColumns.contains(1)) {
@@ -70,7 +66,7 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
             Date date = new Date(weather.getDateTime() * 1000);
             mTime.setText(AppPreference.getLocalizedTime(context, date, locale));
             if (AppPreference.is12TimeStyle(context)) {
-                ViewGroup.LayoutParams params=mTime.getLayoutParams();
+                ViewGroup.LayoutParams params = mTime.getLayoutParams();
                 params.width = Utils.spToPx(85, context);
                 mTime.setLayoutParams(params);
             }
@@ -96,16 +92,21 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
         }
         if (visibleColumns.contains(4)) {
             mTemperature.setVisibility(View.VISIBLE);
-            String temperature = mContext.getString(R.string.temperature_with_degree,
-                    TemperatureUtil.getForecastedTemperatureWithUnit(mContext, weather, locale));
+            String temperature = mContext.getString(R.string.temperature_with_degree, TemperatureUtil.getForecastedTemperatureWithUnit(mContext, weather, locale));
             mTemperature.setText(temperature);
+            if (isMin == isMax) {
+                mTemperature.setTextColor(Color.BLACK);
+            } else if (isMax) {
+                mTemperature.setTextColor(Color.RED);
+            } else {
+                mTemperature.setTextColor(Color.BLUE);
+            }
         } else {
             mTemperature.setVisibility(View.GONE);
         }
         if (visibleColumns.contains(5)) {
             mApparentTemperature.setVisibility(View.VISIBLE);
-            String apparentTemperature = mContext.getString(R.string.temperature_with_degree,
-                    TemperatureUtil.getForecastedApparentTemperatureWithUnit(mContext, latitude, weather, locale));
+            String apparentTemperature = mContext.getString(R.string.temperature_with_degree, TemperatureUtil.getForecastedApparentTemperatureWithUnit(mContext, latitude, weather, locale));
             mApparentTemperature.setText(apparentTemperature);
         } else {
             mApparentTemperature.setVisibility(View.GONE);
@@ -139,7 +140,7 @@ public class WeatherForecastItemViewHolder  extends RecyclerView.ViewHolder {
                     mRainSnow.setText(snow);
                 }
             }
-            ViewGroup.LayoutParams params=mRainSnow.getLayoutParams();
+            ViewGroup.LayoutParams params = mRainSnow.getLayoutParams();
             params.width = Utils.spToPx(AppPreference.getRainOrSnowForecastWeadherWidth(context), context);
             mRainSnow.setLayoutParams(params);
         } else {

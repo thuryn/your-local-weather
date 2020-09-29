@@ -69,7 +69,7 @@
 
                 <TextView
                     android:id="@+id/forecast.header.temperature"
-                    android:layout_width="50sp"
+                    android:layout_width="64sp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
@@ -159,11 +159,11 @@
 
             <TextView
                 android:id="@+id/forecast.header.temperature_unit"
-                android:layout_width="50sp"
+                android:layout_width="64sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                tools:text="Clear"/>
+                tools:text="Clear" />
 
             <TextView
                 android:id="@+id/forecast.header.apparent.temperature_unit"
