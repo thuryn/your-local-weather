@@ -7,61 +7,69 @@ android {
             jsonFile = file('../../your-local-weather-addons/keys.json')
         }
     }
+
     play {
         track = 'production'
         untrackOld = true
         uploadImages = true
     }
+
     compileSdkVersion 28
+    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "org.thosp.yourlocalweather"
         minSdkVersion 14
         targetSdkVersion 28
         versionCode 133
         versionName "5.5.1"
+        vectorDrawables.useSupportLibrary true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        vectorDrawables.useSupportLibrary = true
         playAccountConfig = playAccountConfigs.defaultAccountConfig
     }
-    packagingOptions {
-        exclude 'META-INF/proguard/androidx-annotations.pro'
-    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            android.applicationVariants.all { variant ->
-                variant.outputs.all {
-                    outputFileName = "YourLocationWeather-${variant.name}.apk"
-                }
-            }
         }
-        debug {
-            minifyEnabled false
-            android.applicationVariants.all { variant ->
-                variant.outputs.all {
-                    outputFileName = "YourLocationWeather-${variant.name}.apk"
-                }
-            }
+    }
+
+    applicationVariants.all { variant ->
+        outputs.all {
+            outputFileName = "YourLocalWeather-${variant.name}.apk"
         }
+    }
+
+    compileOptions {
+        encoding "UTF-8"
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/*'
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+// Android support
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+
+// Third-party
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
-    implementation 'com.android.support:appcompat-v7:28.+'
-    implementation 'com.android.support:design:28.+'
-    implementation 'com.android.support:cardview-v7:28.+'
-    implementation 'com.android.support:support-v4:28.+'
     implementation 'org.microg:address-formatter:0.2.1'
     implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.obsez.android.lib.filechooser:filechooser:1.1.5'
     implementation 'com.loopj.android:android-async-http:1.4.9'
     implementation 'org.osmdroid:osmdroid-android:6.0.2'
-    testImplementation 'junit:junit:4.12'
+
+// Testing
+    testImplementation 'junit:junit:4.13'
     testImplementation 'org.mockito:mockito-core:3.2.4'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
