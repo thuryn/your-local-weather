@@ -534,13 +534,13 @@
     <string name="tty_say_max_wind" tools:ignore="MissingTranslation">%3$s максімальны вецер %1$s %2$s</string>
     <string name="tty_say_max_snow" tools:ignore="MissingTranslation">максімальная колькасць ападкаў(снег) %s міліметраў</string>
     <string name="tty_say_max_rain" tools:ignore="MissingTranslation">максімальная колькасць ападкаў (дождж) %s міліметраў</string>
-    <string name="tty_say_temperature" tools:ignore="MissingTranslation">тэмпература % s</string>
+    <string name="tty_say_temperature" tools:ignore="MissingTranslation">тэмпература %s</string>
     <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s вецер %1$s %2$s</string>
     <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">Час сутак</string>
     <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">Калі падлучаная Bluetooth-прылада</string>
     <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">Калі надвор\'е абноўлена</string>
     <string name="tts_say_current_weather" tools:ignore="MissingTranslation">Бягучае надвор\'е</string>
-    <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">Бягучае надвор\'е для мясціны % s</string>
+    <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">Бягучае надвор\'е для мясціны %s</string>
     <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">Добры вечар</string>
     <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Прывітанне</string>
     <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">Добрай раніцы</string>
