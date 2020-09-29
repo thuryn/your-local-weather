@@ -348,8 +348,8 @@
     <string name="weather_condition_description_771" tools:ignore="MissingTranslation">шквалы</string>
     <string name="weather_condition_description_781" tools:ignore="MissingTranslation">тарнада</string>
     <string name="weather_condition_description_800" tools:ignore="MissingTranslation">яснае неба</string>
-    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">невялікія аблокі</string>
-    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">рассеяныя аблокі</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">невялікая воблачнасць</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">рэдкія аблокі</string>
     <string name="weather_condition_description_803" tools:ignore="MissingTranslation">рассеяныя аблокі</string>
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">пахмурна</string>
     <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Ліцэнзіі вольнага праграмнага забеспячэння</string>
