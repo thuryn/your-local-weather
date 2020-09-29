@@ -1,7 +1,6 @@
 package org.thosp.yourlocalweather.service;
 
 import java.io.Serializable;
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class WeatherRequestDataHolder implements Serializable {
     private final long locationId;

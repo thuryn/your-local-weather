@@ -1,10 +1,6 @@
 package org.thosp.yourlocalweather.model;
 
-import android.os.BaseBundle;
 import android.os.Build;
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.os.PersistableBundle;
 
 import java.util.Locale;

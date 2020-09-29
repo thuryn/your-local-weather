@@ -3,8 +3,8 @@
     <string name="enter_city_hint">أدخل اسم المدينة</string>
     <string name="label_current_city">المدينة الحالية</string>
     <string name="label_choose_city">اختر المدينة</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings">نظام التموضع العالمي غير مفعل. هل تريد أن تذهب إلى قائمة الإعدادات؟</string>
-    <string name="alertDialog_location_permission_positiveButton_settings">الإعدادات</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">تم تعيين التطبيق لتحديث الموقع. هناك حاجة للوصول إليها. انتقل إلى إعدادات الجهاز وقم بتشغيل الموقع أو قم بإيقاف تشغيل تحديثات موقع التطبيق.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings">إعدادات الجهاز</string>
     <string name="alertDialog_location_permission_negativeButton">إلغاء</string>
     <string name="progressDialog_gps_locate">البحث عن الموقع الحالي</string>
     <string name="load_progress">جار التحميل…</string>
@@ -24,11 +24,11 @@
     <string name="nav_feedback">ردود الفعل</string>
     <string name="nav_menu_bitcoin_donation">تبرع بيتكوين</string>
     <string name="connection_not_found">تحقق من اتصالك بالإنترنت</string>
-    <string name="toast_parse_error">حدث خطأ. حاول لاحقا!</string>
+    <string name="toast_parse_error">حدث خطأ. حاول لاحقاً.</string>
     <string name="pressure_measurement">هكتوبسكال</string>
     <string name="title_activity_settings">الإعدادات</string>
     <string name="pref_title_temperature">الحرارة</string>
-    <string name="pref_title_category_notification">إشعارات</string>
+    <string name="pref_title_category_notification">إعدادات الإشعار</string>
     <string name="pref_title_notification">تفعيل الإشعارات</string>
     <string name="update_period_15min">15 دقيقة</string>
     <string name="update_period_30min">30 دقيقة</string>
@@ -37,14 +37,14 @@
     <string name="update_period_6hours">6 ساعات</string>
     <string name="update_period_12hours">12 ساعة</string>
     <string name="update_period_24hours">24 ساعة</string>
-    <string name="preference_title_activity_general">الاعدادات العامة</string>
+    <string name="preference_title_activity_general">الإعدادات العامة</string>
     <string name="theme_transparent">شفاف</string>
     <string name="preference_title_category_display">عرض</string>
     <string name="pref_title_language">اللغة</string>
     <string name="pref_title_theme">القالب</string>
-    <string name="about_source_code_pref_title">شفرة المصدر</string>
+    <string name="about_source_code_pref_title">الشيفرة الأصليّة</string>
     <string name="about_app_license_pref_title">الترخيص</string>
-    <string name="about_open_source_licenses_pref_title">تراخيص مفتوحة المصدر</string>
+    <string name="about_open_source_licenses_pref_title">تراخيص برامج حرة (Libre)</string>
     <string name="label_temperature">الحرارة</string>
     <string name="label_wind">الرياح</string>
     <string name="label_rain">أمطار</string>
@@ -54,14 +54,14 @@
     <string name="temperature_day_title">يوم</string>
     <string name="temperature_evening_title">المساء</string>
     <string name="temperature_night_title">الليل</string>
-    <string name="wind_direction_north">شمال</string>
-    <string name="wind_direction_north_east">شمال شرق</string>
-    <string name="wind_direction_east">الشرق</string>
-    <string name="wind_direction_south_east">جنوب شرق</string>
-    <string name="wind_direction_south">الجنوب</string>
-    <string name="wind_direction_south_west">جنوب غرب</string>
-    <string name="wind_direction_west">الغرب</string>
-    <string name="wind_direction_north_west">شمال غرب</string>
+    <string name="wind_direction_north">ش↓</string>
+    <string name="wind_direction_north_east">ش.ش↙</string>
+    <string name="wind_direction_east">ش←</string>
+    <string name="wind_direction_south_east">ج.ش↖</string>
+    <string name="wind_direction_south">ج↑</string>
+    <string name="wind_direction_south_west">ج.غ↗</string>
+    <string name="wind_direction_west">غ→</string>
+    <string name="wind_direction_north_west">ش.غ↘</string>
     <string name="wind_speed_meters">متر في الثانية</string>
     <string name="wind_speed_miles">ميل في الساعة</string>
     <string name="millimetre_label">ميليمتر</string>
@@ -69,7 +69,7 @@
     <string name="preference_hide_desc">إخفاء وصف الطقس</string>
     <string name="pref_title_notification_refresh_interval">تحديث الفاصل الزمني</string>
     <string name="pref_title_vibrate">اهتزاز</string>
-    <string name="preference_widget_title_update_period">فترة التحديث</string>
+    <string name="preference_widget_title_update_period">فترة تحديث الطقس (الموقع 1،2،3 ...)</string>
     <string name="preference_widget_update_location">تحديث الموقع</string>
     <string name="preference_widget_use_geocoder">استخدام تحديد الموقع الجغرافي للعرض</string>
     <string name="theme_dark">داكن</string>
@@ -80,7 +80,7 @@
     <string name="initial_guide_next" tools:ignore="MissingTranslation">التالي</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">السابق</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">إنتهاء</string>
-    <string name="app_name" tools:ignore="MissingTranslation">توقعاتك</string>
+    <string name="app_name" tools:ignore="MissingTranslation">الطقس المحلي الخاص بك</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">إعدادات الموقع والأذونات</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">يحتاج التطبيق إلى إذن لتحديث الموقع باستخدام GPS.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">يحتاج التطبيق إلى إذن لتحديث الموقع من خلال شبكات Wifi و GSM.</string>
@@ -92,27 +92,27 @@
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">عرض التسميات في الأدوات</string>
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">موضوع الأداة</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">موقع وعنوان المصدر</string>
-    <string name="location_geocoder_local" tools:ignore="MissingTranslation">محلي MLS و Nominatim (موصى به)</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">النظام للحصول على الموقع، Nominatim للحصول على العنوان (مستحسن)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">النظام</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">عرض ملخص التحديث</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">لا شيئ</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">فقط تحديث القيمة</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">القيمة المحدثة مع مصدر الموقع</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - الذهاب إلى تحديث الموقع و / أو الطقس
-\n. - لا يمكن الوصول إلى الموقع ، حيث سيتم تحديث الطقس حسب الموقع الأخير
-\nW - الطقس المحدثة فقط
-\nL - الموقع المحدث فقط
-\nG - الموقع من GPS والطقس المحدث
-\nN - الموقع من الشبكة والطقس المحدثة
-\nB - تم حظر الوصول إلى خدمة Openweathermap.org ، حاول تحديث الطقس لاحقًا ، من فضلك
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - الذهاب إلى تحديث الموقع و / أو الطقس 
+\n. - لا يمكن الوصول إلى الموقع ، حيث سيتم تحديث الطقس حسب الموقع الأخير 
+\nW - الطقس المحدثة فقط 
+\nL - الموقع المحدث فقط 
+\nG - الموقع من GPS والطقس المحدث 
+\nN - الموقع من الشبكة والطقس المحدثة 
+\nB - تم حظر الوصول إلى خدمة Openweathermap.org ، حاول تحديث الطقس لاحقًا ، من فضلك 
 \nE - انتهت صلاحية رمز الوصول الخاص بخدمة Openweathermap.org. تحتاج إلى ترقية التطبيق للوصول مرة أخرى</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - تحديث الطقس فقط
-\nL - تم تحديث الموقع فقط
-\nG - الموقع من GPS والطقس المحدث
-\nN - الموقع من الشبكة والطقس المحدثة
-\nNi - الموقع من الشبكة الخلوية والطقس المحدثة ، والموقع الذي اكتشفته خدمة الموقع موزيلا
-\nB - تم حظر الوصول إلى خدمة Openweathermap.org ، حاول تحديث الطقس لاحقًا ، من فضلك
-\nE - انتهت صلاحية الرمز المميز لخدمة Openweathermap.org. تحتاج إلى ترقية appliaction للوصول مرة أخرى</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - تحديث الطقس فقط 
+\nL - تم تحديث الموقع فقط 
+\nG - الموقع من GPS والطقس المحدث 
+\nN - الموقع من الشبكة والطقس المحدثة 
+\nNi - الموقع من الشبكة الخلوية والطقس المحدثة ، والموقع الذي اكتشفته خدمة الموقع Mozilla 
+\nB - تم حظر الوصول إلى خدمة Openweathermap.org ، حاول تحديث الطقس لاحقًا ، من فضلك 
+\nE - انتهت صلاحية الرمز المميز لخدمة Openweathermap.org. تحتاج إلى ترقية التطبيق للوصول مرة أخرى</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">عندما يتعطل الموقع أثناء خمول الجهاز ، يمكنك محاولة إيقاظه عندما يبحث عن شبكة خلوية</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">استراتيجية الايقاظ</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">لا تستيقظ</string>
@@ -128,7 +128,7 @@
 \nالتحويل من الوضع الافتراضي للتحديث عندما يتغير الموقع ، يمكنك تحديد<i>عدم تحديث الموقع </i>.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">تحديث إعداد الموقع</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">اختيار مصدر موقعك</string>
-    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">يمكنك اختيار طريقة الموقع - ل<i>النظام</i>يستخدم احد خدمات جوجل للحصول على الموقع من خلال الشبكات (الشبكات الخلوية وشبكات Wi-Fi). ال<i>MLS المحلية و Nominatim</i>يستخدم الخيار خدمة موقع Mozilla للحصول على إحداثيات الموقع وخدمة Nominatim للحصول على أسماء المواقع. يتطلب الخيار الثاني إذن إجراء مكالمات هاتفية لجلب معلومات حول الشبكة الخلوية. الخيار المفضل محدد مسبقًا.</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">يمكنك اختيار طريقة الموقع - ل&lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;النظام&lt;/i&gt;يستخدم احد خدمات Google للحصول على الموقع من خلال الشبكات (الشبكات الخلوية وشبكات Wi-Fi). ال&lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;MLS المحلية و Nominatim&lt;/i&gt;يستخدم الخيار خدمة موقع Mozilla للحصول على إحداثيات الموقع وخدمة Nominatim للحصول على أسماء المواقع. يتطلب الخيار الثاني إذن إجراء مكالمات هاتفية لجلب معلومات حول الشبكة الخلوية. الخيار المفضل محدد مسبقًا.<i>النظام</i>يستخدم احد خدمات جوجل للحصول على الموقع من خلال الشبكات (الشبكات الخلوية وشبكات Wi-Fi). ال<i>MLS المحلية و Nominatim</i>يستخدم الخيار خدمة موقع Mozilla للحصول على إحداثيات الموقع وخدمة Nominatim للحصول على أسماء المواقع. يتطلب الخيار الثاني إذن إجراء مكالمات هاتفية لجلب معلومات حول الشبكة الخلوية. الخيار المفضل محدد مسبقًا.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">الموقع وعنوان المصدر</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">خيار استراتيجية الاستيقاظ</string>
     <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">بعض طرازات الهواتف لا تبلغ عن الخلايا المتصلة بشكل صحيح إلا إذا كانت الشاشة قيد التشغيل. يحتوي الخيار المفضل (مع تشغيل الشاشة) على عيوب أن يقوم الهاتف بتشغيل الشاشة لعدة ثوانٍ. هذا له تأثير صغير على عمر البطارية. ابدأ تشغيله ، وحاول إيقاف تشغيله ومعرفة ما إذا كان الموقع لا يزال محدثًا أم لا.</string>
@@ -137,9 +137,10 @@
     <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">يمكنك حفظ حركة مرور الشبكة عن طريق تخزين المواقع الموجودة مؤقتًا. ثم يتم تخزين المواقع في التطبيق. لا يتم إرسالها أو تخزينها في أماكن أخرى في الشبكة.</string>
     <string name="initial_guide_title_8" tools:ignore="MissingTranslation">مخبأ حل عنوان</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">تهانينا لك</string>
-    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">هذا يختتم الدليل. يمكنك العثور على إعدادات أخرى في قائمة \"الإعدادات\" (على سبيل المثال اللغة والوحدات وما إلى ذلك).
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">هذا يختتم الدليل. يمكنك العثور على إعدادات أخرى في قائمة \"الإعدادات\" (على سبيل المثال اللغة والوحدات وما إلى ذلك). 
 \nتشرح الشاشة التالية الأذونات المطلوبة وتعطيك خيار طلبها.
-\nاستمتع بالتطبيق</string>
+\n
+\nاستمتع بالتطبيق.</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">عام</string>
     <string name="help_page_general_content" tools:ignore="MissingTranslation">يحدد التطبيق الموقع باستخدام الشبكة الخلوية (BTS) ، والواي فاي ، وإذا فشلت تلك ؛ GPS لعرض الطقس المحلي ، بدوره الحصول على الإحداثيات من خدمة موقع موزيلا. يحتاج التطبيق على الأقل: محطة قاعدة واحدة لشبكة GSM أو شبكتي wifi قابلة للوصول أو أي مزيج من شبكات GSM و Wi-Fi. باستخدام الأداة المصغرة على هاتفك أو جهازك اللوحي ، يمكنك رؤية موقعك والطقس الحالي على الشاشة الرئيسية. يمكن أن تكون تحديثات الموقع دورية (على سبيل المثال كل ساعة) أو يمكن أن يستخدم التطبيق مقياس التسارع للكشف عن حركة مسافة أكبر من القيمة. يحمل في جيبك ، المسافة تزيد بشكل أسرع. يمكنك إيقاف تشغيل تحديثات الموقع - يتم تحديث الطقس فقط. يقوم التطبيق بتحديث الموقع والطقس في فترات زمنية محددة. يمكنك على سبيل المثال تعيين فترة التحديث إلى ساعة واحدة. يتم تحديث الطقس فورًا بعد تشغيل الموقع ، أو عند تشغيل الشاشة - ولكن ليس في كثير من الأحيان مرة واحدة كل 15 دقيقة (وعندما لا يتم تحديث الطقس في آخر 15 دقيقة). يتم استخدام هذه المعلومات للحصول على إحداثيات الموقع بواسطة خدمة موقع Mozilla. يحاول التطبيق استخدام GPS عندما لا يكون الموقع متاحًا من الشبكة الخلوية وشبكات Wi-Fi. تستخدم إحداثيات الموقع للحصول على عنوان من خدمة Nominatim. يستخدم العنوان في التطبيق أو التطبيق المصغّر. يستخدم التطبيق خدمة OpenWeatherMap.org للحصول على الطقس الحالي.</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">التطبيق الرئيسي</string>
@@ -147,7 +148,7 @@
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">يمكنك العثور على توقعات الطقس على الشاشة التالية (حدد الشاشة التالية في القائمة أو اسحب من اليسار إلى اليمين). يتم تحديث توقعات الطقس عن طريق زر التحديث أو عند إدخال الشاشة (ولكن ليس أكثر من تحديث واحد في الساعة).</string>
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">تحتوي الشاشة الثالثة على تنبؤات الطقس المعروضة بواسطة الرسوم البيانية.</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">الأدوات</string>
-    <string name="help_page_2_content" tools:ignore="MissingTranslation">يحتوي التطبيق على ثلاثة عناصر واجهة مستخدم ، تحتوي على بعض القيم الشائعة للطقس الحالي (على سبيل المثال درجة الحرارة). بعض القيم فريدة من نوعها لعنصر واجهة التعامل المحددة (على سبيل المثال غروب الشمس). هناك وقت آخر تحديث في الزاوية اليمنى من كل عنصر واجهة مستخدم. يمكنك معرفة ما تم تحديثه في المرة الأخيرة (عندما قمت بتمكين هذا الخيار في قائمة الإعدادات). يمكنك العثور على زر التحديث بجوار آخر مرة تم تحديثها. عندما تضغط على هذا الزر ، يتم تحديث الطقس (والموقع عند تحديد خيار موقع التحديث) دون قيد أو شرط. الخيار الأخير في عناصر واجهة المستخدم هو تغيير الموقع - عندما تضغط على نص الموقع الحالي ، يتغير الموقع إلى الخيار التالي.</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">يحتوي التطبيق على ثلاثة أدوات ، تحتوي على بعض القيم الشائعة للطقس الحالي (على سبيل المثال درجة الحرارة). بعض القيم فريدة من نوعها للأدوات المحددة (على سبيل المثال غروب الشمس). هناك وقت آخر تحديث في الزاوية اليمنى من كل أداة. يمكنك معرفة ما تم تحديثه في المرة الأخيرة (عندما قمت بتمكين هذا الخيار في قائمة الإعدادات). يمكنك العثور على زر التحديث بجوار آخر مرة تم تحديثها. عندما تضغط على هذا الزر ، يتم تحديث الطقس (والموقع عند تحديد خيار موقع التحديث) دون قيد أو شرط. الخيار الأخير في عناصر واجهة المستخدم هو تغيير الموقع - عندما تضغط على نص الموقع الحالي ، يتغير الموقع إلى الخيار التالي.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">الاعدادات العامة</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">هذه الخيارات لها تأثير على التطبيق بأكمله.</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
@@ -176,8 +177,8 @@
     <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">مفتاح Openweathermap.org API</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">مدمج</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">تحسين البطارية</string>
-    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">"سيطلب منك التطبيق إيقاف تشغيل تحسين البطارية لتحديث الموقع، لأحوال الطقس أو مسار الموقع  عن طريق التسارع في الخلفية."</string>
-    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">تقدم</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">سيطلب منك التطبيق إيقاف تشغيل تحسين البطارية لتحديث الموقع، لأحوال الطقس أو مسار الموقع عن طريق التسارع في الخلفية.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">أستمرار</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">إلغاء</string>
     <string name="pref_language_sv" tools:ignore="MissingTranslation">Svenska (السويدية)</string>
     <string name="pref_language_he" tools:ignore="MissingTranslation">עברית (العبرية)</string>
@@ -227,4 +228,336 @@
     <string name="pref_language_bg" tools:ignore="MissingTranslation">Bulgarian (البلغارية)</string>
     <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Chinese (الصينية (التقليدية)</string>
     <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhis (السند)</string>
+    <string name="tty_say_temp_min" tools:ignore="MissingTranslation">أدنى درجة حرارة هي %1$s عند %2$s</string>
+    <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">بجانب خيار موقع ذاكرة التخزين المؤقت (مربع الاختيار) ، يوجد إعداد ل &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;عمر القيم المخزنة مؤقتًا&lt;/b&gt;. كل عنوان مخزن له ختم زمني. عندما يكون الختم الزمني أقدم، يتم تعيين القيمة في عمر القيم المخزنة مؤقتًا، يستدعي التطبيق Nominatim لتحديث السجل.<b>The age of cached values</b>. Every stored address has a timestamp. When the timestamp is older then value set in The age of cached values, the app calls Nominatim to refresh the record.</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;MLS المحلي و Nominatim&lt;/b&gt; - يحصل التطبيق على الموقع والإحداثيات الجغرافية من خدمات موقع Mozilla. تقوم خدمات Nominatim بجلب العنوان من تلك الإحداثيات. يمكنك المساهمة في التحسينات المستقبلية ل MLS عن طريق تثبيت Mozilla Stumbler (متاح على https://play.google.com/store/apps/details؟id=org.mozilla.mozstumbler). احصل على معلومات حول محطات الشبكة الأساسية النشطة والمتاحة حاليًا من الشبكة الخلوية عن طريق منح إذن الاتصال الهاتفي. تُستخدم شبكات Wi-Fi من حولك لتخمين موقعك بدقة أكبر."<b>Local MLS and Nominatim</b> - The app gets location and geographical coordinates from the Mozilla location services. Nominatim services fetches the address from those coordinates. You can contribute to future improvements to MLS by installing Mozilla Stumbler (available at https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler). Get info about current active and available network base stations from the cell network by granting the phone call permission. Wi-Fi networks around you are used to guess your location more precisely.</string>
+    <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">الميزات المدفوعة / الموسعة</string>
+    <string name="weather_forecast_features_free" tools:ignore="MissingTranslation">ميزات مجانية / محدودة</string>
+    <string name="preference_weather_weather_forecast_features_title" tools:ignore="MissingTranslation">ميزات توقعات الطقس</string>
+    <string name="location_weather_update_status_location_from_last_location" tools:ignore="MissingTranslation">l</string>
+    <string name="location_weather_update_status_too_early_update" tools:ignore="MissingTranslation">O</string>
+    <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">مفتاح الترخيص</string>
+    <string name="too_early_update_error" tools:ignore="MissingTranslation">تحديث مبكر جدًا!</string>
+    <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">نوع التوقعات</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">انتهت صلاحية الوصول إلى خدمة موقع Mozilla اعتبارًا من 1.3.2020. يضطر التطبيق إلى استخدام نظام Andorid لاكتشاف إحداثيات الموقع. لا يزال العنوان يحل بواسطة Nominatim. الرجاء النظر والإعتبار بهذه الحقيقة عندما تستخدم هذا التطبيق.</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">قصر خدمة المواقع من Mozilla</string>
+    <string name="pref_language_id" tools:ignore="MissingTranslation">Indonesian (Indonesian)</string>
+    <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">و</string>
+    <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">نادراً</string>
+    <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">مساءً</string>
+    <string name="tty_say_weather_forecast_afternoon" tools:ignore="MissingTranslation">بعد الظهر</string>
+    <string name="tty_say_weather_forecast_morning" tools:ignore="MissingTranslation">صباحاً</string>
+    <string name="tty_say_weather_forecast_night" tools:ignore="MissingTranslation">بالليل</string>
+    <string name="tty_say_weather_forecast_tomorrow" tools:ignore="MissingTranslation">غداً</string>
+    <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">اليوم</string>
+    <string name="tty_say_weather_forecast" tools:ignore="MissingTranslation">النشرة الجوية</string>
+    <string name="tty_say_temp_max" tools:ignore="MissingTranslation">درجة الحرارة القصوى %1$s على %2$s</string>
+    <string name="tty_say_max_wind" tools:ignore="MissingTranslation">%3$s الرياح كحد أقصى %1$s %2$s</string>
+    <string name="tty_say_max_snow" tools:ignore="MissingTranslation">أقصى تساقط للثلوج %s ملليمتر</string>
+    <string name="tty_say_max_rain" tools:ignore="MissingTranslation">هطول الأمطار الأقصى %s ملليمتر</string>
+    <string name="pref_title_tts_say_forecast" tools:ignore="MissingTranslation">قل توقعات يوم واحد</string>
+    <string name="pref_title_tts_not_supported" tools:ignore="MissingTranslation">لغة التطبيق غير مدعومة من قبل نظام TTS (تحويل النص إلى كلام). انتقل إلى \"إعدادات لغة التوجيه\" في الجزء العلوي الأيمن.</string>
+    <string name="pref_title_tts_presence" tools:ignore="MissingTranslation">لغة التطبيق غير مدعومة من قبل نظام TTS (تحويل النص إلى كلام). حدد لغة توجيه من قائمة اللغات المدعومة أدناه.</string>
+    <string name="pref_title_tts_lang_app_default" tools:ignore="MissingTranslation">حسب لغة التطبيق</string>
+    <string name="pref_title_tts_app_general_info" tools:ignore="MissingTranslation">يرسل التطبيق أوامر نصية إلى نظام TTS (تحويل النص إلى كلام)، والذي يحولها إلى صوت. عادة ما تكون موجودة على النظام بشكل افتراضي. إذا لم يكن الأمر كذلك ، أو أن TTS المثبتة لا تدعم لغتك المرغوبة ، فقم بتثبيت واحدة من متجر التطبيقات (على سبيل المثال: https://search.f-droid.org/؟q=TTS).</string>
+    <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">اللغة المختارة للتوجيه:</string>
+    <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">لغة التطبيق:</string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">البلوتوث</string>
+    <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">سماعة الرأس السلكية</string>
+    <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">مكبر الصوت</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">خيارات لغة التوجيه</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">اللغة</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">شمال غربي</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">غرب</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">جنوب غربي</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">جنوب</string>
+    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">جنوب شرقي</string>
+    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">شرق</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">شمال شرقي</string>
+    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">شمالي</string>
+    <string name="tty_say_temperature" tools:ignore="MissingTranslation">درجة الحرارة %s</string>
+    <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s رياح %1$s %2$s</string>
+    <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">وقت اليوم</string>
+    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">عند توصيل جهاز بلوتوث</string>
+    <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">عندما يتم تحديث الطقس</string>
+    <string name="tts_say_current_weather" tools:ignore="MissingTranslation">الطقس الحالي</string>
+    <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">الطقس الحالي للموقع %s</string>
+    <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">مساء الخير</string>
+    <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">أهلاً</string>
+    <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">صباح الخير</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">ماذا أقول:</string>
+    <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">ماذا أقول:</string>
+    <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">للموقع:</string>
+    <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">الجهاز (الأجهزة) الممكّن:</string>
+    <string name="pref_title_tts_trigger_bt_devices" tools:ignore="MissingTranslation">للجهاز (الأجهزة):</string>
+    <string name="pref_title_tts_time" tools:ignore="MissingTranslation">الوقت</string>
+    <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">قل:</string>
+    <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">قل ريح</string>
+    <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">قل درجة الحرارة</string>
+    <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">قل وصف الطقس</string>
+    <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">قل الموقع</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">مخصص</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">تحية</string>
+    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">الجميع</string>
+    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">قم بتشغيل توجيه سماعة البلوتوث</string>
+    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">قم بتشغيل توجيه سماعة الرأس السلكية</string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">تشغيل مكبر الصوت التوجيه</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">إعدادات التوجيه الجديدة</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">إعدادات التوجيه</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"يحتوي هذا التطبيق على إرشادات صوتية عن طريق الترجمة النصية والأوامر الصوتية من المتطوعين على https://hosted.weblate.org/projects/your-local-weather. لا يستطيع مطور التطبيق ضمان صحتها - فأنت تقبل ذلك باستخدام التطبيق. لاستخدامه ، تحتاج إلى تثبيت TTS (تحويل النص إلى كلام) وتشغيل التوجيه في الإعدادات، حيث يمكنك تعيين الأوامر الصوتية الخاصة بك. "</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">ترجمة النصوص والإرشادات</string>
+    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengali (Bangladesh)</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamese</string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">زر إعدادات تفاصيل الطقس الأداة</string>
+    <string name="label_dew_point" tools:ignore="MissingTranslation">قطرة ندى</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">قطرة ندى: %s</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">غروب الشمس</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">شروق الشمس</string>
+    <string name="label_cloudiness" tools:ignore="MissingTranslation">غيوم</string>
+    <string name="label_humidity" tools:ignore="MissingTranslation">الرطوبة</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">بوفورت</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">رطل لكل بوصة مربعة (psi)</string>
+    <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">إظهار الموقع في الأداة</string>
+    <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">إظهار وسيلة الإيضاح في الرسم البياني</string>
+    <string name="widget_action_switch_location" tools:ignore="MissingTranslation">تبديل الموقع</string>
+    <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">شاشة الرسوم البيانية</string>
+    <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">شاشة توقعات الطقس</string>
+    <string name="widget_action_main_screen" tools:ignore="MissingTranslation">الشاشة الرئيسية</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">رسم بياني</string>
+    <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">النشرة الجوية</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">أيقونة الطقس الحالي</string>
+    <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">تسمية المدينة</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">زر إعدادات عمل الأداة</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">زر إعدادات موقع الأداة</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5× (كل 3 ساعات)</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4× (كل 3 ساعات)</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3× (كل 3 ساعات)</string>
+    <string name="widget_setting_location_label" tools:ignore="MissingTranslation">إعداد الموقع</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">عدد الأيام للتوقعات</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">إظهار اليوم بالاختصار</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">زر إعدادات الرسم البياني الأداة</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 أيام</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 أيام</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 أيام</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">بيانات للرسم البياني المشترك</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">الرسوم البيانية للعرض</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">الضغط</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">مطر/ثلج</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">الرياح</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">الحرارة</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">الضغط</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">الثلج (بار)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">ثلوج</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">المطر (بار)</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">أمطار</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">الرياح</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">الحرارة</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">مشترك</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">إعدادات الرسم البياني الشترك</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">إعدادات الرسوم البيانية المرئية</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">خفيّ</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">الحرارة</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">أيقونة الشمس</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">على قفل الشاشة</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">دائم</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">عند التحديث</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">حضور التنبيهات</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">عند التحديث بانتظام</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">ي/ش(/س)</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">ش/ي(/س)</string>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">ي.ش.(س)</string>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">صيغة التاريخ</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">درجة مئوية</string>
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">درجة فهرنهايت</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">سجل إلى ملف</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">لا تسجل إلى ملف</string>
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">سجل إلى ملف</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">N</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">L</string>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">تراخيص برامج حرة (Libre)</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">السحب الملبدة بالغيوم</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">غيوم متقطعة</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">غيوم متفرقة</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">قليل الغيوم</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">سماء صافية</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">إعصار</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">عاصفة</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">رماد بركاني</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">غبار</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">رمال</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">ضباب</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">رمال ودوامات غبار</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">سديم ضباب رقيق</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">دخان</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">ضباب (غشاوة)</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">ثلج غيث شديد</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">ثلج غيث</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">مطر وابل وثلج</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">مطر وثلج</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">مطر خفيف وثلج</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">ثلج مخلوط بالمطر وابل</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">ثلج مخلوط بالمطر</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">ثلج كثيف</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">ثلج</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">ثلج خفيف</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">مطر وابل خشن</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">وابل مطر شديد</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">مطر وابل</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">مطر خفيف وابل</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">مطر مجمد</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">هطول أمطار غزيرة وشديدة</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">هطول أمطار غزيرة</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">مطر شديد</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">مطر متوسط</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">مطر خفيف</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">وابل رذاذ</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">غيث شديد ورذاذ</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">مطر وابل(غيث) ورذاذ</string>
+    <string name="weather_condition_description_312" tools:ignore="MissingTranslation">رذاذ شديد الكثافة ومطر</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">رذاذ ممطر</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">رذاذ خفيف الكثافة ومطر</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">رذاذ شديد الكثافة</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">رذاذ</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">رذاذ خفيف الكثافة</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">عاصفة رعدية مصحوبة برذاذ غزير</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">عاصفة رعدية مع رذاذ</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">عاصفة رعدية مع رذاذ خفيف</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">عاصفة رعدية خشنة</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">عاصفة رعدية شديدة</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">عاصفة رعدية</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">عاصفة رعدية خفيفة</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">عاصفة رعدية مصحوبة بأمطار غزيرة</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">عاصفة رعدية مع هطول الأمطار</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">عاصفة رعدية مصحوبة بأمطار خفيفة</string>
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">لا شيء</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24 ساعة</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12 ساعة صباحا / مساء</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">النظام</string>
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">هيئة الوقت</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">إتجاه الرياح</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">درجات من الشمال</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">مختصر ش↓، ش.ش↙، …</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">معطل</string>
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">أسلوب اتجاه الرياح</string>
+    <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">مطر وثلج</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">بوصات</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">ميلي بار (mbar)</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">بوصة الزئبق (inHg)</string>
+    <string name="location_not_initialized" tools:ignore="MissingTranslation">لم تتم تهيئة الموقع. انقر على دائرة الموقع أولا.</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">الضغط</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">ستتغير لغة وصف الطقس الحالية والعنوان مع التحديث التالي، أو يمكنك فرضه يدويًا.</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">درجة الحرارة الظاهرية</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">إظهار درجة الحرارة على شكل</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">قيمة المظهر فقط</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">كلاهما، المظهر الأساسي</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">كلاهما، قياس الابتدائية</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">القيمة المقاسة فقط</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">درجة الحرارة المقاسة: %s</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">درجة الحرارة الظاهرية: %s</string>
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">الرجاء النقر فوق زر التحديث لتحديث الطقس أولاً.</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">عقدة</string>
+    <string name="search_location_info" tools:ignore="MissingTranslation">اضغط على الخريطة للحصول على الموقع المطلوب وانتظر حتى يتم حل العنوان.</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">إضافة</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">معطل</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">اكتشفت تلقائيا</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">تفعيل</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">تعطيل</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">حذف</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">يدوي فقط</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">قم بتشغيل GPS عند الضرورة</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">المواقع</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">أغلق درج التنقل</string>
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">إفتح درج التنقل</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">الضغط</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">الرياح</string>
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">ميليمتر زئبقي (mmHg)</string>
+    <string name="location_cache_enable_off" tools:ignore="MissingTranslation">المواقع التي تم العثور عليها ليست مخزنة مؤقتاً</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">المواقع التي تم العثور عليها خزنت مؤقتاً</string>
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">التخزين المؤقت للموقع</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">مساعدة</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">مساعدة</string>
+    <string name="help_page_5_content" tools:ignore="MissingTranslation">هناك خيارات لتمكين التصحيح في ملف السجل. هذا الخيار مفيد عندما يكون هناك بعض المشاكل في التطبيق.</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">خيارات التصحيح</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">عند إجراء تحديث للموقع والطقس الحالي ، يمكنك رؤية حالة التحديث بجوار وقت التحديث في الأدوات. يمكنك التحكم في ما يتم عرضه بواسطة خيار &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;عرض ملخص التحديث&lt;/b&gt;. فيما يلي شرح الخيار الأكثر تقدمًا:<b>Display update summary</b> option. The explanation of the most advanced option follows:</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">خيار &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;استراتيجية الاستيقاظ&lt;/b&gt; متوفر للتغلب على التنفيذ السيئ لخدمة Android من قبل الموفرين(البائعين) المختلفين. عندما تختار &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;لا استيقظ&lt;/i&gt;، ويتم تحديث الموقع بشكل صحيح، فلديك تطبيق (تنفيذ) صحيح. عندما لا يتم تحديث الموقع بشكل صحيح، يمكنك المحاولة &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;استيقظ CPU فقط&lt;/i&gt;. يعمل هذا الخيار على تنشيط وحدة المعالجة المركزية ، ويحاول قراءة حالة الخلية وشبكة wifi. الخيار الأخير &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;استيقظ مع الشاشة&lt;/i&gt; يشغل الشاشة لعدة ثوان أثناء تحديث الموقع. في بعض هواتف Android ، يعد هذا هو الخيار الوحيد للحصول على المعلومات الصحيحة حول الشبكات الخلوية وشبكات wifi. يستهلك هذا الخيار قدرًا من البطارية - لكن التأثير على عمر البطارية يجب أن يكون صغيرًا.<b>Wake up strategy</b> option is available to overcome buggy implementation of android service by different vendors. When you select <i>No wake up</i>, and the location is updated properly you\'ve got a correct implementation. When the location is not updated properly you can try <i>Wake up CPU only</i>. This option wakes the CPU, and tries to read the state of the cell and wifi network. The last option <i>Wake up with display</i> switches the screen for several seconds during the location update. On some android phones this is the only option to get the correct information about cell and wifi networks. This option consumes some amount of battery - but the impact on battery life should be small.</string>
+    <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">يمكنك التحكم في خلفية الأدوات باستخدام &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;خيارات سمة الأدوات&lt;/b&gt;.<b>Widget theme option</b>.</string>
+    <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">عندما تفعل &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;عرض التسميات في الأدوات&lt;/b&gt;، يمكنك رؤية التسميات بدلاً من الرموز لقيم حالة الطقس.<b>Show labels in widget</b>, you can see labels instead of icons for weather condition values.</string>
+    <string name="help_page_4_content" tools:ignore="MissingTranslation">تحتوي إعدادات عنصر الأدوات على خيارات التكوين لجميع عناصر الأدوات.</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">إعدادات الأدوات</string>
+    <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">يمكنك رؤية عدة صفوف أخيرة للقيم المخزنة مؤقتًا في قسم &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;معلومات حول ذاكرة التخزين المؤقت&lt;/b&gt;. يمكنك رؤية إجمالي عدد الصفوف أيضًا.<b>Information about cache</b> section. You can see total number of rows also.</string>
+    <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">يمكنك مسح ذاكرة التخزين المؤقت للعناوين بإستخدام زر &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;مسح ذاكرة التخزين المؤقت&lt;/b&gt;.<b>Clear cache</b> button.</string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">لحفظ حركة مرور الشبكة وتسريع تحديث الموقع ، يمكنك تفعيل &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;التخزين المؤقت للموقع&lt;/b&gt;. تخزن ذاكرة التخزين المؤقت هذه الإحداثيات الجغرافية والعنوان. يجب على التطبيق الاتصال بخدمة دقة الشبكة بغض النظر عن هذا الإعداد. لكن الاستدعاء إلى حل عنوان Nominatim يحدث فقط في حالة عدم وجود العنوان في ذاكرة التخزين المؤقت. عند تشغيل خيار مواقع التخزين المؤقت، يتم تخزين العناوين التي قمت بزيارتها في التطبيق. لا يتم إرسال أي معلومات من ذاكرة التخزين المؤقت خارج التطبيق.<b>Cache locations</b> on. This cache stores geographic coordinates and an address. The application has to call network resolution service regardless of this setting. But the call to Nominatim address resolution takes place just in the case the address is not in cache. When you switch the Cache locations option on, addresses that you\'ve visited, are stored in the application. No information from the cache is sent outside of the application.</string>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;الإشعارات&lt;/b&gt; 
+\nعند تحديد خيار الإشعارات، يقوم التطبيق بتحديث الطقس الحالي بشكل دوري. يتم وضع الطقس الحالي في منطقة الإخطارات بعد ذلك. يمكنك تمكين الاهتزاز أيضًا - يهتز التطبيق عند التحديث."<b>Notifications</b>
+\nWhen you selects notifications option, application updates current weather periodically. Current weather is put into notifications area then. You can enable vibration also - application vibrate when updated.</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">تعمل خيارات القائمة هذه على تعيين &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;اللغة&lt;/b&gt;، &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;السمه&lt;/b&gt; للتطبيق الرئيسي و&lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;مجموعة الأيقونات&lt;/b&gt; المستخدمة في التطبيق والأدوات.<b>language</b>, <b>theme</b> of main application and <b>icon set</b> used in the application and widgets.</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;النظام&lt;/b&gt; - يحصل التطبيق على الموقع والعنوان من خلال خدمات النظام في Android (عادةً مع خدمات الموقع من Google)."<b>System</b> - The application gets location and address by system services in Android (usually with Google location services).</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;مصدر الموقع والعنوان&lt;/b&gt; 
+\nيمكنك تحديد المكان الذي يحصل منه التطبيق على الموقع والعنوان."<b>Location and address source</b>
+\nYou can select where the app gets the location and address from.</string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">عندما تختار خيار &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;قم بتشغيل GPS عند الضرورة&lt;/b&gt;، سيحاول التطبيق العثور على موقعك باستخدام شبكات الخلية أو شبكات wifi. عندما يتعذر العثور على الموقع باستخدام خدمات الشبكة ، يقوم التطبيق بتشغيل GPS لعدة ثوانٍ للحصول على الموقع.<b>Switch GPS on when necessary</b> option, the app will try to find your location using cell or wifi networks. When the location cannot be found using network services, the app turns GPS on for a several seconds to get the location.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;فترة التحديث للموقع (الموقع 0)&lt;/b&gt; - يمكنك تعيين فترة تحديث للموقع 0 - يتمتع الموقع 0 بالقدرة على تحديث الموقع وفقًا لشبكات الخلية وشبكات Wi-Fi ونظام تحديد المواقع العالمي (GPS). عند تحديد التحديث &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;بواسطة مقياس التسارع&lt;/i&gt; يستخدم التطبيق ذلك لاكتشاف الحركة. من هذا ، يتم حساب المسافة. عندما يتم الوصول إلى حد المسافة ، ولم يحدث أي تحديث خلال 15 دقيقة ، يتم تحديث الموقع والطقس الحالي. عندما يتعذر على التطبيق جلب موقعك ، يمكنك رؤية تسمية موقع غير معروفة في الأداة. عندما لا يكون للتطبيق حالة موقع ، سيحاول مرة أخرى في غضون 5 دقائق. يمكنك أيضًا تحديد تحديث الموقع بناءً على الفترات الزمنية في &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;فترة تحديث الطقس (الموقع 1،2،3 ...)&lt;/b&gt; - حيث يمكنك ضبط الطقس لتحديث المواقع المكتشفة يدويًا."<b>Update period for location (Location 0)</b> - you can set update period for location 0 - location 0 has the ability to update location according to cell-, Wi-Fi networks and GPS. When you select update <i>By accelerometer</i> the app uses that to detect movement. From this, distance is calculated. When the distance limit is reached, and no update has happened in 15 minutes, the location and current weather is updated. When the app cannot fetch your location, you can see unknown location label in the widget. When the app has no location state, it will try again in 5 minutes. You can also select location update based on time intervals in <b>Update period for weather (Location 1,2,3...)</b> - where you can set weather to update for manually discovered locations.</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin the red أيقونات</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">الرموز القائمة على الخطوط</string>
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">مجموعة الأيقونات</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">شهر</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">أسبوع</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">ثلاثة أيام</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">يومان</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">يوم</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 ساعة</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">تناوب ملف السجل</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">بعد فترة زمنية محددة سيتم إعادة إنشاء ملف السجل</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">خيارات التصحيح</string>
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">إختر مجلد السجل</string>
+    <string name="permission_location_need" tools:ignore="MissingTranslation">إمنح أذونات الموقع</string>
+    <string name="permission_available_location" tools:ignore="MissingTranslation">منحت الأذونات للموقع</string>
+    <string name="permission_not_granted" tools:ignore="MissingTranslation">لم يتم منح الأذونات!</string>
+    <string name="permission_location_rationale" tools:ignore="MissingTranslation">أذونات الموقع مطلوبة لتحديد المدينة</string>
+    <string name="widget_refresh_button" tools:ignore="MissingTranslation">زر تحديث الأداة</string>
+    <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">أيقونة الطقس الحالي</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">غروب الشمس: %s</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">شروق الشمس: %s</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">آخر تحديث: %s</string>
+    <string name="cloudiness_label" tools:ignore="MissingTranslation">غيوم: %1$s%2$s</string>
+    <string name="pressure_label" tools:ignore="MissingTranslation">الضغط: %1$s %2$s</string>
+    <string name="humidity_label" tools:ignore="MissingTranslation">الرطوبة: %1$s%2$s</string>
+    <string name="snow_label" tools:ignore="MissingTranslation">الثلج: %1$s %2$s</string>
+    <string name="rain_label" tools:ignore="MissingTranslation">المطر: %1$s %2$s</string>
+    <string name="wind_label" tools:ignore="MissingTranslation">رياح: %1$s %2$s %3$s</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">أبداً</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">سنة</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">ستة شهور</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">ثلاثة شهور</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">شهر</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">أسبوع</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">يوم</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 ساعة</string>
+    <string name="update_period_by_sensors" tools:ignore="MissingTranslation">بواسطة مقياس التسارع</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">تحديث الموقع بدون GPS</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">تحديث الموقع (موصى به)</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">لا تقم بتحديث الموقع</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">إعداد تحديث الموقع</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">كم / ساعة</string>
+    <string name="cancel" tools:ignore="MissingTranslation">إلغاء</string>
+    <string name="ok" tools:ignore="MissingTranslation">موافق</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">الضغط</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">الرطوبة</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">مطر/ثلج</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">الرياح</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">الحرارة</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">الوصف</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">أيقونة</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">أعمدة للعرض</string>
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">إعداد العمود</string>
+    <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">أختر محور صادي (Y)</string>
 </resources>

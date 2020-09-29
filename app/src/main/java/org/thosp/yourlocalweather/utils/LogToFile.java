@@ -1,7 +1,5 @@
 package org.thosp.yourlocalweather.utils;
 
-import android.app.IntentService;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
@@ -9,10 +7,8 @@ import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.location.Address;
-import android.location.LocationManager;
 import android.net.Network;
 import android.net.NetworkInfo;
-import android.os.IBinder;
 import android.os.Messenger;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;

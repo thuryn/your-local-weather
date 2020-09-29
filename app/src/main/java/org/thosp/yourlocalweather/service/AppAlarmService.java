@@ -18,6 +18,7 @@ import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.Utils;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;

@@ -8,10 +8,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
+import android.os.Build;
 import android.view.View;
 import android.widget.RemoteViews;
+
+import androidx.core.app.NotificationCompat;
+import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.R;
@@ -272,8 +274,12 @@ public class NotificationUtils {
     }
 
     public static boolean isScreenLocked(Context context) {
-        android.app.KeyguardManager mKeyguardManager = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
-        return mKeyguardManager.inKeyguardRestrictedInputMode();
+        KeyguardManager mKeyguardManager = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            return mKeyguardManager.isKeyguardLocked();
+        } else {
+            return mKeyguardManager.inKeyguardRestrictedInputMode();
+        }
     }
 
     public static Location getLocationForNotification(Context context) {

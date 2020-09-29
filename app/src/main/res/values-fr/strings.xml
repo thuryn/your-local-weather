@@ -140,7 +140,7 @@
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">nœuds</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Vent</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Pression</string>
-    <string name="permissions_not_granted" tools:ignore="MissingTranslation">"Permission non accordée - cliquer sur le symbole de localisation dans l\'application "</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Permission non accordée - cliquer sur le symbole de localisation dans l\'application</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Paramètres de mise à jour de la localisation</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Choix du moyen de localisation</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Paramètres de sortie de veille</string>
