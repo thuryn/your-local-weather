@@ -16,7 +16,6 @@ import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.TimeUtils;
 
 import java.util.HashSet;
-import java.util.Set;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 

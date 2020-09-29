@@ -1,15 +1,15 @@
 package org.thosp.yourlocalweather.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;

@@ -1,24 +1,21 @@
 package org.thosp.yourlocalweather.service;
 
 import android.app.Notification;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Binder;
 import android.os.Build;
-import android.os.Handler;
 import android.os.IBinder;
 
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.utils.NotificationUtils;
 
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
-import org.thosp.yourlocalweather.utils.NotificationUtils;
 
 public class SensorLocationUpdateService extends SensorLocationUpdater {
 

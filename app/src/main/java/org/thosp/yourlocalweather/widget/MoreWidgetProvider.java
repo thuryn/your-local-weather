@@ -1,26 +1,20 @@
 package org.thosp.yourlocalweather.widget;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.RemoteViews;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
-import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashSet;
-import java.util.Locale;
 
 public class MoreWidgetProvider extends AbstractWidgetProvider {
 

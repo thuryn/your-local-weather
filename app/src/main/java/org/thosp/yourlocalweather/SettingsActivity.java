@@ -2,11 +2,9 @@ package org.thosp.yourlocalweather;
 
 import android.Manifest;
 import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -37,11 +35,6 @@ import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.PreferenceScreen;
 import android.preference.SwitchPreference;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
@@ -55,6 +48,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.obsez.android.lib.filechooser.ChooserDialog;
 
@@ -1222,7 +1221,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             buttonFileLog.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
                 @Override
                 public boolean onPreferenceClick(final Preference preference) {
-                    new ChooserDialog().with(getActivity())
+                    new ChooserDialog(getActivity())
                             .withFilter(true, false)
                             .withStartFile("/mnt")
                             .withChosenListener(new ChooserDialog.Result() {

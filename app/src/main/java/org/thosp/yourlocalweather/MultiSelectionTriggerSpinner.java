@@ -2,10 +2,12 @@ package org.thosp.yourlocalweather;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.support.v7.app.AlertDialog;
 import android.util.AttributeSet;
 import android.widget.ArrayAdapter;
 import android.widget.SpinnerAdapter;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatSpinner;
 
 import org.thosp.yourlocalweather.model.VoiceSettingParametersDbHelper;
 import org.thosp.yourlocalweather.utils.VoiceSettingParamType;
@@ -16,7 +18,7 @@ import java.util.Arrays;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 
-public class MultiSelectionTriggerSpinner extends android.support.v7.widget.AppCompatSpinner implements DialogInterface.OnMultiChoiceClickListener {
+public class MultiSelectionTriggerSpinner extends AppCompatSpinner implements DialogInterface.OnMultiChoiceClickListener {
 
     private static final String TAG = "MultiSelectionTriggerSpinner";
 

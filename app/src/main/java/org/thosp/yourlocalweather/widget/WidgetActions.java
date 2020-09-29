@@ -1,9 +1,5 @@
 package org.thosp.yourlocalweather.widget;
 
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-
 import org.thosp.yourlocalweather.GraphsActivity;
 import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.WeatherForecastActivity;

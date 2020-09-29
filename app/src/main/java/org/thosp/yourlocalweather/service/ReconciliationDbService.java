@@ -1,6 +1,5 @@
 package org.thosp.yourlocalweather.service;
 
-import android.app.IntentService;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,12 +8,10 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 
-import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsContract;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.LocationsFileDbHelper;
-import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 

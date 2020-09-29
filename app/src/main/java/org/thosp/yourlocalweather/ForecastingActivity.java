@@ -6,15 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
 
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
-import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
