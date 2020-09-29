@@ -23,7 +23,7 @@ android {
         versionCode 133
         versionName "5.5.1"
         vectorDrawables.useSupportLibrary true
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         playAccountConfig = playAccountConfigs.defaultAccountConfig
     }
 
@@ -53,16 +53,15 @@ android {
 
 dependencies {
 // AndroidX
-    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'com.google.android.material:material:1.2.1'
 
 // Third-party
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     implementation 'org.microg:address-formatter:0.2.1'
-    implementation 'com.google.code.gson:gson:2.8.0'
     implementation 'com.obsez.android.lib.filechooser:filechooser:1.1.5'
     implementation 'com.loopj.android:android-async-http:1.4.9'
     implementation 'org.osmdroid:osmdroid-android:6.0.2'
@@ -70,6 +69,4 @@ dependencies {
 // Testing
     testImplementation 'junit:junit:4.13'
     testImplementation 'org.mockito:mockito-core:3.2.4'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
 }
