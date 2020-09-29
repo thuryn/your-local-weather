@@ -1,13 +1,13 @@
 package org.thosp.yourlocalweather.utils;
 
 import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.ValueFormatter;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Map;
+
 public class XAxisValueFormatter extends ValueFormatter {
 
     private Map<Integer, Long> hourIndexes;

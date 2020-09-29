@@ -11,12 +11,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
 import android.os.Build;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -28,17 +29,13 @@ import org.osmdroid.views.overlay.MapEventsOverlay;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsContract;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.service.ReconciliationDbService;
-import org.thosp.yourlocalweather.service.SensorLocationUpdateService;
 import org.thosp.yourlocalweather.service.NominatimLocationService;
 import org.thosp.yourlocalweather.service.SearchActivityProcessResultFromAddressResolution;
 import org.thosp.yourlocalweather.service.SensorLocationUpdater;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.Utils;
-import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.List;
-import java.util.Locale;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 

@@ -21,8 +21,8 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLogSensorsEnd;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLogSensorsCheck;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLogSensorsEnd;
 
 public class SensorLocationUpdater extends AbstractCommonService implements SensorEventListener {
 

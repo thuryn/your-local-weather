@@ -6,14 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabaseLockedException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.location.Address;
 import android.os.Parcel;
-
-import org.thosp.yourlocalweather.R;
 
 import static org.thosp.yourlocalweather.model.CurrentWeatherContract.SQL_CREATE_TABLE_CURRENT_WEATHER;
 import static org.thosp.yourlocalweather.model.CurrentWeatherContract.SQL_DELETE_TABLE_CURRENT_WEATHER;
-import static org.thosp.yourlocalweather.model.LocationsContract.SQL_CREATE_TABLE_LOCATIONS;
 
 public class CurrentWeatherDbHelper extends SQLiteOpenHelper {
 

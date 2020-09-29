@@ -4,7 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
-import android.preference.PreferenceManager;
+
 import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.model.Location;

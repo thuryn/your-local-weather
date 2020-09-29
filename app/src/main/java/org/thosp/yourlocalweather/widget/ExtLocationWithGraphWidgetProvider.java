@@ -1,13 +1,11 @@
 package org.thosp.yourlocalweather.widget;
 
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.RemoteViews;
 
 import org.thosp.yourlocalweather.R;
-import org.thosp.yourlocalweather.WidgetSettingsDialogue;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
@@ -23,7 +21,6 @@ import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 

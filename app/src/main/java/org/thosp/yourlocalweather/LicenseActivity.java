@@ -2,13 +2,14 @@ package org.thosp.yourlocalweather;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Html;
+import android.view.MenuItem;
+import android.widget.TextView;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import android.text.Html;
-import android.view.MenuItem;
-import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;

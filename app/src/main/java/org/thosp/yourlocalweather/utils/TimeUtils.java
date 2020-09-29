@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+
 import org.thosp.yourlocalweather.model.VoiceSettingParametersDbHelper;
 
 import java.util.Calendar;

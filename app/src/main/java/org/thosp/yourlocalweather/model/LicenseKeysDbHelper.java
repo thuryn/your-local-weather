@@ -6,8 +6,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import java.util.Calendar;
-
 import static org.thosp.yourlocalweather.model.LicenseKeysContract.SQL_CREATE_TABLE_LICENSES;
 import static org.thosp.yourlocalweather.model.LicenseKeysContract.SQL_DELETE_TABLE_LICENSES;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
