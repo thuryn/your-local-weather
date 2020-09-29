@@ -366,6 +366,7 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         yLeft.setDrawAxisLine(false);
         yLeft.setDrawGridLines(true);
+        yLeft.setAxisMinimum(0f);
         yLeft.enableGridDashedLine(5f, 10f, 0f);
         yLeft.setTextColor(PreferenceUtil.getTextColor(this));
         yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this).getMainGridColor());
@@ -454,6 +455,7 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         yLeft.setDrawAxisLine(false);
         yLeft.setDrawGridLines(true);
+        yLeft.setAxisMinimum(0f);
         yLeft.enableGridDashedLine(5f, 10f, 0f);
         yLeft.setTextColor(PreferenceUtil.getTextColor(this));
         yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this).getMainGridColor());
@@ -534,6 +536,7 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         yLeft.setDrawAxisLine(false);
         yLeft.setDrawGridLines(true);
+        yLeft.setAxisMinimum(0f);
         yLeft.enableGridDashedLine(5f, 10f, 0f);
         yLeft.setTextColor(PreferenceUtil.getTextColor(this));
         yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this).getMainGridColor());
@@ -622,6 +625,7 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         yLeft.setDrawAxisLine(false);
         yLeft.setDrawGridLines(true);
+        yLeft.setAxisMinimum(0f);
         yLeft.enableGridDashedLine(5f, 10f, 0f);
         yLeft.setTextColor(PreferenceUtil.getTextColor(this));
         yLeft.setGridColor(PreferenceUtil.getGraphGridColor(this).getMainGridColor());
