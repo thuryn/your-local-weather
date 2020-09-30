@@ -551,7 +551,7 @@
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Permissão para ler a informação do aparelho é necessária para atualizar a localização a utilizar as redes Wi-Fi e GSM. Isto pesquisa informação sobre as estações-base GSM a que o aparelho está conectado.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">A app necessita de permissão para atualizar a localização por redes Wi-Fi e GSM.</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">A app necessita de permissão para atualizar a localização a utilizar o GPS.</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">A aplicação está configurada para atualizar a localização, por issoa permissão é necessária. Aceda às configurações do aparelho e ative a localização ou então desative as atualizações de localização.</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">A app está configurada para atualizar a localização, por isso a permissão é necessária. Aceda às configurações do aparelho e ative a localização ou então desative as atualizações de localização.</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Configurações de localização e permissões</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">Escolha a cidade</string>
     <string name="label_current_city" tools:ignore="MissingTranslation">Cidade atual</string>
