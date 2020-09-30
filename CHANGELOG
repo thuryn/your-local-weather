@@ -1,3 +1,6 @@
+v5.6.0
+Start graphs from zero for wind and rain,color the highest and lowes temperature in forecast view,translations, several small fixies
+
 v5.5.1
 Fixis handling of exceptions when updated weather
 
