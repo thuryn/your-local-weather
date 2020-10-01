@@ -2,7 +2,7 @@
 [![Release](https://img.shields.io/github/release/thuryn/your-local-weather.svg)](https://github.com/thuryn/your-local-weather/releases)
 [![License](https://img.shields.io/badge/license-GNU_GPLv3-orange.svg)](https://raw.githubusercontent.com/thuryn/your-local-weather/HEAD/LICENSE)
 
-# Your local weather
+# Your Local Weather APP
 Application displays current weather and location wherever you are.
 
 [<img src="https://cdn6.aptoide.com/includes/themes/2014/images/header/logo.svg" alt="Get it on Aptoide" height="80">](https://your-local-weather.en.aptoide.com)
@@ -57,4 +57,4 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ```
-# your-local-weather
+# Your-Local-Weather APP
