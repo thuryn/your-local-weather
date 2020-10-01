@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
     <header
-        android:fragment="org.thosp.yourlocalweather.SettingsActivity$GeneralPreferenceFragment"
+        android:fragment="org.thosp.yourlocalweather.settings.fragments.GeneralPreferenceFragment"
         android:title="@string/preference_title_activity_general"/>
     <header
-        android:fragment="org.thosp.yourlocalweather.SettingsActivity$UnitsPreferenceFragment"
+        android:fragment="org.thosp.yourlocalweather.settings.fragments.UnitsPreferenceFragment"
         android:title="@string/preference_title_category_units"/>
     <header
-        android:fragment="org.thosp.yourlocalweather.SettingsActivity$UpdatesPreferenceFragment"
+        android:fragment="org.thosp.yourlocalweather.settings.fragments.UpdatesPreferenceFragment"
         android:title="@string/preference_title_category_location_weather"/>
     <header
-        android:fragment="org.thosp.yourlocalweather.SettingsActivity$NotificationPreferenceFragment"
+        android:fragment="org.thosp.yourlocalweather.settings.fragments.NotificationPreferenceFragment"
         android:title="@string/pref_title_category_notification"/>
     <header
-        android:fragment="org.thosp.yourlocalweather.SettingsActivity$PowerSavePreferenceFragment"
+        android:fragment="org.thosp.yourlocalweather.settings.fragments.PowerSavePreferenceFragment"
         android:title="@string/preference_title_power_save"/>
     <header
-        android:fragment="org.thosp.yourlocalweather.SettingsActivity$WidgetPreferenceFragment"
+        android:fragment="org.thosp.yourlocalweather.settings.fragments.WidgetPreferenceFragment"
         android:title="@string/preference_title_activity_widget"/>
     <header android:title="@string/preference_title_tts" >
         <intent android:targetPackage="org.thosp.yourlocalweather"
                 android:targetClass="org.thosp.yourlocalweather.VoiceSettingsActivity" />
     </header>
     <header
-        android:fragment="org.thosp.yourlocalweather.SettingsActivity$DebugOptionsPreferenceFragment"
+        android:fragment="org.thosp.yourlocalweather.settings.fragments.DebugOptionsPreferenceFragment"
         android:title="@string/debug_category_title"/>
     <header
-        android:fragment="org.thosp.yourlocalweather.SettingsActivity$AboutPreferenceFragment"
+        android:fragment="org.thosp.yourlocalweather.settings.fragments.AboutPreferenceFragment"
         android:title="@string/preference_title_activity_about"/>
 </preference-headers>

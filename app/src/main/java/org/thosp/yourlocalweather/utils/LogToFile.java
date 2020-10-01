@@ -678,9 +678,9 @@ public class LogToFile {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
 
         if (logToFileEnabled == null) {
-            logFilePathname = sharedPreferences.getString(SettingsActivity.KEY_DEBUG_FILE,"");
-            logToFileEnabled = sharedPreferences.getBoolean(SettingsActivity.KEY_DEBUG_TO_FILE, false);
-            logFileHoursOfLasting = Integer.valueOf(sharedPreferences.getString(SettingsActivity.KEY_DEBUG_FILE_LASTING_HOURS, "24"));
+            logFilePathname = sharedPreferences.getString(Constants.KEY_DEBUG_FILE,"");
+            logToFileEnabled = sharedPreferences.getBoolean(Constants.KEY_DEBUG_TO_FILE, false);
+            logFileHoursOfLasting = Integer.valueOf(sharedPreferences.getString(Constants.KEY_DEBUG_FILE_LASTING_HOURS, "24"));
         }
         nextCheckPreferencesCheck = Calendar.getInstance();
         nextCheckPreferencesCheck.add(Calendar.MINUTE, 5);
