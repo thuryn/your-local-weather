@@ -552,4 +552,11 @@
     <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Værvarselstype</string>
     <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Lisensnøkkel</string>
     <string name="preference_weather_weather_forecast_features_title" tools:ignore="MissingTranslation">Værmeldingsfunksjoner</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Tilgang til Mozilla-posisjonstjenste utløp 3. Jan. 2020. Programmet tvinges til å bruke Android-systemet for oppdaging av posisjonskoordinater. Adressen utledes fremdels av Nominatim. Tenk på dette når du bruker programmet.</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Begrensning i Mozilla-posisjonstjeneste</string>
+    <string name="location_weather_update_status_location_from_last_location" tools:ignore="MissingTranslation">l</string>
+    <string name="location_weather_update_status_too_early_update" tools:ignore="MissingTranslation">O</string>
+    <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">Betalte/utvidede funksjoner</string>
+    <string name="weather_forecast_features_free" tools:ignore="MissingTranslation">Gratis/begrensede funksjoner</string>
+    <string name="too_early_update_error" tools:ignore="MissingTranslation">For tidlig oppdatering!</string>
 </resources>
