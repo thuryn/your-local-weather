@@ -559,7 +559,7 @@
     <string name="too_early_update_error" tools:ignore="MissingTranslation">Слишком раннее обновление!</string>
     <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Тип прогноза</string>
     <string name="voice_settings_language" tools:ignore="MissingTranslation">Язык</string>
-    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Доступ к службе определения местоположения Mozilla истёк с 1.3.2020. Приложение вынуждено использовать систему Andorid для определения координат местоположения. Адрес все еще определяется Nominatim. Учтите, пожалуйста, этот факт, используя это приложения.</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Доступ к службе определения местоположения Mozilla истек с 1.3.2020. Приложение вынуждено использовать систему Andorid для определения координат местоположения. Адрес все еще определяется Nominatim. Учтите это при использовании приложения.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Ограничение службы определения местоположения Mozilla</string>
     <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"В этом приложении есть голосовые подсказки в виде перевода текста и голосовых команд, любезно предоставленных волонтерами на https://hosted.weblate.org/projects/your-local-weather. Разработчик приложения не может гарантировать, что они верны - вы принимаете это, используя приложение. Для его использования у вас должен быть установлен TTS (преобразование текста в речь) и включены подсказки в настройках, где вы можете установить свои собственные голосовые команды. "</string>
 </resources>
