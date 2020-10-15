@@ -565,7 +565,7 @@
     <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">ve</string>
     <string name="too_early_update_error" tools:ignore="MissingTranslation">Çok erken güncelleme!</string>
     <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Tahmin türü</string>
-    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Mozilla konum hizmetine erişim 1.3.2020 itibariyle durmuştur. Uygulama, konum koordinatları keşfi için Andorid sistemini kullanmak zorunda. Adres hala Nominatim tarafından çözülüyor. Bu uygulamayı kullanırken lütfen bu durumu göz önünde bulundurun.</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Mozilla konum hizmetine erişim 3 Ocak 2020 itibariyle sona erdi. Uygulama, konum koordinatları keşfi için Andorid sistemini kullanmak zorunda. Adres hala Nominatim tarafından çözümleniyor. Uygulamayı kullanırken lütfen bunu göz önünde bulundurun.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Mozilla konum hizmeti sınırlaması</string>
     <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">Ücretli/ilave özellikler</string>
     <string name="weather_forecast_features_free" tools:ignore="MissingTranslation">Ücretsiz/sınırlı özellikler</string>
