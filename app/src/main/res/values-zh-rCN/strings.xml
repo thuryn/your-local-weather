@@ -66,7 +66,7 @@
     <string name="wind_label">风速：%1$s %2$s %3$s</string>
     <string name="rain_label">降雨量：%1$s %2$s</string>
     <string name="snow_label">降雪量：%1$s %2$s</string>
-    <string name="humidity_label">"湿度：%1$s  %2$s"</string>
+    <string name="humidity_label">湿度: %1$s%2$s</string>
     <string name="label_humidity">"湿度"</string>
     <string name="pressure_label">气压：%1$s %2$s</string>
     <string name="cloudiness_label">云量：%1$s %2$s</string>
@@ -190,8 +190,7 @@
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">
         <b>位置和地址源</b> 
 \n您可以选择应用从何处获取位置和地址。</string>
-    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">
-        <b>本地 MLS 和 Nominatim</b> - 应用通过 Mozilla 位置服务获取位置。Nominatim 服务从坐标获取地址。您可以通过安装 Mozilla Stumbler（在 available at https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler 提供）为 MLS 的未来改进做出贡献。通过授予电话呼叫权限，从蜂窝网络获取有关当前活动和可用网络基站的信息。使用周围的 Wi-Fi 网络来更精确地猜测您的位置</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;本地 MLS 和 Nominatim&lt;/b&gt; - 应用从 Mozilla 位置服务获取定位及地理坐标。Nominatim 服务从坐标获取地址。您可以通过安装 Mozilla Stumbler（从 https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler 获取）为 MLS 的未来改进做出贡献。通过授予电话呼叫权限，从蜂窝网络获取有关当前活动和可用网络基站的信息。您周围的 Wi-Fi 网络被用于更精确地猜测您的位置。"<b>本地 MLS 和 Nominatim</b> - 应用通过 Mozilla 位置服务获取位置。Nominatim 服务从坐标获取地址。您可以通过安装 Mozilla Stumbler（在 available at https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler 提供）为 MLS 的未来改进做出贡献。通过授予电话呼叫权限，从蜂窝网络获取有关当前活动和可用网络基站的信息。使用周围的 Wi-Fi 网络来更精确地猜测您的位置</string>
     <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
         <b>系统</b> - 应用通过 Android 中的系统服务获取位置和地址（通常使用 Google 定位服务）。</string>
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">这些菜单选项设置 <b>语言</b> ，主应用的 <b>主题</b> 和用于应用和微件的 <b>图标集</b> 。</string>
@@ -247,7 +246,7 @@
 \nNi - 蜂窝网络位置及天气更新时，位置发现来自 Mozilla 位置服务 
 \nB - Openweathermap.org 服务访问已被禁止，请尝试稍后更新天气 
 \nE - Openweathermap.org 服务访问令牌已过期。您需要升级应用以再次获取访问许可</string>
-    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">"当定位在设备休眠期间卡死时，您可以在它寻找蜂窝网络时尝试唤醒它 "</string>
+    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">当定位在设备休眠期间被卡住时，你可以尝试在它寻找蜂窝网络时唤醒它</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">唤醒策略</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">无唤醒</string>
     <string name="wakeuppartial_label" tools:ignore="MissingTranslation">仅唤醒 CPU</string>
