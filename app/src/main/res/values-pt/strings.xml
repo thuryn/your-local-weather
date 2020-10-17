@@ -35,7 +35,7 @@
     <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Chave de licença</string>
     <string name="too_early_update_error" tools:ignore="MissingTranslation">Atualização muito cedo!</string>
     <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Tipo de previsão</string>
-    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">O acesso ao serviço de localização Mozilla expirou desde 1.3.2020. A aplicação é forçada a usar o sistema Android para a descoberta de coordenadas de localização. O endereço ainda é resolvido por Nominatim. Considere, por favor, este facto a usar esta aplicação.</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">O acesso ao serviço de localização da Mozilla expirou a partir de 1.3.2020. A app é forçada a usar o sistema Andorid para a descoberta de coordenadas de localização. O endereço ainda é resolvido por Nominatim. Por favor, considere isto ao utilizar a app.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Limitação do serviço de localização da Mozilla</string>
     <string name="pref_language_id" tools:ignore="MissingTranslation">Indonésio (Indonésio)</string>
     <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">e</string>
