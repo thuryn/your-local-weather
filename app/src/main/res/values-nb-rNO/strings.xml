@@ -559,4 +559,6 @@
     <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">Betalte/utvidede funksjoner</string>
     <string name="weather_forecast_features_free" tools:ignore="MissingTranslation">Gratis/begrensede funksjoner</string>
     <string name="too_early_update_error" tools:ignore="MissingTranslation">For tidlig oppdatering!</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Fra og med Android 10, trengs finmasket tilgang til posisjon for å hente info om tilkoblet GSM/LTE-nettverk. Innvilg tilgang til å hente posisjon i bakgrunnen også, (hvis du vil hente posisjon hele tiden).</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Android 10-tilgangsendringer</string>
 </resources>
