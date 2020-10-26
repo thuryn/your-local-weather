@@ -445,7 +445,9 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                     AppWakeUpManager.SOURCE_LOCATION_UPDATE
             );
             if ("location_geocoder_local".equals(geocoder)) {
-                updateNetworkLocation(false, intent, 0, forceUpdate);
+                if (!updateNetworkLocation(false, intent, 0, forceUpdate)) {
+                    setNoLocationFound();
+                }
             } else {
                 detectLocation();
             }

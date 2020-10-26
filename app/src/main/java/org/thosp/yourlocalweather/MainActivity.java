@@ -677,9 +677,13 @@ public class MainActivity extends BaseActivity
             if ("location_geocoder_local".equals(geocoder) && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
                 notificationMessage.append(getString(R.string.alertDialog_location_permission_message_location_phone_permission));
                 permissions.add(Manifest.permission.READ_PHONE_STATE);
+                permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
             } else if (isNetworkEnabled && "location_geocoder_system".equals(geocoder) && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 notificationMessage.append(getString(R.string.alertDialog_location_permission_message_location_network_permission));
                 permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+            }
+            if (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                permissions.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
             }
             if (permissions.isEmpty()) {
                 return true;
@@ -751,6 +755,37 @@ public class MainActivity extends BaseActivity
                         SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(localContext).edit();
                         preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 5);
                         preferences.apply();
+                        checkAndShowInitialGuide();
+                    }
+                });
+        settingsAlert.show();
+    }
+
+    private void showAndroid10Permisions() {
+        int initialGuideVersion = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
+                .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
+        if (initialGuideVersion != 5) {
+            return;
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
+            preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 6);
+            preferences.apply();
+            checkAndShowInitialGuide();
+            return;
+        }
+        final Context localContext = getBaseContext();
+        final AlertDialog.Builder settingsAlert = new AlertDialog.Builder(MainActivity.this);
+        settingsAlert.setTitle(R.string.alertDialog_android_10_permissions_title);
+        settingsAlert.setMessage(R.string.alertDialog_android_10_permissions_message);
+        settingsAlert.setNeutralButton(R.string.alertDialog_battery_optimization_proceed,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(localContext).edit();
+                        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 6);
+                        preferences.apply();
+                        checkPermissionsSettingsAndShowAlert();
                         checkAndShowInitialGuide();
                     }
                 });
@@ -831,7 +866,8 @@ public class MainActivity extends BaseActivity
             checkBatteryOptimization();
             showVoiceAndSourcesDisclaimer();
             showMLSLimitedServiceDisclaimer();
-            if (initialGuideVersion >= 5) {
+            showAndroid10Permisions();
+            if (initialGuideVersion >= 6) {
                 initialGuideCompleted = true;
                 if (initialGuidePage > 0) {
                     detectLocation();

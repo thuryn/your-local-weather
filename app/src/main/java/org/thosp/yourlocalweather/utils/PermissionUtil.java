@@ -66,11 +66,15 @@ public class PermissionUtil {
         if ("location_geocoder_local".equals(geocoder) &&
                 ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
             permissions.add(Manifest.permission.READ_PHONE_STATE);
+            permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         } else if ("location_geocoder_system".equals(geocoder) &&
                 isNetworkEnabled &&
                 ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
         }
+        if (!permissions.isEmpty() &&
+                ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED)
+        permissions.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
         return permissions;
     }
 
@@ -107,8 +111,12 @@ public class PermissionUtil {
             }
             if ("location_geocoder_local".equals(geocoder) && ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
                 permissions.add(Manifest.permission.READ_PHONE_STATE);
+                permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
             } else if ("location_geocoder_system".equals(geocoder) && isNetworkEnabled && ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+            }
+            if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                permissions.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
             }
             appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS, "permissions are empty = ", permissions.isEmpty());
             if (permissions.isEmpty()) {

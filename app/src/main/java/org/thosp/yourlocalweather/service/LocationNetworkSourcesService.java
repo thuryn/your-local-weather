@@ -88,34 +88,6 @@ public class LocationNetworkSourcesService {
             appendLog(context, TAG, "getCellLocation returned null");
         }
 
-        List<NeighboringCellInfo> neighboringCells = null;
-        try {
-            neighboringCells = mTelephonyManager.getNeighboringCellInfo();
-        } catch (SecurityException securityException) {
-            appendLog(context, TAG, "SecurityException when getCellLocation is called ", securityException);
-        }
-        appendLog(context, TAG, "getCells():neighboringCells:", neighboringCells);
-        if (neighboringCells != null) {
-            appendLog(context, TAG, "getCells():neighboringCells.size:", neighboringCells.size());
-        } else {
-            appendLog(context, TAG, "getNeighboringCellInfo returned null");
-        }
-
-        if (neighboringCells != null) {
-            for (NeighboringCellInfo c : neighboringCells) {
-                Cell cell = new Cell();
-                cell.cellId = c.getCid();
-                cell.area = c.getLac();
-                cell.mcc = mcc;
-                cell.mnc = mnc;
-                cell.psc = c.getPsc();
-                cell.signal = c.getRssi();
-                cell.technology = c.getNetworkType();
-                appendLog(context, TAG, "GsmCellLocation for cell:", cell);
-                cells.add(cell);
-            }
-        }
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             List<CellInfo> cellsRawList = null;
             try {
