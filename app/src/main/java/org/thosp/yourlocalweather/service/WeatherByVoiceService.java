@@ -129,7 +129,11 @@ public class WeatherByVoiceService extends Service {
                     voiceSettingId,
                     VoiceSettingParamType.VOICE_SETTING_LOCATIONS.getVoiceSettingParamTypeId());
             appendLog(getBaseContext(), TAG, "sayForLocation:enabledLocationIds:" + enabledLocationIds);
-            if (enabledLocationIds.contains(updateRequest.getLocation().getId().toString())) {
+            if ((enabledLocationIds != null) &&
+                    (updateRequest != null) &&
+                    (updateRequest.getLocation() != null) &&
+                    (updateRequest.getLocation().getId() != null) &&
+                    enabledLocationIds.contains(updateRequest.getLocation().getId().toString())) {
                 sayCurrentWeather(
                         updateRequest.getWeather(),
                         updateRequest.getLocation(),
