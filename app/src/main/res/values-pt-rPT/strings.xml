@@ -559,4 +559,6 @@
     <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Tipo de previsão</string>
     <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">O acesso ao serviço de localização da Mozilla expirou a partir de 1.3.2020. A app é forçada a usar o sistema Andorid para a descoberta de coordenadas de localização. O endereço ainda é resolvido por Nominatim. Por favor, considere isto ao utilizar a app.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Limitação do serviço de localização da Mozilla</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">A partir do Android 10, é necessário ter um acesso de localização bem definido para obter informações sobre a rede GSM/LTE conectada. Conceda permissão para também buscar a localização em segundo plano (se quiser a sua localização o tempo todo).</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Alterações de permissão do Android 10</string>
 </resources>

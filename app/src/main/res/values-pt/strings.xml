@@ -15,10 +15,10 @@
 \nN - atualizada a localização da rede e o tempo 
 \nB - o acesso ao serviço Openweathermap.org foi bloqueado, por favor tente atualizar o tempo mais tarde 
 \nE - o token de acesso ao serviço Openweathermap.org expirou. Tem de atualizar a aplicação para ter acesso novamente</string>
-    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;Notificações&lt;/b&gt; 
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">" &amp;lt;b xmlns:tools=\"http://schemas.android.com/tools\"&amp;gt;Notificações&amp;lt;/b&amp;gt; 
 \nQuando seleciona a opção de notificações, a aplicação atualiza o tempo atual periodicamente. O tempo atual é então mostrado na área de notificações. Também pode ativar a vibração - a aplicação vibra quando é atualizada."<b>Notifications</b>
 \nWhen you selects notifications option, application updates current weather periodically. Current weather is put into notifications area then. You can enable vibration also - application vibrate when updated.</string>
-    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;Localização e origem do endereço&lt;/b&gt;
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">" &amp;lt;b xmlns:tools=\"http://schemas.android.com/tools\"&amp;gt;Localização e origem do endereço&amp;lt;/b&amp;gt;
 \nPode selecionar de onde a app obtém a localização e o endereço."<b>Location and address source</b>
 \nYou can select where the app gets the location and address from.</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Isto conclui o guia. Pode encontrar outras configurações no menu Configurações (por exemplo, idioma, unidades, etc.). 
@@ -557,4 +557,6 @@
     <string name="label_current_city" tools:ignore="MissingTranslation">Cidade atual</string>
     <string name="enter_city_hint" tools:ignore="MissingTranslation">Introduza a cidade</string>
     <string name="app_name" tools:ignore="MissingTranslation">O seu clima local</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">A partir do Android 10, é necessário ter um acesso de localização bem definido para obter informações sobre a rede GSM/LTE conectada. Conceda permissão para também buscar a localização em segundo plano (se quiser a sua localização o tempo todo).</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Alterações de permissão do Android 10</string>
 </resources>
