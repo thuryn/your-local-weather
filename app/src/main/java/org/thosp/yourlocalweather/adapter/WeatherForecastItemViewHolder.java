@@ -13,6 +13,7 @@ import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.WeatherCondition;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 
@@ -95,7 +96,7 @@ public class WeatherForecastItemViewHolder extends RecyclerView.ViewHolder {
             String temperature = mContext.getString(R.string.temperature_with_degree, TemperatureUtil.getForecastedTemperatureWithUnit(mContext, weather, locale));
             mTemperature.setText(temperature);
             if (isMin == isMax) {
-                mTemperature.setTextColor(Color.BLACK);
+                mTemperature.setTextColor(PreferenceUtil.getTextColor(context));
             } else if (isMax) {
                 mTemperature.setTextColor(Color.RED);
             } else {
