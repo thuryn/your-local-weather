@@ -37,6 +37,7 @@ import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
 import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
+import org.thosp.yourlocalweather.settings.fragments.AboutPreferenceFragment;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
@@ -189,7 +190,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                             Intent intent = new Intent(BaseActivity.this,
                                     SettingsActivity.class);
                             intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT,
-                                    SettingsActivity.AboutPreferenceFragment.class.getName());
+                                    AboutPreferenceFragment.class.getName());
                             intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_TITLE,
                                     R.string.preference_title_activity_about);
                             intent.putExtra(PreferenceActivity.EXTRA_SHOW_FRAGMENT_SHORT_TITLE,

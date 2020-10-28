@@ -1,0 +1,287 @@
+package org.thosp.yourlocalweather.settings.fragments;
+
+import android.app.Activity;
+import android.app.DialogFragment;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
+import android.preference.EditTextPreference;
+import android.preference.ListPreference;
+import android.preference.PreferenceFragment;
+import android.preference.PreferenceManager;
+import android.util.TypedValue;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.SettingsActivity;
+import org.thosp.yourlocalweather.YourLocalWeather;
+import org.thosp.yourlocalweather.model.Location;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.service.ReconciliationDbService;
+import org.thosp.yourlocalweather.utils.ApiKeys;
+import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.LanguageUtil;
+import org.thosp.yourlocalweather.utils.PreferenceUtil;
+import org.thosp.yourlocalweather.utils.WidgetUtils;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
+public class GeneralPreferenceFragment extends PreferenceFragment implements
+        SharedPreferences.OnSharedPreferenceChangeListener {
+
+    private static final String TAG = "GeneralPreferenceFragment";
+
+    private final String[] SUMMARIES_TO_UPDATE = {
+            Constants.KEY_PREF_HIDE_DESCRIPTION,
+            Constants.PREF_LANGUAGE,
+            Constants.PREF_THEME,
+            Constants.KEY_PREF_WEATHER_ICON_SET,
+            Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY,
+            Constants.KEY_PREF_WEATHER_FORECAST_FEATURES
+    };
+    private Messenger reconciliationDbService;
+    private Lock reconciliationDbServiceLock = new ReentrantLock();
+    private Queue<Message> reconciliationDbUnsentMessages = new LinkedList<>();
+
+    private final ServiceConnection reconciliationDbServiceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName className, IBinder binderService) {
+            reconciliationDbService = new Messenger(binderService);
+            reconciliationDbServiceLock.lock();
+            try {
+                while (!reconciliationDbUnsentMessages.isEmpty()) {
+                    reconciliationDbService.send(reconciliationDbUnsentMessages.poll());
+                }
+            } catch (RemoteException e) {
+                appendLog(getActivity(), TAG, e.getMessage(), e);
+            } finally {
+                reconciliationDbServiceLock.unlock();
+            }
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName className) {
+            reconciliationDbService = null;
+        }
+    };
+
+    public static void restartApp(Activity activity) {
+        Intent intent = activity.getIntent();
+        if (intent == null) {
+            return;
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        activity.finish();
+        activity.overridePendingTransition(0, 0);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(0, 0);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        addPreferencesFromResource(R.xml.pref_general);
+
+        EditTextPreference openWeatherMapApiKey =
+                (EditTextPreference) findPreference(Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY);
+        openWeatherMapApiKey.setSummary(ApiKeys.getOpenweathermapApiKeyForPreferences(getActivity()));
+        checkApiKeyMenuOptionPresence();
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = super.onCreateView(inflater, container, savedInstanceState);
+        int horizontalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+        int verticalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
+        int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, getResources().getDisplayMetrics());
+
+        if (view != null) {
+            view.setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
+        }
+        return view;
+    }
+
+    private void entrySummary(String key) {
+        ListPreference preference = (ListPreference) findPreference(key);
+        if (preference == null) {
+            return;
+        }
+        preference.setSummary(preference.getEntry());
+    }
+
+    private void updateSummary(String key, boolean changing) {
+        switch (key) {
+            case Constants.KEY_PREF_HIDE_DESCRIPTION:
+                if (changing) {
+                    Intent intent = new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
+                    intent.setPackage("org.thosp.yourlocalweather");
+                    getActivity().sendBroadcast(intent);
+                }
+                break;
+            case Constants.PREF_LANGUAGE:
+                entrySummary(key);
+                if (changing) {
+                    String newLocale = PreferenceUtil.getLanguage(getActivity().getApplicationContext());
+                    LanguageUtil.setLanguage(getActivity().getApplication(), newLocale);
+                    updateLocationsLocale(newLocale);
+                    WidgetUtils.updateWidgets(getActivity());
+                    DialogFragment dialog = new SettingsActivity.SettingsAlertDialog().newInstance(R.string.update_locale_dialog_message);
+                    dialog.show(getActivity().getFragmentManager(), "restartApp");
+                }
+                break;
+            case Constants.PREF_THEME:
+                entrySummary(key);
+                if (changing) {
+                    YourLocalWeather app = (YourLocalWeather) getActivity().getApplication();
+                    app.reloadTheme();
+                    app.applyTheme(getActivity());
+                    restartApp(getActivity());
+                }
+                break;
+            case Constants.KEY_PREF_WEATHER_ICON_SET:
+                entrySummary(key);
+                break;
+            case Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY:
+                findPreference(key).setSummary(ApiKeys.getOpenweathermapApiKeyForPreferences(getActivity()));
+                checkAndDeleteLocations();
+                break;
+            case Constants.KEY_PREF_WEATHER_FORECAST_FEATURES:
+                entrySummary(key);
+                checkApiKeyMenuOptionPresence();
+                break;
+        }
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        updateSummary(key, true);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getPreferenceScreen().getSharedPreferences()
+                .registerOnSharedPreferenceChangeListener(this);
+        updateSummaries();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        unbindReconciliationDbService();
+        getPreferenceScreen().getSharedPreferences()
+                .unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    private void updateLocationsLocale(String newLocale) {
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getActivity());
+        for (Location location : locationsDbHelper.getAllRows()) {
+            locationsDbHelper.updateLocale(location.getId(), newLocale);
+        }
+    }
+
+    private void setDefaultValues() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        if (!preferences.contains(Constants.PREF_LANGUAGE)) {
+            preferences.edit().putString(Constants.PREF_LANGUAGE, Resources.getSystem().getConfiguration().locale.getLanguage()).apply();
+            entrySummary(Constants.PREF_LANGUAGE);
+        }
+    }
+
+    private void updateSummaries() {
+        for (String key : SUMMARIES_TO_UPDATE) {
+            updateSummary(key, false);
+        }
+    }
+
+    private void checkAndDeleteLocations() {
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getActivity());
+        List<Location> allLocations = locationsDbHelper.getAllRows();
+        if (allLocations.size() <= ApiKeys.getAvailableLocations(getActivity())) {
+            return;
+        }
+        for (Location location : allLocations) {
+            if (location.getOrderId() >= ApiKeys.getAvailableLocations(getActivity())) {
+                locationsDbHelper.deleteRecordFromTable(location);
+            }
+        }
+        sendMessageToReconciliationDbService(true);
+    }
+
+    private void checkApiKeyMenuOptionPresence() {
+        if (ApiKeys.isWeatherForecastFeaturesFree(getActivity())) {
+            findPreference(Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY).setEnabled(true);
+            findPreference(Constants.KEY_PREF_WEATHER_LICENSE_KEY).setEnabled(false);
+        } else {
+            findPreference(Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY).setEnabled(false);
+            findPreference(Constants.KEY_PREF_WEATHER_LICENSE_KEY).setEnabled(true);
+        }
+    }
+
+    protected void sendMessageToReconciliationDbService(boolean force) {
+        appendLog(getActivity(),
+                TAG,
+                "going run reconciliation DB service");
+        reconciliationDbServiceLock.lock();
+        try {
+            Message msg = Message.obtain(
+                    null,
+                    ReconciliationDbService.START_RECONCILIATION,
+                    force ? 1 : 0
+            );
+            if (checkIfReconciliationDbServiceIsNotBound()) {
+                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
+                reconciliationDbUnsentMessages.add(msg);
+                return;
+            }
+            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
+            reconciliationDbService.send(msg);
+        } catch (RemoteException e) {
+            appendLog(getActivity(), TAG, e.getMessage(), e);
+        } finally {
+            reconciliationDbServiceLock.unlock();
+        }
+    }
+
+    private boolean checkIfReconciliationDbServiceIsNotBound() {
+        if (reconciliationDbService != null) {
+            return false;
+        }
+        try {
+            bindReconciliationDBService();
+        } catch (Exception ie) {
+            appendLog(getActivity(), TAG, "weatherForecastServiceIsNotBound interrupted:", ie);
+        }
+        return (reconciliationDbService == null);
+    }
+
+    private void bindReconciliationDBService() {
+        getActivity().getApplicationContext().bindService(
+                new Intent(getActivity().getApplicationContext(), ReconciliationDbService.class),
+                reconciliationDbServiceConnection,
+                Context.BIND_AUTO_CREATE);
+    }
+
+    protected void unbindReconciliationDbService() {
+        if (reconciliationDbService == null) {
+            return;
+        }
+        getActivity().getApplicationContext().unbindService(reconciliationDbServiceConnection);
+    }
+}
