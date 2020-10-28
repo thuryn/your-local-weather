@@ -1,3 +1,6 @@
+v5.6.1
+Fixed main screen weather icon presence, fixed color in weather forecast in the dark theme, updated permissions for Andoroid 10, several small fixies
+
 v5.6.0
 Start graphs from zero for wind and rain,color the highest and lowes temperature in forecast view,translations, several small fixies
 
