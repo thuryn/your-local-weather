@@ -578,7 +578,7 @@ public class AbstractCommonService extends Service {
         }
     };
 
-    public class LocationUpdateServiceActionsWithParams {
+    public static class LocationUpdateServiceActionsWithParams {
         LocationUpdateService.LocationUpdateServiceActions locationUpdateServiceAction;
         boolean byLastLocationOnly;
         android.location.Location inputLocation;

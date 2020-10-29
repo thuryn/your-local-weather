@@ -374,7 +374,7 @@ public class NominatimLocationService {
         }
     }
 
-    class IterableIterator<T> implements Iterable<T> {
+    static class IterableIterator<T> implements Iterable<T> {
         Iterator<T> i;
 
         public IterableIterator(Iterator<T> i) {

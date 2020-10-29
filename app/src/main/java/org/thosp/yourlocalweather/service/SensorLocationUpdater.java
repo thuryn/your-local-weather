@@ -325,7 +325,7 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
         return new MoveVector(sensorEvent.values[0] - gravity[0], sensorEvent.values[1] - gravity[1], sensorEvent.values[2] - gravity[2]);
     }
 
-    private class MoveVector {
+    private static class MoveVector {
         private final float x;
         private final float y;
         private final float z;

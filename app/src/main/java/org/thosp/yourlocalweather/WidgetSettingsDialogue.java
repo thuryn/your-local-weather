@@ -625,7 +625,7 @@ public class WidgetSettingsDialogue extends Activity {
         dialog.show();
     }
 
-    public class NumberOfDaysListener implements AdapterView.OnItemSelectedListener {
+    public static class NumberOfDaysListener implements AdapterView.OnItemSelectedListener {
 
         private long numberOfDays;
         private boolean hoursForecast;
@@ -660,7 +660,7 @@ public class WidgetSettingsDialogue extends Activity {
         }
     }
 
-    public class LocationsListener implements AdapterView.OnItemSelectedListener {
+    public static class LocationsListener implements AdapterView.OnItemSelectedListener {
 
         private int locationOrderId;
 
@@ -708,7 +708,7 @@ public class WidgetSettingsDialogue extends Activity {
         }
     }
 
-    public class WidgetActionListener implements AdapterView.OnItemSelectedListener {
+    public static class WidgetActionListener implements AdapterView.OnItemSelectedListener {
         private WidgetActions widgetAction;
 
         public WidgetActionListener(WidgetActions initialValue) {
@@ -730,7 +730,7 @@ public class WidgetSettingsDialogue extends Activity {
         }
     }
 
-    private class WidgetDefaultDetailsResult {
+    private static class WidgetDefaultDetailsResult {
         int maxNumberOfDetails;
         String defaultDetails;
 

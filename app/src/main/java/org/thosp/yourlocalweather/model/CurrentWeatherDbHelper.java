@@ -166,7 +166,7 @@ public class CurrentWeatherDbHelper extends SQLiteOpenHelper {
         }
     }
 
-    public class WeatherRecord {
+    public static class WeatherRecord {
         long lastUpdatedTime;
         Weather weather;
 

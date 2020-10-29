@@ -139,7 +139,7 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
     }
 
 
-    public class WeatherForecastRecord {
+    public static class WeatherForecastRecord {
         long lastUpdatedTime;
         CompleteWeatherForecast completeWeatherForecast;
 

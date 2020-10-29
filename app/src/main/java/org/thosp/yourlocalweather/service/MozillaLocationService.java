@@ -348,7 +348,7 @@ public class MozillaLocationService {
         }
     };
 
-    private class LocationAndAddressToUpdate {
+    private static class LocationAndAddressToUpdate {
         Location location;
         Address address;
         boolean canceled;

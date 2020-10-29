@@ -871,7 +871,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         }
     }
 
-    private class NetworkLocationProviderActionData {
+    private static class NetworkLocationProviderActionData {
         NetworkLocationProvider.NetworkLocationProviderActions action;
         Location inputLocation;
 
