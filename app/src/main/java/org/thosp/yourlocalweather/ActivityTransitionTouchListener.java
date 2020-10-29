@@ -54,11 +54,10 @@ public class ActivityTransitionTouchListener implements View.OnTouchListener {
                 if ((absDeltaX > Math.abs(deltaY)) && absDeltaX > 200) {
                     if (deltaX > 0){
                         swipeToRight();
-                        return true;
                     } else {
                         swipeToLeft();
-                        return true;
                     }
+                    return true;
                 }
                 break;
         }

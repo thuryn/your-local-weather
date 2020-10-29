@@ -690,19 +690,11 @@ public class Utils {
     }
 
     public static boolean isWeatherDescriptionWithRain(int weatherId) {
-        if (weatherId < 600) {
-            return true;
-        } else {
-            return false;
-        }
+        return weatherId < 600;
     }
 
     public static boolean isWeatherDescriptionWithSnow(int weatherId) {
-        if ((weatherId >= 600) && (weatherId < 700)) {
-            return true;
-        } else {
-            return false;
-        }
+        return (weatherId >= 600) && (weatherId < 700);
     }
 
     private static int getWeatherDescriptionResourceId(int weatherId) {

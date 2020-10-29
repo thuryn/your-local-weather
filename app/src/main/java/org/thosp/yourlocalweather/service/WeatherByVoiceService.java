@@ -84,10 +84,11 @@ public class WeatherByVoiceService extends Service {
         if (intent == null) {
             return ret;
         }
-        switch (intent.getAction()) {
-            case "android.intent.action.SAY_WEATHER": sayWeatherByTime(intent); return ret;
-            default: return ret;
+        if ("android.intent.action.SAY_WEATHER".equals(intent.getAction())) {
+            sayWeatherByTime(intent);
+            return ret;
         }
+        return ret;
     }
 
     private void sayWeatherByTime(Intent intent) {
@@ -448,13 +449,12 @@ public class WeatherByVoiceService extends Service {
                             forecastToSay.append(getString(R.string.tty_say_temp_max,
                                     TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.minTempForDay, currentLocation.getLocale()),
                                     AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.minTempTime), currentLocation.getLocale())));
-                            forecastToSay.append(" ");
                         } else {
                             forecastToSay.append(getString(R.string.tty_say_temp_min,
                                     TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.minTempForDay, currentLocation.getLocale()),
                                     AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.minTempTime), currentLocation.getLocale())));
-                            forecastToSay.append(" ");
                         }
+                        forecastToSay.append(" ");
                     } else {
                         if (weatherForecastForVoice.minTempTime < weatherForecastForVoice.maxTempTime) {
                             forecastToSay.append(getString(R.string.tty_say_temp_min,
@@ -633,11 +633,6 @@ public class WeatherByVoiceService extends Service {
                 mainWeatherDescription = weatherForecastForVoice.afternoonWeatherIds.mainWeatherDescriptionsFromOwm;
                 warningWeatherId = weatherForecastForVoice.afternoonWeatherIds.warningWeatherId;
                 warningWeatherDescription = weatherForecastForVoice.afternoonWeatherIds.warningWeatherDescriptionsFromOwm;
-            } else if (weatherForecastForVoice.nightWeatherIds != null) {
-                mainWeatherId = weatherForecastForVoice.nightWeatherIds.mainWeatherId;
-                mainWeatherDescription = weatherForecastForVoice.nightWeatherIds.mainWeatherDescriptionsFromOwm;
-                warningWeatherId = weatherForecastForVoice.nightWeatherIds.warningWeatherId;
-                warningWeatherDescription = weatherForecastForVoice.nightWeatherIds.warningWeatherDescriptionsFromOwm;
             }
             if (mainWeatherId == null) {
                 return "";

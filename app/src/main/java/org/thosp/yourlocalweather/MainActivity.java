@@ -1076,17 +1076,14 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_LOCATION:
-                if (PermissionUtil.verifyPermissions(grantResults)) {
-                    Snackbar.make(findViewById(android.R.id.content), R.string.permission_available_location, Snackbar.LENGTH_SHORT).show();
-                } else {
-                    Snackbar.make(findViewById(android.R.id.content), R.string.permission_not_granted, Snackbar.LENGTH_SHORT).show();
-                }
-                break;
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-                break;
+        if (requestCode == REQUEST_LOCATION) {
+            if (PermissionUtil.verifyPermissions(grantResults)) {
+                Snackbar.make(findViewById(android.R.id.content), R.string.permission_available_location, Snackbar.LENGTH_SHORT).show();
+            } else {
+                Snackbar.make(findViewById(android.R.id.content), R.string.permission_not_granted, Snackbar.LENGTH_SHORT).show();
+            }
+        } else {
+            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 
@@ -1097,17 +1094,9 @@ public class MainActivity extends BaseActivity
         }
         switchToNextLocationWhenCurrentIsAutoAndIsDisabled();
         if (mToolbarMenu != null) {
-            if ((currentLocation.getOrderId() == 0) && !currentLocation.isEnabled()) {
-                mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible(false);
-            } else {
-                mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible(true);
-            }
+            mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible((currentLocation.getOrderId() != 0) || currentLocation.isEnabled());
             Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
-            if (!autoLocation.isEnabled()) {
-                mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(false);
-            } else {
-                mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(true);
-            }
+            mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(autoLocation.isEnabled());
         }
         AppPreference.setCurrentLocationId(this, currentLocation);
         int maxOrderId = locationsDbHelper.getMaxOrderId();

@@ -133,13 +133,11 @@ public class NetworkLocationProvider extends Service {
             return ret;
         }
 
-        if (null != intent.getAction()) switch (intent.getAction()) {
-            case "org.openbmap.unifiedNlp.LOCATION_UPDATE_CELLS_ONLY":
+        if (null != intent.getAction())
+            if ("org.openbmap.unifiedNlp.LOCATION_UPDATE_CELLS_ONLY".equals(intent.getAction())) {
                 startLocationUpdateCellsOnly();
                 return ret;
-            default:
-                break;
-        }
+            }
         return START_STICKY;
     }
 

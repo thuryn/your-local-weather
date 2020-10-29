@@ -92,8 +92,6 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
                                                                     currentLocation.getLocaleAbbrev(),
                                                                     weather));
 
-            Utils.setWeatherIcon(remoteViews, context, weatherRecord,
-                    R.id.widget_ext_loc_forecast_graph_3x3_widget_icon);
         } else {
             remoteViews.setTextViewText(R.id.widget_ext_loc_forecast_graph_3x3_widget_city, context.getString(R.string.location_not_found));
             remoteViews.setTextViewText(R.id.widget_ext_loc_forecast_graph_3x3_widget_temperature, TemperatureUtil.getTemperatureWithUnit(
@@ -116,9 +114,9 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
             }
             remoteViews.setTextViewText(R.id.widget_ext_loc_forecast_graph_3x3_widget_description, "");
 
-            Utils.setWeatherIcon(remoteViews, context, weatherRecord,
-                    R.id.widget_ext_loc_forecast_graph_3x3_widget_icon);
         }
+        Utils.setWeatherIcon(remoteViews, context, weatherRecord,
+                R.id.widget_ext_loc_forecast_graph_3x3_widget_icon);
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;
         try {
             weatherForecastRecord = WidgetUtils.updateWeatherForecast(

@@ -26,10 +26,12 @@ public class NotificationService extends AbstractCommonService {
         if (intent == null) {
             return ret;
         }
-        switch (intent.getAction()) {
-            case "android.intent.action.START_WEATHER_NOTIFICATION_UPDATE": startWeatherCheck(); scheduleNextNotificationAlarm(); return ret;
-            default: return ret;
+        if ("android.intent.action.START_WEATHER_NOTIFICATION_UPDATE".equals(intent.getAction())) {
+            startWeatherCheck();
+            scheduleNextNotificationAlarm();
+            return ret;
         }
+        return ret;
     }
 
     public void startWeatherCheck() {

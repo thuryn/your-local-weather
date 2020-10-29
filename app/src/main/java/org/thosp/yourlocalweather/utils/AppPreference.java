@@ -77,11 +77,8 @@ public class AppPreference {
                 Constants.KEY_PREF_TIME_STYLE, "system");
         if ("system".equals(timeStylePreferences)) {
             return !DateFormat.is24HourFormat(context);
-        } else if ("12h".equals(timeStylePreferences)) {
-            return true;
-        } else {
-            return false;
         }
+        return "12h".equals(timeStylePreferences);
     }
 
     private static short mpsToBft(double speed) {
@@ -363,10 +360,7 @@ public class AppPreference {
     }
 
     public static boolean isUpdateLocationEnabled(Context context, Location currentLocation) {
-        if ((currentLocation == null) || (currentLocation.getOrderId() != 0) || !currentLocation.isEnabled()) {
-            return false;
-        }
-        return true;
+        return (currentLocation != null) && (currentLocation.getOrderId() == 0) && currentLocation.isEnabled();
     }
         
     public static String getLocationGeocoderSource(Context context) {

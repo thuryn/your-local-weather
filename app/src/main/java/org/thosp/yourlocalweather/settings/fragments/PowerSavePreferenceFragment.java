@@ -67,10 +67,8 @@ public class PowerSavePreferenceFragment extends PreferenceFragment implements
     }
 
     private void updateSummary(String key, boolean changing) {
-        switch (key) {
-            case Constants.KEY_PREF_LOCATION_GPS_ENABLED:
-                entrySummary(key);
-                break;
+        if (Constants.KEY_PREF_LOCATION_GPS_ENABLED.equals(key)) {
+            entrySummary(key);
         }
     }
 

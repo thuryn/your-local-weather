@@ -853,10 +853,8 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
             networkLocationProvider = binder.getService();
             NetworkLocationProviderActionData bindedServiceActions;
             while ((bindedServiceActions = networkLocationProviderActions.poll()) != null) {
-                switch (bindedServiceActions.getAction()) {
-                    case START_LOCATION_UPDATE:
-                        networkLocationProvider.startLocationUpdate(bindedServiceActions.getInputLocation());
-                        break;
+                if (bindedServiceActions.getAction() == NetworkLocationProvider.NetworkLocationProviderActions.START_LOCATION_UPDATE) {
+                    networkLocationProvider.startLocationUpdate(bindedServiceActions.getInputLocation());
                 }
             }
         }

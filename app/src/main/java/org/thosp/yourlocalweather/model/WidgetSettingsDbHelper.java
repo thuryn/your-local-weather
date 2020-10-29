@@ -217,11 +217,8 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
                 Long longValue = cursor.getLong(cursor.getColumnIndexOrThrow(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_LONG));
                 if (longValue == null) {
                     return null;
-                } else if (longValue > 0) {
-                    return true;
-                } else {
-                    return false;
                 }
+                return longValue > 0;
             } else {
                 return null;
             }

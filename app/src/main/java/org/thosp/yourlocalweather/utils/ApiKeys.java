@@ -66,12 +66,9 @@ public class ApiKeys {
                         Constants.KEY_PREF_WEATHER_FORECAST_FEATURES,
                         "weather_forecast_features_free"
                 );
-        if ((weatherForecastFeatures == null) ||
+        return (weatherForecastFeatures == null) ||
                 "".equals(weatherForecastFeatures) ||
-                "weather_forecast_features_free".equals(weatherForecastFeatures)) {
-            return true;
-        }
-        return false;
+                "weather_forecast_features_free".equals(weatherForecastFeatures);
     }
 
     public static String getInitialLicenseKey(Context context) {

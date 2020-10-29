@@ -673,7 +673,7 @@ public class UpdateWeatherService extends AbstractCommonService {
             NotificationUtils.weatherNotification(this, locationId);
         } else if ("on_lock_screen".equals(notificationPresence) && NotificationUtils.isScreenLocked(this)) {
             NotificationUtils.weatherNotification(this, locationId);
-        } else if ((updateSource != null) && "NOTIFICATION".equals(updateSource)) {
+        } else if ("NOTIFICATION".equals(updateSource)) {
             NotificationUtils.weatherNotification(this, locationId);
         }
     }

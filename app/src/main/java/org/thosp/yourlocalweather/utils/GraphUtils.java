@@ -346,9 +346,10 @@ public class GraphUtils {
         double multiplier;
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_PRESSURE_UNITS, "hpa");
-        switch (unitsFromPreferences) {
-            case "inhg": multiplier = 50; break;
-            default: multiplier = 1;
+        if ("inhg".equals(unitsFromPreferences)) {
+            multiplier = 50;
+        } else {
+            multiplier = 1;
         }
 
         int pressuresSize = weatherForecastList.size();
@@ -624,11 +625,7 @@ public class GraphUtils {
             yRight.setAxisMinimum(0f);
             yRight.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, context.getString(AppPreference.getRainOrSnowUnit(context))));
         }
-        if (rightYaxis == null) {
-            yRight.setEnabled(false);
-        } else {
-            yRight.setEnabled(true);
-        }
+        yRight.setEnabled(rightYaxis != null);
 
         combinedChart.clear();
         LineData lineData = new LineData();

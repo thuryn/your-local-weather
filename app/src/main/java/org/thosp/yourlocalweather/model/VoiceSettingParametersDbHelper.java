@@ -389,11 +389,8 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
                 Long longValue = cursor.getLong(cursor.getColumnIndexOrThrow(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_LONG_VALUE));
                 if (longValue == null) {
                     return null;
-                } else if (longValue > 0) {
-                    return true;
-                } else {
-                    return false;
                 }
+                return longValue > 0;
             } else {
                 return null;
             }
@@ -431,10 +428,8 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
                 Long longValue = cursor.getLong(cursor.getColumnIndexOrThrow(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_LONG_VALUE));
                 if (longValue == null) {
                     result.put(voiceSettingId, null);
-                } else if (longValue > 0) {
-                    result.put(voiceSettingId, true);
                 } else {
-                    result.put(voiceSettingId, false);
+                    result.put(voiceSettingId, longValue > 0);
                 }
             }
         } finally {
