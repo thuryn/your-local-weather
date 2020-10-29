@@ -284,7 +284,7 @@ public class LogToFile {
         if (!logToFileEnabled || (logFilePathname == null)) {
             return;
         }
-        appendLog(context, tag, text1, (value1 != null)? (value1 + ":" + String.valueOf(value1.size())) : "null");
+        appendLog(context, tag, text1, (value1 != null)? (value1 + ":" + value1.size()) : "null");
     }
 
     public static void appendLog(Context context, String tag, String text1, List value1, String text2, List value2) {
@@ -292,7 +292,7 @@ public class LogToFile {
         if (!logToFileEnabled || (logFilePathname == null)) {
             return;
         }
-        appendLog(context, tag, text1, (value1 != null)? (value1 + ":" + String.valueOf(value1.size())) : "null", text2, (value2 != null)? (value2 + ":" + String.valueOf(value2.size())) : "null");
+        appendLog(context, tag, text1, (value1 != null)? (value1 + ":" + value1.size()) : "null", text2, (value2 != null)? (value2 + ":" + value2.size()) : "null");
     }
 
     public static void appendLog(Context context, String tag, String text1, CellLocation value1) {

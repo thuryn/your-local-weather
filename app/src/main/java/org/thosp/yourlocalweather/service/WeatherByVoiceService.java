@@ -613,8 +613,7 @@ public class WeatherByVoiceService extends Service {
                 (!morningWeather || morningAfternoonAreSame) &&
                 (!morningWeather || morningEveningAreSame) &&
                 (!afternoonWeather || afternoonEveningAreSame)) {
-            StringBuilder forecastToSay = null;
-            forecastToSay = new StringBuilder();
+            StringBuilder forecastToSay = new StringBuilder();
             Integer mainWeatherId = null;
             String mainWeatherDescription = null;
             Integer warningWeatherId = null;
@@ -660,8 +659,7 @@ public class WeatherByVoiceService extends Service {
             return forecastToSay.toString();
         }
         if (nightMorningAreSame) {
-            StringBuilder forecastToSay = null;
-            forecastToSay = new StringBuilder();
+            StringBuilder forecastToSay = new StringBuilder();
             if (morningAfternoonAreSame) {
                 forecastToSay.append(getString(R.string.tty_say_weather_forecast_night));
                 forecastToSay.append(", ");
@@ -686,8 +684,7 @@ public class WeatherByVoiceService extends Service {
             forecastToSay.append(" ");
         }
         if (morningAfternoonAreSame) {
-            StringBuilder forecastToSay = null;
-            forecastToSay = new StringBuilder();
+            StringBuilder forecastToSay = new StringBuilder();
             if (!nightMorningAreSame) {
                 forecastToSay.append(getString(R.string.tty_say_weather_forecast_morning));
                 forecastToSay.append(" ");
@@ -713,8 +710,7 @@ public class WeatherByVoiceService extends Service {
             forecastToSay.append(sayRainSnow(maxRain, maxSnow, currentLocation));
             return forecastToSay.toString();
         } else if (morningEveningAreSame) {
-            StringBuilder forecastToSay = null;
-            forecastToSay = new StringBuilder();
+            StringBuilder forecastToSay = new StringBuilder();
             forecastToSay.append(getString(R.string.tty_say_weather_forecast_morning));
             forecastToSay.append(" ");
             forecastToSay.append(getString(R.string.tty_say_weather_forecast_and));
@@ -739,8 +735,7 @@ public class WeatherByVoiceService extends Service {
             forecastToSay.append(" ");
             return forecastToSay.toString();
         } else if (afternoonEveningAreSame) {
-            StringBuilder forecastToSay = null;
-            forecastToSay = new StringBuilder();
+            StringBuilder forecastToSay = new StringBuilder();
             if (morningWeather) {
                 forecastToSay.append(getString(R.string.tty_say_weather_forecast_morning));
                 forecastToSay.append(" ");

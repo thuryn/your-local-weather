@@ -434,7 +434,7 @@ public class AppPreference {
         Set<String> defaultVisibleGraphs = new HashSet<>();
         defaultVisibleGraphs.add("0");
         defaultVisibleGraphs.add("1");
-        defaultVisibleGraphs.add("2");;
+        defaultVisibleGraphs.add("2");
         defaultVisibleGraphs.add("4");
         defaultVisibleGraphs.add("6");
         defaultVisibleGraphs.add("7");

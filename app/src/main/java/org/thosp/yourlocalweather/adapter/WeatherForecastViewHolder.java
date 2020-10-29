@@ -169,7 +169,7 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
         if (visibleColumns.contains(8)) {
             headerRainSnow.setVisibility(View.VISIBLE);
             headerRainSnow.setTypeface(typeface);
-            headerRainSnow.setText(String.valueOf((char) 0xf01a) + "/" + String.valueOf((char) 0xf01b));
+            headerRainSnow.setText((char) 0xf01a + "/" + (char) 0xf01b);
             headerRainSnowUnit.setVisibility(View.VISIBLE);
             headerRainSnowUnit.setText(AppPreference.getRainOrSnowUnit(context));
             ViewGroup.LayoutParams params=headerRainSnow.getLayoutParams();

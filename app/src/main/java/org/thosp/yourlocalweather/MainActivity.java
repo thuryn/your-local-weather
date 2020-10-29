@@ -576,12 +576,9 @@ public class MainActivity extends BaseActivity
                     weather.getWindSpeed(),
                     weather.getWindDirection(),
                     currentLocation.getLocale());
-            String description;
-            String sunrise;
-            String sunset;
-            description = Utils.getWeatherDescription(MainActivity.this, currentLocation.getLocaleAbbrev(), weather);
-            sunrise = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunrise(), currentLocation.getLocale());
-            sunset = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunset(), currentLocation.getLocale());
+            String description = Utils.getWeatherDescription(MainActivity.this, currentLocation.getLocaleAbbrev(), weather);
+            String sunrise = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunrise(), currentLocation.getLocale());
+            String sunset = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunset(), currentLocation.getLocale());
             String weatherDescription = getString(R.string.share_weather_descritpion,
                                                   Utils.getLocationForSharingFromAddress(currentLocation.getAddress()),
                                                   temperatureWithUnit,

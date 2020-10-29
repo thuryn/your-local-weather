@@ -39,7 +39,7 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
     private volatile long lastUpdate = 0;
     private volatile float currentLength = 0;
     private float currentLengthLowPassed = 0;
-    private float gravity[] = new float[3];
+    private float[] gravity = new float[3];
     private MoveVector lastMovement;
     protected float sensorResolutionMultiplayer = 1;
 

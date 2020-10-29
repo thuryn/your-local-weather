@@ -119,7 +119,7 @@ public class WidgetUtils {
             remoteViews.setTextViewText(humidityId, humidity);
             remoteViews.setViewVisibility(humidityIconId, TextView.GONE);
         } else {
-            String humidity = ": " + String.valueOf(value) + percentSign;
+            String humidity = ": " + value + percentSign;
             remoteViews.setImageViewBitmap(humidityIconId, Utils.createWeatherIcon(context, context.getString(R.string.icon_humidity)));
             remoteViews.setViewVisibility(humidityIconId, TextView.VISIBLE);
             remoteViews.setTextViewText(humidityId, humidity);
@@ -181,7 +181,7 @@ public class WidgetUtils {
             remoteViews.setTextViewText(widgetCloudsId, cloudnes);
             remoteViews.setViewVisibility(widgetCloudsIconId, TextView.GONE);
         } else {
-            String cloudnes = ": " + String.valueOf(value) + " " + percentSign;
+            String cloudnes = ": " + value + " " + percentSign;
             remoteViews.setImageViewBitmap(widgetCloudsIconId, Utils.createWeatherIcon(context, context.getString(R.string.icon_cloudiness)));
             remoteViews.setViewVisibility(widgetCloudsIconId, TextView.VISIBLE);
             remoteViews.setTextViewText(widgetCloudsId, cloudnes);
