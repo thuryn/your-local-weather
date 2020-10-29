@@ -921,7 +921,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 if (checked) {
                     daysOfWeek += TimeUtils.getTwoPower(6);
                 } else {
-                    daysOfWeek += TimeUtils.getTwoPower(6);
+                    daysOfWeek -= TimeUtils.getTwoPower(6);
                 }
                 break;
             case R.id.voice_trigger_tue:
