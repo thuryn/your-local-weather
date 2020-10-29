@@ -177,7 +177,7 @@ public class Location implements Parcelable {
             persistableBundle.putInt("orderId", orderId);
             persistableBundle.putString("locale", localeAbbrev);
             persistableBundle.putString("nickname", nickname);
-            persistableBundle.putDouble("accuracy", new Double(accuracy));
+            persistableBundle.putDouble("accuracy", accuracy);
             persistableBundle.putString("locationSource", locationSource);
             persistableBundle.putLong("lastLocationUpdate", lastLocationUpdate);
             persistableBundle.putPersistableBundle("address", PersistableBundleBuilder.fromAddress(address));

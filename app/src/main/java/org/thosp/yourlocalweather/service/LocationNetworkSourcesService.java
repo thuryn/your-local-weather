@@ -47,8 +47,8 @@ public class LocationNetworkSourcesService {
 
         // getNetworkOperator() may return empty string, probably due to dropped connection
         if (operator != null && operator.length() > 3) {
-            mcc = Integer.valueOf(operator.substring(0, 3));
-            mnc = Integer.valueOf(operator.substring(3));
+            mcc = Integer.parseInt(operator.substring(0, 3));
+            mnc = Integer.parseInt(operator.substring(3));
         } else {
             appendLog(context, TAG, "Error retrieving network operator, skipping cell");
             mcc = 0;
