@@ -888,9 +888,7 @@ public class GraphsActivity extends ForecastingActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         visibleGraphs = new HashSet<>();
-                        for (Integer selectedItem: mSelectedItems) {
-                            visibleGraphs.add(selectedItem);
-                        }
+                        visibleGraphs.addAll(mSelectedItems);
                         AppPreference.setGraphsActivityVisibleGraphs(context, visibleGraphs);
                         updateUI();
                     }

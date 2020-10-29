@@ -31,14 +31,15 @@ public class TimeUtils {
                 TAG,
                 "voiceTimeSettings.size = ", voiceTimeSettings.size());
 
-        for (Long voiceSettingId: voiceTimeSettings.keySet()) {
+        for (Map.Entry<Long, Long> entry : voiceTimeSettings.entrySet()) {
+            Long voiceSettingId = entry.getKey();
             appendLog(context,
                     TAG,
                     "voiceSettingId = ", voiceSettingId);
             appendLog(context,
                     TAG,
-                    "voiceSettingId.triggerType = ", voiceTimeSettings.get(voiceSettingId));
-            if (voiceTimeSettings.get(voiceSettingId) != 2) {
+                    "voiceSettingId.triggerType = ", entry.getValue());
+            if (entry.getValue() != 2) {
                 continue;
             }
             Long nextAlarmForVoiceSetting = setupAlarmForVoiceForVoiceSetting(context, voiceSettingId, voiceSettingParametersDbHelper);

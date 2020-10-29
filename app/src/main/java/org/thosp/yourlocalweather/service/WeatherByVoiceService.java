@@ -109,14 +109,15 @@ public class WeatherByVoiceService extends Service {
         Map<Long, Boolean> allLocations = voiceSettingParametersDbHelper.getBooleanParam(
                 VoiceSettingParamType.VOICE_SETTING_LOCATIONS.getVoiceSettingParamTypeId());
         appendLog(getBaseContext(), TAG, "sayForLocation:allLocations:" + allLocations);
-        for (Long voiceSettingId: allLocations.keySet()) {
+        for (Map.Entry<Long, Boolean> entry : allLocations.entrySet()) {
+            Long voiceSettingId = entry.getKey();
             Long triggerType = voiceSettingParametersDbHelper.getLongParam(
                     voiceSettingId,
                     VoiceSettingParamType.VOICE_SETTING_TRIGGER_TYPE.getVoiceSettingParamTypeId());
             if (triggerType != 0) {
                 continue;
             }
-            Boolean locations = allLocations.get(voiceSettingId);
+            Boolean locations = entry.getValue();
             if ((locations != null) && locations) {
                 sayCurrentWeather(
                         updateRequest.getWeather(),
@@ -852,8 +853,9 @@ public class WeatherByVoiceService extends Service {
                 return (isBluetoothConnected && isBtDeviceEnabled(voiceSettingId)) ? voiceSettingId : null;
             }
         } else {
-            for (Long currentVoiceSettingId : enabledVoiceDevices.keySet()) {
-                Long enabledVoiceDevice = enabledVoiceDevices.get(currentVoiceSettingId);
+            for (Map.Entry<Long, Long> entry : enabledVoiceDevices.entrySet()) {
+                Long currentVoiceSettingId = entry.getKey();
+                Long enabledVoiceDevice = entry.getValue();
                 appendLog(getBaseContext(), TAG, "isAnySettingValidToTellWeather enabledVoiceDevice: " + enabledVoiceDevice);
                 if (TimeUtils.isCurrentSettingIndex(enabledVoiceDevice, 2)) {
                     appendLog(getBaseContext(), TAG, "speaker_enabled");

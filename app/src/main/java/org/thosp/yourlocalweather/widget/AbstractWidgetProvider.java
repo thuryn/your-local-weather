@@ -195,6 +195,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             for (int widgetIdToSearch: appWidgetIdsForWidget) {
                 if (widgetIdToSearch == appWidgetId) {
                     found = true;
+                    break;
                 }
             }
             if (!found) {
@@ -204,21 +205,21 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
                     getWidgetLayout());
 
-            if (ExtLocationWidgetProvider.class.equals(getWidgetClass())) {
+            if (ExtLocationWidgetProvider.class == getWidgetClass()) {
                 ExtLocationWidgetProvider.setWidgetTheme(context, remoteViews);
-            } else if (MoreWidgetProvider.class.equals(getWidgetClass())) {
+            } else if (MoreWidgetProvider.class == getWidgetClass()) {
                 MoreWidgetProvider.setWidgetTheme(context, remoteViews);
-            } else if (LessWidgetProvider.class.equals(getWidgetClass())) {
+            } else if (LessWidgetProvider.class == getWidgetClass()) {
                 LessWidgetProvider.setWidgetTheme(context, remoteViews);
-            } else if (ExtLocationWithForecastWidgetProvider.class.equals(getWidgetClass())) {
+            } else if (ExtLocationWithForecastWidgetProvider.class == getWidgetClass()) {
                 ExtLocationWithForecastWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
-            } else if (WeatherForecastWidgetProvider.class.equals(getWidgetClass())) {
+            } else if (WeatherForecastWidgetProvider.class == getWidgetClass()) {
                 WeatherForecastWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
-            } else if (ExtLocationWithGraphWidgetProvider.class.equals(getWidgetClass())) {
+            } else if (ExtLocationWithGraphWidgetProvider.class == getWidgetClass()) {
                 ExtLocationWithGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
-            } else if (WeatherGraphWidgetProvider.class.equals(getWidgetClass())) {
+            } else if (WeatherGraphWidgetProvider.class == getWidgetClass()) {
                 WeatherGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
-            } else if (ExtLocationWithForecastGraphWidgetProvider.class.equals(getWidgetClass())) {
+            } else if (ExtLocationWithForecastGraphWidgetProvider.class == getWidgetClass()) {
                 ExtLocationWithForecastGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
             }
             setWidgetIntents(context, remoteViews, getWidgetClass(), appWidgetId);
@@ -387,17 +388,17 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     }
 
     private static Integer getCityViewId(Class widgetClass) {
-        if (ExtLocationWidgetProvider.class.equals(widgetClass)) {
+        if (ExtLocationWidgetProvider.class == widgetClass) {
             return R.id.widget_ext_loc_3x3_widget_city;
-        } else if (MoreWidgetProvider.class.equals(widgetClass)) {
+        } else if (MoreWidgetProvider.class == widgetClass) {
             return R.id.widget_more_3x3_widget_city;
-        } else if (LessWidgetProvider.class.equals(widgetClass)) {
+        } else if (LessWidgetProvider.class == widgetClass) {
             return R.id.widget_less_3x1_widget_city;
-        } else if (ExtLocationWithForecastWidgetProvider.class.equals(widgetClass)) {
+        } else if (ExtLocationWithForecastWidgetProvider.class == widgetClass) {
             return R.id.widget_ext_loc_forecast_3x3_widget_city;
-        } else if (ExtLocationWithGraphWidgetProvider.class.equals(widgetClass)) {
+        } else if (ExtLocationWithGraphWidgetProvider.class == widgetClass) {
             return R.id.widget_ext_loc_graph_3x3_widget_city;
-        } else if (ExtLocationWithForecastGraphWidgetProvider.class.equals(widgetClass)) {
+        } else if (ExtLocationWithForecastGraphWidgetProvider.class == widgetClass) {
             return R.id.widget_ext_loc_forecast_graph_3x3_widget_city;
         } else {
             return null;

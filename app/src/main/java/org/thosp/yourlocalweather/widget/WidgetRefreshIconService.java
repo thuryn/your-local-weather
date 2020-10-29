@@ -160,10 +160,10 @@ public class WidgetRefreshIconService extends Service {
 
     private void rotateRefreshButtonOneStep() {
         AppWidgetManager widgetManager = AppWidgetManager.getInstance(this);
-        for (ComponentName componentName: widgetTypes.keySet()) {
-            RemoteViews rv = new RemoteViews(this.getPackageName(), widgetTypes.get(componentName));
+        for (Map.Entry<ComponentName, Integer> entry : widgetTypes.entrySet()) {
+            RemoteViews rv = new RemoteViews(this.getPackageName(), entry.getValue());
 
-            int[] widgetIds = widgetManager.getAppWidgetIds(componentName);
+            int[] widgetIds = widgetManager.getAppWidgetIds(entry.getKey());
             for (int appWidgetId : widgetIds) {
                 Integer currentRotationIndex = WidgetRefreshIconService.currentRotationIndexes.get(appWidgetId);
                 if ((currentRotationIndex == null) || (currentRotationIndex >= refreshIcons.length)) {

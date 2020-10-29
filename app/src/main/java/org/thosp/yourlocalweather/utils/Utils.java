@@ -839,13 +839,14 @@ public class Utils {
         }
         String geoDistrictOfCity = address.getSubLocality();
         String geoCountryName = address.getCountryName();
-        if ((geoDistrictOfCity == null) || "".equals(geoDistrictOfCity) || geoCity.equalsIgnoreCase(geoDistrictOfCity)) {
-            if ((geoCountryDistrict == null) || "".equals(geoCountryDistrict) || geoCity.equals(geoCountryDistrict)) {
-                return formatLocalityToTwoLines((("".equals(geoCity))?"":(geoCity)) + (("".equals(geoCountryName))?"":(", " + geoCountryName)));
+        String s = (geoCountryName != null && geoCountryName.isEmpty()) ? "" : (", " + geoCountryName);
+        if ((geoDistrictOfCity == null) || geoDistrictOfCity.isEmpty() || geoCity.equalsIgnoreCase(geoDistrictOfCity)) {
+            if ((geoCountryDistrict == null) || geoCountryDistrict.isEmpty() || geoCity.equals(geoCountryDistrict)) {
+                return formatLocalityToTwoLines(((geoCity.isEmpty())?"":(geoCity)) + s);
             }
-            return formatLocalityToTwoLines((("".equals(geoCity))?"":(geoCity + ", ")) + geoCountryDistrict + (("".equals(geoCountryName))?"":(", " + geoCountryName)));
+            return formatLocalityToTwoLines(((geoCity.isEmpty())?"":(geoCity + ", ")) + geoCountryDistrict + s);
         }
-        return formatLocalityToTwoLines((("".equals(geoCity))?"":(geoCity + " - ")) + geoDistrictOfCity + (("".equals(geoCountryName))?"":(", " + geoCountryName)));
+        return formatLocalityToTwoLines(((geoCity.isEmpty())?"":(geoCity + " - ")) + geoDistrictOfCity + s);
     }
 
     public static String getCityFromAddress(Address address) {
@@ -853,7 +854,7 @@ public class Utils {
             return "";
         }
         String geoCity;
-        if ((address.getLocality() != null) && !"".equals(address.getLocality())) {
+        if ((address.getLocality() != null) && address.getLocality() != null && !address.getLocality().isEmpty()) {
             geoCity = address.getLocality();
         } else {
             geoCity = address.getSubAdminArea();
@@ -870,10 +871,10 @@ public class Utils {
         }
         String geoCity = getCityFromAddress(address);
         String geoDistrictOfCity = address.getSubLocality();
-        if ((geoDistrictOfCity == null) || "".equals(geoDistrictOfCity) || geoCity.equalsIgnoreCase(geoDistrictOfCity)) {
+        if ((geoDistrictOfCity == null) || geoDistrictOfCity.isEmpty() || geoCity.equalsIgnoreCase(geoDistrictOfCity)) {
             return geoCity;
         }
-        return (("".equals(geoCity))?"":(geoCity + " - ")) + geoDistrictOfCity;
+        return ((geoCity.isEmpty())?"":(geoCity + " - ")) + geoDistrictOfCity;
     }
 
     public static String getLocationForVoiceFromAddress(Address address) {
@@ -882,10 +883,10 @@ public class Utils {
         }
         String geoCity = getCityFromAddress(address);
         String geoDistrictOfCity = address.getSubLocality();
-        if ((geoDistrictOfCity == null) || "".equals(geoDistrictOfCity) || geoCity.equalsIgnoreCase(geoDistrictOfCity)) {
+        if ((geoDistrictOfCity == null) || geoDistrictOfCity.isEmpty() || geoCity.equalsIgnoreCase(geoDistrictOfCity)) {
             return geoCity;
         }
-        return (("".equals(geoCity))?"":(geoCity + " ")) + geoDistrictOfCity;
+        return ((geoCity.isEmpty())?"":(geoCity + " ")) + geoDistrictOfCity;
     }
 
     private static String formatLocalityToTwoLines(String inputLocation) {

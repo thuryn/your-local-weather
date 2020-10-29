@@ -668,7 +668,7 @@ public class MainActivity extends BaseActivity
             if (AppPreference.isGpsEnabledByPreferences(getBaseContext()) &&
                     isGPSEnabled &&
                     ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                notificationMessage.append(getString(R.string.alertDialog_location_permission_message_location_phone_settings) + "\n\n");
+                notificationMessage.append(getString(R.string.alertDialog_location_permission_message_location_phone_settings)).append("\n\n");
                 permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
             }
             if ("location_geocoder_local".equals(geocoder) && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
@@ -686,7 +686,7 @@ public class MainActivity extends BaseActivity
                 return true;
             }
             settingsAlert.setMessage(notificationMessage.toString());
-            final String[] permissionsArray = permissions.toArray(new String[permissions.size()]);
+            final String[] permissionsArray = permissions.toArray(new String[0]);
             final Activity mainActivity = this;
             settingsAlert.setPositiveButton(R.string.alertDialog_location_permission_positiveButton_permissions,
                     new DialogInterface.OnClickListener() {

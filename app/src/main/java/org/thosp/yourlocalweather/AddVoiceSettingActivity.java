@@ -38,6 +38,7 @@ import org.thosp.yourlocalweather.utils.VoiceSettingParamType;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -162,9 +163,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
         }
 
         if (enabledBtDevices != null) {
-            for (String btDeviceAddress: enabledBtDevices.split(",")) {
-                selectedItems.add(btDeviceAddress);
-            }
+            selectedItems.addAll(Arrays.asList(enabledBtDevices.split(",")));
         }
 
         for(BluetoothDevice bluetoothDevice: bluetoothDeviceSet) {
@@ -222,9 +221,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
         }
 
         if (enabledBtDevices != null) {
-            for (String btDeviceName: enabledBtDevices.split(",")) {
-                selectedItems.add(btDeviceName);
-            }
+            selectedItems.addAll(Arrays.asList(enabledBtDevices.split(",")));
         }
 
         for(BluetoothDevice bluetoothDevice: bluetoothDeviceSet) {
@@ -545,9 +542,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
         }
 
         if (enabledBtDevices != null) {
-            for (String btDeviceName: enabledBtDevices.split(",")) {
-                selectedItems.add(btDeviceName);
-            }
+            selectedItems.addAll(Arrays.asList(enabledBtDevices.split(",")));
         }
 
         for(Location location: currentLocations) {

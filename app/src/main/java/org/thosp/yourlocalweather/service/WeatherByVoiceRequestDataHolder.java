@@ -55,8 +55,8 @@ public class WeatherByVoiceRequestDataHolder implements Serializable {
         }
         WeatherByVoiceRequestDataHolder objToCompareTo = (WeatherByVoiceRequestDataHolder) obj;
         return (this.timeNow == objToCompareTo.timeNow) &&
-               (((this.location == null) && (objToCompareTo.getLocation() == null)) ||
-                ((this.weather != null) && (this.weather.equals(objToCompareTo.getWeather())))
+               (((this.location == null) && (objToCompareTo.location == null)) ||
+                ((this.weather != null) && (this.weather.equals(objToCompareTo.weather)))
         );
     }
 

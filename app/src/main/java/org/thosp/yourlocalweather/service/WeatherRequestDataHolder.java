@@ -84,8 +84,8 @@ public class WeatherRequestDataHolder implements Serializable {
         }
         WeatherRequestDataHolder objToCompareTo = (WeatherRequestDataHolder) obj;
         return (this.locationId == objToCompareTo.locationId) &&
-               (this.updateSource == null ? objToCompareTo.getUpdateSource() == null
-                       : this.updateSource.equals(objToCompareTo.getUpdateSource())) &&
+               (this.updateSource == null ? objToCompareTo.updateSource == null
+                       : this.updateSource.equals(objToCompareTo.updateSource)) &&
                 (this.forceUpdate == objToCompareTo.forceUpdate) &&
                (this.updateType == objToCompareTo.updateType) &&
                (this.updateWeatherOnly == objToCompareTo.updateWeatherOnly);

@@ -22,7 +22,7 @@ public class ApiKeys {
                         Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY,
                         ""
                 );
-        if ((openweathermapApiKey == null) || "".equals(openweathermapApiKey)) {
+        if ((openweathermapApiKey == null) || openweathermapApiKey.isEmpty()) {
             openweathermapApiKey = DEFAULT_OPEN_WEATHER_MAP_API_KEY;
         }
         return openweathermapApiKey;
@@ -35,7 +35,7 @@ public class ApiKeys {
                         Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY,
                         ""
                 );
-        if ((openweathermapApiKey == null) || "".equals(openweathermapApiKey)) {
+        if ((openweathermapApiKey == null) || openweathermapApiKey.isEmpty()) {
             openweathermapApiKey = context.getString(R.string.open_weather_map_api_default_key);
         }
         return openweathermapApiKey;
@@ -48,7 +48,7 @@ public class ApiKeys {
                         Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY,
                         ""
                 );
-        return ((openweathermapApiKey == null) || "".equals(openweathermapApiKey));
+        return ((openweathermapApiKey == null) || openweathermapApiKey.isEmpty());
     }
 
     public static int getAvailableLocations(Context context) {
@@ -67,7 +67,7 @@ public class ApiKeys {
                         "weather_forecast_features_free"
                 );
         return (weatherForecastFeatures == null) ||
-                "".equals(weatherForecastFeatures) ||
+                weatherForecastFeatures.isEmpty() ||
                 "weather_forecast_features_free".equals(weatherForecastFeatures);
     }
 
