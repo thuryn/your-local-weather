@@ -124,7 +124,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void updateUI();
 
     private void setupNavDrawer() {
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
 
         if (mDrawerLayout == null) {
             return;
@@ -158,11 +158,11 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     private void configureNavView() {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        NavigationView navigationView = findViewById(R.id.navigation_view);
         navigationView.setNavigationItemSelectedListener(navigationViewListener);
 
         View headerLayout = navigationView.getHeaderView(0);
-        mHeaderCity = (TextView) headerLayout.findViewById(R.id.nav_header_city);
+        mHeaderCity = headerLayout.findViewById(R.id.nav_header_city);
         //mHeaderCity.setText(Utils.getCityAndCountry(this));
     }
 
@@ -233,7 +233,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void getToolbar() {
         if (mToolbar == null) {
-            mToolbar = (Toolbar) findViewById(R.id.toolbar);
+            mToolbar = findViewById(R.id.toolbar);
             if (mToolbar != null) {
                 setSupportActionBar(mToolbar);
             }

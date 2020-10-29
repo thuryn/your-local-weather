@@ -85,42 +85,42 @@ public class GraphsActivity extends ForecastingActivity {
         super.onCreate(savedInstanceState);
         initializeWeatherForecastReceiver(UpdateWeatherService.ACTION_GRAPHS_UPDATE_RESULT);
         setContentView(R.layout.activity_graphs);
-        localityView = (TextView) findViewById(R.id.graph_locality);
-        combinedChart = (CombinedChart) findViewById(R.id.combined_chart);
-        combinedChartCard = (CardView) findViewById(R.id.combined_chart_card);
-        mTemperatureChart = (LineChart) findViewById(R.id.temperature_chart);
-        temperatureChartCard = (CardView) findViewById(R.id.temperature_chart_card);
-        mWindChart = (LineChart) findViewById(R.id.wind_chart);
-        windChartCard = (CardView) findViewById(R.id.wind_chart_card);
-        mRainChart = (LineChart) findViewById(R.id.rain_chart);
-        rainChartCard = (CardView) findViewById(R.id.rain_chart_card);
-        mSnowChart = (LineChart) findViewById(R.id.snow_chart);
-        snowChartCard = (CardView) findViewById(R.id.snow_chart_card);
-        mPressureChart = (LineChart) findViewById(R.id.pressure_chart);
-        pressureChartCard = (CardView) findViewById(R.id.pressure_chart_card);
-        rainBarChart = (BarChart) findViewById(R.id.bar_rain_chart);
-        rainBarCard = (CardView) findViewById(R.id.rain_bar_chart_card);
-        snowBarChart = (BarChart) findViewById(R.id.bar_snow_chart);
-        snowBarCard = (CardView) findViewById(R.id.snow_bar_chart_card);
-        TextView temperatureLabel = (TextView) findViewById(R.id.graphs_temperature_label);
+        localityView = findViewById(R.id.graph_locality);
+        combinedChart = findViewById(R.id.combined_chart);
+        combinedChartCard = findViewById(R.id.combined_chart_card);
+        mTemperatureChart = findViewById(R.id.temperature_chart);
+        temperatureChartCard = findViewById(R.id.temperature_chart_card);
+        mWindChart = findViewById(R.id.wind_chart);
+        windChartCard = findViewById(R.id.wind_chart_card);
+        mRainChart = findViewById(R.id.rain_chart);
+        rainChartCard = findViewById(R.id.rain_chart_card);
+        mSnowChart = findViewById(R.id.snow_chart);
+        snowChartCard = findViewById(R.id.snow_chart_card);
+        mPressureChart = findViewById(R.id.pressure_chart);
+        pressureChartCard = findViewById(R.id.pressure_chart_card);
+        rainBarChart = findViewById(R.id.bar_rain_chart);
+        rainBarCard = findViewById(R.id.rain_bar_chart_card);
+        snowBarChart = findViewById(R.id.bar_snow_chart);
+        snowBarCard = findViewById(R.id.snow_bar_chart_card);
+        TextView temperatureLabel = findViewById(R.id.graphs_temperature_label);
         temperatureLabel.setText(getString(R.string.label_temperature) +
                                          ", " +
                                         TemperatureUtil.getTemperatureUnit(this));
-        TextView windLabel = (TextView) findViewById(R.id.graphs_wind_label);
+        TextView windLabel = findViewById(R.id.graphs_wind_label);
         windLabel.setText(getString(R.string.label_wind) + ", " + AppPreference.getWindUnit(this));
-        TextView rainLabel = (TextView) findViewById(R.id.graphs_rain_label);
+        TextView rainLabel = findViewById(R.id.graphs_rain_label);
         rainLabel.setText(getString(R.string.label_rain) + ", " + getString(AppPreference.getRainOrSnowUnit(this)));
-        TextView snowLabel = (TextView) findViewById(R.id.graphs_snow_label);
+        TextView snowLabel = findViewById(R.id.graphs_snow_label);
         snowLabel.setText(getString(R.string.label_snow) + ", " + getString(AppPreference.getRainOrSnowUnit(this)));
-        TextView rainBarLabel = (TextView) findViewById(R.id.graphs_bar_rain_label);
+        TextView rainBarLabel = findViewById(R.id.graphs_bar_rain_label);
         rainBarLabel.setText(getString(R.string.label_rain) + ", " + getString(AppPreference.getRainOrSnowUnit(this)));
-        TextView snowBarLabel = (TextView) findViewById(R.id.graphs_bar_snow_label);
+        TextView snowBarLabel = findViewById(R.id.graphs_bar_snow_label);
         snowBarLabel.setText(getString(R.string.label_snow) + ", " + getString(AppPreference.getRainOrSnowUnit(this)));
-        TextView pressureLabel = (TextView) findViewById(R.id.graphs_pressure_label);
+        TextView pressureLabel = findViewById(R.id.graphs_pressure_label);
         pressureLabel.setText(getString(R.string.label_pressure) + ", " + AppPreference.getPressureUnit(this));
         visibleGraphs = AppPreference.getGraphsActivityVisibleGraphs(this);
         combinedGraphValues = AppPreference.getCombinedGraphValues(this);
-        forecastType = (Switch) findViewById(R.id.forecast_forecastType);
+        forecastType = findViewById(R.id.forecast_forecastType);
 
         forecastType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -129,7 +129,7 @@ public class GraphsActivity extends ForecastingActivity {
             }
         });
         updateUI();
-        NestedScrollView mRecyclerView = (NestedScrollView) findViewById(R.id.graph_scroll_view);
+        NestedScrollView mRecyclerView = findViewById(R.id.graph_scroll_view);
         mRecyclerView.setOnTouchListener(new ActivityTransitionTouchListener(
                 WeatherForecastActivity.class,
                 null, this));
@@ -875,13 +875,11 @@ public class GraphsActivity extends ForecastingActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which,
                                                 boolean isChecked) {
+                                // Else, if the item is already in the array, remove it
                                 if (isChecked) {
                                     // If the user checked the item, add it to the selected items
                                     mSelectedItems.add(which);
-                                } else if (mSelectedItems.contains(which)) {
-                                    // Else, if the item is already in the array, remove it
-                                    mSelectedItems.remove(which);
-                                }
+                                } else mSelectedItems.remove(which);
                             }
                         })
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
@@ -973,26 +971,26 @@ public class GraphsActivity extends ForecastingActivity {
             return;
         }
 
-        TextView temperatureLabel = (TextView) findViewById(R.id.graphs_temperature_label);
+        TextView temperatureLabel = findViewById(R.id.graphs_temperature_label);
         temperatureLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         temperatureLabel.setTextColor(PreferenceUtil.getTextColor(this));
-        TextView windLabel = (TextView) findViewById(R.id.graphs_wind_label);
+        TextView windLabel = findViewById(R.id.graphs_wind_label);
         windLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         windLabel.setTextColor(PreferenceUtil.getTextColor(this));
-        TextView rainLabel = (TextView) findViewById(R.id.graphs_rain_label);
+        TextView rainLabel = findViewById(R.id.graphs_rain_label);
         rainLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         rainLabel.setTextColor(PreferenceUtil.getTextColor(this));
-        TextView snowLabel = (TextView) findViewById(R.id.graphs_snow_label);
+        TextView snowLabel = findViewById(R.id.graphs_snow_label);
         snowLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         snowLabel.setTextColor(PreferenceUtil.getTextColor(this));
-        TextView rainBarLabel = (TextView) findViewById(R.id.graphs_bar_rain_label);
+        TextView rainBarLabel = findViewById(R.id.graphs_bar_rain_label);
         rainBarLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         rainBarLabel.setTextColor(PreferenceUtil.getTextColor(this));
-        TextView snowBarLabel = (TextView) findViewById(R.id.graphs_bar_snow_label);
+        TextView snowBarLabel = findViewById(R.id.graphs_bar_snow_label);
         snowBarLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         snowBarLabel.setTextColor(PreferenceUtil.getTextColor(this));
 
-        TextView combinedLabel = (TextView) findViewById(R.id.graphs_combined_label);
+        TextView combinedLabel = findViewById(R.id.graphs_combined_label);
         StringBuilder combinedGraphLabel  = new StringBuilder();
         if (combinedGraphValues.contains(0)) {
             combinedGraphLabel.append(getString(R.string.label_temperature));

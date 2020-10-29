@@ -55,7 +55,7 @@ public class LocationsActivity extends BaseActivity {
         setupActionBar();
         setupRecyclerView();
         locationsDbHelper = LocationsDbHelper.getInstance(this);
-        addLocationButton = (FloatingActionButton) findViewById(R.id.add_location);
+        addLocationButton = findViewById(R.id.add_location);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class LocationsActivity extends BaseActivity {
     }
 
     private void setupActionBar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -93,7 +93,7 @@ public class LocationsActivity extends BaseActivity {
     }
 
     private void setupRecyclerView() {
-        recyclerView = (RecyclerView) findViewById(R.id.search_recycler_view);
+        recyclerView = findViewById(R.id.search_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(org.thosp.yourlocalweather.LocationsActivity.this));
 
         final LocationsSwipeController swipeController = new LocationsSwipeController(new LocationsSwipeControllerActions() {
@@ -188,8 +188,8 @@ public class LocationsActivity extends BaseActivity {
 
         LocationHolder(View itemView) {
             super(itemView);
-            mCityName = (TextView) itemView.findViewById(R.id.city_name);
-            mCountryName = (TextView) itemView.findViewById(R.id.country_code);
+            mCityName = itemView.findViewById(R.id.city_name);
+            mCountryName = itemView.findViewById(R.id.country_code);
         }
 
         void bindLocation(Location location) {

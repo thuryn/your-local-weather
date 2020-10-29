@@ -105,9 +105,7 @@ public class MultiSelectionLocationSpinner extends AppCompatSpinner implements D
     }
 
     public void setSelection(ArrayList<MultiselectionLocationItem> selection) {
-        for (int i = 0; i < this.selection.length; i++) {
-            this.selection[i] = false;
-        }
+        Arrays.fill(this.selection, false);
 
         for (MultiselectionLocationItem sel : selection) {
             for (int j = 0; j < items.size(); ++j) {

@@ -62,7 +62,7 @@ public class WeatherByVoiceRequestDataHolder implements Serializable {
 
     @Override
     public int hashCode() {
-        return (int) location.getOrderId();
+        return location.getOrderId();
     }
     
     @Override

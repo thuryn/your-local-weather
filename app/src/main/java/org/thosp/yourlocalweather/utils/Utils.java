@@ -98,20 +98,14 @@ public class Utils {
                 icon = context.getString(R.string.icon_few_clouds_night);
                 break;
             case "03d":
-                icon = context.getString(R.string.icon_scattered_clouds);
-                break;
             case "03n":
                 icon = context.getString(R.string.icon_scattered_clouds);
                 break;
             case "04d":
-                icon = context.getString(R.string.icon_broken_clouds);
-                break;
             case "04n":
                 icon = context.getString(R.string.icon_broken_clouds);
                 break;
             case "09d":
-                icon = context.getString(R.string.icon_shower_rain);
-                break;
             case "09n":
                 icon = context.getString(R.string.icon_shower_rain);
                 break;
@@ -122,20 +116,14 @@ public class Utils {
                 icon = context.getString(R.string.icon_rain_night);
                 break;
             case "11d":
-                icon = context.getString(R.string.icon_thunderstorm);
-                break;
             case "11n":
                 icon = context.getString(R.string.icon_thunderstorm);
                 break;
             case "13d":
-                icon = context.getString(R.string.icon_snow);
-                break;
             case "13n":
                 icon = context.getString(R.string.icon_snow);
                 break;
             case "50d":
-                icon = context.getString(R.string.icon_mist);
-                break;
             case "50n":
                 icon = context.getString(R.string.icon_mist);
                 break;
@@ -225,6 +213,7 @@ public class Utils {
             case 803:
                 return R.drawable.ic_weather_set_1_28;
             case 804:
+            case 951:
                 return R.drawable.ic_weather_set_1_26;
             case 300:
             case 500:
@@ -262,10 +251,8 @@ public class Utils {
             case 761:
                 return R.drawable.ic_weather_set_1_20;
             case 762:
+            case 903:
                 return R.drawable.ic_weather_set_1_na;
-            case 771:
-            case 781:
-                return R.drawable.ic_weather_set_1_24;
             case 200:
             case 210:
             case 230:
@@ -299,20 +286,10 @@ public class Utils {
             case 621:
             case 622:
                 return R.drawable.ic_weather_set_1_42;
-            case 900:
-            case 901:
-            case 902:
-                return R.drawable.ic_weather_set_1_24;
-            case 903:
-                return R.drawable.ic_weather_set_1_na;
             case 904:
                 return R.drawable.ic_weather_set_1_36;
-            case 905:
-                return R.drawable.ic_weather_set_1_24;
             case 906:
                 return R.drawable.ic_weather_set_1_18;
-            case 951:
-                return R.drawable.ic_weather_set_1_26;
             case 952:
             case 953:
             case 954:
@@ -324,6 +301,12 @@ public class Utils {
             case 960:
             case 961:
             case 962:
+            case 771:
+            case 781:
+            case 900:
+            case 901:
+            case 902:
+            case 905:
             default:
                 return R.drawable.ic_weather_set_1_24;
         }
@@ -370,6 +353,7 @@ public class Utils {
                 else
                     return R.drawable.ic_weather_set_1_27;
             case 804:
+            case 951:
                 return R.drawable.ic_weather_set_1_26;
             case 300:
             case 500:
@@ -413,10 +397,8 @@ public class Utils {
             case 761:
                 return R.drawable.ic_weather_set_1_20;
             case 762:
+            case 903:
                 return R.drawable.ic_weather_set_1_na;
-            case 771:
-            case 781:
-                return R.drawable.ic_weather_set_1_24;
             case 200:
             case 210:
             case 230:
@@ -453,20 +435,10 @@ public class Utils {
             case 621:
             case 622:
                 return R.drawable.ic_weather_set_1_42;
-            case 900:
-            case 901:
-            case 902:
-                return R.drawable.ic_weather_set_1_24;
-            case 903:
-                return R.drawable.ic_weather_set_1_na;
             case 904:
                 return R.drawable.ic_weather_set_1_36;
-            case 905:
-                return R.drawable.ic_weather_set_1_24;
             case 906:
                 return R.drawable.ic_weather_set_1_18;
-            case 951:
-                return R.drawable.ic_weather_set_1_26;
             case 952:
             case 953:
             case 954:
@@ -478,6 +450,12 @@ public class Utils {
             case 960:
             case 961:
             case 962:
+            case 771:
+            case 781:
+            case 900:
+            case 901:
+            case 902:
+            case 905:
             default:
                 return R.drawable.ic_weather_set_1_24;
         }

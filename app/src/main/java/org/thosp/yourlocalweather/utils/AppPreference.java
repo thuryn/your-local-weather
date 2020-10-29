@@ -249,10 +249,11 @@ public class AppPreference {
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_PRESSURE_UNITS, "hpa");
         switch (unitsFromPreferences) {
-            case "mmhg": return 2;
-            case "inhg": return 2;
-            case "mbar": return 0;
-            case "psi" : return 2;
+            case "mmhg":
+            case "inhg":
+            case "psi" :
+                return 2;
+            case "mbar":
             default: return 0;
         }
     }
@@ -491,10 +492,9 @@ public class AppPreference {
         if (null == theme) {
             return new GraphGridColors(Color.parseColor("#333333"), Color.LTGRAY);
         } else switch (theme) {
-            case "dark":
-                return new GraphGridColors(Color.WHITE, Color.GRAY);
             case "light":
                 return new GraphGridColors(Color.parseColor("#333333"), Color.LTGRAY);
+            case "dark":
             default:
                 return new GraphGridColors(Color.WHITE, Color.GRAY);
         }

@@ -97,7 +97,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
     }
 
     private void setTextHandler(int textViewId, final VoiceSettingParamType paramType) {
-        EditText textView = (EditText)findViewById(textViewId);
+        EditText textView = findViewById(textViewId);
 
         String originalValue = voiceSettingParametersDbHelper.getStringParam(
                 voiceSettingId,
@@ -355,7 +355,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 voiceSettingId,
                 VoiceSettingParamType.VOICE_SETTING_TIME_TO_START.getVoiceSettingParamTypeId());
 
-        Button voiceSettingButton = (Button) findViewById(R.id.button_voice_setting_time);
+        Button voiceSettingButton = findViewById(R.id.button_voice_setting_time);
 
         if (storedHourMinute == null) {
             voiceSettingButton.setText(getString(R.string.pref_title_tts_time));
@@ -374,7 +374,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
     }
 
     private void setupActionBar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -432,7 +432,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
             c.set(Calendar.HOUR_OF_DAY, hourOfDay);
             c.set(Calendar.MINUTE, minute);
 
-            Button voiceSettingButton = (Button) getActivity().findViewById(R.id.button_voice_setting_time);
+            Button voiceSettingButton = getActivity().findViewById(R.id.button_voice_setting_time);
             voiceSettingButton.setText(AppPreference.getLocalizedTime(getContext(), c.getTime(), applicationLocale));
             prepareNextTime(getActivity(), voiceSettingId, applicationLocale, voiceSettingParametersDbHelper);
         }

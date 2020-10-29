@@ -185,7 +185,7 @@ public class VoiceLanguageOptionsActivity extends BaseActivity {
     }
 
     private void setupActionBar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.voice_setting_lang_opt_toolbar);
+        Toolbar toolbar = findViewById(R.id.voice_setting_lang_opt_toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

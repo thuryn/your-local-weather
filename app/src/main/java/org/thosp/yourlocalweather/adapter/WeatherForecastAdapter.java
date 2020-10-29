@@ -43,7 +43,7 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
         for (DetailedWeatherForecast forecast: weatherForecastList) {
             forecastCalendar.setTimeInMillis(forecast.getDateTime() * 1000);
             int forecastDay = forecastCalendar.get(Calendar.DAY_OF_YEAR);
-            if (!mWeatherList.keySet().contains(forecastDay)) {
+            if (!mWeatherList.containsKey(forecastDay)) {
                 List<DetailedWeatherForecast> dayForecastList = new ArrayList<>();
                 mWeatherList.put(forecastDay, dayForecastList);
                 keys.add(forecastDay);

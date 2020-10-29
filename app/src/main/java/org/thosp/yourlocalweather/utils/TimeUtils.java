@@ -173,7 +173,6 @@ public class TimeUtils {
                     break;
                 } else {
                     c.add(Calendar.DAY_OF_YEAR, 1);
-                    continue;
                 }
             }
         }

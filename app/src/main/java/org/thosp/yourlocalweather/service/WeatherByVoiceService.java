@@ -294,11 +294,10 @@ public class WeatherByVoiceService extends Service {
         }
         if (TimeUtils.isCurrentSettingIndex(partsToSay, 4) || TimeUtils.isCurrentSettingIndex(partsToSay, 2)) {
             textToSay.add(TTS_DELAY_BETWEEN_ITEM);
-            StringBuilder weatherDescriptionToSay = new StringBuilder();
-            weatherDescriptionToSay.append(" ");
-            weatherDescriptionToSay.append(Utils.getWeatherDescription(getBaseContext(), currentLocation.getLocaleAbbrev(), weather));
-            weatherDescriptionToSay.append(" ");
-            textToSay.add(weatherDescriptionToSay.toString());
+            String weatherDescriptionToSay = " " +
+                    Utils.getWeatherDescription(getBaseContext(), currentLocation.getLocaleAbbrev(), weather) +
+                    " ";
+            textToSay.add(weatherDescriptionToSay);
         }
         if (TimeUtils.isCurrentSettingIndex(partsToSay, 6)) {
             textToSay.add(TTS_DELAY_BETWEEN_ITEM);

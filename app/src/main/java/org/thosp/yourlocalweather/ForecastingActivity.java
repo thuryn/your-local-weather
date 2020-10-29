@@ -47,11 +47,6 @@ public abstract class ForecastingActivity extends BaseActivity {
             public void handleMessage(android.os.Message msg) {
                 switch (msg.what) {
                     case Constants.TASK_RESULT_ERROR:
-                        Toast.makeText(ForecastingActivity.this,
-                                R.string.toast_parse_error,
-                                Toast.LENGTH_SHORT).show();
-                        setVisibleUpdating(false);
-                        break;
                     case Constants.PARSE_RESULT_ERROR:
                         Toast.makeText(ForecastingActivity.this,
                                 R.string.toast_parse_error,

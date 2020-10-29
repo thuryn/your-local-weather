@@ -142,14 +142,14 @@ public class MainActivity extends BaseActivity
         /**
          * Configure SwipeRefreshLayout
          */
-        mSwipeRefresh = (SwipeRefreshLayout) findViewById(R.id.main_swipe_refresh);
+        mSwipeRefresh = findViewById(R.id.main_swipe_refresh);
         int top_to_padding = 150;
         mSwipeRefresh.setProgressViewOffset(false, 0, top_to_padding);
         mSwipeRefresh.setColorSchemeResources(R.color.swipe_red, R.color.swipe_green,
                 R.color.swipe_blue);
         mSwipeRefresh.setOnRefreshListener(swipeRefreshListener);
 
-        NestedScrollView main_scroll_view = (NestedScrollView) findViewById(R.id.main_scroll_view);
+        NestedScrollView main_scroll_view = findViewById(R.id.main_scroll_view);
         main_scroll_view.setOnTouchListener(new ActivityTransitionTouchListener(
                 null,
                 WeatherForecastActivity.class, this));
@@ -158,7 +158,7 @@ public class MainActivity extends BaseActivity
         /**
          * Share weather fab
          */
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         this.storedContext = this;
         fab.setOnClickListener(fabListener);
         checkSettingsAndPermisions();
@@ -430,21 +430,21 @@ public class MainActivity extends BaseActivity
         Typeface robotoLight = Typeface.createFromAsset(this.getAssets(),
                 "fonts/Roboto-Light.ttf");
 
-        mIconWeatherView = (ImageView) findViewById(R.id.main_weather_icon);
-        mTemperatureView = (TextView) findViewById(R.id.main_temperature);
-	    dewPointView = (TextView) findViewById(R.id.main_dew_point);
-        secondTemperatureView = (TextView) findViewById(R.id.main_second_temperature);
-        mDescriptionView = (TextView) findViewById(R.id.main_description);
-        mPressureView = (TextView) findViewById(R.id.main_pressure);
-        mHumidityView = (TextView) findViewById(R.id.main_humidity);
-        mWindSpeedView = (TextView) findViewById(R.id.main_wind_speed);
-        mCloudinessView = (TextView) findViewById(R.id.main_cloudiness);
-        mLastUpdateView = (TextView) findViewById(R.id.main_last_update);
-        mSunriseView = (TextView) findViewById(R.id.main_sunrise);
-        mSunsetView = (TextView) findViewById(R.id.main_sunset);
-        mAppBarLayout = (AppBarLayout) findViewById(R.id.main_app_bar);
-        localityView = (TextView) findViewById(R.id.main_locality);
-        switchLocationButton = (Button) findViewById(R.id.main_switch_location);
+        mIconWeatherView = findViewById(R.id.main_weather_icon);
+        mTemperatureView = findViewById(R.id.main_temperature);
+	    dewPointView = findViewById(R.id.main_dew_point);
+        secondTemperatureView = findViewById(R.id.main_second_temperature);
+        mDescriptionView = findViewById(R.id.main_description);
+        mPressureView = findViewById(R.id.main_pressure);
+        mHumidityView = findViewById(R.id.main_humidity);
+        mWindSpeedView = findViewById(R.id.main_wind_speed);
+        mCloudinessView = findViewById(R.id.main_cloudiness);
+        mLastUpdateView = findViewById(R.id.main_last_update);
+        mSunriseView = findViewById(R.id.main_sunrise);
+        mSunsetView = findViewById(R.id.main_sunset);
+        mAppBarLayout = findViewById(R.id.main_app_bar);
+        localityView = findViewById(R.id.main_locality);
+        switchLocationButton = findViewById(R.id.main_switch_location);
 
         mTemperatureView.setTypeface(robotoThin);
         dewPointView.setTypeface(robotoLight);
@@ -460,28 +460,28 @@ public class MainActivity extends BaseActivity
         /**
          * Initialize and configure weather icons
          */
-        iconSecondTemperatureView = (TextView) findViewById(R.id.main_second_temperature_icon);
+        iconSecondTemperatureView = findViewById(R.id.main_second_temperature_icon);
         iconSecondTemperatureView.setTypeface(weatherFontIcon);
         iconSecondTemperatureView.setText(iconSecondTemperature);
-        mIconWindView = (TextView) findViewById(R.id.main_wind_icon);
+        mIconWindView = findViewById(R.id.main_wind_icon);
         mIconWindView.setTypeface(weatherFontIcon);
         mIconWindView.setText(mIconWind);
-        mIconHumidityView = (TextView) findViewById(R.id.main_humidity_icon);
+        mIconHumidityView = findViewById(R.id.main_humidity_icon);
         mIconHumidityView.setTypeface(weatherFontIcon);
         mIconHumidityView.setText(mIconHumidity);
-        mIconPressureView = (TextView) findViewById(R.id.main_pressure_icon);
+        mIconPressureView = findViewById(R.id.main_pressure_icon);
         mIconPressureView.setTypeface(weatherFontIcon);
         mIconPressureView.setText(mIconPressure);
-        mIconCloudinessView = (TextView) findViewById(R.id.main_cloudiness_icon);
+        mIconCloudinessView = findViewById(R.id.main_cloudiness_icon);
         mIconCloudinessView.setTypeface(weatherFontIcon);
         mIconCloudinessView.setText(mIconCloudiness);
-        mIconSunriseView = (TextView) findViewById(R.id.main_sunrise_icon);
+        mIconSunriseView = findViewById(R.id.main_sunrise_icon);
         mIconSunriseView.setTypeface(weatherFontIcon);
         mIconSunriseView.setText(mIconSunrise);
-        mIconSunsetView = (TextView) findViewById(R.id.main_sunset_icon);
+        mIconSunsetView = findViewById(R.id.main_sunset_icon);
         mIconSunsetView.setTypeface(weatherFontIcon);
         mIconSunsetView.setText(mIconSunset);
-        mIconDewPointView = (TextView) findViewById(R.id.main_dew_point_icon);
+        mIconDewPointView = findViewById(R.id.main_dew_point_icon);
         mIconDewPointView.setTypeface(weatherFontIcon);
         mIconDewPointView.setText(mIconDewPoint);
     }
@@ -501,7 +501,7 @@ public class MainActivity extends BaseActivity
     private void setUpdateButtonState(boolean isUpdate) {
         if (mToolbarMenu != null) {
             MenuItem updateItem = mToolbarMenu.findItem(R.id.main_menu_refresh);
-            ProgressBar progressUpdate = (ProgressBar) findViewById(R.id.toolbar_progress_bar);
+            ProgressBar progressUpdate = findViewById(R.id.toolbar_progress_bar);
             if (isUpdate) {
                 updateItem.setVisible(false);
                 progressUpdate.setVisibility(View.VISIBLE);

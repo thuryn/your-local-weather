@@ -112,9 +112,7 @@ public class MultiSelectionSpinner extends AppCompatSpinner implements DialogInt
     }
 
     public void setSelection(ArrayList<MultiselectionItem> selection) {
-        for (int i = 0; i < this.selection.length; i++) {
-            this.selection[i] = false;
-        }
+        Arrays.fill(this.selection, false);
 
         for (MultiselectionItem sel : selection) {
             for (int j = 0; j < items.size(); ++j) {

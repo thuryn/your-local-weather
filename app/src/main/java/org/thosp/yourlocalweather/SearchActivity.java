@@ -62,7 +62,7 @@ public class SearchActivity extends BaseActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
                 if (intent.hasExtra("addresses")) {
-                    address = (Address) intent.getExtras().getParcelable("addresses");
+                    address = intent.getExtras().getParcelable("addresses");
                     resolvedLocationAddress.setText(Utils.getCityAndCountryFromAddress(address));
                 } else {
                     resolvedLocationAddress.setText(context.getString(R.string.location_not_found));
@@ -89,14 +89,14 @@ public class SearchActivity extends BaseActivity {
         setContentView(R.layout.activity_search);
         setupActionBar();
 
-        addLocatonButton = (Button) findViewById(R.id.search_add_location_button);
+        addLocatonButton = findViewById(R.id.search_add_location_button);
         addLocatonButton.setVisibility(View.GONE);
 
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
         List<Location> currentLocations = locationsDbHelper.getAllRows();
         Location lastLocation = currentLocations.get(currentLocations.size() - 1);
 
-        map = (MapView) findViewById(R.id.map);
+        map = findViewById(R.id.map);
         map.setTileSource(TileSourceFactory.MAPNIK);
         map.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.SHOW_AND_FADEOUT);
         map.setMultiTouchControls(true);
@@ -111,7 +111,7 @@ public class SearchActivity extends BaseActivity {
         }
         mapController.setCenter(startPoint);
 
-        resolvedLocationAddress = (TextView) findViewById(R.id.resolved_location_address);
+        resolvedLocationAddress = findViewById(R.id.resolved_location_address);
         resolvedLocationAddress.setText(R.string.search_location_info);
         mContext = this;
 
@@ -203,7 +203,7 @@ public class SearchActivity extends BaseActivity {
     }
 
     private void setupActionBar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);

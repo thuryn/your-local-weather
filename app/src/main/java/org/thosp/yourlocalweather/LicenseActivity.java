@@ -32,7 +32,7 @@ public class LicenseActivity extends AppCompatActivity {
         setTitle(getString(title_activity_license).replace("%s", path.substring(24)));
 
         try {
-            TextView licenseTextView = (TextView) findViewById(R.id.license_license_text);
+            TextView licenseTextView = findViewById(R.id.license_license_text);
             final String licenseText = readLicense(getAssets().open(path.substring(15)));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 licenseTextView.setText(Html.fromHtml(licenseText.replace("\n\n", "<br/><br/>"), Html.FROM_HTML_MODE_LEGACY));
@@ -45,7 +45,7 @@ public class LicenseActivity extends AppCompatActivity {
     }
 
     private void setupActionBar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

@@ -128,9 +128,7 @@ public class WidgetRefreshIconService extends Service {
         rotationSourcesLock.lock();
         try {
             //appendLog(getBaseContext(), TAG, "stopRotatingUpdateIcon:rotationSources.contains(rotationSource):" + rotationSources.contains(rotationSource));
-            if (rotationSources.contains(rotationSource)) {
-                rotationSources.remove(rotationSource);
-            }
+            rotationSources.remove(rotationSource);
             printRotationSources();
             if (!rotationSources.isEmpty()) {
                 return;
