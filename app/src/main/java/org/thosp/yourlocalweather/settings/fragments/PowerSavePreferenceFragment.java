@@ -122,7 +122,7 @@ public class PowerSavePreferenceFragment extends PreferenceFragment implements
             @Override
             public boolean onPreferenceChange(Preference locationLasting, Object value) {
                 String locationRowLastingHoursTxt = (String) value;
-                Integer locationRowLastingHours = Integer.valueOf(locationRowLastingHoursTxt);
+                int locationRowLastingHours = Integer.parseInt(locationRowLastingHoursTxt);
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 preferences.edit().putString(Constants.APP_SETTINGS_LOCATION_CACHE_LASTING_HOURS, locationRowLastingHoursTxt).apply();
                 locationLasting.setSummary(getString(getLocationLastingLabel(locationRowLastingHours)));

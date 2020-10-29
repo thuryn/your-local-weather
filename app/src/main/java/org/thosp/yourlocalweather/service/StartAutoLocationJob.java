@@ -99,7 +99,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
         long lastSensorServicesCheckTimeInMs = AppPreference.getLastSensorServicesCheckTimeInMs(getBaseContext());
         if ("0".equals(updateAutoPeriodStr)) {
             if ((now.getTimeInMillis() >= (lastSensorServicesCheckTimeInMs + AppAlarmService.START_SENSORS_CHECK_PERIOD))) {
-                sensorLocationUpdateService.startSensorBasedUpdates(0);
+                sensorLocationUpdateService.startSensorBasedUpdates();
                 AppPreference.setLastSensorServicesCheckTimeInMs(getBaseContext(), now.getTimeInMillis());
             }
             if (notificationForLocation)  {

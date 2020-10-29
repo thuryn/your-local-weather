@@ -126,7 +126,7 @@ public class DebugOptionsPreferenceFragment extends PreferenceFragment {
             @Override
             public boolean onPreferenceChange(Preference logFileLasting, Object value) {
                 String logFileLastingHoursTxt = (String) value;
-                Integer logFileLastingHours = Integer.valueOf(logFileLastingHoursTxt);
+                int logFileLastingHours = Integer.parseInt(logFileLastingHoursTxt);
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
                 preferences.edit().putString(KEY_DEBUG_FILE_LASTING_HOURS, logFileLastingHoursTxt).apply();
                 logFileLasting.setSummary(getString(getLogFileLastingLabel(logFileLastingHours)));

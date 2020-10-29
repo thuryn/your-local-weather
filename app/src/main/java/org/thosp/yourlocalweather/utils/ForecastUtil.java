@@ -119,8 +119,8 @@ public class ForecastUtil {
                 weatherDescriptionsInDay.put(weatherCondition.getWeatherId(), weatherCondition.getDescription());
             }
         }
-        Integer maxWeatherIdWithRain = 0;
-        Integer maxWeatherIdWithSnow = 0;
+        int maxWeatherIdWithRain = 0;
+        int maxWeatherIdWithSnow = 0;
         Integer weatherIdForTheDay = 0;
         int maxIconOccurrence = 0;
         for (Integer weatherId : weatherIdsInDay.keySet()) {

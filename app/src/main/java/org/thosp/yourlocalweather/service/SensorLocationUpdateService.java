@@ -77,9 +77,8 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
         }
     }
 
-    public int startSensorBasedUpdates(int initialReturnValue) {
+    public void startSensorBasedUpdates() {
         sendIntent("android.intent.action.START_SENSOR_BASED_UPDATES");
-        return initialReturnValue;
     }
     
     public int performSensorBasedUpdates(int initialReturnValue) {

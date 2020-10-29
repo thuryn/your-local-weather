@@ -86,7 +86,7 @@ public class LicenseKeysDbHelper extends SQLiteOpenHelper {
                 return null;
             }
 
-            Long itemId = cursor.getLong(cursor.getColumnIndexOrThrow(LicenseKeysContract.LicenseKeys._ID));
+            long itemId = cursor.getLong(cursor.getColumnIndexOrThrow(LicenseKeysContract.LicenseKeys._ID));
             String initialLicense = cursor.getString(cursor.getColumnIndexOrThrow(LicenseKeysContract.LicenseKeys.COLUMN_NAME_INITIAL_LICENSE));
             String token = cursor.getString(cursor.getColumnIndexOrThrow(LicenseKeysContract.LicenseKeys.COLUMN_NAME_TOKEN));
             Long lastCallTimeInMs = cursor.getLong(cursor.getColumnIndexOrThrow(LicenseKeysContract.LicenseKeys.COLUMN_NAME_LAST_CALL_TIME_IN_MS));

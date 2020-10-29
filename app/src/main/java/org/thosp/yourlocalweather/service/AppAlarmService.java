@@ -272,7 +272,7 @@ public class AppAlarmService extends AbstractCommonService {
             sensorLocationUpdateServiceActions.add(BindedServiceActions.START_SENSOR);
             return;
         }
-        sensorLocationUpdateService.startSensorBasedUpdates(0);
+        sensorLocationUpdateService.startSensorBasedUpdates();
     }
 
     private static PendingIntent getPendingSensorStartIntent(Context context) {
@@ -394,7 +394,7 @@ public class AppAlarmService extends AbstractCommonService {
             while ((bindedServiceActions = sensorLocationUpdateServiceActions.poll()) != null) {
                 switch (bindedServiceActions) {
                     case START_SENSOR:
-                        sensorLocationUpdateService.startSensorBasedUpdates(0);
+                        sensorLocationUpdateService.startSensorBasedUpdates();
                         break;
                     case STOP_SCREEN:
                         sensorLocationUpdateService.stopSensorBasedUpdates();

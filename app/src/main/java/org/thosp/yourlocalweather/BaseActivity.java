@@ -231,7 +231,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    protected Toolbar getToolbar() {
+    protected void getToolbar() {
         if (mToolbar == null) {
             mToolbar = (Toolbar) findViewById(R.id.toolbar);
             if (mToolbar != null) {
@@ -239,7 +239,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         }
 
-        return mToolbar;
     }
 
     @Override

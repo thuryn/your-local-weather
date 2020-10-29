@@ -222,7 +222,7 @@ public class SearchActivity extends BaseActivity {
         SQLiteDatabase db = locationsDbHelper.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(LocationsContract.Locations.COLUMN_NAME_ADDRESS, locationsDbHelper.getAddressAsBytes(address));
+        values.put(LocationsContract.Locations.COLUMN_NAME_ADDRESS, LocationsDbHelper.getAddressAsBytes(address));
         values.put(LocationsContract.Locations.COLUMN_NAME_LONGITUDE, longitude);
         values.put(LocationsContract.Locations.COLUMN_NAME_LATITUDE, latitude);
         values.put(LocationsContract.Locations.COLUMN_NAME_LOCALE, locale);

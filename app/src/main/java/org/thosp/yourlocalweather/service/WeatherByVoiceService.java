@@ -92,7 +92,7 @@ public class WeatherByVoiceService extends Service {
     }
 
     private void sayWeatherByTime(Intent intent) {
-        Long voiceSettingId = intent.getLongExtra("voiceSettingId", Long.MAX_VALUE);
+        long voiceSettingId = intent.getLongExtra("voiceSettingId", Long.MAX_VALUE);
         appendLog(getBaseContext(), TAG, "sayWeatherByTime:" + voiceSettingId);
 
         if (voiceSettingId == Long.MAX_VALUE) {
