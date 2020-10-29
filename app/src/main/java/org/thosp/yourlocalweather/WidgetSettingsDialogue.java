@@ -346,7 +346,7 @@ public class WidgetSettingsDialogue extends Activity {
         }
 
         if (locationId == null) {
-            locationId = 0l;
+            locationId = 0L;
             currentLocation = locationsDbHelper.getLocationById(locationId);
         }
 
@@ -507,7 +507,7 @@ public class WidgetSettingsDialogue extends Activity {
                 }
             }
         } else {
-            storedDays = 5l;
+            storedDays = 5L;
         }
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.forecast_number_of_days_hours, android.R.layout.simple_spinner_item);

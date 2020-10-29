@@ -84,9 +84,9 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
             if (value == null) {
                 valueToStore = null;
             } else if (value) {
-                valueToStore = 1l;
+                valueToStore = 1L;
             } else {
-                valueToStore = 0l;
+                valueToStore = 0L;
             }
             values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_LONG, valueToStore);
             if (oldValue == null) {

@@ -571,7 +571,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 voiceSettingId,
                 VoiceSettingParamType.VOICE_SETTING_ENABLED_VOICE_DEVICES.getVoiceSettingParamTypeId());
         if (enabledVoiceDevices == null) {
-            enabledVoiceDevices = 0l;
+            enabledVoiceDevices = 0L;
         }
         boolean checked = ((CheckBox) view).isChecked();
         switch(view.getId()) {
@@ -730,7 +730,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 voiceSettingId,
                 VoiceSettingParamType.VOICE_SETTING_PARTS_TO_SAY.getVoiceSettingParamTypeId());
         if (partsToSay == null) {
-            partsToSay = 0l;
+            partsToSay = 0L;
         }
         boolean checked = ((CheckBox) view).isChecked();
         switch(view.getId()) {
@@ -913,7 +913,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 voiceSettingId,
                 VoiceSettingParamType.VOICE_SETTING_TRIGGER_DAY_IN_WEEK.getVoiceSettingParamTypeId());
         if (daysOfWeek == null) {
-            daysOfWeek = 0l;
+            daysOfWeek = 0L;
         }
         boolean checked = ((CheckBox) view).isChecked();
         switch(view.getId()) {

@@ -290,14 +290,14 @@ public class WidgetUtils {
         }
         SimpleDateFormat sdfDayOfWeek = getDaysFormatter(context, widgetId, location.getLocale());
 
-        Long daysCount = 5l;
+        Long daysCount = 5L;
         Boolean hoursForecast = null;
         final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
         if (widgetId != null) {
             daysCount = widgetSettingsDbHelper.getParamLong(widgetId, "forecastDaysCount");
             hoursForecast = widgetSettingsDbHelper.getParamBoolean(widgetId, "hoursForecast");
             if (daysCount == null) {
-                daysCount = 5l;
+                daysCount = 5L;
             }
         }
 

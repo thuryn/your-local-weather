@@ -32,9 +32,9 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
     private static final float LENGTH_UPDATE_LOCATION_LIMIT = 1500;
     private static final float LENGTH_UPDATE_LOCATION_SECOND_LIMIT = 10000;
     private static final float LENGTH_UPDATE_LOCATION_LIMIT_NO_LOCATION = 200;
-    private static final long ACCELEROMETER_UPDATE_TIME_SPAN = 900000l; //15 min
-    private static final long ACCELEROMETER_UPDATE_TIME_SECOND_SPAN = 300000l; //5 min
-    private static final long ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION = 300000l; //5 min
+    private static final long ACCELEROMETER_UPDATE_TIME_SPAN = 900000L; //15 min
+    private static final long ACCELEROMETER_UPDATE_TIME_SECOND_SPAN = 300000L; //5 min
+    private static final long ACCELEROMETER_UPDATE_TIME_SPAN_NO_LOCATION = 300000L; //5 min
 
     private volatile long lastUpdate = 0;
     private volatile float currentLength = 0;

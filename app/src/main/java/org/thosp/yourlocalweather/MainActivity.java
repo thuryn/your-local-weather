@@ -173,7 +173,7 @@ public class MainActivity extends BaseActivity
             synchronized (this) {
                 startAlarms();
             }
-            return 0l;
+            return 0L;
         }
     }
 
@@ -195,7 +195,7 @@ public class MainActivity extends BaseActivity
                 jobScheduler.cancelAll();
                 ComponentName serviceComponent = new ComponentName(this, StartAutoLocationJob.class);
                 JobInfo.Builder builder = new JobInfo.Builder(StartAutoLocationJob.JOB_ID, serviceComponent);
-                builder.setMinimumLatency(1 * 1000); // wait at least
+                builder.setMinimumLatency(1000); // wait at least
                 builder.setOverrideDeadline(3 * 1000); // maximum delay
                 jobScheduler.schedule(builder.build());
             }
