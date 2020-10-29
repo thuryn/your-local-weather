@@ -291,17 +291,15 @@ public class NominatimLocationService {
                 String.valueOf(latitudeLow),
                 locale };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
-                    LocationAddressCache.TABLE_NAME,
-                    projection,
-                    selection,
-                    selectionArgs,
-                    null,
-                    null,
-                    null
-            );
+        try (Cursor cursor = db.query(
+                LocationAddressCache.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        )) {
 
             if (!cursor.moveToNext()) {
                 cursor.close();
@@ -311,10 +309,6 @@ public class NominatimLocationService {
             byte[] cachedAddressBytes = cursor.getBlob(
                     cursor.getColumnIndexOrThrow(LocationAddressCache.COLUMN_NAME_ADDRESS));
             return ReverseGeocodingCacheDbHelper.getAddressFromBytes(cachedAddressBytes);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
     }
 
@@ -355,9 +349,7 @@ public class NominatimLocationService {
                     LocationAddressCache._ID
             };
 
-            Cursor cursor = null;
-            try {
-                cursor = db.query(
+            try (Cursor cursor = db.query(
                     LocationAddressCache.TABLE_NAME,
                     projection,
                     null,
@@ -365,7 +357,7 @@ public class NominatimLocationService {
                     null,
                     null,
                     null
-                );
+            )) {
 
                 while (cursor.moveToNext()) {
                     Integer recordId = cursor.getInt(
@@ -377,10 +369,6 @@ public class NominatimLocationService {
                     if (recordDateIsNotValidOrIsTooOld(recordCreatedInMilis)) {
                         mDbHelper.deleteRecordFromTable(recordId);
                     }
-                }
-            } finally {
-                if (cursor != null) {
-                    cursor.close();
                 }
             }
         }

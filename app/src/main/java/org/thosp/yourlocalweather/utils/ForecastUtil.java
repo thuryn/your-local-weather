@@ -286,7 +286,7 @@ public class ForecastUtil {
                 dayPeriodIndex = 3;
             }
             if (oneDayForecastMap.get(dayPeriodIndex) == null) {
-                oneDayForecastMap.put(dayPeriodIndex, new ArrayList<DetailedWeatherForecast>());
+                oneDayForecastMap.put(dayPeriodIndex, new ArrayList<>());
             }
             oneDayForecastMap.get(dayPeriodIndex).add(detailedWeatherForecast);
         }

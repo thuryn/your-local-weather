@@ -27,7 +27,7 @@ public class StartupReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         appendLog(context, TAG, "onReceive start");
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        sharedPreferences.edit().putStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<String>()).apply();
+        sharedPreferences.edit().putStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<>()).apply();
         removeOldPreferences(context);
         appendLog(context, TAG, "scheduleStart start");
         AppPreference.setLastSensorServicesCheckTimeInMs(context, 0);

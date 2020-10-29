@@ -60,17 +60,15 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
                 VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID
         };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
-                    VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
-                    projection,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null
-            );
+        try (Cursor cursor = db.query(
+                VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null
+        )) {
 
             while (cursor.moveToNext()) {
                 long voiceSettingId = cursor.getInt(cursor.getColumnIndexOrThrow(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID));
@@ -78,10 +76,6 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
                     continue;
                 }
                 result.add(voiceSettingId);
-            }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
             }
         }
         return result;
@@ -210,28 +204,21 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
                 VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_LONG_VALUE
         };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
-                    VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
-                    projection,
-                    VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID + "=" + voiceSettingId +
-                    " AND " + VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
-                    null,
-                    null,
-                    null,
-                    null
-            );
+        try (Cursor cursor = db.query(
+                VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
+                projection,
+                VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID + "=" + voiceSettingId +
+                        " AND " + VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
+                null,
+                null,
+                null,
+                null
+        )) {
 
             if (cursor.moveToNext()) {
                 return cursor.getLong(cursor.getColumnIndexOrThrow(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_LONG_VALUE));
-            } else {
-                return null;
             }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
+            return null;
         }
     }
 
@@ -245,25 +232,19 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
                 VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_LONG_VALUE
         };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
-                    VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
-                    projection,
-                    VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
-                    null,
-                    null,
-                    null,
-                    null
-            );
+        try (Cursor cursor = db.query(
+                VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
+                projection,
+                VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
+                null,
+                null,
+                null,
+                null
+        )) {
 
             while (cursor.moveToNext()) {
                 result.put(cursor.getLong(cursor.getColumnIndexOrThrow(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID)),
                         cursor.getLong(cursor.getColumnIndexOrThrow(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_LONG_VALUE)));
-            }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
             }
         }
         return result;
@@ -276,28 +257,21 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
                 VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_STRING_VALUE
         };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
-                    VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
-                    projection,
-                    VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID + "=" + voiceSettingId +
-                            " AND " + VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
-                    null,
-                    null,
-                    null,
-                    null
-            );
+        try (Cursor cursor = db.query(
+                VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
+                projection,
+                VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID + "=" + voiceSettingId +
+                        " AND " + VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
+                null,
+                null,
+                null,
+                null
+        )) {
 
             if (cursor.moveToNext()) {
                 return cursor.getString(cursor.getColumnIndexOrThrow(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_STRING_VALUE));
-            } else {
-                return null;
             }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
+            return null;
         }
     }
 
@@ -311,25 +285,19 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
 
         Map<Long, String> result = new HashMap<>();
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
-                    VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
-                    projection,
-                    VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
-                    null,
-                    null,
-                    null,
-                    null
-            );
+        try (Cursor cursor = db.query(
+                VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
+                projection,
+                VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
+                null,
+                null,
+                null,
+                null
+        )) {
 
             while (cursor.moveToNext()) {
                 result.put(cursor.getLong(cursor.getColumnIndexOrThrow(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID)),
                         cursor.getString(cursor.getColumnIndexOrThrow(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_STRING_VALUE)));
-            }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
             }
         }
         return result;
@@ -342,24 +310,18 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
                 VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_STRING_VALUE
         };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
-                    VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
-                    projection,
-                    VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
-                    null,
-                    null,
-                    null,
-                    null
-            );
+        try (Cursor cursor = db.query(
+                VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
+                projection,
+                VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
+                null,
+                null,
+                null,
+                null
+        )) {
 
             while (cursor.moveToNext()) {
                 return cursor.getString(cursor.getColumnIndexOrThrow(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_STRING_VALUE));
-            }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
             }
         }
         return null;
@@ -372,18 +334,16 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
                 VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_LONG_VALUE
         };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
-                    VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
-                    projection,
-                    VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID + "=" + voiceSettingId +
-                            " AND " + VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
-                    null,
-                    null,
-                    null,
-                    null
-            );
+        try (Cursor cursor = db.query(
+                VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
+                projection,
+                VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID + "=" + voiceSettingId +
+                        " AND " + VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
+                null,
+                null,
+                null,
+                null
+        )) {
 
             if (cursor.moveToNext()) {
                 Long longValue = cursor.getLong(cursor.getColumnIndexOrThrow(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_LONG_VALUE));
@@ -391,13 +351,8 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
                     return null;
                 }
                 return longValue > 0;
-            } else {
-                return null;
             }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
+            return null;
         }
     }
 
@@ -411,17 +366,15 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
 
         Map<Long, Boolean> result = new HashMap<>();
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
-                    VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
-                    projection,
-                    VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
-                    null,
-                    null,
-                    null,
-                    null
-            );
+        try (Cursor cursor = db.query(
+                VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
+                projection,
+                VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
+                null,
+                null,
+                null,
+                null
+        )) {
 
             while (cursor.moveToNext()) {
                 long voiceSettingId = cursor.getLong(cursor.getColumnIndexOrThrow(VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID));
@@ -431,10 +384,6 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
                 } else {
                     result.put(voiceSettingId, longValue > 0);
                 }
-            }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
             }
         }
         return result;
@@ -447,24 +396,18 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
                 VoiceSettingParameterContract.VoiceSettingParameters._ID
         };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
-                    VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
-                    projection,
-                    VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID + "=" + voiceSettingId +
-                            " AND " + VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
-                    null,
-                    null,
-                    null,
-                    null
-            );
+        try (Cursor cursor = db.query(
+                VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
+                projection,
+                VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_VOICE_SETTING_ID + "=" + voiceSettingId +
+                        " AND " + VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
+                null,
+                null,
+                null,
+                null
+        )) {
 
             return cursor.moveToNext();
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
     }
 
@@ -475,23 +418,17 @@ public class VoiceSettingParametersDbHelper extends SQLiteOpenHelper {
                 VoiceSettingParameterContract.VoiceSettingParameters._ID
         };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
-                    VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
-                    projection,
-                    VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
-                    null,
-                    null,
-                    null,
-                    null
-            );
+        try (Cursor cursor = db.query(
+                VoiceSettingParameterContract.VoiceSettingParameters.TABLE_NAME,
+                projection,
+                VoiceSettingParameterContract.VoiceSettingParameters.COLUMN_NAME_PARAM_TYPE_ID + "=" + paramType,
+                null,
+                null,
+                null,
+                null
+        )) {
 
             return cursor.moveToNext();
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
     }
 }

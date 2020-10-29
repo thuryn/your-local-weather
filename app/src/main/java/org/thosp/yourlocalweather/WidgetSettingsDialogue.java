@@ -364,7 +364,7 @@ public class WidgetSettingsDialogue extends Activity {
         }
 
         Spinner numberOfDaysSpinner = forecastSettingView.findViewById(R.id.widget_setting_location_locations);
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, locationLabels);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locationLabels);
         //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         numberOfDaysSpinner.setAdapter(adapter);
         final LocationsListener locationListener;

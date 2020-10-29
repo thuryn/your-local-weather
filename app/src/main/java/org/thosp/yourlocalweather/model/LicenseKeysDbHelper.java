@@ -72,9 +72,7 @@ public class LicenseKeysDbHelper extends SQLiteOpenHelper {
                 LicenseKeysContract.LicenseKeys.COLUMN_NAME_LAST_CALL_TIME_IN_MS
         };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
+        try (Cursor cursor = db.query(
                 LicenseKeysContract.LicenseKeys.TABLE_NAME,
                 projection,
                 LicenseKeysContract.LicenseKeys.COLUMN_NAME_REQUEST_URI + "='" + requestUri + "'",
@@ -82,7 +80,7 @@ public class LicenseKeysDbHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 null
-            );
+        )) {
 
             if (!cursor.moveToNext()) {
                 return null;
@@ -99,10 +97,6 @@ public class LicenseKeysDbHelper extends SQLiteOpenHelper {
                     initialLicense,
                     token,
                     lastCallTimeInMs);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
     }
 
@@ -131,23 +125,17 @@ public class LicenseKeysDbHelper extends SQLiteOpenHelper {
                 LicenseKeysContract.LicenseKeys._ID
         };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
-                    LicenseKeysContract.LicenseKeys.TABLE_NAME,
-                    projection,
-                    LicenseKeysContract.LicenseKeys.COLUMN_NAME_REQUEST_URI + "='" + requestUri + "'",
-                    null,
-                    null,
-                    null,
-                    null
-            );
+        try (Cursor cursor = db.query(
+                LicenseKeysContract.LicenseKeys.TABLE_NAME,
+                projection,
+                LicenseKeysContract.LicenseKeys.COLUMN_NAME_REQUEST_URI + "='" + requestUri + "'",
+                null,
+                null,
+                null,
+                null
+        )) {
 
             return cursor.moveToNext();
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
     }
 }

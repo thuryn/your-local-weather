@@ -95,9 +95,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
 
         String sortOrder = LocationsContract.Locations.COLUMN_NAME_ORDER_ID;
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
+        try (Cursor cursor = db.query(
                 LocationsContract.Locations.TABLE_NAME,
                 projection,
                 LocationsContract.Locations.COLUMN_NAME_ORDER_ID + ">" + deletedOrderId,
@@ -105,7 +103,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 sortOrder
-            );
+        )) {
 
             while (cursor.moveToNext()) {
                 long itemId = cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations._ID));
@@ -118,10 +116,6 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                         LocationsContract.Locations._ID +"=" + itemId,
                         null,
                         SQLiteDatabase.CONFLICT_IGNORE);
-            }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
             }
         }
     }
@@ -153,23 +147,17 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getReadableDatabase();
 
         int maxOrderId = 0;
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
+        try (Cursor cursor = db.query(
                 LocationsContract.Locations.TABLE_NAME,
                 new String[]{"MAX(order_id)"},
                 null,
                 null,
                 null,
                 null,
-                null);
+                null)) {
 
             cursor.moveToNext();
             maxOrderId = cursor.getInt(0);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
         return maxOrderId;
     }
@@ -197,9 +185,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
 
         String sortOrder = LocationsContract.Locations.COLUMN_NAME_ORDER_ID;
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
+        try (Cursor cursor = db.query(
                 LocationsContract.Locations.TABLE_NAME,
                 projection,
                 null,
@@ -207,7 +193,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 sortOrder
-            );
+        )) {
 
             while (cursor.moveToNext()) {
 
@@ -248,10 +234,6 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                         enabled,
                         address));
             }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
         return result;
     }
@@ -273,9 +255,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND
         };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
+        try (Cursor cursor = db.query(
                 LocationsContract.Locations.TABLE_NAME,
                 projection,
                 LocationsContract.Locations.COLUMN_NAME_ORDER_ID + "=" + orderId,
@@ -283,7 +263,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 null
-            );
+        )) {
 
             if (!cursor.moveToNext()) {
                 return null;
@@ -324,10 +304,6 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                     addressFound,
                     enabled,
                     address);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
     }
 
@@ -348,9 +324,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 LocationsContract.Locations.COLUMN_NAME_ADDRESS_FOUND
         };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
+        try (Cursor cursor = db.query(
                 LocationsContract.Locations.TABLE_NAME,
                 projection,
                 LocationsContract.Locations._ID + "=" + id,
@@ -358,7 +332,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 null
-            );
+        )) {
 
             if (!cursor.moveToNext()) {
                 return null;
@@ -399,10 +373,6 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                     addressFound,
                     enabled,
                     address);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
     }
 
@@ -423,33 +393,27 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 LocationsContract.Locations._ID
         };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
-                    LocationsContract.Locations.TABLE_NAME,
-                    projection,
-                    LocationsContract.Locations.COLUMN_NAME_LATITUDE +
-                            ">? and " +
-                            LocationsContract.Locations.COLUMN_NAME_LATITUDE +
-                            "<? and " +
-                            LocationsContract.Locations.COLUMN_NAME_LONGITUDE +
-                            ">? and " +
-                            LocationsContract.Locations.COLUMN_NAME_LONGITUDE +
-                            "<?",
-                    new String[] {latLowTxt, latHighTxt, lonLowTxt, lonHighTxt},
-                    null,
-                    null,
-                    null
-            );
+        try (Cursor cursor = db.query(
+                LocationsContract.Locations.TABLE_NAME,
+                projection,
+                LocationsContract.Locations.COLUMN_NAME_LATITUDE +
+                        ">? and " +
+                        LocationsContract.Locations.COLUMN_NAME_LATITUDE +
+                        "<? and " +
+                        LocationsContract.Locations.COLUMN_NAME_LONGITUDE +
+                        ">? and " +
+                        LocationsContract.Locations.COLUMN_NAME_LONGITUDE +
+                        "<?",
+                new String[]{latLowTxt, latHighTxt, lonLowTxt, lonHighTxt},
+                null,
+                null,
+                null
+        )) {
 
             if (!cursor.moveToNext()) {
                 return null;
             }
             return cursor.getLong(cursor.getColumnIndexOrThrow(LocationsContract.Locations._ID));
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
     }
 
@@ -593,9 +557,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS
         };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
+        try (Cursor cursor = db.query(
                 LocationsContract.Locations.TABLE_NAME,
                 projection,
                 LocationsContract.Locations.COLUMN_NAME_ORDER_ID + "=0",
@@ -603,17 +565,12 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 null
-            );
+        )) {
 
             if (cursor.moveToNext()) {
                 return cursor.getLong(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS));
-            } else {
-                return 0;
             }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
+            return 0;
         }
     }
 }

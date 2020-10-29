@@ -68,7 +68,7 @@ public class BluetoothEventsReceiver extends BroadcastReceiver {
 
     private void btDeviceConnected(BluetoothDevice bluetoothDevice) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        Set<String> connectedBtDevices = sharedPreferences.getStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<String>());
+        Set<String> connectedBtDevices = sharedPreferences.getStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<>());
         if (!connectedBtDevices.contains(bluetoothDevice.getAddress())) {
             connectedBtDevices.add(bluetoothDevice.getAddress());
             sharedPreferences.edit().putStringSet(Constants.CONNECTED_BT_DEVICES, connectedBtDevices).apply();
@@ -80,7 +80,7 @@ public class BluetoothEventsReceiver extends BroadcastReceiver {
 
     private void btDeviceDisConnected(BluetoothDevice bluetoothDevice) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        Set<String> connectedBtDevices = sharedPreferences.getStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<String>());
+        Set<String> connectedBtDevices = sharedPreferences.getStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<>());
         if (connectedBtDevices.contains(bluetoothDevice.getAddress())) {
             connectedBtDevices.remove(bluetoothDevice.getAddress());
             sharedPreferences.edit().putStringSet(Constants.CONNECTED_BT_DEVICES, connectedBtDevices).apply();

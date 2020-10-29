@@ -88,9 +88,7 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
                 WeatherForecastContract.WeatherForecast.COLUMN_NAME_LAST_UPDATED_IN_MS
         };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
+        try (Cursor cursor = db.query(
                 WeatherForecastContract.WeatherForecast.TABLE_NAME,
                 projection,
                 WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + "=" + locationId +
@@ -99,7 +97,7 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
                 null,
                 null,
                 null
-            );
+        )) {
 
             if (cursor.moveToNext()) {
                 CompleteWeatherForecast completeWeatherForecast = getCompleteWeatherForecastFromBytes(
@@ -110,13 +108,8 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
                 return new WeatherForecastRecord(
                         cursor.getLong(cursor.getColumnIndexOrThrow(WeatherForecastContract.WeatherForecast.COLUMN_NAME_LAST_UPDATED_IN_MS)),
                         completeWeatherForecast);
-            } else {
-                return null;
             }
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
+            return null;
         }
     }
 

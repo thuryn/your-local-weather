@@ -920,8 +920,8 @@ public class Utils {
                         BluetoothProfile.STATE_CONNECTED == bluetoothAdapter.getProfileConnectionState(BluetoothProfile.A2DP)));
         if (!isBtConnected) {
             SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-            if (!sharedPreferences.getStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<String>()).isEmpty()) {
-                sharedPreferences.edit().putStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<String>()).apply();
+            if (!sharedPreferences.getStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<>()).isEmpty()) {
+                sharedPreferences.edit().putStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<>()).apply();
             }
         }
         return isBtConnected;
@@ -929,7 +929,7 @@ public class Utils {
 
     public static Set<String> getAllConnectedBtDevices(Context context) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        return sharedPreferences.getStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<String>());
+        return sharedPreferences.getStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<>());
     }
 
 }

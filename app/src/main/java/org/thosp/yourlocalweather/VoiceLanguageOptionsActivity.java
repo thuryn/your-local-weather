@@ -120,7 +120,7 @@ public class VoiceLanguageOptionsActivity extends BaseActivity {
             langNotSupported.setText(getString(R.string.pref_title_tts_presence));
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, spinnerArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
