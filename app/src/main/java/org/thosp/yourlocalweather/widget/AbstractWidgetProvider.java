@@ -419,9 +419,8 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         Intent intentSwitchLocality = new Intent(context, widgetClass);
         intentSwitchLocality.setAction(Constants.ACTION_APPWIDGET_CHANGE_LOCATION + "_" + widgetId);
         intentSwitchLocality.putExtra("widgetId", widgetId);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
+        return PendingIntent.getBroadcast(context, 0,
                 intentSwitchLocality, 0);
-        return pendingIntent;
     }
 
     private static PendingIntent getActivityIntent(
@@ -434,9 +433,8 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         activityIntent.setAction(Constants.ACTION_APPWIDGET_START_ACTIVITY + widgetActionId);
         activityIntent.putExtra("widgetId", widgetId);
         activityIntent.putExtra("widgetAction", widgetActionId);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
+        return PendingIntent.getBroadcast(context, 0,
                 activityIntent, 0);
-        return pendingIntent;
     }
 
     private static void setSettingButtonAction(Context context, int widgetId, String settingName, int buttonId, RemoteViews remoteViews, Class widgetClass) {
