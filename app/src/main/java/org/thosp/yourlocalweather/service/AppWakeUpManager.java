@@ -42,13 +42,7 @@ public class AppWakeUpManager extends Service {
     final Messenger messenger = new Messenger(new PowerUpMessageHandler());
 
     Handler timerWakeUpHandler = new Handler();
-    Runnable timerWakeUpRunnable = new Runnable() {
-
-        @Override
-        public void run() {
-            wakeDown();
-        }
-    };
+    Runnable timerWakeUpRunnable = this::wakeDown;
 
     @Override
     public void onCreate() {
