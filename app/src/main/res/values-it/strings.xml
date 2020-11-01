@@ -280,4 +280,7 @@
     <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Tipo di previsione</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">Le notifiche del tuo meteo locale</string>
     <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">L\'accesso al servizio di geolocalizzazione di Mozilla è scaduto il 1.3.2020. L\'applicazione è forzata ad usare il sistema di geolocalizzazione di Android. L\'indirizzo è ancora risolto da Nominatim. Gentilmente, considerate questo fatto mentro usate l\'applicazione.</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Limitazione servizio posizione Mozilla</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Questa app dispone di una guida vocale grazie alle traduzioni e ai comandi vocali forniti da volontari su https://hosted.weblate.org/projects/your-local-weather. Lo sviluppatore dell\'app non può garantire che essi siano corretti - usando l\'app dichiari di accettare. Per usare la guida vocale devi avere un motore TTS (Text-To-Speech) installato e impostare l\'uscita vocale dalle impostazioni dell\'applicazione, dove puoi impostare i tuoi comandi vocali. "</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Traduzioni di testo e direzione vocale</string>
 </resources>
