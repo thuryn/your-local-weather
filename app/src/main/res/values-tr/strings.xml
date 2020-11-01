@@ -575,4 +575,6 @@
     <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">Yönlendirme için seçilen yerel ayar:</string>
     <string name="pref_language_id" tools:ignore="MissingTranslation">Indonesian (Endonezce)</string>
     <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Lisans anahtarı</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Android 10\'dan başlayarak, bağlanılan GSM/LTE ağı hakkında bilgi almak için konuma ayrıntılı erişim gereklidir. Arka planda da konum alma izni verin (konumunuzu her zaman istiyorsanız).</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Android 10 izin değişiklikleri</string>
 </resources>
