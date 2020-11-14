@@ -184,7 +184,7 @@ public class VoiceSettingsActivity extends BaseActivity {
         Set<Locale> ttsAvailableLanguages;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ttsAvailableLanguages = tts.getAvailableLanguages();
-            if (ttsAvailableLanguages.isEmpty()) {
+            if ((ttsAvailableLanguages == null) || ttsAvailableLanguages.isEmpty()) {
                 timerHandler.postDelayed(timerRunnable, 1000);
                 return;
             }

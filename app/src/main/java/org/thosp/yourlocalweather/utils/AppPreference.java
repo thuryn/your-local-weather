@@ -557,6 +557,9 @@ public class AppPreference {
         if (currentLocation != null) {
             currentLocationId = currentLocation.getId();
         }
+        if (currentLocationId == null) {
+            return;
+        }
         PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(
                 Constants.CURRENT_LOCATION_ID, currentLocationId).apply();
     }

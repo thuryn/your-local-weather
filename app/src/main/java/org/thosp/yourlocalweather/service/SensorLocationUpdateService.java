@@ -138,9 +138,11 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
         }
 
         Notification notification = NotificationUtils.getWeatherNotification(this, autoLocation.getId());
-        if (notification != null) {
-            startForeground(android.os.Process.myPid(), notification);
+        if (notification == null) {
+            return;
         }
+
+        startForeground(android.os.Process.myPid(), notification);
 
         sensorResolutionMultiplayer = 1 / senAccelerometer.getResolution();
         int maxDelay = 10000;

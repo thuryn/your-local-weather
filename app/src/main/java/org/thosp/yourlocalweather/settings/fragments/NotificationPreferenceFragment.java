@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
@@ -126,8 +127,11 @@ public class NotificationPreferenceFragment extends PreferenceFragment implement
         }
         if (AppPreference.isNotificationEnabled(getActivity()) &&
                 "permanent".equals(AppPreference.getNotificationPresence(getActivity()))) {
-            NotificationUtils.weatherNotification(getActivity(),
-                    NotificationUtils.getLocationForNotification(getActivity()).getId());
+            Location locationForNotification = NotificationUtils.getLocationForNotification(getActivity());
+            if (locationForNotification != null) {
+                NotificationUtils.weatherNotification(getActivity(),
+                        locationForNotification.getId());
+            }
         }
     }
 

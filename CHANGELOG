@@ -1,3 +1,6 @@
+v5.6.2
+Several small fixies to avoid ANRs and NPEs
+
 v5.6.1
 Fixed main screen weather icon presence, fixed color in weather forecast in the dark theme, updated permissions for Andoroid 10, several small fixies
 
