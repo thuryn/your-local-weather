@@ -19,6 +19,7 @@ import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
+import org.thosp.yourlocalweather.utils.TemperatureUtil;
 
 public class NotificationPreferenceFragment extends PreferenceFragment implements
         SharedPreferences.OnSharedPreferenceChangeListener {
@@ -132,6 +133,13 @@ public class NotificationPreferenceFragment extends PreferenceFragment implement
                 NotificationUtils.weatherNotification(getActivity(),
                         locationForNotification.getId());
             }
+        }
+        if (TemperatureUtil.isTemperatureUnitKelvin(getActivity()) &&
+                Constants.KEY_PREF_NOTIFICATION_STATUS_ICON.equals(key)) {
+
+            ListPreference statusIconPreference = (ListPreference) findPreference(key);
+            statusIconPreference.setEntries(R.array.notification_status_icon_entries_without_temperature);
+            statusIconPreference.setEntryValues(R.array.notification_status_icon_values_without_temperature);
         }
     }
 

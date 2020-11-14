@@ -244,6 +244,7 @@ public class AppPreference {
             case "inhg": return context.getString(R.string.pressure_measurement_inhg);
             case "mbar": return context.getString(R.string.pressure_measurement_mbar);
             case "psi": return context.getString(R.string.pressure_measurement_psi);
+            case "kpa": return context.getString(R.string.pressure_measurement_kpa);
             default: return context.getString(R.string.pressure_measurement);
         }
     }
@@ -256,6 +257,7 @@ public class AppPreference {
             case "inhg": return 2;
             case "mbar": return 0;
             case "psi" : return 2;
+            case "kpa" : return 0;
             default: return 0;
         }
     }
@@ -277,6 +279,8 @@ public class AppPreference {
                                                  context.getString(R.string.pressure_measurement_mbar), locale);
             case "psi": return new PressureWithUnit(value * 0.0145037738f,
                                                  context.getString(R.string.pressure_measurement_psi), locale);
+            case "kpa": return new PressureWithUnit(value / 10f,
+                    context.getString(R.string.pressure_measurement_kpa), locale);
             default: return new PressureWithUnit(value, context.getString(R.string.pressure_measurement), locale);
         }
     }
@@ -350,6 +354,11 @@ public class AppPreference {
     public static void setNotificationEnabled(Context context, boolean enabled) {
         PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(
                 Constants.KEY_PREF_IS_NOTIFICATION_ENABLED, enabled).apply();
+    }
+
+    public static void setNotificationIconStyle(Context context, String iconStyle) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putString(
+                Constants.KEY_PREF_NOTIFICATION_STATUS_ICON, iconStyle).apply();
     }
 
     public static boolean isWidgetGraphNativeScaled(Context context) {

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 
 public class UnitsPreferenceFragment extends PreferenceFragment implements
@@ -52,6 +53,11 @@ public class UnitsPreferenceFragment extends PreferenceFragment implements
             return;
         }
         preference.setSummary(preference.getEntry());
+        if (Constants.KEY_PREF_TEMPERATURE_UNITS.equals(key) &&
+                "kelvin".equals(preference.getValue()) &&
+                "icon_temperature".equals(AppPreference.getNotificationStatusIconStyle(getActivity()))) {
+                AppPreference.setNotificationIconStyle(getActivity(), "icon_sun");
+        }
     }
 
     private void updateSummary(String key, boolean changing) {

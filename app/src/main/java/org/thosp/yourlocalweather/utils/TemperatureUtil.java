@@ -99,8 +99,6 @@ public class TemperatureUtil {
         if ("measured_only".equals(temperatureTypeFromPreferences) || "appearance_only".equals(temperatureTypeFromPreferences)) {
             return null;
         }
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
         String apparentSign = "";
         double value = weather.getTemperature();
         if ("measured_appearance_primary_measured".equals(temperatureTypeFromPreferences)) {
@@ -113,14 +111,8 @@ public class TemperatureUtil {
                     latitude,
                     timestamp);
         }
-        if (unitsFromPreferences.contains("fahrenheit") ) {
-            double fahrenheitValue = (value * 1.8f) + 32;
-            return apparentSign + String.format(locale, "%d",
-                    Math.round(fahrenheitValue)) + getTemperatureUnit(context);
-        } else {
-            return apparentSign + String.format(locale, "%d",
-                    Math.round(value)) + getTemperatureUnit(context);
-        }
+        return apparentSign + String.format(locale, "%d",
+                Math.round(getTemperatureInPreferredUnit(context, value))) + getTemperatureUnit(context);
     }
 
     public static String getMeasuredTemperatureWithUnit(Context context, double weatherTemperature, Locale locale) {
@@ -128,17 +120,8 @@ public class TemperatureUtil {
     }
 
     public static String getMeasuredTemperatureWithUnit(Context context, double weatherTemperature, String apparentSign, Locale locale) {
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
-        if (unitsFromPreferences.contains("fahrenheit") ) {
-            double fahrenheitValue = (weatherTemperature * 1.8f) + 32;
-            return apparentSign + String.format(locale, "%d",
-                    Math.round(fahrenheitValue)) + getTemperatureUnit(context);
-        } else {
-            return apparentSign + String.format(locale, "%d",
-                    Math.round(weatherTemperature)) + getTemperatureUnit(context);
-        }
-
+        return apparentSign + String.format(locale, "%d",
+                Math.round(getTemperatureInPreferredUnit(context, weatherTemperature))) + getTemperatureUnit(context);
     }
 
     public static String getTemperatureWithUnit(Context context, Weather weather, double latitude, long timestamp, Locale locale) {
@@ -152,7 +135,7 @@ public class TemperatureUtil {
         if ("appearance_only".equals(temperatureTypeFromPreferences) ||
                 ("measured_appearance_primary_appearance".equals(temperatureTypeFromPreferences))) {
             apparentSign = "~";
-            value = TemperatureUtil.getApparentTemperature(
+            value = getApparentTemperature(
                     weather.getTemperature(),
                     weather.getHumidity(),
                     weather.getWindSpeed(),
@@ -160,47 +143,32 @@ public class TemperatureUtil {
                     latitude,
                     timestamp);
         }
-        return getMeasuredTemperatureWithUnit(context, weather.getTemperature(), apparentSign, locale);
+        return getMeasuredTemperatureWithUnit(context, value, apparentSign, locale);
     }
 
     public static String getDewPointWithUnit(Context context, Weather weather, Locale locale) {
         if (weather == null) {
             return null;
         }
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
         double humidityLogarithm = Math.log(weather.getHumidity() / 100.0) / Math.log(Math.E);
         double dewPointPart = humidityLogarithm + ((17.67 * weather.getTemperature())/(243.5 + weather.getTemperature()));
         double dewPoint = (243.5 * dewPointPart) / (17.67 - dewPointPart);
-        if (unitsFromPreferences.contains("fahrenheit") ) {
-            double fahrenheitValue = (dewPoint * 1.8f) + 32;
-            return String.format(locale, "%.1f",
-                    fahrenheitValue) + getTemperatureUnit(context);
-        } else {
-            return String.format(locale, "%.1f",
-                    dewPoint) + getTemperatureUnit(context);
-        }
+
+        return String.format(locale, "%.1f",
+                getTemperatureInPreferredUnit(context, dewPoint)) + getTemperatureUnit(context);
     }
     
     public static String getForecastedTemperatureWithUnit(Context context, DetailedWeatherForecast weather, Locale locale) {
         if (weather == null) {
             return null;
         }
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
         String apparentSign = "";
         double value = weather.getTemperature();
         if (value > 0) {
             apparentSign += "+";
         }
-        if (unitsFromPreferences.contains("fahrenheit") ) {
-            double fahrenheitValue = (value * 1.8f) + 32;
-            return apparentSign + String.format(locale, "%.1f",
-                    fahrenheitValue) + getTemperatureUnit(context);
-        } else {
-            return apparentSign + String.format(locale, "%.1f",
-                    value) + getTemperatureUnit(context);
-        }
+        return apparentSign + String.format(locale, "%.1f",
+                getTemperatureInPreferredUnit(context, value)) + getTemperatureUnit(context);
     }
 
     public static String getForecastedApparentTemperatureWithUnit(
@@ -212,10 +180,8 @@ public class TemperatureUtil {
         if (weather == null) {
             return null;
         }
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
         String apparentSign = "";
-        double value = TemperatureUtil.getApparentTemperatureWithSolarIrradiation(
+        double value = getApparentTemperatureWithSolarIrradiation(
                     weather.getTemperature(),
                     weather.getHumidity(),
                     weather.getWindSpeed(),
@@ -226,14 +192,8 @@ public class TemperatureUtil {
         if (value > 0) {
             apparentSign += "+";
         }
-        if (unitsFromPreferences.contains("fahrenheit") ) {
-            double fahrenheitValue = (value * 1.8f) + 32;
-            return apparentSign + String.format(locale, "%d",
-                    Math.round(fahrenheitValue)) + getTemperatureUnit(context);
-        } else {
-            return apparentSign + String.format(locale, "%d",
-                    Math.round(value)) + getTemperatureUnit(context);
-        }
+        return apparentSign + String.format(locale, "%d",
+                Math.round(getTemperatureInPreferredUnit(context, value))) + getTemperatureUnit(context);
     }
 
     public static String getTemperatureUnit(Context context) {
@@ -241,16 +201,25 @@ public class TemperatureUtil {
                 Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
         if (unitsFromPreferences.contains("fahrenheit") ) {
             return context.getString(R.string.temperature_unit_fahrenheit);
+        } else if (unitsFromPreferences.contains("kelvin")) {
+            return context.getString(R.string.temperature_unit_kelvin);
         } else {
             return context.getString(R.string.temperature_unit_celsius);
         }
     }
 
+    public static boolean isTemperatureUnitKelvin(Context context) {
+        return "kelvin".equals(PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius"));
+    }
+
     public static double getTemperatureInPreferredUnit(Context context, double inputValue) {
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
-        if (unitsFromPreferences.contains("fahrenheit") ) {
+        if (unitsFromPreferences.contains("fahrenheit")) {
             return (inputValue * 1.8d) + 32;
+        } else if (unitsFromPreferences.contains("kelvin")) {
+            return inputValue + 273.15;
         } else {
             return inputValue;
         }
@@ -260,28 +229,14 @@ public class TemperatureUtil {
         if (weather == null) {
             return 0;
         }
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
-        double value = getTemperatureInCelsius(context, weather);
-        if (unitsFromPreferences.contains("fahrenheit") ) {
-            return (value * 1.8d) + 32;
-        } else {
-            return value;
-        }
+        return getTemperatureInPreferredUnit(context, getTemperatureInCelsius(context, weather));
     }
 
     public static double getTemperature(Context context, Weather weather) {
         if (weather == null) {
             return 0;
         }
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
-        double value = getTemperatureInCelsius(context, weather);
-        if (unitsFromPreferences.contains("fahrenheit") ) {
-            return (value * 1.8d) + 32;
-        } else {
-            return value;
-        }
+        return getTemperatureInPreferredUnit(context, getTemperatureInCelsius(context, weather));
     }
 
     public static double getTemperatureInCelsius(Context context, DetailedWeatherForecast weather) {
@@ -293,7 +248,7 @@ public class TemperatureUtil {
         double value = weather.getTemperature();
         if ("appearance_only".equals(temperatureTypeFromPreferences) ||
                 ("measured_appearance_primary_appearance".equals(temperatureTypeFromPreferences))) {
-            value = TemperatureUtil.getApparentTemperatureWithoutSolarIrradiation(
+            value = getApparentTemperatureWithoutSolarIrradiation(
                     weather.getTemperature(),
                     weather.getHumidity(),
                     weather.getWindSpeed());
@@ -310,7 +265,7 @@ public class TemperatureUtil {
         double value = weather.getTemperature();
         if ("appearance_only".equals(temperatureTypeFromPreferences) ||
                 ("measured_appearance_primary_appearance".equals(temperatureTypeFromPreferences))) {
-            value = TemperatureUtil.getApparentTemperatureWithoutSolarIrradiation(
+            value = getApparentTemperatureWithoutSolarIrradiation(
                     weather.getTemperature(),
                     weather.getHumidity(),
                     weather.getWindSpeed());
