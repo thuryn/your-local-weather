@@ -561,4 +561,6 @@
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Kufizim shërbimi lokalizimi Mozilla</string>
     <string name="location_weather_update_status_location_from_last_location" tools:ignore="MissingTranslation">l</string>
     <string name="location_weather_update_status_too_early_update" tools:ignore="MissingTranslation">O</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Duke filluar me Android 10, lypset kontroll i imët i hyrjes te vendndodhja, për të marrë të dhëna rreth rrjetit GSM/LTE të lidhur. Akordoni gjithashtu leje për sjellje vendndodhjesh në prapaskenë (nëse doni gjithë kohës vendndodhje).</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Ndryshime lejesh në Android 10</string>
 </resources>
