@@ -565,4 +565,6 @@
     <string name="weather_condition_description_802" tools:ignore="MissingTranslation">疏云，零星散落的云朵</string>
     <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">从Android 10开始，需要对位置进行细粒度访问，以获取所连接的GSM/LTE网络的信息。在后台获取位置同样需要授予权限(如果你一直想要你的位置)。</string>
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">安卓10 权限变更</string>
+    <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">开尔文</string>
+    <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">千帕</string>
 </resources>
