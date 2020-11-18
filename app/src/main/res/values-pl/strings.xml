@@ -490,4 +490,6 @@
     <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">Powiedz:</string>
     <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Czas</string>
     <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Beaufort</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">psi</string>
 </resources>
