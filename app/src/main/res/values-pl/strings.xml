@@ -16,7 +16,7 @@
     <string name="hint_activity_search">Wyszukaj lokalizację</string>
     <string name="pref_title_temperature">Temperatura</string>
     <string name="title_activity_settings">Ustawienia</string>
-    <string name="title_activity_search">Szukanie Lokalizacji</string>
+    <string name="title_activity_search">Szukanie lokalizacji</string>
     <string name="cloudiness_label">Zachmurzenie: %1$s%2$s</string>
     <string name="label_cloudiness">Zachmurzenie</string>
     <string name="humidity_label">Wilgotność: %1$s%2$s</string>
@@ -48,7 +48,7 @@
     <string name="about_version_pref_title">Wersja</string>
     <string name="toast_parse_error">Wystąpił błąd. Spróbuj później.</string>
     <string name="nav_menu_bitcoin_donation">Przekaż bitcoin</string>
-    <string name="toolbar_menu_detect_location">Lokalizacja Wykrywanie</string>
+    <string name="toolbar_menu_detect_location">Wykryj lokalizację</string>
     <string name="toolbar_menu_refresh">Aktualizacja</string>
     <string name="toolbar_menu_search_city">Wyszukaj miasto</string>
     <string name="nav_menu_current_weather">Aktualna pogoda</string>
@@ -65,9 +65,9 @@
     <string name="wind_direction_south_east">SE↖</string>
     <string name="wind_direction_south_west">SW↗</string>
     <string name="wind_direction_west">W→</string>
-    <string name="label_activity_graphs">Wykresy pogody</string>
+    <string name="label_activity_graphs">Wykresy</string>
     <string name="label_activity_main">Aktualna pogoda</string>
-    <string name="label_activity_weather_forecast">Prognoza dnia</string>
+    <string name="label_activity_weather_forecast">Prognoza dzienna</string>
     <string name="nav_menu_graphs">Wykresy</string>
     <string name="load_progress">Ładowanie…</string>
     <string name="millimetre_label">mm</string>
@@ -76,8 +76,8 @@
     <string name="label_rain">Deszcz</string>
     <string name="label_snow">Śnieg</string>
     <string name="label_wind">Wiatr</string>
-    <string name="menu_action_toggle_values">Przełącz wartości</string>
-    <string name="menu_action_toggle_yaxis">Przełącznik Y-Axis</string>
+    <string name="menu_action_toggle_values">Wartości</string>
+    <string name="menu_action_toggle_yaxis">Oś Y</string>
     <string name="sunset_label">Zachód słońca: %s</string>
     <string name="sunrise_label">Wschód słońca: %s</string>
     <string name="label_sunset">Zachód słońca</string>
@@ -164,14 +164,14 @@
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Istnieją opcje umożliwiające włączenie debugowania w pliku dziennika. Ta opcja jest przydatna, gdy występują problemy z aplikacją.</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">Pomoc</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Lokalizacja</string>
-    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Ustawienie kolumny</string>
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Kolumny</string>
     <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Kolumny do pokazania</string>
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikona</string>
     <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Opis</string>
     <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperatura</string>
-    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Temperatura otoczenia</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Temp. odczuwalna</string>
     <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Wiatr</string>
-    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Deszcz/Śnieg</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Deszcz/śnieg</string>
     <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Wilgotność</string>
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Ciśnienie</string>
     <string name="ok" tools:ignore="MissingTranslation">OK</string>
@@ -265,7 +265,7 @@
     <string name="search_location_add" tools:ignore="MissingTranslation">Dodaj</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Dotknij mapy, aby uzyskać żądaną lokalizację i poczekaj, aż adres zostanie rozpoznany.</string>
     <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Kliknij przycisk Odśwież, aby zaktualizować pogodę.</string>
-    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Temperatura otoczenia: %s</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Temperatura odczuwalna: %s</string>
     <string name="label_measured_temperature" tools:ignore="MissingTranslation">Zmierzona temperatura: %s</string>
     <string name="label_pressure" tools:ignore="MissingTranslation">Ciśnienie</string>
     <string name="measured_only" tools:ignore="MissingTranslation">Tylko zmierzona wartość</string>
@@ -338,7 +338,7 @@
     <string name="weather_condition_description_502" tools:ignore="MissingTranslation">intensywny deszcz</string>
     <string name="weather_condition_description_503" tools:ignore="MissingTranslation">obfite opady deszczu</string>
     <string name="weather_condition_description_504" tools:ignore="MissingTranslation">ekstremalny deszcz</string>
-    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">"marznący deszcz "</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">marznący deszcz</string>
     <string name="weather_condition_description_520" tools:ignore="MissingTranslation">lekkie przelotne opady deszczu</string>
     <string name="weather_condition_description_521" tools:ignore="MissingTranslation">przelotny opad deszczu</string>
     <string name="weather_condition_description_522" tools:ignore="MissingTranslation">ulewny deszcz</string>
@@ -398,7 +398,7 @@
     <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Białoruski (Białoruś latin)</string>
     <string name="pref_language_ca" tools:ignore="MissingTranslation">Kataloński (Katalonia)</string>
     <string name="pref_language_cs" tools:ignore="MissingTranslation">Czeski (Czechy)</string>
-    <string name="pref_language_da" tools:ignore="MissingTranslation">"Duński  (Danish)"</string>
+    <string name="pref_language_da" tools:ignore="MissingTranslation">Duński (Danish)</string>
     <string name="pref_language_en" tools:ignore="MissingTranslation">Angielski</string>
     <string name="pref_language_fi" tools:ignore="MissingTranslation">Fiński (Finnish)</string>
     <string name="pref_language_fr" tools:ignore="MissingTranslation">Français (Francuski)</string>
@@ -437,22 +437,22 @@
     <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Niestandardowe z prognozą</string>
     <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Styl wizualnego powiadomienia</string>
     <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Styl ikony paska stanu</string>
-    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">Widoczne ustawienia wykresów</string>
-    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">Połączone ustawienia wykresu</string>
-    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">W połączeniu</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">Wykresy do wyświetlenia</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">Ustawienia wykresu łączonego</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Łączony</string>
     <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Temperatura</string>
     <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Wiatr</string>
-    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Deszcz</string>
-    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Deszcz (bar)</string>
-    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Śnieg</string>
-    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Śnieg (bar)</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Deszcz (liniowy)</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Deszcz (kolumnowy)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Śnieg (liniowy)</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Śnieg (kolumnowy)</string>
     <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Ciśnienie</string>
     <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Temperatura</string>
     <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Wiatr</string>
-    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Deszcz/Śnieg</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Deszcz/śnieg</string>
     <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Ciśnienie</string>
     <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Wykresy do wyświetlenia</string>
-    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Dane dla połączonego wykresu</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Dane dla wykresu łączonego</string>
     <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Pokaż legendę na wykresie</string>
     <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 dni</string>
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 dni</string>
@@ -463,7 +463,7 @@
     <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Pokaż wykres w rozdzielczości macierzystej (gdy wykres jest zbyt mały)</string>
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Pokaż ustawienia na widżecie</string>
     <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Przycisk ustawień wykresu widżetów</string>
-    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Przycisk ustawień lokalizacji widgetu</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Przycisk ustawień lokalizacji widżetu</string>
     <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Przycisk ustawień akcji widżetu</string>
     <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Pokaż dzień według skrótu</string>
     <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Liczba dni dla prognozy</string>
@@ -486,10 +486,20 @@
     <string name="preference_title_tts" tools:ignore="MissingTranslation">Ustawienia głosu</string>
     <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Nowe ustawienia głosu</string>
     <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Ta aplikacja posiada funkcję wyjścia głosowego. Aby włączyć tę funkcję, potrzebny jest system TTS (Text-to-Speech) zainstalowany i ustawić wyjście głosowe przez ustawienia aplikacji. Rozważ, proszę, że tłumaczenia tekstu, jak również polecenia głosowe są tłumaczone przez wolontariuszy przez https://hosted.weblate.org/projects/your-local-weather usługi. Można również ustawić własne polecenia głosowe w ustawieniach aplikacji. Twórcy tej aplikacji nie gwarantują jakości i poprawności tłumaczeń, jak również to, co mówi aplikacja-akceptujesz tę instrukcję za pomocą tej aplikacji.</string>
-    <string name="voice_settings_language" tools:ignore="MissingTranslation">Ustawienie języka</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Język</string>
     <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">Powiedz:</string>
     <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Czas</string>
     <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>
     <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Beaufort</string>
     <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">psi</string>
+    <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
+    <string name="too_early_update_error" tools:ignore="MissingTranslation">Zbyt wczesna aktualizacja!</string>
+    <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Typ prognozy</string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Przycisk dokładnych ustawień pogody widżetu</string>
+    <string name="location_weather_update_status_location_from_last_location" tools:ignore="MissingTranslation">l</string>
+    <string name="location_weather_update_status_too_early_update" tools:ignore="MissingTranslation">O</string>
+    <string name="label_dew_point" tools:ignore="MissingTranslation">Temp. punktu rosy</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">Temp. punktu rosy: %s</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Dostęp do usługi lokalizacyjnej Mozilla wygasł w marcu 2020. Aplikacja będzie używać systemu Android do ustalania lokalizacji. Adres nadal jest ustalany poprzez Nominatim. Proszę mieć to na uwadze podczas korzystania z aplikacji.</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Ograniczenie usługi lokalizacyjnej Mozilla</string>
 </resources>
