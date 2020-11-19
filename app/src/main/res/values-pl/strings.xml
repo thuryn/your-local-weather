@@ -10,7 +10,7 @@
     <string name="label_current_city">Aktualne miasto</string>
     <string name="label_temperature">Temperatura</string>
     <string name="nav_feedback">Informacja zwrotna</string>
-    <string name="progressDialog_gps_locate"> Znajdź bieżącej lokalizacji</string>
+    <string name="progressDialog_gps_locate">Wykrywanie bieżącej lokalizacji</string>
     <string name="wind_speed_miles">mph</string>
     <string name="wind_speed_meters">m/s</string>
     <string name="hint_activity_search">Wyszukaj lokalizację</string>
@@ -180,7 +180,7 @@
     <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Zamknij pasek nawigacji</string>
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Pomoc</string>
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
-    <string name="wind_speed_knots" tools:ignore="MissingTranslation">węzłów</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">węzły</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Wiatr</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Ciśnienie</string>
@@ -265,13 +265,13 @@
     <string name="search_location_add" tools:ignore="MissingTranslation">Dodaj</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Dotknij mapy, aby uzyskać żądaną lokalizację i poczekaj, aż adres zostanie rozpoznany.</string>
     <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Kliknij przycisk Odśwież, aby zaktualizować pogodę.</string>
-    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Temperatura odczuwalna: %s</string>
-    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Zmierzona temperatura: %s</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Temp. odczuwalna: %s</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Temp. zmierzona: %s</string>
     <string name="label_pressure" tools:ignore="MissingTranslation">Ciśnienie</string>
-    <string name="measured_only" tools:ignore="MissingTranslation">Tylko zmierzona wartość</string>
-    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Obie, mierzone pierwotnie</string>
-    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Obie, wygląd pierwotny</string>
-    <string name="appearance_only" tools:ignore="MissingTranslation">Tylko wartość wyglądu</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">Tylko zmierzona</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Obie, zmierzona jako główna</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Obie, odczuwalna jako główna</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">Tylko odczuwalna</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Pokaż temperaturę jako</string>
     <string name="permission_location_need" tools:ignore="MissingTranslation">Przyznaj uprawnienia do lokalizacji</string>
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Pogoda, język opisu i adres zmieni się z kolejną aktualizacją, lub możesz wymusić go ręcznie.</string>
@@ -294,8 +294,8 @@
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Ustawienia systemowe</string>
     <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Klucz API Openweathermap.org</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Wbudowany</string>
-    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">mmHg</string>
-    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">hPa</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
     <string name="inches_label" tools:ignore="MissingTranslation">cale</string>
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Deszcz i śnieg</string>
     <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Kierunek wiatru</string>
@@ -303,7 +303,7 @@
     <string name="pref_title_time_style" tools:ignore="MissingTranslation">Format czasu</string>
     <string name="time_style_system" tools:ignore="MissingTranslation">System</string>
     <string name="time_style_12_h" tools:ignore="MissingTranslation">12-godzinny</string>
-    <string name="time_style_24_h" tools:ignore="MissingTranslation">24 godziny</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24-godzinny</string>
     <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Styl kierunku wiatru</string>
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Wyłącz</string>
     <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Skrót N↓, NE↙, …</string>
@@ -462,7 +462,7 @@
     <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (interwał 3-godzinny)</string>
     <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Pokaż wykres w rozdzielczości macierzystej (gdy wykres jest zbyt mały)</string>
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Pokaż ustawienia na widżecie</string>
-    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Przycisk ustawień wykresu widżetów</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Przycisk ustawień wykresu widżetu</string>
     <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Przycisk ustawień lokalizacji widżetu</string>
     <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Przycisk ustawień akcji widżetu</string>
     <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Pokaż dzień według skrótu</string>
@@ -485,12 +485,12 @@
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Tłumaczenia tekstów i poradników</string>
     <string name="preference_title_tts" tools:ignore="MissingTranslation">Ustawienia głosu</string>
     <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Nowe ustawienia głosu</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Ta aplikacja posiada funkcję wyjścia głosowego. Aby włączyć tę funkcję, potrzebny jest system TTS (Text-to-Speech) zainstalowany i ustawić wyjście głosowe przez ustawienia aplikacji. Rozważ, proszę, że tłumaczenia tekstu, jak również polecenia głosowe są tłumaczone przez wolontariuszy przez https://hosted.weblate.org/projects/your-local-weather usługi. Można również ustawić własne polecenia głosowe w ustawieniach aplikacji. Twórcy tej aplikacji nie gwarantują jakości i poprawności tłumaczeń, jak również to, co mówi aplikacja-akceptujesz tę instrukcję za pomocą tej aplikacji.</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Ta aplikacja posiada funkcję wyjścia głosowego. Aby włączyć tę funkcję, potrzebny jest system TTS (Text-to-Speech) zainstalowany i ustawić wyjście głosowe przez ustawienia aplikacji. Rozważ, proszę, że tłumaczenia tekstu, jak również polecenia głosowe są tłumaczone przez wolontariuszy przez https://hosted.weblate.org/projects/your-local-weather usługi. Można również ustawić własne polecenia głosowe w ustawieniach aplikacji. Twórcy tej aplikacji nie gwarantują jakości i poprawności tłumaczeń, jak również to, co mówi aplikacja-akceptujesz tę instrukcję za pomocą tej aplikacji. "</string>
     <string name="voice_settings_language" tools:ignore="MissingTranslation">Język</string>
     <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">Powiedz:</string>
     <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Czas</string>
     <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>
-    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Beaufort</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">skala Beauforta</string>
     <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">psi</string>
     <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
     <string name="too_early_update_error" tools:ignore="MissingTranslation">Zbyt wczesna aktualizacja!</string>
@@ -503,4 +503,5 @@
     <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Dostęp do usługi lokalizacyjnej Mozilla wygasł w marcu 2020. Aplikacja będzie używać systemu Android do ustalania lokalizacji. Adres nadal jest ustalany poprzez Nominatim. Proszę mieć to na uwadze podczas korzystania z aplikacji.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Ograniczenie usługi lokalizacyjnej Mozilla</string>
     <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Wszystko</string>
+    <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">głośnik</string>
 </resources>
