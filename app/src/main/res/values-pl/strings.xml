@@ -504,4 +504,5 @@
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Ograniczenie usługi lokalizacyjnej Mozilla</string>
     <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Wszystko</string>
     <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">głośnik</string>
+    <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">Podaj lokalizację</string>
 </resources>
