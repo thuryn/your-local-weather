@@ -561,4 +561,6 @@
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Limitação do serviço de localização da Mozilla</string>
     <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">A partir do Android 10, é necessário ter um acesso de localização bem definido para obter informações sobre a rede GSM/LTE conectada. Conceda permissão para também buscar a localização em segundo plano (se quiser a sua localização o tempo todo).</string>
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Alterações de permissão do Android 10</string>
+    <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
+    <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
 </resources>
