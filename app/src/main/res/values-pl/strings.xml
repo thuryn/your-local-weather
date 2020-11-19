@@ -506,4 +506,5 @@
     <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">głośnik</string>
     <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">Podaj lokalizację</string>
     <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">powitanie</string>
+    <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">Podaj opis pogody</string>
 </resources>
