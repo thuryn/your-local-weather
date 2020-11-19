@@ -502,7 +502,8 @@
     <string name="dew_point_label" tools:ignore="MissingTranslation">Temp. punktu rosy: %s</string>
     <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Dostęp do usługi lokalizacyjnej Mozilla wygasł w marcu 2020. Aplikacja będzie używać systemu Android do ustalania lokalizacji. Adres nadal jest ustalany poprzez Nominatim. Proszę mieć to na uwadze podczas korzystania z aplikacji.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Ograniczenie usługi lokalizacyjnej Mozilla</string>
-    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Wszystko</string>
+    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">wszystkie</string>
     <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">głośnik</string>
     <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">Podaj lokalizację</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">powitanie</string>
 </resources>
