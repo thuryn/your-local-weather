@@ -204,6 +204,9 @@ public class VoiceSettingsActivity extends BaseActivity {
     private void processTtsLanguages(Set<Locale> ttsAvailableLanguages) {
         boolean supportedLanguage = false;
         appendLog(getBaseContext(), TAG, "Locales:ttsAvailableLanguages: " + ttsAvailableLanguages + ":" + ((ttsAvailableLanguages != null) ? ttsAvailableLanguages.size() : ""));
+        if ((ttsAvailableLanguages == null) || ttsAvailableLanguages.isEmpty()) {
+            return;
+        }
         for (Locale locale : ttsAvailableLanguages) {
             appendLog(getBaseContext(), TAG, "Locales: ", locale.getISO3Language(), ":", applicationLocale.getISO3Language());
             if (locale.getISO3Language().equals(applicationLocale.getISO3Language())) {
