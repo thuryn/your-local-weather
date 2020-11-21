@@ -190,7 +190,7 @@
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">
         <b>位置和地址源</b> 
 \n您可以选择应用从何处获取位置和地址。</string>
-    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;本地 MLS 和 Nominatim&lt;/b&gt; - 应用从 Mozilla 位置服务获取定位及地理坐标。Nominatim 服务从坐标获取地址。您可以通过安装 Mozilla Stumbler（从 https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler 获取）为 MLS 的未来改进做出贡献。通过授予电话呼叫权限，从蜂窝网络获取有关当前活动和可用网络基站的信息。您周围的 Wi-Fi 网络被用于更精确地猜测您的位置。"<b>本地 MLS 和 Nominatim</b> - 应用通过 Mozilla 位置服务获取位置。Nominatim 服务从坐标获取地址。您可以通过安装 Mozilla Stumbler（在 available at https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler 提供）为 MLS 的未来改进做出贡献。通过授予电话呼叫权限，从蜂窝网络获取有关当前活动和可用网络基站的信息。使用周围的 Wi-Fi 网络来更精确地猜测您的位置</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">" &amp;lt;b xmlns:tools=\"http://schemas.android.com/tools\"&amp;gt;本地 MLS 和 Nominatim&amp;lt;/b&amp;gt; - 应用从 Mozilla 位置服务获取定位及地理坐标。Nominatim 服务从坐标获取地址。您可以通过安装 Mozilla Stumbler（从 https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler 获取）为 MLS 的未来改进做出贡献。通过授予电话呼叫权限，从蜂窝网络获取有关当前活动和可用网络基站的信息。您周围的 Wi-Fi 网络被用于更精确地猜测您的位置。&lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;本地 MLS 和 Nominatim&lt;/b&gt; - 应用通过 Mozilla 位置服务获取位置。Nominatim 服务从坐标获取地址。您可以通过安装 Mozilla Stumbler（在 available at https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler 提供）为 MLS 的未来改进做出贡献。通过授予电话呼叫权限，从蜂窝网络获取有关当前活动和可用网络基站的信息。使用周围的 Wi-Fi 网络来更精确地猜测您的位置。"</string>
     <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
         <b>系统</b> - 应用通过 Android 中的系统服务获取位置和地址（通常使用 Google 定位服务）。</string>
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">这些菜单选项设置 <b>语言</b> ，主应用的 <b>主题</b> 和用于应用和微件的 <b>图标集</b> 。</string>
@@ -204,8 +204,7 @@
     <string name="help_page_4_content" tools:ignore="MissingTranslation">微件设置包含对全部微件的配置选项。</string>
     <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">当您选中 <b>在微件中显示标签</b> 选项时，您可以看到标签而不是天气条件值的图标。</string>
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">您可以通过 <b>微件主题选项</b> 来控制微件背景。</string>
-    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">
-        <b>唤醒策略</b> 选项是为了克服不同供应商的 Android 服务的错误实现。当您选择 <i>无唤醒</i> 选项且位置正确更新时您已经得到了正确实现。当位置未被正确更新时您可以尝试 <i>仅唤醒 CPU</i> 。此选项唤醒 CPU 并尝试读取蜂窝网络和 Wi-Fi 网络的状态。最后一项 <i>唤醒屏幕</i> 在更新位置期间开启屏幕数秒。此选项消耗一些电量 - 但对电池寿命的影响真的很小。</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">应用的 &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;唤醒策略&lt;/b&gt; 选项是为了克服不同供应商的 Android 服务的错误实现。当您选择 &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;无唤醒&lt;/i&gt; 选项且位置正确更新时您已经得到了正确实现。当位置未被正确更新时您可以尝试 &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;仅唤醒 CPU&lt;/i&gt; 。此选项唤醒 CPU 并尝试读取蜂窝网络和 Wi-Fi 网络的状态。最后一项 &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;唤醒屏幕&lt;/i&gt; 在更新位置期间开启屏幕数秒。此选项消耗一些电量 - 但对电池寿命的影响真的很小。</string>
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">当执行位置和当前天气的更新时，您可以看到微件中更新时间旁的更新状态。您可以通过 <b>显示更新摘要</b> 选项控制显示的内容。最高级选项的说明如下：</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">此选项可以启用将调试记录到日志文件。当应用出现问题时此选项非常有用。</string>
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">列设置</string>
