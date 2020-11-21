@@ -29,6 +29,8 @@ public class NotificationUtils {
 
     private static final String TAG = "NotificationUtils";
 
+    public static final int NOTIFICATION_ID = 2109876543;
+
     public static void weatherNotification(Context context, Long locationId) {
         /*String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(context);
         boolean updateBySensor = "0".equals(updateAutoPeriodStr);
@@ -136,7 +138,7 @@ public class NotificationUtils {
     public static void showNotification(Context context, Notification notification) {
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        notificationManager.notify(android.os.Process.myPid(), notification);
+        notificationManager.notify(NOTIFICATION_ID, notification);
     }
 
     private static Notification regularNotification(Context context,

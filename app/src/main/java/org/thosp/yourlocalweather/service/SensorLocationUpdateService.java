@@ -142,7 +142,7 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
             return;
         }
 
-        startForeground(android.os.Process.myPid(), notification);
+        startForeground(NotificationUtils.NOTIFICATION_ID, notification);
 
         sensorResolutionMultiplayer = 1 / senAccelerometer.getResolution();
         int maxDelay = 10000;
