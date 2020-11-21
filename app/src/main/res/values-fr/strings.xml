@@ -158,7 +158,7 @@
     <string name="help_page_4_title" tools:ignore="MissingTranslation">Paramètres des widgets</string>
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">La troisième page contient les prévisions météo en graphiques.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Paramètres généraux</string>
-    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Emplacement et adresse source</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Source pour la localisation et les adresses</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Accès expiré. Mettez à jour l\'application.</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Votre OpenweathermapApiKey n\'est pas enregistrée.</string>
     <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Pour adapter l\'appli à vos besoins, vous pouvez choisir la stratégie de mise à jour sur l\'écran suivant.
@@ -195,7 +195,7 @@
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Lors de la mise à jour de la localisation et de la météo vous pouvez voir l\'état de la mise à jour à côté de l\'heure de dernière mise à jour sur le widget. Vous pouvez contrôler ce qui est affiché avec l\'option <b>Afficher le résumé des mises à jour</b>. Voici l\'explication de l\'option la plus avancée :</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Options de débogage</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Il y a des options pour activer le débogage dans un fichier de journal. Cette option est utile lorsqu\'il y a une problème avec l\'application.</string>
-    <string name="title_activity_locations" tools:ignore="MissingTranslation">Emplacements</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Endroits</string>
     <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Ouvrir le tiroir de navigation</string>
     <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Fermer le tiroir de navigation</string>
     <string name="location_not_initialized" tools:ignore="MissingTranslation">La localisation n\'est pas activée. Cliquez d\'abord sur le réticule.</string>
