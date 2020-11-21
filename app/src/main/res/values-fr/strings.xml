@@ -114,7 +114,7 @@
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Suivant</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Précédent</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Terminer</string>
-    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Guide de configuration initial</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Guide de configuration initiale</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Général</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
         <b>Température</b> — Vous pouvez sélectionner l\'unité de température,
@@ -140,12 +140,12 @@
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">nœuds</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Vent</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Pression</string>
-    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Permission non accordée - cliquer sur le symbole de localisation dans l\'application</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Permission non accordée – cliquez sur le symbole de localisation dans l\'application</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Paramètres de mise à jour de la localisation</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Choix du moyen de localisation</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Paramètres de sortie de veille</string>
     <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Certains téléphones ne rapportent pas correctement la connexion aux antennes tant que l\'écran n\'est pas allumé. Le paramètre par défaut (avec écran allumé) à le désavantage d\'allumer l\'écran du téléphone quelques secondes. Ce qui a un léger impacte sur l\'autonomie. Commencez avec puis essayez sans et vérifiez que la localisation se met toujours à jour.</string>
-    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Paramètres de sortie de veille</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Sortie de veille</string>
     <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Vous pouvez réduire votre utilisation de données en mettant vos localisations en cache.
 \nElles ne sont pas enregistrées dans l\'appli. Elles ne sont pas envoyées ou stockées ailleurs dans le réseau.</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Félicitations</string>
@@ -156,7 +156,7 @@
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Application principale</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">Widgets</string>
     <string name="help_page_4_title" tools:ignore="MissingTranslation">Paramètres des widgets</string>
-    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">La troisième page contient les prévisions météo en graphiques.</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Le troisième écran contient des infos météo affiché en graphiques.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Paramètres généraux</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Source pour la localisation et les adresses</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Accès expiré. Mettez à jour l\'application.</string>
@@ -309,7 +309,7 @@
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Icônes Merlin le rouge</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">Ces options influencent toute l\'application.</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Optimisation de la batterie</string>
-    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">L\'application vous demandera de désactiver l\'optimisation de la batterie pour effectuer des mises à jour de l\'emplacement, de la météo ou pour suivre l\'emplacement par accéléromètre.</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">L\'application vous demandera de désactiver l\'optimisation de la batterie pour effectuer des mises à jour de l\'emplacement, de la météo ou pour suivre l\'emplacement par accéléromètre en arrière-plan.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Continuer</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Annuler</string>
     <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Direction du vent</string>
