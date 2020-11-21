@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.LocationManager;
+import android.os.Build;
 
 import androidx.core.content.ContextCompat;
 
@@ -115,7 +116,7 @@ public class PermissionUtil {
             } else if ("location_geocoder_system".equals(geocoder) && isNetworkEnabled && ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
             }
-            if (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)  && ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 permissions.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
             }
             appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS, "permissions are empty = ", permissions.isEmpty());
