@@ -477,7 +477,7 @@
     <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhi</string>
     <string name="weather_condition_description_221" tools:ignore="MissingTranslation">orage turbulent</string>
     <string name="weather_condition_description_232" tools:ignore="MissingTranslation">orage avec forte bruine</string>
-    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">légère bruine</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">bruine légère</string>
     <string name="weather_condition_description_302" tools:ignore="MissingTranslation">forte bruine</string>
     <string name="weather_condition_description_310" tools:ignore="MissingTranslation">légère pluie</string>
     <string name="weather_condition_description_311" tools:ignore="MissingTranslation">pluie</string>
