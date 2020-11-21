@@ -1,3 +1,6 @@
+v5.6.3
+Added Kelvin and kPa units, fix to avoid multiple notifications
+
 v5.6.2
 Several small fixies to avoid ANRs and NPEs
 
