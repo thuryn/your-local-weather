@@ -3,7 +3,7 @@
     <string name="enter_city_hint">Entrer la ville</string>
     <string name="label_current_city">Ville actuelle</string>
     <string name="label_choose_city">Choisir la ville</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings">L\'appli est paramétrée pour mettre à jour votre localisation. L\'accès à celle-ci est requise. Allez dans les paramètres de votre appareil et activez la localisation ou désactivez la mise à jour de la localisation dans l\'appli.</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings">L\'application est paramétré pour mettre à jour la localisation. L\'accès au GPS est requis. Allez dans les paramètres de l\'appareil et activez la localisation.</string>
     <string name="alertDialog_location_permission_positiveButton_settings">Paramètres de l\'appareil</string>
     <string name="alertDialog_location_permission_negativeButton">Annuler</string>
     <string name="progressDialog_gps_locate">Recherche de la localisation actuelle</string>
