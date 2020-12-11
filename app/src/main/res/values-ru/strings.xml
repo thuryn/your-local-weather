@@ -564,4 +564,6 @@
     <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"В этом приложении есть голосовые подсказки в виде перевода текста и голосовых команд, любезно предоставленных волонтерами на https://hosted.weblate.org/projects/your-local-weather. Разработчик приложения не может гарантировать, что они верны - вы принимаете это, используя приложение. Для его использования у вас должен быть установлен TTS (преобразование текста в речь) и включены подсказки в настройках, где вы можете установить свои собственные голосовые команды. "</string>
     <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Начиная с Android 10, для получения информации о подключённой сети GSM/LTE необходим детальный доступ к местоположению. Разрешите также получать данные о местоположении в фоновом режиме (если вы хотите, чтобы ваше местоположение было постоянно).</string>
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Изменения разрешений Android 10</string>
+    <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
+    <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">кПа</string>
 </resources>
