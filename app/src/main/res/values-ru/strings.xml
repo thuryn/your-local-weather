@@ -43,7 +43,7 @@
     <string name="preference_widget_title_update_period">Интервал обновления погоды (Место 1,2,3...)</string>
     <string name="last_update_label">Последнее обновление: %s</string>
     <string name="about_app_license_pref_title">Лицензия</string>
-    <string name="about_source_code_pref_title">Исходный Код</string>
+    <string name="about_source_code_pref_title">Исходный код</string>
     <string name="about_version_pref_title">Версия</string>
     <string name="about_open_source_licenses_pref_title">Лицензии открытого программного обеспечения</string>
     <string name="toast_parse_error">Произошла ошибка. Попробуйте позже.</string>
