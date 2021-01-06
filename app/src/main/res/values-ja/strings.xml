@@ -1,5 +1,5 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="enter_city_hint">都市を入力</string>
     <string name="label_current_city">現在の都市</string>
     <string name="label_choose_city">都市を選択</string>
@@ -8,21 +8,18 @@
     <string name="alertDialog_location_permission_negativeButton">キャンセル</string>
     <string name="progressDialog_gps_locate">現在の場所を検索</string>
     <string name="load_progress">ロード中…</string>
-
     <!-- Activity names -->
     <string name="title_activity_search">場所を検索</string>
     <string name="label_activity_main">現在の天気</string>
     <string name="label_activity_weather_forecast">毎日の予報</string>
     <string name="label_activity_graphs">天気のグラフ</string>
     <string name="title_activity_license">%s のライセンス</string>
-
     <!-- Toolbar menu -->
     <string name="toolbar_menu_refresh">更新</string>
     <string name="toolbar_menu_search_city">都市を検索</string>
     <string name="toolbar_menu_detect_location">場所を検出</string>
     <string name="menu_action_toggle_values">値を切り替え</string>
     <string name="menu_action_toggle_yaxis">Y-軸を切り替え</string>
-
     <!-- Navigation drawer -->
     <string name="nav_menu_current_weather">現在の天気</string>
     <string name="nav_menu_daily_forecast">毎日の予報</string>
@@ -30,20 +27,16 @@
     <string name="nav_menu_settings">設定</string>
     <string name="nav_feedback">フィードバック</string>
     <string name="nav_menu_bitcoin_donation">Bitcoin を寄付</string>
-
     <!-- Toast messages -->
     <string name="connection_not_found">インターネット接続を確認してください</string>
     <string name="toast_parse_error">エラーが発生しました。後でやり直してください!</string>
-
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
     <string name="wind_speed_miles">mph</string>
     <string name="millimetre_label">mm</string>
-
     <!-- Search Screen strings -->
     <string name="hint_activity_search">場所を検索</string>
-
     <!-- Preference Screen strings -->
     <string name="title_activity_settings">設定</string>
     <string name="pref_title_temperature">気温</string>
@@ -61,14 +54,12 @@
     <string name="preference_widget_title_update_period">更新間隔</string>
     <string name="preference_title_activity_general">全般設定</string>
     <string name="preference_title_activity_widget">ウィジェット設定</string>
-
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">アプリについて</string>
     <string name="about_version_pref_title">バージョン</string>
     <string name="about_source_code_pref_title">ソースコード</string>
     <string name="about_app_license_pref_title">ライセンス</string>
     <string name="about_open_source_licenses_pref_title">オープンソース ライセンス</string>
-
     <!-- Weather conditions label strings -->
     <string name="wind_label">風: %1$s %2$s %3$s</string>
     <string name="rain_label">雨: %1$s %2$s</string>
@@ -91,13 +82,10 @@
     <string name="label_wind">風</string>
     <string name="label_rain">雨</string>
     <string name="label_snow">雪</string>
-
     <!-- Widgets strings -->
     <string name="widget_weather_icon_description">現在の天気アイコン</string>
     <string name="widget_refresh_button">ウィジェット リフレッシュ ボタン</string>
-
     <!-- Donation Bitcoin dialog -->
-
     <!-- Wind directions -->
     <string name="wind_direction_north">北</string>
     <string name="wind_direction_north_east">北東</string>
@@ -108,7 +96,6 @@
     <string name="wind_direction_west">西</string>
     <string name="wind_direction_north_west">北西</string>
     <string name="preference_hide_desc">天気予報を隠す</string>
-
     <!-- Permission strings -->
     <string name="permission_location_rationale">場所現在の都市を決定するために許可が必要です</string>
     <string name="permission_not_granted">権限は許可されていません！</string>
@@ -116,14 +103,16 @@
     <string name="pref_language_default">System Default</string>
     <string name="pref_title_language">言語</string>
     <string name="preference_title_category_display">表示</string>
-<string name="preference_widget_update_location">場所を更新</string>
+    <string name="preference_widget_update_location">場所を更新</string>
     <string name="preference_widget_use_geocoder">地理位置情報を使用して表示</string>
     <string name="preference_widget_theme_title">ウィジェットのテーマ</string>
     <string name="theme_dark">ダーク</string>
     <string name="theme_light">ライト</string>
     <string name="theme_transparent">透明</string>
     <string name="pref_title_theme">テーマ</string>
-    
     <string name="permission_location_need">位置情報のアクセス許可を付与する必要があります</string>
-
-    </resources>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Mozilla 位置情報サービスの制限</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"このアプリは、https://hosted.weblate.org/projects/your-local-weather のボランティアの好意により、テキスト翻訳と音声コマンドの音声ガイダンスがあります。アプリの開発者は、彼らが正しいことを保証することはできません - あなたはアプリを使用してこれを受け入れます。これを使用するには、TTS（Text-to-speech）がインストールされ、設定でガイダンスがオンになっている必要があります。ここで、独自の音声コマンドを設定できます。 "</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">テキストとガイダンスの翻訳</string>
+    <string name="app_name" tools:ignore="MissingTranslation">現在地の天気</string>
+</resources>
