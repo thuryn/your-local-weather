@@ -131,7 +131,7 @@
     <string name="help_page_2_title" tools:ignore="MissingTranslation">Widżety</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">Aplikacja ma dostępne trzy widgety, zawierające niektóre wspólne wartości aktualnej pogody (np. Temperatura). Niektóre wartości są unikalne dla określonego widżetu (na przykład słońca). Jest czas ostatniej aktualizacji w prawym rogu każdego widżetu. Możesz zobaczyć, co zostało ostatnio zaktualizowane (po włączeniu tej opcji w menu ustawień). Możesz znaleźć przycisk aktualizacji obok ostatniej zaktualizowanej godziny. Po naciśnięciu tego przycisku pogoda (i lokalizacja po wybraniu opcji aktualizacji lokalizacji) jest aktualizowana bezwarunkowo. Ostatnią opcją w widżetach jest zmiana położenia - po naciśnięciu aktualnego tekstu lokalizacji zmiana lokalizacji na następną.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Ustawienia główne</string>
-    <string name="help_page_3_content" tools:ignore="MissingTranslation">Ta opcja ma wpływ na całą aplikację.</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Te opcje mają wpływ na całą aplikację.</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
         <b>Temperatura</b> - Wybierz jednostkę temperatury, <b>Wiatr</b> - Wybierz jednostkę prędkości wiatru <b>Ciśnienie</b> - Wybierz jednostkę ciśnienia. Wartości są przeliczane ponownie za pomocą tych opcji.</string>
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">
@@ -152,7 +152,7 @@
 \nPo wybraniu opcji powiadomień aplikacja okresowo aktualizuje bieżącą pogodę. Aktualna pogoda jest wtedy umieszczana w obszarze powiadomień. Możesz także włączyć wibracje - aplikacja wibruje po aktualizacji.</string>
     <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">Aby zaoszczędzić ruch w sieci i przyspieszyć aktualizację lokalizacji, możesz się przełączyć na <b>Lokalizacja pamięci podręcznej</b>. Pamięć podręczna przechowuje współrzędne geograficzne i adres. Aplikacja musi wywoływać usługę rozwiązywania sieci niezależnie od tego ustawienia. Jednak połączenie z rozwiązaniem adresu Nominatim ma miejsce w przypadku, gdy adres nie znajduje się w pamięci podręcznej. Po włączeniu opcji lokalizacji pamięci podręcznej musisz zaakceptować fakt, że adresy, które odwiedziłeś, są przechowywane w aplikacji. Żadne informacje z pamięci podręcznej nie są wysyłane poza aplikację.</string>
     <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Obok opcji lokalizacji pamięci podręcznej (pole wyboru) dostępne jest ustawienie <b>Wiek buforowanych wartości</b>. Każdy zapisany adres ma znacznik czasu. Gdy znacznik czasu jest starszy, ustaw wartość w aplikacji Wiek epizodów buforowanych wywołuje Nominatim, aby odświeżyć rekord.</string>
-    <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Możesz wyczyścić pamięć podręczną adresów za pomocą przycisku <b>Wyczyść pamięć podręczną</b>.</string>
+    <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Pamięć podręczną adresów można wyczyścić za pomocą przycisku &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;Wyczyść pamięć podręczną&lt;/b&gt;.</string>
     <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">Możesz zobaczyć kilka ostatnich wierszy buforowanych wartości w sekcji <b>Informacje o pamięci podręcznej</b> Widać również całkowitą liczbę wierszy.</string>
     <string name="help_page_4_title" tools:ignore="MissingTranslation">Ustawienia widżetu</string>
     <string name="help_page_4_content" tools:ignore="MissingTranslation">Ustawienia widgetu zawierają opcje konfiguracji dla wszystkich widżetów.</string>
@@ -514,4 +514,6 @@
     <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">powiedz o wietrze</string>
     <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">Co powiedzieć:</string>
     <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">Lokalizacje:</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Począwszy od Androida 10, aby uzyskać informacje o podłączonej sieci GSM/LTE, potrzebny jest precyzyjny dostęp do lokalizacji. Przyznaj uprawnienia do pobierania lokalizacji również w tle (jeśli chcesz mieć swoją lokalizację przez cały czas).</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Zmiany uprawnień systemu Android 10</string>
 </resources>
