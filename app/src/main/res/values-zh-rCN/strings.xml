@@ -561,7 +561,7 @@
     <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">预报类型</string>
     <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">截至2020年1月3日，对Mozilla位置服务的访问已过期。本应用被迫使用安卓系统进行位置协同发现。地址仍由Nominatim解析。使用本应用时请考虑这件事。</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Mozilla位置服务限制</string>
-    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">散云</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">疏云</string>
     <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">从Android 10开始，需要对位置进行细粒度访问，以获取所连接的GSM/LTE网络的信息。在后台获取位置同样需要授予权限(如果你一直想要你的位置)。</string>
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">安卓10 权限变更</string>
     <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">开尔文</string>
