@@ -111,7 +111,7 @@
     <string name="theme_transparent">Gardena</string>
     <string name="pref_title_theme">Gaia</string>
     <string name="permission_location_need">Eman kokapen baimenak</string>
-    <string name="app_name" tools:ignore="MissingTranslation">Yorecast</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Bertako eguraldia</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Kokaleku eta baimenen ezarpenak</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Aplikazioak GPS bidez kokalekua eguneratzeko baimena behar du.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Aplikazioak Wi-Fi eta GSM sareen bidez kokalekua eguneratzeko baimena behar du.</string>
@@ -258,4 +258,7 @@
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Bateria optimizazioa</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Jarraitu</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Utzi</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Aplikazioak bateriaren optimizazioa desaktibatzeko eskatuko dizu kokapena, eguraldia edo ibilbidearen kokapena eguneratzeko azelerometroaren bidez.</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Android 10eko baimenen aldaketak</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Testuen eta jarraibideen itzulpenak</string>
 </resources>
