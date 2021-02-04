@@ -9,7 +9,7 @@
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Fortsätt</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Avbryt</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Plats- och behörighetsinställningar</string>
-    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">"Appen är inställd på att uppdatera plats. Tillgång till det behövs. Gå till enhetsinställningar och slå på platsen eller slå av  platsuppdateringar."</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Appen är inställd på att uppdatera plats. Tillgång till det behövs. Gå till enhetsinställningar och slå på platsen eller slå av platsuppdateringar.</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Appen behöver behörighet att uppdatera platsen med hjälp av GPS.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Appen behöver behörighet att uppdatera platsen via Wi-Fi- och GSM-nätverk.</string>
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Tillstånd att läsa information från enheten behövs för att uppdatera platsen med Wi-Fi- och GSM-nätverk. Detta hämtar information om vilka GSM-basstationer enheten är ansluten till.</string>
@@ -114,7 +114,7 @@
     <string name="title_activity_settings" tools:ignore="MissingTranslation">Inställningar</string>
     <string name="pref_title_temperature" tools:ignore="MissingTranslation">Temperatur</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Vind</string>
-    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Vindriktningsstil</string>
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Vindriktningsformat</string>
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Regn och snö</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Tryck</string>
     <string name="preference_hide_desc" tools:ignore="MissingTranslation">Dölj väderbeskrivning</string>
@@ -153,11 +153,11 @@
         <b>Switch GPS on when necessary</b> option, application tries to find location by cell or wifi networks. When the location could not be find by network services application turns GPS on for a several seconds to get the location.</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Dela väder</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Kommunikationsapp hittades inte</string>
-    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Stad: %1$s 
-\nTemperatur: %2$s 
-\nBeskrivning: %3$s 
-\nVind: % 4$s % 5$s 
-\nGryning: %6$s 
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Stad: %1$s
+\nTemperatur: %2$s
+\nBeskrivning: %3$s
+\nVind: %4$s %5$s
+\nGryning: %6$s
 \nSkymning: %7$s</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">Ditt lokala väder</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">Dina lokala väderaviseringar</string>
@@ -188,8 +188,8 @@
     <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">Osynlig</string>
     <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Klassisk</string>
     <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Anpassad med en prognos</string>
-    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Visuell aviseringsstil</string>
-    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Statusfältets ikonstil</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Visuellt aviseringsformat</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Statusfältets ikonformat</string>
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Enhetsinställningar</string>
     <string name="preference_title_power_save" tools:ignore="MissingTranslation">Energisparalternativ</string>
     <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API-nyckel</string>
