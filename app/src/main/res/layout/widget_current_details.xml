@@ -15,7 +15,7 @@
 
                 <TextView
                     android:id="@+id/widget_current_detail.wind"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:lines="1"

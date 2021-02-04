@@ -140,7 +140,12 @@ public class WidgetUtils {
             remoteViews.setTextViewText(widgetWindId, wind);
             remoteViews.setViewVisibility(widgetWindIconId, TextView.GONE);
         } else {
-            String wind = ": " + windWithUnit.getWindSpeed(0) + " " + windWithUnit.getWindUnit();
+            String wind = ": "
+                        + windWithUnit.getWindSpeed(0)
+                        + " "
+                        + windWithUnit.getWindUnit()
+                        + " "
+                        + windWithUnit.getWindDirection();
             remoteViews.setImageViewBitmap(widgetWindIconId, Utils.createWeatherIcon(context, context.getString(R.string.icon_wind)));
             remoteViews.setViewVisibility(widgetWindIconId, TextView.VISIBLE);
             remoteViews.setTextViewText(widgetWindId, wind);
