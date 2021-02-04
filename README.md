@@ -26,7 +26,7 @@ Application uses OpenWeatherMap.org service to get current weather .
 Additional features include:
 * Different languages: Czech, Basque, Belarusian, Czech, English, French, German, Japanese, Spanish, Polish, Russian
 * Current weather
-* 7 day forecast
+* 5 day forecast
 * Many locations
 * Notifications
 * Support different measuring units
