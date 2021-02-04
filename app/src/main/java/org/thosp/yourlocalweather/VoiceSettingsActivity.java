@@ -342,7 +342,9 @@ public class VoiceSettingsActivity extends BaseActivity {
                             for(BluetoothDevice bluetoothDevice: bluetoothDeviceSet) {
                                 String currentDeviceName = bluetoothDevice.getName();
                                 String currentDeviceAddress = bluetoothDevice.getAddress();
-                                if (btDevices.contains(currentDeviceAddress)) {
+                                if ((btDevices != null) &&
+                                        (currentDeviceAddress != null) &&
+                                        btDevices.contains(currentDeviceAddress)) {
                                     if (notFirst) {
                                         addInfo1Builder.append(", ");
                                     }
