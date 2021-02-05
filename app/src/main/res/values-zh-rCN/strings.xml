@@ -566,4 +566,7 @@
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">安卓10 权限变更</string>
     <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">开尔文</string>
     <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">千帕</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">葡萄牙语 (葡萄牙)</string>
+    <string name="pref_language_fa" tools:ignore="MissingTranslation">波斯语 (波斯)</string>
+    <string name="pref_language_hi" tools:ignore="MissingTranslation">印地语 (印度)</string>
 </resources>
