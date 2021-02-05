@@ -87,4 +87,71 @@
     <string name="label_choose_city" tools:ignore="MissingTranslation">בחירת עיר</string>
     <string name="app_name" tools:ignore="MissingTranslation">מזג האוויר המקומי שלכם</string>
     <string name="enter_city_hint" tools:ignore="MissingTranslation">הזנת עיר</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">צפון-מערבית</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">מערבית</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">דרום-מערבית</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">דרומית</string>
+    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">דרום-מזרחית</string>
+    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">מזרחית</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">צפון-מזרחית</string>
+    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">צפונית</string>
+    <string name="wind_direction_north_west" tools:ignore="MissingTranslation">צמע↘</string>
+    <string name="wind_direction_west" tools:ignore="MissingTranslation">מע→</string>
+    <string name="wind_direction_south_west" tools:ignore="MissingTranslation">דמע↗</string>
+    <string name="wind_direction_south" tools:ignore="MissingTranslation">ד↑</string>
+    <string name="wind_direction_south_east" tools:ignore="MissingTranslation">דמז↖</string>
+    <string name="wind_direction_east" tools:ignore="MissingTranslation">מז ←</string>
+    <string name="wind_direction_north_east" tools:ignore="MissingTranslation">צמז↙</string>
+    <string name="wind_direction_north" tools:ignore="MissingTranslation">צ↓</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">מעלות מהצפון</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">קיצור N ↓, NE↙, …</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">מושבת</string>
+    <string name="label_wind" tools:ignore="MissingTranslation">רוח</string>
+    <string name="tty_say_max_wind" tools:ignore="MissingTranslation">%3$s רוח מירבית %1$s %2$s</string>
+    <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s רוח %1$s %2$s</string>
+    <string name="wind_label" tools:ignore="MissingTranslation">רוח: %1$s %2$s %3$s</string>
+    <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">אמרו רוח</string>
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">סגנון כיוון רוח</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">בופורט</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">קמ\"ש</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">קשר</string>
+    <string name="wind_speed_miles" tools:ignore="MissingTranslation">קמ\"ש</string>
+    <string name="wind_speed_meters" tools:ignore="MissingTranslation">מ/שנ׳</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/yy)</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/yy)</string>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm.(yy)</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">רוח</string>
+    <string name="title_activity_settings" tools:ignore="MissingTranslation">הגדרות</string>
+    <string name="hint_activity_search" tools:ignore="MissingTranslation">חיפוש מיקום</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 ימים</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 ימים</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 ימים</string>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">מבנה תאריך</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12-שעות (AM/PM)</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24-שעות</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">מערכת</string>
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">מבנה תאריך</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">אינץ\'</string>
+    <string name="millimetre_label" tools:ignore="MissingTranslation">ממ</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">עזרה</string>
+    <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">תרומה בביטקוין</string>
+    <string name="nav_feedback" tools:ignore="MissingTranslation">משוב</string>
+    <string name="nav_menu_settings" tools:ignore="MissingTranslation">הגדרות</string>
+    <string name="nav_menu_graphs" tools:ignore="MissingTranslation">תרשימים</string>
+    <string name="nav_menu_daily_forecast" tools:ignore="MissingTranslation">תחזית יומית</string>
+    <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">מזג אויר נוכחי</string>
+    <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">הצגת מקרא בתרשים</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">רוח</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">לחץ</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">שלג (עמודות)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">שלג</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">גשם(עמודות)</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">גשם</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">רוח</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">לחות</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">גשם/שלג</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">הקודם</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">הבא</string>
+    <string name="progressDialog_gps_locate" tools:ignore="MissingTranslation">חיפוש מיקום נוכחי</string>
 </resources>
