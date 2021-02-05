@@ -54,7 +54,7 @@
     <string name="preference_title_category_display">Προβολή</string>
     <string name="pref_title_language">Γλώσσα</string>
     <string name="pref_language_default">Προεπιλογή του Συστήματος</string>
-    <string name="preference_title_activity_about">Σχετικά με...</string>
+    <string name="preference_title_activity_about">Σχετικά</string>
     <string name="about_version_pref_title">Έκδοση</string>
     <string name="about_source_code_pref_title">Πηγαίος Κώδικας</string>
     <string name="about_app_license_pref_title">Άδεια</string>
