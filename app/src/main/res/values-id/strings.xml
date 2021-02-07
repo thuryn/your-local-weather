@@ -90,4 +90,41 @@
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Terjemahan teks dan suara</string>
     <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Aplikasi ini memiliki fitur keluaran suara, untuk mengaktifkan fitur ini, anda membutuhkan sistem TTS (Text-to-speech) yang sudah terpasang</string>
     <string name="voice_settings_language" tools:ignore="MissingTranslation">Pengaturan Bahasa</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">hujan salju ringan</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">hujan dan salju</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">hujan ringan dan salju</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">hujan es</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">salju lebat</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">Salju</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">salju ringan</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">hujan ekstrim</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">hujan yang sangat deras</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">hujan dengan intensitas lebat</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">hujan sedang</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">hujan ringan</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">hujan lebat dan gerimis</string>
+    <string name="weather_condition_description_312" tools:ignore="MissingTranslation">hujan gerimis intensitas lebat</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">hujan gerimis</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">hujan gerimis intensitas ringan</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">gerimis lebat</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">gerimis</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">gerimis intensitas ringan</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">debu</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">badai</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">abu vulkanik</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">angin topan</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">langit cerah</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">sedikit awan</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">awan mendung</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Opsi menu ini mengatur &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt; bahasa &lt;/b&gt;, &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt; tema &lt;/b&gt; aplikasi utama dan &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt; kumpulan ikon &lt;/b&gt; yang digunakan dalam aplikasi dan widget.</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt; Sistem &lt;/b&gt; - Aplikasi mendapatkan lokasi dan alamat oleh layanan sistem di Android (biasanya dengan layanan lokasi Google)."</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt; Sembunyikan deskripsi cuaca &lt;/b&gt; - deskripsi cuaca saat ini disembunyikan. Anda hanya dapat melihat cuaca saat ini melalui ikon."</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt; Suhu&lt;/b&gt; - Anda dapat memilih unit suhu, &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;Angin&lt;/b&gt; - Anda dapat memilih unit kecepatan angin dan &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;Tekanan&lt;/b&gt; - Anda dapat memilih unit untuk tekanan. Nilai dikalkulasi ulang menggunakan opsi ini."</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Layar ketiga berisi ramalan cuaca berupa grafik.</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Anda dapat menemukan ramalan cuaca di layar berikutnya (pilih layar berikutnya di menu atau geser dari kiri ke kanan). Ramalan cuaca diperbarui dengan tombol perbarui atau saat Anda masuk ke layar (tetapi tidak lebih dari satu pembaruan per jam).</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Selamat</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Cuaca lokal Anda</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Aplikasi komunikasi tidak ditemukan</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Perubahan izin Android 10</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Batasan layanan lokasi Mozilla</string>
 </resources>
