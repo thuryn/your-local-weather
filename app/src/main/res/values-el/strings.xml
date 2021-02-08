@@ -5,7 +5,7 @@
     <string name="label_choose_city">Επέλεξε Πόλη</string>
     <string name="alertDialog_location_permission_message_location_phone_settings">Η εφαρμογή έχει ρυθμιστεί ώστε να ενημερώνει την τοποθεσία. Χρειάζεται πρόσβαση στην τοποθεσία. Πήγαινε στις ρυθμίσεις της συσκευής και ενεργοποίησε την τοποθεσία. Εναλλακτικά, απενεργοποίησε την ενημέρωση της τοποθεσίας στην εφαρμογή.</string>
     <string name="alertDialog_location_permission_positiveButton_settings">Ρυθμίσεις συσκευής</string>
-    <string name="alertDialog_location_permission_negativeButton">Ακύρωση</string>
+    <string name="alertDialog_location_permission_negativeButton">Άκυρο</string>
     <string name="progressDialog_gps_locate">Εύρεση τωρινής τοποθεσίας</string>
     <string name="load_progress">Φορτώνεται…</string>
     <string name="title_activity_search">Αναζήτηση Τοποθεσίας</string>
@@ -106,7 +106,7 @@
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Βελτιστοποίηση κατανάλωσης</string>
     <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Η εφαρμογή θα σου ζητήσει να απενεργοποιήσεις την βελτιστοποίηση κατανάλωσης για να ανανεώνεται η τοποθεσία, ο καιρός ή για να εντοπίζεται η τοποθεσία χρησιμοποιώντας το επιταχυνσιόμετρο στο υπόβαθρο.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Συνέχεια</string>
-    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Ακύρωση</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Άκυρο</string>
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Χρειάζεται άδεια για ανάγνωση δεδομένων από την συσκευή, ώστε να ανανεώνεται η τοποθεσία χρησιμοποιώντας Wi-Fi και δίκτυα GSM. Αυτή η επιλογή θα αντλεί πληροφορίες για τους σταθμούς βάσης GSM στους οποίους συνδέεται η συσκευή.</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Αίτημα δικαιωμάτων</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Δεν έχουν δοθεί ακόμα δικαιώματα - πάτησε στο σύμβολο της τοποθεσίας στην εφαρμογή</string>
@@ -176,7 +176,7 @@
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Πίεση</string>
     <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
     <string name="ok" tools:ignore="MissingTranslation">Εντάξει</string>
-    <string name="cancel" tools:ignore="MissingTranslation">Ακύρωση</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Άκυρο</string>
     <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Συνδυασμένα</string>
     <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Θερμοκρασία</string>
     <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Άνεμοι</string>
