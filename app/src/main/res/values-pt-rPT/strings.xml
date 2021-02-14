@@ -563,4 +563,7 @@
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Alterações de permissão do Android 10</string>
     <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
     <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">Português (Portugal)</string>
+    <string name="pref_language_fa" tools:ignore="MissingTranslation">Persa (persa)</string>
+    <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (Hindi)</string>
 </resources>
