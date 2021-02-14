@@ -15,12 +15,10 @@
 \nN - atualizada a localização da rede e o tempo 
 \nB - o acesso ao serviço Openweathermap.org foi bloqueado, por favor tente atualizar o tempo mais tarde 
 \nE - o token de acesso ao serviço Openweathermap.org expirou. Tem de atualizar a aplicação para ter acesso novamente</string>
-    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">" &amp;lt;b xmlns:tools=\"http://schemas.android.com/tools\"&amp;gt;Notificações&amp;lt;/b&amp;gt; 
-\nQuando seleciona a opção de notificações, a aplicação atualiza o tempo atual periodicamente. O tempo atual é então mostrado na área de notificações. Também pode ativar a vibração - a aplicação vibra quando é atualizada."<b>Notifications</b>
-\nWhen you selects notifications option, application updates current weather periodically. Current weather is put into notifications area then. You can enable vibration also - application vibrate when updated.</string>
-    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">" &amp;lt;b xmlns:tools=\"http://schemas.android.com/tools\"&amp;gt;Localização e origem do endereço&amp;lt;/b&amp;gt;
-\nPode selecionar de onde a app obtém a localização e o endereço."<b>Location and address source</b>
-\nYou can select where the app gets the location and address from.</string>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;Notificações&lt;/b&gt;
+\nQuando seleciona a opção de notificações, a aplicação atualiza o tempo atual periodicamente. O tempo atual é então mostrado na área de notificações. Também pode ativar a vibração - a aplicação vibra quando é atualizada."</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;Fonte da localização e endereço&lt;/b&gt;
+\nPode escolher de onde a app obtém a localização e o endereço."</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Isto conclui o guia. Pode encontrar outras configurações no menu Configurações (por exemplo, idioma, unidades, etc.). 
 \nO ecrã seguinte explicará as permissões necessárias e dará a opção de as pedir. 
 \n 
@@ -561,4 +559,7 @@
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Alterações de permissão do Android 10</string>
     <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
     <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">Português (Portugal)</string>
+    <string name="pref_language_fa" tools:ignore="MissingTranslation">Persa (persa)</string>
+    <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (Hindi)</string>
 </resources>
