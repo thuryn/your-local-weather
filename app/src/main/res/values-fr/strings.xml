@@ -107,7 +107,7 @@
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Paramètres de Localisation et de Permissions</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">L\'application nécessite une autorisation pour mettre à jour la localisation par GPS.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">L\'application nécessite une autorisation pour mettre à jour la localisation par réseaux Wi-Fi et GSM.</string>
-    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">L\'application nécessite de lire des informations du téléphone pour mettre à jour la localisation par réseaux Wi-Fi et GSM. Cela permet de recevoir des informations sur les stations de base GSM auxquelles le téléphone est connecté.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">L\'application nécessite de lire des informations du téléphone pour mettre à jour la localisation par réseaux Wi-Fi et GSM. Ceci permet de recevoir des informations sur les stations de base GSM auxquelles le téléphone est connecté.</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Demande d\'autorisations</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Localisation non trouvée</string>
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Fermer</string>
@@ -582,4 +582,7 @@
     <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
     <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">À partir d\'Android 10, un accès précis à l\'emplacement est nécessaire pour obtenir des informations sur le réseau GSM/LTE connecté. Accordez également la permission de récupérer l\'emplacement en arrière-plan (si vous voulez votre emplacement tout le temps).</string>
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Modifications des autorisations d\'Android 10</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">Português (Portugal)</string>
+    <string name="pref_language_fa" tools:ignore="MissingTranslation">فارسی (Persan)</string>
+    <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (Hindi)</string>
 </resources>
