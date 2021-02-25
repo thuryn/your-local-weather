@@ -7,7 +7,7 @@
     <string name="alertDialog_location_permission_positiveButton_settings">Geräteeinstellungen</string>
     <string name="alertDialog_location_permission_negativeButton">Abbrechen</string>
     <string name="progressDialog_gps_locate">Aktuelle Position wird gesucht</string>
-    <string name="load_progress">Lädt…</string>
+    <string name="load_progress">Lädt …</string>
     <!-- Activity names -->
     <string name="title_activity_search">Standortsuche</string>
     <string name="label_activity_main">Aktuelles Wetter</string>
