@@ -149,7 +149,11 @@ public class AppAlarmService extends AbstractCommonService {
         Intent intentToStartUpdate = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
         intentToStartUpdate.putExtra("locationId", locationId);
-        startBackgroundService(intentToStartUpdate);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
+            getBaseContext().startForegroundService(intentToStartUpdate);
+        } else {
+            getBaseContext().startService(intentToStartUpdate);
+        }
     }
 
     public void setAlarm() {

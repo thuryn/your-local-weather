@@ -257,7 +257,7 @@ public class AppPreference {
             case "inhg": return 2;
             case "mbar": return 0;
             case "psi" : return 2;
-            case "kpa" : return 0;
+            case "kpa" : return 1;
             default: return 0;
         }
     }

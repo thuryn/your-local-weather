@@ -8,6 +8,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.os.Message;
@@ -241,14 +242,14 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             widgetSettingsDbHelper.deleteRecordFromTable(widgetId);
         }
         unbindCurrentWeatherService(context);
-        unbindLocationUpdateService(context);
+        startLocationAndWeatherUpdate(context);
     }
 
     @Override
     public void onDisabled(Context context) {
         super.onDisabled(context);
         unbindCurrentWeatherService(context);
-        unbindLocationUpdateService(context);
+        startLocationAndWeatherUpdate(context);
     }
 
     protected void refreshWidgetValues(Context context) {
@@ -276,7 +277,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             return;
         }
         if ((currentLocation.getOrderId() == 0) && currentLocation.isEnabled()) {
-            sendMessageToLocationUpdateService(context);
+            startLocationAndWeatherUpdate(context);
         } else if (currentLocation.getOrderId() != 0) {
             sendMessageToCurrentWeatherService(context, currentLocation, null, true, true);
         }
@@ -579,60 +580,16 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         }
     };
 
-    protected void sendMessageToLocationUpdateService(Context context) {
-        //startRefreshRotation("updateNetworkLocation", 3);
-        if (checkIfLocationUpdateServiceIsNotBound(context)) {
-            locationUpdateServiceActions.add(LocationUpdateService.LocationUpdateServiceActions.START_LOCATION_AND_WEATHER_UPDATE);
-            return;
+    private void startLocationAndWeatherUpdate(Context context) {
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
+        long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
+        Intent intentToStartUpdate = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
+        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        intentToStartUpdate.putExtra("locationId", locationId);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
+            context.startForegroundService(intentToStartUpdate);
         } else {
-            locationUpdateService.startLocationAndWeatherUpdate(null);
+            context.startService(intentToStartUpdate);
         }
     }
-
-    private boolean checkIfLocationUpdateServiceIsNotBound(Context context) {
-        if (locationUpdateService != null) {
-            return false;
-        }
-        try {
-            bindLocationUpdateService(context);
-        } catch (Exception ie) {
-            appendLog(context, TAG, "locationUpdtaeServiceIsNotBound interrupted:", ie);
-        }
-        return (locationUpdateService == null);
-    }
-
-    private void bindLocationUpdateService(Context context) {
-        context.getApplicationContext().bindService(
-                new Intent(context.getApplicationContext(), LocationUpdateService.class),
-                locationUpdateServiceConnection,
-                Context.BIND_AUTO_CREATE);
-    }
-
-    private void unbindLocationUpdateService(Context context) {
-        if (locationUpdateService == null) {
-            return;
-        }
-        context.getApplicationContext().unbindService(locationUpdateServiceConnection);
-    }
-
-    private ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {
-        public void onServiceConnected(ComponentName className, IBinder service) {
-
-            LocationUpdateService.LocationUpdateServiceBinder binder =
-                    (LocationUpdateService.LocationUpdateServiceBinder) service;
-            locationUpdateService = binder.getService();
-            LocationUpdateService.LocationUpdateServiceActions bindedServiceAction;
-            while ((bindedServiceAction = locationUpdateServiceActions.poll()) != null) {
-                switch (bindedServiceAction) {
-                    case START_LOCATION_AND_WEATHER_UPDATE:
-                        locationUpdateService.startLocationAndWeatherUpdate(true);
-                        break;
-                }
-            }
-        }
-
-        public void onServiceDisconnected(ComponentName className) {
-            locationUpdateService = null;
-        }
-    };
 }

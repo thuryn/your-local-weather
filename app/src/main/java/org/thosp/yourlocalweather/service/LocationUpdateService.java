@@ -103,6 +103,8 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         forceUpdate = false;
         updateSource = null;
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
+        appendLog(getBaseContext(), TAG, "startForegroundService");
+        startForeground(1, NotificationUtils.getNotificationForActivity(getBaseContext()));
         switch (intent.getAction()) {
             case "android.intent.action.START_LOCATION_AND_WEATHER_UPDATE": startLocationAndWeatherUpdate(intent); return ret;
             case "android.intent.action.START_LOCATION_ONLY_UPDATE": updateNetworkLocation(intent); return ret;
@@ -133,6 +135,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
 
     @Override
     public void onLocationChanged(Location location) {
+        appendLog(getBaseContext(), TAG, "onLocationChangedByListener:", location);
         String locale = PreferenceUtil.getLanguage(getBaseContext());
         NominatimLocationService.getInstance().getFromLocation(
                 getBaseContext(),
@@ -398,24 +401,10 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         }
         this.updateSource = intent.getStringExtra("updateSource");
         this.forceUpdate = intent.getBooleanExtra("forceUpdate", false);
-
-        if ("MAIN".equals(updateSource)) {
-            startForeground(1, NotificationUtils.getNotificationForActivity(getBaseContext()));
-        }
         processLocationAndWeatherUpdate(intent);
     }
 
-    public void startLocationAndWeatherUpdate(String updateSource) {
-        this.updateSource = updateSource;
-        processLocationAndWeatherUpdate(null);
-    }
-
-    public void startLocationAndWeatherUpdate(boolean forceUpdate) {
-        this.forceUpdate = forceUpdate;
-        processLocationAndWeatherUpdate(null);
-    }
-
-    public void processLocationAndWeatherUpdate(Intent intent) {
+    private void processLocationAndWeatherUpdate(Intent intent) {
         boolean isGPSEnabled = AppPreference.isGpsEnabledByPreferences(this) &&
                 locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
                 && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);

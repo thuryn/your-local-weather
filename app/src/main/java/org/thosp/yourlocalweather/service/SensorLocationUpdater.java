@@ -7,6 +7,7 @@ import android.content.ServiceConnection;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
@@ -173,12 +174,15 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
             return;
         }
 
-        if (!updateNetworkLocation()) {
-            stopRefreshRotation("updateNetworkLocation", 3);
-            sendMessageToWakeUpService(
-                    AppWakeUpManager.FALL_DOWN,
-                    AppWakeUpManager.SOURCE_LOCATION_UPDATE
-            );
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+        long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
+        Intent intentToStartUpdate = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
+        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        intentToStartUpdate.putExtra("locationId", locationId);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
+            getBaseContext().startForegroundService(intentToStartUpdate);
+        } else {
+            getBaseContext().startService(intentToStartUpdate);
         }
     }
 

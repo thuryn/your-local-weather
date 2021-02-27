@@ -682,9 +682,6 @@ public class MainActivity extends BaseActivity
                 notificationMessage.append(getString(R.string.alertDialog_location_permission_message_location_network_permission));
                 permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
             }
-            if (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                permissions.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
-            }
             if (permissions.isEmpty()) {
                 return true;
             }

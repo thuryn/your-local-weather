@@ -31,7 +31,6 @@ public class StartAutoLocationJob extends AbstractAppJob {
         NOTHING
     }
 
-    private LocationUpdateService locationUpdateService;
     private ScreenOnOffUpdateService screenOnOffUpdateService;
     private SensorLocationUpdateService sensorLocationUpdateService;
     private JobParameters params;
@@ -43,10 +42,9 @@ public class StartAutoLocationJob extends AbstractAppJob {
         connectedServicesCounter = 0;
         appendLog(this, TAG, "onStartJob");
         try {
-            Intent intent = new Intent(getApplicationContext(), LocationUpdateService.class);
-            getApplicationContext().bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
-            intent = new Intent(getApplicationContext(), ScreenOnOffUpdateService.class);
+            Intent intent = new Intent(getApplicationContext(), ScreenOnOffUpdateService.class);
             getApplicationContext().bindService(intent, screenOnOffUpdateServiceConnection, Context.BIND_AUTO_CREATE);
+            performUpdateOfLocation();
         } catch (Exception ie) {
             appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
         }
@@ -57,9 +55,6 @@ public class StartAutoLocationJob extends AbstractAppJob {
     public boolean onStopJob(JobParameters params) {
         if (screenOnOffUpdateService != null) {
             getApplicationContext().unbindService(screenOnOffUpdateServiceConnection);
-        }
-        if (locationUpdateService != null) {
-            getApplicationContext().unbindService(locationUpdateServiceConnection);
         }
         appendLog(this, TAG, "unbinding sensorLocationUpdate: ",
                 sensorLocationUpdateServiceConnection);
@@ -103,29 +98,57 @@ public class StartAutoLocationJob extends AbstractAppJob {
                 AppPreference.setLastSensorServicesCheckTimeInMs(getBaseContext(), now.getTimeInMillis());
             }
             if (notificationForLocation)  {
-                locationUpdateService.startLocationAndWeatherUpdate("NOTIFICATION");
+                startLocationAndWeatherUpdate("NOTIFICATION");
                 AppPreference.setLastNotificationTimeInMs(getBaseContext(), now.getTimeInMillis());
                 return Updated.BY_NOTIFICATION;
             }
         } else if ("OFF".equals(updateAutoPeriodStr)) {
             sensorLocationUpdateService.stopSensorBasedUpdates();
             if (notificationForLocation)  {
-                locationUpdateService.startLocationAndWeatherUpdate("NOTIFICATION");
+                startLocationAndWeatherUpdate("NOTIFICATION");
                 AppPreference.setLastNotificationTimeInMs(getBaseContext(), now.getTimeInMillis());
                 return Updated.BY_NOTIFICATION;
             }
         } else if (notificationForLocation || (now.getTimeInMillis() >= (location.getLastLocationUpdate() + updateAutoPeriodMills))) {
             sensorLocationUpdateService.stopSensorBasedUpdates();
             if (notificationForLocation) {
-                locationUpdateService.startLocationAndWeatherUpdate("NOTIFICATION");
+                startLocationAndWeatherUpdate("NOTIFICATION");
                 AppPreference.setLastNotificationTimeInMs(getBaseContext(), now.getTimeInMillis());
                 return Updated.BY_NOTIFICATION;
             } else {
-                locationUpdateService.startLocationAndWeatherUpdate(false);
+                startLocationAndWeatherUpdate(false);
                 return Updated.REGULARLY;
             }
         }
         return Updated.NOTHING;
+    }
+
+    private void startLocationAndWeatherUpdate(boolean forceUpdate) {
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+        long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
+        Intent intentToStartUpdate = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
+        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        intentToStartUpdate.putExtra("locationId", locationId);
+        intentToStartUpdate.putExtra("forceUpdate", forceUpdate);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
+            getBaseContext().startForegroundService(intentToStartUpdate);
+        } else {
+            getBaseContext().startService(intentToStartUpdate);
+        }
+    }
+
+    private void startLocationAndWeatherUpdate(String updateSource) {
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+        long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
+        Intent intentToStartUpdate = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
+        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        intentToStartUpdate.putExtra("locationId", locationId);
+        intentToStartUpdate.putExtra("updateSource", updateSource);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
+            getBaseContext().startForegroundService(intentToStartUpdate);
+        } else {
+            getBaseContext().startService(intentToStartUpdate);
+        }
     }
 
     private Updated performUpdateOfWeather(Calendar now,
@@ -192,25 +215,6 @@ public class StartAutoLocationJob extends AbstractAppJob {
         }
         return nextUpdateForLocation;
     }
-
-    private ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service) {
-            LocationUpdateService.LocationUpdateServiceBinder binder =
-                    (LocationUpdateService.LocationUpdateServiceBinder) service;
-            locationUpdateService = binder.getService();
-            appendLog(getBaseContext(), TAG, "got locationUpdateServiceConnection");
-            performUpdateOfLocation();
-            serviceConnected(locationUpdateServiceConnection);
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            locationUpdateService = null;
-        }
-    };
 
     private ServiceConnection sensorLocationUpdateServiceConnection = new ServiceConnection() {
 

@@ -64,36 +64,17 @@ public class AbstractCommonService extends Service {
 
     protected void updateNetworkLocation(boolean byLastLocationOnly) {
         startRefreshRotation("updateNetworkLocation", 3);
-        if (checkIfLocationUpdateServiceIsNotBound()) {
-            locationUpdateServiceActions.add(
-                    new LocationUpdateServiceActionsWithParams(
-                            LocationUpdateService.LocationUpdateServiceActions.START_LOCATION_ONLY_UPDATE,
-                            byLastLocationOnly));
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+        long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
+        Intent intentToStartUpdate = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
+        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        intentToStartUpdate.putExtra("locationId", locationId);
+        intentToStartUpdate.putExtra("forceUpdate", byLastLocationOnly);
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
+            getBaseContext().startForegroundService(intentToStartUpdate);
         } else {
-            locationUpdateService.updateNetworkLocation(
-                    byLastLocationOnly,
-                    null,
-                    0);
+            getBaseContext().startService(intentToStartUpdate);
         }
-    }
-
-    private boolean checkIfLocationUpdateServiceIsNotBound() {
-        if (locationUpdateService != null) {
-            return false;
-        }
-        try {
-            bindLocationUpdateService();
-        } catch (Exception ie) {
-            appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
-        }
-        return (locationUpdateService == null);
-    }
-
-    private void bindLocationUpdateService() {
-        getApplicationContext().bindService(
-            new Intent(getApplicationContext(), LocationUpdateService.class),
-                locationUpdateServiceConnection,
-                Context.BIND_AUTO_CREATE);
     }
 
     protected void updateWidgets(String updateSource) {
@@ -229,9 +210,6 @@ public class AbstractCommonService extends Service {
         try {
             if (widgetRefreshIconService != null) {
                 getApplicationContext().unbindService(widgetRefreshIconConnection);
-            }
-            if (locationUpdateService != null) {
-                getApplicationContext().unbindService(locationUpdateServiceConnection);
             }
             unbindCurrentWeatherService();
             unbindwakeUpService();
@@ -458,41 +436,6 @@ public class AbstractCommonService extends Service {
         }
         public void onServiceDisconnected(ComponentName className) {
             wakeUpService = null;
-        }
-    };
-
-    private ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service) {
-            LocationUpdateService.LocationUpdateServiceBinder binder =
-                    (LocationUpdateService.LocationUpdateServiceBinder) service;
-            locationUpdateService = binder.getService();
-            LocationUpdateServiceActionsWithParams bindedServiceAction;
-            while ((bindedServiceAction = locationUpdateServiceActions.poll()) != null) {
-                switch (bindedServiceAction.getLocationUpdateServiceAction()) {
-                    case START_LOCATION_AND_WEATHER_UPDATE:
-                        locationUpdateService.startLocationAndWeatherUpdate(false);
-                        break;
-                    case START_LOCATION_ONLY_UPDATE:
-                        locationUpdateService.updateNetworkLocation(
-                                bindedServiceAction.isByLastLocationOnly(),
-                                null,
-                                0);
-                        break;
-                    case LOCATION_UPDATE:
-                        locationUpdateService.onLocationChanged(
-                                bindedServiceAction.getInputLocation(),
-                                bindedServiceAction.getAddress());
-                        break;
-                }
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            locationUpdateService = null;
         }
     };
 

@@ -73,9 +73,6 @@ public class PermissionUtil {
                 ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
         }
-        if (!permissions.isEmpty() &&
-                ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED)
-        permissions.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
         return permissions;
     }
 
@@ -115,9 +112,6 @@ public class PermissionUtil {
                 permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
             } else if ("location_geocoder_system".equals(geocoder) && isNetworkEnabled && ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
-            }
-            if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q)  && ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_BACKGROUND_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                permissions.add(Manifest.permission.ACCESS_BACKGROUND_LOCATION);
             }
             appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS, "permissions are empty = ", permissions.isEmpty());
             if (permissions.isEmpty()) {
