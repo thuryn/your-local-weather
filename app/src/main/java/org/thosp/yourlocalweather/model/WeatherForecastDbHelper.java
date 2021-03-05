@@ -52,7 +52,7 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
         db.delete(WeatherForecastContract.WeatherForecast.TABLE_NAME, selection, selectionArgs);
     }
 
-    public void saveWeatherForecast(long locationId, int forecastType, long weatherUpdateTime, CompleteWeatherForecast completeWeatherForecast) {
+    public void saveWeatherForecast(long locationId, int forecastType, long weatherUpdateTime, final long nextAllowedAttemptToUpdateTime, CompleteWeatherForecast completeWeatherForecast) {
         SQLiteDatabase db = getWritableDatabase();
 
         WeatherForecastRecord oldWeatherForecast = getWeatherForecast(locationId, forecastType);
@@ -62,6 +62,7 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
                    getCompleteWeatherForecastAsBytes(completeWeatherForecast));
         values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID, locationId);
         values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_LAST_UPDATED_IN_MS, weatherUpdateTime);
+        values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS, nextAllowedAttemptToUpdateTime);
         values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_FORECAST_TYPE, forecastType);
         if (oldWeatherForecast == null) {
             db.insert(WeatherForecastContract.WeatherForecast.TABLE_NAME, null, values);
@@ -85,7 +86,8 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
 
         String[] projection = {
                 WeatherForecastContract.WeatherForecast.COLUMN_NAME_WEATHER_FORECAST,
-                WeatherForecastContract.WeatherForecast.COLUMN_NAME_LAST_UPDATED_IN_MS
+                WeatherForecastContract.WeatherForecast.COLUMN_NAME_LAST_UPDATED_IN_MS,
+                WeatherForecastContract.WeatherForecast.COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS
         };
 
         Cursor cursor = null;
@@ -109,6 +111,7 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
                 }
                 return new WeatherForecastRecord(
                         cursor.getLong(cursor.getColumnIndexOrThrow(WeatherForecastContract.WeatherForecast.COLUMN_NAME_LAST_UPDATED_IN_MS)),
+                        cursor.getLong(cursor.getColumnIndexOrThrow(WeatherForecastContract.WeatherForecast.COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS)),
                         completeWeatherForecast);
             } else {
                 return null;
@@ -145,13 +148,38 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
         return completeWeatherForecastBytes;
     }
 
+    public void updateNextAllowedAttemptToUpdateTime(final long locationId, final int forecastType, final long nextAllowedAttemptToUpdateTime) {
+        new Thread(new Runnable() {
+            public void run() {
+                SQLiteDatabase db = getWritableDatabase();
+                ContentValues values = new ContentValues();
+                values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS, nextAllowedAttemptToUpdateTime);
+                WeatherForecastRecord oldWeatherForecast = getWeatherForecast(locationId, forecastType);
+                if (oldWeatherForecast == null) {
+                    values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID, locationId);
+                    values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_FORECAST_TYPE, forecastType);
+                    db.insert(WeatherForecastContract.WeatherForecast.TABLE_NAME, null, values);
+                } else {
+                    db.updateWithOnConflict(
+                            WeatherForecastContract.WeatherForecast.TABLE_NAME,
+                            values,
+                            WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + "=" + locationId +
+                                    " AND " + WeatherForecastContract.WeatherForecast.COLUMN_NAME_FORECAST_TYPE + "=" + forecastType,
+                            null,
+                            SQLiteDatabase.CONFLICT_IGNORE);
+                }
+            }
+        }).start();
+    }
 
     public class WeatherForecastRecord {
         long lastUpdatedTime;
+        long nextAllowedAttemptToUpdateTime;
         CompleteWeatherForecast completeWeatherForecast;
 
-        public WeatherForecastRecord(long lastUpdatedTime, CompleteWeatherForecast completeWeatherForecast) {
+        public WeatherForecastRecord(long lastUpdatedTime, long nextAllowedAttemptToUpdateTime, CompleteWeatherForecast completeWeatherForecast) {
             this.lastUpdatedTime = lastUpdatedTime;
+            this.nextAllowedAttemptToUpdateTime = nextAllowedAttemptToUpdateTime;
             this.completeWeatherForecast = completeWeatherForecast;
         }
 
@@ -161,6 +189,10 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
 
         public CompleteWeatherForecast getCompleteWeatherForecast() {
             return completeWeatherForecast;
+        }
+
+        public long getNextAllowedAttemptToUpdateTime() {
+            return nextAllowedAttemptToUpdateTime;
         }
     }
 }

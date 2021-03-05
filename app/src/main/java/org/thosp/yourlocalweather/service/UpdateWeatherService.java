@@ -47,16 +47,21 @@ import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 import java.net.MalformedURLException;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Random;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import cz.msebera.android.httpclient.Header;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLogLastUpdateTime;
 
 public class UpdateWeatherService extends AbstractCommonService {
 
     private static final String TAG = "UpdateWeatherService";
+
+    private static final long MIN_WEATHER_UPDATE_TIME_IN_MS = 900000L; //15min
+    private static final long MAX_WEATHER_UPDATE_TIME_IN_MS = 10800000L; //3H
 
     public static final int START_CURRENT_WEATHER_UPDATE = 1;
     public static final int START_CURRENT_WEATHER_RETRY = 2;
@@ -124,7 +129,7 @@ public class UpdateWeatherService extends AbstractCommonService {
             if ((currentLocation != null) && (updateRequest.isUpdateWeatherOnly())) {
                 locationsDbHelper.updateLocationSource(currentLocation.getId(), newUpdateState);
             }
-            sendResult(ACTION_WEATHER_UPDATE_FAIL, getBaseContext(), updateRequest.getUpdateType());
+            sendResult(ACTION_WEATHER_UPDATE_FAIL, getBaseContext(), (currentLocation != null)?currentLocation.getId():null, updateRequest.getUpdateType());
         }
     };
 
@@ -218,41 +223,59 @@ public class UpdateWeatherService extends AbstractCommonService {
         }
 
         boolean readyForUpdate = false;
-        if (isCurrentWeather(updateType)) {
-            CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
-            CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(locationToCheck.getId());
+        appendLog(getBaseContext(),
+                TAG,
+                "checkWeatherUpdate time:",
+                updateType);
+        long now = System.currentTimeMillis();
+        CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
+        CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(locationToCheck.getId());
+        long nextAllowedAttemptToUpdateTime = (weatherRecord != null)?weatherRecord.getNextAllowedAttemptToUpdateTime():0;
 
-            long lastUpdateTimeInMilis = (weatherRecord != null)?weatherRecord.getLastUpdatedTime():0;
-            long now = System.currentTimeMillis();
+        if (now > nextAllowedAttemptToUpdateTime) {
+            if (isCurrentWeather(updateType)) {
+                long lastUpdateTimeInMilis = (weatherRecord != null) ? weatherRecord.getLastUpdatedTime() : 0;
+                long updatePeriodForLocation;
+                if (locationToCheck.getOrderId() == 0) {
+                    String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(this);
+                    updatePeriodForLocation = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
+                } else {
+                    String updatePeriodStr = AppPreference.getLocationUpdatePeriod(this);
+                    updatePeriodForLocation = Utils.intervalMillisForAlarm(updatePeriodStr);
+                }
 
-            long updatePeriodForLocation;
-            if (locationToCheck.getOrderId() == 0) {
-                String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(this);
-                updatePeriodForLocation = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
+                appendLog(this.getBaseContext(), TAG,
+                        "Current weather requested for location.orderId=",
+                        locationToCheck.getOrderId(),
+                        ", updatePeriodForLocation=",
+                        updatePeriodForLocation,
+                        ", now=",
+                        now,
+                        ", lastUpdateTimeInMilis=",
+                        lastUpdateTimeInMilis,
+                        ", nextAllowedAttemptToUpdateTime=",
+                        nextAllowedAttemptToUpdateTime);
+                readyForUpdate = (now > (lastUpdateTimeInMilis + updatePeriodForLocation)) && (now > nextAllowedAttemptToUpdateTime);
             } else {
-                String updatePeriodStr = AppPreference.getLocationUpdatePeriod(this);
-                updatePeriodForLocation = Utils.intervalMillisForAlarm(updatePeriodStr);
+                appendLog(getBaseContext(),
+                        TAG,
+                        "checkWeatherForecastUpdate locationToCheck.getId():",
+                        locationToCheck.getId());
+                boolean longForecast = isLongWeatherForecast(updateRequest.getUpdateType());
+                appendLog(getBaseContext(),
+                        TAG,
+                        "checkWeatherForecastUpdate longForecast:",
+                        longForecast);
+                readyForUpdate = ForecastUtil.shouldUpdateForecast(this, locationToCheck.getId(),
+                        longForecast ? UpdateWeatherService.LONG_WEATHER_FORECAST_TYPE : UpdateWeatherService.WEATHER_FORECAST_TYPE);
+                appendLog(getBaseContext(),
+                        TAG,
+                        "checkWeatherForecastUpdate readyForUpdate:",
+                        readyForUpdate);
             }
-
-            appendLog(this.getBaseContext(), TAG,
-                    "Current weather requested for location.orderId=",
-                    locationToCheck.getOrderId(),
-                    ", updatePeriodForLocation=",
-                    updatePeriodForLocation,
-                    ", now=",
-                    now,
-                    ", lastUpdateTimeInMilis=",
-                    lastUpdateTimeInMilis);
-            readyForUpdate =  !(now <= (lastUpdateTimeInMilis + updatePeriodForLocation));
-        } else {
-            boolean longForecast = isLongWeatherForecast(updateRequest.getUpdateType());
-            readyForUpdate = ForecastUtil.shouldUpdateForecast(this, locationToCheck.getId(),
-                    longForecast ? UpdateWeatherService.LONG_WEATHER_FORECAST_TYPE : UpdateWeatherService.WEATHER_FORECAST_TYPE);
         }
 
-        if (!updateRequest.isForceUpdate() &&
-                        !readyForUpdate &&
-                        (updateRequest.getUpdateSource() == null)) {
+        if (!readyForUpdate) {
             appendLog(getBaseContext(),
                     TAG,
                     "Current weather is recent enough");
@@ -280,13 +303,13 @@ public class UpdateWeatherService extends AbstractCommonService {
                         TAG,
                         "currentWeatherUpdateMessages.size when attempts is more than 2 = ",
                         updateWeatherUpdateMessages);
-                sendResult(ACTION_WEATHER_UPDATE_FAIL, getBaseContext(), updateType);
+                sendResult(ACTION_WEATHER_UPDATE_FAIL, getBaseContext(), locationToCheck.getId(), updateType);
                 return;
             }
             updateRequest.increaseAttempts();
             resendTheIntentInSeveralSeconds(20);
             gettingWeatherStarted = false;
-            sendResult(ACTION_WEATHER_UPDATE_FAIL, getBaseContext(), updateType);
+            sendResult(ACTION_WEATHER_UPDATE_FAIL, getBaseContext(), locationToCheck.getId(), updateType);
             return;
         }
 
@@ -325,7 +348,7 @@ public class UpdateWeatherService extends AbstractCommonService {
                 appendLog(getBaseContext(), TAG, "Last call to licensed server is too recent.");
                 resendTheIntentInSeveralSeconds(10);
                 gettingWeatherStarted = false;
-                sendResult(ACTION_WEATHER_UPDATE_FAIL, getBaseContext(), updateType);
+                sendResult(ACTION_WEATHER_UPDATE_FAIL, getBaseContext(), locationToCheck.getId(), updateType);
                 return;
             }
             license = ApiKeys.getLicenseKey(getBaseContext(), licenseKey);
@@ -432,7 +455,7 @@ public class UpdateWeatherService extends AbstractCommonService {
                                     CompleteWeatherForecast completeWeatherForecast = WeatherJSONParser.getLongWeatherForecast(parseResult.getOwmResponse());
                                     saveWeatherAndSendResult(context, completeWeatherForecast, LONG_WEATHER_FORECAST_TYPE, updateType);
                                 } else {
-                                    sendResult(ACTION_WEATHER_UPDATE_FAIL, context, updateType);
+                                    sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
                                 }
 
                             } catch (TooEarlyUpdateException teue) {
@@ -443,11 +466,11 @@ public class UpdateWeatherService extends AbstractCommonService {
                                 //}
                                 timerHandler.removeCallbacksAndMessages(null);
                                 resendTheIntentInSeveralSeconds(70);
-                                sendResult(ACTION_WEATHER_UPDATE_FAIL, context, updateType);
+                                sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
                             } catch (LicenseNotValidException lnve) {
                                 if ((license == null) || !license.equals(ApiKeys.getInitialLicenseKey(getBaseContext()))) {
                                     timerHandler.removeCallbacksAndMessages(null);
-                                    sendResult(ACTION_WEATHER_UPDATE_FAIL, context, updateType);
+                                    sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
                                 } else {
                                     appendLog(context, TAG, "license not valid, going to try it by initial license key");
                                     if (isCurrentWeather(updateType)) {
@@ -458,12 +481,12 @@ public class UpdateWeatherService extends AbstractCommonService {
                                         licenseKeysDbHelper.updateToken("forecast/daily", null);
                                     }
                                     timerHandler.removeCallbacksAndMessages(null);
-                                    sendResult(ACTION_WEATHER_UPDATE_FAIL, context, updateType);
+                                    sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
                                 }
                             } catch (JSONException e) {
                                 appendLog(context, TAG, "JSONException:", e);
                                 timerHandler.removeCallbacksAndMessages(null);
-                                sendResult(ACTION_WEATHER_UPDATE_FAIL, context, updateType);
+                                sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
                             }
                         }
 
@@ -471,6 +494,7 @@ public class UpdateWeatherService extends AbstractCommonService {
                         public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
                             appendLog(context, TAG, "onFailure:", statusCode, ":currentLocation=", currentLocation);
                             timerHandler.removeCallbacksAndMessages(null);
+                            Long nextAllowedAttemptToUpdateTime = null;
                             if (currentLocation != null) {
                                 final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
                                 switch (statusCode) {
@@ -481,6 +505,7 @@ public class UpdateWeatherService extends AbstractCommonService {
                                     case 429:
                                         locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
                                                 System.currentTimeMillis(), getString(R.string.location_weather_update_status_access_banned));
+                                        nextAllowedAttemptToUpdateTime = generateRandomNextAttemptTime();
                                         break;
                                     default:
                                         locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
@@ -488,7 +513,7 @@ public class UpdateWeatherService extends AbstractCommonService {
                                         break;
                                 }
                             }
-                            sendResult(ACTION_WEATHER_UPDATE_FAIL, context, updateType);
+                            sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType, nextAllowedAttemptToUpdateTime);
                         }
 
                         @Override
@@ -498,18 +523,39 @@ public class UpdateWeatherService extends AbstractCommonService {
                     });
                 } catch (MalformedURLException mue) {
                     appendLog(context, TAG, "MalformedURLException:", mue);
-                    sendResult(ACTION_WEATHER_UPDATE_FAIL, context, updateType);
+                    sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
                 }
             }
         };
         mainHandler.post(myRunnable);
     }
 
-    private void sendResult(String result, Context context, int updateType) {
-        sendResult(result, context, null, updateType);
+    private long generateRandomNextAttemptTime() {
+        return new Double((MAX_WEATHER_UPDATE_TIME_IN_MS * Math.random()*100)/100).longValue();
     }
 
     private void sendResult(String result, Context context, Long locationId, int updateType) {
+        sendResult(result, context, locationId, updateType, null);
+    }
+
+    private void updateNextAllowedAttemptToUpdateTimeForUpdate(Context context, Long locationId, int updateType, Long nextAllowedAttemptToUpdateTime) {
+        long nextAllowedAttemptToUpdateTimeForUpdate = System.currentTimeMillis() + MIN_WEATHER_UPDATE_TIME_IN_MS;
+        if (nextAllowedAttemptToUpdateTime != null) {
+            appendLog(context, TAG, "set nextAllowedAttemptToUpdateTime by :", nextAllowedAttemptToUpdateTime);
+            nextAllowedAttemptToUpdateTimeForUpdate += nextAllowedAttemptToUpdateTime;
+            appendLog(context, TAG, "set nextAllowedAttemptToUpdateTime to :", nextAllowedAttemptToUpdateTimeForUpdate);
+        }
+        CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
+        currentWeatherDbHelper.updateNextAllowedAttemptToUpdateTime(locationId, nextAllowedAttemptToUpdateTimeForUpdate);
+        WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
+        weatherForecastDbHelper.updateNextAllowedAttemptToUpdateTime(locationId, WEATHER_FORECAST_TYPE, nextAllowedAttemptToUpdateTimeForUpdate);
+        weatherForecastDbHelper.updateNextAllowedAttemptToUpdateTime(locationId, LONG_WEATHER_FORECAST_TYPE, nextAllowedAttemptToUpdateTimeForUpdate);
+    }
+
+    private void sendResult(String result, Context context, Long locationId, int updateType, Long nextAllowedAttemptToUpdateTime) {
+        if (ACTION_WEATHER_UPDATE_FAIL.equals(result) && (locationId != null)) {
+            updateNextAllowedAttemptToUpdateTimeForUpdate(context, locationId, updateType, nextAllowedAttemptToUpdateTime);
+        }
         if (isCurrentWeather(updateType)) {
             stopRefreshRotation("STOP", 2);
             sendMessageToWakeUpService(
@@ -581,7 +627,7 @@ public class UpdateWeatherService extends AbstractCommonService {
 
         long now = System.currentTimeMillis();
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
-        currentWeatherDbHelper.saveWeather(location.getId(), now, weather);
+        currentWeatherDbHelper.saveWeather(location.getId(), now, now + MIN_WEATHER_UPDATE_TIME_IN_MS, weather);
 
         sendMessageToWeatherByVoiceService(location, weather, now);
         locationsDbHelper.updateLastUpdatedAndLocationSource(location.getId(), now, locationSource);
@@ -598,9 +644,10 @@ public class UpdateWeatherService extends AbstractCommonService {
         weatherForecastDbHelper.saveWeatherForecast(updateRequest.getLocationId(),
                 forecastType,
                 lastUpdate,
+                lastUpdate + MIN_WEATHER_UPDATE_TIME_IN_MS,
                 completeWeatherForecast);
         GraphUtils.invalidateGraph();
-        sendResult(ACTION_WEATHER_UPDATE_OK, context, updateType);
+        sendResult(ACTION_WEATHER_UPDATE_OK, context, updateRequest.getLocationId(), updateType);
     }
 
     private void sendIntentToForecast(String result) {

@@ -231,6 +231,25 @@ public class LogToFile {
         appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2), text3, String.valueOf(value3), text4, String.valueOf(value4));
     }
 
+    public static void appendLog(Context context,
+                                 String tag,
+                                 String text1,
+                                 int value1,
+                                 String text2,
+                                 long value2,
+                                 String text3,
+                                 long value3,
+                                 String text4,
+                                 long value4,
+                                 String text5,
+                                 long value5) {
+        checkPreferences(context);
+        if (!logToFileEnabled || (logFilePathname == null)) {
+            return;
+        }
+        appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2), text3, String.valueOf(value3), text4, String.valueOf(value4), text5, String.valueOf(value5));
+    }
+
     public static void appendLog(Context context, String tag, String text1, int value1, int value2, int value3, int value4, int value5) {
         checkPreferences(context);
         if (!logToFileEnabled || (logFilePathname == null)) {
@@ -452,12 +471,19 @@ public class LogToFile {
         appendLog(context, tag, text1, s.toString(), text2, value2);
     }
 
-    public static void appendLogLastUpdateTime(Context context, String tag, String text1, WeatherForecastDbHelper.WeatherForecastRecord value1, String text2, long value2) {
+    public static void appendLogLastUpdateTime(Context context,
+                                               String tag,
+                                               String text1,
+                                               WeatherForecastDbHelper.WeatherForecastRecord value1,
+                                               String text2,
+                                               long value2,
+                                               String text3,
+                                               long value3) {
         checkPreferences(context);
         if (!logToFileEnabled || (logFilePathname == null)) {
             return;
         }
-        appendLog(context, tag, text1, (value1 != null)? String.valueOf(value1.getLastUpdatedTime()) : "null", text2, String.valueOf(value2));
+        appendLog(context, tag, text1, (value1 != null)? String.valueOf(value1.getLastUpdatedTime()) : "null", text2, String.valueOf(value2), text3, String.valueOf(value3));
     }
 
     public static void appendLog(Context context, String tag, String text1, long value1, String text2, String text3) {

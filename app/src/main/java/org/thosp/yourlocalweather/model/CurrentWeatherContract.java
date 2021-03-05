@@ -11,6 +11,7 @@ public final class CurrentWeatherContract {
                     CurrentWeatherContract.CurrentWeather._ID + " INTEGER PRIMARY KEY," +
                     CurrentWeatherContract.CurrentWeather.COLUMN_NAME_LOCATION_ID + " integer," +
                     CurrentWeatherContract.CurrentWeather.COLUMN_NAME_LAST_UPDATED_IN_MS + " integer," +
+                    CurrentWeatherContract.CurrentWeather.COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS + " integer," +
                     CurrentWeatherContract.CurrentWeather.COLUMN_NAME_WEATHER + " blob)";
 
     protected static final String SQL_DELETE_TABLE_CURRENT_WEATHER =
@@ -21,5 +22,6 @@ public final class CurrentWeatherContract {
         public static final String COLUMN_NAME_LOCATION_ID = "location_id";
         public static final String COLUMN_NAME_WEATHER = "weather";
         public static final String COLUMN_NAME_LAST_UPDATED_IN_MS = "last_updated_in_ms";
+        public static final String COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS = "next_allowed_attempt_to_update_time_in_ms";
     }
 }

@@ -861,6 +861,10 @@ public class WidgetUtils {
 
         Weather weather = weatherRecord.getWeather();
 
+        if (weather == null) {
+            return;
+        }
+
         WidgetUtils.setWind(context,
                 remoteViews,
                 weather.getWindSpeed(),

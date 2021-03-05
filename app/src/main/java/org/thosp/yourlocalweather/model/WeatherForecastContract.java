@@ -12,6 +12,7 @@ public final class WeatherForecastContract {
                     WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + " integer," +
                     WeatherForecastContract.WeatherForecast.COLUMN_NAME_LAST_UPDATED_IN_MS + " integer," +
                     WeatherForecastContract.WeatherForecast.COLUMN_NAME_FORECAST_TYPE + " integer," +
+                    WeatherForecastContract.WeatherForecast.COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS + " integer," +
                     WeatherForecastContract.WeatherForecast.COLUMN_NAME_WEATHER_FORECAST + " blob)";
 
     protected static final String SQL_DELETE_TABLE_WEATHER_FORECAST =
@@ -23,5 +24,6 @@ public final class WeatherForecastContract {
         public static final String COLUMN_NAME_WEATHER_FORECAST = "weather_forecast";
         public static final String COLUMN_NAME_FORECAST_TYPE = "forecast_type";
         public static final String COLUMN_NAME_LAST_UPDATED_IN_MS = "last_updated_in_ms";
+        public static final String COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS = "next_allowed_attempt_to_update_time_in_ms";
     }
 }

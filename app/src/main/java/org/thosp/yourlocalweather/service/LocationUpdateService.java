@@ -255,7 +255,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
     }
 
     private void checkDistanceAndRemoveForecastIfTheNewLocationIsFarAway(Location location, org.thosp.yourlocalweather.model.Location currentLocation) {
-        double distanceBetweenLocationsInKm = distance(location.getLatitude(), location.getLongitude(), currentLocation.getLatitude(), currentLocation.getLongitude());
+        /*double distanceBetweenLocationsInKm = distance(location.getLatitude(), location.getLongitude(), currentLocation.getLatitude(), currentLocation.getLongitude());
         appendLog(getBaseContext(), TAG, "Distance between old and new location (in Km)=", distanceBetweenLocationsInKm);
         if (distanceBetweenLocationsInKm > 10) {
             appendLog(getBaseContext(), TAG, "Distance between old and new location is more than 10 Km, removing current weather and forecast");
@@ -263,7 +263,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
             weatherForecastDbHelper.deleteRecordByLocation(currentLocation);
             CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
             currentWeatherDbHelper.deleteRecordByLocation(currentLocation);
-        }
+        }*/
     }
 
     private double distance(double lat1, double lon1, double lat2, double lon2) {

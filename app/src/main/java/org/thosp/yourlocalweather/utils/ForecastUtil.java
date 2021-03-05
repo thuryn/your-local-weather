@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLogLastUpdateTime;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class ForecastUtil {
 
@@ -29,19 +30,27 @@ public class ForecastUtil {
                 weatherForecastDbHelper.getWeatherForecast(locationId, forecastType);
         long now = Calendar.getInstance().getTimeInMillis();
         if (weatherForecastRecord == null) {
+            appendLog(context,
+                    TAG,
+                    "weatherForecastRecord is null");
             return true;
         }
+        long lastUpdateTimeInMilis = (weatherForecastRecord != null)?weatherForecastRecord.getLastUpdatedTime():0;
+        long nextAllowedAttemptToUpdateTime = (weatherForecastRecord != null)?weatherForecastRecord.getNextAllowedAttemptToUpdateTime():0;
         long firstForecastTime = 1000 * weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList().get(0).getDateTime();
-        if ((firstForecastTime < now) || (weatherForecastRecord.getLastUpdatedTime() +
-                        AUTO_FORECAST_UPDATE_TIME_MILIS) <  now) {
-            return true;
-        }
         appendLogLastUpdateTime(context,
                 TAG,
                 "weatherForecastRecord.getLastUpdatedTime():",
                 weatherForecastRecord,
                 ", now:",
-                now);
+                now,
+                ", nextAllowedAttemptToUpdateTime=",
+                nextAllowedAttemptToUpdateTime);
+        if ((now > nextAllowedAttemptToUpdateTime) &&
+                ((firstForecastTime < now) || (lastUpdateTimeInMilis +
+                        AUTO_FORECAST_UPDATE_TIME_MILIS) <  now)) {
+            return true;
+        }
         return false;
     }
 

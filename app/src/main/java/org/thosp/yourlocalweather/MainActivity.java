@@ -366,6 +366,10 @@ public class MainActivity extends BaseActivity
 
         Weather weather = weatherRecord.getWeather();
 
+        if (weather == null) {
+            return;
+        }
+
         String lastUpdate = Utils.getLastUpdateTime(this, weatherRecord, weatherForecastRecord, currentLocation);
         windWithUnit = AppPreference.getWindWithUnit(this,
                                                      weather.getWindSpeed(),

@@ -334,7 +334,7 @@ public class Utils {
             return R.drawable.ic_weather_set_1_31;
         }
         Weather weather = weatherRecord.getWeather();
-        if ((weather.getCurrentWeathers() == null) || weather.getCurrentWeathers().isEmpty()) {
+        if ((weather == null) || (weather.getCurrentWeathers() == null) || weather.getCurrentWeathers().isEmpty()) {
             return R.drawable.ic_weather_set_1_31;
         }
         int weatherId = weather.getCurrentWeathers().iterator().next().getWeatherId();
@@ -660,7 +660,7 @@ public class Utils {
     }
 
     public static String getWeatherDescription(Context context, String locale, Weather weather) {
-        if(AppPreference.hideDescription(context)) {
+        if((weather == null) || AppPreference.hideDescription(context)) {
             return " ";
         }
         StringBuilder currentWeatherDescription = new StringBuilder();

@@ -28,7 +28,8 @@
         android:label="@string/app_name"
         android:name=".YourLocalWeather"
         android:supportsRtl="true"
-        android:theme="@style/AppThemeLight">
+        android:theme="@style/AppThemeLight"
+        android:requestLegacyExternalStorage="true">
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

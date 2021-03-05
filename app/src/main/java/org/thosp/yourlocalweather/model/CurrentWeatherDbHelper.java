@@ -79,6 +79,9 @@ public class CurrentWeatherDbHelper extends SQLiteOpenHelper {
     }
 
     public static Weather getWeatherFromBytes(byte[] addressBytes) {
+        if ((addressBytes == null) || (addressBytes.length == 0)) {
+            return null;
+        }
         final Parcel parcel = Parcel.obtain();
         parcel.unmarshall(addressBytes, 0, addressBytes.length);
         parcel.setDataPosition(0);
@@ -97,6 +100,7 @@ public class CurrentWeatherDbHelper extends SQLiteOpenHelper {
 
     public void saveWeather(final long locationId,
                             final long weatherUpdateTime,
+                            final long nextAllowedAttemptToUpdateTime,
                             final Weather weather) {
         new Thread(new Runnable() {
             public void run() {
@@ -108,6 +112,7 @@ public class CurrentWeatherDbHelper extends SQLiteOpenHelper {
                 values.put(CurrentWeatherContract.CurrentWeather.COLUMN_NAME_WEATHER, getWeatherAsBytes(weather));
                 values.put(CurrentWeatherContract.CurrentWeather.COLUMN_NAME_LOCATION_ID, locationId);
                 values.put(CurrentWeatherContract.CurrentWeather.COLUMN_NAME_LAST_UPDATED_IN_MS, weatherUpdateTime);
+                values.put(CurrentWeatherContract.CurrentWeather.COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS, nextAllowedAttemptToUpdateTime);
                 if (oldWeather == null) {
                     db.insert(CurrentWeatherContract.CurrentWeather.TABLE_NAME, null, values);
                 } else {
@@ -121,19 +126,24 @@ public class CurrentWeatherDbHelper extends SQLiteOpenHelper {
         }).start();
     }
 
-    public void updateLastUpdatedTime(final long locationId, final long weatherUpdateTime) {
+    public void updateNextAllowedAttemptToUpdateTime(final long locationId, final long nextAllowedAttemptToUpdateTime) {
         new Thread(new Runnable() {
             public void run() {
                 SQLiteDatabase db = getWritableDatabase();
                 ContentValues values = new ContentValues();
-                values.put(CurrentWeatherContract.CurrentWeather.COLUMN_NAME_LAST_UPDATED_IN_MS, weatherUpdateTime);
-
-                db.updateWithOnConflict(
-                        CurrentWeatherContract.CurrentWeather.TABLE_NAME,
-                        values,
-                        CurrentWeatherContract.CurrentWeather.COLUMN_NAME_LOCATION_ID + "=" + locationId,
-                        null,
-                        SQLiteDatabase.CONFLICT_IGNORE);
+                values.put(CurrentWeatherContract.CurrentWeather.COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS, nextAllowedAttemptToUpdateTime);
+                WeatherRecord oldWeather = getWeather(locationId);
+                if (oldWeather == null) {
+                    values.put(CurrentWeatherContract.CurrentWeather.COLUMN_NAME_LOCATION_ID, locationId);
+                    db.insert(CurrentWeatherContract.CurrentWeather.TABLE_NAME, null, values);
+                } else {
+                    db.updateWithOnConflict(
+                            CurrentWeatherContract.CurrentWeather.TABLE_NAME,
+                            values,
+                            CurrentWeatherContract.CurrentWeather.COLUMN_NAME_LOCATION_ID + "=" + locationId,
+                            null,
+                            SQLiteDatabase.CONFLICT_IGNORE);
+                }
             }
         }).start();
     }
@@ -143,7 +153,8 @@ public class CurrentWeatherDbHelper extends SQLiteOpenHelper {
 
         String[] projection = {
                 CurrentWeatherContract.CurrentWeather.COLUMN_NAME_WEATHER,
-                CurrentWeatherContract.CurrentWeather.COLUMN_NAME_LAST_UPDATED_IN_MS
+                CurrentWeatherContract.CurrentWeather.COLUMN_NAME_LAST_UPDATED_IN_MS,
+                CurrentWeatherContract.CurrentWeather.COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS
         };
 
         Cursor cursor = null;
@@ -162,6 +173,7 @@ public class CurrentWeatherDbHelper extends SQLiteOpenHelper {
                 Weather weather = getWeatherFromBytes(cursor.getBlob(cursor.getColumnIndexOrThrow(CurrentWeatherContract.CurrentWeather.COLUMN_NAME_WEATHER)));
                 return new WeatherRecord(
                         cursor.getLong(cursor.getColumnIndexOrThrow(CurrentWeatherContract.CurrentWeather.COLUMN_NAME_LAST_UPDATED_IN_MS)),
+                        cursor.getLong(cursor.getColumnIndexOrThrow(CurrentWeatherContract.CurrentWeather.COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS)),
                         weather);
             } else {
                 return null;
@@ -175,10 +187,12 @@ public class CurrentWeatherDbHelper extends SQLiteOpenHelper {
 
     public class WeatherRecord {
         long lastUpdatedTime;
+        long nextAllowedAttemptToUpdateTime;
         Weather weather;
 
-        public WeatherRecord(long lastUpdatedTime, Weather weather) {
+        public WeatherRecord(long lastUpdatedTime, long nextAllowedAttemptToUpdateTime, Weather weather) {
             this.lastUpdatedTime = lastUpdatedTime;
+            this.nextAllowedAttemptToUpdateTime = nextAllowedAttemptToUpdateTime;
             this.weather = weather;
         }
 
@@ -188,6 +202,10 @@ public class CurrentWeatherDbHelper extends SQLiteOpenHelper {
 
         public Weather getWeather() {
             return weather;
+        }
+
+        public long getNextAllowedAttemptToUpdateTime() {
+            return nextAllowedAttemptToUpdateTime;
         }
     }
 }
