@@ -232,47 +232,45 @@ public class UpdateWeatherService extends AbstractCommonService {
         CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(locationToCheck.getId());
         long nextAllowedAttemptToUpdateTime = (weatherRecord != null)?weatherRecord.getNextAllowedAttemptToUpdateTime():0;
 
-        if (now > nextAllowedAttemptToUpdateTime) {
-            if (isCurrentWeather(updateType)) {
-                long lastUpdateTimeInMilis = (weatherRecord != null) ? weatherRecord.getLastUpdatedTime() : 0;
-                long updatePeriodForLocation;
-                if (locationToCheck.getOrderId() == 0) {
-                    String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(this);
-                    updatePeriodForLocation = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
-                } else {
-                    String updatePeriodStr = AppPreference.getLocationUpdatePeriod(this);
-                    updatePeriodForLocation = Utils.intervalMillisForAlarm(updatePeriodStr);
-                }
-
-                appendLog(this.getBaseContext(), TAG,
-                        "Current weather requested for location.orderId=",
-                        locationToCheck.getOrderId(),
-                        ", updatePeriodForLocation=",
-                        updatePeriodForLocation,
-                        ", now=",
-                        now,
-                        ", lastUpdateTimeInMilis=",
-                        lastUpdateTimeInMilis,
-                        ", nextAllowedAttemptToUpdateTime=",
-                        nextAllowedAttemptToUpdateTime);
-                readyForUpdate = (now > (lastUpdateTimeInMilis + updatePeriodForLocation)) && (now > nextAllowedAttemptToUpdateTime);
+        if (isCurrentWeather(updateType)) {
+            long lastUpdateTimeInMilis = (weatherRecord != null) ? weatherRecord.getLastUpdatedTime() : 0;
+            long updatePeriodForLocation;
+            if (locationToCheck.getOrderId() == 0) {
+                String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(this);
+                updatePeriodForLocation = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
             } else {
-                appendLog(getBaseContext(),
-                        TAG,
-                        "checkWeatherForecastUpdate locationToCheck.getId():",
-                        locationToCheck.getId());
-                boolean longForecast = isLongWeatherForecast(updateRequest.getUpdateType());
-                appendLog(getBaseContext(),
-                        TAG,
-                        "checkWeatherForecastUpdate longForecast:",
-                        longForecast);
-                readyForUpdate = ForecastUtil.shouldUpdateForecast(this, locationToCheck.getId(),
-                        longForecast ? UpdateWeatherService.LONG_WEATHER_FORECAST_TYPE : UpdateWeatherService.WEATHER_FORECAST_TYPE);
-                appendLog(getBaseContext(),
-                        TAG,
-                        "checkWeatherForecastUpdate readyForUpdate:",
-                        readyForUpdate);
+                String updatePeriodStr = AppPreference.getLocationUpdatePeriod(this);
+                updatePeriodForLocation = Utils.intervalMillisForAlarm(updatePeriodStr);
             }
+
+            appendLog(this.getBaseContext(), TAG,
+                    "Current weather requested for location.orderId=",
+                    locationToCheck.getOrderId(),
+                    ", updatePeriodForLocation=",
+                    updatePeriodForLocation,
+                    ", now=",
+                    now,
+                    ", lastUpdateTimeInMilis=",
+                    lastUpdateTimeInMilis,
+                    ", nextAllowedAttemptToUpdateTime=",
+                    nextAllowedAttemptToUpdateTime);
+            readyForUpdate = (now > (lastUpdateTimeInMilis + updatePeriodForLocation)) && (now > nextAllowedAttemptToUpdateTime);
+        } else {
+            appendLog(getBaseContext(),
+                    TAG,
+                    "checkWeatherForecastUpdate locationToCheck.getId():",
+                    locationToCheck.getId());
+            boolean longForecast = isLongWeatherForecast(updateRequest.getUpdateType());
+            appendLog(getBaseContext(),
+                    TAG,
+                    "checkWeatherForecastUpdate longForecast:",
+                    longForecast);
+            readyForUpdate = ForecastUtil.shouldUpdateForecast(this, locationToCheck.getId(),
+                    longForecast ? UpdateWeatherService.LONG_WEATHER_FORECAST_TYPE : UpdateWeatherService.WEATHER_FORECAST_TYPE);
+            appendLog(getBaseContext(),
+                    TAG,
+                    "checkWeatherForecastUpdate readyForUpdate:",
+                    readyForUpdate);
         }
 
         if (!readyForUpdate) {
