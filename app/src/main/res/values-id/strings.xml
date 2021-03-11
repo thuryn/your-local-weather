@@ -87,7 +87,7 @@
     <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Grafik yang ditampilkan</string>
     <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Tampilkan legenda di grafik</string>
     <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Grafik</string>
-    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Terjemahan teks dan suara</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Terjemahan teks dan panduan</string>
     <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Aplikasi ini memiliki fitur keluaran suara, untuk mengaktifkan fitur ini, anda membutuhkan sistem TTS (Text-to-speech) yang sudah terpasang</string>
     <string name="voice_settings_language" tools:ignore="MissingTranslation">Pengaturan Bahasa</string>
     <string name="weather_condition_description_620" tools:ignore="MissingTranslation">hujan salju ringan</string>
@@ -127,4 +127,5 @@
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Aplikasi komunikasi tidak ditemukan</string>
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Perubahan izin Android 10</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Batasan layanan lokasi Mozilla</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">pasir</string>
 </resources>
