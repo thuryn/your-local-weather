@@ -46,11 +46,11 @@
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Umum</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Apl utama</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">Widget</string>
-    <string name="help_page_3_content" tools:ignore="MissingTranslation">Opsi ini mempengaruhi keseluruhan apl.</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Opsi ini memiliki pengaruh pada seluruh aplikasi.</string>
     <string name="app_name" tools:ignore="MissingTranslation">Cuaca di tempat anda</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">Notifikasi Your local weather</string>
-    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>Location and address source</b>
-\nYou can select where the app gets the location and address from.</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt; Lokasi dan sumber alamat&lt;/b&gt;
+\nAnda dapat memilih dari mana aplikasi mendapatkan lokasi dan alamat."</string>
     <string name="title_activity_search" tools:ignore="MissingTranslation">Cari Lokasi</string>
     <string name="label_activity_main" tools:ignore="MissingTranslation">Cuaca Saat ini</string>
     <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Cuaca Harian</string>
@@ -88,8 +88,8 @@
     <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Tampilkan legenda di grafik</string>
     <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Grafik</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Terjemahan teks dan panduan</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Aplikasi ini memiliki fitur keluaran suara, untuk mengaktifkan fitur ini, anda membutuhkan sistem TTS (Text-to-speech) yang sudah terpasang</string>
-    <string name="voice_settings_language" tools:ignore="MissingTranslation">Pengaturan Bahasa</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Aplikasi ini memiliki panduan suara dengan cara terjemahan teks dan perintah suara milik sukarelawan di https://hosted.weblate.org/projects/your-local-weather. Dev aplikasi tidak dapat menjamin mereka benar - Anda menerima ini dengan menggunakan aplikasi. Untuk menggunakannya, Anda memerlukan TTS (Text-to-speech) yang diinstal dan panduan diaktifkan di pengaturan, di mana Anda dapat mengatur perintah suara Anda sendiri. "</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Bahasa</string>
     <string name="weather_condition_description_620" tools:ignore="MissingTranslation">hujan salju ringan</string>
     <string name="weather_condition_description_616" tools:ignore="MissingTranslation">hujan dan salju</string>
     <string name="weather_condition_description_615" tools:ignore="MissingTranslation">hujan ringan dan salju</string>
@@ -128,4 +128,158 @@
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Perubahan izin Android 10</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Batasan layanan lokasi Mozilla</string>
     <string name="weather_condition_description_751" tools:ignore="MissingTranslation">pasir</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Sesuaikan aplikasi dengan kebutuhan Anda, selanjutnya Anda dapat memilih strategi pembaruan.
+\nMengalihkan dari default pembaruan ketika lokasi berubah, Anda dapat memilih &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt; Jangan perbarui lokasi &lt;/i&gt;.</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Mulai dari Android 10, diperlukan akses ke lokasi untuk mendapatkan info tentang jaringan GSM/LTE yang terhubung. Beri izin untuk mengambil lokasi di latar belakang juga (jika Anda ingin lokasi Anda sepanjang waktu).</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Akses ke layanan lokasi Mozilla berakhir pada 1.3.2020. Aplikasi ini dipaksa untuk menggunakan sistem Andorid untuk penemuan koordinat lokasi. Alamat masih diselesaikan oleh Nominatim. Harap pertimbangkan ini saat menggunakan aplikasi.</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (Cina)</string>
+    <string name="pref_language_default" tools:ignore="MissingTranslation">Asali Sistem</string>
+    <string name="pref_title_language" tools:ignore="MissingTranslation">Bahasa</string>
+    <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Kunci lisensi</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Bawaan</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Kunci API Openweathermap.org</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Setelan sistem</string>
+    <string name="preference_title_power_save" tools:ignore="MissingTranslation">Opsi hemat daya</string>
+    <string name="preference_title_category_units" tools:ignore="MissingTranslation">Setelan unit</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Perbarui lokasi dan cuaca</string>
+    <string name="preference_title_category_display" tools:ignore="MissingTranslation">Tampilan</string>
+    <string name="theme_transparent" tools:ignore="MissingTranslation">Transparan</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">Terang</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">Gelap</string>
+    <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Tema widget</string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Gunakan geolokasi untuk menampilkan</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Tampilkan setelan pada widget</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Tampilkan grafik dalam resolusi asli (jika grafik terlalu kecil)</string>
+    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Tampilkan label dalam widget</string>
+    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Perbarui Lokasi</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Setelan arahan baru</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Opsi bahasa arahan</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Setelan arahan</string>
+    <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Setelan Widget</string>
+    <string name="preference_title_activity_general" tools:ignore="MissingTranslation">Setelan Umum</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Periode pembaruan untuk lokasi (Lokasi 0)</string>
+    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Periode pembaruan untuk cuaca (Lokasi 1,2,3...)</string>
+    <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Getar</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Gaya ikon bilah status</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Gaya pemberitahuan visual</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Kustom dengan perkiraan</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Klasik</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">Tak terlihat</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">Suhu</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">Ikon matahari</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">Di layar kunci</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">Permanen</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">Saat diperbarui</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Kehadiran notifikasi</string>
+    <string name="update_period_24hours" tools:ignore="MissingTranslation">24 jam</string>
+    <string name="update_period_12hours" tools:ignore="MissingTranslation">12 jam</string>
+    <string name="update_period_6hours" tools:ignore="MissingTranslation">6 jam</string>
+    <string name="update_period_3hours" tools:ignore="MissingTranslation">3 jam</string>
+    <string name="update_period_1hour" tools:ignore="MissingTranslation">Setiap jam</string>
+    <string name="update_period_30min" tools:ignore="MissingTranslation">30 menit</string>
+    <string name="update_period_15min" tools:ignore="MissingTranslation">15 menit</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Saat memperbarui reguler</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">Manual saja</string>
+    <string name="update_period_by_sensors" tools:ignore="MissingTranslation">Dengan akselerometer</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Aktifkan GPS bila perlu</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">Perbarui lokasi tanpa GPS</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">Perbarui lokasi (disarankan)</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">Jangan perbarui lokasi</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">badai petir disertai gerimis lebat</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">badai petir disertai gerimis</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">badai petir disertai gerimis ringan</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">badai petir lebat</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">badai</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">badai petir ringan</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">badai petir disertai hujan lebat</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">badai petir disertai hujan</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">badai petir disertai hujan ringan</string>
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">tidak ada</string>
+    <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin ikon merah</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Ikon berbasis font</string>
+    <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">Fitur berbayar/tambahan</string>
+    <string name="weather_forecast_features_free" tools:ignore="MissingTranslation">Fitur gratis/terbatas</string>
+    <string name="preference_weather_weather_forecast_features_title" tools:ignore="MissingTranslation">Fitur prakiraan cuaca</string>
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Set Ikon</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">Log ke file</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">Jangan log ke file</string>
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">Log ke file</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">sebulan</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">seminggu</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">tiga hari</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">dua hari</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">sehari</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 jam</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Rotasi file log</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Setelah jangka waktu tertentu, file log akan dibuat ulang</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">Opsi Debug</string>
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">Pilih folder log</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Deskripsi cuaca saat ini dan alamat akan berubah dengan pembaruan berikutnya, atau Anda dapat melakukannya secara manual.</string>
+    <string name="permission_location_need" tools:ignore="MissingTranslation">Beri Izin Lokasi</string>
+    <string name="permission_available_location" tools:ignore="MissingTranslation">Izin Lokasi telah diberikan</string>
+    <string name="permission_not_granted" tools:ignore="MissingTranslation">Izin tidak diberikan!</string>
+    <string name="permission_location_rationale" tools:ignore="MissingTranslation">Izin lokasi diperlukan untuk menentukan kota</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">barat laut</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">barat</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">barat daya</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">selatan</string>
+    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">tenggara</string>
+    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">timur</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">timur laut</string>
+    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">utara</string>
+    <string name="wind_direction_north_west" tools:ignore="MissingTranslation">BL↘</string>
+    <string name="wind_direction_west" tools:ignore="MissingTranslation">B→</string>
+    <string name="wind_direction_south_west" tools:ignore="MissingTranslation">BD↗</string>
+    <string name="wind_direction_south" tools:ignore="MissingTranslation">S↑</string>
+    <string name="wind_direction_south_east" tools:ignore="MissingTranslation">T↖</string>
+    <string name="wind_direction_east" tools:ignore="MissingTranslation">T←</string>
+    <string name="wind_direction_north_east" tools:ignore="MissingTranslation">TL↙</string>
+    <string name="wind_direction_north" tools:ignore="MissingTranslation">U↓</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Derajat dari utara</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Singkatan N ↓, NE↙,…</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Nonaktif</string>
+    <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Tampilkan lokasi di widget</string>
+    <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Ganti Lokasi</string>
+    <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">Layar grafik</string>
+    <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">Layar prakiraan cuaca</string>
+    <string name="widget_action_main_screen" tools:ignore="MissingTranslation">Layar utama</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">Grafik</string>
+    <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">Perkiraan cuaca</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">Ikon cuaca saat ini</string>
+    <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">Label kota</string>
+    <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Pengaturan lokasi</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Jumlah hari untuk perkiraan</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Tampilkan hari dengan singkatan</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Tombol pengaturan tindakan widget</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Tombol pengaturan lokasi Widget</string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Tombol pengaturan detail cuaca widget</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Tombol pengaturan grafik widget</string>
+    <string name="widget_refresh_button" tools:ignore="MissingTranslation">Tombol segarkan widget</string>
+    <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Ikon cuaca saat ini</string>
+    <string name="location_weather_update_status_location_from_last_location" tools:ignore="MissingTranslation">l</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
+    <string name="location_weather_update_status_too_early_update" tools:ignore="MissingTranslation">O</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">N</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">L</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">Nilai terukur saja</string>
+    <string name="label_dew_point" tools:ignore="MissingTranslation">Titik embun</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">Titik embun: %s</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Tekanan</string>
+    <string name="label_snow" tools:ignore="MissingTranslation">Salju</string>
+    <string name="label_rain" tools:ignore="MissingTranslation">Hujan</string>
+    <string name="label_wind" tools:ignore="MissingTranslation">Angin</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Suhu terukur: %s</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Suhu yang terlihat: %s</string>
+    <string name="label_temperature" tools:ignore="MissingTranslation">Suhu</string>
+    <string name="db_header" tools:ignore="MissingTranslation">Alamat basisdata cache</string>
+    <string name="db_info" tools:ignore="MissingTranslation">Informasi mengenai cache</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Bersihkan cache</string>
 </resources>
