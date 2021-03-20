@@ -569,6 +569,13 @@ public class MainActivity extends BaseActivity
 
             Weather weather = currentWeatherRecord.getWeather();
 
+            if (weather == null) {
+                Toast.makeText(MainActivity.this,
+                        getString(R.string.current_weather_has_not_been_fetched),
+                        Toast.LENGTH_LONG).show();
+                return;
+            }
+
             String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
                     MainActivity.this,
                     weather,

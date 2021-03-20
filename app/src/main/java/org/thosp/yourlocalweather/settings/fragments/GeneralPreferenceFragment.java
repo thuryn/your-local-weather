@@ -22,6 +22,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.SettingsActivity;
 import org.thosp.yourlocalweather.YourLocalWeather;
@@ -34,11 +36,19 @@ import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.KeySpec;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -165,6 +175,9 @@ public class GeneralPreferenceFragment extends PreferenceFragment implements
                 entrySummary(key);
                 checkApiKeyMenuOptionPresence();
                 break;
+            case Constants.KEY_PREF_WEATHER_LICENSE_KEY:
+                calculateInitialToken(key);
+                break;
         }
     }
 
@@ -187,6 +200,60 @@ public class GeneralPreferenceFragment extends PreferenceFragment implements
         unbindReconciliationDbService();
         getPreferenceScreen().getSharedPreferences()
                 .unregisterOnSharedPreferenceChangeListener(this);
+    }
+
+    private void calculateInitialToken(String key) {
+        EditTextPreference inputLicenceKey = (EditTextPreference) findPreference(key);
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        preferences.edit().putString(Constants.KEY_PREF_WEATHER_INITIAL_TOKEN, encryptKey(inputLicenceKey.getText())).apply();
+    }
+
+    private String encryptKey(String key) {
+        try {
+            SecureRandom random = new SecureRandom();
+            byte[] salt = new byte[16];
+            random.nextBytes(salt);
+
+            KeySpec spec = new PBEKeySpec(key.toCharArray(), salt, 65536, 128);
+            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+            byte[] hash = factory.generateSecret(spec).getEncoded();
+
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < hash.length; i++) {
+                String h = Integer.toHexString(0xFF & hash[i]);
+                while (h.length() < 2)
+                    h = "0" + h;
+                hexString.append(h);
+            }
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    public static final String md5(final String s) {
+        try {
+            // Create MD5 Hash
+            MessageDigest digest = java.security.MessageDigest
+                    .getInstance("MD5");
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            // Create Hex String
+            StringBuffer hexString = new StringBuffer();
+            for (int i = 0; i < messageDigest.length; i++) {
+                String h = Integer.toHexString(0xFF & messageDigest[i]);
+                while (h.length() < 2)
+                    h = "0" + h;
+                hexString.append(h);
+            }
+            return hexString.toString();
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
     }
 
     private void updateLocationsLocale(String newLocale) {

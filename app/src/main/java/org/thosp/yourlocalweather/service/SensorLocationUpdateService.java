@@ -43,6 +43,16 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
             return ret;
         }
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
+
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+        org.thosp.yourlocalweather.model.Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
+        Notification notification = NotificationUtils.getWeatherNotification(this, autoLocation.getId());
+        if (notification == null) {
+            return ret;
+        }
+
+        startForeground(NotificationUtils.NOTIFICATION_ID, notification);
+
         switch (intent.getAction()) {
             case "android.intent.action.START_SENSOR_BASED_UPDATES": return performSensorBasedUpdates(ret);
             case "android.intent.action.STOP_SENSOR_BASED_UPDATES": stopSensorBasedUpdates(); return ret;
@@ -136,13 +146,6 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
         if (!autoLocation.isEnabled()) {
             return;
         }
-
-        Notification notification = NotificationUtils.getWeatherNotification(this, autoLocation.getId());
-        if (notification == null) {
-            return;
-        }
-
-        startForeground(NotificationUtils.NOTIFICATION_ID, notification);
 
         sensorResolutionMultiplayer = 1 / senAccelerometer.getResolution();
         int maxDelay = 10000;

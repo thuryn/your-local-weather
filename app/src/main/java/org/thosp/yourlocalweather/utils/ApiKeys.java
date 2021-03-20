@@ -78,7 +78,7 @@ public class ApiKeys {
         return PreferenceManager
                 .getDefaultSharedPreferences(context)
                 .getString(
-                        Constants.KEY_PREF_WEATHER_LICENSE_KEY,
+                        Constants.KEY_PREF_WEATHER_INITIAL_TOKEN,
                         ""
                 );
     }
@@ -87,7 +87,6 @@ public class ApiKeys {
         if (ApiKeys.isWeatherForecastFeaturesFree(context)) {
             return null;
         }
-        final LicenseKeysDbHelper licenseKeysDbHelper = LicenseKeysDbHelper.getInstance(context);
         if ((licenseKey != null) && (licenseKey.getToken() != null)) {
             return licenseKey.getToken();
         } else {
