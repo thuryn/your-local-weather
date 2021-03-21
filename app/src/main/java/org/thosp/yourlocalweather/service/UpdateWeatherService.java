@@ -670,7 +670,14 @@ public class UpdateWeatherService extends AbstractCommonService {
                 TAG,
                 "Forecast has been saved");
         GraphUtils.invalidateGraph();
+        appendLog(context,
+                TAG,
+                "Graphs invalidated");
         sendResult(ACTION_WEATHER_UPDATE_OK, context, updateRequest.getLocationId(), updateType);
+
+        appendLog(context,
+                TAG,
+                "Result sent");
     }
 
     private void sendIntentToForecast(String result) {

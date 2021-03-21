@@ -48,18 +48,22 @@ public class LicenseKeysDbHelper extends SQLiteOpenHelper {
     }
 
     private void createLicenseKey(LicenseKey licenseKey) {
-        SQLiteDatabase db = getWritableDatabase();
+        new Thread(new Runnable() {
+            public void run() {
+                SQLiteDatabase db = getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(LicenseKeysContract.LicenseKeys.COLUMN_NAME_INITIAL_LICENSE,
-                licenseKey.getInitialLicense());
-        values.put(LicenseKeysContract.LicenseKeys.COLUMN_NAME_REQUEST_URI,
-                licenseKey.getRequestUri());
-        values.put(LicenseKeysContract.LicenseKeys.COLUMN_NAME_TOKEN,
-                licenseKey.getToken());
+                ContentValues values = new ContentValues();
+                values.put(LicenseKeysContract.LicenseKeys.COLUMN_NAME_INITIAL_LICENSE,
+                        licenseKey.getInitialLicense());
+                values.put(LicenseKeysContract.LicenseKeys.COLUMN_NAME_REQUEST_URI,
+                        licenseKey.getRequestUri());
+                values.put(LicenseKeysContract.LicenseKeys.COLUMN_NAME_TOKEN,
+                        licenseKey.getToken());
 
-        long newLocationRowId = db.insert(LicenseKeysContract.LicenseKeys.TABLE_NAME, null, values);
-        appendLog(context, TAG, "LicenseKey created: ", newLocationRowId);
+                long newLocationRowId = db.insert(LicenseKeysContract.LicenseKeys.TABLE_NAME, null, values);
+                appendLog(context, TAG, "LicenseKey created: ", newLocationRowId);
+            }
+        }).start();
     }
 
     public LicenseKey getLicenseKeyByLocationRequestId(String requestUri) {
@@ -107,21 +111,25 @@ public class LicenseKeysDbHelper extends SQLiteOpenHelper {
     }
 
     public void updateToken(String requestUri, String token) {
-        SQLiteDatabase db = getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(LicenseKeysContract.LicenseKeys.COLUMN_NAME_TOKEN, token);
-        values.put(LicenseKeysContract.LicenseKeys.COLUMN_NAME_LAST_CALL_TIME_IN_MS, System.currentTimeMillis());
-        if (!dbRecordExists(requestUri)) {
-            values.put(LicenseKeysContract.LicenseKeys.COLUMN_NAME_REQUEST_URI, requestUri);
-            db.insert(LicenseKeysContract.LicenseKeys.TABLE_NAME, null, values);
-        } else {
-            db.updateWithOnConflict(
-                    LicenseKeysContract.LicenseKeys.TABLE_NAME,
-                    values,
-                    LicenseKeysContract.LicenseKeys.COLUMN_NAME_REQUEST_URI + "='" + requestUri + "'",
-                    null,
-                    SQLiteDatabase.CONFLICT_IGNORE);
-        }
+        new Thread(new Runnable() {
+            public void run() {
+                SQLiteDatabase db = getWritableDatabase();
+                ContentValues values = new ContentValues();
+                values.put(LicenseKeysContract.LicenseKeys.COLUMN_NAME_TOKEN, token);
+                values.put(LicenseKeysContract.LicenseKeys.COLUMN_NAME_LAST_CALL_TIME_IN_MS, System.currentTimeMillis());
+                if (!dbRecordExists(requestUri)) {
+                    values.put(LicenseKeysContract.LicenseKeys.COLUMN_NAME_REQUEST_URI, requestUri);
+                    db.insert(LicenseKeysContract.LicenseKeys.TABLE_NAME, null, values);
+                } else {
+                    db.updateWithOnConflict(
+                            LicenseKeysContract.LicenseKeys.TABLE_NAME,
+                            values,
+                            LicenseKeysContract.LicenseKeys.COLUMN_NAME_REQUEST_URI + "='" + requestUri + "'",
+                            null,
+                            SQLiteDatabase.CONFLICT_IGNORE);
+                }
+            }
+        }).start();
     }
 
     private boolean dbRecordExists(String requestUri) {

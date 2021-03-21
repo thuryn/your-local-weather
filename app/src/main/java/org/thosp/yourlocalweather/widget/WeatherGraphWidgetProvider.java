@@ -46,7 +46,7 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
 
         if (locationId == null) {
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
-            if (!currentLocation.isEnabled()) {
+            if ((currentLocation != null) && !currentLocation.isEnabled()) {
                 currentLocation = locationsDbHelper.getLocationByOrderId(1);
             }
         } else {

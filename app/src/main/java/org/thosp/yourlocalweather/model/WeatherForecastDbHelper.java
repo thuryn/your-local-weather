@@ -5,7 +5,10 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.AsyncTask;
 import android.os.Parcel;
+
+import java.util.concurrent.ExecutionException;
 
 import static org.thosp.yourlocalweather.model.WeatherForecastContract.SQL_CREATE_TABLE_WEATHER_FORECAST;
 import static org.thosp.yourlocalweather.model.WeatherForecastContract.SQL_DELETE_TABLE_WEATHER_FORECAST;
@@ -46,42 +49,49 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
     }
 
     public void deleteRecordByLocation(Location location) {
-        SQLiteDatabase db = getWritableDatabase();
-        String selection = WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + " = ?";
-        String[] selectionArgs = {location.getId().toString()};
-        db.delete(WeatherForecastContract.WeatherForecast.TABLE_NAME, selection, selectionArgs);
+        new Thread(new Runnable() {
+            public void run() {
+                SQLiteDatabase db = getWritableDatabase();
+                String selection = WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + " = ?";
+                String[] selectionArgs = {location.getId().toString()};
+                db.delete(WeatherForecastContract.WeatherForecast.TABLE_NAME, selection, selectionArgs);
+            }
+        }).start();
     }
 
     public void saveWeatherForecast(long locationId, int forecastType, long weatherUpdateTime, final long nextAllowedAttemptToUpdateTime, CompleteWeatherForecast completeWeatherForecast) {
-        SQLiteDatabase db = getWritableDatabase();
+        new Thread(new Runnable() {
+            public void run() {
+                SQLiteDatabase db = getWritableDatabase();
 
-        WeatherForecastRecord oldWeatherForecast = getWeatherForecast(locationId, forecastType);
+                WeatherForecastRecord oldWeatherForecast = getWeatherForecast(locationId, forecastType);
 
-        ContentValues values = new ContentValues();
-        values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_WEATHER_FORECAST,
-                   getCompleteWeatherForecastAsBytes(completeWeatherForecast));
-        values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID, locationId);
-        values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_LAST_UPDATED_IN_MS, weatherUpdateTime);
-        values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS, nextAllowedAttemptToUpdateTime);
-        values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_FORECAST_TYPE, forecastType);
-        if (oldWeatherForecast == null) {
-            db.insert(WeatherForecastContract.WeatherForecast.TABLE_NAME, null, values);
-        } else {
-            db.updateWithOnConflict(WeatherForecastContract.WeatherForecast.TABLE_NAME,
-                    values,
-                    WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + "=" + locationId +
-                    " AND " + WeatherForecastContract.WeatherForecast.COLUMN_NAME_FORECAST_TYPE + "=" + forecastType,
-                    null,
-                    SQLiteDatabase.CONFLICT_IGNORE);
-        }
+                ContentValues values = new ContentValues();
+                values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_WEATHER_FORECAST,
+                        getCompleteWeatherForecastAsBytes(completeWeatherForecast));
+                values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID, locationId);
+                values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_LAST_UPDATED_IN_MS, weatherUpdateTime);
+                values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS, nextAllowedAttemptToUpdateTime);
+                values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_FORECAST_TYPE, forecastType);
+                if (oldWeatherForecast == null) {
+                    db.insert(WeatherForecastContract.WeatherForecast.TABLE_NAME, null, values);
+                } else {
+                    db.updateWithOnConflict(WeatherForecastContract.WeatherForecast.TABLE_NAME,
+                            values,
+                            WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + "=" + locationId +
+                                    " AND " + WeatherForecastContract.WeatherForecast.COLUMN_NAME_FORECAST_TYPE + "=" + forecastType,
+                            null,
+                            SQLiteDatabase.CONFLICT_IGNORE);
+                }
+            }
+        }).start();
     }
 
     public WeatherForecastRecord getWeatherForecast(long locationId) {
         return getWeatherForecast(locationId, 1);
     }
 
-    public WeatherForecastRecord getWeatherForecast(long locationId, int forecastType) {
-
+    public WeatherForecastRecord getWeatherForecast(final long locationId, final int forecastType) {
         SQLiteDatabase db = getReadableDatabase();
 
         String[] projection = {
@@ -93,14 +103,14 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
         Cursor cursor = null;
         try {
             cursor = db.query(
-                WeatherForecastContract.WeatherForecast.TABLE_NAME,
-                projection,
-                WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + "=" + locationId +
-                    " AND " + WeatherForecastContract.WeatherForecast.COLUMN_NAME_FORECAST_TYPE + "=" + forecastType,
-                null,
-                null,
-                null,
-                null
+                    WeatherForecastContract.WeatherForecast.TABLE_NAME,
+                    projection,
+                    WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + "=" + locationId +
+                            " AND " + WeatherForecastContract.WeatherForecast.COLUMN_NAME_FORECAST_TYPE + "=" + forecastType,
+                    null,
+                    null,
+                    null,
+                    null
             );
 
             if (cursor.moveToNext()) {
