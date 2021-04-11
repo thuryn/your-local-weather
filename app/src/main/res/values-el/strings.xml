@@ -282,4 +282,5 @@
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Μόνο η τιμή ανανεώθηκε</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Ανανεώθηκε η τιμή με τη πηγή της τοποθεσίας</string>
     <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">Γράφημα</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Περιορισμός της υπηρεσίας τοποθεσίας Mozilla</string>
 </resources>
