@@ -282,4 +282,8 @@
     <string name="db_header" tools:ignore="MissingTranslation">Alamat basisdata cache</string>
     <string name="db_info" tools:ignore="MissingTranslation">Informasi mengenai cache</string>
     <string name="clear_cache_button" tools:ignore="MissingTranslation">Bersihkan cache</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Ini mengakhirkan panduan ini. Anda dapat mencari pengaturan lain di menu Pengaturan (contohnya bahasa, satuan dll.).
+\nLayar selanjutnya akan menjelaskan izin yang diminta dan memberi Anda opsi untuk meminta izinnya.
+\n
+\nNikmati aplikasinya.</string>
 </resources>
