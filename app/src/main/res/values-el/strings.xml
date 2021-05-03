@@ -98,15 +98,15 @@
     <string name="pref_title_theme">Θέμα</string>
     <string name="widget_weather_icon_description">Εικονίδιο τωρινού καιρού</string>
     <string name="widget_refresh_button">Πλήκτρο ανανέωσης του γραφικού στοιχείου</string>
-    <string name="app_name" tools:ignore="MissingTranslation">Yorecast</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Ο τοπικός καιρός</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Ρυθμίσεις τοποθεσίας και αδειών</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Η εφαρμογή χρειάζεται άδεια για να ενημερώωει την τοποθεσία μέσω GPS.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Η εφαρμογή χρειάζεται άδεια για να ενημερώνει την τοποθεσία μέσω Wi-Fi και δικτύων GSM.</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Η τοποθεσία δε βρέθηκε</string>
-    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Βελτιστοποίηση κατανάλωσης</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Βελτιστοποίηση μπαταρίας</string>
     <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Η εφαρμογή θα σου ζητήσει να απενεργοποιήσεις την βελτιστοποίηση κατανάλωσης για να ανανεώνεται η τοποθεσία, ο καιρός ή για να εντοπίζεται η τοποθεσία χρησιμοποιώντας το επιταχυνσιόμετρο στο υπόβαθρο.</string>
-    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Συνέχεια</string>
-    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Άκυρο</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Συνεχίστε</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Ματαιώστε</string>
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Χρειάζεται άδεια για ανάγνωση δεδομένων από την συσκευή, ώστε να ανανεώνεται η τοποθεσία χρησιμοποιώντας Wi-Fi και δίκτυα GSM. Αυτή η επιλογή θα αντλεί πληροφορίες για τους σταθμούς βάσης GSM στους οποίους συνδέεται η συσκευή.</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Αίτημα δικαιωμάτων</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Δεν έχουν δοθεί ακόμα δικαιώματα - πάτησε στο σύμβολο της τοποθεσίας στην εφαρμογή</string>
@@ -283,4 +283,6 @@
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Ανανεώθηκε η τιμή με τη πηγή της τοποθεσίας</string>
     <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">Γράφημα</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Περιορισμός της υπηρεσίας τοποθεσίας Mozilla</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Αλλάζει η άδεια Android 10</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Μεταφράσεις κειμένου και οδηγιών</string>
 </resources>
