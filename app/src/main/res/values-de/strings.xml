@@ -505,7 +505,7 @@
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamesisch</string>
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengalisch (Bangladesch)</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Text- und Anleitungsübersetzungen</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Diese Anwendung verfügt über eine Sprachausgabe. Um diese Funktion zu aktivieren, muss ein TTS-System (Text-to-Speech) installiert und die Sprachausgabe über die Anwendungseinstellungen eingestellt sein. Bitte beachten Sie, dass sowohl Textübersetzungen als auch Sprachbefehle von Freiwilligen des Dienstes https://hosted.weblate.org/projects/your-local-weather übersetzt werden. Sie können Ihre eigenen Sprachbefehle auch über die Anwendungseinstellungen einrichten. Die Entwickler dieser Anwendung garantieren nicht für die Qualität und Richtigkeit der Übersetzungen sowie für das, was die Anwendung sagt - Sie akzeptieren diese Aussage durch Nutzung dieser Anwendung.</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Diese App verfügt über eine Sprachführung in Form von Textübersetzungen und Sprachbefehlen, die freundlicherweise von Freiwilligen auf https://hosted.weblate.org/projects/your-local-weather zur Verfügung gestellt wurden. Der App-Entwickler kann nicht garantieren, dass diese korrekt sind - Sie akzeptieren dies, indem Sie die App verwenden. Um die App zu verwenden, muss TTS (Text-to-Speech) installiert und die Sprachführung in den Einstellungen aktiviert sein, wo Sie Ihre eigenen Sprachbefehle einstellen können. "</string>
     <string name="preference_title_tts" tools:ignore="MissingTranslation">Spracheinstellungen</string>
     <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Neue Spracheinstellungen</string>
     <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Aktivieren von Sprache zum Lautsprecher</string>
@@ -563,4 +563,28 @@
     <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">abends</string>
     <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">selten</string>
     <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">und</string>
+    <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
+    <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">Bezahlte/erweiterte Funktionen</string>
+    <string name="weather_forecast_features_free" tools:ignore="MissingTranslation">Kostenlose/eingeschränkte Funktionen</string>
+    <string name="preference_weather_weather_forecast_features_title" tools:ignore="MissingTranslation">Wettervorhersagefunktionen</string>
+    <string name="location_weather_update_status_location_from_last_location" tools:ignore="MissingTranslation">l</string>
+    <string name="location_weather_update_status_too_early_update" tools:ignore="MissingTranslation">O</string>
+    <string name="pref_title_tts_not_supported" tools:ignore="MissingTranslation">Das Gebietsschema Ihrer App wird von Ihrem TTS-System (Text-to-Speech) nicht unterstützt. Gehen Sie oben rechts auf \"Spracheinstellungen der Anleitung\".</string>
+    <string name="pref_title_tts_presence" tools:ignore="MissingTranslation">Ihr App-Gebietsschema wird von Ihrem TTS-System (Text-to-Speech) nicht unterstützt. Wählen Sie unten eine Anleitungssprache aus der Liste der unterstützten Sprachen aus.</string>
+    <string name="pref_title_tts_lang_app_default" tools:ignore="MissingTranslation">Nach App-Gebietsschema</string>
+    <string name="pref_title_tts_app_general_info" tools:ignore="MissingTranslation">Die App sendet Textbefehle an das TTS-System (Text-to-Speech), das sie in eine Stimme umwandelt. Es ist in der Regel standardmäßig auf dem System vorhanden. Falls nicht, oder falls das installierte TTS Ihre gewünschte Sprache nicht unterstützt, installieren Sie eines aus einem App-Store (zum Beispiel: https://search.f-droid.org/\?q=TTS ).</string>
+    <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">Ausgewähltes Gebietsschema zur Orientierung:</string>
+    <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">Gebietsschema der Anwendung:</string>
+    <string name="pref_language_id" tools:ignore="MissingTranslation">Indonesisch (Indonesisch)</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">Portugiesisch (Portugal)</string>
+    <string name="pref_language_fa" tools:ignore="MissingTranslation">Persisch (Persisch)</string>
+    <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (Hindi)</string>
+    <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Lizenzschlüssel</string>
+    <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
+    <string name="too_early_update_error" tools:ignore="MissingTranslation">Zu frühes Update!</string>
+    <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Prognosetyp</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Ab Android 10 ist ein genauerer Zugriff auf den Standort erforderlich, um Informationen über das verbundene GSM/LTE-Netz zu erhalten. Erteilen Sie die Erlaubnis, den Standort auch im Hintergrund abzurufen (wenn Sie Ihren Standort die ganze Zeit ermittelt haben wollen).</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Android 10 Berechtigungsänderungen</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Der Zugriff auf den Mozilla-Standortdienst ist seit 1.3.2020 abgelaufen. Die App ist gezwungen, das Andorid-System für die Ermittlung der Standortkoordinaten zu verwenden. Die Adresse wird weiterhin von Nominatim aufgelöst. Bitte berücksichtigen Sie dies bei der Verwendung der App.</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Einschränkungen des Mozilla-Standortdienstes</string>
 </resources>
