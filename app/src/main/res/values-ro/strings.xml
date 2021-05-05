@@ -19,4 +19,12 @@
     <string name="log_file_168_label" tools:ignore="MissingTranslation">o săptămână</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">o lună</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Optimizare baterie</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Procedați</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Aplicația vă va cere să dezactivați optimizarea bateriei pentru a actualiza locația, vremea sau pentru a urmări locația prin accelerometru în fundal.</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Începând cu Android 10, este necesar un acces fin la locație pentru a obține informații despre rețeaua GSM/LTE conectată. Acordați permisiunea de a prelua locația și în fundal (dacă doriți ca locația dvs. să fie disponibilă tot timpul).</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Modificări ale permisiunilor Android 10</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Accesul la serviciul de localizare Mozilla a expirat începând cu 1.3.2020. Aplicația este forțată să utilizeze sistemul Andorid pentru descoperirea coordonatelor de localizare. Adresa este în continuare rezolvată de Nominatim. Vă rugăm să luați în considerare acest lucru atunci când utilizați aplicația.</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Limitarea serviciului de localizare Mozilla</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Această aplicație dispune de ghidare vocală prin intermediul traducerilor de text și al comenzilor vocale oferite de voluntarii de la https://hosted.weblate.org/projects/your-local-weather. Dezvoltatorul aplicației nu poate garanta că acestea sunt corecte - acceptați acest lucru prin utilizarea aplicației. Pentru a o utiliza, trebuie să aveți instalat TTS (Text-to-speech) și să activați ghidarea în setări, unde puteți seta propriile comenzi vocale. "</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Traduceri de texte și ghiduri</string>
 </resources>
