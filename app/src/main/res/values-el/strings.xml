@@ -285,4 +285,5 @@
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Περιορισμός της υπηρεσίας τοποθεσίας Mozilla</string>
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Αλλάζει η άδεια Android 10</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Μεταφράσεις κειμένου και οδηγιών</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">συννεφιά</string>
 </resources>
