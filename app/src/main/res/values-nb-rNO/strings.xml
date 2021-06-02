@@ -144,7 +144,7 @@
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Hovedinnstillinger</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Hovedprogram</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">Miniprogrammer</string>
-    <string name="help_page_3_content" tools:ignore="MissingTranslation">Dette valget har innvirkning på hele programmet.</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Disse valgene har innvirkning på hele programmet.</string>
     <string name="help_page_4_title" tools:ignore="MissingTranslation">Miniprogramsinnstillinger</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">Hjelp</string>
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Hjelp</string>
@@ -170,9 +170,9 @@
 \nTil forskjell fra forvalget der plassering følger deg, kan du velge <i>Ikke oppdater plassering</i>.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Veiledning for førstegangsoppsett</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Plasseringskilde-valg</string>
-    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Du kan velge plasseringskilden, <i>System</i>-varianten bruker Google-tjenester til å hente plasseringen fra nettverk (telefon- og Wi-Fi -nettverk). <i>Lokal MLS og Nominatim</i>-valget bruker Mozilla plasseringstjeneste for å hente plasseringskoordinater og Nominatim-tjenesten til å hente plasseringsnavn. Det andre valget krever tilgang til behandling av telefonsamtaler for å hente informasjon om mobilnettverket. Foretrukket valg er forvalgt.</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Du kan velge plasseringskilden, <i>System</i>-varianten bruker Google-tjenester til å hente plasseringen fra nettverk (telefon- og Wi-Fi -nettverk). <i>Lokal MLS og Nominatim</i>-valget bruker Mozilla plasseringstjeneste for å hente plasseringskoordinater og Nominatim-tjenesten til å hente plasseringsnavn. Det andre valget krever tilgang til behandling av telefonsamtaler for å hente info om mobilnettverket. Foretrukket valg er forvalgt.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Plassering- og adresse-kilde</string>
-    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Noen telefonmodeller rapporterer ikke tilkoblede tårn rett, med mindre skjermen er påslått. Forvalget (med skjermen slått av), har bakdelen med at telefonen skrur på skjermen på i flere sekunder. Dette har en liten innvirkning på batteritiden. Du kan starte med anbefalt valg og skru dette valget av senere og holde oppsyn med plasseringsoppdateringene.</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Noen telefoner rapporterer ikke tilkoblede tårn rett, med mindre skjermen er påslått. Forvalget (med skjermen slått av), har bakdelen med at telefonen skrur på skjermen på i flere sekunder. Dette har en liten innvirkning på batteritiden. Du kan starte med anbefalt valg og skru dette valget av senere og holde oppsyn med plasseringsoppdateringene.</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Feilrettingsvalg</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Dette valget skriver feilrettingsinformasjon til loggfila. Dette valget er nyttig hvis det oppstår et problem med programmet.</string>
     <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Alderen på hurtiglagrede verdier</string>
@@ -182,17 +182,17 @@
     <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Rotasjon for loggfila</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlins røde ikoner</string>
     <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Valg for hurtiglagring av utledet adresse</string>
-    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Du kan lagre nettverkstrafikk ved å hurtiglagre funnede plasseringe. Du må godta at plasseringene lagres i programmet. Plasseringene blir ikke sendt eller lagret noen andre steder i nettverket.</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Du redusere databruk ved å hurtiglagre plasseringer som blir funnet. Du må godta at plasseringene lagres i programmet. Plasseringene blir ikke sendt eller lagret noen andre steder i nettverket.</string>
     <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Hurtiglagre utledet adresse</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Du har fullført grunnleggende innstillinger. Andre er å finne i innstillingsmenyen (for eksempel språk, enheter, osv.)
 \nNeste skjerm forklarer deg hvordan forespurte tilganger og gir deg valget med å forespørre dem.
 \n
 \nNyt programmet.</string>
     <string name="help_page_general_content" tools:ignore="MissingTranslation">Programmet bruker mobilnettverk, Wi-Fi og GPS for å innhente plassering og vise deg værer der du er. Hvis du bruker miniprogrammet på telefon eller nettbrettet ditt, kan du se plassering og nåværende vær på hovedskjermen. Oppdatering av plassering kan gjøres intervallvis, (eksempelvis per time), eller programmet kan bruke akselererometer et for å anslå bevegelse. Du kan skru av oppdatering av plassering - da oppdateres kun været. Oppdateringer av vær kan skje ved angitt tid. Du kan sette tidspunktet selv. Oppdatering ved akselerometer betyr utregning av forløpt distanse. Hvis den er lenger enn minimumsverdien for oppdatering, vil plasseringen din bli flyttet. Distanse utledet av akselerometer avhenger av hvordan du bærer telefonen din. Når du har den i lomma øker den hurtigere - telefonen svaier fram og tilbake ettersom du går. Været oppdateres umiddelbart etter at plasseringen har endret seg. Været oppdateres når skjermen skrus på også - men ikke oftere enn hvert kvarter (sett at det ikke allerede har blitt oppdatert innen perioden). For å hente plassering, blir mobilnett (BTS) og Wi-Fi der du er brukt. Informasjonen brukes til å hente koordinater fra Mozillas plasseringstjeneste. Programmet prøver å bruke GPS når plassering ikke er tilgjengelig fra mobilnettverk og Wi-Fi. Plasseringskoordinater brukes for å hente adressen fra Nominatim-tjenesten. Adressen brukes i programmet eller miniprogrammet. Det bruker OpenWeatherMap.org-tjensten for å innhente nåværende vær.</string>
-    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Hovedprogrammet inneholdet oversikt over nåværende vær. Du kan oppdatere været med oppdateringsknappen i programpanelet eller ved å dra nedover. Du finner oppdatering/søk -plasseringsknapp ved siden av den. Oppdateringsknappen for plassering er tilgjengelig når du har valgt oppdatering av plassering i innstillingsmenyen. Knappen for å søke plassering er tilgjengelig når du har valgt å kun oppdatere vær i innstillingsmenyen.</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Hovedprogrammet inneholdet oversikt over nåværende vær. Du kan oppdatere været med oppdateringsknappen i programpanelet eller ved å dra nedover. Du finner oppdatering/søk -plasseringsknappen ved siden av den. Oppdateringsknappen for plassering er tilgjengelig når du har valgt oppdatering av plassering i innstillingsmenyen. Knappen for å søke plassering er tilgjengelig når du har valgt å kun oppdatere vær i innstillingsmenyen.</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Værmelding er å finne på neste skjerm (velg neste skjerm i menyen eller dra mot høyre). Værmelding oppdateres med dertil egnet knapp, eller når du går inn på den skjermen (men ikke mer enn én gang per time).</string>
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Den tredje skjermen inneholder værmelding vist med grafer.</string>
-    <string name="help_page_2_content" tools:ignore="MissingTranslation">Programmet har tre miniprogrammer. Miniprogrammer inneholder noen delte verdier for nåværende vær (for eksempel temperatur). Noen verdier er unike for hver enkelt miniprogram (for eksempel solnedgang). Det er en tid for forrige oppdatering i høyre hjørne for hvert miniprogram. Du kan se hva som har blitt oppdatert sist gang (når du har valgt dette i innstillingsmenyen). Oppdateringsknappen er å finne ved siden av oppdatert tid. Når du trykker denne knappen, blir været, (og plasseringen når oppdatering av den er valgt) oppdatert uten videre plunder.</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">Programmet har tre miniprogrammer. Miniprogrammer inneholder noen delte verdier for nåværende vær (for eksempel temperatur). Noen verdier er unike for hver enkelt miniprogram (for eksempel solnedgang). Det er en tid for forrige oppdatering i høyre hjørne for hvert miniprogram. Du kan se hva som har blitt oppdatert sist gansiden g (når du har valgt dette i innstillingsmenyen). Oppdateringsknappen er å finne ved siden av oppdatert tid. Når du trykker denne knappen, blir været, (og plasseringen når oppdatering av den er valgt) oppdatert uten videre plunder.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Hovedinnstillinger</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
         <b>Temperatur</b> - Du kan velge temperaturenhet, <b>Vind</b> - Du kan velge vindhastighetsenhet og <b>Trykk</b> - Du kan velge enhet for trykk. Verdier regnes ut igjen ved bruk av disse valgene.</string>
@@ -220,15 +220,14 @@
     <string name="help_page_4_content" tools:ignore="MissingTranslation">Miniprograminnstillinger inneholder oppsettsvalg for alle miniprogrammer.</string>
     <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Når du har huket av <b xmlns:tools="https://schemas.android.com/tools">Vis etiketter i miniprogram</b> kan du se etiketter istedenfor ikoner for værtilstandsverdier.</string>
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Du kan kontrollere miniprogramsbakgrunner med <b xmlns:tools="https://schemas.android.com/tools">Draktvalg for miniprogrammer</b>.</string>
-    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">
-        <b xmlns:tools="https://schemas.android.com/tools">Oppvåkningsstrategien</b> er der for å imøtegå feilaktige implementasjonen av Android-tjenesten av forskjellige tilbydere. Når du velger <i xmlns:tools="https://schemas.android.com/tools">Ingen oppvåkning</i> og plasseringen er oppdatert rett, har du rett implementasjon. I motsatt fall kan du prøve <i xmlns:tools="https://schemas.android.com/tools">Kun vekk opp CPU</i>. Dette valget vekker opp prosessoren og prøver å lese tilstanden for mobil og Wi-Fi-nettverk. Det siste valget <i xmlns:tools="https://schemas.android.com/tools">Vekk opp med skjer</i> skrur på skjermen i flere sekunder under plasseringsoppdateringen. På noen Android-telefoner er dette det eneste valget som gir rett informasjon om mobil- og Wi-Fi-nettverk. Dette bruker dog mer batteri, men innvirkningen er ganske liten.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b xmlns:tools="https://schemas.android.com/tools">Oppvåkningsstrategien</b> er der for å imøtegå feilaktige implementasjonen av Android-tjenesten av forskjellige tilbydere. Når du velger <i xmlns:tools="https://schemas.android.com/tools">Ingen oppvåkning</i> og plasseringen er oppdatert rett, har du rett implementasjon. I motsatt fall kan du prøve <i xmlns:tools="https://schemas.android.com/tools">Kun vekk opp CPU</i>. Dette valget vekker opp prosessoren og prøver å lese tilstanden for mobil og Wi-Fi-nettverk. Det siste valget <i xmlns:tools="https://schemas.android.com/tools">Vekk opp med skjer</i> skrur på skjermen i flere sekunder under plasseringsoppdateringen. På noen Android-telefoner er dette det eneste valget som gir rett informasjon om mobil- og Wi-Fi-nettverk. Dette bruker dog mer batteri, men innvirkningen er ganske liten.</string>
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Når du oppdaterer plassering og nåværende vær utføres kan du se status for oppdateringen ved siden av oppdateringstiden i miniprogrammet. Du kan kontrollere hva som vises med <b xmlns:tools="https://schemas.android.com/tools">Vis oppdateringssammendrag</b>. Forklaringen på det mest avanserte valget følger:</string>
     <string name="label_activity_graphs" tools:ignore="MissingTranslation">Værgrafer</string>
     <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Grafer</string>
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Vind</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Lufttrykk</string>
-    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Lokal MLS og Nominatim (anbefalt)</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">System for å hente plassering, Nominatim for å hente adresse (anbefalt)</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Oppdatert verdi med plasseringskilde</string>
     <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - Kun oppdatering av vær
 \nL - Kun oppdatering av plassering
@@ -238,7 +237,9 @@
 \nL - Kun oppdatering av plassering
 \nG - Plassering oppdatert av GPS og vær oppdatert
 \nN - Plassering oppdatert fra nettverk og vær oppdatert
-\nNi - Plassering oppdatert fra mobilnettverk og vær oppdatert, plassering utledet av Mozillas plasseringstjeneste</string>
+\nNi - Plassering oppdatert fra mobilnettverk og vær oppdatert, plassering utledet av Mozillas plasseringstjeneste
+\nB - Tilgang til Openweathermap-org-tjensten har blitt bannlyst. Prøv å oppdatere vær senere
+\nE - Tilgangssymbolet for Openweathermap.org-tjenesten har utløpt. Du må oppgradere programmet for å få tilgang igjen</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Når plasseringen henger seg ved telefondvalgang, kan du prøve å vekke den opp når den leter etter mobilnettverk</string>
     <string name="wakeupfull_label" tools:ignore="MissingTranslation">Vekk opp med skjerm</string>
     <string name="db_header" tools:ignore="MissingTranslation">Adressehurtiglagringsdatabase</string>
@@ -498,7 +499,7 @@
     <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Dette programmet har stemmeveiledning av tekstoversettelser og stemmekommandoer på vegne av frivillige på https://hosted.weblate.org/projects/your-local-weather. Programutvikleren kan ikke garantere at de stemmer - du godtar dette ved å bruke programmet. For å bruke det trenger du TTS (tekst-til-tale) installert og veiledning skrudd på i innstillingene, der du også kan sette egne stemmekommandoer. "</string>
     <string name="preference_title_tts" tools:ignore="MissingTranslation">Veiledningsinnstillinger</string>
     <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Nye veiledningsinnstillinger</string>
-    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Veiledningsavspilling</string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Veiledningshøyttaleravspilling</string>
     <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Skru på veiledning til trådbundet hodesett</string>
     <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Skru på veiledning til Blåtannshodesett</string>
     <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Alle</string>
@@ -513,7 +514,7 @@
     <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">Nåværende vær for plasseringen %s</string>
     <string name="tts_say_current_weather" tools:ignore="MissingTranslation">Været nå</string>
     <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">Når vær oppdateres</string>
-    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">Når Blåtannsenhet kobles til</string>
+    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">Når en Blåtannsenhet kobles til</string>
     <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">Tid på dagen</string>
     <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s vind %1$s %2$s</string>
     <string name="tty_say_temperature" tools:ignore="MissingTranslation">Temperatur %s</string>
