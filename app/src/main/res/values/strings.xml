@@ -100,7 +100,9 @@
     <string name="help_page_4_content" tools:ignore="MissingTranslation">Widget settings contains configuration options for all widgets.</string>
     <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">When you enable <b>Show labels in widget</b>, you can see labels instead of icons for weather condition values.</string>
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">You can control the widget background with the <b>Widget theme option</b>.</string>
-    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">The <b>Wake up strategy</b> option is available to overcome buggy implementation of android service by different vendors. When you select <i>No wake up</i>, and the location is updated properly you\'ve got a correct implementation. When the location is not updated properly you can try <i>Wake up CPU only</i>. This option wakes the CPU, and tries to read the state of the cell and wifi network. The last option <i>Wake up with display</i> switches the screen for several seconds during the location update. On some android phones this is the only option to get the correct information about cell and wifi networks. This option consumes some amount of battery - but the impact on battery life should be small.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b>Wake up strategy</b> is there to overcome buggy vendor implementations of the Android Aurora services. Selecting <i>No wake up</i>, should update the location correctly.
+\nIf not, try <i>Wake up CPU only</i> to read cell- and Wi-Fi network state.
+\n<i>Wake up with display</i> turns the screen on for several seconds during the location update as a last resort.</string>
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">When an update of location and current weather is performed you can see the status of the update next to the update time in widget. You can control what is displayed by the <b>Display update summary</b> option. The explanation of the most advanced option follows:</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Debug options</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">There are options to enable debugging into log file. This option is useful when there is some trouble with application.</string>
@@ -346,13 +348,13 @@
 \nN - location from network and weather updated 
 \nB - access to Openweathermap.org service has been banned, try to update weather later, please 
 \nE - the access token for Openweathermap.org service expired. You need to upgrade the application to get access again</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - only weather updated 
-\nL - only location updated 
-\nG - location from GPS and weather updated 
-\nN - location from network and weather updated 
-\nNi - location from cellular network and weather updated, location discovered by Mozilla location service 
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - only weather updated
+\nL - only location updated
+\nG - location from GPS and weather updated
+\nN - location from network and weather updated
+\nNi - location from cellular network and weather updated, location discovered by Mozilla location service
 \nB - access to Openweathermap.org service has been banned, please try to update the weather later
-\nE - the access token for Openweathermap.org service has been expired. You need to update the app to get access again</string>
+\nE - the access token for Openweathermap.org service has expired. Install a later version of the app to regain access</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">When location gets stuck during device sleep, you can try to wake it up when it is looking for a cellular network</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Wake-Up Strategy</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">No wake up</string>
