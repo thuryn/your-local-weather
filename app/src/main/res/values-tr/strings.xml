@@ -144,23 +144,23 @@
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistem</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Güncelleme Özetini Göster</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Yok</string>
-    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Sadece güncellenmiş değer</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Yalnızca güncellenen değer</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Konum kaynağıyla güncellenmiş değer</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - konum ve/veya hava durumunu güncelleyecek 
-\n. - konuma ulaşılamıyor, hava durumu son konuma göre güncelleniyor 
-\nW - sadece hava durumu güncellendi 
-\nL - sadece konum güncellendi 
-\nG - GPS\'ten konum ve hava durumu güncellendi 
-\nN - ağdan konum ve hava durumu güncellendi 
-\nB - Openweathermap.org hizmetine erişim yasaklandı, lütfen hava durumunu daha sonra güncellemeyi deneyin 
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - konum ve/veya hava durumunu güncelleyecek
+\n. - konuma ulaşılamıyor, hava durumu son konuma göre güncelleniyor
+\nW - yalnızca hava durumu güncellendi
+\nL - yalnızca konum güncellendi
+\nG - GPS\'ten konum ve hava durumu güncellendi
+\nN - ağdan konum ve hava durumu güncellendi
+\nB - Openweathermap.org hizmetine erişim yasaklandı, lütfen hava durumunu daha sonra güncellemeyi deneyin
 \nE - Openweathermap.org hizmetinin erişim belirtecinin süresi doldu. Yeniden erişebilmek için uygulamayı yükseltmeniz gerekir</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - sadece hava durumu güncellendi 
-\nL - sadece konum güncellendi 
-\nG - GPS\'ten konum ve hava durumu güncellendi 
-\nN - ağdan konum ve hava durumu güncellendi 
-\nNi - hücresel şebekeden konum ve hava durumu güncellendi, konum Mozilla konum hizmeti ile keşfedildi 
-\nB - Openweathermap.org hizmetine erişim yasaklandı, lütfen hava durumunu daha sonra güncellemeyi deneyin 
-\nE - Openweathermap.org hizmetinin erişim belirtecinin süresi doldu. Yeniden erişebilmek için uygulamayı yükseltmeniz gerekir</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - yalnızca hava durumu güncellendi
+\nL - yalnızca konum güncellendi
+\nG - GPS\'ten konum ve hava durumu güncellendi
+\nN - ağdan konum ve hava durumu güncellendi
+\nNi - hücresel şebekeden konum ve hava durumu güncellendi, konum Mozilla konum hizmeti ile keşfedildi
+\nB - Openweathermap.org hizmetine erişim yasaklandı, lütfen hava durumunu daha sonra güncellemeyi deneyin
+\nE - Openweathermap.org hizmetinin erişim belirtecinin süresi doldu. Erişimi yeniden kazanmak için uygulamanın sonraki bir sürümünü kurun</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Cihaz uykudayken konum takılı kalırsa, hüresel ağ aranırken uyandırmayı deneyebilirsiniz</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Uyanma Stratejisi</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">Uyanma yok</string>
@@ -252,7 +252,7 @@
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Rüzgar</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Basınç</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Konumlandırma yöntemini seçebilirsiniz - <i>Sistem</i> seçeneği konumu ağlar (telefon ve Wi-Fi ağları) üzerinden almak için Google hizmetlerini kullanır. <i>Yerel MLS ve Nominatim</i> seçeneği konum koordinatlarını almak için Mozilla konum hizmetini ve yer adlarını almak için Nominatim hizmetini kullanır. İkinci seçenek, telefon ağlarıyla ilgili bilgi almak için telefon araması izinlerini gerektirir. Tercih edilen seçenek seçili olandır.</string>
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">Bu uygulama Wi-Fi başarısız olursa hücresel ağ (BTS) kullanarak konumunuzu belirler; Yerel havayı göstermek için GPS, ardından Mozilla konum hizmetinden koordinatları al. Uygulama en azından şunları gerektirir: GSM şebekesinin bir baz istasyonu veya ulaşılabilir iki wifi şebekesi veya GSM ve Wi-Fi şebekelerinin herhangi bir kombinasyonu. Telefonunuzda veya tabletinizde widget\'ı kullanarak konumunuzu ve geçerli hava durumunu ana ekranda görebilirsiniz. Konum güncellemeleri periyodik olabilir (örneğin saat başı) veya uygulama bir değerden daha büyük mesafedeki hareketi algılamak için ivmeölçer kullanabilir. Cebinizde taşınan mesafe daha hızlı artar. Konum güncellemelerini kapatabilirsiniz - sadece hava durumu daha sonra güncellenir. Uygulamanın belirtilen aralıklarla konumu ve hava durumu günceller. Örneğin güncelleme periyodunu saat bir saate ayarlayabilirsiniz. Hava durumu, konum açıldıktan hemen sonra veya ekran açıldığında güncellenir - fakat daha sık değil, 15 dakikada bir kez (ve son 15 dakikada hava durumu güncellenmediğinde). Bu bilgiler Mozilla konum servisi tarafından konum koordinatlarını almak için kullanılır. Uygulama, hücre ağı ve Wi-Fi şebekelerinde konum bulunmadığında GPS kullanmaya çalışır. Konum koordinatları Nominatim servisi tarafından adres almak için kullanılır. Adres uygulamada veya widget\'te kullanılır. Uygulamanın mevcut hava durumunu almak için OpenWeatherMap.org hizmetini kullanır.</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Uygulama, yerel hava durumunu göstermek için sırasıyla hücresel ağ (BTS), Wi-Fi ve bunlar başarısız olursa GPS kullanıp Mozilla konum hizmetinden koordinatları alarak konumu belirler. Uygulamanın en az şunlara ihtiyacı vardır: bir GSM şebekesi baz istasyonu veya iki erişilebilir Wi-Fi şebekesi veya GSM ve Wi-Fi şebekelerinin herhangi bir birleşimi. Widget\'ı telefonunuzda veya tabletinizde kullanarak ana ekranda konumunuzu ve o anki hava durumunu görebilirsiniz. Konum güncellemeleri belirli aralıklarla (örneğin saatlik) olabilir veya uygulama, bir değerden daha uzak mesafelerdeki hareketi algılamak için ivmeölçeri kullanabilir. Cebinizde taşındığında mesafe daha hızlı artar. Konum güncellemelerini kapatabilirsiniz - bu durumda yalnızca hava durumu güncellenir. Uygulama, konumu ve hava durumunu belirli aralıklarla günceller. Örneğin güncelleme süresini bir saat olarak ayarlayabilirsiniz. Hava durumu, konum belirlendikten hemen sonra veya ekran açıldığında güncellenir - ancak 15 dakikada bir defadan daha sık değil (ve son 15 dakikada hava durumu güncellenmediğinde). Bu bilgiler, Mozilla konum hizmeti tarafından konum koordinatlarını almak için kullanılır. Uygulama, hücresel ağdan ve Wi-Fi ağlarından konum bulunmadığında GPS kullanmaya çalışır. Nominatim hizmeti ile adresi öğrenmek için konum koordinatları kullanılır. Adres, uygulamada veya widget\'ta kullanılır. Uygulama, o anki hava durumunu almak için OpenWeatherMap.org hizmetini kullanır.</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Ana uygulama anlık hava durumunun genel görünümünü içerir. Yenileme düğmesini kullanarak veya ekranı aşağı kaydırarak hava durumunu güncelleyebilirsiniz. Konum güncelleme düğmesini hava durumunu yenileme düğmesinin yanında bulabilirsiniz. Bu düğme, yalnızca konum 0 etkinleştirildiğinde kullanılabilir (konum 0 konumun kendiliğinden güncellenmesi içindir).</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">Uygulamada mevcut hava durumunun bazı ortak değerlerini içeren (örneğin sıcaklık) üç widget vardır. Bazı değerler belirli widget\'a özgüdür (örneğin gün batımı). Her widget\'ın sağ köşesinde son güncellemenin bir zamanı var. En son nelerin güncellendiğini görebilirsiniz (ayarlar menüsünde bu seçeneği etkinleştirdiğinizde). Güncelleme düğmesini, en son güncelleme zamanının yanında bulabilirsiniz. Bu düğmeye bastığınızda, hava durumu (ve güncelleme konumu seçildiğinde seçilen konum) koşulsuz olarak güncellenir. Pencere ögelerinde son seçenek konum değiştirmektir - geçerli konum metnine bastığınızda konum bir sonrakine değişir.</string>
     <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"> <b> Yerel MLS ve Nominatim </b> - Uygulama, Mozilla konum servislerinden konum ve coğrafi koordinatları alır. Nominatim servisleri adresi bu koordinatlardan alır. Mozilla Stumbler\'ı yükleyerek MLS için gelecekteki gelişmelere katkıda bulunabilirsiniz (https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler adresinde bulunabilir). Telefon görüşmesine izin vererek mevcut ve kullanılabilir şebeke bazındaki istasyonlar hakkında bilgi alın. Çevrenizdeki Wi-Fi ağları, konumunuzu daha kesin olarak tahmin etmek için kullanılır.</string>
@@ -282,7 +282,9 @@
     <string name="search_location_add" tools:ignore="MissingTranslation">Ekle</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">İstediğiniz konum için haritaya dokunun ve adresin çözümlenmesini bekleyin.</string>
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Konum güncelleme düğmesinin yanında bir konum yönetim düğmesi (büyüteç simgesi) vardır. Uygulamadaki ve widget\'lardaki kullanılabilir konumları yönetebilirsiniz. Öntanımlı olarak bulunan bir konum (Konum 0) vardır - bu, otomatik konum güncellemeleri için düşünülmüştür. Bu konumu sola kaydırdığınızda etkinleştir/devre dışı bırak düğmesini bulabilirsiniz. Konumu elle de ekleyebilirsiniz. + düğmesine bastığınızda konumu haritadan seçebilirsiniz. Sil düğmesiyle de konumu silebilirisiniz - düğme konumu sola kaydırdığınızda erişilebilir.</string>
-    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b>Uyanma stratejisi</b> seçeneği farklı satıcıların sorunlu android hizmeti uyarlamalarının üstesinden gelmek için vardır. <i>Uyanma yok</i> seçeneğini seçtiğinizde ve konum düzgün şekilde güncellendiğinde, doğru bir uyarlamaya sahipsiniz. Konum düzgün güncellenmediğinde <i>Yalnızca işlemciyi uyandır</i> seçeneğini deneyebilirsiniz. Bu seçenek işlemciyi uyandırır ve hücre ve wifi ağlarını hazır duruma getirmeye çalışır. Son seçenek <i>Ekran ile uyan</i> konum güncellemesi boyunca ekranı birkaç saniye için açar. Bazı android telefonlarda, bu hücre ve wifi ağları hakkında doğru bilgi almak için tek seçenektir - Bu seçenek bir miktar pil tüketir, ancak pil ömrü üzerindeki etkisi azdır.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b>Uyandırma stratejisi</b>, Android Aurora hizmetlerinin hatalı satıcı uygulamalarının üstesinden gelmek için vardır. <i>Uyandırma yok</i> seçeneğinin seçilmesi, konumu doğru şekilde güncellemelidir.
+\nDeğilse, hücre ve Wi-Fi ağ durumunu okumak için <i>yalnızca CPU\'yu uyandır</i> seçeneğini deneyin.
+\n<i>Ekran ile uyan</i>, konum güncellemesi sırasında son çare olarak ekranı birkaç saniyeliğine açar.</string>
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">knot</string>
     <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Lütfen önce hava durumunu güncellemek için yenile düğmesine tıklayın.</string>
     <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Hissedilen sıcaklık: %s</string>
