@@ -204,7 +204,9 @@
     <string name="help_page_4_content" tools:ignore="MissingTranslation">微件设置包含对全部微件的配置选项。</string>
     <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">当您选中 <b>在微件中显示标签</b> 选项时，您可以看到标签而不是天气条件值的图标。</string>
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">您可以通过 <b>微件主题选项</b> 来控制微件背景。</string>
-    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">应用的 &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;唤醒策略&lt;/b&gt; 选项是为了克服不同供应商的 Android 服务的错误实现。当您选择 &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;无唤醒&lt;/i&gt; 选项且位置正确更新时您已经得到了正确实现。当位置未被正确更新时您可以尝试 &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;仅唤醒 CPU&lt;/i&gt; 。此选项唤醒 CPU 并尝试读取蜂窝网络和 Wi-Fi 网络的状态。最后一项 &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;唤醒屏幕&lt;/i&gt; 在更新位置期间开启屏幕数秒。此选项消耗一些电量 - 但对电池寿命的影响真的很小。</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b>唤醒策略</b> 存在意义是克服厂商有问题的 Android Aurora服务实现。选择 <i>无唤醒</i>, 应该可以正确更新位置。
+\n如果问题仍旧存在，请尝试 <i>仅唤醒 CPU</i> 来读取手机和Wi-Fi网络状态。
+\n<i>屏幕唤醒</i>会在位置更新期间亮屏几秒钟作为最后的手段。</string>
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">当执行位置和当前天气的更新时，您可以看到微件中更新时间旁的更新状态。您可以通过 <b>显示更新摘要</b> 选项控制显示的内容。最高级选项的说明如下：</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">此选项可以启用将调试记录到日志文件。当应用出现问题时此选项非常有用。</string>
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">列设置</string>
@@ -242,9 +244,9 @@
 \nL - 仅位置更新时
 \nG - GPS位置及天气更新时
 \nN - 网络位置及天气更新时
-\nNi - 蜂窝网络位置及天气更新时，位置发现来自 Mozilla 位置服务 
-\nB - Openweathermap.org 服务访问已被禁止，请尝试稍后更新天气 
-\nE - Openweathermap.org 服务访问令牌已过期。您需要升级应用以再次获取访问许可</string>
+\nNi - 蜂窝网络位置及天气更新时，位置发现来自 Mozilla 位置服务
+\nB - Openweathermap.org 服务访问已被禁止，请尝试稍后更新天气
+\nE - Openweathermap.org 服务访问令牌已过期。安装新版本的应用程序以重新获得访问权限</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">当定位在设备休眠期间被卡住时，你可以尝试在它寻找蜂窝网络时唤醒它</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">唤醒策略</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">无唤醒</string>
