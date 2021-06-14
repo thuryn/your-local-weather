@@ -12,7 +12,7 @@
     <string name="location_not_found" tools:ignore="MissingTranslation">Locaţia nu a fost găsită</string>
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Închide</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Următorul</string>
-    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Precedentul</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Anterior</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Sfârşit</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Ghid de configurare iniţială</string>
     <string name="log_file_72_label" tools:ignore="MissingTranslation">trei zile</string>
@@ -27,4 +27,541 @@
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Limitarea serviciului de localizare Mozilla</string>
     <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Această aplicație dispune de ghidare vocală prin intermediul traducerilor de text și al comenzilor vocale oferite de voluntarii de la https://hosted.weblate.org/projects/your-local-weather. Dezvoltatorul aplicației nu poate garanta că acestea sunt corecte - acceptați acest lucru prin utilizarea aplicației. Pentru a o utiliza, trebuie să aveți instalat TTS (Text-to-speech) și să activați ghidarea în setări, unde puteți seta propriile comenzi vocale. "</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Traduceri de texte și ghiduri</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">Permanentă</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Puteți să alegeți metoda de localizare - <i>Sistem</i> utilizează serviciile Google pentru a obține locația prin rețele (rețele celulare și Wi-Fi). Opțiunea <i>Local MLS și Nominatim</i> utilizează serviciul de localizare Mozilla pentru a obține coordonatele locației și serviciul Nominatim pentru a obține numele locației. A doua opțiune necesită permisiuni pentru apeluri telefonice pentru a obține informații despre rețeaua celulară. Opțiunea preferată este preselectată.</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">nori,înnorat</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">nori sparți</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">nori împrăștiați</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">puțini nori</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">cer senin</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">tornadă</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">vijelii</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">cenușă vulcanică</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">praf</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">nisip</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">ceață</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">nisip, vârtejuri de praf</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">brumă</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">fum</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">ceață</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">ninsoare abundentă</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">ploaie cu zăpadă</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">ploaie slabă ninsoare</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">ploaie și zăpadă</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">ploaie slabă și ninsoare</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">ploaie și lapoviță</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">lapoviță</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">ninsori abundente</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">ninsoare</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">ninsoare ușoară</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">ploaie zdravănă</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">ploaie de mare intensitate</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">duș ploaie</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">ploaie de intensitate redusă</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">ploaie înghețată</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">ploaie extremă</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">ploaie foarte puternică</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">ploaie de intensitate mare</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">ploaie moderată</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">ploaie slabă</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">ploaie</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">ploaie torențială și burniță</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">ploaie și burniță</string>
+    <string name="weather_condition_description_312" tools:ignore="MissingTranslation">ploaie de intensitate mare</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">ploaie</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">ploaie de ploaie de intensitate redusă</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">ploaie de intensitate mare</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">picura</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">ploaie de intensitate redusă</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">furtună cu ploaie torențială</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">furtună cu ploaie</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">furtună cu ploaie ușoară</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">furtună zdravănă</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">furtună puternică</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">furtună</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">furtună ușoară</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">furtună cu ploi torențiale</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">furtună cu ploaie</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">furtună cu ploaie slabă</string>
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">niciunul</string>
+    <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin pictogramele roșii</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Pictograme bazate pe fonturi</string>
+    <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">Caracteristici plătite/extinse</string>
+    <string name="weather_forecast_features_free" tools:ignore="MissingTranslation">Caracteristici gratuite/limitate</string>
+    <string name="preference_weather_weather_forecast_features_title" tools:ignore="MissingTranslation">Caracteristicile prognozei meteo</string>
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Pictograma Setări</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">Înregistrare în fișier</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">Nu înregistrați în fișier</string>
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">Înregistrare în fișier</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">două zile</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">o zi</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 ore</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Rotirea fișierului jurnal</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">După o perioadă de timp specificată, fișierul jurnal va fi recreat</string>
+    <string name="temperature_evening_title" tools:ignore="MissingTranslation">Seară</string>
+    <string name="temperature_day_title" tools:ignore="MissingTranslation">Zi</string>
+    <string name="temperature_morning_title" tools:ignore="MissingTranslation">Dimineață</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">Apus de soare</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">Răsărit de soare</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">Apus de soare: %s</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">Însorit: %s</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">Ultima actualizare: %s</string>
+    <string name="label_cloudiness" tools:ignore="MissingTranslation">Înnorat</string>
+    <string name="cloudiness_label" tools:ignore="MissingTranslation">Înnorat: %1$s%2$s</string>
+    <string name="pressure_label" tools:ignore="MissingTranslation">Presiune: %1$s %2$s</string>
+    <string name="label_humidity" tools:ignore="MissingTranslation">Umiditate</string>
+    <string name="humidity_label" tools:ignore="MissingTranslation">Umiditate: %1$s%2$s</string>
+    <string name="snow_label" tools:ignore="MissingTranslation">Zăpadă: %1$s %2$s</string>
+    <string name="rain_label" tools:ignore="MissingTranslation">Ploaie: %1$s %2$s</string>
+    <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">și</string>
+    <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">rareori</string>
+    <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">seară</string>
+    <string name="tty_say_weather_forecast_afternoon" tools:ignore="MissingTranslation">după amiază</string>
+    <string name="tty_say_weather_forecast_morning" tools:ignore="MissingTranslation">dimineață</string>
+    <string name="tty_say_weather_forecast_night" tools:ignore="MissingTranslation">la noapte</string>
+    <string name="tty_say_weather_forecast_tomorrow" tools:ignore="MissingTranslation">mâine</string>
+    <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">azi</string>
+    <string name="tty_say_weather_forecast" tools:ignore="MissingTranslation">prognoza meteo</string>
+    <string name="tty_say_temp_min" tools:ignore="MissingTranslation">temperatura minimă este de %1$s la %2$s</string>
+    <string name="tty_say_temp_max" tools:ignore="MissingTranslation">temperatura maximă este de %1$s la %2$s</string>
+    <string name="tty_say_max_wind" tools:ignore="MissingTranslation">%3$s vânt la maxim %1$s %2$s</string>
+    <string name="tty_say_max_snow" tools:ignore="MissingTranslation">precipitații maxime de zăpadă %s milimetri</string>
+    <string name="tty_say_max_rain" tools:ignore="MissingTranslation">precipitații maxime de ploaie %s milimetri</string>
+    <string name="tty_say_temperature" tools:ignore="MissingTranslation">temperatură %s</string>
+    <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s vânt %1$s %2$s</string>
+    <string name="wind_label" tools:ignore="MissingTranslation">Vânt: %1$s %2$s %3$s</string>
+    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">Când este conectat un dispozitiv Bluetooth</string>
+    <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">Când se actualizează vremea</string>
+    <string name="tts_say_current_weather" tools:ignore="MissingTranslation">Vremea actuală</string>
+    <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">Vremea actuală pentru locația %s</string>
+    <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">Bună seara</string>
+    <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Bună</string>
+    <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">Bună dimineața</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Ce să spui:</string>
+    <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Licențe de software Libre</string>
+    <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Licență</string>
+    <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Codul sursă</string>
+    <string name="about_version_pref_title" tools:ignore="MissingTranslation">Versiune</string>
+    <string name="preference_title_activity_about" tools:ignore="MissingTranslation">Despre</string>
+    <string name="pref_title_tts_not_supported" tools:ignore="MissingTranslation">Sistemul TTS (text-to-speech) nu este compatibil cu limba locală a aplicației dvs. Accesați \"Guidance language settings\" (Setări limbă de ghidare) în dreapta sus.</string>
+    <string name="pref_title_tts_presence" tools:ignore="MissingTranslation">Sistemul TTS (text-to-speech) nu este compatibil cu limba locală a aplicației dvs. Selectați o limbă de ghidare din lista celor acceptate de mai jos.</string>
+    <string name="pref_title_tts_lang_app_default" tools:ignore="MissingTranslation">De aplicație locală</string>
+    <string name="pref_title_tts_app_general_info" tools:ignore="MissingTranslation">Aplicația trimite comenzi de text către sistemul TTS (text-to-speech), care le convertește în voce. De obicei, acesta este prezent în mod implicit pe sistem. Dacă nu este cazul sau dacă sistemul TTS instalat nu acceptă limba dorită, instalați unul dintr-un magazin de aplicații (de exemplu: https://search.f-droid.org/\?q=TTS ).</string>
+    <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">Locația selectată pentru orientare:</string>
+    <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">Locația aplicației:</string>
+    <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">Ce trebuie spus:</string>
+    <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">Pentru locație:</string>
+    <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">Dispozitiv(e) activat(e):</string>
+    <string name="pref_title_tts_trigger_bt_devices" tools:ignore="MissingTranslation">Pentru dispozitiv(e):</string>
+    <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Timp</string>
+    <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">Spune:</string>
+    <string name="pref_title_tts_say_forecast" tools:ignore="MissingTranslation">Să zicem o prognoză de o zi</string>
+    <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">Spuneți vânt</string>
+    <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">Spuneți temperatura</string>
+    <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">Spuneți descrierea vremii</string>
+    <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">Spuneți locația</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Personalizat</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Felicitare</string>
+    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Tot</string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>
+    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Porniți funcția de ghidare a căștilor Bluetooth</string>
+    <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">set cu cască cu fir</string>
+    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Porniți ghidarea căștilor cu fir</string>
+    <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">difuzor</string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Redare cu difuzoare de ghidare</string>
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Vă rugăm să faceți clic pe butonul de reîmprospătare pentru a actualiza mai întâi vremea.</string>
+    <string name="search_location_info" tools:ignore="MissingTranslation">Atingeți pe hartă pentru a obține locația dorită și așteptați pentru a obține adresa rezolvată.</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Adăugați</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Dezactivat</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">Descoperit automat</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Activați</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Dezactivați</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Ștergeți</string>
+    <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Locațiile găsite nu sunt stocate în memoria cache</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Locațiile găsite sunt stocate în memoria cache</string>
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Locații cache</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">niciodată</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">un an</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">șase luni</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">trei luni</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">o lună</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">o săptămână</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">o zi</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 ore</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Vârsta valorilor din memoria cache</string>
+    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">După o perioadă de timp specificată, valorile din memoria cache vor fi eliminate</string>
+    <string name="db_header" tools:ignore="MissingTranslation">Baza de date a cache-ului de adrese</string>
+    <string name="db_info" tools:ignore="MissingTranslation">Informații despre cache</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Ștergeți memoria cache</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">Trezirea cu afișaj</string>
+    <string name="wakeuppartial_label" tools:ignore="MissingTranslation">Trezește numai CPU</string>
+    <string name="nowakeup_label" tools:ignore="MissingTranslation">Fără trezire</string>
+    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Strategia de trezire</string>
+    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Atunci când localizarea se blochează în timpul stării de repaus a dispozitivului, puteți încerca să îl reactivați atunci când acesta caută o rețea celulară</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - doar vremea actualizată
+\nL - doar locația actualizată
+\nG - locație din GPS și vreme actualizată
+\nN - locație din rețea și vreme actualizată
+\nNi - locație din rețeaua celulară și vreme actualizată, locație descoperită de serviciul de localizare Mozilla
+\nB - accesul la serviciul Openweathermap.org a fost interzis, vă rugăm să încercați să actualizați vremea mai târziu
+\nE - tokenul de acces la serviciul Openweathermap.org a expirat. Instalați o versiune ulterioară a aplicației pentru a redobândi accesul</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - se va actualiza locația și/sau vremea
+\n. - locația nu este accesibilă, actualizarea vremii pe baza ultimei locații
+\nW - se actualizează numai vremea
+\nL - se actualizează doar locația
+\nG - locația din GPS și vremea actualizată
+\nN - locație din rețea și vreme actualizată
+\nB - accesul la serviciul Openweathermap.org a fost interzis, încercați să actualizați vremea mai târziu, vă rugăm să actualizați mai târziu
+\nE - tokenul de acces la serviciul Openweathermap.org a expirat. Trebuie să actualizați aplicația pentru a obține din nou acces</string>
+    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Valoare actualizată cu sursa de localizare</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Doar valoarea actualizată</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Nimic</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Afișarea sumarului de actualizare</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">Temă</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistem</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">System pentru a obține locația, Nominatim pentru a obține adresa (recomandat)</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Locația și adresa Sursă</string>
+    <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhi</string>
+    <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Chineză (tradițional)</string>
+    <string name="pref_language_bg" tools:ignore="MissingTranslation">Bulgară</string>
+    <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (Turcă)</string>
+    <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (Slovenă)</string>
+    <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (Sârbă)</string>
+    <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (Rusă)</string>
+    <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (Poloneză)</string>
+    <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (Japoneză)</string>
+    <string name="pref_language_id" tools:ignore="MissingTranslation">Indoneziană (Indoneziană)</string>
+    <string name="pref_language_it" tools:ignore="MissingTranslation">Italiană (Italiană)</string>
+    <string name="pref_language_de" tools:ignore="MissingTranslation">Germană (germană)</string>
+    <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego (Galiciană)</string>
+    <string name="pref_language_fr" tools:ignore="MissingTranslation">Franceză (Franța)</string>
+    <string name="pref_language_fi" tools:ignore="MissingTranslation">Suomi (finlandeză)</string>
+    <string name="pref_language_en" tools:ignore="MissingTranslation">Engleză</string>
+    <string name="pref_language_da" tools:ignore="MissingTranslation">Dansk(daneză)</string>
+    <string name="pref_language_cs" tools:ignore="MissingTranslation">Cehă (cehă)</string>
+    <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (Catalană)</string>
+    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengaleză (Bangladesh)</string>
+    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (Bielorusă, alfabet latin)</string>
+    <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (belarusă)</string>
+    <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (bască)</string>
+    <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (albaneză)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portugheză (Brazilia) (Portugheză (Brazilia))</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portugheză (Portugalia) (Portugheză (Portugalia))</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">Portugheză (Portugalia)</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Română (Română)</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnameză</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Українська (ucraineană)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">العَرَبِيَّة‎ (arabă)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Ελληνικά (Greacă)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Español (spaniolă)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Maghiară (ungară)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
+    <string name="pref_language_fa" tools:ignore="MissingTranslation">Persană (Persană)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Olandeză</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (Bokmål) (Norvegiană (Bokmål))</string>
+    <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (Hindi)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">עברית (ebraică)</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Suedez (suedeză)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili (Swahili)</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (chineză)</string>
+    <string name="pref_language_default" tools:ignore="MissingTranslation">Sistem implicit</string>
+    <string name="pref_title_language" tools:ignore="MissingTranslation">Limbă</string>
+    <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Cheia de licență</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Integrat în</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Cheia API Openweathermap.org</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Setări de sistem</string>
+    <string name="preference_title_power_save" tools:ignore="MissingTranslation">Opțiuni de economisire a energiei</string>
+    <string name="preference_title_category_units" tools:ignore="MissingTranslation">Setările unității</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Actualizați locația și vremea</string>
+    <string name="preference_title_category_display" tools:ignore="MissingTranslation">Afișaj</string>
+    <string name="theme_transparent" tools:ignore="MissingTranslation">Transparent</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">Lumină</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">Întuneric</string>
+    <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Widget temă</string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Utilizați geolocalizarea pentru afișare</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Afișați setările pe widget</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Afișarea graficului în rezoluția nativă (atunci când graficul este prea mic)</string>
+    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Afișați etichete în widget</string>
+    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Actualizați locația</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Noi setări de orientare</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Opțiuni lingvistice de ghidare</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Setări de ghidare</string>
+    <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Setări pentru widget-uri</string>
+    <string name="preference_title_activity_general" tools:ignore="MissingTranslation">Setări generale</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Perioada de actualizare pentru locație (locația 0)</string>
+    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Perioada de actualizare pentru vreme (locația 1,2,3...)</string>
+    <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Vibrație</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Stilul pictogramei din bara de stare</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Stilul vizual de notificare</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Personalizat cu o prognoză</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Clasic</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">Invizibil</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">Temperatură</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">Pictograma soarelui</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">Pe ecranul de blocare</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">Când se actualizează</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Prezența notificării</string>
+    <string name="update_period_24hours" tools:ignore="MissingTranslation">24 ore</string>
+    <string name="update_period_12hours" tools:ignore="MissingTranslation">12 ore</string>
+    <string name="update_period_6hours" tools:ignore="MissingTranslation">6 ore</string>
+    <string name="update_period_3hours" tools:ignore="MissingTranslation">3 ore</string>
+    <string name="update_period_1hour" tools:ignore="MissingTranslation">În fiecare oră</string>
+    <string name="update_period_30min" tools:ignore="MissingTranslation">30 minute</string>
+    <string name="update_period_15min" tools:ignore="MissingTranslation">15 minute</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">În cazul actualizărilor periodice</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">Numai manual</string>
+    <string name="update_period_by_sensors" tools:ignore="MissingTranslation">Prin accelerometru</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Porniți GPS-ul atunci când este necesar</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">Actualizarea locației fără GPS</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">Actualizați locația (recomandat)</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">Nu actualizați locația</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Setarea de actualizare a locației</string>
+    <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">Interval de reîmprospătare</string>
+    <string name="pref_title_notification" tools:ignore="MissingTranslation">Activați notificările</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Setări de notificare</string>
+    <string name="preference_hide_desc" tools:ignore="MissingTranslation">Ascundeți descrierea vremii</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Presiune</string>
+    <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Ploaie și zăpadă</string>
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Stilul de direcție a vântului</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">Vânt</string>
+    <string name="pref_title_temperature" tools:ignore="MissingTranslation">Temperatură</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Licențe software gratuite</string>
+    <string name="title_activity_settings" tools:ignore="MissingTranslation">Setări</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Zăpadă (bar)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Zăpadă</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Ploaie (bar)</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Ploaie</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Vânt</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Temperatură</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Combinat</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Anulează</string>
+    <string name="ok" tools:ignore="MissingTranslation">OK</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Presiune</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Umiditate</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Ploaie/Zăpadă</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Direcția vântului</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Vânt</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Temperatura aparentă</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperatură</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Descriere</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Pictograma</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Coloane de afișat</string>
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Setare coloană</string>
+    <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Tip de prognoză</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">Setări grafice combinate</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">Setări grafice vizibile</string>
+    <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Comutați Y-Axis</string>
+    <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Comutați valorile</string>
+    <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Detectați locația</string>
+    <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Căutare oraș</string>
+    <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Actualizare</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Limbă</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Locații</string>
+    <string name="title_activity_license" tools:ignore="MissingTranslation">Licență pentru %s</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Ajutor</string>
+    <string name="label_activity_graphs" tools:ignore="MissingTranslation">Grafice Meteo</string>
+    <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Prognoza zilnică</string>
+    <string name="label_activity_main" tools:ignore="MissingTranslation">Vremea actuală</string>
+    <string name="title_activity_search" tools:ignore="MissingTranslation">Căutați locația</string>
+    <string name="help_page_5_content" tools:ignore="MissingTranslation">Există opțiuni pentru a activa depanarea în fișierul jurnal. Această opțiune este utilă atunci când există probleme cu aplicația.</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">Opțiuni de depanare</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Atunci când se efectuează o actualizare a locației și a vremii actuale, puteți vedea starea actualizării lângă ora de actualizare în widget. Puteți controla ceea ce este afișat prin opțiunea <b>Display update summary</b>. Urmează explicația celei mai avansate opțiuni:</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b>Strategia de trezire</b> există pentru a depăși implementările defectuoase ale furnizorilor de servicii Android Aurora. Selectarea <i>No wake up</i>, ar trebui să actualizeze corect locația.
+\nDacă nu, încercați <i>Wake up CPU only</i> pentru a citi starea rețelei celulare și Wi-Fi.
+\n<i>Wake up with display</i> aprinde ecranul pentru câteva secunde în timpul actualizării locației, ca ultimă soluție.</string>
+    <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Puteți controla fundalul widget-ului cu ajutorul opțiunii <b>Opțiune temă widget</b>.</string>
+    <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Atunci când activați <b>Afișează etichete în widget</b>, puteți vedea etichete în loc de pictograme pentru valorile condițiilor meteo.</string>
+    <string name="help_page_4_content" tools:ignore="MissingTranslation">Setări widget conține opțiuni de configurare pentru toate widgeturile.</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">Setări pentru widget-uri</string>
+    <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">Puteți vedea câteva dintre ultimele rânduri ale valorilor stocate în memoria cache în secțiunea <b>Informații despre memoria cache</b>. De asemenea, puteți vedea numărul total de rânduri.</string>
+    <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Puteți șterge memoria cache a adreselor cu ajutorul butonului <b>Clear cache</b>.</string>
+    <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Alături de opțiunea de localizare a memoriei cache (caseta de selectare) există o setare pentru <b>Vechimea valorilor memorate în memoria cache</b>. Fiecare adresă stocată are o marcă de timp. Atunci când marcajul de timp este mai vechi decât valoarea setată în Vechimea valorilor din memoria cache, aplicația apelează Nominatim pentru a reîmprospăta înregistrarea.</string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">Pentru a economisi traficul de rețea și pentru a accelera actualizarea locațiilor, puteți activa <b>Cache locations</b>. Această memorie cache stochează coordonatele geografice și o adresă. Aplicația trebuie să apeleze serviciul de rezoluție a rețelei indiferent de această setare. Dar apelul către rezoluția adreselor Nominatim are loc doar în cazul în care adresa nu se află în memoria cache. Atunci când activați opțiunea Cache locations (Locații cache), adresele pe care le-ați vizitat, sunt stocate în aplicație. Nicio informație din memoria cache nu este trimisă în afara aplicației.</string>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"> <b>Notificări</b>
+\nAtunci când selectați opțiunea de notificări, aplicația actualizează periodic vremea actuală. Vremea curentă este pusă atunci în zona de notificări. De asemenea, puteți activa vibrația - aplicația vibrează atunci când este actualizată.</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Aceste opțiuni de meniu stabilesc <b>limba</b>, <b>tema</b> aplicației principale și <b>set de pictograme</b> utilizate în aplicație și în widget-uri.</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"> <b>Sistem</b> - Aplicația obține locația și adresa prin serviciile de sistem din Android (de obicei cu serviciile de localizare Google).</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"> <b>Local MLS și Nominatim</b> - Aplicația obține locația și coordonatele geografice de la serviciile de localizare Mozilla. Serviciile Nominatim extrag adresa din aceste coordonate. Puteți contribui la viitoarele îmbunătățiri ale MLS prin instalarea Mozilla Stumbler (disponibil la https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler). Obțineți informații despre stațiile de bază actuale active și disponibile din rețeaua celulară prin acordarea permisiunii de apelare telefonică. Rețelele Wi-Fi din jurul dumneavoastră sunt folosite pentru a vă ghici mai precis locația.</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"> <b>Localizarea și sursa adresei</b>
+\nPuteți selecta de unde aplicația obține locația și adresa.</string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Atunci când bifați opțiunea <b>Activați GPS atunci când este necesar</b>, aplicația va încerca să vă găsească locația folosind rețelele de telefonie mobilă sau wifi. Atunci când locația nu poate fi găsită utilizând serviciile de rețea, aplicația activează GPS-ul timp de câteva secunde pentru a obține locația.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"> <b>Perioada de actualizare a locației (Locația 0)</b> - puteți seta perioada de actualizare pentru locația 0 - locația 0 are capacitatea de a actualiza locația în funcție de rețelele mobile, Wi-Fi și GPS. Atunci când selectați actualizarea <i>Pe accelerometru</i>, aplicația îl folosește pentru a detecta mișcarea. Din aceasta se calculează distanța. Atunci când se atinge limita de distanță și nu a avut loc nicio actualizare în 15 minute, se actualizează locația și vremea actuală. Atunci când aplicația nu poate prelua locația dvs., puteți vedea eticheta locație necunoscută în widget. Atunci când aplicația nu are starea locației, va încerca din nou peste 5 minute. De asemenea, puteți selecta actualizarea locației pe baza unor intervale de timp în <b>Update period for weather (Location 1,2,3...)</b> - unde puteți seta actualizarea vremii pentru locațiile descoperite manual.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"> <b>Hide weather description</b> - descrierea vremii curente este ascunsă. Puteți vedea vremea actuală doar prin intermediul pictogramei care se schimbă.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> <b>Temperatură</b> - Puteți selecta unitatea de temperatură, <b>Vânt</b> - Puteți selecta unitatea de viteză a vântului și <b>Presiune</b> - Puteți selecta unitatea pentru presiune. Valorile sunt recalculate cu ajutorul acestor opțiuni.</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Aceste opțiuni au influență asupra întregii aplicații.</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Setări generale</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">Aplicația dispune de trei widget-uri, care conțin unele valori comune ale vremii actuale (de exemplu, temperatura). Unele valori sunt unice pentru widgetul respectiv (de exemplu, apusul soarelui). În colțul din dreapta al fiecărui widget se află ora ultimei actualizări. Puteți vedea ce a fost actualizat de ultima dată (atunci când ați activat această opțiune în meniul de setări). Puteți găsi butonul de actualizare lângă ora ultimei actualizări. Atunci când apăsați acest buton, vremea (și locația atunci când este selectată opțiunea de actualizare a locației) este actualizată necondiționat. Ultima opțiune din widget-uri este schimbarea locației - atunci când apăsați pe textul locației curente, locația se schimbă în următoarea.</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Widget-uri</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Cel de-al treilea ecran conține prognoza meteo afișată sub formă de grafice.</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Puteți găsi prognoza meteo pe ecranul următor (selectați ecranul următor din meniu sau glisați de la stânga la dreapta). Prognoza meteo este actualizată prin butonul de actualizare sau atunci când intrați în ecran (dar nu mai mult de o actualizare pe oră).</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Alături de butonul de actualizare a locației, există un buton de gestionare a locației (pictograma lupă). Puteți gestiona locațiile disponibile în aplicație și în widget-uri. Există o singură locație (Location 0) disponibilă în mod implicit - aceasta este destinată actualizărilor automate ale locației. Puteți găsi butonul de activare/dezactivare atunci când glisați această locație spre stânga. De asemenea, puteți adăuga locația manual. Când faceți clic pe butonul +, puteți prelua locația pe hartă. De asemenea, puteți șterge locația cu ajutorul butonului Delete - care este accesibil atunci când glisați locația spre stânga.</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Aplicația principală conține o prezentare generală a vremii actuale. Puteți actualiza vremea cu ajutorul butonului de reîmprospătare din panoul aplicației sau glisând în jos. Puteți găsi butonul de actualizare a locației lângă butonul de reîmprospătare a vremii. Acest buton este disponibil numai atunci când este activată locația 0 (locația 0 este destinată actualizării automate a locației).</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Aplicația principală</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Aplicația determină locația folosind rețeaua celulară (BTS), Wi-Fi și, dacă acestea nu funcționează, GPS pentru a afișa vremea locală, obținând la rândul său coordonatele de la serviciul de localizare Mozilla. Aplicația are nevoie de cel puțin: o stație de bază a rețelei GSM sau două rețele Wi-Fi accesibile sau orice combinație de rețele GSM și Wi-Fi. Utilizând widget-ul de pe telefon sau tabletă, puteți vedea locația dvs. și vremea actuală pe ecranul principal. Actualizările locației pot fi periodice, (de ex. din oră în oră) sau aplicația poate utiliza accelerometrul pentru a detecta mișcarea la o distanță mai mare decât o valoare. Purtată în buzunar, distanța crește mai repede. Puteți dezactiva actualizările de locație - în acest caz este actualizată doar vremea. Aplicația actualizează locația și vremea la intervale specificate. Puteți, de exemplu, să setați perioada de actualizare la o oră. Vremea este actualizată imediat după ce este actualizată locația sau când ecranul este pornit - dar nu mai des decât o dată la 15 minute (și când vremea nu este actualizată în ultimele 15 minute). Aceste informații sunt utilizate pentru a obține coordonatele de localizare de către serviciul de localizare Mozilla. Aplicația încearcă să utilizeze GPS atunci când locația nu este disponibilă din rețeaua celulară și din rețelele Wi-Fi. Coordonatele locației sunt utilizate pentru a obține adresa prin serviciul Nominatim. Adresa este utilizată în aplicație sau în widget. Aplicația utilizează serviciul OpenWeatherMap.org pentru a obține vremea actuală.</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">General</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Cu aceasta se încheie ghidul. Puteți găsi alte setări în meniul Settings (de exemplu, limba, unitățile etc.).
+\nUrmătorul ecran vă va explica permisiunile solicitate și vă va oferi opțiunea de a le solicita.
+\n
+\nBucurați-vă de aplicație.</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Felicitări</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Adresa rezolvată în memoria cache</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Puteți reduce utilizarea datelor prin punerea în cache a locațiilor găsite. Locațiile sunt apoi stocate în aplicație. Ele nu sunt trimise sau stocate în alte locuri din rețea.</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Opțiunea de adresă rezolvată în memoria cache</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Strategia de trezire</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Unele telefoane nu raportează corect celulele conectate decât dacă ecranul este pornit. Opțiunea preferată (cu afișajul pornit) are dezavantajul că telefonul pornește afișajul timp de câteva secunde. Acest lucru are un mic impact asupra duratei de viață a bateriei. Începeți cu el pornit și încercați să-l dezactivați și vedeți dacă locația se actualizează în continuare.</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Opțiunea de strategie de trezire</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Sursa locației și a adresei</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Opțiunea sursă de localizare</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Actualizarea setării locației</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">După ce adaptați aplicația la nevoile dumneavoastră, puteți alege strategia de actualizare.
+\nAbătându-vă de la actualizarea implicită a actualizării atunci când se schimbă locația, puteți selecta <i>Nu actualizați locația</i>.</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Nu aveți voie să aveți mai mult de %1$d locații în acest moment.</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Presiune</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Zăpadă</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Ploaie</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Vânt</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Temperatura</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Notificările meteo locale</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Vremea locală</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Oraș: %1$s
+\nTemperatura: %2$s
+\nDescriere: %3$s
+\nVânt: %4$s %5$s
+\nRăsăritul soarelui: %6$s
+\nApus de soare: %7$s</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Aplicația de comunicare nu a fost găsită</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Vremea Share</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Cheia dvs. OpenweathermapApiKey nu este înregistrată.</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Accesul a expirat. Actualizați aplicația, vă rugăm.</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Permisiunile nu sunt încă acordate - faceți clic pe simbolul locației din aplicație</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Anulează</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Cereți permisiuni</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Setările dispozitivului</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Este necesară permisiunea de a citi informații de pe dispozitiv pentru a actualiza locația prin intermediul rețelelor Wi-Fi și GSM. Astfel, se obțin informații despre stațiile de bază GSM la care este conectat dispozitivul.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Aplicația are nevoie de o permisiune pentru a actualiza locația prin rețelele Wi-Fi și GSM.</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Anulează</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">Opțiuni de depanare</string>
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">Selectați dosarul de jurnal</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Limba actuală de descriere a vremii și adresa se vor schimba odată cu următoarea actualizare sau o puteți forța manual.</string>
+    <string name="permission_location_need" tools:ignore="MissingTranslation">Acordarea permisiunilor de locație</string>
+    <string name="permission_available_location" tools:ignore="MissingTranslation">Au fost acordate permisiuni pentru locație</string>
+    <string name="permission_not_granted" tools:ignore="MissingTranslation">Permisiuni neacordate!</string>
+    <string name="permission_location_rationale" tools:ignore="MissingTranslation">Permisiuni de localizare necesare pentru a determina orașul</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">nord-vest</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">vest</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">sud-vest</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">sud</string>
+    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">sud-est</string>
+    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">est</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">nord-est</string>
+    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">nordic</string>
+    <string name="wind_direction_north_west" tools:ignore="MissingTranslation">NW↘</string>
+    <string name="wind_direction_west" tools:ignore="MissingTranslation">W→</string>
+    <string name="wind_direction_south_west" tools:ignore="MissingTranslation">SW↗</string>
+    <string name="wind_direction_south" tools:ignore="MissingTranslation">S↑</string>
+    <string name="wind_direction_south_east" tools:ignore="MissingTranslation">SE↖</string>
+    <string name="wind_direction_east" tools:ignore="MissingTranslation">E←</string>
+    <string name="wind_direction_north_east" tools:ignore="MissingTranslation">NE↙</string>
+    <string name="wind_direction_north" tools:ignore="MissingTranslation">N↓</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Grade față de nord</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abreviere N↓, NE↙, …</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Dezactivat</string>
+    <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Afișați locația în widget</string>
+    <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Locația comutatorului</string>
+    <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">Ecranul cu grafice</string>
+    <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">Ecranul de prognoză meteo</string>
+    <string name="widget_action_main_screen" tools:ignore="MissingTranslation">Ecranul principal</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">Grafic</string>
+    <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">Prognoza meteo</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">Pictograma de vreme curentă</string>
+    <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">Eticheta orașului</string>
+    <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Setarea locației</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Numărul de zile pentru prognoză</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Afișați ziua prin abreviere</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Butonul de configurare a acțiunii widget-ului</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Butonul de configurare a locației widget-ului</string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Widget butonul de configurare a detaliilor meteo</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Buton pentru setările graficului widget</string>
+    <string name="widget_refresh_button" tools:ignore="MissingTranslation">Buton de reîmprospătare a widget-ului</string>
+    <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Pictograma de vreme curentă</string>
+    <string name="location_weather_update_status_location_from_last_location" tools:ignore="MissingTranslation">l</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
+    <string name="location_weather_update_status_too_early_update" tools:ignore="MissingTranslation">O</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">N</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">L</string>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Afișați temperatura ca</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">Numai valoarea aspectului</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Ambele, aspect primar</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Ambele, măsurate primar</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">Numai valoarea măsurată</string>
+    <string name="label_dew_point" tools:ignore="MissingTranslation">Punct de condensare</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">Punct de condensare: %s</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Presiune</string>
+    <string name="label_snow" tools:ignore="MissingTranslation">Zăpadă</string>
+    <string name="label_rain" tools:ignore="MissingTranslation">Ploaie</string>
+    <string name="label_wind" tools:ignore="MissingTranslation">Vânt</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Temperatura măsurată: %s</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Temperatura aparentă: %s</string>
+    <string name="label_temperature" tools:ignore="MissingTranslation">Temperatură</string>
+    <string name="temperature_night_title" tools:ignore="MissingTranslation">Noapte</string>
+    <string name="hint_activity_search" tools:ignore="MissingTranslation">Locul de căutare</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (interval de 3 ore)</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (interval de 3 ore)</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (interval de 3 ore)</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 zile</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 zile</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 zile</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/yy)</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/yy)</string>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm.(yy)</string>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">Formatul datei</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24-ore</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12-ore AM/PM</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">Sistem</string>
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">Formatul timpului</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">inci</string>
+    <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Beaufort</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">noduri</string>
+    <string name="wind_speed_miles" tools:ignore="MissingTranslation">mph</string>
+    <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
+    <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">psi</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
+    <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
+    <string name="too_early_update_error" tools:ignore="MissingTranslation">Actualizare prea devreme!</string>
+    <string name="toast_parse_error" tools:ignore="MissingTranslation">S-a produs o eroare. Încercați mai târziu.</string>
+    <string name="connection_not_found" tools:ignore="MissingTranslation">Verificați conexiunea la Internet</string>
+    <string name="location_not_initialized" tools:ignore="MissingTranslation">Locația nu este inițializată. Faceți clic mai întâi pe cercul locației.</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Ajutor</string>
+    <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">Donează bitcoin</string>
+    <string name="nav_feedback" tools:ignore="MissingTranslation">Reacție</string>
+    <string name="nav_menu_settings" tools:ignore="MissingTranslation">Setări</string>
+    <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Grafice</string>
+    <string name="nav_menu_daily_forecast" tools:ignore="MissingTranslation">Prognoza zilnică</string>
+    <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">Vremea actuală</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Închideți sertarul de navigare</string>
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Deschideți sertarul de navigare</string>
+    <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Afișarea legendei în grafic</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Date pentru graficul combinat</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Graficele pentru a arăta</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Presiune</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Ploaie/Zăpadă</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Vânt</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Temperatură</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Presiune</string>
 </resources>
