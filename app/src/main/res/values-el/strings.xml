@@ -286,4 +286,19 @@
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Αλλάζει η άδεια Android 10</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Μεταφράσεις κειμένου και οδηγιών</string>
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">συννεφιά</string>
+    <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Κλειδί αδείας χρήσεως</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Εμφάνιση ρυθμίσεων στο widget</string>
+    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Εμφάνιση ετικετών στο widget</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Νέες ρυθμίσεις καθοδήγησης</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Επιλογές γλώσσας καθοδήγησης</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Ρυθμίσεις καθοδήγησης</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Περίοδος ενημέρωσης για τη θέση (Τοποθεσία 0)</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Στυλ εικονιδίου γραμμής κατάστασης</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Κατά την τακτική ενημέρωση</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Μποφόρ</string>
+    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">Όταν μια συσκευή Bluetooth είναι συνδεδεμένη</string>
+    <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">Όταν ο καιρός ενημερώνεται</string>
+    <string name="tts_say_current_weather" tools:ignore="MissingTranslation">Τρέχουσες καιρικές συνθήκες</string>
+    <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">Τρέχουσες καιρικές συνθήκες για τοποθεσία %s</string>
+    <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">Καλησπέρα</string>
 </resources>
