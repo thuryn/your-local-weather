@@ -154,4 +154,18 @@
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">הקודם</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">הבא</string>
     <string name="progressDialog_gps_locate" tools:ignore="MissingTranslation">חיפוש מיקום נוכחי</string>
+    <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">הגדרות ווידג\'ט</string>
+    <string name="preference_title_activity_general" tools:ignore="MissingTranslation">הגדרות כלליות</string>
+    <string name="pref_title_vibrate" tools:ignore="MissingTranslation">רטט</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">קלסי</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">הגדרות עדכון מקום</string>
+    <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">רענון מרוח</string>
+    <string name="preference_hide_desc" tools:ignore="MissingTranslation">הסתרת תיאור מזג־אויר</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (מרוח 3 שעות)</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (מרוח 3 שעות)</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (מרוח 3 שעות)</string>
+    <string name="pref_title_notification" tools:ignore="MissingTranslation">אפשור התרעות</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">הגדרת התרעות</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">לחץ־ברומטרי</string>
+    <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">גשם ושלג</string>
 </resources>
