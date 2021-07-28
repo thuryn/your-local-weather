@@ -15,6 +15,7 @@ import android.telephony.TelephonyManager;
 import android.telephony.cdma.CdmaCellLocation;
 import android.telephony.gsm.GsmCellLocation;
 
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
@@ -118,6 +119,10 @@ public class LocationNetworkSourcesService {
                                      List<CellInfo> cellInfoList,
                                      List<Cell> cells) {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            return;
+        }
+        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            appendLog(context, TAG, "No permission to read phone state");
             return;
         }
         for (CellInfo c : cellInfoList) {

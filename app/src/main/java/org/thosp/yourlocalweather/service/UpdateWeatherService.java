@@ -42,7 +42,6 @@ import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
-import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.net.MalformedURLException;
 import java.util.LinkedList;
@@ -369,12 +368,6 @@ public class UpdateWeatherService extends AbstractCommonService {
         final Context context = this;
         appendLog(getBaseContext(), TAG, "startRefreshRotation");
 
-        if (isCurrentWeather(updateType)) {
-            startRefreshRotation("START", 2);
-        } else {
-            startRefreshRotation("START", 1);
-        }
-
         Handler mainHandler = new Handler(Looper.getMainLooper());
         Runnable myRunnable = new Runnable() {
             @Override
@@ -570,13 +563,11 @@ public class UpdateWeatherService extends AbstractCommonService {
             updateNextAllowedAttemptToUpdateTimeForUpdate(context, locationId, updateType, nextAllowedAttemptToUpdateTime);
         }
         if (isCurrentWeather(updateType)) {
-            stopRefreshRotation("STOP", 2);
             sendMessageToWakeUpService(
                     AppWakeUpManager.FALL_DOWN,
                     AppWakeUpManager.SOURCE_CURRENT_WEATHER
             );
         } else {
-            stopRefreshRotation("STOP", 1);
             sendMessageToWakeUpService(
                     AppWakeUpManager.FALL_DOWN,
                     AppWakeUpManager.SOURCE_WEATHER_FORECAST
@@ -597,9 +588,6 @@ public class UpdateWeatherService extends AbstractCommonService {
                 resendTheIntentInSeveralSeconds(5);
             }
             WidgetUtils.updateWidgets(getBaseContext());
-            if (WidgetRefreshIconService.isRotationActive) {
-                return;
-            }
             sendMessageToReconciliationDbService(false);
         } catch (Throwable exception) {
             appendLog(context, TAG, "Exception occured when starting the service:", exception);

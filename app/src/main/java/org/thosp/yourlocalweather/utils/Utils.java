@@ -17,6 +17,7 @@ import android.location.Geocoder;
 import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.widget.ImageView;
@@ -51,7 +52,7 @@ public class Utils {
     private static final String TAG = "Utils";
 
     public static Bitmap createWeatherIcon(Context context, String text) {
-        return createWeatherIconWithColor(context, text, AppPreference.getTextColor(context));
+        return createWeatherIconWithColor(context, text, AppPreference.getWidgetTextColor(context));
     }
 
     public static Bitmap createWeatherIconWithColor(Context context, String text, int iconColor) {

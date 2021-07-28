@@ -796,7 +796,7 @@ public class WidgetUtils {
             int widgetId,
             String defaultCurrentWeatherDetailValues) {
 
-        int textColorId = AppPreference.getTextColor(context);
+        int textColorId = AppPreference.getWidgetTextColor(context);
 
         remoteViews.setTextColor(R.id.widget_current_detail_wind, textColorId);
         remoteViews.setTextColor(R.id.widget_current_detail_humidity, textColorId);

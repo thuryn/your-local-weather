@@ -121,7 +121,7 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
 
     public static void setWidgetTheme(Context context, RemoteViews remoteViews) {
         appendLog(context, TAG, "setWidgetTheme:start");
-        int textColorId = AppPreference.getTextColor(context);
+        int textColorId = AppPreference.getWidgetTextColor(context);
         int backgroundColorId = AppPreference.getWidgetBackgroundColor(context);
         int windowHeaderBackgroundColorId = AppPreference.getWindowHeaderBackgroundColorId(context);
 

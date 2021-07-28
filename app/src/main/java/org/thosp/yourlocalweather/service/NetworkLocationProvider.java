@@ -1,5 +1,6 @@
 package org.thosp.yourlocalweather.service;
 
+import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -10,6 +11,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
@@ -18,6 +20,10 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
 import android.telephony.TelephonyManager;
+
+import androidx.core.app.ActivityCompat;
+
+import org.thosp.yourlocalweather.MainActivity;
 
 import java.util.Calendar;
 import java.util.List;
@@ -104,6 +110,7 @@ public class NetworkLocationProvider extends Service {
     public void onCreate() {
         super.onCreate();
         mTelephonyManager = ((TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE));
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
 

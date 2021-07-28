@@ -31,6 +31,7 @@ import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
+import org.thosp.yourlocalweather.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -174,11 +175,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             GraphUtils.invalidateGraph();
             onUpdate(context, widgetManager, new int[]{widgetId});
         } else if (intent.getAction().startsWith(Constants.ACTION_FORCED_APPWIDGET_UPDATE)) {
-            if (!WidgetRefreshIconService.isRotationActive) {
-                sendWeatherUpdate(context, widgetId);
-            }
-            onUpdate(context, widgetManager, new int[]{ widgetId});
-
+            sendWeatherUpdate(context, widgetId);
         }
     }
 
@@ -311,17 +308,11 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         intentRefreshService.putExtra("widgetId", widgetId);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
                 intentRefreshService, 0);
-        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_3x3_widget_button_refresh, pendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_3x3_widget_last_update, pendingIntent);
-        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_3x3_widget_button_refresh, pendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_3x3_widget_last_update, pendingIntent);
-        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_graph_3x3_widget_button_refresh, pendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_graph_3x3_widget_last_update, pendingIntent);
-        remoteViews.setOnClickPendingIntent(R.id.widget_less_3x1_widget_button_refresh, pendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_less_3x1_widget_last_update, pendingIntent);
-        remoteViews.setOnClickPendingIntent(R.id.widget_more_3x3_widget_button_refresh, pendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_more_3x3_widget_last_update, pendingIntent);
-        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_graph_3x3_widget_button_refresh, pendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_graph_3x3_widget_last_update, pendingIntent);
 
         final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);

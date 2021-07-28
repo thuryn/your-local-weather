@@ -63,7 +63,6 @@ import org.thosp.yourlocalweather.utils.PressureWithUnit;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WindWithUnit;
-import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -616,9 +615,6 @@ public class MainActivity extends BaseActivity
     };
 
     private void detectLocation() {
-        if (WidgetRefreshIconService.isRotationActive) {
-            return;
-        }
         mProgressDialog = new ProgressDialog(MainActivity.this);
         mProgressDialog.setMessage(getString(R.string.progressDialog_gps_locate));
         mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);

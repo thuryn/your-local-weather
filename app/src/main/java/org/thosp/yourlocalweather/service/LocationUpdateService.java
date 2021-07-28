@@ -114,7 +114,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
 
     public void onLocationChangedCanceled() {
         updateLocationInProcess = false;
-        stopRefreshRotation("onLocationChangedCanceled",3);
     }
 
     @Override
@@ -176,7 +175,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
 
         if ((location == null) && gpsRequestLocation()) {
             updateLocationInProcess = false;
-            stopRefreshRotation("onLocationChanged",3);
             return;
         }
 
@@ -190,7 +188,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         }
         appendLog(getBaseContext(), TAG, "send intent to get weather, updateSource ", updateSource);
         updateLocationInProcess = false;
-        stopRefreshRotation("onLocationChanged",3);
         sendMessageToCurrentWeatherService(currentLocation, updateSource, AppWakeUpManager.SOURCE_CURRENT_WEATHER, forceUpdate, false);
         sendMessageToWeatherForecastService(currentLocation.getId(), updateSource, forceUpdate);
         stopForeground(true);
@@ -313,7 +310,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                 locationsDbHelper.updateLocationSource(
                         currentLocationForSensorEvent.getId(),
                         getString(R.string.location_weather_update_status_location_not_reachable));
-                stopRefreshRotation("updateNetworkLocation", 3);
                 sendMessageToWakeUpService(
                         AppWakeUpManager.FALL_DOWN,
                         AppWakeUpManager.SOURCE_LOCATION_UPDATE
@@ -335,7 +331,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
             appendLog(getBaseContext(), TAG, "Timeout getting location from GPS");
             setNoLocationFound();
             updateLocationInProcess = false;
-            stopRefreshRotation("timerRunnableGpsLocation", 3);
         }
     };
 
@@ -455,7 +450,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
             appendLog(getBaseContext(), TAG, "get location from GPS");
             timerHandlerGpsLocation.postDelayed(timerRunnableGpsLocation, GPS_LOCATION_TIMEOUT_IN_MS);
             locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, gpsLocationListener, locationLooper);
-            startRefreshRotation("gpsRequestLocation", 3);
             return true;
         } else {
             return false;
@@ -471,7 +465,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
             return;
         }
         locationDbHelper.setNoLocationFound();
-        stopRefreshRotation("setNoLocationFound", 3);
         updateWidgets(updateSource);
     }
 
@@ -495,12 +488,10 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                                       boolean forceUpdate) {
         this.forceUpdate = forceUpdate;
         updateLocationInProcess = true;
-        startRefreshRotation("updateNetworkLocation", 3);
         boolean permissionsGranted = PermissionUtil.checkPermissionsAndSettings(this);
         appendLog(getBaseContext(), TAG, "updateNetworkLocation:", permissionsGranted);
         if (!permissionsGranted) {
             updateLocationInProcess = false;
-            stopRefreshRotation("updateNetworkLocation", 3);
             return false;
         }
         boolean isNetworkEnabled = locationManager.getAllProviders().contains(LocationManager.NETWORK_PROVIDER)
@@ -542,7 +533,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                     timerNetworkAvailabilityHandler.postDelayed(timerNetworkAvailabilityRunnable, NETWORK_AVAILABILITY_TIMEOUT_IN_MS);
                 }
                 updateLocationInProcess = false;
-                stopRefreshRotation("updateNetworkLocation", 3);
                 sendMessageToWakeUpService(
                         AppWakeUpManager.FALL_DOWN,
                         AppWakeUpManager.SOURCE_LOCATION_UPDATE
@@ -555,7 +545,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         } catch (Exception e) {
             appendLog(this, TAG, "Exception occured during database update", e);
             updateLocationInProcess = false;
-            stopRefreshRotation("updateNetworkLocation", 3);
             sendMessageToWakeUpService(
                     AppWakeUpManager.FALL_DOWN,
                     AppWakeUpManager.SOURCE_LOCATION_UPDATE
@@ -577,7 +566,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
             appendLog(getBaseContext(), TAG, "Exception during update of network location", e);
         }
         updateLocationInProcess = false;
-        stopRefreshRotation("updateNetworkLocation", 3);
         sendMessageToWakeUpService(
                 AppWakeUpManager.FALL_DOWN,
                 AppWakeUpManager.SOURCE_LOCATION_UPDATE
@@ -590,7 +578,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                                                 Intent originalIntent,
                                                 Integer attempts) {
         updateLocationInProcess = true;
-        startRefreshRotation("updateNetworkLocationByNetwork", 3);
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
         if (resendRequestWhenNetworkNotAvailable(byLastLocationOnly, originalIntent, attempts)) {
@@ -621,7 +608,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                     AppWakeUpManager.FALL_DOWN,
                     AppWakeUpManager.SOURCE_LOCATION_UPDATE
             );
-            stopRefreshRotation("updateNetworkLocationByNetwork:3", 3);
             return;
         }
 
@@ -667,7 +653,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
             numberOfAttempts = originalIntent.getIntExtra("attempts", 0);
         } else {
             updateLocationInProcess = false;
-            stopRefreshRotation("updateNetworkLocationByNetwork:1", 3);
             sendMessageToWakeUpService(
                     AppWakeUpManager.FALL_DOWN,
                     AppWakeUpManager.SOURCE_LOCATION_UPDATE
@@ -680,7 +665,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                     currentLocation.getId(),
                     getString(R.string.location_weather_update_status_location_not_reachable));
             updateLocationInProcess = false;
-            stopRefreshRotation("updateNetworkLocationByNetwork:2", 3);
             sendMessageToWakeUpService(
                     AppWakeUpManager.FALL_DOWN,
                     AppWakeUpManager.SOURCE_LOCATION_UPDATE
@@ -706,7 +690,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
             resendTheIntentInSeveralSeconds(LOCATION_UPDATE_RESEND_INTERVAL_IN_MS, originalIntent);
         }
         updateLocationInProcess = false;
-        stopRefreshRotation("updateNetworkLocationByNetwork:2", 3);
         sendMessageToWakeUpService(
                 AppWakeUpManager.FALL_DOWN,
                 AppWakeUpManager.SOURCE_LOCATION_UPDATE
@@ -732,7 +715,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         appendLog(getBaseContext(), TAG, "detectLocation:isNetworkEnabled=", isNetworkEnabled);
         if (isNetworkEnabled && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             appendLog(getBaseContext(), TAG, "detectLocation:afterCheckSelfPermission");
-            startRefreshRotation("detectLocation", 3);
             final Looper locationLooper = Looper.myLooper();
             locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, locationLooper);
             final LocationListener locationListener = this;
@@ -780,7 +762,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                                     }
                                     if (updateLocationInProcess) {
                                         updateLocationInProcess = false;
-                                        stopRefreshRotation("updateNetworkLocationByNetwork:2", 3);
                                         sendMessageToWakeUpService(
                                                 AppWakeUpManager.FALL_DOWN,
                                                 AppWakeUpManager.SOURCE_LOCATION_UPDATE

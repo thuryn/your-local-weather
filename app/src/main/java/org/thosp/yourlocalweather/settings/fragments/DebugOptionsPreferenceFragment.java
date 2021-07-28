@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Environment;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
@@ -80,7 +81,7 @@ public class DebugOptionsPreferenceFragment extends PreferenceFragment {
             public boolean onPreferenceClick(final Preference preference) {
                 new ChooserDialog(getActivity())
                         .withFilter(true, false)
-                        .withStartFile("/mnt")
+                        .withStartFile(Environment.getExternalStorageDirectory().getAbsolutePath())
                         .withChosenListener(new ChooserDialog.Result() {
                             @Override
                             public void onChoosePath(String path, File pathFile) {

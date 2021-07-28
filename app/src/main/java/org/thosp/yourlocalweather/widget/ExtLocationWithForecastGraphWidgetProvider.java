@@ -162,11 +162,20 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
 
     public static void setWidgetTheme(Context context, RemoteViews remoteViews, int widgetId) {
         appendLog(context, TAG, "setWidgetTheme:start");
-        int textColorId = AppPreference.getTextColor(context);
+        int textColorId = AppPreference.getWidgetTextColor(context);
         int backgroundColorId = AppPreference.getWidgetBackgroundColor(context);
         int windowHeaderBackgroundColorId = AppPreference.getWindowHeaderBackgroundColorId(context);
 
         remoteViews.setInt(R.id.widget_ext_loc_forecast_graph_3x3_widget_root, "setBackgroundColor", backgroundColorId);
+        remoteViews.setTextColor(R.id.widget_current_detail_clouds, textColorId);
+        remoteViews.setTextColor(R.id.widget_current_detail_dew_point, textColorId);
+        remoteViews.setTextColor(R.id.widget_current_detail_humidity, textColorId);
+        remoteViews.setTextColor(R.id.widget_current_detail_pressure, textColorId);
+        remoteViews.setTextColor(R.id.widget_current_detail_sunrise, textColorId);
+        remoteViews.setTextColor(R.id.widget_current_detail_sunset, textColorId);
+        remoteViews.setTextColor(R.id.widget_current_detail_wind, textColorId);
+        remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_widget_city, textColorId);
+        remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_widget_last_update, textColorId);
         remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_widget_temperature, textColorId);
         remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_widget_description, textColorId);
         remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_widget_description, textColorId);

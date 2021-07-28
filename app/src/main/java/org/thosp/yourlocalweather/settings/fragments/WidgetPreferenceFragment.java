@@ -53,6 +53,11 @@ public class WidgetPreferenceFragment extends PreferenceFragment implements
                 intent.setPackage("org.thosp.yourlocalweather");
                 getActivity().sendBroadcast(intent);
                 break;
+            case Constants.KEY_PREF_WIDGET_TEXT_COLOR:
+                intent = new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED);
+                intent.setPackage("org.thosp.yourlocalweather");
+                getActivity().sendBroadcast(intent);
+                break;
             case Constants.KEY_PREF_WIDGET_GRAPH_NATIVE_SCALE:
                 GraphUtils.invalidateGraph();
                 intent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_GRAPH_SCALE);

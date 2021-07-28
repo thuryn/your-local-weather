@@ -54,6 +54,7 @@ public class Constants {
     public static final String KEY_PREF_NOTIFICATION_VISUAL_STYLE = "notification_visual_style_pref_key";
     public static final String KEY_PREF_VIBRATE = "notification_vibrate_pref_key";
     public static final String KEY_PREF_WIDGET_SHOW_LABELS = "widget_show_labels_pref_key";
+    public static final String KEY_PREF_WIDGET_TEXT_COLOR = "widget_text_color_pref_key";
     public static final String KEY_PREF_WIDGET_THEME = "widget_theme_pref_key";
     public static final String KEY_PREF_LOCATION_UPDATE_PERIOD = "location_update_period_pref_key";
     public static final String KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD = "location_auto_update_period_pref_key";

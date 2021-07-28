@@ -81,18 +81,6 @@
             android:lines="1"
             android:textSize="@dimen/widget_3x3_text_size"
             android:textColor="@color/textColorPrimary"/>
-
-        <ImageView android:id="@+id/widget_more_3x3.widget_button_refresh"
-            android:layout_width="@dimen/widget_refresh_icon_size"
-            android:layout_height="@dimen/widget_refresh_icon_size"
-            android:scaleType="fitXY"
-            android:src="@drawable/ic_refresh_white_18dp"
-            android:background="@android:color/transparent"
-            android:contentDescription="@string/widget_refresh_button"
-            android:paddingLeft="4dp"
-            android:paddingStart="4dp"
-            android:paddingTop="@dimen/widget_refresh_icon_padding_top"
-            android:gravity="top"/>
     </LinearLayout>
 
     <LinearLayout

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+                  xmlns:app="http://schemas.android.com/apk/res-auto">
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="widget_show_controls"
@@ -8,6 +9,11 @@
         android:defaultValue="false"
         android:key="widget_show_labels_pref_key"
         android:title="@string/preference_widget_show_labels"/>
+    <yuku.ambilwarna.widget.AmbilWarnaPreference
+        android:key="widget_text_color_pref_key"
+        android:defaultValue="0xff6699cc"
+        app:supportsAlpha="true"
+        android:title="Text color" />
     <ListPreference
         android:defaultValue="dark"
         android:dialogTitle="@string/preference_widget_theme_title"

@@ -94,7 +94,7 @@ public class GraphUtils {
                                                             18f,
                                                             yAxisValues,
                                                             0,
-                                                            AppPreference.getTextColor(context),
+                                                            AppPreference.getWidgetTextColor(context),
                                                             AppPreference.getWidgetBackgroundColor(context),
                                                             AppPreference.getWidgetGraphGridColor(context),
                                                             showLegend);
@@ -709,6 +709,7 @@ public class GraphUtils {
         x.setDrawGridLines(false);
         x.setLabelCount(25);
         x.setTextColor(textColorId);
+        x.setGridColor(gridColor.getMainGridColor());
         x.setValueFormatter(new XAxisValueFormatter(hourIndexes, locale));
         x.setDrawLimitLinesBehindData(true);
 

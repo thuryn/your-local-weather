@@ -15,7 +15,6 @@ import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
 import org.thosp.yourlocalweather.utils.Constants;
-import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.util.HashMap;
 import java.util.List;
@@ -99,9 +98,7 @@ public abstract class ForecastingActivity extends BaseActivity {
     }
 
     protected void updateWeatherForecastFromNetwork(String updateSource) {
-        appendLog(getBaseContext(), TAG, "Current location:", currentLocation,
-                ", is rotetion active:", WidgetRefreshIconService.isRotationActive);
-        if ((currentLocation == null) || WidgetRefreshIconService.isRotationActive) {
+        if (currentLocation == null) {
             return;
         }
         boolean isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
@@ -116,9 +113,7 @@ public abstract class ForecastingActivity extends BaseActivity {
     }
 
     protected void updateLongWeatherForecastFromNetwork(String updateSource) {
-        appendLog(getBaseContext(), TAG, "Current location:", currentLocation,
-                ", is rotetion active:", WidgetRefreshIconService.isRotationActive);
-        if ((currentLocation == null) || WidgetRefreshIconService.isRotationActive) {
+        if (currentLocation == null) {
             return;
         }
         boolean isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();

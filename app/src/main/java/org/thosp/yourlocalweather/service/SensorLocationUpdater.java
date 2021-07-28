@@ -9,17 +9,11 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.os.Build;
 import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
 
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.widget.WidgetRefreshIconService;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLogSensorsCheck;
@@ -46,9 +40,6 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
 
     public static volatile boolean autolocationForSensorEventAddressFound;
 
-    private Messenger widgetRefreshIconService;
-    private Queue<Message> unsentMessages = new LinkedList<>();
-    private Lock widgetRotationServiceLock = new ReentrantLock();
     private static volatile boolean processLocationUpdate;
     private static final Queue<LocationUpdateService.LocationUpdateServiceActions> locationUpdateServiceActions = new LinkedList<>();
 
@@ -68,9 +59,6 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
         super.onDestroy();
         if (locationUpdateService != null) {
             unbindLocationUpdateService();
-        }
-        if (widgetRefreshIconService != null) {
-            unbindWidgetRefreshIconService();
         }
     }
 
@@ -195,7 +183,6 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
     }
 
     protected boolean updateNetworkLocation() {
-        startRefreshRotation("updateNetworkLocation", 3);
         if (locationUpdateService != null) {
             boolean result = locationUpdateService.updateNetworkLocation(false, null, 0);
             processLocationUpdate = false;
@@ -208,77 +195,11 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
         }
     }
 
-    @Override
-    protected void sendMessageToWidgetIconService(int action, int rotationsource) {
-        widgetRotationServiceLock.lock();
-        try {
-            Message msg = Message.obtain(null, action, rotationsource, 0);
-            if (checkIfWidgetIconServiceIsNotBound()) {
-                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
-                unsentMessages.add(msg);
-                return;
-            }
-            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
-            widgetRefreshIconService.send(msg);
-        } catch (RemoteException e) {
-            appendLog(getBaseContext(), TAG, e.getMessage(), e);
-        } finally {
-            widgetRotationServiceLock.unlock();
-        }
-    }
-
     private long getLastPossitionUodateTime() {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext().getApplicationContext());
         org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
         return currentLocationForSensorEvent.getLastLocationUpdate();
     }
-
-    private boolean checkIfWidgetIconServiceIsNotBound() {
-        if (widgetRefreshIconService != null) {
-            return false;
-        }
-        try {
-            bindWidgetRefreshIconService();
-        } catch (Exception ie) {
-            appendLog(getBaseContext(), TAG, "checkIfWidgetIconServiceIsNotBound interrupted:", ie);
-        }
-        return (widgetRefreshIconService == null);
-    }
-
-    private void bindWidgetRefreshIconService() {
-        getBaseContext().getApplicationContext().bindService(
-                new Intent(getBaseContext().getApplicationContext(), WidgetRefreshIconService.class),
-                widgetRefreshIconConnection,
-                Context.BIND_AUTO_CREATE);
-    }
-
-    private void unbindWidgetRefreshIconService() {
-        if (widgetRefreshIconService == null) {
-            return;
-        }
-        getBaseContext().getApplicationContext().unbindService(widgetRefreshIconConnection);
-    }
-
-    private final ServiceConnection widgetRefreshIconConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName className, IBinder binderService) {
-            widgetRefreshIconService = new Messenger(binderService);
-            widgetRotationServiceLock.lock();
-            try {
-                while (!unsentMessages.isEmpty()) {
-                    widgetRefreshIconService.send(unsentMessages.poll());
-                }
-            } catch (RemoteException e) {
-                appendLog(getBaseContext(), TAG, e.getMessage(), e);
-            } finally {
-                widgetRotationServiceLock.unlock();
-            }
-        }
-        @Override
-        public void onServiceDisconnected(ComponentName className) {
-            widgetRefreshIconService = null;
-        }
-    };
 
     private void bindLocationUpdateService() {
         Intent intent = new Intent(getBaseContext().getApplicationContext(), LocationUpdateService.class);

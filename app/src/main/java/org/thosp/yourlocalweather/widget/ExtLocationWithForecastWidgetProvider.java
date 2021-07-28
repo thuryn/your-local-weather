@@ -155,7 +155,7 @@ public class ExtLocationWithForecastWidgetProvider extends AbstractWidgetProvide
 
     public static void setWidgetTheme(Context context, RemoteViews remoteViews, int widgetId) {
         appendLog(context, TAG, "setWidgetTheme:start");
-        int textColorId = AppPreference.getTextColor(context);
+        int textColorId = AppPreference.getWidgetTextColor(context);
         int backgroundColorId = AppPreference.getWidgetBackgroundColor(context);
         int windowHeaderBackgroundColorId = AppPreference.getWindowHeaderBackgroundColorId(context);
 

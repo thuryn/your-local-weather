@@ -2,6 +2,7 @@ package org.thosp.yourlocalweather.utils;
 
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.text.format.DateFormat;
@@ -17,6 +18,8 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
+
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class AppPreference {
 
@@ -487,6 +490,14 @@ public class AppPreference {
                 Constants.KEY_PREF_COMBINED_GRAPH_VALUES, columnsToStore).apply();
     }
 
+    public static int getWidgetTextColor(Context context) {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (!sharedPreferences.contains(Constants.KEY_PREF_WIDGET_TEXT_COLOR)) {
+            return getTextColor(context);
+        }
+        return sharedPreferences.getInt(Constants.KEY_PREF_WIDGET_TEXT_COLOR, 0);
+    }
+
     public static int getTextColor(Context context) {
         String theme = getWidgetTheme(context);
         if (null == theme) {
@@ -502,16 +513,21 @@ public class AppPreference {
     }
 
     public static GraphGridColors getWidgetGraphGridColor(Context context) {
-        String theme = getWidgetTheme(context);
-        if (null == theme) {
-            return new GraphGridColors(Color.parseColor("#333333"), Color.LTGRAY);
-        } else switch (theme) {
-            case "dark":
-                return new GraphGridColors(Color.WHITE, Color.GRAY);
-            case "light":
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        if (!sharedPreferences.contains(Constants.KEY_PREF_WIDGET_TEXT_COLOR)) {
+            String theme = getWidgetTheme(context);
+            if (null == theme) {
                 return new GraphGridColors(Color.parseColor("#333333"), Color.LTGRAY);
-            default:
-                return new GraphGridColors(Color.WHITE, Color.GRAY);
+            } else switch (theme) {
+                case "dark":
+                    return new GraphGridColors(Color.WHITE, Color.GRAY);
+                case "light":
+                    return new GraphGridColors(Color.parseColor("#333333"), Color.LTGRAY);
+                default:
+                    return new GraphGridColors(Color.WHITE, Color.GRAY);
+            }
+        } else {
+            return new GraphGridColors(sharedPreferences.getInt(Constants.KEY_PREF_WIDGET_TEXT_COLOR, 0), Color.GRAY);
         }
     }
 
