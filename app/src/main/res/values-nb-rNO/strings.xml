@@ -564,4 +564,8 @@
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Android 10-tilgangsendringer</string>
     <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
     <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">Portugisisk (Portuguese)</string>
+    <string name="pref_language_hr" tools:ignore="MissingTranslation">Kroatisk (Croatian)</string>
+    <string name="pref_language_fa" tools:ignore="MissingTranslation">Persisk (Persian)</string>
+    <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (Hindi)</string>
 </resources>
