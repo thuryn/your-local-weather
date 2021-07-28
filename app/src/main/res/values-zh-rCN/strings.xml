@@ -571,4 +571,5 @@
     <string name="pref_language_pt" tools:ignore="MissingTranslation">葡萄牙语 (葡萄牙)</string>
     <string name="pref_language_fa" tools:ignore="MissingTranslation">波斯语 (波斯)</string>
     <string name="pref_language_hi" tools:ignore="MissingTranslation">印地语 (印度)</string>
+    <string name="pref_language_hr" tools:ignore="MissingTranslation">克罗地亚语（克罗地亚）</string>
 </resources>
