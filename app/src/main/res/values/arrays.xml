@@ -330,6 +330,7 @@
         <item name="catalan">@string/pref_language_ca</item>
         <item name="chinese">@string/pref_language_zh_rcn</item>
         <item name="chinese_traditional">@string/pref_language_zh_rtw</item>
+        <item name="czech">@string/pref_language_hr</item>
         <item name="czech">@string/pref_language_cs</item>
         <item name="danish">@string/pref_language_da</item>
         <item name="dutch">@string/pref_language_nl</item>
