@@ -540,14 +540,14 @@
     <string name="pref_language_da" tools:ignore="MissingTranslation">Dansk (danski)</string>
     <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (češki)</string>
     <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (katalanski)</string>
-    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengali (Bangladesh)</string>
+    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengali (bengalski, Bangladeš)</string>
     <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (bjeloruski, latinica)</string>
     <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (bjeloruski)</string>
     <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (baskijski)</string>
     <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (albanski)</string>
-    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Português (Brasil) (portugalski (Brazil))</string>
-    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Português (Portugal) (portugalski (Portugal))</string>
-    <string name="pref_language_pt" tools:ignore="MissingTranslation">Português (Portugal)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Português (portugalski (Brazil))</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Português (portugalski (Portugal))</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">Português (portugalski)</string>
     <string name="pref_language_ro" tools:ignore="MissingTranslation">Română (rumunjski)</string>
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vijetnamski</string>
     <string name="pref_language_uk" tools:ignore="MissingTranslation">Українська (ukrajinski)</string>
@@ -564,4 +564,5 @@
     <string name="pref_language_sv" tools:ignore="MissingTranslation">Svenska (švedski)</string>
     <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili (svahili)</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (kineski)</string>
+    <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski</string>
 </resources>
