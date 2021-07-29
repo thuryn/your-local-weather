@@ -172,7 +172,7 @@
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Beschriftungen im Widget anzeigen</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Standort und Wetter aktualisieren</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Standort- und Adressenbezugsquelle</string>
-    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Lokaler MLS und Nominatim (empfohlen)</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">System, um den Standort zu erhalten, Nominatim, um die Adresse zu erhalten (empfohlen)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">System</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Berechtigungen abfragen</string>
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Diese Menüoptionen bestimmen die <b>Sprache</b>, das <b>Motiv</b> der Hauptanwendung und den <b>Symbolsatz</b>, der in der Anwendung und in den Widgets verwendet wird.</string>
@@ -512,7 +512,7 @@
     <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Aktivieren von Sprache zum kabelgebundenen Headset</string>
     <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Aktivieren von Sprache zum Bluetooth-Headset</string>
     <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Alle</string>
-    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Begrüßung sagen</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Begrüßung</string>
     <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Benutzerdefiniert</string>
     <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">Standort sagen</string>
     <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">Wetterbeschreibung sagen</string>
@@ -524,19 +524,19 @@
     <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">Aktivierte(s) Gerät(e):</string>
     <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">Für Standort:</string>
     <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">Was zu sagen:</string>
-    <string name="voice_settings_language" tools:ignore="MissingTranslation">Spracheinstellung</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Sprache</string>
     <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Optionen für die Sprachausgabe</string>
     <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">Lautsprecher</string>
     <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">kabelgebundenes Headset</string>
     <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>
-    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Zu sagen:</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Was soll gesagt werden:</string>
     <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">Guten Morgen</string>
     <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Hallo</string>
     <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">Guten Abend</string>
     <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">Aktuelles Wetter für Standort %s</string>
     <string name="tts_say_current_weather" tools:ignore="MissingTranslation">Aktuelles Wetter</string>
     <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">Wenn das Wetter aktualisiert wird</string>
-    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">Wenn das Bluetooth-Gerät angeschlossen ist</string>
+    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">Wenn ein Bluetooth-Gerät angeschlossen ist</string>
     <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">Zur Zeit</string>
     <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s Wind %1$s %2$s</string>
     <string name="tty_say_temperature" tools:ignore="MissingTranslation">Temperatur %s</string>
@@ -576,7 +576,7 @@
     <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">Ausgewähltes Gebietsschema zur Orientierung:</string>
     <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">Gebietsschema der Anwendung:</string>
     <string name="pref_language_id" tools:ignore="MissingTranslation">Indonesisch (Indonesisch)</string>
-    <string name="pref_language_pt" tools:ignore="MissingTranslation">Portugiesisch (Portugal)</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">Português (Portugiesisch)</string>
     <string name="pref_language_fa" tools:ignore="MissingTranslation">Persisch (Persisch)</string>
     <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (Hindi)</string>
     <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Lizenzschlüssel</string>
@@ -587,4 +587,5 @@
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Android 10 Berechtigungsänderungen</string>
     <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Der Zugriff auf den Mozilla-Standortdienst ist seit 1.3.2020 abgelaufen. Die App ist gezwungen, das Andorid-System für die Ermittlung der Standortkoordinaten zu verwenden. Die Adresse wird weiterhin von Nominatim aufgelöst. Bitte berücksichtigen Sie dies bei der Verwendung der App.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Einschränkungen des Mozilla-Standortdienstes</string>
+    <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (Kroatisch)</string>
 </resources>
