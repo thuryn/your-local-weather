@@ -1,3 +1,6 @@
+v5.7.4
+Added translations, added an option to set text color in widgets, fixis regarding Android 11
+
 v5.7.3
 Fix update of forecast, several small fixies, added logging
 
