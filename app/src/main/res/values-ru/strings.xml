@@ -163,7 +163,9 @@
     <string name="help_page_4_content" tools:ignore="MissingTranslation">Настройки виджета содержат конфигурацию для всех виджетов.</string>
     <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Когда вы включаете <b>Показывать метки в виджете</b>, вы можете видеть метки вместо значков для значений погодных условий.</string>
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Вы можете управлять фоном виджета с помощью параметра <b>Тема виджета</b>.</string>
-    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">Параметр <b>Стратегия пробуждения</b> доступен для устранения ошибок в реализации службы Android различными поставщиками. Когда вы выбираете <i>Без пробуждения</i>, и местоположение обновляется правильно, вы получаете правильную реализацию. Если местоположение не обновляется должным образом, вы можете попробовать <i>Пробудить только ЦП</i>. Эта опция пробуждает ЦП и пытается прочитать состояние сети и Wi-Fi. Последняя опция <i>Пробуждение с отображением</i> переключает экран на несколько секунд во время обновления местоположения. На некоторых телефонах Android это единственный способ получить правильную информацию о сетях и Wi-Fi. Этот вариант потребляет некоторое количество заряда батареи, но влияние на срок службы батареи должно быть небольшим.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b>Стратегия пробуждения</b> предназначена для преодоления ошибок в реализации поставщиками служб Android Aurora. При выборе <i>Не просыпаться</i> местоположение должно обновляться правильно.
+\nЕсли нет, попробуйте <i>Пробуждать только процессор</i>, чтобы считать состояние сотовой сети и сети Wi-Fi.
+\n<i>Пробуждение с дисплеем</i> в крайнем случае включает экран на несколько секунд во время обновления местоположения.</string>
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Когда выполняется обновление местоположения и текущей погоды, вы можете видеть статус обновления рядом со временем обновления в виджете. Вы можете управлять тем, что будет отображаться с помощью параметра <b>Отобразить сводку обновления</b>. Ниже приводится объяснение наиболее продвинутого варианта:</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Опции отладки</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Существуют опции для включения отладки в файл журнала. Этот параметр полезен, когда возникают проблемы с приложением.</string>
@@ -191,13 +193,13 @@
     <string name="update_location_full" tools:ignore="MissingTranslation">Обновлять (рекомендуется)</string>
     <string name="update_location_network_only" tools:ignore="MissingTranslation">Обновлять без GPS</string>
     <string name="update_period_by_sensors" tools:ignore="MissingTranslation">Через акселерометр</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - обновлена только погода 
-\nL - обновлено только местоположение 
-\nG - обновлены погода и местоположение по GPS 
-\nN - обновлены погода и местоположение по сети 
-\nNi - обновлены местоположение по мобильной сети и погода, местоположение найдено сервисом Mozilla 
-\nB - доступ к Openweathermap.org был запрешён, попробуйте обновить погоду позже 
-\nE - токен доступа к сервису Openweathermap.org истёк. Обновите приложение, чтобы снова получить доступ</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - обновлена только погода
+\nL - обновлено только местоположение
+\nG - обновлены погода и местоположение по GPS
+\nN - обновлены погода и местоположение по сети
+\nNi - обновлены местоположение по мобильной сети и погода, местоположение найдено сервисом Mozilla
+\nB - доступ к Openweathermap.org был запрешён, попробуйте обновить погоду позже
+\nE - токен доступа к сервису Openweathermap.org истёк. Установите более позднюю версию приложения, чтобы восстановить доступ</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Когда местоположение застопорилось во время сна телефона, вы можете попытаться возобновить его, когда начнется поиск сети</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Стратегия пробуждения</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">Не пробуждать</string>
@@ -569,4 +571,5 @@
     <string name="pref_language_hi" tools:ignore="MissingTranslation">Хинди</string>
     <string name="pref_language_pt" tools:ignore="MissingTranslation">Португальский</string>
     <string name="pref_language_fa" tools:ignore="MissingTranslation">Персидский</string>
+    <string name="pref_language_hr" tools:ignore="MissingTranslation">Хорватский</string>
 </resources>
