@@ -1,2 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Jūsų „OpenweathermapApiKey“ nėra užregistruotas.</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Prieigos galiojimo laikas baigėsi. Atnaujinkite programėlę.</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">Leidimai dar nesuteikti - spustelėkite vietos simbolį programėlėje</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Vieta nerasta</string>
+    <string name="load_progress" tools:ignore="MissingTranslation">Įkeliama…</string>
+    <string name="progressDialog_gps_locate" tools:ignore="MissingTranslation">Rasti dabartinę vietą</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Atšaukti</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Prašyti leidimų</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Įrenginio nustatymai</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Leidimas skaityti informaciją iš prietaiso reikalingas norint atnaujinti buvimo vietą naudojant Wi-Fi ir GSM tinklus. Taip gaunama informacija apie tai, prie kurių GSM bazinių stočių prietaisas yra prisijungęs.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Programėlei reikia leidimo atnaujinti vietą naudojant Wi-Fi ir GSM tinklus.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Programėlei reikia leidimo atnaujinti buvimo vietą naudojant GPS.</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">Programėlėje nustatyta atnaujinti buvimo vietą. Reikalinga prieiga prie jos. Eikite į prietaiso nustatymus ir įjunkite buvimo vietos nustatymą arba išjunkite programėlės buvimo vietos naujinimus.</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Vietos ir leidimų nustatymai</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Atmesti</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Tęsti</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">Programėlė paprašys išjungti baterijos optimizavimą, kad fone būtų galima atnaujinti buvimo vietą, orus arba sekti buvimo vietą pagal akselerometrą.</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Baterijos optimizacija</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Nuo „Android 10“, norint gauti informacijos apie naudojamą GSM/LTE tinklą, reikia tikslios prieigos prie buvimo vietos. Suteikite leidimą parsisiųsti buvimo vietą ir fone (jei visą laiką norite sužinoti savo buvimo vietą).</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Vietiniai orai</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">„Mozilla“ vietos nustatymo paslaugos apribojimai</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">„Android 10“ leidimų pakeitimai</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Prieiga prie „Mozilla“ vietos nustatymo paslaugos baigėsi nuo 1.3.2020 m. Programėlė priversta naudoti „Andorid“ sistemą buvimo vietos koordinatėms nustatyti. Adresą vis dar išsprendžia „Nominatim“. Naudodamiesi programėle į tai atsižvelkite.</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Šioje programėlėje yra balso nurodymai, kuriuos verčia tekstas ir balso komandos, sukurtos https://hosted.weblate.org/projects/your-local-weather savanorių. Programėlės kūrėjas negali garantuoti, kad jos yra teisingos - naudodamiesi programėle su tuo sutinkate. Kad galėtumėte ja naudotis, reikia įdiegti TTS (teksto konvertavimas į kalbą) ir įjungti gaires nustatymuose, kur galite nustatyti savo balso komandas. "</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Teksto ir gairių vertimai</string>
+    <string name="label_choose_city" tools:ignore="MissingTranslation">Pasirinkite miestą</string>
+    <string name="label_current_city" tools:ignore="MissingTranslation">Dabartinis miestas</string>
+    <string name="enter_city_hint" tools:ignore="MissingTranslation">Įveskite miestą</string>
+</resources>
