@@ -47,4 +47,15 @@
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Sniegas</string>
     <string name="graph_rain_label" tools:ignore="MissingTranslation">Lietus</string>
     <string name="graph_wind_label" tools:ignore="MissingTranslation">Vėjas</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Temperatūra</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Atšaukti</string>
+    <string name="ok" tools:ignore="MissingTranslation">Gerai</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Slėgis</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">Drėgmė</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Lietus/sniegas</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Vėjas</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperatūra</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Aprašymas</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Piktograma</string>
 </resources>
