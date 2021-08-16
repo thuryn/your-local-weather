@@ -58,4 +58,158 @@
     <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperatūra</string>
     <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Aprašymas</string>
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Piktograma</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">Tik rankiniu būdu</string>
+    <string name="update_period_by_sensors" tools:ignore="MissingTranslation">Pagal akselerometrą</string>
+    <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">Atnaujinimo intervalas</string>
+    <string name="pref_title_notification" tools:ignore="MissingTranslation">Įjungti pranešimus</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">Pranešimų nustatymai</string>
+    <string name="hint_activity_search" tools:ignore="MissingTranslation">Paieškos vieta</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 dienų</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 dienų</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 dienų</string>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">Datos formatas</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12 valandų AM/PM</string>
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">Laiko formatas</string>
+    <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">Paaukoti bitcoin</string>
+    <string name="nav_menu_daily_forecast" tools:ignore="MissingTranslation">Dienos prognozė</string>
+    <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">Dabartinis oras</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Vėjo kryptis</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">Juntamoji temperatūra</string>
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Stulpelio nustatymas</string>
+    <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Prognozės tipas</string>
+    <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Perjungti Y ašį</string>
+    <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Aptikti vietą</string>
+    <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Ieškoti miesto</string>
+    <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Dienos prognozė</string>
+    <string name="label_activity_main" tools:ignore="MissingTranslation">Dabartinis oras</string>
+    <string name="title_activity_search" tools:ignore="MissingTranslation">Paieškos vieta</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">Derinimo parinktys</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">Pagrindinė programėlė</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">Valdiklio nustatymai</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">Bendrieji nustatymai</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Pažadinimo strategija</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">Pasidalinti orais</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">viesulas</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">škvalas</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">dulkės</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">smėlis</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">rūkas</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">dūmai</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">šlapdriba</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">sniegas</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">dulksna</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">perkūnija</string>
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">nėra</string>
+    <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">šiaurės vakarų</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">vakarų</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">pietvakarių</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">pietų</string>
+    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">pietryčių</string>
+    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">rytų</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">šiaurės rytų</string>
+    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">šiaurinis</string>
+    <string name="wind_direction_north_west" tools:ignore="MissingTranslation">ŠV↘</string>
+    <string name="wind_direction_west" tools:ignore="MissingTranslation">V→</string>
+    <string name="wind_direction_south_west" tools:ignore="MissingTranslation">PV↗</string>
+    <string name="wind_direction_south" tools:ignore="MissingTranslation">P↑</string>
+    <string name="wind_direction_south_east" tools:ignore="MissingTranslation">PR↖</string>
+    <string name="wind_direction_east" tools:ignore="MissingTranslation">R←</string>
+    <string name="wind_direction_north_east" tools:ignore="MissingTranslation">ŠR↙</string>
+    <string name="wind_direction_north" tools:ignore="MissingTranslation">Š↓</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Išjungta</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">Grafikas</string>
+    <string name="location_weather_update_status_location_from_last_location" tools:ignore="MissingTranslation">l</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
+    <string name="location_weather_update_status_too_early_update" tools:ignore="MissingTranslation">O</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">P</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">I</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">V</string>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Slėgis</string>
+    <string name="label_snow" tools:ignore="MissingTranslation">Sniegas</string>
+    <string name="label_rain" tools:ignore="MissingTranslation">Lietus</string>
+    <string name="label_wind" tools:ignore="MissingTranslation">Vėjas</string>
+    <string name="label_temperature" tools:ignore="MissingTranslation">Temperatūra</string>
+    <string name="temperature_night_title" tools:ignore="MissingTranslation">Naktis</string>
+    <string name="temperature_evening_title" tools:ignore="MissingTranslation">Vakaras</string>
+    <string name="temperature_day_title" tools:ignore="MissingTranslation">Diena</string>
+    <string name="temperature_morning_title" tools:ignore="MissingTranslation">Rytas</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">Saulėlydis</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">Saulėtekis</string>
+    <string name="label_cloudiness" tools:ignore="MissingTranslation">Debesuotumas</string>
+    <string name="label_humidity" tools:ignore="MissingTranslation">Drėgmė</string>
+    <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">ir</string>
+    <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">retai</string>
+    <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">vakare</string>
+    <string name="tty_say_weather_forecast_afternoon" tools:ignore="MissingTranslation">po pietų</string>
+    <string name="tty_say_weather_forecast_morning" tools:ignore="MissingTranslation">ryte</string>
+    <string name="tty_say_weather_forecast_tomorrow" tools:ignore="MissingTranslation">rytoj</string>
+    <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">šiandien</string>
+    <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Sveiki</string>
+    <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Licencija</string>
+    <string name="about_version_pref_title" tools:ignore="MissingTranslation">Versija</string>
+    <string name="preference_title_activity_about" tools:ignore="MissingTranslation">Apie</string>
+    <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Laikas</string>
+    <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">Sakyti:</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Pasveikinimas</string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>
+    <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">garsiakalbis</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Pridėti</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Išjungta</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Įjungti</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Išjungti</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Ištrinti</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">niekada</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Nieko</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">Tema</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistemos</string>
+    <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindų</string>
+    <string name="pref_language_bg" tools:ignore="MissingTranslation">Bulgarų</string>
+    <string name="pref_language_en" tools:ignore="MissingTranslation">Anglų</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamiečių</string>
+    <string name="pref_title_language" tools:ignore="MissingTranslation">Kalba</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Integruotas</string>
+    <string name="preference_title_category_display" tools:ignore="MissingTranslation">Ekranas</string>
+    <string name="theme_transparent" tools:ignore="MissingTranslation">Skaidri</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">Šviesi</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">Tamsi</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">Temperatūra</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Slėgis</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">Vėjas</string>
+    <string name="pref_title_temperature" tools:ignore="MissingTranslation">Temperatūra</string>
+    <string name="title_activity_settings" tools:ignore="MissingTranslation">Nustatymai</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24 valandų</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">Sistemos</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">coliai</string>
+    <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">mazgai</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
+    <string name="wind_speed_miles" tools:ignore="MissingTranslation">mph</string>
+    <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
+    <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">psi</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
+    <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Pagalba</string>
+    <string name="nav_feedback" tools:ignore="MissingTranslation">Atsiliepimai</string>
+    <string name="nav_menu_settings" tools:ignore="MissingTranslation">Nustatymai</string>
+    <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Grafikai</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Slėgis</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Lietus/sniegas</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Vėjas</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Temperatūra</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Slėgis</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Sniegas</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Lietus</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Vėjas</string>
 </resources>
