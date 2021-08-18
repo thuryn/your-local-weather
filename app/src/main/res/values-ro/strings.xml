@@ -539,8 +539,8 @@
     <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
     <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
     <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">psi</string>
-    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
-    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mili bari</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">țoli Hg</string>
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
     <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
     <string name="too_early_update_error" tools:ignore="MissingTranslation">Actualizare prea devreme!</string>
@@ -564,4 +564,5 @@
     <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Vânt</string>
     <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Temperatură</string>
     <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Presiune</string>
+    <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (croată)</string>
 </resources>
