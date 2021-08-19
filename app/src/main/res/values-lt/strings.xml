@@ -125,11 +125,11 @@
     <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
     <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
     <string name="location_weather_update_status_too_early_update" tools:ignore="MissingTranslation">O</string>
-    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">P</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
     <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
-    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">I</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">N</string>
     <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
-    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">V</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">L</string>
     <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
     <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
     <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
@@ -171,9 +171,9 @@
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Nieko</string>
     <string name="pref_title_theme" tools:ignore="MissingTranslation">Tema</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistemos</string>
-    <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindų</string>
-    <string name="pref_language_bg" tools:ignore="MissingTranslation">Bulgarų</string>
-    <string name="pref_language_en" tools:ignore="MissingTranslation">Anglų</string>
+    <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhis (sindų)</string>
+    <string name="pref_language_bg" tools:ignore="MissingTranslation">Bulgarian (bulgarų)</string>
+    <string name="pref_language_en" tools:ignore="MissingTranslation">English (anglų)</string>
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamiečių</string>
     <string name="pref_title_language" tools:ignore="MissingTranslation">Kalba</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Integruotas</string>
@@ -212,4 +212,357 @@
     <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Sniegas</string>
     <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Lietus</string>
     <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Vėjas</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Sniegas (juosta)</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Lietus (juosta)</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Rodomi stulpeliai</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">Kombinuoto grafiko nustatymai</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">Matomų grafikų nustatymai</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Vietos</string>
+    <string name="title_activity_license" tools:ignore="MissingTranslation">Licencija %s</string>
+    <string name="help_page_5_content" tools:ignore="MissingTranslation">Yra parinkčių, leidžiančių įjungti derinimą į žurnalo failą. Ši parinktis naudinga, kai su programa kyla problemų.</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Kai atnaujinama vieta ir dabartinis oras, šalia atnaujinimo laiko valdiklyje galite matyti atnaujinimo būseną. Galite valdyti, kas bus rodoma, naudodami parinktį <b>Rodyti atnaujinimo santrauką</b>. Toliau pateikiamas pažangiausios parinkties paaiškinimas:</string>
+    <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Valdiklio foną galite valdyti naudodami <b>Valdiklio temos parinktį</b>.</string>
+    <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Įjungus <b>Rodyti etiketes valdiklyje</b>, vietoj piktogramų galite matyti oro sąlygų reikšmių etiketes.</string>
+    <string name="help_page_4_content" tools:ignore="MissingTranslation">Valdiklio nustatymuose pateikiamos visų valdiklių konfigūracijos parinktys.</string>
+    <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Rastos vietos nėra įrašomos į podėlį</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Rastos vietos įrašomos į podėlį</string>
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Podėlio vietos</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">metai</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">šeši mėnesiai</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">trys mėnesiai</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">mėnuo</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">savaitė</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">diena</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 valandų</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">Podėlio reikšmių amžius</string>
+    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Po nurodyto laiko podėlio reikšmės bus pašalintos</string>
+    <string name="db_header" tools:ignore="MissingTranslation">Adresų podėlio duomenų bazė</string>
+    <string name="db_info" tools:ignore="MissingTranslation">Informacija apie podėlį</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">Išvalyti podėlį</string>
+    <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Adresus podėlyje galite išvalyti mygtuku <b>Išvalyti podėlį</b>.</string>
+    <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Šalia vietų talpinimo podėlyje parinkties (žymimasis langelis) yra nustatymas <b>Podėlio reikšmių amžius</b>. Kiekvienas išsaugotas adresas turi laiko žymą. Kai laiko žyma yra senesnė už vertę, nustatytą parametre „Podėlio reikšmių amžius“, programėlė kreipiasi į „Nominatim“, kad atnaujintų įrašą.</string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">Norėdami sutaupyti tinklo duomenų srautą ir pagreitinti vietos atnaujinimą, galite įjungti <b>Talpinti vietas podėlyje</b>. Šioje talpykloje saugomos geografinės koordinatės ir adresas. Nepriklausomai nuo šio nustatymo programa turi iškviesti tinklo skirstymo paslaugą. Tačiau skambutis „Nominatim“ adresų skirstymo tarnybai vyksta tik tuo atveju, jei adreso nėra podėlyje. Įjungus parinktį „Talpinti vietas podėlyje“, jūsų aplankyti adresai saugomi programėlėje. Jokia informacija iš talpyklos nesiunčiama už programėlės ribų.</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Duomenų naudojimą galite sumažinti išsaugant rastas vietas podėlyje. Tada vietos saugomos programėlėje. Jos nesiunčiamos ir nesaugomos kitose tinklo vietose.</string>
+    <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">Keletą paskutinių eilutėse įrašytų podėlio reikšmių galite pamatyti <b>Informacija apie podėlį</b> skirsnyje. Taip pat galite matyti bendrą eilučių skaičių.</string>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"> <b>Pranešimai </b>
+\nPasirinkus pranešimų parinktį, programa periodiškai atnaujina esamus orus. Tuomet dabartiniai orai pateikiami pranešimų srityje. Taip pat galite įjungti vibraciją - atnaujinus duomenis programa vibruos.</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Šiose meniu parinktyse nustatoma <b> kalba </b>, <b> pagrindinės programos tema </b> ir <b> piktogramų rinkinys </b>, naudojamas programoje ir valdikliuose.</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"> <b> Sistema </b> - programa gauna vietą ir adresą per „Android“ sistemos paslaugas (dažniausiai naudojant „Google“ vietos nustatymo paslaugas).</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"> <b>Vietinė MLS ir „Nominatim“ </b> - programa gauna buvimo vietą ir geografines koordinates iš „Mozilla“ buvimo vietos nustatymo paslaugų. Iš šių koordinačių „Nominatim“ paslaugos parenka adresą. Galite prisidėti prie būsimų MLS patobulinimų įdiegdami „Mozilla Stumbler“ (galima rasti adresu https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler). Gaukite informaciją apie esamas aktyvias ir laisvas tinklo bazines stotis iš mobiliojo tinklo, suteikę telefono skambučių leidimą. Aplink jus esantys Wi-Fi tinklai naudojami siekiant tiksliau atspėti jūsų buvimo vietą.</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"> <b>Vieta ir adreso šaltinis</b>
+\nGalite pasirinkti, iš kur programa gauna vietą ir adresą.</string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Kai pažymėsite <b>Įjungti GPS, kai reikia</b> parinktį, programėlė bandys rasti jūsų buvimo vietą naudodama mobiliuosius arba Wi-Fi tinklus. Kai vietos nepavyksta rasti naudojantis tinklo paslaugomis, programėlė kelioms sekundėms įjungia GPS, kad gautų vietą.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"> <b>Vietos atnaujinimo laikotarpis (Vieta 0)</b> - galite nustatyti vietos 0 atnaujinimo laikotarpį - vieta 0 turi galimybę atnaujinti vietą pagal mobiliuosius, Wi-Fi tinklus ir GPS. Pasirinkus atnaujinimą <i>Pagal akcelerometrą</i>, programa naudoja jį judėjimui nustatyti. Pagal tai apskaičiuojamas atstumas. Kai pasiekiama atstumo riba ir per 15 minučių nebuvo atliktas joks atnaujinimas, atnaujinama buvimo vieta ir esamas oras. Kai programėlė negali gauti jūsų buvimo vietos, valdiklyje galite matyti nežinomos vietos etiketę. Kai programėlė neturi buvimo vietos būsenos, ji bandys dar kartą per 5 minutes. Taip pat galite pasirinkti vietos atnaujinimą pagal laiko intervalus <b>Oro atnaujinimo laikotarpis (Vieta 1,2,3 ...) </b> - čia galite nustatyti, kad orai būtų atnaujinami rankiniu būdu aptiktoms vietoms.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"> <b>Paslėpti orų aprašymą</b> - dabartinių orų aprašymas paslepiamas. Dabartinius orus galite matyti tik pagal besikeičiančią piktogramą.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> <b>Temperatūra</b> - galite pasirinkti temperatūros vienetą, <b>Vėjas</b> - galite pasirinkti vėjo greičio vienetą ir <b>Slėgis</b> - galite pasirinkti slėgio vienetą. Vertės perskaičiuojamos naudojant šias parinktis.</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Šios parinktys turi įtakos visai programėlei.</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">Programėlėje yra trys valdikliai, kuriuose pateikiamos kai kurios įprastos dabartinių orų reikšmės (pvz., temperatūra). Kai kurios reikšmės būdingos tik konkrečiam valdikliui (pvz., saulėlydis). Kiekvieno valdiklio dešiniajame kampe yra paskutinio atnaujinimo laikas. Galite matyti, kas buvo atnaujinta nuo paskutinio karto (kai nustatymų meniu įjungėte šią parinktį). Šalia paskutinio atnaujinimo laiko rasite atnaujinimo mygtuką. Paspaudus šį mygtuką, orai (ir vieta, kai pasirinkta atnaujinimo vietos parinktis) atnaujinami besąlygiškai. Paskutinė valdiklių parinktis yra vietos keitimas - paspaudus esamos vietos tekstą, vieta pakeičiama į kitą.</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Trečiajame ekrane pateikiama orų prognozė, pateikiama grafikais.</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Orų prognozę rasite kitame ekrane (pasirinkite kitą ekraną meniu arba braukite pirštu iš kairės į dešinę). Orų prognozė atnaujinama atnaujinimo mygtuku arba kai įeinate į ekraną (bet ne dažniau kaip vieną kartą per valandą).</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Šalia buvimo vietos atnaujinimo mygtuko yra buvimo vietos valdymo mygtukas (didinamasis stiklas). Galite tvarkyti programėlėje ir valdikliuose esančias vietas. Pagal numatytuosius nustatymus yra viena vieta (vieta 0) - ji skirta automatiniam vietos atnaujinimui. Įjungimo / išjungimo mygtuką rasite, kai šią vietą pastumsite į kairę. Vietą taip pat galite pridėti rankiniu būdu. Paspaudę mygtuką +, galite pasiimti savo vietą žemėlapyje. Vietą taip pat galite ištrinti naudodami mygtuką Ištrinti - jį rasite, kai slinkite vietą į kairę.</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Pagrindinėje programėlėje pateikiama dabartinių orų apžvalga. Orus galite atnaujinti naudodami atnaujinimo mygtuką programėlės skydelyje arba slinkdami žemyn. Vietos atnaujinimo mygtuką rasite šalia atnaujinimo orų mygtuko. Šį mygtuką galima naudoti tik tada, kai įjungtas vietos 0 nustatymas (vietos 0 nustatymas skirtas automatiniam vietos atnaujinimui).</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Programėlė nustato buvimo vietą naudodama korinio ryšio tinklą (BTS), Wi-Fi, o jei šie tinklai neveikia, - GPS, kad parodytų vietos orus, o koordinates gauna iš „Mozilla“ vietos nustatymo paslaugos. Programai reikia bent vienos GSM tinklo bazinės stoties arba dviejų pasiekiamų Wi-Fi tinklų, arba bet kokio GSM ir Wi-Fi tinklų derinio. Naudodami telefone arba planšetiniame kompiuteryje esantį valdiklį, pagrindiniame ekrane galite matyti savo buvimo vietą ir esamus orus. Vietos atnaujinimai gali būti periodiniai (pvz., kas valandą) arba programa gali naudoti akselerometrą, kad aptiktų judėjimą didesniu atstumu nei nustatyta reikšmė. Nešiojamas kišenėje atstumas didėja greičiau. Vietos atnaujinimus galite išjungti - tada atnaujinami tik orai. Programėlė nurodytais intervalais atnaujina buvimo vietą ir orus. Pavyzdžiui, galite nustatyti atnaujinimo periodą po valandos. Orai atnaujinami iš karto po vietos nustatymo arba įjungus ekraną - bet ne dažniau kaip kartą per 15 minučių (ir kai orai nebuvo atnaujinti per paskutines 15 minučių). Šią informaciją „Mozilla“ vietos nustatymo paslauga naudoja buvimo vietos koordinatėms gauti. Programėlė bando naudoti GPS, kai buvimo vieta nepasiekiama iš mobiliojo ryšio tinklo ir Wi-Fi tinklų. Buvimo vietos koordinatės naudojamos adresui gauti „Nominatim“ paslaugą. Adresas naudojamas programėlėje arba valdiklyje. Programėlė naudoja „OpenWeatherMap.org“ paslaugą, kad gautų esamus orus.</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Tuo šis vadovas baigiamas. Kitus nustatymus galite rasti nustatymų meniu (pvz., kalbą, vienetus ir kt.).
+\nKitame ekrane bus paaiškinti prašomi leidimai ir suteikta galimybė juos patvirtinti.
+\n
+\nMėgaukitės programėle.</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Talpinti adresus podėlyje</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Naudojamų adresų talpinimo podėlyje pasirinktis</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Kai kurie telefonai gali nerodyti tinkamo tinklo ryšio, jei ekranas įjungtas. Pageidautina parinktis (kai ekranas įjungtas) turi trūkumą, nes telefonas kelias sekundes įjungia ekraną. Tai neturi didelės (reikšmingos) įtakos baterijos veikimo laikui. Galite pradėti nuo rekomenduojamų parinkčių, tada pabandyti išjungti šį nustatymą ir pamatyti vietovės atnaujinimo elgseną.</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Pažadinimo strategijos pasirinkimas</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Vietos ir adreso šaltinis</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Galite pasirinkti buvimo vietos nustatymo būdą - <i>„Sistema“ </i> naudoja „Google“ paslaugas, kad gautų buvimo vietą pagal tinklus (mobiliuosius ir Wi-Fi tinklus). Pasirinktis <i>„Vietinis MLS ir Nominatim“</i> naudoja „Mozilla“ vietos nustatymo paslaugą vietos koordinatėms gauti ir „Nominatim“ paslaugą vietos pavadinimams gauti. Antrajai parinkčiai reikia telefono skambučio leidimų, kad būtų galima gauti informaciją apie mobiliojo ryšio tinklą. Pageidautina parinktis yra iš anksto pasirinkta.</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Vietos šaltinio pasirinkimas</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Vietos nustatymo atnaujinimo pasirinkimas</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">Vietos orų pranešimai</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Vietiniai orai</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Nerasta komunikacijos programėlė</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">perkūnija su sunkia dulksna</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">netolygi perkūnija</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">apsiniaukę</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">nepastovūs debesys</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">išsisklaidę debesys</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">mažai debesų</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">giedras dangus</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">vulkaniniai pelenai</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">smėlio, dulkių sūkuriai</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">migla</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">rūkas</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">sunkus purškiantis sniegas</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">purškiantis sniegas</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">lengvas purškiantis sniegas</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">lietus ir sniegas</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">lengvas lietus ir sniegas</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">purškianti šlapdriba</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">gausus sniegas</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">lengvas sniegas</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">netolygus purškiantis lietus</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">smarkus purškiantis lietus</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">purškiantis lietus</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">lengvas purškiantis lietus</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">lijundra</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">ekstremalus lietus</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">labai stiprus lietus</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">stiprus lietus</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">vidutinio stiprumo lietus</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">lengvas lietus</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">purškiantis lietus ir dulksna</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">liūtis ir dulksna</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">purškiantis lietus ir dulksna</string>
+    <string name="weather_condition_description_312" tools:ignore="MissingTranslation">sunki dulksna ir lietus</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">dulksna ir lietus</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">lengva dulksna ir lietus</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">didelio intensyvumo dulksna</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">lengvo intensyvumo dulksna</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">perkūnija su dulksna</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">perkūnija su lengva dulksna</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">stipri perkūnija</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">nedidelė perkūnija</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">perkūnija su stipriu lietumi</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">perkūnija su lietumi</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">perkūnija su nedideliu lietumi</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Šriftu pagrįstos piktogramos</string>
+    <string name="preference_weather_weather_forecast_features_title" tools:ignore="MissingTranslation">Orų prognozės funkcijos</string>
+    <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">Mokamos / išplėstinės funkcijos</string>
+    <string name="weather_forecast_features_free" tools:ignore="MissingTranslation">Nemokamos / ribotos funkcijos</string>
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Piktogramų rinkinys</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">Registruoti į failą</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">Neregistruoti į failą</string>
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">Registruoti į failą</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">mėnesio</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">savaitės</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">trijų dienų</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">dviejų dienų</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">dienos</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 valandų</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">Žurnalo failo rotacija</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Po nurodyto laiko žurnalo failas bus atkurtas</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">Derinimo parinktys</string>
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">Pasirinkite žurnalo aplanką</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Dabartinė orų aprašymo kalba ir adresas pasikeis per kitą naujinimą arba galite jį priverstinai pakeisti rankiniu būdu.</string>
+    <string name="permission_not_granted" tools:ignore="MissingTranslation">Leidimai nesuteikti!</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Laipsniai nuo šiaurės</string>
+    <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">Grafikų ekranas</string>
+    <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">Orų prognozės ekranas</string>
+    <string name="widget_action_main_screen" tools:ignore="MissingTranslation">Pagrindinis ekranas</string>
+    <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">Orų prognozė</string>
+    <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">Miesto etiketė</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Prognozės dienų skaičius</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Rodyti dieną su sutrumpinimu</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Valdiklio veiksmų nustatymų mygtukas</string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Valdiklio orų detalių nustatymų mygtukas</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Valdiklio grafiko nustatymų mygtukas</string>
+    <string name="widget_refresh_button" tools:ignore="MissingTranslation">Valdiklio atnaujinimo mygtukas</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Rodyti temperatūrą kaip</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">Tik juntamoji reikšmė</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Abi, juntama, kaip pirminė</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Abi, išmatuota, kaip pirminė</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">Tik išmatuota reikšmė</string>
+    <string name="label_dew_point" tools:ignore="MissingTranslation">Rasos taškas</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">Rasos taškas: %s</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">Išmatuota temperatūra: %s</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Juntamoji temperatūra: %s</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">Saulėlydis: %s</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">Saulėtekis: %s</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">Paskutinis atnaujinimas: %s</string>
+    <string name="cloudiness_label" tools:ignore="MissingTranslation">Debesuotumas: %1$s%2$s</string>
+    <string name="pressure_label" tools:ignore="MissingTranslation">Slėgis: %1$s %2$s</string>
+    <string name="humidity_label" tools:ignore="MissingTranslation">Drėgmė: %1$s%2$s</string>
+    <string name="snow_label" tools:ignore="MissingTranslation">Sniegas: %1$s %2$s</string>
+    <string name="rain_label" tools:ignore="MissingTranslation">Lietus: %1$s %2$s</string>
+    <string name="tty_say_weather_forecast_night" tools:ignore="MissingTranslation">naktį</string>
+    <string name="tty_say_weather_forecast" tools:ignore="MissingTranslation">orų prognozė</string>
+    <string name="tty_say_temp_min" tools:ignore="MissingTranslation">mažiausia temperatūra yra %1$s ties %2$s</string>
+    <string name="tty_say_temp_max" tools:ignore="MissingTranslation">didžiausia temperatūra yra %1$s ties %2$s</string>
+    <string name="tty_say_max_wind" tools:ignore="MissingTranslation">%3$s vėjas ne didesnis kaip %1$s %2$s</string>
+    <string name="tty_say_max_snow" tools:ignore="MissingTranslation">didžiausias sniego kiekis %s mm</string>
+    <string name="tty_say_max_rain" tools:ignore="MissingTranslation">didžiausias kritulių kiekis %s mm</string>
+    <string name="tty_say_temperature" tools:ignore="MissingTranslation">temperatūra %s</string>
+    <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s vėjas %1$s %2$s</string>
+    <string name="wind_label" tools:ignore="MissingTranslation">Vėjas: %1$s %2$s %3$s</string>
+    <string name="pref_language_da" tools:ignore="MissingTranslation">Dansk (danų)</string>
+    <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (čekų)</string>
+    <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (kroatų)</string>
+    <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (katalonų)</string>
+    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengali (bengalų)</string>
+    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (baltarusių, lotyniški rašmenys)</string>
+    <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (baltarusių)</string>
+    <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (baskų)</string>
+    <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (albanų)</string>
+    <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">中文 (繁体) (kinų (tradicinė))</string>
+    <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (turkų)</string>
+    <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (slovėnų)</string>
+    <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (serbų)</string>
+    <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (rusų)</string>
+    <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (lenkų)</string>
+    <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (japonų)</string>
+    <string name="pref_language_id" tools:ignore="MissingTranslation">Indonesian (indoneziečių)</string>
+    <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (italų)</string>
+    <string name="pref_language_de" tools:ignore="MissingTranslation">Deutsch (vokiečių)</string>
+    <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego (galisų)</string>
+    <string name="pref_language_fr" tools:ignore="MissingTranslation">Français (prancūzų)</string>
+    <string name="pref_language_fi" tools:ignore="MissingTranslation">Suomi (suomių)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Português (Brasil) (portugalų (Brazilija))</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Português (Portugal) (portugalų (Portugalija))</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">Português (portugalų)</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Română (rumunų)</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Українська (ukrainiečių)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">العَرَبِيَّة (arabų)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Ελληνικυ (graikų)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Español (ispanų)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Magyar (vengrų)</string>
+    <string name="pref_language_fa" tools:ignore="MissingTranslation">Persian (persų)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Nederlands (olandų)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (Bokmål) (norvegų (Bokmål))</string>
+    <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (hindi)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">עברית (hebrajų)</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Svenska (švedų)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Kisvahili (svahili)</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (kinų)</string>
+    <string name="pref_language_default" tools:ignore="MissingTranslation">Sistemos numatytoji</string>
+    <string name="preference_hide_desc" tools:ignore="MissingTranslation">Slėpti orų aprašymą</string>
+    <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Lietus ir sniegas</string>
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Vėjo krypties stilius</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (3 valandų intervalais)</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (3 valandų intervalais)</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (3 valandų intervalais)</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/MM)</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/MM)</string>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm.(MM)</string>
+    <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Vibruoti</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Klasikinis</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">Nematomas</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">Nuolatinis</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Kombinuotas</string>
+    <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Atnaujinti</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Kalba</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Pagalba</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">Valdikliai</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Bendrieji</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Sveikiname</string>
+    <string name="pref_title_tts_not_supported" tools:ignore="MissingTranslation">TTS (teksto keitimo į kalbą) sistema nepalaiko jūsų programėlės vietovės. Eikite į viršutiniame dešiniajame kampe esantį skyrių „Balso pranešimų nustatymai“.</string>
+    <string name="pref_title_tts_presence" tools:ignore="MissingTranslation">TTS (teksto keitimo į kalbą) sistema nepalaiko jūsų programėlės vietovės. Iš toliau pateikto palaikomų kalbų sąrašo pasirinkite balso pranešimų kalbą.</string>
+    <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">Balso pranešimų kalba:</string>
+    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Įjungti Bluetooth ausinių balso pranešimus</string>
+    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Įjungti laidinių ausinių balso pranešimus</string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Balso pranešimų garsiakalbiais atkūrimas</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Naujų balso pranešimų nustatymai</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Balso pranešimų kalbos parinktys</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Balso pranešimų nustatymai</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin raudonos piktogramos</string>
+    <string name="permission_location_need" tools:ignore="MissingTranslation">Suteikti buvimo vietos leidimus</string>
+    <string name="permission_available_location" tools:ignore="MissingTranslation">Buvimo vietos leidimai buvo suteikti</string>
+    <string name="permission_location_rationale" tools:ignore="MissingTranslation">Buvimo vietos leidimai reikalingi norint nustatyti miestą</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Santrumpos Š↓, ŠR↙, …</string>
+    <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Rodyti vietą valdiklyje</string>
+    <string name="widget_action_switch_location" tools:ignore="MissingTranslation">Perjungti vietą</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">Dabartinių orų piktograma</string>
+    <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Vietos nustatymas</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Valdiklio vietos nustatymų mygtukas</string>
+    <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Dabartinių orų piktograma</string>
+    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">Kai prijungtas Bluetooth įrenginys</string>
+    <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">Atnaujinus orus</string>
+    <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">Dabartinis %s vietos oras</string>
+    <string name="tts_say_current_weather" tools:ignore="MissingTranslation">Dabartinis oras</string>
+    <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">Labas vakaras</string>
+    <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">Labas rytas</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Ką sakyti:</string>
+    <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Libre programinės įrangos licencijos</string>
+    <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Pirminis kodas</string>
+    <string name="pref_title_tts_lang_app_default" tools:ignore="MissingTranslation">Pagal programėlės vietovę</string>
+    <string name="pref_title_tts_app_general_info" tools:ignore="MissingTranslation">Programėlė siunčia teksto komandas į TTS (teksto keitimo į kalbą) sistemą, kuri paverčia jas balsu. Paprastai ji sistemoje būna įdiegta pagal numatytuosius nustatymus. Jei taip nėra arba įdiegta TTS sistema nepalaiko jūsų norimos kalbos, įsidiekite ją iš programų parduotuvės (pavyzdžiui, https://search.f-droid.org/\?q=TTS ).</string>
+    <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">Programos vietovės:</string>
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Paspauskite atnaujinimo mygtuką, kad pirmiausia atnaujintumėte orus.</string>
+    <string name="search_location_info" tools:ignore="MissingTranslation">Bakstelėkite žemėlapį, kad gautumėte norimą vietą, ir palaukite, kol bus išspręstas adresas.</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">Automatiškai aptikta</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">Pažadinti su ekranu</string>
+    <string name="wakeuppartial_label" tools:ignore="MissingTranslation">Pažadinti tik CPU</string>
+    <string name="nowakeup_label" tools:ignore="MissingTranslation">Jokio pabudimo</string>
+    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Pažadinimo strategija</string>
+    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Kai buvimo vieta užstringa prietaiso miego režimo metu, galite pabandyti pažadinti prietaisą, kai jis ieško mobiliojo ryšio tinklo</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - atnaujinami tik orai
+\nL - atnaujinama tik vieta
+\nG - vieta iš GPS ir atnaujinta orų informacija
+\nN - vieta iš tinklo ir atnaujintos oro sąlygos
+\nNi - buvimo vieta iš mobiliojo tinklo ir atnaujintos oro sąlygos, buvimo vieta nustatyta naudojant \"Mozilla\" buvimo vietos nustatymo paslaugą
+\nB - prieiga prie Openweathermap.org paslaugos uždrausta, pabandykite atnaujinti orus vėliau
+\nE - Openweathermap.org paslaugos prieigos žetono galiojimo laikas baigėsi. Įdiekite vėlesnę programos versiją, kad atgautumėte prieigą</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- ketinate atnaujinti vietą ir (arba) orus
+\n. - vieta nepasiekiama, atnaujinami orai pagal paskutinę vietą
+\nW - atnaujinami tik orai
+\nL - atnaujinama tik vieta
+\nG - vieta iš GPS ir atnaujinami orai
+\nN - vieta iš tinklo ir atnaujinami orai
+\nB - prieiga prie Openweathermap.org paslaugos uždrausta, pabandykite atnaujinti orus vėliau.
+\nE - Openweathermap.org paslaugos prieigos žetono galiojimo laikas baigėsi. Kad vėl gautumėte prieigą, turite atnaujinti programą</string>
+    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Atnaujinta vertė su vietos šaltiniu</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Ką tik atnaujinta vertė</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Rodyti atnaujinimo suvestinę</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Sistemos - vietai gauti, „Nominatim“ - adresui (rekomenduojama)</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Vietos ir adreso šaltinis</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (čevų)</string>
+    <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Licencijos raktas</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API raktas</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Sistemos nustatymai</string>
+    <string name="preference_title_power_save" tools:ignore="MissingTranslation">Energijos taupymo parinktys</string>
+    <string name="preference_title_category_units" tools:ignore="MissingTranslation">Vienetų nustatymai</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Atnaujinti vietą ir orus</string>
+    <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Valdiklio tema</string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Naudokite geografinę vietą rodymui</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Rodyti nustatymus valdiklyje</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Rodyti grafiką vietine raiška (kai grafikas yra per mažas)</string>
+    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Rodyti etiketes valdiklyje</string>
+    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Atnaujinti vietą</string>
+    <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Valdiklio nustatymai</string>
+    <string name="preference_title_activity_general" tools:ignore="MissingTranslation">Bendrieji nustatymai</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Atnaujinimo laikotarpis vietai (0 vieta)</string>
+    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Orų atnaujinimo laikotarpis (vieta 1,2,3...)</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Būsenos juostos piktogramos stilius</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Vizualinis pranešimo stilius</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">Pasirinktinis su prognoze</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">Saulės piktograma</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">Užrakintame ekrane</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">Atnaujinus</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">Pranešimo buvimas</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Beaufortas</string>
+    <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Perjungti reikšmes</string>
+    <string name="label_activity_graphs" tools:ignore="MissingTranslation">Orų grafikai</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b>Pabudimo strategija</b> skirta įveikti klaidingas „Android Aurora“ paslaugųteikėjo diegimo klaidas. Pasirinkus <i>Be žadinimo</i>, buvimo vieta turėtų būti atnaujinta teisingai.
+\nJei ne, pabandykite <i>Pažadinti tik CPU</i>, kad nuskaitytumėte mobiliojo ir Wi-Fi tinklo būseną.
+\nPasirinkus <i>Pažadinti su ekranu</i>, vietos atnaujinimo metu kelioms sekundėms įjungiamas ekranas, kaip paskutinė išeitis.</string>
+    <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">Ką sakyti:</string>
+    <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">Vietai:</string>
+    <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">Įgalintas (-i) įrenginys (-iai):</string>
+    <string name="pref_title_tts_trigger_bt_devices" tools:ignore="MissingTranslation">Įrenginiui (-iams):</string>
+    <string name="pref_title_tts_say_forecast" tools:ignore="MissingTranslation">Pasakyti vienos dienos prognozę</string>
+    <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">Pasakyti vėją</string>
+    <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">Pasakyti temperatūrą</string>
+    <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">Pasakyti orų aprašymą</string>
+    <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">Pasakyti vietą</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Pasirinktiniai</string>
+    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Visi</string>
+    <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">laidinės ausinės</string>
+    <string name="update_period_24hours" tools:ignore="MissingTranslation">24 valandos</string>
+    <string name="update_period_12hours" tools:ignore="MissingTranslation">12 valandų</string>
+    <string name="update_period_6hours" tools:ignore="MissingTranslation">6 valandos</string>
+    <string name="update_period_3hours" tools:ignore="MissingTranslation">3 valandos</string>
+    <string name="update_period_1hour" tools:ignore="MissingTranslation">Kas valandą</string>
+    <string name="update_period_30min" tools:ignore="MissingTranslation">30 minučių</string>
+    <string name="update_period_15min" tools:ignore="MissingTranslation">15 minučių</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Reguliariai atnaujinant</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Kai reikia, įjungti GPS</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">Atnaujinti vietą be GPS</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">Atnaujinti vietą (rekomenduojama)</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">Neatnaujinti vietos</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">Vietos atnaujinimo nustatymas</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Libre programinės įrangos licencijos</string>
+    <string name="too_early_update_error" tools:ignore="MissingTranslation">Dar per anksti atnaujinti!</string>
+    <string name="toast_parse_error" tools:ignore="MissingTranslation">Įvyko klaida. Pabandykite vėliau.</string>
+    <string name="connection_not_found" tools:ignore="MissingTranslation">Patikrinkite interneto ryšį</string>
+    <string name="location_not_initialized" tools:ignore="MissingTranslation">Vieta neinicijuota. Pirmiausia spustelėkite vietos apskritimą.</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Uždaryti naršymo stalčių</string>
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Atidaryti naršymo stalčių</string>
+    <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Rodyti legendą grafike</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Kombinuoto grafiko duomenys</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Rodomi grafikai</string>
 </resources>
