@@ -248,13 +248,13 @@
 \nN — l\'emplacement et la météo ont été mis à jour par le réseau 
 \nB — l\'accès au service openweathermap.org a été banni, essayez de mettre à jour la météo plus tard 
 \nE — le jeton d\'accès au service openweathermap.org a expiré. Vous devez mettre à jour l\'application</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W — seule la météo a été mise à jour 
-\nL — seul l\'emplacement a été mis à jour 
-\nG — l\'emplacement et la météo ont été mis à jour par GPS 
-\nN — l\'emplacement et la météo ont été mis à jour par le réseau 
-\nNi — l\'emplacement et la météo ont été mis à jour par le réseau cellulaire, emplacement découvert par le service de Mozilla 
-\nB — l\'accès au service openweathermap.org a été banni, essayez de mettre à jour la météo plus tard
-\nE — le jeton d\'accès au service openweathermap.org a expiré. Vous devez mettre à jour l\'application pour avoir l\'accès noueau</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W — seule la météo a été mise à jour
+\nL — seul l’emplacement a été mis à jour
+\nG — l’emplacement et la météo ont été mis à jour par GPS
+\nN — l’emplacement et la météo ont été mis à jour par le réseau
+\nNi — l’emplacement et la météo ont été mis à jour par le réseau cellulaire, emplacement découvert par le service de Mozilla
+\nB — l’accès au service openweathermap.org a été banni, essayez de mettre à jour la météo plus tard
+\nE — le jeton d’accès au service openweathermap.org a expiré. Vous devez mettre à jour l’application pour regagner l’accès</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Lorsque la localisation est bloquée lorsque l\'appareil est en veille, vous pouvez essayer de le réveiller lorsqu\'il cherche un réseau cellulaire</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Stratégie de réveil</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">Ne pas réveiller</string>
@@ -582,7 +582,8 @@
     <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
     <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">À partir d\'Android 10, un accès précis à l\'emplacement est nécessaire pour obtenir des informations sur le réseau GSM/LTE connecté. Accordez également la permission de récupérer l\'emplacement en arrière-plan (si vous voulez votre emplacement tout le temps).</string>
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Modifications des autorisations d\'Android 10</string>
-    <string name="pref_language_pt" tools:ignore="MissingTranslation">Português (Portugal)</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">Português (Portugais)</string>
     <string name="pref_language_fa" tools:ignore="MissingTranslation">فارسی (Persan)</string>
     <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (Hindi)</string>
+    <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (Croate)</string>
 </resources>
