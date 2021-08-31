@@ -265,7 +265,7 @@
     <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (Hindi)</string>
     <string name="pref_language_he" tools:ignore="MissingTranslation">עברית (ebraică)</string>
     <string name="pref_language_sv" tools:ignore="MissingTranslation">Suedez (suedeză)</string>
-    <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili (Swahili)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili (Șvahili)</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (chineză)</string>
     <string name="pref_language_default" tools:ignore="MissingTranslation">Sistem implicit</string>
     <string name="pref_title_language" tools:ignore="MissingTranslation">Limbă</string>
@@ -277,7 +277,7 @@
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Setările unității</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Actualizați locația și vremea</string>
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Afișaj</string>
-    <string name="theme_transparent" tools:ignore="MissingTranslation">Transparent</string>
+    <string name="theme_transparent" tools:ignore="MissingTranslation">Transparentă</string>
     <string name="theme_light" tools:ignore="MissingTranslation">Lumină</string>
     <string name="theme_dark" tools:ignore="MissingTranslation">Întuneric</string>
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Widget temă</string>
@@ -538,7 +538,7 @@
     <string name="wind_speed_miles" tools:ignore="MissingTranslation">mph</string>
     <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
     <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
-    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">psi</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">Psi</string>
     <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mili bari</string>
     <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">țoli Hg</string>
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
