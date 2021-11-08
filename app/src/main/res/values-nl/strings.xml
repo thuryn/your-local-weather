@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" tools:ignore="MissingTranslation">Mijn weersverwachting</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Uw lokale weer</string>
     <string name="enter_city_hint">Geef stad</string>
     <string name="label_current_city">Huidige stad</string>
     <string name="label_choose_city">Kies stad</string>
@@ -465,4 +465,9 @@
     <string name="label_dew_point" tools:ignore="MissingTranslation">Dauwpunt</string>
     <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Widget detail-instellingen</string>
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamees (Vietnam)</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Android 10 toestemmingswijzigingen</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Deze app heeft stembegeleiding door middel van tekstvertalingen en spraakopdrachten met dank aan de vrijwilligers op https://hosted.weblate.org/projects/your-local-weather. De app-ontwikkelaar kan niet garanderen dat ze correct zijn - u accepteert dit door de app te gebruiken. Om het te gebruiken moet u TTS (Text-to-speech) geïnstalleerd hebben en stembegeleiding ingeschakeld hebben in de instellingen, waarin u uw eigen spraakcommando\'s kunt instellen. "</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Toegang tot de Mozilla locatiedienst is sinds 1.3.2020 verlopen. De app is gedwongen om het Andorid systeem te gebruiken voor het vinden van locatie coördinaten. Het adres wordt nog steeds opgelost door Nominatim. Houd hier rekening mee bij het gebruik van de app.</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Beperking van de Mozilla locatiedienst</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Tekst- en begeleidingsvertalingen</string>
 </resources>
