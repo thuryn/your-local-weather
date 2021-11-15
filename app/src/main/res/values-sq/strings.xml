@@ -364,7 +364,9 @@
     <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">Te ndarja <b>Të dhëna rreth fshehtinës</b> mund të shihni disa prej rreshtave me vlera të ruajtura në fshehtinë së fundi. Mund të shihni edhe numrin gjithsej të rreshtave.</string>
     <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Kur aktivizoni mundësisë <b>Shfaq etiketa në widget</b>, mund të shihni etiketa, në vend se ikona për vlera kushtesh moti.</string>
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Sfondin e widget-eve mund ta kontrolloni përmes <b>mundësisë Temë widget-i</b>.</string>
-    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">Mundësia <b>Strategji zgjimi</b> jepet për të zgjidhur sendërtim me të meta të shërbimit Android nga tregtues të ndryshëm. Kur përzgjidhni <i>Pa zgjim</i> dhe vendndodhja përditësohet si duhet, keni sendërtimin e saktë. Kur vendndodhja nuk përditësohet saktë, mund të provoni <i>Zgjo vetëm CPU-në</i>. Me këtë mundësi bëhet zgjimi i CPU-së dhe provohet të lexohet gjendja e rrjetit celular dhe wifi. Mundësia e fundit, <i>Zgjoje me shfaqje</i>, hap ekranin për disa sekonda gjatë përditësimit të vendndodhjes. Në disa telefona Android, kjo është e vetmja mundësi për të marrë të dhëna të sakta rreth rrjetesh celularë dhe wifi. Kjo sjell harxhimin e ca baterie - por ndikimi në jetëgjatësinë e baterisë do të duhej të ishte i vogël.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">Mundësia <b>Strategji zgjimi</b> jepet për të zgjidhur sendërtim me të meta të shërbimit Android Aurora nga tregtues të ndryshëm. Kur përzgjidhni <i>Pa zgjim</i>, vendndodhja do të duhej të përditësohet si duhet.
+\nNëse jo, provoni <i>Zgjo vetëm CPU-në</i>, për të lexuar gjendjen e rrjetit celular dhe atij Wi-Fi.
+\n<i>Zgjoje me shfaqje</i> hap ekranin për disa sekonda gjatë përditësimit të vendndodhjes, si shpresë e fundit.</string>
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Kur kryhet përditësim i vendndodhjesh dhe motit atë çast, mund të shihni gjendjen e përditësimit në krah përditësimit të kohës te widget-i. Se çfarë shfaqet, mund ta kontrolloni përmes mundësisë <b>Shfaq përmbledhje përditësimi</b>. Vijon shpjegimi i mundësive më të thelluara:</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Mundësi diagnostikimi</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Ka mundësi për aktivizim të regjistrimit në një kartelë të përfundimeve të diagnostikimit. Kjo mundësi është e dobishme kur ka ndonjë problem me aplikacionin.</string>
@@ -383,13 +385,13 @@
 \nR - përditësim i vendndodhjes nga rrjeti dhe i motit 
 \nD - është ndaluar hyrja te shërbimi Openweathermap.org, ju lutemi, provoni ta përditësoni motin më vonë 
 \nS - token-i i hyrjes në Openweathermap.org ka skaduar. Lypset të përmirësoni aplikacionin që të rifitoni hyrje</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">M - përditësim vetëm i motit 
-\nV - përditësim vetëm i vendndodhjes 
-\nG - përditësim i vendndodhjes nga GPS dhe i motit 
-\nR - përditësim i vendndodhjes nga rrjeti dhe i motit 
-\nNi - përditësim i vendndodhjes nga rrjeti celular dhe i motit, vendndodhje e pikasur nga shërbim Mozilla vendndodhjesh 
-\nD - është ndaluar hyrja te shërbimi Openweathermap.org, ju lutemi, provoni ta përditësoni motin më vonë 
-\nS - token-i i hyrjes në Openweathermap.org ka skaduar. Lypset të pëditësoni aplikacionin që të rifitoni hyrje</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">M - përditësim vetëm i motit
+\nV - përditësim vetëm i vendndodhjes
+\nG - përditësim i vendndodhjes nga GPS dhe i motit
+\nR - përditësim i vendndodhjes nga rrjeti dhe i motit
+\nNi - përditësim i vendndodhjes nga rrjeti celular dhe i motit, vendndodhje e pikasur nga shërbim Mozilla vendndodhjesh
+\nD - është ndaluar hyrja te shërbimi Openweathermap.org, ju lutemi, provoni ta përditësoni motin më vonë
+\nS - token-i i hyrjes në shërbimin Openweathermap.org ka skaduar. Që të rifitoni hyrje, instaloni një version të mëvonshëm të aplikacionit</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Kur venndodhja ngec gjatë dremitjesh të pajisjes, mund të provoni ta zgjoni kur është duke kërkuar për një rrjet celularësh</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Strategji Zgjimi</string>
     <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Pas sasisë së dhënë të kohës, vlerat e ruajtura në fshehtinë do të hiqen</string>
@@ -565,7 +567,8 @@
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Ndryshime lejesh në Android 10</string>
     <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
     <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
-    <string name="pref_language_pt" tools:ignore="MissingTranslation">Portugalisht (Portugali)</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">Português (Portugalisht)</string>
     <string name="pref_language_fa" tools:ignore="MissingTranslation">Persisht (Persisht)</string>
     <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (Hindi)</string>
+    <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (Kroatisht)</string>
 </resources>
