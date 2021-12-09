@@ -516,4 +516,24 @@
     <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">Lokalizacje:</string>
     <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Począwszy od Androida 10, aby uzyskać informacje o podłączonej sieci GSM/LTE, potrzebny jest precyzyjny dostęp do lokalizacji. Przyznaj uprawnienia do pobierania lokalizacji również w tle (jeśli chcesz mieć swoją lokalizację przez cały czas).</string>
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Zmiany uprawnień systemu Android 10</string>
+    <string name="pref_title_tts_lang_app_default" tools:ignore="MissingTranslation">Według ustawień regionalnych aplikacji</string>
+    <string name="pref_language_fa" tools:ignore="MissingTranslation">Perski (Persian)</string>
+    <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">Aktualna pogoda dla lokalizacji %s</string>
+    <string name="tts_say_current_weather" tools:ignore="MissingTranslation">Aktualna pogoda</string>
+    <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">Kiedy pogoda jest aktualizowana</string>
+    <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">Dobry wieczór</string>
+    <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Witam</string>
+    <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">Dzień dobry</string>
+    <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Klucz licencyjny</string>
+    <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">Ustawienia regionalne aplikacji:</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Własna</string>
+    <string name="tty_say_max_snow" tools:ignore="MissingTranslation">maksymalne opady śniegu %s milimetrów</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">Portugalski (portugalski)</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Co powiedzieć:</string>
+    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">Po podłączeniu urządzenia Bluetooth</string>
+    <string name="tty_say_temperature" tools:ignore="MissingTranslation">temperatura %s</string>
+    <string name="tty_say_max_rain" tools:ignore="MissingTranslation">maksymalne opady deszczu %s milimetrów</string>
+    <string name="tty_say_max_wind" tools:ignore="MissingTranslation">%3$s wiatr przy maksymalnym %1$s %2$s</string>
+    <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">przewodowy zestaw słuchawkowy</string>
+    <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s wiatr %1$s %2$s</string>
 </resources>
