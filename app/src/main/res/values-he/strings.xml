@@ -4,39 +4,39 @@
     <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
     <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
     <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
-    <string name="label_measured_temperature" tools:ignore="MissingTranslation">מידת-חום נמדדת: %s</string>
-    <string name="label_temperature" tools:ignore="MissingTranslation">מידת-חום</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">טמפרטורה נמדדת: %s</string>
+    <string name="label_temperature" tools:ignore="MissingTranslation">טמפרטורה</string>
     <string name="temperature_night_title" tools:ignore="MissingTranslation">לילה</string>
     <string name="temperature_evening_title" tools:ignore="MissingTranslation">ערב</string>
     <string name="temperature_day_title" tools:ignore="MissingTranslation">יום</string>
     <string name="temperature_morning_title" tools:ignore="MissingTranslation">בוקר</string>
     <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">מִדַת-חוֹם</string>
-    <string name="pref_title_temperature" tools:ignore="MissingTranslation">מִדַת-חוֹם</string>
+    <string name="pref_title_temperature" tools:ignore="MissingTranslation">טמפרטורה</string>
     <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">מִדַת-חוֹם</string>
-    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">מִדַת-חוֹם</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">טמפרטורה</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">הגדרות מיקום והרשאה</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">ביטול</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">להמשיך</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">מיטוב סוללה</string>
     <string name="label_current_city" tools:ignore="MissingTranslation">עיר נוכחית</string>
-    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">הצגת מידת-חום כ-</string>
-    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">מידת-חום מורגשת: %s</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">הצגת טמפרטורה כ-</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">טמפרטורה מורגשת: %s</string>
     <string name="tty_say_temp_min" tools:ignore="MissingTranslation">מידת-חום מזערית היא %1$s ב- %2$s</string>
     <string name="tty_say_temp_max" tools:ignore="MissingTranslation">מידת-חום מרבית היא %1$s ב-%2$s</string>
     <string name="tty_say_temperature" tools:ignore="MissingTranslation">מידת-חום %s</string>
     <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">תאמרו מידת-חום</string>
-    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">מידת-חום מורגשת</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">טמפרטורה מורגשת</string>
     <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">מִדַת-חוֹם</string>
     <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">מִדַת-חוֹם</string>
     <string name="share_weather_descritpion" tools:ignore="MissingTranslation">עיר: %1$s
-\nמידות-חום: %2$s
+\nטמפרטורה: %2$s
 \nתיאור: %3$s
 \nרוח: %4$s %5$s
 \nזריחה: %6$s
 \nשקיעה: %7$s</string>
     <string name="cancel" tools:ignore="MissingTranslation">ביטול</string>
     <string name="ok" tools:ignore="MissingTranslation">בסדר</string>
-    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">גשם/שלג</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">לחץ אטמוספרי</string>
     <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">כיוון רוח</string>
     <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">רוח</string>
     <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">תיאור</string>
@@ -54,35 +54,35 @@
     <string name="title_activity_locations" tools:ignore="MissingTranslation">מיקומים</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">עזרה</string>
     <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">תחזית יומית</string>
-    <string name="label_activity_main" tools:ignore="MissingTranslation">מזג-אויר נוכחי</string>
+    <string name="label_activity_main" tools:ignore="MissingTranslation">מזג-אוויר נוכחי</string>
     <string name="title_activity_search" tools:ignore="MissingTranslation">חיפוש מיקום</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">אפשרויות ניפוי תקלים</string>
-    <string name="help_page_4_title" tools:ignore="MissingTranslation">הגדרות ווידג\'יט</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">הגדרות ווידג\'ט</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">הגדרות כלליות</string>
-    <string name="help_page_2_title" tools:ignore="MissingTranslation">וויג\'יטים</string>
-    <string name="help_page_1_title" tools:ignore="MissingTranslation">יישומון ראשי</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">ווידג\'טים</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">יישום ראשי</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">כללי</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">מקור כתובת ומיקום</string>
-    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">אפשרויות מקור מיקום</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">אפשרות מקור מיקום</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">עדכון הגדרות מיקום</string>
-    <string name="initial_guide_finish" tools:ignore="MissingTranslation">הבא</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">סיום</string>
     <string name="initial_guide_close" tools:ignore="MissingTranslation">סגירה</string>
-    <string name="graph_pressure_label" tools:ignore="MissingTranslation">לחץ</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">לחץ אטמוספרי</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">שלג</string>
     <string name="graph_rain_label" tools:ignore="MissingTranslation">גשם</string>
     <string name="graph_wind_label" tools:ignore="MissingTranslation">רוח</string>
-    <string name="notification_channel_description" tools:ignore="MissingTranslation">התראות מזג-אויר מקומי</string>
-    <string name="notification_channel_name" tools:ignore="MissingTranslation">מזג-אויר מקומי</string>
-    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">יישומון תקשורת לא נמצא</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">התראות מזג-אוויר מקומי</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">מזג-אוויר מקומי</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">יישום תקשורת לא נמצא</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">שיתוף מזג-אויר</string>
-    <string name="location_not_found" tools:ignore="MissingTranslation">לא נימצא מיקום</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">לא נמצא מיקום</string>
     <string name="load_progress" tools:ignore="MissingTranslation">טעינה…</string>
     <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">הגדרות התקן</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">בקשת הרשאות</string>
     <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">ביטול</string>
     <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"ליישום זה קיימת הנחיה קולית בדרך של תרגומי מלל ופקודות קוליות באדיבות מתנדבים בכתובת https://hosted.weblate.org/projects/your-local-weather. Dev App לא ניתן להבטיח את אמינותם המלאה - על ידי שימוש ביישום אתם מקבלים עובדה זו. כדי להשתמש בייבום נדרש להתקין TTS (מלל לדיבור) ולהפעיל \'הדרכה\' בהגדרות, שם ניתן להגדיר פקודות קוליות משלכם. "</string>
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">שינויים בהרשאת אנדרואיד 10</string>
-    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">מגבלות שירותי מיקום מוזילה</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">מגבלות שירותי מיקום של מוזילה</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">תרגומי מלל והדרכה</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">בחירת עיר</string>
     <string name="app_name" tools:ignore="MissingTranslation">מזג האוויר המקומי שלכם</string>
@@ -116,7 +116,7 @@
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">קמ\"ש</string>
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">קשר</string>
     <string name="wind_speed_miles" tools:ignore="MissingTranslation">קמ\"ש</string>
-    <string name="wind_speed_meters" tools:ignore="MissingTranslation">מ/שנ׳</string>
+    <string name="wind_speed_meters" tools:ignore="MissingTranslation">מ\'/שנ׳</string>
     <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/yy)</string>
     <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
     <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/yy)</string>
@@ -133,20 +133,20 @@
     <string name="time_style_system" tools:ignore="MissingTranslation">מערכת</string>
     <string name="pref_title_time_style" tools:ignore="MissingTranslation">מבנה תאריך</string>
     <string name="inches_label" tools:ignore="MissingTranslation">אינץ\'</string>
-    <string name="millimetre_label" tools:ignore="MissingTranslation">ממ</string>
+    <string name="millimetre_label" tools:ignore="MissingTranslation">מ\"מ</string>
     <string name="nav_menu_help" tools:ignore="MissingTranslation">עזרה</string>
     <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">תרומה בביטקוין</string>
     <string name="nav_feedback" tools:ignore="MissingTranslation">משוב</string>
     <string name="nav_menu_settings" tools:ignore="MissingTranslation">הגדרות</string>
     <string name="nav_menu_graphs" tools:ignore="MissingTranslation">תרשימים</string>
     <string name="nav_menu_daily_forecast" tools:ignore="MissingTranslation">תחזית יומית</string>
-    <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">מזג אויר נוכחי</string>
+    <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">מזג אוויר נוכחי</string>
     <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">הצגת מקרא בתרשים</string>
     <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">רוח</string>
     <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">לחץ</string>
     <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">שלג (עמודות)</string>
     <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">שלג</string>
-    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">גשם(עמודות)</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">גשם (עמודות)</string>
     <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">גשם</string>
     <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">רוח</string>
     <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">לחות</string>
@@ -158,14 +158,101 @@
     <string name="preference_title_activity_general" tools:ignore="MissingTranslation">הגדרות כלליות</string>
     <string name="pref_title_vibrate" tools:ignore="MissingTranslation">רטט</string>
     <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">קלסי</string>
-    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">הגדרות עדכון מקום</string>
-    <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">רענון מרוח</string>
-    <string name="preference_hide_desc" tools:ignore="MissingTranslation">הסתרת תיאור מזג־אויר</string>
-    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (מרוח 3 שעות)</string>
-    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (מרוח 3 שעות)</string>
-    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (מרוח 3 שעות)</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">הגדרות עדכון מיקום</string>
+    <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">רענון מרווח</string>
+    <string name="preference_hide_desc" tools:ignore="MissingTranslation">הסתרת תיאור מזג אוויר</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (מרווח 3 שעות)</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (מרווח 3 שעות)</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (מרווח 3 שעות)</string>
     <string name="pref_title_notification" tools:ignore="MissingTranslation">אפשור התרעות</string>
-    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">הגדרת התרעות</string>
-    <string name="pref_title_pressure" tools:ignore="MissingTranslation">לחץ־ברומטרי</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">הגדרות התרעות</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">לחץ אטמוספירי</string>
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">גשם ושלג</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">ערך נמדד בלבד</string>
+    <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">היום</string>
+    <string name="tty_say_weather_forecast_tomorrow" tools:ignore="MissingTranslation">מחר</string>
+    <string name="tty_say_weather_forecast_afternoon" tools:ignore="MissingTranslation">אחר-הצהריים</string>
+    <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">ערב</string>
+    <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">לעתים נדירות</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">גם וגם, עדיפות לערך נמדד</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">סמלים מבוססי פונט</string>
+    <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">רשיון</string>
+    <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">קוד מקור</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">זריחה</string>
+    <string name="rain_label" tools:ignore="MissingTranslation">גשם: %1$s %2$s</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">גם וגם, עדיפות לערך מורגש</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">ערך נראה בלבד</string>
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="widget_refresh_button" tools:ignore="MissingTranslation">כפתור רענון ווידג\'ט</string>
+    <string name="weather_forecast_features_free" tools:ignore="MissingTranslation">חינם/תכונות מוגבלות</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">טורנדו</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">שמיים בהירים</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">מעט עננים</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">עננים מפוזרים‮</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">החל מאנדרואיד 10, גישה מכוונת למיקום נדרשת על מנת לקבל מידע על רשת ה-GSM/LTE המחוברת.
+\nהעניקו הרשאה ל מיקום גם ברקע (אם אתם רוצים את מיקומכם כל הזמן).</string>
+    <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">קילו-פסקל</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">לא לעדכן מיקום</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">הפעילו GPS בעת הצורך</string>
+    <string name="label_humidity" tools:ignore="MissingTranslation">לחות</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">עדכון אחרון: %s</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">זריחה: %s</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">שקיעה: %s</string>
+    <string name="about_version_pref_title" tools:ignore="MissingTranslation">גרסה</string>
+    <string name="pressure_label" tools:ignore="MissingTranslation">לחץ אטמוספירי: %1$s %2$s</string>
+    <string name="label_cloudiness" tools:ignore="MissingTranslation">עֲנְנוּת</string>
+    <string name="cloudiness_label" tools:ignore="MissingTranslation">עננות: %1$s%2$s</string>
+    <string name="snow_label" tools:ignore="MissingTranslation">שלג: %1$s %2$s</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">פג תוקף הגישה. אנא שדרגו את היישום, בבקשה.</string>
+    <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">בתשלום/תכונות מורחבות</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">מיליבר</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">אסטרטגיית התעוררות</string>
+    <string name="pressure_measurement" tools:ignore="MissingTranslation">הקטו-פסקל</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">החל מ-1.3.2020 פג תוקף הגישה לשירות המיקום של מוזילה. היישום מוכרח להשתמש במערכת אנדרואיד לגילוי קואורדינטות מיקום. הבעיה עדיין נפתרת על ידי Nominatim. אנא קחו זאת בחשבון בעת שימושכם ביישום.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">היישום זקוק להרשאה על מנת לעדכן מיקום בעזרת GPS.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">היישום זקוק להרשאה על מנת לעדכן מיקום בעזרת רשתות Wi-Fi ו-GSM.</string>
+    <string name="label_rain" tools:ignore="MissingTranslation">גשם</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">היישום יבקש ממכם לכבות מיטוב סוללה על מנת לעדכן מיקום, מזג אוויר או לעקוב אחרי מיקום על ידי מד תאוצה ברקע.</string>
+    <string name="humidity_label" tools:ignore="MissingTranslation">לחות: %1$s%2$s</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">נדרשת הרשאה לקרוא מידע מההתקן על מנת לעדכן מיקום בעזרת רשתות Wi-Fi ו-GSM. זה נותן מידע לגבי אילו תחנות בסיס שאליהן ההתקן מחובר.</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">הרשאות עדיין לא הוענקו - לחצו על סמל המיקום ביישום</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">שקיעה</string>
+    <string name="label_snow" tools:ignore="MissingTranslation">שלג</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">לחץ אטמוספירי</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">אפר געשי</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">היישום מוגדר לעדכן מיקום. גישה אליו נדרשת. לכו להגדרות ההתקן והפעילו את המיקום, או כבו את עדכוני מיקום היישום.</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">משולב</string>
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">פתיחת מגירת ניווט</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">אינץ\' כספית</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">סגירת מגירת ניווט</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">עדכון מיקום (מומלץ)</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">נתונים לתרשים משולב</string>
+    <string name="toast_parse_error" tools:ignore="MissingTranslation">אירעה שגיאה. נסו מאוחר יותר.</string>
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">מ\"מ כספית</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">psi</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">מפתח ה-OpenWeatherMapApiKey שלכם אינו רשום.</string>
+    <string name="location_not_initialized" tools:ignore="MissingTranslation">מיקום אינו מאותחל. לחצו על מעגל המיקום תחילה.</string>
+    <string name="connection_not_found" tools:ignore="MissingTranslation">בדקו את חיבור האינטרנט שלכם</string>
+    <string name="too_early_update_error" tools:ignore="MissingTranslation">עדכון מוקדם מדי!</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">עדכון מיקום ללא GPS</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">כפתור הגדרות תרשים ווידג\'ט</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">אבק</string>
+    <string name="tty_say_weather_forecast_night" tools:ignore="MissingTranslation">בלילה</string>
+    <string name="tty_say_weather_forecast_morning" tools:ignore="MissingTranslation">בוקר</string>
+    <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">סמל מזג אוויר נוכחי</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">חול</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">סופות</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">אינכם רשאים להחזיק ביותר מ-%1$d מיקומים כרגע.</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">מדריך תצורה התחלתית</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">מזל טוב</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">בזאת מסתיים המדריך. אפשר למצוא הגדרות אחרות בתפריט ההגדרות (למשל שפות, יחידות, וכו\'). המסך הבא יסביר את ההרשאות הנדרשות ויתן את האפשרות לבקש אותן.
+\n
+\nתיהנו מהיישום.</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">המסך השלישי מכיל תחזיות מזג אוויר מוצגות על ידי תרשימים.</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">לאפשרויות אלו יש השפעה על היישום כולו.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"> <b>החביאו תיאור מזג אוויר</b> -התיאור של מזג האוויר הנוכחי מוסתר. באפשרותכם לראות את מזג האוויר הנוכחי בלבד בלחיצה על הסמל.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> <b>טמפרטורה</b> - באפשרותכם•ן לבחור יחידת מידה עבור טמפרטורה, <b>רוח</b> - באפשרותכם•ן לבחור את יחידת המידה עבור מהירות הרוח ו<b>לחץ אטמוספרי</b> - באפשרותכם•ן לבחור את יחידת המידה עבור לחץ אטמוספרי. הערכים מחושבים מחדש באמצעות אפשרויות אלה.</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"> <b>מקור מיקום וכתובת</b>
+\nבאפשרותכם לבחור מאיפה היישום מקבלת את המיקום והכתובת.</string>
 </resources>
