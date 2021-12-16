@@ -268,4 +268,7 @@
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Översättningar av text och vägledning</string>
     <string name="label_dew_point" tools:ignore="MissingTranslation">Daggpunkt</string>
     <string name="dew_point_label" tools:ignore="MissingTranslation">Daggpunkt: %s</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Åtkomsten till Mozilla\'s platstjänst slutade gälla den 1/3 2020. Appen är tvungen att använda Android-systemet upptäckter av plats-koordinater. Adressen är fortfarande löst av Nominatim. Vänligen överväg detta när appen används.</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Begränsning för Mozilla\'s lokaliseringstjänst</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Åtkomstförändringar för Android 10</string>
 </resources>
