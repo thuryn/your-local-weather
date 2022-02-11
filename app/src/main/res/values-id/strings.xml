@@ -287,4 +287,76 @@
 \n
 \nNikmati aplikasinya.</string>
     <string name="weather_condition_description_803" tools:ignore="MissingTranslation">awan pecah</string>
+    <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (Kroasia)</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">Portugis (Portugis)</string>
+    <string name="pref_language_fa" tools:ignore="MissingTranslation">Persia (Persia)</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">hujan dan gerimis</string>
+    <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (Jepang)</string>
+    <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (Polandia)</string>
+    <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (Turki)</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">tidak pernah</string>
+    <string name="pref_language_id" tools:ignore="MissingTranslation">Indonesia (Indonesia)</string>
+    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Semua</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Salam</string>
+    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengali (Bangladesh)</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnam</string>
+    <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhis</string>
+    <string name="pref_language_bg" tools:ignore="MissingTranslation">Bulgaria</string>
+    <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Cina (tradisional)</string>
+    <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (Rusia)</string>
+    <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (Serbia)</string>
+    <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (Slovenia)</string>
+    <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (Italia)</string>
+    <string name="pref_language_de" tools:ignore="MissingTranslation">Deutsch (Jerman)</string>
+    <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego (Galicia)</string>
+    <string name="pref_language_fr" tools:ignore="MissingTranslation">Français (Prancis)</string>
+    <string name="pref_language_da" tools:ignore="MissingTranslation">Dansk (Denmark)</string>
+    <string name="pref_language_en" tools:ignore="MissingTranslation">Inggris</string>
+    <string name="pref_language_fi" tools:ignore="MissingTranslation">Suomi (Finlandia)</string>
+    <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (Catalan)</string>
+    <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (Ceko)</string>
+    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (Belarusia, aksara latin)</string>
+    <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (Basque)</string>
+    <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (Belarusia)</string>
+    <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (Albania)</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">awan tersebar</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">pasir, pusaran debu</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">kabut</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">kabut</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">asap</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">badai guntur</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portugis (Brasil) (Portugis (Brasil))</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Roman (Rumania)</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portugis (Portugal) (Portugis (Portugal))</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Українська (Ukraina)</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">Tambah</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">Nonaktif</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">Ditemukan secara otomatis</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">Nonaktif</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">Aktifkan</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">Hapus</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">العَرَبِيَّة (Bahasa Arab)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Spanyol (Spanyol)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Ελληνικά (Yunani)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Magyar (Hongaria)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Belanda (Belanda)</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Lokasi yang ditemukan di cache</string>
+    <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Lokasi yang ditemukan tidak di-cache</string>
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Lokasi cache</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">setahun</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">enam bulan</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">satu minggu</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">sebulan</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">tiga bulan</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">satu hari</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 jam</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">Nilai baru saja diperbarui</string>
+    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Nilai yang diperbarui dengan sumber lokasi</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Tidak ada</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">Ringkasan Pembaruan Tampilan</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">Sistem</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">Tema</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">Sistem untuk mendapatkan lokasi, Nominatim untuk mendapatkan alamat (disarankan)</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">Lokasi dan Sumber Alamat</string>
 </resources>
