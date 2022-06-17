@@ -397,7 +397,7 @@
     <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
     <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
     <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
-    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Кнопка настроек виджета графика</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Кнопка настройки виджета графика</string>
     <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Кнопка настроек виджета местоположения</string>
     <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Кнопка настроек действий виджета</string>
     <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Показать день как аббревиатуру</string>
