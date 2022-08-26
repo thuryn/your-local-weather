@@ -1,2 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="label_current_city" tools:ignore="MissingTranslation">현재 도시</string>
+    <string name="label_choose_city" tools:ignore="MissingTranslation">도시 선택</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"이 앱에는 https://hosted.weblate.org/projects/your-local-weather에서 자원 봉사자가 제공하는 텍스트 번역 및 음성 명령을 통한 음성 안내가 있습니다. 앱 개발자는 정확성을 보장할 수 없습니다. 앱을 사용하여 이를 수락합니다. 그것을 사용하려면 TTS(텍스트 음성 변환)가 설치되어 있고 설정에서 안내가 켜져 있어야 합니다. 여기에서 자신의 음성 명령을 설정할 수 있습니다. "</string>
+    <string name="app_name" tools:ignore="MissingTranslation">현지 날씨</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">텍스트 및 안내 번역</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">모질라 위치 서비스 제한</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">모질라 위치 서비스에 대한 접속은 2020년 1월 3일자로 만료되었습니다. 앱은 위치 좌표 검색을 위해 안드로이드 시스템을 사용해야 합니다. 주소는 여전히 Nominatim에서 해결합니다. 앱을 사용할 때 이것을 고려하십시오.</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">안드로이드 10 권한 변경</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">배터리 최적화</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">앱은 백그라운드에서 가속도계로 위치, 날씨 또는 추적 위치를 업데이트하기 위해 배터리 최적화를 끄도록 요청합니다.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">진행</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">취소</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">위치 및 권한 설정</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">앱이 위치를 업데이트하도록 설정되었습니다. 그것에 대한 접속이 필요합니다. 장치 설정으로 이동하여 위치를 켜거나 앱 위치 업데이트를 끕니다.</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">앱이 GPS를 사용하여 위치를 업데이트하려면 권한이 필요합니다.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">앱은 Wi-Fi 및 GSM 네트워크로 위치를 업데이트할 수 있는 권한이 필요합니다.</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">취소</string>
+    <string name="load_progress" tools:ignore="MissingTranslation">불러오기 중…</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">위치를 찾을 수 없음</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">권한이 아직 부여되지 않았음 - 앱에서 위치 기호를 클릭</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">접속이 만료되었습니다. 앱을 업그레이드하세요.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">OpenweathermapApiKey가 등록되지 않았습니다.</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">날씨 공유</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">통신 앱을 찾을 수 없음</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">도시: %1$s
+\n온도: %2$s
+\n설명: %3$s
+\n바람: %4$s %5$s
+\n일출: %6$s
+\n일몰: %7$s</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">현지 날씨</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">지역 날씨 알림</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">온도</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">바람</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">비</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">눈</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">압력</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">현재 %1$d개 이상의 위치를 가질 수 없습니다.</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">닫기</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">필요에 따라 앱을 조정하고 다음 업데이트 전략을 선택할 수 있습니다.
+\n위치 변경 시 업데이트 기본값에서 전환 <i>위치 업데이트 안 함</i>을 선택할 수 있습니다.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">위치 설정 업데이트</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">위치 및 주소 출처</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">기상 전략 옵션</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">일부 전화기는 디스플레이가 켜져 있지 않으면 연결된 셀을 올바르게 보고하지 않습니다. 기본 옵션(디스플레이가 켜진 상태)은 전화기가 몇 초 동안 디스플레이를 켜는 단점이 있습니다. 이것은 배터리 수명에 약간의 영향을 미칩니다. 전원을 켜고 전원을 끄고 위치가 계속 업데이트되는지 확인하세요.</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">기상 전략</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">캐시 확인된 주소 옵션</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">캐시 해결 주소</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">축하합니다</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">일반</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">메인 앱</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">기본 앱에는 현재 날씨에 대한 개요가 포함되어 있습니다. 앱 패널의 새로고침 버튼을 사용하거나 아래로 밀어 날씨를 업데이트할 수 있습니다. 날씨 새로 고침 버튼 옆에 업데이트 위치 버튼이 있습니다. 이 버튼은 위치 0이 활성화된 경우에만 사용할 수 있습니다 (위치 0은 위치의 자동 업데이트를 위한 것입니다).</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">다음 화면에서 일기예보를 찾거나 (메뉴에서 다음 화면을 선택하거나 왼쪽에서 오른쪽으로 스와이프)할 수 있습니다. 일기 예보는 업데이트 버튼을 사용하거나 화면에 들어갈 때 업데이트됩니다 (하지만 시간당 한 번 이상 업데이트할 수 없음).</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">세 번째 화면은 그래프로 표시되는 일기 예보를 포함합니다.</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">위젯</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">안드로이드 10부터 연결된 GSM/LTE 네트워크에 대한 정보를 얻으려면 위치에 대한 세분화된 액세스가 필요합니다. (항상 위치를 원하는 경우) 백그라운드에서도 위치를 가져올 수 있는 권한을 부여합니다.</string>
+    <string name="enter_city_hint" tools:ignore="MissingTranslation">도시 입력</string>
+    <string name="progressDialog_gps_locate" tools:ignore="MissingTranslation">현재 위치 찾기</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Wi-Fi 및 GSM 네트워크를 사용하여 위치를 업데이트하려면 장치에서 정보를 읽을 수 있는 권한이 필요합니다. 이것은 장치가 연결된 GSM 기지국에 대한 정보를 가져옵니다.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">장치 설정</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">권한 요청</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">다음</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">이전</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">완료</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">초기 구성 가이드</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">위치 소스 옵션</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">위치 방법을 선택할 수 있음 - <i>시스템은</i> 구글 서비스를 사용하여 네트워크(셀 및 Wi-Fi 네트워크)별로 위치를 가져옵니다. 현지<i>MLS 및 Nominatim</i> 옵션은 모질라 위치 서비스를 사용하여 위치 좌표를 가져오고 Nominatim 서비스를 사용하여 위치 이름을 가져옵니다. 두 번째 옵션은 셀룰러 네트워크에 대한 정보를 가져오기 위해 전화 통화 권한이 필요합니다. 기본 옵션이 미리 선택되어 있습니다.</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">찾은 위치를 캐싱하여 데이터 사용량을 줄일 수 있습니다. 그런 다음 위치가 앱에 저장됩니다. 네트워크의 다른 위치에 전송되거나 저장되지 않습니다.</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">이것으로 가이드를 마칩니다. 설정 메뉴에서 다른 설정을 찾을 수 있습니다 (예: 언어, 단위 등).
+\n다음 화면은 요청된 권한을 설명하고 권한을 요청할 수 있는 옵션을 제공합니다.
+\n
+\n앱을 즐기세요.</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">앱은 셀룰러 네트워크(BTS), Wi-Fi를 사용하여 위치를 확인하고 실패할 경우 위치를 확인합니다. GPS는 지역 날씨를 표시하고 모질라 위치 서비스에서 좌표를 가져옵니다. 응용 프로그램에는 최소한 하나의 GSM 네트워크 기지국 또는 두 개의 연결 가능한 Wi-Fi 네트워크 또는 GSM과 Wi-Fi 네트워크의 조합이 필요합니다. 스마트폰이나 태블릿의 위젯을 사용하여 메인 화면에서 내 위치와 현재 날씨를 볼 수 있습니다. 위치 업데이트는 주기적(예: 매시간)이거나 앱이 가속도계를 사용하여 값보다 더 먼 거리의 움직임을 감지할 수 있습니다. 주머니에 넣고 다니면 거리가 더 빨라집니다. 위치 업데이트를 끌 수 있습니다. 그러면 날씨만 업데이트됩니다. 앱은 지정된 간격으로 위치와 날씨를 업데이트합니다. 예를 들어 업데이트 기간을 1시간으로 설정할 수 있습니다. 날씨는 위치가 표시된 직후 또는 화면이 켜진 직후 업데이트되지만 15분에 한 번(그리고 지난 15분 동안 날씨가 업데이트되지 않은 경우)보다 자주 업데이트되지는 않습니다. 이 정보는 모질라 위치 서비스에서 위치 좌표를 얻는 데 사용됩니다. 앱은 셀 네트워크 및 Wi-Fi 네트워크에서 위치를 사용할 수 없는 경우 GPS 사용을 시도합니다. 위치 좌표는 Nominatim 서비스에서 주소를 얻는 데 사용됩니다. 주소는 앱 또는 위젯에서 사용됩니다. 앱은 현재 날씨를 얻기 위해 OpenWeatherMap.org 서비스를 사용합니다.</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">위치 업데이트 버튼 옆에는 위치 관리 버튼(돋보기 아이콘)이 있습니다. 앱과 위젯에서 사용 가능한 위치를 관리할 수 있습니다. 기본적으로 하나의 위치(위치 0)를 사용할 수 있습니다. 이는 자동 위치 업데이트를 위한 것입니다. 이 위치를 왼쪽으로 밀면 활성화/비활성화 버튼을 찾을 수 있습니다. 위치를 수동으로 추가할 수도 있습니다. + 버튼을 클릭하면 지도에서 위치를 선택할 수 있습니다. 위치를 왼쪽으로 밀면 접속할 수 있는 삭제 버튼을 사용하여 위치를 삭제할 수도 있습니다.</string>
+</resources>
