@@ -332,8 +332,13 @@ public class UpdateWeatherService extends AbstractCommonService {
             }
             requestUri = "forecast";
         } else if (isLongWeatherForecast(updateType)) {
-            serviceURL = Constants.SERVICE_WEATHER_FORECAST_ENDPOINT_DAILY;
-            requestUri = "forecast/daily";
+            if (freeWeather) {
+                serviceURL = Constants.WEATHER_FORECAST_ENDPOINT;
+                requestUri = "forecast";
+            } else {
+                serviceURL = Constants.SERVICE_WEATHER_FORECAST_ENDPOINT_DAILY;
+                requestUri = "forecast/daily";
+            }
         } else {
             appendLog(getBaseContext(), TAG, "serviceURL is null !!!");
             gettingWeatherStarted = false;
@@ -573,6 +578,7 @@ public class UpdateWeatherService extends AbstractCommonService {
                     AppWakeUpManager.SOURCE_WEATHER_FORECAST
             );
         }
+        NotificationUtils.cancelNotification(getBaseContext(), 1);
 
         gettingWeatherStarted = false;
         WeatherRequestDataHolder updateRequest = updateWeatherUpdateMessages.poll();
@@ -706,7 +712,7 @@ public class UpdateWeatherService extends AbstractCommonService {
             PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
                     0,
                     new Intent(getBaseContext(), UpdateWeatherService.class),
-                    PendingIntent.FLAG_CANCEL_CURRENT);
+                    PendingIntent.FLAG_IMMUTABLE);
             alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + (1000 * seconds), pendingIntent);
         }
@@ -721,7 +727,8 @@ public class UpdateWeatherService extends AbstractCommonService {
     }
 
     private boolean isLongWeatherForecast(int updateType) {
-        return (START_LONG_WEATHER_FORECAST_UPDATE == updateType) || (START_LONG_WEATHER_FORECAST_RETRY == updateType);
+        return false;
+        //return (START_LONG_WEATHER_FORECAST_UPDATE == updateType) || (START_LONG_WEATHER_FORECAST_RETRY == updateType);
     }
 
     private void weatherNotification(Long locationId, String updateSource) {
@@ -730,6 +737,7 @@ public class UpdateWeatherService extends AbstractCommonService {
                 AppWakeUpManager.FALL_DOWN,
                 AppWakeUpManager.SOURCE_NOTIFICATION
         );
+        NotificationUtils.cancelNotification(getBaseContext(), 1);
         if ((locationForNotification == null) || (locationForNotification.getId() != locationId)) {
           return;
         }
@@ -817,8 +825,10 @@ public class UpdateWeatherService extends AbstractCommonService {
         public void handleMessage(Message msg) {
             WeatherRequestDataHolder weatherRequestDataHolder = (WeatherRequestDataHolder) msg.obj;
             appendLog(getBaseContext(), TAG, "handleMessage:", msg.what, ":", weatherRequestDataHolder);
-            if (weatherRequestDataHolder == null) {
+            if ((weatherRequestDataHolder == null) && (updateWeatherUpdateMessages.isEmpty())) {
                 return;
+            } else if (weatherRequestDataHolder == null) {
+                weatherRequestDataHolder = updateWeatherUpdateMessages.poll();
             }
             appendLog(getBaseContext(),
                     TAG,

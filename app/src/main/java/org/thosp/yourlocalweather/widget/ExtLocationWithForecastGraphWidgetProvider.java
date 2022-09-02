@@ -35,19 +35,8 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
     protected void preLoadWeather(Context context, RemoteViews remoteViews, int appWidgetId) {
         appendLog(context, TAG, "preLoadWeather:start");
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
-        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
-        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
 
-        Long locationId = widgetSettingsDbHelper.getParamLong(appWidgetId, "locationId");
-
-        if (locationId == null) {
-            currentLocation = locationsDbHelper.getLocationByOrderId(0);
-            if ((currentLocation != null) && !currentLocation.isEnabled()) {
-                currentLocation = locationsDbHelper.getLocationByOrderId(1);
-            }
-        } else {
-            currentLocation = locationsDbHelper.getLocationById(locationId);
-        }
+        updateCurrentLocation(context, appWidgetId);
 
         if (currentLocation == null) {
             return;
@@ -156,6 +145,7 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
             appendLog(context, TAG, "preLoadWeather:error updating weather forecast", e);
         }
         String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, weatherForecastRecord, currentLocation);
+        appendLog(context, TAG, "preLoadWeather:lastUpdate:", lastUpdate);
         remoteViews.setTextViewText(R.id.widget_ext_loc_forecast_graph_3x3_widget_last_update, lastUpdate);
         appendLog(context, TAG, "preLoadWeather:end");
     }
@@ -206,6 +196,7 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
     @Override
     protected void sendWeatherUpdate(Context context, int widgetId) {
         super.sendWeatherUpdate(context, widgetId);
+        updateCurrentLocation(context, widgetId);
         if (currentLocation == null) {
             appendLog(context,
                     TAG,

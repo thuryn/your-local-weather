@@ -22,6 +22,8 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
 
     <application
         android:allowBackup="true"
@@ -34,7 +36,8 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTask">
+            android:launchMode="singleTask"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
@@ -51,7 +54,8 @@
         <activity
             android:name=".SearchActivity"
             android:label="@string/title_activity_search"
-            android:parentActivityName=".LocationsActivity">
+            android:parentActivityName=".LocationsActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="org.thosp.yourlocalweather.action.ADDRESS_RESOLUTION_RESULT" />
             </intent-filter>
@@ -134,13 +138,15 @@
             >
         </activity>
 
-        <receiver android:name=".receiver.StartupReceiver">
+        <receiver android:name=".receiver.StartupReceiver"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
                 <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
             </intent-filter>
         </receiver>
-        <receiver android:name=".widget.LessWidgetProvider">
+        <receiver android:name=".widget.LessWidgetProvider"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 <action android:name="android.intent.action.LOCALE_CHANGED"/>
@@ -156,7 +162,8 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_less"/>
         </receiver>
-        <receiver android:name=".widget.MoreWidgetProvider">
+        <receiver android:name=".widget.MoreWidgetProvider"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 <action android:name="android.intent.action.LOCALE_CHANGED"/>
@@ -172,7 +179,8 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_more"/>
         </receiver>
-        <receiver android:name=".widget.ExtLocationWidgetProvider">
+        <receiver android:name=".widget.ExtLocationWidgetProvider"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 <action android:name="android.intent.action.LOCALE_CHANGED"/>
@@ -188,7 +196,8 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_ext_loc"/>
         </receiver>
-        <receiver android:name=".widget.ExtLocationWithForecastWidgetProvider">
+        <receiver android:name=".widget.ExtLocationWithForecastWidgetProvider"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 <action android:name="android.intent.action.LOCALE_CHANGED"/>
@@ -204,7 +213,8 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_ext_loc_forecast"/>
         </receiver>
-        <receiver android:name=".widget.WeatherForecastWidgetProvider">
+        <receiver android:name=".widget.WeatherForecastWidgetProvider"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 <action android:name="android.intent.action.LOCALE_CHANGED"/>
@@ -220,7 +230,8 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_weather_forecast"/>
         </receiver>
-        <receiver android:name=".widget.ExtLocationWithGraphWidgetProvider">
+        <receiver android:name=".widget.ExtLocationWithGraphWidgetProvider"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 <action android:name="android.intent.action.LOCALE_CHANGED"/>
@@ -237,7 +248,8 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_ext_loc_graph"/>
         </receiver>
-        <receiver android:name=".widget.WeatherGraphWidgetProvider">
+        <receiver android:name=".widget.WeatherGraphWidgetProvider"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 <action android:name="android.intent.action.LOCALE_CHANGED"/>
@@ -254,7 +266,8 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_weather_graph"/>
         </receiver>
-        <receiver android:name=".widget.ExtLocationWithForecastGraphWidgetProvider">
+        <receiver android:name=".widget.ExtLocationWithForecastGraphWidgetProvider"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 <action android:name="android.intent.action.LOCALE_CHANGED"/>
@@ -271,7 +284,8 @@
                 android:resource="@xml/widget_provider_ext_loc_forecast_graph"/>
         </receiver>
 
-        <receiver android:name=".service.BluetoothEventsReceiver">
+        <receiver android:name=".service.BluetoothEventsReceiver"
+            android:exported="true">
             <intent-filter>
 		        <action android:name="android.bluetooth.device.action.ACL_CONNECTED" />
                 <action android:name="android.bluetooth.device.action.ACL_DISCONNECTED" />
@@ -302,7 +316,8 @@
         <service
             android:name=".service.ReconciliationDbService" />
         <service
-            android:name=".service.NotificationService" >
+            android:name=".service.NotificationService"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.START_WEATHER_NOTIFICATION_UPDATE" />
             </intent-filter>
@@ -312,12 +327,14 @@
         <service
             android:name=".service.UpdateWeatherService" />
         <service
-            android:name=".service.WeatherByVoiceService" >
+            android:name=".service.WeatherByVoiceService"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SAY_WEATHER" />
             </intent-filter>
         </service>
-        <service android:name=".service.AppAlarmService" >
+        <service android:name=".service.AppAlarmService"
+            android:exported="true">
             <intent-filter>
                 <action android:name="org.thosp.yourlocalweather.action.START_ALARM_SERVICE" />
                 <action android:name="org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM_AUTO" />
@@ -337,21 +354,24 @@
             </intent-filter>
         </service>
         <service
-            android:name=".service.ScreenOnOffUpdateService" >
+            android:name=".service.ScreenOnOffUpdateService"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.START_SCREEN_BASED_UPDATES" />
                 <action android:name="android.intent.action.STOP_SCREEN_BASED_UPDATES" />
             </intent-filter>
         </service>
         <service
-            android:name=".service.LocationUpdateService" >
+            android:name=".service.LocationUpdateService"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.START_LOCATION_AND_WEATHER_UPDATE" />
             </intent-filter>
         </service>
         <service
             android:name="org.thosp.yourlocalweather.service.NetworkLocationProvider"
-            android:permission="android.permission.ACCESS_COARSE_LOCATION" >
+            android:permission="android.permission.ACCESS_COARSE_LOCATION"
+            android:exported="true">
             <intent-filter>
                 <action android:name="org.openbmap.unifiedNlp.LOCATION_UPDATE_CELLS_ONLY" />
             </intent-filter>

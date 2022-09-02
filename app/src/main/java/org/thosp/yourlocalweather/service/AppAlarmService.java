@@ -242,7 +242,7 @@ public class AppAlarmService extends AbstractCommonService {
         Intent sendIntent = new Intent("android.intent.action.START_WEATHER_NOTIFICATION_UPDATE");
         sendIntent.setPackage("org.thosp.yourlocalweather");
         PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(), 0, sendIntent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE);
         return pendingIntent;
     }
 
@@ -286,7 +286,7 @@ public class AppAlarmService extends AbstractCommonService {
         return PendingIntent.getService(context,
                 0,
                 sendIntent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE);
     }
 
     private void sendScreenStartIntent() {
@@ -304,7 +304,7 @@ public class AppAlarmService extends AbstractCommonService {
         return PendingIntent.getService(context,
                 0,
                 sendIntent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE);
     }
 
     private void sendSensorAndScreenStopIntent() {
@@ -335,14 +335,14 @@ public class AppAlarmService extends AbstractCommonService {
         return PendingIntent.getService(context,
                 0,
                 intent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE);
     }
 
     private void startBackgroundService(Intent intent) {
         PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(),
                 1,
                 intent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE);
         AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
         alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                 SystemClock.elapsedRealtime()+10,
@@ -355,7 +355,7 @@ public class AppAlarmService extends AbstractCommonService {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
                                                                  0,
                                                                  intent,
-                                                                 PendingIntent.FLAG_NO_CREATE);
+                                                                 PendingIntent.FLAG_IMMUTABLE);
         return pendingIntent == null;
     }
 

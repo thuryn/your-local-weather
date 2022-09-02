@@ -120,14 +120,14 @@ public class GraphsActivity extends ForecastingActivity {
         pressureLabel.setText(getString(R.string.label_pressure) + ", " + AppPreference.getPressureUnit(this));
         visibleGraphs = AppPreference.getGraphsActivityVisibleGraphs(this);
         combinedGraphValues = AppPreference.getCombinedGraphValues(this);
-        forecastType = (Switch) findViewById(R.id.forecast_forecastType);
+        //forecastType = (Switch) findViewById(R.id.forecast_forecastType);
 
-        forecastType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        /*forecastType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 AppPreference.setForecastType(getBaseContext(), isChecked ? 2 : 1);
                 updateUI();
             }
-        });
+        });*/
         updateUI();
         NestedScrollView mRecyclerView = (NestedScrollView) findViewById(R.id.graph_scroll_view);
         mRecyclerView.setOnTouchListener(new ActivityTransitionTouchListener(
@@ -772,11 +772,11 @@ public class GraphsActivity extends ForecastingActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                if (forecastType.isChecked()) {
+                /*if (forecastType.isChecked()) {
                     updateLongWeatherForecastFromNetwork("GRAPHS");
-                } else {
+                } else {*/
                     updateWeatherForecastFromNetwork("GRAPHS");
-                }
+                //}
                 return true;
             case R.id.action_toggle_values:
                 toggleValues();
@@ -959,19 +959,18 @@ public class GraphsActivity extends ForecastingActivity {
         }
         mValueFormatter = new CustomValueFormatter(currentLocation.getLocale());
         rainSnowYAxisValueFormatter = new RainSnowYAxisValueFormatter(this, currentLocation.getLocale());
-        forecastType.setChecked(2 == AppPreference.getForecastType(getBaseContext()));
-        appendLog(getBaseContext(), TAG, "updateUI with forecastType:", forecastType.isChecked());
-        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId, (forecastType.isChecked() ? 2 : 1));
+        //forecastType.setChecked(2 == AppPreference.getForecastType(getBaseContext()));
+        //appendLog(getBaseContext(), TAG, "updateUI with forecastType:", forecastType.isChecked());
+        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId, 1);
         if (weatherForecastRecord != null) {
             weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
             locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());
-        } else if (ForecastUtil.shouldUpdateForecast(this, locationId,
-                forecastType.isChecked() ? UpdateWeatherService.LONG_WEATHER_FORECAST_TYPE : UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
-            if (forecastType.isChecked()) {
+        } else if (ForecastUtil.shouldUpdateForecast(this, locationId, UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
+            /*if (forecastType.isChecked()) {
                 updateLongWeatherForecastFromNetwork("GRAPHS");
-            } else {
+            } else {*/
                 updateWeatherForecastFromNetwork("GRAPHS");
-            }
+            //}
             return;
         }
 

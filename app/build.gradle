@@ -14,13 +14,13 @@ android {
         uploadImages = true
     }
 
-    compileSdkVersion 30
+    compileSdkVersion 31
     defaultConfig {
         applicationId "org.thosp.yourlocalweather"
         minSdkVersion 14
-        targetSdkVersion 30
-        versionCode 144
-        versionName "5.7.5"
+        targetSdkVersion 31
+        versionCode 145
+        versionName "5.7.6"
         vectorDrawables.useSupportLibrary true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         playAccountConfig = playAccountConfigs.defaultAccountConfig

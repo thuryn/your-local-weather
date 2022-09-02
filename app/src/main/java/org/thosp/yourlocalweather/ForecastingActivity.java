@@ -32,7 +32,7 @@ public abstract class ForecastingActivity extends BaseActivity {
     private ProgressDialog mGetWeatherProgress;
     private Handler mHandler;
     protected BroadcastReceiver mWeatherUpdateReceiver;
-    protected Switch forecastType;
+    //protected Switch forecastType;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -50,14 +50,14 @@ public class WeatherForecastActivity extends ForecastingActivity {
         localityView = (TextView) findViewById(R.id.forecast_locality);
         visibleColumns = AppPreference.getForecastActivityColumns(this);
         connectionDetector = new ConnectionDetector(WeatherForecastActivity.this);
-        forecastType = (Switch) findViewById(R.id.forecast_forecastType);
+        //forecastType = (Switch) findViewById(R.id.forecast_forecastType);
 
-        forecastType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        /*forecastType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 AppPreference.setForecastType(getBaseContext(), isChecked ? 2 : 1);
                 updateUI();
             }
-        });
+        });*/
 
         updateUI();
 
@@ -81,21 +81,21 @@ public class WeatherForecastActivity extends ForecastingActivity {
         if (currentLocation == null) {
             return;
         }
-        forecastType.setChecked(2 == AppPreference.getForecastType(getBaseContext()));
-        int forecastTypeRecord = (forecastType.isChecked() ? 2 : 1);
+        appendLog(getBaseContext(), TAG, "locationId:", locationId, "currentLocation:", currentLocation.getOrderId());
+        //forecastType.setChecked(2 == AppPreference.getForecastType(getBaseContext()));
+        int forecastTypeRecord = 1;//(forecastType.isChecked() ? 2 : 1);
         appendLog(getBaseContext(), TAG, "updateUI with forecastType:", forecastTypeRecord);
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId, forecastTypeRecord);
-        appendLog(getBaseContext(), TAG, "Weather forecast record: ", weatherForecastRecord, ", forecastType: ", forecastType);
+        appendLog(getBaseContext(), TAG, "Weather forecast record: ", weatherForecastRecord);
         if (weatherForecastRecord != null) {
             weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
             locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());
-        } else if (ForecastUtil.shouldUpdateForecast(this, locationId,
-                forecastType.isChecked() ? UpdateWeatherService.LONG_WEATHER_FORECAST_TYPE : UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
-            if (forecastType.isChecked()) {
+        } else if (ForecastUtil.shouldUpdateForecast(this, locationId, UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
+            /*if (forecastType.isChecked()) {
                 updateLongWeatherForecastFromNetwork("FORECAST");
-            } else {
+            } else {*/
                 updateWeatherForecastFromNetwork("FORECAST");
-            }
+            //}
             return;
         }
 
@@ -113,21 +113,21 @@ public class WeatherForecastActivity extends ForecastingActivity {
             mRecyclerView.setVisibility(View.VISIBLE);
             android.setVisibility(View.GONE);
         }
-        if (forecastType.isChecked()) {
+        /*if (forecastType.isChecked()) {
             LongWeatherForecastAdapter adapter = new LongWeatherForecastAdapter(this,
                     weatherForecastList.get(locationId),
                     currentLocation.getLatitude(),
                     currentLocation.getLocale(),
                     visibleColumns);
             mRecyclerView.setAdapter(adapter);
-        } else {
+        } else {*/
             WeatherForecastAdapter adapter = new WeatherForecastAdapter(this,
                     weatherForecastList.get(locationId),
                     currentLocation.getLatitude(),
                     currentLocation.getLocale(),
                     visibleColumns);
             mRecyclerView.setAdapter(adapter);
-        }
+        //}
     }
 
     @Override
@@ -150,11 +150,11 @@ public class WeatherForecastActivity extends ForecastingActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_forecast_refresh:
-                if (forecastType.isChecked()) {
+                /*if (forecastType.isChecked()) {
                     updateLongWeatherForecastFromNetwork("FORECAST");
-                } else {
+                } else {*/
                     updateWeatherForecastFromNetwork("FORECAST");
-                }
+                //}
                 return true;
             case R.id.menu_forecast_settings:
                 showSettings();

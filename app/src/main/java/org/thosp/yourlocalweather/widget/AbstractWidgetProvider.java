@@ -126,16 +126,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     private void performActionOnReceiveForWidget(Context context, Intent intent, int widgetId) {
         AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
-        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
-        Long locationId = widgetSettingsDbHelper.getParamLong(widgetId, "locationId");
-        if (locationId == null) {
-            currentLocation = locationsDbHelper.getLocationByOrderId(0);
-            if ((currentLocation != null) && !currentLocation.isEnabled()) {
-                currentLocation = locationsDbHelper.getLocationByOrderId(1);
-            }
-        } else {
-            currentLocation = locationsDbHelper.getLocationById(locationId);
-        }
+        updateCurrentLocation(context, widgetId);
         switch (intent.getAction()) {
             case "org.thosp.yourlocalweather.action.WEATHER_UPDATE_RESULT":
             case "android.appwidget.action.APPWIDGET_UPDATE":
@@ -171,6 +162,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
             activityIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             context.startActivity(activityIntent);
         } else if (intent.getAction().startsWith(Constants.ACTION_APPWIDGET_CHANGE_LOCATION)) {
+            WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
             changeLocation(widgetId, locationsDbHelper, widgetSettingsDbHelper);
             GraphUtils.invalidateGraph();
             onUpdate(context, widgetManager, new int[]{widgetId});
@@ -189,6 +181,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
         for (int appWidgetId : appWidgetIds) {
 
+            updateCurrentLocation(context, appWidgetId);
             boolean found = false;
             for (int widgetIdToSearch: appWidgetIdsForWidget) {
                 if (widgetIdToSearch == appWidgetId) {
@@ -307,7 +300,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         intentRefreshService.setPackage("org.thosp.yourlocalweather");
         intentRefreshService.putExtra("widgetId", widgetId);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
-                intentRefreshService, 0);
+                intentRefreshService, PendingIntent.FLAG_IMMUTABLE);
         remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_3x3_widget_last_update, pendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_3x3_widget_last_update, pendingIntent);
         remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_graph_3x3_widget_last_update, pendingIntent);
@@ -412,7 +405,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         intentSwitchLocality.setAction(Constants.ACTION_APPWIDGET_CHANGE_LOCATION + "_" + widgetId);
         intentSwitchLocality.putExtra("widgetId", widgetId);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
-                intentSwitchLocality, 0);
+                intentSwitchLocality, PendingIntent.FLAG_IMMUTABLE);
         return pendingIntent;
     }
 
@@ -427,7 +420,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         activityIntent.putExtra("widgetId", widgetId);
         activityIntent.putExtra("widgetAction", widgetActionId);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0,
-                activityIntent, 0);
+                activityIntent, PendingIntent.FLAG_IMMUTABLE);
         return pendingIntent;
     }
 
@@ -436,7 +429,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         intentWeatherForecastWidgetProvider.setAction(Constants.ACTION_APPWIDGET_SETTINGS_OPENED + "__" + widgetId + "__" + settingName);
         intentWeatherForecastWidgetProvider.setPackage("org.thosp.yourlocalweather");
         PendingIntent pendingWeatherForecastWidgetProvider = PendingIntent.getBroadcast(context, 0,
-                intentWeatherForecastWidgetProvider, 0);
+                intentWeatherForecastWidgetProvider, PendingIntent.FLAG_IMMUTABLE);
         remoteViews.setOnClickPendingIntent(buttonId, pendingWeatherForecastWidgetProvider);
     }
 
@@ -447,6 +440,22 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     protected abstract String getWidgetName();
 
     protected abstract int getWidgetLayout();
+
+    protected void updateCurrentLocation(Context context, int appWidgetId) {
+        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
+        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
+
+        Long locationId = widgetSettingsDbHelper.getParamLong(appWidgetId, "locationId");
+
+        if (locationId == null) {
+            currentLocation = locationsDbHelper.getLocationByOrderId(0);
+            if ((currentLocation != null) && !currentLocation.isEnabled()) {
+                currentLocation = locationsDbHelper.getLocationByOrderId(1);
+            }
+        } else {
+            currentLocation = locationsDbHelper.getLocationById(locationId);
+        }
+    }
 
     private void changeLocation(int widgetId,
                                 LocationsDbHelper locationsDbHelper,

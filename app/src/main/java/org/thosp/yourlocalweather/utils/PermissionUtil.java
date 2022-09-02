@@ -37,7 +37,7 @@ public class PermissionUtil {
     public static boolean noPermissionGranted(Context context) {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
         Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
-        if (!autoLocation.isEnabled()) {
+        if ((autoLocation == null) || !autoLocation.isEnabled()) {
             appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS,
                     "locationUpdateStrategy is set to update_location_none, return false");
             return false;

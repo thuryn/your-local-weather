@@ -184,7 +184,7 @@ public class TimeUtils {
         sendIntent.setPackage("org.thosp.yourlocalweather");
         sendIntent.putExtra("voiceSettingId", voiceSettingId);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, sendIntent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE);
         return pendingIntent;
     }
 

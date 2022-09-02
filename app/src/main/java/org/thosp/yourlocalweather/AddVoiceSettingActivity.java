@@ -1,10 +1,12 @@
 package org.thosp.yourlocalweather;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -141,7 +143,9 @@ public class AddVoiceSettingActivity extends BaseActivity {
             btDevicesSpinner.setVisibility(View.VISIBLE);
             allBtCheckbox.setVisibility(View.VISIBLE);
         }
-
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
         Set<BluetoothDevice> bluetoothDeviceSet = bluetoothAdapter.getBondedDevices();
 
         ArrayList<MultiselectionItem> items = new ArrayList<>();
@@ -202,6 +206,9 @@ public class AddVoiceSettingActivity extends BaseActivity {
             btDevicePanel.setVisibility(View.VISIBLE);
         }
 
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
         Set<BluetoothDevice> bluetoothDeviceSet = bluetoothAdapter.getBondedDevices();
 
         ArrayList<MultiselectionItem> items = new ArrayList<>();

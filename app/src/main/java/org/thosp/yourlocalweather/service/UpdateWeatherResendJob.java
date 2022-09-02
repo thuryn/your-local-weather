@@ -11,7 +11,7 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 @TargetApi(Build.VERSION_CODES.M)
 public class UpdateWeatherResendJob extends AbstractAppJob {
-    private static final String TAG = "CurrentWeatherResendJob";
+    private static final String TAG = "UpdateWeatherResendJob";
     public static final int JOB_ID = 1537091709;
 
     private JobParameters params;

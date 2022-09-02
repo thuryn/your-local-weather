@@ -1,8 +1,10 @@
 package org.thosp.yourlocalweather;
 
+import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.os.Build;
 import android.os.Bundle;
@@ -296,6 +298,9 @@ public class VoiceSettingsActivity extends BaseActivity {
                 String addInfo2 = "";
                 BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(getBaseContext());
                 Set<BluetoothDevice> bluetoothDeviceSet;
+                if (ContextCompat.checkSelfPermission(VoiceSettingsActivity.this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
                 if (bluetoothAdapter != null) {
                     bluetoothDeviceSet = bluetoothAdapter.getBondedDevices();
                 } else {

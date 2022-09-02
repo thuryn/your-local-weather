@@ -231,7 +231,7 @@ public class NetworkLocationProvider extends Service {
         return PendingIntent.getService(getBaseContext(),
                 0,
                 intent,
-                PendingIntent.FLAG_CANCEL_CURRENT);
+                PendingIntent.FLAG_IMMUTABLE);
     }
 
     public class NetworkLocationProviderBinder extends Binder {

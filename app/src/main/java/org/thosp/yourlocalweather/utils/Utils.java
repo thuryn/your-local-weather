@@ -1,5 +1,6 @@
 package org.thosp.yourlocalweather.utils;
 
+import android.Manifest;
 import android.app.AlarmManager;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
@@ -8,6 +9,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -46,6 +48,8 @@ import java.util.Set;
 import java.util.TimeZone;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
+import androidx.core.content.ContextCompat;
 
 public class Utils {
 
@@ -924,6 +928,9 @@ public class Utils {
 
     public static boolean isBluetoothHeadsetEnabledConnected(Context context) {
         BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(context);
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+            return false;
+        }
         boolean isBtConnected = (bluetoothAdapter != null && (
                 BluetoothProfile.STATE_CONNECTED == bluetoothAdapter.getProfileConnectionState(BluetoothProfile.HEADSET) ||
                         BluetoothProfile.STATE_CONNECTED == bluetoothAdapter.getProfileConnectionState(BluetoothProfile.A2DP)));
