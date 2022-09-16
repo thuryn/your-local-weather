@@ -22,6 +22,7 @@ import android.os.SystemClock;
 import android.telephony.TelephonyManager;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.MainActivity;
 
@@ -72,7 +73,9 @@ public class NetworkLocationProvider extends Service {
             List<ScanResult> scans = null;
             try {
                 appendLog(getBaseContext(), TAG, "Wifi results are available now - going to get wifi results");
-                scans = wifiManager.getScanResults();
+                if (ContextCompat.checkSelfPermission( getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED ) {
+                    scans = wifiManager.getScanResults();
+                }
             } catch (Throwable exception) {
                 appendLog(getBaseContext(), TAG, "Exception occured getting wifi results:", exception);
             }

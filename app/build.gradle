@@ -14,16 +14,17 @@ android {
         uploadImages = true
     }
 
-    compileSdkVersion 31
+    compileSdkVersion 33
     defaultConfig {
         applicationId "org.thosp.yourlocalweather"
         minSdkVersion 14
-        targetSdkVersion 31
-        versionCode 145
-        versionName "5.7.6"
+        targetSdkVersion 33
+        versionCode 146
+        versionName "5.7.7"
         vectorDrawables.useSupportLibrary true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         playAccountConfig = playAccountConfigs.defaultAccountConfig
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -52,11 +53,12 @@ android {
 
 dependencies {
 // AndroidX
-    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.cardview:cardview:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.android.support:multidex:1.0.3'
 
 // Third-party
     implementation 'com.github.yukuku:ambilwarna:2.0.1'
@@ -64,7 +66,7 @@ dependencies {
     implementation 'org.microg:address-formatter:0.2.1'
     implementation 'com.github.hedzr:android-file-chooser:v1.2.0-final'
     implementation 'com.loopj.android:android-async-http:1.4.11'
-    implementation 'org.osmdroid:osmdroid-android:6.1.8'
+    implementation 'org.osmdroid:osmdroid-android:6.1.13'
 
 // Testing
     testImplementation 'junit:junit:4.13'
