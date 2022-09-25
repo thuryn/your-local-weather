@@ -199,6 +199,7 @@
         <item>@string/update_period_15min</item>
         <item>@string/update_period_30min</item>
         <item>@string/update_period_1hour</item>
+        <item>@string/update_period_2hours</item>
         <item>@string/update_period_3hours</item>
         <item>@string/update_period_6hours</item>
         <item>@string/update_period_12hours</item>
@@ -209,6 +210,7 @@
         <item>15</item>
         <item>30</item>
         <item>60</item>
+        <item>120</item>
         <item>180</item>
         <item>360</item>
         <item>720</item>
@@ -221,6 +223,7 @@
         <item>@string/update_period_15min</item>
         <item>@string/update_period_30min</item>
         <item>@string/update_period_1hour</item>
+        <item>@string/update_period_2hours</item>
         <item>@string/update_period_3hours</item>
         <item>@string/update_period_6hours</item>
         <item>@string/update_period_12hours</item>
@@ -232,6 +235,7 @@
         <item>15</item>
         <item>30</item>
         <item>60</item>
+        <item>120</item>
         <item>180</item>
         <item>360</item>
         <item>720</item>
@@ -324,7 +328,6 @@
         <item name="arabic">@string/pref_language_ar</item>
         <item name="basque">@string/pref_language_eu</item>
         <item name="belarusian">@string/pref_language_be</item>
-        <item name="belarusian_latin">@string/pref_language_be_latn</item>
         <item name="bengali_bangladesh">@string/pref_language_bn_rBD</item>
         <item name="bulgarian">@string/pref_language_bg</item>
         <item name="catalan">@string/pref_language_ca</item>
@@ -346,6 +349,9 @@
         <item name="indonesian">@string/pref_language_id</item>
         <item name="italian">@string/pref_language_it</item>
         <item name="japanese">@string/pref_language_jp</item>
+        <item name="japanese">@string/pref_language_kab</item>
+        <item name="japanese">@string/pref_language_ko</item>
+        <item name="japanese">@string/pref_language_lt</item>
         <item name="norwegian">@string/pref_language_nb_rNO</item>
         <item name="nyanja">@string/pref_language_ny</item>
         <item name="persian">@string/pref_language_fa</item>
@@ -361,6 +367,7 @@
         <item name="spanish">@string/pref_language_es</item>
         <item name="swahili">@string/pref_language_sw</item>
         <item name="swedish">@string/pref_language_sv</item>
+        <item name="swedish">@string/pref_language_th</item>
         <item name="turkish">@string/pref_language_tr</item>
         <item name="ukrainian">@string/pref_language_uk</item>
         <item name="vietnamese">@string/pref_language_vi</item>
@@ -371,12 +378,12 @@
         <item name="arabic">ar</item>
         <item name="basque">eu</item>
         <item name="belarusian">be</item>
-        <item name="belarusian_latin">be_Latn</item>
         <item name="bengali_bangladesh">bn-rBD</item>
         <item name="bulgarian">bg</item>
         <item name="catalan">ca</item>
         <item name="chinese">zh-rCN</item>
         <item name="chinese_traditional">zh-rTW</item>
+        <item name="czech">hr</item>
         <item name="czech">cs</item>
         <item name="danish">da</item>
         <item name="dutch">nl</item>
@@ -392,6 +399,9 @@
         <item name="indonesian">id</item>
         <item name="italian">it</item>
         <item name="japanese">ja</item>
+        <item name="japanese">kab</item>
+        <item name="japanese">ko</item>
+        <item name="japanese">lt</item>
         <item name="norwegian">nb-rNO</item>
         <item name="nyanja">ny</item>
         <item name="persian">fa</item>
@@ -407,6 +417,7 @@
         <item name="spanish">es</item>
         <item name="swahili">sw</item>
         <item name="swedish">sv</item>
+        <item name="swedish">th</item>
         <item name="turkish">tr</item>
         <item name="ukrainian">uk</item>
         <item name="vietnamese">vi</item>

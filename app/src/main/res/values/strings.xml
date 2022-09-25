@@ -247,6 +247,7 @@
     <string name="update_period_15min" tools:ignore="MissingTranslation">15 minutes</string>
     <string name="update_period_30min" tools:ignore="MissingTranslation">30 minutes</string>
     <string name="update_period_1hour" tools:ignore="MissingTranslation">Every hour</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2 hours</string>
     <string name="update_period_3hours" tools:ignore="MissingTranslation">3 hours</string>
     <string name="update_period_6hours" tools:ignore="MissingTranslation">6 hours</string>
     <string name="update_period_12hours" tools:ignore="MissingTranslation">12 hours</string>
@@ -264,7 +265,9 @@
     <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Status bar icon style</string>
     <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Vibrate</string>
     <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Update period for weather (Location 1,2,3...)</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">No between 00:00 and 06:00 o\'clock (Location 1,2,3...)</string>
     <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Update period for location (Location 0)</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">No between 00:00 and 06:00 o\'clock (Location 0)</string>
     <string name="preference_title_activity_general" tools:ignore="MissingTranslation">General Settings</string>
     <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">Widget Settings</string>
     <string name="preference_title_tts" tools:ignore="MissingTranslation">Guidance settings</string>
@@ -333,6 +336,10 @@
     <string name="pref_language_bg" tools:ignore="MissingTranslation">Bulgarian</string>
     <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Chinese (traditional)</string>
     <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhis</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">Kabyle</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">Korean</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">Lithuanian</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">Thai</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Location and Address Source</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">System to get location, Nominatim to get address (recommended)</string>
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">System</string>

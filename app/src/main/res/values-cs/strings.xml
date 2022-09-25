@@ -96,13 +96,16 @@
     <string name="update_period_15min">15 minut</string>
     <string name="update_period_30min">30 minut</string>
     <string name="update_period_1hour">Každou hodinu</string>
+    <string name="update_period_2hours">2 hodiny</string>
     <string name="update_period_3hours">3 hodiny</string>
     <string name="update_period_6hours">6 hodin</string>
     <string name="update_period_12hours">12 hodin</string>
     <string name="update_period_24hours">24 hodin</string>
     <string name="pref_title_vibrate">Vibrovat</string>
     <string name="preference_widget_title_update_period">Interval aktualizace počasí (Poloha 1,2,3...)</string>
+    <string name="preference_widget_title_update_night">Ne mezi 00:00 a 06:00 hodinou (Poloha 1,2,3...)</string>
     <string name="preference_widget_title_update_auto_period">Interval aktualizace polohy (Poloha 0)</string>
+    <string name="preference_widget_title_update_auto_night">Ne mezi 00:00 a 06:00 hodinou (Poloha 0)</string>
     <string name="preference_title_activity_general">Obecná nastavení</string>
     <string name="preference_title_activity_widget">Nastavení widgetu</string>
     <string name="preference_title_tts">Nastavení hlasu</string>
@@ -471,6 +474,10 @@
     <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (Srbština)</string>
     <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (Slovenština)</string>
     <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (Turečtina)</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">Kabylština (Kabyle)</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">Korejština (Korean)</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">Litevština (Lithuanian)</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">Thajština (Thai)</string>
     <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">Nastavení zobrazení grafů</string>
     <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">Nastavení kombinovaného grafu</string>
     <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Kombinovaný</string>
