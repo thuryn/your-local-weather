@@ -462,7 +462,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                                 WidgetSettingsDbHelper widgetSettingsDbHelper) {
         if (currentLocation == null) {
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
-            if (!currentLocation.isEnabled()) {
+            if ((currentLocation == null) || !currentLocation.isEnabled()) {
                 currentLocation = locationsDbHelper.getLocationByOrderId(1);
             }
             if (currentLocation == null) {
@@ -473,7 +473,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         currentLocation = locationsDbHelper.getLocationByOrderId(newOrderId);
         if (currentLocation == null) {
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
-            if (!currentLocation.isEnabled()) {
+            if ((currentLocation == null) || !currentLocation.isEnabled()) {
                 currentLocation = locationsDbHelper.getLocationByOrderId(1);
             }
         }

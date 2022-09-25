@@ -337,7 +337,7 @@ public class WidgetSettingsDialogue extends Activity {
         Location currentLocation;
         if (locationId == null) {
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
-            if (!currentLocation.isEnabled()) {
+            if ((currentLocation == null) || !currentLocation.isEnabled()) {
                 currentLocation = locationsDbHelper.getLocationByOrderId(1);
                 if ((currentLocation != null) && currentLocation.isEnabled()) {
                     locationId = currentLocation.getId();
@@ -456,7 +456,7 @@ public class WidgetSettingsDialogue extends Activity {
         Location currentLocation;
         if (locationId == null) {
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
-            if (!currentLocation.isEnabled()) {
+            if ((currentLocation == null) || !currentLocation.isEnabled()) {
                 currentLocation = locationsDbHelper.getLocationByOrderId(1);
             }
         } else {
