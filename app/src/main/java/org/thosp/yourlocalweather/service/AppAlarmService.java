@@ -19,6 +19,7 @@ import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -120,6 +121,9 @@ public class AppAlarmService extends AbstractCommonService {
     }
 
     private void startLocationWeatherAlarmRegular() {
+        Calendar nowInCalendar = Calendar.getInstance();
+        boolean locationUpdateNight = AppPreference.getLocationUpdateNight(getBaseContext());
+
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         String updatePeriodStr = AppPreference.getLocationUpdatePeriod(getBaseContext());
         long updatePeriodMills = Utils.intervalMillisForAlarm(updatePeriodStr);
@@ -128,7 +132,7 @@ public class AppAlarmService extends AbstractCommonService {
         }
         List<Location> locations = locationsDbHelper.getAllRows();
         for (Location location: locations) {
-            if (location.getOrderId() == 0) {
+            if ((location.getOrderId() == 0) || ((nowInCalendar.get(Calendar.HOUR_OF_DAY) < 6) && locationUpdateNight)) {
                 continue;
             } else {
                 sendMessageToCurrentWeatherService(location, AppWakeUpManager.SOURCE_CURRENT_WEATHER, true);
@@ -143,6 +147,11 @@ public class AppAlarmService extends AbstractCommonService {
         if (!"0".equals(updateAutoPeriodStr) && !"OFF".equals(updateAutoPeriodStr)) {
             long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
             scheduleNextRegularAlarm(getBaseContext(), true, updateAutoPeriodMills);
+        }
+
+        Calendar nowInCalendar = Calendar.getInstance();
+        if ((nowInCalendar.get(Calendar.HOUR_OF_DAY) < 6) && AppPreference.getLocationAutoUpdateNight(getBaseContext())) {
+            return;
         }
 
         long locationId = locationsDbHelper.getLocationByOrderId(0).getId();

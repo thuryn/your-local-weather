@@ -57,7 +57,9 @@ public class Constants {
     public static final String KEY_PREF_WIDGET_TEXT_COLOR = "widget_text_color_pref_key";
     public static final String KEY_PREF_WIDGET_THEME = "widget_theme_pref_key";
     public static final String KEY_PREF_LOCATION_UPDATE_PERIOD = "location_update_period_pref_key";
+    public static final String KEY_PREF_LOCATION_UPDATE_NIGHT = "location_update_period_night_pref_key";
     public static final String KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD = "location_auto_update_period_pref_key";
+    public static final String KEY_PREF_LOCATION_AUTO_UPDATE_NIGHT = "location_auto_update_period_night_pref_key";
     public static final String PREF_LANGUAGE = "language_pref_key";
     public static final String PREF_OS_LANGUAGE = "os_language_pref_key";
     public static final String KEY_PREF_LOCATION_GEOCODER_SOURCE = "location_geocoder_source";

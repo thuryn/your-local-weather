@@ -572,9 +572,19 @@ public class AppPreference {
                 Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD, "60");
     }
 
+    public static boolean getLocationAutoUpdateNight(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+                Constants.KEY_PREF_LOCATION_AUTO_UPDATE_NIGHT, false);
+    }
+
     public static String getLocationUpdatePeriod(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_LOCATION_UPDATE_PERIOD, "60");
+    }
+
+    public static boolean getLocationUpdateNight(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+                Constants.KEY_PREF_LOCATION_UPDATE_NIGHT, false);
     }
 
     public static void setCurrentLocationId(Context context, Location currentLocation) {

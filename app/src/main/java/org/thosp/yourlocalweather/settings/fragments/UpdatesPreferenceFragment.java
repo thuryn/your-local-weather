@@ -113,6 +113,10 @@ public class UpdatesPreferenceFragment extends PreferenceFragment implements
     }
 
     private void entrySummary(String key) {
+        if (Constants.KEY_PREF_LOCATION_AUTO_UPDATE_NIGHT.equals(key) ||
+                Constants.KEY_PREF_LOCATION_UPDATE_NIGHT.equals(key)) {
+            return;
+        }
         ListPreference preference = (ListPreference) findPreference(key);
         if (preference == null) {
             return;
