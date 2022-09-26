@@ -585,4 +585,11 @@
     <string name="pref_language_fa" tools:ignore="MissingTranslation">Persian (Farsça)</string>
     <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (Hintçe)</string>
     <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (Hırvatça)</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">Saat 00:00 ile 06:00 arasında hayır (Konum 1,2,3...)</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">Saat 00:00 ile 06:00 arasında hayır (Konum 0)</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">Cezayir Berbericesi</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">Korece</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">Litvanca</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">Tayca</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2 saat</string>
 </resources>
