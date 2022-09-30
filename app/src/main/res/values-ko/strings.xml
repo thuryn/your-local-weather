@@ -73,7 +73,7 @@
 \n
 \n앱을 즐기세요.</string>
     <string name="help_page_general_content" tools:ignore="MissingTranslation">앱은 셀룰러 네트워크(BTS), Wi-Fi를 사용하여 위치를 확인하고 실패할 경우 위치를 확인합니다. GPS는 지역 날씨를 표시하고 모질라 위치 서비스에서 좌표를 가져옵니다. 응용 프로그램에는 최소한 하나의 GSM 네트워크 기지국 또는 두 개의 연결 가능한 Wi-Fi 네트워크 또는 GSM과 Wi-Fi 네트워크의 조합이 필요합니다. 스마트폰이나 태블릿의 위젯을 사용하여 메인 화면에서 내 위치와 현재 날씨를 볼 수 있습니다. 위치 업데이트는 주기적(예: 매시간)이거나 앱이 가속도계를 사용하여 값보다 더 먼 거리의 움직임을 감지할 수 있습니다. 주머니에 넣고 다니면 거리가 더 빨라집니다. 위치 업데이트를 끌 수 있습니다. 그러면 날씨만 업데이트됩니다. 앱은 지정된 간격으로 위치와 날씨를 업데이트합니다. 예를 들어 업데이트 기간을 1시간으로 설정할 수 있습니다. 날씨는 위치가 표시된 직후 또는 화면이 켜진 직후 업데이트되지만 15분에 한 번(그리고 지난 15분 동안 날씨가 업데이트되지 않은 경우)보다 자주 업데이트되지는 않습니다. 이 정보는 모질라 위치 서비스에서 위치 좌표를 얻는 데 사용됩니다. 앱은 셀 네트워크 및 Wi-Fi 네트워크에서 위치를 사용할 수 없는 경우 GPS 사용을 시도합니다. 위치 좌표는 Nominatim 서비스에서 주소를 얻는 데 사용됩니다. 주소는 앱 또는 위젯에서 사용됩니다. 앱은 현재 날씨를 얻기 위해 OpenWeatherMap.org 서비스를 사용합니다.</string>
-    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">위치 업데이트 버튼 옆에는 위치 관리 버튼 (돋보기 아이콘)이 있습니다. 앱과 위젯에서 사용 가능한 위치를 관리할 수 있습니다. 기본적으로 하나의 위치 (위치 0)를 사용할 수 있습니다. 이는 자동 위치 업데이트를 위한 것입니다. 이 위치를 왼쪽으로 밀면 활성화/비활성화 버튼을 찾을 수 있습니다. 위치를 수동으로 추가할 수도 있습니다. + 버튼을 클릭하면 지도에서 위치를 선택할 수 있습니다. 위치를 왼쪽으로 밀면 접속할 수 있는 삭제 버튼을 사용하여 위치를 삭제할 수도 있습니다.</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">위치 업데이트 버튼 옆에는 위치 관리 버튼(돋보기 아이콘)이 있습니다. 앱과 위젯에서 사용 가능한 위치를 관리할 수 있습니다. 기본적으로 하나의 위치(위치 0)를 사용할 수 있습니다. 이는 자동 위치 업데이트를 위한 것입니다. 이 위치를 왼쪽으로 밀면 활성화/비활성화 버튼을 찾을 수 있습니다. 위치를 수동으로 추가할 수도 있습니다. + 버튼을 클릭하면 지도에서 위치를 선택할 수 있습니다. 위치를 왼쪽으로 밀면 액세스할 수 있는 삭제 버튼을 사용하여 위치를 삭제할 수도 있습니다.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">일반 설정</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">이러한 옵션은 전체 앱에 영향을 미칩니다.</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> <b>온도</b> - 온도 단위를 선택할 수 있으며, <b>바람</b> -풍속 단위를 선택하고 <b>기압</b> - 기압 단위를 선택할 수 있습니다. 값은 이러한 옵션을 사용하여 다시 계산됩니다.</string>
@@ -565,4 +565,11 @@
     <string name="weather_condition_description_701" tools:ignore="MissingTranslation">박무</string>
     <string name="weather_condition_description_711" tools:ignore="MissingTranslation">연기</string>
     <string name="weather_condition_description_721" tools:ignore="MissingTranslation">연무</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2시간</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">커바일어</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">00:00 ~ 06:00 사이 안함 (위치 0)</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">00:00 ~ 06:00 사이 안함 (위치 1,2,3...)</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">한국어</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">리투아니아어</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">태국어</string>
 </resources>
