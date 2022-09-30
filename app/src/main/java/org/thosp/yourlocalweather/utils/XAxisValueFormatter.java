@@ -1,14 +1,14 @@
 package org.thosp.yourlocalweather.utils;
 
-import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.formatter.ValueFormatter;
+import org.thosp.charting.components.AxisBase;
+import org.thosp.charting.formatter.IAxisValueFormatter;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 import java.util.Map;
 
-public class XAxisValueFormatter extends ValueFormatter {
+public class XAxisValueFormatter implements IAxisValueFormatter {
 
     private Map<Integer, Long> hourIndexes;
     private Calendar calendar = Calendar.getInstance();
@@ -21,7 +21,7 @@ public class XAxisValueFormatter extends ValueFormatter {
     }
 
     @Override
-    public String getAxisLabel(float value, AxisBase axis) {
+    public String getFormattedValue(float value, AxisBase axis) {
         int valuesIndex = (int) value;
         Long dataTime = hourIndexes.get(valuesIndex);
         if (dataTime == null) {

@@ -16,20 +16,19 @@ import android.view.WindowManager;
 
 import androidx.core.content.ContextCompat;
 
-import com.github.mikephil.charting.charts.CombinedChart;
-import com.github.mikephil.charting.components.Description;
-import com.github.mikephil.charting.components.Legend;
-import com.github.mikephil.charting.components.LimitLine;
-import com.github.mikephil.charting.components.XAxis;
-import com.github.mikephil.charting.components.YAxis;
-import com.github.mikephil.charting.data.BarData;
-import com.github.mikephil.charting.data.BarDataSet;
-import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.data.CombinedData;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-
+import org.thosp.charting.charts.CombinedChart;
+import org.thosp.charting.components.Description;
+import org.thosp.charting.components.Legend;
+import org.thosp.charting.components.LimitLine;
+import org.thosp.charting.components.XAxis;
+import org.thosp.charting.components.YAxis;
+import org.thosp.charting.data.BarData;
+import org.thosp.charting.data.BarDataSet;
+import org.thosp.charting.data.BarEntry;
+import org.thosp.charting.data.CombinedData;
+import org.thosp.charting.data.Entry;
+import org.thosp.charting.data.LineData;
+import org.thosp.charting.data.LineDataSet;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
@@ -272,6 +271,9 @@ public class GraphUtils {
         }
 
         CombinedChart combinedChart = (combinedChartFromLayout != null) ? combinedChartFromLayout : new CombinedChart(context);
+        combinedChart.setAxisCount(3);
+        //combinedChart.setLogEnabled(true);
+        combinedChart.init();
         Description graphDescription = new Description();
         graphDescription.setText("");
         combinedChart.setDescription(graphDescription);
@@ -330,19 +332,6 @@ public class GraphUtils {
         set.setValueFormatter(mValueFormatter);
         set.setValueTextColor(textColorId);
 
-
-        double valueShifter = 0;
-        String temperatureUnitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
-        if (temperatureUnitsFromPreferences.contains("fahrenheit")) {
-            if (combinedGraphValues.contains(1)) {
-                valueShifter = 0;
-                minTemperatureValue = 0;
-            } else {
-                valueShifter = 32;
-            }
-        }
-
         double multiplier;
         String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_PRESSURE_UNITS, "hpa");
@@ -361,7 +350,7 @@ public class GraphUtils {
                     weatherForecastList.get(i).getPressure(),
                     locale);
             double pressureValue = multiplier * pressureWithUnit.getPressure();
-            pressures[i] = pressureValue + valueShifter;
+            pressures[i] = pressureValue;
             if (pressureValue < minPressureValue) {
                 minPressureValue = pressureValue;
             }
@@ -394,9 +383,7 @@ public class GraphUtils {
         pressureSet.setHighlightEnabled(false);
         pressureSet.setValueFormatter(mValueFormatter);
         pressureSet.setValueTextColor(textColorId);
-        if (rightYaxis == CombinedGraph.PRESSURE) {
-            pressureSet.setAxisDependency(YAxis.AxisDependency.RIGHT);
-        }
+        pressureSet.setAxisIndex(3);
 
         List<BarEntry> rainEntries = new ArrayList<>();
         int rainSnowSize = weatherForecastList.size();
@@ -406,18 +393,14 @@ public class GraphUtils {
         double maxRainSnowValue = Double.MIN_VALUE;
         boolean isRain = false;
         boolean isSnow = false;
-        double rainSnowmultiplier = 1;
         for (int i = 0; i < weatherForecastList.size(); i++) {
             DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(i);
-            if ((leftYaxis != CombinedGraph.RAINSNOW) && (rightYaxis != CombinedGraph.RAINSNOW)) {
-                rainSnowmultiplier = 10;
-            }
-            double rainValue = rainSnowmultiplier * AppPreference.getRainOrSnow(
+            double rainValue = AppPreference.getRainOrSnow(
                     context, detailedWeatherForecast.getRain());
             if (!isRain && (rainValue > 0)) {
                 isRain = true;
             }
-            double snowValue = rainSnowmultiplier * AppPreference.getRainOrSnow(
+            double snowValue = AppPreference.getRainOrSnow(
                     context, detailedWeatherForecast.getSnow());
             if (!isSnow && (snowValue > 0)) {
                 isSnow = true;
@@ -429,8 +412,15 @@ public class GraphUtils {
             if (rainsnowValue > maxRainSnowValue) {
                 maxRainSnowValue = rainsnowValue;
             }
-            rains[i] = (float) (valueShifter + rainValue);
-            snows[i] = (float) (valueShifter + snowValue);
+            if ((leftYaxis == CombinedGraph.RAINSNOW) ||
+                    (rightYaxis == CombinedGraph.RAINSNOW)) {
+                rains[i] = (float) rainValue;
+                snows[i] = (float) snowValue;
+            } else {
+                rains[i] = (float) (Math.log10(rainValue + 1));
+                snows[i] = (float) (Math.log10(snowValue + 1));
+            }
+
         }
 
         boolean isRainSnowVector = isRain && isSnow;
@@ -457,7 +447,7 @@ public class GraphUtils {
             }
         }
 
-        String[] rainSnowLabels = getRainSnowLabelForCombinedGraph(context, locale, rainSnowmultiplier, isRain, isSnow);
+        String[] rainSnowLabels = getRainSnowLabelForCombinedGraph(context, locale, isRain, isSnow);
         boolean twoBars = rainSnowLabels.length > 1;
         BarDataSet rainSet = new BarDataSet(rainEntries, (twoBars)? null : rainSnowLabels[0]);
         rainSet.setValueTextSize(12f);
@@ -475,9 +465,6 @@ public class GraphUtils {
         if (twoBars) {
             rainSet.setStackLabels(rainSnowLabels);
         }
-        if (rightYaxis == CombinedGraph.RAINSNOW) {
-            rainSet.setAxisDependency(YAxis.AxisDependency.RIGHT);
-        }
 
         List<Entry> windEntries = new ArrayList<>();
         int windSize = weatherForecastList.size();
@@ -491,7 +478,7 @@ public class GraphUtils {
             if (windSpeed > maxWindValue) {
                 maxWindValue = windSpeed;
             }
-            windEntries.add(new Entry(i, (float) (windSpeed + valueShifter)));
+            windEntries.add(new Entry(i, (float) (windSpeed)));
         }
 
         LineDataSet windSet = new LineDataSet(windEntries, context.getString(R.string.graph_wind_label));
@@ -508,23 +495,6 @@ public class GraphUtils {
         if (rightYaxis == CombinedGraph.WIND) {
             windSet.setAxisDependency(YAxis.AxisDependency.RIGHT);
         }
-
-        double pressureScale = 0;
-        if (pressure) {
-            pressureScale = (maxPressureValue - minPressureValue);
-        }
-        if (rainsnow && (rightYaxis != CombinedGraph.RAINSNOW)) {
-            pressureScale = (maxRainSnowValue - minRainSnowValue) + 2;
-        }
-
-        double maxValueOnGraph;
-
-        if (maxTemperatureValue > pressureScale) {
-            maxValueOnGraph = maxTemperatureValue;
-        } else {
-            maxValueOnGraph = pressureScale + 1;
-        }
-
 
         YAxis yLeft = combinedChart.getAxisLeft();
         yLeft.setEnabled(true);
@@ -543,7 +513,7 @@ public class GraphUtils {
             yLeft.setLabelCount(yAxisValues);
         }
         if (leftYaxis == CombinedGraph.TEMPERATURE) {
-            double axisMaximum = Math.ceil(maxValueOnGraph);
+            double axisMaximum = Math.ceil(maxTemperatureValue);
             double axisMinimum = Math.floor(minTemperatureValue);
             if (yAxisValues != null) {
                 int restForRange = (yAxisValues - 1) - (((int) (axisMaximum - axisMinimum)) % (yAxisValues - 1));
@@ -573,11 +543,13 @@ public class GraphUtils {
             yLeft.setAxisMaximum((float) (axisMaximum));
             yLeft.setAxisMinimum((float) (axisMinimum));
             yLeft.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, AppPreference.getPressureUnit(context)));
+            pressureSet.setAxisIndex(0);
         } else if (leftYaxis == CombinedGraph.RAINSNOW) {
             double axisMaximum = Math.ceil(maxRainSnowValue);
             yLeft.setAxisMaximum((float) (axisMaximum));
             yLeft.setAxisMinimum(0f);
             yLeft.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, context.getString(AppPreference.getRainOrSnowUnit(context))));
+            rainSet.setAxisIndex(0);
         }
         LimitLine zerolimitLine = new LimitLine(0);
         zerolimitLine.setLineColor(gridColorId.getMainGridColor());
@@ -618,16 +590,27 @@ public class GraphUtils {
             yRight.setAxisMaximum((float) (axisMaximum));
             yRight.setAxisMinimum((float) (axisMinimum));
             yRight.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, AppPreference.getPressureUnit(context)));
+            pressureSet.setAxisIndex(1);
         } else if (rightYaxis == CombinedGraph.RAINSNOW) {
             double axisMaximum = Math.ceil(maxRainSnowValue);
             yRight.setAxisMaximum((float) (axisMaximum));
             yRight.setAxisMinimum(0f);
             yRight.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, context.getString(AppPreference.getRainOrSnowUnit(context))));
+            rainSet.setAxisIndex(1);
         }
         if (rightYaxis == null) {
             yRight.setEnabled(false);
         } else {
             yRight.setEnabled(true);
+        }
+
+        if (rainsnow && (leftYaxis != CombinedGraph.RAINSNOW) && (rightYaxis != CombinedGraph.RAINSNOW)) {
+            YAxis rainAxis = combinedChart.getAxis(2);
+            rainAxis.setEnabled(true);
+            rainAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
+            rainAxis.setAxisMaximum(2.2f);
+            rainAxis.setAxisMinimum(0);
+            rainSet.setAxisIndex(2);
         }
 
         combinedChart.clear();
@@ -718,7 +701,7 @@ public class GraphUtils {
         }
     }
 
-    public static String[] getRainSnowLabelForCombinedGraph(Context context, Locale locale, double multiplier, boolean isRain, boolean isSnow) {
+    public static String[] getRainSnowLabelForCombinedGraph(Context context, Locale locale, boolean isRain, boolean isSnow) {
         NumberFormat decimalFormat = NumberFormat.getNumberInstance(locale);
         decimalFormat.setMaximumFractionDigits(1);
         decimalFormat.setMinimumFractionDigits(1);
@@ -751,7 +734,7 @@ public class GraphUtils {
             addInfoLabelBuilder = rainLabelBuilder;
         }
 
-        if (multiplier != 1.0) {
+        /*if (multiplier != 1.0) {
             addInfoLabelBuilder.append(" (*");
             addInfoLabelBuilder.append(decimalFormat.format(1 / multiplier));
             addInfoLabelBuilder.append(" ");
@@ -759,7 +742,7 @@ public class GraphUtils {
             addInfoLabelBuilder.append(" on ");
             addInfoLabelBuilder.append(TemperatureUtil.getTemperatureUnit(context));
             addInfoLabelBuilder.append(")");
-        }
+        }*/
         if (isRain && isSnow) {
             result[0] = rainLabelBuilder.toString();
             result[1] = snowLabelBuilder.toString();

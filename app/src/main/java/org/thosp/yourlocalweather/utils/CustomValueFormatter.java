@@ -1,12 +1,13 @@
 package org.thosp.yourlocalweather.utils;
 
-import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.formatter.ValueFormatter;
+import org.thosp.charting.data.Entry;
+import org.thosp.charting.formatter.IValueFormatter;
+import org.thosp.charting.utils.ViewPortHandler;
 
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class CustomValueFormatter extends ValueFormatter {
+public class CustomValueFormatter implements IValueFormatter {
 
     private NumberFormat decimalFormat;
 
@@ -17,7 +18,7 @@ public class CustomValueFormatter extends ValueFormatter {
     }
 
     @Override
-    public String getAxisLabel(float value, AxisBase axis) {
+    public String getFormattedValue(float value, Entry entry, int dataSetIndex, ViewPortHandler viewPortHandler) {
         return decimalFormat.format(value);
     }
 }

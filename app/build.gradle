@@ -19,8 +19,8 @@ android {
         applicationId "org.thosp.yourlocalweather"
         minSdkVersion 14
         targetSdkVersion 33
-        versionCode 146
-        versionName "5.7.7"
+        versionCode 147
+        versionName "5.8.0"
         vectorDrawables.useSupportLibrary true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         playAccountConfig = playAccountConfigs.defaultAccountConfig
@@ -62,7 +62,7 @@ dependencies {
 
 // Third-party
     implementation 'com.github.yukuku:ambilwarna:2.0.1'
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'com.github.thuryn:MPAndroidChart:v4.0.2'
     implementation 'org.microg:address-formatter:0.2.1'
     implementation 'com.github.hedzr:android-file-chooser:v1.2.0-final'
     implementation 'com.loopj.android:android-async-http:1.4.11'

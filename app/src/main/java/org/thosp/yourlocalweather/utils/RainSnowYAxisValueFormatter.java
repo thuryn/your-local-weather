@@ -2,13 +2,13 @@ package org.thosp.yourlocalweather.utils;
 
 import android.content.Context;
 
-import com.github.mikephil.charting.components.AxisBase;
-import com.github.mikephil.charting.formatter.ValueFormatter;
+import org.thosp.charting.components.AxisBase;
+import org.thosp.charting.formatter.IAxisValueFormatter;
 
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class RainSnowYAxisValueFormatter extends ValueFormatter {
+public class RainSnowYAxisValueFormatter implements IAxisValueFormatter {
 
     private NumberFormat decimalFormat;
 
@@ -20,7 +20,7 @@ public class RainSnowYAxisValueFormatter extends ValueFormatter {
     }
 
     @Override
-    public String getAxisLabel(float value, AxisBase axis) {
+    public String getFormattedValue(float value, AxisBase axis) {
         return decimalFormat.format(value);
     }
 }

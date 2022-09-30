@@ -59,7 +59,7 @@ public class UpdateWeatherService extends AbstractCommonService {
 
     private static final String TAG = "UpdateWeatherService";
 
-    private static final long MIN_WEATHER_UPDATE_TIME_IN_MS = 900000L; //15min
+    private static final long MIN_WEATHER_UPDATE_TIME_IN_MS = 90L; //15min
     private static final long MAX_WEATHER_UPDATE_TIME_IN_MS = 10800000L; //3H
 
     public static final int START_CURRENT_WEATHER_UPDATE = 1;
