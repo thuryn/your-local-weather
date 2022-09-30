@@ -608,7 +608,8 @@ public class GraphUtils {
             YAxis rainAxis = combinedChart.getAxis(2);
             rainAxis.setEnabled(true);
             rainAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
-            rainAxis.setAxisMaximum(2.2f);
+            rainAxis.setAxisMaximum((float) AppPreference.getRainOrSnow(
+                    context, 2.2));
             rainAxis.setAxisMinimum(0);
             rainSet.setAxisIndex(2);
         }

@@ -100,6 +100,8 @@
     <string name="help_page_4_content" tools:ignore="MissingTranslation">Widget settings contains configuration options for all widgets.</string>
     <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">When you enable <b>Show labels in widget</b>, you can see labels instead of icons for weather condition values.</string>
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">You can control the widget background with the <b>Widget theme option</b>.</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Combined graph</string>
+    <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">When you select on graph to show rain/snow values next to wind and temperature (in bars) the value is calculated as log10. The maximum value of (unvisible) axis is about 160 mm (or 6.3 inches) then.</string>
     <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b>Wake up strategy</b> is there to overcome buggy vendor implementations of the Android Aurora services. Selecting <i>No wake up</i>, should update the location correctly.
 \nIf not, try <i>Wake up CPU only</i> to read cell- and Wi-Fi network state.
 \n<i>Wake up with display</i> turns the screen on for several seconds during the location update as a last resort.</string>

@@ -205,6 +205,15 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/preference_display_update_location_source_info" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:text="@string/help_page_4_title_graph" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/help_page_4_content_widget_graph" />
 
                 <TextView
                     android:layout_width="match_parent"
