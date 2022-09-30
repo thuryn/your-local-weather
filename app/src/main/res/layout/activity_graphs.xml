@@ -142,11 +142,11 @@
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="18sp"/>
 
-                        <com.github.mikephil.charting.charts.CombinedChart
+                        <org.thosp.charting.charts.CombinedChart
                             android:id="@+id/combined_chart"
                             android:layout_width="match_parent"
                             android:layout_height="220dp">
-                        </com.github.mikephil.charting.charts.CombinedChart>
+                        </org.thosp.charting.charts.CombinedChart>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -170,11 +170,11 @@
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="18sp"/>
 
-                        <com.github.mikephil.charting.charts.LineChart
+                        <org.thosp.charting.charts.LineChart
                             android:id="@+id/temperature_chart"
                             android:layout_width="match_parent"
                             android:layout_height="220dp">
-                        </com.github.mikephil.charting.charts.LineChart>
+                        </org.thosp.charting.charts.LineChart>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -198,11 +198,11 @@
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="18sp"/>
 
-                        <com.github.mikephil.charting.charts.LineChart
+                        <org.thosp.charting.charts.LineChart
                             android:id="@+id/wind_chart"
                             android:layout_width="match_parent"
                             android:layout_height="220dp">
-                        </com.github.mikephil.charting.charts.LineChart>
+                        </org.thosp.charting.charts.LineChart>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -226,11 +226,11 @@
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="18sp"/>
 
-                        <com.github.mikephil.charting.charts.LineChart
+                        <org.thosp.charting.charts.LineChart
                             android:id="@+id/rain_chart"
                             android:layout_width="match_parent"
                             android:layout_height="220dp">
-                        </com.github.mikephil.charting.charts.LineChart>
+                        </org.thosp.charting.charts.LineChart>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -254,11 +254,11 @@
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="18sp"/>
 
-                        <com.github.mikephil.charting.charts.BarChart
+                        <org.thosp.charting.charts.BarChart
                             android:id="@+id/bar_rain_chart"
                             android:layout_width="match_parent"
                             android:layout_height="220dp">
-                        </com.github.mikephil.charting.charts.BarChart>
+                        </org.thosp.charting.charts.BarChart>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -282,11 +282,11 @@
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="18sp"/>
 
-                        <com.github.mikephil.charting.charts.LineChart
+                        <org.thosp.charting.charts.LineChart
                             android:id="@+id/snow_chart"
                             android:layout_width="match_parent"
                             android:layout_height="220dp">
-                        </com.github.mikephil.charting.charts.LineChart>
+                        </org.thosp.charting.charts.LineChart>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -310,11 +310,11 @@
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="18sp"/>
 
-                        <com.github.mikephil.charting.charts.BarChart
+                        <org.thosp.charting.charts.BarChart
                             android:id="@+id/bar_snow_chart"
                             android:layout_width="match_parent"
                             android:layout_height="220dp">
-                        </com.github.mikephil.charting.charts.BarChart>
+                        </org.thosp.charting.charts.BarChart>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -338,11 +338,11 @@
                             android:textColor="?android:attr/textColorPrimary"
                             android:textSize="18sp"/>
 
-                        <com.github.mikephil.charting.charts.LineChart
+                        <org.thosp.charting.charts.LineChart
                             android:id="@+id/pressure_chart"
                             android:layout_width="match_parent"
                             android:layout_height="220dp">
-                        </com.github.mikephil.charting.charts.LineChart>
+                        </org.thosp.charting.charts.LineChart>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
