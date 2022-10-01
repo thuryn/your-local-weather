@@ -592,4 +592,6 @@
     <string name="pref_language_lt" tools:ignore="MissingTranslation">Litvanca</string>
     <string name="pref_language_th" tools:ignore="MissingTranslation">Tayca</string>
     <string name="update_period_2hours" tools:ignore="MissingTranslation">2 saat</string>
+    <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">Grafikte rüzgar ve sıcaklığın yanında yağmur/kar değerlerini göstermeyi seçtiğinizde (çubuklar halinde) değer log10 olarak hesaplanır. O zaman (görünmeyen) eksenin en yüksek değeri yaklaşık 160 mm\'dir (veya 6,3 inç).</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Birleşik grafik</string>
 </resources>
