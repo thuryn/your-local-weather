@@ -565,4 +565,11 @@
     <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili (svahili)</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (kineski)</string>
     <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">Ne između 00:00 i 06:00 sati (Mjesto 1,2,3...)</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">Ne između 00:00 i 06:00 sati (Mjesto 0)</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2 sata</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">Kabilski</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">Koreanski</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">Litvanski</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">Tajlandski</string>
 </resources>
