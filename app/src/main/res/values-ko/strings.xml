@@ -52,7 +52,7 @@
     <string name="help_page_general_title" tools:ignore="MissingTranslation">일반</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">메인 앱</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">기본 앱에는 현재 날씨에 대한 개요가 포함되어 있습니다. 앱 패널의 새로고침 버튼을 사용하거나 아래로 밀어 날씨를 업데이트할 수 있습니다. 날씨 새로 고침 버튼 옆에 업데이트 위치 버튼이 있습니다. 이 버튼은 위치 0이 활성화된 경우에만 사용할 수 있습니다 (위치 0은 위치의 자동 업데이트를 위한 것입니다).</string>
-    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">다음 화면에서 일기예보를 찾거나 (메뉴에서 다음 화면을 선택하거나 왼쪽에서 오른쪽으로 스와이프)할 수 있습니다. 일기 예보는 업데이트 버튼을 사용하거나 화면에 들어갈 때 업데이트됩니다 (하지만 시간당 한 번 이상 업데이트할 수 없음).</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">다음 화면에서 일기예보를 찾거나 (메뉴에서 다음 화면을 선택하거나 왼쪽에서 오른쪽으로 밀기)할 수 있습니다. 일기 예보는 업데이트 버튼을 사용하거나 화면에 들어갈 때 업데이트 됩니다 (하지만 시간 당 한 번 이상 업데이트할 수 없음).</string>
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">세 번째 화면은 그래프로 표시되는 일기예보를 포함합니다.</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">위젯</string>
     <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">안드로이드 10부터 연결된 GSM/LTE 네트워크에 대한 정보를 얻으려면 위치에 대한 세분화된 액세스가 필요합니다. (항상 위치를 원하는 경우) 백그라운드에서도 위치를 가져올 수 있는 권한을 부여합니다.</string>
@@ -73,7 +73,7 @@
 \n
 \n앱을 즐기세요.</string>
     <string name="help_page_general_content" tools:ignore="MissingTranslation">앱은 셀룰러 네트워크(BTS), Wi-Fi를 사용하여 위치를 확인하고 실패할 경우 위치를 확인합니다. GPS는 지역 날씨를 표시하고 모질라 위치 서비스에서 좌표를 가져옵니다. 응용 프로그램에는 최소한 하나의 GSM 네트워크 기지국 또는 두 개의 연결 가능한 Wi-Fi 네트워크 또는 GSM과 Wi-Fi 네트워크의 조합이 필요합니다. 스마트폰이나 태블릿의 위젯을 사용하여 메인 화면에서 내 위치와 현재 날씨를 볼 수 있습니다. 위치 업데이트는 주기적(예: 매시간)이거나 앱이 가속도계를 사용하여 값보다 더 먼 거리의 움직임을 감지할 수 있습니다. 주머니에 넣고 다니면 거리가 더 빨라집니다. 위치 업데이트를 끌 수 있습니다. 그러면 날씨만 업데이트됩니다. 앱은 지정된 간격으로 위치와 날씨를 업데이트합니다. 예를 들어 업데이트 기간을 1시간으로 설정할 수 있습니다. 날씨는 위치가 표시된 직후 또는 화면이 켜진 직후 업데이트되지만 15분에 한 번(그리고 지난 15분 동안 날씨가 업데이트되지 않은 경우)보다 자주 업데이트되지는 않습니다. 이 정보는 모질라 위치 서비스에서 위치 좌표를 얻는 데 사용됩니다. 앱은 셀 네트워크 및 Wi-Fi 네트워크에서 위치를 사용할 수 없는 경우 GPS 사용을 시도합니다. 위치 좌표는 Nominatim 서비스에서 주소를 얻는 데 사용됩니다. 주소는 앱 또는 위젯에서 사용됩니다. 앱은 현재 날씨를 얻기 위해 OpenWeatherMap.org 서비스를 사용합니다.</string>
-    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">위치 업데이트 버튼 옆에는 위치 관리 버튼(돋보기 아이콘)이 있습니다. 앱과 위젯에서 사용 가능한 위치를 관리할 수 있습니다. 기본적으로 하나의 위치(위치 0)를 사용할 수 있습니다. 이는 자동 위치 업데이트를 위한 것입니다. 이 위치를 왼쪽으로 밀면 활성화/비활성화 버튼을 찾을 수 있습니다. 위치를 수동으로 추가할 수도 있습니다. + 버튼을 클릭하면 지도에서 위치를 선택할 수 있습니다. 위치를 왼쪽으로 밀면 액세스할 수 있는 삭제 버튼을 사용하여 위치를 삭제할 수도 있습니다.</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">위치 업데이트 버튼 옆에는 위치 관리 버튼 (돋보기 아이콘)이 있습니다. 앱과 위젯에서 사용 가능한 위치를 관리할 수 있습니다. 기본적으로 하나의 위치 (위치 0)를 사용할 수 있습니다. 이는 자동 위치 업데이트를 위한 것입니다. 이 위치를 왼쪽으로 밀면 활성화/비활성화 버튼을 찾을 수 있습니다. 위치를 수동으로 추가할 수도 있습니다. + 버튼을 클릭하면 지도에서 위치를 선택할 수 있습니다. 위치를 왼쪽으로 밀면 접속할 수 있는 삭제 버튼을 사용하여 위치를 삭제할 수도 있습니다.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">일반 설정</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">이러한 옵션은 전체 앱에 영향을 미칩니다.</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> <b>온도</b> - 온도 단위를 선택할 수 있으며, <b>바람</b> -풍속 단위를 선택하고 <b>기압</b> - 기압 단위를 선택할 수 있습니다. 값은 이러한 옵션을 사용하여 다시 계산됩니다.</string>
@@ -142,21 +142,21 @@
     <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">날씨를 먼저 업데이트하려면 새로고침 버튼을 클릭하세요.</string>
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengali (방글라데시어)</string>
     <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (세르비아어)</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - 위치 및/또는 날씨 업데이트 예정 
-\n. - 위치에 도달할 수 없음, 마지막 위치를 기반으로 날씨 업데이트 
-\nW - 날씨만 업데이트됨 
-\nL - 위치만 업데이트됨 
-\nG - GPS 및 날씨의 위치 업데이트 
-\nN - 업데이트된 네트워크 및 날씨의 위치 
-\nB - Openweathermap.org 서비스에 대한 접속이 금지되었고, 나중에 날씨를 업데이트하세요 
-\nE - Openweathermap.org 서비스에 대한 접속 토큰이 만료되었습니다. 다시 접속하려면 애플리케이션을 업그레이드해야 합니다</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - 날씨만 업데이트됨 
-\nL - 위치만 업데이트됨 
-\nG - GPS 및 날씨의 위치 업데이트 
-\nN - 네트워크 및 날씨 업데이트의 위치 
-\nNi - 셀룰러 네트워크의 위치 및 날씨 업데이트됨, 모질라 위치 서비스에서 발견한 위치 
-\nB - Openweathermap.org 서비스에 대한 접속이 금지되었고, 나중에 날씨를 업데이트하세요오
-\nE - Openweathermap.org 서비스에 대한 접속 토큰이 만료되었습니다. 접속 권한을 다시 얻으려면 최신 버전의 앱을 설치하세요</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - 위치 및/또는 날씨 업데이트 예정
+\n. - 위치에 도달할 수 없음, 마지막 위치를 기반으로 날씨 업데이트
+\nW - 날씨만 업데이트됨
+\nL - 위치만 업데이트됨
+\nG - GPS 및 날씨의 위치 업데이트
+\nN - 업데이트된 네트워크 및 날씨의 위치
+\nB - Openweathermap.org 서비스에 대한 접속이 금지되었고, 나중에 날씨 업데이트
+\nE - Openweathermap.org 서비스에 대한 접속 토큰이 만료되었습니다. 재접속하려면 애플리케이션 업그레이드</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - 날씨만 업데이트됨
+\nL - 위치만 업데이트됨
+\nG - GPS 및 날씨의 위치 업데이트
+\nN - 네트워크 및 날씨 업데이트의 위치
+\nNi - 셀룰러 네트워크의 위치 및 날씨 업데이트됨, 모질라 위치 서비스에서 발견한 위치
+\nB - Openweathermap.org 서비스에 대한 접속이 금지되었고, 나중에 날씨 업데이트
+\nE - Openweathermap.org 서비스에 대한 접속 토큰 만료. 접속 권한을 다시 얻으려면 최신 버전 앱 설치</string>
     <string name="locations_enable_location" tools:ignore="MissingTranslation">활성화</string>
     <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">위치 말하기</string>
     <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">날씨 설명 말하기</string>
@@ -171,7 +171,7 @@
     <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">유선 헤드셋</string>
     <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">스피커</string>
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">비활성화</string>
-    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">커스텀</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">사용자 정의</string>
     <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">온도 말하기</string>
     <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">바람 말하기</string>
     <string name="pref_title_tts_say_forecast" tools:ignore="MissingTranslation">1 일 예보를 말하기</string>
@@ -257,19 +257,19 @@
     <string name="location_not_initialized" tools:ignore="MissingTranslation">위치가 초기화되지 않았습니다. 먼저 위치 원을 클릭하세요.</string>
     <string name="connection_not_found" tools:ignore="MissingTranslation">인터넷 연결 확인</string>
     <string name="too_early_update_error" tools:ignore="MissingTranslation">너무 이른 업데이트입니다!</string>
-    <string name="pressure_measurement" tools:ignore="MissingTranslation">헥토파스칼</string>
-    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">수은주밀리미터</string>
-    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">수은주인치</string>
-    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">밀리바</string>
-    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">프사이</string>
-    <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">킬로파스칼</string>
-    <string name="wind_speed_meters" tools:ignore="MissingTranslation">미터 매 초</string>
-    <string name="wind_speed_miles" tools:ignore="MissingTranslation">마일 매 시</string>
-    <string name="wind_speed_knots" tools:ignore="MissingTranslation">노트</string>
-    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">킬로미터 매 시</string>
-    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">보퍼트</string>
-    <string name="millimetre_label" tools:ignore="MissingTranslation">밀리미터</string>
-    <string name="inches_label" tools:ignore="MissingTranslation">인치</string>
+    <string name="pressure_measurement" tools:ignore="MissingTranslation">헥토파스칼 (hPa)</string>
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">수은주밀리미터 (mmHg)</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">수은주인치 (inHg)</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">밀리바 (mbar)</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">프사이 (psi)</string>
+    <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">킬로파스칼 (kPa)</string>
+    <string name="wind_speed_meters" tools:ignore="MissingTranslation">미터 매 초 (m/s)</string>
+    <string name="wind_speed_miles" tools:ignore="MissingTranslation">마일 매 시 (mph)</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">노트 (knots)</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">킬로미터 매 시 (km/h)</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">보퍼트 (Beaufort)</string>
+    <string name="millimetre_label" tools:ignore="MissingTranslation">밀리미터 (mm)</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">인치 (inches)</string>
     <string name="time_style_system" tools:ignore="MissingTranslation">시스템</string>
     <string name="hint_activity_search" tools:ignore="MissingTranslation">위치 검색</string>
     <string name="title_activity_settings" tools:ignore="MissingTranslation">설정</string>
@@ -374,7 +374,7 @@
     <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">지정된 시간이 지나면 캐시된 값이 제거됨</string>
     <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">캐시된 값의 수명</string>
     <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 시간</string>
-    <string name="location_cache_24_label" tools:ignore="MissingTranslation">하루</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">1 일</string>
     <string name="location_cache_168_label" tools:ignore="MissingTranslation">일주일</string>
     <string name="location_cache_2190_label" tools:ignore="MissingTranslation">3 개월</string>
     <string name="location_cache_720_label" tools:ignore="MissingTranslation">1 개월</string>
@@ -389,8 +389,8 @@
     <string name="search_location_add" tools:ignore="MissingTranslation">추가</string>
     <string name="widget_action_switch_location" tools:ignore="MissingTranslation">위치 전환</string>
     <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">위젯에 위치 표시</string>
-    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">약어 N↓, NE↙, …</string>
-    <string name="wind_direction_deg" tools:ignore="MissingTranslation">북쪽에서 도</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">약어 북↓, 북서↙, …</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">북쪽에서 도(°)</string>
     <string name="wind_direction_east" tools:ignore="MissingTranslation">동←</string>
     <string name="wind_direction_south_east" tools:ignore="MissingTranslation">남동↖</string>
     <string name="wind_direction_south" tools:ignore="MissingTranslation">남↑</string>
@@ -409,9 +409,9 @@
     <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">지정된 시간이 지나면 로그 파일이 다시 생성</string>
     <string name="log_file_lasting_title" tools:ignore="MissingTranslation">로그 파일 회전</string>
     <string name="log_file_12_label" tools:ignore="MissingTranslation">12 시간</string>
-    <string name="log_file_24_label" tools:ignore="MissingTranslation">하루</string>
-    <string name="log_file_48_label" tools:ignore="MissingTranslation">이틀</string>
-    <string name="log_file_72_label" tools:ignore="MissingTranslation">사흘</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">1 일</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">2 일</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">3 일</string>
     <string name="log_file_168_label" tools:ignore="MissingTranslation">일주일</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">한 달</string>
     <string name="log_to_file_label" tools:ignore="MissingTranslation">파일에 기록</string>
@@ -470,7 +470,7 @@
     <string name="pref_title_tts_not_supported" tools:ignore="MissingTranslation">앱 언어는 TTS (텍스트 음성 변환) 시스템에서 지원되지 않습니다. 오른쪽 상단의 \"안내 언어 설정\"으로 이동합니다.</string>
     <string name="preference_title_activity_about" tools:ignore="MissingTranslation">정보</string>
     <string name="about_version_pref_title" tools:ignore="MissingTranslation">버전</string>
-    <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">무슨 말을 하는:</string>
+    <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">할 말:</string>
     <string name="tty_say_max_wind" tools:ignore="MissingTranslation">최대 %1$s %2$s에서 %3$s 바람</string>
     <string name="tty_say_temp_max" tools:ignore="MissingTranslation">최대 온도는 %2$s에서 %1$s</string>
     <string name="tty_say_weather_forecast" tools:ignore="MissingTranslation">일기예보</string>
@@ -496,7 +496,7 @@
     <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">소스 코드</string>
     <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">라이센스</string>
     <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">자유 소프트웨어 라이센스</string>
-    <string name="tts_say_text_label" tools:ignore="MissingTranslation">무슨 말을 하는:</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">할 말:</string>
     <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">안녕하세요</string>
     <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">좋은 저녁입니다</string>
     <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">좋은 아침입니다</string>
