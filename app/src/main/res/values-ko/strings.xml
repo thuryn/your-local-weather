@@ -572,4 +572,6 @@
     <string name="pref_language_ko" tools:ignore="MissingTranslation">한국어</string>
     <string name="pref_language_lt" tools:ignore="MissingTranslation">리투아니아어</string>
     <string name="pref_language_th" tools:ignore="MissingTranslation">태국어</string>
+    <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">그래프에서 바람과 온도 (막대) 옆에 비/눈 값을 표시하도록 선택하면 값이 log10으로 계산됩니다. (보이지 않는) 축의 최대값은 약 160mm (또는 6.3인치)입니다.</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">결합 그래프</string>
 </resources>
