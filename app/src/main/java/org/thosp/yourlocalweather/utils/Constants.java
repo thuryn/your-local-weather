@@ -68,6 +68,9 @@ public class Constants {
     public static final String KEY_PREF_LOCATION_GPS_ENABLED = "location_gps_enabled";
     public static final String KEY_PREF_UPDATE_DETAIL = "widget_update_details_pref_key";
     public static final String PREF_THEME = "theme_pref_key";
+    public static final String KEY_DEBUG_URI_SCHEME = "debug.log.scheme";
+    public static final String KEY_DEBUG_URI_AUTHORITY = "debug.log.authority";
+    public static final String KEY_DEBUG_URI_PATH = "debug.log.path";
     public static final String KEY_DEBUG_FILE = "debug.log.file";
     public static final String KEY_DEBUG_TO_FILE = "debug.to.file";
     public static final String KEY_DEBUG_FILE_LASTING_HOURS = "debug.file.lasting.hours";

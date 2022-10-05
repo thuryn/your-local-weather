@@ -9,12 +9,18 @@ import android.hardware.SensorManager;
 import android.location.Address;
 import android.net.Network;
 import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Messenger;
+import android.os.ParcelFileDescriptor;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;
+import android.provider.DocumentsContract;
 import android.telephony.CellLocation;
 import android.util.Log;
 import android.widget.Switch;
+
+import androidx.documentfile.provider.DocumentFile;
 
 import org.thosp.yourlocalweather.SettingsActivity;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
@@ -26,9 +32,12 @@ import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileDescriptor;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -45,13 +54,14 @@ public class LogToFile {
     public static final SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat(TIME_DATE_PATTERN, new Locale("en"));
 
     public static String logFilePathname;
+    public static Uri logFileUri;
     public static Boolean logToFileEnabled;
     public static int logFileHoursOfLasting;
     private static Calendar logFileAtTheEndOfLive;
     private static Calendar nextCheckPreferencesCheck;
 
     public static void appendLogWithParams(Context context, String tag, String text, List<String> params) {
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!logToFileEnabled || ((logFilePathname == null) && (logFileUri == null))) {
             return;
         }
         StringBuilder paramDescription = new StringBuilder();
@@ -70,7 +80,7 @@ public class LogToFile {
                                              double countedAcc,
                                              float dT) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, reasonText, ", currentLength = ", String.format("%.8f", currentLength),
@@ -93,7 +103,7 @@ public class LogToFile {
                                            boolean nowIsBeforeTheLastUpdatedAndTimeSpanNoLocation,
                                            boolean currentLengthIsUnderNoLocationLimit) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, "end currentLength = ", String.format("%.8f", absCurrentLength),
@@ -111,7 +121,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, Sensor value1, String text2, float value2, String text3, int value3) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2), text3, String.valueOf(value3));
@@ -119,7 +129,7 @@ public class LogToFile {
     
     public static void appendLog(Context context, String tag, String text1, Sensor value1, String text2, float value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2));
@@ -127,7 +137,7 @@ public class LogToFile {
     
     public static void appendLog(Context context, String tag, String text1, int value1, String text2, int value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2));
@@ -135,7 +145,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, boolean value1, String text2, boolean value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2));
@@ -143,7 +153,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, boolean value1, String text2, int value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2));
@@ -151,7 +161,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, Intent value1, String text2, Class value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null", text2, (value2 != null)? value2.toString() : "null");
@@ -160,7 +170,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, long value1, String text2, Class value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, (value2 != null)? value2.toString() : "null");
@@ -168,7 +178,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, Sensor value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
@@ -176,7 +186,7 @@ public class LogToFile {
 
     public static void appendLogWakeupSources(Context context, String tag, String wakeupdown, List<Integer> wakeUpSources) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         StringBuilder wakeupSourcesList = new StringBuilder();
@@ -193,7 +203,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, SensorManager value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
@@ -201,7 +211,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, PowerManager.WakeLock value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
@@ -209,7 +219,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, PowerManager.WakeLock value1, String text2, boolean value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null", text2, String.valueOf(value2));
@@ -217,7 +227,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, Long value1, Long value2, double value3, double value4) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1 + ":" + value1 + ":" + value2 + ":" + value3 + ":" + value4);
@@ -225,7 +235,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, int value1, String text2, long value2, String text3, long value3, String text4, long value4) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2), text3, String.valueOf(value3), text4, String.valueOf(value4));
@@ -244,7 +254,7 @@ public class LogToFile {
                                  String text5,
                                  long value5) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2), text3, String.valueOf(value3), text4, String.valueOf(value4), text5, String.valueOf(value5));
@@ -252,7 +262,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, int value1, int value2, int value3, int value4, int value5) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.format("%d|%s|%d|%d|%s", value1, value2, value3, value4, value5));
@@ -260,7 +270,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, int value1, int value2, int value3, int value4, int value5, int value6) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.format("%d|%s|%d|%d|%s|%d", value1, value2, value3, value4, value5, value6));
@@ -268,7 +278,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, PowerManager value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
@@ -276,7 +286,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, Messenger value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
@@ -284,7 +294,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, Intent value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
@@ -292,7 +302,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, Queue value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? String.valueOf(value1.size()) : "null");
@@ -300,7 +310,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, List value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? (value1 + ":" + String.valueOf(value1.size())) : "null");
@@ -308,7 +318,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, List value1, String text2, List value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? (value1 + ":" + String.valueOf(value1.size())) : "null", text2, (value2 != null)? (value2 + ":" + String.valueOf(value2.size())) : "null");
@@ -316,7 +326,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, CellLocation value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
@@ -324,7 +334,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, Cell value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
@@ -332,7 +342,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, double value1, String text2, double value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2));
@@ -340,7 +350,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, double value1, String text2, double value2, String text3, String text4) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2), text3, text4);
@@ -348,7 +358,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, Calendar value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? String.valueOf(value1.getTimeInMillis()) : "null");
@@ -356,7 +366,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, int value1, String text2, Location value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, (value2 != null)? value2.toString() : "null");
@@ -364,7 +374,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, NetworkInfo value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
@@ -372,7 +382,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, Network value1, String text2, boolean value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null", text2, String.valueOf(value2));
@@ -380,7 +390,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, android.location.Location value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
@@ -388,7 +398,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, double value1, String text2, double value2, String text3, long value3, String text4, Address value4) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2), text3, String.valueOf(value3), text4, (value4 != null)? value4.toString() : "null");
@@ -396,7 +406,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, double value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1));
@@ -404,7 +414,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, Address value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
@@ -412,7 +422,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, WeatherForecastDbHelper.WeatherForecastRecord value1, String text2, Switch value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null", text2, (value2 != null)? value2.toString() : "null");
@@ -420,7 +430,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, android.location.Location value1, String text2, Address value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null", text2, (value2 != null)? value2.toString() : "null");
@@ -428,7 +438,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, android.location.Location value1, String text2, double value2, String text3, double value3, String text4, String text5) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null", text2, String.valueOf(value2), text3, String.valueOf(value3), text4, text5);
@@ -436,7 +446,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, int value1, String text2, WeatherRequestDataHolder value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, (value2 != null)? value2.toString() : "null");
@@ -444,7 +454,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, int value1, String text2, WeatherByVoiceRequestDataHolder value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, (value2 != null)? value2.toString() : "null");
@@ -452,7 +462,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, long value1, String text2, long value2, String text3, long value3) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2), text3, String.valueOf(value3));
@@ -460,7 +470,7 @@ public class LogToFile {
 
     public static void appendLogLocale(Context context, String tag, String text1, String[] localeParts, String text2, String value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         StringBuilder s = new StringBuilder();
@@ -480,7 +490,7 @@ public class LogToFile {
                                                String text3,
                                                long value3) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? String.valueOf(value1.getLastUpdatedTime()) : "null", text2, String.valueOf(value2), text3, String.valueOf(value3));
@@ -488,7 +498,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, long value1, String text2, String text3) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, text3);
@@ -496,7 +506,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, CurrentWeatherDbHelper.WeatherRecord value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
@@ -504,7 +514,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, WeatherForecastDbHelper.WeatherForecastRecord value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
@@ -512,7 +522,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, Location value1, String text2, String value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null", text2, String.valueOf(value2));
@@ -520,7 +530,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, Location value1, String text2, boolean value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null", text2, String.valueOf(value2));
@@ -528,7 +538,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, Location value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
@@ -536,7 +546,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, ServiceConnection value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
@@ -544,7 +554,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, boolean value1, String text2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2);
@@ -552,7 +562,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, boolean value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1));
@@ -560,7 +570,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, boolean value1, String text2, boolean value2, String text3, boolean value3) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2), text3, String.valueOf(value3));
@@ -568,7 +578,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, boolean value1, String text2, boolean value2, String text3, boolean value3, String text4, boolean value4) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2), text3, String.valueOf(value3), text4, String.valueOf(value4));
@@ -576,7 +586,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, boolean value1, String text2, long value2) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1), text2, String.valueOf(value2));
@@ -584,7 +594,7 @@ public class LogToFile {
 
     public static void appendLogWithDate(Context context, String tag, String text1, long value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, DATE_FORMATTER.format(new Date(value1)));
@@ -592,7 +602,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, long value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1));
@@ -600,7 +610,7 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String text1, int value1) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
         appendLog(context, tag, text1, String.valueOf(value1));
@@ -616,39 +626,62 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, Throwable throwable, String... texts) {
         checkPreferences(context);
-        if (!logToFileEnabled || (logFilePathname == null)) {
+        if (!isLoggingAvailable()) {
             return;
         }
-        File logFile = new File(logFilePathname);
-        Date now = new Date();
+        ParcelFileDescriptor pfd = null;
         try {
-            if (logFile.exists()) {
+            Date now = new Date();
+            BufferedWriter buf;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 if (logFileAtTheEndOfLive == null) {
-                    boolean succeeded = initFileLogging(logFile);
-                    if (!succeeded) {
+                    initFileLogging(context, null);
+                }
+                if (Calendar.getInstance().after(logFileAtTheEndOfLive)) {
+                    pfd = context.getContentResolver().
+                            openFileDescriptor(logFileUri, "wt");
+                    FileOutputStream fos = new FileOutputStream(pfd.getFileDescriptor());
+                    StringBuilder initialDate = new StringBuilder();
+                    initialDate.append(DATE_FORMATTER.format(now));
+                    initialDate.append(" rotated\n");
+                    fos.write(initialDate.toString().getBytes(StandardCharsets.UTF_8));
+                    fos.close();
+                }
+
+                pfd = context.getContentResolver().
+                        openFileDescriptor(logFileUri, "wa");
+
+                buf = new BufferedWriter(new FileWriter(pfd.getFileDescriptor()));
+            } else {
+                File logFile = new File(logFilePathname);
+                if (logFile.exists()) {
+                    if (logFileAtTheEndOfLive == null) {
+                        boolean succeeded = initFileLogging(context, logFile);
+                        if (!succeeded) {
+                            createNewLogFile(logFile, now);
+                        }
+                    } else if (Calendar.getInstance().after(logFileAtTheEndOfLive)) {
+                        logFile.delete();
                         createNewLogFile(logFile, now);
                     }
-                } else if(Calendar.getInstance().after(logFileAtTheEndOfLive)) {
-                    logFile.delete();
+                } else {
                     createNewLogFile(logFile, now);
                 }
-            } else {
-                createNewLogFile(logFile, now);
+                buf = new BufferedWriter(new FileWriter(logFile, true));
             }
-            BufferedWriter buf = new BufferedWriter(new FileWriter(logFile, true));
             buf.append(DATE_FORMATTER.format(now));
             buf.append(" ");
             buf.append(tag);
             buf.append(" - ");
             if (texts != null) {
-                for (String text: texts) {
+                for (String text : texts) {
                     buf.append(text);
                 }
             }
             if (throwable != null) {
                 buf.append("\n");
                 buf.append(throwable.getMessage());
-                for (StackTraceElement ste: throwable.getStackTrace()) {
+                for (StackTraceElement ste : throwable.getStackTrace()) {
                     buf.newLine();
                     buf.append(ste.toString());
                 }
@@ -657,30 +690,54 @@ public class LogToFile {
             buf.close();
         } catch (IOException e) {
             Log.e(TAG, e.getMessage());
+        } finally {
+            if (pfd != null) {
+                try {
+                    pfd.close();
+                } catch (IOException e) {
+                    Log.e(TAG, e.getMessage());
+                }
+            }
         }
     }
 
-    private static boolean initFileLogging(File logFile) {
+    private static boolean initFileLogging(Context context, File logFile) {
         char[] logFileDateCreatedBytes = new char[TIME_DATE_PATTERN.length()];
         Date logFileDateCreated;
+
+        ParcelFileDescriptor pfd = null;
         FileReader logFileReader = null;
         try {
-            logFileReader = new FileReader(logFile);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                pfd = context.getContentResolver().
+                        openFileDescriptor(logFileUri, "r");
+                logFileReader = new FileReader(pfd.getFileDescriptor());
+            } else {
+                logFileReader = new FileReader(logFile);
+            }
+
             logFileReader.read(logFileDateCreatedBytes);
             logFileDateCreated = DATE_FORMATTER.parse(new String(logFileDateCreatedBytes));
         } catch (Exception e) {
             return false;
         } finally {
-            if (logFileReader != null) {
-                try {
+            try {
+                if (logFileReader != null) {
                     logFileReader.close();
-                } catch (IOException ex) {
-
                 }
+                if (pfd != null) {
+                    pfd.close();
+                }
+            } catch (IOException ex) {
+                Log.e(TAG, ex.getMessage());
             }
         }
         initEndOfLive(logFileDateCreated);
         return true;
+    }
+
+    private static boolean isLoggingAvailable() {
+        return logToFileEnabled && ((logFilePathname == null) || logFileUri != null);
     }
 
     private static void initEndOfLive(Date logFileDateCreated) {
@@ -707,6 +764,14 @@ public class LogToFile {
             logFilePathname = sharedPreferences.getString(Constants.KEY_DEBUG_FILE,"");
             logToFileEnabled = sharedPreferences.getBoolean(Constants.KEY_DEBUG_TO_FILE, false);
             logFileHoursOfLasting = Integer.valueOf(sharedPreferences.getString(Constants.KEY_DEBUG_FILE_LASTING_HOURS, "24"));
+            String uriAuthority = sharedPreferences.getString(Constants.KEY_DEBUG_URI_AUTHORITY, null);
+            if (uriAuthority != null) {
+                Uri.Builder uriBuilder = new Uri.Builder();
+                uriBuilder.encodedAuthority(uriAuthority);
+                uriBuilder.encodedPath(sharedPreferences.getString(Constants.KEY_DEBUG_URI_PATH, ""));
+                uriBuilder.scheme(sharedPreferences.getString(Constants.KEY_DEBUG_URI_SCHEME, ""));
+                logFileUri = uriBuilder.build();
+            }
         }
         nextCheckPreferencesCheck = Calendar.getInstance();
         nextCheckPreferencesCheck.add(Calendar.MINUTE, 5);
