@@ -213,7 +213,7 @@
     <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">
         <b xmlns:tools="https://schemas.android.com/tools">Merknader</b> 
 \nNår du velger merknadsvalget, vil programmet oppdatere nåværende være periodisk. Nåværende vær legges så inn i merknadsområdet. Du kan også skru på vibrering - da vil det vibrere ved oppdateringer.</string>
-    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">For å spare nettverkstrafikk og framskynde plasseringsoppdatering kan du skru på <b xmlns:tools="https://schemas.android.com/tools">Hurtiglagring av plasseringer</b>. Hurtiglageret lagrer geografiske koordinater og en adresse. Programmet må ringe til nettverksløsningstjenesten uavhengig av denne innstillingen. Samtalen til Nominatim finner kun sted hvis adressen ikke er å finne i hurtiglageret. Når du skrur på hurtiglagerplasseringer må du godta at adressene du besøker blir lagret i programmet. Ingen informasjon fra hurtiglageret sendes ut av programmet.</string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">For å spare nettverkstrafikk og framskynde plasseringsoppdatering kan du skru på <b xmlns:tools="https://schemas.android.com/tools">Hurtiglagring av plasseringer</b>. Hurtiglageret lagrer geografiske koordinater og en adresse. Programmet må ringe til nettverksløsningstjenesten uavhengig av denne innstillingen. Samtalen til Nominatim finner kun sted hvis adressen ikke er å finne i hurtiglageret. Når du skrur på hurtiglagerplasseringer lagres adressene du besøker i programmet. Ingen info fra hurtiglageret sendes ut av programmet.</string>
     <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Ved siden av hurtiglagerløsningen (avkryssningsboks) finnes det en innstilling for <b xmlns:tools="https://schemas.android.com/tools">Alderen på hurtiglagrede verdier</b>. Hver lagret adresse har et tidsstempel. Når det er eldre enn verdien satt i alderen for hurtiglagrede verdier, ringer programmet til Nominatim for å oppdatere oppføringen.</string>
     <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">Du kan tømme hurtiglagrede adresser ved å trykke på <b xmlns:tools="https://schemas.android.com/tools">Tøm hurtiglager</b>.</string>
     <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">Du kan se flere rader med hurtiglagrede verdier i delen om <b xmlns:tools="https://schemas.android.com/tools">Informasjon om hurtiglager</b>. Der kan du se totalt antall rader.</string>
@@ -568,4 +568,13 @@
     <string name="pref_language_hr" tools:ignore="MissingTranslation">Kroatisk (Croatian)</string>
     <string name="pref_language_fa" tools:ignore="MissingTranslation">Persisk (Persian)</string>
     <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (Hindi)</string>
+    <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">Når du velger på grafen å vise regn/snø-verdier ved siden av vind og temperatur (i søyler) blir verdien utregnet som log10. Maks. verdi for (usynlig) akse er ca. 160 mm (eller 6,3 tommer) i sådant fall.</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">Litauisk</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">Koreansk</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">To timer</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">Ingen mellom 00:00 og 06:00. (Posisjon 1,2,3,…)</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">Thai</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">Ingen mellom 00:00 og 06:00. (Posisjon 0)</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">Litauisk</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Kombinert graf</string>
 </resources>
