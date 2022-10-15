@@ -565,4 +565,10 @@
     <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Rodyti legendą grafike</string>
     <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Kombinuoto grafiko duomenys</string>
     <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Rodomi grafikai</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Kombinuotas grafikas</string>
+    <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">Pasirinkus grafike rodyti lietaus ir sniego vertes šalia vėjo ir temperatūros (stulpeliais), vertė apskaičiuojama kaip log10. Tuomet didžiausia (nematomos) ašies reikšmė yra apie 160 mm (arba 6,3 colio).</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2 valandos</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">Korean (korėjiečių)</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">Lithuanian (lietuvių)</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">Thai (tajų)</string>
 </resources>
