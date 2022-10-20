@@ -1,6 +1,9 @@
 [![Build Status](https://travis-ci.org/thuryn/your-local-weather.svg?branch=master)](https://travis-ci.org/thuryn/your-local-weather)
 [![Release](https://img.shields.io/github/release/thuryn/your-local-weather.svg)](https://github.com/thuryn/your-local-weather/releases)
 [![License](https://img.shields.io/badge/license-GNU_GPLv3-orange.svg)](https://raw.githubusercontent.com/thuryn/your-local-weather/HEAD/LICENSE)
+<a href="https://hosted.weblate.org/engage/your-local-weather/">
+<img src="https://hosted.weblate.org/widgets/your-local-weather/-/glossary/svg-badge.svg" alt="Translation status" />
+</a>
 
 # Your Local Weather APP
 Application displays current weather and location wherever you are.
@@ -24,7 +27,7 @@ To get the location, cell network (BTS) and WIFIs available on the place are use
 Application uses OpenWeatherMap.org service to get current weather .
 
 Additional features include:
-* Different languages: Czech, Basque, Belarusian, Czech, English, French, German, Japanese, Spanish, Polish, Russian
+* Multilingual
 * Current weather
 * 5 day forecast
 * Many locations
