@@ -369,7 +369,7 @@
     <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Kiša</string>
     <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Vjetar</string>
     <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Temperatura</string>
-    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Zajedno</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Združeni</string>
     <string name="cancel" tools:ignore="MissingTranslation">Odustani</string>
     <string name="ok" tools:ignore="MissingTranslation">U redu</string>
     <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
@@ -437,7 +437,7 @@
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Mjesta</string>
     <string name="title_activity_license" tools:ignore="MissingTranslation">Licenca za %s</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">Pomoć</string>
-    <string name="label_activity_graphs" tools:ignore="MissingTranslation">Vremenski grafikoni</string>
+    <string name="label_activity_graphs" tools:ignore="MissingTranslation">Vremenski dijagrami</string>
     <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Dnevna prognoza</string>
     <string name="label_activity_main" tools:ignore="MissingTranslation">Trenutačno vrijeme</string>
     <string name="title_activity_search" tools:ignore="MissingTranslation">Traži mjesto</string>
@@ -572,4 +572,6 @@
     <string name="pref_language_ko" tools:ignore="MissingTranslation">Koreanski</string>
     <string name="pref_language_lt" tools:ignore="MissingTranslation">Litvanski</string>
     <string name="pref_language_th" tools:ignore="MissingTranslation">Tajlandski</string>
+    <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">Kada na dijagramu odabereš prikaz vrijednosti kiše/snijega uz vjetar i temperaturu (u stupcima), vrijednost se izračunava kao log10. Tada je najveća vrijednost (nevidljive) osi oko 160 mm (ili 6,3 inča).</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Združeni dijagram</string>
 </resources>
