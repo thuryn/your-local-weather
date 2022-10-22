@@ -571,4 +571,7 @@
     <string name="pref_language_ko" tools:ignore="MissingTranslation">Korean (korėjiečių)</string>
     <string name="pref_language_lt" tools:ignore="MissingTranslation">Lithuanian (lietuvių)</string>
     <string name="pref_language_th" tools:ignore="MissingTranslation">Thai (tajų)</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">Ne nuo 00:00 iki 06:00 val. (Vieta 1,2,3...)</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">Ne nuo 00:00 iki 06:00 val. (0 vieta)</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">Kabyle (Kabilų)</string>
 </resources>
