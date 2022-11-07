@@ -565,4 +565,13 @@
     <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Temperatură</string>
     <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Presiune</string>
     <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (croată)</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Graficul combinat</string>
+    <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">Atunci când selectați pe grafic pentru a afișa valorile ploii/zăpezii alături de vânt și temperatură (în bare), valoarea este calculată ca log10. Valoarea maximă a axei (invizibilă) este de aproximativ 160 mm (sau 6,3 inci) atunci.</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">Nu între orele 00:00 și 06:00 (locația 1,2,3...)</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">Nu între orele 00:00 și 06:00 (Locația 0)</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">Kabila</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">Coreean</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2 ore</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">Lituanian</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">Thailandez</string>
 </resources>
