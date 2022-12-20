@@ -1,16 +1,16 @@
 Privacy Policy
 
-ThOsp built the Your local weather app as an Open Source app. This SERVICE is provided by ThOsp at no cost and is intended for use as is.
+ThOsp built the Your local weather application (next just YLW) as an Open Source app. This YLW is provided by ThOsp at no cost and is intended for use as is.
 
-This page is used to inform website visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
+This page is used to inform website visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my YLW.
 
-If you choose to use my Service, then you agree to the collection and use of information in relation to this policy. The Personal Information that I collect is used for providing and improving the Service. I will not use or share your information with anyone except as described in this Privacy Policy.
+If you choose to use my YLW, then you agree to the collection and use of information in relation to this policy. The Personal Information that I collect is used for providing and improving the YLW. I will not use or share your information with anyone except as described in this Privacy Policy.
 
 The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at Your local weather unless otherwise defined in this Privacy Policy.
 
-Information Collection and Use
+Permissions and APIs that Access Sensitive Information Policy
 
-For a better experience, while using our Service, I may require you to provide us with certain personally identifiable information, including but not limited to Cell network state (cellId, signal strength, network info provider), WIFI (available wifi networks, signal strength), longitude and latitude from GPS or Network location provider, addresses resolved by current location. The information that I request is retained on your device and is not collected by me in any way
+YLW gather and store information about your location. YLW collects the location information in background to display current weather on the widget. To get the location, YLW require certain personally identifiable information, including but not limited to Cell network state (cellId, signal strength, network info provider), WIFI (available wifi networks, signal strength), longitude and latitude from GPS or Network location provider, addresses resolved by current location. The information that YLW requests is retained on your device and is not collected by me in any way.
 
 The app uses Mozilla location service(https://location.services.mozilla.com/) to get location from Cell&WIFI networks, Nominatim (https://nominatim.openstreetmap.org/) to get address from location info and OpenWeatherMap (http://openweathermap.org/) to get weather information). All these third party services may collect information that can identify you.
 
@@ -20,13 +20,13 @@ Link to privacy policy of third party service providers used by the app
 
 Log Data
 
-I want to inform you that whenever you use my Service, in a case of an error in the app I collect data and information (through third party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing my Service, the time and date of your use of the Service, and other statistics.
+I want to inform you that whenever you use my YLW, in a case of an error in the app I collect data and information (through third party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing my YLW, the time and date of your use of the YLW, and other statistics.
 
 Cookies
 
 Cookies are files with small amount of data that is commonly used an anonymous unique identifier. These are sent to your browser from the website that you visit and are stored on your device internal memory.
 
-This Service does not use these “cookies” explicitly. However, the app may use third party code and libraries that use “cookies” to collection information and to improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this Service.
+This YLW does not use these “cookies” explicitly. However, the app may use third party code and libraries that use “cookies” to collection information and to improve their services. You have the option to either accept or refuse these cookies and know when a cookie is being sent to your device. If you choose to refuse our cookies, you may not be able to use some portions of this YLW.
 
 Service Providers
 
@@ -37,7 +37,7 @@ I may employ third-party companies and individuals due to the following reasons:
     To perform Service-related services; or
     To assist us in analyzing how our Service is used.
 
-I want to inform users of this Service that these third parties have access to your Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.
+I want to inform users of this YLW that these third parties have access to your Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.
 
 Security
 
@@ -45,11 +45,11 @@ I value your trust in providing us your Personal Information, thus we are strivi
 
 Links to Other Sites
 
-This Service may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by me. Therefore, I strongly advise you to review the Privacy Policy of these websites. I have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.
+This YLW may contain links to other sites. If you click on a third-party link, you will be directed to that site. Note that these external sites are not operated by me. Therefore, I strongly advise you to review the Privacy Policy of these websites. I have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.
 
 Children’s Privacy
 
-These Services do not address anyone under the age of 13. I do not knowingly collect personally identifiable information from children under 13. In the case I discover that a child under 13 has provided me with personal information, I immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact me so that I will be able to do necessary actions.
+These YLWs do not address anyone under the age of 13. I do not knowingly collect personally identifiable information from children under 13. In the case I discover that a child under 13 has provided me with personal information, I immediately delete this from our servers. If you are a parent or guardian and you are aware that your child has provided us with personal information, please contact me so that I will be able to do necessary actions.
 
 Changes to This Privacy Policy
 
