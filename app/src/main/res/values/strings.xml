@@ -16,6 +16,8 @@
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Proceed</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Cancel</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Location and Permission Settings</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">Application require background location permission</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">The application requires background location permission to get the weather by location where you actually are. If you agree you should select the option on the next screen:</string>
     <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">The app is set to update location. Access to it is needed. Go to device settings and switch the location on or switch app location updates off.</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">The app needs permission to update location using GPS.</string>
     <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">The app needs a permission to update location by Wi-Fi and GSM networks.</string>
@@ -542,6 +544,7 @@
     <string name="permission_location_rationale" tools:ignore="MissingTranslation">Location permissions needed to determine city</string>
     <string name="permission_not_granted" tools:ignore="MissingTranslation">Permissions not granted!</string>
     <string name="permission_available_location" tools:ignore="MissingTranslation">Location Permissions have been granted</string>
+    <string name="permission_available_notification" tools:ignore="MissingTranslation">Notification permission have been granted</string>
     <string name="permission_location_need" tools:ignore="MissingTranslation">Grant Location Permissions</string>
     <!-- Dialog strings -->
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Current weather description language and the address will change with the next update, or you can force it manually.</string>

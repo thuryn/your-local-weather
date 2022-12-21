@@ -10,20 +10,17 @@ import java.util.Map;
 
 public class XAxisValueFormatter implements IAxisValueFormatter {
 
-    private Map<Integer, Long> hourIndexes;
     private Calendar calendar = Calendar.getInstance();
     private SimpleDateFormat format;
     private Integer lastDayUsed;
 
-    public XAxisValueFormatter(Map<Integer, Long> hourIndexes, Locale locale) {
-        this.hourIndexes = hourIndexes;
+    public XAxisValueFormatter(Locale locale) {
         this.format = new SimpleDateFormat("EEE", locale);
     }
 
     @Override
     public String getFormattedValue(float value, AxisBase axis) {
-        int valuesIndex = (int) value;
-        Long dataTime = hourIndexes.get(valuesIndex);
+        Long dataTime = (long) value;
         if (dataTime == null) {
             return "";
         }

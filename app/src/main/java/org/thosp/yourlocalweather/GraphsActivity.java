@@ -209,7 +209,7 @@ public class GraphsActivity extends ForecastingActivity {
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
             double temperatureDay = TemperatureUtil.getTemperature(this, weatherForecastList.get(locationId).get(i));
-            entries.add(new Entry(i, (float) temperatureDay));
+            entries.add(new Entry(weatherForecastList.get(locationId).get(i).getDateTime(), (float) temperatureDay));
         }
 
         LineDataSet set;
@@ -217,13 +217,16 @@ public class GraphsActivity extends ForecastingActivity {
             mTemperatureChart.getData().removeDataSet(mTemperatureChart.getData().getDataSetByIndex(
                     mTemperatureChart.getData().getDataSetCount() - 1));
             set = new LineDataSet(entries, getString(R.string.graph_temperature_day_label));
-            set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            set.setMode(LineDataSet.Mode.LINEAR);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
             set.setLineWidth(2f);
             set.setDrawValues(false);
             set.setValueTextSize(12f);
-            set.setColor(Color.parseColor("#E84E40"));
+            List<Integer> temperatureColors = new ArrayList<>();
+            temperatureColors.add(Color.RED);
+            temperatureColors.add(Color.BLUE);
+            set.setColors(temperatureColors);
             set.setHighlightEnabled(false);
             set.setValueFormatter(mValueFormatter);
             set.setValueTextColor(PreferenceUtil.getTextColor(this));
@@ -232,7 +235,7 @@ public class GraphsActivity extends ForecastingActivity {
             mTemperatureChart.setData(data);
         } else {
             set = new LineDataSet(entries, getString(R.string.graph_temperature_day_label));
-            set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            set.setMode(LineDataSet.Mode.LINEAR);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
             set.setLineWidth(2f);
@@ -293,7 +296,7 @@ public class GraphsActivity extends ForecastingActivity {
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
             double wind = AppPreference.getWind(this, weatherForecastList.get(locationId).get(i).getWindSpeed());
-            entries.add(new Entry(i, (float) wind));
+            entries.add(new Entry(weatherForecastList.get(locationId).get(i).getDateTime(), (float) wind));
         }
 
         LineDataSet set;
@@ -301,7 +304,7 @@ public class GraphsActivity extends ForecastingActivity {
             mWindChart.getData().removeDataSet(mWindChart.getData().getDataSetByIndex(
                     mWindChart.getData().getDataSetCount() - 1));
             set = new LineDataSet(entries, getString(R.string.graph_wind_label));
-            set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            set.setMode(LineDataSet.Mode.LINEAR);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
             set.setLineWidth(2f);
@@ -316,7 +319,7 @@ public class GraphsActivity extends ForecastingActivity {
             mWindChart.setData(data);
         } else {
             set = new LineDataSet(entries, getString(R.string.graph_wind_label));
-            set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            set.setMode(LineDataSet.Mode.LINEAR);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
             set.setLineWidth(2f);
@@ -377,7 +380,7 @@ public class GraphsActivity extends ForecastingActivity {
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
             entries.add(new Entry(
-                    i,
+                    weatherForecastList.get(locationId).get(i).getDateTime(),
                     (float) AppPreference.getRainOrSnow(
                             this,
                             weatherForecastList.get(locationId).get(i).getRain())
@@ -390,7 +393,7 @@ public class GraphsActivity extends ForecastingActivity {
             mRainChart.getData().removeDataSet(mRainChart.getData().getDataSetByIndex(
                     mRainChart.getData().getDataSetCount() - 1));
             set = new LineDataSet(entries, getString(R.string.graph_rain_label));
-            set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            set.setMode(LineDataSet.Mode.LINEAR);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
             set.setLineWidth(2f);
@@ -405,7 +408,7 @@ public class GraphsActivity extends ForecastingActivity {
             mRainChart.setData(data);
         } else {
             set = new LineDataSet(entries, getString(R.string.graph_rain_label));
-            set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            set.setMode(LineDataSet.Mode.LINEAR);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
             set.setLineWidth(2f);
@@ -466,7 +469,7 @@ public class GraphsActivity extends ForecastingActivity {
         List<BarEntry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
             entries.add(new BarEntry(
-                            i,
+                            weatherForecastList.get(locationId).get(i).getDateTime(),
                             (float) AppPreference.getRainOrSnow(
                                     this,
                                     weatherForecastList.get(locationId).get(i).getRain())
@@ -479,7 +482,7 @@ public class GraphsActivity extends ForecastingActivity {
             rainBarChart.getData().removeDataSet(rainBarChart.getData().getDataSetByIndex(
                     rainBarChart.getData().getDataSetCount() - 1));
             set = new BarDataSet(entries, getString(R.string.graph_rain_label));
-            set.setValueTextSize(12f);
+            set.setValueTextSize(0f);
             set.setDrawValues(false);
             set.setColor(Color.parseColor("#5677FC"));
             set.setHighlightEnabled(false);
@@ -487,10 +490,11 @@ public class GraphsActivity extends ForecastingActivity {
             set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             BarData data = new BarData(set);
+            data.setBarWidth(8000f);
             rainBarChart.setData(data);
         } else {
             set = new BarDataSet(entries, getString(R.string.graph_rain_label));
-            set.setValueTextSize(12f);
+            set.setValueTextSize(0f);
             set.setDrawValues(false);
             set.setColor(Color.parseColor("#5677FC"));
             set.setHighlightEnabled(false);
@@ -498,6 +502,7 @@ public class GraphsActivity extends ForecastingActivity {
             set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             BarData data = new BarData(set);
+            data.setBarWidth(8000f);
             rainBarChart.setData(data);
         }
         rainBarChart.invalidate();
@@ -547,7 +552,7 @@ public class GraphsActivity extends ForecastingActivity {
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
             entries.add(new Entry(
-                            i,
+                             weatherForecastList.get(locationId).get(i).getDateTime(),
                             (float) AppPreference.getRainOrSnow(
                                     this,
                                     weatherForecastList.get(locationId).get(i).getSnow())
@@ -560,7 +565,7 @@ public class GraphsActivity extends ForecastingActivity {
             mSnowChart.getData().removeDataSet(mSnowChart.getData().getDataSetByIndex(
                     mSnowChart.getData().getDataSetCount() - 1));
             set = new LineDataSet(entries, getString(R.string.graph_snow_label));
-            set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            set.setMode(LineDataSet.Mode.LINEAR);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
             set.setLineWidth(2f);
@@ -575,7 +580,7 @@ public class GraphsActivity extends ForecastingActivity {
             mSnowChart.setData(data);
         } else {
             set = new LineDataSet(entries, getString(R.string.graph_snow_label));
-            set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            set.setMode(LineDataSet.Mode.LINEAR);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
             set.setLineWidth(2f);
@@ -636,7 +641,7 @@ public class GraphsActivity extends ForecastingActivity {
         List<BarEntry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
             entries.add(new BarEntry(
-                            i,
+                            weatherForecastList.get(locationId).get(i).getDateTime(),
                             (float) AppPreference.getRainOrSnow(
                                     this,
                                     weatherForecastList.get(locationId).get(i).getSnow())
@@ -649,7 +654,7 @@ public class GraphsActivity extends ForecastingActivity {
             snowBarChart.getData().removeDataSet(snowBarChart.getData().getDataSetByIndex(
                     snowBarChart.getData().getDataSetCount() - 1));
             set = new BarDataSet(entries, getString(R.string.graph_snow_label));
-            set.setValueTextSize(12f);
+            set.setValueTextSize(0f);
             set.setDrawValues(false);
             set.setColor(Color.parseColor("#009688"));
             set.setHighlightEnabled(false);
@@ -657,10 +662,11 @@ public class GraphsActivity extends ForecastingActivity {
             set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             BarData data = new BarData(set);
+            data.setBarWidth(8000f);
             snowBarChart.setData(data);
         } else {
             set = new BarDataSet(entries, getString(R.string.graph_snow_label));
-            set.setValueTextSize(12f);
+            set.setValueTextSize(0f);
             set.setDrawValues(false);
             set.setColor(Color.parseColor("#009688"));
             set.setHighlightEnabled(false);
@@ -668,6 +674,7 @@ public class GraphsActivity extends ForecastingActivity {
             set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             BarData data = new BarData(set);
+            data.setBarWidth(8000f);
             snowBarChart.setData(data);
         }
         snowBarChart.invalidate();
@@ -716,7 +723,7 @@ public class GraphsActivity extends ForecastingActivity {
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
             entries.add(new Entry(
-                    i,
+                    weatherForecastList.get(locationId).get(i).getDateTime(),
                     (float) AppPreference.getPressureWithUnit(
                             this,
                             weatherForecastList.get(locationId).get(i).getPressure(),
@@ -728,7 +735,7 @@ public class GraphsActivity extends ForecastingActivity {
             mPressureChart.getData().removeDataSet(mPressureChart.getData().getDataSetByIndex(
                     mPressureChart.getData().getDataSetCount() - 1));
             set = new LineDataSet(entries, getString(R.string.graph_pressure_label));
-            set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            set.setMode(LineDataSet.Mode.LINEAR);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
             set.setLineWidth(2f);
@@ -743,7 +750,7 @@ public class GraphsActivity extends ForecastingActivity {
             mPressureChart.setData(data);
         } else {
             set = new LineDataSet(entries, getString(R.string.graph_pressure_label));
-            set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+            set.setMode(LineDataSet.Mode.LINEAR);
             set.setCubicIntensity(0.2f);
             set.setDrawCircles(false);
             set.setLineWidth(2f);

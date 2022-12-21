@@ -315,19 +315,40 @@ public class GraphUtils {
         List<Entry> temperatureEntries = new ArrayList<>();
         int entryCounter = 0;
         for (double temperatureForEntry: temperatures) {
+            if (entryCounter > 0) {
+                boolean fromFreezeToHot = (temperatures[entryCounter - 1] < 0) && (temperatureForEntry > 0);
+                boolean fromHotToFreeze = (temperatures[entryCounter - 1] > 0) && (temperatureForEntry < 0);
+
+                if (fromFreezeToHot || fromHotToFreeze) {
+
+                    float deltaX = weatherForecastList.get(entryCounter).getDateTime() - weatherForecastList.get(entryCounter - 1).getDateTime();
+                    double deltaY = temperatureForEntry - temperatures[entryCounter - 1];
+                    double prepona = Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+                    double alpha = Math.acos(deltaX/prepona);
+
+                    double newDeltaY = Math.abs(temperatures[entryCounter]);
+                    long zeroTempTime = weatherForecastList.get(entryCounter - 1).getDateTime()  + (long) (newDeltaY / Math.sin(alpha));
+                    temperatureEntries.add(new Entry(
+                            zeroTempTime,
+                            0f));
+                }
+            }
             temperatureEntries.add(new Entry(
-                    entryCounter++,
+                    weatherForecastList.get(entryCounter++).getDateTime(),
                     (float) temperatureForEntry));
         }
 
         LineDataSet set = new LineDataSet(temperatureEntries, context.getString(R.string.graph_temperature_day_label));
-        set.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        set.setMode(LineDataSet.Mode.LINEAR);
         set.setCubicIntensity(0.2f);
         set.setDrawCircles(false);
         set.setLineWidth(2f);
         set.setValueTextSize(12f);
         set.setDrawValues(false);
-        set.setColor(Color.parseColor("#E84E40"));
+        List<Integer> temperatureColors = new ArrayList<>();
+        temperatureColors.add(Color.RED);
+        temperatureColors.add(Color.BLUE);
+        set.setColors(temperatureColors);
         set.setHighlightEnabled(false);
         set.setValueFormatter(mValueFormatter);
         set.setValueTextColor(textColorId);
@@ -363,7 +384,7 @@ public class GraphUtils {
         entryCounter = 0;
         for (double pressureForEntry: pressures) {
             pressureEntries.add(new Entry(
-                    entryCounter++,
+                    weatherForecastList.get(entryCounter++).getDateTime(),
                     (float) pressureForEntry));
         }
 
@@ -430,19 +451,19 @@ public class GraphUtils {
                 rainsnowBarData[0] = rains[i];
                 rainsnowBarData[1] = snows[i];
                 rainEntries.add(new BarEntry(
-                        i,
+                        weatherForecastList.get(i).getDateTime(),
                         rainsnowBarData));
             } else if (isRain){
                 rainEntries.add(new BarEntry(
-                        i,
+                        weatherForecastList.get(i).getDateTime(),
                         rains[i]));
             } else if (isSnow){
                 rainEntries.add(new BarEntry(
-                        i,
+                        weatherForecastList.get(i).getDateTime(),
                         snows[i]));
             } else {
                 rainEntries.add(new BarEntry(
-                        i,
+                        weatherForecastList.get(i).getDateTime(),
                         rains[i]));
             }
         }
@@ -478,7 +499,7 @@ public class GraphUtils {
             if (windSpeed > maxWindValue) {
                 maxWindValue = windSpeed;
             }
-            windEntries.add(new Entry(i, (float) (windSpeed)));
+            windEntries.add(new Entry(weatherForecastList.get(i).getDateTime(), (float) (windSpeed)));
         }
 
         LineDataSet windSet = new LineDataSet(windEntries, context.getString(R.string.graph_wind_label));
@@ -630,6 +651,7 @@ public class GraphUtils {
         if (rainsnow) {
             BarData rainData = new BarData();
             rainData.addDataSet(rainSet);
+            rainData.setBarWidth(8000f);
             data.setData(rainData);
         } else {
             BarData rainData = new BarData();
@@ -647,44 +669,38 @@ public class GraphUtils {
                                   AppPreference.GraphGridColors gridColor,
                                   Locale locale) {
         x.removeAllLimitLines();
-        Map<Integer, Long> hourIndexes = new HashMap<>();
 
-        int lastDayOflimitLine = 0;
+        if ((weatherForecastList == null) || weatherForecastList.isEmpty()) {
+            return;
+        }
+
+        List<String> passedDays = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.size(); i++) {
-            hourIndexes.put(i, weatherForecastList.get(i).getDateTime());
             Calendar cal = Calendar.getInstance();
             cal.setTimeInMillis(weatherForecastList.get(i).getDateTime() * 1000);
-            if (cal.get(Calendar.DAY_OF_YEAR) != lastDayOflimitLine) {
-                Calendar calOfPreviousRecord = Calendar.getInstance();
-                int previousRecordHour = 24;
-                if (i > 0) {
-                    calOfPreviousRecord.setTimeInMillis(weatherForecastList.get(i - 1).getDateTime() * 1000);
-                    previousRecordHour = calOfPreviousRecord.get(Calendar.HOUR_OF_DAY);
-                }
-                int currentHour = cal.get(Calendar.HOUR_OF_DAY);
-                float timeSpan = (24 - previousRecordHour) + currentHour;
-                float dayLine = currentHour / timeSpan;
-                float midnight = i - dayLine;
-                float hour6 = midnight + (6 / timeSpan);
-                float hour12 = midnight + (12 / timeSpan);
-                float hour18 = midnight + (18 / timeSpan);
-                LimitLine limitLine = new LimitLine(midnight);
-                limitLine.setLineColor(gridColor.getMainGridColor());
-                limitLine.setLineWidth(0.5f);
-                x.addLimitLine(limitLine);
-                /*LimitLine limitLine6 = new LimitLine(hour6, "");
-                limitLine6.setLineColor(Color.LTGRAY);
-                limitLine6.setLineWidth(0.5f);
-                x.addLimitLine(limitLine6);*/
-                LimitLine limitLine12 = new LimitLine(hour12);
+
+            Calendar cal24InDay = Calendar.getInstance();
+            cal24InDay.setTimeInMillis(weatherForecastList.get(i).getDateTime() * 1000);
+            cal24InDay.set(Calendar.HOUR_OF_DAY, 0);
+
+            Calendar cal12InDay = Calendar.getInstance();
+            cal12InDay.setTimeInMillis(weatherForecastList.get(i).getDateTime() * 1000);
+            cal12InDay.set(Calendar.HOUR_OF_DAY, 12);
+
+            if (!passedDays.contains(cal12InDay.get(Calendar.DAY_OF_YEAR) + "12") && cal12InDay.after(cal)) {
+                LimitLine limitLine12 = new LimitLine(cal12InDay.getTimeInMillis() / 1000);
                 limitLine12.setLineColor(gridColor.getSecondaryGridColor());
                 limitLine12.setLineWidth(0.5f);
                 x.addLimitLine(limitLine12);
-                /*LimitLine limitLine18 = new LimitLine(hour18, "");
-                limitLine18.setLineColor(Color.LTGRAY);
-                limitLine18.setLineWidth(0.5f);
-                x.addLimitLine(limitLine18);*/
-                lastDayOflimitLine = cal.get(Calendar.DAY_OF_YEAR);
+                passedDays.add(cal12InDay.get(Calendar.DAY_OF_YEAR) + "12");
+            }
+
+            if (!passedDays.contains(cal24InDay.get(Calendar.DAY_OF_YEAR) + "24")) {
+                LimitLine limitLine24 = new LimitLine(cal24InDay.getTimeInMillis() / 1000);
+                limitLine24.setLineColor(gridColor.getMainGridColor());
+                limitLine24.setLineWidth(0.5f);
+                x.addLimitLine(limitLine24);
+                passedDays.add(cal24InDay.get(Calendar.DAY_OF_YEAR) + "24");
             }
         }
 
@@ -694,8 +710,11 @@ public class GraphUtils {
         x.setLabelCount(25);
         x.setTextColor(textColorId);
         x.setGridColor(gridColor.getMainGridColor());
-        x.setValueFormatter(new XAxisValueFormatter(hourIndexes, locale));
+        x.setValueFormatter(new XAxisValueFormatter(locale));
         x.setDrawLimitLinesBehindData(true);
+        if (!weatherForecastList.isEmpty()) {
+            x.setAxisMinimum(weatherForecastList.get(0).getDateTime());
+        }
 
         if (textSize != null) {
             x.setTextSize(textSize);

@@ -364,6 +364,7 @@
         </service>
         <service
             android:name=".service.LocationUpdateService"
+            android:foregroundServiceType="location"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.START_LOCATION_AND_WEATHER_UPDATE" />

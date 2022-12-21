@@ -15,6 +15,8 @@
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Pokračovat</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Zrušit</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Nastavení polohy a oprávnění</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">Aplikace potřebuje získávat polohu na pozadí</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">Aplikace získává polohu na pozadí, aby vždy zobrazila počasí podle polohy, kde právě jste. Pokud souhlasíte, stiskněte na následujícím dialogu volbu:</string>
     <string name="alertDialog_location_permission_message_location_phone_settings">Aplikace má nastavenu aktualizaci polohy. Aby aktualizace mohla fungovat, je třeba povolit přístup k poloze. Přejděte, prosím, do nastavení a povolte přístup k poloze nebo vypněte aktualizaci polohy v aplikaci.</string>
     <string name="alertDialog_location_permission_message_location_gps_permission">Pro aktualizaci polohy pomocí GPS je třeba oprávnění pro přístup GPS.</string>
     <string name="alertDialog_location_permission_message_location_network_permission">Pro aktualizaci polohy pomocí WIFI a GSM sítě je třeba oprávnění pro přístup poloze.</string>
@@ -231,6 +233,7 @@
     <string name="permission_location_rationale">Oprávnění pro získání polohy je třeba pro nalezení aktuálního města</string>
     <string name="permission_not_granted">Oprávnění nejsou udělena!</string>
     <string name="permission_available_location">Bylo uděleno oprávnění pro získání polohy</string>
+    <string name="permission_available_notification">Oprávnění pro upozornění bylo uděleno</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Displej</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Aktualizace polohy a počasí</string>

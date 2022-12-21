@@ -37,6 +37,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
@@ -638,6 +640,64 @@ public class MainActivity extends BaseActivity
 
     private volatile boolean permissionsAndSettingsRequested = false;
 
+    private final static int BACKGROUND_LOCATION_PERMISSION_CODE = 333;
+    private final static int LOCATION_PERMISSION_CODE = 222;
+
+    private void askPermissionForBackgroundUsage() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, Manifest.permission.ACCESS_BACKGROUND_LOCATION)) {
+            String message = getString(R.string.alertDialog_background_location_permission_message);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                message += getPackageManager().getBackgroundPermissionOptionLabel();
+            }
+            new AlertDialog.Builder(this)
+                    .setTitle(R.string.alertDialog_background_location_permission_title)
+                    .setMessage(message)
+                    .setPositiveButton(R.string.alertDialog_location_permission_positiveButton_settings, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            ActivityCompat.requestPermissions(MainActivity.this,
+                                    new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, BACKGROUND_LOCATION_PERMISSION_CODE);
+                        }
+                    })
+                    .setNegativeButton(R.string.alertDialog_location_permission_negativeButton, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Snackbar.make(findViewById(android.R.id.content), R.string.permission_not_granted, Snackbar.LENGTH_SHORT).show();
+                        }
+                    })
+                    .create().show();
+        } else {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.ACCESS_BACKGROUND_LOCATION}, BACKGROUND_LOCATION_PERMISSION_CODE);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        if (requestCode == LOCATION_PERMISSION_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                        Snackbar.make(findViewById(android.R.id.content), R.string.permission_available_location, Snackbar.LENGTH_SHORT).show();
+                    } else {
+                        askPermissionForBackgroundUsage();
+                    }
+                }
+            } else {
+                Snackbar.make(findViewById(android.R.id.content), R.string.permission_not_granted, Snackbar.LENGTH_SHORT).show();
+            }
+        } else if (requestCode == BACKGROUND_LOCATION_PERMISSION_CODE) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                checkBatteryOptimization();
+            } else {
+                Snackbar.make(findViewById(android.R.id.content), R.string.permission_not_granted, Snackbar.LENGTH_SHORT).show();
+            }
+        }
+
+    }
+
     public boolean checkPermissionsSettingsAndShowAlert() {
         if (permissionsAndSettingsRequested) {
             return true;
@@ -694,14 +754,23 @@ public class MainActivity extends BaseActivity
             }
             settingsAlert.setMessage(notificationMessage.toString());
             final String[] permissionsArray = permissions.toArray(new String[permissions.size()]);
-            final Activity mainActivity = this;
             settingsAlert.setPositiveButton(R.string.alertDialog_location_permission_positiveButton_permissions,
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            ActivityCompat.requestPermissions(mainActivity,
-                                    permissionsArray,
-                                    123);
+                            if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                                    if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                                        Snackbar.make(findViewById(android.R.id.content), R.string.permission_available_location, Snackbar.LENGTH_SHORT).show();
+                                    } else {
+                                        askPermissionForBackgroundUsage();
+                                    }
+                                }
+                            } else {
+                                ActivityCompat.requestPermissions(MainActivity.this,
+                                        permissionsArray,
+                                        LOCATION_PERMISSION_CODE);
+                            }
                         }
                     });
         }
@@ -742,59 +811,32 @@ public class MainActivity extends BaseActivity
         settingsAlert.show();
     }
 
-    private void showMLSLimitedServiceDisclaimer() {
-        int initialGuideVersion = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
-                .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
-        if (initialGuideVersion != 4) {
+    private void checkNotificationPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
             return;
         }
-        final Context localContext = getBaseContext();
-        final AlertDialog.Builder settingsAlert = new AlertDialog.Builder(MainActivity.this);
-        settingsAlert.setTitle(R.string.alertDialog_mls_service_title);
-        settingsAlert.setMessage(R.string.alertDialog_mls_service_message);
-        settingsAlert.setNeutralButton(R.string.alertDialog_battery_optimization_proceed,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(localContext).edit();
-                        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 5);
-                        preferences.apply();
-                        checkAndShowInitialGuide();
-                    }
-                });
-        settingsAlert.show();
+        if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, Manifest.permission.POST_NOTIFICATIONS)) {
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setData(Uri.parse("package:" + getPackageName()));
+            startActivity(intent);
+        } else {
+            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS);
+        }
+        SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 5);
+        preferences.apply();
     }
 
-    private void showAndroid10Permisions() {
-        int initialGuideVersion = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
-                .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
-        if (initialGuideVersion != 5) {
-            return;
-        }
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(getBaseContext()).edit();
-            preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 6);
-            preferences.apply();
-            checkAndShowInitialGuide();
-            return;
-        }
-        final Context localContext = getBaseContext();
-        final AlertDialog.Builder settingsAlert = new AlertDialog.Builder(MainActivity.this);
-        settingsAlert.setTitle(R.string.alertDialog_android_10_permissions_title);
-        settingsAlert.setMessage(R.string.alertDialog_android_10_permissions_message);
-        settingsAlert.setNeutralButton(R.string.alertDialog_battery_optimization_proceed,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(localContext).edit();
-                        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 6);
-                        preferences.apply();
-                        checkPermissionsSettingsAndShowAlert();
-                        checkAndShowInitialGuide();
-                    }
-                });
-        settingsAlert.show();
-    }
+    private ActivityResultLauncher<String> requestPermissionLauncher =
+            registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                if (isGranted) {
+                    Snackbar.make(findViewById(android.R.id.content), R.string.permission_available_notification, Snackbar.LENGTH_SHORT).show();
+                } else {
+                    Snackbar.make(findViewById(android.R.id.content), R.string.permission_not_granted, Snackbar.LENGTH_SHORT).show();
+                }
+            });
+
 
     private void checkBatteryOptimization() {
         int initialGuideVersion = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
@@ -850,11 +892,6 @@ public class MainActivity extends BaseActivity
     }
 
     private volatile boolean initialGuideCompleted;
-    private volatile int initialGuidePage;
-    private int selectedUpdateLocationStrategy;
-    private int selectedLocationAndAddressSourceStrategy;
-    private int selectedWakeupStrategyStrategy;
-    private int selectedCacheLocationStrategy;
 
     private void checkSettingsAndPermisions() {
         if (initialGuideCompleted) {
@@ -867,197 +904,31 @@ public class MainActivity extends BaseActivity
         int initialGuideVersion = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
                 .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
         if (initialGuideVersion > 0) {
-            checkBatteryOptimization();
-            showVoiceAndSourcesDisclaimer();
-            showMLSLimitedServiceDisclaimer();
-            showAndroid10Permisions();
-            if (initialGuideVersion >= 6) {
+            if (initialGuideVersion == 3) {
+                showVoiceAndSourcesDisclaimer();
+            } else if (initialGuideVersion == 4) {
+                checkNotificationPermission();
+            } else if (initialGuideVersion == 5) {
+                detectLocation();
                 initialGuideCompleted = true;
-                if (initialGuidePage > 0) {
-                    detectLocation();
-                }
             }
+            checkPermissionsSettingsAndShowAlert();
             return;
+        } else {
+            saveInitialPreferences();
         }
-        if (initialGuidePage > 0) {
-            return;
-        }
-        initialGuidePage = 1;
-        showInitialGuidePage(initialGuidePage);
-    }
-
-    private void showInitialGuidePage(int pageNumber) {
-        final AlertDialog.Builder settingsAlert = new AlertDialog.Builder(MainActivity.this);
-        switch (pageNumber) {
-            case 1:
-                settingsAlert.setTitle(R.string.initial_guide_title_1);
-                settingsAlert.setMessage(R.string.initial_guide_paragraph_1);
-                setNextButton(settingsAlert, R.string.initial_guide_next);
-                break;
-            case 2:
-                settingsAlert.setTitle(R.string.initial_guide_title_2);
-                selectedUpdateLocationStrategy = 1;
-                settingsAlert.setSingleChoiceItems(R.array.location_update_strategy, selectedUpdateLocationStrategy,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int selectedOption) {
-                                selectedUpdateLocationStrategy = selectedOption;
-                                if (selectedOption == 0) {
-                                    initialGuidePage = 8; //skip to the last page
-                                }
-                            }
-                        });
-                setNextButton(settingsAlert, R.string.initial_guide_next);
-                setPreviousButton(settingsAlert, R.string.initial_guide_previous);
-                break;
-            case 3:
-                settingsAlert.setTitle(R.string.initial_guide_title_3);
-                settingsAlert.setMessage(R.string.initial_guide_paragraph_3);
-                setNextButton(settingsAlert, R.string.initial_guide_next);
-                setPreviousButton(settingsAlert, R.string.initial_guide_previous);
-                break;
-            case 4:
-                settingsAlert.setTitle(R.string.initial_guide_title_4);
-                selectedLocationAndAddressSourceStrategy = 0;
-                settingsAlert.setSingleChoiceItems(R.array.location_geocoder_source_entries, selectedLocationAndAddressSourceStrategy,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int selectedOption) {
-                                selectedLocationAndAddressSourceStrategy = selectedOption;
-                            }
-                        });
-                setNextButton(settingsAlert, R.string.initial_guide_next);
-                setPreviousButton(settingsAlert, R.string.initial_guide_previous);
-                break;
-            case 5:
-                settingsAlert.setTitle(R.string.initial_guide_title_5);
-                settingsAlert.setMessage(R.string.initial_guide_paragraph_5);
-                setNextButton(settingsAlert, R.string.initial_guide_next);
-                setPreviousButton(settingsAlert, R.string.initial_guide_previous);
-                break;
-            case 6:
-                settingsAlert.setTitle(R.string.initial_guide_title_6);
-                selectedWakeupStrategyStrategy = 2;
-                settingsAlert.setSingleChoiceItems(R.array.wake_up_strategy_entries, selectedWakeupStrategyStrategy,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int selectedOption) {
-                                selectedWakeupStrategyStrategy = selectedOption;
-                            }
-                        });
-                setNextButton(settingsAlert, R.string.initial_guide_next);
-                setPreviousButton(settingsAlert, R.string.initial_guide_previous);
-                break;
-            case 7:
-                settingsAlert.setTitle(R.string.initial_guide_title_7);
-                settingsAlert.setMessage(R.string.initial_guide_paragraph_7);
-                setNextButton(settingsAlert, R.string.initial_guide_next);
-                setPreviousButton(settingsAlert, R.string.initial_guide_previous);
-                break;
-            case 8:
-                settingsAlert.setTitle(R.string.initial_guide_title_8);
-                selectedCacheLocationStrategy = 1;
-                settingsAlert.setSingleChoiceItems(R.array.location_cache_entries, selectedCacheLocationStrategy,
-                        new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int selectedOption) {
-                                selectedCacheLocationStrategy = selectedOption;
-                            }
-                        });
-                setNextButton(settingsAlert, R.string.initial_guide_next);
-                setPreviousButton(settingsAlert, R.string.initial_guide_previous);
-                break;
-            case 9:
-                settingsAlert.setTitle(R.string.initial_guide_title_9);
-                settingsAlert.setMessage(R.string.initial_guide_paragraph_9);
-                setNextButton(settingsAlert, R.string.initial_guide_finish);
-                setPreviousButton(settingsAlert, R.string.initial_guide_previous);
-                break;
-        }
-        settingsAlert.show();
-    }
-
-    private void setNextButton(AlertDialog.Builder settingsAlert, int labelId) {
-        settingsAlert.setPositiveButton(labelId,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                        initialGuidePage++;
-                        if (initialGuidePage > 9) {
-                            permissionsAndSettingsRequested = false;
-                            saveInitialPreferences();
-                            updateCurrentLocationAndButtonVisibility();
-                            checkPermissionsSettingsAndShowAlert();
-                        } else {
-                            showInitialGuidePage(initialGuidePage);
-                        }
-                    }
-                });
-    }
-
-    private void setPreviousButton(AlertDialog.Builder settingsAlert, final int labelId) {
-        settingsAlert.setNegativeButton(labelId,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                        if (labelId == R.string.initial_guide_close) {
-                            closeInitialGuideAndCheckPermission();
-                        } else {
-                            initialGuidePage--;
-                            showInitialGuidePage(initialGuidePage);
-                        }
-                    }
-                });
-    }
-
-    private void closeInitialGuideAndCheckPermission() {
-        permissionsAndSettingsRequested = false;
-        SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(this).edit();
-        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 2);
-        preferences.apply();
-        checkPermissionsSettingsAndShowAlert();
-        updateCurrentLocationAndButtonVisibility();
-        checkAndShowInitialGuide();
     }
 
     private void saveInitialPreferences() {
         SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(this).edit();
-
-        boolean gpsEnabled = true;
-        boolean locationUpdateEnabled = true;
-        switch (selectedUpdateLocationStrategy) {
-            case 0: locationUpdateEnabled = false; gpsEnabled = false; break;
-            case 1: locationUpdateEnabled = true; gpsEnabled = true; break;
-            case 2: locationUpdateEnabled = true; gpsEnabled = false; break;
-        }
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
         Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
-        locationsDbHelper.updateEnabled(autoLocation.getId(), locationUpdateEnabled);
-        preferences.putBoolean(Constants.KEY_PREF_LOCATION_GPS_ENABLED, gpsEnabled);
+        locationsDbHelper.updateEnabled(autoLocation.getId(), true);
+        preferences.putBoolean(Constants.KEY_PREF_LOCATION_GPS_ENABLED, true);
 
-        String selectedWakeupStrategyStrategyString = "nowakeup";
-        switch (selectedWakeupStrategyStrategy) {
-            case 0: selectedWakeupStrategyStrategyString = "nowakeup"; break;
-            case 1: selectedWakeupStrategyStrategyString = "wakeuppartial"; break;
-            case 2: selectedWakeupStrategyStrategyString = "wakeupfull"; break;
-        }
-        preferences.putString(Constants.KEY_WAKE_UP_STRATEGY, selectedWakeupStrategyStrategyString);
-
-        String selectedLocationAndAddressSourceStrategyString = "location_geocoder_local";
-        switch (selectedLocationAndAddressSourceStrategy) {
-            case 0: selectedLocationAndAddressSourceStrategyString = "location_geocoder_local"; break;
-            case 1: selectedLocationAndAddressSourceStrategyString = "location_geocoder_system"; break;
-        }
-        preferences.putString(Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE, selectedLocationAndAddressSourceStrategyString);
-
-        boolean selectedCacheLocationStrategyBoolean = false;
-        switch (selectedCacheLocationStrategy) {
-            case 0: selectedCacheLocationStrategyBoolean = false; break;
-            case 1: selectedCacheLocationStrategyBoolean = true; break;
-        }
-        preferences.putBoolean(Constants.APP_SETTINGS_LOCATION_CACHE_ENABLED, selectedCacheLocationStrategyBoolean);
+        preferences.putString(Constants.KEY_WAKE_UP_STRATEGY, "wakeuppartial");
+        preferences.putString(Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE, "location_geocoder_local");
+        preferences.putBoolean(Constants.APP_SETTINGS_LOCATION_CACHE_ENABLED, true);
 
         preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 2);
         preferences.apply();
@@ -1078,22 +949,6 @@ public class MainActivity extends BaseActivity
     private void requestLocation() {
         if (checkPermissionsSettingsAndShowAlert()) {
             detectLocation();
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        switch (requestCode) {
-            case REQUEST_LOCATION:
-                if (PermissionUtil.verifyPermissions(grantResults)) {
-                    Snackbar.make(findViewById(android.R.id.content), R.string.permission_available_location, Snackbar.LENGTH_SHORT).show();
-                } else {
-                    Snackbar.make(findViewById(android.R.id.content), R.string.permission_not_granted, Snackbar.LENGTH_SHORT).show();
-                }
-                break;
-            default:
-                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-                break;
         }
     }
 
