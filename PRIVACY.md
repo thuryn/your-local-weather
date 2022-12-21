@@ -14,10 +14,6 @@ YLW gather and store information about your location. YLW collects the location 
 
 The app uses Mozilla location service(https://location.services.mozilla.com/) to get location from Cell&WIFI networks, Nominatim (https://nominatim.openstreetmap.org/) to get address from location info and OpenWeatherMap (http://openweathermap.org/) to get weather information). All these third party services may collect information that can identify you.
 
-Link to privacy policy of third party service providers used by the app
-
-    Google Play Services
-
 Log Data
 
 I want to inform you that whenever you use my YLW, in a case of an error in the app I collect data and information (through third party products) on your phone called Log Data. This Log Data may include information such as your device Internet Protocol (“IP”) address, device name, operating system version, the configuration of the app when utilizing my YLW, the time and date of your use of the YLW, and other statistics.
