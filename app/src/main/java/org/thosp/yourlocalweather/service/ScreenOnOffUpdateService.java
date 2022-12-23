@@ -204,9 +204,9 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         }
 
         org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
-        boolean autoLocationEnabled = (currentLocation == null) || !currentLocation.isEnabled() || !"0".equals(updateAutoPeriodStr);
+        boolean autoLocationEnabled = (currentLocation != null) && currentLocation.isEnabled() && "0".equals(updateAutoPeriodStr);
 
-        if (!(locationAutoUpdateNight || locationUpdateNight) && autoLocationEnabled) {
+        if ((locationAutoUpdateNight || locationUpdateNight) && autoLocationEnabled) {
             checkNotification(context);
             return;
         }

@@ -20,21 +20,12 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 public class SensorLocationUpdateService extends SensorLocationUpdater {
 
     private static final String TAG = "SensorLocationUpdateService";
-    
-    public static final int SCREEN_OFF_RECEIVER_DELAY = 500;
-    
-    private final IBinder binder = new SensorLocationUpdateServiceBinder();
 
     private final Lock receiversLock = new ReentrantLock();
     private static volatile boolean receiversRegistered;
 
     private SensorManager senSensorManager;
     private Sensor senAccelerometer;
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return binder;
-    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
@@ -178,12 +169,6 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
                     this,
                     senAccelerometer ,
                     maxDelay));
-        }
-    }
-    
-    public class SensorLocationUpdateServiceBinder extends Binder {
-        SensorLocationUpdateService getService() {
-            return SensorLocationUpdateService.this;
         }
     }
 }

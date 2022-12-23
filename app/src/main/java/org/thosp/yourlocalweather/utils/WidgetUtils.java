@@ -644,12 +644,14 @@ public class WidgetUtils {
         remoteViews.setTextViewText(
                 weatherIdForDayName,
                 AppPreference.getLocalizedHour(context, forecastCalendar.getTime(), location.getLocale()));
+        remoteViews.setTextColor(weatherIdForDayName, fontColorId);
         remoteViews.setTextViewText(
                 weatherIdForTemperatures,
                 Math.round(TemperatureUtil.getTemperatureInPreferredUnit(context, minTemp)) +
                  "/" +
                  Math.round(TemperatureUtil.getTemperatureInPreferredUnit(context, maxTemp)) +
                  TemperatureUtil.getTemperatureUnit(context));
+        remoteViews.setTextColor(weatherIdForTemperatures, fontColorId);
     }
 
     private static void setForecastDayInfo(
@@ -689,12 +691,14 @@ public class WidgetUtils {
         remoteViews.setTextViewText(
                 weatherIdForDayName,
                 sdfDayOfWeek.format(forecastCalendar.getTime()));
+        remoteViews.setTextColor(weatherIdForDayName, fontColorId);
         remoteViews.setTextViewText(
                 weatherIdForTemperatures,
                 Math.round(TemperatureUtil.getTemperatureInPreferredUnit(context, countedForecastForDay.weatherMaxMinForDay.minTemp)) +
                         "/" +
                         Math.round(TemperatureUtil.getTemperatureInPreferredUnit(context, countedForecastForDay.weatherMaxMinForDay.maxTemp)) +
                         TemperatureUtil.getTemperatureUnit(context));
+        remoteViews.setTextColor(weatherIdForTemperatures, fontColorId);
     }
 
     public static Set<Integer> getCurrentWeatherDetailsFromSettings(

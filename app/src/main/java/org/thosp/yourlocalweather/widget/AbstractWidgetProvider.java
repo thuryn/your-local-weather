@@ -49,9 +49,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     private Lock currentWeatherServiceLock = new ReentrantLock();
     private Queue<Message> currentWeatherUnsentMessages = new LinkedList<>();
 
-    private static Queue<LocationUpdateService.LocationUpdateServiceActions> locationUpdateServiceActions = new LinkedList<>();
-    LocationUpdateService locationUpdateService;
-
     protected Location currentLocation;
     volatile boolean servicesStarted = false;
 

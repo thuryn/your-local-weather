@@ -166,6 +166,9 @@ public class MainActivity extends BaseActivity
         //startAlarms();
         StartAlarmsTask startAlarmsTask = new StartAlarmsTask();
         startAlarmsTask.execute(new Integer[0]);
+        Intent intentToStartUpdate = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
+        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        startService(intentToStartUpdate);
     }
 
     class StartAlarmsTask extends AsyncTask<Integer[], Integer, Long> {

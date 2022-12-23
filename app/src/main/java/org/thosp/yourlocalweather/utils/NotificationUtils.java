@@ -187,6 +187,7 @@ public class NotificationUtils {
                                                    boolean isOutgoing,
                                                    CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
 
+        int textColor = PreferenceUtil.getTextColor(context);
         RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.notification_custom_weather);
         RemoteViews remoteViewsExpanded = new RemoteViews(context.getPackageName(), R.layout.notification_weather_forecast_expanded);
 
@@ -200,9 +201,13 @@ public class NotificationUtils {
                 weatherRecord.getLastUpdatedTime(),
                 location.getLocale());
         remoteViews.setTextViewText(R.id.notification_custom_weather_widget_city, cityAndCountry);
+        remoteViews.setTextColor(R.id.notification_custom_weather_widget_city, textColor);
         remoteViewsExpanded.setTextViewText(R.id.notification_weather_forecast_expanded_widget_city, cityAndCountry);
+        remoteViewsExpanded.setTextColor(R.id.notification_weather_forecast_expanded_widget_city, textColor);
         remoteViews.setTextViewText(R.id.notification_custom_weather_widget_temperature, temperatureWithUnit);
+        remoteViews.setTextColor(R.id.notification_custom_weather_widget_temperature, textColor);
         remoteViewsExpanded.setTextViewText(R.id.notification_weather_forecast_expanded_widget_temperature, temperatureWithUnit);
+        remoteViewsExpanded.setTextColor(R.id.notification_weather_forecast_expanded_widget_temperature, textColor);
         String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                 context,
                 weather,
@@ -212,8 +217,10 @@ public class NotificationUtils {
         if (secondTemperature != null) {
             remoteViews.setViewVisibility(R.id.notification_custom_weather_widget_second_temperature, View.VISIBLE);
             remoteViews.setTextViewText(R.id.notification_custom_weather_widget_second_temperature, secondTemperature);
+            remoteViews.setTextColor(R.id.notification_custom_weather_widget_second_temperature, textColor);
             remoteViewsExpanded.setViewVisibility(R.id.notification_weather_forecast_expanded_widget_second_temperature, View.VISIBLE);
             remoteViewsExpanded.setTextViewText(R.id.notification_weather_forecast_expanded_widget_second_temperature, secondTemperature);
+            remoteViewsExpanded.setTextColor(R.id.notification_weather_forecast_expanded_widget_second_temperature, textColor);
         } else {
             remoteViews.setViewVisibility(R.id.notification_custom_weather_widget_second_temperature, View.GONE);
             remoteViewsExpanded.setViewVisibility(R.id.notification_weather_forecast_expanded_widget_second_temperature, View.GONE);
@@ -222,18 +229,20 @@ public class NotificationUtils {
                 location.getLocaleAbbrev(),
                 weather);
         remoteViews.setTextViewText(R.id.notification_custom_weather_widget_description, weatherDescription);
+        remoteViews.setTextColor(R.id.notification_custom_weather_widget_description, textColor);
         remoteViewsExpanded.setTextViewText(R.id.notification_weather_forecast_expanded_widget_description, weatherDescription);
+        remoteViewsExpanded.setTextColor(R.id.notification_weather_forecast_expanded_widget_description, textColor);
 
-        int iconColorBlack = ContextCompat.getColor(context, R.color.widget_lightTheme_textColorPrimary);
-        Utils.setWeatherIconWithColor(remoteViews, context, weatherRecord, R.id.notification_custom_weather_widget_icon, iconColorBlack);
-        Utils.setWeatherIconWithColor(remoteViewsExpanded, context, weatherRecord, R.id.notification_weather_forecast_expanded_widget_icon, iconColorBlack);
+        //int iconColorBlack = ContextCompat.getColor(context, R.color.widget_lightTheme_textColorPrimary);
+        Utils.setWeatherIconWithColor(remoteViews, context, weatherRecord, R.id.notification_custom_weather_widget_icon, textColor);
+        Utils.setWeatherIconWithColor(remoteViewsExpanded, context, weatherRecord, R.id.notification_weather_forecast_expanded_widget_icon, textColor);
 
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;
         try {
             weatherForecastRecord = WidgetUtils.updateWeatherForecast(
                     context,
                     location.getId(),
-                    iconColorBlack,
+                    textColor,
                     null,
                     remoteViewsExpanded,
                     null,
@@ -261,7 +270,9 @@ public class NotificationUtils {
         }
         String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, weatherForecastRecord, location);
         remoteViews.setTextViewText(R.id.notification_custom_weather_widget_last_update, lastUpdate);
+        remoteViews.setTextColor(R.id.notification_custom_weather_widget_last_update, textColor);
         remoteViewsExpanded.setTextViewText(R.id.notification_weather_forecast_expanded_widget_last_update, lastUpdate);
+        remoteViewsExpanded.setTextColor(R.id.notification_weather_forecast_expanded_widget_last_update, textColor);
 
         return new NotificationCompat.Builder(context, "yourLocalWeather")
                 .setSmallIcon(notificationIcon)

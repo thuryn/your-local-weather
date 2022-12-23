@@ -32,7 +32,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
     }
 
     private ScreenOnOffUpdateService screenOnOffUpdateService;
-    private SensorLocationUpdateService sensorLocationUpdateService;
+    //private SensorLocationUpdateService sensorLocationUpdateService;
     private JobParameters params;
     private int connectedServicesCounter;
 
@@ -56,15 +56,6 @@ public class StartAutoLocationJob extends AbstractAppJob {
         if (screenOnOffUpdateService != null) {
             getApplicationContext().unbindService(screenOnOffUpdateServiceConnection);
         }
-        appendLog(this, TAG, "unbinding sensorLocationUpdate: ",
-                sensorLocationUpdateServiceConnection);
-        if (sensorLocationUpdateServiceConnection !=null) {
-            try {
-                getApplicationContext().unbindService(sensorLocationUpdateServiceConnection);
-            } catch (Exception e) {
-                appendLog(this, TAG, e.getMessage(), e);
-            }
-        }
         unbindAllServices();
         return true;
     }
@@ -72,18 +63,79 @@ public class StartAutoLocationJob extends AbstractAppJob {
     @Override
     protected void serviceConnected(ServiceConnection serviceConnection) {
         connectedServicesCounter++;
-        if (connectedServicesCounter >= 5) {
+        if (connectedServicesCounter >= 4) {
             jobFinished(params, false);
         }
     }
 
     private void performUpdateOfLocation() {
-        try {
-            Intent intent = new Intent(getApplicationContext(), SensorLocationUpdateService.class);
-            getApplicationContext().bindService(intent, sensorLocationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
-        } catch (Exception ie) {
-            appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+        Calendar now = Calendar.getInstance();
+        String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
+        long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
+        String updatePeriodStr = AppPreference.getLocationUpdatePeriod(getBaseContext());
+        long updatePeriodMills = Utils.intervalMillisForAlarm(updatePeriodStr);
+        boolean notificationEnabled = AppPreference.isNotificationEnabled(getBaseContext());
+        String notificationPeriodStr = AppPreference.getInterval(getBaseContext());
+        if ("regular_only".equals(notificationPeriodStr)) {
+            notificationEnabled = false;
         }
+        long notificationPeriodMillis = Utils.intervalMillisForAlarm(notificationPeriodStr);
+        long lastNotificationTimeInMs = AppPreference.getLastNotificationTimeInMs(getBaseContext());
+        Location locationForNotification = checkNotificationAndReturnLocationForNotification(
+                now,
+                notificationEnabled,
+                notificationPeriodMillis,
+                lastNotificationTimeInMs);
+
+        appendLog(getBaseContext(),
+                TAG,
+                "updateAutoPeriodStr:", updateAutoPeriodStr,
+                ", updatePeriodStr:", updatePeriodStr,
+                ", notificationPeriodStr:", notificationPeriodStr);
+        long nextAlarmWakeup = AppAlarmService.START_SENSORS_CHECK_PERIOD;
+        appendLog(getBaseContext(), TAG, "1:nextAlarmWakeup=", nextAlarmWakeup);
+        List<Location> locations = locationsDbHelper.getAllRows();
+        for (Location location: locations) {
+            appendLog(getBaseContext(),
+                    TAG,
+                    "location:", location,
+                    ", location.isEnabled:", location.isEnabled());
+            boolean notificationForLocation = (locationForNotification != null) && location.getId().equals(locationForNotification.getId());
+            if ((location.getOrderId() == 0) && (location.isEnabled())) {
+                long lastUpdate = location.getLastLocationUpdate();
+                Updated updated = performUpdateOfAutolocation(now, location, updateAutoPeriodStr, updateAutoPeriodMills, notificationForLocation);
+                nextAlarmWakeup = getNextTimeForNotification(nextAlarmWakeup, now, lastUpdate, updateAutoPeriodMills, !Updated.NOTHING.equals(updated));
+                appendLog(getBaseContext(), TAG, "2:nextAlarmWakeup=", nextAlarmWakeup);
+                if (notificationEnabled) {
+                    nextAlarmWakeup = getNextTimeForNotification(nextAlarmWakeup,
+                            now,
+                            lastNotificationTimeInMs,
+                            notificationPeriodMillis,
+                            Updated.BY_NOTIFICATION.equals(updated));
+                    appendLog(getBaseContext(), TAG, "3:nextAlarmWakeup=", nextAlarmWakeup);
+                }
+            } else if ((location.getOrderId() != 0) /*location.isEnabled()*/) {
+                long lastUpdate = location.getLastLocationUpdate();
+                Updated updated = performUpdateOfWeather(now, location, updatePeriodStr, updatePeriodMills, notificationForLocation);
+                nextAlarmWakeup = getNextTimeForNotification(nextAlarmWakeup, now, lastUpdate, updatePeriodMills, !Updated.NOTHING.equals(updated));
+                appendLog(getBaseContext(), TAG, "4:nextAlarmWakeup=", nextAlarmWakeup);
+                if (notificationEnabled) {
+                    nextAlarmWakeup = getNextTimeForNotification(nextAlarmWakeup,
+                            now,
+                            lastNotificationTimeInMs,
+                            notificationPeriodMillis,
+                            Updated.BY_NOTIFICATION.equals(updated));
+                    appendLog(getBaseContext(), TAG, "5:nextAlarmWakeup=", nextAlarmWakeup);
+                }
+            }
+        }
+        long nextTimeForLog = now.getTimeInMillis() + nextAlarmWakeup;
+        appendLog(getBaseContext(), TAG, "1:nextTimeForLog=", nextTimeForLog);
+        appendLogWithDate(getBaseContext(),
+                TAG,
+                "next scheduler time:", nextTimeForLog);
+        reScheduleNextAlarm(JOB_ID, nextAlarmWakeup, StartAutoLocationJob.class);
     }
 
     private Updated performUpdateOfAutolocation(Calendar now,
@@ -94,7 +146,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
         long lastSensorServicesCheckTimeInMs = AppPreference.getLastSensorServicesCheckTimeInMs(getBaseContext());
         if ("0".equals(updateAutoPeriodStr)) {
             if ((now.getTimeInMillis() >= (lastSensorServicesCheckTimeInMs + AppAlarmService.START_SENSORS_CHECK_PERIOD))) {
-                sensorLocationUpdateService.startSensorBasedUpdates(0);
+                startSensorBasedUpdates();
                 AppPreference.setLastSensorServicesCheckTimeInMs(getBaseContext(), now.getTimeInMillis());
             }
             if (notificationForLocation)  {
@@ -103,14 +155,14 @@ public class StartAutoLocationJob extends AbstractAppJob {
                 return Updated.BY_NOTIFICATION;
             }
         } else if ("OFF".equals(updateAutoPeriodStr)) {
-            sensorLocationUpdateService.stopSensorBasedUpdates();
+            stopSensorBasedUpdates();
             if (notificationForLocation)  {
                 startLocationAndWeatherUpdate("NOTIFICATION");
                 AppPreference.setLastNotificationTimeInMs(getBaseContext(), now.getTimeInMillis());
                 return Updated.BY_NOTIFICATION;
             }
         } else if (notificationForLocation || (now.getTimeInMillis() >= (location.getLastLocationUpdate() + updateAutoPeriodMills))) {
-            sensorLocationUpdateService.stopSensorBasedUpdates();
+            stopSensorBasedUpdates();
             if (notificationForLocation) {
                 startLocationAndWeatherUpdate("NOTIFICATION");
                 AppPreference.setLastNotificationTimeInMs(getBaseContext(), now.getTimeInMillis());
@@ -121,6 +173,24 @@ public class StartAutoLocationJob extends AbstractAppJob {
             }
         }
         return Updated.NOTHING;
+    }
+
+    public void startSensorBasedUpdates() {
+        sendIntent("android.intent.action.START_SENSOR_BASED_UPDATES");
+    }
+
+    public void stopSensorBasedUpdates() {
+        sendIntent("android.intent.action.STOP_SENSOR_BASED_UPDATES");
+    }
+
+    protected void sendIntent(String intent) {
+        Intent sendIntent = new Intent(intent);
+        sendIntent.setPackage("org.thosp.yourlocalweather");
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(sendIntent);
+        } else {
+            startService(sendIntent);
+        }
     }
 
     private void startLocationAndWeatherUpdate(boolean forceUpdate) {
@@ -216,7 +286,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
         return nextUpdateForLocation;
     }
 
-    private ServiceConnection sensorLocationUpdateServiceConnection = new ServiceConnection() {
+    /*private ServiceConnection sensorLocationUpdateServiceConnection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName className,
@@ -270,7 +340,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
                                                                      Updated.BY_NOTIFICATION.equals(updated));
                         appendLog(getBaseContext(), TAG, "3:nextAlarmWakeup=", nextAlarmWakeup);
                     }
-                } else if ((location.getOrderId() != 0) /*location.isEnabled()*/) {
+                } else if ((location.getOrderId() != 0) location.isEnabled()) {
                     long lastUpdate = location.getLastLocationUpdate();
                     Updated updated = performUpdateOfWeather(now, location, updatePeriodStr, updatePeriodMills, notificationForLocation);
                     nextAlarmWakeup = getNextTimeForNotification(nextAlarmWakeup, now, lastUpdate, updatePeriodMills, !Updated.NOTHING.equals(updated));
@@ -300,7 +370,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
         @Override
         public void onServiceDisconnected(ComponentName arg0) {
         }
-    };
+    };*/
 
     private ServiceConnection screenOnOffUpdateServiceConnection = new ServiceConnection() {
 
