@@ -19,6 +19,8 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLogSensorsCheck;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLogSensorsEnd;
 
+import androidx.core.content.ContextCompat;
+
 public class SensorLocationUpdater extends AbstractCommonService implements SensorEventListener {
 
     private static final String TAG = "SensorLocationUpdater";
@@ -167,11 +169,7 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
         Intent intentToStartUpdate = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
         intentToStartUpdate.putExtra("locationId", locationId);
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
-            getBaseContext().startForegroundService(intentToStartUpdate);
-        } else {
-            getBaseContext().startService(intentToStartUpdate);
-        }
+        ContextCompat.startForegroundService(getBaseContext(), intentToStartUpdate);
     }
 
     public void clearMeasuredLength() {

@@ -942,11 +942,7 @@ public class MainActivity extends BaseActivity
         startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
         startLocationUpdateIntent.putExtra("updateSource", "MAIN");
         startLocationUpdateIntent.putExtra("locationId", currentLocation.getId());
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
-            storedContext.startForegroundService(startLocationUpdateIntent);
-        } else {
-            storedContext.startService(startLocationUpdateIntent);
-        }
+        ContextCompat.startForegroundService(getBaseContext(), startLocationUpdateIntent);
     }
     
     private void requestLocation() {

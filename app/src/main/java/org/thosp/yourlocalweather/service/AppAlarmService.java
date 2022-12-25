@@ -26,6 +26,8 @@ import java.util.Queue;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
+import androidx.core.content.ContextCompat;
+
 public class AppAlarmService extends AbstractCommonService {
 
     private static final String TAG = "AppAlarmService";
@@ -136,11 +138,7 @@ public class AppAlarmService extends AbstractCommonService {
         Intent intentToStartUpdate = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
         intentToStartUpdate.putExtra("locationId", locationId);
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
-            getBaseContext().startForegroundService(intentToStartUpdate);
-        } else {
-            getBaseContext().startService(intentToStartUpdate);
-        }
+        ContextCompat.startForegroundService(getBaseContext(), intentToStartUpdate);
     }
 
     public void setAlarm() {
@@ -274,11 +272,7 @@ public class AppAlarmService extends AbstractCommonService {
     protected void sendIntent(String intent) {
         Intent sendIntent = new Intent(intent);
         sendIntent.setPackage("org.thosp.yourlocalweather");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(sendIntent);
-        } else {
-            startService(sendIntent);
-        }
+        ContextCompat.startForegroundService(getBaseContext(), sendIntent);
     }
 
     private static PendingIntent getPendingSensorStartIntent(Context context) {

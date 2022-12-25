@@ -41,6 +41,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
+import androidx.core.content.ContextCompat;
+
 public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     private static String TAG = "AbstractWidgetProvider";
@@ -583,10 +585,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         Intent intentToStartUpdate = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
         intentToStartUpdate.putExtra("locationId", locationId);
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
-            context.startForegroundService(intentToStartUpdate);
-        } else {
-            context.startService(intentToStartUpdate);
-        }
+        ContextCompat.startForegroundService(context, intentToStartUpdate);
     }
 }

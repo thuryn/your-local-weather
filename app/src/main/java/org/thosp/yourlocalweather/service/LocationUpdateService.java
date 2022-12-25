@@ -98,6 +98,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
+        startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
         if (intent == null) {
             return ret;
         }
@@ -105,7 +106,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         updateSource = null;
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
         appendLog(getBaseContext(), TAG, "startForegroundService");
-        startForeground(1, NotificationUtils.getNotificationForActivity(getBaseContext()));
         switch (intent.getAction()) {
             case "android.intent.action.START_LOCATION_AND_WEATHER_UPDATE": startLocationAndWeatherUpdate(intent); return ret;
             case "android.intent.action.START_LOCATION_ONLY_UPDATE": updateNetworkLocation(intent); return ret;

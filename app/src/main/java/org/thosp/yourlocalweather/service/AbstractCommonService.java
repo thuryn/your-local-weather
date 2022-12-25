@@ -15,6 +15,7 @@ import android.os.Messenger;
 import android.os.RemoteException;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
@@ -64,11 +65,7 @@ public class AbstractCommonService extends Service {
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
         intentToStartUpdate.putExtra("locationId", locationId);
         intentToStartUpdate.putExtra("forceUpdate", byLastLocationOnly);
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
-            getBaseContext().startForegroundService(intentToStartUpdate);
-        } else {
-            getBaseContext().startService(intentToStartUpdate);
-        }
+        ContextCompat.startForegroundService(getBaseContext(), intentToStartUpdate);
     }
 
     protected void updateWidgets(String updateSource) {
@@ -355,11 +352,7 @@ public class AbstractCommonService extends Service {
     protected void sendIntent(String intent) {
         Intent sendIntent = new Intent(intent);
         sendIntent.setPackage("org.thosp.yourlocalweather");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(sendIntent);
-        } else {
-            startService(sendIntent);
-        }
+        ContextCompat.startForegroundService(getBaseContext(), sendIntent);
     }
 
     private boolean checkIfReconciliationDbServiceIsNotBound() {

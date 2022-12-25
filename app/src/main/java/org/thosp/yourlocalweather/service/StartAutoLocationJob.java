@@ -20,6 +20,8 @@ import java.util.List;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLogWithDate;
 
+import androidx.core.content.ContextCompat;
+
 @TargetApi(Build.VERSION_CODES.M)
 public class StartAutoLocationJob extends AbstractAppJob {
     private static final String TAG = "StartAutoLocationJob";
@@ -186,11 +188,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
     protected void sendIntent(String intent) {
         Intent sendIntent = new Intent(intent);
         sendIntent.setPackage("org.thosp.yourlocalweather");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(sendIntent);
-        } else {
-            startService(sendIntent);
-        }
+        ContextCompat.startForegroundService(getBaseContext(), sendIntent);
     }
 
     private void startLocationAndWeatherUpdate(boolean forceUpdate) {
@@ -200,11 +198,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
         intentToStartUpdate.putExtra("locationId", locationId);
         intentToStartUpdate.putExtra("forceUpdate", forceUpdate);
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
-            getBaseContext().startForegroundService(intentToStartUpdate);
-        } else {
-            getBaseContext().startService(intentToStartUpdate);
-        }
+        ContextCompat.startForegroundService(getBaseContext(), intentToStartUpdate);
     }
 
     private void startLocationAndWeatherUpdate(String updateSource) {
@@ -214,11 +208,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
         intentToStartUpdate.putExtra("locationId", locationId);
         intentToStartUpdate.putExtra("updateSource", updateSource);
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
-            getBaseContext().startForegroundService(intentToStartUpdate);
-        } else {
-            getBaseContext().startService(intentToStartUpdate);
-        }
+        ContextCompat.startForegroundService(getBaseContext(), intentToStartUpdate);
     }
 
     private Updated performUpdateOfWeather(Calendar now,
