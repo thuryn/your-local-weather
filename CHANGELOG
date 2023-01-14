@@ -1,3 +1,6 @@
+v5.8.4
+Fix bluetooth permission check, calling of services rewritten
+
 v5.8.3
 Get faster notification to avoid errors on some Androids
 
