@@ -2,6 +2,7 @@ package org.thosp.yourlocalweather.service;
 
 import android.annotation.TargetApi;
 import android.app.job.JobParameters;
+import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.Message;
@@ -30,34 +31,11 @@ public class UpdateWeatherResendJob extends AbstractAppJob {
         return true;
     }
 
-    @Override
-    protected void serviceConnected(ServiceConnection serviceConnection) {
-        if (currentWeatherUnsentMessages.isEmpty()) {
-            jobFinished(params, false);
-        }
-    }
-
     protected void sendRetryMessageToCurrentWeatherService() {
         appendLog(getBaseContext(), TAG, "sendRetryMessageToCurrentWeatherService:1");
-        currentWeatherServiceLock.lock();
-        appendLog(getBaseContext(), TAG, "sendRetryMessageToCurrentWeatherService:after lock");
-        try {
-            Message msg = Message.obtain(
-                    null,
-                    UpdateWeatherService.START_PROCESS_CURRENT_QUEUE
-            );
-            if (checkIfCurrentWeatherServiceIsNotBound()) {
-                appendLog(getBaseContext(), TAG, "sendRetryMessageToCurrentWeatherService:pushing into messages");
-                currentWeatherUnsentMessages.add(msg);
-                return;
-            }
-            appendLog(getBaseContext(), TAG, "sendMessageToService:");
-            currentWeatherService.send(msg);
-            jobFinished(params, false);
-        } catch (RemoteException e) {
-            appendLog(getBaseContext(), TAG, e.getMessage(), e);
-        } finally {
-            currentWeatherServiceLock.unlock();
-        }
+        Intent intent = new Intent("android.intent.action.RESEND_WEATHER_UPDATE");
+        intent.setPackage("org.thosp.yourlocalweather");
+        startService(intent);
+        jobFinished(params, false);
     }
 }

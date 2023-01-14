@@ -985,25 +985,10 @@ public class MainActivity extends BaseActivity
             detectLocation();
             return;
         }
-        weatherForecastServiceLock.lock();
-        try {
-            Message msg = Message.obtain(
-                    null,
-                    UpdateWeatherService.START_CURRENT_WEATHER_UPDATE,
-                    new WeatherRequestDataHolder(location.getId(), updateSource, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE)
-            );
-            if (checkIfWeatherForecastServiceIsNotBound()) {
-                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
-                weatherForecastUnsentMessages.add(msg);
-                return;
-            }
-            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
-            weatherForecastService.send(msg);
-        } catch (RemoteException e) {
-            appendLog(getBaseContext(), TAG, e.getMessage(), e);
-        } finally {
-            weatherForecastServiceLock.unlock();
-        }
+        Intent intent = new Intent("android.intent.action.START_WEATHER_UPDATE");
+        intent.setPackage("org.thosp.yourlocalweather");
+        intent.putExtra("weatherRequest", new WeatherRequestDataHolder(location.getId(), updateSource, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE));
+        startService(intent);
         sendMessageToWeatherForecastService(location.getId());
     }
 }

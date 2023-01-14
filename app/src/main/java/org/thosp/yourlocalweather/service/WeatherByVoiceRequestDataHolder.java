@@ -1,5 +1,7 @@
 package org.thosp.yourlocalweather.service;
 
+import android.os.Parcelable;
+
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.Weather;
 
@@ -10,12 +12,6 @@ public class WeatherByVoiceRequestDataHolder implements Serializable {
     private Weather weather;
     private Location location;
     private final long timestamp;
-    private Long voiceSettingsId;
-
-    public WeatherByVoiceRequestDataHolder(Long voiceSettingsId) {
-        this.voiceSettingsId = voiceSettingsId;
-        this.timestamp = System.currentTimeMillis();
-    }
 
     public WeatherByVoiceRequestDataHolder(Location location, Weather weather, long timeNow) {
         this.location = location;
@@ -38,10 +34,6 @@ public class WeatherByVoiceRequestDataHolder implements Serializable {
 
     public long getTimestamp() {
         return timestamp;
-    }
-
-    public Long getVoiceSettingsId() {
-        return voiceSettingsId;
     }
 
     @Override

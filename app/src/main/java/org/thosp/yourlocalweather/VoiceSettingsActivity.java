@@ -6,9 +6,11 @@ import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,6 +24,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NavUtils;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
@@ -48,6 +51,8 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 public class VoiceSettingsActivity extends BaseActivity {
 
     public static final String TAG = "VoiceSettingsActivity";
+
+    public static final int BLUETOOTH_CONNECT_PERMISSION_CODE = 4433;
 
     private VoiceSettingsAdapter voiceSettingsAdapter;
     private RecyclerView recyclerView;
@@ -266,6 +271,15 @@ public class VoiceSettingsActivity extends BaseActivity {
     protected void updateUI() {
     }
 
+    private boolean checkBtPermissions() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
+            return true;
+        }
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.BLUETOOTH_CONNECT}, BLUETOOTH_CONNECT_PERMISSION_CODE);
+        return false;
+    }
+
     public class VoiceSettingHolder extends RecyclerView.ViewHolder {
 
         private Long voiceSettingId;
@@ -285,6 +299,10 @@ public class VoiceSettingsActivity extends BaseActivity {
 
         void bindVoiceSetting(Long voiceSettingId) {
             this.voiceSettingId = voiceSettingId;
+            if(!checkBtPermissions()) {
+                return;
+            }
+
             if (voiceSettingId == null) {
                 return;
             }

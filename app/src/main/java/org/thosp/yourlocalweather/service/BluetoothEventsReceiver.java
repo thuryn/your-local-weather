@@ -28,6 +28,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
+import androidx.core.content.ContextCompat;
+
 public class BluetoothEventsReceiver extends BroadcastReceiver {
 
     private static final String TAG = "BluetoothEventsReceiver";
@@ -43,7 +45,11 @@ public class BluetoothEventsReceiver extends BroadcastReceiver {
             if (context == null) {
                 return;
             }
-            sendMessageToWeatherByVoiceService(context);
+            Intent intentToStartUpdate = new Intent("android.intent.action.SAY_WEATHER");
+            intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+            intentToStartUpdate.putExtra("voiceSettingId", voiceSettingId);
+            intentToStartUpdate.putExtra("initiatedFromBtDevice", true);
+            context.startService(intentToStartUpdate);
         }
     };
 
@@ -121,75 +127,4 @@ public class BluetoothEventsReceiver extends BroadcastReceiver {
         }
         return false;
     }
-
-    private Messenger weatherByVoiceService;
-    private Lock weatherByVoiceServiceLock = new ReentrantLock();
-    private Queue<Message> weatherByvOiceUnsentMessages = new LinkedList<>();
-
-    protected void sendMessageToWeatherByVoiceService(Context context) {
-        weatherByVoiceServiceLock.lock();
-        try {
-            Message msg = Message.obtain(
-                    null,
-                    WeatherByVoiceService.START_VOICE_WEATHER_ALL,
-                    new WeatherByVoiceRequestDataHolder(voiceSettingId)
-            );
-            if (checkIfWeatherByVoiceServiceIsNotBound(context)) {
-                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
-                weatherByvOiceUnsentMessages.add(msg);
-                return;
-            }
-            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
-            weatherByVoiceService.send(msg);
-        } catch (RemoteException e) {
-            appendLog(context, TAG, e.getMessage(), e);
-        } finally {
-            weatherByVoiceServiceLock.unlock();
-        }
-    }
-
-    private boolean checkIfWeatherByVoiceServiceIsNotBound(Context context) {
-        if (weatherByVoiceService != null) {
-            return false;
-        }
-        try {
-            bindWeatherByVoiceService(context);
-        } catch (Exception ie) {
-            appendLog(context, TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
-        }
-        return (weatherByVoiceService == null);
-    }
-
-    private void bindWeatherByVoiceService(Context context) {
-        context.getApplicationContext().bindService(
-                new Intent(context.getApplicationContext(), WeatherByVoiceService.class),
-                weatherByVoiceServiceConnection,
-                Context.BIND_AUTO_CREATE);
-    }
-
-    private void unbindWeatherByVoiceService(Context context) {
-        if (weatherByVoiceService == null) {
-            return;
-        }
-        context.getApplicationContext().unbindService(weatherByVoiceServiceConnection);
-    }
-
-    private ServiceConnection weatherByVoiceServiceConnection = new ServiceConnection() {
-        public void onServiceConnected(ComponentName className, IBinder binderService) {
-            weatherByVoiceService = new Messenger(binderService);
-            weatherByVoiceServiceLock.lock();
-            try {
-                while (!weatherByvOiceUnsentMessages.isEmpty()) {
-                    weatherByVoiceService.send(weatherByvOiceUnsentMessages.poll());
-                }
-            } catch (RemoteException e) {
-                //appendLog(getBaseContext(), TAG, e.getMessage(), e);
-            } finally {
-                weatherByVoiceServiceLock.unlock();
-            }
-        }
-        public void onServiceDisconnected(ComponentName className) {
-            weatherByVoiceService = null;
-        }
-    };
 }

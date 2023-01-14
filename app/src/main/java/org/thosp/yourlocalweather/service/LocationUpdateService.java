@@ -408,6 +408,12 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
     }
 
     private void processLocationAndWeatherUpdate(Intent intent) {
+        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+        org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
+        if (currentLocation == null) {
+            appendLog(getBaseContext(), TAG, "startLocationAndWeatherUpdate:currentLocation is null");
+            return;
+        }
         boolean isGPSEnabled = AppPreference.isGpsEnabledByPreferences(this) &&
                 locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
                 && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -417,9 +423,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         appendLog(getBaseContext(), TAG, "startLocationAndWeatherUpdate:isGPSEnabled=",
                                         isGPSEnabled, ", isNetworkEnabled=", isNetworkEnabled);
 
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-        org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
-        locationsDbHelper.updateLocationSource(currentLocation.getId(), getString(R.string.location_weather_update_status_update_started));
+        //locationsDbHelper.updateLocationSource(currentLocation.getId(), getString(R.string.location_weather_update_status_update_started));
 
         boolean isUpdateOfLocationEnabled = AppPreference.isUpdateLocationEnabled(this, currentLocation);
         appendLog(this, TAG,
@@ -481,7 +485,8 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
             return;
         }
         boolean byLastLocationOnly = intent.getExtras().getBoolean("byLastLocationOnly");
-        updateNetworkLocation(byLastLocationOnly, intent, 0);
+        int attempts = intent.getExtras().getInt("attempts");
+        updateNetworkLocation(byLastLocationOnly, intent, attempts);
     }
 
     public boolean updateNetworkLocation(boolean bylastLocationOnly,

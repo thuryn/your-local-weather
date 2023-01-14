@@ -326,12 +326,19 @@
         <service
             android:name=".service.AppWakeUpManager" />
         <service
-            android:name=".service.UpdateWeatherService" />
+            android:name=".service.UpdateWeatherService"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.START_WEATHER_UPDATE" />
+                <action android:name="android.intent.action.RESEND_WEATHER_UPDATE" />
+            </intent-filter>
+        </service>
         <service
             android:name=".service.WeatherByVoiceService"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SAY_WEATHER" />
+                <action android:name="android.intent.action.START_VOICE_WEATHER_UPDATED" />
             </intent-filter>
         </service>
         <service android:name=".service.AppAlarmService"

@@ -184,6 +184,14 @@ public class LogToFile {
         appendLog(context, tag, text1, (value1 != null)? value1.toString() : "null");
     }
 
+    public static void appendLog(Context context, String tag, String text1, WeatherByVoiceRequestDataHolder value) {
+        checkPreferences(context);
+        if (!isLoggingAvailable()) {
+            return;
+        }
+        appendLog(context, tag, text1, (value != null)? value.toString() : "null");
+    }
+
     public static void appendLogWakeupSources(Context context, String tag, String wakeupdown, List<Integer> wakeUpSources) {
         checkPreferences(context);
         if (!isLoggingAvailable()) {

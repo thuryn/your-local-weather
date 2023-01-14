@@ -55,14 +55,6 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
         gravity[2] = 0;
         return super.onStartCommand(intent, flags, startId);
     }
-    
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (locationUpdateService != null) {
-            unbindLocationUpdateService();
-        }
-    }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
@@ -180,63 +172,11 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
         currentLengthLowPassed = 0;
     }
 
-    protected boolean updateNetworkLocation() {
-        if (locationUpdateService != null) {
-            boolean result = locationUpdateService.updateNetworkLocation(false, null, 0);
-            processLocationUpdate = false;
-            return result;
-        } else {
-            locationUpdateServiceActions.add(
-                    LocationUpdateService.LocationUpdateServiceActions.START_LOCATION_ONLY_UPDATE);
-            bindLocationUpdateService();
-            return false;
-        }
-    }
-
     private long getLastPossitionUodateTime() {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext().getApplicationContext());
         org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
         return currentLocationForSensorEvent.getLastLocationUpdate();
     }
-
-    private void bindLocationUpdateService() {
-        Intent intent = new Intent(getBaseContext().getApplicationContext(), LocationUpdateService.class);
-        getBaseContext().getApplicationContext().bindService(intent, locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
-    }
-
-    private void unbindLocationUpdateService() {
-        if (locationUpdateService == null) {
-            return;
-        }
-        getBaseContext().getApplicationContext().unbindService(locationUpdateServiceConnection);
-    }
-
-    private final ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service) {
-            LocationUpdateService.LocationUpdateServiceBinder binder =
-                    (LocationUpdateService.LocationUpdateServiceBinder) service;
-            locationUpdateService = binder.getService();
-            LocationUpdateService.LocationUpdateServiceActions bindedServiceAction;
-            while ((bindedServiceAction = locationUpdateServiceActions.poll()) != null) {
-                if (locationUpdateService.updateNetworkLocation(false, null, 0)) {
-                    processLocationUpdate = false;
-                    gravity[0] = 0;
-                    gravity[1] = 0;
-                    gravity[2] = 0;
-                    currentLength = 0;
-                    currentLengthLowPassed = 0;
-                }
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            locationUpdateService = null;
-        }
-    };
 
     private MoveVector highPassFilter(SensorEvent sensorEvent) {
         final float alpha = 0.8f;

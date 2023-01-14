@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.os.Messenger;
 import android.speech.tts.TextToSpeech;
 
 import androidx.annotation.Nullable;
@@ -21,6 +20,7 @@ import org.thosp.yourlocalweather.model.VoiceSettingParametersDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
+import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.TimeUtils;
@@ -43,16 +43,12 @@ public class WeatherByVoiceService extends Service {
 
     private static final String TAG = "WeatherByVoiceService";
 
-    public static final int START_VOICE_WEATHER_UPDATED = 1;
-    public static final int START_VOICE_WEATHER_ALL = 2;
-
     private TextToSpeech tts;
     private static String TTS_DELAY_BETWEEN_ITEM = "...---...";
     private static String TTS_END = "_________";
     private static long TTS_DELAY_BETWEEN_ITEM_IN_MS = 200;
 
     private static final Queue<WeatherByVoiceRequestDataHolder> weatherByVoiceMessages = new LinkedList<>();
-    final Messenger messenger = new Messenger(new WeatherByVoiceMessageHandler());
 
     public LinkedList<String> sayWhatWhenRecreated;
 
@@ -67,13 +63,7 @@ public class WeatherByVoiceService extends Service {
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return messenger.getBinder();
-    }
-
-    @Override
-    public boolean onUnbind(Intent intent) {
-        appendLog(getBaseContext(), TAG, "onUnbind all services");
-        return false;
+        return null;
     }
 
     @Override
@@ -86,19 +76,32 @@ public class WeatherByVoiceService extends Service {
         }
         switch (intent.getAction()) {
             case "android.intent.action.SAY_WEATHER": sayWeatherByTime(intent); return ret;
+            case "android.intent.action.START_VOICE_WEATHER_UPDATED": startVoiceCommand(intent); return ret;
             default: return ret;
         }
     }
 
     private void sayWeatherByTime(Intent intent) {
         Long voiceSettingId = intent.getLongExtra("voiceSettingId", Long.MAX_VALUE);
-        appendLog(getBaseContext(), TAG, "sayWeatherByTime:" + voiceSettingId);
+        boolean initiatedFromBtDevice = intent.getBooleanExtra("initiatedFromBtDevice", false);
+        appendLog(getBaseContext(), TAG, "sayWeatherByTime:", voiceSettingId);
 
         if (voiceSettingId == Long.MAX_VALUE) {
             return;
         }
         TimeUtils.setupAlarmForVoice(getBaseContext());
-        sayForLocation(voiceSettingId, false);
+        sayForLocation(voiceSettingId, initiatedFromBtDevice);
+    }
+
+    private void startVoiceCommand(Intent intent) {
+        startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+        Location weatherByVoiceLocation = (Location) intent.getParcelableExtra("weatherByVoiceLocation");
+        Weather weatherByVoiceWeather = (Weather) intent.getParcelableExtra("weatherByVoiceWeather");
+        Long weatherByVoiceTime = intent.getLongExtra("weatherByVoiceTime", 0);
+        WeatherByVoiceRequestDataHolder weatherByVoiceRequest = new WeatherByVoiceRequestDataHolder(weatherByVoiceLocation, weatherByVoiceWeather, weatherByVoiceTime);
+        appendLog(getBaseContext(), TAG, "weatherByVoiceLocation:", weatherByVoiceRequest);
+        weatherByVoiceMessages.add(weatherByVoiceRequest);
+        startVoiceCommand();
     }
 
     private void sayCurrentWeatherForLocation(WeatherByVoiceRequestDataHolder updateRequest) {
@@ -234,11 +237,7 @@ public class WeatherByVoiceService extends Service {
                     "updateRequest is null");
             return;
         }
-        if (updateRequest.getVoiceSettingsId() != null) {
-            sayForLocation(updateRequest.getVoiceSettingsId(), true);
-        } else {
-            sayCurrentWeatherForLocation(updateRequest);
-        }
+        sayCurrentWeatherForLocation(updateRequest);
     }
 
     private void sayCurrentWeather(Weather weather,
@@ -961,27 +960,5 @@ public class WeatherByVoiceService extends Service {
             }
         };
         tts = new TextToSpeech(getBaseContext(), onInitListener);
-    }
-
-    private class WeatherByVoiceMessageHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            WeatherByVoiceRequestDataHolder weatherRequestDataHolder = (WeatherByVoiceRequestDataHolder) msg.obj;
-            appendLog(getBaseContext(), TAG, "handleMessage:", msg.what, ":", weatherRequestDataHolder);
-            appendLog(getBaseContext(),
-                    TAG,
-                    "weatherByVoiceMessages.size when adding new message = ", weatherByVoiceMessages);
-            switch (msg.what) {
-                case START_VOICE_WEATHER_UPDATED:
-                case START_VOICE_WEATHER_ALL:
-                    if (!weatherByVoiceMessages.contains(weatherRequestDataHolder)) {
-                        weatherByVoiceMessages.add(weatherRequestDataHolder);
-                    }
-                    startVoiceCommand();
-                    break;
-                default:
-                    super.handleMessage(msg);
-            }
-        }
     }
 }

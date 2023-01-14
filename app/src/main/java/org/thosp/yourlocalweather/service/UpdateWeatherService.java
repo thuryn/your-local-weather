@@ -55,6 +55,8 @@ import cz.msebera.android.httpclient.Header;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLogLastUpdateTime;
 
+import androidx.core.content.ContextCompat;
+
 public class UpdateWeatherService extends AbstractCommonService {
 
     private static final String TAG = "UpdateWeatherService";
@@ -83,13 +85,7 @@ public class UpdateWeatherService extends AbstractCommonService {
 
     private static volatile boolean gettingWeatherStarted;
 
-    private Messenger weatherByVoiceService;
-    private Lock weatherByVoiceServiceLock = new ReentrantLock();
-    private Queue<Message> weatherByvOiceUnsentMessages = new LinkedList<>();
-
     protected static final Queue<WeatherRequestDataHolder> updateWeatherUpdateMessages = new LinkedList<>();
-
-    final Messenger messenger = new Messenger(new UpdateWeatherMessageHandler());
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -133,17 +129,6 @@ public class UpdateWeatherService extends AbstractCommonService {
     };
 
     @Override
-    public IBinder onBind(Intent intent) {
-        return messenger.getBinder();
-    }
-
-    @Override
-    public boolean onUnbind(Intent intent) {
-        unbindWeatherByVoiceService();
-        return false;
-    }
-
-    @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
         startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
@@ -156,23 +141,31 @@ public class UpdateWeatherService extends AbstractCommonService {
         String updateSource = null;
         boolean updateWeatherOnly = false;
         int updateType = WEATHER_FORECAST_TYPE;
-        if (intent.hasExtra("forceUpdate")) {
-            forceUpdate = intent.getBooleanExtra("forceUpdate", false);
+        if (intent.getAction().equals("android.intent.action.RESEND_WEATHER_UPDATE")) {
+            startWeatherUpdate();
+            return ret;
         }
-        if (intent.hasExtra("locationId")) {
-            locationId = intent.getLongExtra("locationId", 0);
-        }
-        if (intent.hasExtra("updateSource")) {
-            updateSource = intent.getStringExtra("updateSource");
-        }
-        if (intent.hasExtra("updateWeatherOnly")) {
-            updateWeatherOnly = intent.getBooleanExtra("updateWeatherOnly", false);
-        }
-        if (intent.hasExtra("updateType")) {
-            updateType = intent.getIntExtra("updateType", WEATHER_FORECAST_TYPE);
-        }
-        if (locationId != null) {
-            updateWeatherUpdateMessages.add(new WeatherRequestDataHolder(locationId, updateSource, forceUpdate, updateWeatherOnly, updateType));
+        if (intent.hasExtra("weatherRequest")) {
+            updateWeatherUpdateMessages.add((WeatherRequestDataHolder) intent.getSerializableExtra("weatherRequest"));
+        } else {
+            if (intent.hasExtra("forceUpdate")) {
+                forceUpdate = intent.getBooleanExtra("forceUpdate", false);
+            }
+            if (intent.hasExtra("locationId")) {
+                locationId = intent.getLongExtra("locationId", 0);
+            }
+            if (intent.hasExtra("updateSource")) {
+                updateSource = intent.getStringExtra("updateSource");
+            }
+            if (intent.hasExtra("updateWeatherOnly")) {
+                updateWeatherOnly = intent.getBooleanExtra("updateWeatherOnly", false);
+            }
+            if (intent.hasExtra("updateType")) {
+                updateType = intent.getIntExtra("updateType", WEATHER_FORECAST_TYPE);
+            }
+            if (locationId != null) {
+                updateWeatherUpdateMessages.add(new WeatherRequestDataHolder(locationId, updateSource, forceUpdate, updateWeatherOnly, updateType));
+            }
         }
         startWeatherUpdate();
         return ret;
@@ -233,7 +226,10 @@ public class UpdateWeatherService extends AbstractCommonService {
         long nextAllowedAttemptToUpdateTime = (weatherRecord != null)?weatherRecord.getNextAllowedAttemptToUpdateTime():0;
 
         if (isCurrentWeather(updateType)) {
-            long lastUpdateTimeInMilis = (weatherRecord != null) ? weatherRecord.getLastUpdatedTime() : 0;
+            long lastUpdateTimeInMilis = 0;
+            if (!"B".equals(locationToCheck.getLocationSource())) {
+                lastUpdateTimeInMilis = (weatherRecord != null) ? weatherRecord.getLastUpdatedTime() : 0;
+            }
             long updatePeriodForLocation;
             if (locationToCheck.getOrderId() == 0) {
                 String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(this);
@@ -590,10 +586,16 @@ public class UpdateWeatherService extends AbstractCommonService {
                   TAG,
                 "currentWeatherUpdateMessages.size after pull when sending result = ", updateWeatherUpdateMessages);
         try {
+            appendLog(getBaseContext(),
+                    TAG,
+                    "sendResult: updateResultInUI");
             updateResultInUI(locationId, result, updateRequest);
             if (!updateWeatherUpdateMessages.isEmpty()) {
                 resendTheIntentInSeveralSeconds(5);
             }
+            appendLog(getBaseContext(),
+                    TAG,
+                    "sendResult: updateWidgets");
             WidgetUtils.updateWidgets(getBaseContext());
             sendMessageToReconciliationDbService(false);
         } catch (Throwable exception) {
@@ -636,9 +638,14 @@ public class UpdateWeatherService extends AbstractCommonService {
         long now = System.currentTimeMillis();
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
         currentWeatherDbHelper.saveWeather(location.getId(), now, now + MIN_WEATHER_UPDATE_TIME_IN_MS, weather);
-
+        appendLog(context,
+                TAG,
+                "Current weather saved");
         sendMessageToWeatherByVoiceService(location, weather, now);
         locationsDbHelper.updateLastUpdatedAndLocationSource(location.getId(), now, locationSource);
+        appendLog(context,
+                TAG,
+                "Going to send result with current weather");
         sendResult(ACTION_WEATHER_UPDATE_OK, context, location.getId(), updateType);
     }
 
@@ -755,101 +762,11 @@ public class UpdateWeatherService extends AbstractCommonService {
     protected void sendMessageToWeatherByVoiceService(Location location,
                                                       Weather weather,
                                                       long now) {
-        weatherByVoiceServiceLock.lock();
-        try {
-            Message msg = Message.obtain(
-                    null,
-                    WeatherByVoiceService.START_VOICE_WEATHER_UPDATED,
-                    new WeatherByVoiceRequestDataHolder(location, weather, now)
-            );
-            if (checkIfWeatherByVoiceServiceIsNotBound()) {
-                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
-                weatherByvOiceUnsentMessages.add(msg);
-                return;
-            }
-            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
-            weatherByVoiceService.send(msg);
-        } catch (RemoteException e) {
-            appendLog(getBaseContext(), TAG, e.getMessage(), e);
-        } finally {
-            weatherByVoiceServiceLock.unlock();
-        }
-    }
-
-    private boolean checkIfWeatherByVoiceServiceIsNotBound() {
-        if (weatherByVoiceService != null) {
-            return false;
-        }
-        try {
-            bindWeatherByVoiceService();
-        } catch (Exception ie) {
-            appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
-        }
-        return (weatherByVoiceService == null);
-    }
-
-    private void bindWeatherByVoiceService() {
-        getApplicationContext().bindService(
-                new Intent(getApplicationContext(), WeatherByVoiceService.class),
-                weatherByVoiceServiceConnection,
-                Context.BIND_AUTO_CREATE);
-    }
-
-    private void unbindWeatherByVoiceService() {
-        if (weatherByVoiceService == null) {
-            return;
-        }
-        getApplicationContext().unbindService(weatherByVoiceServiceConnection);
-    }
-
-    private ServiceConnection weatherByVoiceServiceConnection = new ServiceConnection() {
-        public void onServiceConnected(ComponentName className, IBinder binderService) {
-            weatherByVoiceService = new Messenger(binderService);
-            weatherByVoiceServiceLock.lock();
-            try {
-                while (!weatherByvOiceUnsentMessages.isEmpty()) {
-                    weatherByVoiceService.send(weatherByvOiceUnsentMessages.poll());
-                }
-            } catch (RemoteException e) {
-                appendLog(getBaseContext(), TAG, e.getMessage(), e);
-            } finally {
-                weatherByVoiceServiceLock.unlock();
-            }
-        }
-        public void onServiceDisconnected(ComponentName className) {
-            weatherByVoiceService = null;
-        }
-    };
-
-    private class UpdateWeatherMessageHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            WeatherRequestDataHolder weatherRequestDataHolder = (WeatherRequestDataHolder) msg.obj;
-            appendLog(getBaseContext(), TAG, "handleMessage:", msg.what, ":", weatherRequestDataHolder);
-            if ((weatherRequestDataHolder == null) && (updateWeatherUpdateMessages.isEmpty())) {
-                return;
-            } else if (weatherRequestDataHolder == null) {
-                weatherRequestDataHolder = updateWeatherUpdateMessages.poll();
-            }
-            appendLog(getBaseContext(),
-                    TAG,
-                    "currentWeatherUpdateMessages.size when adding new message = ", updateWeatherUpdateMessages);
-            switch (msg.what) {
-                case START_PROCESS_CURRENT_QUEUE:
-                case START_LONG_WEATHER_FORECAST_RETRY:
-                case START_CURRENT_WEATHER_RETRY:
-                case START_WEATHER_FORECAST_RETRY:
-                case START_WEATHER_FORECAST_UPDATE:
-                case START_CURRENT_WEATHER_UPDATE:
-                case START_LONG_WEATHER_FORECAST_UPDATE:
-                    if (!updateWeatherUpdateMessages.contains(weatherRequestDataHolder)) {
-                        updateWeatherUpdateMessages.add(weatherRequestDataHolder);
-                    }
-                    startWeatherUpdate();
-                    break;
-                default:
-                    super.handleMessage(msg);
-            }
-        }
+        Intent intentToStartUpdate = new Intent("android.intent.action.START_VOICE_WEATHER_UPDATED");
+        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        intentToStartUpdate.putExtra("weatherByVoiceLocation", location);
+        intentToStartUpdate.putExtra("weatherByVoiceWeather", weather);
+        intentToStartUpdate.putExtra("weatherByVoiceTime", now);
+        ContextCompat.startForegroundService(getBaseContext(), intentToStartUpdate);
     }
 }

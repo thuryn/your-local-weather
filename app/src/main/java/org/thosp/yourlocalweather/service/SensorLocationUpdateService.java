@@ -55,7 +55,7 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
         stopForeground(true);
     }
 
-    public void stopSensorBasedUpdates() {
+    private void stopSensorBasedUpdates() {
         receiversLock.lock();
         try {
             if (!receiversRegistered || (senSensorManager == null)) {
@@ -71,12 +71,12 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
         }
     }
 
-    public int startSensorBasedUpdates(int initialReturnValue) {
+    private int startSensorBasedUpdates(int initialReturnValue) {
         sendIntent("android.intent.action.START_SENSOR_BASED_UPDATES");
         return initialReturnValue;
     }
     
-    public int performSensorBasedUpdates(int initialReturnValue) {
+    private int performSensorBasedUpdates(int initialReturnValue) {
         receiversLock.lock();
         try {
             if (receiversRegistered) {

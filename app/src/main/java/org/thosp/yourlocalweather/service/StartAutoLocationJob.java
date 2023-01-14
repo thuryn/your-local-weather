@@ -34,7 +34,6 @@ public class StartAutoLocationJob extends AbstractAppJob {
     }
 
     private ScreenOnOffUpdateService screenOnOffUpdateService;
-    //private SensorLocationUpdateService sensorLocationUpdateService;
     private JobParameters params;
     private int connectedServicesCounter;
 
@@ -62,7 +61,6 @@ public class StartAutoLocationJob extends AbstractAppJob {
         return true;
     }
 
-    @Override
     protected void serviceConnected(ServiceConnection serviceConnection) {
         connectedServicesCounter++;
         if (connectedServicesCounter >= 4) {
@@ -275,92 +273,6 @@ public class StartAutoLocationJob extends AbstractAppJob {
         }
         return nextUpdateForLocation;
     }
-
-    /*private ServiceConnection sensorLocationUpdateServiceConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service) {
-            SensorLocationUpdateService.SensorLocationUpdateServiceBinder binder =
-                    (SensorLocationUpdateService.SensorLocationUpdateServiceBinder) service;
-            sensorLocationUpdateService = binder.getService();
-            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-            Calendar now = Calendar.getInstance();
-            String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
-            long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
-            String updatePeriodStr = AppPreference.getLocationUpdatePeriod(getBaseContext());
-            long updatePeriodMills = Utils.intervalMillisForAlarm(updatePeriodStr);
-            boolean notificationEnabled = AppPreference.isNotificationEnabled(getBaseContext());
-            String notificationPeriodStr = AppPreference.getInterval(getBaseContext());
-            if ("regular_only".equals(notificationPeriodStr)) {
-                notificationEnabled = false;
-            }
-            long notificationPeriodMillis = Utils.intervalMillisForAlarm(notificationPeriodStr);
-            long lastNotificationTimeInMs = AppPreference.getLastNotificationTimeInMs(getBaseContext());
-            Location locationForNotification = checkNotificationAndReturnLocationForNotification(
-                    now,
-                    notificationEnabled,
-                    notificationPeriodMillis,
-                    lastNotificationTimeInMs);
-
-            appendLog(getBaseContext(),
-                    TAG,
-                    "updateAutoPeriodStr:", updateAutoPeriodStr,
-                            ", updatePeriodStr:", updatePeriodStr,
-                            ", notificationPeriodStr:", notificationPeriodStr);
-            long nextAlarmWakeup = AppAlarmService.START_SENSORS_CHECK_PERIOD;
-            appendLog(getBaseContext(), TAG, "1:nextAlarmWakeup=", nextAlarmWakeup);
-            List<Location> locations = locationsDbHelper.getAllRows();
-            for (Location location: locations) {
-                appendLog(getBaseContext(),
-                        TAG,
-                        "location:", location,
-                                ", location.isEnabled:", location.isEnabled());
-                boolean notificationForLocation = (locationForNotification != null) && location.getId().equals(locationForNotification.getId());
-                if ((location.getOrderId() == 0) && (location.isEnabled())) {
-                    long lastUpdate = location.getLastLocationUpdate();
-                    Updated updated = performUpdateOfAutolocation(now, location, updateAutoPeriodStr, updateAutoPeriodMills, notificationForLocation);
-                    nextAlarmWakeup = getNextTimeForNotification(nextAlarmWakeup, now, lastUpdate, updateAutoPeriodMills, !Updated.NOTHING.equals(updated));
-                    appendLog(getBaseContext(), TAG, "2:nextAlarmWakeup=", nextAlarmWakeup);
-                    if (notificationEnabled) {
-                        nextAlarmWakeup = getNextTimeForNotification(nextAlarmWakeup,
-                                                                     now,
-                                                                     lastNotificationTimeInMs,
-                                                                     notificationPeriodMillis,
-                                                                     Updated.BY_NOTIFICATION.equals(updated));
-                        appendLog(getBaseContext(), TAG, "3:nextAlarmWakeup=", nextAlarmWakeup);
-                    }
-                } else if ((location.getOrderId() != 0) location.isEnabled()) {
-                    long lastUpdate = location.getLastLocationUpdate();
-                    Updated updated = performUpdateOfWeather(now, location, updatePeriodStr, updatePeriodMills, notificationForLocation);
-                    nextAlarmWakeup = getNextTimeForNotification(nextAlarmWakeup, now, lastUpdate, updatePeriodMills, !Updated.NOTHING.equals(updated));
-                    appendLog(getBaseContext(), TAG, "4:nextAlarmWakeup=", nextAlarmWakeup);
-                    if (notificationEnabled) {
-                        nextAlarmWakeup = getNextTimeForNotification(nextAlarmWakeup,
-                                now,
-                                lastNotificationTimeInMs,
-                                notificationPeriodMillis,
-                                Updated.BY_NOTIFICATION.equals(updated));
-                        appendLog(getBaseContext(), TAG, "5:nextAlarmWakeup=", nextAlarmWakeup);
-                    }
-                }
-            }
-            long nextTimeForLog = now.getTimeInMillis() + nextAlarmWakeup;
-            appendLog(getBaseContext(), TAG, "1:nextTimeForLog=", nextTimeForLog);
-            appendLogWithDate(getBaseContext(),
-                    TAG,
-                    "next scheduler time:", nextTimeForLog);
-            reScheduleNextAlarm(JOB_ID, nextAlarmWakeup, StartAutoLocationJob.class);
-            serviceConnected(sensorLocationUpdateServiceConnection);
-            if (currentWeatherUnsentMessages.isEmpty()) {
-                jobFinished(params, false);
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-        }
-    };*/
 
     private ServiceConnection screenOnOffUpdateServiceConnection = new ServiceConnection() {
 

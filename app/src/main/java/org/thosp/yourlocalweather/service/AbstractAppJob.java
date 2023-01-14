@@ -30,9 +30,6 @@ public abstract class AbstractAppJob extends JobService {
 
     private static final String TAG = "AbstractAppJob";
 
-    protected Messenger currentWeatherService;
-    protected Lock currentWeatherServiceLock = new ReentrantLock();
-    protected Queue<Message> currentWeatherUnsentMessages = new LinkedList<>();
     private Messenger wakeUpService;
     private Lock wakeUpServiceLock = new ReentrantLock();
     private Queue<Message> wakeUpUnsentMessages = new LinkedList<>();
@@ -66,29 +63,13 @@ public abstract class AbstractAppJob extends JobService {
         if (!ForecastUtil.shouldUpdateForecast(this, locationId, UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
             return;
         }
-        currentWeatherServiceLock.lock();
-        try {
-            Message msg = Message.obtain(
-                    null,
-                    UpdateWeatherService.START_WEATHER_FORECAST_UPDATE,
-                    new WeatherRequestDataHolder(locationId, updateSource, UpdateWeatherService.START_WEATHER_FORECAST_UPDATE)
-            );
-            if (checkIfCurrentWeatherServiceIsNotBound()) {
-                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
-                currentWeatherUnsentMessages.add(msg);
-                return;
-            }
-            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
-            currentWeatherService.send(msg);
-        } catch (RemoteException e) {
-            appendLog(getBaseContext(), TAG, e.getMessage(), e);
-        } finally {
-            currentWeatherServiceLock.unlock();
-        }
+        Intent intent = new Intent("android.intent.action.START_WEATHER_UPDATE");
+        intent.setPackage("org.thosp.yourlocalweather");
+        intent.putExtra("weatherRequest", new WeatherRequestDataHolder(locationId, updateSource, UpdateWeatherService.START_WEATHER_FORECAST_UPDATE));
+        startService(intent);
     }
 
     protected void unbindAllServices() {
-        unbindCurrentWeatherService();
         unbindWakeUpService();
     }
 
@@ -111,78 +92,11 @@ public abstract class AbstractAppJob extends JobService {
                                                       String updateSource,
                                                       int wakeUpSource,
                                                       boolean updateWeatherOnly) {
-        sendMessageToWakeUpService(
-                AppWakeUpManager.WAKE_UP,
-                wakeUpSource
-        );
-        currentWeatherServiceLock.lock();
-        try {
-            Message msg = Message.obtain(
-                    null,
-                    UpdateWeatherService.START_CURRENT_WEATHER_UPDATE,
-                    new WeatherRequestDataHolder(location.getId(), updateSource, updateWeatherOnly, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE)
-            );
-            if (checkIfCurrentWeatherServiceIsNotBound()) {
-                currentWeatherUnsentMessages.add(msg);
-                return;
-            }
-            currentWeatherService.send(msg);
-            serviceConnected(currentWeatherServiceConnection);
-        } catch (RemoteException e) {
-            appendLog(getBaseContext(), TAG, e.getMessage(), e);
-        } finally {
-            currentWeatherServiceLock.unlock();
-        }
+        Intent intent = new Intent("android.intent.action.START_WEATHER_UPDATE");
+        intent.setPackage("org.thosp.yourlocalweather");
+        intent.putExtra("weatherRequest", new WeatherRequestDataHolder(location.getId(), updateSource, updateWeatherOnly, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE));
+        startService(intent);
     }
-
-    protected boolean checkIfCurrentWeatherServiceIsNotBound() {
-        if (currentWeatherService != null) {
-            return false;
-        }
-        try {
-            bindCurrentWeatherService();
-        } catch (Exception ie) {
-            appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
-        }
-        return (currentWeatherService == null);
-    }
-
-    private void bindCurrentWeatherService() {
-        appendLog(getBaseContext(), getClass().getSimpleName(), "bind current weather service:", this.toString());
-        getApplicationContext().bindService(
-                new Intent(getApplicationContext(), UpdateWeatherService.class),
-                currentWeatherServiceConnection,
-                Context.BIND_AUTO_CREATE);
-    }
-
-    private void unbindCurrentWeatherService() {
-        if (currentWeatherService == null) {
-            return;
-        }
-        getApplicationContext().unbindService(currentWeatherServiceConnection);
-    }
-
-    private ServiceConnection currentWeatherServiceConnection = new ServiceConnection() {
-        public void onServiceConnected(ComponentName className, IBinder binderService) {
-            currentWeatherService = new Messenger(binderService);
-            currentWeatherServiceLock.lock();
-            try {
-                while (!currentWeatherUnsentMessages.isEmpty()) {
-                    currentWeatherService.send(currentWeatherUnsentMessages.poll());
-                }
-            } catch (RemoteException e) {
-                appendLog(getBaseContext(), TAG, e.getMessage(), e);
-            } finally {
-                currentWeatherServiceLock.unlock();
-            }
-            serviceConnected(currentWeatherServiceConnection);
-        }
-        public void onServiceDisconnected(ComponentName className) {
-            currentWeatherService = null;
-        }
-    };
-
-    protected abstract void serviceConnected(ServiceConnection serviceConnection);
 
     protected void sendMessageToWakeUpService(int wakeAction, int wakeupSource) {
         wakeUpServiceLock.lock();
@@ -245,7 +159,6 @@ public abstract class AbstractAppJob extends JobService {
             } finally {
                 wakeUpServiceLock.unlock();
             }
-            serviceConnected(currentWeatherServiceConnection);
         }
         public void onServiceDisconnected(ComponentName className) {
             wakeUpService = null;
