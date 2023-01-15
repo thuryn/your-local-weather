@@ -594,4 +594,7 @@
     <string name="update_period_2hours" tools:ignore="MissingTranslation">2 saat</string>
     <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">Grafikte rüzgar ve sıcaklığın yanında yağmur/kar değerlerini göstermeyi seçtiğinizde (çubuklar halinde) değer log10 olarak hesaplanır. O zaman (görünmeyen) eksenin en yüksek değeri yaklaşık 160 mm\'dir (veya 6,3 inç).</string>
     <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Birleşik grafik</string>
+    <string name="permission_available_notification" tools:ignore="MissingTranslation">Bildirim izni verildi</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">Uygulama, arka planda konum izni gerektiriyor</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">Uygulama, gerçekte bulunduğunuz konuma göre hava durumunu almak için arka planda konum izni gerektiriyor. Kabul ediyorsanız bir sonraki ekranda seçeneği seçmelisiniz:</string>
 </resources>
