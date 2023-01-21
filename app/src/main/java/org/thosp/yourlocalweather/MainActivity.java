@@ -679,6 +679,11 @@ public class MainActivity extends BaseActivity
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
+        if((grantResults == null) || (grantResults.length == 0)) {
+            appendLog(getBaseContext(), TAG, "onRequestPermissionsResult:grantResults is null or zero in length");
+            return;
+        }
+
         if (requestCode == LOCATION_PERMISSION_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

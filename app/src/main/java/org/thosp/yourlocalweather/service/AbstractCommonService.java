@@ -33,16 +33,6 @@ public class AbstractCommonService extends Service {
 
     private static final String TAG = "AbstractCommonService";
 
-    private Messenger wakeUpService;
-    private Lock wakeUpServiceLock = new ReentrantLock();
-    private Queue<Message> wakeUpUnsentMessages = new LinkedList<>();
-    private Messenger reconciliationDbService;
-    private Lock reconciliationDbServiceLock = new ReentrantLock();
-    private Queue<Message> reconciliationDbUnsentMessages = new LinkedList<>();
-
-    private static Queue<LocationUpdateServiceActionsWithParams> locationUpdateServiceActions = new LinkedList<>();
-    LocationUpdateService locationUpdateService;
-
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -161,195 +151,34 @@ public class AbstractCommonService extends Service {
         Intent intent = new Intent("android.intent.action.START_WEATHER_UPDATE");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(locationId, updateSource, forceUpdate, UpdateWeatherService.START_WEATHER_FORECAST_UPDATE));
-        startService(intent);
+        ContextCompat.startForegroundService(getBaseContext(), intent);
     }
 
     protected void sendMessageToWakeUpService(int wakeAction, int wakeupSource) {
-        wakeUpServiceLock.lock();
-        try {
-            Message msg = Message.obtain(
-                    null,
-                    wakeAction,
-                    wakeupSource,
-                    0
-            );
-            if (checkIfWakeUpServiceIsNotBound()) {
-                wakeUpUnsentMessages.add(msg);
-                return;
-            }
-            wakeUpService.send(msg);
-        } catch (RemoteException e) {
-            appendLog(getBaseContext(), TAG, e.getMessage(), e);
-        } finally {
-            wakeUpServiceLock.unlock();
+        Intent intent;
+        if (wakeAction == 1) {
+            intent = new Intent("android.intent.action.WAKE_UP");
+        } else {
+            intent = new Intent("android.intent.action.FALL_DOWN");
         }
+        intent.setPackage("org.thosp.yourlocalweather");
+        intent.putExtra("wakeupSource", wakeupSource);
+        startService(intent);
     }
-
-    private boolean checkIfWakeUpServiceIsNotBound() {
-        if (wakeUpService != null) {
-            return false;
-        }
-        try {
-            bindWakeUpService();
-        } catch (Exception ie) {
-            appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
-        }
-        return (wakeUpService == null);
-    }
-
-    private void bindWakeUpService() {
-        if (wakeUpService != null) {
-            return;
-        }
-        appendLog(getBaseContext(), getClass().getName(), "bindWakeUpService ", wakeUpService);
-        getApplicationContext().bindService(
-                new Intent(getApplicationContext(), AppWakeUpManager.class),
-                wakeUpServiceConnection,
-                Context.BIND_AUTO_CREATE);
-    }
-
-    private void unbindwakeUpService() {
-        if (wakeUpService == null) {
-            return;
-        }
-        getApplicationContext().unbindService(wakeUpServiceConnection);
-    }
-
-    private ServiceConnection wakeUpServiceConnection = new ServiceConnection() {
-        public void onServiceConnected(ComponentName className, IBinder binderService) {
-            wakeUpService = new Messenger(binderService);
-            wakeUpServiceLock.lock();
-            try {
-                while (!wakeUpUnsentMessages.isEmpty()) {
-                    wakeUpService.send(wakeUpUnsentMessages.poll());
-                }
-            } catch (RemoteException e) {
-                appendLog(getBaseContext(), TAG, e.getMessage(), e);
-            } finally {
-                wakeUpServiceLock.unlock();
-            }
-        }
-        public void onServiceDisconnected(ComponentName className) {
-            wakeUpService = null;
-        }
-    };
 
     protected void sendMessageToReconciliationDbService(boolean force) {
         appendLog(this,
                 TAG,
                 "going run reconciliation DB service");
-        reconciliationDbServiceLock.lock();
-        try {
-            Message msg = Message.obtain(
-                    null,
-                    ReconciliationDbService.START_RECONCILIATION,
-                    force?1:0
-            );
-            if (checkIfReconciliationDbServiceIsNotBound()) {
-                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
-                reconciliationDbUnsentMessages.add(msg);
-                return;
-            }
-            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
-            reconciliationDbService.send(msg);
-        } catch (RemoteException e) {
-            appendLog(getBaseContext(), TAG, e.getMessage(), e);
-        } finally {
-            reconciliationDbServiceLock.unlock();
-        }
+        Intent intent = new Intent("android.intent.action.START_RECONCILIATION");
+        intent.setPackage("org.thosp.yourlocalweather");
+        intent.putExtra("force", force);
+        startService(intent);
     }
     
     protected void sendIntent(String intent) {
         Intent sendIntent = new Intent(intent);
         sendIntent.setPackage("org.thosp.yourlocalweather");
         ContextCompat.startForegroundService(getBaseContext(), sendIntent);
-    }
-
-    private boolean checkIfReconciliationDbServiceIsNotBound() {
-        if (reconciliationDbService != null) {
-            return false;
-        }
-        try {
-            bindReconciliationDBService();
-        } catch (Exception ie) {
-            appendLog(getBaseContext(), TAG, "weatherForecastServiceIsNotBound interrupted:", ie);
-        }
-        return (reconciliationDbService == null);
-    }
-
-    private void bindReconciliationDBService() {
-        getApplicationContext().bindService(
-                new Intent(getApplicationContext(), ReconciliationDbService.class),
-                reconciliationDbServiceConnection,
-                Context.BIND_AUTO_CREATE);
-    }
-
-    private void unbindReconciliationDbService() {
-        if (reconciliationDbService == null) {
-            return;
-        }
-        getApplicationContext().unbindService(reconciliationDbServiceConnection);
-    }
-
-    private ServiceConnection reconciliationDbServiceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName className, IBinder binderService) {
-            reconciliationDbService = new Messenger(binderService);
-            reconciliationDbServiceLock.lock();
-            try {
-                while (!reconciliationDbUnsentMessages.isEmpty()) {
-                    reconciliationDbService.send(reconciliationDbUnsentMessages.poll());
-                }
-            } catch (RemoteException e) {
-                appendLog(getBaseContext(), TAG, e.getMessage(), e);
-            } finally {
-                reconciliationDbServiceLock.unlock();
-            }
-        }
-        @Override
-        public void onServiceDisconnected(ComponentName className) {
-            reconciliationDbService = null;
-        }
-    };
-
-    public class LocationUpdateServiceActionsWithParams {
-        LocationUpdateService.LocationUpdateServiceActions locationUpdateServiceAction;
-        boolean byLastLocationOnly;
-        android.location.Location inputLocation;
-        Address address;
-
-        public LocationUpdateServiceActionsWithParams(
-                LocationUpdateService.LocationUpdateServiceActions locationUpdateServiceAction,
-                boolean byLastLocationOnly) {
-            this.locationUpdateServiceAction = locationUpdateServiceAction;
-            this.byLastLocationOnly = byLastLocationOnly;
-        }
-
-        public LocationUpdateServiceActionsWithParams(
-                LocationUpdateService.LocationUpdateServiceActions locationUpdateServiceAction,
-                boolean byLastLocationOnly,
-                android.location.Location inputLocation,
-                Address address) {
-            this.locationUpdateServiceAction = locationUpdateServiceAction;
-            this.byLastLocationOnly = byLastLocationOnly;
-            this.address = address;
-            this.inputLocation = inputLocation;
-        }
-
-        public LocationUpdateService.LocationUpdateServiceActions getLocationUpdateServiceAction() {
-            return locationUpdateServiceAction;
-        }
-
-        public boolean isByLastLocationOnly() {
-            return byLastLocationOnly;
-        }
-
-        public android.location.Location getInputLocation() {
-            return inputLocation;
-        }
-
-        public Address getAddress() {
-            return address;
-        }
     }
 }

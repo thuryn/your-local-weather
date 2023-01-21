@@ -30,6 +30,8 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
+import androidx.core.content.ContextCompat;
+
 public class MozillaLocationService {
 
     public static final String TAG = "MozillaLocationService";
@@ -37,9 +39,7 @@ public class MozillaLocationService {
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     private static MozillaLocationService instance;
-    private LocationUpdateService locationUpdateService;
     private Context context;
-    private Queue<LocationAndAddressToUpdate> locationUpdateServiceActions = new LinkedList<>();
 
     private MozillaLocationService() {
     }
@@ -55,14 +55,6 @@ public class MozillaLocationService {
     private static final String SERVICE_URL = "https://location.services.mozilla.com/v1/geolocate?key=%s";
     private static final String API_KEY = "3693d51230c04a34af807fbefd1caebb";
     private static final String PROVIDER = "ichnaea";
-
-    @Override
-    protected void finalize() throws Throwable {
-        if (locationUpdateService != null) {
-            unbindLocationUpdateService();
-        }
-        super.finalize();
-    }
 
     public synchronized void getLocationFromCellsAndWifis(final Context context,
                                                           List<Cell> cells,
@@ -287,91 +279,18 @@ public class MozillaLocationService {
     }
 
     protected void reportCanceledRequestForNewLocation() {
-        if (locationUpdateService != null) {
-            locationUpdateService.onLocationChangedCanceled();
-        } else {
-            locationUpdateServiceActions.add(
-                    new LocationAndAddressToUpdate(true));
-            bindLocationUpdateService();
-        }
+        Intent intent = new Intent("android.intent.action.START_LOCATION_ON_LOCATION_CANCELED");
+        intent.setPackage("org.thosp.yourlocalweather");
+        context.startService(intent);
     }
 
     protected void reportNewLocation(Location location, Address address) {
-        if (locationUpdateService != null) {
-            locationUpdateService.onLocationChanged(
-                    location,
-                    address);
-        } else {
-            locationUpdateServiceActions.add(
-                    new LocationAndAddressToUpdate(
-                            location,
-                            address));
-            bindLocationUpdateService();
+        Intent intent = new Intent("android.intent.action.START_LOCATION_ON_LOCATION_CHANGED");
+        intent.setPackage("org.thosp.yourlocalweather");
+        intent.putExtra("location", location);
+        if (address != null) {
+            intent.putExtra("address", address);
         }
-    }
-
-    private void bindLocationUpdateService() {
-        Intent intent = new Intent(context.getApplicationContext(), LocationUpdateService.class);
-        context.getApplicationContext().bindService(intent, instance.locationUpdateServiceConnection, Context.BIND_AUTO_CREATE);
-    }
-
-    private void unbindLocationUpdateService() {
-        if (locationUpdateService == null) {
-            return;
-        }
-        context.unbindService(locationUpdateServiceConnection);
-    }
-
-    private ServiceConnection locationUpdateServiceConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service) {
-            LocationUpdateService.LocationUpdateServiceBinder binder =
-                    (LocationUpdateService.LocationUpdateServiceBinder) service;
-            locationUpdateService = binder.getService();
-            LocationAndAddressToUpdate bindedServiceAction;
-            while ((bindedServiceAction = locationUpdateServiceActions.poll()) != null) {
-                if (bindedServiceAction.isCanceled()) {
-                    locationUpdateService.onLocationChangedCanceled();
-                } else {
-                    locationUpdateService.onLocationChanged(
-                            bindedServiceAction.getLocation(),
-                            bindedServiceAction.getAddress());
-                }
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            locationUpdateService = null;
-        }
-    };
-
-    private class LocationAndAddressToUpdate {
-        Location location;
-        Address address;
-        boolean canceled;
-
-        public LocationAndAddressToUpdate(Location location, Address address) {
-            this.location = location;
-            this.address = address;
-        }
-
-        public LocationAndAddressToUpdate(boolean canceled) {
-            this.canceled = canceled;
-        }
-
-        public Location getLocation() {
-            return location;
-        }
-
-        public Address getAddress() {
-            return address;
-        }
-
-        public boolean isCanceled() {
-            return canceled;
-        }
+        context.startService(intent);
     }
 }

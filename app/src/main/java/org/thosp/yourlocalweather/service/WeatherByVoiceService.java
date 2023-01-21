@@ -69,6 +69,7 @@ public class WeatherByVoiceService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
+        startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
         appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
 
         if (intent == null) {

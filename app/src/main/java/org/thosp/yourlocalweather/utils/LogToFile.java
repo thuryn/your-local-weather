@@ -745,7 +745,7 @@ public class LogToFile {
     }
 
     private static boolean isLoggingAvailable() {
-        return logToFileEnabled && ((logFilePathname == null) || logFileUri != null);
+        return logToFileEnabled && ((logFilePathname != null) || (logFileUri != null));
     }
 
     private static void initEndOfLive(Date logFileDateCreated) {

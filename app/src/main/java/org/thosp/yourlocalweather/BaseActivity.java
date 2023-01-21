@@ -26,6 +26,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.TaskStackBuilder;
+import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -63,10 +64,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected Location currentLocation;
     protected TextView localityView;
 
-    private Messenger reconciliationDbService;
-    private Lock reconciliationDbServiceLock = new ReentrantLock();
-    private Queue<Message> reconciliationDbUnsentMessages = new LinkedList<>();
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,12 +71,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        unbindReconciliationDbService();
     }
 
     @Override
@@ -277,83 +268,23 @@ public abstract class BaseActivity extends AppCompatActivity {
         Intent intent = new Intent("android.intent.action.START_WEATHER_UPDATE");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(locationId, updateSource, UpdateWeatherService.START_WEATHER_FORECAST_UPDATE));
-        startService(intent);
+        ContextCompat.startForegroundService(getBaseContext(), intent);
     }
 
     protected void sendMessageToLongWeatherForecastService(Long locationId, String updateSource) {
         Intent intent = new Intent("android.intent.action.START_WEATHER_UPDATE");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(locationId, updateSource, UpdateWeatherService.START_LONG_WEATHER_FORECAST_UPDATE));
-        startService(intent);
+        ContextCompat.startForegroundService(getBaseContext(), intent);
     }
 
     protected void sendMessageToReconciliationDbService(boolean force) {
         appendLog(this,
                 TAG,
                 "going run reconciliation DB service");
-        reconciliationDbServiceLock.lock();
-        try {
-            Message msg = Message.obtain(
-                    null,
-                    ReconciliationDbService.START_RECONCILIATION,
-                    force?1:0
-            );
-            if (checkIfReconciliationDbServiceIsNotBound()) {
-                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
-                reconciliationDbUnsentMessages.add(msg);
-                return;
-            }
-            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
-            reconciliationDbService.send(msg);
-        } catch (RemoteException e) {
-            appendLog(getBaseContext(), TAG, e.getMessage(), e);
-        } finally {
-            reconciliationDbServiceLock.unlock();
-        }
+        Intent intent = new Intent("android.intent.action.START_RECONCILIATION");
+        intent.setPackage("org.thosp.yourlocalweather");
+        intent.putExtra("force", force);
+        startService(intent);
     }
-
-    private boolean checkIfReconciliationDbServiceIsNotBound() {
-        if (reconciliationDbService != null) {
-            return false;
-        }
-        try {
-            bindReconciliationDBService();
-        } catch (Exception ie) {
-            appendLog(getBaseContext(), TAG, "weatherForecastServiceIsNotBound interrupted:", ie);
-        }
-        return (reconciliationDbService == null);
-    }
-
-    private void bindReconciliationDBService() {
-        getApplicationContext().bindService(
-                new Intent(getApplicationContext(), ReconciliationDbService.class),
-                reconciliationDbServiceConnection,
-                Context.BIND_AUTO_CREATE);
-    }
-
-    private void unbindReconciliationDbService() {
-        if (reconciliationDbService == null) {
-            return;
-        }
-        getApplicationContext().unbindService(reconciliationDbServiceConnection);
-    }
-
-    private ServiceConnection reconciliationDbServiceConnection = new ServiceConnection() {
-        public void onServiceConnected(ComponentName className, IBinder binderService) {
-            reconciliationDbService = new Messenger(binderService);
-            reconciliationDbServiceLock.lock();
-            try {
-                while (!reconciliationDbUnsentMessages.isEmpty()) {
-                    reconciliationDbService.send(reconciliationDbUnsentMessages.poll());
-                }
-            } catch (RemoteException e) {
-                appendLog(getBaseContext(), TAG, e.getMessage(), e);
-            } finally {
-                reconciliationDbServiceLock.unlock();
-            }
-        }
-        public void onServiceDisconnected(ComponentName className) {
-            reconciliationDbService = null;
-        }
-    };
 }

@@ -39,7 +39,6 @@ public class AppWakeUpManager extends Service {
     private PowerManager powerManager;
     private static List<Integer> wakeUpSources = new ArrayList<>();
     private Lock wakeUpSourcesLock = new ReentrantLock();
-    final Messenger messenger = new Messenger(new PowerUpMessageHandler());
 
     Handler timerWakeUpHandler = new Handler();
     Runnable timerWakeUpRunnable = new Runnable() {
@@ -58,7 +57,20 @@ public class AppWakeUpManager extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        return messenger.getBinder();
+        return null;
+    }
+
+    public int onStartCommand(Intent intent, int flags, final int startId) {
+        int ret = super.onStartCommand(intent, flags, startId);
+        if (intent == null) {
+            return ret;
+        }
+        appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
+        switch (intent.getAction()) {
+            case "android.intent.action.WAKE_UP": startWakeUp(intent.getIntExtra("wakeupSource", 0)); return ret;
+            case "android.intent.action.FALL_DOWN": stopWakeUp(intent.getIntExtra("wakeupSource", 0)); return ret;
+            default: return ret;
+        }
     }
 
     @Override
@@ -161,23 +173,5 @@ public class AppWakeUpManager extends Service {
             wakeLock.acquire();
         }
         appendLog(getBaseContext(), TAG, "wakeLock acquired");
-    }
-
-    private class PowerUpMessageHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            int wakeUpSource = msg.arg1;
-            appendLog(getBaseContext(), TAG, "handleMessage:", msg.what, ":", wakeUpSource);
-            switch (msg.what) {
-                case WAKE_UP:
-                    startWakeUp(wakeUpSource);
-                    break;
-                case FALL_DOWN:
-                    stopWakeUp(wakeUpSource);
-                    break;
-                default:
-                    super.handleMessage(msg);
-            }
-        }
     }
 }

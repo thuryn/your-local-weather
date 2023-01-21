@@ -19,13 +19,9 @@ public class ReconciliationDbService extends AbstractCommonService {
 
     private static final String TAG = "ReconciliationDbService";
 
-    public static final int START_RECONCILIATION = 1;
-
     private static final long MIN_RECONCILIATION_TIME_SPAN_IN_MS = 60000;
 
     private static volatile long nextReconciliationTime;
-
-    final Messenger messenger = new Messenger(new ReconciliationDbService.ReconciliationDbMessageHandler());
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -39,7 +35,19 @@ public class ReconciliationDbService extends AbstractCommonService {
 
     @Override
     public IBinder onBind(Intent intent) {
-        return messenger.getBinder();
+        return null;
+    }
+
+    public int onStartCommand(Intent intent, int flags, final int startId) {
+        int ret = super.onStartCommand(intent, flags, startId);
+        if (intent == null) {
+            return ret;
+        }
+        appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
+        switch (intent.getAction()) {
+            case "android.intent.action.START_RECONCILIATION": startReconciliation(intent.getBooleanExtra("force", false)); return ret;
+            default: return ret;
+        }
     }
 
     protected void startReconciliation(boolean force) {
@@ -155,19 +163,5 @@ public class ReconciliationDbService extends AbstractCommonService {
             values.put(LocationsContract.Locations.COLUMN_NAME_LOCATION_NICKNAME, location.getNickname());
         }
         return values;
-    }
-
-    private class ReconciliationDbMessageHandler extends Handler {
-        @Override
-        public void handleMessage(Message msg) {
-            appendLog(getBaseContext(), TAG, "handleMessage:", msg.what, ":", msg.arg1);
-            switch (msg.what) {
-                case START_RECONCILIATION:
-                    startReconciliation((msg.arg1 == 1)?true:false);
-                    break;
-                default:
-                    super.handleMessage(msg);
-            }
-        }
     }
 }

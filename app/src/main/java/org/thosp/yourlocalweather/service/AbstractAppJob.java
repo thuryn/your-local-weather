@@ -30,15 +30,6 @@ public abstract class AbstractAppJob extends JobService {
 
     private static final String TAG = "AbstractAppJob";
 
-    private Messenger wakeUpService;
-    private Lock wakeUpServiceLock = new ReentrantLock();
-    private Queue<Message> wakeUpUnsentMessages = new LinkedList<>();
-
-    @Override
-    public boolean onUnbind(Intent intent) {
-        return false;
-    }
-
     protected void reScheduleNextAlarm(int jobId, String updatePeriodStr, Class serviceClass) {
         long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updatePeriodStr);
         reScheduleNextAlarm(jobId, updateAutoPeriodMills, serviceClass);
@@ -69,19 +60,6 @@ public abstract class AbstractAppJob extends JobService {
         startService(intent);
     }
 
-    protected void unbindAllServices() {
-        unbindWakeUpService();
-    }
-
-    @Override
-    public void unbindService(ServiceConnection conn) {
-        try {
-            super.unbindService(conn);
-        } catch (Exception e) {
-            appendLog(this, "TAG", e.getMessage(), e);
-        }
-    }
-
     protected void sendMessageToCurrentWeatherService(Location location,
                                                       int wakeUpSource,
                                                       boolean updateWeatherOnly) {
@@ -97,71 +75,4 @@ public abstract class AbstractAppJob extends JobService {
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(location.getId(), updateSource, updateWeatherOnly, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE));
         startService(intent);
     }
-
-    protected void sendMessageToWakeUpService(int wakeAction, int wakeupSource) {
-        wakeUpServiceLock.lock();
-        try {
-            Message msg = Message.obtain(
-                    null,
-                    wakeAction,
-                    wakeupSource,
-                    0
-            );
-            if (checkIfWakeUpServiceIsNotBound()) {
-                wakeUpUnsentMessages.add(msg);
-                return;
-            }
-            wakeUpService.send(msg);
-        } catch (RemoteException e) {
-            appendLog(getBaseContext(), TAG, e.getMessage(), e);
-        } finally {
-            wakeUpServiceLock.unlock();
-        }
-    }
-
-    private boolean checkIfWakeUpServiceIsNotBound() {
-        if (wakeUpService != null) {
-            return false;
-        }
-        try {
-            bindWakeUpService();
-        } catch (Exception ie) {
-            appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
-        }
-        return (wakeUpService == null);
-    }
-
-    private void bindWakeUpService() {
-        appendLog(getBaseContext(), getClass().getSimpleName(), "bind wakeup service:", this.toString());
-        getApplicationContext().bindService(
-                new Intent(getApplicationContext(), AppWakeUpManager.class),
-                wakeUpServiceConnection,
-                Context.BIND_AUTO_CREATE);
-    }
-
-    private void unbindWakeUpService() {
-        if (wakeUpService == null) {
-            return;
-        }
-        getApplicationContext().unbindService(wakeUpServiceConnection);
-    }
-
-    private ServiceConnection wakeUpServiceConnection = new ServiceConnection() {
-        public void onServiceConnected(ComponentName className, IBinder binderService) {
-            wakeUpService = new Messenger(binderService);
-            wakeUpServiceLock.lock();
-            try {
-                while (!wakeUpUnsentMessages.isEmpty()) {
-                    wakeUpService.send(wakeUpUnsentMessages.poll());
-                }
-            } catch (RemoteException e) {
-                appendLog(getBaseContext(), TAG, e.getMessage(), e);
-            } finally {
-                wakeUpServiceLock.unlock();
-            }
-        }
-        public void onServiceDisconnected(ComponentName className) {
-            wakeUpService = null;
-        }
-    };
 }

@@ -52,6 +52,8 @@ import javax.crypto.spec.PBEKeySpec;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
+import androidx.core.content.ContextCompat;
+
 public class GeneralPreferenceFragment extends PreferenceFragment implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -64,31 +66,6 @@ public class GeneralPreferenceFragment extends PreferenceFragment implements
             Constants.KEY_PREF_WEATHER_ICON_SET,
             Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY,
             Constants.KEY_PREF_WEATHER_FORECAST_FEATURES
-    };
-    private Messenger reconciliationDbService;
-    private Lock reconciliationDbServiceLock = new ReentrantLock();
-    private Queue<Message> reconciliationDbUnsentMessages = new LinkedList<>();
-
-    private final ServiceConnection reconciliationDbServiceConnection = new ServiceConnection() {
-        @Override
-        public void onServiceConnected(ComponentName className, IBinder binderService) {
-            reconciliationDbService = new Messenger(binderService);
-            reconciliationDbServiceLock.lock();
-            try {
-                while (!reconciliationDbUnsentMessages.isEmpty()) {
-                    reconciliationDbService.send(reconciliationDbUnsentMessages.poll());
-                }
-            } catch (RemoteException e) {
-                appendLog(getActivity(), TAG, e.getMessage(), e);
-            } finally {
-                reconciliationDbServiceLock.unlock();
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName className) {
-            reconciliationDbService = null;
-        }
     };
 
     public static void restartApp(Activity activity) {
@@ -197,7 +174,6 @@ public class GeneralPreferenceFragment extends PreferenceFragment implements
     @Override
     public void onPause() {
         super.onPause();
-        unbindReconciliationDbService();
         getPreferenceScreen().getSharedPreferences()
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
@@ -305,50 +281,9 @@ public class GeneralPreferenceFragment extends PreferenceFragment implements
         appendLog(getActivity(),
                 TAG,
                 "going run reconciliation DB service");
-        reconciliationDbServiceLock.lock();
-        try {
-            Message msg = Message.obtain(
-                    null,
-                    ReconciliationDbService.START_RECONCILIATION,
-                    force ? 1 : 0
-            );
-            if (checkIfReconciliationDbServiceIsNotBound()) {
-                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
-                reconciliationDbUnsentMessages.add(msg);
-                return;
-            }
-            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
-            reconciliationDbService.send(msg);
-        } catch (RemoteException e) {
-            appendLog(getActivity(), TAG, e.getMessage(), e);
-        } finally {
-            reconciliationDbServiceLock.unlock();
-        }
-    }
-
-    private boolean checkIfReconciliationDbServiceIsNotBound() {
-        if (reconciliationDbService != null) {
-            return false;
-        }
-        try {
-            bindReconciliationDBService();
-        } catch (Exception ie) {
-            appendLog(getActivity(), TAG, "weatherForecastServiceIsNotBound interrupted:", ie);
-        }
-        return (reconciliationDbService == null);
-    }
-
-    private void bindReconciliationDBService() {
-        getActivity().getApplicationContext().bindService(
-                new Intent(getActivity().getApplicationContext(), ReconciliationDbService.class),
-                reconciliationDbServiceConnection,
-                Context.BIND_AUTO_CREATE);
-    }
-
-    protected void unbindReconciliationDbService() {
-        if (reconciliationDbService == null) {
-            return;
-        }
-        getActivity().getApplicationContext().unbindService(reconciliationDbServiceConnection);
+        Intent intent = new Intent("android.intent.action.START_RECONCILIATION");
+        intent.setPackage("org.thosp.yourlocalweather");
+        intent.putExtra("force", force);
+        getActivity().startService(intent);
     }
 }

@@ -32,18 +32,12 @@ public class AppAlarmService extends AbstractCommonService {
 
     private static final String TAG = "AppAlarmService";
 
-    private enum BindedServiceActions {
-        START_SCREEN, STOP_SCREEN, START_SENSOR, STOP_SENSOR
-    }
-
-    private final IBinder binder = new AppAlarmServiceBinder();
-
     public static final long START_SENSORS_CHECK_PERIOD = 3600000; //1 hour
     private volatile boolean alarmStarted;
 
     @Override
     public IBinder onBind(Intent intent) {
-        return binder;
+        return null;
     }
 
     @Override
@@ -150,16 +144,14 @@ public class AppAlarmService extends AbstractCommonService {
         cancelAlarm(false);
         startScreenOnOffUpdates();
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+        Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
         String updatePeriodStr = AppPreference.getLocationUpdatePeriod(getBaseContext());
         String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
         long updatePeriodMills = Utils.intervalMillisForAlarm(updatePeriodStr);
         appendLog(getBaseContext(), TAG, "setAlarm:", updatePeriodStr, ":", updateAutoPeriodStr);
         AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-        appendLog(getBaseContext(), TAG, "locationsDbHelper.getLocationByOrderId(0):",
-                locationsDbHelper.getLocationByOrderId(0));
-        appendLog(getBaseContext(), TAG, "locationsDbHelper.getLocationByOrderId(0).isEnabled()",
-                locationsDbHelper.getLocationByOrderId(0).isEnabled());
-        if (locationsDbHelper.getLocationByOrderId(0).isEnabled()) {
+        appendLog(getBaseContext(), TAG, "locationsDbHelper.getLocationByOrderId(0):", autoLocation);
+        if ((autoLocation != null) && autoLocation.isEnabled()) {
             if ("0".equals(updateAutoPeriodStr)) {
                 startSensorBasedUpdates();
                 alarmManager.setRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP,
@@ -334,11 +326,5 @@ public class AppAlarmService extends AbstractCommonService {
                                                                  intent,
                                                                  PendingIntent.FLAG_IMMUTABLE);
         return pendingIntent == null;
-    }
-
-    public class AppAlarmServiceBinder extends Binder {
-        public AppAlarmService getService() {
-            return AppAlarmService.this;
-        }
     }
 }

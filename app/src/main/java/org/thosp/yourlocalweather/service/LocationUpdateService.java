@@ -59,14 +59,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
     private static final long GPS_MAX_LOCATION_AGE_IN_MS = 350000L; //5min
     private static final long LOCATION_UPDATE_RESEND_INTERVAL_IN_MS = 10000L; //20s
 
-    public enum LocationUpdateServiceActions {
-        START_LOCATION_AND_WEATHER_UPDATE, START_LOCATION_ONLY_UPDATE, LOCATION_UPDATE
-    }
-
-    private final IBinder binder = new LocationUpdateServiceBinder();
-    private static Queue<NetworkLocationProviderActionData> networkLocationProviderActions = new LinkedList<>();
-    NetworkLocationProvider networkLocationProvider;
-
     private LocationManager locationManager;
 
     private String updateSource;
@@ -77,22 +69,12 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
     @Override
     public void onCreate() {
         super.onCreate();
-        Intent intent = new Intent(getApplicationContext(), NetworkLocationProvider.class);
-        getApplicationContext().bindService(intent, networkLocationProviderConnection, Context.BIND_AUTO_CREATE);
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        return binder;
-    }
-
-    @Override
-    public boolean onUnbind(Intent intent) {
-        if (networkLocationProvider != null) {
-            getApplicationContext().unbindService(networkLocationProviderConnection);
-        }
-        return false;
+        return null;
     }
 
     @Override
@@ -107,8 +89,19 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
         appendLog(getBaseContext(), TAG, "startForegroundService");
         switch (intent.getAction()) {
-            case "android.intent.action.START_LOCATION_AND_WEATHER_UPDATE": startLocationAndWeatherUpdate(intent); return ret;
-            case "android.intent.action.START_LOCATION_ONLY_UPDATE": updateNetworkLocation(intent); return ret;
+            case "android.intent.action.START_LOCATION_AND_WEATHER_UPDATE":
+                startLocationAndWeatherUpdate(intent);
+                return ret;
+            case "android.intent.action.START_LOCATION_ONLY_UPDATE":
+                updateNetworkLocation(intent);
+                return ret;
+            case "android.intent.action.START_LOCATION_ON_LOCATION_CHANGED":
+                onLocationChanged(intent.getParcelableExtra("location"),
+                                intent.hasExtra("address") ? intent.getParcelableExtra("address") : null);
+                return ret;
+            case "android.intent.action.START_LOCATION_ON_LOCATION_CANCELED":
+                onLocationChangedCanceled();
+                return ret;
             default: return ret;
         }
     }
@@ -872,61 +865,9 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
 
     private void startLocationUpdate(Location inputLocation) {
         appendLog(getBaseContext(), TAG, "startLocationUpdate");
-        if (networkLocationProvider == null) {
-            networkLocationProviderActions.add(new NetworkLocationProviderActionData(
-                    NetworkLocationProvider.NetworkLocationProviderActions.START_LOCATION_UPDATE,
-                    inputLocation));
-            return;
-        }
-        networkLocationProvider.startLocationUpdate(inputLocation);
-    }
-
-    private final ServiceConnection networkLocationProviderConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service) {
-            NetworkLocationProvider.NetworkLocationProviderBinder binder =
-                    (NetworkLocationProvider.NetworkLocationProviderBinder) service;
-            networkLocationProvider = binder.getService();
-            NetworkLocationProviderActionData bindedServiceActions;
-            while ((bindedServiceActions = networkLocationProviderActions.poll()) != null) {
-                switch (bindedServiceActions.getAction()) {
-                    case START_LOCATION_UPDATE:
-                        networkLocationProvider.startLocationUpdate(bindedServiceActions.getInputLocation());
-                        break;
-                }
-            }
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            networkLocationProvider = null;
-        }
-    };
-
-    public class LocationUpdateServiceBinder extends Binder {
-        public LocationUpdateService getService() {
-            return LocationUpdateService.this;
-        }
-    }
-
-    private class NetworkLocationProviderActionData {
-        NetworkLocationProvider.NetworkLocationProviderActions action;
-        Location inputLocation;
-
-        public NetworkLocationProviderActionData(NetworkLocationProvider.NetworkLocationProviderActions action,
-                                                 Location inputLocation) {
-            this.action = action;
-            this.inputLocation = inputLocation;
-        }
-
-        public NetworkLocationProvider.NetworkLocationProviderActions getAction() {
-            return action;
-        }
-
-        public Location getInputLocation() {
-            return inputLocation;
-        }
+        Intent intent = new Intent("android.intent.action.START_LOCATION_UPDATE");
+        intent.setPackage("org.thosp.yourlocalweather");
+        intent.putExtra("inputLocation", inputLocation);
+        ContextCompat.startForegroundService(getBaseContext(), intent);
     }
 }

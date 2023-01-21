@@ -43,7 +43,6 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
     public static volatile boolean autolocationForSensorEventAddressFound;
 
     private static volatile boolean processLocationUpdate;
-    private static final Queue<LocationUpdateService.LocationUpdateServiceActions> locationUpdateServiceActions = new LinkedList<>();
 
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
@@ -152,16 +151,13 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
 
         clearMeasuredLength();
 
-        if (!locationUpdateServiceActions.isEmpty()) {
-            return;
-        }
-
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
         Intent intentToStartUpdate = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
         intentToStartUpdate.putExtra("locationId", locationId);
         ContextCompat.startForegroundService(getBaseContext(), intentToStartUpdate);
+        processLocationUpdate = false;
     }
 
     public void clearMeasuredLength() {

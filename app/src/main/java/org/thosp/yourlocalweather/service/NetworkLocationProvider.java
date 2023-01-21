@@ -25,6 +25,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.MainActivity;
+import org.thosp.yourlocalweather.utils.NotificationUtils;
 
 import java.util.Calendar;
 import java.util.List;
@@ -38,8 +39,6 @@ public class NetworkLocationProvider extends Service {
     public enum NetworkLocationProviderActions {
         START_LOCATION_UPDATE, LOCATION_UPDATE_CELLS_ONLY
     }
-
-    private final IBinder binder = new NetworkLocationProviderBinder();
 
     public TelephonyManager mTelephonyManager;
     WifiManager.WifiLock mWifiLock;
@@ -101,12 +100,7 @@ public class NetworkLocationProvider extends Service {
 
     @Override
     public IBinder onBind(Intent intent) {
-        return binder;
-    }
-
-    @Override
-    public boolean onUnbind(Intent intent) {
-        return false;
+        return null;
     }
 
     @Override
@@ -144,7 +138,11 @@ public class NetworkLocationProvider extends Service {
         }
 
         if (null != intent.getAction()) switch (intent.getAction()) {
-            case "org.openbmap.unifiedNlp.LOCATION_UPDATE_CELLS_ONLY":
+            case "android.intent.action.START_LOCATION_UPDATE":
+                startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+                startLocationUpdate(intent.getParcelableExtra("inputLocation"));
+                return ret;
+            case "android.intent.action.LOCATION_UPDATE_CELLS_ONLY":
                 startLocationUpdateCellsOnly();
                 return ret;
             default:
@@ -230,7 +228,7 @@ public class NetworkLocationProvider extends Service {
 
     private PendingIntent getIntentToGetCellsOnly() {
         Intent intent = new Intent(getBaseContext(), NetworkLocationProvider.class);
-        intent.setAction("org.openbmap.unifiedNlp.LOCATION_UPDATE_CELLS_ONLY");
+        intent.setAction("android.intent.action.LOCATION_UPDATE_CELLS_ONLY");
         return PendingIntent.getService(getBaseContext(),
                 0,
                 intent,

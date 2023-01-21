@@ -33,39 +33,25 @@ public class StartAutoLocationJob extends AbstractAppJob {
         NOTHING
     }
 
-    private ScreenOnOffUpdateService screenOnOffUpdateService;
     private JobParameters params;
-    private int connectedServicesCounter;
 
     @Override
     public boolean onStartJob(JobParameters params) {
         this.params = params;
-        connectedServicesCounter = 0;
         appendLog(this, TAG, "onStartJob");
         try {
-            Intent intent = new Intent(getApplicationContext(), ScreenOnOffUpdateService.class);
-            getApplicationContext().bindService(intent, screenOnOffUpdateServiceConnection, Context.BIND_AUTO_CREATE);
             performUpdateOfLocation();
+            startSensorBasedUpdates();
         } catch (Exception ie) {
             appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
         }
+        jobFinished(params, false);
         return true;
     }
 
     @Override
     public boolean onStopJob(JobParameters params) {
-        if (screenOnOffUpdateService != null) {
-            getApplicationContext().unbindService(screenOnOffUpdateServiceConnection);
-        }
-        unbindAllServices();
         return true;
-    }
-
-    protected void serviceConnected(ServiceConnection serviceConnection) {
-        connectedServicesCounter++;
-        if (connectedServicesCounter >= 4) {
-            jobFinished(params, false);
-        }
     }
 
     private void performUpdateOfLocation() {
@@ -176,11 +162,15 @@ public class StartAutoLocationJob extends AbstractAppJob {
     }
 
     public void startSensorBasedUpdates() {
-        sendIntent("android.intent.action.START_SENSOR_BASED_UPDATES");
+        Intent sendIntent = new Intent("android.intent.action.START_SENSOR_BASED_UPDATES");
+        sendIntent.setPackage("org.thosp.yourlocalweather");
+        startService(sendIntent);
     }
 
     public void stopSensorBasedUpdates() {
-        sendIntent("android.intent.action.STOP_SENSOR_BASED_UPDATES");
+        Intent sendIntent = new Intent("android.intent.action.STOP_SENSOR_BASED_UPDATES");
+        sendIntent.setPackage("org.thosp.yourlocalweather");
+        startService(sendIntent);
     }
 
     protected void sendIntent(String intent) {
@@ -273,25 +263,4 @@ public class StartAutoLocationJob extends AbstractAppJob {
         }
         return nextUpdateForLocation;
     }
-
-    private ServiceConnection screenOnOffUpdateServiceConnection = new ServiceConnection() {
-
-        @Override
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service) {
-            ScreenOnOffUpdateService.ScreenOnOffUpdateServiceBinder binder =
-                    (ScreenOnOffUpdateService.ScreenOnOffUpdateServiceBinder) service;
-            screenOnOffUpdateService = binder.getService();
-            screenOnOffUpdateService.startSensorBasedUpdates();
-            new Thread(new Runnable() {
-                public void run() {
-                    serviceConnected(screenOnOffUpdateServiceConnection);
-                }
-            }).start();
-        }
-
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-        }
-    };
 }

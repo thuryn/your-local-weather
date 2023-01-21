@@ -315,7 +315,12 @@
             android:permission="android.permission.BIND_JOB_SERVICE" >
         </service>
         <service
-            android:name=".service.ReconciliationDbService" />
+            android:name=".service.ReconciliationDbService"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.START_RECONCILIATION" />
+            </intent-filter>
+        </service>
         <service
             android:name=".service.NotificationService"
             android:exported="true" >
@@ -324,7 +329,13 @@
             </intent-filter>
         </service>
         <service
-            android:name=".service.AppWakeUpManager" />
+            android:name=".service.AppWakeUpManager"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.WAKE_UP" />
+                <action android:name="android.intent.action.FALL_DOWN" />
+            </intent-filter>
+        </service>
         <service
             android:name=".service.UpdateWeatherService"
             android:exported="true" >
@@ -375,6 +386,9 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.START_LOCATION_AND_WEATHER_UPDATE" />
+                <action android:name="android.intent.action.START_LOCATION_ON_LOCATION_CHANGED" />
+                <action android:name="android.intent.action.START_LOCATION_ONLY_UPDATE" />
+                <action android:name="START_LOCATION_ON_LOCATION_CANCELED" />
             </intent-filter>
         </service>
         <service
@@ -382,7 +396,8 @@
             android:permission="android.permission.ACCESS_COARSE_LOCATION"
             android:exported="true">
             <intent-filter>
-                <action android:name="org.openbmap.unifiedNlp.LOCATION_UPDATE_CELLS_ONLY" />
+                <action android:name="android.intent.action.START_LOCATION_UPDATE" />
+                <action android:name="android.intent.action.LOCATION_UPDATE_CELLS_ONLY" />
             </intent-filter>
         </service>
     </application>

@@ -34,8 +34,6 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
     private static final String TAG = "ScreenOnOffUpdateService";
 
-    private final IBinder binder = new ScreenOnOffUpdateServiceBinder();
-
     private static final long UPDATE_WEATHER_ONLY_TIMEOUT = 900000; //15 min
     private static final long REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT = 180000; //3 min
     private static final long SCREEN_ON_RETRY_FIRST = 1000;
@@ -159,7 +157,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
     @Override
     public IBinder onBind(Intent intent) {
-        return binder;
+        return null;
     }
 
     @Override
