@@ -1,3 +1,6 @@
+v5.8.5
+Rework the rest of services to intent based
+
 v5.8.4
 Fix bluetooth permission check, calling of services rewritten
 
