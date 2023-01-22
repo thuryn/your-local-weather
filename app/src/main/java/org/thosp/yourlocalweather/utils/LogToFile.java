@@ -642,6 +642,9 @@ public class LogToFile {
             Date now = new Date();
             BufferedWriter buf;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (logFileUri == null) {
+                    return;
+                }
                 if (logFileAtTheEndOfLive == null) {
                     initFileLogging(context, null);
                 }
@@ -661,6 +664,9 @@ public class LogToFile {
 
                 buf = new BufferedWriter(new FileWriter(pfd.getFileDescriptor()));
             } else {
+                if (logFilePathname == null) {
+                    return;
+                }
                 File logFile = new File(logFilePathname);
                 if (logFile.exists()) {
                     if (logFileAtTheEndOfLive == null) {

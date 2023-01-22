@@ -626,6 +626,26 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         }).start();
     }
 
+    public void updateLastUpdated(final long locationId,
+                                  final long updateTime) {
+        new Thread(new Runnable() {
+            public void run() {
+                appendLog(context, TAG, "updateLastUpdated:entered:", locationId, ":", updateTime);
+                SQLiteDatabase db = getWritableDatabase();
+                ContentValues values = new ContentValues();
+                values.put(LocationsContract.Locations.COLUMN_NAME_LAST_UPDATE_TIME_IN_MS, updateTime);
+
+                db.updateWithOnConflict(
+                        LocationsContract.Locations.TABLE_NAME,
+                        values,
+                        LocationsContract.Locations._ID + "=" + locationId,
+                        null,
+                        SQLiteDatabase.CONFLICT_IGNORE);
+                appendLog(context, TAG, "updateLastUpdated:updated");
+            }
+        }).start();
+    }
+
     public long getLastUpdateLocationTime() {
         SQLiteDatabase db = getReadableDatabase();
 

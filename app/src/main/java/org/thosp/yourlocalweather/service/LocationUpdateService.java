@@ -416,7 +416,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         appendLog(getBaseContext(), TAG, "startLocationAndWeatherUpdate:isGPSEnabled=",
                                         isGPSEnabled, ", isNetworkEnabled=", isNetworkEnabled);
 
-        //locationsDbHelper.updateLocationSource(currentLocation.getId(), getString(R.string.location_weather_update_status_update_started));
+        locationsDbHelper.updateLastUpdated(currentLocation.getId(), Calendar.getInstance().getTimeInMillis()); //, getString(R.string.location_weather_update_status_update_started));
 
         boolean isUpdateOfLocationEnabled = AppPreference.isUpdateLocationEnabled(this, currentLocation);
         appendLog(this, TAG,
