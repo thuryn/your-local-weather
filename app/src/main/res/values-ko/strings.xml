@@ -73,7 +73,7 @@
 \n
 \n앱을 즐기세요.</string>
     <string name="help_page_general_content" tools:ignore="MissingTranslation">앱은 셀룰러 네트워크(BTS), Wi-Fi를 사용하여 위치를 확인하고 실패할 경우 위치를 확인합니다. GPS는 지역 날씨를 표시하고 모질라 위치 서비스에서 좌표를 가져옵니다. 응용 프로그램에는 최소한 하나의 GSM 네트워크 기지국 또는 두 개의 연결 가능한 Wi-Fi 네트워크 또는 GSM과 Wi-Fi 네트워크의 조합이 필요합니다. 스마트폰이나 태블릿의 위젯을 사용하여 메인 화면에서 내 위치와 현재 날씨를 볼 수 있습니다. 위치 업데이트는 주기적(예: 매시간)이거나 앱이 가속도계를 사용하여 값보다 더 먼 거리의 움직임을 감지할 수 있습니다. 주머니에 넣고 다니면 거리가 더 빨라집니다. 위치 업데이트를 끌 수 있습니다. 그러면 날씨만 업데이트됩니다. 앱은 지정된 간격으로 위치와 날씨를 업데이트합니다. 예를 들어 업데이트 기간을 1시간으로 설정할 수 있습니다. 날씨는 위치가 표시된 직후 또는 화면이 켜진 직후 업데이트되지만 15분에 한 번(그리고 지난 15분 동안 날씨가 업데이트되지 않은 경우)보다 자주 업데이트되지는 않습니다. 이 정보는 모질라 위치 서비스에서 위치 좌표를 얻는 데 사용됩니다. 앱은 셀 네트워크 및 Wi-Fi 네트워크에서 위치를 사용할 수 없는 경우 GPS 사용을 시도합니다. 위치 좌표는 Nominatim 서비스에서 주소를 얻는 데 사용됩니다. 주소는 앱 또는 위젯에서 사용됩니다. 앱은 현재 날씨를 얻기 위해 OpenWeatherMap.org 서비스를 사용합니다.</string>
-    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">위치 업데이트 버튼 옆에는 위치 관리 버튼 (돋보기 아이콘)이 있습니다. 앱 및 위젯에서 사용 가능한 위치를 관리할 수 있습니다. 기본적으로 사용 가능한 하나의 위치 (위치 0)가 있습니다. 이는 자동 위치 업데이트를 위한 것입니다. 이 위치를 왼쪽으로 밀면 활성화/비활성화 버튼이 있습니다. 수동으로 위치를 추가할 수도 있습니다. + 버튼을 클릭하면 지도에서 내 위치를 선택할 수 있습니다. 위치를 왼쪽으로 밀면 접속할 수 있는 삭제 버튼을 사용하여 위치를 삭제할 수도 있습니다.</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">위치 업데이트 버튼 옆에는 위치 관리 버튼 (돋보기 아이콘)이 있습니다. 앱 및 위젯에서 사용 가능한 위치를 관리할 수 있습니다. 기본적으로 사용 가능한 하나의 위치 (위치 0)가 있습니다. 이는 자동 위치 업데이트를 위한 것입니다. 이 위치를 왼쪽으로 밀면 활성화/비활성화 버튼이 있습니다. 위치를 수동으로 추가할 수도 있습니다. + 버튼을 클릭하면 지도에서 위치를 선택할 수 있습니다. 위치를 왼쪽으로 이동할 때 액세스할 수 있는 삭제 버튼인 - 버튼으로 위치를 삭제할 수도 있습니다.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">일반 설정</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">이러한 옵션은 전체 앱에 영향을 미칩니다.</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> <b>온도</b> - 온도 단위를 선택할 수 있으며, <b>바람</b> -풍속 단위를 선택하고 <b>기압</b> - 기압 단위를 선택할 수 있습니다. 값은 이러한 옵션을 사용하여 다시 계산됩니다.</string>
@@ -332,7 +332,7 @@
     <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili (스와힐리어)</string>
     <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (중국어)</string>
     <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (힌디어)</string>
-    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (Bokmål) (노르웨이어 (보크몰))</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (부크몰) (노르웨이어 (부크몰))</string>
     <string name="pref_language_nl" tools:ignore="MissingTranslation">Nederlands (네덜란드어)</string>
     <string name="pref_language_fa" tools:ignore="MissingTranslation">Persian (페르시아어)</string>
     <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (냔자어)</string>
@@ -574,4 +574,7 @@
     <string name="pref_language_th" tools:ignore="MissingTranslation">태국어</string>
     <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">그래프에서 바람과 온도 (막대) 옆에 비/눈 값을 표시하도록 선택하면 값이 log10으로 계산됩니다. (보이지 않는) 축의 최대값은 약 160mm (또는 6.3인치)입니다.</string>
     <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">결합 그래프</string>
+    <string name="permission_available_notification" tools:ignore="MissingTranslation">알림 권한이 부여되었습니다</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">응용프로그램에 백그라운드 위치 권한이 필요합니다</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">응용프로그램은 실제 위치에 따라 날씨를 얻으려면 백그라운드 위치 권한이 필요합니다. 동의하는 경우 다음 화면에서 옵션을 선택해야 합니다:</string>
 </resources>
