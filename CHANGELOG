@@ -1,3 +1,6 @@
+v5.8.7
+Fix getting network info when network is not available, translations
+
 v5.8.6
 Fix logging, fix getting network info
 
