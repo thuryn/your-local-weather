@@ -574,4 +574,7 @@
     <string name="pref_language_th" tools:ignore="MissingTranslation">Tajlandski</string>
     <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">Kada na dijagramu odabereš prikaz vrijednosti kiše/snijega uz vjetar i temperaturu (u stupcima), vrijednost se izračunava kao log10. Tada je najveća vrijednost (nevidljive) osi oko 160 mm (ili 6,3 inča).</string>
     <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Združeni dijagram</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">Program zahtijeva dozvolu za određivanje lokacije u pozadini za određivanje vremenske prognoze na osnovi lokacije na kojoj se stvarno nalaziš. Ako se slažeš, odaberi opciju na sljedećem ekranu:</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">Program zahtijeva dozvolu za određivanje lokacije u pozadini</string>
+    <string name="permission_available_notification" tools:ignore="MissingTranslation">Dozvola za obavještavanje je odobrena</string>
 </resources>
