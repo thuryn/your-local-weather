@@ -200,6 +200,11 @@ public class AppAlarmService extends AbstractCommonService {
         }
         long intervalMillis = Utils.intervalMillisForAlarm(intervalPref);
         appendLog(this, TAG, "Build.VERSION.SDK_INT:", Build.VERSION.SDK_INT);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (!alarmManager.canScheduleExactAlarms()) {
+                return;
+            }
+        }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + intervalMillis,
@@ -226,6 +231,12 @@ public class AppAlarmService extends AbstractCommonService {
     private static void scheduleNextRegularAlarm(Context context, boolean autoLocation, long updatePeriodMilis) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         appendLog(context, TAG, "Build.VERSION.SDK_INT:", Build.VERSION.SDK_INT);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            if (!alarmManager.canScheduleExactAlarms()) {
+                return;
+            }
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + updatePeriodMilis,

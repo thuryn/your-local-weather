@@ -90,7 +90,7 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
             }
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
             org.thosp.yourlocalweather.model.Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
-            if (!autoLocation.isEnabled()) {
+            if ((autoLocation == null) || !autoLocation.isEnabled()) {
                 return initialReturnValue;
             }
             SensorLocationUpdater.autolocationForSensorEventAddressFound = autoLocation.isAddressFound();
