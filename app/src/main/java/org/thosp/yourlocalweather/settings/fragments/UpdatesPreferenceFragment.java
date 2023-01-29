@@ -124,11 +124,11 @@ public class UpdatesPreferenceFragment extends PreferenceFragment implements
         preference.setSummary(preference.getEntry());
         if (Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD.equals(key)) {
             if ("0".equals(preference.getValue())) {
-                AppPreference.setNotificationEnabled(getActivity(), true);
+                AppPreference.getInstance().setNotificationEnabled(getActivity(), true);
                 AppPreference.setNotificationPresence(getActivity(), "permanent");
                 AppPreference.setRegularOnlyInterval(getActivity());
             } else {
-                AppPreference.setNotificationEnabled(getActivity(), false);
+                AppPreference.getInstance().setNotificationEnabled(getActivity(), false);
                 AppPreference.setNotificationPresence(getActivity(), "when_updated");
                 NotificationManager notificationManager =
                         (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
@@ -141,8 +141,16 @@ public class UpdatesPreferenceFragment extends PreferenceFragment implements
         entrySummary(key);
         switch (key) {
             case Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD:
+                if (changing) {
+                    AppPreference.getInstance().clearLocationAutoUpdatePeriod();
+                    Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");
+                    intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+                    getActivity().startService(intentToStartUpdate);
+                }
+                break;
             case Constants.KEY_PREF_LOCATION_UPDATE_PERIOD:
                 if (changing) {
+                    AppPreference.getInstance().clearLocationUpdatePeriod();
                     Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");
                     intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
                     getActivity().startService(intentToStartUpdate);

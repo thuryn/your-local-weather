@@ -1,5 +1,7 @@
 package org.thosp.yourlocalweather.service;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -8,14 +10,12 @@ import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -30,24 +30,18 @@ import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.ConnectionDetector;
 import org.thosp.yourlocalweather.R;
-import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
-import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.Utils;
+import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.Calendar;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Queue;
 import java.util.function.Consumer;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class LocationUpdateService extends AbstractCommonService implements ProcessResultFromAddressResolution, LocationListener {
 
@@ -89,17 +83,17 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
         appendLog(getBaseContext(), TAG, "startForegroundService");
         switch (intent.getAction()) {
-            case "android.intent.action.START_LOCATION_AND_WEATHER_UPDATE":
+            case "org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE":
                 startLocationAndWeatherUpdate(intent);
                 return ret;
-            case "android.intent.action.START_LOCATION_ONLY_UPDATE":
+            case "org.thosp.yourlocalweather.action.START_LOCATION_ONLY_UPDATE":
                 updateNetworkLocation(intent);
                 return ret;
-            case "android.intent.action.START_LOCATION_ON_LOCATION_CHANGED":
+            case "org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CHANGED":
                 onLocationChanged(intent.getParcelableExtra("location"),
                                 intent.hasExtra("address") ? intent.getParcelableExtra("address") : null);
                 return ret;
-            case "android.intent.action.START_LOCATION_ON_LOCATION_CANCELED":
+            case "org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CANCELED":
                 onLocationChangedCanceled();
                 return ret;
             default: return ret;
@@ -132,7 +126,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         if (location == null) {
             return;
         }
-        String locale = PreferenceUtil.getLanguage(getBaseContext());
+        String locale = AppPreference.getInstance().getLanguage(getBaseContext());
         NominatimLocationService.getInstance().getFromLocation(
                 getBaseContext(),
                 location.getLatitude(),
@@ -235,11 +229,11 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         locationsDbHelper.updateAutoLocationGeoLocation(location.getLatitude(), location.getLongitude(), currentLocationSource, location.getAccuracy(), getLocationTimeInMilis(location));
         appendLog(getBaseContext(), TAG, "put new location from location update service, latitude=", location.getLatitude(), ", longitude=", location.getLongitude());
         if (address != null) {
-            locationsDbHelper.updateAutoLocationAddress(getBaseContext(), PreferenceUtil.getLanguage(getBaseContext()), address);
+            locationsDbHelper.updateAutoLocationAddress(getBaseContext(), AppPreference.getInstance().getLanguage(getBaseContext()), address);
         } else {
             String geocoder = AppPreference.getLocationGeocoderSource(this);
             boolean resolveAddressByOS = !"location_geocoder_local".equals(geocoder);
-            Utils.getAndWriteAddressFromGeocoder(new Geocoder(this, new Locale(PreferenceUtil.getLanguage(this))),
+            Utils.getAndWriteAddressFromGeocoder(new Geocoder(this, new Locale(AppPreference.getInstance().getLanguage(this))),
                     address,
                     location.getLatitude(),
                     location.getLongitude(),
@@ -436,6 +430,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
             if ("location_geocoder_local".equals(geocoder)) {
                 if (!updateNetworkLocation(false, intent, 0, forceUpdate)) {
                     setNoLocationFound();
+                    sendResult();
                 }
             } else {
                 detectLocation();
@@ -444,6 +439,12 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
             appendLog(getBaseContext(), TAG, "startLocationAndWeatherUpdate:requestWeatherCheck");
             requestWeatherCheck(currentLocation.getId(), updateSource, AppWakeUpManager.SOURCE_CURRENT_WEATHER, forceUpdate);
         }
+    }
+
+    private void sendResult() {
+        sendIntentToMain(UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL);
+        WidgetUtils.updateWidgets(getBaseContext());
+        sendMessageToReconciliationDbService(false);
     }
 
     private boolean gpsRequestLocation() {
@@ -865,7 +866,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
 
     private void startLocationUpdate(Location inputLocation) {
         appendLog(getBaseContext(), TAG, "startLocationUpdate");
-        Intent intent = new Intent("android.intent.action.START_LOCATION_UPDATE");
+        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_UPDATE");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("inputLocation", inputLocation);
         ContextCompat.startForegroundService(getBaseContext(), intent);

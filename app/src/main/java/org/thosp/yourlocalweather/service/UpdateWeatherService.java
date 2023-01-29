@@ -61,8 +61,8 @@ public class UpdateWeatherService extends AbstractCommonService {
 
     private static final String TAG = "UpdateWeatherService";
 
-    private static final long MIN_WEATHER_UPDATE_TIME_IN_MS = 90L; //15min
-    private static final long MAX_WEATHER_UPDATE_TIME_IN_MS = 10800000L; //3H
+    private static final long MIN_WEATHER_UPDATE_TIME_IN_MS = 900000L; //15min
+    private static final long MAX_WEATHER_UPDATE_TIME_IN_MS = 2700000L; //45m
 
     public static final int START_CURRENT_WEATHER_UPDATE = 1;
     public static final int START_CURRENT_WEATHER_RETRY = 2;
@@ -141,7 +141,7 @@ public class UpdateWeatherService extends AbstractCommonService {
         String updateSource = null;
         boolean updateWeatherOnly = false;
         int updateType = WEATHER_FORECAST_TYPE;
-        if (intent.getAction().equals("android.intent.action.RESEND_WEATHER_UPDATE")) {
+        if (intent.getAction().equals("org.thosp.yourlocalweather.action.RESEND_WEATHER_UPDATE")) {
             startWeatherUpdate();
             return ret;
         }
@@ -232,10 +232,10 @@ public class UpdateWeatherService extends AbstractCommonService {
             }
             long updatePeriodForLocation;
             if (locationToCheck.getOrderId() == 0) {
-                String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(this);
+                String updateAutoPeriodStr = AppPreference.getInstance().getLocationAutoUpdatePeriod(this);
                 updatePeriodForLocation = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
             } else {
-                String updatePeriodStr = AppPreference.getLocationUpdatePeriod(this);
+                String updatePeriodStr = AppPreference.getInstance().getLocationUpdatePeriod(this);
                 updatePeriodForLocation = Utils.intervalMillisForAlarm(updatePeriodStr);
             }
 
@@ -539,7 +539,7 @@ public class UpdateWeatherService extends AbstractCommonService {
     }
 
     private long generateRandomNextAttemptTime() {
-        return new Double((MAX_WEATHER_UPDATE_TIME_IN_MS * Math.random()*100)/100).longValue();
+        return new Double(MAX_WEATHER_UPDATE_TIME_IN_MS * Math.random()).longValue();
     }
 
     private void sendResult(String result, Context context, Long locationId, int updateType) {
@@ -707,12 +707,13 @@ public class UpdateWeatherService extends AbstractCommonService {
     private void resendTheIntentInSeveralSeconds(int seconds) {
         appendLog(getBaseContext(), TAG, "resendTheIntentInSeveralSeconds:SDK:", Build.VERSION.SDK_INT);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            JobScheduler jobScheduler = getSystemService(JobScheduler.class);
+            jobScheduler.cancelAll();
             ComponentName serviceComponent = new ComponentName(this, UpdateWeatherResendJob.class);
             JobInfo.Builder builder = new JobInfo.Builder(UpdateWeatherResendJob.JOB_ID, serviceComponent);
 
             builder.setMinimumLatency(seconds * 1000); // wait at least
             builder.setOverrideDeadline((3 + seconds) * 1000); // maximum delay
-            JobScheduler jobScheduler = getSystemService(JobScheduler.class);
             jobScheduler.schedule(builder.build());
             appendLog(getBaseContext(), TAG, "resendTheIntentInSeveralSeconds: sent");
         } else {
@@ -721,6 +722,7 @@ public class UpdateWeatherService extends AbstractCommonService {
                     0,
                     new Intent(getBaseContext(), UpdateWeatherService.class),
                     PendingIntent.FLAG_IMMUTABLE);
+            alarmManager.cancel(pendingIntent);
             alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + (1000 * seconds), pendingIntent);
         }
@@ -762,7 +764,7 @@ public class UpdateWeatherService extends AbstractCommonService {
     protected void sendMessageToWeatherByVoiceService(Location location,
                                                       Weather weather,
                                                       long now) {
-        Intent intentToStartUpdate = new Intent("android.intent.action.START_VOICE_WEATHER_UPDATED");
+        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_VOICE_WEATHER_UPDATED");
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
         intentToStartUpdate.putExtra("weatherByVoiceLocation", location);
         intentToStartUpdate.putExtra("weatherByVoiceWeather", weather);

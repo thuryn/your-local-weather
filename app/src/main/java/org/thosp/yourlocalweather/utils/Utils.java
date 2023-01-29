@@ -635,7 +635,7 @@ public class Utils {
                 }
             }
             if(address != null) {
-                locationDbHelper.updateAutoLocationAddress(context, PreferenceUtil.getLanguage(context), address);
+                locationDbHelper.updateAutoLocationAddress(context, AppPreference.getInstance().getLanguage(context), address);
             } else {
                 locationDbHelper.setNoLocationFound();
             }

@@ -12,6 +12,7 @@ import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsContract;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.LocationsFileDbHelper;
+import org.thosp.yourlocalweather.utils.NotificationUtils;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -43,9 +44,10 @@ public class ReconciliationDbService extends AbstractCommonService {
         if (intent == null) {
             return ret;
         }
+        startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
         switch (intent.getAction()) {
-            case "android.intent.action.START_RECONCILIATION": startReconciliation(intent.getBooleanExtra("force", false)); return ret;
+            case "org.thosp.yourlocalweather.action.START_RECONCILIATION": startReconciliation(intent.getBooleanExtra("force", false)); return ret;
             default: return ret;
         }
     }

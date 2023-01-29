@@ -27,7 +27,6 @@
         </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
-
     <ScrollView
         android:id="@+id/voice_setting_scroll_view"
         xmlns:android="http://schemas.android.com/apk/res/android"

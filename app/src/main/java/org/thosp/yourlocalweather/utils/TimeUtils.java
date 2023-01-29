@@ -65,18 +65,19 @@ public class TimeUtils {
                 TAG,
                 "nextTime = ", nextTime, ", settingsId = ", nextAlarms.get(nextTime));
 
+        PendingIntent pendingIntent = getPendingIntentForVoice(context, nextAlarms.get(nextTime));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP,
                     nextTime,
-                    getPendingIntentForVoice(context, nextAlarms.get(nextTime)));
+                    pendingIntent);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             alarmManager.setExact(AlarmManager.RTC_WAKEUP,
                     nextTime,
-                    getPendingIntentForVoice(context, nextAlarms.get(nextTime)));
+                    pendingIntent);
         } else {
             alarmManager.set(AlarmManager.RTC_WAKEUP,
                     nextTime,
-                    getPendingIntentForVoice(context, nextAlarms.get(nextTime)));
+                    pendingIntent);
         }
     }
 
@@ -180,7 +181,7 @@ public class TimeUtils {
     }
 
     public static PendingIntent getPendingIntentForVoice(Context context, Long voiceSettingId) {
-        Intent sendIntent = new Intent("android.intent.action.SAY_WEATHER");
+        Intent sendIntent = new Intent("org.thosp.yourlocalweather.action.SAY_WEATHER");
         sendIntent.setPackage("org.thosp.yourlocalweather");
         sendIntent.putExtra("voiceSettingId", voiceSettingId);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, sendIntent,

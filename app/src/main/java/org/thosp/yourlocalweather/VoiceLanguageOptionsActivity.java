@@ -19,6 +19,7 @@ import androidx.core.app.NavUtils;
 import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.model.VoiceSettingParametersDbHelper;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.VoiceSettingParamType;
 
@@ -55,7 +56,7 @@ public class VoiceLanguageOptionsActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         ((YourLocalWeather) getApplication()).applyTheme(this);
         super.onCreate(savedInstanceState);
-        applicationLocale = new Locale(PreferenceUtil.getLanguage(this));
+        applicationLocale = new Locale(AppPreference.getInstance().getLanguage(this));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }

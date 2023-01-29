@@ -22,6 +22,8 @@ import java.util.ArrayList;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
+import androidx.core.content.ContextCompat;
+
 public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetProvider {
 
     private static final String TAG = "ExtLocationWithForecastGraphWidgetProvider";
@@ -208,7 +210,7 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
             intentToCheckWeather.putExtra("updateType", UpdateWeatherService.START_WEATHER_FORECAST_UPDATE);
             intentToCheckWeather.putExtra("locationId", currentLocation.getId());
             intentToCheckWeather.putExtra("forceUpdate", true);
-            startServiceWithCheck(context, intentToCheckWeather);
+            ContextCompat.startForegroundService(context, intentToCheckWeather);
         }
     }
 

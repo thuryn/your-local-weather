@@ -12,6 +12,7 @@ import android.os.PowerManager;
 import android.preference.PreferenceManager;
 
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.NotificationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,10 +66,11 @@ public class AppWakeUpManager extends Service {
         if (intent == null) {
             return ret;
         }
+        startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
         switch (intent.getAction()) {
-            case "android.intent.action.WAKE_UP": startWakeUp(intent.getIntExtra("wakeupSource", 0)); return ret;
-            case "android.intent.action.FALL_DOWN": stopWakeUp(intent.getIntExtra("wakeupSource", 0)); return ret;
+            case "org.thosp.yourlocalweather.action.WAKE_UP": startWakeUp(intent.getIntExtra("wakeupSource", 0)); return ret;
+            case "org.thosp.yourlocalweather.action.FALL_DOWN": stopWakeUp(intent.getIntExtra("wakeupSource", 0)); return ret;
             default: return ret;
         }
     }

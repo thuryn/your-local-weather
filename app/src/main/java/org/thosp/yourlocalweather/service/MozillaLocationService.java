@@ -19,6 +19,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 
 import java.util.LinkedList;
@@ -129,7 +130,7 @@ public class MozillaLocationService {
                                          Location location) {
         appendLog(context, TAG, "processUpdateOfLocation");
         if (location != null) {
-            String locale = PreferenceUtil.getLanguage(context);
+            String locale = AppPreference.getInstance().getLanguage(context);
             appendLog(context, TAG,
                     "processUpdateOfLocation:location:",
                     location,
@@ -279,13 +280,13 @@ public class MozillaLocationService {
     }
 
     protected void reportCanceledRequestForNewLocation() {
-        Intent intent = new Intent("android.intent.action.START_LOCATION_ON_LOCATION_CANCELED");
+        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CANCELED");
         intent.setPackage("org.thosp.yourlocalweather");
         context.startService(intent);
     }
 
     protected void reportNewLocation(Location location, Address address) {
-        Intent intent = new Intent("android.intent.action.START_LOCATION_ON_LOCATION_CHANGED");
+        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CHANGED");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("location", location);
         if (address != null) {

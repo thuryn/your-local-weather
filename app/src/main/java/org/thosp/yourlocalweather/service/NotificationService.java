@@ -27,14 +27,14 @@ public class NotificationService extends AbstractCommonService {
             return ret;
         }
         switch (intent.getAction()) {
-            case "android.intent.action.START_WEATHER_NOTIFICATION_UPDATE": startWeatherCheck(); scheduleNextNotificationAlarm(); return ret;
+            case "org.thosp.yourlocalweather.action.START_WEATHER_NOTIFICATION_UPDATE": startWeatherCheck(); scheduleNextNotificationAlarm(); return ret;
             default: return ret;
         }
     }
 
     public void startWeatherCheck() {
-        boolean isNotificationEnabled = AppPreference.isNotificationEnabled(getBaseContext());
-        String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
+        boolean isNotificationEnabled = AppPreference.getInstance().isNotificationEnabled(getBaseContext());
+        String updateAutoPeriodStr = AppPreference.getInstance().getLocationAutoUpdatePeriod(getBaseContext());
         boolean updateBySensor = "0".equals(updateAutoPeriodStr);
         if (!isNotificationEnabled || updateBySensor) {
             return;
@@ -47,7 +47,7 @@ public class NotificationService extends AbstractCommonService {
     }
 
     private void scheduleNextNotificationAlarm() {
-        boolean isNotificationEnabled = AppPreference.isNotificationEnabled(getBaseContext());
+        boolean isNotificationEnabled = AppPreference.getInstance().isNotificationEnabled(getBaseContext());
         if (!isNotificationEnabled) {
             return;
         }
@@ -58,19 +58,20 @@ public class NotificationService extends AbstractCommonService {
         }
         long intervalMillis = Utils.intervalMillisForAlarm(intervalPref);
         appendLog(this, TAG, "Build.VERSION.SDK_INT:", Build.VERSION.SDK_INT);
+        PendingIntent pendingIntent = getPendingIntentForNotifiation();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + intervalMillis,
-                    getPendingIntentForNotifiation());
+                    pendingIntent);
         } else {
             alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + intervalMillis,
-                    getPendingIntentForNotifiation());
+                    pendingIntent);
         }
     }
 
     private PendingIntent getPendingIntentForNotifiation() {
-        Intent sendIntent = new Intent("android.intent.action.START_WEATHER_NOTIFICATION_UPDATE");
+        Intent sendIntent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_NOTIFICATION_UPDATE");
         sendIntent.setPackage("org.thosp.yourlocalweather");
         PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(), 0, sendIntent,
                 PendingIntent.FLAG_IMMUTABLE);

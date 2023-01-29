@@ -86,7 +86,7 @@ public class NotificationUtils {
         boolean createNotification = notificationChannel == null;
         if (!createNotification &&
                 ((notificationChannel.getImportance() == NotificationManager.IMPORTANCE_LOW) ||
-                        (AppPreference.isVibrateEnabled(context) && (notificationChannel.getVibrationPattern() == null)))) {
+                        (AppPreference.getInstance().isVibrateEnabled(context) && (notificationChannel.getVibrationPattern() == null)))) {
             notificationManager.deleteNotificationChannel("yourLocalWeather");
             createNotification = true;
         }
@@ -96,7 +96,7 @@ public class NotificationUtils {
                     NotificationManager.IMPORTANCE_DEFAULT);
             channel.setDescription(context.getString(R.string.notification_channel_description));
             channel.setVibrationPattern(isVibrateEnabled(context));
-            channel.enableVibration(AppPreference.isVibrateEnabled(context));
+            channel.enableVibration(AppPreference.getInstance().isVibrateEnabled(context));
             channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
             channel.setSound(null, null);
             notificationManager.createNotificationChannel(channel);
@@ -105,7 +105,7 @@ public class NotificationUtils {
 
     public static Notification getNotification(Context context, Location location, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
 
-        if (!AppPreference.isNotificationEnabled(context)) {
+        if (!AppPreference.getInstance().isNotificationEnabled(context)) {
             return null;
         }
         boolean isOutgoing = false;
@@ -286,7 +286,7 @@ public class NotificationUtils {
     }
 
     private static long[] isVibrateEnabled(Context context) {
-        if (!AppPreference.isVibrateEnabled(context)) {
+        if (!AppPreference.getInstance().isVibrateEnabled(context)) {
             return null;
         }
         return new long[]{0, 500, 500};

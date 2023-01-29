@@ -22,7 +22,7 @@ public class LocationUpdateServiceRetryJob extends AbstractAppJob {
     @Override
     public boolean onStartJob(JobParameters params) {
         this.params = params;
-        Intent intent = new Intent("android.intent.action.START_LOCATION_ONLY_UPDATE");
+        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_ONLY_UPDATE");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("byLastLocationOnly", params.getExtras().getBoolean("byLastLocationOnly"));
         intent.putExtra("attempts", params.getExtras().getInt("attempts"));

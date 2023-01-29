@@ -155,7 +155,7 @@ public class MainActivity extends BaseActivity
                 null,
                 WeatherForecastActivity.class, this));
 
-        updateUI();
+        //updateUI();
         /**
          * Share weather fab
          */
@@ -183,7 +183,7 @@ public class MainActivity extends BaseActivity
 
     private void startAlarms() {
         appendLog(this, TAG, "scheduleStart at boot, SDK=", Build.VERSION.SDK_INT);
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
+        /*if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
             JobScheduler jobScheduler = getSystemService(JobScheduler.class);
             boolean scheduled = false;
             for (JobInfo jobInfo: jobScheduler.getAllPendingJobs()) {
@@ -203,11 +203,11 @@ public class MainActivity extends BaseActivity
                 builder.setOverrideDeadline(3 * 1000); // maximum delay
                 jobScheduler.schedule(builder.build());
             }
-        } else {
+        } else {*/
             Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_ALARM_SERVICE");
             intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
             startService(intentToStartUpdate);
-        }
+        //}
     }
 
     @Override
@@ -917,7 +917,12 @@ public class MainActivity extends BaseActivity
             } else if (initialGuideVersion == 4) {
                 checkNotificationPermission();
             } else if (initialGuideVersion == 5) {
+                SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+                preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 6);
+                preferences.apply();
                 detectLocation();
+                initialGuideCompleted = true;
+            } else if (initialGuideVersion == 6) {
                 initialGuideCompleted = true;
             }
             checkPermissionsSettingsAndShowAlert();
@@ -943,7 +948,7 @@ public class MainActivity extends BaseActivity
     }
 
     private void updateNetworkLocation() {
-        Intent startLocationUpdateIntent = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
+        Intent startLocationUpdateIntent = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
         startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
         startLocationUpdateIntent.putExtra("updateSource", "MAIN");
         startLocationUpdateIntent.putExtra("locationId", currentLocation.getId());
@@ -990,7 +995,7 @@ public class MainActivity extends BaseActivity
             detectLocation();
             return;
         }
-        Intent intent = new Intent("android.intent.action.START_WEATHER_UPDATE");
+        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(location.getId(), updateSource, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE));
         startService(intent);

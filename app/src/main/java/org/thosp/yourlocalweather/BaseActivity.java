@@ -87,7 +87,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LanguageUtil.setLanguage(base, PreferenceUtil.getLanguage(base)));
+        super.attachBaseContext(LanguageUtil.setLanguage(base, AppPreference.getInstance().getLanguage(base)));
     }
 
     public void switchLocation(View arg0) {
@@ -265,14 +265,14 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     protected void sendMessageToWeatherForecastService(Long locationId, String updateSource) {
-        Intent intent = new Intent("android.intent.action.START_WEATHER_UPDATE");
+        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(locationId, updateSource, UpdateWeatherService.START_WEATHER_FORECAST_UPDATE));
         ContextCompat.startForegroundService(getBaseContext(), intent);
     }
 
     protected void sendMessageToLongWeatherForecastService(Long locationId, String updateSource) {
-        Intent intent = new Intent("android.intent.action.START_WEATHER_UPDATE");
+        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(locationId, updateSource, UpdateWeatherService.START_LONG_WEATHER_FORECAST_UPDATE));
         ContextCompat.startForegroundService(getBaseContext(), intent);
@@ -282,7 +282,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         appendLog(this,
                 TAG,
                 "going run reconciliation DB service");
-        Intent intent = new Intent("android.intent.action.START_RECONCILIATION");
+        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_RECONCILIATION");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("force", force);
         startService(intent);

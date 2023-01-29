@@ -25,6 +25,7 @@ import org.thosp.yourlocalweather.settings.fragments.PowerSavePreferenceFragment
 import org.thosp.yourlocalweather.settings.fragments.UnitsPreferenceFragment;
 import org.thosp.yourlocalweather.settings.fragments.UpdatesPreferenceFragment;
 import org.thosp.yourlocalweather.settings.fragments.WidgetPreferenceFragment;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 
@@ -55,7 +56,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LanguageUtil.setLanguage(base, PreferenceUtil.getLanguage(base)));
+        super.attachBaseContext(LanguageUtil.setLanguage(base, AppPreference.getInstance().getLanguage(base)));
     }
 
     private void setupActionBar() {

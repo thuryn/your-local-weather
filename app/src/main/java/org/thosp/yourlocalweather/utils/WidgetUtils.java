@@ -1,17 +1,16 @@
 package org.thosp.yourlocalweather.utils;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.PowerManager;
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
@@ -767,20 +766,7 @@ public class WidgetUtils {
                                               Intent intent,
                                               long triggerInMillis ) {
         intent.setPackage("org.thosp.yourlocalweather");
-        PendingIntent pendingIntent = PendingIntent.getService(context,
-                0,
-                intent,
-                PendingIntent.FLAG_IMMUTABLE);
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + triggerInMillis,
-                    pendingIntent);
-        } else {
-            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + triggerInMillis,
-                    pendingIntent);
-        }
+        ContextCompat.startForegroundService(context, intent);
     }
 
     public static boolean isInteractive(Context context) {

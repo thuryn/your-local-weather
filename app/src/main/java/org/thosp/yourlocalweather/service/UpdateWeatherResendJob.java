@@ -32,7 +32,7 @@ public class UpdateWeatherResendJob extends AbstractAppJob {
 
     protected void sendRetryMessageToCurrentWeatherService() {
         appendLog(getBaseContext(), TAG, "sendRetryMessageToCurrentWeatherService:1");
-        Intent intent = new Intent("android.intent.action.RESEND_WEATHER_UPDATE");
+        Intent intent = new Intent("org.thosp.yourlocalweather.action.RESEND_WEATHER_UPDATE");
         intent.setPackage("org.thosp.yourlocalweather");
         startService(intent);
         jobFinished(params, false);

@@ -9,6 +9,7 @@ import android.location.Address;
 import android.os.Parcel;
 
 import org.thosp.yourlocalweather.service.SensorLocationUpdater;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 
 import java.util.ArrayList;
@@ -239,7 +240,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                 boolean enabled = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ENABLED));
 
                 if (locale == null) {
-                    locale = PreferenceUtil.getLanguage(context);
+                    locale = AppPreference.getInstance().getLanguage(context);
                 }
 
                 result.add(new Location(
@@ -316,7 +317,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
             boolean enabled = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ENABLED));
 
             if (locale == null) {
-                locale = PreferenceUtil.getLanguage(context);
+                locale = AppPreference.getInstance().getLanguage(context);
             }
 
             return new Location(
@@ -391,7 +392,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
             boolean enabled = 1 == cursor.getInt(cursor.getColumnIndexOrThrow(LocationsContract.Locations.COLUMN_NAME_ENABLED));
 
             if (locale == null) {
-                locale = PreferenceUtil.getLanguage(context);
+                locale = AppPreference.getInstance().getLanguage(context);
             }
 
             return new Location(

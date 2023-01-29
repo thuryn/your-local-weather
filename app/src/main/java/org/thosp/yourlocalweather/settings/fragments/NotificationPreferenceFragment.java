@@ -43,7 +43,7 @@ public class NotificationPreferenceFragment extends PreferenceFragment implement
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object o) {
                     boolean isEnabled = (boolean) o;
-                    AppPreference.setNotificationEnabled(getActivity(), isEnabled);
+                    AppPreference.getInstance().setNotificationEnabled(getActivity(), isEnabled);
                     Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_NOTIFICATION_ALARM_SERVICE");
                     intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
                     getActivity().startService(intentToStartUpdate);
@@ -88,6 +88,8 @@ public class NotificationPreferenceFragment extends PreferenceFragment implement
             } else {
                 switchPreference.setEnabled(true);
             }
+        } else if (Constants.KEY_PREF_VIBRATE.equals(key)) {
+            AppPreference.getInstance().clearVibrateEnabled();
         } else {
             SwitchPreference switchPreference = (SwitchPreference) findPreference(Constants.KEY_PREF_IS_NOTIFICATION_ENABLED);
 
@@ -107,9 +109,11 @@ public class NotificationPreferenceFragment extends PreferenceFragment implement
                     SwitchPreference vibrate = (SwitchPreference) findPreference(Constants.KEY_PREF_VIBRATE);
                     vibrate.setEnabled(false);
                     vibrate.setChecked(false);
+                    AppPreference.getInstance().clearVibrateEnabled();
                 } else {
                     SwitchPreference vibrate = (SwitchPreference) findPreference(Constants.KEY_PREF_VIBRATE);
                     vibrate.setEnabled(true);
+                    AppPreference.getInstance().clearVibrateEnabled();
                 }
                 if (!"permanent".equals(preference.getValue())) {
                     NotificationManager notificationManager =
@@ -126,7 +130,7 @@ public class NotificationPreferenceFragment extends PreferenceFragment implement
                 preference.setEnabled(true);
             }
         }
-        if (AppPreference.isNotificationEnabled(getActivity()) &&
+        if (AppPreference.getInstance().isNotificationEnabled(getActivity()) &&
                 "permanent".equals(AppPreference.getNotificationPresence(getActivity()))) {
             Location locationForNotification = NotificationUtils.getLocationForNotification(getActivity());
             if (locationForNotification != null) {
@@ -171,7 +175,7 @@ public class NotificationPreferenceFragment extends PreferenceFragment implement
         super.onResume();
         getPreferenceScreen().getSharedPreferences()
                 .registerOnSharedPreferenceChangeListener(this);
-        String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getActivity());
+        String updateAutoPeriodStr = AppPreference.getInstance().getLocationAutoUpdatePeriod(getActivity());
         updateBySensor = "0".equals(updateAutoPeriodStr);
         updateSummaries();
     }

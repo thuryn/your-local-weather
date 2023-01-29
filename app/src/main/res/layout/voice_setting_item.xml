@@ -9,8 +9,6 @@
     android:layout_margin="8dp"
     android:background="?android:attr/selectableItemBackground">
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -72,6 +70,34 @@
                 android:textSize="14sp"
                 android:textAppearance="?android:attr/textAppearanceListItemSmall"
                 tools:text="GB"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+            <Button
+                android:id="@+id/voice_setting_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EDIT"
+                android:backgroundTint="@color/swipe_blue"
+                android:fontFamily="sans-serif" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/voice_setting_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/swipe_red"
+                android:fontFamily="sans-serif"
+                android:text="@string/locations_delete_location"
+                tools:backgroundTint="red" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

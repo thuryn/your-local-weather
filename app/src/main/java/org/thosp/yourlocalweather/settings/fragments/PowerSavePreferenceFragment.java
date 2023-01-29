@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.ReverseGeocodingCacheContract;
 import org.thosp.yourlocalweather.model.ReverseGeocodingCacheDbHelper;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 
 import java.text.SimpleDateFormat;
@@ -70,6 +71,9 @@ public class PowerSavePreferenceFragment extends PreferenceFragment implements
         switch (key) {
             case Constants.KEY_PREF_LOCATION_GPS_ENABLED:
                 entrySummary(key);
+                break;
+            case Constants.APP_SETTINGS_LOCATION_CACHE_ENABLED:
+                AppPreference.getInstance().clearLocationCacheEnabled();
                 break;
         }
     }

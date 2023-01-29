@@ -48,7 +48,7 @@ public class AbstractCommonService extends Service {
     protected void updateNetworkLocation(boolean byLastLocationOnly) {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
-        Intent intentToStartUpdate = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
+        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
         intentToStartUpdate.putExtra("locationId", locationId);
         intentToStartUpdate.putExtra("forceUpdate", byLastLocationOnly);
@@ -121,7 +121,7 @@ public class AbstractCommonService extends Service {
                                                       int wakeUpSource,
                                                       boolean forceUpdate,
                                                       boolean updateWeatherOnly) {
-        Intent intent = new Intent("android.intent.action.START_WEATHER_UPDATE");
+        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(location.getId(),
                                                                              updateSource,
@@ -148,7 +148,7 @@ public class AbstractCommonService extends Service {
         appendLog(this,
                 TAG,
                 "sending message to get weather forecast");
-        Intent intent = new Intent("android.intent.action.START_WEATHER_UPDATE");
+        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(locationId, updateSource, forceUpdate, UpdateWeatherService.START_WEATHER_FORECAST_UPDATE));
         ContextCompat.startForegroundService(getBaseContext(), intent);
@@ -157,23 +157,23 @@ public class AbstractCommonService extends Service {
     protected void sendMessageToWakeUpService(int wakeAction, int wakeupSource) {
         Intent intent;
         if (wakeAction == 1) {
-            intent = new Intent("android.intent.action.WAKE_UP");
+            intent = new Intent("org.thosp.yourlocalweather.action.WAKE_UP");
         } else {
-            intent = new Intent("android.intent.action.FALL_DOWN");
+            intent = new Intent("org.thosp.yourlocalweather.action.FALL_DOWN");
         }
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("wakeupSource", wakeupSource);
-        startService(intent);
+        ContextCompat.startForegroundService(getBaseContext(), intent);
     }
 
     protected void sendMessageToReconciliationDbService(boolean force) {
         appendLog(this,
                 TAG,
                 "going run reconciliation DB service");
-        Intent intent = new Intent("android.intent.action.START_RECONCILIATION");
+        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_RECONCILIATION");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("force", force);
-        startService(intent);
+        ContextCompat.startForegroundService(getBaseContext(), intent);
     }
     
     protected void sendIntent(String intent) {

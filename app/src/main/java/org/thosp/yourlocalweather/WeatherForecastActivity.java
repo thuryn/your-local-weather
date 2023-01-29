@@ -48,7 +48,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.forecast_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         localityView = (TextView) findViewById(R.id.forecast_locality);
-        visibleColumns = AppPreference.getForecastActivityColumns(this);
+        visibleColumns = AppPreference.getInstance().getForecastActivityColumns(this);
         connectionDetector = new ConnectionDetector(WeatherForecastActivity.this);
         //forecastType = (Switch) findViewById(R.id.forecast_forecastType);
 
@@ -201,7 +201,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
                         for (Integer selectedItem: mSelectedItems) {
                             visibleColumns.add(selectedItem + 2);
                         }
-                        AppPreference.setForecastActivityColumns(context, visibleColumns);
+                        AppPreference.getInstance().setForecastActivityColumns(context, visibleColumns);
                         updateUI();
                     }
                 })

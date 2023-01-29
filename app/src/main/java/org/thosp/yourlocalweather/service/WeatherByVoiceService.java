@@ -76,8 +76,8 @@ public class WeatherByVoiceService extends Service {
             return ret;
         }
         switch (intent.getAction()) {
-            case "android.intent.action.SAY_WEATHER": sayWeatherByTime(intent); return ret;
-            case "android.intent.action.START_VOICE_WEATHER_UPDATED": startVoiceCommand(intent); return ret;
+            case "org.thosp.yourlocalweather.action.SAY_WEATHER": sayWeatherByTime(intent); return ret;
+            case "org.thosp.yourlocalweather.action.START_VOICE_WEATHER_UPDATED": startVoiceCommand(intent); return ret;
             default: return ret;
         }
     }
@@ -781,7 +781,7 @@ public class WeatherByVoiceService extends Service {
         VoiceSettingParametersDbHelper voiceSettingParametersDbHelper = VoiceSettingParametersDbHelper.getInstance(getBaseContext());
         String localeForVoiceId = voiceSettingParametersDbHelper.getGeneralStringParam(VoiceSettingParamType.VOICE_SETTING_VOICE_LANG.getVoiceSettingParamTypeId());
         if ((localeForVoiceId == null) || ("Default".equals(localeForVoiceId))) {
-            return new Locale(PreferenceUtil.getLanguage(this));
+            return new Locale(AppPreference.getInstance().getLanguage(this));
         } else {
             return new Locale(localeForVoiceId);
         }

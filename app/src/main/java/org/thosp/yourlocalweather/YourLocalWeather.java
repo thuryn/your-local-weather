@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 
 import org.thosp.yourlocalweather.service.StartAutoLocationJob;
@@ -30,11 +31,17 @@ public class YourLocalWeather extends Application {
     public void onCreate() {
         super.onCreate();
         appendLog(this, TAG,"Default locale:", Resources.getSystem().getConfiguration().locale.getLanguage());
+
+        /*StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().build());
+        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().build());*/
+
         PreferenceManager.getDefaultSharedPreferences(this)
                 .edit()
                 .putString(Constants.PREF_OS_LANGUAGE, Resources.getSystem().getConfiguration().locale.getLanguage())
                 .apply();
-        LanguageUtil.setLanguage(this, PreferenceUtil.getLanguage(this));
+        AppPreference appPreference = AppPreference.getInstance();
+        appPreference.clearLanguage();
+        LanguageUtil.setLanguage(this, appPreference.getLanguage(this));
 
         sTheme = PreferenceUtil.getTheme(this);
 
@@ -58,12 +65,14 @@ public class YourLocalWeather extends Application {
                 .edit()
                 .putString(Constants.PREF_OS_LANGUAGE, Resources.getSystem().getConfiguration().locale.getLanguage())
                 .apply();
-        LanguageUtil.setLanguage(this, PreferenceUtil.getLanguage(this));
+        AppPreference appPreference = AppPreference.getInstance();
+        appPreference.clearLanguage();
+        LanguageUtil.setLanguage(this, appPreference.getLanguage(this));
     }
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LanguageUtil.setLanguage(base, PreferenceUtil.getLanguage(base)));
+        super.attachBaseContext(LanguageUtil.setLanguage(base, AppPreference.getInstance().getLanguage(base)));
     }
 
     public void reloadTheme() {

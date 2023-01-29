@@ -38,8 +38,8 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
 
         switch (intent.getAction()) {
-            case "android.intent.action.START_SENSOR_BASED_UPDATES": return performSensorBasedUpdates(ret);
-            case "android.intent.action.STOP_SENSOR_BASED_UPDATES": stopSensorBasedUpdates(); return ret;
+            case "org.thosp.yourlocalweather.action.START_SENSOR_BASED_UPDATES": return performSensorBasedUpdates(ret);
+            case "org.thosp.yourlocalweather.action.STOP_SENSOR_BASED_UPDATES": stopSensorBasedUpdates(); return ret;
             case "android.intent.action.CLEAR_SENSOR_VALUES": clearMeasuredLength(); return ret;
         }
         return START_STICKY;
@@ -72,7 +72,7 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
     }
 
     private int startSensorBasedUpdates(int initialReturnValue) {
-        sendIntent("android.intent.action.START_SENSOR_BASED_UPDATES");
+        sendIntent("org.thosp.yourlocalweather.action.START_SENSOR_BASED_UPDATES");
         return initialReturnValue;
     }
     

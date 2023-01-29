@@ -181,6 +181,13 @@
                             android:layout_height="wrap_content"
                             android:text="@string/pref_title_tts_bt"
                             android:onClick="onTtsDeviceEnabledButtonClicked" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/tts_layout_bt_all_devices"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp">
                         <CheckBox android:id="@+id/bt_all_devices"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

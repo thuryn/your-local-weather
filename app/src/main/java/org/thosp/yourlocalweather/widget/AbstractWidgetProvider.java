@@ -1,55 +1,37 @@
 package org.thosp.yourlocalweather.widget;
 
-import android.app.AlarmManager;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
-import android.os.SystemClock;
 import android.view.View;
 import android.widget.RemoteViews;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.WidgetSettingsDialogue;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
-import org.thosp.yourlocalweather.service.LocationUpdateService;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
 import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
-import org.thosp.yourlocalweather.utils.Utils;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
-
-import androidx.core.content.ContextCompat;
 
 public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     private static String TAG = "AbstractWidgetProvider";
-
-    private Messenger currentWeatherService;
-    private Lock currentWeatherServiceLock = new ReentrantLock();
-    private Queue<Message> currentWeatherUnsentMessages = new LinkedList<>();
 
     protected Location currentLocation;
     volatile boolean servicesStarted = false;
@@ -230,15 +212,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         for (int widgetId: appWidgetIds) {
             widgetSettingsDbHelper.deleteRecordFromTable(widgetId);
         }
-        unbindCurrentWeatherService(context);
-        startLocationAndWeatherUpdate(context);
-    }
-
-    @Override
-    public void onDisabled(Context context) {
-        super.onDisabled(context);
-        unbindCurrentWeatherService(context);
-        startLocationAndWeatherUpdate(context);
     }
 
     protected void refreshWidgetValues(Context context) {
@@ -268,7 +241,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         if ((currentLocation.getOrderId() == 0) && currentLocation.isEnabled()) {
             startLocationAndWeatherUpdate(context);
         } else if (currentLocation.getOrderId() != 0) {
-            sendMessageToCurrentWeatherService(context, currentLocation, null, true, true);
+            startWeatherUpdate(context, currentLocation);
         }
     }
 
@@ -481,22 +454,6 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         }
     }
 
-    protected void startServiceWithCheck(Context context, Intent intent) {
-        try {
-            context.startService(intent);
-        } catch (IllegalStateException ise) {
-            intent.putExtra("isInteractive", false);
-            PendingIntent pendingIntent = PendingIntent.getService(context,
-                    0,
-                    intent,
-                    PendingIntent.FLAG_CANCEL_CURRENT);
-            AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + 10,
-                    pendingIntent);
-        }
-    }
-
     private void openWidgetSettings(Context context, int widgetId, String settingsName) {
         Intent popUpIntent = new Intent(context, WidgetSettingsDialogue.class);
         popUpIntent.putExtra("widgetId", widgetId);
@@ -508,83 +465,23 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     abstract ArrayList<String> getEnabledActionPlaces();
 
-    protected void sendMessageToCurrentWeatherService(Context context,
-                                                      Location location,
-                                                      String updateSource,
-                                                      boolean forceUpdate,
-                                                      boolean updateWeatherOnly) {
-        currentWeatherServiceLock.lock();
-        try {
-            Message msg = Message.obtain(
-                    null,
-                    UpdateWeatherService.START_CURRENT_WEATHER_UPDATE,
-                    new WeatherRequestDataHolder(location.getId(), updateSource, forceUpdate, updateWeatherOnly, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE)
-            );
-            if (checkIfCurrentWeatherServiceIsNotBound(context)) {
-                //appendLog(getBaseContext(), TAG, "WidgetIconService is still not bound");
-                currentWeatherUnsentMessages.add(msg);
-                return;
-            }
-            //appendLog(getBaseContext(), TAG, "sendMessageToService:");
-            currentWeatherService.send(msg);
-        } catch (RemoteException e) {
-            appendLog(context, TAG, e.getMessage(), e);
-        } finally {
-            currentWeatherServiceLock.unlock();
-        }
-    }
-
-    private boolean checkIfCurrentWeatherServiceIsNotBound(Context context) {
-        if (currentWeatherService != null) {
-            return false;
-        }
-        try {
-            bindCurrentWeatherService(context);
-        } catch (Exception ie) {
-            appendLog(context, TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
-        }
-        return (currentWeatherService == null);
-    }
-
-    private void bindCurrentWeatherService(Context context) {
-        context.getApplicationContext().bindService(
-                new Intent(context.getApplicationContext(), UpdateWeatherService.class),
-                currentWeatherServiceConnection,
-                Context.BIND_AUTO_CREATE);
-    }
-
-    private void unbindCurrentWeatherService(Context context) {
-        if (currentWeatherService == null) {
-            return;
-        }
-        context.getApplicationContext().unbindService(currentWeatherServiceConnection);
-    }
-
-    private ServiceConnection currentWeatherServiceConnection = new ServiceConnection() {
-        public void onServiceConnected(ComponentName className, IBinder binderService) {
-            currentWeatherService = new Messenger(binderService);
-            currentWeatherServiceLock.lock();
-            try {
-                while (!currentWeatherUnsentMessages.isEmpty()) {
-                    currentWeatherService.send(currentWeatherUnsentMessages.poll());
-                }
-            } catch (RemoteException e) {
-                //appendLog(getBaseContext(), TAG, e.getMessage(), e);
-            } finally {
-                currentWeatherServiceLock.unlock();
-            }
-        }
-        public void onServiceDisconnected(ComponentName className) {
-            currentWeatherService = null;
-        }
-    };
-
     private void startLocationAndWeatherUpdate(Context context) {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
         long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
-        Intent intentToStartUpdate = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
+        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
         intentToStartUpdate.putExtra("locationId", locationId);
+        ContextCompat.startForegroundService(context, intentToStartUpdate);
+    }
+
+    private void startWeatherUpdate(Context context, Location location) {
+        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
+        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        intentToStartUpdate.putExtra("weatherRequest", new WeatherRequestDataHolder(location.getId(),
+                null,
+                true,
+                true,
+                UpdateWeatherService.START_CURRENT_WEATHER_UPDATE));
         ContextCompat.startForegroundService(context, intentToStartUpdate);
     }
 }

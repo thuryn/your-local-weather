@@ -54,7 +54,7 @@ public abstract class AbstractAppJob extends JobService {
         if (!ForecastUtil.shouldUpdateForecast(this, locationId, UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
             return;
         }
-        Intent intent = new Intent("android.intent.action.START_WEATHER_UPDATE");
+        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(locationId, updateSource, UpdateWeatherService.START_WEATHER_FORECAST_UPDATE));
         startService(intent);
@@ -70,7 +70,7 @@ public abstract class AbstractAppJob extends JobService {
                                                       String updateSource,
                                                       int wakeUpSource,
                                                       boolean updateWeatherOnly) {
-        Intent intent = new Intent("android.intent.action.START_WEATHER_UPDATE");
+        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(location.getId(), updateSource, updateWeatherOnly, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE));
         startService(intent);

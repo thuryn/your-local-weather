@@ -53,7 +53,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         public void onReceive(Context context, Intent intent) {
             appendLog(context, TAG, "receive intent: ", intent);
             String notificationPresence = AppPreference.getNotificationPresence(context);
-            if (AppPreference.isNotificationEnabled(context) &&
+            if (AppPreference.getInstance().isNotificationEnabled(context) &&
                     "on_lock_screen".equals(notificationPresence)) {
                 NotificationManager notificationManager =
                         (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -89,7 +89,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         public void onReceive(Context context, Intent intent) {
             appendLog(context, TAG, "receive intent: ", intent);
             String notificationPresence = AppPreference.getNotificationPresence(context);
-            if (AppPreference.isNotificationEnabled(context) &&
+            if (AppPreference.getInstance().isNotificationEnabled(context) &&
                     "on_lock_screen".equals(notificationPresence)) {
                 NotificationUtils.weatherNotification(context, getLocationForNotification().getId());
             }
@@ -168,8 +168,8 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         }
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
         switch (intent.getAction()) {
-            case "android.intent.action.START_SCREEN_BASED_UPDATES": startSensorBasedUpdates(); return START_STICKY;
-            case "android.intent.action.STOP_SCREEN_BASED_UPDATES": stopSensorBasedUpdates(); return ret;
+            case "org.thosp.yourlocalweather.action.START_SCREEN_BASED_UPDATES": startSensorBasedUpdates(); return START_STICKY;
+            case "org.thosp.yourlocalweather.action.STOP_SCREEN_BASED_UPDATES": stopSensorBasedUpdates(); return ret;
             default: return ret;
         }
     }
@@ -191,7 +191,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
     private void processScreenOnInBg(Context context) {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-        String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
+        String updateAutoPeriodStr = AppPreference.getInstance().getLocationAutoUpdatePeriod(getBaseContext());
         boolean locationAutoUpdateNight = false;
         boolean locationUpdateNight = false;
 
@@ -369,10 +369,10 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
             long updatePeriodForLocation;
             if (location.getOrderId() == 0) {
-                String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(this);
+                String updateAutoPeriodStr = AppPreference.getInstance().getLocationAutoUpdatePeriod(this);
                 updatePeriodForLocation = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
             } else {
-                String updatePeriodStr = AppPreference.getLocationUpdatePeriod(this);
+                String updatePeriodStr = AppPreference.getInstance().getLocationUpdatePeriod(this);
                 updatePeriodForLocation = Utils.intervalMillisForAlarm(updatePeriodStr);
             }
 

@@ -20,12 +20,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
@@ -65,7 +67,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
         setupActionBar();
 
         voiceSettingParametersDbHelper = VoiceSettingParametersDbHelper.getInstance(this);
-        applicationLocale = new Locale(PreferenceUtil.getLanguage(this));
+        applicationLocale = new Locale(AppPreference.getInstance().getLanguage(this));
 
         updateItemsFromDb();
         populateTriggerType();
@@ -73,6 +75,11 @@ public class AddVoiceSettingActivity extends BaseActivity {
 
     @Override
     protected void updateUI() {
+    }
+
+    private boolean checkExistenceAndBtPermissions() {
+        return (Utils.getBluetoothAdapter(getBaseContext()) != null) &&
+            ContextCompat.checkSelfPermission(AddVoiceSettingActivity.this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED;
     }
 
     private void updateItemsFromDb() {
@@ -133,9 +140,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
         CheckBox allBtCheckbox = findViewById(checkBoxViewId);
         btDevicesSpinner.setVoiceSettingId(voiceSettingId);
 
-        BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(getBaseContext());
-
-        if (bluetoothAdapter == null) {
+        if (!checkExistenceAndBtPermissions()) {
             btDevicesSpinner.setVisibility(View.GONE);
             allBtCheckbox.setVisibility(View.GONE);
             return;
@@ -143,6 +148,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
             btDevicesSpinner.setVisibility(View.VISIBLE);
             allBtCheckbox.setVisibility(View.VISIBLE);
         }
+        BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(getBaseContext());
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
@@ -193,9 +199,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
         View btDevicePanel = findViewById(R.id.tts_bt_device_panel);
         btDevicesSpinner.setVoiceSettingId(voiceSettingId);
 
-        BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(getBaseContext());
-
-        if (bluetoothAdapter == null) {
+        if (!checkExistenceAndBtPermissions()) {
             btDevicesSpinner.setVisibility(View.GONE);
             allBtCheckbox.setVisibility(View.GONE);
             btDevicePanel.setVisibility(View.GONE);
@@ -209,6 +213,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
+        BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(getBaseContext());
         Set<BluetoothDevice> bluetoothDeviceSet = bluetoothAdapter.getBondedDevices();
 
         ArrayList<MultiselectionItem> items = new ArrayList<>();
@@ -462,10 +467,10 @@ public class AddVoiceSettingActivity extends BaseActivity {
 
     public void populateTriggerType() {
         Spinner spinner = findViewById(R.id.trigger_type);
-        final BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(getBaseContext());
+        boolean btNotPresentOrEnabled = checkExistenceAndBtPermissions();
 
         ArrayAdapter<CharSequence> adapter;
-        if (bluetoothAdapter == null) {
+        if (!btNotPresentOrEnabled) {
             adapter = ArrayAdapter.createFromResource(this,
                     R.array.voice_trigger_type_wo_bt, android.R.layout.simple_spinner_item);
         } else {
@@ -479,7 +484,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 VoiceSettingParamType.VOICE_SETTING_TRIGGER_TYPE.getVoiceSettingParamTypeId());
         if (currentTriggerId != null) {
             int currentTriggerIdInt = currentTriggerId.intValue();
-            if ((bluetoothAdapter == null) && (currentTriggerIdInt == 2)) {
+            if (!btNotPresentOrEnabled && (currentTriggerIdInt == 2)) {
                 currentTriggerIdInt = 1;
             }
             spinner.setSelection(currentTriggerIdInt);
@@ -489,7 +494,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 int positionToSave = position;
-                if ((bluetoothAdapter == null) && (position == 1)) {
+                if (!btNotPresentOrEnabled && (position == 1)) {
                     positionToSave++;
                 }
                 voiceSettingParametersDbHelper.saveLongParam(

@@ -18,6 +18,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,7 +53,6 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 public class VoiceSettingsActivity extends BaseActivity {
 
     public static final String TAG = "VoiceSettingsActivity";
-
     public static final int BLUETOOTH_CONNECT_PERMISSION_CODE = 4433;
 
     private VoiceSettingsAdapter voiceSettingsAdapter;
@@ -78,7 +79,7 @@ public class VoiceSettingsActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         ((YourLocalWeather) getApplication()).applyTheme(this);
         super.onCreate(savedInstanceState);
-        applicationLocale = new Locale(PreferenceUtil.getLanguage(this));
+        applicationLocale = new Locale(AppPreference.getInstance().getLanguage(this));
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
         }
@@ -102,6 +103,11 @@ public class VoiceSettingsActivity extends BaseActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.voice_settings_menu, menu);
         return true;
+    }
+
+    private boolean checkExistenceAndBtPermissions() {
+        return (Utils.getBluetoothAdapter(getBaseContext()) != null) &&
+                ContextCompat.checkSelfPermission(VoiceSettingsActivity.this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED;
     }
 
     @Override
@@ -230,33 +236,9 @@ public class VoiceSettingsActivity extends BaseActivity {
     private void setupRecyclerView() {
         recyclerView = findViewById(R.id.voice_setting_recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(VoiceSettingsActivity.this));
-
-        final VoiceSettingsSwipeController swipeController = new VoiceSettingsSwipeController(new LocationsSwipeControllerActions() {
-            @Override
-            public void onRightClicked(int position) {
-                deleteVoiceSetting(position);
-            }
-
-            @Override
-            public void onLeftClicked(int position) {
-                moveToAddVoiceSettingsActivity(voiceSettingsAdapter.voiceSettingIds.get(position));
-            }
-        }, this);
-
-        ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeController);
-
-        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-                swipeController.onDraw(c);
-            }
-        });
-
-        itemTouchhelper.attachToRecyclerView(recyclerView);
     }
 
-    private void deleteVoiceSetting(int position) {
-        Long voiceSettingId = voiceSettingsAdapter.voiceSettingIds.get(position);
+    private void deleteVoiceSetting(Long voiceSettingId, int position) {
         voiceSettingParametersDbHelper.deleteAllSettings(voiceSettingId);
         voiceSettingsAdapter.voiceSettingIds.remove(position);
         voiceSettingsAdapter.notifyItemRemoved(position);
@@ -271,15 +253,6 @@ public class VoiceSettingsActivity extends BaseActivity {
     protected void updateUI() {
     }
 
-    private boolean checkBtPermissions() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        ActivityCompat.requestPermissions(this,
-                new String[]{Manifest.permission.BLUETOOTH_CONNECT}, BLUETOOTH_CONNECT_PERMISSION_CODE);
-        return false;
-    }
-
     public class VoiceSettingHolder extends RecyclerView.ViewHolder {
 
         private Long voiceSettingId;
@@ -287,6 +260,8 @@ public class VoiceSettingsActivity extends BaseActivity {
         private TextView voiceSettingTypeView;
         private TextView voiceSettingAddInfo1View;
         private TextView voiceSettingAddInfo2View;
+        private Button editButton;
+        private Button deleteButton;
 
         VoiceSettingHolder(View itemView) {
             super(itemView);
@@ -294,14 +269,23 @@ public class VoiceSettingsActivity extends BaseActivity {
             voiceSettingTypeView = itemView.findViewById(R.id.voice_setting_type);
             voiceSettingAddInfo1View = itemView.findViewById(R.id.voice_setting_add_info_1);
             voiceSettingAddInfo2View = itemView.findViewById(R.id.voice_setting_add_info_2);
-
+            editButton = itemView.findViewById(R.id.voice_setting_edit);
+            deleteButton = itemView.findViewById(R.id.voice_setting_delete);
         }
 
-        void bindVoiceSetting(Long voiceSettingId) {
+        void bindVoiceSetting(Long voiceSettingId, int position) {
             this.voiceSettingId = voiceSettingId;
-            if(!checkBtPermissions()) {
-                return;
-            }
+
+            editButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    moveToAddVoiceSettingsActivity(voiceSettingId);
+                }
+            });
+            deleteButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    deleteVoiceSetting(voiceSettingId, position);
+                }
+            });
 
             if (voiceSettingId == null) {
                 return;
@@ -316,7 +300,7 @@ public class VoiceSettingsActivity extends BaseActivity {
                 String addInfo2 = "";
                 BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(getBaseContext());
                 Set<BluetoothDevice> bluetoothDeviceSet;
-                if (ContextCompat.checkSelfPermission(VoiceSettingsActivity.this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+                if (ContextCompat.checkSelfPermission(VoiceSettingsActivity.this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
                     return;
                 }
                 if (bluetoothAdapter != null) {
@@ -521,7 +505,7 @@ public class VoiceSettingsActivity extends BaseActivity {
 
         @Override
         public void onBindViewHolder(VoiceSettingHolder locationHolder, int position) {
-            locationHolder.bindVoiceSetting(voiceSettingIds.get(position));
+            locationHolder.bindVoiceSetting(voiceSettingIds.get(position), position);
         }
 
         @Override

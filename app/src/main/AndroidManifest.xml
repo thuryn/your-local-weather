@@ -320,38 +320,38 @@
             android:name=".service.ReconciliationDbService"
             android:exported="true" >
             <intent-filter>
-                <action android:name="android.intent.action.START_RECONCILIATION" />
+                <action android:name="org.thosp.yourlocalweather.action.START_RECONCILIATION" />
             </intent-filter>
         </service>
         <service
             android:name=".service.NotificationService"
             android:exported="true" >
             <intent-filter>
-                <action android:name="android.intent.action.START_WEATHER_NOTIFICATION_UPDATE" />
+                <action android:name="org.thosp.yourlocalweather.action.START_WEATHER_NOTIFICATION_UPDATE" />
             </intent-filter>
         </service>
         <service
             android:name=".service.AppWakeUpManager"
             android:exported="true" >
             <intent-filter>
-                <action android:name="android.intent.action.WAKE_UP" />
-                <action android:name="android.intent.action.FALL_DOWN" />
+                <action android:name="org.thosp.yourlocalweather.action.WAKE_UP" />
+                <action android:name="org.thosp.yourlocalweather.action.FALL_DOWN" />
             </intent-filter>
         </service>
         <service
             android:name=".service.UpdateWeatherService"
             android:exported="true" >
             <intent-filter>
-                <action android:name="android.intent.action.START_WEATHER_UPDATE" />
-                <action android:name="android.intent.action.RESEND_WEATHER_UPDATE" />
+                <action android:name="org.thosp.yourlocalweather.action.START_WEATHER_UPDATE" />
+                <action android:name="org.thosp.yourlocalweather.action.RESEND_WEATHER_UPDATE" />
             </intent-filter>
         </service>
         <service
             android:name=".service.WeatherByVoiceService"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.SAY_WEATHER" />
-                <action android:name="android.intent.action.START_VOICE_WEATHER_UPDATED" />
+                <action android:name="org.thosp.yourlocalweather.action.SAY_WEATHER" />
+                <action android:name="org.thosp.yourlocalweather.action.START_VOICE_WEATHER_UPDATED" />
             </intent-filter>
         </service>
         <service android:name=".service.AppAlarmService"
@@ -370,16 +370,16 @@
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
-                <action android:name="android.intent.action.START_SENSOR_BASED_UPDATES" />
-                <action android:name="android.intent.action.STOP_SENSOR_BASED_UPDATES" />
+                <action android:name="org.thosp.yourlocalweather.action.START_SENSOR_BASED_UPDATES" />
+                <action android:name="org.thosp.yourlocalweather.action.STOP_SENSOR_BASED_UPDATES" />
             </intent-filter>
         </service>
         <service
             android:name=".service.ScreenOnOffUpdateService"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.START_SCREEN_BASED_UPDATES" />
-                <action android:name="android.intent.action.STOP_SCREEN_BASED_UPDATES" />
+                <action android:name="org.thosp.yourlocalweather.action.START_SCREEN_BASED_UPDATES" />
+                <action android:name="org.thosp.yourlocalweather.action.STOP_SCREEN_BASED_UPDATES" />
             </intent-filter>
         </service>
         <service
@@ -387,10 +387,10 @@
             android:foregroundServiceType="location"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.START_LOCATION_AND_WEATHER_UPDATE" />
-                <action android:name="android.intent.action.START_LOCATION_ON_LOCATION_CHANGED" />
-                <action android:name="android.intent.action.START_LOCATION_ONLY_UPDATE" />
-                <action android:name="START_LOCATION_ON_LOCATION_CANCELED" />
+                <action android:name="org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE" />
+                <action android:name="org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CHANGED" />
+                <action android:name="org.thosp.yourlocalweather.action.START_LOCATION_ONLY_UPDATE" />
+                <action android:name="org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CANCELED" />
             </intent-filter>
         </service>
         <service
@@ -398,8 +398,8 @@
             android:permission="android.permission.ACCESS_COARSE_LOCATION"
             android:exported="true">
             <intent-filter>
-                <action android:name="android.intent.action.START_LOCATION_UPDATE" />
-                <action android:name="android.intent.action.LOCATION_UPDATE_CELLS_ONLY" />
+                <action android:name="org.thosp.yourlocalweather.action.START_LOCATION_UPDATE" />
+                <action android:name="org.thosp.yourlocalweather.action.LOCATION_UPDATE_CELLS_ONLY" />
             </intent-filter>
         </service>
     </application>

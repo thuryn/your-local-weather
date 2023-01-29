@@ -57,11 +57,11 @@ public class StartAutoLocationJob extends AbstractAppJob {
     private void performUpdateOfLocation() {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         Calendar now = Calendar.getInstance();
-        String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(getBaseContext());
+        String updateAutoPeriodStr = AppPreference.getInstance().getLocationAutoUpdatePeriod(getBaseContext());
         long updateAutoPeriodMills = Utils.intervalMillisForAlarm(updateAutoPeriodStr);
-        String updatePeriodStr = AppPreference.getLocationUpdatePeriod(getBaseContext());
+        String updatePeriodStr = AppPreference.getInstance().getLocationUpdatePeriod(getBaseContext());
         long updatePeriodMills = Utils.intervalMillisForAlarm(updatePeriodStr);
-        boolean notificationEnabled = AppPreference.isNotificationEnabled(getBaseContext());
+        boolean notificationEnabled = AppPreference.getInstance().isNotificationEnabled(getBaseContext());
         String notificationPeriodStr = AppPreference.getInterval(getBaseContext());
         if ("regular_only".equals(notificationPeriodStr)) {
             notificationEnabled = false;
@@ -162,13 +162,13 @@ public class StartAutoLocationJob extends AbstractAppJob {
     }
 
     public void startSensorBasedUpdates() {
-        Intent sendIntent = new Intent("android.intent.action.START_SENSOR_BASED_UPDATES");
+        Intent sendIntent = new Intent("org.thosp.yourlocalweather.action.START_SENSOR_BASED_UPDATES");
         sendIntent.setPackage("org.thosp.yourlocalweather");
         startService(sendIntent);
     }
 
     public void stopSensorBasedUpdates() {
-        Intent sendIntent = new Intent("android.intent.action.STOP_SENSOR_BASED_UPDATES");
+        Intent sendIntent = new Intent("org.thosp.yourlocalweather.action.STOP_SENSOR_BASED_UPDATES");
         sendIntent.setPackage("org.thosp.yourlocalweather");
         startService(sendIntent);
     }
@@ -182,7 +182,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
     private void startLocationAndWeatherUpdate(boolean forceUpdate) {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
-        Intent intentToStartUpdate = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
+        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
         intentToStartUpdate.putExtra("locationId", locationId);
         intentToStartUpdate.putExtra("forceUpdate", forceUpdate);
@@ -192,7 +192,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
     private void startLocationAndWeatherUpdate(String updateSource) {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
-        Intent intentToStartUpdate = new Intent("android.intent.action.START_LOCATION_AND_WEATHER_UPDATE");
+        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
         intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
         intentToStartUpdate.putExtra("locationId", locationId);
         intentToStartUpdate.putExtra("updateSource", updateSource);

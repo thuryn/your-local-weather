@@ -31,6 +31,7 @@ import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.utils.ApiKeys;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
@@ -124,7 +125,9 @@ public class GeneralPreferenceFragment extends PreferenceFragment implements
             case Constants.PREF_LANGUAGE:
                 entrySummary(key);
                 if (changing) {
-                    String newLocale = PreferenceUtil.getLanguage(getActivity().getApplicationContext());
+                    AppPreference appPreference = AppPreference.getInstance();
+                    appPreference.clearLanguage();
+                    String newLocale = appPreference.getLanguage(getActivity().getApplicationContext());
                     LanguageUtil.setLanguage(getActivity().getApplication(), newLocale);
                     updateLocationsLocale(newLocale);
                     WidgetUtils.updateWidgets(getActivity());
@@ -281,7 +284,7 @@ public class GeneralPreferenceFragment extends PreferenceFragment implements
         appendLog(getActivity(),
                 TAG,
                 "going run reconciliation DB service");
-        Intent intent = new Intent("android.intent.action.START_RECONCILIATION");
+        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_RECONCILIATION");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("force", force);
         getActivity().startService(intent);

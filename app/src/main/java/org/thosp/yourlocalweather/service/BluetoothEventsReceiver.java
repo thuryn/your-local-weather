@@ -45,7 +45,7 @@ public class BluetoothEventsReceiver extends BroadcastReceiver {
             if (context == null) {
                 return;
             }
-            Intent intentToStartUpdate = new Intent("android.intent.action.SAY_WEATHER");
+            Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.SAY_WEATHER");
             intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
             intentToStartUpdate.putExtra("voiceSettingId", voiceSettingId);
             intentToStartUpdate.putExtra("initiatedFromBtDevice", true);

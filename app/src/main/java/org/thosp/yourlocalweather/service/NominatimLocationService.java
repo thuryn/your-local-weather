@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.microg.address.Formatter;
 import org.thosp.yourlocalweather.model.ReverseGeocodingCacheDbHelper;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 
 import java.io.IOException;
@@ -47,6 +48,7 @@ public class NominatimLocationService {
     private static NominatimLocationService instance;
 
     private volatile long nextAlowedRequestTimestamp;
+    private List<Address> cachedAddresses = new ArrayList<>();
 
     private NominatimLocationService() {
     }
@@ -216,19 +218,41 @@ public class NominatimLocationService {
     }
 
     private List<Address> retrieveLocationFromCache(Context context, ReverseGeocodingCacheDbHelper mDbHelper, double latitude, double longitude, String locale) {
-        boolean useCache = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(Constants.APP_SETTINGS_LOCATION_CACHE_ENABLED, false);
+        boolean useCache = AppPreference.getInstance().getLocationCacheEnabled(context);
 
         if (!useCache) {
             return null;
         }
 
-        Address addressFromCache = getResultFromCache(mDbHelper, latitude, longitude, locale);
-        appendLog(context, TAG, "address retrieved from cache:", addressFromCache);
-        if (addressFromCache == null) {
-            return null;
+        double latitudeLow = latitude - 0.0001;
+        double latitudeHigh = latitude + 0.0001;
+        double longitudeLow = longitude - 0.0001;
+        double longitudeHigh = longitude + 0.0001;
+
+        Address foundAddress = null;
+
+        for (Address address: cachedAddresses) {
+            if ((longitudeLow < address.getLongitude()) &&
+                    (address.getLongitude() < longitudeHigh) &&
+                    (latitudeLow < address.getLatitude()) &&
+                    (address.getLatitude() < latitudeHigh) &&
+                    (address.getLocale() != null) && (address.getLocale().equals(localeFromLocaleString(locale)))) {
+                foundAddress = address;
+                appendLog(context, TAG, "address retrieved from RAM cache:", foundAddress);
+            }
         }
+
+        if (foundAddress == null) {
+            foundAddress = getResultFromCache(mDbHelper, latitude, longitude, locale);
+            appendLog(context, TAG, "address retrieved from cache:", foundAddress);
+            if (foundAddress == null) {
+                return null;
+            }
+            cachedAddresses.add(foundAddress);
+        }
+
         List<Address> addresses = new ArrayList<>();
-        addresses.add(addressFromCache);
+        addresses.add(foundAddress);
         return addresses;
     }
 
@@ -239,7 +263,7 @@ public class NominatimLocationService {
                                      final String locale,
                                      final Address address) {
 
-        boolean useCache = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(Constants.APP_SETTINGS_LOCATION_CACHE_ENABLED, false);
+        boolean useCache = AppPreference.getInstance().getLocationCacheEnabled(context);
 
         if (!useCache) {
             return;
@@ -263,6 +287,7 @@ public class NominatimLocationService {
             }
         };
         thread.start();
+        cachedAddresses.add(address);
     }
 
     private Address getResultFromCache(ReverseGeocodingCacheDbHelper mDbHelper, double latitude, double longitude, String locale) {
@@ -383,6 +408,7 @@ public class NominatimLocationService {
                     cursor.close();
                 }
             }
+            cachedAddresses = new ArrayList<>();
         }
     }
 

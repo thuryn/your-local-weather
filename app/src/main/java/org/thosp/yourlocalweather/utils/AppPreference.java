@@ -3,6 +3,7 @@ package org.thosp.yourlocalweather.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.preference.PreferenceManager;
 import android.text.format.DateFormat;
@@ -12,6 +13,7 @@ import androidx.core.content.ContextCompat;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.service.MozillaLocationService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,6 +24,52 @@ import java.util.Set;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class AppPreference {
+
+    private static AppPreference instance;
+
+    private AppPreference() {
+    }
+
+    public synchronized static AppPreference getInstance() {
+        if (instance == null) {
+            instance = new AppPreference();
+        }
+        return instance;
+    }
+
+    private Set<Integer> forecastActivityColumns;
+    private String language;
+    private Boolean vibrateEnabled;
+    private String locationAutoUpdatePeriod;
+    private String locationUpdatePeriod;
+    private Boolean notificationEnabled;
+    private Boolean locationCacheEnabled;
+
+    public boolean getLocationCacheEnabled(Context context) {
+        if (locationCacheEnabled != null) {
+            return locationCacheEnabled;
+        }
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(Constants.APP_SETTINGS_LOCATION_CACHE_ENABLED, false);
+    }
+
+    public void clearLocationCacheEnabled() {
+        locationCacheEnabled = null;
+    }
+
+    public String getLanguage(Context context) {
+        if (language != null) {
+            return language;
+        }
+        language = PreferenceManager.getDefaultSharedPreferences(context).getString(Constants.PREF_LANGUAGE, Resources.getSystem().getConfiguration().locale.getLanguage());
+        if ("default".equals(language)) {
+            language = PreferenceManager.getDefaultSharedPreferences(context).getString(Constants.PREF_OS_LANGUAGE, Resources.getSystem().getConfiguration().locale.getLanguage());
+        }
+        return language;
+    }
+
+    public void clearLanguage() {
+        language = null;
+    }
 
     public static String getLocalizedTime(Context context, Date inputTime, Locale locale) {
         String timeStylePreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
@@ -343,20 +391,32 @@ public class AppPreference {
                 .getString(Constants.KEY_PREF_NOTIFICATION_VISUAL_STYLE, "build_in");
     }
 
-    public static boolean isVibrateEnabled(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+    public boolean isVibrateEnabled(Context context) {
+        if (vibrateEnabled != null) {
+            return vibrateEnabled;
+        }
+        vibrateEnabled = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 Constants.KEY_PREF_VIBRATE,
                 false);
+        return vibrateEnabled;
     }
 
-    public static boolean isNotificationEnabled(Context context) {
+    public void clearVibrateEnabled() {
+        vibrateEnabled = null;
+    }
+
+    public boolean isNotificationEnabled(Context context) {
+        if (notificationEnabled != null) {
+            return notificationEnabled;
+        }
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 Constants.KEY_PREF_IS_NOTIFICATION_ENABLED, false);
     }
 
-    public static void setNotificationEnabled(Context context, boolean enabled) {
+    public void setNotificationEnabled(Context context, boolean enabled) {
         PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(
                 Constants.KEY_PREF_IS_NOTIFICATION_ENABLED, enabled).apply();
+        this.notificationEnabled = enabled;
     }
 
     public static void setNotificationIconStyle(Context context, String iconStyle) {
@@ -408,7 +468,10 @@ public class AppPreference {
                 Constants.KEY_PREF_WIDGET_THEME, "dark");
     }
 
-    public static Set<Integer> getForecastActivityColumns(Context context) {
+    public Set<Integer> getForecastActivityColumns(Context context) {
+        if (forecastActivityColumns != null) {
+            return forecastActivityColumns;
+        }
         Set<String> defaultVisibleColumns = new HashSet<>();
         defaultVisibleColumns.add("1");
         defaultVisibleColumns.add("2");
@@ -420,16 +483,18 @@ public class AppPreference {
         for (String visibleColumn: visibleColumns) {
             result.add(Integer.valueOf(visibleColumn));
         }
+        forecastActivityColumns = result;
         return result;
     }
 
-    public static void setForecastActivityColumns(Context context, Set<Integer> visibleColumns) {
+    public void setForecastActivityColumns(Context context, Set<Integer> visibleColumns) {
         Set<String> columnsToStore = new HashSet<>();
         for (Integer visibleColumn: visibleColumns) {
             columnsToStore.add(String.valueOf(visibleColumn));
         }
         PreferenceManager.getDefaultSharedPreferences(context).edit().putStringSet(
                 Constants.KEY_PREF_FORECAST_ACTIVITY_COLUMNS, columnsToStore).apply();
+        forecastActivityColumns = visibleColumns;
     }
 
     public static int getForecastType(Context context) {
@@ -567,9 +632,16 @@ public class AppPreference {
         }
     }
 
-    public static String getLocationAutoUpdatePeriod(Context context) {
+    public String getLocationAutoUpdatePeriod(Context context) {
+        if (locationAutoUpdatePeriod != null) {
+            return locationAutoUpdatePeriod;
+        }
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD, "60");
+    }
+
+    public void clearLocationAutoUpdatePeriod() {
+        locationAutoUpdatePeriod = null;
     }
 
     public static boolean getLocationAutoUpdateNight(Context context) {
@@ -577,9 +649,16 @@ public class AppPreference {
                 Constants.KEY_PREF_LOCATION_AUTO_UPDATE_NIGHT, false);
     }
 
-    public static String getLocationUpdatePeriod(Context context) {
+    public String getLocationUpdatePeriod(Context context) {
+        if (locationUpdatePeriod != null) {
+            return locationUpdatePeriod;
+        }
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_LOCATION_UPDATE_PERIOD, "60");
+    }
+
+    public void clearLocationUpdatePeriod() {
+        locationUpdatePeriod = null;
     }
 
     public static boolean getLocationUpdateNight(Context context) {

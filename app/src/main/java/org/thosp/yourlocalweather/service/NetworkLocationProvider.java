@@ -138,11 +138,11 @@ public class NetworkLocationProvider extends Service {
         }
 
         if (null != intent.getAction()) switch (intent.getAction()) {
-            case "android.intent.action.START_LOCATION_UPDATE":
+            case "org.thosp.yourlocalweather.action.START_LOCATION_UPDATE":
                 startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
                 startLocationUpdate(intent.getParcelableExtra("inputLocation"));
                 return ret;
-            case "android.intent.action.LOCATION_UPDATE_CELLS_ONLY":
+            case "org.thosp.yourlocalweather.action.LOCATION_UPDATE_CELLS_ONLY":
                 startLocationUpdateCellsOnly();
                 return ret;
             default:
@@ -228,7 +228,7 @@ public class NetworkLocationProvider extends Service {
 
     private PendingIntent getIntentToGetCellsOnly() {
         Intent intent = new Intent(getBaseContext(), NetworkLocationProvider.class);
-        intent.setAction("android.intent.action.LOCATION_UPDATE_CELLS_ONLY");
+        intent.setAction("org.thosp.yourlocalweather.action.LOCATION_UPDATE_CELLS_ONLY");
         return PendingIntent.getService(getBaseContext(),
                 0,
                 intent,
