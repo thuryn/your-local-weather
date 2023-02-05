@@ -44,6 +44,19 @@ public class AppPreference {
     private String locationUpdatePeriod;
     private Boolean notificationEnabled;
     private Boolean locationCacheEnabled;
+    private Boolean voiceBtPermissionPassed;
+
+    public boolean getVoiceBtPermissionPassed(Context context) {
+        if (voiceBtPermissionPassed != null) {
+            return voiceBtPermissionPassed;
+        }
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(Constants.APP_SETTINGS_VOICE_BT_PERMISSION_PASSED, false);
+    }
+
+    public void setVoiceBtPermissionPassed(Context context, boolean newValue) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(
+                Constants.APP_SETTINGS_VOICE_BT_PERMISSION_PASSED, newValue).apply();
+    }
 
     public boolean getLocationCacheEnabled(Context context) {
         if (locationCacheEnabled != null) {

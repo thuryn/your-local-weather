@@ -21,9 +21,11 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.SettingsActivity;
 import org.thosp.yourlocalweather.YourLocalWeather;
@@ -259,13 +261,29 @@ public class GeneralPreferenceFragment extends PreferenceFragment implements
     private void checkAndDeleteLocations() {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getActivity());
         List<Location> allLocations = locationsDbHelper.getAllRows();
-        if (allLocations.size() <= ApiKeys.getAvailableLocations(getActivity())) {
+        int numberOfAvailableLocations = ApiKeys.getAvailableLocations(getActivity());
+        if (allLocations.size() <= numberOfAvailableLocations) {
             return;
         }
+        int locationsCounter = 0;
         for (Location location : allLocations) {
-            if (location.getOrderId() >= ApiKeys.getAvailableLocations(getActivity())) {
-                locationsDbHelper.deleteRecordFromTable(location);
+            if (location.getOrderId() == 0) {
+                if (location.isEnabled()) {
+                    locationsCounter++;
+                }
+            } else {
+                locationsCounter++;
             }
+        }
+        int numberOfLocationsToDelete = locationsCounter - numberOfAvailableLocations;
+        if (numberOfLocationsToDelete > 0) {
+            int initialLocationsSize = allLocations.size();
+            for (int locationOrderToDelete = 0; locationOrderToDelete < numberOfLocationsToDelete; locationOrderToDelete++) {
+                locationsDbHelper.deleteRecordFromTable(allLocations.get(initialLocationsSize - 1 - locationOrderToDelete));
+            }
+            Toast.makeText(getActivity(),
+                    R.string.locations_deleted_because_of_limit,
+                    Toast.LENGTH_LONG).show();
         }
         sendMessageToReconciliationDbService(true);
     }

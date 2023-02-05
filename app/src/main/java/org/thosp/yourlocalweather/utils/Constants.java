@@ -26,6 +26,7 @@ public class Constants {
     public static final String APP_SETTINGS_UPDATE_SOURCE = "update_source";
     public static final String APP_SETTINGS_LOCATION_CACHE_LASTING_HOURS = "location.cache.lasting";
     public static final String APP_SETTINGS_LOCATION_CACHE_ENABLED = "location.cache.enabled";
+    public static final String APP_SETTINGS_VOICE_BT_PERMISSION_PASSED = "voice.setting.permission.passed";
     public static final String LAST_UPDATE_TIME_IN_MS = "last_update";
     public static final String LAST_FORECAST_UPDATE_TIME_IN_MS = "last_forecast_update";
     public static final String LAST_LOCATION_UPDATE_TIME_IN_MS = "last_location_update";

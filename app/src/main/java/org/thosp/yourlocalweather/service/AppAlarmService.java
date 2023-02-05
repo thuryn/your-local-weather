@@ -23,6 +23,8 @@ import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -33,6 +35,8 @@ public class AppAlarmService extends AbstractCommonService {
     private static final String TAG = "AppAlarmService";
 
     public static final long START_SENSORS_CHECK_PERIOD = 3600000; //1 hour
+
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     @Override
     public IBinder onBind(Intent intent) {
@@ -47,18 +51,19 @@ public class AppAlarmService extends AbstractCommonService {
             return ret;
         }
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
-
-        if ("org.thosp.yourlocalweather.action.START_ALARM_SERVICE".equals(intent.getAction())) {
-            setAlarm();
-        } else if ("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE".equals(intent.getAction())) {
-            setAlarm();
-        } else if ("org.thosp.yourlocalweather.action.RESTART_NOTIFICATION_ALARM_SERVICE".equals(intent.getAction())) {
-            scheduleNextNotificationAlarm();
-        } else if ("org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM_AUTO".equals(intent.getAction())) {
-            startLocationWeatherAlarmAuto();
-        } else if ("org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM_REGULAR".equals(intent.getAction())) {
-            startLocationWeatherAlarmRegular();
-        }
+        executor.submit(() -> {
+            if ("org.thosp.yourlocalweather.action.START_ALARM_SERVICE".equals(intent.getAction())) {
+                setAlarm();
+            } else if ("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE".equals(intent.getAction())) {
+                setAlarm();
+            } else if ("org.thosp.yourlocalweather.action.RESTART_NOTIFICATION_ALARM_SERVICE".equals(intent.getAction())) {
+                scheduleNextNotificationAlarm();
+            } else if ("org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM_AUTO".equals(intent.getAction())) {
+                startLocationWeatherAlarmAuto();
+            } else if ("org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM_REGULAR".equals(intent.getAction())) {
+                startLocationWeatherAlarmRegular();
+            }
+        });
         return ret;
     }
 

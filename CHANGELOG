@@ -1,4 +1,7 @@
 v5.8.9
+Fix update of weather to avoid ANR
+
+v5.8.9
 Fix alarms
 
 v5.8.8

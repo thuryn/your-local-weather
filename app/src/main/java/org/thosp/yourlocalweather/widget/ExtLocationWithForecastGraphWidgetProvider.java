@@ -2,6 +2,7 @@ package org.thosp.yourlocalweather.widget;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -139,9 +140,9 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
                     R.id.widget_ext_loc_forecast_graph_3x3_forecast_5_widget_temperatures);
 
             if (weatherForecastRecord != null) {
-                remoteViews.setImageViewBitmap(R.id.widget_ext_loc_forecast_graph_3x3_widget_combined_chart,
-                        GraphUtils.getCombinedChart(context, appWidgetId,
-                                0.4f, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList(), currentLocation.getId(), currentLocation.getLocale()));
+                Bitmap graphImage = GraphUtils.getCombinedChart(context, appWidgetId,
+                        0.4f, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList(), currentLocation.getId(), currentLocation.getLocale());
+                remoteViews.setImageViewBitmap(R.id.widget_ext_loc_forecast_graph_3x3_widget_combined_chart, graphImage);
             }
         } catch (Exception e) {
             appendLog(context, TAG, "preLoadWeather:error updating weather forecast", e);

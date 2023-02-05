@@ -68,6 +68,8 @@ import org.thosp.yourlocalweather.utils.WindWithUnit;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -76,6 +78,8 @@ public class MainActivity extends BaseActivity
                                      ActivityCompat.OnRequestPermissionsResultCallback {
 
     private static final String TAG = "MainActivity";
+
+    private volatile boolean inited;
 
     private ImageView mIconWeatherView;
     private TextView mTemperatureView;
@@ -123,22 +127,35 @@ public class MainActivity extends BaseActivity
     private static final int REQUEST_LOCATION = 0;
     public Context storedContext;
     private Handler refreshDialogHandler;
-        
+
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         ((YourLocalWeather) getApplication()).applyTheme(this);
         super.onCreate(savedInstanceState);
-        locationsDbHelper = LocationsDbHelper.getInstance(this);
-        weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
-        currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(this);
-        setContentView(R.layout.activity_main);
 
+        executor.submit(() -> {
+            locationsDbHelper = LocationsDbHelper.getInstance(this);
+            weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
+            currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(this);
+            connectionDetector = new ConnectionDetector(MainActivity.this);
+
+            checkSettingsAndPermisions();
+            StartAlarmsTask startAlarmsTask = new StartAlarmsTask();
+            startAlarmsTask.execute(new Integer[0]);
+            Intent intentToStartUpdate = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
+            intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+            startService(intentToStartUpdate);
+            initializeWeatherReceiver();
+            updateActivityOnResume();
+            inited = true;
+        });
+
+        setContentView(R.layout.activity_main);
+        setTitle( R.string.label_activity_main);
         weatherConditionsIcons();
         initializeTextView();
-        initializeWeatherReceiver();
-
-        connectionDetector = new ConnectionDetector(MainActivity.this);
-        setTitle( R.string.label_activity_main);
 
         /**
          * Configure SwipeRefreshLayout
@@ -155,20 +172,9 @@ public class MainActivity extends BaseActivity
                 null,
                 WeatherForecastActivity.class, this));
 
-        //updateUI();
-        /**
-         * Share weather fab
-         */
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         this.storedContext = this;
         fab.setOnClickListener(fabListener);
-        checkSettingsAndPermisions();
-        //startAlarms();
-        StartAlarmsTask startAlarmsTask = new StartAlarmsTask();
-        startAlarmsTask.execute(new Integer[0]);
-        Intent intentToStartUpdate = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
-        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
-        startService(intentToStartUpdate);
     }
 
     class StartAlarmsTask extends AsyncTask<Integer[], Integer, Long> {
@@ -213,13 +219,21 @@ public class MainActivity extends BaseActivity
     @Override
     public void onResume() {
         super.onResume();
-        updateCurrentLocationAndButtonVisibility();
-        checkSettingsAndPermisions();
-        updateUI();
         mAppBarLayout.addOnOffsetChangedListener(this);
         registerReceiver(mWeatherUpdateReceiver,
                 new IntentFilter(
                         UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT));
+        if (inited) {
+            executor.submit(() -> {
+                updateActivityOnResume();
+            });
+        }
+    }
+
+    private void updateActivityOnResume() {
+        updateCurrentLocationAndButtonVisibility();
+        checkSettingsAndPermisions();
+        updateUI();
     }
 
     @Override
@@ -229,7 +243,9 @@ public class MainActivity extends BaseActivity
             mProgressDialog.dismiss();
         }
         mAppBarLayout.removeOnOffsetChangedListener(this);
-        unregisterReceiver(mWeatherUpdateReceiver);
+        if (mWeatherUpdateReceiver != null) {
+            unregisterReceiver(mWeatherUpdateReceiver);
+        }
     }
 
     @Override
@@ -338,33 +354,39 @@ public class MainActivity extends BaseActivity
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
 
         if (weatherRecord == null) {
-            mTemperatureView.setText(getString(R.string.temperature_with_degree,""));
-            dewPointView.setText(getString(R.string.dew_point_label, ""));
             String temperatureTypeFromPreferences = PreferenceManager.getDefaultSharedPreferences(this).getString(
                     Constants.KEY_PREF_TEMPERATURE_TYPE, "measured_only");
-            if ("measured_only".equals(temperatureTypeFromPreferences) ||
-                    "appearance_only".equals(temperatureTypeFromPreferences)) {
-                secondTemperatureView.setVisibility(View.GONE);
-                iconSecondTemperatureView.setVisibility(View.GONE);
-            } else {
-                secondTemperatureView.setVisibility(View.VISIBLE);
-                iconSecondTemperatureView.setVisibility(View.VISIBLE);
-                secondTemperatureView.setText(getString(R.string.label_apparent_temperature,""));
-            }
-            mDescriptionView.setText(R.string.location_not_found);
-            mLastUpdateView.setText(getString(R.string.last_update_label, ""));
-            mHumidityView.setText(getString(R.string.humidity_label,
-                    "",
-                    ""));
-            mPressureView.setText(getString(R.string.pressure_label,
-                    "",
-                    ""));
-            mWindSpeedView.setText(getString(R.string.wind_label,"", "", ""));
-            mCloudinessView.setText(getString(R.string.cloudiness_label,
-                    "",
-                    ""));
-            mSunriseView.setText(getString(R.string.sunrise_label, ""));
-            mSunsetView.setText(getString(R.string.sunset_label, ""));
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mTemperatureView.setText(getString(R.string.temperature_with_degree, ""));
+                    dewPointView.setText(getString(R.string.dew_point_label, ""));
+
+                    if ("measured_only".equals(temperatureTypeFromPreferences) ||
+                            "appearance_only".equals(temperatureTypeFromPreferences)) {
+                        secondTemperatureView.setVisibility(View.GONE);
+                        iconSecondTemperatureView.setVisibility(View.GONE);
+                    } else {
+                        secondTemperatureView.setVisibility(View.VISIBLE);
+                        iconSecondTemperatureView.setVisibility(View.VISIBLE);
+                        secondTemperatureView.setText(getString(R.string.label_apparent_temperature, ""));
+                    }
+                    mDescriptionView.setText(R.string.location_not_found);
+                    mLastUpdateView.setText(getString(R.string.last_update_label, ""));
+                    mHumidityView.setText(getString(R.string.humidity_label,
+                            "",
+                            ""));
+                    mPressureView.setText(getString(R.string.pressure_label,
+                            "",
+                            ""));
+                    mWindSpeedView.setText(getString(R.string.wind_label, "", "", ""));
+                    mCloudinessView.setText(getString(R.string.cloudiness_label,
+                            "",
+                            ""));
+                    mSunriseView.setText(getString(R.string.sunrise_label, ""));
+                    mSunsetView.setText(getString(R.string.sunset_label, ""));
+                }
+            });
             return;
         }
 
@@ -385,46 +407,55 @@ public class MainActivity extends BaseActivity
         String sunrise = Utils.unixTimeToFormatTime(this, weather.getSunrise(), currentLocation.getLocale());
         String sunset = Utils.unixTimeToFormatTime(this, weather.getSunset(), currentLocation.getLocale());
 
-        Utils.setWeatherIcon(mIconWeatherView, this, weatherRecord);
-        mTemperatureView.setText(getString(R.string.temperature_with_degree,
-                TemperatureUtil.getTemperatureWithUnit(this,
-                        weather,
-                        currentLocation.getLatitude(),
-                        weatherRecord.getLastUpdatedTime(),
-                        currentLocation.getLocale())));
-        dewPointView.setText(getString(R.string.dew_point_label, 
-                             TemperatureUtil.getDewPointWithUnit(this, weather, currentLocation.getLocale())));
+        String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(this,
+                weather,
+                currentLocation.getLatitude(),
+                weatherRecord.getLastUpdatedTime(),
+                currentLocation.getLocale());
+        String dewPointWithUnit = TemperatureUtil.getDewPointWithUnit(this, weather, currentLocation.getLocale());
         String secondTemperature = TemperatureUtil.getSecondTemperatureWithLabel(this,
                 weather,
                 currentLocation.getLatitude(),
                 weatherRecord.getLastUpdatedTime(),
                 currentLocation.getLocale());
-        if (secondTemperature != null) {
-            secondTemperatureView.setText(secondTemperature);
-            secondTemperatureView.setVisibility(View.VISIBLE);
-            iconSecondTemperatureView.setVisibility(View.VISIBLE);
-        } else {
-            secondTemperatureView.setVisibility(View.GONE);
-            iconSecondTemperatureView.setVisibility(View.GONE);
-        }
-        mDescriptionView.setText(Utils.getWeatherDescription(this, currentLocation.getLocaleAbbrev(), weather));
-        mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
-        mHumidityView.setText(getString(R.string.humidity_label,
-                String.valueOf(weather.getHumidity()),
-                mPercentSign));
-        mPressureView.setText(getString(R.string.pressure_label,
-                pressure.getPressure(AppPreference.getPressureDecimalPlaces(this)),
-                pressure.getPressureUnit()));
-        mWindSpeedView.setText(getString(R.string.wind_label,
-                                         windWithUnit.getWindSpeed(1),
-                                         windWithUnit.getWindUnit(),
-                                         windWithUnit.getWindDirection()));
-        mCloudinessView.setText(getString(R.string.cloudiness_label,
-                String.valueOf(weather.getClouds()),
-                mPercentSign));
-        mSunriseView.setText(getString(R.string.sunrise_label, sunrise));
-        mSunsetView.setText(getString(R.string.sunset_label, sunset));
-        localityView.setText(Utils.getCityAndCountry(this, currentLocation.getOrderId()));
+        String weatherDescription = Utils.getWeatherDescription(this, currentLocation.getLocaleAbbrev(), weather);
+        String pressureValue = pressure.getPressure(AppPreference.getPressureDecimalPlaces(this));
+        String cityAndCountry = Utils.getCityAndCountry(this, currentLocation.getOrderId());
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Utils.setWeatherIcon(mIconWeatherView, MainActivity.this, weatherRecord);
+                mTemperatureView.setText(getString(R.string.temperature_with_degree, temperatureWithUnit));
+                dewPointView.setText(getString(R.string.dew_point_label, dewPointWithUnit));
+                if (secondTemperature != null) {
+                    secondTemperatureView.setText(secondTemperature);
+                    secondTemperatureView.setVisibility(View.VISIBLE);
+                    iconSecondTemperatureView.setVisibility(View.VISIBLE);
+                } else {
+                    secondTemperatureView.setVisibility(View.GONE);
+                    iconSecondTemperatureView.setVisibility(View.GONE);
+                }
+                mDescriptionView.setText(weatherDescription);
+                mLastUpdateView.setText(getString(R.string.last_update_label, lastUpdate));
+                mHumidityView.setText(getString(R.string.humidity_label,
+                        String.valueOf(weather.getHumidity()),
+                        mPercentSign));
+                mPressureView.setText(getString(R.string.pressure_label,
+                        pressureValue,
+                        pressure.getPressureUnit()));
+                mWindSpeedView.setText(getString(R.string.wind_label,
+                        windWithUnit.getWindSpeed(1),
+                        windWithUnit.getWindUnit(),
+                        windWithUnit.getWindDirection()));
+                mCloudinessView.setText(getString(R.string.cloudiness_label,
+                        String.valueOf(weather.getClouds()),
+                        mPercentSign));
+                mSunriseView.setText(getString(R.string.sunrise_label, sunrise));
+                mSunsetView.setText(getString(R.string.sunset_label, sunset));
+                localityView.setText(cityAndCountry);
+            }
+        });
     }
 
     private void initializeTextView() {
@@ -561,61 +592,63 @@ public class MainActivity extends BaseActivity
     FloatingActionButton.OnClickListener fabListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(MainActivity.this);
-            CurrentWeatherDbHelper.WeatherRecord currentWeatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
+            executor.submit(() -> {
+                CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(MainActivity.this);
+                CurrentWeatherDbHelper.WeatherRecord currentWeatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
 
-            if (currentWeatherRecord == null) {
-                Toast.makeText(MainActivity.this,
-                        getString(R.string.current_weather_has_not_been_fetched),
-                        Toast.LENGTH_LONG).show();
-                return;
-            }
+                if (currentWeatherRecord == null) {
+                    Toast.makeText(MainActivity.this,
+                            getString(R.string.current_weather_has_not_been_fetched),
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
 
-            Weather weather = currentWeatherRecord.getWeather();
+                Weather weather = currentWeatherRecord.getWeather();
 
-            if (weather == null) {
-                Toast.makeText(MainActivity.this,
-                        getString(R.string.current_weather_has_not_been_fetched),
-                        Toast.LENGTH_LONG).show();
-                return;
-            }
+                if (weather == null) {
+                    Toast.makeText(MainActivity.this,
+                            getString(R.string.current_weather_has_not_been_fetched),
+                            Toast.LENGTH_LONG).show();
+                    return;
+                }
 
-            String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
-                    MainActivity.this,
-                    weather,
-                    currentLocation.getLatitude(),
-                    currentWeatherRecord.getLastUpdatedTime(),
-                    currentLocation.getLocale());
-            windWithUnit = AppPreference.getWindWithUnit(
-                    MainActivity.this,
-                    weather.getWindSpeed(),
-                    weather.getWindDirection(),
-                    currentLocation.getLocale());
-            String description;
-            String sunrise;
-            String sunset;
-            description = Utils.getWeatherDescription(MainActivity.this, currentLocation.getLocaleAbbrev(), weather);
-            sunrise = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunrise(), currentLocation.getLocale());
-            sunset = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunset(), currentLocation.getLocale());
-            String weatherDescription = getString(R.string.share_weather_descritpion,
-                                                  Utils.getLocationForSharingFromAddress(currentLocation.getAddress()),
-                                                  temperatureWithUnit,
-                                                  description,
-                                                  windWithUnit.getWindSpeed(1),
-                                                  windWithUnit.getWindUnit(),
-                                                  sunrise,
-                                                  sunset);
-            Intent shareIntent = new Intent(Intent.ACTION_SEND);
-            shareIntent.setType("text/plain");
-            shareIntent.putExtra(Intent.EXTRA_TEXT, weatherDescription);
-            shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            try {
-                startActivity(Intent.createChooser(shareIntent, getString(R.string.share_weather_title)));
-            } catch (ActivityNotFoundException e) {
-                Toast.makeText(MainActivity.this,
-                        getString(R.string.share_weather_app_not_found),
-                        Toast.LENGTH_LONG).show();
-            }
+                String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
+                        MainActivity.this,
+                        weather,
+                        currentLocation.getLatitude(),
+                        currentWeatherRecord.getLastUpdatedTime(),
+                        currentLocation.getLocale());
+                windWithUnit = AppPreference.getWindWithUnit(
+                        MainActivity.this,
+                        weather.getWindSpeed(),
+                        weather.getWindDirection(),
+                        currentLocation.getLocale());
+                String description;
+                String sunrise;
+                String sunset;
+                description = Utils.getWeatherDescription(MainActivity.this, currentLocation.getLocaleAbbrev(), weather);
+                sunrise = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunrise(), currentLocation.getLocale());
+                sunset = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunset(), currentLocation.getLocale());
+                String weatherDescription = getString(R.string.share_weather_descritpion,
+                        Utils.getLocationForSharingFromAddress(currentLocation.getAddress()),
+                        temperatureWithUnit,
+                        description,
+                        windWithUnit.getWindSpeed(1),
+                        windWithUnit.getWindUnit(),
+                        sunrise,
+                        sunset);
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, weatherDescription);
+                shareIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                try {
+                    startActivity(Intent.createChooser(shareIntent, getString(R.string.share_weather_title)));
+                } catch (ActivityNotFoundException e) {
+                    Toast.makeText(MainActivity.this,
+                            getString(R.string.share_weather_app_not_found),
+                            Toast.LENGTH_LONG).show();
+                }
+            });
         }
     };
 
@@ -967,27 +1000,32 @@ public class MainActivity extends BaseActivity
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
         }
         switchToNextLocationWhenCurrentIsAutoAndIsDisabled();
-        if (mToolbarMenu != null) {
-            if ((currentLocation.getOrderId() == 0) && !currentLocation.isEnabled()) {
-                mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible(false);
-            } else {
-                mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible(true);
-            }
-            Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
-            if (!autoLocation.isEnabled()) {
-                mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(false);
-            } else {
-                mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(true);
-            }
-        }
-        AppPreference.setCurrentLocationId(this, currentLocation);
+        Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
         int maxOrderId = locationsDbHelper.getMaxOrderId();
-        if ((maxOrderId > 1) ||
-                ((maxOrderId == 1) && (locationsDbHelper.getLocationByOrderId(0).isEnabled()))) {
-            switchLocationButton.setVisibility(View.VISIBLE);
-        } else {
-            switchLocationButton.setVisibility(View.GONE);
-        }
+        AppPreference.setCurrentLocationId(MainActivity.this, currentLocation);
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (mToolbarMenu != null) {
+                    if ((currentLocation.getOrderId() == 0) && !currentLocation.isEnabled()) {
+                        mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible(false);
+                    } else {
+                        mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible(true);
+                    }
+                    if (!autoLocation.isEnabled()) {
+                        mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(false);
+                    } else {
+                        mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(true);
+                    }
+                }
+                if ((maxOrderId > 1) ||
+                        ((maxOrderId == 1) && (locationsDbHelper.getLocationByOrderId(0).isEnabled()))) {
+                    switchLocationButton.setVisibility(View.VISIBLE);
+                } else {
+                    switchLocationButton.setVisibility(View.GONE);
+                }
+            }
+        });
     }
 
     protected void sendMessageToCurrentWeatherService(Location location, String updateSource) {

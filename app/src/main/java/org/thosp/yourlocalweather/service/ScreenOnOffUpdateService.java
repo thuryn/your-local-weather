@@ -25,6 +25,8 @@ import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -38,6 +40,8 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     private static final long REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT = 180000; //3 min
     private static final long SCREEN_ON_RETRY_FIRST = 1000;
     private static final long SCREEN_ON_RETRY_NEXT = 1000;
+
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     private Lock receiversLock = new ReentrantLock();
     private volatile boolean receiversRegistered;
@@ -190,56 +194,58 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     }
 
     private void processScreenOnInBg(Context context) {
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-        String updateAutoPeriodStr = AppPreference.getInstance().getLocationAutoUpdatePeriod(getBaseContext());
-        boolean locationAutoUpdateNight = false;
-        boolean locationUpdateNight = false;
+        executor.submit(() -> {
+            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+            String updateAutoPeriodStr = AppPreference.getInstance().getLocationAutoUpdatePeriod(getBaseContext());
+            boolean locationAutoUpdateNight = false;
+            boolean locationUpdateNight = false;
 
-        Calendar nowInCalendar = Calendar.getInstance();
-        if (nowInCalendar.get(Calendar.HOUR_OF_DAY) < 6) {
-            locationAutoUpdateNight = AppPreference.getLocationAutoUpdateNight(getBaseContext());
-            locationUpdateNight = AppPreference.getLocationUpdateNight(getBaseContext());
-        }
+            Calendar nowInCalendar = Calendar.getInstance();
+            if (nowInCalendar.get(Calendar.HOUR_OF_DAY) < 6) {
+                locationAutoUpdateNight = AppPreference.getLocationAutoUpdateNight(getBaseContext());
+                locationUpdateNight = AppPreference.getLocationUpdateNight(getBaseContext());
+            }
 
-        org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
-        boolean autoLocationEnabled = (currentLocation != null) && currentLocation.isEnabled() && "0".equals(updateAutoPeriodStr);
+            org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
+            boolean autoLocationEnabled = (currentLocation != null) && currentLocation.isEnabled() && "0".equals(updateAutoPeriodStr);
 
-        if ((locationAutoUpdateNight || locationUpdateNight) && autoLocationEnabled) {
-            checkNotification(context);
-            return;
-        }
-        CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
-        final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
-
-        if (locationAutoUpdateNight || autoLocationEnabled) {
-            CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
-            WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
-            long lastUpdateTimeInMilis = Utils.getLastUpdateTimeInMilis(weatherRecord, weatherForecastRecord, currentLocation);
-            long now = System.currentTimeMillis();
-            appendLog(context, TAG, "SCREEN_ON called, lastUpdate=",
-                    currentLocation.getLastLocationUpdate(),
-                    ", now=",
-                    now,
-                    ", lastUpdateTimeInMilis=",
-                    lastUpdateTimeInMilis);
-            if ((now <= (lastUpdateTimeInMilis + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now <= (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
-                timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT - (now - lastUpdateTimeInMilis));
+            if ((locationAutoUpdateNight || locationUpdateNight) && autoLocationEnabled) {
                 checkNotification(context);
                 return;
             }
-            checkNotification(context);
-            requestWeatherCheck(currentLocation.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER, false);
-        } else if (locationUpdateNight) {
-            List<Location> locations = locationsDbHelper.getAllRows();
-            for (Location location: locations) {
-                if (location.getOrderId() == 0) {
-                    continue;
-                } else {
-                    sendMessageToCurrentWeatherService(location, AppWakeUpManager.SOURCE_CURRENT_WEATHER, true);
+            CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
+            final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
+
+            if (locationAutoUpdateNight || autoLocationEnabled) {
+                CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
+                WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
+                long lastUpdateTimeInMilis = Utils.getLastUpdateTimeInMilis(weatherRecord, weatherForecastRecord, currentLocation);
+                long now = System.currentTimeMillis();
+                appendLog(context, TAG, "SCREEN_ON called, lastUpdate=",
+                        currentLocation.getLastLocationUpdate(),
+                        ", now=",
+                        now,
+                        ", lastUpdateTimeInMilis=",
+                        lastUpdateTimeInMilis);
+                if ((now <= (lastUpdateTimeInMilis + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now <= (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
+                    timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT - (now - lastUpdateTimeInMilis));
+                    checkNotification(context);
+                    return;
+                }
+                checkNotification(context);
+                requestWeatherCheck(currentLocation.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER, false);
+            } else if (locationUpdateNight) {
+                List<Location> locations = locationsDbHelper.getAllRows();
+                for (Location location : locations) {
+                    if (location.getOrderId() == 0) {
+                        continue;
+                    } else {
+                        sendMessageToCurrentWeatherService(location, AppWakeUpManager.SOURCE_CURRENT_WEATHER, true);
+                    }
                 }
             }
-        }
-        timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
+            timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
+        });
     }
 
     private void checkNotification(Context context) {

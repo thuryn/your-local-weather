@@ -28,10 +28,13 @@ import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     private static String TAG = "AbstractWidgetProvider";
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     protected Location currentLocation;
     volatile boolean servicesStarted = false;
@@ -40,68 +43,73 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     public void onEnabled(Context context) {
         appendLog(context, TAG, "onEnabled:start");
         super.onEnabled(context);
-        LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
-        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
-        if (PermissionUtil.noPermissionGranted(context)) {
-            Toast.makeText(context,
-                    R.string.permissions_not_granted,
-                    Toast.LENGTH_LONG).show();
-        }
-        ComponentName widgetComponent = new ComponentName(context, getWidgetClass());
+        executor.submit(() -> {
+                    LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
+                    WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
+                    if (PermissionUtil.noPermissionGranted(context)) {
+                        Toast.makeText(context,
+                                R.string.permissions_not_granted,
+                                Toast.LENGTH_LONG).show();
+                    }
+                    ComponentName widgetComponent = new ComponentName(context, getWidgetClass());
 
-        AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
-        int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
-        if (widgetIds.length == 0) {
-            return;
-        }
-        int currentWidget = widgetIds[0];
-        Long locationId = widgetSettingsDbHelper.getParamLong(currentWidget, "locationId");
-        if (locationId == null) {
-            currentLocation = locationsDbHelper.getLocationByOrderId(0);
-        } else {
-            currentLocation = locationsDbHelper.getLocationById(locationId);
-        }
-        if (currentLocation == null) {
-            return;
-        }
-        if (!currentLocation.isEnabled()) {
-            currentLocation = locationsDbHelper.getLocationByOrderId(1);
-        }
+                    AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
+                    int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
+                    if (widgetIds.length == 0) {
+                        return;
+                    }
+                    int currentWidget = widgetIds[0];
+                    Long locationId = widgetSettingsDbHelper.getParamLong(currentWidget, "locationId");
+                    if (locationId == null) {
+                        currentLocation = locationsDbHelper.getLocationByOrderId(0);
+                    } else {
+                        currentLocation = locationsDbHelper.getLocationById(locationId);
+                    }
+                    if (currentLocation == null) {
+                        return;
+                    }
+                    if (!currentLocation.isEnabled()) {
+                        currentLocation = locationsDbHelper.getLocationByOrderId(1);
+                    }
+                });
         appendLog(context, TAG, "onEnabled:end");
     }
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        appendLog(context, TAG, "intent:", intent, ", widget:", getWidgetClass());
-        Bundle extras = intent.getExtras();
-        if (extras != null) {
-            int appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID);
-            appendLog(context, TAG, "EXTRA_APPWIDGET_ID:" + appWidgetId);
-        }
-
         super.onReceive(context, intent);
-        AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
-
-        Integer widgetId = null;
-        ComponentName widgetComponent = new ComponentName(context, getWidgetClass());
-
-        if (intent.hasExtra("widgetId")) {
-            widgetId = intent.getIntExtra("widgetId", 0);
-            if (widgetId == 0) {
-                widgetId = null;
+        Bundle extras = intent.getExtras();
+        executor.submit(() -> {
+            appendLog(context, TAG, "intent:", intent, ", widget:", getWidgetClass());
+            if (extras != null) {
+                int appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID);
+                appendLog(context, TAG, "EXTRA_APPWIDGET_ID:" + appWidgetId);
             }
-        }
-        if (widgetId == null) {
-            int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
-            if (widgetIds.length == 0) {
+
+
+            AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
+
+            Integer widgetId = null;
+            ComponentName widgetComponent = new ComponentName(context, getWidgetClass());
+
+            if (intent.hasExtra("widgetId")) {
+                widgetId = intent.getIntExtra("widgetId", 0);
+                if (widgetId == 0) {
+                    widgetId = null;
+                }
+            }
+            if (widgetId == null) {
+                int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
+                if (widgetIds.length == 0) {
+                    return;
+                }
+                for (int widgetIditer: widgetIds) {
+                    performActionOnReceiveForWidget(context, intent, widgetIditer);
+                }
                 return;
             }
-            for (int widgetIditer: widgetIds) {
-                performActionOnReceiveForWidget(context, intent, widgetIditer);
-            }
-            return;
-        }
-        performActionOnReceiveForWidget(context, intent, widgetId);
+            performActionOnReceiveForWidget(context, intent, widgetId);
+        });
     }
 
     private void performActionOnReceiveForWidget(Context context, Intent intent, int widgetId) {
@@ -154,55 +162,58 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        appendLog(context, TAG, "onUpdate:start");
         super.onUpdate(context, appWidgetManager, appWidgetIds);
-
-        ComponentName componentName = new ComponentName(context, getWidgetClass());
-        int[] appWidgetIdsForWidget = appWidgetManager.getAppWidgetIds(componentName);
-
-        for (int appWidgetId : appWidgetIds) {
-
-            updateCurrentLocation(context, appWidgetId);
-            boolean found = false;
-            for (int widgetIdToSearch: appWidgetIdsForWidget) {
-                if (widgetIdToSearch == appWidgetId) {
-                    found = true;
-                }
-            }
-            if (!found) {
-                continue;
-            }
-
-            RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
-                    getWidgetLayout());
-
-            if (ExtLocationWidgetProvider.class.equals(getWidgetClass())) {
-                ExtLocationWidgetProvider.setWidgetTheme(context, remoteViews);
-            } else if (MoreWidgetProvider.class.equals(getWidgetClass())) {
-                MoreWidgetProvider.setWidgetTheme(context, remoteViews);
-            } else if (LessWidgetProvider.class.equals(getWidgetClass())) {
-                LessWidgetProvider.setWidgetTheme(context, remoteViews);
-            } else if (ExtLocationWithForecastWidgetProvider.class.equals(getWidgetClass())) {
-                ExtLocationWithForecastWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
-            } else if (WeatherForecastWidgetProvider.class.equals(getWidgetClass())) {
-                WeatherForecastWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
-            } else if (ExtLocationWithGraphWidgetProvider.class.equals(getWidgetClass())) {
-                ExtLocationWithGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
-            } else if (WeatherGraphWidgetProvider.class.equals(getWidgetClass())) {
-                WeatherGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
-            } else if (ExtLocationWithForecastGraphWidgetProvider.class.equals(getWidgetClass())) {
-                ExtLocationWithForecastGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
-            }
-            setWidgetIntents(context, remoteViews, getWidgetClass(), appWidgetId);
-            preLoadWeather(context, remoteViews, appWidgetId);
-
+        executor.submit(() -> {
             try {
-                appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+                appendLog(context, TAG, "onUpdate:start");
+                ComponentName componentName = new ComponentName(context, getWidgetClass());
+                int[] appWidgetIdsForWidget = appWidgetManager.getAppWidgetIds(componentName);
+
+                for (int appWidgetId : appWidgetIds) {
+
+                    updateCurrentLocation(context, appWidgetId);
+                    boolean found = false;
+                    for (int widgetIdToSearch : appWidgetIdsForWidget) {
+                        if (widgetIdToSearch == appWidgetId) {
+                            found = true;
+                        }
+                    }
+                    if (!found) {
+                        continue;
+                    }
+
+                    RemoteViews remoteViews = new RemoteViews(context.getPackageName(),
+                            getWidgetLayout());
+
+                    if (ExtLocationWidgetProvider.class.equals(getWidgetClass())) {
+                        ExtLocationWidgetProvider.setWidgetTheme(context, remoteViews);
+                    } else if (MoreWidgetProvider.class.equals(getWidgetClass())) {
+                        MoreWidgetProvider.setWidgetTheme(context, remoteViews);
+                    } else if (LessWidgetProvider.class.equals(getWidgetClass())) {
+                        LessWidgetProvider.setWidgetTheme(context, remoteViews);
+                    } else if (ExtLocationWithForecastWidgetProvider.class.equals(getWidgetClass())) {
+                        ExtLocationWithForecastWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
+                    } else if (WeatherForecastWidgetProvider.class.equals(getWidgetClass())) {
+                        WeatherForecastWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
+                    } else if (ExtLocationWithGraphWidgetProvider.class.equals(getWidgetClass())) {
+                        ExtLocationWithGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
+                    } else if (WeatherGraphWidgetProvider.class.equals(getWidgetClass())) {
+                        WeatherGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
+                    } else if (ExtLocationWithForecastGraphWidgetProvider.class.equals(getWidgetClass())) {
+                        ExtLocationWithForecastGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
+                    }
+                    setWidgetIntents(context, remoteViews, getWidgetClass(), appWidgetId);
+                    ContextCompat.getMainExecutor(context).execute(()  -> {
+                        preLoadWeather(context, remoteViews, appWidgetId);
+
+                        appWidgetManager.updateAppWidget(appWidgetId, remoteViews);
+                    });
+                }
             } catch (Exception e) {
                 appendLog(context, TAG, e.getMessage(), e);
             }
-        }
-        appendLog(context, TAG, "onUpdate:end");
+            appendLog(context, TAG, "onUpdate:end");
+        });
     }
 
     @Override

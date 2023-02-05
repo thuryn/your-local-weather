@@ -16,6 +16,8 @@ import org.thosp.yourlocalweather.utils.Utils;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLogWithDate;
@@ -26,6 +28,8 @@ import androidx.core.content.ContextCompat;
 public class StartAutoLocationJob extends AbstractAppJob {
     private static final String TAG = "StartAutoLocationJob";
     public static final int JOB_ID = 1992056442;
+
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     private enum Updated {
         REGULARLY,
@@ -38,13 +42,15 @@ public class StartAutoLocationJob extends AbstractAppJob {
     @Override
     public boolean onStartJob(JobParameters params) {
         this.params = params;
-        appendLog(this, TAG, "onStartJob");
-        try {
-            performUpdateOfLocation();
-            startSensorBasedUpdates();
-        } catch (Exception ie) {
-            appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
-        }
+        executor.submit(() -> {
+            appendLog(this, TAG, "onStartJob");
+            try {
+                performUpdateOfLocation();
+                startSensorBasedUpdates();
+            } catch (Exception ie) {
+                appendLog(getBaseContext(), TAG, "currentWeatherServiceIsNotBound interrupted:", ie);
+            }
+        });
         jobFinished(params, false);
         return true;
     }

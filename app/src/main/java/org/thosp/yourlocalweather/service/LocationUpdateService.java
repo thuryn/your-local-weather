@@ -41,6 +41,8 @@ import org.thosp.yourlocalweather.utils.WidgetUtils;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
 public class LocationUpdateService extends AbstractCommonService implements ProcessResultFromAddressResolution, LocationListener {
@@ -52,6 +54,8 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
     private static final long GPS_LOCATION_TIMEOUT_IN_MS = 240000L;
     private static final long GPS_MAX_LOCATION_AGE_IN_MS = 350000L; //5min
     private static final long LOCATION_UPDATE_RESEND_INTERVAL_IN_MS = 10000L; //20s
+
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     private LocationManager locationManager;
 
@@ -74,30 +78,33 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
-        startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
         if (intent == null) {
             return ret;
         }
         forceUpdate = false;
         updateSource = null;
-        appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
-        appendLog(getBaseContext(), TAG, "startForegroundService");
-        switch (intent.getAction()) {
-            case "org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE":
-                startLocationAndWeatherUpdate(intent);
-                return ret;
-            case "org.thosp.yourlocalweather.action.START_LOCATION_ONLY_UPDATE":
-                updateNetworkLocation(intent);
-                return ret;
-            case "org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CHANGED":
-                onLocationChanged(intent.getParcelableExtra("location"),
-                                intent.hasExtra("address") ? intent.getParcelableExtra("address") : null);
-                return ret;
-            case "org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CANCELED":
-                onLocationChangedCanceled();
-                return ret;
-            default: return ret;
-        }
+        executor.submit(() -> {
+                startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+                appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
+                appendLog(getBaseContext(), TAG, "startForegroundService");
+                switch (intent.getAction()) {
+                    case "org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE":
+                        startLocationAndWeatherUpdate(intent);
+                        return;
+                    case "org.thosp.yourlocalweather.action.START_LOCATION_ONLY_UPDATE":
+                        updateNetworkLocation(intent);
+                        return;
+                    case "org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CHANGED":
+                        onLocationChanged(intent.getParcelableExtra("location"),
+                                        intent.hasExtra("address") ? intent.getParcelableExtra("address") : null);
+                        return;
+                    case "org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CANCELED":
+                        onLocationChangedCanceled();
+                        return;
+                    default: return;
+                }
+        });
+        return ret;
     }
 
     public void onLocationChangedCanceled() {

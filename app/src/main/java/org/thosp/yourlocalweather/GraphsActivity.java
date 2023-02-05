@@ -51,12 +51,18 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class GraphsActivity extends ForecastingActivity {
 
     private static final String TAG = "GraphsActivity";
+
+    private volatile boolean inited;
+
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     private CombinedChart combinedChart;
     private CardView combinedChartCard;
@@ -101,33 +107,36 @@ public class GraphsActivity extends ForecastingActivity {
         rainBarCard = (CardView) findViewById(R.id.rain_bar_chart_card);
         snowBarChart = (BarChart) findViewById(R.id.bar_snow_chart);
         snowBarCard = (CardView) findViewById(R.id.snow_bar_chart_card);
-        TextView temperatureLabel = (TextView) findViewById(R.id.graphs_temperature_label);
-        temperatureLabel.setText(getString(R.string.label_temperature) +
-                                         ", " +
-                                        TemperatureUtil.getTemperatureUnit(this));
-        TextView windLabel = (TextView) findViewById(R.id.graphs_wind_label);
-        windLabel.setText(getString(R.string.label_wind) + ", " + AppPreference.getWindUnit(this));
-        TextView rainLabel = (TextView) findViewById(R.id.graphs_rain_label);
-        rainLabel.setText(getString(R.string.label_rain) + ", " + getString(AppPreference.getRainOrSnowUnit(this)));
-        TextView snowLabel = (TextView) findViewById(R.id.graphs_snow_label);
-        snowLabel.setText(getString(R.string.label_snow) + ", " + getString(AppPreference.getRainOrSnowUnit(this)));
-        TextView rainBarLabel = (TextView) findViewById(R.id.graphs_bar_rain_label);
-        rainBarLabel.setText(getString(R.string.label_rain) + ", " + getString(AppPreference.getRainOrSnowUnit(this)));
-        TextView snowBarLabel = (TextView) findViewById(R.id.graphs_bar_snow_label);
-        snowBarLabel.setText(getString(R.string.label_snow) + ", " + getString(AppPreference.getRainOrSnowUnit(this)));
-        TextView pressureLabel = (TextView) findViewById(R.id.graphs_pressure_label);
-        pressureLabel.setText(getString(R.string.label_pressure) + ", " + AppPreference.getPressureUnit(this));
-        visibleGraphs = AppPreference.getGraphsActivityVisibleGraphs(this);
-        combinedGraphValues = AppPreference.getCombinedGraphValues(this);
-        //forecastType = (Switch) findViewById(R.id.forecast_forecastType);
+        executor.submit(() -> {
+                    TextView temperatureLabel = (TextView) findViewById(R.id.graphs_temperature_label);
+                    temperatureLabel.setText(getString(R.string.label_temperature) +
+                            ", " +
+                            TemperatureUtil.getTemperatureUnit(this));
+                    TextView windLabel = (TextView) findViewById(R.id.graphs_wind_label);
+                    windLabel.setText(getString(R.string.label_wind) + ", " + AppPreference.getWindUnit(this));
+                    TextView rainLabel = (TextView) findViewById(R.id.graphs_rain_label);
+                    rainLabel.setText(getString(R.string.label_rain) + ", " + getString(AppPreference.getRainOrSnowUnit(this)));
+                    TextView snowLabel = (TextView) findViewById(R.id.graphs_snow_label);
+                    snowLabel.setText(getString(R.string.label_snow) + ", " + getString(AppPreference.getRainOrSnowUnit(this)));
+                    TextView rainBarLabel = (TextView) findViewById(R.id.graphs_bar_rain_label);
+                    rainBarLabel.setText(getString(R.string.label_rain) + ", " + getString(AppPreference.getRainOrSnowUnit(this)));
+                    TextView snowBarLabel = (TextView) findViewById(R.id.graphs_bar_snow_label);
+                    snowBarLabel.setText(getString(R.string.label_snow) + ", " + getString(AppPreference.getRainOrSnowUnit(this)));
+                    TextView pressureLabel = (TextView) findViewById(R.id.graphs_pressure_label);
+                    pressureLabel.setText(getString(R.string.label_pressure) + ", " + AppPreference.getPressureUnit(this));
+                    visibleGraphs = AppPreference.getGraphsActivityVisibleGraphs(this);
+                    combinedGraphValues = AppPreference.getCombinedGraphValues(this);
+                    //forecastType = (Switch) findViewById(R.id.forecast_forecastType);
 
-        /*forecastType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                AppPreference.setForecastType(getBaseContext(), isChecked ? 2 : 1);
-                updateUI();
-            }
-        });*/
-        updateUI();
+            /*forecastType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    AppPreference.setForecastType(getBaseContext(), isChecked ? 2 : 1);
+                    updateUI();
+                }
+            });*/
+                    updateUI();
+                    inited = true;
+                });
         NestedScrollView mRecyclerView = (NestedScrollView) findViewById(R.id.graph_scroll_view);
         mRecyclerView.setOnTouchListener(new ActivityTransitionTouchListener(
                 WeatherForecastActivity.class,
@@ -140,7 +149,11 @@ public class GraphsActivity extends ForecastingActivity {
         registerReceiver(mWeatherUpdateReceiver,
                 new IntentFilter(
                         UpdateWeatherService.ACTION_GRAPHS_UPDATE_RESULT));
-        updateUI();
+        if (inited) {
+            executor.submit(() -> {
+                updateUI();
+            });
+        }
     }
 
     private void setCombinedChart(long locationId, Locale locale) {
@@ -950,12 +963,17 @@ public class GraphsActivity extends ForecastingActivity {
 
     @Override
     protected void updateUI() {
-        View switchPanel = findViewById(R.id.graph_switch_panel);
-        if (ApiKeys.isWeatherForecastFeaturesFree(this)) {
-            switchPanel.setVisibility(View.INVISIBLE);
-        } else {
-            switchPanel.setVisibility(View.VISIBLE);
-        }
+        runOnUiThread(new Runnable() {
+                          @Override
+                          public void run() {
+                              View switchPanel = findViewById(R.id.graph_switch_panel);
+                              if (ApiKeys.isWeatherForecastFeaturesFree(GraphsActivity.this)) {
+                                  switchPanel.setVisibility(View.INVISIBLE);
+                              } else {
+                                  switchPanel.setVisibility(View.VISIBLE);
+                              }
+                          }
+                      });
 
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
         long locationId = AppPreference.getCurrentLocationId(this);
@@ -980,66 +998,78 @@ public class GraphsActivity extends ForecastingActivity {
             return;
         }
 
-        TextView temperatureLabel = (TextView) findViewById(R.id.graphs_temperature_label);
-        temperatureLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
-        temperatureLabel.setTextColor(PreferenceUtil.getTextColor(this));
-        TextView windLabel = (TextView) findViewById(R.id.graphs_wind_label);
-        windLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
-        windLabel.setTextColor(PreferenceUtil.getTextColor(this));
-        TextView rainLabel = (TextView) findViewById(R.id.graphs_rain_label);
-        rainLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
-        rainLabel.setTextColor(PreferenceUtil.getTextColor(this));
-        TextView snowLabel = (TextView) findViewById(R.id.graphs_snow_label);
-        snowLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
-        snowLabel.setTextColor(PreferenceUtil.getTextColor(this));
-        TextView rainBarLabel = (TextView) findViewById(R.id.graphs_bar_rain_label);
-        rainBarLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
-        rainBarLabel.setTextColor(PreferenceUtil.getTextColor(this));
-        TextView snowBarLabel = (TextView) findViewById(R.id.graphs_bar_snow_label);
-        snowBarLabel.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
-        snowBarLabel.setTextColor(PreferenceUtil.getTextColor(this));
+        int backgroundColor = PreferenceUtil.getBackgroundColor(this);
+        int textColor = PreferenceUtil.getTextColor(this);
+        String temperatureUnit = TemperatureUtil.getTemperatureUnit(this);
+        String rainSnowUnit = getString(AppPreference.getRainOrSnowUnit(this));
+        String windUnit = AppPreference.getWindUnit(this);
+        String pressureUnit = AppPreference.getPressureUnit(this);
+        String cityAndCountry = Utils.getCityAndCountry(this, currentLocation.getOrderId());
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                TextView temperatureLabel = (TextView) findViewById(R.id.graphs_temperature_label);
+                temperatureLabel.setBackgroundColor(backgroundColor);
+                temperatureLabel.setTextColor(textColor);
+                TextView windLabel = (TextView) findViewById(R.id.graphs_wind_label);
+                windLabel.setBackgroundColor(backgroundColor);
+                windLabel.setTextColor(textColor);
+                TextView rainLabel = (TextView) findViewById(R.id.graphs_rain_label);
+                rainLabel.setBackgroundColor(backgroundColor);
+                rainLabel.setTextColor(textColor);
+                TextView snowLabel = (TextView) findViewById(R.id.graphs_snow_label);
+                snowLabel.setBackgroundColor(backgroundColor);
+                snowLabel.setTextColor(textColor);
+                TextView rainBarLabel = (TextView) findViewById(R.id.graphs_bar_rain_label);
+                rainBarLabel.setBackgroundColor(backgroundColor);
+                rainBarLabel.setTextColor(textColor);
+                TextView snowBarLabel = (TextView) findViewById(R.id.graphs_bar_snow_label);
+                snowBarLabel.setBackgroundColor(backgroundColor);
+                snowBarLabel.setTextColor(textColor);
 
-        TextView combinedLabel = (TextView) findViewById(R.id.graphs_combined_label);
-        StringBuilder combinedGraphLabel  = new StringBuilder();
-        if (combinedGraphValues.contains(0)) {
-            combinedGraphLabel.append(getString(R.string.label_temperature));
-            combinedGraphLabel.append(" (");
-            combinedGraphLabel.append(TemperatureUtil.getTemperatureUnit(this));
-            combinedGraphLabel.append(")");
-        }
-        if (combinedGraphValues.contains(1)) {
-            combinedGraphLabel.append(", ");
-            combinedGraphLabel.append(getString(R.string.graph_rain_label));
-            combinedGraphLabel.append("/");
-            combinedGraphLabel.append(getString(R.string.graph_snow_label));
-            combinedGraphLabel.append(" (");
-            combinedGraphLabel.append(getString(AppPreference.getRainOrSnowUnit(this)));
-            combinedGraphLabel.append(")");
-        }
-        if (combinedGraphValues.contains(2)) {
-            combinedGraphLabel.append(", ");
-            combinedGraphLabel.append(getString(R.string.label_wind));
-            combinedGraphLabel.append(" (");
-            combinedGraphLabel.append(AppPreference.getWindUnit(this));
-            combinedGraphLabel.append(")");
-        }
-        if (combinedGraphValues.contains(3)) {
-            combinedGraphLabel.append(", ");
-            combinedGraphLabel.append(getString(R.string.label_pressure));
-            combinedGraphLabel.append(" (");
-            combinedGraphLabel.append(AppPreference.getPressureUnit(this));
-            combinedGraphLabel.append(")");
-        }
-        combinedLabel.setText(combinedGraphLabel.toString());
+                TextView combinedLabel = (TextView) findViewById(R.id.graphs_combined_label);
+                StringBuilder combinedGraphLabel = new StringBuilder();
+                if (combinedGraphValues.contains(0)) {
+                    combinedGraphLabel.append(getString(R.string.label_temperature));
+                    combinedGraphLabel.append(" (");
+                    combinedGraphLabel.append(temperatureUnit);
+                    combinedGraphLabel.append(")");
+                }
+                if (combinedGraphValues.contains(1)) {
+                    combinedGraphLabel.append(", ");
+                    combinedGraphLabel.append(getString(R.string.graph_rain_label));
+                    combinedGraphLabel.append("/");
+                    combinedGraphLabel.append(getString(R.string.graph_snow_label));
+                    combinedGraphLabel.append(" (");
+                    combinedGraphLabel.append(rainSnowUnit);
+                    combinedGraphLabel.append(")");
+                }
+                if (combinedGraphValues.contains(2)) {
+                    combinedGraphLabel.append(", ");
+                    combinedGraphLabel.append(getString(R.string.label_wind));
+                    combinedGraphLabel.append(" (");
+                    combinedGraphLabel.append(windUnit);
+                    combinedGraphLabel.append(")");
+                }
+                if (combinedGraphValues.contains(3)) {
+                    combinedGraphLabel.append(", ");
+                    combinedGraphLabel.append(getString(R.string.label_pressure));
+                    combinedGraphLabel.append(" (");
+                    combinedGraphLabel.append(pressureUnit);
+                    combinedGraphLabel.append(")");
+                }
+                combinedLabel.setText(combinedGraphLabel.toString());
 
-        setCombinedChart(locationId, currentLocation.getLocale());
-        setTemperatureChart(locationId, currentLocation.getLocale());
-        setWindChart(locationId, currentLocation.getLocale());
-        setRainChart(locationId, currentLocation.getLocale());
-        setRainBarChart(locationId, currentLocation.getLocale());
-        setSnowChart(locationId, currentLocation.getLocale());
-        setSnowBarChart(locationId, currentLocation.getLocale());
-        setPressureChart(locationId, currentLocation.getLocale());
-        localityView.setText(Utils.getCityAndCountry(this, currentLocation.getOrderId()));
+                setCombinedChart(locationId, currentLocation.getLocale());
+                setTemperatureChart(locationId, currentLocation.getLocale());
+                setWindChart(locationId, currentLocation.getLocale());
+                setRainChart(locationId, currentLocation.getLocale());
+                setRainBarChart(locationId, currentLocation.getLocale());
+                setSnowChart(locationId, currentLocation.getLocale());
+                setSnowBarChart(locationId, currentLocation.getLocale());
+                setPressureChart(locationId, currentLocation.getLocale());
+                localityView.setText(cityAndCountry);
+            }
+        });
     }
 }

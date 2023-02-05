@@ -21,11 +21,16 @@ import org.thosp.yourlocalweather.utils.PreferenceUtil.Theme;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class YourLocalWeather extends Application {
 
     private static final String TAG = "YourLocalWeather";
 
     private static Theme sTheme = Theme.light;
+
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     @Override
     public void onCreate() {
@@ -35,27 +40,29 @@ public class YourLocalWeather extends Application {
         /*StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().build());
         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().build());*/
 
-        PreferenceManager.getDefaultSharedPreferences(this)
-                .edit()
-                .putString(Constants.PREF_OS_LANGUAGE, Resources.getSystem().getConfiguration().locale.getLanguage())
-                .apply();
-        AppPreference appPreference = AppPreference.getInstance();
-        appPreference.clearLanguage();
-        LanguageUtil.setLanguage(this, appPreference.getLanguage(this));
+        executor.submit(() -> {
+            PreferenceManager.getDefaultSharedPreferences(this)
+                    .edit()
+                    .putString(Constants.PREF_OS_LANGUAGE, Resources.getSystem().getConfiguration().locale.getLanguage())
+                    .apply();
+            AppPreference appPreference = AppPreference.getInstance();
+            appPreference.clearLanguage();
+            LanguageUtil.setLanguage(this, appPreference.getLanguage(this));
 
-        sTheme = PreferenceUtil.getTheme(this);
+            sTheme = PreferenceUtil.getTheme(this);
 
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
-            JobScheduler jobScheduler = getSystemService(JobScheduler.class);
-            appendLog(this, TAG, "scheduleStart at YourLocalWeather");
-            AppPreference.setLastSensorServicesCheckTimeInMs(this, 0);
-            jobScheduler.cancelAll();
-            ComponentName serviceComponent = new ComponentName(this, StartAutoLocationJob.class);
-            JobInfo.Builder builder = new JobInfo.Builder(StartAutoLocationJob.JOB_ID, serviceComponent);
-            builder.setMinimumLatency(1 * 1000); // wait at least
-            builder.setOverrideDeadline(3 * 1000); // maximum delay
-            jobScheduler.schedule(builder.build());
-        }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                JobScheduler jobScheduler = getSystemService(JobScheduler.class);
+                appendLog(this, TAG, "scheduleStart at YourLocalWeather");
+                AppPreference.setLastSensorServicesCheckTimeInMs(this, 0);
+                jobScheduler.cancelAll();
+                ComponentName serviceComponent = new ComponentName(this, StartAutoLocationJob.class);
+                JobInfo.Builder builder = new JobInfo.Builder(StartAutoLocationJob.JOB_ID, serviceComponent);
+                builder.setMinimumLatency(1 * 1000); // wait at least
+                builder.setOverrideDeadline(3 * 1000); // maximum delay
+                jobScheduler.schedule(builder.build());
+            }
+        });
     }
 
     @Override

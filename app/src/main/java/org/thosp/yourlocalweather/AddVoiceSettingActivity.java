@@ -46,10 +46,14 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class AddVoiceSettingActivity extends BaseActivity {
 
     public static final String TAG = "SearchActivity";
+
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     private Long voiceSettingId;
     private VoiceSettingParametersDbHelper voiceSettingParametersDbHelper;
@@ -65,11 +69,12 @@ public class AddVoiceSettingActivity extends BaseActivity {
 
         setContentView(R.layout.activity_add_voice_setting);
         setupActionBar();
+        executor.submit(() -> {
+            voiceSettingParametersDbHelper = VoiceSettingParametersDbHelper.getInstance(this);
+            applicationLocale = new Locale(AppPreference.getInstance().getLanguage(this));
 
-        voiceSettingParametersDbHelper = VoiceSettingParametersDbHelper.getInstance(this);
-        applicationLocale = new Locale(AppPreference.getInstance().getLanguage(this));
-
-        updateItemsFromDb();
+            updateItemsFromDb();
+        });
         populateTriggerType();
     }
 
@@ -111,43 +116,55 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 voiceSettingId,
                 paramType.getVoiceSettingParamTypeId());
 
-        textView.setText(originalValue, TextView.BufferType.EDITABLE);
-        textView.addTextChangedListener(new TextWatcher() {
 
+        runOnUiThread(new Runnable() {
             @Override
-            public void afterTextChanged(Editable s) {}
+            public void run() {
+                textView.setText(originalValue, TextView.BufferType.EDITABLE);
+                textView.addTextChangedListener(new TextWatcher() {
 
-            @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
+                                                    @Override
+                                                    public void afterTextChanged(Editable s) {
+                                                    }
+
+                                                    @Override
+                                                    public void beforeTextChanged(CharSequence s, int start,
+                                                                                  int count, int after) {
+                                                    }
+
+                                                    @Override
+                                                    public void onTextChanged(CharSequence s, int start,
+                                                                              int before, int count) {
+                                                        if (s.length() != 0)
+                                                            voiceSettingParametersDbHelper.saveStringParam(
+                                                                    voiceSettingId,
+                                                                    paramType.getVoiceSettingParamTypeId(),
+                                                                    s.toString());
+                                                    }
+                                                }
+                );
             }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-                if(s.length() != 0)
-                    voiceSettingParametersDbHelper.saveStringParam(
-                            voiceSettingId,
-                            paramType.getVoiceSettingParamTypeId(),
-                            s.toString());
-                }
-            }
-        );
+        });
     }
 
     private void populateTriggerBtDevices(int spinnerViewId, int checkBoxViewId, VoiceSettingParamType voiceSettingParamType) {
         MultiSelectionTriggerSpinner btDevicesSpinner = findViewById(spinnerViewId);
         CheckBox allBtCheckbox = findViewById(checkBoxViewId);
-        btDevicesSpinner.setVoiceSettingId(voiceSettingId);
+        runOnUiThread(new Runnable() {
+                          @Override
+                          public void run() {
+                              btDevicesSpinner.setVoiceSettingId(voiceSettingId);
 
-        if (!checkExistenceAndBtPermissions()) {
-            btDevicesSpinner.setVisibility(View.GONE);
-            allBtCheckbox.setVisibility(View.GONE);
-            return;
-        } else {
-            btDevicesSpinner.setVisibility(View.VISIBLE);
-            allBtCheckbox.setVisibility(View.VISIBLE);
-        }
+                              if (!checkExistenceAndBtPermissions()) {
+                                  btDevicesSpinner.setVisibility(View.GONE);
+                                  allBtCheckbox.setVisibility(View.GONE);
+                                  return;
+                              } else {
+                                  btDevicesSpinner.setVisibility(View.VISIBLE);
+                                  allBtCheckbox.setVisibility(View.VISIBLE);
+                              }
+                          }
+                      });
         BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(getBaseContext());
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
             return;
@@ -164,51 +181,66 @@ public class AddVoiceSettingActivity extends BaseActivity {
         Boolean enabledVoiceDevices = voiceSettingParametersDbHelper.getBooleanParam(
                 voiceSettingId,
                 voiceSettingParamType.getVoiceSettingParamTypeId());
-        if ((enabledVoiceDevices != null) && enabledVoiceDevices) {
-            allBtCheckbox.setChecked(true);
-            findViewById(R.id.trigger_bt_when_devices).setVisibility(View.GONE);
-        } else {
-            findViewById(R.id.trigger_bt_when_devices).setVisibility(View.VISIBLE);
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if ((enabledVoiceDevices != null) && enabledVoiceDevices) {
+                    allBtCheckbox.setChecked(true);
+                    findViewById(R.id.trigger_bt_when_devices).setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.trigger_bt_when_devices).setVisibility(View.VISIBLE);
+                }
 
-        if (enabledBtDevices != null) {
-            for (String btDeviceAddress: enabledBtDevices.split(",")) {
-                selectedItems.add(btDeviceAddress);
-            }
-        }
+                if (enabledBtDevices != null) {
+                    for (String btDeviceAddress: enabledBtDevices.split(",")) {
+                        selectedItems.add(btDeviceAddress);
+                    }
+                }
 
-        for(BluetoothDevice bluetoothDevice: bluetoothDeviceSet) {
-            String currentDeviceName = bluetoothDevice.getName();
-            String currentDeviceAddress = bluetoothDevice.getAddress();
-            MultiselectionItem multiselectionItem;
-            if (selectedItems.contains(currentDeviceAddress)) {
-                multiselectionItem = new MultiselectionItem(currentDeviceName, currentDeviceAddress, true);
-                selection.add(multiselectionItem);
-            } else {
-                multiselectionItem = new MultiselectionItem(currentDeviceName, currentDeviceAddress,false);
+                if (ContextCompat.checkSelfPermission(AddVoiceSettingActivity.this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+
+                for(BluetoothDevice bluetoothDevice: bluetoothDeviceSet) {
+                    String currentDeviceName = bluetoothDevice.getName();
+                    String currentDeviceAddress = bluetoothDevice.getAddress();
+                    MultiselectionItem multiselectionItem;
+                    if (selectedItems.contains(currentDeviceAddress)) {
+                        multiselectionItem = new MultiselectionItem(currentDeviceName, currentDeviceAddress, true);
+                        selection.add(multiselectionItem);
+                    } else {
+                        multiselectionItem = new MultiselectionItem(currentDeviceName, currentDeviceAddress,false);
+                    }
+                    items.add(multiselectionItem);
+                }
+                btDevicesSpinner.setItems(items);
+                btDevicesSpinner.setSelection(selection);
             }
-            items.add(multiselectionItem);
-        }
-        btDevicesSpinner.setItems(items);
-        btDevicesSpinner.setSelection(selection);
+        });
     }
 
     private void populateBtDevices(int spinnerViewId, int checkBoxViewId, VoiceSettingParamType voiceSettingParamType) {
         MultiSelectionSpinner btDevicesSpinner = findViewById(spinnerViewId);
         CheckBox allBtCheckbox = findViewById(checkBoxViewId);
         View btDevicePanel = findViewById(R.id.tts_bt_device_panel);
-        btDevicesSpinner.setVoiceSettingId(voiceSettingId);
 
-        if (!checkExistenceAndBtPermissions()) {
-            btDevicesSpinner.setVisibility(View.GONE);
-            allBtCheckbox.setVisibility(View.GONE);
-            btDevicePanel.setVisibility(View.GONE);
-            return;
-        } else {
-            btDevicesSpinner.setVisibility(View.VISIBLE);
-            allBtCheckbox.setVisibility(View.VISIBLE);
-            btDevicePanel.setVisibility(View.VISIBLE);
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                btDevicesSpinner.setVoiceSettingId(voiceSettingId);
+
+                if (!checkExistenceAndBtPermissions()) {
+                    btDevicesSpinner.setVisibility(View.GONE);
+                    allBtCheckbox.setVisibility(View.GONE);
+                    btDevicePanel.setVisibility(View.GONE);
+                    return;
+                } else {
+                    btDevicesSpinner.setVisibility(View.VISIBLE);
+                    allBtCheckbox.setVisibility(View.VISIBLE);
+                    btDevicePanel.setVisibility(View.VISIBLE);
+                }
+            }
+        });
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
             return;
@@ -226,33 +258,42 @@ public class AddVoiceSettingActivity extends BaseActivity {
         Boolean enabledVoiceDevices = voiceSettingParametersDbHelper.getBooleanParam(
                 voiceSettingId,
                 voiceSettingParamType.getVoiceSettingParamTypeId());
-        if ((enabledVoiceDevices != null) && enabledVoiceDevices) {
-            allBtCheckbox.setChecked(true);
-            findViewById(R.id.bt_when_devices).setVisibility(View.GONE);
-        } else {
-            findViewById(R.id.bt_when_devices).setVisibility(View.VISIBLE);
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if ((enabledVoiceDevices != null) && enabledVoiceDevices) {
+                    allBtCheckbox.setChecked(true);
+                    findViewById(R.id.bt_when_devices).setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.bt_when_devices).setVisibility(View.VISIBLE);
+                }
 
-        if (enabledBtDevices != null) {
-            for (String btDeviceName: enabledBtDevices.split(",")) {
-                selectedItems.add(btDeviceName);
-            }
-        }
+                if (enabledBtDevices != null) {
+                    for (String btDeviceName : enabledBtDevices.split(",")) {
+                        selectedItems.add(btDeviceName);
+                    }
+                }
 
-        for(BluetoothDevice bluetoothDevice: bluetoothDeviceSet) {
-            String currentDeviceName = bluetoothDevice.getName();
-            String currentDeviceAddress = bluetoothDevice.getAddress();
-            MultiselectionItem multiselectionItem;
-            if (selectedItems.contains(currentDeviceAddress)) {
-                multiselectionItem = new MultiselectionItem(currentDeviceName, currentDeviceAddress, true);
-                selection.add(multiselectionItem);
-            } else {
-                multiselectionItem = new MultiselectionItem(currentDeviceName, currentDeviceAddress,false);
+                if (ContextCompat.checkSelfPermission(AddVoiceSettingActivity.this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
+                    return;
+                }
+
+                for (BluetoothDevice bluetoothDevice : bluetoothDeviceSet) {
+                    String currentDeviceName = bluetoothDevice.getName();
+                    String currentDeviceAddress = bluetoothDevice.getAddress();
+                    MultiselectionItem multiselectionItem;
+                    if (selectedItems.contains(currentDeviceAddress)) {
+                        multiselectionItem = new MultiselectionItem(currentDeviceName, currentDeviceAddress, true);
+                        selection.add(multiselectionItem);
+                    } else {
+                        multiselectionItem = new MultiselectionItem(currentDeviceName, currentDeviceAddress, false);
+                    }
+                    items.add(multiselectionItem);
+                }
+                btDevicesSpinner.setItems(items);
+                btDevicesSpinner.setSelection(selection);
             }
-            items.add(multiselectionItem);
-        }
-        btDevicesSpinner.setItems(items);
-        btDevicesSpinner.setSelection(selection);
+        });
     }
 
     public void onAllBtDevicesButtonClicked(View view) {
@@ -301,15 +342,20 @@ public class AddVoiceSettingActivity extends BaseActivity {
         if (enabledVoiceDevices == null) {
             return;
         }
-        if (TimeUtils.isCurrentSettingIndex(enabledVoiceDevices, 2)) {
-            ((CheckBox) findViewById(R.id.tts_to_speaker_enabled)).setChecked(true);
-        }
-        if (TimeUtils.isCurrentSettingIndex(enabledVoiceDevices, 1)) {
-            ((CheckBox) findViewById(R.id.tts_when_wired_enabled)).setChecked(true);
-        }
-        if (TimeUtils.isCurrentSettingIndex(enabledVoiceDevices, 0)) {
-            ((CheckBox) findViewById(R.id.tts_when_bt_enabled)).setChecked(true);
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (TimeUtils.isCurrentSettingIndex(enabledVoiceDevices, 2)) {
+                    ((CheckBox) findViewById(R.id.tts_to_speaker_enabled)).setChecked(true);
+                }
+                if (TimeUtils.isCurrentSettingIndex(enabledVoiceDevices, 1)) {
+                    ((CheckBox) findViewById(R.id.tts_when_wired_enabled)).setChecked(true);
+                }
+                if (TimeUtils.isCurrentSettingIndex(enabledVoiceDevices, 0)) {
+                    ((CheckBox) findViewById(R.id.tts_when_bt_enabled)).setChecked(true);
+                }
+            }
+        });
     }
 
     private void populateDayOfWeeks() {
@@ -319,50 +365,55 @@ public class AddVoiceSettingActivity extends BaseActivity {
         if (daysOfWeek == null) {
             return;
         }
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE", applicationLocale);
-        CheckBox triggerCheckBox = findViewById(R.id.voice_trigger_mon);
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-        triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
-        if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 6)) {
-            triggerCheckBox.setChecked(true);
-        }
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
-        triggerCheckBox = findViewById(R.id.voice_trigger_tue);
-        triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
-        if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 5)) {
-            triggerCheckBox.setChecked(true);
-        }
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
-        triggerCheckBox = findViewById(R.id.voice_trigger_wed);
-        triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
-        if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 4)) {
-            triggerCheckBox.setChecked(true);
-        }
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
-        triggerCheckBox = findViewById(R.id.voice_trigger_thu);
-        triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
-        if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 3)) {
-            triggerCheckBox.setChecked(true);
-        }
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
-        triggerCheckBox = findViewById(R.id.voice_trigger_fri);
-        triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
-        if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 2)) {
-            triggerCheckBox.setChecked(true);
-        }
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
-        triggerCheckBox = findViewById(R.id.voice_trigger_sat);
-        triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
-        if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 1)) {
-            triggerCheckBox.setChecked(true);
-        }
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-        triggerCheckBox = findViewById(R.id.voice_trigger_sun);
-        triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
-        if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 0)) {
-            triggerCheckBox.setChecked(true);
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Calendar calendar = Calendar.getInstance();
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE", applicationLocale);
+                CheckBox triggerCheckBox = findViewById(R.id.voice_trigger_mon);
+                calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
+                if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 6)) {
+                    triggerCheckBox.setChecked(true);
+                }
+                calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
+                triggerCheckBox = findViewById(R.id.voice_trigger_tue);
+                triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
+                if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 5)) {
+                    triggerCheckBox.setChecked(true);
+                }
+                calendar.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
+                triggerCheckBox = findViewById(R.id.voice_trigger_wed);
+                triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
+                if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 4)) {
+                    triggerCheckBox.setChecked(true);
+                }
+                calendar.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
+                triggerCheckBox = findViewById(R.id.voice_trigger_thu);
+                triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
+                if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 3)) {
+                    triggerCheckBox.setChecked(true);
+                }
+                calendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
+                triggerCheckBox = findViewById(R.id.voice_trigger_fri);
+                triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
+                if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 2)) {
+                    triggerCheckBox.setChecked(true);
+                }
+                calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
+                triggerCheckBox = findViewById(R.id.voice_trigger_sat);
+                triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
+                if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 1)) {
+                    triggerCheckBox.setChecked(true);
+                }
+                calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+                triggerCheckBox = findViewById(R.id.voice_trigger_sun);
+                triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
+                if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 0)) {
+                    triggerCheckBox.setChecked(true);
+                }
+            }
+        });
     }
 
     private void setTextTime() {
@@ -530,14 +581,14 @@ public class AddVoiceSettingActivity extends BaseActivity {
             findViewById(R.id.pref_title_tts_bt_trigger_panel).setVisibility(View.VISIBLE);
             findViewById(R.id.enabled_devices_panel).setVisibility(View.GONE);
         }
-        prepareNextTime(this, voiceSettingId, applicationLocale, voiceSettingParametersDbHelper);
+        executor.submit(() -> {
+            prepareNextTime(this, voiceSettingId, applicationLocale, voiceSettingParametersDbHelper);
+        });
     }
 
     private void populateLocations() {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
         List<Location> currentLocations = locationsDbHelper.getAllRows();
-        MultiSelectionLocationSpinner btDevicesSpinner = findViewById(R.id.tts_setting_locations);
-        btDevicesSpinner.setVoiceSettingId(voiceSettingId);
 
         ArrayList<MultiselectionLocationItem> items = new ArrayList<>();
         ArrayList<MultiselectionLocationItem> selection = new ArrayList<>();
@@ -549,32 +600,40 @@ public class AddVoiceSettingActivity extends BaseActivity {
         Boolean enabledVoiceDevices = voiceSettingParametersDbHelper.getBooleanParam(
                 voiceSettingId,
                 VoiceSettingParamType.VOICE_SETTING_LOCATIONS.getVoiceSettingParamTypeId());
-        if ((enabledVoiceDevices != null) && enabledVoiceDevices) {
-            ((CheckBox) findViewById(R.id.tts_setting_all_locations)).setChecked(true);
-            findViewById(R.id.tts_setting_locations).setVisibility(View.GONE);
-        } else {
-            findViewById(R.id.tts_setting_locations).setVisibility(View.VISIBLE);
-        }
 
-        if (enabledBtDevices != null) {
-            for (String btDeviceName: enabledBtDevices.split(",")) {
-                selectedItems.add(btDeviceName);
-            }
-        }
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                MultiSelectionLocationSpinner btDevicesSpinner = findViewById(R.id.tts_setting_locations);
+                btDevicesSpinner.setVoiceSettingId(voiceSettingId);
+                if ((enabledVoiceDevices != null) && enabledVoiceDevices) {
+                    ((CheckBox) findViewById(R.id.tts_setting_all_locations)).setChecked(true);
+                    findViewById(R.id.tts_setting_locations).setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.tts_setting_locations).setVisibility(View.VISIBLE);
+                }
 
-        for(Location location: currentLocations) {
-            String locationCityForVoice = Utils.getLocationForVoiceFromAddress(location.getAddress());
-            MultiselectionLocationItem multiselectionItem;
-            if (selectedItems.contains(location.getId().toString())) {
-                multiselectionItem = new MultiselectionLocationItem(location.getId(), locationCityForVoice, true);
-                selection.add(multiselectionItem);
-            } else {
-                multiselectionItem = new MultiselectionLocationItem(location.getId(), locationCityForVoice, false);
+                if (enabledBtDevices != null) {
+                    for (String btDeviceName : enabledBtDevices.split(",")) {
+                        selectedItems.add(btDeviceName);
+                    }
+                }
+
+                for (Location location : currentLocations) {
+                    String locationCityForVoice = Utils.getLocationForVoiceFromAddress(location.getAddress());
+                    MultiselectionLocationItem multiselectionItem;
+                    if (selectedItems.contains(location.getId().toString())) {
+                        multiselectionItem = new MultiselectionLocationItem(location.getId(), locationCityForVoice, true);
+                        selection.add(multiselectionItem);
+                    } else {
+                        multiselectionItem = new MultiselectionLocationItem(location.getId(), locationCityForVoice, false);
+                    }
+                    items.add(multiselectionItem);
+                }
+                btDevicesSpinner.setItems(items);
+                btDevicesSpinner.setSelection(selection);
             }
-            items.add(multiselectionItem);
-        }
-        btDevicesSpinner.setItems(items);
-        btDevicesSpinner.setSelection(selection);
+        });
     }
 
     public void onTtsDeviceEnabledButtonClicked(View view) {
@@ -626,115 +685,120 @@ public class AddVoiceSettingActivity extends BaseActivity {
         if (partsToSay == null) {
             return;
         }
-        if (TimeUtils.isCurrentSettingIndex(partsToSay, 0)) {
-            ((CheckBox) findViewById(R.id.tts_say_greeting_enabled)).setChecked(true);
-            findViewById(R.id.tts_say_greeting_custom_panel).setVisibility(View.VISIBLE);
-            findViewById(R.id.tts_say_greeting_custom).setVisibility(View.VISIBLE);
-        } else {
-            findViewById(R.id.tts_say_greeting_custom_panel).setVisibility(View.GONE);
-            findViewById(R.id.tts_say_greeting_custom).setVisibility(View.GONE);
-        }
-        if (TimeUtils.isCurrentSettingIndex(partsToSay, 1)) {
-            ((CheckBox) findViewById(R.id.tts_say_greeting_custom)).setChecked(true);
-            EditText customText = findViewById(R.id.tts_say_greeting_custom_text_morning);
-            customText.setVisibility(View.VISIBLE);
-            if (TextUtils.isEmpty(customText.getText())) {
-                customText.setText(getString(R.string.tts_say_greeting_morning));
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (TimeUtils.isCurrentSettingIndex(partsToSay, 0)) {
+                    ((CheckBox) findViewById(R.id.tts_say_greeting_enabled)).setChecked(true);
+                    findViewById(R.id.tts_say_greeting_custom_panel).setVisibility(View.VISIBLE);
+                    findViewById(R.id.tts_say_greeting_custom).setVisibility(View.VISIBLE);
+                } else {
+                    findViewById(R.id.tts_say_greeting_custom_panel).setVisibility(View.GONE);
+                    findViewById(R.id.tts_say_greeting_custom).setVisibility(View.GONE);
+                }
+                if (TimeUtils.isCurrentSettingIndex(partsToSay, 1)) {
+                    ((CheckBox) findViewById(R.id.tts_say_greeting_custom)).setChecked(true);
+                    EditText customText = findViewById(R.id.tts_say_greeting_custom_text_morning);
+                    customText.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(customText.getText())) {
+                        customText.setText(getString(R.string.tts_say_greeting_morning));
+                    }
+                    customText = findViewById(R.id.tts_say_greeting_custom_text_day);
+                    customText.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(customText.getText())) {
+                        customText.setText(getString(R.string.tts_say_greeting_day));
+                    }
+                    customText = findViewById(R.id.tts_say_greeting_custom_text_evening);
+                    customText.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(customText.getText())) {
+                        customText.setText(getString(R.string.tts_say_greeting_evening));
+                    }
+                } else {
+                    findViewById(R.id.tts_say_greeting_custom_text_morning).setVisibility(View.GONE);
+                    findViewById(R.id.tts_say_greeting_custom_text_day).setVisibility(View.GONE);
+                    findViewById(R.id.tts_say_greeting_custom_text_evening).setVisibility(View.GONE);
+                }
+                if (TimeUtils.isCurrentSettingIndex(partsToSay, 2)) {
+                    ((CheckBox) findViewById(R.id.tts_say_location_enabled)).setChecked(true);
+                    findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.VISIBLE);
+                    findViewById(R.id.tts_say_location_custom).setVisibility(View.VISIBLE);
+                    findViewById(R.id.tts_say_weather_description_panel).setVisibility(View.GONE);
+                    findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.GONE);
+                    findViewById(R.id.tts_say_location_custom).setVisibility(View.GONE);
+                }
+                if (TimeUtils.isCurrentSettingIndex(partsToSay, 3)) {
+                    ((CheckBox) findViewById(R.id.tts_say_location_custom)).setChecked(true);
+                    EditText customText = findViewById(R.id.tts_say_location_custom_text);
+                    customText.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(customText.getText())) {
+                        customText.setText(getString(R.string.tts_say_current_weather_with_location));
+                    }
+                } else {
+                    findViewById(R.id.tts_say_location_custom_text).setVisibility(View.GONE);
+                }
+                if (TimeUtils.isCurrentSettingIndex(partsToSay, 4)) {
+                    ((CheckBox) findViewById(R.id.tts_say_weather_description_enabled)).setChecked(true);
+                    findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.VISIBLE);
+                    findViewById(R.id.tts_say_weather_description_custom).setVisibility(View.VISIBLE);
+                    findViewById(R.id.tts_say_location_enabled_panel).setVisibility(View.GONE);
+                    findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.GONE);
+                    findViewById(R.id.tts_say_weather_description_custom).setVisibility(View.GONE);
+                }
+                if (TimeUtils.isCurrentSettingIndex(partsToSay, 5)) {
+                    ((CheckBox) findViewById(R.id.tts_say_weather_description_custom)).setChecked(true);
+                    EditText customText = findViewById(R.id.tts_say_weather_description_custom_text);
+                    customText.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(customText.getText())) {
+                        customText.setText(getString(R.string.tts_say_current_weather));
+                    }
+                } else {
+                    findViewById(R.id.tts_say_weather_description_custom_text).setVisibility(View.GONE);
+                }
+                if (TimeUtils.isCurrentSettingIndex(partsToSay, 6)) {
+                    ((CheckBox) findViewById(R.id.tts_say_temperature_enabled)).setChecked(true);
+                    findViewById(R.id.tts_say_temperature_custom_panel).setVisibility(View.VISIBLE);
+                    findViewById(R.id.tts_say_temperature_custom).setVisibility(View.VISIBLE);
+                } else {
+                    findViewById(R.id.tts_say_temperature_custom_panel).setVisibility(View.GONE);
+                    findViewById(R.id.tts_say_temperature_custom).setVisibility(View.GONE);
+                }
+                if (TimeUtils.isCurrentSettingIndex(partsToSay, 7)) {
+                    ((CheckBox) findViewById(R.id.tts_say_temperature_custom)).setChecked(true);
+                    EditText customText = findViewById(R.id.tts_say_temperature_custom_text);
+                    customText.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(customText.getText())) {
+                        customText.setText(getString(R.string.tty_say_temperature));
+                    }
+                } else {
+                    findViewById(R.id.tts_say_temperature_custom_text).setVisibility(View.GONE);
+                }
+                if (TimeUtils.isCurrentSettingIndex(partsToSay, 8)) {
+                    ((CheckBox) findViewById(R.id.tts_say_wind_enabled)).setChecked(true);
+                    findViewById(R.id.tts_say_wind_custom_panel).setVisibility(View.VISIBLE);
+                    findViewById(R.id.tts_say_wind_custom).setVisibility(View.VISIBLE);
+                } else {
+                    findViewById(R.id.tts_say_wind_custom_panel).setVisibility(View.GONE);
+                    findViewById(R.id.tts_say_wind_custom).setVisibility(View.GONE);
+                }
+                if (TimeUtils.isCurrentSettingIndex(partsToSay, 9)) {
+                    ((CheckBox) findViewById(R.id.tts_say_wind_custom)).setChecked(true);
+                    EditText customText = findViewById(R.id.tts_say_wind_custom_text);
+                    customText.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(customText.getText())) {
+                        customText.setText(getString(R.string.tty_say_wind));
+                    }
+                } else {
+                    findViewById(R.id.tts_say_wind_custom_text).setVisibility(View.GONE);
+                }
+                if (TimeUtils.isCurrentSettingIndex(partsToSay, 10)) {
+                    ((CheckBox) findViewById(R.id.tts_say_forecast_enabled)).setChecked(true);
+                }
             }
-            customText = findViewById(R.id.tts_say_greeting_custom_text_day);
-            customText.setVisibility(View.VISIBLE);
-            if (TextUtils.isEmpty(customText.getText())) {
-                customText.setText(getString(R.string.tts_say_greeting_day));
-            }
-            customText = findViewById(R.id.tts_say_greeting_custom_text_evening);
-            customText.setVisibility(View.VISIBLE);
-            if (TextUtils.isEmpty(customText.getText())) {
-                customText.setText(getString(R.string.tts_say_greeting_evening));
-            }
-        } else {
-            findViewById(R.id.tts_say_greeting_custom_text_morning).setVisibility(View.GONE);
-            findViewById(R.id.tts_say_greeting_custom_text_day).setVisibility(View.GONE);
-            findViewById(R.id.tts_say_greeting_custom_text_evening).setVisibility(View.GONE);
-        }
-        if (TimeUtils.isCurrentSettingIndex(partsToSay, 2)) {
-            ((CheckBox) findViewById(R.id.tts_say_location_enabled)).setChecked(true);
-            findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.VISIBLE);
-            findViewById(R.id.tts_say_location_custom).setVisibility(View.VISIBLE);
-            findViewById(R.id.tts_say_weather_description_panel).setVisibility(View.GONE);
-            findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.GONE);
-        } else {
-            findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.GONE);
-            findViewById(R.id.tts_say_location_custom).setVisibility(View.GONE);
-        }
-        if (TimeUtils.isCurrentSettingIndex(partsToSay, 3)) {
-            ((CheckBox) findViewById(R.id.tts_say_location_custom)).setChecked(true);
-            EditText customText = findViewById(R.id.tts_say_location_custom_text);
-            customText.setVisibility(View.VISIBLE);
-            if (TextUtils.isEmpty(customText.getText())) {
-                customText.setText(getString(R.string.tts_say_current_weather_with_location));
-            }
-        } else {
-            findViewById(R.id.tts_say_location_custom_text).setVisibility(View.GONE);
-        }
-        if (TimeUtils.isCurrentSettingIndex(partsToSay, 4)) {
-            ((CheckBox) findViewById(R.id.tts_say_weather_description_enabled)).setChecked(true);
-            findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.VISIBLE);
-            findViewById(R.id.tts_say_weather_description_custom).setVisibility(View.VISIBLE);
-            findViewById(R.id.tts_say_location_enabled_panel).setVisibility(View.GONE);
-            findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.GONE);
-        } else {
-            findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.GONE);
-            findViewById(R.id.tts_say_weather_description_custom).setVisibility(View.GONE);
-        }
-        if (TimeUtils.isCurrentSettingIndex(partsToSay, 5)) {
-            ((CheckBox) findViewById(R.id.tts_say_weather_description_custom)).setChecked(true);
-            EditText customText = findViewById(R.id.tts_say_weather_description_custom_text);
-            customText.setVisibility(View.VISIBLE);
-            if (TextUtils.isEmpty(customText.getText())) {
-                customText.setText(getString(R.string.tts_say_current_weather));
-            }
-        } else {
-            findViewById(R.id.tts_say_weather_description_custom_text).setVisibility(View.GONE);
-        }
-        if (TimeUtils.isCurrentSettingIndex(partsToSay, 6)) {
-            ((CheckBox) findViewById(R.id.tts_say_temperature_enabled)).setChecked(true);
-            findViewById(R.id.tts_say_temperature_custom_panel).setVisibility(View.VISIBLE);
-            findViewById(R.id.tts_say_temperature_custom).setVisibility(View.VISIBLE);
-        } else {
-            findViewById(R.id.tts_say_temperature_custom_panel).setVisibility(View.GONE);
-            findViewById(R.id.tts_say_temperature_custom).setVisibility(View.GONE);
-        }
-        if (TimeUtils.isCurrentSettingIndex(partsToSay, 7)) {
-            ((CheckBox) findViewById(R.id.tts_say_temperature_custom)).setChecked(true);
-            EditText customText = findViewById(R.id.tts_say_temperature_custom_text);
-            customText.setVisibility(View.VISIBLE);
-            if (TextUtils.isEmpty(customText.getText())) {
-                customText.setText(getString(R.string.tty_say_temperature));
-            }
-        } else {
-            findViewById(R.id.tts_say_temperature_custom_text).setVisibility(View.GONE);
-        }
-        if (TimeUtils.isCurrentSettingIndex(partsToSay, 8)) {
-            ((CheckBox) findViewById(R.id.tts_say_wind_enabled)).setChecked(true);
-            findViewById(R.id.tts_say_wind_custom_panel).setVisibility(View.VISIBLE);
-            findViewById(R.id.tts_say_wind_custom).setVisibility(View.VISIBLE);
-        } else {
-            findViewById(R.id.tts_say_wind_custom_panel).setVisibility(View.GONE);
-            findViewById(R.id.tts_say_wind_custom).setVisibility(View.GONE);
-        }
-        if (TimeUtils.isCurrentSettingIndex(partsToSay, 9)) {
-            ((CheckBox) findViewById(R.id.tts_say_wind_custom)).setChecked(true);
-            EditText customText = findViewById(R.id.tts_say_wind_custom_text);
-            customText.setVisibility(View.VISIBLE);
-            if (TextUtils.isEmpty(customText.getText())) {
-                customText.setText(getString(R.string.tty_say_wind));
-            }
-        } else {
-            findViewById(R.id.tts_say_wind_custom_text).setVisibility(View.GONE);
-        }
-        if (TimeUtils.isCurrentSettingIndex(partsToSay, 10)) {
-            ((CheckBox) findViewById(R.id.tts_say_forecast_enabled)).setChecked(true);
-        }
+        });
     }
 
     public void onTtsSeySettingButtonClicked(View view) {
@@ -921,68 +985,71 @@ public class AddVoiceSettingActivity extends BaseActivity {
     }
 
     public void onRadioButtonClicked(View view) {
-        Long daysOfWeek = voiceSettingParametersDbHelper.getLongParam(
-                voiceSettingId,
-                VoiceSettingParamType.VOICE_SETTING_TRIGGER_DAY_IN_WEEK.getVoiceSettingParamTypeId());
-        if (daysOfWeek == null) {
-            daysOfWeek = 0l;
-        }
-        boolean checked = ((CheckBox) view).isChecked();
-        switch(view.getId()) {
-            case R.id.voice_trigger_mon:
-                if (checked) {
-                    daysOfWeek += TimeUtils.getTwoPower(6);
-                } else {
-                    daysOfWeek += TimeUtils.getTwoPower(6);
-                }
-                break;
-            case R.id.voice_trigger_tue:
-                if (checked) {
-                    daysOfWeek += TimeUtils.getTwoPower(5);
-                } else {
-                    daysOfWeek -= TimeUtils.getTwoPower(5);
-                }
-                break;
-            case R.id.voice_trigger_wed:
-                if (checked) {
-                    daysOfWeek += TimeUtils.getTwoPower(4);
-                } else {
-                    daysOfWeek -= TimeUtils.getTwoPower(4);
-                }                break;
-            case R.id.voice_trigger_thu:
-                if (checked) {
-                    daysOfWeek += TimeUtils.getTwoPower(3);
-                } else {
-                    daysOfWeek -= TimeUtils.getTwoPower(3);
-                }
-                break;
-            case R.id.voice_trigger_fri:
-                if (checked) {
-                    daysOfWeek += TimeUtils.getTwoPower(2);
-                } else {
-                    daysOfWeek -= TimeUtils.getTwoPower(2);
-                }
-                break;
-            case R.id.voice_trigger_sat:
-                if (checked) {
-                    daysOfWeek += TimeUtils.getTwoPower(1);
-                } else {
-                    daysOfWeek -= TimeUtils.getTwoPower(1);
-                }
-                break;
-            case R.id.voice_trigger_sun:
-                if (checked) {
-                    daysOfWeek += TimeUtils.getTwoPower(0);
-                } else {
-                    daysOfWeek -= TimeUtils.getTwoPower(0);
-                }
-                break;
-        }
-        voiceSettingParametersDbHelper.saveLongParam(
-                voiceSettingId,
-                VoiceSettingParamType.VOICE_SETTING_TRIGGER_DAY_IN_WEEK.getVoiceSettingParamTypeId(),
-                daysOfWeek);
-        prepareNextTime(this, voiceSettingId, applicationLocale, voiceSettingParametersDbHelper);
+        executor.submit(() -> {
+            Long daysOfWeek = voiceSettingParametersDbHelper.getLongParam(
+                    voiceSettingId,
+                    VoiceSettingParamType.VOICE_SETTING_TRIGGER_DAY_IN_WEEK.getVoiceSettingParamTypeId());
+            if (daysOfWeek == null) {
+                daysOfWeek = 0l;
+            }
+            boolean checked = ((CheckBox) view).isChecked();
+            switch (view.getId()) {
+                case R.id.voice_trigger_mon:
+                    if (checked) {
+                        daysOfWeek += TimeUtils.getTwoPower(6);
+                    } else {
+                        daysOfWeek += TimeUtils.getTwoPower(6);
+                    }
+                    break;
+                case R.id.voice_trigger_tue:
+                    if (checked) {
+                        daysOfWeek += TimeUtils.getTwoPower(5);
+                    } else {
+                        daysOfWeek -= TimeUtils.getTwoPower(5);
+                    }
+                    break;
+                case R.id.voice_trigger_wed:
+                    if (checked) {
+                        daysOfWeek += TimeUtils.getTwoPower(4);
+                    } else {
+                        daysOfWeek -= TimeUtils.getTwoPower(4);
+                    }
+                    break;
+                case R.id.voice_trigger_thu:
+                    if (checked) {
+                        daysOfWeek += TimeUtils.getTwoPower(3);
+                    } else {
+                        daysOfWeek -= TimeUtils.getTwoPower(3);
+                    }
+                    break;
+                case R.id.voice_trigger_fri:
+                    if (checked) {
+                        daysOfWeek += TimeUtils.getTwoPower(2);
+                    } else {
+                        daysOfWeek -= TimeUtils.getTwoPower(2);
+                    }
+                    break;
+                case R.id.voice_trigger_sat:
+                    if (checked) {
+                        daysOfWeek += TimeUtils.getTwoPower(1);
+                    } else {
+                        daysOfWeek -= TimeUtils.getTwoPower(1);
+                    }
+                    break;
+                case R.id.voice_trigger_sun:
+                    if (checked) {
+                        daysOfWeek += TimeUtils.getTwoPower(0);
+                    } else {
+                        daysOfWeek -= TimeUtils.getTwoPower(0);
+                    }
+                    break;
+            }
+            voiceSettingParametersDbHelper.saveLongParam(
+                    voiceSettingId,
+                    VoiceSettingParamType.VOICE_SETTING_TRIGGER_DAY_IN_WEEK.getVoiceSettingParamTypeId(),
+                    daysOfWeek);
+            prepareNextTime(this, voiceSettingId, applicationLocale, voiceSettingParametersDbHelper);
+        });
     }
 
     private static void prepareNextTime(Activity context, Long voiceSettingId, Locale applicationLocale, VoiceSettingParametersDbHelper voiceSettingParametersDbHelper) {

@@ -47,6 +47,8 @@ import java.net.MalformedURLException;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -80,6 +82,8 @@ public class UpdateWeatherService extends AbstractCommonService {
 
     public static final int WEATHER_FORECAST_TYPE = 1;
     public static final int LONG_WEATHER_FORECAST_TYPE = 2;
+
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     private static AsyncHttpClient client = new AsyncHttpClient();
 
@@ -131,43 +135,45 @@ public class UpdateWeatherService extends AbstractCommonService {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
-        startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
         appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
         if (intent == null) {
             return ret;
         }
-        boolean forceUpdate = false;
-        Long locationId = null;
-        String updateSource = null;
-        boolean updateWeatherOnly = false;
-        int updateType = WEATHER_FORECAST_TYPE;
-        if (intent.getAction().equals("org.thosp.yourlocalweather.action.RESEND_WEATHER_UPDATE")) {
+        executor.submit(() -> {
+            startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+            boolean forceUpdate = false;
+            Long locationId = null;
+            String updateSource = null;
+            boolean updateWeatherOnly = false;
+            int updateType = WEATHER_FORECAST_TYPE;
+            if (intent.getAction().equals("org.thosp.yourlocalweather.action.RESEND_WEATHER_UPDATE")) {
+                startWeatherUpdate();
+                return;
+            }
+            if (intent.hasExtra("weatherRequest")) {
+                updateWeatherUpdateMessages.add((WeatherRequestDataHolder) intent.getSerializableExtra("weatherRequest"));
+            } else {
+                if (intent.hasExtra("forceUpdate")) {
+                    forceUpdate = intent.getBooleanExtra("forceUpdate", false);
+                }
+                if (intent.hasExtra("locationId")) {
+                    locationId = intent.getLongExtra("locationId", 0);
+                }
+                if (intent.hasExtra("updateSource")) {
+                    updateSource = intent.getStringExtra("updateSource");
+                }
+                if (intent.hasExtra("updateWeatherOnly")) {
+                    updateWeatherOnly = intent.getBooleanExtra("updateWeatherOnly", false);
+                }
+                if (intent.hasExtra("updateType")) {
+                    updateType = intent.getIntExtra("updateType", WEATHER_FORECAST_TYPE);
+                }
+                if (locationId != null) {
+                    updateWeatherUpdateMessages.add(new WeatherRequestDataHolder(locationId, updateSource, forceUpdate, updateWeatherOnly, updateType));
+                }
+            }
             startWeatherUpdate();
-            return ret;
-        }
-        if (intent.hasExtra("weatherRequest")) {
-            updateWeatherUpdateMessages.add((WeatherRequestDataHolder) intent.getSerializableExtra("weatherRequest"));
-        } else {
-            if (intent.hasExtra("forceUpdate")) {
-                forceUpdate = intent.getBooleanExtra("forceUpdate", false);
-            }
-            if (intent.hasExtra("locationId")) {
-                locationId = intent.getLongExtra("locationId", 0);
-            }
-            if (intent.hasExtra("updateSource")) {
-                updateSource = intent.getStringExtra("updateSource");
-            }
-            if (intent.hasExtra("updateWeatherOnly")) {
-                updateWeatherOnly = intent.getBooleanExtra("updateWeatherOnly", false);
-            }
-            if (intent.hasExtra("updateType")) {
-                updateType = intent.getIntExtra("updateType", WEATHER_FORECAST_TYPE);
-            }
-            if (locationId != null) {
-                updateWeatherUpdateMessages.add(new WeatherRequestDataHolder(locationId, updateSource, forceUpdate, updateWeatherOnly, updateType));
-            }
-        }
-        startWeatherUpdate();
+        });
         return ret;
     }
 
