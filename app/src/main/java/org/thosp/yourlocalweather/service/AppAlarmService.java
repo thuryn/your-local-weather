@@ -50,8 +50,8 @@ public class AppAlarmService extends AbstractCommonService {
         if (intent == null) {
             return ret;
         }
-        appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
         executor.submit(() -> {
+            appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
             if ("org.thosp.yourlocalweather.action.START_ALARM_SERVICE".equals(intent.getAction())) {
                 setAlarm();
             } else if ("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE".equals(intent.getAction())) {

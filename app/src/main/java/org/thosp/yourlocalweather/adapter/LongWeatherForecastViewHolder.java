@@ -25,6 +25,10 @@ public class LongWeatherForecastViewHolder extends RecyclerView.ViewHolder {
     private final RecyclerView mRecyclerView;
     private final Context mContext;
     private final Set<Integer> visibleColumns;
+    private final String pressureUnitFromPreferences;
+    private final String rainSnowUnitFromPreferences;
+    private final String windUnitFromPreferences;
+    private final String temperatureUnitFromPreferences;
 
     private final TextView headerTime;
     private final TextView headerIcon;
@@ -50,10 +54,18 @@ public class LongWeatherForecastViewHolder extends RecyclerView.ViewHolder {
 
     public LongWeatherForecastViewHolder(View itemView,
                                          Context context,
+                                         String pressureUnitFromPreferences,
+                                         String rainSnowUnitFromPreferences,
+                                         String windUnitFromPreferences,
+                                         String temperatureUnitFromPreferences,
                                          Set<Integer> visibleColumns) {
         super(itemView);
         mContext = context;
         this.visibleColumns = visibleColumns;
+        this.pressureUnitFromPreferences = pressureUnitFromPreferences;
+        this.rainSnowUnitFromPreferences = rainSnowUnitFromPreferences;
+        this.windUnitFromPreferences = windUnitFromPreferences;
+        this.temperatureUnitFromPreferences = temperatureUnitFromPreferences;
 
         headerTime = (TextView) itemView.findViewById(R.id.forecast_header_time);
         headerIcon = (TextView) itemView.findViewById(R.id.forecast_header_icon);
@@ -81,7 +93,7 @@ public class LongWeatherForecastViewHolder extends RecyclerView.ViewHolder {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
     }
 
-    void bindWeather(Context context, double latitude, Locale locale, List<DetailedWeatherForecast> weather) {
+    void bindWeather(Context context, double latitude, Locale locale, String windUnitFromPreferences, List<DetailedWeatherForecast> weather) {
 
         Typeface typeface = Typeface.createFromAsset(mContext.getAssets(),
                 "fonts/weathericons-regular-webfont.ttf");
@@ -141,7 +153,7 @@ public class LongWeatherForecastViewHolder extends RecyclerView.ViewHolder {
             headerWind.setTypeface(typeface);
             headerWind.setText(String.valueOf((char) 0xf050));
             headerWindUnit.setVisibility(View.VISIBLE);
-            headerWindUnit.setText(AppPreference.getWindUnit(mContext));
+            headerWindUnit.setText(AppPreference.getWindUnit(mContext, windUnitFromPreferences));
         } else {
             headerWind.setVisibility(View.GONE);
             headerWindUnit.setVisibility(View.GONE);
@@ -161,7 +173,7 @@ public class LongWeatherForecastViewHolder extends RecyclerView.ViewHolder {
             headerRainSnow.setTypeface(typeface);
             headerRainSnow.setText(String.valueOf((char) 0xf01a) + "/" + String.valueOf((char) 0xf01b));
             headerRainSnowUnit.setVisibility(View.VISIBLE);
-            headerRainSnowUnit.setText(AppPreference.getRainOrSnowUnit(context));
+            headerRainSnowUnit.setText(AppPreference.getRainOrSnowUnit(rainSnowUnitFromPreferences));
             ViewGroup.LayoutParams params=headerRainSnow.getLayoutParams();
             params.width = Utils.spToPx(AppPreference.getRainOrSnowForecastWeadherWidth(context), context);
             headerRainSnow.setLayoutParams(params);
@@ -187,7 +199,7 @@ public class LongWeatherForecastViewHolder extends RecyclerView.ViewHolder {
             headerPressure.setTypeface(typeface);
             headerPressure.setText(String.valueOf((char) 0xf079));
             headerPressureUnit.setVisibility(View.VISIBLE);
-            headerPressureUnit.setText(AppPreference.getPressureUnit(mContext));
+            headerPressureUnit.setText(AppPreference.getPressureUnit(mContext, pressureUnitFromPreferences));
         } else {
             headerPressure.setVisibility(View.GONE);
             headerPressureUnit.setVisibility(View.GONE);
@@ -201,6 +213,10 @@ public class LongWeatherForecastViewHolder extends RecyclerView.ViewHolder {
                 detailedWeatherForecast,
                 latitude,
                 locale,
+                pressureUnitFromPreferences,
+                rainSnowUnitFromPreferences,
+                windUnitFromPreferences,
+                temperatureUnitFromPreferences,
                 visibleColumns);
         mRecyclerView.setAdapter(adapter);
     }

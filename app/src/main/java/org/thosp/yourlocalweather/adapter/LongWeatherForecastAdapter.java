@@ -21,29 +21,41 @@ public class LongWeatherForecastAdapter extends RecyclerView.Adapter<LongWeather
     private final List<DetailedWeatherForecast> mWeatherList;
     private double latitude;
     private Locale locale;
+    private String pressureUnitFromPreferences;
+    private String rainSnowUnitFromPreferences;
+    private String windUnitFromPreferences;
+    private String temperatureUnitFromPreferences;
 
     public LongWeatherForecastAdapter(Context context,
                                       List<DetailedWeatherForecast> weatherForecastList,
                                       double latitude,
                                       Locale locale,
+                                      String pressureUnitFromPreferences,
+                                      String rainSnowUnitFromPreferences,
+                                      String windUnitFromPreferences,
+                                      String temperatureUnitFromPreferences,
                                       Set<Integer> visibleColumns) {
         this.mContext = context;
         this.visibleColumns = visibleColumns;
         this.latitude = latitude;
         this.locale = locale;
         this.mWeatherList = weatherForecastList;
+        this.pressureUnitFromPreferences = pressureUnitFromPreferences;
+        this.rainSnowUnitFromPreferences = rainSnowUnitFromPreferences;
+        this.windUnitFromPreferences = windUnitFromPreferences;
+        this.temperatureUnitFromPreferences = temperatureUnitFromPreferences;
     }
 
     @Override
     public LongWeatherForecastViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.long_forecast_item, parent, false);
-        return new LongWeatherForecastViewHolder(v, mContext, visibleColumns);
+        return new LongWeatherForecastViewHolder(v, mContext, pressureUnitFromPreferences, rainSnowUnitFromPreferences, windUnitFromPreferences, temperatureUnitFromPreferences, visibleColumns);
     }
 
     @Override
     public void onBindViewHolder(LongWeatherForecastViewHolder holder, int position) {
-        holder.bindWeather(mContext, latitude, locale, mWeatherList);
+        holder.bindWeather(mContext, latitude, locale, windUnitFromPreferences, mWeatherList);
     }
 
     @Override

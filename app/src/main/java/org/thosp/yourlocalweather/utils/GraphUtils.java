@@ -53,20 +53,27 @@ public class GraphUtils {
                                           Float heightMultiplier,
                                           List<DetailedWeatherForecast> weatherForecastList,
                                           long locationId,
-                                          Locale locale) {
+                                          Locale locale,
+                                          Boolean showLegend,
+                                          Set<Integer> combinedGraphValuesFromSettings,
+                                          int widgetTextColor,
+                                          int widgetBackgroundColor,
+                                          AppPreference.GraphGridColors widgetGraphGridColor,
+                                          String temperatureUnitFromPreferences,
+                                          String pressureUnitFromPreferences,
+                                          String rainSnowUnitFromPreferences,
+                                          boolean widgetGraphNativeScaled,
+                                          String windUnitFromPreferences) {
 
         if (combinedGraphs.get(widgetId) != null) {
             return combinedGraphs.get(widgetId);
         }
 
-        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
-        Boolean showLegend = widgetSettingsDbHelper.getParamBoolean(widgetId, "combinedGraphShowLegend");
-
         if (showLegend == null) {
             showLegend = true;
         }
 
-        int[] size = getWidgetSize(context, widgetId);
+        int[] size = getWidgetSize(context, widgetGraphNativeScaled, widgetId);
         int width = size[0];
         int height;
         if (heightMultiplier == null) {
@@ -86,17 +93,20 @@ public class GraphUtils {
 
         CombinedChart combinedChart = generateCombinedGraph(context,
                                     null,
-                                                            getCombinedGraphValuesFromSettings(context, widgetSettingsDbHelper, widgetId),
+                                                            combinedGraphValuesFromSettings,
                                                             weatherForecastList,
-                                                            locationId,
                                                             locale,
                                                             18f,
                                                             yAxisValues,
                                                             0,
-                                                            AppPreference.getWidgetTextColor(context),
-                                                            AppPreference.getWidgetBackgroundColor(context),
-                                                            AppPreference.getWidgetGraphGridColor(context),
-                                                            showLegend);
+                                                            widgetTextColor,
+                                                            widgetBackgroundColor,
+                                                            widgetGraphGridColor,
+                                                            showLegend,
+                                                            temperatureUnitFromPreferences,
+                                                            pressureUnitFromPreferences,
+                                                            rainSnowUnitFromPreferences,
+                                                            windUnitFromPreferences);
 
         combinedChart.setBackgroundColor(ContextCompat.getColor(context,
                 R.color.widget_transparentTheme_colorBackground));
@@ -119,7 +129,7 @@ public class GraphUtils {
         return combinedChartBitmap;
     }
 
-    protected static int[] getWidgetSize(Context context, int appWidgetId) {
+    protected static int[] getWidgetSize(Context context, boolean widgetGraphNativeScaled, int appWidgetId) {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(
                 context.getApplicationContext());
 
@@ -156,12 +166,12 @@ public class GraphUtils {
 
         int mWidgetWidthPerOrientation = mWidgetPortWidth;
         int mWidgetHeightPerOrientation = mWidgetPortHeight;
-        if (!isPortrait(context)) {
+        /*if (!isPortrait(context)) {
             mWidgetWidthPerOrientation = mWidgetLandWidth;
             mWidgetHeightPerOrientation = mWidgetLandHeight;
-        }
+        }*/
         int[] size = new int[2];
-        if (AppPreference.isWidgetGraphNativeScaled(context)) {
+        if (widgetGraphNativeScaled) {
             size[0] = mWidgetWidthPerOrientation;
             size[1] = mWidgetHeightPerOrientation;
             return size;
@@ -171,12 +181,12 @@ public class GraphUtils {
         return size;
     }
 
-    public static Set<Integer> getCombinedGraphValuesFromSettings(Context context, WidgetSettingsDbHelper widgetSettingsDbHelper, int widgetId) {
+    public static Set<Integer> getCombinedGraphValuesFromSettings(Set<Integer> combinedGraphValuesFromPreferences, WidgetSettingsDbHelper widgetSettingsDbHelper, int widgetId) {
         Set<Integer> combinedGraphValues = new HashSet<>();
 
         String storedGraphValues = widgetSettingsDbHelper.getParamString(widgetId, "combinedGraphValues");
         if ((storedGraphValues == null) || !storedGraphValues.contains(",")) {
-            combinedGraphValues = AppPreference.getCombinedGraphValues(context);
+            combinedGraphValues = combinedGraphValuesFromPreferences;
             StringBuilder valuesToStore = new StringBuilder();
             for (int selectedValue: combinedGraphValues) {
                 valuesToStore.append(selectedValue);
@@ -222,7 +232,6 @@ public class GraphUtils {
                                                       CombinedChart combinedChartFromLayout,
                                                       Set<Integer> combinedGraphValues,
                                                       List<DetailedWeatherForecast> weatherForecastList,
-                                                      long locationId,
                                                       Locale locale,
                                                       Float textSize,
                                                       Integer yAxisValues,
@@ -230,7 +239,11 @@ public class GraphUtils {
                                                       int textColorId,
                                                       int backgroundColorId,
                                                       AppPreference.GraphGridColors gridColorId,
-                                                      boolean showLegend) {
+                                                      boolean showLegend,
+                                                      String temperatureUnitFromPreferences,
+                                                      String pressureUnitFromPreferences,
+                                                      String rainSnowUnitFromPreferences,
+                                                      String windUnitFromPreferences) {
 
         CustomValueFormatter mValueFormatter = new CustomValueFormatter(locale);
 
@@ -299,7 +312,7 @@ public class GraphUtils {
         double minTemperatureValue = Double.MAX_VALUE;
         double maxTemperatureValue = Double.MIN_VALUE;
         for (int i = 0; i < temperatureListSize; i++) {
-            double temperatureValue = TemperatureUtil.getTemperature(context, weatherForecastList.get(i));
+            double temperatureValue = TemperatureUtil.getTemperature(context, temperatureUnitFromPreferences, weatherForecastList.get(i));
             temperatures[i] = temperatureValue;
             if (temperatureValue < minTemperatureValue) {
                 minTemperatureValue = temperatureValue;
@@ -354,9 +367,7 @@ public class GraphUtils {
         set.setValueTextColor(textColorId);
 
         double multiplier;
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_PRESSURE_UNITS, "hpa");
-        switch (unitsFromPreferences) {
+        switch (pressureUnitFromPreferences) {
             case "inhg": multiplier = 50; break;
             default: multiplier = 1;
         }
@@ -369,6 +380,7 @@ public class GraphUtils {
             PressureWithUnit pressureWithUnit = AppPreference.getPressureWithUnit(
                     context,
                     weatherForecastList.get(i).getPressure(),
+                    pressureUnitFromPreferences,
                     locale);
             double pressureValue = multiplier * pressureWithUnit.getPressure();
             pressures[i] = pressureValue;
@@ -417,12 +429,12 @@ public class GraphUtils {
         for (int i = 0; i < weatherForecastList.size(); i++) {
             DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(i);
             double rainValue = AppPreference.getRainOrSnow(
-                    context, detailedWeatherForecast.getRain());
+                    rainSnowUnitFromPreferences, detailedWeatherForecast.getRain());
             if (!isRain && (rainValue > 0)) {
                 isRain = true;
             }
             double snowValue = AppPreference.getRainOrSnow(
-                    context, detailedWeatherForecast.getSnow());
+                    rainSnowUnitFromPreferences, detailedWeatherForecast.getSnow());
             if (!isSnow && (snowValue > 0)) {
                 isSnow = true;
             }
@@ -492,7 +504,7 @@ public class GraphUtils {
         double minWindValue = Double.MAX_VALUE;
         double maxWindValue = Double.MIN_VALUE;
         for (int i = 0; i < windSize; i++) {
-            double windSpeed = AppPreference.getWind(context, weatherForecastList.get(i).getWindSpeed());
+            double windSpeed = AppPreference.getWind(windUnitFromPreferences, weatherForecastList.get(i).getWindSpeed());
             if (windSpeed < minWindValue) {
                 minWindValue = windSpeed;
             }
@@ -545,12 +557,12 @@ public class GraphUtils {
             }
             yLeft.setAxisMaximum((float) (axisMaximum));
             yLeft.setAxisMinimum((float) (axisMinimum));
-            yLeft.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, TemperatureUtil.getTemperatureUnit(context)));
+            yLeft.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, TemperatureUtil.getTemperatureUnit(context, temperatureUnitFromPreferences)));
         } else if (leftYaxis == CombinedGraph.WIND) {
             double axisMaximum = Math.ceil(maxWindValue);
             yLeft.setAxisMaximum((float) (axisMaximum));
             yLeft.setAxisMinimum(0f);
-            yLeft.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, AppPreference.getWindUnit(context)));
+            yLeft.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, AppPreference.getWindUnit(context, windUnitFromPreferences)));
         } else if (leftYaxis == CombinedGraph.PRESSURE) {
             double axisMaximum = Math.ceil(((maxPressureValue + 2) / multiplier));
             double axisMinimum = Math.floor(minPressureValue / multiplier);
@@ -563,13 +575,13 @@ public class GraphUtils {
             }
             yLeft.setAxisMaximum((float) (axisMaximum));
             yLeft.setAxisMinimum((float) (axisMinimum));
-            yLeft.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, AppPreference.getPressureUnit(context)));
+            yLeft.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, AppPreference.getPressureUnit(context, pressureUnitFromPreferences)));
             pressureSet.setAxisIndex(0);
         } else if (leftYaxis == CombinedGraph.RAINSNOW) {
             double axisMaximum = Math.ceil(maxRainSnowValue);
             yLeft.setAxisMaximum((float) (axisMaximum));
             yLeft.setAxisMinimum(0f);
-            yLeft.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, context.getString(AppPreference.getRainOrSnowUnit(context))));
+            yLeft.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, context.getString(AppPreference.getRainOrSnowUnit(rainSnowUnitFromPreferences))));
             rainSet.setAxisIndex(0);
         }
         LimitLine zerolimitLine = new LimitLine(0);
@@ -597,7 +609,7 @@ public class GraphUtils {
             double axisMaximum = Math.ceil(maxWindValue);
             yRight.setAxisMaximum((float) (axisMaximum));
             yRight.setAxisMinimum(0f);
-            yRight.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, AppPreference.getWindUnit(context)));
+            yRight.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, AppPreference.getWindUnit(context, windUnitFromPreferences)));
         } else if (rightYaxis == CombinedGraph.PRESSURE) {
             double axisMaximum = Math.ceil(((maxPressureValue + 1) / multiplier));
             double axisMinimum = Math.floor(minPressureValue / multiplier);
@@ -610,13 +622,13 @@ public class GraphUtils {
             }
             yRight.setAxisMaximum((float) (axisMaximum));
             yRight.setAxisMinimum((float) (axisMinimum));
-            yRight.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, AppPreference.getPressureUnit(context)));
+            yRight.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, AppPreference.getPressureUnit(context, pressureUnitFromPreferences)));
             pressureSet.setAxisIndex(1);
         } else if (rightYaxis == CombinedGraph.RAINSNOW) {
             double axisMaximum = Math.ceil(maxRainSnowValue);
             yRight.setAxisMaximum((float) (axisMaximum));
             yRight.setAxisMinimum(0f);
-            yRight.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, context.getString(AppPreference.getRainOrSnowUnit(context))));
+            yRight.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, context.getString(AppPreference.getRainOrSnowUnit(rainSnowUnitFromPreferences))));
             rainSet.setAxisIndex(1);
         }
         if (rightYaxis == null) {
@@ -630,7 +642,7 @@ public class GraphUtils {
             rainAxis.setEnabled(true);
             rainAxis.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
             rainAxis.setAxisMaximum((float) AppPreference.getRainOrSnow(
-                    context, 2.2));
+                    rainSnowUnitFromPreferences, 2.2));
             rainAxis.setAxisMinimum(0);
             rainSet.setAxisIndex(2);
         }

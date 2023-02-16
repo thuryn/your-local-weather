@@ -10,23 +10,31 @@ import android.os.RemoteException;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 @TargetApi(Build.VERSION_CODES.M)
 public class UpdateWeatherResendJob extends AbstractAppJob {
     private static final String TAG = "UpdateWeatherResendJob";
     public static final int JOB_ID = 1537091709;
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     private JobParameters params;
     @Override
     public boolean onStartJob(JobParameters params) {
         this.params = params;
-        appendLog(getBaseContext(), TAG, "onStartJob");
-        sendRetryMessageToCurrentWeatherService();
+        executor.submit(() -> {
+            appendLog(getBaseContext(), TAG, "onStartJob");
+            sendRetryMessageToCurrentWeatherService();
+        });
         return true;
     }
 
     @Override
     public boolean onStopJob(JobParameters params) {
-        appendLog(getBaseContext(), TAG, "onStopJob");
+        executor.submit(() -> {
+            appendLog(getBaseContext(), TAG, "onStopJob");
+        });
         return true;
     }
 

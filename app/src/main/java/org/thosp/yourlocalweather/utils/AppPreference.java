@@ -84,12 +84,15 @@ public class AppPreference {
         language = null;
     }
 
-    public static String getLocalizedTime(Context context, Date inputTime, Locale locale) {
-        String timeStylePreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+    public static String getTimeStylePreference(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_TIME_STYLE, "system");
-        if ("system".equals(timeStylePreferences)) {
+    }
+
+    public static String getLocalizedTime(Context context, Date inputTime, String timeStylePreference, Locale locale) {
+        if ("system".equals(timeStylePreference)) {
             return DateFormat.getTimeFormat(context).format(inputTime);
-        } else if ("12h".equals(timeStylePreferences)) {
+        } else if ("12h".equals(timeStylePreference)) {
             SimpleDateFormat sdf_12 = new SimpleDateFormat("hh:mm aaaa", locale);
             return sdf_12.format(inputTime);
         } else {
@@ -112,19 +115,29 @@ public class AppPreference {
         }
     }
 
-    public static String getLocalizedDateTime(Context context, Date inputTime, boolean showYear, Locale locale) {
+    public static String getTemperatureUnitFromPreferences(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
+    }
+
+    public static String getPressureUnitFromPreferences(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_PRESSURE_UNITS, "hpa");
+    }
+
+    public static String getLocalizedDateTime(Context context, Date inputTime, boolean showYear, String timeStylePreference, Locale locale) {
         String dateStylePreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_DATE_STYLE, "system");
         switch (dateStylePreferences) {
             case "date_style_dots": return getSimpleDateFormatForDate("dd.MM.", "dd.MM.yy", showYear, locale).format(inputTime) +
-                                        " " + getLocalizedTime(context, inputTime, locale);
+                                        " " + getLocalizedTime(context, inputTime, timeStylePreference, locale);
             case "date_style_slash_month_first": return getSimpleDateFormatForDate("MM/dd", "yy/MM/dd", showYear, locale).format(inputTime) +
-                                                    " " + getLocalizedTime(context, inputTime, locale);
+                                                    " " + getLocalizedTime(context, inputTime, timeStylePreference, locale);
             case "date_style_slash_day_first": return getSimpleDateFormatForDate("dd/MM", "dd/MM/yy", showYear, locale).format(inputTime) +
-                                                    " " + getLocalizedTime(context, inputTime, locale);
+                                                    " " + getLocalizedTime(context, inputTime, timeStylePreference, locale);
             case "system":
             default: return DateFormat.getDateFormat(context).format(inputTime) + " " +
-                    getLocalizedTime(context, inputTime, locale);
+                    getLocalizedTime(context, inputTime, timeStylePreference, locale);
         }
     }
 
@@ -178,19 +191,17 @@ public class AppPreference {
         }
     }
 
-    public static WindWithUnit getWindWithUnit(Context context, float value, float direction, Locale locale) {
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_WIND_UNITS, "m_per_second");
-        if (unitsFromPreferences.contains("km_per_hour") ) {
+    public static WindWithUnit getWindWithUnit(Context context, float value, float direction, String windUnitFromPreferences, Locale locale) {
+        if (windUnitFromPreferences.contains("km_per_hour") ) {
             double kmhValue = 3.6d * value;
             return new WindWithUnit(context, kmhValue, context.getString(R.string.wind_speed_kilometers), direction, locale);
-        } else if (unitsFromPreferences.contains("miles_per_hour") ) {
+        } else if (windUnitFromPreferences.contains("miles_per_hour") ) {
             double mhValue = 2.2369d * value;
             return new WindWithUnit(context, mhValue, context.getString(R.string.wind_speed_miles), direction, locale);
-        } else if (unitsFromPreferences.contains("knots") ) {
+        } else if (windUnitFromPreferences.contains("knots") ) {
             double knotsValue = 1.9438445d * value;
             return new WindWithUnit(context, knotsValue, context.getString(R.string.wind_speed_knots), direction, locale);
-        } else if (unitsFromPreferences.contains("beaufort") ) {
+        } else if (windUnitFromPreferences.contains("beaufort") ) {
             double beaufortValue = mpsToBft(value);
             return new WindWithUnit(context, beaufortValue, context.getString(R.string.wind_speed_beaufort), direction, locale);
         } else {
@@ -198,10 +209,13 @@ public class AppPreference {
         }
     }
 
-    public static double getRainOrSnow(Context context, double value) {
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+    public static String getRainSnowUnitFromPreferences(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_RAIN_SNOW_UNITS, "mm");
-        if (unitsFromPreferences.contains("inches") ) {
+    }
+
+    public static double getRainOrSnow(String rainSnowUnitFromPreferences, double value) {
+        if (rainSnowUnitFromPreferences.contains("inches") ) {
             return 0.03937007874d * value;
         } else {
             return value;
@@ -218,22 +232,18 @@ public class AppPreference {
         }
     }
 
-    public static String getFormatedRainOrSnow(Context context, double value, Locale locale) {
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_RAIN_SNOW_UNITS, "mm");
+    public static String getFormatedRainOrSnow(String rainSnowUnitFromPreferences, double value, Locale locale) {
         String format;
-        if (unitsFromPreferences.contains("inches") ) {
+        if (rainSnowUnitFromPreferences.contains("inches") ) {
             format = "%.3f";
         } else {
             format = "%.1f";
         }
-        return String.format(locale, format, getRainOrSnow(context, value));
+        return String.format(locale, format, getRainOrSnow(rainSnowUnitFromPreferences, value));
     }
 
-    public static int getRainOrSnowUnit(Context context) {
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_RAIN_SNOW_UNITS, "mm");
-        if (unitsFromPreferences.contains("inches") ) {
+    public static int getRainOrSnowUnit(String rainSnowUnitFromPreferences) {
+        if (rainSnowUnitFromPreferences.contains("inches") ) {
             return R.string.inches_label;
         } else {
             return R.string.millimetre_label;
@@ -264,46 +274,45 @@ public class AppPreference {
         }
     }
 
-    public static String getWindInString(Context context, double stringValue, Locale locale) {
-        return String.format(locale, getWindFormat(context), getWind(context, stringValue));
+    public static String getWindInString(Context context, String windUnitFromPreferences, double stringValue, Locale locale) {
+        return String.format(locale, getWindFormat(context), getWind(windUnitFromPreferences, stringValue));
     }
 
-    public static double getWind(Context context, double windSpeed) {
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
+    public static String getWindUnitFromPreferences(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_WIND_UNITS, "m_per_second");
-        if (unitsFromPreferences.contains("km_per_hour") ) {
+    }
+
+    public static double getWind(String windUnitFromPreferences, double windSpeed) {
+        if (windUnitFromPreferences.contains("km_per_hour") ) {
             return 3.6d * windSpeed;
-        } else if (unitsFromPreferences.contains("miles_per_hour") ) {
+        } else if (windUnitFromPreferences.contains("miles_per_hour") ) {
             return 2.2369d * windSpeed;
-        } else if (unitsFromPreferences.contains("knots") ) {
+        } else if (windUnitFromPreferences.contains("knots") ) {
             return 1.9438445d * windSpeed;
-        } else if (unitsFromPreferences.contains("beaufort") ) {
+        } else if (windUnitFromPreferences.contains("beaufort") ) {
             return mpsToBft(windSpeed);
         } else {
             return windSpeed;
         }
     }
 
-    public static String getWindUnit(Context context) {
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_WIND_UNITS, "m_per_second");
-        if (unitsFromPreferences.contains("km_per_hour") ) {
+    public static String getWindUnit(Context context, String windUnitFromPreferences) {
+        if (windUnitFromPreferences.contains("km_per_hour") ) {
             return context.getString(R.string.wind_speed_kilometers);
-        } else if (unitsFromPreferences.contains("miles_per_hour") ) {
+        } else if (windUnitFromPreferences.contains("miles_per_hour") ) {
             return context.getString(R.string.wind_speed_miles);
-        } else if (unitsFromPreferences.contains("knots") ) {
+        } else if (windUnitFromPreferences.contains("knots") ) {
             return context.getString(R.string.wind_speed_knots);
-        } else if (unitsFromPreferences.contains("beaufort") ) {
+        } else if (windUnitFromPreferences.contains("beaufort") ) {
             return context.getString(R.string.wind_speed_beaufort);
         } else {
             return context.getString(R.string.wind_speed_meters);
         }
     }
 
-    public static String getPressureUnit(Context context) {
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_PRESSURE_UNITS, "hpa");
-        switch (unitsFromPreferences) {
+    public static String getPressureUnit(Context context, String pressureUnitFromPreferences) {
+        switch (pressureUnitFromPreferences) {
             case "mmhg": return context.getString(R.string.pressure_measurement_mmhg);
             case "inhg": return context.getString(R.string.pressure_measurement_inhg);
             case "mbar": return context.getString(R.string.pressure_measurement_mbar);
@@ -313,10 +322,8 @@ public class AppPreference {
         }
     }
 
-    public static int getPressureDecimalPlaces(Context context) {
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_PRESSURE_UNITS, "hpa");
-        switch (unitsFromPreferences) {
+    public static int getPressureDecimalPlaces(String pressureUnitFromPreferences) {
+        switch (pressureUnitFromPreferences) {
             case "mmhg": return 2;
             case "inhg": return 2;
             case "mbar": return 0;
@@ -326,14 +333,17 @@ public class AppPreference {
         }
     }
 
-    public static String getPressureInString(Context context, double stringValue, Locale locale) {
-        return String.format(locale, "%." + getPressureDecimalPlaces(context)
-                + "f", getPressureWithUnit(context, stringValue, locale).getPressure());
+    public static String getTemeratureTypeFromPreferences(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_TEMPERATURE_TYPE, "measured_only");
     }
 
-    public static PressureWithUnit getPressureWithUnit(Context context, double value, Locale locale) {
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_PRESSURE_UNITS, "hpa");
+    public static String getPressureInString(Context context, double stringValue, String pressureUnitFromPreferences, Locale locale) {
+        return String.format(locale, "%." + getPressureDecimalPlaces(pressureUnitFromPreferences)
+                + "f", getPressureWithUnit(context, stringValue, pressureUnitFromPreferences, locale).getPressure());
+    }
+
+    public static PressureWithUnit getPressureWithUnit(Context context, double value, String unitsFromPreferences, Locale locale) {
         switch (unitsFromPreferences) {
             case "mmhg": return new PressureWithUnit(value * 0.75f,
                                                  context.getString(R.string.pressure_measurement_mmhg), locale);
@@ -550,10 +560,10 @@ public class AppPreference {
         Set<String> defaultVisibleGraphs = new HashSet<>();
         defaultVisibleGraphs.add("0");
         defaultVisibleGraphs.add("2");
-        Set<String> visibleColumns = PreferenceManager.getDefaultSharedPreferences(context).getStringSet(
+        Set<String> combinedGraphValues = PreferenceManager.getDefaultSharedPreferences(context).getStringSet(
                 Constants.KEY_PREF_COMBINED_GRAPH_VALUES, defaultVisibleGraphs);
         Set<Integer> result = new HashSet<>();
-        for (String visibleColumn: visibleColumns) {
+        for (String visibleColumn: combinedGraphValues) {
             result.add(Integer.valueOf(visibleColumn));
         }
         return result;

@@ -279,8 +279,10 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
 
         @Override
         public void run() {
-            appendLog(getBaseContext(), TAG, "send update source to N - update location by network, lastKnownLocation timeouted");
-            updateNetworkLocationByNetwork(null, false, null, 0);
+            executor.submit(() -> {
+                appendLog(getBaseContext(), TAG, "send update source to N - update location by network, lastKnownLocation timeouted");
+                updateNetworkLocationByNetwork(null, false, null, 0);
+            });
         }
     };
 
@@ -289,10 +291,12 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
 
         @Override
         public void run() {
-            appendLog(getBaseContext(), TAG, "timerRunnable:requestWeatherCheck");
-            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-            org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
-            requestWeatherCheck(currentLocation.getId(), updateSource, AppWakeUpManager.SOURCE_CURRENT_WEATHER, forceUpdate);
+            executor.submit(() -> {
+                appendLog(getBaseContext(), TAG, "timerRunnable:requestWeatherCheck");
+                LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+                org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
+                requestWeatherCheck(currentLocation.getId(), updateSource, AppWakeUpManager.SOURCE_CURRENT_WEATHER, forceUpdate);
+            });
         }
     };
 
@@ -301,23 +305,25 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
 
         @Override
         public void run() {
-            appendLog(getBaseContext(), TAG, "timerNetworkAvailabilityRunnable:run");
-            ConnectionDetector connectionDetector = new ConnectionDetector(getApplicationContext());
-            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getApplicationContext());
-            org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
-            if (!connectionDetector.isNetworkAvailableAndConnected()) {
-                locationsDbHelper.updateLocationSource(
-                        currentLocationForSensorEvent.getId(),
-                        getString(R.string.location_weather_update_status_location_not_reachable));
-                sendMessageToWakeUpService(
-                        AppWakeUpManager.FALL_DOWN,
-                        AppWakeUpManager.SOURCE_LOCATION_UPDATE
-                );
-                sendIntent("android.intent.action.CLEAR_SENSOR_VALUES");
-                updateLocationInProcess = false;
-            } else {
-                updateNetworkLocation(false, null, 0);
-            }
+            executor.submit(() -> {
+                appendLog(getBaseContext(), TAG, "timerNetworkAvailabilityRunnable:run");
+                ConnectionDetector connectionDetector = new ConnectionDetector(getApplicationContext());
+                LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getApplicationContext());
+                org.thosp.yourlocalweather.model.Location currentLocationForSensorEvent = locationsDbHelper.getLocationByOrderId(0);
+                if (!connectionDetector.isNetworkAvailableAndConnected()) {
+                    locationsDbHelper.updateLocationSource(
+                            currentLocationForSensorEvent.getId(),
+                            getString(R.string.location_weather_update_status_location_not_reachable));
+                    sendMessageToWakeUpService(
+                            AppWakeUpManager.FALL_DOWN,
+                            AppWakeUpManager.SOURCE_LOCATION_UPDATE
+                    );
+                    sendIntent("android.intent.action.CLEAR_SENSOR_VALUES");
+                    updateLocationInProcess = false;
+                } else {
+                    updateNetworkLocation(false, null, 0);
+                }
+            });
         }
     };
 
@@ -326,10 +332,12 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
 
         @Override
         public void run() {
-            locationManager.removeUpdates(gpsLocationListener);
-            appendLog(getBaseContext(), TAG, "Timeout getting location from GPS");
-            setNoLocationFound();
-            updateLocationInProcess = false;
+            executor.submit(() -> {
+                locationManager.removeUpdates(gpsLocationListener);
+                appendLog(getBaseContext(), TAG, "Timeout getting location from GPS");
+                setNoLocationFound();
+                updateLocationInProcess = false;
+            });
         }
     };
 
@@ -739,7 +747,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
             final Looper locationLooper = Looper.myLooper();
             if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {
                 appendLog(getBaseContext(), TAG, "getCurrentLocation on new API");
-                locationManager.getCurrentLocation(LocationManager.NETWORK_PROVIDER, null, getMainExecutor(),
+                locationManager.getCurrentLocation(LocationManager.NETWORK_PROVIDER, null, executor,
                         new Consumer<Location>() {
                             @Override
                             public void accept(Location location) {

@@ -55,49 +55,55 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     private BroadcastReceiver userUnlockedReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            appendLog(context, TAG, "receive intent: ", intent);
-            String notificationPresence = AppPreference.getNotificationPresence(context);
-            if (AppPreference.getInstance().isNotificationEnabled(context) &&
-                    "on_lock_screen".equals(notificationPresence)) {
-                NotificationManager notificationManager =
-                        (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                notificationManager.cancelAll();
-            }
+            executor.submit(() -> {
+                appendLog(context, TAG, "receive intent: ", intent);
+                String notificationPresence = AppPreference.getNotificationPresence(context);
+                if (AppPreference.getInstance().isNotificationEnabled(context) &&
+                        "on_lock_screen".equals(notificationPresence)) {
+                    NotificationManager notificationManager =
+                            (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    notificationManager.cancelAll();
+                }
+            });
         }
     };
 
     private BroadcastReceiver screenOnReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            appendLog(context, TAG, "receive intent: ", intent);
-            lastOnscreenEventLock.lock();
-            long now = Calendar.getInstance().getTimeInMillis();
-            if ((lastOnscreenEvent + 60000) > now) {
+            executor.submit(() -> {
+                appendLog(context, TAG, "receive intent: ", intent);
+                lastOnscreenEventLock.lock();
+                long now = Calendar.getInstance().getTimeInMillis();
+                if ((lastOnscreenEvent + 60000) > now) {
+                    lastOnscreenEventLock.unlock();
+                    return;
+                }
+                lastOnscreenEvent = now;
                 lastOnscreenEventLock.unlock();
-                return;
-            }
-            lastOnscreenEvent = now;
-            lastOnscreenEventLock.unlock();
-            try {
-                processScreenOn(context);
-            } catch (Exception e) {
-                appendLog(getBaseContext(), TAG, "Exception occured during database update", e);
-                screenOnRetryCounter = 0;
-                timerScreenOnRetryHandler.postDelayed(timerScreenOnRetryRunnable, SCREEN_ON_RETRY_FIRST);
-            }
+                try {
+                    processScreenOn(context);
+                } catch (Exception e) {
+                    appendLog(getBaseContext(), TAG, "Exception occured during database update", e);
+                    screenOnRetryCounter = 0;
+                    timerScreenOnRetryHandler.postDelayed(timerScreenOnRetryRunnable, SCREEN_ON_RETRY_FIRST);
+                }
+            });
         }
     };
 
     private BroadcastReceiver screenOffReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            appendLog(context, TAG, "receive intent: ", intent);
-            String notificationPresence = AppPreference.getNotificationPresence(context);
-            if (AppPreference.getInstance().isNotificationEnabled(context) &&
-                    "on_lock_screen".equals(notificationPresence)) {
-                NotificationUtils.weatherNotification(context, getLocationForNotification().getId());
-            }
-            timerScreenOnHandler.removeCallbacksAndMessages(null);
+            executor.submit(() -> {
+                appendLog(context, TAG, "receive intent: ", intent);
+                String notificationPresence = AppPreference.getNotificationPresence(context);
+                if (AppPreference.getInstance().isNotificationEnabled(context) &&
+                        "on_lock_screen".equals(notificationPresence)) {
+                    NotificationUtils.weatherNotification(context, getLocationForNotification().getId());
+                }
+                timerScreenOnHandler.removeCallbacksAndMessages(null);
+            });
         }
     };
 
@@ -106,15 +112,17 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
         @Override
         public void run() {
-            try {
-                processScreenOn(getBaseContext());
-            } catch (Exception e) {
-                appendLog(getBaseContext(), TAG, "Exception occured during database update", e);
-                if (screenOnRetryCounter < 3) {
-                    screenOnRetryCounter++;
-                    timerScreenOnRetryHandler.postDelayed(timerScreenOnRetryRunnable, SCREEN_ON_RETRY_NEXT);
+            executor.submit(() -> {
+                try {
+                    processScreenOn(getBaseContext());
+                } catch (Exception e) {
+                    appendLog(getBaseContext(), TAG, "Exception occured during database update", e);
+                    if (screenOnRetryCounter < 3) {
+                        screenOnRetryCounter++;
+                        timerScreenOnRetryHandler.postDelayed(timerScreenOnRetryRunnable, SCREEN_ON_RETRY_NEXT);
+                    }
                 }
-            }
+            });
         }
     };
 
@@ -123,39 +131,41 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
         @Override
         public void run() {
-            if (!WidgetUtils.isInteractive(getBaseContext())) {
-                return;
-            }
-            CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
-            final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(getBaseContext());
-            LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-            org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
-            CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
+            executor.submit(() -> {
+                if (!WidgetUtils.isInteractive(getBaseContext())) {
+                    return;
+                }
+                CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
+                final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(getBaseContext());
+                LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
+                org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
+                CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
 
-            appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:weatherRecord=", weatherRecord);
-            if (weatherRecord == null) {
+                appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:weatherRecord=", weatherRecord);
+                if (weatherRecord == null) {
+                    requestWeatherCheck(currentLocation.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER, false);
+                    timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
+                    return;
+                }
+                WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
+                long lastUpdateTimeInMilis = Utils.getLastUpdateTimeInMilis(weatherRecord, weatherForecastRecord, currentLocation);
+                long now = System.currentTimeMillis();
+
+                appendLog(getBaseContext(), TAG, "screen timer called, lastUpdate=",
+                        currentLocation.getLastLocationUpdate(),
+                        ", now=",
+                        now,
+                        ", lastUpdateTimeInMilis=",
+                        lastUpdateTimeInMilis);
+
+                if ((now <= (lastUpdateTimeInMilis + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now <= (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
+                    timerScreenOnHandler.postDelayed(timerScreenOnRunnable, REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT);
+                    return;
+                }
+                appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:requestWeatherCheck");
                 requestWeatherCheck(currentLocation.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER, false);
                 timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
-                return;
-            }
-            WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
-            long lastUpdateTimeInMilis = Utils.getLastUpdateTimeInMilis(weatherRecord, weatherForecastRecord, currentLocation);
-            long now = System.currentTimeMillis();
-
-            appendLog(getBaseContext(), TAG, "screen timer called, lastUpdate=",
-                    currentLocation.getLastLocationUpdate(),
-                    ", now=",
-                    now,
-                    ", lastUpdateTimeInMilis=",
-                    lastUpdateTimeInMilis);
-
-            if ((now <= (lastUpdateTimeInMilis + UPDATE_WEATHER_ONLY_TIMEOUT)) || (now <= (currentLocation.getLastLocationUpdate() + REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT))) {
-                timerScreenOnHandler.postDelayed(timerScreenOnRunnable, REQUEST_UPDATE_WEATHER_ONLY_TIMEOUT);
-                return;
-            }
-            appendLog(getBaseContext(), TAG, "timerScreenOnRunnable:requestWeatherCheck");
-            requestWeatherCheck(currentLocation.getId(), null, AppWakeUpManager.SOURCE_CURRENT_WEATHER, false);
-            timerScreenOnHandler.postDelayed(timerScreenOnRunnable, UPDATE_WEATHER_ONLY_TIMEOUT);
+            });
         }
     };
 
@@ -170,12 +180,20 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         if (intent == null) {
             return ret;
         }
-        appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
-        switch (intent.getAction()) {
-            case "org.thosp.yourlocalweather.action.START_SCREEN_BASED_UPDATES": startSensorBasedUpdates(); return START_STICKY;
-            case "org.thosp.yourlocalweather.action.STOP_SCREEN_BASED_UPDATES": stopSensorBasedUpdates(); return ret;
-            default: return ret;
-        }
+        executor.submit(() -> {
+            appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
+            switch (intent.getAction()) {
+                case "org.thosp.yourlocalweather.action.START_SCREEN_BASED_UPDATES":
+                    startSensorBasedUpdates();
+                    return;
+                case "org.thosp.yourlocalweather.action.STOP_SCREEN_BASED_UPDATES":
+                    stopSensorBasedUpdates();
+                    return;
+                default:
+                    return;
+            }
+        });
+        return ret;
     }
 
     Handler handler = new Handler(Looper.getMainLooper()) {

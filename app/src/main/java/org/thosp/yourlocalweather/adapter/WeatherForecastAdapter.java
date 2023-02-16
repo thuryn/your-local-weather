@@ -26,16 +26,31 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
     double latitude;
     Locale locale;
     private final List<Integer> keys;
+    private final String pressureUnitFromPreferences;
+    private String rainSnowUnitFromPreferences;
+    private String windUnitFromPreferences;
+    private String temperatureUnitFromPreferences;
+    private String timeStylePreference;
 
     public WeatherForecastAdapter(Context context,
                                   List<DetailedWeatherForecast> weatherForecastList,
                                   double latitude,
                                   Locale locale,
+                                  String pressureUnitFromPreferences,
+                                  String rainSnowUnitFromPreferences,
+                                  String windUnitFromPreferences,
+                                  String temperatureUnitFromPreferences,
+                                  String timeStylePreference,
                                   Set<Integer> visibleColumns) {
         mContext = context;
         this.visibleColumns = visibleColumns;
         this.latitude = latitude;
         this.locale = locale;
+        this.pressureUnitFromPreferences = pressureUnitFromPreferences;
+        this.rainSnowUnitFromPreferences = rainSnowUnitFromPreferences;
+        this.windUnitFromPreferences = windUnitFromPreferences;
+        this.temperatureUnitFromPreferences = temperatureUnitFromPreferences;
+        this.timeStylePreference = timeStylePreference;
 
         mWeatherList = new HashMap<>();
         keys = new ArrayList<>();
@@ -56,13 +71,20 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
     public WeatherForecastViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View v = inflater.inflate(R.layout.forecast_item, parent, false);
-        return new WeatherForecastViewHolder(v, mContext, visibleColumns);
+        return new WeatherForecastViewHolder(v,
+                mContext,
+                pressureUnitFromPreferences,
+                rainSnowUnitFromPreferences,
+                windUnitFromPreferences,
+                temperatureUnitFromPreferences,
+                timeStylePreference,
+                visibleColumns);
     }
 
     @Override
     public void onBindViewHolder(WeatherForecastViewHolder holder, int position) {
         List<DetailedWeatherForecast> weather = mWeatherList.get(keys.get(position));
-        holder.bindWeather(mContext, latitude, locale, weather);
+        holder.bindWeather(mContext, latitude, locale, windUnitFromPreferences, weather);
     }
 
     @Override

@@ -39,6 +39,7 @@ import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
 import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 import org.thosp.yourlocalweather.settings.fragments.AboutPreferenceFragment;
+import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
@@ -47,6 +48,8 @@ import org.thosp.yourlocalweather.utils.Utils;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -55,6 +58,8 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 public abstract class BaseActivity extends AppCompatActivity {
 
     private final String TAG = "BaseActivity";
+
+    protected ExecutorService executor = Executors.newFixedThreadPool(1);
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -91,7 +96,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     public void switchLocation(View arg0) {
-        int newLocationOrderId = 1 + currentLocation.getOrderId();
+        int newLocationOrderId = 0;
+        if (currentLocation != null) {
+            newLocationOrderId = 1 + currentLocation.getOrderId();
+        }
         currentLocation = locationsDbHelper.getLocationByOrderId(newLocationOrderId);
 
         if (currentLocation == null) {
@@ -102,10 +110,15 @@ public abstract class BaseActivity extends AppCompatActivity {
                 currentLocation = locationsDbHelper.getLocationByOrderId(newLocationOrderId);
             }
         }
-
-        AppPreference.setCurrentLocationId(this, currentLocation);
-        localityView.setText(Utils.getCityAndCountry(this, newLocationOrderId));
-        updateUI();
+        Context savedContext = this;
+        executor.submit(() -> {
+            AppPreference.setCurrentLocationId(savedContext, currentLocation);
+            boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(savedContext);
+            runOnUiThread(() -> {
+                localityView.setText(Utils.getCityAndCountry(savedContext, defaultApiKey, currentLocation));
+            });
+            updateUI();
+        });
     }
 
     protected abstract void updateUI();

@@ -9,6 +9,7 @@ import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
+import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -17,6 +18,8 @@ import org.thosp.yourlocalweather.utils.WidgetUtils;
 import java.util.ArrayList;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
+import androidx.core.content.ContextCompat;
 
 public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
 
@@ -33,7 +36,7 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
         final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
         WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
-
+        String pressureUnitFromPreferences = AppPreference.getPressureUnitFromPreferences(context);
         Long locationId = widgetSettingsDbHelper.getParamLong(appWidgetId, "locationId");
 
         if (locationId == null) {
@@ -50,71 +53,120 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
         }
 
         CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
+        String storedCurrentWeatherDetails = widgetSettingsDbHelper.getParamString(appWidgetId, "currentWeatherDetails");
+        String temperatureUnitFromPreferences = AppPreference.getTemperatureUnitFromPreferences(context);
+        int widgetTextColor = AppPreference.getWidgetTextColor(context);
+        boolean showLabelsOnWidget = AppPreference.showLabelsOnWidget(context);
+        String windUnitFromPreferences = AppPreference.getWindUnitFromPreferences(context);
+        String timeStylePreference = AppPreference.getTimeStylePreference(context);
 
-        WidgetUtils.updateCurrentWeatherDetails(
-                context,
-                remoteViews,
-                weatherRecord,
-                currentLocation.getLocale(),
-                appWidgetId,
-                DEFAULT_CURRENT_WEATHER_DETAILS);
+        ContextCompat.getMainExecutor(context).execute(()  -> {
+            String storedCurrentWeatherDetailsForUpdate = (storedCurrentWeatherDetails != null) ? storedCurrentWeatherDetails : DEFAULT_CURRENT_WEATHER_DETAILS;
+            WidgetUtils.updateCurrentWeatherDetails(
+                    context,
+                    remoteViews,
+                    weatherRecord,
+                    currentLocation.getLocale(),
+                    storedCurrentWeatherDetailsForUpdate,
+                    pressureUnitFromPreferences,
+                    temperatureUnitFromPreferences,
+                    widgetTextColor,
+                    showLabelsOnWidget,
+                    windUnitFromPreferences,
+                    timeStylePreference);
+        });
+
+        boolean fontBasedIcons = "weather_icon_set_fontbased".equals(AppPreference.getIconSet(context));
 
         if (weatherRecord != null) {
             Weather weather = weatherRecord.getWeather();
-
-            remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_city, Utils.getCityAndCountry(context, currentLocation.getOrderId()));
-            remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_temperature, TemperatureUtil.getTemperatureWithUnit(
+            boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(context);
+            String temeratureTypeFromPreferences = AppPreference.getTemeratureTypeFromPreferences(context);
+            String temperatureWIthUnit = TemperatureUtil.getTemperatureWithUnit(
                     context,
                     weather,
                     currentLocation.getLatitude(),
                     weatherRecord.getLastUpdatedTime(),
-                    currentLocation.getLocale()));
+                    temeratureTypeFromPreferences,
+                    currentLocation.getLocale());
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     context,
                     weather,
                     currentLocation.getLatitude(),
                     weatherRecord.getLastUpdatedTime(),
+                    temperatureUnitFromPreferences,
                     currentLocation.getLocale());
-            if (secondTemperature != null) {
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_widget_second_temperature, View.VISIBLE);
-                remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_second_temperature, secondTemperature);
+            String weatherDescription = Utils.getWeatherDescription(context,
+                    currentLocation.getLocaleAbbrev(),
+                    weather);
+            IconHolder weatherIconHolder = new IconHolder();
+            if (fontBasedIcons) {
+                weatherIconHolder.bitmapIcon = Utils.createWeatherIcon(context, Utils.getStrIconFromWEatherRecord(context, weatherRecord));
             } else {
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_widget_second_temperature, View.GONE);
+                weatherIconHolder.resourceIcon = Utils.getWeatherResourceIcon(weatherRecord);
             }
-            remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_description,
-                                        Utils.getWeatherDescription(context,
-                                                                    currentLocation.getLocaleAbbrev(),
-                                                                    weather));
+            String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, timeStylePreference, currentLocation);
 
-            Utils.setWeatherIcon(remoteViews, context, weatherRecord,
-                    R.id.widget_ext_loc_3x3_widget_icon);
-            String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, currentLocation);
-            remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_last_update, lastUpdate);
+            ContextCompat.getMainExecutor(context).execute(()  -> {
+                remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_city, Utils.getCityAndCountry(context, defaultApiKey, currentLocation));
+                remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_temperature, temperatureWIthUnit);
+
+                if (secondTemperature != null) {
+                    remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_widget_second_temperature, View.VISIBLE);
+                    remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_second_temperature, secondTemperature);
+                } else {
+                    remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_widget_second_temperature, View.GONE);
+                }
+                remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_description, weatherDescription);
+
+                if (weatherIconHolder.bitmapIcon != null) {
+                    remoteViews.setImageViewBitmap(R.id.widget_ext_loc_3x3_widget_icon, weatherIconHolder.bitmapIcon);
+                } else {
+                    remoteViews.setImageViewResource(R.id.widget_ext_loc_3x3_widget_icon, weatherIconHolder.resourceIcon);
+                }
+                remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_last_update, lastUpdate);
+            });
         } else {
-            remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_city, context.getString(R.string.location_not_found));
-            remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_temperature, TemperatureUtil.getTemperatureWithUnit(
+            String temeratureTypeFromPreferences = AppPreference.getTemeratureTypeFromPreferences(context);
+            String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
                     context,
                     null,
                     currentLocation.getLatitude(),
                     0,
-                    currentLocation.getLocale()));
+                    temeratureTypeFromPreferences,
+                    currentLocation.getLocale());
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     context,
                     null,
                     currentLocation.getLatitude(),
                     0,
+                    temperatureUnitFromPreferences,
                     currentLocation.getLocale());
-            if (secondTemperature != null) {
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_widget_second_temperature, View.VISIBLE);
-                remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_second_temperature, secondTemperature);
+            IconHolder weatherIconHolder = new IconHolder();
+            if (fontBasedIcons) {
+                weatherIconHolder.bitmapIcon = Utils.createWeatherIcon(context, Utils.getStrIconFromWEatherRecord(context, null));
             } else {
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_widget_second_temperature, View.GONE);
+                weatherIconHolder.resourceIcon = Utils.getWeatherResourceIcon(null);
             }
-            remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_description, "");
 
-            Utils.setWeatherIcon(remoteViews, context, weatherRecord,
-                    R.id.widget_ext_loc_3x3_widget_icon);
-            remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_last_update, "");
+            ContextCompat.getMainExecutor(context).execute(()  -> {
+                remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_city, context.getString(R.string.location_not_found));
+                remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_temperature, temperatureWithUnit);
+                if (secondTemperature != null) {
+                    remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_widget_second_temperature, View.VISIBLE);
+                    remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_second_temperature, secondTemperature);
+                } else {
+                    remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_widget_second_temperature, View.GONE);
+                }
+                remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_description, "");
+
+                if (weatherIconHolder.bitmapIcon != null) {
+                    remoteViews.setImageViewBitmap(R.id.widget_ext_loc_3x3_widget_icon, weatherIconHolder.bitmapIcon);
+                } else {
+                    remoteViews.setImageViewResource(R.id.widget_ext_loc_3x3_widget_icon, weatherIconHolder.resourceIcon);
+                }
+                remoteViews.setTextViewText(R.id.widget_ext_loc_3x3_widget_last_update, "");
+            });
         }
         appendLog(context, TAG, "preLoadWeather:end");
     }
@@ -125,12 +177,14 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
         int backgroundColorId = AppPreference.getWidgetBackgroundColor(context);
         int windowHeaderBackgroundColorId = AppPreference.getWindowHeaderBackgroundColorId(context);
 
-        remoteViews.setInt(R.id.widget_ext_loc_3x3_widget_root, "setBackgroundColor", backgroundColorId);
-        remoteViews.setTextColor(R.id.widget_ext_loc_3x3_widget_temperature, textColorId);
-        remoteViews.setTextColor(R.id.widget_ext_loc_3x3_widget_description, textColorId);
-        remoteViews.setTextColor(R.id.widget_ext_loc_3x3_widget_description, textColorId);
-        remoteViews.setTextColor(R.id.widget_ext_loc_3x3_widget_second_temperature, textColorId);
-        remoteViews.setInt(R.id.widget_ext_loc_3x3_header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
+        ContextCompat.getMainExecutor(context).execute(()  -> {
+                    remoteViews.setInt(R.id.widget_ext_loc_3x3_widget_root, "setBackgroundColor", backgroundColorId);
+                    remoteViews.setTextColor(R.id.widget_ext_loc_3x3_widget_temperature, textColorId);
+                    remoteViews.setTextColor(R.id.widget_ext_loc_3x3_widget_description, textColorId);
+                    remoteViews.setTextColor(R.id.widget_ext_loc_3x3_widget_description, textColorId);
+                    remoteViews.setTextColor(R.id.widget_ext_loc_3x3_widget_second_temperature, textColorId);
+                    remoteViews.setInt(R.id.widget_ext_loc_3x3_header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
+                });
         appendLog(context, TAG, "setWidgetTheme:end");
     }
 

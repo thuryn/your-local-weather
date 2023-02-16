@@ -65,6 +65,7 @@ public class VoiceSettingsActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private VoiceSettingParametersDbHelper voiceSettingParametersDbHelper;
     private Locale applicationLocale;
+    private String timeStylePreference;
     private TextToSpeech tts;
 
     Handler timerHandler = new Handler();
@@ -91,6 +92,7 @@ public class VoiceSettingsActivity extends BaseActivity {
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
             }
             voiceSettingParametersDbHelper = VoiceSettingParametersDbHelper.getInstance(this);
+            timeStylePreference = AppPreference.getTimeStylePreference(this);
             inited = true;
         });
         setContentView(R.layout.activity_voice_settings);
@@ -441,7 +443,7 @@ public class VoiceSettingsActivity extends BaseActivity {
                             final Calendar c = Calendar.getInstance();
                             c.set(Calendar.HOUR_OF_DAY, hour);
                             c.set(Calendar.MINUTE, minute);
-                            addInfo1 = AppPreference.getLocalizedTime(getBaseContext(), c.getTime(), applicationLocale);
+                            addInfo1 = AppPreference.getLocalizedTime(getBaseContext(), c.getTime(), timeStylePreference, applicationLocale);
 
                             /*Long nextTimeDate = TimeUtils.setupAlarmForVoiceForVoiceSetting(getBaseContext(), voiceSettingId, voiceSettingParametersDbHelper);
                             if (nextTimeDate != null) {

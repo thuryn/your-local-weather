@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.IntentFilter;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.thosp.yourlocalweather.adapter.LongWeatherForecastAdapter;
 import org.thosp.yourlocalweather.adapter.WeatherForecastAdapter;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
 import org.thosp.yourlocalweather.utils.ApiKeys;
@@ -54,10 +56,18 @@ public class WeatherForecastActivity extends ForecastingActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.forecast_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         localityView = (TextView) findViewById(R.id.forecast_locality);
+        Typeface robotoLight = Typeface.createFromAsset(this.getAssets(),
+                "fonts/Roboto-Light.ttf");
+        localityView.setTypeface(robotoLight);
 
         executor.submit(() -> {
                     visibleColumns = AppPreference.getInstance().getForecastActivityColumns(this);
                     connectionDetector = new ConnectionDetector(WeatherForecastActivity.this);
+                    connectionDetector = new ConnectionDetector(this);
+                    locationsDbHelper = LocationsDbHelper.getInstance(this);
+                    pressureUnitFromPreferences = AppPreference.getPressureUnitFromPreferences(this);
+                    rainSnowUnitFromPreferences = AppPreference.getRainSnowUnitFromPreferences(this);
+                    temperatureUnitFromPreferences = AppPreference.getTemperatureUnitFromPreferences(this);
                     //forecastType = (Switch) findViewById(R.id.forecast_forecastType);
 
             /*forecastType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -92,7 +102,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
           });
 
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
-        long locationId = AppPreference.getCurrentLocationId(this);
+        long locationId = AppPreference.getCurrentLocationId(WeatherForecastActivity.this);
         currentLocation = locationsDbHelper.getLocationById(locationId);
         if (currentLocation == null) {
             return;
@@ -104,18 +114,26 @@ public class WeatherForecastActivity extends ForecastingActivity {
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId, forecastTypeRecord);
         appendLog(getBaseContext(), TAG, "Weather forecast record: ", weatherForecastRecord);
         if (weatherForecastRecord != null) {
-            weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
+            weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().
+
+                    getWeatherForecastList());
             locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());
         } else if (ForecastUtil.shouldUpdateForecast(this, locationId, UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
             /*if (forecastType.isChecked()) {
                 updateLongWeatherForecastFromNetwork("FORECAST");
             } else {*/
-                updateWeatherForecastFromNetwork("FORECAST");
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    updateWeatherForecastFromNetwork("FORECAST");
+                }
+            });
             //}
             return;
         }
 
-        String cityAndCountry = Utils.getCityAndCountry(this, currentLocation.getOrderId());
+        boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(this);
+        String cityAndCountry = Utils.getCityAndCountry(this, defaultApiKey, currentLocation);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -126,6 +144,10 @@ public class WeatherForecastActivity extends ForecastingActivity {
         if (weatherForecastList.get(locationId) == null) {
             return;
         }
+
+        String windUnitFromPreferences = AppPreference.getWindUnitFromPreferences(this);
+        String temperatureUnitFromPreferences = AppPreference.getTemperatureUnitFromPreferences(this);
+        String timeStylePreference = AppPreference.getTimeStylePreference(this);
 
         runOnUiThread(new Runnable() {
             @Override
@@ -150,6 +172,11 @@ public class WeatherForecastActivity extends ForecastingActivity {
                         weatherForecastList.get(locationId),
                         currentLocation.getLatitude(),
                         currentLocation.getLocale(),
+                        pressureUnitFromPreferences,
+                        rainSnowUnitFromPreferences,
+                        windUnitFromPreferences,
+                        temperatureUnitFromPreferences,
+                        timeStylePreference,
                         visibleColumns);
                 mRecyclerView.setAdapter(adapter);
                 //}
@@ -232,8 +259,10 @@ public class WeatherForecastActivity extends ForecastingActivity {
                         for (Integer selectedItem: mSelectedItems) {
                             visibleColumns.add(selectedItem + 2);
                         }
-                        AppPreference.getInstance().setForecastActivityColumns(context, visibleColumns);
-                        updateUI();
+                        executor.submit(() -> {
+                            AppPreference.getInstance().setForecastActivityColumns(context, visibleColumns);
+                            updateUI();
+                        });
                     }
                 })
                 .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {

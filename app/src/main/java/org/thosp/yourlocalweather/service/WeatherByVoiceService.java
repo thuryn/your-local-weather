@@ -36,6 +36,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -51,6 +53,12 @@ public class WeatherByVoiceService extends Service {
     private static final Queue<WeatherByVoiceRequestDataHolder> weatherByVoiceMessages = new LinkedList<>();
 
     public LinkedList<String> sayWhatWhenRecreated;
+    private String rainSnowUnitFromPreferences;
+    private String temperatureUnitFromPreferences;
+    private String windUnitFromPreferences;
+    private String timeStylePreference;
+
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -67,19 +75,33 @@ public class WeatherByVoiceService extends Service {
     }
 
     @Override
+    public void onCreate() {
+        super.onCreate();
+
+        executor.submit(() -> {
+            rainSnowUnitFromPreferences = AppPreference.getRainSnowUnitFromPreferences(getBaseContext());
+            temperatureUnitFromPreferences = AppPreference.getTemperatureUnitFromPreferences(getBaseContext());
+            windUnitFromPreferences = AppPreference.getWindUnitFromPreferences(getBaseContext());
+            timeStylePreference = AppPreference.getTimeStylePreference(getBaseContext());
+        });
+    }
+
+    @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
-        startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
-        appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
-
         if (intent == null) {
             return ret;
         }
-        switch (intent.getAction()) {
-            case "org.thosp.yourlocalweather.action.SAY_WEATHER": sayWeatherByTime(intent); return ret;
-            case "org.thosp.yourlocalweather.action.START_VOICE_WEATHER_UPDATED": startVoiceCommand(intent); return ret;
-            default: return ret;
-        }
+        executor.submit(() -> {
+            startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+            appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
+            switch (intent.getAction()) {
+                case "org.thosp.yourlocalweather.action.SAY_WEATHER": sayWeatherByTime(intent); return;
+                case "org.thosp.yourlocalweather.action.START_VOICE_WEATHER_UPDATED": startVoiceCommand(intent); return;
+                default: return;
+            }
+        });
+        return ret;
     }
 
     private void sayWeatherByTime(Intent intent) {
@@ -107,7 +129,6 @@ public class WeatherByVoiceService extends Service {
 
     private void sayCurrentWeatherForLocation(WeatherByVoiceRequestDataHolder updateRequest) {
         VoiceSettingParametersDbHelper voiceSettingParametersDbHelper = VoiceSettingParametersDbHelper.getInstance(getBaseContext());
-        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
 
         Map<Long, Boolean> allLocations = voiceSettingParametersDbHelper.getBooleanParam(
                 VoiceSettingParamType.VOICE_SETTING_LOCATIONS.getVoiceSettingParamTypeId());
@@ -305,10 +326,10 @@ public class WeatherByVoiceService extends Service {
                 temperatureToSay.append(String.format(voiceSettingParametersDbHelper.getStringParam(
                         voiceSettingIdFromSettings,
                         VoiceSettingParamType.VOICE_SETTING_TEMPERATURE_CUSTOM.getVoiceSettingParamTypeId()),
-                        TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weather.getTemperature(), currentLocation.getLocale())));
+                        TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weather.getTemperature(), temperatureUnitFromPreferences, currentLocation.getLocale())));
             } else {
                 temperatureToSay.append(getString(R.string.tty_say_temperature,
-                        TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weather.getTemperature(), currentLocation.getLocale())));
+                        TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weather.getTemperature(), temperatureUnitFromPreferences, currentLocation.getLocale())));
             }
             temperatureToSay.append(" ");
             textToSay.add(temperatureToSay.toString());
@@ -320,6 +341,7 @@ public class WeatherByVoiceService extends Service {
             WindWithUnit windWithUnit = AppPreference.getWindWithUnit(getBaseContext(),
                     weather.getWindSpeed(),
                     weather.getWindDirection(),
+                    windUnitFromPreferences,
                     currentLocation.getLocale());
             if (TimeUtils.isCurrentSettingIndex(partsToSay, 9)) {
                 windToSay.append(String.format(voiceSettingParametersDbHelper.getStringParam(
@@ -353,7 +375,7 @@ public class WeatherByVoiceService extends Service {
                     forecastToSay.append(" ");
                 }
 
-                String forecastCommonWeatherForecastToSay = sayCommonWeatherForecastParts(weatherForecastForVoice, currentLocation);
+                String forecastCommonWeatherForecastToSay = sayCommonWeatherForecastParts(weatherForecastForVoice, rainSnowUnitFromPreferences, currentLocation);
                 if (forecastCommonWeatherForecastToSay != null) {
                     forecastToSay.append(forecastCommonWeatherForecastToSay);
                 }
@@ -381,7 +403,7 @@ public class WeatherByVoiceService extends Service {
                                 getBaseContext()));
                         forecastToSay.append(" ");
                     }
-                    forecastToSay.append(sayRainSnow(weatherForecastForVoice.nightWeatherMaxMin.maxRain, weatherForecastForVoice.nightWeatherMaxMin.maxSnow, currentLocation));
+                    forecastToSay.append(sayRainSnow(weatherForecastForVoice.nightWeatherMaxMin.maxRain, weatherForecastForVoice.nightWeatherMaxMin.maxSnow, rainSnowUnitFromPreferences, currentLocation));
                 }
                 if (morningWeather && !commonPartsAreComplete) {
                     forecastToSay.append(getString(R.string.tty_say_weather_forecast_morning));
@@ -400,7 +422,7 @@ public class WeatherByVoiceService extends Service {
                                 getBaseContext()));
                         forecastToSay.append(" ");
                     }
-                    forecastToSay.append(sayRainSnow(weatherForecastForVoice.morningWeatherMaxMin.maxRain, weatherForecastForVoice.morningWeatherMaxMin.maxSnow, currentLocation));
+                    forecastToSay.append(sayRainSnow(weatherForecastForVoice.morningWeatherMaxMin.maxRain, weatherForecastForVoice.morningWeatherMaxMin.maxSnow, rainSnowUnitFromPreferences, currentLocation));
                 }
                 if (afternoonWeather && !commonPartsAreComplete) {
                     forecastToSay.append(getString(R.string.tty_say_weather_forecast_afternoon));
@@ -419,7 +441,7 @@ public class WeatherByVoiceService extends Service {
                                 getBaseContext()));
                         forecastToSay.append(" ");
                     }
-                    forecastToSay.append(sayRainSnow(weatherForecastForVoice.afternoonWeatherMaxMin.maxRain, weatherForecastForVoice.afternoonWeatherMaxMin.maxSnow, currentLocation));
+                    forecastToSay.append(sayRainSnow(weatherForecastForVoice.afternoonWeatherMaxMin.maxRain, weatherForecastForVoice.afternoonWeatherMaxMin.maxSnow, rainSnowUnitFromPreferences,currentLocation));
                 }
                 if (eveningWeather && !commonPartsAreComplete) {
                     forecastToSay.append(getString(R.string.tty_say_weather_forecast_evening));
@@ -438,7 +460,7 @@ public class WeatherByVoiceService extends Service {
                                 getBaseContext()));
                         forecastToSay.append(" ");
                     }
-                    forecastToSay.append(sayRainSnow(weatherForecastForVoice.eveningWeatherMaxMin.maxRain, weatherForecastForVoice.eveningWeatherMaxMin.maxSnow, currentLocation));
+                    forecastToSay.append(sayRainSnow(weatherForecastForVoice.eveningWeatherMaxMin.maxRain, weatherForecastForVoice.eveningWeatherMaxMin.maxSnow, rainSnowUnitFromPreferences, currentLocation));
                 }
                 forecastToSay.append(TTS_DELAY_BETWEEN_ITEM);
 
@@ -446,33 +468,33 @@ public class WeatherByVoiceService extends Service {
                     if (Math.round(weatherForecastForVoice.minTempForDay) == Math.round(weatherForecastForVoice.maxTempForDay)) {
                         if (weatherForecastForVoice.minTempForDay >= 0) {
                             forecastToSay.append(getString(R.string.tty_say_temp_max,
-                                    TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.minTempForDay, currentLocation.getLocale()),
-                                    AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.minTempTime), currentLocation.getLocale())));
+                                    TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.minTempForDay, temperatureUnitFromPreferences, currentLocation.getLocale()),
+                                    AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.minTempTime), timeStylePreference, currentLocation.getLocale())));
                             forecastToSay.append(" ");
                         } else {
                             forecastToSay.append(getString(R.string.tty_say_temp_min,
-                                    TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.minTempForDay, currentLocation.getLocale()),
-                                    AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.minTempTime), currentLocation.getLocale())));
+                                    TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.minTempForDay, temperatureUnitFromPreferences, currentLocation.getLocale()),
+                                    AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.minTempTime), timeStylePreference, currentLocation.getLocale())));
                             forecastToSay.append(" ");
                         }
                     } else {
                         if (weatherForecastForVoice.minTempTime < weatherForecastForVoice.maxTempTime) {
                             forecastToSay.append(getString(R.string.tty_say_temp_min,
-                                    TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.minTempForDay, currentLocation.getLocale()),
-                                    AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.minTempTime), currentLocation.getLocale())));
+                                    TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.minTempForDay, temperatureUnitFromPreferences, currentLocation.getLocale()),
+                                    AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.minTempTime), timeStylePreference, currentLocation.getLocale())));
                             forecastToSay.append(" ");
                             forecastToSay.append(getString(R.string.tty_say_temp_max,
-                                    TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.maxTempForDay, currentLocation.getLocale()),
-                                    AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.maxTempTime), currentLocation.getLocale())));
+                                    TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.maxTempForDay, temperatureUnitFromPreferences, currentLocation.getLocale()),
+                                    AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.maxTempTime), timeStylePreference, currentLocation.getLocale())));
                             forecastToSay.append(" ");
                         } else {
                             forecastToSay.append(getString(R.string.tty_say_temp_max,
-                                    TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.maxTempForDay, currentLocation.getLocale()),
-                                    AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.maxTempTime), currentLocation.getLocale())));
+                                    TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.maxTempForDay, temperatureUnitFromPreferences, currentLocation.getLocale()),
+                                    AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.maxTempTime), timeStylePreference, currentLocation.getLocale())));
                             forecastToSay.append(" ");
                             forecastToSay.append(getString(R.string.tty_say_temp_min,
-                                    TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.minTempForDay, currentLocation.getLocale()),
-                                    AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.minTempTime), currentLocation.getLocale())));
+                                    TemperatureUtil.getMeasuredTemperatureWithUnit(getBaseContext(), weatherForecastForVoice.minTempForDay, temperatureUnitFromPreferences, currentLocation.getLocale()),
+                                    AppPreference.getLocalizedTime(getBaseContext(), new Date(weatherForecastForVoice.minTempTime), timeStylePreference, currentLocation.getLocale())));
                             forecastToSay.append(" ");
                         }
                     }
@@ -483,6 +505,7 @@ public class WeatherByVoiceService extends Service {
                 WindWithUnit windWithUnit = AppPreference.getWindWithUnit(getBaseContext(),
                         (float) weatherForecastForVoice.maxWindForDay,
                         (float) weatherForecastForVoice.windDegreeForDay,
+                        windUnitFromPreferences,
                         currentLocation.getLocale());
                 forecastToSay.append(getString(R.string.tty_say_max_wind,
                         windWithUnit.getWindSpeed(0),
@@ -496,18 +519,18 @@ public class WeatherByVoiceService extends Service {
         sayWeather(textToSay);
     }
 
-    private String sayRainSnow(double rain, double snow, Location location) {
+    private String sayRainSnow(double rain, double snow, String rainSnowUnitFromPreferences, Location location) {
         StringBuilder forecastToSay = new StringBuilder();
         if (rain > MIN_RAIN_SNOW_MM) {
             forecastToSay.append(TTS_DELAY_BETWEEN_ITEM);
             forecastToSay.append(getString(R.string.tty_say_max_rain,
-                    AppPreference.getFormatedRainOrSnow(getBaseContext(), rain, location.getLocale())));
+                    AppPreference.getFormatedRainOrSnow(rainSnowUnitFromPreferences, rain, location.getLocale())));
             forecastToSay.append(" ");
         }
         if (snow > MIN_RAIN_SNOW_MM) {
             forecastToSay.append(TTS_DELAY_BETWEEN_ITEM);
             forecastToSay.append(getString(R.string.tty_say_max_rain,
-                    AppPreference.getFormatedRainOrSnow(getBaseContext(), snow, location.getLocale())));
+                    AppPreference.getFormatedRainOrSnow(rainSnowUnitFromPreferences, snow, location.getLocale())));
             forecastToSay.append(" ");
         }
         return forecastToSay.toString();
@@ -515,7 +538,7 @@ public class WeatherByVoiceService extends Service {
 
     private double MIN_RAIN_SNOW_MM = 0.5;
 
-    private String sayCommonWeatherForecastParts(ForecastUtil.WeatherForecastForVoice weatherForecastForVoice,
+    private String sayCommonWeatherForecastParts(ForecastUtil.WeatherForecastForVoice weatherForecastForVoice, String rainSnowUnitFromPreferences,
                                                  Location currentLocation) {
 
         boolean nightWeather = weatherForecastForVoice.nightWeatherIds != null;
@@ -656,7 +679,7 @@ public class WeatherByVoiceService extends Service {
                         currentLocation.getLocaleAbbrev(),
                         getBaseContext()));
             }
-            forecastToSay.append(sayRainSnow(maxRain, maxSnow, currentLocation));
+            forecastToSay.append(sayRainSnow(maxRain, maxSnow, rainSnowUnitFromPreferences, currentLocation));
             return forecastToSay.toString();
         }
         if (nightMorningAreSame) {
@@ -710,7 +733,7 @@ public class WeatherByVoiceService extends Service {
                         getBaseContext()));
                 forecastToSay.append(" ");
             }
-            forecastToSay.append(sayRainSnow(maxRain, maxSnow, currentLocation));
+            forecastToSay.append(sayRainSnow(maxRain, maxSnow, rainSnowUnitFromPreferences, currentLocation));
             return forecastToSay.toString();
         } else if (morningEveningAreSame) {
             StringBuilder forecastToSay = null;
@@ -735,7 +758,7 @@ public class WeatherByVoiceService extends Service {
                         getBaseContext()));
                 forecastToSay.append(" ");
             }
-            forecastToSay.append(sayRainSnow(maxRain, maxSnow, currentLocation));
+            forecastToSay.append(sayRainSnow(maxRain, maxSnow, rainSnowUnitFromPreferences, currentLocation));
             forecastToSay.append(" ");
             return forecastToSay.toString();
         } else if (afternoonEveningAreSame) {
@@ -761,7 +784,7 @@ public class WeatherByVoiceService extends Service {
                     currentLocation.getLocaleAbbrev(),
                     getBaseContext()));
             forecastToSay.append(" ");
-            forecastToSay.append(sayRainSnow(maxRain, maxSnow, currentLocation));
+            forecastToSay.append(sayRainSnow(maxRain, maxSnow, rainSnowUnitFromPreferences, currentLocation));
             forecastToSay.append(" ");
             return forecastToSay.toString();
         }

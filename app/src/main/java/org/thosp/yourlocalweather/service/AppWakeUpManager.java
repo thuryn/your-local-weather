@@ -16,6 +16,8 @@ import org.thosp.yourlocalweather.utils.NotificationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -25,6 +27,8 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLogWakeupSources;
 public class AppWakeUpManager extends Service {
 
     private static final String TAG = "AppWakeUpManager";
+
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     public static final int WAKE_UP = 1;
     public static final int FALL_DOWN = 2;
@@ -66,13 +70,21 @@ public class AppWakeUpManager extends Service {
         if (intent == null) {
             return ret;
         }
-        startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
-        appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
-        switch (intent.getAction()) {
-            case "org.thosp.yourlocalweather.action.WAKE_UP": startWakeUp(intent.getIntExtra("wakeupSource", 0)); return ret;
-            case "org.thosp.yourlocalweather.action.FALL_DOWN": stopWakeUp(intent.getIntExtra("wakeupSource", 0)); return ret;
-            default: return ret;
-        }
+        executor.submit(() -> {
+            startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+            appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
+            switch (intent.getAction()) {
+                case "org.thosp.yourlocalweather.action.WAKE_UP":
+                    startWakeUp(intent.getIntExtra("wakeupSource", 0));
+                    return;
+                case "org.thosp.yourlocalweather.action.FALL_DOWN":
+                    stopWakeUp(intent.getIntExtra("wakeupSource", 0));
+                    return;
+                default:
+                    return;
+            }
+        });
+        return ret;
     }
 
     @Override

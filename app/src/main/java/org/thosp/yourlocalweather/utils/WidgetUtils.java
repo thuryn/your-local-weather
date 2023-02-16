@@ -16,10 +16,8 @@ import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.Location;
-import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
-import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.widget.ExtLocationWidgetProvider;
 import org.thosp.yourlocalweather.widget.ExtLocationWithForecastGraphWidgetProvider;
 import org.thosp.yourlocalweather.widget.ExtLocationWithForecastWidgetProvider;
@@ -33,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 
 public class WidgetUtils {
@@ -40,15 +39,16 @@ public class WidgetUtils {
     private static final String TAG = "WidgetUtils";
 
     public static void setSunset(Context context, RemoteViews remoteViews, Calendar calendar, Locale locale,
-                                 int widgetSunsetId, int widgetSunsetIconId, Set<Integer> enabledDetails) {
+                                 int widgetSunsetId, int widgetSunsetIconId, Set<Integer> enabledDetails,
+                                 boolean showLabelsOnWidget, String timeStylePreference) {
         if (!isDetailVisible(6, remoteViews, widgetSunsetId, widgetSunsetIconId, enabledDetails)) {
             return;
         }
         String value = "";
         if (calendar != null) {
-            value = AppPreference.getLocalizedTime(context, calendar.getTime(), locale);
+            value = AppPreference.getLocalizedTime(context, calendar.getTime(), timeStylePreference, locale);
         }
-        if (AppPreference.showLabelsOnWidget(context)) {
+        if (showLabelsOnWidget) {
             String sunset = context.getString(R.string.sunset_label, value);
             remoteViews.setTextViewText(widgetSunsetId, sunset);
             remoteViews.setViewVisibility(widgetSunsetIconId, TextView.GONE);
@@ -61,15 +61,16 @@ public class WidgetUtils {
     }
 
     public static void setSunrise(Context context, RemoteViews remoteViews, Calendar calendar, Locale locale,
-                                  int widgetSunriseId, int widgetSunriseIconId, Set<Integer> enabledDetails) {
+                                  int widgetSunriseId, int widgetSunriseIconId, Set<Integer> enabledDetails,
+                                  boolean showLabelsOnWidget, String timeStylePreference) {
         if (!isDetailVisible(5, remoteViews, widgetSunriseId, widgetSunriseIconId, enabledDetails)) {
             return;
         }
         String value = "";
         if (calendar != null) {
-            value = AppPreference.getLocalizedTime(context, calendar.getTime(), locale);
+            value = AppPreference.getLocalizedTime(context, calendar.getTime(), timeStylePreference, locale);
         }
-        if (AppPreference.showLabelsOnWidget(context)) {
+        if (showLabelsOnWidget) {
             String sunrise = context.getString(R.string.sunrise_label, value);
             remoteViews.setTextViewText(widgetSunriseId, sunrise);
             remoteViews.setViewVisibility(widgetSunriseIconId, TextView.GONE);
@@ -83,15 +84,17 @@ public class WidgetUtils {
 
     public static void setDewPoint(Context context, RemoteViews remoteViews, Weather weather,
                                    Locale locale, int dewPointId, int dewPointIconId,
-                                   Set<Integer> enabledDetails) {
+                                   String temperatureUnitFromPreferences,
+                                   Set<Integer> enabledDetails,
+                                   boolean showLabelsOnWidget) {
         if (!isDetailVisible(4, remoteViews, dewPointId, dewPointIconId, enabledDetails)) {
             return;
         }
         String value = "";
         if (weather != null) {
-            value = TemperatureUtil.getDewPointWithUnit(context, weather, locale);
+            value = TemperatureUtil.getDewPointWithUnit(context, weather, temperatureUnitFromPreferences, locale);
         }
-        if (AppPreference.showLabelsOnWidget(context)) {
+        if (showLabelsOnWidget) {
             String dewPointValue = context.getString(
                     R.string.dew_point_label,
                     value);
@@ -105,13 +108,18 @@ public class WidgetUtils {
         }
     }
 
-    public static void setHumidity(Context context, RemoteViews remoteViews, int value,
-                                   int humidityId, int humidityIconId, Set<Integer> enabledDetails) {
+    public static void setHumidity(Context context,
+                                   RemoteViews remoteViews,
+                                   int value,
+                                   int humidityId,
+                                   int humidityIconId,
+                                   Set<Integer> enabledDetails,
+                                   boolean showLabelsOnWidget) {
         if (!isDetailVisible(1, remoteViews, humidityId, humidityIconId, enabledDetails)) {
             return;
         }
         String percentSign = context.getString(R.string.percent_sign);
-        if (AppPreference.showLabelsOnWidget(context)) {
+        if (showLabelsOnWidget) {
             String humidity =
                     context.getString(R.string.humidity_label,
                             String.valueOf(value), percentSign);
@@ -125,13 +133,21 @@ public class WidgetUtils {
         }
     }
 
-    public static void setWind(Context context, RemoteViews remoteViews, float value, float direction, Locale locale,
-                               int widgetWindId, int widgetWindIconId, Set<Integer> enabledDetails) {
+    public static void setWind(Context context,
+                               RemoteViews remoteViews,
+                               float value,
+                               float direction,
+                               Locale locale,
+                               int widgetWindId,
+                               int widgetWindIconId,
+                               Set<Integer> enabledDetails,
+                               boolean showLabelsOnWidget,
+                               String windUnitFromPreferences) {
         if (!isDetailVisible(0, remoteViews, widgetWindId, widgetWindIconId, enabledDetails)) {
             return;
         }
-        WindWithUnit windWithUnit = AppPreference.getWindWithUnit(context, value, direction, locale);
-        if (AppPreference.showLabelsOnWidget(context)) {
+        WindWithUnit windWithUnit = AppPreference.getWindWithUnit(context, value, direction, windUnitFromPreferences, locale);
+        if (showLabelsOnWidget) {
             String wind = context.getString(R.string.wind_label,
                             windWithUnit.getWindSpeed(0),
                             windWithUnit.getWindUnit(),
@@ -151,16 +167,17 @@ public class WidgetUtils {
         }
     }
 
-    public static void setPressure(Context context, RemoteViews remoteViews, float value, Locale locale,
-                                   int widgetPressureId, int widgetPressureIconId, Set<Integer> enabledDetails) {
+    public static void setPressure(Context context, RemoteViews remoteViews, float value, String pressureUnitFromPreferences, Locale locale,
+                                   int widgetPressureId, int widgetPressureIconId, Set<Integer> enabledDetails,
+                                   boolean showLabelsOnWidget) {
         if (!isDetailVisible(2, remoteViews, widgetPressureId, widgetPressureIconId, enabledDetails)) {
             return;
         }
-        PressureWithUnit pressureWithUnit = AppPreference.getPressureWithUnit(context, value, locale);
-        if (AppPreference.showLabelsOnWidget(context)) {
+        PressureWithUnit pressureWithUnit = AppPreference.getPressureWithUnit(context, value, pressureUnitFromPreferences, locale);
+        if (showLabelsOnWidget) {
             String pressure =
                     context.getString(R.string.pressure_label,
-                            pressureWithUnit.getPressure(AppPreference.getPressureDecimalPlaces(context)),
+                            pressureWithUnit.getPressure(AppPreference.getPressureDecimalPlaces(pressureUnitFromPreferences)),
                             pressureWithUnit.getPressureUnit());
             remoteViews.setTextViewText(widgetPressureId, pressure);
             remoteViews.setViewVisibility(widgetPressureIconId, TextView.GONE);
@@ -173,12 +190,13 @@ public class WidgetUtils {
     }
 
     public static void setClouds(Context context, RemoteViews remoteViews, int value,
-                                 int widgetCloudsId, int widgetCloudsIconId, Set<Integer> enabledDetails) {
+                                 int widgetCloudsId, int widgetCloudsIconId, Set<Integer> enabledDetails,
+                                 boolean showLabelsOnWidget) {
         if (!isDetailVisible(3, remoteViews, widgetCloudsId, widgetCloudsIconId, enabledDetails)) {
             return;
         }
         String percentSign = context.getString(R.string.percent_sign);
-        if (AppPreference.showLabelsOnWidget(context)) {
+        if (showLabelsOnWidget) {
             String cloudnes =
                     context.getString(R.string.cloudiness_label,
                             String.valueOf(value), percentSign);
@@ -207,10 +225,18 @@ public class WidgetUtils {
         return false;
     }
 
-    public static WeatherForecastDbHelper.WeatherForecastRecord updateWeatherForecast(
+    public static void updateWeatherForecast(
             Context context,
-            long locationId,
+            Location location,
+            WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord,
             Integer widgetId,
+            Long daysCountFromWidgetSettings,
+            Boolean hoursForecastFromWidgetSettings,
+            Boolean forecastDayAbbrev,
+            boolean fontBasedIcons,
+            Map<Long, String> localizedHourMap,
+            Map<Long, String> temperaturesMap,
+            String temperatureUnitFromPreferences,
             RemoteViews remoteViews,
             Integer forecast_1_widget_day_layout,
             int forecast_1_widget_icon,
@@ -232,11 +258,19 @@ public class WidgetUtils {
             int forecast_5_widget_icon,
             int forecast_5_widget_day,
             int forecast_5_widget_temperatures) {
-        return updateWeatherForecast(
+        updateWeatherForecast(
                 context,
-                locationId,
+                location,
+                weatherForecastRecord,
                 AppPreference.getTextColor(context),
                 widgetId,
+                daysCountFromWidgetSettings,
+                hoursForecastFromWidgetSettings,
+                forecastDayAbbrev,
+                fontBasedIcons,
+                localizedHourMap,
+                temperaturesMap,
+                temperatureUnitFromPreferences,
                 remoteViews,
                 forecast_1_widget_day_layout,
                 forecast_1_widget_icon,
@@ -260,11 +294,19 @@ public class WidgetUtils {
                 forecast_5_widget_temperatures);
     }
 
-    public static WeatherForecastDbHelper.WeatherForecastRecord updateWeatherForecast(
+    public static void updateWeatherForecast(
             Context context,
-            long locationId,
+            Location location,
+            WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord,
             int fontColorId,
             Integer widgetId,
+            Long daysCountFromWidgetSettings,
+            Boolean hoursForecastFromWidgetSettings,
+            Boolean forecastDayAbbrev,
+            boolean fontBasedIcons,
+            Map<Long, String> localizedHourMap,
+            Map<Long, String> temperaturesMap,
+            String temperatureUnitFromPreferences,
             RemoteViews remoteViews,
             Integer forecast_1_widget_day_layout,
             int forecast_1_widget_icon,
@@ -286,37 +328,23 @@ public class WidgetUtils {
             int forecast_5_widget_icon,
             int forecast_5_widget_day,
             int forecast_5_widget_temperatures) {
-        final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
-        final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
-        Location location = locationsDbHelper.getLocationById(locationId);
         if (location == null) {
-            return null;
+            return;
         }
-        SimpleDateFormat sdfDayOfWeek = getDaysFormatter(context, widgetId, location.getLocale());
+        SimpleDateFormat sdfDayOfWeek = getDaysFormatter(context, widgetId, forecastDayAbbrev, location.getLocale());
 
-        Long daysCount = 5l;
-        Boolean hoursForecast = null;
-        final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
-        if (widgetId != null) {
-            daysCount = widgetSettingsDbHelper.getParamLong(widgetId, "forecastDaysCount");
-            hoursForecast = widgetSettingsDbHelper.getParamBoolean(widgetId, "hoursForecast");
-            if (daysCount == null) {
-                daysCount = 5l;
-            }
-        }
-
-        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId);
-        //appendLog(context, TAG, "updateWeatherForecast:locationId=" + locationId + ", weatherForecastRecord=" + weatherForecastRecord);
         if (weatherForecastRecord == null) {
-            return null;
+            return;
         }
-        if ((hoursForecast != null) && hoursForecast) {
-            return createForecastByHours(
+        if ((hoursForecastFromWidgetSettings != null) && hoursForecastFromWidgetSettings) {
+            createForecastByHours(
                     context,
-                    location,
                     fontColorId,
                     weatherForecastRecord,
-                    daysCount,
+                    daysCountFromWidgetSettings,
+                    fontBasedIcons,
+                    localizedHourMap,
+                    temperaturesMap,
                     remoteViews,
                     forecast_1_widget_day_layout,
                     forecast_1_widget_icon,
@@ -340,12 +368,14 @@ public class WidgetUtils {
                     forecast_5_widget_temperatures
             );
         } else {
-            return createForecastByDays(
+            createForecastByDays(
                     context,
                     fontColorId,
                     weatherForecastRecord,
                     sdfDayOfWeek,
-                    daysCount,
+                    daysCountFromWidgetSettings,
+                    fontBasedIcons,
+                    temperatureUnitFromPreferences,
                     remoteViews,
                     forecast_1_widget_day_layout,
                     forecast_1_widget_icon,
@@ -376,6 +406,8 @@ public class WidgetUtils {
             WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord,
             SimpleDateFormat sdfDayOfWeek,
             Long daysCount,
+            boolean fontBasedIcons,
+            String temperatureUnitFromPreferences,
             RemoteViews remoteViews,
             Integer forecast_1_widget_day_layout,
             int forecast_1_widget_icon,
@@ -412,7 +444,9 @@ public class WidgetUtils {
                             forecast_1_widget_icon,
                             forecast_1_widget_day,
                             forecast_1_widget_temperatures,
-                            sdfDayOfWeek);
+                            sdfDayOfWeek,
+                            temperatureUnitFromPreferences,
+                            fontBasedIcons);
                     break;
                 case 2:
                     setForecastDayInfo(
@@ -425,7 +459,9 @@ public class WidgetUtils {
                             forecast_2_widget_icon,
                             forecast_2_widget_day,
                             forecast_2_widget_temperatures,
-                            sdfDayOfWeek);
+                            sdfDayOfWeek,
+                            temperatureUnitFromPreferences,
+                            fontBasedIcons);
                     break;
                 case 3:
                     setForecastDayInfo(
@@ -438,7 +474,9 @@ public class WidgetUtils {
                             forecast_3_widget_icon,
                             forecast_3_widget_day,
                             forecast_3_widget_temperatures,
-                            sdfDayOfWeek);
+                            sdfDayOfWeek,
+                            temperatureUnitFromPreferences,
+                            fontBasedIcons);
                     break;
                 case 4:
                     setForecastDayInfo(
@@ -451,7 +489,9 @@ public class WidgetUtils {
                             forecast_4_widget_icon,
                             forecast_4_widget_day,
                             forecast_4_widget_temperatures,
-                            sdfDayOfWeek);
+                            sdfDayOfWeek,
+                            temperatureUnitFromPreferences,
+                            fontBasedIcons);
                     break;
                 case 5:
                     setForecastDayInfo(
@@ -464,7 +504,9 @@ public class WidgetUtils {
                             forecast_5_widget_icon,
                             forecast_5_widget_day,
                             forecast_5_widget_temperatures,
-                            sdfDayOfWeek);
+                            sdfDayOfWeek,
+                            temperatureUnitFromPreferences,
+                            fontBasedIcons);
                     break;
             }
         }
@@ -473,10 +515,12 @@ public class WidgetUtils {
 
     private static WeatherForecastDbHelper.WeatherForecastRecord createForecastByHours(
             Context context,
-            Location location,
             int fontColorId,
             WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord,
             long hoursCount,
+            boolean fontBasedIcons,
+            Map<Long, String> localizedHourMap,
+            Map<Long, String> temperaturesMap,
             RemoteViews remoteViews,
             Integer forecast_1_widget_day_layout,
             int forecast_1_widget_icon,
@@ -519,7 +563,9 @@ public class WidgetUtils {
                             detailedWeatherForecast.getTemperatureMax(),
                             detailedWeatherForecast.getTemperatureMin(),
                             detailedWeatherForecast.getWindSpeed(),
-                            location);
+                            localizedHourMap,
+                            temperaturesMap,
+                            fontBasedIcons);
                     break;
                 case 2:
                     setForecastHourInfo(
@@ -538,7 +584,9 @@ public class WidgetUtils {
                             detailedWeatherForecast.getTemperatureMax(),
                             detailedWeatherForecast.getTemperatureMin(),
                             detailedWeatherForecast.getWindSpeed(),
-                            location);
+                            localizedHourMap,
+                            temperaturesMap,
+                            fontBasedIcons);
                     break;
                 case 3:
                     setForecastHourInfo(
@@ -557,7 +605,9 @@ public class WidgetUtils {
                             detailedWeatherForecast.getTemperatureMax(),
                             detailedWeatherForecast.getTemperatureMin(),
                             detailedWeatherForecast.getWindSpeed(),
-                            location);
+                            localizedHourMap,
+                            temperaturesMap,
+                            fontBasedIcons);
                     break;
                 case 4:
                     setForecastHourInfo(
@@ -576,7 +626,9 @@ public class WidgetUtils {
                             detailedWeatherForecast.getTemperatureMax(),
                             detailedWeatherForecast.getTemperatureMin(),
                             detailedWeatherForecast.getWindSpeed(),
-                            location);
+                            localizedHourMap,
+                            temperaturesMap,
+                            fontBasedIcons);
                     break;
                 case 5:
                     setForecastHourInfo(
@@ -595,7 +647,9 @@ public class WidgetUtils {
                             detailedWeatherForecast.getTemperatureMax(),
                             detailedWeatherForecast.getTemperatureMin(),
                             detailedWeatherForecast.getWindSpeed(),
-                            location);
+                            localizedHourMap,
+                            temperaturesMap,
+                            fontBasedIcons);
                     break;
             }
         }
@@ -618,7 +672,9 @@ public class WidgetUtils {
             double maxTemp,
             double minTemp,
             double maxWind,
-            Location location) {
+            Map<Long, String> localizedHourMap,
+            Map<Long, String> temperaturesMap,
+            boolean fontBasedIcons) {
 
         if (dayViewId != null) {
             if (dayCounter > daysCount) {
@@ -635,6 +691,7 @@ public class WidgetUtils {
                 remoteViews,
                 context,
                 forecastIconId,
+                fontBasedIcons,
                 weatherIdForTheDay,
                 iconId,
                 maxTemp,
@@ -642,14 +699,11 @@ public class WidgetUtils {
                 fontColorId);
         remoteViews.setTextViewText(
                 weatherIdForDayName,
-                AppPreference.getLocalizedHour(context, forecastCalendar.getTime(), location.getLocale()));
+                localizedHourMap.get(forecastTime));
         remoteViews.setTextColor(weatherIdForDayName, fontColorId);
         remoteViews.setTextViewText(
                 weatherIdForTemperatures,
-                Math.round(TemperatureUtil.getTemperatureInPreferredUnit(context, minTemp)) +
-                 "/" +
-                 Math.round(TemperatureUtil.getTemperatureInPreferredUnit(context, maxTemp)) +
-                 TemperatureUtil.getTemperatureUnit(context));
+                temperaturesMap.get(forecastTime));
         remoteViews.setTextColor(weatherIdForTemperatures, fontColorId);
     }
 
@@ -663,7 +717,9 @@ public class WidgetUtils {
             int forecastIconId,
             int weatherIdForDayName,
             int weatherIdForTemperatures,
-            SimpleDateFormat sdfDayOfWeek) {
+            SimpleDateFormat sdfDayOfWeek,
+            String temperatureUnitFromPreferences,
+            boolean fontBasedIcons) {
 
         Calendar forecastCalendar = Calendar.getInstance();
 
@@ -680,6 +736,7 @@ public class WidgetUtils {
                 remoteViews,
                 context,
                 forecastIconId,
+                fontBasedIcons,
                 countedForecastForDay.weatherIds.mainWeatherId,
                 countedForecastForDay.iconId,
                 countedForecastForDay.weatherMaxMinForDay.maxTemp,
@@ -693,23 +750,17 @@ public class WidgetUtils {
         remoteViews.setTextColor(weatherIdForDayName, fontColorId);
         remoteViews.setTextViewText(
                 weatherIdForTemperatures,
-                Math.round(TemperatureUtil.getTemperatureInPreferredUnit(context, countedForecastForDay.weatherMaxMinForDay.minTemp)) +
+                Math.round(TemperatureUtil.getTemperatureInPreferredUnit(temperatureUnitFromPreferences, countedForecastForDay.weatherMaxMinForDay.minTemp)) +
                         "/" +
-                        Math.round(TemperatureUtil.getTemperatureInPreferredUnit(context, countedForecastForDay.weatherMaxMinForDay.maxTemp)) +
-                        TemperatureUtil.getTemperatureUnit(context));
+                        Math.round(TemperatureUtil.getTemperatureInPreferredUnit(temperatureUnitFromPreferences, countedForecastForDay.weatherMaxMinForDay.maxTemp)) +
+                        TemperatureUtil.getTemperatureUnit(context, temperatureUnitFromPreferences));
         remoteViews.setTextColor(weatherIdForTemperatures, fontColorId);
     }
 
     public static Set<Integer> getCurrentWeatherDetailsFromSettings(
-            WidgetSettingsDbHelper widgetSettingsDbHelper,
-            int widgetId,
-            String defaultSetting) {
+            String storedCurrentWeatherDetails) {
         Set<Integer> currentWeatherDetails = new HashSet<>();
 
-        String storedCurrentWeatherDetails = widgetSettingsDbHelper.getParamString(widgetId, "currentWeatherDetails");
-        if (storedCurrentWeatherDetails == null) {
-            storedCurrentWeatherDetails = defaultSetting;
-        }
         String[] values = storedCurrentWeatherDetails.split(",");
         for (String value: values) {
             int intValue;
@@ -724,12 +775,10 @@ public class WidgetUtils {
         return currentWeatherDetails;
     }
 
-    public static SimpleDateFormat getDaysFormatter(Context context, Integer widgetId, Locale locale) {
+    public static SimpleDateFormat getDaysFormatter(Context context, Integer widgetId, Boolean forecastDayAbbrev, Locale locale) {
         if (widgetId == null) {
             return new SimpleDateFormat("EEEE", locale);
         }
-        WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
-        Boolean forecastDayAbbrev = widgetSettingsDbHelper.getParamBoolean(widgetId, "forecast_day_abbrev");
         if ((forecastDayAbbrev != null) && forecastDayAbbrev) {
             return new SimpleDateFormat("EEE", locale);
         } else {
@@ -783,10 +832,13 @@ public class WidgetUtils {
             RemoteViews remoteViews,
             CurrentWeatherDbHelper.WeatherRecord weatherRecord,
             Locale locale,
-            int widgetId,
-            String defaultCurrentWeatherDetailValues) {
-
-        int textColorId = AppPreference.getWidgetTextColor(context);
+            String storedCurrentWeatherDetails,
+            String pressureUnitFromPreferences,
+            String temperatureUnitFromPreferences,
+            int textColorId,
+            boolean showLabelsOnWidget,
+            String windUnitFromPreferences,
+            String timeStylePreference) {
 
         remoteViews.setTextColor(R.id.widget_current_detail_wind, textColorId);
         remoteViews.setTextColor(R.id.widget_current_detail_humidity, textColorId);
@@ -796,11 +848,7 @@ public class WidgetUtils {
         remoteViews.setTextColor(R.id.widget_current_detail_pressure, textColorId);
         remoteViews.setTextColor(R.id.widget_current_detail_clouds, textColorId);
 
-        final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
-        Set<Integer> currentWeatherDetailValues = WidgetUtils.getCurrentWeatherDetailsFromSettings(
-                widgetSettingsDbHelper,
-                widgetId,
-                defaultCurrentWeatherDetailValues);
+        Set<Integer> currentWeatherDetailValues = WidgetUtils.getCurrentWeatherDetailsFromSettings(storedCurrentWeatherDetails);
 
         if (weatherRecord == null) {
             WidgetUtils.setWind(context,
@@ -810,15 +858,19 @@ public class WidgetUtils {
                     locale,
                     R.id.widget_current_detail_wind,
                     R.id.widget_current_detail_wind_icon,
-                    currentWeatherDetailValues);
+                    currentWeatherDetailValues,
+                    showLabelsOnWidget,
+                    windUnitFromPreferences);
             WidgetUtils.setHumidity(context, remoteViews, 0,
                     R.id.widget_current_detail_humidity,
                     R.id.widget_current_detail_humidity_icon,
-                    currentWeatherDetailValues);
+                    currentWeatherDetailValues, showLabelsOnWidget);
             WidgetUtils.setDewPoint(context, remoteViews, null, locale,
                     R.id.widget_current_detail_dew_point,
                     R.id.widget_current_detail_dew_point_icon,
-                    currentWeatherDetailValues);
+                    temperatureUnitFromPreferences,
+                    currentWeatherDetailValues,
+                    showLabelsOnWidget);
 
             WidgetUtils.setSunrise(context,
                     remoteViews,
@@ -826,26 +878,33 @@ public class WidgetUtils {
                     locale,
                     R.id.widget_current_detail_sunrise,
                     R.id.widget_current_detail_sunrise_icon,
-                    currentWeatherDetailValues);
+                    currentWeatherDetailValues,
+                    showLabelsOnWidget,
+                    timeStylePreference);
             WidgetUtils.setSunset(context,
                     remoteViews,
                     null,
                     locale,
                     R.id.widget_current_detail_sunset,
                     R.id.widget_current_detail_sunset_icon,
-                    currentWeatherDetailValues);
+                    currentWeatherDetailValues,
+                    showLabelsOnWidget,
+                    timeStylePreference);
 
             WidgetUtils.setPressure(context,
                     remoteViews,
                     0,
+                    pressureUnitFromPreferences,
                     locale,
                     R.id.widget_current_detail_pressure,
                     R.id.widget_current_detail_pressure_icon,
-                    currentWeatherDetailValues);
+                    currentWeatherDetailValues,
+                    showLabelsOnWidget);
             WidgetUtils.setClouds(context, remoteViews, 0,
                     R.id.widget_current_detail_clouds,
                     R.id.widget_current_detail_clouds_icon,
-                    currentWeatherDetailValues);
+                    currentWeatherDetailValues,
+                    showLabelsOnWidget);
             return;
         }
 
@@ -862,30 +921,38 @@ public class WidgetUtils {
                 locale,
                 R.id.widget_current_detail_wind,
                 R.id.widget_current_detail_wind_icon,
-                currentWeatherDetailValues);
+                currentWeatherDetailValues,
+                showLabelsOnWidget,
+                windUnitFromPreferences);
         WidgetUtils.setHumidity(context, remoteViews, weather.getHumidity(),
                 R.id.widget_current_detail_humidity,
                 R.id.widget_current_detail_humidity_icon,
-                currentWeatherDetailValues);
+                currentWeatherDetailValues,
+                showLabelsOnWidget);
         WidgetUtils.setDewPoint(context,
                 remoteViews,
                 weather,
                 locale,
                 R.id.widget_current_detail_dew_point,
                 R.id.widget_current_detail_dew_point_icon,
-                currentWeatherDetailValues);
+                temperatureUnitFromPreferences,
+                currentWeatherDetailValues,
+                showLabelsOnWidget);
 
         WidgetUtils.setPressure(context,
                 remoteViews,
                 weather.getPressure(),
+                pressureUnitFromPreferences,
                 locale,
                 R.id.widget_current_detail_pressure,
                 R.id.widget_current_detail_pressure_icon,
-                currentWeatherDetailValues);
+                currentWeatherDetailValues,
+                showLabelsOnWidget);
         WidgetUtils.setClouds(context, remoteViews, weather.getClouds(),
                 R.id.widget_current_detail_clouds,
                 R.id.widget_current_detail_clouds_icon,
-                currentWeatherDetailValues);
+                currentWeatherDetailValues,
+                showLabelsOnWidget);
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(1000 * weather.getSunrise());
@@ -895,7 +962,9 @@ public class WidgetUtils {
                 locale,
                 R.id.widget_current_detail_sunrise,
                 R.id.widget_current_detail_sunrise_icon,
-                currentWeatherDetailValues);
+                currentWeatherDetailValues,
+                showLabelsOnWidget,
+                timeStylePreference);
         calendar.setTimeInMillis(1000 * weather.getSunset());
         WidgetUtils.setSunset(context,
                 remoteViews,
@@ -903,6 +972,8 @@ public class WidgetUtils {
                 locale,
                 R.id.widget_current_detail_sunset,
                 R.id.widget_current_detail_sunset_icon,
-                currentWeatherDetailValues);
+                currentWeatherDetailValues,
+                showLabelsOnWidget,
+                timeStylePreference);
     }
 }

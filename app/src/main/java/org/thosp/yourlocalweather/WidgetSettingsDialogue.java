@@ -24,6 +24,7 @@ import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.settings.CurrentWeatherDetailSwitchListener;
 import org.thosp.yourlocalweather.settings.GraphValuesSwitchListener;
+import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -131,10 +132,13 @@ public class WidgetSettingsDialogue extends Activity {
 
         WidgetDefaultDetailsResult currentWeatherDetailsAvailableInWidget = getNumberOfCurrentWeatherDetails(widgetId);
 
+        String storedCurrentWeatherDetails = widgetSettingsDbHelper.getParamString(widgetId, "currentWeatherDetails");
+        if (storedCurrentWeatherDetails == null) {
+            storedCurrentWeatherDetails = currentWeatherDetailsAvailableInWidget.getDefaultDetails();
+        }
+
         Set<Integer> currentWeatherDetailValues = WidgetUtils.getCurrentWeatherDetailsFromSettings(
-                widgetSettingsDbHelper,
-                widgetId,
-                currentWeatherDetailsAvailableInWidget.getDefaultDetails());
+                storedCurrentWeatherDetails);
 
         boolean[] checkedItems = new boolean[NUMBER_OF_WEATHER_DETAIL_OPTIONS];
         for (Integer visibleDetail: currentWeatherDetailValues) {
@@ -547,7 +551,8 @@ public class WidgetSettingsDialogue extends Activity {
     private void createGraphSettingDialog(final int widgetId) {
         final Set<Integer> mSelectedItems = new HashSet<>();
         final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(WidgetSettingsDialogue.this);
-        Set<Integer> combinedGraphValues = GraphUtils.getCombinedGraphValuesFromSettings(this, widgetSettingsDbHelper, widgetId);
+        Set<Integer> combinedGraphValuesFromPreferences = AppPreference.getCombinedGraphValues(WidgetSettingsDialogue.this);
+        Set<Integer> combinedGraphValues = GraphUtils.getCombinedGraphValuesFromSettings(combinedGraphValuesFromPreferences, widgetSettingsDbHelper, widgetId);
 
         boolean[] checkedItems = new boolean[4];
         for (Integer visibleColumn: combinedGraphValues) {

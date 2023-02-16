@@ -68,7 +68,7 @@ public class TemperatureUtil {
         return (float) (13.12 + (0.6215 * dryBulbTemperature) - (13.37 * windWithPow) + (0.486 * dryBulbTemperature * windWithPow));
     }
 
-    public static String getSecondTemperatureWithLabel(Context context, Weather weather, double latitude, long timestamp, Locale locale) {
+    public static String getSecondTemperatureWithLabel(Context context, Weather weather, double latitude, long timestamp, String temperatureUnitFromPreferences, Locale locale) {
         if (weather == null) {
             return null;
         }
@@ -87,10 +87,11 @@ public class TemperatureUtil {
                         weather,
                         latitude,
                         timestamp,
+                        temperatureUnitFromPreferences,
                         locale));
     }
 
-    public static String getSecondTemperatureWithUnit(Context context, Weather weather, double latitude, long timestamp, Locale locale) {
+    public static String getSecondTemperatureWithUnit(Context context, Weather weather, double latitude, long timestamp, String temperatureUnitFromPreferences, Locale locale) {
         if (weather == null) {
             return null;
         }
@@ -112,28 +113,26 @@ public class TemperatureUtil {
                     timestamp);
         }
         return apparentSign + String.format(locale, "%d",
-                Math.round(getTemperatureInPreferredUnit(context, value))) + getTemperatureUnit(context);
+                Math.round(getTemperatureInPreferredUnit(temperatureUnitFromPreferences, value))) + getTemperatureUnit(context, temperatureUnitFromPreferences);
     }
 
-    public static String getMeasuredTemperatureWithUnit(Context context, double weatherTemperature, Locale locale) {
-        return getMeasuredTemperatureWithUnit(context, weatherTemperature, "", locale);
+    public static String getMeasuredTemperatureWithUnit(Context context, double weatherTemperature, String temperatureUnitFromPreferences, Locale locale) {
+        return getMeasuredTemperatureWithUnit(context, weatherTemperature, "", temperatureUnitFromPreferences, locale);
     }
 
-    public static String getMeasuredTemperatureWithUnit(Context context, double weatherTemperature, String apparentSign, Locale locale) {
+    public static String getMeasuredTemperatureWithUnit(Context context, double weatherTemperature, String apparentSign, String temperatureUnitFromPreferences, Locale locale) {
         return apparentSign + String.format(locale, "%d",
-                Math.round(getTemperatureInPreferredUnit(context, weatherTemperature))) + getTemperatureUnit(context);
+                Math.round(getTemperatureInPreferredUnit(temperatureUnitFromPreferences, weatherTemperature))) + getTemperatureUnit(context, temperatureUnitFromPreferences);
     }
 
-    public static String getTemperatureWithUnit(Context context, Weather weather, double latitude, long timestamp, Locale locale) {
+    public static String getTemperatureWithUnit(Context context, Weather weather, double latitude, long timestamp, String temeratureTypeFromPreferences, Locale locale) {
         if (weather == null) {
             return null;
         }
-        String temperatureTypeFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE_TYPE, "measured_only");
         String apparentSign = "";
         double value = weather.getTemperature();
-        if ("appearance_only".equals(temperatureTypeFromPreferences) ||
-                ("measured_appearance_primary_appearance".equals(temperatureTypeFromPreferences))) {
+        if ("appearance_only".equals(temeratureTypeFromPreferences) ||
+                ("measured_appearance_primary_appearance".equals(temeratureTypeFromPreferences))) {
             apparentSign = "~";
             value = getApparentTemperature(
                     weather.getTemperature(),
@@ -146,7 +145,7 @@ public class TemperatureUtil {
         return getMeasuredTemperatureWithUnit(context, value, apparentSign, locale);
     }
 
-    public static String getDewPointWithUnit(Context context, Weather weather, Locale locale) {
+    public static String getDewPointWithUnit(Context context, Weather weather, String temperatureUnitFromPreferences, Locale locale) {
         if (weather == null) {
             return null;
         }
@@ -155,10 +154,10 @@ public class TemperatureUtil {
         double dewPoint = (243.5 * dewPointPart) / (17.67 - dewPointPart);
 
         return String.format(locale, "%.1f",
-                getTemperatureInPreferredUnit(context, dewPoint)) + getTemperatureUnit(context);
+                getTemperatureInPreferredUnit(temperatureUnitFromPreferences, dewPoint)) + getTemperatureUnit(context, temperatureUnitFromPreferences);
     }
     
-    public static String getForecastedTemperatureWithUnit(Context context, DetailedWeatherForecast weather, Locale locale) {
+    public static String getForecastedTemperatureWithUnit(Context context, DetailedWeatherForecast weather, String temperatureUnitFromPreferences, Locale locale) {
         if (weather == null) {
             return null;
         }
@@ -168,13 +167,14 @@ public class TemperatureUtil {
             apparentSign += "+";
         }
         return apparentSign + String.format(locale, "%.1f",
-                getTemperatureInPreferredUnit(context, value)) + getTemperatureUnit(context);
+                getTemperatureInPreferredUnit(temperatureUnitFromPreferences, value)) + getTemperatureUnit(context, temperatureUnitFromPreferences);
     }
 
     public static String getForecastedApparentTemperatureWithUnit(
             Context context,
             double latitude,
             DetailedWeatherForecast weather,
+            String temperatureUnitFromPreferences,
             Locale locale) {
 
         if (weather == null) {
@@ -193,15 +193,13 @@ public class TemperatureUtil {
             apparentSign += "+";
         }
         return apparentSign + String.format(locale, "%d",
-                Math.round(getTemperatureInPreferredUnit(context, value))) + getTemperatureUnit(context);
+                Math.round(getTemperatureInPreferredUnit(temperatureUnitFromPreferences, value))) + getTemperatureUnit(context, temperatureUnitFromPreferences);
     }
 
-    public static String getTemperatureUnit(Context context) {
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
-        if (unitsFromPreferences.contains("fahrenheit") ) {
+    public static String getTemperatureUnit(Context context, String temperatureUnitFromPreferences) {
+        if (temperatureUnitFromPreferences.contains("fahrenheit") ) {
             return context.getString(R.string.temperature_unit_fahrenheit);
-        } else if (unitsFromPreferences.contains("kelvin")) {
+        } else if (temperatureUnitFromPreferences.contains("kelvin")) {
             return context.getString(R.string.temperature_unit_kelvin);
         } else {
             return context.getString(R.string.temperature_unit_celsius);
@@ -213,9 +211,17 @@ public class TemperatureUtil {
                 Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius"));
     }
 
-    public static double getTemperatureInPreferredUnit(Context context, double inputValue) {
-        String unitsFromPreferences = PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
+    public static double getTemperatureInPreferredUnit(String temperatureUnitFromPreferences, double inputValue) {
+        if (temperatureUnitFromPreferences.contains("fahrenheit")) {
+            return (inputValue * 1.8d) + 32;
+        } else if (temperatureUnitFromPreferences.contains("kelvin")) {
+            return inputValue + 273.15;
+        } else {
+            return inputValue;
+        }
+    }
+
+    public static double getTemperatureInPreferredUnit(Context context, String unitsFromPreferences, double inputValue) {
         if (unitsFromPreferences.contains("fahrenheit")) {
             return (inputValue * 1.8d) + 32;
         } else if (unitsFromPreferences.contains("kelvin")) {
@@ -225,18 +231,18 @@ public class TemperatureUtil {
         }
     }
 
-    public static double getTemperature(Context context, DetailedWeatherForecast weather) {
+    public static double getTemperature(Context context, String unitsFromPreferences, DetailedWeatherForecast weather) {
         if (weather == null) {
             return 0;
         }
-        return getTemperatureInPreferredUnit(context, getTemperatureInCelsius(context, weather));
+        return getTemperatureInPreferredUnit(context, unitsFromPreferences, getTemperatureInCelsius(context, weather));
     }
 
-    public static double getTemperature(Context context, Weather weather) {
+    public static double getTemperature(Context context, String temperatureUnitFromPreferences, Weather weather) {
         if (weather == null) {
             return 0;
         }
-        return getTemperatureInPreferredUnit(context, getTemperatureInCelsius(context, weather));
+        return getTemperatureInPreferredUnit(temperatureUnitFromPreferences, getTemperatureInCelsius(context, weather));
     }
 
     public static double getTemperatureInCelsius(Context context, DetailedWeatherForecast weather) {
@@ -273,11 +279,11 @@ public class TemperatureUtil {
         return value;
     }
 
-    public static int getTemperatureStatusIcon(Context context, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
+    public static int getTemperatureStatusIcon(Context context, String temperatureUnitFromPreferences, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
         if ((weatherRecord == null) || (weatherRecord.getWeather() == null)) {
             return R.drawable.zero0;
         }
-        float temperature = (float) getTemperature(context, weatherRecord.getWeather());
+        float temperature = (float) getTemperature(context, temperatureUnitFromPreferences, weatherRecord.getWeather());
         return getResourceForNumber(context, temperature);
     }
 

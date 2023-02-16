@@ -20,12 +20,6 @@ public class LanguageUtil {
             sLocale = Locale.getDefault();
         } else {
             String[] localeParts = locale.split("-");
-            appendLogLocale(context,
-                    TAG,
-                    "locale.split(\"_-\"):",
-                    localeParts,
-                    ":locale:",
-                    locale);
             if (localeParts.length > 1) {
                 sLocale = new Locale(localeParts[0], localeParts[1]);
             } else {

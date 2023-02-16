@@ -2,6 +2,7 @@ package org.thosp.yourlocalweather.widget;
 
 import android.content.Context;
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -10,14 +11,18 @@ import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
+import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.Utils;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
+import androidx.core.content.ContextCompat;
 
 public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
 
@@ -57,21 +62,54 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
             return;
         }
 
+        boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(context);
+        Boolean showLegend = widgetSettingsDbHelper.getParamBoolean(appWidgetId, "combinedGraphShowLegend");
+        Set<Integer> combinedGraphValuesFromPreferences = AppPreference.getCombinedGraphValues(context);
+        Set<Integer> combinedGraphValuesFromSettings = GraphUtils.getCombinedGraphValuesFromSettings(combinedGraphValuesFromPreferences, widgetSettingsDbHelper, appWidgetId);
+        int widgetTextColor = AppPreference.getWidgetTextColor(context);
+        int widgetBackgroundColor = AppPreference.getWidgetBackgroundColor(context);
+        AppPreference.GraphGridColors widgetGraphGridColor = AppPreference.getWidgetGraphGridColor(context);
+        String temperatureUnitFromPreferences = AppPreference.getTemperatureUnitFromPreferences(context);
+        String pressureUnitFromPreferences = AppPreference.getPressureUnitFromPreferences(context);
+        String rainSnowUnitFromPreferences = AppPreference.getRainSnowUnitFromPreferences(context);
+        boolean widgetGraphNativeScaled = AppPreference.isWidgetGraphNativeScaled(context);
+        String windUnitFromPreferences = AppPreference.getWindUnitFromPreferences(context);
+
         WeatherGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
         WeatherGraphWidgetProvider.setWidgetIntents(context, remoteViews, WeatherGraphWidgetProvider.class, appWidgetId);
-        remoteViews.setTextViewText(R.id.widget_weather_graph_1x3_widget_city, Utils.getCityAndCountry(context, currentLocation.getOrderId()));
-        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = null;
+
+        ContextCompat.getMainExecutor(context).execute(()  -> {
+                    remoteViews.setTextViewText(R.id.widget_weather_graph_1x3_widget_city, Utils.getCityAndCountry(context, defaultApiKey, currentLocation));
+                });
+
         try {
             final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
             Location location = locationsDbHelper.getLocationById(currentLocation.getId());
             if (location != null) {
-                weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
-                if (weatherForecastRecord != null) {
-                    remoteViews.setImageViewBitmap(R.id.widget_weather_graph_1x3_widget_combined_chart,
-                            GraphUtils.getCombinedChart(context, appWidgetId,null,
-                                    weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList(), currentLocation.getId(), currentLocation.getLocale()));
+                WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
+                    ContextCompat.getMainExecutor(context).execute(()  -> {
+                        if (weatherForecastRecord != null) {
+                            remoteViews.setImageViewBitmap(R.id.widget_weather_graph_1x3_widget_combined_chart,
+                                    GraphUtils.getCombinedChart(
+                                            context,
+                                            appWidgetId,
+                                            null,
+                                            weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList(),
+                                            currentLocation.getId(),
+                                            currentLocation.getLocale(),
+                                            showLegend,
+                                            combinedGraphValuesFromSettings,
+                                            widgetTextColor,
+                                            widgetBackgroundColor,
+                                            widgetGraphGridColor,
+                                            temperatureUnitFromPreferences,
+                                            pressureUnitFromPreferences,
+                                            rainSnowUnitFromPreferences,
+                                            widgetGraphNativeScaled,
+                                            windUnitFromPreferences));
+                        }
+                    });
                 }
-            }
         } catch (Exception e) {
             appendLog(context, TAG, "preLoadWeather:error updating weather forecast", e);
         }
@@ -80,22 +118,20 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
 
     public static void setWidgetTheme(Context context, RemoteViews remoteViews, int widgetId) {
         appendLog(context, TAG, "setWidgetTheme:start");
-        int textColorId = AppPreference.getWidgetTextColor(context);
         int backgroundColorId = AppPreference.getWidgetBackgroundColor(context);
-        int windowHeaderBackgroundColorId = AppPreference.getWindowHeaderBackgroundColorId(context);
 
         final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
         Boolean showLocation = widgetSettingsDbHelper.getParamBoolean(widgetId, "showLocation");
-        if (showLocation == null) {
-            showLocation = false;
-        }
-        if (showLocation) {
-            remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_widget_city, View.VISIBLE);
-        } else {
-            remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_widget_city, View.GONE);
-        }
-        remoteViews.setInt(R.id.widget_weather_graph_1x3_widget_root, "setBackgroundColor", backgroundColorId);
 
+        ContextCompat.getMainExecutor(context).execute(()  -> {
+            boolean showLocationParam = (showLocation == null) ? false : showLocation;
+            if (showLocationParam) {
+                remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_widget_city, View.VISIBLE);
+            } else {
+                remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_widget_city, View.GONE);
+            }
+            remoteViews.setInt(R.id.widget_weather_graph_1x3_widget_root, "setBackgroundColor", backgroundColorId);
+        });
         appendLog(context, TAG, "setWidgetTheme:end");
     }
 

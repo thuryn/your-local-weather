@@ -77,7 +77,7 @@ public class Utils {
         return bitmap;
     }
 
-    public static String getStrIcon(Context context, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
+    public static String getStrIconFromWEatherRecord(Context context, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
         if ((weatherRecord == null) || (weatherRecord.getWeather() == null)) {
             return context.getString(R.string.icon_clear_sky_day);
         }
@@ -154,9 +154,9 @@ public class Utils {
     public static void setWeatherIconWithColor(ImageView imageView,
                                       Context context,
                                       CurrentWeatherDbHelper.WeatherRecord weatherRecord,
-                                      int fontColorId) {
-        if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
-            imageView.setImageBitmap(createWeatherIconWithColor(context, getStrIcon(context, weatherRecord), fontColorId));
+                                      int fontColorId, boolean fontBasedIconSet) {
+        if (fontBasedIconSet) {
+            imageView.setImageBitmap(createWeatherIconWithColor(context, getStrIconFromWEatherRecord(context, weatherRecord), fontColorId));
         } else {
             imageView.setImageResource(Utils.getWeatherResourceIcon(weatherRecord));
         }
@@ -164,19 +164,22 @@ public class Utils {
 
     public static void setWeatherIcon(ImageView imageView,
                                       Context context,
-                                      CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
-        setWeatherIconWithColor(imageView, context, weatherRecord, AppPreference.getTextColor(context));
+                                      CurrentWeatherDbHelper.WeatherRecord weatherRecord,
+                                      int textColor,
+                                      boolean fontBasedIconSet) {
+        setWeatherIconWithColor(imageView, context, weatherRecord, textColor, fontBasedIconSet);
     }
 
     public static void setForecastIcon(RemoteViews remoteViews,
                                       Context context,
                                       int viewIconId,
+                                       boolean fontBasedIcons,
                                        Integer weatherId,
                                        String iconId,
                                        double maxTemp,
                                        double maxWind,
                                        int fontColorId) {
-        if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
+        if (fontBasedIcons) {
             remoteViews.setImageViewBitmap(viewIconId,
                     createWeatherIconWithColor(context, getStrIcon(context, iconId), fontColorId));
         } else {
@@ -184,26 +187,15 @@ public class Utils {
         }
     }
 
-    public static void setWeatherIcon(RemoteViews remoteViews,
-                                               Context context,
-                                               CurrentWeatherDbHelper.WeatherRecord weatherRecord,
-                                               int widgetIconId) {
-        if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
-            remoteViews.setImageViewBitmap(widgetIconId,
-                    createWeatherIcon(context, getStrIcon(context, weatherRecord)));
-        } else {
-            remoteViews.setImageViewResource(widgetIconId, Utils.getWeatherResourceIcon(weatherRecord));
-        }
-    }
-
     public static void setWeatherIconWithColor(RemoteViews remoteViews,
                                       Context context,
                                       CurrentWeatherDbHelper.WeatherRecord weatherRecord,
+                                      boolean fontBasedIcons,
                                       int widgetIconId,
                                       int fontColorId) {
-        if ("weather_icon_set_fontbased".equals(AppPreference.getIconSet(context))) {
+        if (fontBasedIcons) {
             remoteViews.setImageViewBitmap(widgetIconId,
-                    createWeatherIconWithColor(context, getStrIcon(context, weatherRecord), fontColorId));
+                    createWeatherIconWithColor(context, getStrIconFromWEatherRecord(context, weatherRecord), fontColorId));
         } else {
             remoteViews.setImageViewResource(widgetIconId, Utils.getWeatherResourceIcon(weatherRecord));
         }
@@ -494,13 +486,15 @@ public class Utils {
 
     public static String getLastUpdateTime(Context context,
                                            CurrentWeatherDbHelper.WeatherRecord weatherRecord,
+                                           String timeStylePreference,
                                            Location location) {
-        return getLastUpdateTime(context, weatherRecord, null, location);
+        return getLastUpdateTime(context, weatherRecord, null, timeStylePreference, location);
     }
 
     public static String getLastUpdateTime(Context context,
                                            CurrentWeatherDbHelper.WeatherRecord weatherRecord,
                                            WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord,
+                                           String timeStylePreference,
                                            Location location) {
         Calendar lastUpdate = Calendar.getInstance();
         lastUpdate.setTimeInMillis(getLastUpdateTimeInMilis(weatherRecord, weatherForecastRecord, location));
@@ -510,11 +504,11 @@ public class Utils {
         int todayDayOrYear = today.get(Calendar.DAY_OF_YEAR);
         int todayYear = today.get(Calendar.YEAR);
         if ((lastUpdateDayOrYear == todayDayOrYear) && (lastUpdateYear == todayYear)) {
-            return AppPreference.getLocalizedTime(context, lastUpdate.getTime(), location.getLocale())
+            return AppPreference.getLocalizedTime(context, lastUpdate.getTime(), timeStylePreference, location.getLocale())
                     + " "
                     + getUpdateSource(context, (location != null) ? location.getLocationSource() : "");
         } else {
-            return AppPreference.getLocalizedDateTime(context, lastUpdate.getTime(), (lastUpdateYear != todayYear),location.getLocale())
+            return AppPreference.getLocalizedDateTime(context, lastUpdate.getTime(), (lastUpdateYear != todayYear), timeStylePreference, location.getLocale())
                     + " "
                     + getUpdateSource(context, (location != null) ? location.getLocationSource() : "");
         }
@@ -567,9 +561,9 @@ public class Utils {
         }
     }
 
-    public static String unixTimeToFormatTime(Context context, long unixTime, Locale locale) {
+    public static String unixTimeToFormatTime(Context context, long unixTime, String timeStylePreference, Locale locale) {
         long unixTimeToMillis = unixTime * 1000;
-        return AppPreference.getLocalizedTime(context, new Date(unixTimeToMillis), locale);
+        return AppPreference.getLocalizedTime(context, new Date(unixTimeToMillis), timeStylePreference, locale);
     }
 
     public static void copyToClipboard(Context context, String string) {
@@ -644,24 +638,22 @@ public class Utils {
         }
     }
 
-    public static String getCityAndCountry(Context context, int locationOrderId) {
-        final LocationsDbHelper locationDbHelper = LocationsDbHelper.getInstance(context);
-        Location foundLocation = locationDbHelper.getLocationByOrderId(locationOrderId);
-        if (foundLocation == null) {
+    public static String getCityAndCountry(Context context, boolean defaultApiKey, Location location) {
+        if (location == null) {
             return context.getString(R.string.location_not_found);
         }
-        if ("E".equals(foundLocation.getLocationSource())) {
-            if (ApiKeys.isDefaultOpenweatherApiKey(context)) {
+        if ("E".equals(location.getLocationSource())) {
+            if (defaultApiKey) {
                 return context.getString(R.string.subscription_expired);
             } else {
                 return context.getString(R.string.subscription_is_wrong);
             }
         }
-        if (!foundLocation.isAddressFound()) {
+        if (!location.isAddressFound()) {
             return context.getString(R.string.location_not_found);
         }
 
-        return getCityAndCountryFromAddress(foundLocation.getAddress());
+        return getCityAndCountryFromAddress(location.getAddress());
     }
 
     public static String getWeatherDescription(Context context, String locale, Weather weather) {

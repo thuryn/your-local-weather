@@ -21,17 +21,29 @@ public class LongWeatherForecastItemAdapter extends RecyclerView.Adapter<LongWea
     private List<DetailedWeatherForecast> mWeatherList;
     private double latitude;
     private Locale locale;
+    private String pressureUnitFromPreferences;
+    private String rainSnowUnitFromPreferences;
+    private String windUnitFromPreferences;
+    private String temperatureUnitFromPreferences;
 
     public LongWeatherForecastItemAdapter(Context context,
                                           List<DetailedWeatherForecast> weather,
                                           double latitude,
                                           Locale locale,
+                                          String pressureUnitFromPreferences,
+                                          String rainSnowUnitFromPreferences,
+                                          String windUnitFromPreferences,
+                                          String temperatureUnitFromPreferences,
                                           Set<Integer> visibleColumns) {
         mContext = context;
         mWeatherList = weather;
         this.visibleColumns = visibleColumns;
         this.latitude = latitude;
         this.locale = locale;
+        this.pressureUnitFromPreferences = pressureUnitFromPreferences;
+        this.rainSnowUnitFromPreferences = rainSnowUnitFromPreferences;
+        this.windUnitFromPreferences = windUnitFromPreferences;
+        this.temperatureUnitFromPreferences = temperatureUnitFromPreferences;
     }
 
     @Override
@@ -44,7 +56,15 @@ public class LongWeatherForecastItemAdapter extends RecyclerView.Adapter<LongWea
     @Override
     public void onBindViewHolder(LongWeatherForecastItemViewHolder holder, int position) {
         DetailedWeatherForecast weather = mWeatherList.get(position);
-        holder.bindWeather(mContext, latitude, locale, weather, visibleColumns);
+        holder.bindWeather(mContext,
+                           latitude,
+                        locale,
+                        weather,
+                        pressureUnitFromPreferences,
+                        rainSnowUnitFromPreferences,
+                        windUnitFromPreferences,
+                        temperatureUnitFromPreferences,
+                        visibleColumns);
     }
 
     @Override

@@ -16,11 +16,16 @@ import org.thosp.yourlocalweather.utils.NotificationUtils;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 public class ReconciliationDbService extends AbstractCommonService {
 
     private static final String TAG = "ReconciliationDbService";
 
     private static final long MIN_RECONCILIATION_TIME_SPAN_IN_MS = 60000;
+
+    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     private static volatile long nextReconciliationTime;
 
@@ -29,7 +34,9 @@ public class ReconciliationDbService extends AbstractCommonService {
 
         @Override
         public void run() {
-            startReconciliation(false);
+            executor.submit(() -> {
+                startReconciliation(false);
+            });
         }
     };
 
@@ -44,12 +51,15 @@ public class ReconciliationDbService extends AbstractCommonService {
         if (intent == null) {
             return ret;
         }
-        startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
-        appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
-        switch (intent.getAction()) {
-            case "org.thosp.yourlocalweather.action.START_RECONCILIATION": startReconciliation(intent.getBooleanExtra("force", false)); return ret;
-            default: return ret;
-        }
+        executor.submit(() -> {
+            startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+            appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
+            switch (intent.getAction()) {
+                case "org.thosp.yourlocalweather.action.START_RECONCILIATION": startReconciliation(intent.getBooleanExtra("force", false)); return;
+                default: return;
+            }
+        });
+        return ret;
     }
 
     protected void startReconciliation(boolean force) {

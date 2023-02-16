@@ -8,6 +8,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.net.TrafficStats;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
@@ -58,6 +59,7 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLogLastUpdateTime;
 
 import androidx.core.content.ContextCompat;
+import androidx.core.net.TrafficStatsCompat;
 
 public class UpdateWeatherService extends AbstractCommonService {
 
@@ -106,6 +108,7 @@ public class UpdateWeatherService extends AbstractCommonService {
             Location currentLocation = locationsDbHelper.getLocationById(updateRequest.getLocationId());
             if (currentLocation == null) {
                 appendLog(getBaseContext(), TAG, "timerRunnable, currentLocation is null");
+                gettingWeatherStarted = false;
                 return;
             }
 
@@ -135,12 +138,12 @@ public class UpdateWeatherService extends AbstractCommonService {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
-        appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
         if (intent == null) {
             return ret;
         }
         executor.submit(() -> {
             startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+            appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
             boolean forceUpdate = false;
             Long locationId = null;
             String updateSource = null;
@@ -376,51 +379,64 @@ public class UpdateWeatherService extends AbstractCommonService {
         final Context context = this;
         appendLog(getBaseContext(), TAG, "startRefreshRotation");
 
+        if (currentLocation == null) {
+            gettingWeatherStarted = false;
+            appendLog(context,
+                    TAG,
+                    "currentLocation is null");
+            return;
+        }
+        final String locale = currentLocation.getLocaleAbbrev();
+        appendLog(context,
+                TAG,
+                "weather get params: latitude:",
+                currentLocation.getLatitude(),
+                ", longitude",
+                currentLocation.getLongitude());
+
+        if (isCurrentWeather(updateType)) {
+            sendMessageToWakeUpService(
+                    AppWakeUpManager.WAKE_UP,
+                    AppWakeUpManager.SOURCE_CURRENT_WEATHER
+            );
+        } else {
+            sendMessageToWakeUpService(
+                    AppWakeUpManager.WAKE_UP,
+                    AppWakeUpManager.SOURCE_WEATHER_FORECAST
+            );
+        }
+
+        String weatherUrl = null;
+        try {
+            weatherUrl = Utils.getOwmUrl(
+                    context,
+                    serviceURL,
+                    currentLocation,
+                    "metric",
+                    locale,
+                    license).toString();
+        } catch (MalformedURLException mue) {
+            appendLog(context, TAG, "MalformedURLException:", mue);
+            sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
+            return;
+        }
+        String url = (weatherUrl != null) ? weatherUrl : null;
         Handler mainHandler = new Handler(Looper.getMainLooper());
         Runnable myRunnable = new Runnable() {
             @Override
             public void run() {
-                if (currentLocation == null) {
-                    appendLog(context,
-                            TAG,
-                            "currentLocation is null");
-                    return;
-                }
-                final String locale = currentLocation.getLocaleAbbrev();
-                appendLog(context,
-                        TAG,
-                        "weather get params: latitude:",
-                        currentLocation.getLatitude(),
-                        ", longitude",
-                        currentLocation.getLongitude());
-                try {
-                    if (isCurrentWeather(updateType)) {
-                        sendMessageToWakeUpService(
-                                AppWakeUpManager.WAKE_UP,
-                                AppWakeUpManager.SOURCE_CURRENT_WEATHER
-                        );
-                    } else {
-                        sendMessageToWakeUpService(
-                                AppWakeUpManager.WAKE_UP,
-                                AppWakeUpManager.SOURCE_WEATHER_FORECAST
-                        );
+
+                    TrafficStats.setThreadStatsTag(123);
+                    client.get(url, null, new AsyncHttpResponseHandler() {
+
+                    @Override
+                    public void onStart() {
+                        // called before request is started
                     }
 
-                    client.get(Utils.getOwmUrl(
-                            context,
-                            serviceURL,
-                            currentLocation,
-                            "metric",
-                            locale,
-                            license).toString(), null, new AsyncHttpResponseHandler() {
-
-                        @Override
-                        public void onStart() {
-                            // called before request is started
-                        }
-
-                        @Override
-                        public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                        executor.submit(() -> {
                             try {
                                 String weatherRaw = new String(response);
                                 appendLog(context, TAG, "weather got, result:", weatherRaw);
@@ -467,9 +483,9 @@ public class UpdateWeatherService extends AbstractCommonService {
 
                             } catch (TooEarlyUpdateException teue) {
                                 //if (updateRequest.isUpdateWeatherOnly()) {
-                                    locationsDbHelper.updateLocationSource(
-                                            currentLocation.getId(),
-                                            getString(R.string.location_weather_update_status_too_early_update));
+                                locationsDbHelper.updateLocationSource(
+                                        currentLocation.getId(),
+                                        getString(R.string.location_weather_update_status_too_early_update));
                                 //}
                                 timerHandler.removeCallbacksAndMessages(null);
                                 resendTheIntentInSeveralSeconds(70);
@@ -498,10 +514,12 @@ public class UpdateWeatherService extends AbstractCommonService {
                                 timerHandler.removeCallbacksAndMessages(null);
                                 sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
                             }
-                        }
+                        });
+                    }
 
-                        @Override
-                        public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                    @Override
+                    public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                        executor.submit(() -> {
                             appendLog(context, TAG, "onFailure:", statusCode, ":currentLocation=", currentLocation);
                             timerHandler.removeCallbacksAndMessages(null);
                             Long nextAllowedAttemptToUpdateTime = null;
@@ -528,17 +546,14 @@ public class UpdateWeatherService extends AbstractCommonService {
                                 }
                             }
                             sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType, nextAllowedAttemptToUpdateTime);
-                        }
+                        });
+                    }
 
-                        @Override
-                        public void onRetry(int retryNo) {
-                            // called when request is retried
-                        }
-                    });
-                } catch (MalformedURLException mue) {
-                    appendLog(context, TAG, "MalformedURLException:", mue);
-                    sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
-                }
+                    @Override
+                    public void onRetry(int retryNo) {
+                        // called when request is retried
+                    }
+                });
             }
         };
         mainHandler.post(myRunnable);
@@ -663,6 +678,7 @@ public class UpdateWeatherService extends AbstractCommonService {
             appendLog(context,
                     TAG,
                     "Update request is null");
+            gettingWeatherStarted = false;
             return;
         }
         appendLog(context,

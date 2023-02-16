@@ -34,20 +34,20 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
-        executor.submit(() -> {
-            startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
-        });
 
         if (intent == null) {
             return ret;
         }
-        appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
+        executor.submit(() -> {
+            startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+            appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
 
-        switch (intent.getAction()) {
-            case "org.thosp.yourlocalweather.action.START_SENSOR_BASED_UPDATES": return performSensorBasedUpdates(ret);
-            case "org.thosp.yourlocalweather.action.STOP_SENSOR_BASED_UPDATES": stopSensorBasedUpdates(); return ret;
-            case "android.intent.action.CLEAR_SENSOR_VALUES": clearMeasuredLength(); return ret;
-        }
+            switch (intent.getAction()) {
+                case "org.thosp.yourlocalweather.action.START_SENSOR_BASED_UPDATES": performSensorBasedUpdates();
+                case "org.thosp.yourlocalweather.action.STOP_SENSOR_BASED_UPDATES": stopSensorBasedUpdates(); return;
+                case "android.intent.action.CLEAR_SENSOR_VALUES": clearMeasuredLength(); return;
+            }
+        });
         return START_STICKY;
     }
     
@@ -82,22 +82,22 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
         return initialReturnValue;
     }
     
-    private int performSensorBasedUpdates(int initialReturnValue) {
+    private void performSensorBasedUpdates() {
         receiversLock.lock();
         try {
             if (receiversRegistered) {
-                return initialReturnValue;
+                return;
             }
             appendLog(getBaseContext(),
                     TAG,
                     "startSensorBasedUpdates ", senSensorManager);
             if (senSensorManager != null) {
-                return initialReturnValue;
+                return;
             }
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
             org.thosp.yourlocalweather.model.Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
             if ((autoLocation == null) || !autoLocation.isEnabled()) {
-                return initialReturnValue;
+                return;
             }
             SensorLocationUpdater.autolocationForSensorEventAddressFound = autoLocation.isAddressFound();
             appendLog(getBaseContext(),
@@ -111,7 +111,6 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
         } finally {
             receiversLock.unlock();
         }
-        return START_STICKY;
     }
 
     private void unregisterListener() {
