@@ -467,10 +467,9 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                 locationManager.getAllProviders().contains(LocationManager.GPS_PROVIDER)
                 && locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
         if (isGPSEnabled && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            Looper locationLooper = Looper.myLooper();
             appendLog(getBaseContext(), TAG, "get location from GPS");
             timerHandlerGpsLocation.postDelayed(timerRunnableGpsLocation, GPS_LOCATION_TIMEOUT_IN_MS);
-            locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, gpsLocationListener, locationLooper);
+            locationManager.requestSingleUpdate(LocationManager.GPS_PROVIDER, gpsLocationListener, Looper.getMainLooper());
             return true;
         } else {
             return false;
@@ -747,7 +746,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
             final Looper locationLooper = Looper.myLooper();
             if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {
                 appendLog(getBaseContext(), TAG, "getCurrentLocation on new API");
-                locationManager.getCurrentLocation(LocationManager.NETWORK_PROVIDER, null, executor,
+                locationManager.getCurrentLocation(LocationManager.NETWORK_PROVIDER, null, getMainExecutor(),
                         new Consumer<Location>() {
                             @Override
                             public void accept(Location location) {
@@ -761,7 +760,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                         });
                 return;
             } else {
-                locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, locationLooper);
+                locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, Looper.getMainLooper());
             }
 
             final LocationListener locationListener = this;

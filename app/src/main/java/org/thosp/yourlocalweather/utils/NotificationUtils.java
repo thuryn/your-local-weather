@@ -61,16 +61,25 @@ public class NotificationUtils {
         Location currentLocation = locationsDbHelper.getLocationById(locationId);
         if (currentLocation == null) {
             appendLog(context, TAG, "showNotification - current location is null");
-            return null;
+            return getNoWeatherNotification(context);
         }
         CurrentWeatherDbHelper.WeatherRecord weatherRecord =
                 currentWeatherDbHelper.getWeather(currentLocation.getId());
 
         if (weatherRecord == null) {
             appendLog(context, TAG, "showNotification - current weather record is null");
-            return null;
+            return getNoWeatherNotification(context);
         }
         return getNotification(context, currentLocation, weatherRecord);
+    }
+
+    public static Notification getNoWeatherNotification(Context context) {
+        return new NotificationCompat.Builder(context, "yourLocalWeather")
+                .setSmallIcon(R.drawable.ic_refresh_white_18dp_1)
+                .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
+                .setAutoCancel(true)
+                .setOngoing(false)
+                .build();
     }
 
     public static Notification getNotificationForActivity(Context context) {

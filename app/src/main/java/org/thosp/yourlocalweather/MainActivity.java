@@ -595,6 +595,9 @@ public class MainActivity extends BaseActivity
                     });
                 }
                 executor.submit(() -> {
+                    if (!initialGuideCompleted) {
+                        return;
+                    }
                     switch (intent.getStringExtra(UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT)) {
                         case UpdateWeatherService.ACTION_WEATHER_UPDATE_OK:
                             mSwipeRefresh.setRefreshing(false);
@@ -785,13 +788,19 @@ public class MainActivity extends BaseActivity
                     } else {
                         askPermissionForBackgroundUsage();
                     }
+                } else {
+                    SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+                    preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 2);
+                    preferences.apply();
                 }
             } else {
                 Snackbar.make(findViewById(android.R.id.content), R.string.permission_not_granted, Snackbar.LENGTH_SHORT).show();
             }
         } else if (requestCode == BACKGROUND_LOCATION_PERMISSION_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                checkBatteryOptimization();
+                SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+                preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 2);
+                preferences.apply();
             } else {
                 Snackbar.make(findViewById(android.R.id.content), R.string.permission_not_granted, Snackbar.LENGTH_SHORT).show();
             }
@@ -918,6 +927,11 @@ public class MainActivity extends BaseActivity
 
     private void checkNotificationPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
+            SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+            preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 6);
+            preferences.apply();
+            initialGuideCompleted = true;
+            detectLocation();
             return;
         }
         if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, Manifest.permission.POST_NOTIFICATIONS)) {
@@ -1016,16 +1030,22 @@ public class MainActivity extends BaseActivity
         int initialGuideVersion = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
                 .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
         if (initialGuideVersion > 0) {
-            if (initialGuideVersion == 3) {
+            if (initialGuideVersion == 2) {
+                checkBatteryOptimization();
+                return;
+            } else if (initialGuideVersion == 3) {
                 showVoiceAndSourcesDisclaimer();
+                return;
             } else if (initialGuideVersion == 4) {
                 checkNotificationPermission();
+                return;
             } else if (initialGuideVersion == 5) {
                 SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
                 preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 6);
                 preferences.apply();
                 initialGuideCompleted = true;
                 detectLocation();
+                return;
             } else if (initialGuideVersion == 6) {
                 initialGuideCompleted = true;
             }
@@ -1048,7 +1068,7 @@ public class MainActivity extends BaseActivity
         preferences.putString(Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE, "location_geocoder_local");
         preferences.putBoolean(Constants.APP_SETTINGS_LOCATION_CACHE_ENABLED, true);
 
-        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 2);
+        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 1);
         preferences.apply();
     }
 
