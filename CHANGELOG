@@ -1,3 +1,6 @@
+5.8.13
+Fix notifiation icon for foreground services
+
 5.8.12
 Fix permission check for location update
 

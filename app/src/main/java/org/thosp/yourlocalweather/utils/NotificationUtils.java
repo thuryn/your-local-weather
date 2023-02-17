@@ -117,7 +117,7 @@ public class NotificationUtils {
     public static Notification getNotification(Context context, Location location, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
 
         if (!AppPreference.getInstance().isNotificationEnabled(context)) {
-            return null;
+            return getNoWeatherNotification(context);
         }
         boolean isOutgoing = false;
         String notificationPresence = AppPreference.getNotificationPresence(context);
