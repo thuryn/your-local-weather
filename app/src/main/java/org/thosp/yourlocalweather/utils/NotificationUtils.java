@@ -166,12 +166,15 @@ public class NotificationUtils {
                                                     CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
         Weather weather = weatherRecord.getWeather();
         String temeratureTypeFromPreferences = AppPreference.getTemeratureTypeFromPreferences(context);
+        String temperatureUnitFromPreferences = AppPreference.getTemperatureUnitFromPreferences(context);
+
         String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
                 context,
                 weather,
                 location.getLatitude(),
                 weatherRecord.getLastUpdatedTime(),
                 temeratureTypeFromPreferences,
+                temperatureUnitFromPreferences,
                 location.getLocale());
 
         Intent intent = new Intent(context, MainActivity.class);
@@ -215,6 +218,7 @@ public class NotificationUtils {
                 location.getLatitude(),
                 weatherRecord.getLastUpdatedTime(),
                 temeratureTypeFromPreferences,
+                temperatureUnitFromPreferences,
                 location.getLocale());
         String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                 context,

@@ -82,12 +82,14 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
             Weather weather = weatherRecord.getWeather();
             boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(context);
             String temeratureTypeFromPreferences = AppPreference.getTemeratureTypeFromPreferences(context);
+
             String temperatureWIthUnit = TemperatureUtil.getTemperatureWithUnit(
                     context,
                     weather,
                     currentLocation.getLatitude(),
                     weatherRecord.getLastUpdatedTime(),
                     temeratureTypeFromPreferences,
+                    temperatureUnitFromPreferences,
                     currentLocation.getLocale());
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     context,
@@ -134,6 +136,7 @@ public class ExtLocationWidgetProvider extends AbstractWidgetProvider {
                     currentLocation.getLatitude(),
                     0,
                     temeratureTypeFromPreferences,
+                    temperatureUnitFromPreferences,
                     currentLocation.getLocale());
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     context,

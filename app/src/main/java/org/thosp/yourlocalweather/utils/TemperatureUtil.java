@@ -125,7 +125,7 @@ public class TemperatureUtil {
                 Math.round(getTemperatureInPreferredUnit(temperatureUnitFromPreferences, weatherTemperature))) + getTemperatureUnit(context, temperatureUnitFromPreferences);
     }
 
-    public static String getTemperatureWithUnit(Context context, Weather weather, double latitude, long timestamp, String temeratureTypeFromPreferences, Locale locale) {
+    public static String getTemperatureWithUnit(Context context, Weather weather, double latitude, long timestamp, String temeratureTypeFromPreferences, String temeratureUnitFromPreferences, Locale locale) {
         if (weather == null) {
             return null;
         }
@@ -142,7 +142,7 @@ public class TemperatureUtil {
                     latitude,
                     timestamp);
         }
-        return getMeasuredTemperatureWithUnit(context, value, apparentSign, locale);
+        return getMeasuredTemperatureWithUnit(context, value, temeratureUnitFromPreferences, locale);
     }
 
     public static String getDewPointWithUnit(Context context, Weather weather, String temperatureUnitFromPreferences, Locale locale) {

@@ -284,7 +284,7 @@ public class MainActivity extends BaseActivity
         switch (item.getItemId()) {
             case R.id.main_menu_refresh:
                 if (connectionDetector.isNetworkAvailableAndConnected()) {
-                    if ((currentLocation.getLatitude() == 0.0) && (currentLocation.getLongitude() == 0.0)) {
+                    if ((currentLocation == null) || (currentLocation.getLatitude() == 0.0) && (currentLocation.getLongitude() == 0.0)) {
                         Toast.makeText(MainActivity.this,
                                 R.string.location_not_initialized,
                                 Toast.LENGTH_LONG).show();
@@ -393,12 +393,14 @@ public class MainActivity extends BaseActivity
                 currentLocation.getLocale());
         String sunrise = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunrise(), timeStylePreference, currentLocation.getLocale());
         String sunset = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunset(), timeStylePreference, currentLocation.getLocale());
+        String temperatureUnitFromPreferences = AppPreference.getTemperatureUnitFromPreferences(MainActivity.this);
 
         String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(MainActivity.this,
                 weather,
                 currentLocation.getLatitude(),
                 weatherRecord.getLastUpdatedTime(),
                 temeratureTypeFromPreferences,
+                temperatureUnitFromPreferences,
                 currentLocation.getLocale());
         String dewPointWithUnit = TemperatureUtil.getDewPointWithUnit(MainActivity.this, weather, temperatureUnitFromPreferences, currentLocation.getLocale());
         String secondTemperature = TemperatureUtil.getSecondTemperatureWithLabel(MainActivity.this,
@@ -665,12 +667,14 @@ public class MainActivity extends BaseActivity
                 String temeratureTypeFromPreferences = AppPreference.getTemeratureTypeFromPreferences(MainActivity.this);
                 String windUnitFromPreferences = AppPreference.getWindUnitFromPreferences(MainActivity.this);
                 String timeStylePreference = AppPreference.getTimeStylePreference(MainActivity.this);
+                String temeratureUnitFromPreferences = AppPreference.getTemperatureUnitFromPreferences(MainActivity.this);
                 String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
                         MainActivity.this,
                         weather,
                         currentLocation.getLatitude(),
                         currentWeatherRecord.getLastUpdatedTime(),
                         temeratureTypeFromPreferences,
+                        temeratureUnitFromPreferences,
                         currentLocation.getLocale());
                 windWithUnit = AppPreference.getWindWithUnit(
                         MainActivity.this,

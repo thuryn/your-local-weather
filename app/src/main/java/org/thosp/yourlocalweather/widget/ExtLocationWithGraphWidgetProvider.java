@@ -115,6 +115,7 @@ public class ExtLocationWithGraphWidgetProvider extends AbstractWidgetProvider {
                     currentLocation.getLatitude(),
                     weatherRecord.getLastUpdatedTime(),
                     temeratureTypeFromPreferences,
+                    temperatureUnitFromPreferences,
                     currentLocation.getLocale());
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     context,
@@ -156,6 +157,7 @@ public class ExtLocationWithGraphWidgetProvider extends AbstractWidgetProvider {
                     currentLocation.getLatitude(),
                     0,
                     temeratureTypeFromPreferences,
+                    temperatureUnitFromPreferences,
                     currentLocation.getLocale());
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     context,

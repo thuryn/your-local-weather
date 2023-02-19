@@ -60,6 +60,7 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
                     currentLocation.getLatitude(),
                     weatherRecord.getLastUpdatedTime(),
                     temeratureTypeFromPreferences,
+                    temperatureUnitFromPreferences,
                     currentLocation.getLocale());
             String secondTemperature = TemperatureUtil.getSecondTemperatureWithUnit(
                     context,
@@ -105,6 +106,7 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
                     currentLocation.getLatitude(),
                     0,
                     temeratureTypeFromPreferences,
+                    temperatureUnitFromPreferences,
                     currentLocation.getLocale());
             String secondTemperature = TemperatureUtil.getTemperatureWithUnit(
                     context,
@@ -112,6 +114,7 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
                     currentLocation.getLatitude(),
                     0,
                     temeratureTypeFromPreferences,
+                    temperatureUnitFromPreferences,
                     currentLocation.getLocale());
             IconHolder weatherIconHolder = new IconHolder();
             if (fontBasedIcons) {
