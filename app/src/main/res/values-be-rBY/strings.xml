@@ -580,4 +580,16 @@
     <string name="label_current_city" tools:ignore="MissingTranslation">Бягучы горад</string>
     <string name="app_name" tools:ignore="MissingTranslation">Ваша мясцовае надвор\'е</string>
     <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (Харвацкая)</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Камбінаваны графік</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">Праграма патрабуе дазволу вызначэння фонавага месцазнаходжання</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">Кабільская</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">Літоўская</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2 гадзіны</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">Выключана з 00:00 да 06:00 (Месцазнаходжанне 1,2,3...)</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">Выключана з 00:00 да 06:00 (Месцазнаходжанне 0)</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">Карэйская</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">Тайская</string>
+    <string name="permission_available_notification" tools:ignore="MissingTranslation">Дазвол на апавяшчэнні дадзены</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">Праграме патрабуецца дазвол на фонавае вызначэнне месцазнаходжання, каб даведацца пра надвор\'е на месцы вашага фактычнага месцазнаходжання. Калі вы згодныя, вы павінны выбраць опцыю на наступным экране:</string>
+    <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">"Калі вы выбіраеце на графіку адлюстраванне значэнняў колькасці дажджу/снегу побач з ветрам і тэмпературай (у слупках), значэнне разлічваецца як log10.  Максімальнае значэнне (нябачнай) восі складае каля 160 мм (або 6,3 цалі)."</string>
 </resources>
