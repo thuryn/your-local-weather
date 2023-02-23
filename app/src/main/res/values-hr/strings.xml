@@ -577,4 +577,6 @@
     <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">Program zahtijeva dozvolu za određivanje lokacije u pozadini za određivanje vremenske prognoze na osnovi lokacije na kojoj se stvarno nalaziš. Ako se slažeš, odaberi opciju na sljedećem ekranu:</string>
     <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">Program zahtijeva dozvolu za određivanje lokacije u pozadini</string>
     <string name="permission_available_notification" tools:ignore="MissingTranslation">Dozvola za obavještavanje je odobrena</string>
+    <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">Izbrisana mjesta iznad ograničenja.</string>
+    <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Dozvola za BT</string>
 </resources>
