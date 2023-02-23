@@ -319,7 +319,7 @@ public class MainActivity extends BaseActivity
                 @Override
                 public void onRefresh() {
                     isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
-                    if (isNetworkAvailable) {
+                    if (isNetworkAvailable && (currentLocation != null)) {
                         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
                         sendMessageToCurrentWeatherService(currentLocation, "MAIN");
                     } else {
@@ -714,6 +714,11 @@ public class MainActivity extends BaseActivity
     };
 
     private void detectLocation() {
+        if (!locationsDbHelper.getLocationByOrderId(0).isEnabled()) {
+            Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+            startActivity(intent);
+            return;
+        }
         updateNetworkLocation();
         runOnUiThread(() -> {
             mProgressDialog = new ProgressDialog(MainActivity.this);
@@ -785,7 +790,15 @@ public class MainActivity extends BaseActivity
         }
 
         if (requestCode == LOCATION_PERMISSION_CODE) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            boolean preciseOrCoarseLocation = false;
+            for (int i = 0; i < permissions.length; i++) {
+                if (Manifest.permission.ACCESS_COARSE_LOCATION.equals(permissions[i])) {
+                    preciseOrCoarseLocation |= (grantResults[i] == PackageManager.PERMISSION_GRANTED);
+                } else if (Manifest.permission.ACCESS_FINE_LOCATION.equals(permissions[i])) {
+                    preciseOrCoarseLocation |= (grantResults[i] == PackageManager.PERMISSION_GRANTED);
+                }
+            }
+            if (preciseOrCoarseLocation) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                     if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                         Snackbar.make(findViewById(android.R.id.content), R.string.permission_available_location, Snackbar.LENGTH_SHORT).show();
@@ -798,7 +811,11 @@ public class MainActivity extends BaseActivity
                     preferences.apply();
                 }
             } else {
-                Snackbar.make(findViewById(android.R.id.content), R.string.permission_not_granted, Snackbar.LENGTH_SHORT).show();
+                SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+                preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 2);
+                preferences.apply();
+                Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
+                locationsDbHelper.updateEnabled(autoLocation.getId(), false);
             }
         } else if (requestCode == BACKGROUND_LOCATION_PERMISSION_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
@@ -818,7 +835,9 @@ public class MainActivity extends BaseActivity
         }
         permissionsAndSettingsRequested = true;
         Location autoUpdateLocation = locationsDbHelper.getLocationByOrderId(0);
-        if (!autoUpdateLocation.isEnabled()) {
+        if (!autoUpdateLocation.isEnabled() ||
+                (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) ||
+                (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
             return true;
         }
 
@@ -855,11 +874,11 @@ public class MainActivity extends BaseActivity
                 notificationMessage.append(getString(R.string.alertDialog_location_permission_message_location_phone_settings) + "\n\n");
                 permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
             }
-            if ("location_geocoder_local".equals(geocoder) && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            /*if ("location_geocoder_local".equals(geocoder) && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
                 notificationMessage.append(getString(R.string.alertDialog_location_permission_message_location_phone_permission));
                 permissions.add(Manifest.permission.READ_PHONE_STATE);
                 permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
-            } else if (isNetworkEnabled && "location_geocoder_system".equals(geocoder) && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            } else*/ if (isNetworkEnabled /*&& "location_geocoder_system".equals(geocoder)*/ && ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                 notificationMessage.append(getString(R.string.alertDialog_location_permission_message_location_network_permission));
                 permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
             }
@@ -872,7 +891,8 @@ public class MainActivity extends BaseActivity
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                            if ((ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) ||
+                                    (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
                                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                                     if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_BACKGROUND_LOCATION) == PackageManager.PERMISSION_GRANTED) {
                                         Snackbar.make(findViewById(android.R.id.content), R.string.permission_available_location, Snackbar.LENGTH_SHORT).show();
@@ -895,6 +915,11 @@ public class MainActivity extends BaseActivity
                     public void onClick(DialogInterface dialog, int which) {
                         permissionsAndSettingsRequested = false;
                         dialog.cancel();
+                        SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
+                        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 2);
+                        preferences.apply();
+                        Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
+                        locationsDbHelper.updateEnabled(autoLocation.getId(), false);
                         checkSettingsAndPermisions();
                     }
                 });

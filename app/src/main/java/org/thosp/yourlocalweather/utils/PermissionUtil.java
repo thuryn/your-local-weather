@@ -64,13 +64,13 @@ public class PermissionUtil {
                 ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
         }
-        if ("location_geocoder_local".equals(geocoder) &&
+        /*if ("location_geocoder_local".equals(geocoder) &&
                 ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
             permissions.add(Manifest.permission.READ_PHONE_STATE);
             permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
-        } else if ("location_geocoder_system".equals(geocoder) &&
-                isNetworkEnabled &&
-                ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        } else if ("location_geocoder_system".equals(geocoder) && */
+        if (isNetworkEnabled &&
+            ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
         }
         return permissions;
@@ -101,24 +101,13 @@ public class PermissionUtil {
             appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS, "isGPSEnabled and isNetworkEnabled are not set, returning false");
             return false;
         } else {
-            List<String> permissions = new ArrayList<>();
-            if (AppPreference.isGpsEnabledByPreferences(context) &&
-                    isGPSEnabled &&
-                    ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
-            }
-            if ("location_geocoder_local".equals(geocoder) && ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
-                permissions.add(Manifest.permission.READ_PHONE_STATE);
-                permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
-            } else if ("location_geocoder_system".equals(geocoder) && isNetworkEnabled && ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                permissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
-            }
-            appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS, "permissions are empty = ", permissions.isEmpty());
-            if (permissions.isEmpty()) {
+            boolean preciseOrCoarseLocation = (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) || (ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED);
+            appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS, "permissions are empty = ", preciseOrCoarseLocation);
+            if (preciseOrCoarseLocation) {
                 appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS, "permissions are empty, returning true");
                 return true;
             } else {
-                appendLogWithParams(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS, "permissions are not empty, returning false, permissions = ", permissions);
+                appendLog(context, TAG_CHECK_PERMISSIONS_AND_SETTINGS, "permissions are not empty, returning false, permissions = ", preciseOrCoarseLocation);
                 return false;
             }
         }

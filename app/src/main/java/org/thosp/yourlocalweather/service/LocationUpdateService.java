@@ -789,7 +789,8 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         }
         final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         final org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
-        if (ContextCompat.checkSelfPermission(LocationUpdateService.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if ((ContextCompat.checkSelfPermission(LocationUpdateService.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) ||
+                (ContextCompat.checkSelfPermission(LocationUpdateService.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
             appendLog(getBaseContext(), TAG, "detectLocation:check GPS enabled");
             Location lastNetworkLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             Location lastGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
@@ -803,7 +804,8 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                 locationsDbHelper.updateLocationSource(currentLocation.getId(),
                         getString(R.string.location_weather_update_status_location_from_gps) + getString(R.string.location_weather_update_status_location_from_last_location));
                 onLocationChanged(lastGpsLocation);
-            } else if (AppPreference.isGpsEnabledByPreferences(getBaseContext())){
+            } else if (AppPreference.isGpsEnabledByPreferences(getBaseContext()) &&
+                    (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
                 appendLog(getBaseContext(), TAG, "detectLocation:request GPS location");
                 if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {
                     locationManager.getCurrentLocation(LocationManager.GPS_PROVIDER, null, getMainExecutor(),
@@ -850,6 +852,17 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                         stopSelf();
                     }
                 }.start();
+            } else {
+                if (updateLocationInProcess) {
+                    updateLocationInProcess = false;
+                    sendMessageToWakeUpService(
+                            AppWakeUpManager.FALL_DOWN,
+                            AppWakeUpManager.SOURCE_LOCATION_UPDATE
+                    );
+                }
+                updateWidgets(updateSource);
+                appendLog(getBaseContext(), TAG, "detectLocation:selfstop");
+                stopSelf();
             }
         }
     }

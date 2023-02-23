@@ -31,10 +31,14 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class NotificationUtils {
 
     private static final String TAG = "NotificationUtils";
+
+    private static ExecutorService executor = Executors.newFixedThreadPool(1);
 
     public static final int NOTIFICATION_ID = 2109876543;
 
@@ -94,14 +98,7 @@ public class NotificationUtils {
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         NotificationChannel notificationChannel = notificationManager.getNotificationChannel("yourLocalWeather");
-        boolean createNotification = notificationChannel == null;
-        if (!createNotification &&
-                ((notificationChannel.getImportance() == NotificationManager.IMPORTANCE_LOW) ||
-                        (AppPreference.getInstance().isVibrateEnabled(context) && (notificationChannel.getVibrationPattern() == null)))) {
-            notificationManager.deleteNotificationChannel("yourLocalWeather");
-            createNotification = true;
-        }
-        if (createNotification) {
+        if (notificationChannel == null) {
             NotificationChannel channel = new NotificationChannel("yourLocalWeather",
                     context.getString(R.string.notification_channel_name),
                     NotificationManager.IMPORTANCE_DEFAULT);
@@ -111,7 +108,15 @@ public class NotificationUtils {
             channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
             channel.setSound(null, null);
             notificationManager.createNotificationChannel(channel);
+        } else if (notificationChannel.getImportance() == NotificationManager.IMPORTANCE_LOW) {
+            notificationChannel.setImportance(NotificationManager.IMPORTANCE_DEFAULT);
         }
+        executor.submit(() -> {
+            if (AppPreference.getInstance().isVibrateEnabled(context) && (notificationChannel.getVibrationPattern() == null)) {
+                notificationChannel.setVibrationPattern(isVibrateEnabled(context));
+                notificationChannel.enableVibration(AppPreference.getInstance().isVibrateEnabled(context));
+            }
+        });
     }
 
     public static Notification getNotification(Context context, Location location, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {

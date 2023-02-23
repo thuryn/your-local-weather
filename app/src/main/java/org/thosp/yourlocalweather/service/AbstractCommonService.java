@@ -76,10 +76,18 @@ public class AbstractCommonService extends Service {
 
     protected void sendIntentToMain() {
         Intent intent = new Intent(UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT);
+        intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra(
                 UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT,
                 UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL);
-        WidgetUtils.startBackgroundService(getBaseContext(), intent);
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+        Runnable myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                sendBroadcast(intent);
+            }
+        };
+        mainHandler.post(myRunnable);
     }
 
     protected void sendIntentToMain(String result) {
@@ -94,7 +102,14 @@ public class AbstractCommonService extends Service {
                     UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT,
                     UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL);
         }
-        sendBroadcast(intent);
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+        Runnable myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                sendBroadcast(intent);
+            }
+        };
+        mainHandler.post(myRunnable);
     }
 
     protected void requestWeatherCheck(long locationId, String updateSource, int wakeUpSource, boolean forceUpdate) {

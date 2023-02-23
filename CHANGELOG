@@ -1,3 +1,6 @@
+5.8.15
+Fix update of forecast, fix update when permission to location is approximate or none
+
 5.8.14
 Fix temperature unit calculation
 

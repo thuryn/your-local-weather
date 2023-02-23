@@ -617,7 +617,14 @@ public class UpdateWeatherService extends AbstractCommonService {
             appendLog(getBaseContext(),
                     TAG,
                     "sendResult: updateWidgets");
-            WidgetUtils.updateWidgets(getBaseContext());
+            Handler mainHandler = new Handler(Looper.getMainLooper());
+            Runnable myRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    WidgetUtils.updateWidgets(getBaseContext());
+                }
+            };
+            mainHandler.post(myRunnable);
             sendMessageToReconciliationDbService(false);
         } catch (Throwable exception) {
             appendLog(context, TAG, "Exception occured when starting the service:", exception);
@@ -712,7 +719,14 @@ public class UpdateWeatherService extends AbstractCommonService {
         } else if (result.equals(ACTION_WEATHER_UPDATE_FAIL)) {
             intent.putExtra(ACTION_FORECAST_UPDATE_RESULT, ACTION_WEATHER_UPDATE_FAIL);
         }
-        sendBroadcast(intent);
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+        Runnable myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                sendBroadcast(intent);
+            }
+        };
+        mainHandler.post(myRunnable);
     }
 
     private void sendIntentToGraphs(String result) {
@@ -723,7 +737,14 @@ public class UpdateWeatherService extends AbstractCommonService {
         } else if (result.equals(ACTION_WEATHER_UPDATE_FAIL)) {
             intent.putExtra(ACTION_GRAPHS_UPDATE_RESULT, ACTION_WEATHER_UPDATE_FAIL);
         }
-        sendBroadcast(intent);
+        Handler mainHandler = new Handler(Looper.getMainLooper());
+        Runnable myRunnable = new Runnable() {
+            @Override
+            public void run() {
+                sendBroadcast(intent);
+            }
+        };
+        mainHandler.post(myRunnable);
     }
 
     private void resendTheIntentInSeveralSeconds(int seconds) {
