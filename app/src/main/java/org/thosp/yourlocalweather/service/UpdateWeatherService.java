@@ -616,15 +616,8 @@ public class UpdateWeatherService extends AbstractCommonService {
             }
             appendLog(getBaseContext(),
                     TAG,
-                    "sendResult: updateWidgets");
-            Handler mainHandler = new Handler(Looper.getMainLooper());
-            Runnable myRunnable = new Runnable() {
-                @Override
-                public void run() {
-                    WidgetUtils.updateWidgets(getBaseContext());
-                }
-            };
-            mainHandler.post(myRunnable);
+                    "sendResult: updateWidgets:",updateRequest.getUpdateSource());
+            WidgetUtils.updateWidgets(getBaseContext());
             sendMessageToReconciliationDbService(false);
         } catch (Throwable exception) {
             appendLog(context, TAG, "Exception occured when starting the service:", exception);

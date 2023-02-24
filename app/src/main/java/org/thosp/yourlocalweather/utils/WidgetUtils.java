@@ -793,6 +793,7 @@ public class WidgetUtils {
         int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
         intentToUpdate.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
         intentToUpdate.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, widgetIds);
+        context.sendBroadcast(intentToUpdate);
     }
 
     public static void updateWidgets(Context context) {
