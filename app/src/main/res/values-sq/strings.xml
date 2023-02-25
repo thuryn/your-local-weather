@@ -580,4 +580,9 @@
     <string name="pref_language_ko" tools:ignore="MissingTranslation">Koreane</string>
     <string name="pref_language_lt" tools:ignore="MissingTranslation">Lituanishte</string>
     <string name="pref_language_th" tools:ignore="MissingTranslation">Tajlandeze</string>
+    <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Leje për BT</string>
+    <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">U fshinë vendndodhje tej kufirit.</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">Aplikacioni lyp leje vendndodhjesh</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">Për të marrë motin sipas vendndodhjes ku gjendeni aktualisht, aplikacioni lyp leje vendndodhjesh. Nëse pajtoheni me këtë, duhet të përzgjidhni mundësinë në skenën pasuese:</string>
+    <string name="permission_available_notification" tools:ignore="MissingTranslation">U akordua leje për njoftime</string>
 </resources>
