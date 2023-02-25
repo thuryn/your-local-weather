@@ -719,7 +719,7 @@ public class GraphUtils {
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
         x.setDrawGridLines(false);
-        x.setLabelCount(25);
+        x.setLabelCount(weatherForecastList.size(), true);
         x.setTextColor(textColorId);
         x.setGridColor(gridColor.getMainGridColor());
         x.setValueFormatter(new XAxisValueFormatter(locale));
