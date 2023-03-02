@@ -10,6 +10,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageButton;
 
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
@@ -36,6 +37,7 @@ public abstract class ForecastingActivity extends BaseActivity {
     protected String pressureUnitFromPreferences;
     protected String rainSnowUnitFromPreferences;
     protected String temperatureUnitFromPreferences;
+    protected AppCompatImageButton switchLocationButton;
     //protected Switch forecastType;
 
     @Override

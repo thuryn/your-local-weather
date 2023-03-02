@@ -204,13 +204,14 @@ public class ExtLocationWithForecastWidgetProvider extends AbstractWidgetProvide
         }
 
         ContextCompat.getMainExecutor(context).execute(()  -> {
-           try {
+            Long dayCountForForecast = (daysCount != null) ? daysCount : 5l;
+            try {
                 WidgetUtils.updateWeatherForecast(
                         context,
                         currentLocation,
                         weatherForecastRecord,
                         appWidgetId,
-                        daysCount,
+                        dayCountForForecast,
                         hoursForecast,
                         forecastDayAbbrev,
                         fontBasedIcons,

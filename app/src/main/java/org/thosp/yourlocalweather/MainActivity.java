@@ -1123,6 +1123,7 @@ public class MainActivity extends BaseActivity
         if (currentLocation == null) {
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
         }
+        appendLog(getBaseContext(), TAG, "updateCurrentLocationAndButtonVisibility:currentLocation:", currentLocation);
         switchToNextLocationWhenCurrentIsAutoAndIsDisabled();
         Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
         int maxOrderId = locationsDbHelper.getMaxOrderId();

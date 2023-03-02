@@ -17,6 +17,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.NavUtils;
 import androidx.core.widget.NestedScrollView;
@@ -113,6 +114,7 @@ public class GraphsActivity extends ForecastingActivity {
         rainBarCard = (CardView) findViewById(R.id.rain_bar_chart_card);
         snowBarChart = (BarChart) findViewById(R.id.bar_snow_chart);
         snowBarCard = (CardView) findViewById(R.id.snow_bar_chart_card);
+        switchLocationButton = (AppCompatImageButton) findViewById(R.id.graph_switch_location);
         executor.submit(() -> {
                     connectionDetector = new ConnectionDetector(this);
                     locationsDbHelper = LocationsDbHelper.getInstance(this);
@@ -988,6 +990,7 @@ public class GraphsActivity extends ForecastingActivity {
     @Override
     protected void updateUI() {
         boolean freeForecast = ApiKeys.isWeatherForecastFeaturesFree(GraphsActivity.this);
+        int maxOrderId = locationsDbHelper.getMaxOrderId();
         runOnUiThread(new Runnable() {
                           @Override
                           public void run() {
@@ -996,6 +999,12 @@ public class GraphsActivity extends ForecastingActivity {
                                   switchPanel.setVisibility(View.INVISIBLE);
                               } else {
                                   switchPanel.setVisibility(View.VISIBLE);
+                              }
+                              if ((maxOrderId > 1) ||
+                                      ((maxOrderId == 1) && (locationsDbHelper.getLocationByOrderId(0).isEnabled()))) {
+                                  switchLocationButton.setVisibility(View.VISIBLE);
+                              } else {
+                                  switchLocationButton.setVisibility(View.GONE);
                               }
                           }
                       });

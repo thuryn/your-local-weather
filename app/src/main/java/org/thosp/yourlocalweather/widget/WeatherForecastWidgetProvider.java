@@ -88,44 +88,45 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
         }
 
         ContextCompat.getMainExecutor(context).execute(()  -> {
-                    try {
-                        WidgetUtils.updateWeatherForecast(
-                                context,
-                                currentLocation,
-                                weatherForecastRecord,
-                                appWidgetId,
-                                daysCount,
-                                hoursForecast,
-                                forecastDayAbbrev,
-                                fontBasedIcons,
-                                localizedHourMap,
-                                temperaturesMap,
-                                temperatureUnitFromPreferences,
-                                remoteViews,
-                                R.id.widget_weather_forecast_1x3_forecast_day_1,
-                                R.id.widget_weather_forecast_1x3_forecast_1_widget_icon,
-                                R.id.widget_weather_forecast_1x3_forecast_1_widget_day,
-                                R.id.widget_weather_forecast_1x3_forecast_1_widget_temperatures,
-                                R.id.widget_weather_forecast_1x3_forecast_day_2,
-                                R.id.widget_weather_forecast_1x3_forecast_2_widget_icon,
-                                R.id.widget_weather_forecast_1x3_forecast_2_widget_day,
-                                R.id.widget_weather_forecast_1x3_forecast_2_widget_temperatures,
-                                R.id.widget_weather_forecast_1x3_forecast_day_3,
-                                R.id.widget_weather_forecast_1x3_forecast_3_widget_icon,
-                                R.id.widget_weather_forecast_1x3_forecast_3_widget_day,
-                                R.id.widget_weather_forecast_1x3_forecast_3_widget_temperatures,
-                                R.id.widget_weather_forecast_1x3_forecast_day_4,
-                                R.id.widget_weather_forecast_1x3_forecast_4_widget_icon,
-                                R.id.widget_weather_forecast_1x3_forecast_4_widget_day,
-                                R.id.widget_weather_forecast_1x3_forecast_4_widget_temperatures,
-                                R.id.widget_weather_forecast_1x3_forecast_day_5,
-                                R.id.widget_weather_forecast_1x3_forecast_5_widget_icon,
-                                R.id.widget_weather_forecast_1x3_forecast_5_widget_day,
-                                R.id.widget_weather_forecast_1x3_forecast_5_widget_temperatures);
-                    } catch (Exception e) {
-                        appendLog(context, TAG, "preLoadWeather:error updating weather forecast", e);
-                    }
-                });
+            Long dayCountForForecast = (daysCount != null) ? daysCount : 5l;
+            try {
+                WidgetUtils.updateWeatherForecast(
+                        context,
+                        currentLocation,
+                        weatherForecastRecord,
+                        appWidgetId,
+                        dayCountForForecast,
+                        hoursForecast,
+                        forecastDayAbbrev,
+                        fontBasedIcons,
+                        localizedHourMap,
+                        temperaturesMap,
+                        temperatureUnitFromPreferences,
+                        remoteViews,
+                        R.id.widget_weather_forecast_1x3_forecast_day_1,
+                        R.id.widget_weather_forecast_1x3_forecast_1_widget_icon,
+                        R.id.widget_weather_forecast_1x3_forecast_1_widget_day,
+                        R.id.widget_weather_forecast_1x3_forecast_1_widget_temperatures,
+                        R.id.widget_weather_forecast_1x3_forecast_day_2,
+                        R.id.widget_weather_forecast_1x3_forecast_2_widget_icon,
+                        R.id.widget_weather_forecast_1x3_forecast_2_widget_day,
+                        R.id.widget_weather_forecast_1x3_forecast_2_widget_temperatures,
+                        R.id.widget_weather_forecast_1x3_forecast_day_3,
+                        R.id.widget_weather_forecast_1x3_forecast_3_widget_icon,
+                        R.id.widget_weather_forecast_1x3_forecast_3_widget_day,
+                        R.id.widget_weather_forecast_1x3_forecast_3_widget_temperatures,
+                        R.id.widget_weather_forecast_1x3_forecast_day_4,
+                        R.id.widget_weather_forecast_1x3_forecast_4_widget_icon,
+                        R.id.widget_weather_forecast_1x3_forecast_4_widget_day,
+                        R.id.widget_weather_forecast_1x3_forecast_4_widget_temperatures,
+                        R.id.widget_weather_forecast_1x3_forecast_day_5,
+                        R.id.widget_weather_forecast_1x3_forecast_5_widget_icon,
+                        R.id.widget_weather_forecast_1x3_forecast_5_widget_day,
+                        R.id.widget_weather_forecast_1x3_forecast_5_widget_temperatures);
+            } catch (Exception e) {
+                appendLog(context, TAG, "preLoadWeather:error updating weather forecast", e);
+            }
+        });
         appendLog(context, TAG, "preLoadWeather:end");
     }
 

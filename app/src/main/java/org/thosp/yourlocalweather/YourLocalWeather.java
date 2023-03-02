@@ -18,6 +18,7 @@ import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil.Theme;
+import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -62,6 +63,7 @@ public class YourLocalWeather extends Application {
                 builder.setOverrideDeadline(3 * 1000); // maximum delay
                 jobScheduler.schedule(builder.build());
             }
+            WidgetUtils.updateWidgets(getBaseContext());
         });
     }
 

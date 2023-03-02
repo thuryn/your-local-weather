@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.app.NavUtils;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -56,6 +57,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
         mRecyclerView = (RecyclerView) findViewById(R.id.forecast_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         localityView = (TextView) findViewById(R.id.forecast_locality);
+        switchLocationButton = (AppCompatImageButton) findViewById(R.id.forecast_switch_location);
         Typeface robotoLight = Typeface.createFromAsset(this.getAssets(),
                 "fonts/Roboto-Light.ttf");
         localityView.setTypeface(robotoLight);
@@ -89,6 +91,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
     @Override
     protected void updateUI() {
         boolean weatherForecastFeatureFree =  ApiKeys.isWeatherForecastFeaturesFree(this);
+        int maxOrderId = locationsDbHelper.getMaxOrderId();
         runOnUiThread(new Runnable() {
               @Override
               public void run() {
@@ -97,6 +100,12 @@ public class WeatherForecastActivity extends ForecastingActivity {
                       switchPanel.setVisibility(View.INVISIBLE);
                   } else {
                       switchPanel.setVisibility(View.VISIBLE);
+                  }
+                  if ((maxOrderId > 1) ||
+                          ((maxOrderId == 1) && (locationsDbHelper.getLocationByOrderId(0).isEnabled()))) {
+                      switchLocationButton.setVisibility(View.VISIBLE);
+                  } else {
+                      switchLocationButton.setVisibility(View.GONE);
                   }
               }
           });
