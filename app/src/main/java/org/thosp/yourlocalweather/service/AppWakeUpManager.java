@@ -11,6 +11,7 @@ import android.os.Messenger;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;
 
+import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
 
@@ -27,8 +28,6 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLogWakeupSources;
 public class AppWakeUpManager extends Service {
 
     private static final String TAG = "AppWakeUpManager";
-
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     public static final int WAKE_UP = 1;
     public static final int FALL_DOWN = 2;
@@ -70,7 +69,7 @@ public class AppWakeUpManager extends Service {
         if (intent == null) {
             return ret;
         }
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
             appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
             switch (intent.getAction()) {

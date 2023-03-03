@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
 
+import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
@@ -36,8 +37,6 @@ public class AppAlarmService extends AbstractCommonService {
 
     public static final long START_SENSORS_CHECK_PERIOD = 3600000; //1 hour
 
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
-
     @Override
     public IBinder onBind(Intent intent) {
         return null;
@@ -50,7 +49,7 @@ public class AppAlarmService extends AbstractCommonService {
         if (intent == null) {
             return ret;
         }
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
             if ("org.thosp.yourlocalweather.action.START_ALARM_SERVICE".equals(intent.getAction())) {
                 setAlarm();

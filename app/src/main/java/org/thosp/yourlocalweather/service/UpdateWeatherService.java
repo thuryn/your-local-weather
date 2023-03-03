@@ -25,6 +25,7 @@ import org.json.JSONException;
 import org.thosp.yourlocalweather.ConnectionDetector;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.WeatherJSONParser;
+import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.licence.LicenseNotValidException;
 import org.thosp.yourlocalweather.licence.TooEarlyUpdateException;
 import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
@@ -85,8 +86,6 @@ public class UpdateWeatherService extends AbstractCommonService {
     public static final int WEATHER_FORECAST_TYPE = 1;
     public static final int LONG_WEATHER_FORECAST_TYPE = 2;
 
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
-
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     private static volatile boolean gettingWeatherStarted;
@@ -141,7 +140,7 @@ public class UpdateWeatherService extends AbstractCommonService {
         if (intent == null) {
             return ret;
         }
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
             appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
             boolean forceUpdate = false;
@@ -436,7 +435,7 @@ public class UpdateWeatherService extends AbstractCommonService {
 
                     @Override
                     public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-                        executor.submit(() -> {
+                        YourLocalWeather.executor.submit(() -> {
                             try {
                                 String weatherRaw = new String(response);
                                 appendLog(context, TAG, "weather got, result:", weatherRaw);
@@ -519,7 +518,7 @@ public class UpdateWeatherService extends AbstractCommonService {
 
                     @Override
                     public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                        executor.submit(() -> {
+                        YourLocalWeather.executor.submit(() -> {
                             appendLog(context, TAG, "onFailure:", statusCode, ":currentLocation=", currentLocation);
                             timerHandler.removeCallbacksAndMessages(null);
                             Long nextAllowedAttemptToUpdateTime = null;

@@ -53,8 +53,6 @@ public class AddVoiceSettingActivity extends BaseActivity {
 
     public static final String TAG = "SearchActivity";
 
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
-
     private Long voiceSettingId;
     private VoiceSettingParametersDbHelper voiceSettingParametersDbHelper;
     private Locale applicationLocale;
@@ -70,7 +68,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
 
         setContentView(R.layout.activity_add_voice_setting);
         setupActionBar();
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             voiceSettingParametersDbHelper = VoiceSettingParametersDbHelper.getInstance(this);
             applicationLocale = new Locale(AppPreference.getInstance().getLanguage(this));
             timeStylePreference = AppPreference.getTimeStylePreference(this);
@@ -590,7 +588,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
             findViewById(R.id.pref_title_tts_bt_trigger_panel).setVisibility(View.VISIBLE);
             findViewById(R.id.enabled_devices_panel).setVisibility(View.GONE);
         }
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             prepareNextTime(this, voiceSettingId, timeStylePreference, applicationLocale, voiceSettingParametersDbHelper);
         });
     }
@@ -994,7 +992,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
     }
 
     public void onRadioButtonClicked(View view) {
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             Long daysOfWeek = voiceSettingParametersDbHelper.getLongParam(
                     voiceSettingId,
                     VoiceSettingParamType.VOICE_SETTING_TRIGGER_DAY_IN_WEEK.getVoiceSettingParamTypeId());

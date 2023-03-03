@@ -136,7 +136,7 @@ public abstract class ForecastingActivity extends BaseActivity {
         mWeatherUpdateReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                executor.submit(() -> {
+                YourLocalWeather.executor.submit(() -> {
                     appendLog(context, TAG, "BroadcastReceiver:", intent);
                     if ((mGetWeatherProgress != null) && (mHandler != null)) {
                         mHandler.post(new Runnable() {

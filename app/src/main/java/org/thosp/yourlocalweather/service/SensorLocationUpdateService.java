@@ -9,6 +9,7 @@ import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 
+import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
 
@@ -23,8 +24,6 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
 
     private static final String TAG = "SensorLocationUpdateService";
 
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
-
     private final Lock receiversLock = new ReentrantLock();
     private static volatile boolean receiversRegistered;
 
@@ -38,7 +37,7 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
         if (intent == null) {
             return ret;
         }
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
             appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
 

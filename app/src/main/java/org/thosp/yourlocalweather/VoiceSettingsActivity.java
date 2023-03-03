@@ -59,8 +59,6 @@ public class VoiceSettingsActivity extends BaseActivity {
 
     private volatile boolean inited;
 
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
-
     private VoiceSettingsAdapter voiceSettingsAdapter;
     private RecyclerView recyclerView;
     private VoiceSettingParametersDbHelper voiceSettingParametersDbHelper;
@@ -86,7 +84,7 @@ public class VoiceSettingsActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         ((YourLocalWeather) getApplication()).applyTheme(this);
         super.onCreate(savedInstanceState);
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             applicationLocale = new Locale(AppPreference.getInstance().getLanguage(this));
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
@@ -105,7 +103,7 @@ public class VoiceSettingsActivity extends BaseActivity {
     public void onResume(){
         super.onResume();
         if (inited) {
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 checkLanguageCompatibility();
                 voiceSettingsAdapter = new VoiceSettingsAdapter(voiceSettingParametersDbHelper.getAllSettingIds());
                 recyclerView.setAdapter(voiceSettingsAdapter);
@@ -314,7 +312,7 @@ public class VoiceSettingsActivity extends BaseActivity {
             });
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    executor.submit(() -> {
+                    YourLocalWeather.executor.submit(() -> {
                         deleteVoiceSetting(voiceSettingId, position);
                     });
                 }
@@ -323,7 +321,7 @@ public class VoiceSettingsActivity extends BaseActivity {
             if (voiceSettingId == null) {
                 return;
             }
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 Long triggerType = voiceSettingParametersDbHelper.getLongParam(
                         voiceSettingId,
                         VoiceSettingParamType.VOICE_SETTING_TRIGGER_TYPE.getVoiceSettingParamTypeId());

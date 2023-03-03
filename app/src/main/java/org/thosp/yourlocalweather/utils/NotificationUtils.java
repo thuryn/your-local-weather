@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.Location;
@@ -37,8 +38,6 @@ import java.util.concurrent.Executors;
 public class NotificationUtils {
 
     private static final String TAG = "NotificationUtils";
-
-    private static ExecutorService executor = Executors.newFixedThreadPool(1);
 
     public static final int NOTIFICATION_ID = 2109876543;
 
@@ -111,7 +110,7 @@ public class NotificationUtils {
         } else if (notificationChannel.getImportance() == NotificationManager.IMPORTANCE_LOW) {
             notificationChannel.setImportance(NotificationManager.IMPORTANCE_DEFAULT);
         }
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             if (AppPreference.getInstance().isVibrateEnabled(context) && (notificationChannel.getVibrationPattern() == null)) {
                 notificationChannel.setVibrationPattern(isVibrateEnabled(context));
                 notificationChannel.enableVibration(AppPreference.getInstance().isVibrateEnabled(context));

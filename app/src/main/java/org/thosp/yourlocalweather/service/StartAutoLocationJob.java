@@ -9,6 +9,7 @@ import android.content.ServiceConnection;
 import android.os.Build;
 import android.os.IBinder;
 
+import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
@@ -29,8 +30,6 @@ public class StartAutoLocationJob extends AbstractAppJob {
     private static final String TAG = "StartAutoLocationJob";
     public static final int JOB_ID = 1992056442;
 
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
-
     private enum Updated {
         REGULARLY,
         BY_NOTIFICATION,
@@ -42,7 +41,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
     @Override
     public boolean onStartJob(JobParameters params) {
         this.params = params;
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             appendLog(this, TAG, "onStartJob");
             try {
                 performUpdateOfLocation();

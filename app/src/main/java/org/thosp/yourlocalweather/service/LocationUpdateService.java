@@ -30,6 +30,7 @@ import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.ConnectionDetector;
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
@@ -54,8 +55,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
     private static final long GPS_LOCATION_TIMEOUT_IN_MS = 240000L;
     private static final long GPS_MAX_LOCATION_AGE_IN_MS = 350000L; //5min
     private static final long LOCATION_UPDATE_RESEND_INTERVAL_IN_MS = 10000L; //20s
-
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     private LocationManager locationManager;
 
@@ -83,7 +82,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         }
         forceUpdate = false;
         updateSource = null;
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
                 startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
                 appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
                 appendLog(getBaseContext(), TAG, "startForegroundService");
@@ -279,7 +278,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
 
         @Override
         public void run() {
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 appendLog(getBaseContext(), TAG, "send update source to N - update location by network, lastKnownLocation timeouted");
                 updateNetworkLocationByNetwork(null, false, null, 0);
             });
@@ -291,7 +290,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
 
         @Override
         public void run() {
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 appendLog(getBaseContext(), TAG, "timerRunnable:requestWeatherCheck");
                 LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
                 org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationByOrderId(0);
@@ -305,7 +304,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
 
         @Override
         public void run() {
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 appendLog(getBaseContext(), TAG, "timerNetworkAvailabilityRunnable:run");
                 ConnectionDetector connectionDetector = new ConnectionDetector(getApplicationContext());
                 LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getApplicationContext());
@@ -332,7 +331,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
 
         @Override
         public void run() {
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 locationManager.removeUpdates(gpsLocationListener);
                 appendLog(getBaseContext(), TAG, "Timeout getting location from GPS");
                 setNoLocationFound();
@@ -793,17 +792,12 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                 (ContextCompat.checkSelfPermission(LocationUpdateService.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
             appendLog(getBaseContext(), TAG, "detectLocation:check GPS enabled");
             Location lastNetworkLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            Location lastGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if ((lastGpsLocation == null) && (lastNetworkLocation != null)) {
+            //Location lastGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if (lastNetworkLocation != null) {
                 appendLog(getBaseContext(), TAG, "detectLocation:using last network location:", lastNetworkLocation);
                 locationsDbHelper.updateLocationSource(currentLocation.getId(),
                         getString(R.string.location_weather_update_status_location_from_network) + getString(R.string.location_weather_update_status_location_from_last_location));
                 onLocationChanged(lastNetworkLocation);
-            } else if ((lastGpsLocation != null) && (lastNetworkLocation == null)) {
-                appendLog(getBaseContext(), TAG, "detectLocation:using last GPS location:", lastGpsLocation);
-                locationsDbHelper.updateLocationSource(currentLocation.getId(),
-                        getString(R.string.location_weather_update_status_location_from_gps) + getString(R.string.location_weather_update_status_location_from_last_location));
-                onLocationChanged(lastGpsLocation);
             } else if (AppPreference.isGpsEnabledByPreferences(getBaseContext()) &&
                     (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
                 appendLog(getBaseContext(), TAG, "detectLocation:request GPS location");

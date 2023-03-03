@@ -43,8 +43,6 @@ public class WeatherForecastActivity extends ForecastingActivity {
 
     private volatile boolean inited;
 
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
-
     private RecyclerView mRecyclerView;
     private Set<Integer> visibleColumns = new HashSet<>();
 
@@ -62,7 +60,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
                 "fonts/Roboto-Light.ttf");
         localityView.setTypeface(robotoLight);
 
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
                     visibleColumns = AppPreference.getInstance().getForecastActivityColumns(this);
                     connectionDetector = new ConnectionDetector(WeatherForecastActivity.this);
                     connectionDetector = new ConnectionDetector(this);
@@ -200,7 +198,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
                 new IntentFilter(
                         UpdateWeatherService.ACTION_FORECAST_UPDATE_RESULT));
         if (inited) {
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 updateUI();
             });
         }
@@ -268,7 +266,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
                         for (Integer selectedItem: mSelectedItems) {
                             visibleColumns.add(selectedItem + 2);
                         }
-                        executor.submit(() -> {
+                        YourLocalWeather.executor.submit(() -> {
                             AppPreference.getInstance().setForecastActivityColumns(context, visibleColumns);
                             updateUI();
                         });

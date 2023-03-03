@@ -8,6 +8,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.os.Messenger;
 
+import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsContract;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
@@ -25,8 +26,6 @@ public class ReconciliationDbService extends AbstractCommonService {
 
     private static final long MIN_RECONCILIATION_TIME_SPAN_IN_MS = 60000;
 
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
-
     private static volatile long nextReconciliationTime;
 
     Handler timerHandler = new Handler();
@@ -34,7 +33,7 @@ public class ReconciliationDbService extends AbstractCommonService {
 
         @Override
         public void run() {
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 startReconciliation(false);
             });
         }
@@ -51,7 +50,7 @@ public class ReconciliationDbService extends AbstractCommonService {
         if (intent == null) {
             return ret;
         }
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
             appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
             switch (intent.getAction()) {

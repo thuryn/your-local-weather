@@ -10,6 +10,7 @@ import android.hardware.SensorEventListener;
 import android.os.Build;
 import android.os.IBinder;
 
+import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 
 import java.util.LinkedList;
@@ -26,8 +27,6 @@ import androidx.core.content.ContextCompat;
 public class SensorLocationUpdater extends AbstractCommonService implements SensorEventListener {
 
     private static final String TAG = "SensorLocationUpdater";
-
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     private static final float REFERENCE_ACCELEROMETER_RESOLUTION = 104.418936291f;
     private static final float LENGTH_UPDATE_LOCATION_LIMIT = 1500;
@@ -67,7 +66,7 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
             if (mySensor.getType() != Sensor.TYPE_ACCELEROMETER) {
                 return;
             }
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 processSensorEvent(sensorEvent);
             });
         } catch (Exception e) {

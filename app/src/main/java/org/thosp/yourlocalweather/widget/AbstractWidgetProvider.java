@@ -17,6 +17,7 @@ import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.WidgetSettingsDialogue;
+import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
@@ -34,7 +35,6 @@ import java.util.concurrent.Executors;
 public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     private static String TAG = "AbstractWidgetProvider";
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
 
     protected Location currentLocation;
     volatile boolean servicesStarted = false;
@@ -43,7 +43,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     public void onEnabled(Context context) {
         appendLog(context, TAG, "onEnabled:start");
         super.onEnabled(context);
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
                     LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
                     WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(context);
                     if (PermissionUtil.noPermissionGranted(context)) {
@@ -79,7 +79,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
         Bundle extras = intent.getExtras();
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             appendLog(context, TAG, "intent:", intent, ", widget:", getWidgetClass());
             if (extras != null) {
                 int appWidgetId = extras.getInt(AppWidgetManager.EXTRA_APPWIDGET_ID);
@@ -167,7 +167,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         super.onUpdate(context, appWidgetManager, appWidgetIds);
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             try {
                 appendLog(context, TAG, "onUpdate:start");
                 ComponentName componentName = new ComponentName(context, getWidgetClass());

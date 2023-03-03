@@ -31,7 +31,7 @@ public class YourLocalWeather extends Application {
 
     private static Theme sTheme = Theme.light;
 
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
+    public static ExecutorService executor = Executors.newFixedThreadPool(2);
 
     @Override
     public void onCreate() {

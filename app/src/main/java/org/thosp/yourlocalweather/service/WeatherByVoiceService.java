@@ -13,6 +13,7 @@ import android.speech.tts.TextToSpeech;
 import androidx.annotation.Nullable;
 
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
@@ -58,8 +59,6 @@ public class WeatherByVoiceService extends Service {
     private String windUnitFromPreferences;
     private String timeStylePreference;
 
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
-
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
         @Override
@@ -78,7 +77,7 @@ public class WeatherByVoiceService extends Service {
     public void onCreate() {
         super.onCreate();
 
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             rainSnowUnitFromPreferences = AppPreference.getRainSnowUnitFromPreferences(getBaseContext());
             temperatureUnitFromPreferences = AppPreference.getTemperatureUnitFromPreferences(getBaseContext());
             windUnitFromPreferences = AppPreference.getWindUnitFromPreferences(getBaseContext());
@@ -92,7 +91,7 @@ public class WeatherByVoiceService extends Service {
         if (intent == null) {
             return ret;
         }
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
             appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
             switch (intent.getAction()) {

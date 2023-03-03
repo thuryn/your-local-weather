@@ -14,6 +14,7 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 
+import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
@@ -41,8 +42,6 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     private static final long SCREEN_ON_RETRY_FIRST = 1000;
     private static final long SCREEN_ON_RETRY_NEXT = 1000;
 
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
-
     private Lock receiversLock = new ReentrantLock();
     private volatile boolean receiversRegistered;
     private NetworkConnectivityReceiver networkConnectivityReceiver;
@@ -55,7 +54,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     private BroadcastReceiver userUnlockedReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 appendLog(context, TAG, "receive intent: ", intent);
                 String notificationPresence = AppPreference.getNotificationPresence(context);
                 if (AppPreference.getInstance().isNotificationEnabled(context) &&
@@ -71,7 +70,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     private BroadcastReceiver screenOnReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 appendLog(context, TAG, "receive intent: ", intent);
                 lastOnscreenEventLock.lock();
                 long now = Calendar.getInstance().getTimeInMillis();
@@ -95,7 +94,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     private BroadcastReceiver screenOffReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 appendLog(context, TAG, "receive intent: ", intent);
                 String notificationPresence = AppPreference.getNotificationPresence(context);
                 if (AppPreference.getInstance().isNotificationEnabled(context) &&
@@ -112,7 +111,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
         @Override
         public void run() {
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 try {
                     processScreenOn(getBaseContext());
                 } catch (Exception e) {
@@ -131,7 +130,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
         @Override
         public void run() {
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 if (!WidgetUtils.isInteractive(getBaseContext())) {
                     return;
                 }
@@ -180,7 +179,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         if (intent == null) {
             return ret;
         }
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
             switch (intent.getAction()) {
                 case "org.thosp.yourlocalweather.action.START_SCREEN_BASED_UPDATES":
@@ -212,7 +211,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     }
 
     private void processScreenOnInBg(Context context) {
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
             String updateAutoPeriodStr = AppPreference.getInstance().getLocationAutoUpdatePeriod(getBaseContext());
             boolean locationAutoUpdateNight = false;

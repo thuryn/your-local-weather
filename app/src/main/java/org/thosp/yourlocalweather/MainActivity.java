@@ -130,7 +130,7 @@ public class MainActivity extends BaseActivity
         ((YourLocalWeather) getApplication()).applyTheme(this);
         super.onCreate(savedInstanceState);
 
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             locationsDbHelper = LocationsDbHelper.getInstance(MainActivity.this);
             weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(MainActivity.this);
             currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(MainActivity.this);
@@ -225,7 +225,7 @@ public class MainActivity extends BaseActivity
                 new IntentFilter(
                         UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT));
         if (inited) {
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 updateActivityOnResume();
             });
         }
@@ -290,7 +290,7 @@ public class MainActivity extends BaseActivity
                                 Toast.LENGTH_LONG).show();
                         return true;
                     }
-                    executor.submit(() -> {
+                    YourLocalWeather.executor.submit(() -> {
                         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
                         sendMessageToCurrentWeatherService(currentLocation, "MAIN");
                     });
@@ -596,7 +596,7 @@ public class MainActivity extends BaseActivity
                         }
                     });
                 }
-                executor.submit(() -> {
+                YourLocalWeather.executor.submit(() -> {
                     if (!initialGuideCompleted) {
                         return;
                     }
@@ -607,7 +607,7 @@ public class MainActivity extends BaseActivity
                                 setUpdateButtonState(false);
                             });
 
-                            executor.submit(() -> {
+                            YourLocalWeather.executor.submit(() -> {
                                 updateUI();
                             });
                             break;
@@ -640,7 +640,7 @@ public class MainActivity extends BaseActivity
     FloatingActionButton.OnClickListener fabListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(MainActivity.this);
                 CurrentWeatherDbHelper.WeatherRecord currentWeatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
 

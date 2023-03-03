@@ -65,8 +65,6 @@ public class GraphsActivity extends ForecastingActivity {
 
     private volatile boolean inited;
 
-    private ExecutorService executor = Executors.newFixedThreadPool(1);
-
     private CombinedChart combinedChart;
     private CardView combinedChartCard;
     private LineChart mTemperatureChart;
@@ -115,7 +113,7 @@ public class GraphsActivity extends ForecastingActivity {
         snowBarChart = (BarChart) findViewById(R.id.bar_snow_chart);
         snowBarCard = (CardView) findViewById(R.id.snow_bar_chart_card);
         switchLocationButton = (AppCompatImageButton) findViewById(R.id.graph_switch_location);
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
                     connectionDetector = new ConnectionDetector(this);
                     locationsDbHelper = LocationsDbHelper.getInstance(this);
                     pressureUnitFromPreferences = AppPreference.getPressureUnitFromPreferences(this);
@@ -163,7 +161,7 @@ public class GraphsActivity extends ForecastingActivity {
                 new IntentFilter(
                         UpdateWeatherService.ACTION_GRAPHS_UPDATE_RESULT));
         if (inited) {
-            executor.submit(() -> {
+            YourLocalWeather.executor.submit(() -> {
                 updateUI();
             });
         }
@@ -888,7 +886,7 @@ public class GraphsActivity extends ForecastingActivity {
                             combinedGraphValues.add(3);
                         }
                         AppPreference.setCombinedGraphValues(GraphsActivity.this, combinedGraphValues);
-                        executor.submit(() -> {
+                        YourLocalWeather.executor.submit(() -> {
                             updateUI();
                         });
                     }
@@ -935,7 +933,7 @@ public class GraphsActivity extends ForecastingActivity {
                             visibleGraphs.add(selectedItem);
                         }
                         AppPreference.setGraphsActivityVisibleGraphs(context, visibleGraphs);
-                        executor.submit(() -> {
+                        YourLocalWeather.executor.submit(() -> {
                             updateUI();
                         });
                     }

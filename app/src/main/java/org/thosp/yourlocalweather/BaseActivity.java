@@ -59,8 +59,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private final String TAG = "BaseActivity";
 
-    protected ExecutorService executor = Executors.newFixedThreadPool(1);
-
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private Toolbar mToolbar;
@@ -111,7 +109,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         }
         Context savedContext = this;
-        executor.submit(() -> {
+        YourLocalWeather.executor.submit(() -> {
             AppPreference.setCurrentLocationId(savedContext, currentLocation);
             boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(savedContext);
             runOnUiThread(() -> {
