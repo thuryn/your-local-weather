@@ -71,18 +71,6 @@ public class GeneralPreferenceFragment extends PreferenceFragment implements
             Constants.KEY_PREF_WEATHER_FORECAST_FEATURES
     };
 
-    public static void restartApp(Activity activity) {
-        Intent intent = activity.getIntent();
-        if (intent == null) {
-            return;
-        }
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        activity.finish();
-        activity.overridePendingTransition(0, 0);
-        activity.startActivity(intent);
-        activity.overridePendingTransition(0, 0);
-    }
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,7 +131,7 @@ public class GeneralPreferenceFragment extends PreferenceFragment implements
                     YourLocalWeather app = (YourLocalWeather) getActivity().getApplication();
                     app.reloadTheme();
                     app.applyTheme(getActivity());
-                    restartApp(getActivity());
+                    YourLocalWeather.restartApp(getActivity());
                 }
                 break;
             case Constants.KEY_PREF_WEATHER_ICON_SET:

@@ -9,7 +9,7 @@
         <item name="actionBarPopupTheme">@style/AppThemeLight.Toolbar</item>
     </style>
 
-    <style name="AppBaseThemeDark" parent="Theme.AppCompat.NoActionBar">
+    <style name="AppBaseThemeDark" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccentDark</item>

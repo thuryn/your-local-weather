@@ -425,6 +425,7 @@
 
     <!-- Themes array -->
     <string-array name="theme_entries">
+        <item name="system">@string/theme_system</item>
         <item name="light">@string/theme_light</item>
         <item name="dark">@string/theme_dark</item>
     </string-array>

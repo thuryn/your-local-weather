@@ -286,6 +286,7 @@
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Widget theme</string>
     <string name="theme_dark" tools:ignore="MissingTranslation">Dark</string>
     <string name="theme_light" tools:ignore="MissingTranslation">Light</string>
+    <string name="theme_system" tools:ignore="MissingTranslation">By system</string>
     <string name="theme_transparent" tools:ignore="MissingTranslation">Transparent</string>
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Display</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Update location and weather</string>

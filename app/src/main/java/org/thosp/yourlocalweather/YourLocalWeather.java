@@ -6,6 +6,7 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
@@ -21,6 +22,8 @@ import org.thosp.yourlocalweather.utils.PreferenceUtil.Theme;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
+import androidx.appcompat.app.AppCompatDelegate;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -50,7 +53,7 @@ public class YourLocalWeather extends Application {
             appPreference.clearLanguage();
             LanguageUtil.setLanguage(this, appPreference.getLanguage(this));
 
-            sTheme = PreferenceUtil.getTheme(this);
+            sTheme = PreferenceUtil.getThemeFromPreferences(this);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 JobScheduler jobScheduler = getSystemService(JobScheduler.class);
@@ -85,15 +88,25 @@ public class YourLocalWeather extends Application {
     }
 
     public void reloadTheme() {
-        sTheme = PreferenceUtil.getTheme(this);
+        sTheme = PreferenceUtil.getThemeFromPreferences(this);
     }
 
     public void applyTheme(Activity activity) {
-        activity.setTheme(getThemeResId());
+        activity.setTheme(getThemeResId(activity));
     }
 
-    public static int getThemeResId() {
-        switch (sTheme) {
+    public static int getThemeResId(Activity activity) {
+        Theme currentTheme;
+        if (sTheme.equals(Theme.system)) {
+            if (PreferenceUtil.getIsOsDarkTheme(activity)) {
+                currentTheme = Theme.dark;
+            } else {
+                currentTheme = Theme.light;
+            }
+        } else {
+            currentTheme = sTheme;
+        }
+        switch (currentTheme) {
             case light:
                 return R.style.AppThemeLight;
             case dark:
@@ -101,5 +114,17 @@ public class YourLocalWeather extends Application {
             default:
                 return R.style.AppThemeLight;
         }
+    }
+
+    public static void restartApp(Activity activity) {
+        Intent intent = activity.getIntent();
+        if (intent == null) {
+            return;
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        activity.finish();
+        activity.overridePendingTransition(0, 0);
+        activity.startActivity(intent);
+        activity.overridePendingTransition(0, 0);
     }
 }

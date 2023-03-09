@@ -209,7 +209,7 @@ public class NotificationUtils {
                                                    boolean isOutgoing,
                                                    CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
 
-        int textColor = PreferenceUtil.getTextColor(context);
+        int textColor = PreferenceUtil.getNotificationTextColor(context);
         String timeStylePreference = AppPreference.getTimeStylePreference(context);
         Weather weather = weatherRecord.getWeather();
         boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(context);

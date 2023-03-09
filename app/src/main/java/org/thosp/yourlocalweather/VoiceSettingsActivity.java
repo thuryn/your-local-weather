@@ -263,19 +263,13 @@ public class VoiceSettingsActivity extends BaseActivity {
     }
 
     private void deleteVoiceSetting(Long voiceSettingId, int position) {
+        YourLocalWeather.executor.submit(() -> {
             voiceSettingParametersDbHelper.deleteAllSettings(voiceSettingId);
-            List<Long> voiceSettingIds = voiceSettingParametersDbHelper.getAllSettingIds();
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    voiceSettingsAdapter.voiceSettingIds.remove(position);
-                    voiceSettingsAdapter.notifyItemRemoved(position);
-                    voiceSettingsAdapter.notifyItemRangeChanged(position, voiceSettingsAdapter.getItemCount());
-                    voiceSettingsAdapter = new VoiceSettingsAdapter(voiceSettingIds);
-                    recyclerView.setAdapter(voiceSettingsAdapter);
-                }
-            });
-            TimeUtils.setupAlarmForVoice(getBaseContext());
+        });
+        voiceSettingsAdapter.voiceSettingIds.remove(position);
+        voiceSettingsAdapter.notifyItemRemoved(position);
+        voiceSettingsAdapter.notifyItemRangeChanged(position, voiceSettingsAdapter.getItemCount());
+        TimeUtils.setupAlarmForVoice(getBaseContext());
     }
 
     @Override
@@ -312,9 +306,7 @@ public class VoiceSettingsActivity extends BaseActivity {
             });
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    YourLocalWeather.executor.submit(() -> {
-                        deleteVoiceSetting(voiceSettingId, position);
-                    });
+                    deleteVoiceSetting(voiceSettingId, position);
                 }
             });
 

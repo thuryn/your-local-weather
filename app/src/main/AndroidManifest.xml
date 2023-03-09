@@ -78,7 +78,7 @@
         <activity
             android:name=".VoiceSettingsActivity"
             android:label="@string/preference_title_tts"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".SettingsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity"/>
