@@ -144,7 +144,7 @@
 \nViel Spaß mit der App.</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Hauptanwendung</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">Widgets</string>
-    <string name="help_page_2_content" tools:ignore="MissingTranslation">Die App hat drei Widgets, die einige gebräuchliche Werte zum aktuellen Wetter (zum Beispiel die Temperatur) enthalten. Bestimmte Werte gelten einzig für ein spezielles Widget (zum Beispiel die Zeit des Sonnenuntergangs). In der rechten Ecke eines jeden Widgets wird die Zeit der letzten Aktualisierung angezeigt. Sie können sehen, welches zuletzt aktualisiert wurde (wenn Sie diese Option im Einstellungsmenü aktiviert haben). Neben der Zeit der letzten Aktualisierung finden Sie eine Aktualisierungsschaltfläche. Wenn Sie sie drücken, wird das Wetter (und der Standort, wenn die Standortaktualisierung gewählt ist) außerplanmäßig aktualisiert. Die letzte Möglichkeit in Widgets ist das Umschalten des Standortes - wenn Sie auf den aktuellen Standort drücken, wird der Standort zum nächsten wechseln.</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">Die App hat drei Widgets, die einige gebräuchliche Werte zum aktuellen Wetter (zum Beispiel die Temperatur) enthalten. Bestimmte Werte gelten einzig für ein spezielles Widget (zum Beispiel die Zeit des Sonnenuntergangs). In der rechten Ecke eines jeden Widgets wird die Zeit der letzten Aktualisierung angezeigt. Sie können sehen, was seit dem letzten Mal aktualisiert wurde (wenn Sie diese Option im Einstellungsmenü aktiviert haben). Neben der Zeit der letzten Aktualisierung finden Sie eine Aktualisierungsschaltfläche. Wenn Sie sie drücken, wird das Wetter (und der Standort, wenn die Standortaktualisierung gewählt ist) außerplanmäßig aktualisiert. Die letzte Möglichkeit in Widgets ist das Umschalten des Standortes - wenn Sie auf den aktuellen Standort drücken, wird der Standort zum nächsten wechseln.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Allgemeine Einstellungen</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">Diese Optionen haben Einfluss auf die gesamte App.</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
@@ -215,19 +215,19 @@
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Gerade aktualisierte Werte</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Aktualisierte Werte mit Standortquelle</string>
     <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - wird Standort und/oder Wetter aktualisieren
-\n. - Standort ist nicht erreichbar, so dass das Wetter nach dem letzten Standort aktualisiert wird 
+\n. - Standort ist nicht erreichbar, sodass das Wetter nach dem letzten Standort aktualisiert wird
 \nW - Wetter nur aktualisiert
 \nL - Standort nur aktualisiert
 \nG - Position aus GPS und Wetter aktualisiert
 \nN - Standort aus dem Netzwerk und Wetter aktualisiert
-\nB - der Zugang zum Dienst Openweathermap.org wurde gesperrt, bitte versuchen Sie, das Wetter später zu aktualisieren 
+\nB - der Zugang zum Dienst Openweathermap.org wurde gesperrt, bitte versuchen Sie, das Wetter später zu aktualisieren
 \nE - das Zugriffstoken für den Dienst Openweathermap.org ist abgelaufen. Sie müssen die Anwendung aktualisieren, um wieder Zugriff zu erhalten</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - nur Wetter aktualisiert 
-\nL - nur Standort aktualisiert 
-\nG - Standort über GPS und Wetter aktualisiert 
-\nN - Standort über Netz und Wetter aktualisiert 
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - nur Wetter aktualisiert
+\nL - nur Standort aktualisiert
+\nG - Standort über GPS und Wetter aktualisiert
+\nN - Standort über Netz und Wetter aktualisiert
 \nNi - Standort über Mobilfunknetz und Wetter aktualisiert, Standortbestimmung über Mozilla Location Service
-\nB - Der Zugang zum Dienst Openweathermap.org wurde gesperrt, versuchen Sie bitte, das Wetter später zu aktualisieren 
+\nB - Der Zugang zum Dienst Openweathermap.org wurde gesperrt, versuchen Sie bitte, das Wetter später zu aktualisieren
 \nE - das Zugriffstoken für den Dienst Openweathermap.org ist abgelaufen. Du musst die Anwendung aktualisieren, um wieder Zugriff zu erhalten</string>
     <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Gespeicherte Werte werden nach der festgelegten Zeit entfernt</string>
     <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Gefundene Standorte werden nicht gespeichert</string>
@@ -252,8 +252,7 @@
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Symbolsatz</string>
     <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Aufweckverhalten</string>
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Der dritte Bildschirm zeigt Diagramme zum Wetterverlauf.</string>
-    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation">
-        <b>Lokaler MLS und Nominatim</b> - Die Anwendung bezieht Standorte über den Mozilla Location Service. Sie nutzt dafür das Mobilfunknetz - Informationen über die momentan aktive und abrufbare Mobilfunkstation. Um diese Informationen zu erhalten, ist die Zugriffsberechtigung für Telefonfunktionen nötig. Die Anwendung nutzt umliegende WLAN-Netze, um Ihren Standort genauer einordnen zu können. Der Mozilla-Standortdienst liefert geographische Koordinaten, aus denen der Nominatim-Dienst Adressdaten ermittelt. Sie können zur Verbesserung des Mozilla Location Service beitragen, indem Sie die Mozilla Stumbler App installieren (abrufbar auf https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler), um künftig genauere Standortdaten zu erhalten.</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"> <b>Lokale MLS und Nominatim</b> - Die App bezieht den Standort und geografische Koordinaten von den Mozilla-Standortdiensten. Die Nominatim-Dienste rufen die Adresse aus diesen Koordinaten ab. Sie können zu zukünftigen Verbesserungen von MLS beitragen, indem Sie Mozilla Stumbler installieren (verfügbar unter https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler). Holen Sie sich Informationen über aktive und verfügbare Basisstationen aus dem Mobilfunknetz, indem Sie die Erlaubnis zum Telefonieren erteilen. Wi-Fi-Netzwerke in Ihrer Umgebung werden verwendet, um Ihren Standort genauer zu bestimmen.</string>
     <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
         <b>System</b> - Die Anwendung bezieht Standort und Adresse über die Android-Systemdienste (für gewöhnlich über den Google-Standortdienst).</string>
     <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">
@@ -262,8 +261,10 @@
     <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">Um Datenvolumen zu sparen und die Standortaktualisierung zu beschleunigen können Sie <b>Standorte zwischenspeichern</b> einschalten. Geografische Koordinaten und Adressen werden im Zwischenspeicher abgelegt. Die Anwendung muss unabhängig von dieser Einstellung weiterhin die Koordinaten über das Netz ermitteln. Aber der Abruf der Adresse über Nominatim findet nur für den Fall statt, dass sie nicht im Zwischenspeicher enthalten sind. Aktivieren Sie die Standortspeicherung werden von Ihnen besuchte Adressen in der App gespeichert. Es werden keine Informationen aus dem Zwischenspeicher außerhalb der Anwendung versendet.</string>
     <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Unter der Zwischenspeicher-Einstellung (Markierfeld) befindet sich die Einstellung für das <b>Alter der gespeicherten Werte</b>. Jede gespeicherte Adresse besitzt einen Zeitstempel. Ist der Zeitstempel älter als der hier festgelegte Wert, ruft die App Nominatim auf, um die Einträge zu aktualisieren.</string>
     <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">Sie sehen einige der zuletzt gespeicherten Werte im Abschnitt <b>Zwischenspeicherinformation</b> wie auch die Gesamtzahl der Einträge.</string>
-    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">Die Einstellung zum <b>Aufweckverhalten</b> gibt es, um die von verschiedenen Herstellern verursachte, fehlerhafte Ausführung von Android-Diensten zu bewältigen. Funktioniert die Standortaktualisierung in der Einstellung <i>Kein Aufwecken</i>, werden sie korrekt ausgeführt. Aktualisiert sich der Standort nicht ordnungsgemäß, können Sie <i>nur CPU aufwecken</i> versuchen. Diese Einstellung weckt den Prozessor und versucht dann, den Mobilfunk- und WLAN-Netzstatus abzurufen. Die letzte Möglichkeit ist die Einstellung <i>mit Bildschirm aufwecken</i>, wodurch während der Standortbestimmung für einige Sekunden der Bildschirm angeht. Auf einigen Android-Geräten ist das die einzige Möglichkeit, die Informationen über das Mobilfunk-/WLAN-Netz zu erhalten. Diese Einstellung verursacht einen gewissen Stromverbrauch - die Auswirkungen auf die Akkulaufzeit sind aber wirklich gering.</string>
-    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Nach Aktualisierung von Standort und Wetter können Sie den Aktualisierungsstand neben der Aktualisierungszeit im Widget ablesen. Was angezeigt wird, kann über die Einstellung <b>Zusammenfassung zur Aktualisierung anzeigen</b> geregelt werden. Erklärung zu den erweiterten Optionen:</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b>Die Aufweckstrategie</b> dient dazu, fehlerhafte Herstellerimplementierungen der Android-Aurora-Dienste zu umgehen. Wenn Sie <i>No wake up</i> wählen, sollte der Standort korrekt aktualisiert werden.
+\nIst dies nicht der Fall, versuchen Sie <i>Wake up CPU only</i>, um den Status des Mobilfunk- und Wi-Fi-Netzwerks zu lesen.
+\n<i>Wake up with display</i> schaltet als letzten Ausweg den Bildschirm während der Standortaktualisierung für einige Sekunden ein.</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Nach der Aktualisierung von Standort und Wetter können Sie den Aktualisierungsstand neben der Aktualisierungszeit im Widget ablesen. Was angezeigt wird, kann über die Einstellung <b>Zusammenfassung zur Aktualisierung anzeigen</b> geregelt werden. Erklärung zu den erweiterten Optionen:</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Optionen zur Fehlersuche</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Hier befinden sich Einstellungen zur Aktivierung eines Fehlerprotokolls. Diese Option ist hifreich, wenn es Probleme mit der Anwendung gibt.</string>
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Spalteneinstellungen</string>
@@ -274,7 +275,7 @@
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Aufweckverhalten</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">Kein Aufwecken</string>
     <string name="wakeuppartial_label" tools:ignore="MissingTranslation">nur CPU aufwecken</string>
-    <string name="wakeupfull_label" tools:ignore="MissingTranslation">mit Bildschirm aufwecken</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">Mit Bildschirm aufwecken</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Aufweckverhalten</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Allgemeines</string>
     <string name="label_apparent_temperature" tools:ignore="MissingTranslation">Gefühlte Temperatur: %s</string>
@@ -506,11 +507,11 @@
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengalisch (Bangladesch)</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Text- und Anleitungsübersetzungen</string>
     <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Diese App verfügt über eine Sprachführung in Form von Textübersetzungen und Sprachbefehlen, die freundlicherweise von Freiwilligen auf https://hosted.weblate.org/projects/your-local-weather zur Verfügung gestellt wurden. Der App-Entwickler kann nicht garantieren, dass diese korrekt sind - Sie akzeptieren dies, indem Sie die App verwenden. Um die App zu verwenden, muss TTS (Text-to-Speech) installiert und die Sprachführung in den Einstellungen aktiviert sein, wo Sie Ihre eigenen Sprachbefehle einstellen können. "</string>
-    <string name="preference_title_tts" tools:ignore="MissingTranslation">Spracheinstellungen</string>
-    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Neue Spracheinstellungen</string>
-    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Aktivieren von Sprache zum Lautsprecher</string>
-    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Aktivieren von Sprache zum kabelgebundenen Headset</string>
-    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Aktivieren von Sprache zum Bluetooth-Headset</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Führungseinstellungen</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Neue Führungseinstellungen</string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Wiedergabe der Führung über Lautsprecher</string>
+    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">Führung über kabelgebundenes Headset einschalten</string>
+    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Führung über Bluetooth-Headset einschalten</string>
     <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">Alle</string>
     <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Begrüßung</string>
     <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Benutzerdefiniert</string>
@@ -525,7 +526,7 @@
     <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">Für Standort:</string>
     <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">Was zu sagen:</string>
     <string name="voice_settings_language" tools:ignore="MissingTranslation">Sprache</string>
-    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Optionen für die Sprachausgabe</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Optionen für die Führungssprache</string>
     <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">Lautsprecher</string>
     <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">kabelgebundenes Headset</string>
     <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>
@@ -588,4 +589,18 @@
     <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Der Zugriff auf den Mozilla-Standortdienst ist seit 1.3.2020 abgelaufen. Die App ist gezwungen, das Andorid-System für die Ermittlung der Standortkoordinaten zu verwenden. Die Adresse wird weiterhin von Nominatim aufgelöst. Bitte berücksichtigen Sie dies bei der Verwendung der App.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Einschränkungen des Mozilla-Standortdienstes</string>
     <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (Kroatisch)</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">Für die Anwendung ist eine Hintergrundstandortberechtigung erforderlich</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">Die Anwendung benötigt eine Standortberechtigung im Hintergrund, um das Wetter an dem Standort zu erhalten, an dem Sie sich tatsächlich befinden. Wenn Sie damit einverstanden sind, sollten Sie die Option auf dem nächsten Bildschirm auswählen:</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Kombiniertes Diagramm</string>
+    <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">Wenn Sie im Diagramm auswählen, dass außer Wind und Temperatur (in Balken) auch Regen-/Schneewerte angezeigt werden sollen, wird der Wert als log10 berechnet. Der maximale Wert der (nicht sichtbaren) Achse beträgt dann etwa 160 mm (oder 6,3 Zoll).</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2 Stunden</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">Thailändisch</string>
+    <string name="permission_available_notification" tools:ignore="MissingTranslation">Benachrichtigungsberechtigung wurde erteilt</string>
+    <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">Gelöschte Orte oberhalb des Grenzwertes.</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">Nicht zwischen 00:00 und 06:00 Uhr (Standort 1,2,3,...)</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">Nicht zwischen 00:00 und 06:00 Uhr (Standort 0)</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">Kabylisch</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">Koreanisch</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">Litauisch</string>
+    <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Erlaubnis für BT</string>
 </resources>
