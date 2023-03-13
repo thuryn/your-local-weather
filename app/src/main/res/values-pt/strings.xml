@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - só o tempo foi atualizado 
-\nL - só a localização foi atualizada 
-\nG - a localização do GPS e o tempo foram atualizados 
-\nN - a localização da rede e o tempo foram atualizados 
-\nNi - a localização da rede de telemóveis e o tempo, localização descoberta pelo serviço de localização Mozilla foram atualizados 
-\nB - o acesso ao serviço Openweathermap.org foi bloqueado, por favor tente atualizar o tempo mais tarde 
-\nE - o token de acesso ao serviço Openweathermap.org expirou. Tem de atualizar a app para ter acesso novamente</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - apenas o tempo atualizado
+\nL - apenas a localização atualizada
+\nG - localização do GPS e tempo atualizado
+\nN - localização da rede e tempo atualizado
+\nNi - localização da rede celular e tempo atualizado, localização descoberta pelo serviço de localização Mozilla
+\nB - o acesso ao Openweathermap.org serviço foi proibido, por favor, tente atualizar o tempo mais tarde
+\nE - o token de acesso para Openweathermap.org serviço expirou. Instalar uma versão posterior do aplicativo para recuperar o acesso</string>
     <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - vai-se atualizar a localização e/ou o tempo 
 \n. - a localização não está acessível, a atualizar o tempo à base da última localização 
 \nW - só foi atualizado o tempo 
@@ -415,7 +415,9 @@
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Existem opções para ativar a depuração para um ficheiro de registos. Esta opção é útil quando existe um problema com a aplicação.</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Opções de depuração de erros</string>
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Quando umaa atualização da localização e do tempo atual é executada, pode ver o estado da atualização ao lado do tempo de atualização no widget. Pode controlar o que é mostrado pela opção &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;Mostrar resumo da atualização&lt;/b&gt;. Segue-se a explicação da opção mais avançada:<b>Display update summary</b> option. The explanation of the most advanced option follows:</string>
-    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">A opção &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;Estratégia de acordar&lt;/b&gt; está disponível para superar a implementação cheia de erros do serviço do Android por diferentes fornecedores. Quando seleciona &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;Não acordar&lt;/i&gt; e o local é atualizado corretamente, tem a implementação correta. Quando o local não estiver atualizado corretamente, pode tentar &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;Acordar apenas a CPU&lt;/i&gt;. Esta opção ativa a CPU e tenta ler o estado da rede de telemóveis e wifi. A última opção &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;Acordar com o ecrã&lt;/i&gt; liga o ecrã por vários segundos durante a atualização do local. Em alguns telemóveis Android, esta é a única opção para obter informações corretas sobre as redes de telemóveis e wifi. Esta opção consome alguma quantidade de bateria - mas o impacto na bateria deve ser pequeno.<b>Wake up strategy</b> option is available to overcome buggy implementation of android service by different vendors. When you select <i>No wake up</i>, and the location is updated properly you\'ve got a correct implementation. When the location is not updated properly you can try <i>Wake up CPU only</i>. This option wakes the CPU, and tries to read the state of the cell and wifi network. The last option <i>Wake up with display</i> switches the screen for several seconds during the location update. On some android phones this is the only option to get the correct information about cell and wifi networks. This option consumes some amount of battery - but the impact on battery life should be small.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b> A estratégia de despertar</b> existe para superar implementações de fornecedores com problemas dos serviços de Android Aurora. Selecionar <i>Não acordar</i>, deve atualizar o local corretamente.
+\nCaso contrário, tente <i>Ativar somente CPU</i> para ler o estado da rede Wi-Fi e celular.
+\n<i>Despertar com display</i> liga o ecrã por vários segundos durante a atualização de localização como último recurso.</string>
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Pode controlar o widget de fundo através da &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;Opção de tema do widget&lt;/b&gt;.<b>Widget theme option</b>.</string>
     <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Quando ativa a opção &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;Mostrar etiquetas no widget&lt;/b&gt;, pode ver etiquetas em vez de ícones para os valores das condições meteorológicas.<b>Show labels in widget</b>, you can see labels instead of icons for weather condition values.</string>
     <string name="help_page_4_content" tools:ignore="MissingTranslation">As configurações do widget contêm as opções de configuração para todos os widgets.</string>
@@ -563,4 +565,18 @@
     <string name="pref_language_fa" tools:ignore="MissingTranslation">Persa (persa)</string>
     <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (Hindi)</string>
     <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (croata)</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2 horas</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">Lituano</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">Coreano</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">Tailandês</string>
+    <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">Locais acima do limite apagados.</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">Não entre as 00:00 e as 06:00 horas (Localização 1,2,3...)</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Gráfico combinado</string>
+    <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">Quando seleciona no gráfico para mostrar os valores de chuva/neve ao lado do vento e da temperatura (em barras), o valor é calculado como log10. O valor máximo do eixo (invisível) então é de cerca de 160 mm (ou 6,3 polegadas).</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">Aplicação requer permissão de localização de fundo</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">A aplicação requer permissão de localização em segundo plano para obter o clima para o local onde realmente está. Se concordar, deve selecionar a opção no próximo ecrã:</string>
+    <string name="permission_available_notification" tools:ignore="MissingTranslation">A permissão de notificação foi concedida</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">Não entre as 00:00 e as 06:00 horas (Localização 0)</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">Kabyle</string>
+    <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Permissão de BT</string>
 </resources>

@@ -94,7 +94,7 @@
     <string name="app_name" tools:ignore="MissingTranslation">Твоя местная погода</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Положение и Настройка Разрешений</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Приложению требуется разрешения для обновления данных по GPS.</string>
-    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Приложению требуется разрешения для обновления данных по Wi-Fi и 3G.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">Приложению требуется разрешения для получения местоположения по сетям Wi-Fi и GSM.</string>
     <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Разрешение на чтение информации с устройства необходимо для обновления положения по Wi-Fi и 3G. Это позволяет узнать, к какой базовой станции сейчас подключено устройство.</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Запрос разрешений</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Местоположение не определено</string>
@@ -103,22 +103,22 @@
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Далее</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Назад</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Закончить</string>
-    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Руководство по настройке</string>
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Изменяя приложение по вашим потребностям, вы можете выбрать следующую стратегию обновления. 
-\nЧтобы отклониться от значения местоположения по умолчанию, вы можете выбрать <i>Не обновлять местоположение</i>.</string>
-    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Обновить настройки местоположения</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Гид начальной настройки</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Изменяя приложение по вашим потребностям, можно выбрать следующую стратегию обновления.
+\nЧтобы отклониться от значения местоположения по умолчанию, можно выбрать <i>Не обновлять местоположение</i>.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Настройка обновления местоположения</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Источники местоположения</string>
-    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Вы можете выбрать источник местоположения - <i>Система</i> использует службы Google для получения местоположения по сетям (сотовые и Wi-Fi-сети). Параметр <i>Local MLS и Nominatim</i> использует службу определения местоположения Mozilla, чтобы получить координаты местоположения и службу Nominatim, чтобы получать название местоположение. Второй вариант требует разрешения на телефонные звонки для получения информации о сотовой сети. Предпочтительный вариант предварительно выбран.</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Вы можете выбрать источник местоположения - <i>Система</i> использует службы Google для получения местоположения по сетям (сотовые и Wi-Fi-сети). Параметр <i>Local MLS и Nominatim</i> использует службу определения местоположения Mozilla, чтобы получить координаты местоположения и службу Nominatim, чтобы получать его название. Второй вариант требует разрешения на телефонные звонки для получения информации о сотовой сети. Предпочтительный вариант предварительно выбран.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Источник местонахождения и адреса</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Вариант стратегии пробуждения</string>
-    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Некоторые телефоны не могут отображать корректное подключение к сети, если включён экран. Предпочтительный вариант (с включенным дисплеем) имеет недостаток в том, что телефон включает дисплей на несколько секунд. Это не имеет большого (значимого) влияния на время автономной работы. Вы можете начать с рекомендуемых опций, а затем попытаться отключить этот параметр и посмотреть поведение обновления местоположения.</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Некоторые телефоны не сообщают о подключённых базовых станциях при выключенном экране. Предпочтительный вариант (с включенным дисплеем) имеет недостаток в том, что телефон включает дисплей на несколько секунд. Это незначительно влияет на время автономной работы. Вы можете начать с рекомендуемых опций, а затем попытаться отключить этот параметр и проверить, будет ли обновляться местоположение.</string>
     <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Стратегия пробуждения</string>
-    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Параметр разрешенного адреса кэша</string>
-    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Вы можете сократить использование данных, сохранив в кэше найденные местоположения. Эти данные хранятся в приложении. Они не отправляются и не хранятся в каком-либо другом месте в сети.</string>
-    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Параметр разрешенного адреса кэша</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Параметр кеширования полученного адреса</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Вы можете сократить использование данных, сохранив в кеше найденные местоположения. Эти данные хранятся в приложении. Они не отправляются и не хранятся в каком-либо другом месте в сети.</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Кешировать полученные адреса</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Поздравляем</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Вы закончили основную настройку. Другие настройки можно найти в меню «Настройки» (например, язык, единицы измерения и т. п.).
-\nСледующая страница расскажет о запрашиваемых разрешениях и возможности их изменять/запрашивать.
+\nСледующая страница расскажет о запрашиваемых разрешениях и позволит запросить их.
 \n
 \nНаслаждайтесь приложением.</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Главное</string>
@@ -260,7 +260,7 @@
 \nB - доступ к Openweathermap.org был запрешён, попробуйте, пожалуйста, обновить погоду позже 
 \nE - токен доступа к сервису Openweathermap.org истёк. Обновите приложение, чтобы снова получить доступ</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Местоположение</string>
-    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Ваш API ключ OpenWeatherMap не зарегистрирован.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Ваш ключ API OpenWeatherMap не зарегистрирован.</string>
     <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">дюйм рт.ст.</string>
     <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">мбар</string>
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">узлы</string>
@@ -427,13 +427,13 @@
     <string name="weather_condition_description_210" tools:ignore="MissingTranslation">лёгкая гроза</string>
     <string name="weather_condition_description_211" tools:ignore="MissingTranslation">гроза</string>
     <string name="weather_condition_description_212" tools:ignore="MissingTranslation">сильная гроза</string>
-    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">сильная гроза</string>
-    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">мелкий дождь с грозой</string>
-    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">изморось с грозой</string>
-    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">Гроза с сильным моросящим дождём</string>
-    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">кратковременная морось</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">очень сильная гроза</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">лёгкая морось с грозой</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">морось с грозой</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">сильная морось с грозой</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">слабая морось</string>
     <string name="weather_condition_description_301" tools:ignore="MissingTranslation">морось</string>
-    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">моросящие осадки</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">сильная морось</string>
     <string name="weather_condition_description_310" tools:ignore="MissingTranslation">слабый моросящий дождь</string>
     <string name="weather_condition_description_311" tools:ignore="MissingTranslation">моросящий дождь</string>
     <string name="weather_condition_description_312" tools:ignore="MissingTranslation">сильный моросящий дождь</string>
@@ -442,39 +442,39 @@
     <string name="weather_condition_description_321" tools:ignore="MissingTranslation">сильная морось</string>
     <string name="weather_condition_description_500" tools:ignore="MissingTranslation">лёгкий дождь</string>
     <string name="weather_condition_description_501" tools:ignore="MissingTranslation">умеренный дождь</string>
-    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">проливной дождь</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">сильный дождь</string>
     <string name="weather_condition_description_503" tools:ignore="MissingTranslation">очень сильный дождь</string>
-    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">Очень сильный дождь</string>
-    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">Обмораживающий дождь</string>
-    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">Кратковременный проливной дождь</string>
-    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">проливной дождь</string>
-    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">Долговременный проливной дождь</string>
-    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">буйный проливной дождь</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">крайне сильный дождь</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">замерзающий дождь</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">слабый ливень</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">ливень</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">сильный ливень</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">очень сильный ливень</string>
     <string name="weather_condition_description_600" tools:ignore="MissingTranslation">лёгкий снег</string>
     <string name="weather_condition_description_601" tools:ignore="MissingTranslation">снег</string>
     <string name="weather_condition_description_602" tools:ignore="MissingTranslation">сильный снег</string>
     <string name="weather_condition_description_611" tools:ignore="MissingTranslation">мокрый снег</string>
-    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">сильный град</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">сильный мокрый снег</string>
     <string name="weather_condition_description_615" tools:ignore="MissingTranslation">лёгкий снег с дождём</string>
     <string name="weather_condition_description_616" tools:ignore="MissingTranslation">дождь и снег</string>
     <string name="weather_condition_description_620" tools:ignore="MissingTranslation">лёгкий снегопад</string>
     <string name="weather_condition_description_621" tools:ignore="MissingTranslation">снегопад</string>
     <string name="weather_condition_description_622" tools:ignore="MissingTranslation">сильный снегопад</string>
-    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">туман</string>
-    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">дымка</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">дымка</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">смог</string>
     <string name="weather_condition_description_721" tools:ignore="MissingTranslation">мгла</string>
-    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">песок, вихрь пыли</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">пыльные вихри</string>
     <string name="weather_condition_description_741" tools:ignore="MissingTranslation">туман</string>
     <string name="weather_condition_description_751" tools:ignore="MissingTranslation">песок</string>
     <string name="weather_condition_description_761" tools:ignore="MissingTranslation">пыль</string>
-    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">вулканическая зола</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">вулканический пепел</string>
     <string name="weather_condition_description_771" tools:ignore="MissingTranslation">шквалы</string>
-    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">торнадо</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">смерч</string>
     <string name="weather_condition_description_800" tools:ignore="MissingTranslation">ясное небо</string>
-    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">местами облачно</string>
-    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">рассеянные облака</string>
-    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">разбитые облака</string>
-    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">пасмурные облака</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">незначительная облачность</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">отдельные облака</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">разорваные облака</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">сплошная облачность</string>
     <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Показать легенду графика</string>
     <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Показать местоположение в виджете</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">В настоящее время вам не разрешено иметь более %1$d местоположений.</string>
@@ -564,7 +564,7 @@
     <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Доступ к службе определения местоположения Mozilla истек с 1.3.2020. Приложение вынуждено использовать систему Andorid для определения координат местоположения. Адрес все еще определяется Nominatim. Учтите это при использовании приложения.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Ограничение службы определения местоположения Mozilla</string>
     <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"В этом приложении есть голосовые подсказки в виде перевода текста и голосовых команд, любезно предоставленных волонтерами на https://hosted.weblate.org/projects/your-local-weather. Разработчик приложения не может гарантировать, что они верны - вы принимаете это, используя приложение. Для его использования у вас должен быть установлен TTS (преобразование текста в речь) и включены подсказки в настройках, где вы можете установить свои собственные голосовые команды. "</string>
-    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Начиная с Android 10, для получения информации о подключённой сети GSM/LTE необходим детальный доступ к местоположению. Разрешите также получать данные о местоположении в фоновом режиме (если вы хотите, чтобы ваше местоположение было постоянно).</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Начиная с Android 10, для получения информации о подключённой сети GSM/LTE необходим детальный доступ к местоположению. Разрешите также получать данные о местоположении в фоновом режиме (если вы хотите, чтобы ваше местоположение было всегда актуально).</string>
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Изменения разрешений Android 10</string>
     <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
     <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">кПа</string>
@@ -572,4 +572,18 @@
     <string name="pref_language_pt" tools:ignore="MissingTranslation">Португальский</string>
     <string name="pref_language_fa" tools:ignore="MissingTranslation">Персидский</string>
     <string name="pref_language_hr" tools:ignore="MissingTranslation">Хорватский</string>
+    <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">При выборе графика для отображения величины осадков рядом с ветром и температурой (столбиками) используется логарифмическая шкала. Максимальное значение (невидимой) оси — около 160 мм (или 6,3 дюйма).</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">Тайский</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">Не между 00:00 и 06:00 (место 0)</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2 часа</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">Не между 00:00 и 06:00 (место 1,2,3…)</string>
+    <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">Удалены местоположения, вышедшие за лимит.</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">Корейский</string>
+    <string name="permission_available_notification" tools:ignore="MissingTranslation">Предоставлено разрешение на отправку уведомлений</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">Приложению требуется разрешение на доступ к местоположению в фоне</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">Приложению требуется разрешение на доступ к местоположению в фоне, чтобы получать погоду для того места, где вы находитесь. Если вы согласны, следует выбрать опцию на следующем экране:</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Сводный график</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">Кабильский</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">Литовский</string>
+    <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Разрешение для BT</string>
 </resources>
