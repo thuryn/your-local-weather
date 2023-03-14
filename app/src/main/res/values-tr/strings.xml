@@ -599,4 +599,5 @@
     <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">Uygulama, gerçekte bulunduğunuz konuma göre hava durumunu almak için arka planda konum izni gerektiriyor. Kabul ediyorsanız bir sonraki ekranda seçeneği seçmelisiniz:</string>
     <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">Sınırın üzerindeki konumlar silindi.</string>
     <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">BT için izin</string>
+    <string name="theme_system" tools:ignore="MissingTranslation">Sisteme göre</string>
 </resources>
