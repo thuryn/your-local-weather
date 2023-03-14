@@ -263,9 +263,9 @@
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Postavke jedinica</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Aktualiziraj mjesto i vrijeme</string>
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Prikaz</string>
-    <string name="theme_transparent" tools:ignore="MissingTranslation">Transparentno</string>
-    <string name="theme_light" tools:ignore="MissingTranslation">Svijetlo</string>
-    <string name="theme_dark" tools:ignore="MissingTranslation">Tamno</string>
+    <string name="theme_transparent" tools:ignore="MissingTranslation">Transparentna</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">Svijetla</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">Tamna</string>
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Tema programčića</string>
     <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Koristi geolokaciju za prikaz</string>
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Prikaži postavke na programčiću</string>
@@ -579,4 +579,5 @@
     <string name="permission_available_notification" tools:ignore="MissingTranslation">Dozvola za obavještavanje je odobrena</string>
     <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">Izbrisana mjesta iznad ograničenja.</string>
     <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Dozvola za BT</string>
+    <string name="theme_system" tools:ignore="MissingTranslation">Tema sustava</string>
 </resources>
