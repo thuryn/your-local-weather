@@ -579,4 +579,5 @@
     <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">Não entre as 00:00 e as 06:00 horas (Localização 0)</string>
     <string name="pref_language_kab" tools:ignore="MissingTranslation">Kabyle</string>
     <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Permissão de BT</string>
+    <string name="theme_system" tools:ignore="MissingTranslation">Por sistema</string>
 </resources>
