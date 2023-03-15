@@ -281,13 +281,13 @@
 \nN - atualizada a localização da rede e o tempo 
 \nB - o acesso ao serviço Openweathermap.org foi bloqueado, por favor tente atualizar o tempo mais tarde 
 \nE - o token de acesso ao serviço Openweathermap.org expirou. Tem de atualizar a aplicação para ter acesso novamente</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - só o tempo foi atualizado 
-\nL - só a localização foi atualizada 
-\nG - a localização do GPS e o tempo foram atualizados 
-\nN - a localização da rede e o tempo foram atualizados 
-\nNi - a localização da rede de telemóveis e o tempo, localização descoberta pelo serviço de localização Mozilla foram atualizados 
-\nB - o acesso ao serviço Openweathermap.org foi bloqueado, por favor tente atualizar o tempo mais tarde 
-\nE - o token de acesso ao serviço Openweathermap.org expirou. Tem de atualizar a app para ter acesso novamente</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - apenas o tempo atualizado
+\nL - apenas a localização atualizada
+\nG - localização do GPS e tempo atualizado
+\nN - localização da rede e tempo atualizado
+\nNi - localização da rede celular e tempo atualizado, localização descoberta pelo serviço de localização Mozilla
+\nB - o acesso ao Openweathermap.org serviço foi proibido, por favor, tente atualizar o tempo mais tarde
+\nE - o token de acesso para Openweathermap.org serviço expirou. Instalar uma versão posterior do aplicativo para recuperar o acesso</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Quando a localização fica bloqueada enquanto o aparelho está adormecido, pode tentar acordá-lo quando está à procura de uma rede de telemóveis</string>
     <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Cache de localizações</string>
     <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Locais encontrados são armazenados na cache</string>
@@ -563,7 +563,23 @@
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Alterações de permissão do Android 10</string>
     <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
     <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
-    <string name="pref_language_pt" tools:ignore="MissingTranslation">Português (Portugal)</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">Português (Português)</string>
     <string name="pref_language_fa" tools:ignore="MissingTranslation">Persa (persa)</string>
     <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (Hindi)</string>
+    <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (croata)</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">Lituano</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Gráfico combinado</string>
+    <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">Quando seleciona no gráfico para mostrar os valores de chuva/neve ao lado do vento e da temperatura (em barras), o valor é calculado como log10. O valor máximo do eixo (invisível) então é de cerca de 160 mm (ou 6,3 polegadas).</string>
+    <string name="theme_system" tools:ignore="MissingTranslation">Por sistema</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">Kabyle</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">Coreano</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">Tailandês</string>
+    <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Permissão de BT</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">Aplicação requer permissão de localização de fundo</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">A aplicação requer permissão de localização em segundo plano para obter o clima para o local onde realmente está. Se concordar, deve selecionar a opção no próximo ecrã:</string>
+    <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">Locais acima do limite apagados.</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2 horas</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">Não entre as 00:00 e as 06:00 horas (Localização 1,2,3...)</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">Não entre as 00:00 e as 06:00 horas (Localização 0)</string>
+    <string name="permission_available_notification" tools:ignore="MissingTranslation">A permissão de notificação foi concedida</string>
 </resources>
