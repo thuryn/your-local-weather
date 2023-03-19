@@ -577,4 +577,7 @@
     <string name="permission_available_notification" tools:ignore="MissingTranslation">알림 권한이 부여되었습니다</string>
     <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">응용프로그램에 백그라운드 위치 권한이 필요합니다</string>
     <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">응용프로그램은 실제 위치에 따라 날씨를 얻으려면 백그라운드 위치 권한이 필요합니다. 동의하는 경우 다음 화면에서 옵션을 선택해야 합니다:</string>
+    <string name="theme_system" tools:ignore="MissingTranslation">시스템별</string>
+    <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">BT에 대한 허가</string>
+    <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">한도를 초과하는 위치를 삭제했습니다.</string>
 </resources>
