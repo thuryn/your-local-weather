@@ -81,7 +81,7 @@
                         android:id="@+id/graph.switch.panel"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintBottom_toBottomOf="@+id/forecast.locality.panel"
+                        app:layout_constraintBottom_toBottomOf="@+id/graph.locality.panel"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         android:paddingTop="20dp"
