@@ -74,7 +74,13 @@ public class VoiceSettingsActivity extends BaseActivity {
                 return;
             }
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Set<Locale> ttsAvailableLanguages = tts.getAvailableLanguages();
+                Set<Locale> ttsAvailableLanguages;
+                try {
+                    ttsAvailableLanguages = tts.getAvailableLanguages();
+                } catch (Exception e) {
+                    appendLog(VoiceSettingsActivity.this, TAG, e);
+                    ttsAvailableLanguages = getAvailableLanguagesFormLocale();
+                }
                 processTtsLanguages(ttsAvailableLanguages);
             }
         }
@@ -220,22 +226,32 @@ public class VoiceSettingsActivity extends BaseActivity {
     private void checkTtsLanguages() {
         Set<Locale> ttsAvailableLanguages;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ttsAvailableLanguages = tts.getAvailableLanguages();
-            if ((ttsAvailableLanguages == null) || ttsAvailableLanguages.isEmpty()) {
-                timerHandler.postDelayed(timerRunnable, 1000);
-                return;
+            try {
+                ttsAvailableLanguages = tts.getAvailableLanguages();
+                if ((ttsAvailableLanguages == null) || ttsAvailableLanguages.isEmpty()) {
+                    timerHandler.postDelayed(timerRunnable, 1000);
+                    return;
+                }
+            } catch (Exception e) {
+                appendLog(VoiceSettingsActivity.this, TAG, e);
+                ttsAvailableLanguages = getAvailableLanguagesFormLocale();
             }
         } else {
-            ttsAvailableLanguages = new HashSet<>();
-            Locale[] locales = Locale.getAvailableLocales();
-            for (Locale loc : locales) {
-                if (!loc.toString().toLowerCase().contains("os")
-                        && tts.isLanguageAvailable(loc) >= 0) {
-                    ttsAvailableLanguages.add(loc);
-                }
-            }
+            ttsAvailableLanguages = getAvailableLanguagesFormLocale();
         }
         processTtsLanguages(ttsAvailableLanguages);
+    }
+
+    private Set<Locale> getAvailableLanguagesFormLocale() {
+        Set<Locale> ttsAvailableLanguages = new HashSet<>();
+        Locale[] locales = Locale.getAvailableLocales();
+        for (Locale loc : locales) {
+            if (!loc.toString().toLowerCase().contains("os")
+                    && tts.isLanguageAvailable(loc) >= 0) {
+                ttsAvailableLanguages.add(loc);
+            }
+        }
+        return ttsAvailableLanguages;
     }
 
     private void processTtsLanguages(Set<Locale> ttsAvailableLanguages) {

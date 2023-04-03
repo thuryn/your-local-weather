@@ -1103,7 +1103,7 @@ public class MainActivity extends BaseActivity
     }
 
     private void updateNetworkLocation() {
-        if (!initialGuideCompleted) {
+        if (!initialGuideCompleted || (currentLocation == null)) {
             return;
         }
         Intent startLocationUpdateIntent = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
@@ -1123,6 +1123,9 @@ public class MainActivity extends BaseActivity
         currentLocation = locationsDbHelper.getLocationById(AppPreference.getCurrentLocationId(MainActivity.this));
         if (currentLocation == null) {
             currentLocation = locationsDbHelper.getLocationByOrderId(0);
+        }
+        if (currentLocation == null) {
+            return;
         }
         appendLog(getBaseContext(), TAG, "updateCurrentLocationAndButtonVisibility:currentLocation:", currentLocation);
         switchToNextLocationWhenCurrentIsAutoAndIsDisabled();
