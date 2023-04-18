@@ -1,5 +1,6 @@
 package org.thosp.yourlocalweather;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -86,6 +87,7 @@ public class GraphsActivity extends ForecastingActivity {
     private Set<Integer> visibleGraphs = new HashSet<>();
     private Set<Integer> combinedGraphValues = new HashSet<>();
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -835,7 +837,7 @@ public class GraphsActivity extends ForecastingActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-
+    @SuppressLint("MissingInflatedId")
     private void showCombinedGraphSettings() {
         boolean[] checkedItems = new boolean[4];
         for (Integer visibleColumn: combinedGraphValues) {

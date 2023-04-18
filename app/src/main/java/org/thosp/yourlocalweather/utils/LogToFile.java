@@ -641,7 +641,7 @@ public class LogToFile {
         try {
             Date now = new Date();
             BufferedWriter buf;
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 if (logFileUri == null) {
                     return;
                 }
@@ -722,7 +722,7 @@ public class LogToFile {
         ParcelFileDescriptor pfd = null;
         FileReader logFileReader = null;
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 pfd = context.getContentResolver().
                         openFileDescriptor(logFileUri, "r");
                 logFileReader = new FileReader(pfd.getFileDescriptor());

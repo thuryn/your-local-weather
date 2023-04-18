@@ -39,6 +39,7 @@ import org.thosp.yourlocalweather.utils.PermissionUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -132,15 +133,29 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         if (location == null) {
             return;
         }
-        String locale = AppPreference.getInstance().getLanguage(getBaseContext());
-        NominatimLocationService.getInstance().getFromLocation(
-                getBaseContext(),
-                location.getLatitude(),
-                location.getLongitude(),
-                1,
-                locale,
-                this,
-                location);
+        String geocoder = AppPreference.getLocationGeocoderSource(this);
+        boolean resolveAddressByOS = !"location_geocoder_local".equals(geocoder);
+        if (resolveAddressByOS) {
+            Address address = Utils.getAndWriteAddressFromGeocoder(new Geocoder(this, new Locale(AppPreference.getInstance().getLanguage(this))),
+                    null,
+                    location.getLatitude(),
+                    location.getLongitude(),
+                    resolveAddressByOS,
+                    this);
+            List<Address> addresses = new ArrayList<>();
+            addresses.add(address);
+            processAddresses(location, addresses);
+        } else {
+            String locale = AppPreference.getInstance().getLanguage(getBaseContext());
+            NominatimLocationService.getInstance().getFromLocation(
+                    getBaseContext(),
+                    location.getLatitude(),
+                    location.getLongitude(),
+                    1,
+                    locale,
+                    this,
+                    location);
+        }
     }
     
     public void onLocationChanged(Location location, Address address) {

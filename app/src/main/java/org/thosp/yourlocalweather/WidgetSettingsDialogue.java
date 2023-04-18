@@ -1,5 +1,6 @@
 package org.thosp.yourlocalweather;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.appwidget.AppWidgetManager;
@@ -126,6 +127,7 @@ public class WidgetSettingsDialogue extends Activity {
                 "0,1,2,3");
     }
 
+    @SuppressLint("MissingInflatedId")
     private void createDetailsSettingsDialog(final int widgetId) {
         final Set<Integer> mSelectedItems = new HashSet<>();
         final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(WidgetSettingsDialogue.this);
@@ -205,7 +207,7 @@ public class WidgetSettingsDialogue extends Activity {
         AlertDialog dialog = builder.create();
         dialog.show();
     }
-
+    @SuppressLint("MissingInflatedId")
     private void createWidgetActionSettingsDialog(final int widgetId, final ArrayList<String> widgetActionPlaces) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -328,6 +330,7 @@ public class WidgetSettingsDialogue extends Activity {
         dialog.show();
     }
 
+    @SuppressLint("MissingInflatedId")
     private void createLocationSettingsDialog(final int widgetId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -446,6 +449,7 @@ public class WidgetSettingsDialogue extends Activity {
         dialog.show();
     }
 
+    @SuppressLint("MissingInflatedId")
     private void createForecastSettingsDialog(final int widgetId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         LayoutInflater inflater = getLayoutInflater();
@@ -548,6 +552,7 @@ public class WidgetSettingsDialogue extends Activity {
         dialog.show();
     }
 
+    @SuppressLint("MissingInflatedId")
     private void createGraphSettingDialog(final int widgetId) {
         final Set<Integer> mSelectedItems = new HashSet<>();
         final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(WidgetSettingsDialogue.this);

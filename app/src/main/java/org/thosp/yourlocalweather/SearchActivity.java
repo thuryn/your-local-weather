@@ -1,5 +1,6 @@
 package org.thosp.yourlocalweather;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.ContentValues;
@@ -73,6 +74,7 @@ public class SearchActivity extends BaseActivity {
         };
     }
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         ((YourLocalWeather) getApplication()).applyTheme(this);

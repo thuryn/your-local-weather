@@ -70,7 +70,7 @@ public class DebugOptionsPreferenceFragment extends PreferenceFragment {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         Preference preference = findPreference(KEY_DEBUG_FILE);
         String uriAuthority = preferences.getString(KEY_DEBUG_URI_AUTHORITY, null);
-        if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) && uriAuthority != null) {
+        if ((Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) && uriAuthority != null) {
             try {
                 String decodedUriAuthority = URLDecoder.decode(uriAuthority, StandardCharsets.UTF_8.name());
                 String path = URLDecoder.decode(preferences.getString(Constants.KEY_DEBUG_URI_PATH, ""), StandardCharsets.UTF_8.name());
@@ -105,7 +105,7 @@ public class DebugOptionsPreferenceFragment extends PreferenceFragment {
         buttonFileLog.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(final Preference preference) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
                     intent.addCategory(Intent.CATEGORY_OPENABLE);
                     intent.setType("text/plain");
@@ -142,7 +142,7 @@ public class DebugOptionsPreferenceFragment extends PreferenceFragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if ((data == null) || (fileChooserPreference == null) || Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+        if ((data == null) || (fileChooserPreference == null) || Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
             return;
         }
         Uri uri = data.getData();
@@ -165,7 +165,7 @@ public class DebugOptionsPreferenceFragment extends PreferenceFragment {
     }
 
     private boolean checkWriteToSdcardPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             return true;
         }
         if (ContextCompat.checkSelfPermission(getActivity(),

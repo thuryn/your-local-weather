@@ -614,7 +614,7 @@ public class Utils {
         return new URL(url);
     }
     
-    public static void getAndWriteAddressFromGeocoder(Geocoder geocoder,
+    public static Address getAndWriteAddressFromGeocoder(Geocoder geocoder,
                                                       Address address,
                                                       double latitude,
                                                       double longitude,
@@ -636,6 +636,7 @@ public class Utils {
         } catch (IOException | NumberFormatException ex) {
             Log.e(Utils.class.getName(), "Unable to get address from latitude and longitude", ex);
         }
+        return address;
     }
 
     public static String getCityAndCountry(Context context, boolean defaultApiKey, Location location) {

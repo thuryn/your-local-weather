@@ -1,5 +1,6 @@
 package org.thosp.yourlocalweather;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -46,6 +47,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
     private RecyclerView mRecyclerView;
     private Set<Integer> visibleColumns = new HashSet<>();
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
