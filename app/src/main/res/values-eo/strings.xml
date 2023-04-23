@@ -1,2 +1,196 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="label_activity_help" tools:ignore="MissingTranslation">Helpo</string>
+    <string name="enter_city_hint" tools:ignore="MissingTranslation">Tajpu urbon</string>
+    <string name="label_current_city" tools:ignore="MissingTranslation">Aktuala urbo</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Nuligi</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Nuligi</string>
+    <string name="load_progress" tools:ignore="MissingTranslation">Ŝargante…</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Via loka vetero</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">Via loka vetero</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">Loko ne troviĝis</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">Aparataj agordoj</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Temperaturo</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">Vento</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">Pluvo</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">Neĝo</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">Premo</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">Fermi</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">Sekven</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">Antaŭen</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">Fini</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Gratulon</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">Ĝenerala</string>
+    <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Ĝisdatigi</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Piktogramo</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Priskribo</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperaturo</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">Vento</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="ok" tools:ignore="MissingTranslation">Bone</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Temperaturo</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Neĝo</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Premo</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Temperaturo</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Vento</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">Pluvo/neĝo</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">Premo</string>
+    <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Grafoj</string>
+    <string name="nav_menu_settings" tools:ignore="MissingTranslation">Agordoj</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">Helpo</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">lb/in²</string>
+    <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
+    <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
+    <string name="wind_speed_miles" tools:ignore="MissingTranslation">mi/h</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">nodoj</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">coloj</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">Sistemo</string>
+    <string name="title_activity_settings" tools:ignore="MissingTranslation">Agordoj</string>
+    <string name="pref_title_temperature" tools:ignore="MissingTranslation">Temperaturo</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">Vento</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">Premo</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 tagoj</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 tagoj</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">Klasika</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">Malhela</string>
+    <string name="pref_title_language" tools:ignore="MissingTranslation">Lingvo</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili (svahila)</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Svenska (sveda)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Nederlands (nederlanda)</string>
+    <string name="pref_language_fa" tools:ignore="MissingTranslation">فارسی (persa)</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (ĉina)</string>
+    <string name="theme_system" tools:ignore="MissingTranslation">Laŭsistema</string>
+    <string name="preference_title_category_units" tools:ignore="MissingTranslation">Agordoj pri mezurunuoj</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">Vjetnama</string>
+    <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (japana)</string>
+    <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (pola)</string>
+    <string name="pref_language_en" tools:ignore="MissingTranslation">English (angla)</string>
+    <string name="pref_language_fr" tools:ignore="MissingTranslation">Français (franca)</string>
+    <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego (galega)</string>
+    <string name="pref_language_de" tools:ignore="MissingTranslation">Deutsch (germana)</string>
+    <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (kataluna)</string>
+    <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (kroata)</string>
+    <string name="pref_language_da" tools:ignore="MissingTranslation">Dansk (dana)</string>
+    <string name="pref_language_fi" tools:ignore="MissingTranslation">Suomi (finna)</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Română (rumana)</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Magyar (hungara)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Español (hispana)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Ελληνικά (greka)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">العربية (araba)</string>
+    <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (eŭska)</string>
+    <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (belorusa)</string>
+    <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (albana)</string>
+    <string name="pref_language_id" tools:ignore="MissingTranslation">Bahasa Indonesia (Indonezia)</string>
+    <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (itala)</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">한국어 (korea)</string>
+    <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">正體中文 (ĉina tradicia)</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">ภาษาไทย (taja)</string>
+    <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (serba)</string>
+    <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (turka)</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">Lietuvių (litova)</string>
+    <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Saluton</string>
+    <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">Bonan vesperon</string>
+    <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">Bonan matenon</string>
+    <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">hodiaŭ</string>
+    <string name="tty_say_weather_forecast_tomorrow" tools:ignore="MissingTranslation">morgaŭ</string>
+    <string name="rain_label" tools:ignore="MissingTranslation">Pluvo: %1$s %2$s</string>
+    <string name="tty_say_temperature" tools:ignore="MissingTranslation">temperaturo %s</string>
+    <string name="tty_say_weather_forecast_morning" tools:ignore="MissingTranslation">matene</string>
+    <string name="tty_say_weather_forecast_night" tools:ignore="MissingTranslation">nokte</string>
+    <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">malofte</string>
+    <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">kaj</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">Sunsubiro</string>
+    <string name="temperature_evening_title" tools:ignore="MissingTranslation">Vespero</string>
+    <string name="temperature_night_title" tools:ignore="MissingTranslation">Nokto</string>
+    <string name="label_temperature" tools:ignore="MissingTranslation">Temperaturo</string>
+    <string name="label_wind" tools:ignore="MissingTranslation">Vento</string>
+    <string name="label_rain" tools:ignore="MissingTranslation">Pluvo</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">Premo</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">Sunsubiro: %s</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">Sunleviĝo: %s</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">Grafo</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">Lasta ĝisdatigo: %s</string>
+    <string name="wind_direction_north" tools:ignore="MissingTranslation">N↓</string>
+    <string name="wind_direction_east" tools:ignore="MissingTranslation">E←</string>
+    <string name="wind_direction_south_east" tools:ignore="MissingTranslation">SE↖</string>
+    <string name="wind_direction_south" tools:ignore="MissingTranslation">S↑</string>
+    <string name="wind_direction_south_west" tools:ignore="MissingTranslation">SU↗</string>
+    <string name="wind_direction_west" tools:ignore="MissingTranslation">U→</string>
+    <string name="wind_direction_north_west" tools:ignore="MissingTranslation">NU↘</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Mll N↓, NE↙, …</string>
+    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">norden</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">nordorienten</string>
+    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">sudorienten</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">suden</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">okcidenten</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">nordokcidenten</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">ĉiutage</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">ĉiudutage</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">ĉiutritage</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">ĉiusemajne</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">ĉiumonate</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">ĉiuduontage</string>
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">nenio</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">neĝo</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">tondroŝtormo</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">tondroŝtormo kun pluvego</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">tondroŝtormo kun pluveto</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">tondroŝtormego</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">tondroŝtormeto</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">pluveto</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">neĝego</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">neĝeto</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">pluvo kaj neĝo</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">nebulo</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">pluveto kaj neĝo</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">fumo</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">tornado</string>
+    <string name="label_choose_city" tools:ignore="MissingTranslation">Elektu urbon</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Lingvo</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">Pluvo/neĝo</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Pluvo</string>
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">Hela</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">Lokoj</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Premo</string>
+    <string name="cancel" tools:ignore="MissingTranslation">Nuligi</string>
+    <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
+    <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24-hora</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Vento</string>
+    <string name="pref_language_bg" tools:ignore="MissingTranslation">Bulgara</string>
+    <string name="label_snow" tools:ignore="MissingTranslation">Neĝo</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">Temperaturo</string>
+    <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (rusa)</string>
+    <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (ĉeĥa)</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 tagoj</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">עברית (hebrea)</string>
+    <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (slovena)</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">Sistemaj agordoj</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Українська (ukraina)</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Urbo: %1$s
+\nTemperaturo: %2$s
+\nPriskribo: %3$s
+\nVento: %4$s %5$s
+\nSunleviĝo: %6$s
+\nSunsubiro: %7$s</string>
+    <string name="preference_title_activity_about" tools:ignore="MissingTranslation">Pri</string>
+    <string name="about_version_pref_title" tools:ignore="MissingTranslation">Versio</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">Sunleviĝo</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
+    <string name="temperature_morning_title" tools:ignore="MissingTranslation">Mateno</string>
+    <string name="temperature_day_title" tools:ignore="MissingTranslation">Tago</string>
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">tondroŝtormo kun pluvo</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">sablo</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">polvo</string>
+    <string name="tty_say_weather_forecast_afternoon" tools:ignore="MissingTranslation">posttagmeze</string>
+    <string name="wind_direction_north_east" tools:ignore="MissingTranslation">NE↙</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">sudokcidenten</string>
+    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">orienten</string>
+    <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">vespere</string>
+</resources>
