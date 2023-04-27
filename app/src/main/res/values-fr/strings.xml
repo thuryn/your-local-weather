@@ -116,10 +116,7 @@
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Terminer</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Guide de configuration initiale</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Général</string>
-    <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
-        <b>Température</b> — Vous pouvez sélectionner l\'unité de température,
-\n<b>Vent</b> — Vous pouvez sélectionner l\'unité de vitesse du vent et 
-\n<b>Pression</b> — Vous pouvez sélectionner l\'unité de pression. Les valeurs sont recalculées avec ces options.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> <b>Température</b> — Vous pouvez sélectionner l’unité de température, <b>Vent</b> — Vous pouvez sélectionner l’unité de vitesse du vent et <b>Pression</b> — Vous pouvez sélectionner l’unité de pression. Les valeurs sont recalculées avec ces options.</string>
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">
         <b>Cacher la description météo</b> — la description de la météo actuelle est cachée. Vous pouvez seulement voir la météo par l\'icône qui change.</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">Aide</string>
@@ -146,8 +143,7 @@
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Paramètres de sortie de veille</string>
     <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Certains téléphones ne rapportent pas correctement la connexion aux antennes tant que l\'écran n\'est pas allumé. Le paramètre par défaut (avec écran allumé) à le désavantage d\'allumer l\'écran du téléphone quelques secondes. Ce qui a un léger impacte sur l\'autonomie. Commencez avec puis essayez sans et vérifiez que la localisation se met toujours à jour.</string>
     <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Sortie de veille</string>
-    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Vous pouvez réduire votre utilisation de données en mettant vos localisations en cache.
-\nElles ne sont pas enregistrées dans l\'appli. Elles ne sont pas envoyées ou stockées ailleurs dans le réseau.</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Vous pouvez réduire l’usage des données en mettant en cache les localisations trouvées. Celles-ci sont ensuite stockées dans l’appli. Elles ne sont pas envoyées ou stockées ailleurs dans le réseau.</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Félicitations</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Ceci conclut l\'introduction. Vous pouvez trouver d\'autres options dans le menu Paramètres (par exemple la langue, les unités, etc). 
 \nL\'écran suivant vous expliquera les autorisations demandées et vous donne la possibilité de les accepter. 
@@ -163,7 +159,7 @@
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Votre OpenweathermapApiKey n\'est pas enregistrée.</string>
     <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Pour adapter l\'appli à vos besoins, vous pouvez choisir la stratégie de mise à jour sur l\'écran suivant.
 \nPour ne pas mettre à jour quand la localisation change, comme c\'est le cas par défaut, vous pouvez sélectionner <i>Ne pas mettre à jour la localisation</i>.</string>
-    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Vous pouvez choisir la méthode de localisation – celle du &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;Système&lt;/i&gt; utilise les services Google pour obtenir la localisation par les réseaux (réseaux téléphoniques et Wi-Fi). L\'option &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt; Local MLS et Nominatim&lt;/i&gt; utilise le service de localisation de Mozilla pour obtenir les coordonnées de localisation et le service Nominatim pour obtenir les noms d\'emplacement. La seconde option requiert la permission d\'appels téléphoniques pour récupérer des infos des antennes réseaux. L\'option préférée est présélectionnée.</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Vous pouvez choisir la méthode de localisation — celle du <i>Système</i> utilise les services Google pour obtenir la localisation par les réseaux (cellulaire et Wi-Fi). L’option <i>MLS local et Nominatim</i> utilise le service de localisation de Mozilla pour obtenir les coordonnées de localisation et le service Nominatim pour les noms de ces dernières. La seconde option nécessite les permissions d’appels téléphoniques pour récupérer les informations du réseau cellulaire. L’option préférée est présélectionnée.</string>
     <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Option de mise en cache des adresses résolues</string>
     <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Mettre en cache les adresses résolues</string>
     <string name="help_page_general_content" tools:ignore="MissingTranslation">L\'appli détermine votre emplacement grâce aux réseaux cellulaire (BTS), Wi-Fi et si ces méthodes échouent, le GPS pour montrer votre météo locale, en récupérant les coordonnées par le service de localisation de Mozilla. L\'application ncessite au moins : une station de base du réseau GSM ou deux réseaux wifi accessibles ou toute combinaison de réseaux GSM et WIFI. Avec le widget sur votre téléphone ou votre tablette, vous pouvez voir votre localisation et votre météo actuelle sur l\'écran d\'accueil. Les mises à jour de la localisation sont périodique (p. ex. une fois par heure) et l\'appli peut utiliser l\'accéléromètre pour détecter des mouvements d\'une distance plus grande qu\'une certaine valeur. Dans votre poche, la distance augmente plus vite. Vous pouvez désactiver la mise à jour de la localisation — seul la météo est mise à jour. L\'appli met à jour la localisation et la météo à des intervalles spécifiés. Vous pouvez par exemple paramétrer la mise à jour tous les jours à treize heures. La météo est mise à jour immédiatement après la localisation ou lorsque l\'écran est allumé — mais pas plus d\'une fois toutes les 15 minutes (et lorsque la météo n\'a pas été mise à jour lors des 15 dernières minutes). Ces informations sont utilisées pour récupérer les coordonnées de votre emplacement par le service de localisation de Mozilla. L\'appli essaye d\'utiliser le GPS lorsque la localisation n\'est pas disponible depuis les réseaux cellulaire et Wi-Fi. Les coordonnées de votre emplacement sont utilisées pour récupérer l\'adresse avec le service Nominatim. L\'adresse est utilisée dans l\'appli ou le widget. L\'appli utilise le service OpenWeatherMap.org pour récupérer la météo actuelle.</string>
@@ -191,7 +187,9 @@
     <string name="help_page_4_content" tools:ignore="MissingTranslation">Les paramètres des widgets contiennent des options de configuration pour tous les widgets.</string>
     <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Lorsque vous activez l\'option <b>Montrer les étiquettes dans le widget</b> vous pouvez voir les étiquettes à la place des icônes pour les valeurs météo.</string>
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Vous pouvez contrôler le fond du widget avec l\'<b>option de thème du widget</b>.</string>
-    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">La <b>stratégie de réveil</b> est disponible pour contourner des implémentations d\'Android boguées de certains fabricants. Lorsque vous choisissez <i>Pas de réveil</i> et que la localisation est mise à jour correctement vous avez une bonne implémentation. Lorsque la localisation n\'est pas mise à jour correctement vous pouvez essayer <i>Ne réveiller que le CPU</i>. Cette option réveille le processeur et essaye de lire l\'état du réseau WiFi et cellulaire. La dernière option <i>Réveiller avec l\'écran</i> est l\'option qui allume l\'écran pendant quelques secondes pendant la mise à jour de la localisation. Sur certains appareils android c\'est la seule option pour récupérer la bonne information sur les réseaux cellulaires et wifi. Cette option consomme une certaine quantité de batterie, mais l\'impact sur la durée de vie de la batterie devrait être négligeable.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">La <b>Stratégie de réveil</b> est là pour surmonter les implémentations boguées des fournisseurs des services Android Aurora. La sélection de <i>Pas de réveil</i> devrait mettre à jour la localisation correctement.
+\nSinon, essayez <i>Réveil processeur seulement</i> pour lire l’état des réseaux cellulaire et Wi-Fi.
+\n<i>Réveil avec affichage</i> allume l’écran pendant plusieurs secondes durant la mise à jour de la localisation en dernier recours.</string>
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Lors de la mise à jour de la localisation et de la météo vous pouvez voir l\'état de la mise à jour à côté de l\'heure de dernière mise à jour sur le widget. Vous pouvez contrôler ce qui est affiché avec l\'option <b>Afficher le résumé des mises à jour</b>. Voici l\'explication de l\'option la plus avancée :</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Options de débogage</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Il y a des options pour activer le débogage dans un fichier de journal. Cette option est utile lorsqu\'il y a une problème avec l\'application.</string>
@@ -586,4 +584,19 @@
     <string name="pref_language_fa" tools:ignore="MissingTranslation">فارسی (Persan)</string>
     <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (Hindi)</string>
     <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (Croate)</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">L’application nécessite la permission de la localisation en arrière-plan afin d’obtenir la météo du lieu où vous êtes. Si vous acceptez, vous devriez sélectionner l’option dans l’écran suivant :</string>
+    <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">Suppressions des localisations dépassant la limite.</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Graphique combiné</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">Aucune horloge entre 00:00 et 06:00 (localisation 1, 2, 3…)</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">Aucune horloge entre 00:00 et 06:00 (localisation 0)</string>
+    <string name="theme_system" tools:ignore="MissingTranslation">Par le système</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">Kabyle</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">Coréen</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">Lituanien</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">Thaï</string>
+    <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Permission pour BT</string>
+    <string name="permission_available_notification" tools:ignore="MissingTranslation">La permission de notification a été accordée</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">L’application nécessite la permission de la localisation en arrière-plan</string>
+    <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">Lorsque vous sélectionnez un graphique pour montrer les valeurs de pluie ou de neige à côté du vent et de la température (en barres), la valeur est calculée en logarithme décimal. La valeur maximum de l’axe (invisible) est alors de 160 mm (ou 6,3 pouces).</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2 heures</string>
 </resources>
