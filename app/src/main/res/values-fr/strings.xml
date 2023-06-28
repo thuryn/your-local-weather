@@ -138,7 +138,7 @@
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Vent</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Pression</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Permission non accordée – cliquez sur le symbole de localisation dans l\'application</string>
-    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Paramètres de mise à jour de la localisation</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Mettre à jour le paramètre de localisation</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Choix du moyen de localisation</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Paramètres de sortie de veille</string>
     <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Certains téléphones ne rapportent pas correctement la connexion aux antennes tant que l\'écran n\'est pas allumé. Le paramètre par défaut (avec écran allumé) à le désavantage d\'allumer l\'écran du téléphone quelques secondes. Ce qui a un léger impacte sur l\'autonomie. Commencez avec puis essayez sans et vérifiez que la localisation se met toujours à jour.</string>
