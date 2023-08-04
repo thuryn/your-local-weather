@@ -71,13 +71,13 @@
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Показване на настройки в джаджата</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Преводи на текст и насоки</string>
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"> <b>Скриване на описанието на времето</b> - описанието на текущото време е скрито. Можете да виждате само текущото време чрез променящата се икона.</string>
-    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> <b>Температура</b>" - Можете да изберете единица за температурата,  "<b>Вятър</b> - Можете да изберете единицата за скорост на вятъра и <b>Налягане</b> - Можете да изберете единицата за налягане. Стойностите се преизчисляват с помощта на тези опции.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> <b>Температура</b> - Можете да изберете единица за температурата, <b>Вятър</b> - Можете да изберете единицата за скорост на вятъра и <b>Налягане</b> - Можете да изберете единицата за налягане. Стойностите се преизчисляват с помощта на тези опции.</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">Тези опции имат влияние върху цялото приложение.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Общи настройки</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">Джаджи</string>
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Третият екран съдържа прогноза за времето, показана с диаграми.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Ограничение на услугата за местоположение на Mozilla</string>
-    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation"></string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation"/>
     <string name="pref_title_tts_not_supported" tools:ignore="MissingTranslation">Регионалните настройки на приложението не се поддържат от TTS системата ви (текст в реч). Изберете „Настройки на език на ръководство“ горе вдясно.</string>
     <string name="pref_title_tts_presence" tools:ignore="MissingTranslation">Регионалните настройки на приложението не се поддържат от TTS системата ви (текст в реч). Изберете език за ръководство от списъка на поддържаните по-долу.</string>
     <string name="pref_title_tts_lang_app_default" tools:ignore="MissingTranslation">По регионални настройки на приложението</string>
@@ -126,7 +126,7 @@
     <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">югоизток</string>
     <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">изток</string>
     <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">североизток</string>
-    <string name="wind_direction_north" tools:ignore="MissingTranslation"></string>
+    <string name="wind_direction_north" tools:ignore="MissingTranslation"/>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Градуси от север</string>
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Изключено</string>
     <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Покажи местоположение в джаджи</string>
@@ -353,7 +353,7 @@
     <string name="weather_condition_description_212" tools:ignore="MissingTranslation">силна гръмотевична буря</string>
     <string name="weather_condition_description_211" tools:ignore="MissingTranslation">гръмотевична буря</string>
     <string name="weather_condition_description_210" tools:ignore="MissingTranslation">лека гръмотевична буря</string>
-    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">"гръмотевична буря с  дъжд"</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">гръмотевична буря с дъжд</string>
     <string name="weather_condition_description_200" tools:ignore="MissingTranslation">гръмотевична буря с лек дъжд</string>
     <string name="label_cloudiness" tools:ignore="MissingTranslation">Облачност</string>
     <string name="cloudiness_label" tools:ignore="MissingTranslation">Облачност: %1$s%2$s</string>
@@ -415,5 +415,5 @@
     <string name="title_activity_search" tools:ignore="MissingTranslation">Търсене на местоположение</string>
     <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Търсене на град</string>
     <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Разпознаване на местоположението</string>
-    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation"></string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation"/>
 </resources>
