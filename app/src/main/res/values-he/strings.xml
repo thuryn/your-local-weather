@@ -57,7 +57,7 @@
     <string name="label_activity_main" tools:ignore="MissingTranslation">מזג-אוויר נוכחי</string>
     <string name="title_activity_search" tools:ignore="MissingTranslation">חיפוש מיקום</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">אפשרויות ניפוי תקלים</string>
-    <string name="help_page_4_title" tools:ignore="MissingTranslation">הגדרות ווידג\'ט</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">הגדרות ווידג\'טים</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">הגדרות כלליות</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">ווידג\'טים</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">יישום ראשי</string>
@@ -191,7 +191,7 @@
     <string name="weather_condition_description_801" tools:ignore="MissingTranslation">מעט עננים</string>
     <string name="weather_condition_description_802" tools:ignore="MissingTranslation">עננים מפוזרים‮</string>
     <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">החל מאנדרואיד 10, גישה מכוונת למיקום נדרשת על מנת לקבל מידע על רשת ה-GSM/LTE המחוברת.
-\nהעניקו הרשאה ל מיקום גם ברקע (אם אתם רוצים את מיקומכם כל הזמן).</string>
+\nהעניקו הרשאה למשוך מיקום גם ברקע (אם אתם רוצים את מיקומכם כל הזמן).</string>
     <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">קילו-פסקל</string>
     <string name="update_location_none" tools:ignore="MissingTranslation">לא לעדכן מיקום</string>
     <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">הפעילו GPS בעת הצורך</string>
@@ -246,7 +246,8 @@
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">אינכם רשאים להחזיק ביותר מ-%1$d מיקומים כרגע.</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">מדריך תצורה התחלתית</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">מזל טוב</string>
-    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">בזאת מסתיים המדריך. אפשר למצוא הגדרות אחרות בתפריט ההגדרות (למשל שפות, יחידות, וכו\'). המסך הבא יסביר את ההרשאות הנדרשות ויתן את האפשרות לבקש אותן.
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">בזאת מסתיים המדריך. אפשר למצוא הגדרות אחרות בתפריט ההגדרות (למשל שפות, יחידות, וכו\').
+\nהמסך הבא יסביר את ההרשאות הנדרשות ויתן את האפשרות לבקש אותן.
 \n
 \nתיהנו מהיישום.</string>
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">המסך השלישי מכיל תחזיות מזג אוויר מוצגות על ידי תרשימים.</string>
@@ -255,4 +256,56 @@
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> <b>טמפרטורה</b> - באפשרותכם•ן לבחור יחידת מידה עבור טמפרטורה, <b>רוח</b> - באפשרותכם•ן לבחור את יחידת המידה עבור מהירות הרוח ו<b>לחץ אטמוספרי</b> - באפשרותכם•ן לבחור את יחידת המידה עבור לחץ אטמוספרי. הערכים מחושבים מחדש באמצעות אפשרויות אלה.</string>
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"> <b>מקור מיקום וכתובת</b>
 \nבאפשרותכם לבחור מאיפה היישום מקבלת את המיקום והכתובת.</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">סמלי מרלין האדום</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">גשם כבד במיוחד</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">גשם קיצוני</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">גשם מתון</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">מטר גשם</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">גשם קל עם שלג</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">אובך</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">חול, מערבולות אבק</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">עשן</string>
+    <string name="help_page_4_content" tools:ignore="MissingTranslation">הגדרות ווידג\'טים מכילות אפשרויות תצורה לכל הווידג\'טים.</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">אפשרות אסטרטגיית התעוררות</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">מטר גשם בעוצמה קלה</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">גשם קל</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">מטר גשם בעוצמה כבדה</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">מטר גשם סוער</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">ערפל</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">מטר שלג כבד</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">היישום דורש הרשאת מיקום ברקע</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">תרשים משולב</string>
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">סט אייקונים</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">סופת רעמים עם גשם קל</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">סופת רעמים עם גשם</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">היישום דורש הרשאת מיקום ברקע על מנת לקבל את מזג האוויר לפי המיקום בו אתם נמצאים בפועל. אם אתם מסכימים עליכם לבחור באפשרות במסך הבא:</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">היישום מתכוונן לצרכים שלכם, באפשרותכם לבחור עדכון אסטרטגיה לאחר מכן.
+\nעל מנת להסית מברירת המחדל של עדכון כאשר המיקום משתנה, יש לבחור <i>לא לעדכן מיקום</i>.</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">טלפונים מסוימים לא מדווחים על תאים מחוברים כראוי אלא אם המסך מופעל. לאפשרות הנבחרת (עם המסך דולק) יש את החסרון שהטלפון מדליק את המסך למספר שניות. יש לכך השפעה מינימלית על חיי הסוללה. התחילו איתה מופעלת, ונסו לכבות אותה וראו אם המיקום עדיין מתעדכן.</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">ניתן להפחית שימוש בנתונים על ידי שמירת מיקומים נמצאים במטמון. לאחר מכן מיקומים מאוחסנים ביישום. הם אינם נשלחים או מאוחסנים במקומות אחרים ברשת.</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"> <b>מערכת</b> - היישום מקבל מיקום וכתובת על ידי שירותי המערכת באנדרואיד (בדרך כלל עם שירותי המיקום של גוגל).</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">היישום הראשי מכיל סקירה כללית של מזג האוויר הנוכחי. ניתן לעדכן את מזג האוויר עם כפתור הרענון בלוח היישום או על ידי החלקה למטה. ניתן למצוא את כפתור עדכון המיקום ליד כפתור רענון מזג האוויר. כפתור זה זמין רק כאשר מיקום 0 מופעל (מיקום 0 מיועד לעדכון אוטומטי של המיקום).</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">אפשרויות התפריט הללו קובעות את <b>השפה</b>, <b>ערכת הנושא</b> של היישום הראשי ואת <b>סט האייקונים</b> שנמצאת בשימוש \u0020ביישום ובווידג\'טים.</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">גשם ושלג</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">ניתן למצוא תחזית של מזג האוויר על המסך הבא (יש לבחור את המסך הבא בתפריט או להחליק משמאל לימין). תחזית מזג האוויר מתעדכנת על ידי כפתור העדכון או בעת כניסה למסך (אך לא יותר מעדכון אחד לשעה).</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">שלג קל</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">שלג כבד</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">שלג</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">מטר שלג קל</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">מטר שלג</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">גשם בעוצמה כבדה</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">סופת רעמים עם גשם כבד</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">סופת רעמים קלה</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">סופת רעמים</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">סופת רעמים כבדה</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">סופת רעמים סוערת</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">סופת רעמים עם טפטוף קל</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">סופת רעמים עם טפטוף</string>
+    <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">בעת הפעלת <b>הצגת תוויות בווידג\'ט</b>, ניתן לראות תוויות במקום אייקונים לערכי מצב מזג האוויר.</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">סופת רעמים עם טפטוף כבד</string>
+    <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">ניתן לשלוט ברקע הווידג\'ט בעזרת <b>אפשרות ערכת נושא הווידג\'ט</b>.</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">טפטוף בעוצמה קלה</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">טפטוף</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation"></string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">טפטוף בעוצמה כבדה</string>
 </resources>
