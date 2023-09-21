@@ -278,4 +278,5 @@
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Dessa meny-alternativ ställer in <b>språk</b>, den huvudsakliga appens <b>tema</b> och <b>uppsättningen av ikoner</b> som används i appen och widgetar.</string>
     <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"> <b>Aviseringar</b>
 \nNär du väljer alternativet för aviseringar så uppdaterar appen det aktuella vädret periodvis. Aktuellt väder läggs då i aviseringsområdet. Du kan även aktivera vibration - appen vibrerar när den är uppdaterad.</string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation"></string>
 </resources>
