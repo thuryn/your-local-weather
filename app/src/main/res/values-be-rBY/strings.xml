@@ -592,4 +592,7 @@
     <string name="permission_available_notification" tools:ignore="MissingTranslation">Дазвол на апавяшчэнні дадзены</string>
     <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">Праграме патрабуецца дазвол на фонавае вызначэнне месцазнаходжання, каб даведацца пра надвор\'е на месцы вашага фактычнага месцазнаходжання. Калі вы згодныя, вы павінны выбраць опцыю на наступным экране:</string>
     <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">"Калі вы выбіраеце на графіку адлюстраванне значэнняў колькасці дажджу/снегу побач з ветрам і тэмпературай (у слупках), значэнне разлічваецца як log10.  Максімальнае значэнне (нябачнай) восі складае каля 160 мм (або 6,3 цалі)."</string>
+    <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">Выдалены месцазнаходжання, якія выйшлі за ліміт.</string>
+    <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Дазвол для BT</string>
+    <string name="theme_system" tools:ignore="MissingTranslation">Як у сістэме</string>
 </resources>
