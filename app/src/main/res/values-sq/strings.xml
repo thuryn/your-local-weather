@@ -585,4 +585,5 @@
     <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">Aplikacioni lyp leje vendndodhjesh</string>
     <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">Për të marrë motin sipas vendndodhjes ku gjendeni aktualisht, aplikacioni lyp leje vendndodhjesh. Nëse pajtoheni me këtë, duhet të përzgjidhni mundësinë në skenën pasuese:</string>
     <string name="permission_available_notification" tools:ignore="MissingTranslation">U akordua leje për njoftime</string>
+    <string name="theme_system" tools:ignore="MissingTranslation">Nga sistemi</string>
 </resources>
