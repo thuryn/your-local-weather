@@ -278,5 +278,50 @@
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Dessa meny-alternativ ställer in <b>språk</b>, den huvudsakliga appens <b>tema</b> och <b>uppsättningen av ikoner</b> som används i appen och widgetar.</string>
     <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"> <b>Aviseringar</b>
 \nNär du väljer alternativet för aviseringar så uppdaterar appen det aktuella vädret periodvis. Aktuellt väder läggs då i aviseringsområdet. Du kan även aktivera vibration - appen vibrerar när den är uppdaterad.</string>
-    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation"></string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation"/>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm.(åå)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">العَرَبِيَّة‎ (Arabiska)</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/åå)</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">Data för kombinerad graf</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Nya inställningar för vägledningen</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Inbyggt</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">Inställningar för synliga grafer</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili (Swahili)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Nederländerna (Holländska)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">עברית (Hebreiska)</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">Inställningar för vägledning</string>
+    <string name="theme_system" tools:ignore="MissingTranslation">Efter system</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 dagar</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (3 timmars intervall)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Ελληνικά (Grekiska)</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (Kinesiska)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norska (Bokmål) (Norska (Bokmål))</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Kombinerad graf</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Română (Rumänska)</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 dagar</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (3 timmars intervall)</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">Vid regelbunden uppdatering</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (3 timmars intervall)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (Nyanja)</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamesiska</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 dagar</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">Kombinerad</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Språkalternativ för vägledning</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">Språk</string>
+    <string name="too_early_update_error" tools:ignore="MissingTranslation">För tidig uppdatering!</string>
+    <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindi (Hindi)</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">psi</string>
+    <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Typ av väderleksrapport</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Visa grafen i ursprunglig upplösning (när grafen är för liten)</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Beaufort</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/åå)</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">Inställningar för kombinerade grafer</string>
+    <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Regn</string>
+    <string name="pref_language_fa" tools:ignore="MissingTranslation">Persiska (Persiska)</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Svenska (Svenska)</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Українська (Ukrainska)</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Grafer att visa</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Magyar (Ungerska)</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2 timmar</string>
 </resources>
