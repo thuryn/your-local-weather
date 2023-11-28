@@ -112,9 +112,9 @@
     <string name="preference_title_activity_widget">Nastavení widgetu</string>
     <string name="preference_title_tts">Nastavení hlasu</string>
     <string name="preference_title_tts_lang">Nastavení jazyka hlasu</string>
-    <string name="pref_title_tts_lang_app_default" >Dle jazyka aplikace</string>
-    <string name="pref_title_tts_not_supported" >Jazyk aplikace není podporován systémem TTS (Text-to-speech). Přejděte do nastavení jazyka v pravém horním rohu této obrazovky.</string>
-    <string name="pref_title_tts_presence" >Jazyk aplikace není podporován systémem TTS (Text-to-speech). Níže můžete vybrat jazyk pro hlas z podporovaných jazyků.</string>
+    <string name="pref_title_tts_lang_app_default">Dle jazyka aplikace</string>
+    <string name="pref_title_tts_not_supported">Jazyk aplikace není podporován systémem TTS (Text-to-speech). Přejděte do nastavení jazyka v pravém horním rohu této obrazovky.</string>
+    <string name="pref_title_tts_presence">Jazyk aplikace není podporován systémem TTS (Text-to-speech). Níže můžete vybrat jazyk pro hlas z podporovaných jazyků.</string>
     <string name="pref_title_tts_app_general_info">Applikace jen posílá příkazy do systému TTS (Text-to-speech). TTS je odpovědný za převod textu na řeč. TTS je obvykle automaticky přítomen v systému. Pokud ne nebo pokud TTS nepodporuje Vámi požadovaný jazyk, můžete si TTS nainstalovat z obchodu s aplikacemi (např.: https://play.google.com/store/search?q=TTS ).</string>
     <string name="preference_widget_update_location">Aktualizace polohy</string>
     <string name="preference_widget_show_labels">Zobrazit popisek ve widgetu</string>
@@ -228,7 +228,7 @@
     <string name="tts_say_wind_direction_south_east">jiho-východní</string>
     <string name="tts_say_wind_direction_south">jižní</string>
     <string name="tts_say_wind_direction_south_west">jiho-západní</string>
-    <string name="tts_say_wind_direction_west">západní</string>
+    <string name="tts_say_wind_direction_west">západ</string>
     <string name="tts_say_wind_direction_north_west">severo-západní</string>
     <!-- Permission strings -->
     <string name="permission_location_rationale">Oprávnění pro získání polohy je třeba pro nalezení aktuálního města</string>
@@ -324,7 +324,7 @@
     <string name="help_page_2_title" tools:ignore="MissingTranslation">Widgety</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">Aplikace obsahuje tři widgety. Widgety obsahují některé společné hodnoty aktuálního počasí (např. teplotu). Některé hodnoty jsou pro daný widget unikátní (např. západ slunce). V pravém horním rohu každého widgetu je čas poslední aktualizace. Dále můžete vidět, co bylo naposledy aktualizováno (pokud máte tuto volbu povolenu v menu Nastavení). Vedle času poslední aktualizace se nachází tlačítko pro aktualizaci. Pokud je tlačítko aktualizace stisknuto, aktuální počasí (a případně poloha, pokud byla nastavena tato volba) je bezpodmínečně aktualizována. Poslední volba ve widgetech je změna polohy - pokud stisknete aktuální polohu, poloha bude změněna na následující v pořadí.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Obecná nastavení</string>
-    <string name="help_page_3_content" tools:ignore="MissingTranslation">Tato nastavení mají vliv na celou aplikaci.</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">Tyto nastavení mají vliv na celou aplikaci.</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation">
         <b>Teplota</b> - Zde je možné vybrat jednotky pro teplotu, <b>Rychlost větru</b> a <b>Tlak</b>. Hodnoty jsou přepočítány dle tohoto nastavení.</string>
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">
@@ -473,7 +473,7 @@
     <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego (Galicijština)</string>
     <string name="pref_language_de" tools:ignore="MissingTranslation">Deutsch (Němčina)</string>
     <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (Italština)</string>
-    <string name="pref_language_id" >Indonéština</string>
+    <string name="pref_language_id">Indonéština</string>
     <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (Japonština)</string>
     <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (Polština)</string>
     <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (Ruština)</string>
