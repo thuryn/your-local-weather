@@ -212,7 +212,7 @@
     <!-- Donation Bitcoin dialog -->
     <!-- Wind directions -->
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Nezobrazovat</string>
-    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Zkratka S, SV, ...</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Zkratka S↓, SV↙, …</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Stupeň od Severu</string>
     <string name="wind_direction_north">S↓</string>
     <string name="wind_direction_north_east">SV↙</string>
@@ -329,8 +329,7 @@
         <b>Teplota</b> - Zde je možné vybrat jednotky pro teplotu, <b>Rychlost větru</b> a <b>Tlak</b>. Hodnoty jsou přepočítány dle tohoto nastavení.</string>
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">
         <b>Skrýt popis počasí</b> - popis počasí se nebude zobrazovat. Aktuální počasí je zřejmé jen z ikony.</string>
-    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation">
-        <b>Interval aktualizace pro polohu (Poloha 0)</b>" - zde můžete nastavit interval aktualizace pro polohu 0 - poloha 0 má schopnost aktualizace polohy dle mobilní a wifi sítě a dle GPS. Pokud zvolíte volbu  "<i>Dle akcelerometru</i>", aplikace používá akcelerometr pro detekci pohybu. Pokud je zaznamenán pohyb, aplikace počítá vzdálenost. Pokud je překročen limit délky a poslední aktualizace byla provedena za déle než 15 minut, aplikace provede aktualizaci polohy a aktuálního počasí. Pokud aplikace není schopna zjistit polohu, zobrazí se nápis Neznámá poloha ve widgetu. Pokud se aplikace nachází ve stavu s nezjištěnou polohou, další aktualizace se provede již za 5 minut. Též můžete zvolit aktualizaci polohy dle zadaného intervalu. Volbou  "<b> Interval aktualizace pro počasí (Polohy 1, 2, 3...)</b> nastavíte interval aktualizace počasí pro ručně vyhledané polohy.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"> <b>Interval aktualizace pro polohu (Poloha 0)</b> - zde můžete nastavit interval aktualizace pro polohu 0 - poloha 0 má schopnost aktualizace polohy dle mobilní a wifi sítě a dle GPS. Pokud zvolíte volbu <i>Dle akcelerometru</i>, aplikace používá akcelerometr pro detekci pohybu. Pokud je zaznamenán pohyb, aplikace počítá vzdálenost. Pokud je překročen limit délky a poslední aktualizace byla provedena za déle než 15 minut, aplikace provede aktualizaci polohy a aktuálního počasí. Pokud aplikace není schopna zjistit polohu, zobrazí se nápis Neznámá poloha ve widgetu. Pokud se aplikace nachází ve stavu s nezjištěnou polohou, další aktualizace se provede již za 5 minut. Též můžete zvolit aktualizaci polohy dle zadaného intervalu. Volbou <b> Interval aktualizace pro počasí (Polohy 1, 2, 3...)</b> nastavíte interval aktualizace počasí pro ručně vyhledané polohy.</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Pokud zaškrtnete volbu <b>Zapnout GPS, pokud je to nezbytné</b>, aplikace se pokusí najít polohu nejprve pomocí mobilní a wifi sítě. Pokud se vyhledání polohy nezdaří, aplikace zapne GPS na několik vteřin a pokusí se najít polohu pomocí GPS.</string>
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">
         <b>Zdroj polohy a adresy</b>
