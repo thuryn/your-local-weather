@@ -184,82 +184,84 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
 
         Map<Long, String> localizedHourMap = new HashMap<>();
         Map<Long, String> temperaturesMap = new HashMap<>();
-        for (DetailedWeatherForecast detailedWeatherForecast: weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
+        if ((weatherForecastRecord != null) && (weatherForecastRecord.getCompleteWeatherForecast() != null)) {
+            for (DetailedWeatherForecast detailedWeatherForecast : weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
 
-            long forecastTime = detailedWeatherForecast.getDateTime();
-            Calendar forecastCalendar = Calendar.getInstance();
-            forecastCalendar.setTimeInMillis(forecastTime * 1000);
-            Date forecastCalendarTime = forecastCalendar.getTime();
-            String localizedHour = AppPreference.getLocalizedHour(context, forecastCalendarTime, currentLocation.getLocale());
-            localizedHourMap.put(forecastTime, localizedHour);
+                long forecastTime = detailedWeatherForecast.getDateTime();
+                Calendar forecastCalendar = Calendar.getInstance();
+                forecastCalendar.setTimeInMillis(forecastTime * 1000);
+                Date forecastCalendarTime = forecastCalendar.getTime();
+                String localizedHour = AppPreference.getLocalizedHour(context, forecastCalendarTime, currentLocation.getLocale());
+                localizedHourMap.put(forecastTime, localizedHour);
 
-            temperaturesMap.put(forecastTime, Math.round(TemperatureUtil.getTemperatureInPreferredUnit(context, temperatureUnitFromPreferences, detailedWeatherForecast.getTemperatureMin())) +
-                    "/" +
-                    Math.round(TemperatureUtil.getTemperatureInPreferredUnit(context, temperatureUnitFromPreferences, detailedWeatherForecast.getTemperatureMax())) +
-                    TemperatureUtil.getTemperatureUnit(context, temperatureUnitFromPreferences));
-        }
+                temperaturesMap.put(forecastTime, Math.round(TemperatureUtil.getTemperatureInPreferredUnit(context, temperatureUnitFromPreferences, detailedWeatherForecast.getTemperatureMin())) +
+                        "/" +
+                        Math.round(TemperatureUtil.getTemperatureInPreferredUnit(context, temperatureUnitFromPreferences, detailedWeatherForecast.getTemperatureMax())) +
+                        TemperatureUtil.getTemperatureUnit(context, temperatureUnitFromPreferences));
+            }
 
-        try {
-            ContextCompat.getMainExecutor(context).execute(()  -> {
-                Long dayCountForForecast = (daysCount != null) ? daysCount : 5l;
+            try {
+                ContextCompat.getMainExecutor(context).execute(() -> {
+                    Long dayCountForForecast = (daysCount != null) ? daysCount : 5l;
 
-                WidgetUtils.updateWeatherForecast(
-                        context,
-                        currentLocation,
-                        weatherForecastRecord,
-                        appWidgetId,
-                        dayCountForForecast,
-                        hoursForecast,
-                        forecastDayAbbrev,
-                        fontBasedIcons,
-                        localizedHourMap,
-                        temperaturesMap,
-                        temperatureUnitFromPreferences,
-                        remoteViews,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_day_1,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_1_widget_icon,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_1_widget_day,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_1_widget_temperatures,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_day_2,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_2_widget_icon,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_2_widget_day,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_2_widget_temperatures,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_day_3,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_3_widget_icon,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_3_widget_day,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_3_widget_temperatures,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_day_4,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_4_widget_icon,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_4_widget_day,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_4_widget_temperatures,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_day_5,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_5_widget_icon,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_5_widget_day,
-                        R.id.widget_ext_loc_forecast_graph_3x3_forecast_5_widget_temperatures);
-
-                if (weatherForecastRecord != null) {
-                    Bitmap graphImage = GraphUtils.getCombinedChart(
+                    WidgetUtils.updateWeatherForecast(
                             context,
+                            currentLocation,
+                            weatherForecastRecord,
                             appWidgetId,
-                            0.4f,
-                            weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList(),
-                            currentLocation.getId(),
-                            currentLocation.getLocale(),
-                            showLegend,
-                            combinedGraphValuesFromSettings,
-                            widgetTextColor,
-                            widgetBackgroundColor,
-                            widgetGraphGridColor,
+                            dayCountForForecast,
+                            hoursForecast,
+                            forecastDayAbbrev,
+                            fontBasedIcons,
+                            localizedHourMap,
+                            temperaturesMap,
                             temperatureUnitFromPreferences,
-                            pressureUnitFromPreferences,
-                            rainSnowUnitFromPreferences,
-                            widgetGraphNativeScaled,
-                            windUnitFromPreferences);
-                    remoteViews.setImageViewBitmap(R.id.widget_ext_loc_forecast_graph_3x3_widget_combined_chart, graphImage);
-                }
-            });
-        } catch (Exception e) {
-            appendLog(context, TAG, "preLoadWeather:error updating weather forecast", e);
+                            remoteViews,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_day_1,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_1_widget_icon,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_1_widget_day,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_1_widget_temperatures,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_day_2,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_2_widget_icon,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_2_widget_day,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_2_widget_temperatures,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_day_3,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_3_widget_icon,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_3_widget_day,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_3_widget_temperatures,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_day_4,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_4_widget_icon,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_4_widget_day,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_4_widget_temperatures,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_day_5,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_5_widget_icon,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_5_widget_day,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_5_widget_temperatures);
+
+                    if (weatherForecastRecord != null) {
+                        Bitmap graphImage = GraphUtils.getCombinedChart(
+                                context,
+                                appWidgetId,
+                                0.4f,
+                                weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList(),
+                                currentLocation.getId(),
+                                currentLocation.getLocale(),
+                                showLegend,
+                                combinedGraphValuesFromSettings,
+                                widgetTextColor,
+                                widgetBackgroundColor,
+                                widgetGraphGridColor,
+                                temperatureUnitFromPreferences,
+                                pressureUnitFromPreferences,
+                                rainSnowUnitFromPreferences,
+                                widgetGraphNativeScaled,
+                                windUnitFromPreferences);
+                        remoteViews.setImageViewBitmap(R.id.widget_ext_loc_forecast_graph_3x3_widget_combined_chart, graphImage);
+                    }
+                });
+            } catch (Exception e) {
+                appendLog(context, TAG, "preLoadWeather:error updating weather forecast", e);
+            }
         }
         String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, weatherForecastRecord, timeStylePreference, currentLocation);
         appendLog(context, TAG, "preLoadWeather:lastUpdate:", lastUpdate);
