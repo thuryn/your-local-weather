@@ -1,2 +1,583 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">क्या कहना है:</string>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">आंधी तूफान</string>
+    <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (बेलारूसी)</string>
+    <string name="db_info" tools:ignore="MissingTranslation">कैश के बारे में जानकारी</string>
+    <string name="pref_language_bg" tools:ignore="MissingTranslation">български (बल्गेरियाई)</string>
+    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">Беларуская (बेलारूसी, लैटिन लिपि)</string>
+    <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">中國人 (傳統的）(चीनी (पारंपरिक))</string>
+    <string name="db_header" tools:ignore="MissingTranslation">कैश डेटाबेस का पता</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">जोड़ें</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">अक्षम</string>
+    <string name="search_location_info" tools:ignore="MissingTranslation">वांछित स्थान पाने के लिए मानचित्र पर टैप करें और पता हल होने तक प्रतीक्षा करें।</string>
+    <string name="preference_title_activity_about" tools:ignore="MissingTranslation">बारे में</string>
+    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">जब कोई ब्लूटूथ डिवाइस कनेक्ट होता है</string>
+    <string name="tty_say_temp_max" tools:ignore="MissingTranslation">%2$s पर अधिकतम तापमान %1$s है</string>
+    <string name="temperature_day_title" tools:ignore="MissingTranslation">दिन</string>
+    <string name="temperature_evening_title" tools:ignore="MissingTranslation">शाम</string>
+    <string name="temperature_night_title" tools:ignore="MissingTranslation">रात</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">मापा गया तापमान: %s</string>
+    <string name="label_rain" tools:ignore="MissingTranslation">बारिश</string>
+    <string name="label_wind" tools:ignore="MissingTranslation">हवा</string>
+    <string name="wind_direction_north" tools:ignore="MissingTranslation">N↓</string>
+    <string name="wind_direction_north_east" tools:ignore="MissingTranslation">NE↙</string>
+    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">पूर्व</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">पूर्वोत्तर</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">एक दिन</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">दो दिन</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">लॉग फ़ाइल में डालें</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">बारिश</string>
+    <string name="nav_menu_graphs" tools:ignore="MissingTranslation">रेखांकन</string>
+    <string name="nav_feedback" tools:ignore="MissingTranslation">प्रतिक्रिया</string>
+    <string name="app_name" tools:ignore="MissingTranslation">आपका स्थानीय मौसम</string>
+    <string name="enter_city_hint" tools:ignore="MissingTranslation">शहर दर्ज करें</string>
+    <string name="label_current_city" tools:ignore="MissingTranslation">वर्तमान शहर</string>
+    <string name="label_choose_city" tools:ignore="MissingTranslation">शहर चुनें</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">पाठ और मार्गदर्शन अनुवाद</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">तापमान</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">हवा</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Mozilla स्थान सेवा की सीमा</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Android 10 अनुमति परिवर्तन</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Android 10 से शुरू होकर, कनेक्टेड GSM/LTE नेटवर्क के बारे में जानकारी प्राप्त करने के लिए स्थान तक सूक्ष्म पहुंच की आवश्यकता होती है। पृष्ठभूमि में भी स्थान लाने की अनुमति दें (यदि आप हर समय अपना स्थान चाहते हैं)।</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">बैटरी अनुकूलन</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">आगे बढ़ें</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">रद्द</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">स्थान और अनुमति सेटिंग्स</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">GPS का उपयोग करके स्थान अपडेट करने के लिए ऐप को अनुमति की आवश्यकता है।</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">दबाव</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">विजेट सेटिंग्स</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">भाषा</string>
+    <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">अपडेट</string>
+    <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">शहर खोजें</string>
+    <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">स्थान का पता लगाएं</string>
+    <string name="too_early_update_error" tools:ignore="MissingTranslation">बहुत जल्द अपडेट!</string>
+    <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">Bitcoin दान करें</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">सहायता</string>
+    <string name="location_not_initialized" tools:ignore="MissingTranslation">स्थान प्रारंभ नहीं किया गया है. सबसे पहले लोकेशन सर्कल पर क्लिक करें।</string>
+    <string name="wind_speed_miles" tools:ignore="MissingTranslation">mph</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">knots</string>
+    <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">inches</string>
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">समय प्रारूप</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">स्थान अपडेट सेटिंग</string>
+    <string name="theme_transparent" tools:ignore="MissingTranslation">पारदर्शी</string>
+    <string name="preference_title_category_display" tools:ignore="MissingTranslation">प्रदर्शन</string>
+    <string name="pref_title_language" tools:ignore="MissingTranslation">भाषा</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">Nederlands (डच)</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">स्वचालित रूप से खोजा गया</string>
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">।</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">भारी तीव्रता वाली बूंदाबांदी</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">हल्की तीव्रता वाली बूंदाबांदी बारिश</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">संयुक्त ग्राफ</string>
+    <string name="help_page_5_content" tools:ignore="MissingTranslation">लॉग फ़ाइल में डिबगिंग सक्षम करने के विकल्प हैं। यह विकल्प तब उपयोगी होता है जब एप्लिकेशन में कुछ परेशानी हो।</string>
+    <string name="label_activity_graphs" tools:ignore="MissingTranslation">मौसम का रेखांकन</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">संयुक्त ग्राफ़ सेटिंग्स</string>
+    <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">पूर्वानुमान प्रकार</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">दिखाने हेतु कॉलम</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">आइकन</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">वर्षा/बर्फ</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">दबाव</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">संयुक्त ग्राफ़ के लिए डेटा</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">नेविगेशन ड्रॉअर बंद करें</string>
+    <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">वर्तमान मौसम</string>
+    <string name="nav_menu_daily_forecast" tools:ignore="MissingTranslation">दैनिक पूर्वानुमान</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">अपडेट होने पर</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">स्थाई</string>
+    <string name="pref_title_vibrate" tools:ignore="MissingTranslation">कंपन</string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">ब्लूटूथ</string>
+    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">सभी</string>
+    <string name="widget_action_switch_location" tools:ignore="MissingTranslation">स्थान बदलें</string>
+    <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">विजेट में स्थान दिखाएँ</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">बूंदाबांदी बारिश</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">हल्की बारिश के साथ आंधी</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">बारिश के साथ आंधी</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">00:00 से 06:00 बजे के बीच नहीं (स्थान 0)</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">कस्टम</string>
+    <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">स्थान %s के लिए वर्तमान मौसम</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 घंटे</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">अधिसूचना उपस्थिति</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - केवल मौसम अपडेट किया गया
+\nL - केवल स्थान अपडेट किया गया
+\nG - GPS से स्थान और मौसम अपडेट किया गया
+\nN - नेटवर्क से स्थान और मौसम अपडेट किया गया
+\nNi - सेलुलर नेटवर्क से स्थान और मौसम अद्यतन, Mozilla स्थान सेवा द्वारा खोजा गया स्थान
+\nB - Openweathermap.org सेवा तक पहुंच पर प्रतिबंध लगा दिया गया है, कृपया बाद में मौसम को अपडेट करने का प्रयास करें
+\nE - Openweathermap.org सेवा के लिए एक्सेस टोकन समाप्त हो गया है। पहुंच पुनः प्राप्त करने के लिए ऐप का बाद वाला संस्करण इंस्टॉल करें</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">प्रदर्शन के साथ जागें</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">लॉक स्क्रीन पर</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">मार्गदर्शन सेटिंग्स</string>
+    <string name="preference_title_activity_general" tools:ignore="MissingTranslation">सामान्य सेटिंग्स</string>
+    <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">विजेट सेटिंग्स</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">मार्गदर्शन भाषा विकल्प</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">नई मार्गदर्शन सेटिंग्स</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">ग्राफ़ को मूल रिज़ॉल्यूशन में दिखाएं (जब ग्राफ़ बहुत छोटा हो)</string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">प्रदर्शित करने के लिए जियोलोकेशन का उपयोग करें</string>
+    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">स्थान अद्यतन करें</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">विजेट पर सेटिंग दिखाएं</string>
+    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">विजेट में लेबल दिखाएँ</string>
+    <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">विजेट थीम</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">हल्का</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">स्थान और मौसम अपडेट करें</string>
+    <string name="preference_title_category_units" tools:ignore="MissingTranslation">इकाई सेटिंग्स</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"इस ऐप में https://hosted.weblate.org/projects/your-local-weather पर स्वयंसेवकों के सौजन्य से टेक्स्ट अनुवाद और वॉयस कमांड के माध्यम से आवाज मार्गदर्शन है। ऐप डेवलपर यह गारंटी नहीं दे सकता कि वे सही हैं - आप ऐप का उपयोग करके इसे स्वीकार करते हैं। इसका उपयोग करने के लिए आपको TTS (टेक्स्ट-टू-स्पीच) स्थापित करना होगा और सेटिंग्स में मार्गदर्शन चालू करना होगा, जहां आप अपनी खुद की वॉयस कमांड सेट कर सकते हैं। "</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Mozilla स्थान सेवा तक पहुंच 1.3.2020 को समाप्त हो गई। स्थान निर्देशांक खोज के लिए ऐप को Andorid सिस्टम का उपयोग करने के लिए मजबूर किया जाता है। पता अभी भी Nominatim द्वारा हल किया गया है। ऐप का उपयोग करते समय कृपया इस पर विचार करें।</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">ऐप आपसे लोकेशन, मौसम अपडेट करने या बैकग्राउंड में एक्सेलेरोमीटर द्वारा लोकेशन ट्रैक करने के लिए बैटरी ऑप्टिमाइजेशन बंद करने के लिए कहेगा।</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">एप्लिकेशन को उस स्थान के अनुसार मौसम जानने के लिए पृष्ठभूमि स्थान अनुमति की आवश्यकता होती है जहां आप वास्तव में हैं। यदि आप सहमत हैं तो आपको अगली स्क्रीन पर विकल्प का चयन करना चाहिए:</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">ऐप लोकेशन अपडेट करने के लिए सेट है। उस तक पहुंच आवश्यक है. डिवाइस सेटिंग्स पर जाएं और लोकेशन को चालू करें या ऐप लोकेशन अपडेट को बंद करें।</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">Wi-Fi और GSM नेटवर्क का उपयोग करके स्थान अपडेट करने के लिए डिवाइस से जानकारी पढ़ने की अनुमति आवश्यक है। इससे यह जानकारी मिलती है कि डिवाइस किस GSM बेस स्टेशन से जुड़ा है।</string>
+    <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">लाइसेंस कुंजी</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">Svenska (स्वीडिश)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (Bokmål) (नार्वेजियन (बोकमाल))</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">Magyar (हंगेरियन)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">Español (स्पैनिश)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Ελληνικά (ग्रीक)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nyanja (न्यांजा)</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">बर्फ</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">शहर: %1$s
+\nतापमान: %2$s
+\nविवरण: %3$s
+\nहवा: %4$s %5$s
+\nसूर्योदय: %6$s
+\nसूर्यास्त: %7$s</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">अगला</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">ऐप को अपनी ज़रूरतों के अनुसार समायोजित करके, आप आगे अपडेट रणनीति चुन सकते हैं।
+\nस्थान बदलने पर अपडेट करने के डिफ़ॉल्ट से हटकर, आप <i>स्थान अपडेट न करें</i> का चयन कर सकते हैं।</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">आप स्थान विधि चुन सकते हैं - <i>सिस्टम</i> नेटवर्क (सेल और Wi-Fi नेटवर्क) द्वारा स्थान प्राप्त करने के लिए Google सेवाओं का उपयोग करता है ). <i>स्थानीय MLS और Nominatim</i> विकल्प स्थान निर्देशांक प्राप्त करने के लिए Mozilla स्थान सेवा और स्थान नाम प्राप्त करने के लिए Nominatim सेवा का उपयोग करता है। दूसरे विकल्प के लिए सेलुलर नेटवर्क के बारे में जानकारी प्राप्त करने के लिए फ़ोन कॉल अनुमतियों की आवश्यकता होती है। पसंदीदा विकल्प पूर्वचयनित है।</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Cache समाधान पता</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">बधाइयां</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">यह मार्गदर्शिका समाप्त होती है। आप सेटिंग्स मेनू में अन्य सेटिंग्स पा सकते हैं (उदाहरण के लिए भाषा, इकाइयाँ आदि)।
+\nअगली स्क्रीन अनुरोधित अनुमतियों की व्याख्या करेगी और आपको उनका अनुरोध करने का विकल्प देगी।
+\n
+\nऐप का आनंद लें।</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">ऐप सेलुलर नेटवर्क (BTS), Wi-Fi का उपयोग करके स्थान निर्धारित करता है, और यदि वे विफल होते हैं; स्थानीय मौसम दिखाने के लिए GPS, बदले में Mozilla स्थान सेवा से निर्देशांक प्राप्त करना। एप्लिकेशन को कम से कम: GSM नेटवर्क का एक बेस स्टेशन या दो पहुंच योग्य WiFi नेटवर्क या GSM और Wi-Fi नेटवर्क का कोई संयोजन चाहिए। अपने फ़ोन या टैबलेट पर विजेट का उपयोग करके, आप मुख्य स्क्रीन पर अपना स्थान और वर्तमान मौसम देख सकते हैं। स्थान अपडेट आवधिक हो सकते हैं, (उदा. प्रति घंटा) या ऐप किसी मान से अधिक दूरी की गति का पता लगाने के लिए एक्सेलेरोमीटर का उपयोग कर सकता है। जेब में रखने से दूरी तेजी से बढ़ती है। आप स्थान अपडेट बंद कर सकते हैं - उसके बाद केवल मौसम अपडेट किया जाता है। ऐप निर्दिष्ट अंतराल में स्थान और मौसम को अपडेट करता है। उदाहरण के लिए, आप अद्यतन अवधि को एक घंटे बजे तक निर्धारित कर सकते हैं। मौसम स्थान के तुरंत बाद या स्क्रीन चालू होने पर अपडेट किया जाता है - लेकिन अधिक बार नहीं, प्रति 15 मिनट में एक बार (और जब अंतिम 15 मिनट में मौसम अपडेट नहीं होता है)। इन सूचनाओं का उपयोग Mozilla स्थान सेवा द्वारा स्थान निर्देशांक प्राप्त करने के लिए किया जाता है। जब सेल नेटवर्क और Wi-Fi नेटवर्क से स्थान उपलब्ध नहीं होता है तो ऐप जीपीएस का उपयोग करने का प्रयास करता है। स्थान निर्देशांक का उपयोग Nominatim सेवा द्वारा पता प्राप्त करने के लिए किया जाता है। पते का उपयोग ऐप या विजेट में किया जाता है। वर्तमान मौसम जानने के लिए ऐप OpenWeatherMap.org सेवा का उपयोग करता है।</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">अद्यतन स्थान बटन के आगे, एक स्थान प्रबंधन बटन (आवर्धक चिह्न) है। आप ऐप और विजेट्स में उपलब्ध स्थानों को प्रबंधित कर सकते हैं। डिफ़ॉल्ट रूप से एक स्थान (स्थान 0) उपलब्ध है - यह स्वचालित स्थान अपडेट के लिए है। जब आप इस स्थान को बाईं ओर स्लाइड करते हैं तो आप सक्षम/अक्षम बटन पा सकते हैं। आप स्थान को मैन्युअल रूप से भी जोड़ सकते हैं. जब आप + बटन पर क्लिक करते हैं तो आप मानचित्र पर अपना स्थान चुन सकते हैं। आप स्थान को डिलीट बटन से भी हटा सकते हैं - जो तब पहुंच योग्य होता है जब आप स्थान को बाईं ओर स्लाइड करते हैं।</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">ऐप में तीन विजेट उपलब्ध हैं, जिनमें वर्तमान मौसम (उदाहरण के लिए तापमान) के कुछ सामान्य मूल्य शामिल हैं। कुछ मान विशिष्ट विजेट के लिए अद्वितीय हैं (उदाहरण के लिए सूर्यास्त)। प्रत्येक विजेट के दाहिने कोने पर अंतिम अपडेट का समय होता है। आप देख सकते हैं कि पिछली बार से क्या अपडेट किया गया है (जब आपने सेटिंग मेनू में इस विकल्प को सक्षम किया है)। आप अंतिम अद्यतन समय के आगे अद्यतन बटन पा सकते हैं। जब आप इस बटन को दबाते हैं, तो मौसम (और अद्यतन स्थान विकल्प चुने जाने पर स्थान) बिना शर्त अपडेट हो जाता है। विजेट में अंतिम विकल्प स्थान बदलना है - जब आप वर्तमान स्थान टेक्स्ट पर दबाते हैं तो स्थान अगले स्थान में बदल जाता है।</string>
+    <string name="label_activity_main" tools:ignore="MissingTranslation">वर्तमान मौसम</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> <b>तापमान</b> - आप तापमान इकाई का चयन कर सकते हैं, <b>हवा</b> - आप हवा की गति इकाई और <b>दबाव</b> का चयन कर सकते हैं - आप दबाव के लिए इकाई का चयन कर सकते हैं। इन विकल्पों का उपयोग करके मानों की पुनर्गणना की जाती है।</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"> <b>स्थान के लिए अद्यतन अवधि (स्थान 0)</b> - आप स्थान 0 के लिए अद्यतन अवधि निर्धारित कर सकते हैं - स्थान 0 में स्थान को अद्यतन करने की क्षमता है सेल के अनुसार-, Wi-Fi नेटवर्क और GPS। जब आप अपडेट <i>एक्सेलेरोमीटर</i> का चयन करते हैं तो ऐप गतिविधि का पता लगाने के लिए इसका उपयोग करता है। इससे दूरी की गणना की जाती है। जब दूरी की सीमा पूरी हो जाती है, और 15 मिनट में कोई अपडेट नहीं होता है, तो स्थान और वर्तमान मौसम अपडेट किया जाता है। जब ऐप आपका स्थान नहीं ला पाता, तो आप विजेट में अज्ञात स्थान लेबल देख सकते हैं। जब ऐप में कोई स्थान स्थिति नहीं होगी, तो यह 5 मिनट में पुनः प्रयास करेगा। आप <b>मौसम के लिए अद्यतन अवधि (स्थान 1,2,3...)</b> में समय अंतराल के आधार पर स्थान अपडेट का चयन भी कर सकते हैं। - जहां आप मैन्युअल रूप से खोजे गए स्थानों के लिए मौसम को अपडेट करने के लिए सेट कर सकते हैं।</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"> <b>स्थानीय MLS और Nominatim</b> - ऐप को Mozilla स्थान सेवाओं से स्थान और भौगोलिक निर्देशांक मिलते हैं। Nominatim सेवाएँ उन निर्देशांकों से पता प्राप्त करती हैं। आप Mozilla Stumbler (https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler पर उपलब्ध) इंस्टॉल करके MLS में भविष्य के सुधारों में योगदान कर सकते हैं। फ़ोन कॉल की अनुमति देकर सेल नेटवर्क से वर्तमान सक्रिय और उपलब्ध नेटवर्क बेस स्टेशनों के बारे में जानकारी प्राप्त करें। आपके आस-पास के Wi-Fi नेटवर्क का उपयोग आपके स्थान का अधिक सटीक अनुमान लगाने के लिए किया जाता है।</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"> <b>सिस्टम</b> - एप्लिकेशन को Android में सिस्टम सेवाओं (आमतौर पर Google स्थान सेवाओं के साथ) द्वारा स्थान और पता मिलता है।</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">सहायता</string>
+    <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">जब आप हवा और तापमान (बार में) के आगे बारिश/बर्फ का मान दिखाने के लिए ग्राफ़ पर चयन करते हैं तो मान की गणना log10 के रूप में की जाती है। तब (अदृश्य) अक्ष का अधिकतम मान लगभग 160 मिमी (या 6.3 इंच) होता है।</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">डिबग विकल्प</string>
+    <string name="title_activity_license" tools:ignore="MissingTranslation">%s के लिए लाइसेंस</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">स्थानों</string>
+    <string name="title_activity_search" tools:ignore="MissingTranslation">स्थान खोजें</string>
+    <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">दैनिक पूर्वानुमान</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">स्थान प्राप्त करने के लिए सिस्टम, पता प्राप्त करने के लिए नॉमिनेटिम (अनुशंसित)</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">स्थान और पता स्रोत</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">सिस्टम</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">थीम</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">अपडेट सारांश प्रदर्शित करें</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">दिखाने के लिए ग्राफ़</string>
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">नेविगेशन ड्रॉअर खोलें</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">कुछ नहीं</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">अभी अद्यतन मूल्य</string>
+    <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">सीमा से ऊपर के स्थान हटा दिए गए।</string>
+    <string name="connection_not_found" tools:ignore="MissingTranslation">अपना इंटरनेट संपर्क जांचे</string>
+    <string name="toast_parse_error" tools:ignore="MissingTranslation">एक गलती हुई है। बाद में प्रयास करें।</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">psi</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">Beaufort</string>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm.(yy)</string>
+    <string name="update_period_24hours" tools:ignore="MissingTranslation">24 घंटे</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/yy)</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/yy)</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (3 घंटे का अंतराल)</string>
+    <string name="hint_activity_search" tools:ignore="MissingTranslation">स्थान खोजें</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">अधिसूचना सेटिंग्स</string>
+    <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">ताजा अंतराल</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">स्थान अपडेट न करें</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">आवश्यकता पड़ने पर GPS चालू करें</string>
+    <string name="update_period_by_sensors" tools:ignore="MissingTranslation">एक्सेलेरोमीटर द्वारा</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">केवल मैनुअल</string>
+    <string name="update_period_15min" tools:ignore="MissingTranslation">15 मिनट</string>
+    <string name="update_period_12hours" tools:ignore="MissingTranslation">12 घंटे</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">रेत</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">कोहरा</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">धुंध</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">कैश्ड मानों की आयु</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - स्थान और/या मौसम अपडेट करने जा रहा हूं
+\n. - स्थान पहुंच योग्य नहीं है, अंतिम स्थान के आधार पर मौसम अपडेट किया जा रहा है
+\nW - मौसम केवल अद्यतन किया गया
+\nL - स्थान केवल अद्यतन किया गया
+\nG - GPS से स्थान और मौसम अपडेट किया गया
+\nN - नेटवर्क से स्थान और मौसम अपडेट किया गया
+\nB - Openweathermap.org सेवा तक पहुंच प्रतिबंधित कर दी गई है, कृपया बाद में मौसम अपडेट करने का प्रयास करें
+\nE - Openweathermap.org सेवा के लिए एक्सेस टोकन समाप्त हो गया। दोबारा पहुंच पाने के लिए आपको एप्लिकेशन को अपग्रेड करना होगा</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">तूफ़ान</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">साफ आकाश</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">बवंडर</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">धुआँ</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">कुहासा</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">धूल</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">ज्वालामुखी राख</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">वर्षा और बर्फ</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">हल्की बारिश और बर्फबारी</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">भारी बौछार बर्फ</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">बर्फ की बौछार</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">हल्की बौछार बर्फ</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">निर्दिष्ट समय के बाद लॉग फ़ाइल पुनः बनाई जाएगी</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">एक महीना</string>
+    <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">और</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">स्पष्ट तापमान: %s</string>
+    <string name="tty_say_weather_forecast_afternoon" tools:ignore="MissingTranslation">दोपहर</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">एक सप्ताह</string>
+    <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">एप्लिकेशन का स्थान:</string>
+    <string name="pref_title_tts_lang_app_default" tools:ignore="MissingTranslation">ऐप लोकेल द्वारा</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">कैश स्थान</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">वर्तमान मौसम चिह्न</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">फ़ाइल में लॉग इन न करें</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">उत्तर से डिग्री</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">वर्तमान मौसम विवरण भाषा और पता अगले अपडेट के साथ बदल जाएगा, या आप इसे मैन्युअल रूप से लागू कर सकते हैं।</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">हटाएं</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">ओस बिंदु: %s</string>
+    <string name="theme_system" tools:ignore="MissingTranslation">सिस्टम द्वारा</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">अंतर्निर्मित</string>
+    <string name="pref_language_default" tools:ignore="MissingTranslation">सिस्टम डिफ़ॉल्ट</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (चीनी)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili (स्वाहिली)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">עברית (हिब्रू)</string>
+    <string name="pref_language_hi" tools:ignore="MissingTranslation">हिन्दी (हिन्दी)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">العَرَبِيَّة‎ (अरबी)</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">Tiếng Việt (वियतनामी)</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Українська (यूक्रेनी)</string>
+    <string name="pref_language_fa" tools:ignore="MissingTranslation">فارسی (फ़ारसी)</string>
+    <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeština (चेक)</string>
+    <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (बस्क)</string>
+    <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (क्रोएशियाई)</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">Português (पुर्तगाली)</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">Română (रोमानियाई)</string>
+    <string name="pref_language_fr" tools:ignore="MissingTranslation">Français (फ़्रेंच)</string>
+    <string name="pref_language_gl" tools:ignore="MissingTranslation">Galego (गैलिशियन्)</string>
+    <string name="pref_language_fi" tools:ignore="MissingTranslation">Suomi (फिनिश)</string>
+    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">जब डिवाइस स्लीप के दौरान स्थान अटक जाता है, तो आप सेल्युलर नेटवर्क की तलाश में उसे जगाने का प्रयास कर सकते हैं</string>
+    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">जागने की रणनीति</string>
+    <string name="nowakeup_label" tools:ignore="MissingTranslation">नहीं जागो</string>
+    <string name="wakeuppartial_label" tools:ignore="MissingTranslation">केवल CPU को जगाएं</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">सक्षम</string>
+    <string name="location_cache_enable_off" tools:ignore="MissingTranslation">पाए गए स्थान कैश्ड नहीं हैं</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">अभिवादन</string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">मार्गदर्शन लाउडस्पीकर प्लेबैक</string>
+    <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">BT के लिए अनुमति</string>
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">कृपया पहले मौसम अपडेट करने के लिए रिफ्रेश बटन पर क्लिक करें।</string>
+    <string name="pref_title_tts_time" tools:ignore="MissingTranslation">समय</string>
+    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">ब्लूटूथ हेडसेट मार्गदर्शन चालू करें</string>
+    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">वायर्ड हेडसेट मार्गदर्शन चालू करें</string>
+    <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">वायर्ड हेडसेट</string>
+    <string name="pref_title_tts_presence" tools:ignore="MissingTranslation">आपका ऐप लोकेल आपके TTS (टेक्स्ट-टू-स्पीच) सिस्टम द्वारा समर्थित नहीं है। नीचे समर्थित लोगों की सूची से एक मार्गदर्शन भाषा चुनें।</string>
+    <string name="pref_language_de" tools:ignore="MissingTranslation">Deutsch (जर्मन)</string>
+    <string name="pref_language_it" tools:ignore="MissingTranslation">Italiano (इतालवी)</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">Kabyle (कबाइल)</string>
+    <string name="pref_language_pl" tools:ignore="MissingTranslation">Polski (पोलिश)</string>
+    <string name="pref_language_sl" tools:ignore="MissingTranslation">Slovenščina (स्लोवेनियाई)</string>
+    <string name="pref_language_ru" tools:ignore="MissingTranslation">Русский (रूसी)</string>
+    <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (सर्बियाई)</string>
+    <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (जापानी)</string>
+    <string name="pref_language_id" tools:ignore="MissingTranslation">bahasa Indonesia (इन्डोनेशियाई)</string>
+    <string name="pref_language_sd" tools:ignore="MissingTranslation">سنڌين (सिंधी)</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">한국인 (कोरियन)</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">lietuvių (लिथुआनियाई)</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">ไทย (थाई)</string>
+    <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s हवा %1$s %2$s</string>
+    <string name="tts_say_current_weather" tools:ignore="MissingTranslation">वर्तमान मौसम</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">क्या कहना है:</string>
+    <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">जब मौसम अपडेट किया जाता है</string>
+    <string name="wind_label" tools:ignore="MissingTranslation">हवा: %1$s %2$s %3$s</string>
+    <string name="tty_say_max_wind" tools:ignore="MissingTranslation">%3$s अधिकतम %1$s %2$s पर हवा</string>
+    <string name="tty_say_weather_forecast_night" tools:ignore="MissingTranslation">रात में</string>
+    <string name="tty_say_temp_min" tools:ignore="MissingTranslation">न्यूनतम तापमान %1$s पर %2$s है</string>
+    <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">आज</string>
+    <string name="tty_say_weather_forecast_tomorrow" tools:ignore="MissingTranslation">कल</string>
+    <string name="tty_say_weather_forecast" tools:ignore="MissingTranslation">मौसम पूर्वानुमान</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">दोनों, प्राथमिक रूप से मापे गए</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">E</string>
+    <string name="location_weather_update_status_location_from_last_location" tools:ignore="MissingTranslation">l</string>
+    <string name="location_weather_update_status_too_early_update" tools:ignore="MissingTranslation">O</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">विजेट ग्राफ़ सेटिंग बटन</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">विजेट स्थान सेटिंग बटन</string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">विजेट मौसम विवरण सेटिंग बटन</string>
+    <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">शहर का लेबल</string>
+    <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">मौसम पूर्वानुमान</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">विजेट क्रिया सेटिंग बटन</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">एब्रेव N↓, NE↙, …</string>
+    <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">मौसम पूर्वानुमान स्क्रीन</string>
+    <string name="wind_direction_east" tools:ignore="MissingTranslation">E←</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">उत्तरपश्चिम</string>
+    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">उत्तरी</string>
+    <string name="wind_direction_north_west" tools:ignore="MissingTranslation">NW↘</string>
+    <string name="wind_direction_west" tools:ignore="MissingTranslation">W→</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">पश्चिम</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">बूंदाबांदी के साथ आंधी</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">भारी बूंदाबांदी के साथ आंधी</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">भारी बारिश के साथ आंधी</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">हल्की बूंदाबांदी के साथ आंधी</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">बहुत भारी बारिश</string>
+    <string name="preference_weather_weather_forecast_features_title" tools:ignore="MissingTranslation">मौसम पूर्वानुमान सुविधाएँ</string>
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">लॉग फ़ाइल में डालें</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">रेत, धूल घूमती है</string>
+    <string name="label_dew_point" tools:ignore="MissingTranslation">ओस बिंदु</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">एप्लिकेशन को पृष्ठभूमि स्थान अनुमति की आवश्यकता है</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">ऐप को Wi-Fi और GSM नेटवर्क द्वारा स्थान अपडेट करने के लिए अनुमति की आवश्यकता है।</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">डिवाइस सेटिंग्स</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">अनुमतियाँ अनुरोध करें</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">रद्द</string>
+    <string name="progressDialog_gps_locate" tools:ignore="MissingTranslation">वर्तमान स्थान खोजें</string>
+    <string name="load_progress" tools:ignore="MissingTranslation">लोड हो रहा है…</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">स्थान नहीं मिला</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">अनुमतियाँ अभी तक प्रदान नहीं की गई हैं - ऐप में स्थान चिह्न पर क्लिक करें</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">पहुंच समाप्त हो गई. कृपया ऐप को अपग्रेड करें।</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">आपका OpenweathermapApiKey पंजीकृत नहीं है।</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">मौसम साझा करें</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">संचार ऐप नहीं मिला</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">आपका स्थानीय मौसम</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">आपकी स्थानीय मौसम सूचनाएं</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">इस समय आपको %1$d से अधिक स्थान रखने की अनुमति नहीं है।</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">बंद करे</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">पिछला</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">समाप्त</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">प्रारंभिक कॉन्फ़िगरेशन मार्गदर्शिका</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">स्थान सेटिंग अपडेट करें</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">स्थान स्रोत विकल्प</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">स्थान और पता स्रोत</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">वेकअप रणनीति विकल्प</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">जब तक डिस्प्ले चालू न हो, कुछ फ़ोन कनेक्टेड सेल की सही रिपोर्ट नहीं देते। पसंदीदा विकल्प (डिस्प्ले चालू होने पर) का नुकसान यह है कि फोन कई सेकंड के लिए डिस्प्ले को चालू कर देता है। इसका बैटरी जीवन पर थोड़ा प्रभाव पड़ता है। इसे चालू करके प्रारंभ करें, और इसे बंद करने का प्रयास करें और देखें कि क्या स्थान अभी भी अपडेट होता है।</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">जागने की रणनीति</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Cache समाधान पता विकल्प</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">आप पाए गए स्थानों को कैशिंग करके डेटा उपयोग को कम कर सकते हैं। फिर स्थानों को ऐप में संग्रहीत किया जाता है। उन्हें नेटवर्क में अन्य स्थानों पर भेजा या संग्रहीत नहीं किया जाता है।</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">सामान्य</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">मुख्य ऐप</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">मुख्य ऐप में वर्तमान मौसम का अवलोकन शामिल है। आप ऐप पैनल में रिफ्रेश बटन का उपयोग करके या नीचे की ओर स्लाइड करके मौसम को अपडेट कर सकते हैं। आप ताज़ा मौसम बटन के बगल में अपडेट स्थान बटन पा सकते हैं। यह बटन केवल तभी उपलब्ध होता है जब स्थान 0 सक्षम हो (स्थान 0 स्थान के स्वचालित अद्यतन के लिए है)।</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">आप अगली स्क्रीन पर मौसम का पूर्वानुमान पा सकते हैं (मेनू में अगली स्क्रीन चुनें या बाएं से दाएं स्वाइप करें)। मौसम का पूर्वानुमान अपडेट बटन द्वारा या जब आप स्क्रीन में प्रवेश करते हैं तो अपडेट किया जाता है (लेकिन प्रति घंटे एक से अधिक अपडेट नहीं)।</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">तीसरी स्क्रीन में ग्राफ़ द्वारा प्रदर्शित मौसम पूर्वानुमान होता है।</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">विजेट्स</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">सामान्य सेटिंग्स</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">इन विकल्पों का पूरे ऐप पर प्रभाव पड़ता है।</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"> <b>मौसम का विवरण छुपाएं</b> - वर्तमान मौसम का विवरण छिपा हुआ है। आप केवल बदलते आइकन द्वारा वर्तमान मौसम देख सकते हैं।</string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">जब आप <b>आवश्यक होने पर GPS चालू करें</b> विकल्प को चेक करते हैं, तो ऐप सेल या WiFi नेटवर्क का उपयोग करके आपका स्थान ढूंढने का प्रयास करेगा। जब नेटवर्क सेवाओं का उपयोग करके स्थान नहीं पाया जा सकता है, तो ऐप स्थान प्राप्त करने के लिए कई सेकंड के लिए GPS चालू कर देता है।</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"> <b>स्थान और पता स्रोत</b>
+\nआप यह चुन सकते हैं कि ऐप को स्थान और पता कहां से मिलेगा।</string>
+    <string name="help_page_4_content" tools:ignore="MissingTranslation">विजेट सेटिंग्स में सभी विजेट्स के लिए कॉन्फ़िगरेशन विकल्प शामिल हैं।</string>
+    <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">मान टॉगल करें</string>
+    <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Y-अक्ष टॉगल करें</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">दृश्यमान ग्राफ़ सेटिंग्स</string>
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">कॉलम सेटिंग</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">विवरण</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">तापमान</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">प्रत्यक्ष तापमान</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">हवा</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">हवा की दिशा</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">वर्षा/बर्फ</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">ये मेनू विकल्प <b>भाषा</b>, <b>थीम</b> सेट करते हैं मुख्य एप्लिकेशन और <b>आइकन सेट</b> का जिसका उपयोग एप्लिकेशन और विजेट में किया जाता है।</string>
+    <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">जब आप <b>विजेट में लेबल दिखाएं</b> सक्षम करते हैं, तो आप मौसम की स्थिति के मानों के लिए आइकन के बजाय लेबल देख सकते हैं।</string>
+    <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">आप <b>कैश साफ़ करें</b> बटन से पते का कैश साफ़ कर सकते हैं।</string>
+    <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">आप विजेट पृष्ठभूमि को <b>विजेट थीम विकल्प</b> से नियंत्रित कर सकते हैं।</string>
+    <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">आप <b>कैश के बारे में जानकारी</b> अनुभाग में कैश्ड मानों की कई अंतिम पंक्तियाँ देख सकते हैं। आप पंक्तियों की कुल संख्या भी देख सकते हैं।</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">नमी</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">दबाव</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="ok" tools:ignore="MissingTranslation">ठीक</string>
+    <string name="cancel" tools:ignore="MissingTranslation">रद्द</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">संयुक्त</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">तापमान</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">हवा</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">बारिश</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">वर्षा (बार)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">बर्फ</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">हिमपात (बार)</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">दबाव</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">तापमान</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">हवा</string>
+    <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">ग्राफ़ में लेजेंड दिखाएँ</string>
+    <string name="nav_menu_settings" tools:ignore="MissingTranslation">सेटिंग्स</string>
+    <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
+    <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">kPa</string>
+    <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
+    <string name="title_activity_settings" tools:ignore="MissingTranslation">सेटिंग्स</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">लिब्रे सॉफ्टवेयर लाइसेंस</string>
+    <string name="pref_title_temperature" tools:ignore="MissingTranslation">तापमान</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">हवा</string>
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">हवा की दिशा शैली</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">शास्त्रीय</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">पूर्वानुमान के साथ कस्टम</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">दृश्य अधिसूचना शैली</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">गहरा</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">कैश को साफ़ करें</string>
+    <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (अल्बानियन)</string>
+    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">निर्दिष्ट समय के बाद कैश्ड मान हटा दिए जाएंगे</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 घंटे</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">एक दिन</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">एक महीना</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">एक सप्ताह</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">एक साल</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">तीन महीने</string>
+    <string name="cloudiness_label" tools:ignore="MissingTranslation">बादल: %1$s%2$s</string>
+    <string name="label_cloudiness" tools:ignore="MissingTranslation">बादल</string>
+    <string name="about_version_pref_title" tools:ignore="MissingTranslation">संस्करण</string>
+    <string name="pref_title_tts_app_general_info" tools:ignore="MissingTranslation">ऐप TTS सिस्टम (टेक्स्ट-टू-स्पीच) को टेक्स्ट कमांड भेजता है, जो इसे आवाज में बदल देता है। यह आमतौर पर सिस्टम पर डिफ़ॉल्ट रूप से मौजूद होता है। यदि नहीं, या स्थापित TTS आपकी वांछित भाषा का समर्थन नहीं करता है, तो ऐप स्टोर से एक इंस्टॉल करें (उदाहरण के लिए: https://search.f-droid.org/?q=TTS)।</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">केवल दिखावट मूल्य</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">दोनों, उपस्थिति प्राथमिक</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">वर्तमान मौसम चिह्न</string>
+    <string name="widget_refresh_button" tools:ignore="MissingTranslation">विजेट ताज़ा करें बटन</string>
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">अक्षम करें</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">अक्षम</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">बूंदा बांदी</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">अत्यधिक बारिश</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">फ़ॉन्ट आधारित चिह्न</string>
+    <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">स्थान के लिए:</string>
+    <string name="pref_title_tts_trigger_bt_devices" tools:ignore="MissingTranslation">डिवाइस के लिए:</string>
+    <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">सक्षम डिवाइस:</string>
+    <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">शाम</string>
+    <string name="pref_language_en" tools:ignore="MissingTranslation">English (अंग्रेज़ी)</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">पाए गए स्थान कैश्ड हैं</string>
+    <string name="weather_forecast_features_free" tools:ignore="MissingTranslation">निःशुल्क/सीमित सुविधाएँ</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">बर्फ़ीली वर्षा</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">ग्राफ़</string>
+    <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">ग्राफ़ स्क्रीन</string>
+    <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">शुभ संध्या</string>
+    <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">शुभ प्रभात</string>
+    <string name="permission_location_need" tools:ignore="MissingTranslation">स्थान अनुमतियाँ प्रदान करें</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">भारी तीव्रता की बौछार बारिश</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">भारी बौछार बारिश और बूंदाबांदी</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">भारी हिमपात</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">तेज़ तूफ़ान</string>
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">आइकन सेट</string>
+    <string name="humidity_label" tools:ignore="MissingTranslation">नमी: %1$s%2$s</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">आखिरी अपडेट: %s</string>
+    <string name="weather_condition_description_312" tools:ignore="MissingTranslation">भारी तीव्रता वाली बूंदाबांदी बारिश</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">भारी तीव्रता वाली बारिश</string>
+    <string name="label_humidity" tools:ignore="MissingTranslation">नमी</string>
+    <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">नमस्ते</string>
+    <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">L</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">हलकी बारिश</string>
+    <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">लाइसेंस</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">हल्की तीव्रता की बूंदाबांदी</string>
+    <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">लिब्रे सॉफ्टवेयर लाइसेंस</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">हल्की आंधी</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">लाल चिह्न मर्लिन</string>
+    <string name="permission_available_location" tools:ignore="MissingTranslation">स्थान अनुमतियाँ प्रदान कर दी गई हैं</string>
+    <string name="widget_setting_location_label" tools:ignore="MissingTranslation">स्थान सेटिंग</string>
+    <string name="permission_location_rationale" tools:ignore="MissingTranslation">शहर निर्धारित करने के लिए स्थान अनुमतियाँ आवश्यक हैं</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">हल्की तीव्रता की बौछार बारिश</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">हल्की बर्फ</string>
+    <string name="widget_action_main_screen" tools:ignore="MissingTranslation">मुख्य स्क्रीन</string>
+    <string name="tty_say_max_rain" tools:ignore="MissingTranslation">अधिकतम वर्षा वर्षण %s मिलीमीटर</string>
+    <string name="tty_say_max_snow" tools:ignore="MissingTranslation">अधिकतम हिमपात %s मिलीमीटर में</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">N</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">केवल मापा गया मूल्य</string>
+    <string name="temperature_morning_title" tools:ignore="MissingTranslation">सुबह</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">सिस्टम</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12 घंटे AM/PM</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24 घंटे</string>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">तारिख का प्रारूप</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 दिन</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 दिन</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 दिन</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (3 घंटे का अंतराल)</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (3 घंटे का अंतराल)</string>
+    <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">वर्षा और बर्फ</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">दबाव</string>
+    <string name="preference_hide_desc" tools:ignore="MissingTranslation">मौसम विवरण छिपाएँ</string>
+    <string name="pref_title_notification" tools:ignore="MissingTranslation">सूचनाएं सक्षम करें</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">स्थान अपडेट करें (अनुशंसित)</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">GPS के बिना स्थान अपडेट करें</string>
+    <string name="preference_title_power_save" tools:ignore="MissingTranslation">बैटरी बचाने के विकल्प</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">नियमित रूप से अद्यतन करते समय</string>
+    <string name="update_period_30min" tools:ignore="MissingTranslation">30 मिनट</string>
+    <string name="update_period_1hour" tools:ignore="MissingTranslation">हर घंटे</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2 घंटे</string>
+    <string name="update_period_3hours" tools:ignore="MissingTranslation">3 घंटे</string>
+    <string name="update_period_6hours" tools:ignore="MissingTranslation">6 घंटे</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">सूर्य चिह्न</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">तापमान</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">अदृश्य</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">स्टेटस बार आइकन शैली</string>
+    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">मौसम के लिए अद्यतन अवधि (स्थान 1,2,3...)</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">00:00 से 06:00 बजे के बीच नहीं (स्थान 1,2,3...)</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">स्थान के लिए अद्यतन अवधि (स्थान 0)</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">सिस्टम सेटिंग्स</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API कुंजी</string>
+    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">स्थान स्रोत के साथ अद्यतन मूल्य</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">डिबग विकल्प</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">तीन दिन</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">टूटे हुए बादल</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">घटाटोप बादल</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">छितरे बादल</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">कुछ बादल</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">औसत दर्जे की वर्षा</string>
+    <string name="tty_say_weather_forecast_morning" tools:ignore="MissingTranslation">सुबह</string>
+    <string name="permission_not_granted" tools:ignore="MissingTranslation">अनुमतियाँ नहीं दी गईं!</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">प्रचंड तूफ़ान</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">दबाव</string>
+    <string name="permission_available_notification" tools:ignore="MissingTranslation">अधिसूचना की अनुमति दे दी गई है</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">पूर्वानुमान के लिए दिनों की संख्या</string>
+    <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">सशुल्क/विस्तारित सुविधाएँ</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">कभी नहीं</string>
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">कोई नहीं</string>
+    <string name="pressure_label" tools:ignore="MissingTranslation">दबाव: %1$s %2$s</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">लॉग फ़ाइल का घूर्णन</string>
+    <string name="rain_label" tools:ignore="MissingTranslation">बारिश: %1$s %2$s</string>
+    <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">कभी-कभार</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">फटी हुई बौछार की बारिश</string>
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">लॉग फ़ोल्डर चुनें</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">दिन को संक्षिप्त रूप से दिखाएँ</string>
+    <string name="pref_title_tts_say_forecast" tools:ignore="MissingTranslation">कहिये एक दिन का पूर्वानुमान</string>
+    <string name="wind_direction_south" tools:ignore="MissingTranslation">S↑</string>
+    <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">कहिये स्थान</string>
+    <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">कहिये तापमान</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">छह महीने</string>
+    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">दक्षिण-पूर्व</string>
+    <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">कहिये पवन</string>
+    <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">कहिये मौसम का विवरण</string>
+    <string name="wind_direction_south_east" tools:ignore="MissingTranslation">SE↖</string>
+    <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">मार्गदर्शन के लिए चयनित स्थान:</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">बौछार बारिश</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">बौछार बारिश और बूंदाबांदी</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">बौछार बूंदाबांदी</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">बौछार ओलावृष्टि</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">ओले के साथ वर्षा</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">सूर्योदय</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">तापमान इस रूप में दिखाएँ</string>
+    <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">सोर्स कोड</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">दक्षिण</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">दक्षिण पश्चिम</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">बर्फ</string>
+    <string name="label_snow" tools:ignore="MissingTranslation">बर्फ</string>
+    <string name="snow_label" tools:ignore="MissingTranslation">बर्फ: %1$s %2$s</string>
+    <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">स्पीकर</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">सूर्यास्त</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">सूर्योदय: %s</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">सूर्यास्त: %s</string>
+    <string name="wind_direction_south_west" tools:ignore="MissingTranslation">SW↗</string>
+    <string name="label_temperature" tools:ignore="MissingTranslation">तापमान</string>
+    <string name="tty_say_temperature" tools:ignore="MissingTranslation">तापमान %s</string>
+    <string name="pref_title_tts_not_supported" tools:ignore="MissingTranslation">आपका ऐप लोकेल आपके TTS (टेक्स्ट-टू-स्पीच) सिस्टम द्वारा समर्थित नहीं है। ऊपर दाईं ओर \"मार्गदर्शन भाषा सेटिंग\" पर जाएं।</string>
+    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">বাংলা (बांग्लादेश)</string>
+    <string name="pref_language_ca" tools:ignore="MissingTranslation">Català (कैटलन)</string>
+    <string name="pref_language_da" tools:ignore="MissingTranslation">Dansk (दानिश)</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Português (Brasil) (पुर्तगाली (ब्राजील))</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Português (Portugal) (पुर्तगाली (पुर्तगाल))</string>
+    <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">कहिये:</string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">नेटवर्क ट्रैफ़िक बचाने और लोकेशन अपडेट को तेज़ करने के लिए आप <b>कैश लोकेशन</b> को चालू कर सकते हैं। यह कैश भौगोलिक निर्देशांक और एक पता संग्रहीत करता है। एप्लिकेशन को इस सेटिंग की परवाह किए बिना नेटवर्क रिज़ॉल्यूशन सेवा को कॉल करना होगा। लेकिन Nominatim एड्रेस रिजॉल्यूशन पर कॉल तभी होती है जब पता कैश में न हो। जब आप कैश लोकेशन विकल्प को चालू करते हैं, तो आपके द्वारा देखे गए पते एप्लिकेशन में संग्रहीत हो जाते हैं। कैश से कोई भी जानकारी एप्लिकेशन के बाहर नहीं भेजी जाती है।</string>
+    <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (तुर्कीश)</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">जब स्थान और वर्तमान मौसम का अपडेट किया जाता है तो आप विजेट में अपडेट समय के आगे अपडेट की स्थिति देख सकते हैं। आप <b>प्रदर्शन अद्यतन सारांश</b> विकल्प द्वारा प्रदर्शित होने वाली चीज़ों को नियंत्रित कर सकते हैं। सबसे उन्नत विकल्प की व्याख्या इस प्रकार है:</string>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"> <b>सूचनाएं</b>
+\nजब आप अधिसूचना विकल्प चुनते हैं, तो एप्लिकेशन समय-समय पर वर्तमान मौसम को अपडेट करता है। तब वर्तमान मौसम को अधिसूचना क्षेत्र में डाल दिया जाता है। आप कंपन को भी सक्षम कर सकते हैं - अपडेट होने पर एप्लिकेशन कंपन करता है।</string>
+    <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">कैश स्थान विकल्प (चेकबॉक्स) के आगे <b>कैश्ड मानों की आयु</b> के लिए एक सेटिंग है। प्रत्येक संग्रहीत पते पर एक टाइमस्टैम्प होता है। जब टाइमस्टैम्प पुराना होता है तो कैश्ड मानों की आयु में मान सेट किया जाता है, ऐप रिकॉर्ड को ताज़ा करने के लिए नॉमिनैटिम को कॉल करता है।</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b>वेक अप रणनीति</b> Android ऑरोरा सेवाओं के खराब विक्रेता कार्यान्वयन पर काबू पाने के लिए है। <i>कोई वेक अप नहीं</i> का चयन करने से स्थान सही ढंग से अपडेट हो जाना चाहिए।
+\nयदि नहीं, तो सेल और वाई-फाई नेटवर्क स्थिति को पढ़ने के लिए <i>केवल CPU को जगाने</i> का प्रयास करें।
+\n<i>डिस्प्ले के साथ जागें</i> अंतिम उपाय के रूप में स्थान अपडेट के दौरान स्क्रीन को कई सेकंड के लिए चालू कर देता है।</string>
+</resources>
