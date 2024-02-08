@@ -102,9 +102,9 @@
 \nL - केवल स्थान अपडेट किया गया
 \nG - GPS से स्थान और मौसम अपडेट किया गया
 \nN - नेटवर्क से स्थान और मौसम अपडेट किया गया
-\nNi - सेलुलर नेटवर्क से स्थान और मौसम अद्यतन, Mozilla स्थान सेवा द्वारा खोजा गया स्थान
+\nNi - सेलुलर नेटवर्क से स्थान और मौसम अप्डैटिड, Mozilla स्थान सेवा द्वारा खोजा गया स्थान
 \nB - Openweathermap.org सेवा तक पहुंच पर प्रतिबंध लगा दिया गया है, कृपया बाद में मौसम को अपडेट करने का प्रयास करें
-\nE - Openweathermap.org सेवा के लिए एक्सेस टोकन समाप्त हो गया है। पहुंच पुनः प्राप्त करने के लिए ऐप का बाद वाला संस्करण इंस्टॉल करें</string>
+\nE - Openweathermap.org सेवा के लिए एक्सेस टोकन समाप्त हो गया है। पहुंच पुनः प्राप्त करने के लिए ऐप का बाद वाला वर्शन इंस्टॉल करें</string>
     <string name="wakeupfull_label" tools:ignore="MissingTranslation">प्रदर्शन के साथ जागें</string>
     <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">लॉक स्क्रीन पर</string>
     <string name="preference_title_tts" tools:ignore="MissingTranslation">मार्गदर्शन सेटिंग्स</string>
@@ -114,7 +114,7 @@
     <string name="preference_title_add_tts" tools:ignore="MissingTranslation">नई मार्गदर्शन सेटिंग्स</string>
     <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">ग्राफ़ को मूल रिज़ॉल्यूशन में दिखाएं (जब ग्राफ़ बहुत छोटा हो)</string>
     <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">प्रदर्शित करने के लिए जियोलोकेशन का उपयोग करें</string>
-    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">स्थान अद्यतन करें</string>
+    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">स्थान अपडेट करें</string>
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">विजेट पर सेटिंग दिखाएं</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">विजेट में लेबल दिखाएँ</string>
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">विजेट थीम</string>
@@ -152,11 +152,11 @@
 \n
 \nऐप का आनंद लें।</string>
     <string name="help_page_general_content" tools:ignore="MissingTranslation">ऐप सेलुलर नेटवर्क (BTS), Wi-Fi का उपयोग करके स्थान निर्धारित करता है, और यदि वे विफल होते हैं; स्थानीय मौसम दिखाने के लिए GPS, बदले में Mozilla स्थान सेवा से निर्देशांक प्राप्त करना। एप्लिकेशन को कम से कम: GSM नेटवर्क का एक बेस स्टेशन या दो पहुंच योग्य WiFi नेटवर्क या GSM और Wi-Fi नेटवर्क का कोई संयोजन चाहिए। अपने फ़ोन या टैबलेट पर विजेट का उपयोग करके, आप मुख्य स्क्रीन पर अपना स्थान और वर्तमान मौसम देख सकते हैं। स्थान अपडेट आवधिक हो सकते हैं, (उदा. प्रति घंटा) या ऐप किसी मान से अधिक दूरी की गति का पता लगाने के लिए एक्सेलेरोमीटर का उपयोग कर सकता है। जेब में रखने से दूरी तेजी से बढ़ती है। आप स्थान अपडेट बंद कर सकते हैं - उसके बाद केवल मौसम अपडेट किया जाता है। ऐप निर्दिष्ट अंतराल में स्थान और मौसम को अपडेट करता है। उदाहरण के लिए, आप अद्यतन अवधि को एक घंटे बजे तक निर्धारित कर सकते हैं। मौसम स्थान के तुरंत बाद या स्क्रीन चालू होने पर अपडेट किया जाता है - लेकिन अधिक बार नहीं, प्रति 15 मिनट में एक बार (और जब अंतिम 15 मिनट में मौसम अपडेट नहीं होता है)। इन सूचनाओं का उपयोग Mozilla स्थान सेवा द्वारा स्थान निर्देशांक प्राप्त करने के लिए किया जाता है। जब सेल नेटवर्क और Wi-Fi नेटवर्क से स्थान उपलब्ध नहीं होता है तो ऐप जीपीएस का उपयोग करने का प्रयास करता है। स्थान निर्देशांक का उपयोग Nominatim सेवा द्वारा पता प्राप्त करने के लिए किया जाता है। पते का उपयोग ऐप या विजेट में किया जाता है। वर्तमान मौसम जानने के लिए ऐप OpenWeatherMap.org सेवा का उपयोग करता है।</string>
-    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">अद्यतन स्थान बटन के आगे, एक स्थान प्रबंधन बटन (आवर्धक चिह्न) है। आप ऐप और विजेट्स में उपलब्ध स्थानों को प्रबंधित कर सकते हैं। डिफ़ॉल्ट रूप से एक स्थान (स्थान 0) उपलब्ध है - यह स्वचालित स्थान अपडेट के लिए है। जब आप इस स्थान को बाईं ओर स्लाइड करते हैं तो आप सक्षम/अक्षम बटन पा सकते हैं। आप स्थान को मैन्युअल रूप से भी जोड़ सकते हैं. जब आप + बटन पर क्लिक करते हैं तो आप मानचित्र पर अपना स्थान चुन सकते हैं। आप स्थान को डिलीट बटन से भी हटा सकते हैं - जो तब पहुंच योग्य होता है जब आप स्थान को बाईं ओर स्लाइड करते हैं।</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">अपडेट स्थान बटन के आगे, एक स्थान प्रबंधन बटन (आवर्धक चिह्न) है। आप ऐप और विजेट्स में उपलब्ध स्थानों को प्रबंधित कर सकते हैं। डिफ़ॉल्ट रूप से एक स्थान (स्थान 0) उपलब्ध है - यह स्वचालित स्थान अपडेट के लिए है। जब आप इस स्थान को बाईं ओर स्लाइड करते हैं तो आप सक्षम/अक्षम बटन पा सकते हैं। आप स्थान को मैन्युअल रूप से भी जोड़ सकते हैं. जब आप + बटन पर क्लिक करते हैं तो आप मानचित्र पर अपना स्थान चुन सकते हैं। आप स्थान को डिलीट बटन से भी हटा सकते हैं - जो तब पहुंच योग्य होता है जब आप स्थान को बाईं ओर स्लाइड करते हैं।</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">ऐप में तीन विजेट उपलब्ध हैं, जिनमें वर्तमान मौसम (उदाहरण के लिए तापमान) के कुछ सामान्य मूल्य शामिल हैं। कुछ मान विशिष्ट विजेट के लिए अद्वितीय हैं (उदाहरण के लिए सूर्यास्त)। प्रत्येक विजेट के दाहिने कोने पर अंतिम अपडेट का समय होता है। आप देख सकते हैं कि पिछली बार से क्या अपडेट किया गया है (जब आपने सेटिंग मेनू में इस विकल्प को सक्षम किया है)। आप अंतिम अद्यतन समय के आगे अद्यतन बटन पा सकते हैं। जब आप इस बटन को दबाते हैं, तो मौसम (और अद्यतन स्थान विकल्प चुने जाने पर स्थान) बिना शर्त अपडेट हो जाता है। विजेट में अंतिम विकल्प स्थान बदलना है - जब आप वर्तमान स्थान टेक्स्ट पर दबाते हैं तो स्थान अगले स्थान में बदल जाता है।</string>
     <string name="label_activity_main" tools:ignore="MissingTranslation">वर्तमान मौसम</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> <b>तापमान</b> - आप तापमान इकाई का चयन कर सकते हैं, <b>हवा</b> - आप हवा की गति इकाई और <b>दबाव</b> का चयन कर सकते हैं - आप दबाव के लिए इकाई का चयन कर सकते हैं। इन विकल्पों का उपयोग करके मानों की पुनर्गणना की जाती है।</string>
-    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"> <b>स्थान के लिए अद्यतन अवधि (स्थान 0)</b> - आप स्थान 0 के लिए अद्यतन अवधि निर्धारित कर सकते हैं - स्थान 0 में स्थान को अद्यतन करने की क्षमता है सेल के अनुसार-, Wi-Fi नेटवर्क और GPS। जब आप अपडेट <i>एक्सेलेरोमीटर</i> का चयन करते हैं तो ऐप गतिविधि का पता लगाने के लिए इसका उपयोग करता है। इससे दूरी की गणना की जाती है। जब दूरी की सीमा पूरी हो जाती है, और 15 मिनट में कोई अपडेट नहीं होता है, तो स्थान और वर्तमान मौसम अपडेट किया जाता है। जब ऐप आपका स्थान नहीं ला पाता, तो आप विजेट में अज्ञात स्थान लेबल देख सकते हैं। जब ऐप में कोई स्थान स्थिति नहीं होगी, तो यह 5 मिनट में पुनः प्रयास करेगा। आप <b>मौसम के लिए अद्यतन अवधि (स्थान 1,2,3...)</b> में समय अंतराल के आधार पर स्थान अपडेट का चयन भी कर सकते हैं। - जहां आप मैन्युअल रूप से खोजे गए स्थानों के लिए मौसम को अपडेट करने के लिए सेट कर सकते हैं।</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"> <b>स्थान के लिए अपडेट अवधि (स्थान 0)</b> - आप स्थान 0 के लिए अपडेट अवधि निर्धारित कर सकते हैं - स्थान 0 में स्थान को अपडेट करने की क्षमता है सेल के अनुसार-, Wi-Fi नेटवर्क और GPS। जब आप अपडेट <i>एक्सेलेरोमीटर</i> का चयन करते हैं तो ऐप गतिविधि का पता लगाने के लिए इसका उपयोग करता है। इससे दूरी की गणना की जाती है। जब दूरी की सीमा पूरी हो जाती है, और 15 मिनट में कोई अपडेट नहीं होता है, तो स्थान और वर्तमान मौसम अपडेट किया जाता है। जब ऐप आपका स्थान नहीं ला पाता, तो आप विजेट में अज्ञात स्थान लेबल देख सकते हैं। जब ऐप में कोई स्थान स्थिति नहीं होगी, तो यह 5 मिनट में पुनः प्रयास करेगा। आप <b>मौसम के लिए अपडेट अवधि (स्थान 1,2,3...)</b> में समय अंतराल के आधार पर स्थान अपडेट का चयन भी कर सकते हैं। - जहां आप मैन्युअल रूप से खोजे गए स्थानों के लिए मौसम को अपडेट करने के लिए सेट कर सकते हैं।</string>
     <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"> <b>स्थानीय MLS और Nominatim</b> - ऐप को Mozilla स्थान सेवाओं से स्थान और भौगोलिक निर्देशांक मिलते हैं। Nominatim सेवाएँ उन निर्देशांकों से पता प्राप्त करती हैं। आप Mozilla Stumbler (https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler पर उपलब्ध) इंस्टॉल करके MLS में भविष्य के सुधारों में योगदान कर सकते हैं। फ़ोन कॉल की अनुमति देकर सेल नेटवर्क से वर्तमान सक्रिय और उपलब्ध नेटवर्क बेस स्टेशनों के बारे में जानकारी प्राप्त करें। आपके आस-पास के Wi-Fi नेटवर्क का उपयोग आपके स्थान का अधिक सटीक अनुमान लगाने के लिए किया जाता है।</string>
     <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"> <b>सिस्टम</b> - एप्लिकेशन को Android में सिस्टम सेवाओं (आमतौर पर Google स्थान सेवाओं के साथ) द्वारा स्थान और पता मिलता है।</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">सहायता</string>
@@ -174,7 +174,7 @@
     <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">दिखाने के लिए ग्राफ़</string>
     <string name="navigation_drawer_open" tools:ignore="MissingTranslation">नेविगेशन ड्रॉअर खोलें</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">कुछ नहीं</string>
-    <string name="preference_display_update_value" tools:ignore="MissingTranslation">अभी अद्यतन मूल्य</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">अभी अप्डैटिड मूल्य</string>
     <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">सीमा से ऊपर के स्थान हटा दिए गए।</string>
     <string name="connection_not_found" tools:ignore="MissingTranslation">अपना इंटरनेट संपर्क जांचे</string>
     <string name="toast_parse_error" tools:ignore="MissingTranslation">एक गलती हुई है। बाद में प्रयास करें।</string>
@@ -202,8 +202,8 @@
     <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">कैश्ड मानों की आयु</string>
     <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - स्थान और/या मौसम अपडेट करने जा रहा हूं
 \n. - स्थान पहुंच योग्य नहीं है, अंतिम स्थान के आधार पर मौसम अपडेट किया जा रहा है
-\nW - मौसम केवल अद्यतन किया गया
-\nL - स्थान केवल अद्यतन किया गया
+\nW - केवल मौसम अपडेट किया गया
+\nL - केवल स्थान अपडेट किया गया
 \nG - GPS से स्थान और मौसम अपडेट किया गया
 \nN - नेटवर्क से स्थान और मौसम अपडेट किया गया
 \nB - Openweathermap.org सेवा तक पहुंच प्रतिबंधित कर दी गई है, कृपया बाद में मौसम अपडेट करने का प्रयास करें
@@ -335,7 +335,7 @@
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">अनुमतियाँ अभी तक प्रदान नहीं की गई हैं - ऐप में स्थान चिह्न पर क्लिक करें</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">पहुंच समाप्त हो गई. कृपया ऐप को अपग्रेड करें।</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">आपका OpenweathermapApiKey पंजीकृत नहीं है।</string>
-    <string name="share_weather_title" tools:ignore="MissingTranslation">मौसम साझा करें</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">मौसम शेयर करें</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">संचार ऐप नहीं मिला</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">आपका स्थानीय मौसम</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">आपकी स्थानीय मौसम सूचनाएं</string>
@@ -422,7 +422,7 @@
     <string name="location_cache_2190_label" tools:ignore="MissingTranslation">तीन महीने</string>
     <string name="cloudiness_label" tools:ignore="MissingTranslation">बादल: %1$s%2$s</string>
     <string name="label_cloudiness" tools:ignore="MissingTranslation">बादल</string>
-    <string name="about_version_pref_title" tools:ignore="MissingTranslation">संस्करण</string>
+    <string name="about_version_pref_title" tools:ignore="MissingTranslation">वर्शन</string>
     <string name="pref_title_tts_app_general_info" tools:ignore="MissingTranslation">ऐप TTS सिस्टम (टेक्स्ट-टू-स्पीच) को टेक्स्ट कमांड भेजता है, जो इसे आवाज में बदल देता है। यह आमतौर पर सिस्टम पर डिफ़ॉल्ट रूप से मौजूद होता है। यदि नहीं, या स्थापित TTS आपकी वांछित भाषा का समर्थन नहीं करता है, तो ऐप स्टोर से एक इंस्टॉल करें (उदाहरण के लिए: https://search.f-droid.org/?q=TTS)।</string>
     <string name="appearance_only" tools:ignore="MissingTranslation">केवल दिखावट मूल्य</string>
     <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
@@ -495,7 +495,7 @@
     <string name="update_location_full" tools:ignore="MissingTranslation">स्थान अपडेट करें (अनुशंसित)</string>
     <string name="update_location_network_only" tools:ignore="MissingTranslation">GPS के बिना स्थान अपडेट करें</string>
     <string name="preference_title_power_save" tools:ignore="MissingTranslation">बैटरी बचाने के विकल्प</string>
-    <string name="update_period_regular_only" tools:ignore="MissingTranslation">नियमित रूप से अद्यतन करते समय</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">नियमित रूप से अपडेट करते समय</string>
     <string name="update_period_30min" tools:ignore="MissingTranslation">30 मिनट</string>
     <string name="update_period_1hour" tools:ignore="MissingTranslation">हर घंटे</string>
     <string name="update_period_2hours" tools:ignore="MissingTranslation">2 घंटे</string>
@@ -505,12 +505,12 @@
     <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">तापमान</string>
     <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">अदृश्य</string>
     <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">स्टेटस बार आइकन शैली</string>
-    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">मौसम के लिए अद्यतन अवधि (स्थान 1,2,3...)</string>
+    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">मौसम के लिए अपडेट अवधि (स्थान 1,2,3...)</string>
     <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">00:00 से 06:00 बजे के बीच नहीं (स्थान 1,2,3...)</string>
-    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">स्थान के लिए अद्यतन अवधि (स्थान 0)</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">स्थान के लिए अपडेट अवधि (स्थान 0)</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">सिस्टम सेटिंग्स</string>
     <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API कुंजी</string>
-    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">स्थान स्रोत के साथ अद्यतन मूल्य</string>
+    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">स्थान स्रोत के साथ अप्डैटिड मूल्य</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">डिबग विकल्प</string>
     <string name="log_file_72_label" tools:ignore="MissingTranslation">तीन दिन</string>
     <string name="weather_condition_description_803" tools:ignore="MissingTranslation">टूटे हुए बादल</string>
@@ -573,7 +573,7 @@
     <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">कहिये:</string>
     <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">नेटवर्क ट्रैफ़िक बचाने और लोकेशन अपडेट को तेज़ करने के लिए आप <b>कैश लोकेशन</b> को चालू कर सकते हैं। यह कैश भौगोलिक निर्देशांक और एक पता संग्रहीत करता है। एप्लिकेशन को इस सेटिंग की परवाह किए बिना नेटवर्क रिज़ॉल्यूशन सेवा को कॉल करना होगा। लेकिन Nominatim एड्रेस रिजॉल्यूशन पर कॉल तभी होती है जब पता कैश में न हो। जब आप कैश लोकेशन विकल्प को चालू करते हैं, तो आपके द्वारा देखे गए पते एप्लिकेशन में संग्रहीत हो जाते हैं। कैश से कोई भी जानकारी एप्लिकेशन के बाहर नहीं भेजी जाती है।</string>
     <string name="pref_language_tr" tools:ignore="MissingTranslation">Türkçe (तुर्कीश)</string>
-    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">जब स्थान और वर्तमान मौसम का अपडेट किया जाता है तो आप विजेट में अपडेट समय के आगे अपडेट की स्थिति देख सकते हैं। आप <b>प्रदर्शन अद्यतन सारांश</b> विकल्प द्वारा प्रदर्शित होने वाली चीज़ों को नियंत्रित कर सकते हैं। सबसे उन्नत विकल्प की व्याख्या इस प्रकार है:</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">जब स्थान और वर्तमान मौसम का अपडेट किया जाता है तो आप विजेट में अपडेट समय के आगे अपडेट की स्थिति देख सकते हैं। आप <b>प्रदर्शन अपडेट सारांश</b> विकल्प द्वारा प्रदर्शित होने वाली चीज़ों को नियंत्रित कर सकते हैं। सबसे उन्नत विकल्प की व्याख्या इस प्रकार है:</string>
     <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"> <b>सूचनाएं</b>
 \nजब आप अधिसूचना विकल्प चुनते हैं, तो एप्लिकेशन समय-समय पर वर्तमान मौसम को अपडेट करता है। तब वर्तमान मौसम को अधिसूचना क्षेत्र में डाल दिया जाता है। आप कंपन को भी सक्षम कर सकते हैं - अपडेट होने पर एप्लिकेशन कंपन करता है।</string>
     <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">कैश स्थान विकल्प (चेकबॉक्स) के आगे <b>कैश्ड मानों की आयु</b> के लिए एक सेटिंग है। प्रत्येक संग्रहीत पते पर एक टाइमस्टैम्प होता है। जब टाइमस्टैम्प पुराना होता है तो कैश्ड मानों की आयु में मान सेट किया जाता है, ऐप रिकॉर्ड को ताज़ा करने के लिए नॉमिनैटिम को कॉल करता है।</string>
