@@ -27,7 +27,7 @@
     <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">पूर्वोत्तर</string>
     <string name="log_file_24_label" tools:ignore="MissingTranslation">एक दिन</string>
     <string name="log_file_48_label" tools:ignore="MissingTranslation">दो दिन</string>
-    <string name="log_to_file_on" tools:ignore="MissingTranslation">लॉग फ़ाइल में डालें</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">लॉग फाइल में डालें</string>
     <string name="graph_rain_label" tools:ignore="MissingTranslation">बारिश</string>
     <string name="nav_menu_graphs" tools:ignore="MissingTranslation">रेखांकन</string>
     <string name="nav_feedback" tools:ignore="MissingTranslation">प्रतिक्रिया</string>
@@ -71,7 +71,7 @@
     <string name="weather_condition_description_302" tools:ignore="MissingTranslation">भारी तीव्रता वाली बूंदाबांदी</string>
     <string name="weather_condition_description_310" tools:ignore="MissingTranslation">हल्की तीव्रता वाली बूंदाबांदी बारिश</string>
     <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">संयुक्त ग्राफ</string>
-    <string name="help_page_5_content" tools:ignore="MissingTranslation">लॉग फ़ाइल में डिबगिंग सक्षम करने के विकल्प हैं। यह विकल्प तब उपयोगी होता है जब एप्लिकेशन में कुछ परेशानी हो।</string>
+    <string name="help_page_5_content" tools:ignore="MissingTranslation">लॉग फाइल में डिबगिंग सक्षम करने के विकल्प हैं। यह विकल्प तब उपयोगी होता है जब एप्लिकेशन में कुछ परेशानी हो।</string>
     <string name="label_activity_graphs" tools:ignore="MissingTranslation">मौसम का रेखांकन</string>
     <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">संयुक्त ग्राफ़ सेटिंग्स</string>
     <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">पूर्वानुमान प्रकार</string>
@@ -118,7 +118,7 @@
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">विजेट पर सेटिंग दिखाएं</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">विजेट में लेबल दिखाएँ</string>
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">विजेट थीम</string>
-    <string name="theme_light" tools:ignore="MissingTranslation">हल्का</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">हल्की</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">स्थान और मौसम अपडेट करें</string>
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">इकाई सेटिंग्स</string>
     <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"इस ऐप में https://hosted.weblate.org/projects/your-local-weather पर स्वयंसेवकों के सौजन्य से टेक्स्ट अनुवाद और वॉयस कमांड के माध्यम से आवाज मार्गदर्शन है। ऐप डेवलपर यह गारंटी नहीं दे सकता कि वे सही हैं - आप ऐप का उपयोग करके इसे स्वीकार करते हैं। इसका उपयोग करने के लिए आपको TTS (टेक्स्ट-टू-स्पीच) स्थापित करना होगा और सेटिंग्स में मार्गदर्शन चालू करना होगा, जहां आप अपनी खुद की वॉयस कमांड सेट कर सकते हैं। "</string>
@@ -221,7 +221,7 @@
     <string name="weather_condition_description_621" tools:ignore="MissingTranslation">बर्फ की बौछार</string>
     <string name="weather_condition_description_620" tools:ignore="MissingTranslation">हल्की बौछार बर्फ</string>
     <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
-    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">निर्दिष्ट समय के बाद लॉग फ़ाइल पुनः बनाई जाएगी</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">निर्दिष्ट समय के बाद लॉग फाइल पुनः बनाई जाएगी</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">एक महीना</string>
     <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">और</string>
     <string name="label_apparent_temperature" tools:ignore="MissingTranslation">स्पष्ट तापमान: %s</string>
@@ -232,7 +232,7 @@
     <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
     <string name="location_cache_enable_label" tools:ignore="MissingTranslation">कैश स्थान</string>
     <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">वर्तमान मौसम चिह्न</string>
-    <string name="log_to_file_off" tools:ignore="MissingTranslation">फ़ाइल में लॉग इन न करें</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">फाइल में लॉग इन न करें</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">उत्तर से डिग्री</string>
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">वर्तमान मौसम विवरण भाषा और पता अगले अपडेट के साथ बदल जाएगा, या आप इसे मैन्युअल रूप से लागू कर सकते हैं।</string>
     <string name="locations_delete_location" tools:ignore="MissingTranslation">हटाएं</string>
@@ -321,7 +321,7 @@
     <string name="weather_condition_description_230" tools:ignore="MissingTranslation">हल्की बूंदाबांदी के साथ आंधी</string>
     <string name="weather_condition_description_503" tools:ignore="MissingTranslation">बहुत भारी बारिश</string>
     <string name="preference_weather_weather_forecast_features_title" tools:ignore="MissingTranslation">मौसम पूर्वानुमान सुविधाएँ</string>
-    <string name="log_to_file_label" tools:ignore="MissingTranslation">लॉग फ़ाइल में डालें</string>
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">लॉग फाइल में डालें</string>
     <string name="weather_condition_description_731" tools:ignore="MissingTranslation">रेत, धूल घूमती है</string>
     <string name="label_dew_point" tools:ignore="MissingTranslation">ओस बिंदु</string>
     <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">एप्लिकेशन को पृष्ठभूमि स्थान अनुमति की आवश्यकता है</string>
@@ -410,7 +410,7 @@
     <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">शास्त्रीय</string>
     <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">पूर्वानुमान के साथ कस्टम</string>
     <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">दृश्य अधिसूचना शैली</string>
-    <string name="theme_dark" tools:ignore="MissingTranslation">गहरा</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">गहरी</string>
     <string name="clear_cache_button" tools:ignore="MissingTranslation">कैश को साफ़ करें</string>
     <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (अल्बानियन)</string>
     <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">निर्दिष्ट समय के बाद कैश्ड मान हटा दिए जाएंगे</string>
@@ -528,11 +528,11 @@
     <string name="location_cache_88888_label" tools:ignore="MissingTranslation">कभी नहीं</string>
     <string name="weather_condition_description_none" tools:ignore="MissingTranslation">कोई नहीं</string>
     <string name="pressure_label" tools:ignore="MissingTranslation">दबाव: %1$s %2$s</string>
-    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">लॉग फ़ाइल का घूर्णन</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">लॉग फाइल का घूर्णन</string>
     <string name="rain_label" tools:ignore="MissingTranslation">बारिश: %1$s %2$s</string>
     <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">कभी-कभार</string>
     <string name="weather_condition_description_531" tools:ignore="MissingTranslation">फटी हुई बौछार की बारिश</string>
-    <string name="debug_choose_file" tools:ignore="MissingTranslation">लॉग फ़ोल्डर चुनें</string>
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">लॉग फोल्डर चुनें</string>
     <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">दिन को संक्षिप्त रूप से दिखाएँ</string>
     <string name="pref_title_tts_say_forecast" tools:ignore="MissingTranslation">कहिये एक दिन का पूर्वानुमान</string>
     <string name="wind_direction_south" tools:ignore="MissingTranslation">S↑</string>
