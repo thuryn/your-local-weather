@@ -526,7 +526,7 @@
     <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">Dzień dobry</string>
     <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Klucz licencyjny</string>
     <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">Ustawienia regionalne aplikacji:</string>
-    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Własna</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">Niestandardowy</string>
     <string name="tty_say_max_snow" tools:ignore="MissingTranslation">maksymalne opady śniegu %s milimetrów</string>
     <string name="pref_language_pt" tools:ignore="MissingTranslation">Portugalski (portugalski)</string>
     <string name="tts_say_text_label" tools:ignore="MissingTranslation">Co powiedzieć:</string>
