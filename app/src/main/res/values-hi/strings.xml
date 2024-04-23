@@ -186,7 +186,7 @@
     <string name="update_period_24hours" tools:ignore="MissingTranslation">24 घंटे</string>
     <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd(/yy)</string>
     <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/yy)</string>
-    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (3 घंटे का अंतराल)</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3 घंटे</string>
     <string name="hint_activity_search" tools:ignore="MissingTranslation">स्थान खोजें</string>
     <string name="pref_title_category_notification" tools:ignore="MissingTranslation">अधिसूचना सेटिंग्स</string>
     <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">ताजा अंतराल</string>
@@ -486,8 +486,8 @@
     <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 दिन</string>
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 दिन</string>
     <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 दिन</string>
-    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (3 घंटे का अंतराल)</string>
-    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (3 घंटे का अंतराल)</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4 घंटे</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5 घंटे</string>
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">वर्षा और बर्फ</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">दबाव</string>
     <string name="preference_hide_desc" tools:ignore="MissingTranslation">मौसम विवरण छिपाएँ</string>
@@ -580,4 +580,6 @@
     <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b>वेक अप रणनीति</b> Android ऑरोरा सेवाओं के खराब विक्रेता कार्यान्वयन पर काबू पाने के लिए है। <i>कोई वेक अप नहीं</i> का चयन करने से स्थान सही ढंग से अपडेट हो जाना चाहिए।
 \nयदि नहीं, तो सेल और वाई-फाई नेटवर्क स्थिति को पढ़ने के लिए <i>केवल CPU को जगाने</i> का प्रयास करें।
 \n<i>डिस्प्ले के साथ जागें</i> अंतिम उपाय के रूप में स्थान अपडेट के दौरान स्क्रीन को कई सेकंड के लिए चालू कर देता है।</string>
+    <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 दिन</string>
+    <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 घंटे</string>
 </resources>
