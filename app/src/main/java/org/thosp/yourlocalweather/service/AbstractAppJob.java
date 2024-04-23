@@ -25,6 +25,8 @@ import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
+import androidx.core.content.ContextCompat;
+
 @TargetApi(Build.VERSION_CODES.M)
 public abstract class AbstractAppJob extends JobService {
 
@@ -73,6 +75,6 @@ public abstract class AbstractAppJob extends JobService {
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(location.getId(), updateSource, updateWeatherOnly, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE));
-        startService(intent);
+        ContextCompat.startForegroundService(this, intent);
     }
 }

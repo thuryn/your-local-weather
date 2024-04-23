@@ -75,11 +75,6 @@ public class GeneralPreferenceFragment extends PreferenceFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.pref_general);
-
-        EditTextPreference openWeatherMapApiKey =
-                (EditTextPreference) findPreference(Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY);
-        openWeatherMapApiKey.setSummary(ApiKeys.getOpenweathermapApiKeyForPreferences(getActivity()));
-        checkApiKeyMenuOptionPresence();
     }
 
     @Override
@@ -138,12 +133,10 @@ public class GeneralPreferenceFragment extends PreferenceFragment implements
                 entrySummary(key);
                 break;
             case Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY:
-                findPreference(key).setSummary(ApiKeys.getOpenweathermapApiKeyForPreferences(getActivity()));
                 checkAndDeleteLocations();
                 break;
             case Constants.KEY_PREF_WEATHER_FORECAST_FEATURES:
                 entrySummary(key);
-                checkApiKeyMenuOptionPresence();
                 break;
             case Constants.KEY_PREF_WEATHER_LICENSE_KEY:
                 calculateInitialToken(key);
@@ -274,16 +267,6 @@ public class GeneralPreferenceFragment extends PreferenceFragment implements
                     Toast.LENGTH_LONG).show();
         }
         sendMessageToReconciliationDbService(true);
-    }
-
-    private void checkApiKeyMenuOptionPresence() {
-        if (ApiKeys.isWeatherForecastFeaturesFree(getActivity())) {
-            findPreference(Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY).setEnabled(true);
-            findPreference(Constants.KEY_PREF_WEATHER_LICENSE_KEY).setEnabled(false);
-        } else {
-            findPreference(Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY).setEnabled(false);
-            findPreference(Constants.KEY_PREF_WEATHER_LICENSE_KEY).setEnabled(true);
-        }
     }
 
     protected void sendMessageToReconciliationDbService(boolean force) {

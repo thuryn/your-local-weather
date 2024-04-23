@@ -54,7 +54,7 @@ public class ForecastUtil {
         return false;
     }
 
-    public static Set<WeatherForecastPerDay> calculateWeatherForDays(WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord) {
+    public static Set<WeatherForecastPerDay> calculateWeatherForDays(Context context, WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord) {
         Set<WeatherForecastPerDay> result = new HashSet<>();
         Calendar forecastCalendar = Calendar.getInstance();
         int initialYearForTheList = forecastCalendar.get(Calendar.YEAR);
@@ -80,22 +80,32 @@ public class ForecastUtil {
             if (weatherMaxMinForDay == null) {
                 continue;
             }
-            WeatherIdsForDay weatherIdsForTheDay = getWeatherIdForDay(weatherList.get(dayInYear), weatherMaxMinForDay);
-            result.add(new WeatherForecastPerDay(dayCounter, weatherIdsForTheDay, weatherMaxMinForDay, getWeatherIconId(weatherIdsForTheDay.mainWeatherId, weatherList.get(dayInYear)), dayInYearForList, yearForList));
+            WeatherIdsForDay weatherIdsForTheDay = getWeatherIdForDay(context, weatherList.get(dayInYear), weatherMaxMinForDay);
+            result.add(new WeatherForecastPerDay(dayCounter, weatherIdsForTheDay, weatherMaxMinForDay, dayInYearForList, yearForList));
         }
         return result;
     }
 
     public static Map<Integer, List<DetailedWeatherForecast>> createWeatherList(WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord) {
         Map<Integer, List<DetailedWeatherForecast>> weatherList = new HashMap<>();
+        Calendar nowCalendar = Calendar.getInstance();
+        int nowDayOfYear = nowCalendar.get(Calendar.DAY_OF_YEAR);
         Calendar forecastCalendar = Calendar.getInstance();
         int maxForecastDay = 0;
         if ((weatherForecastRecord == null) || (weatherForecastRecord.getCompleteWeatherForecast() == null)) {
             return weatherList;
         }
         for (DetailedWeatherForecast detailedWeatherForecast : weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
+
+            if (detailedWeatherForecast == null) {
+                continue;
+            }
+
             forecastCalendar.setTimeInMillis(detailedWeatherForecast.getDateTime() * 1000);
             int forecastDay = forecastCalendar.get(Calendar.DAY_OF_YEAR);
+            if (forecastDay == nowDayOfYear) {
+                continue;
+            }
             if (maxForecastDay > forecastDay) {
                 forecastDay += 365;
             }
@@ -110,22 +120,22 @@ public class ForecastUtil {
         return weatherList;
     }
 
-    public static WeatherIdsForDay getWeatherIdForDay(List<DetailedWeatherForecast> weatherListForDay,
+    public static WeatherIdsForDay getWeatherIdForDay(Context context, List<DetailedWeatherForecast> weatherListForDay,
                                                       WeatherMaxMinForDay weatherMaxMinForDay) {
         Map<Integer, String> weatherDescriptionsInDay = new HashMap<>();
         Map<Integer, Integer> weatherIdsInDay = new HashMap<>();
         for (DetailedWeatherForecast weatherForecastForDay : weatherListForDay) {
-            WeatherCondition weatherCondition = weatherForecastForDay.getFirstWeatherCondition();
+            Integer weatherId = weatherForecastForDay.getWeatherId();
                 /*appendLog(context, TAG, "preLoadWeather:dayInYear=" + dayInYearForList + ":dayCounter=" + dayCounter +
                         ":weatherCondition.getWeatherId()=" + weatherCondition.getWeatherId() +
                         ":weatherIdsInDay.get(weatherCondition.getWeatherId())=" + weatherIdsInDay.get(weatherCondition.getWeatherId()));*/
-            if (weatherIdsInDay.get(weatherCondition.getWeatherId()) == null) {
-                weatherIdsInDay.put(weatherCondition.getWeatherId(), 1);
+            if (weatherIdsInDay.get(weatherId) == null) {
+                weatherIdsInDay.put(weatherId, 1);
             } else {
-                weatherIdsInDay.put(weatherCondition.getWeatherId(), 1 + weatherIdsInDay.get(weatherCondition.getWeatherId()));
+                weatherIdsInDay.put(weatherId, 1 + weatherIdsInDay.get(weatherId));
             }
-            if (!weatherDescriptionsInDay.containsKey(weatherCondition.getWeatherId())) {
-                weatherDescriptionsInDay.put(weatherCondition.getWeatherId(), weatherCondition.getDescription());
+            if (!weatherDescriptionsInDay.containsKey(weatherId)) {
+                weatherDescriptionsInDay.put(weatherId, Utils.getWeatherDescription(weatherId, context));
             }
         }
         Integer maxWeatherIdWithRain = 0;
@@ -190,7 +200,7 @@ public class ForecastUtil {
             if (weatherMaxMinForPeriod == null) {
                 continue;
             }
-            WeatherIdsForDay weatherIdsForPeriod = getWeatherIdForDay(periodWeatherCondition, weatherMaxMinForPeriod);
+            WeatherIdsForDay weatherIdsForPeriod = getWeatherIdForDay(context, periodWeatherCondition, weatherMaxMinForPeriod);
             if (i == 0) {
                 result.nightWeatherIds = weatherIdsForPeriod;
                 result.nightWeatherMaxMin = weatherMaxMinForPeriod;
@@ -368,16 +378,6 @@ public class ForecastUtil {
         return new WeatherMaxMinForDay(dayOfYear, maxTemp, maxTempTime, minTemp, minTempTime, maxWind, maxWindTime, maxRain, maxRainTime, maxSnow, maxSnowTime, resultWindDegree);
     }
 
-    public static String getWeatherIconId(int weatherId, List<DetailedWeatherForecast> forecastListForDay) {
-        for (DetailedWeatherForecast weatherForecastForDay : forecastListForDay) {
-            WeatherCondition weatherCondition = weatherForecastForDay.getFirstWeatherCondition();
-            if (weatherCondition.getWeatherId().equals(weatherId)) {
-                return weatherCondition.getIcon();
-            }
-        }
-        return null;
-    }
-
     public static class WeatherForecastForVoice {
         public Integer dayOfYear;
         public double maxTempForDay;
@@ -401,7 +401,6 @@ public class ForecastUtil {
 
     public static class WeatherForecastPerDay {
         int dayIndex;
-        String iconId;
         WeatherIdsForDay weatherIds;
         WeatherMaxMinForDay weatherMaxMinForDay;
         int dayInYear;
@@ -411,11 +410,9 @@ public class ForecastUtil {
                 int dayIndex,
                 WeatherIdsForDay weatherIds,
                 WeatherMaxMinForDay weatherMaxMinForDay,
-                String iconId,
                 int dayInYear,
                 int year) {
             this.dayIndex = dayIndex;
-            this.iconId = iconId;
             this.weatherIds = weatherIds;
             this.weatherMaxMinForDay = weatherMaxMinForDay;
             this.year = year;

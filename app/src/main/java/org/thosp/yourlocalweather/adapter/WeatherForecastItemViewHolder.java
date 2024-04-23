@@ -71,7 +71,6 @@ public class WeatherForecastItemViewHolder extends RecyclerView.ViewHolder {
         mWeatherForecast = weather;
 
         Typeface typeface = Typeface.createFromAsset(mContext.getAssets(), "fonts/weathericons-regular-webfont.ttf");
-        WeatherCondition weatherCondition = weather.getFirstWeatherCondition();
 
         if (visibleColumns.contains(1)) {
             mTime.setVisibility(View.VISIBLE);
@@ -88,17 +87,13 @@ public class WeatherForecastItemViewHolder extends RecyclerView.ViewHolder {
         if (visibleColumns.contains(2)) {
             mIcon.setVisibility(View.VISIBLE);
             mIcon.setTypeface(typeface);
-            if (weatherCondition != null) {
-                mIcon.setText(Utils.getStrIcon(mContext, weatherCondition.getIcon()));
-            }
+            mIcon.setText(Utils.getStrIcon(mContext, weather.getWeatherId()));
         } else {
             mIcon.setVisibility(View.GONE);
         }
         if (visibleColumns.contains(3)) {
             mDescription.setVisibility(View.VISIBLE);
-            if (weatherCondition != null) {
-                mDescription.setText(weather.getFirstWeatherCondition().getDescription());
-            }
+            mDescription.setText(Utils.getWeatherDescription(weather.getWeatherId(), context));
         } else {
             mDescription.setVisibility(View.GONE);
         }

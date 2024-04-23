@@ -352,8 +352,7 @@ public class MainActivity extends BaseActivity
                 weatherForecastDbHelper.getWeatherForecast(currentLocation.getId()),
                 timeStylePreference,
                 currentLocation);
-        boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(MainActivity.this);
-        String cityAndCountry = Utils.getCityAndCountry(MainActivity.this, defaultApiKey, currentLocation);
+        String cityAndCountry = Utils.getCityAndCountry(MainActivity.this, currentLocation);
         runOnUiThread(() -> {
             mLastUpdateView.setText(MainActivity.this.getString(R.string.last_update_label, lastUpdate));
             localityView.setText(cityAndCountry);
@@ -412,8 +411,7 @@ public class MainActivity extends BaseActivity
                 currentLocation.getLocale());
         String weatherDescription = Utils.getWeatherDescription(MainActivity.this, currentLocation.getLocaleAbbrev(), weather);
         String pressureValue = pressure.getPressure(AppPreference.getPressureDecimalPlaces(pressureUnitFromPreferences));
-        boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(MainActivity.this);
-        String cityAndCountry = Utils.getCityAndCountry(MainActivity.this, defaultApiKey, currentLocation);
+        String cityAndCountry = Utils.getCityAndCountry(MainActivity.this, currentLocation);
         boolean fontBasedIconSet = "weather_icon_set_fontbased".equals(AppPreference.getIconSet(MainActivity.this));
         int textColor = AppPreference.getTextColor(MainActivity.this);
 

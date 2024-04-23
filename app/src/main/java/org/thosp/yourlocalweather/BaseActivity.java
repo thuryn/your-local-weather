@@ -111,9 +111,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         Context savedContext = this;
         YourLocalWeather.executor.submit(() -> {
             AppPreference.setCurrentLocationId(savedContext, currentLocation);
-            boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(savedContext);
             runOnUiThread(() -> {
-                localityView.setText(Utils.getCityAndCountry(savedContext, defaultApiKey, currentLocation));
+                localityView.setText(Utils.getCityAndCountry(savedContext, currentLocation));
             });
             updateUI();
         });

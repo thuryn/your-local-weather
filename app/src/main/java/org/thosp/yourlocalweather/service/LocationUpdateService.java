@@ -202,7 +202,6 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         appendLog(getBaseContext(), TAG, "send intent to get weather, updateSource ", updateSource);
         updateLocationInProcess = false;
         sendMessageToCurrentWeatherService(currentLocation, updateSource, AppWakeUpManager.SOURCE_CURRENT_WEATHER, forceUpdate, false);
-        sendMessageToWeatherForecastService(currentLocation.getId(), updateSource, forceUpdate);
         stopForeground(true);
     }
 

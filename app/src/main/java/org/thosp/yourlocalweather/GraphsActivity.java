@@ -35,6 +35,7 @@ import org.thosp.charting.data.Entry;
 import org.thosp.charting.data.LineData;
 import org.thosp.charting.data.LineDataSet;
 import org.thosp.charting.interfaces.datasets.IDataSet;
+import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
@@ -242,8 +243,15 @@ public class GraphsActivity extends ForecastingActivity {
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
-            double temperatureDay = TemperatureUtil.getTemperature(this, temperatureUnitFromPreferences, weatherForecastList.get(locationId).get(i));
-            entries.add(new Entry(weatherForecastList.get(locationId).get(i).getDateTime(), (float) temperatureDay));
+
+            DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
+
+            if (detailedWeatherForecast == null) {
+                continue;
+            }
+
+            double temperatureDay = TemperatureUtil.getTemperature(this, temperatureUnitFromPreferences, detailedWeatherForecast);
+            entries.add(new Entry(detailedWeatherForecast.getDateTime(), (float) temperatureDay));
         }
 
         LineDataSet set;
@@ -329,8 +337,14 @@ public class GraphsActivity extends ForecastingActivity {
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
-            double wind = AppPreference.getWind(windUnitFromPreferences, weatherForecastList.get(locationId).get(i).getWindSpeed());
-            entries.add(new Entry(weatherForecastList.get(locationId).get(i).getDateTime(), (float) wind));
+            DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
+
+            if (detailedWeatherForecast == null) {
+                continue;
+            }
+
+            double wind = AppPreference.getWind(windUnitFromPreferences, detailedWeatherForecast.getWindSpeed());
+            entries.add(new Entry(detailedWeatherForecast.getDateTime(), (float) wind));
         }
 
         LineDataSet set;
@@ -413,11 +427,16 @@ public class GraphsActivity extends ForecastingActivity {
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
+            DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
+
+            if (detailedWeatherForecast == null) {
+                continue;
+            }
             entries.add(new Entry(
-                    weatherForecastList.get(locationId).get(i).getDateTime(),
+                    detailedWeatherForecast.getDateTime(),
                     (float) AppPreference.getRainOrSnow(
                             rainSnowUnitFromPreferences,
-                            weatherForecastList.get(locationId).get(i).getRain())
+                            detailedWeatherForecast.getRain())
                     )
             );
         }
@@ -502,11 +521,16 @@ public class GraphsActivity extends ForecastingActivity {
 
         List<BarEntry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
+            DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
+
+            if (detailedWeatherForecast == null) {
+                continue;
+            }
             entries.add(new BarEntry(
-                            weatherForecastList.get(locationId).get(i).getDateTime(),
+                    detailedWeatherForecast.getDateTime(),
                             (float) AppPreference.getRainOrSnow(
                                     rainSnowUnitFromPreferences,
-                                    weatherForecastList.get(locationId).get(i).getRain())
+                                    detailedWeatherForecast.getRain())
                     )
             );
         }
@@ -585,11 +609,16 @@ public class GraphsActivity extends ForecastingActivity {
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
+            DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
+
+            if (detailedWeatherForecast == null) {
+                continue;
+            }
             entries.add(new Entry(
-                             weatherForecastList.get(locationId).get(i).getDateTime(),
+                    detailedWeatherForecast.getDateTime(),
                             (float) AppPreference.getRainOrSnow(
                                     rainSnowUnitFromPreferences,
-                                    weatherForecastList.get(locationId).get(i).getSnow())
+                                    detailedWeatherForecast.getSnow())
                     )
             );
         }
@@ -674,11 +703,16 @@ public class GraphsActivity extends ForecastingActivity {
 
         List<BarEntry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
+            DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
+
+            if (detailedWeatherForecast == null) {
+                continue;
+            }
             entries.add(new BarEntry(
-                            weatherForecastList.get(locationId).get(i).getDateTime(),
+                    detailedWeatherForecast.getDateTime(),
                             (float) AppPreference.getRainOrSnow(
                                     rainSnowUnitFromPreferences,
-                                    weatherForecastList.get(locationId).get(i).getSnow())
+                                    detailedWeatherForecast.getSnow())
                     )
             );
         }
@@ -756,11 +790,16 @@ public class GraphsActivity extends ForecastingActivity {
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
+            DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
+
+            if (detailedWeatherForecast == null) {
+                continue;
+            }
             entries.add(new Entry(
-                    weatherForecastList.get(locationId).get(i).getDateTime(),
+                    detailedWeatherForecast.getDateTime(),
                     (float) AppPreference.getPressureWithUnit(
                             this,
-                            weatherForecastList.get(locationId).get(i).getPressure(),
+                            detailedWeatherForecast.getPressure(),
                             pressureUnitFromPreferences,
                             locale).getPressure()));
         }
@@ -989,17 +1028,12 @@ public class GraphsActivity extends ForecastingActivity {
 
     @Override
     protected void updateUI() {
-        boolean freeForecast = ApiKeys.isWeatherForecastFeaturesFree(GraphsActivity.this);
         int maxOrderId = locationsDbHelper.getMaxOrderId();
         runOnUiThread(new Runnable() {
                           @Override
                           public void run() {
                               View switchPanel = findViewById(R.id.graph_switch_panel);
-                              if (freeForecast) {
-                                  switchPanel.setVisibility(View.INVISIBLE);
-                              } else {
-                                  switchPanel.setVisibility(View.VISIBLE);
-                              }
+                              switchPanel.setVisibility(View.INVISIBLE);
                               if ((maxOrderId > 1) ||
                                       ((maxOrderId == 1) && (locationsDbHelper.getLocationByOrderId(0).isEnabled()))) {
                                   switchLocationButton.setVisibility(View.VISIBLE);
@@ -1048,8 +1082,7 @@ public class GraphsActivity extends ForecastingActivity {
         String rainSnowUnit = getString(AppPreference.getRainOrSnowUnit(rainSnowUnitFromPreferences));
         String windUnit = AppPreference.getWindUnit(this, AppPreference.getWindUnitFromPreferences(this));
         String pressureUnit = AppPreference.getPressureUnit(this, pressureUnitFromPreferences);
-        boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(this);
-        String cityAndCountry = Utils.getCityAndCountry(this, defaultApiKey, currentLocation);
+        String cityAndCountry = Utils.getCityAndCountry(this, currentLocation);
         String pressureUnitFromPreferences = AppPreference.getPressureUnitFromPreferences(this);
         String windUnitFromPreferences = AppPreference.getWindUnitFromPreferences(this);
 

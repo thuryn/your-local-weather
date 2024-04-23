@@ -231,7 +231,7 @@ public class GraphUtils {
     public static CombinedChart generateCombinedGraph(Context context,
                                                       CombinedChart combinedChartFromLayout,
                                                       Set<Integer> combinedGraphValues,
-                                                      List<DetailedWeatherForecast> weatherForecastList,
+                                                      List<DetailedWeatherForecast> weatherForecastListInput,
                                                       Locale locale,
                                                       Float textSize,
                                                       Integer yAxisValues,
@@ -305,6 +305,22 @@ public class GraphUtils {
         combinedChart.setBackgroundColor(backgroundColorId);
         combinedChart.setGridBackgroundColor(textColorId);
 
+        List<DetailedWeatherForecast> weatherForecastList = new ArrayList();
+
+        long now = Calendar.getInstance().getTimeInMillis();
+
+        int graphDaysCounter = 120;
+        for(DetailedWeatherForecast detailedWeatherForecast: weatherForecastListInput) {
+            if ((detailedWeatherForecast != null) && (graphDaysCounter >= 0)) {
+                long forecastDateTimeInMs = detailedWeatherForecast.getDateTime()*1000;
+                if (forecastDateTimeInMs < now) {
+                    continue;
+                }
+                weatherForecastList.add(detailedWeatherForecast);
+                graphDaysCounter--;
+            }
+        }
+
         setupXAxis(combinedChart.getXAxis(), weatherForecastList, textColorId, textSize, gridColorId, locale);
 
         int temperatureListSize = weatherForecastList.size();
@@ -328,6 +344,12 @@ public class GraphUtils {
         List<Entry> temperatureEntries = new ArrayList<>();
         int entryCounter = 0;
         for (double temperatureForEntry: temperatures) {
+
+            if (weatherForecastList.get(entryCounter) == null) {
+                entryCounter++;
+                continue;
+            }
+
             if (entryCounter > 0) {
                 boolean fromFreezeToHot = (temperatures[entryCounter - 1] < 0) && (temperatureForEntry > 0);
                 boolean fromHotToFreeze = (temperatures[entryCounter - 1] > 0) && (temperatureForEntry < 0);
@@ -688,6 +710,11 @@ public class GraphUtils {
 
         List<String> passedDays = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.size(); i++) {
+
+            if (weatherForecastList.get(i) == null) {
+                continue;
+            }
+
             Calendar cal = Calendar.getInstance();
             cal.setTimeInMillis(weatherForecastList.get(i).getDateTime() * 1000);
 

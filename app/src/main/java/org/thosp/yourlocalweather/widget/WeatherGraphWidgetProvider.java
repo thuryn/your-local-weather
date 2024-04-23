@@ -62,7 +62,6 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
             return;
         }
 
-        boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(context);
         Boolean showLegend = widgetSettingsDbHelper.getParamBoolean(appWidgetId, "combinedGraphShowLegend");
         Set<Integer> combinedGraphValuesFromPreferences = AppPreference.getCombinedGraphValues(context);
         Set<Integer> combinedGraphValuesFromSettings = GraphUtils.getCombinedGraphValuesFromSettings(combinedGraphValuesFromPreferences, widgetSettingsDbHelper, appWidgetId);
@@ -79,7 +78,7 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
         WeatherGraphWidgetProvider.setWidgetIntents(context, remoteViews, WeatherGraphWidgetProvider.class, appWidgetId);
 
         ContextCompat.getMainExecutor(context).execute(()  -> {
-                    remoteViews.setTextViewText(R.id.widget_weather_graph_1x3_widget_city, Utils.getCityAndCountry(context, defaultApiKey, currentLocation));
+                    remoteViews.setTextViewText(R.id.widget_weather_graph_1x3_widget_city, Utils.getCityAndCountry(context, currentLocation));
                 });
 
         try {

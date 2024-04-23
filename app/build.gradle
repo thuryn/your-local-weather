@@ -49,6 +49,7 @@ android {
     packagingOptions {
         exclude 'META-INF/*'
     }
+    namespace 'org.thosp.yourlocalweather'
 }
 
 dependencies {

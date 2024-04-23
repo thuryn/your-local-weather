@@ -3,16 +3,18 @@ package org.thosp.yourlocalweather.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.thosp.yourlocalweather.WmoCodes;
+
 public class CurrentWeather implements Parcelable {
 
     private String mDescription;
     private String mIdIcon;
     private Integer mWeatherId;
 
-    public CurrentWeather(Integer id, String description, String iconId) {
-        this.mWeatherId = id;
-        this.mDescription = description;
-        this.mIdIcon = iconId;
+    public CurrentWeather(WmoCodes wmoCodes) {
+        this.mWeatherId = wmoCodes.getId();
+        this.mDescription = wmoCodes.getDescription();
+        this.mIdIcon = wmoCodes.getIconId();
     }
 
     public String getDescription() {

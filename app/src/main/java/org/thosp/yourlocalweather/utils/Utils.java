@@ -36,6 +36,7 @@ import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -81,67 +82,61 @@ public class Utils {
         if ((weatherRecord == null) || (weatherRecord.getWeather() == null)) {
             return context.getString(R.string.icon_clear_sky_day);
         }
-        return getStrIcon(context, weatherRecord.getWeather().getCurrentWeathers().iterator().next().getIdIcon());
+        return getStrIcon(context, weatherRecord.getWeather().getWeatherId());
     }
 
-    public static String getStrIcon(Context context, String iconId) {
-        if (iconId == null) {
+    public static String getStrIcon(Context context, int weatherId) {
+        if (weatherId == 0) {
             return context.getString(R.string.icon_clear_sky_day);
         }
         String icon;
-        switch (iconId) {
-            case "01d":
+        switch (weatherId) {
+            case 0:
                 icon = context.getString(R.string.icon_clear_sky_day);
+                //icon = context.getString(R.string.icon_clear_sky_night);
                 break;
-            case "01n":
-                icon = context.getString(R.string.icon_clear_sky_night);
-                break;
-            case "02d":
+            case 1:
                 icon = context.getString(R.string.icon_few_clouds_day);
+                //icon = context.getString(R.string.icon_few_clouds_night);
                 break;
-            case "02n":
-                icon = context.getString(R.string.icon_few_clouds_night);
-                break;
-            case "03d":
+            case 2:
                 icon = context.getString(R.string.icon_scattered_clouds);
                 break;
-            case "03n":
-                icon = context.getString(R.string.icon_scattered_clouds);
-                break;
-            case "04d":
+            case 3:
                 icon = context.getString(R.string.icon_broken_clouds);
                 break;
-            case "04n":
-                icon = context.getString(R.string.icon_broken_clouds);
-                break;
-            case "09d":
+            case 51:
+            case 61:
+            case 56:
+            case 66:
+            case 80:
                 icon = context.getString(R.string.icon_shower_rain);
                 break;
-            case "09n":
-                icon = context.getString(R.string.icon_shower_rain);
-                break;
-            case "10d":
+            case 53:
+            case 55:
+            case 57:
+            case 63:
+            case 65:
+            case 67:
+            case 81:
+            case 82:
                 icon = context.getString(R.string.icon_rain_day);
                 break;
-            case "10n":
-                icon = context.getString(R.string.icon_rain_night);
-                break;
-            case "11d":
+            case 96:
+            case 95:
+            case 99:
                 icon = context.getString(R.string.icon_thunderstorm);
                 break;
-            case "11n":
-                icon = context.getString(R.string.icon_thunderstorm);
-                break;
-            case "13d":
+            case 71:
+            case 73:
+            case 75:
+            case 77:
+            case 85:
+            case 86:
                 icon = context.getString(R.string.icon_snow);
                 break;
-            case "13n":
-                icon = context.getString(R.string.icon_snow);
-                break;
-            case "50d":
-                icon = context.getString(R.string.icon_mist);
-                break;
-            case "50n":
+            case 45:
+            case 48:
                 icon = context.getString(R.string.icon_mist);
                 break;
             default:
@@ -175,13 +170,12 @@ public class Utils {
                                       int viewIconId,
                                        boolean fontBasedIcons,
                                        Integer weatherId,
-                                       String iconId,
                                        double maxTemp,
                                        double maxWind,
                                        int fontColorId) {
         if (fontBasedIcons) {
             remoteViews.setImageViewBitmap(viewIconId,
-                    createWeatherIconWithColor(context, getStrIcon(context, iconId), fontColorId));
+                    createWeatherIconWithColor(context, getStrIcon(context, weatherId), fontColorId));
         } else {
             remoteViews.setImageViewResource(viewIconId, Utils.getWeatherResourceIcon(weatherId, maxTemp, maxWind));
         }
@@ -208,119 +202,83 @@ public class Utils {
             return R.drawable.ic_weather_set_1_31;
         }
         boolean strongWind = maxWind > 5;
+        boolean veryStrongWind = maxWind > 15;
         switch (weatherId) {
-            case 800:
+            case 0:
                 if (maxTemp > 30) {
                     return R.drawable.ic_weather_set_1_36;
+                } else if (veryStrongWind) {
+                    return R.drawable.ic_weather_set_1_24;
                 } else {
                     return R.drawable.ic_weather_set_1_32;
                 }
-            case 801:
-                return R.drawable.ic_weather_set_1_34;
-            case 802:
-                return R.drawable.ic_weather_set_1_30;
-            case 803:
-                return R.drawable.ic_weather_set_1_28;
-            case 804:
-                return R.drawable.ic_weather_set_1_26;
-            case 300:
-            case 500:
+            /*case 1:
+                if (day)
+                    return R.drawable.ic_weather_set_1_34;
+                else
+                    return R.drawable.ic_weather_set_1_33;*/
+            case 1:
+                if (veryStrongWind) {
+                    return R.drawable.ic_weather_set_1_24;
+                } else {
+                    return R.drawable.ic_weather_set_1_30;
+                }
+            case 2:
+                if (veryStrongWind) {
+                    return R.drawable.ic_weather_set_1_24;
+                } else {
+                    return R.drawable.ic_weather_set_1_28;
+                }
+            case 3:
+                if (veryStrongWind) {
+                    return R.drawable.ic_weather_set_1_24;
+                } else {
+                    return R.drawable.ic_weather_set_1_26;
+                }
+            case 51:
+            case 80:
                 return R.drawable.ic_weather_set_1_39;
-            case 301:
-            case 302:
-            case 310:
-            case 501:
+            case 53:
+            case 55:
+            case 81:
                 return R.drawable.ic_weather_set_1_11;
-            case 311:
-            case 312:
-            case 313:
-            case 314:
-            case 321:
-            case 502:
-            case 503:
-            case 504:
-            case 520:
-            case 521:
-            case 522:
-            case 531:
+            case 61:
+            case 63:
+            case 65:
+            case 82:
                 return R.drawable.ic_weather_set_1_12;
-            case 511:
+            case 56:
+            case 57:
+            case 66:
+            case 67:
                 if (strongWind)
                     return R.drawable.ic_weather_set_1_10;
                 else
                     return R.drawable.ic_weather_set_1_08;
-            case 701:
+            case 45:
                 return R.drawable.ic_weather_set_1_22;
-            case 711:
-            case 721:
-            case 731:
-            case 741:
-            case 751:
-            case 761:
+            case 48:
                 return R.drawable.ic_weather_set_1_20;
-            case 762:
-                return R.drawable.ic_weather_set_1_na;
-            case 771:
-            case 781:
-                return R.drawable.ic_weather_set_1_24;
-            case 200:
-            case 210:
-            case 230:
+            case 96:
                 return R.drawable.ic_weather_set_1_38;
-            case 201:
-            case 202:
-            case 211:
-            case 212:
-            case 221:
-            case 231:
-            case 232:
+            case 95:
+            case 99:
                 return R.drawable.ic_weather_set_1_17;
-            case 600:
+            case 71:
+            case 85:
                 return R.drawable.ic_weather_set_1_13;
-            case 601:
+            case 73:
+            case 86:
                 if (strongWind)
                     return R.drawable.ic_weather_set_1_15;
                 else
                     return R.drawable.ic_weather_set_1_14;
-            case 602:
+            case 75:
+            case 77:
                 if (strongWind)
                     return R.drawable.ic_weather_set_1_15;
                 else
                     return R.drawable.ic_weather_set_1_16;
-            case 611:
-            case 615:
-            case 620:
-                return R.drawable.ic_weather_set_1_05;
-            case 612:
-            case 616:
-            case 621:
-            case 622:
-                return R.drawable.ic_weather_set_1_42;
-            case 900:
-            case 901:
-            case 902:
-                return R.drawable.ic_weather_set_1_24;
-            case 903:
-                return R.drawable.ic_weather_set_1_na;
-            case 904:
-                return R.drawable.ic_weather_set_1_36;
-            case 905:
-                return R.drawable.ic_weather_set_1_24;
-            case 906:
-                return R.drawable.ic_weather_set_1_18;
-            case 951:
-                return R.drawable.ic_weather_set_1_26;
-            case 952:
-            case 953:
-            case 954:
-            case 955:
-            case 956:
-            case 957:
-            case 958:
-            case 959:
-            case 960:
-            case 961:
-            case 962:
             default:
                 return R.drawable.ic_weather_set_1_24;
         }
@@ -331,153 +289,115 @@ public class Utils {
             return R.drawable.ic_weather_set_1_31;
         }
         Weather weather = weatherRecord.getWeather();
-        if ((weather == null) || (weather.getCurrentWeathers() == null) || weather.getCurrentWeathers().isEmpty()) {
+        if ((weather == null) || (weather.getWeatherId() == 0)) {
             return R.drawable.ic_weather_set_1_31;
         }
-        int weatherId = weather.getCurrentWeathers().iterator().next().getWeatherId();
         boolean strongWind = weather.getWindSpeed() > 5;
+        boolean veryStrongWind = weather.getWindSpeed() > 15;
         Calendar timeNow = getLocalTimeWithoutDate(weatherRecord.getLastUpdatedTime());
         Calendar sunrise = getLocalTimeWithoutDate(weather.getSunrise() * 1000);
         Calendar sunset = getLocalTimeWithoutDate(weather.getSunset() * 1000);
         boolean day = sunrise.before(timeNow) && timeNow.before(sunset);
-        switch (weatherId) {
-            case 800:
+        switch (weather.getWeatherId()) {
+            case 0:
                 if (day) {
                     if (weather.getTemperature() > 30) {
                         return R.drawable.ic_weather_set_1_36;
+                    } else if (veryStrongWind) {
+                        return R.drawable.ic_weather_set_1_24;
                     } else {
                         return R.drawable.ic_weather_set_1_32;
                     }
+                } else if (veryStrongWind) {
+                    return R.drawable.ic_weather_set_1_24;
                 } else {
                     return R.drawable.ic_weather_set_1_31;
                 }
-            case 801:
+            /*case 1:
                 if (day)
                     return R.drawable.ic_weather_set_1_34;
                 else
-                    return R.drawable.ic_weather_set_1_33;
-            case 802:
-                if (day)
+                    return R.drawable.ic_weather_set_1_33;*/
+            case 1:
+                if (veryStrongWind) {
+                    return R.drawable.ic_weather_set_1_24;
+                } else if (day) {
                     return R.drawable.ic_weather_set_1_30;
-                else
+                } else {
                     return R.drawable.ic_weather_set_1_29;
-            case 803:
-                if (day)
+                }
+            case 2:
+                if (veryStrongWind) {
+                    return R.drawable.ic_weather_set_1_24;
+                } else if (day) {
                     return R.drawable.ic_weather_set_1_28;
-                else
+                } else {
                     return R.drawable.ic_weather_set_1_27;
-            case 804:
-                return R.drawable.ic_weather_set_1_26;
-            case 300:
-            case 500:
+                }
+            case 3:
+                if (veryStrongWind) {
+                    return R.drawable.ic_weather_set_1_24;
+                } else {
+                    return R.drawable.ic_weather_set_1_26;
+                }
+            case 51:
+            case 80:
                 if (day)
                     return R.drawable.ic_weather_set_1_39;
                 else
                     return R.drawable.ic_weather_set_1_45;
-            case 301:
-            case 302:
-            case 310:
-            case 501:
+            case 53:
+            case 55:
+            case 81:
                 return R.drawable.ic_weather_set_1_11;
-            case 311:
-            case 312:
-            case 313:
-            case 314:
-            case 321:
-            case 502:
-            case 503:
-            case 504:
-            case 520:
-            case 521:
-            case 522:
-            case 531:
+            case 61:
+            case 63:
+            case 65:
+            case 82:
                 return R.drawable.ic_weather_set_1_12;
-            case 511:
+            case 56:
+            case 57:
+            case 66:
+            case 67:
                 if (strongWind)
                     return R.drawable.ic_weather_set_1_10;
                 else
                     return R.drawable.ic_weather_set_1_08;
-            case 701:
+            case 45:
                 if (day)
                     return R.drawable.ic_weather_set_1_22;
                 else
                     return R.drawable.ic_weather_set_1_21;
-            case 711:
-            case 721:
-            case 731:
-            case 741:
-            case 751:
-            case 761:
+            case 48:
                 return R.drawable.ic_weather_set_1_20;
-            case 762:
-                return R.drawable.ic_weather_set_1_na;
-            case 771:
-            case 781:
-                return R.drawable.ic_weather_set_1_24;
-            case 200:
-            case 210:
-            case 230:
+            case 96:
                 if (day)
                     return R.drawable.ic_weather_set_1_38;
                 else
                     return R.drawable.ic_weather_set_1_45;
-            case 201:
-            case 202:
-            case 211:
-            case 212:
-            case 221:
-            case 231:
-            case 232:
+            case 95:
+            case 99:
                 return R.drawable.ic_weather_set_1_17;
-            case 600:
+            case 71:
+            case 85:
                 return R.drawable.ic_weather_set_1_13;
-            case 601:
+            case 73:
+            case 86:
                 if (strongWind)
                     return R.drawable.ic_weather_set_1_15;
                 else
                     return R.drawable.ic_weather_set_1_14;
-            case 602:
+            case 75:
+            case 77:
                 if (strongWind)
                     return R.drawable.ic_weather_set_1_15;
                 else
                     return R.drawable.ic_weather_set_1_16;
-            case 611:
-            case 615:
-            case 620:
-                return R.drawable.ic_weather_set_1_05;
-            case 612:
-            case 616:
-            case 621:
-            case 622:
-                return R.drawable.ic_weather_set_1_42;
-            case 900:
-            case 901:
-            case 902:
-                return R.drawable.ic_weather_set_1_24;
-            case 903:
-                return R.drawable.ic_weather_set_1_na;
-            case 904:
-                return R.drawable.ic_weather_set_1_36;
-            case 905:
-                return R.drawable.ic_weather_set_1_24;
-            case 906:
-                return R.drawable.ic_weather_set_1_18;
-            case 951:
-                return R.drawable.ic_weather_set_1_26;
-            case 952:
-            case 953:
-            case 954:
-            case 955:
-            case 956:
-            case 957:
-            case 958:
-            case 959:
-            case 960:
-            case 961:
-            case 962:
-            default:
-                return R.drawable.ic_weather_set_1_24;
+                //return R.drawable.ic_weather_set_1_05;
+                //return R.drawable.ic_weather_set_1_42;
+                //return R.drawable.ic_weather_set_1_18;
         }
+        return R.drawable.ic_weather_set_1_na;
     }
 
     public static String getLastUpdateTime(Context context, Location location) {
@@ -581,35 +501,11 @@ public class Utils {
         return directions[index] + " " + arrows[index];
     }
 
-    public static URL getOwmUrl(Context context,
-                                            String endpoint,
-                                            Location location,
-                                            String units,
-                                            String lang,
-                                            final String license) throws MalformedURLException {
-        String url;
-        if (ApiKeys.isWeatherForecastFeaturesFree(context)) {
-            url = Uri.parse(endpoint)
-                    .buildUpon()
-                    .appendQueryParameter("appid", ApiKeys.getOpenweathermapApiKey(context))
-                    .appendQueryParameter("lat", String.valueOf(location.getLatitude()).replace(",", "."))
-                    .appendQueryParameter("lon", String.valueOf(location.getLongitude()).replace(",", "."))
-                    .appendQueryParameter("units", units)
-                    .appendQueryParameter("lang", OWMLanguages.getOwmLanguage(lang))
-                    .build()
-                    .toString();
-        } else {
-            url = Uri.parse(endpoint)
-                    .buildUpon()
-                    .appendQueryParameter("appid", ApiKeys.getOpenweathermapApiKey(context))
-                    .appendQueryParameter("lat", String.valueOf(location.getLatitude()).replace(",", "."))
-                    .appendQueryParameter("lon", String.valueOf(location.getLongitude()).replace(",", "."))
-                    .appendQueryParameter("units", units)
-                    .appendQueryParameter("lang", OWMLanguages.getOwmLanguage(lang))
-                    .appendQueryParameter("license", license)
-                    .build()
-                    .toString();
-        }
+    public static URL getOwmUrl(Context context, Location location) throws MalformedURLException {
+        String latitude = String.valueOf(location.getLatitude()).replace(",", ".");
+        String longitude = String.valueOf(location.getLongitude()).replace(",", ".");
+        Object[] params = new Object[]{latitude, longitude};
+        String url = MessageFormat.format(Constants.WEATHER_ENDPOINT, params);
         appendLog(context, TAG, url);
         return new URL(url);
     }
@@ -639,16 +535,12 @@ public class Utils {
         return address;
     }
 
-    public static String getCityAndCountry(Context context, boolean defaultApiKey, Location location) {
+    public static String getCityAndCountry(Context context, Location location) {
         if (location == null) {
             return context.getString(R.string.location_not_found);
         }
         if ("E".equals(location.getLocationSource())) {
-            if (defaultApiKey) {
-                return context.getString(R.string.subscription_expired);
-            } else {
-                return context.getString(R.string.subscription_is_wrong);
-            }
+            return context.getString(R.string.subscription_expired);
         }
         if (!location.isAddressFound()) {
             return context.getString(R.string.location_not_found);
@@ -661,30 +553,13 @@ public class Utils {
         if((weather == null) || AppPreference.hideDescription(context)) {
             return " ";
         }
-        StringBuilder currentWeatherDescription = new StringBuilder();
-        boolean first = true;
-        for (CurrentWeather currentWeather: weather.getCurrentWeathers()) {
-            if (!first) {
-                currentWeatherDescription.append(", ");
-            }
-            currentWeatherDescription.append(getWeatherDescription(
-                    currentWeather.getWeatherId(),
-                    currentWeather.getDescription(),
-                    locale,
-                    context));
-            first = false;
-        }
-        return currentWeatherDescription.toString();
+        return getWeatherDescription(
+                weather.getWeatherId(),
+                context);
     }
 
-    public static String getWeatherDescription(int weatherId, String weatherDescriptionFromOwm, String locale, Context context) {
-        String weatherDescription;
-        if ((weatherDescriptionFromOwm == null) || !OWMLanguages.isLanguageSupportedByOWMAndNotTranslatedLocaly(locale)) {
-            weatherDescription = context.getString(getWeatherDescriptionResourceId(weatherId));
-        } else {
-            weatherDescription = capitalizeFirstLetter(weatherDescriptionFromOwm);
-        }
-        return weatherDescription;
+    public static String getWeatherDescription(int weatherId, Context context) {
+        return context.getString(getWeatherDescriptionResourceId(weatherId));
     }
 
     public static boolean isWeatherDescriptionWithRain(int weatherId) {
@@ -705,17 +580,17 @@ public class Utils {
 
     private static int getWeatherDescriptionResourceId(int weatherId) {
         switch (weatherId) {
-            case 200:
+            case 96:
                 return R.string.weather_condition_description_200;
-            case 201:
+            case 99:
                 return R.string.weather_condition_description_201;
-            case 202:
+            /*case 202:
                 return R.string.weather_condition_description_202;
             case 210:
-                return R.string.weather_condition_description_210;
-            case 211:
+                return R.string.weather_condition_description_210;*/
+            case 95:
                 return R.string.weather_condition_description_211;
-            case 212:
+            /*case 212:
                 return R.string.weather_condition_description_212;
             case 221:
                 return R.string.weather_condition_description_221;
@@ -724,14 +599,14 @@ public class Utils {
             case 231:
                 return R.string.weather_condition_description_231;
             case 232:
-                return R.string.weather_condition_description_232;
-            case 300:
+                return R.string.weather_condition_description_232;*/
+            case 51:
                 return R.string.weather_condition_description_300;
-            case 301:
+            case 53:
                 return R.string.weather_condition_description_301;
-            case 302:
+            case 55:
                 return R.string.weather_condition_description_302;
-            case 310:
+            /*case 310:
                 return R.string.weather_condition_description_310;
             case 311:
                 return R.string.weather_condition_description_311;
@@ -742,46 +617,50 @@ public class Utils {
             case 314:
                 return R.string.weather_condition_description_314;
             case 321:
-                return R.string.weather_condition_description_321;
-            case 500:
+                return R.string.weather_condition_description_321;*/
+            case 61:
                 return R.string.weather_condition_description_500;
-            case 501:
+            case 63:
                 return R.string.weather_condition_description_501;
-            case 502:
+            case 65:
                 return R.string.weather_condition_description_502;
-            case 503:
+            /*case 503:
                 return R.string.weather_condition_description_503;
             case 504:
-                return R.string.weather_condition_description_504;
-            case 511:
+                return R.string.weather_condition_description_504;*/
+            case 56:
+            case 57:
+            case 66:
+            case 67:
                 return R.string.weather_condition_description_511;
-            case 520:
+            case 80:
                 return R.string.weather_condition_description_520;
-            case 521:
+            case 81:
                 return R.string.weather_condition_description_521;
-            case 522:
+            case 82:
                 return R.string.weather_condition_description_522;
             case 531:
                 return R.string.weather_condition_description_531;
-            case 600:
+            case 71:
                 return R.string.weather_condition_description_600;
-            case 601:
+            case 73:
+            case 77:
                 return R.string.weather_condition_description_601;
-            case 602:
+            case 75:
                 return R.string.weather_condition_description_602;
-            case 611:
+            /*case 611:
                 return R.string.weather_condition_description_611;
             case 612:
                 return R.string.weather_condition_description_612;
             case 615:
                 return R.string.weather_condition_description_615;
             case 616:
-                return R.string.weather_condition_description_616;
-            case 620:
+                return R.string.weather_condition_description_616;*/
+            case 85:
                 return R.string.weather_condition_description_620;
-            case 621:
+            case 86:
                 return R.string.weather_condition_description_621;
-            case 622:
+            /*case 622:
                 return R.string.weather_condition_description_622;
             case 701:
                 return R.string.weather_condition_description_701;
@@ -790,10 +669,12 @@ public class Utils {
             case 721:
                 return R.string.weather_condition_description_721;
             case 731:
-                return R.string.weather_condition_description_731;
-            case 741:
+                return R.string.weather_condition_description_731;*/
+            case 45:
+                return R.string.weather_condition_description_701;
+            case 48:
                 return R.string.weather_condition_description_741;
-            case 751:
+            /*case 751:
                 return R.string.weather_condition_description_751;
             case 761:
                 return R.string.weather_condition_description_761;
@@ -802,16 +683,16 @@ public class Utils {
             case 771:
                 return R.string.weather_condition_description_771;
             case 781:
-                return R.string.weather_condition_description_781;
-            case 800:
+                return R.string.weather_condition_description_781;*/
+            case 0:
                 return R.string.weather_condition_description_800;
-            case 801:
+            case 1:
                 return R.string.weather_condition_description_801;
-            case 802:
+            case 2:
                 return R.string.weather_condition_description_802;
-            case 803:
-                return R.string.weather_condition_description_803;
-            case 804:
+            /*case 803:
+                return R.string.weather_condition_description_803;*/
+            case 3:
                 return R.string.weather_condition_description_804;
             default:
                 return R.string.weather_condition_description_none;
@@ -825,13 +706,6 @@ public class Utils {
         calendar.set(Calendar.MONTH, 0);
         calendar.set(Calendar.YEAR, 1970);
         return calendar;
-    }
-
-    private static String capitalizeFirstLetter(String input) {
-        if ((input == null) || (input.length() < 1)) {
-            return "";
-        }
-        return input.substring(0, 1).toUpperCase() + input.substring(1);
     }
 
     public static String getCityAndCountryFromAddress(Address address) {

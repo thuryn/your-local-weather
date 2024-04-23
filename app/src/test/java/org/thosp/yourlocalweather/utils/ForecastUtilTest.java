@@ -19,6 +19,8 @@ import java.util.Set;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import android.content.Context;
+
 /**
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
@@ -43,12 +45,12 @@ public class ForecastUtilTest {
     }
 
     @Test
-    public void calculateMaxTemperatureWhenAllValuesAreNegative() throws Exception {
+    public void calculateMaxTemperatureWhenAllValuesAreNegative(Context context) throws Exception {
         //given
         createDetailedWeatherForecastForDayWithNegativeTemperatures();
 
         //when
-        Set<ForecastUtil.WeatherForecastPerDay> result = ForecastUtil.calculateWeatherForDays(weatherForecastRecord);
+        Set<ForecastUtil.WeatherForecastPerDay> result = ForecastUtil.calculateWeatherForDays(context, weatherForecastRecord);
 
         //then
         assertEquals(1, result.size());
@@ -59,12 +61,12 @@ public class ForecastUtilTest {
     }
 
     @Test
-    public void createForecastFor5DaysAtTheEndOfYear() throws Exception {
+    public void createForecastFor5DaysAtTheEndOfYear(Context context) throws Exception {
         //given
         createDetailedWeatherForecastForDay();
 
         //when
-        Set<ForecastUtil.WeatherForecastPerDay> result = ForecastUtil.calculateWeatherForDays(weatherForecastRecord);
+        Set<ForecastUtil.WeatherForecastPerDay> result = ForecastUtil.calculateWeatherForDays(context, weatherForecastRecord);
 
         //then
         assertEquals(5, result.size());

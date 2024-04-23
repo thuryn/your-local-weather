@@ -91,7 +91,6 @@ public class ExtLocationWithForecastWidgetProvider extends AbstractWidgetProvide
 
         if (weatherRecord != null) {
             Weather weather = weatherRecord.getWeather();
-            boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(context);
 
             String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
                     context,
@@ -119,7 +118,7 @@ public class ExtLocationWithForecastWidgetProvider extends AbstractWidgetProvide
             }
 
             ContextCompat.getMainExecutor(context).execute(()  -> {
-                remoteViews.setTextViewText(R.id.widget_ext_loc_forecast_3x3_widget_city, Utils.getCityAndCountry(context, defaultApiKey, currentLocation));
+                remoteViews.setTextViewText(R.id.widget_ext_loc_forecast_3x3_widget_city, Utils.getCityAndCountry(context, currentLocation));
                 remoteViews.setTextViewText(R.id.widget_ext_loc_forecast_3x3_widget_temperature, temperatureWithUnit);
 
                 if (secondTemperature != null) {
@@ -238,7 +237,11 @@ public class ExtLocationWithForecastWidgetProvider extends AbstractWidgetProvide
                         R.id.widget_ext_loc_forecast_3x3_forecast_day_5,
                         R.id.widget_ext_loc_forecast_3x3_forecast_5_widget_icon,
                         R.id.widget_ext_loc_forecast_3x3_forecast_5_widget_day,
-                        R.id.widget_ext_loc_forecast_3x3_forecast_5_widget_temperatures);
+                        R.id.widget_ext_loc_forecast_3x3_forecast_5_widget_temperatures,
+                        R.id.widget_ext_loc_forecast_3x3_forecast_day_6,
+                        R.id.widget_ext_loc_forecast_3x3_forecast_6_widget_icon,
+                        R.id.widget_ext_loc_forecast_3x3_forecast_6_widget_day,
+                        R.id.widget_ext_loc_forecast_3x3_forecast_6_widget_temperatures);
             } catch (Exception e) {
                 appendLog(context, TAG, "preLoadWeather:error updating weather forecast", e);
             }

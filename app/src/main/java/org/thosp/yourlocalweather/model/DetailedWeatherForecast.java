@@ -3,7 +3,10 @@ package org.thosp.yourlocalweather.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.thosp.yourlocalweather.WmoCodes;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DetailedWeatherForecast implements Parcelable {
@@ -19,7 +22,7 @@ public class DetailedWeatherForecast implements Parcelable {
     private int cloudiness;
     private double rain;
     private double snow;
-    private final List<WeatherCondition> weatherConditions = new ArrayList<>();
+    private int weatherId;
 
     public DetailedWeatherForecast() {
         super();
@@ -113,15 +116,12 @@ public class DetailedWeatherForecast implements Parcelable {
         this.temperature = temperature;
     }
 
-    public void addWeatherCondition(Integer weatherId, String icon, String description) {
-        weatherConditions.add(new WeatherCondition(weatherId, icon, description));
+    public int getWeatherId() {
+        return weatherId;
     }
 
-    public WeatherCondition getFirstWeatherCondition() {
-        if (weatherConditions.isEmpty()) {
-            return null;
-        }
-        return weatherConditions.get(0);
+    public void setWeatherId(int weatherId) {
+        this.weatherId = weatherId;
     }
 
     @Override
@@ -142,7 +142,7 @@ public class DetailedWeatherForecast implements Parcelable {
         parcel.writeInt(cloudiness);
         parcel.writeDouble(rain);
         parcel.writeDouble(snow);
-        parcel.writeTypedList(weatherConditions);
+        parcel.writeInt(weatherId);
     }
 
     public static final Parcelable.Creator<DetailedWeatherForecast> CREATOR
@@ -168,6 +168,6 @@ public class DetailedWeatherForecast implements Parcelable {
         cloudiness = in.readInt();
         rain = in.readDouble();
         snow = in.readDouble();
-        in.readTypedList(weatherConditions, WeatherCondition.CREATOR);
+        weatherId = in.readInt();
     }
 }

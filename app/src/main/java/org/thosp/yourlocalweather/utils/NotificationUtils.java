@@ -28,9 +28,11 @@ import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -183,8 +185,7 @@ public class NotificationUtils {
 
         Intent intent = new Intent(context, MainActivity.class);
         PendingIntent launchIntent = PendingIntent.getActivity(context, 0, intent, PendingIntent.FLAG_IMMUTABLE);
-        boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(context);
-        String cityAndCountry = Utils.getCityAndCountry(context, defaultApiKey, location);
+        String cityAndCountry = Utils.getCityAndCountry(context, location);
         return new NotificationCompat.Builder(context, "yourLocalWeather")
                 .setContentIntent(launchIntent)
                 .setSmallIcon(notificationIcon)
@@ -212,8 +213,7 @@ public class NotificationUtils {
         int textColor = PreferenceUtil.getNotificationTextColor(context);
         String timeStylePreference = AppPreference.getTimeStylePreference(context);
         Weather weather = weatherRecord.getWeather();
-        boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(context);
-        String cityAndCountry = Utils.getCityAndCountry(context, defaultApiKey, location);
+        String cityAndCountry = Utils.getCityAndCountry(context, location);
         String temperatureUnitFromPreferences = AppPreference.getTemperatureUnitFromPreferences(context);
         String temeratureTypeFromPreferences = AppPreference.getTemeratureTypeFromPreferences(context);
         String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
@@ -272,7 +272,16 @@ public class NotificationUtils {
 
         Map<Long, String> localizedHourMap = new HashMap<>();
         Map<Long, String> temperaturesMap = new HashMap<>();
-        for (DetailedWeatherForecast detailedWeatherForecast: weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
+
+        List<DetailedWeatherForecast> weatherForecastList = new ArrayList();
+
+        for(DetailedWeatherForecast detailedWeatherForecast: weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
+            if (detailedWeatherForecast != null) {
+                weatherForecastList.add(detailedWeatherForecast);
+            }
+        }
+
+        for (DetailedWeatherForecast detailedWeatherForecast: weatherForecastList) {
 
             long forecastTime = detailedWeatherForecast.getDateTime();
             Calendar forecastCalendar = Calendar.getInstance();
@@ -321,7 +330,11 @@ public class NotificationUtils {
                     null,
                     R.id.notification_weather_forecast_expanded_forecast_5_widget_icon,
                     R.id.notification_weather_forecast_expanded_forecast_5_widget_day,
-                    R.id.notification_weather_forecast_expanded_forecast_5_widget_temperatures);
+                    R.id.notification_weather_forecast_expanded_forecast_5_widget_temperatures,
+                    null,
+                    R.id.notification_weather_forecast_expanded_forecast_6_widget_icon,
+                    R.id.notification_weather_forecast_expanded_forecast_6_widget_day,
+                    R.id.notification_weather_forecast_expanded_forecast_6_widget_temperatures);
         } catch (Exception e) {
             appendLog(context, TAG, "preLoadWeather:error updating weather forecast", e);
         }

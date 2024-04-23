@@ -74,7 +74,7 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
                 values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS, nextAllowedAttemptToUpdateTime);
                 values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_FORECAST_TYPE, forecastType);
                 if (oldWeatherForecast == null) {
-                    db.insert(WeatherForecastContract.WeatherForecast.TABLE_NAME, null, values);
+                    db.insertOrThrow(WeatherForecastContract.WeatherForecast.TABLE_NAME, null, values);
                 } else {
                     db.updateWithOnConflict(WeatherForecastContract.WeatherForecast.TABLE_NAME,
                             values,

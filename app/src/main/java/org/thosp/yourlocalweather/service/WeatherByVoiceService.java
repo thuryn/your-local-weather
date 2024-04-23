@@ -389,16 +389,12 @@ public class WeatherByVoiceService extends Service {
                     forecastToSay.append(getString(R.string.tty_say_weather_forecast_night));
                     forecastToSay.append(" ");
                     forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.nightWeatherIds.mainWeatherId,
-                            weatherForecastForVoice.nightWeatherIds.mainWeatherDescriptionsFromOwm,
-                            currentLocation.getLocaleAbbrev(),
                             getBaseContext()));
                     forecastToSay.append(" ");
                     if (weatherForecastForVoice.nightWeatherIds.warningWeatherId != null) {
                         forecastToSay.append(getString(R.string.tty_say_weather_forecast_rarely));
                         forecastToSay.append(" ");
                         forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.nightWeatherIds.warningWeatherId,
-                                weatherForecastForVoice.nightWeatherIds.warningWeatherDescriptionsFromOwm,
-                                currentLocation.getLocaleAbbrev(),
                                 getBaseContext()));
                         forecastToSay.append(" ");
                     }
@@ -408,16 +404,12 @@ public class WeatherByVoiceService extends Service {
                     forecastToSay.append(getString(R.string.tty_say_weather_forecast_morning));
                     forecastToSay.append(" ");
                     forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.mainWeatherId,
-                            weatherForecastForVoice.morningWeatherIds.mainWeatherDescriptionsFromOwm,
-                            currentLocation.getLocaleAbbrev(),
                             getBaseContext()));
                     forecastToSay.append(" ");
                     if (weatherForecastForVoice.morningWeatherIds.warningWeatherId != null) {
                         forecastToSay.append(getString(R.string.tty_say_weather_forecast_rarely));
                         forecastToSay.append(" ");
                         forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.warningWeatherId,
-                                weatherForecastForVoice.morningWeatherIds.warningWeatherDescriptionsFromOwm,
-                                currentLocation.getLocaleAbbrev(),
                                 getBaseContext()));
                         forecastToSay.append(" ");
                     }
@@ -427,16 +419,12 @@ public class WeatherByVoiceService extends Service {
                     forecastToSay.append(getString(R.string.tty_say_weather_forecast_afternoon));
                     forecastToSay.append(" ");
                     forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.afternoonWeatherIds.mainWeatherId,
-                            weatherForecastForVoice.afternoonWeatherIds.mainWeatherDescriptionsFromOwm,
-                            currentLocation.getLocaleAbbrev(),
                             getBaseContext()));
                     forecastToSay.append(" ");
                     if (weatherForecastForVoice.afternoonWeatherIds.warningWeatherId != null) {
                         forecastToSay.append(getString(R.string.tty_say_weather_forecast_rarely));
                         forecastToSay.append(" ");
                         forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.afternoonWeatherIds.warningWeatherId,
-                                weatherForecastForVoice.afternoonWeatherIds.warningWeatherDescriptionsFromOwm,
-                                currentLocation.getLocaleAbbrev(),
                                 getBaseContext()));
                         forecastToSay.append(" ");
                     }
@@ -446,16 +434,12 @@ public class WeatherByVoiceService extends Service {
                     forecastToSay.append(getString(R.string.tty_say_weather_forecast_evening));
                     forecastToSay.append(" ");
                     forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.eveningWeatherIds.mainWeatherId,
-                            weatherForecastForVoice.eveningWeatherIds.mainWeatherDescriptionsFromOwm,
-                            currentLocation.getLocaleAbbrev(),
                             getBaseContext()));
                     forecastToSay.append(" ");
                     if (weatherForecastForVoice.eveningWeatherIds.warningWeatherId != null) {
                         forecastToSay.append(getString(R.string.tty_say_weather_forecast_rarely));
                         forecastToSay.append(" ");
                         forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.eveningWeatherIds.warningWeatherId,
-                                weatherForecastForVoice.eveningWeatherIds.warningWeatherDescriptionsFromOwm,
-                                currentLocation.getLocaleAbbrev(),
                                 getBaseContext()));
                         forecastToSay.append(" ");
                     }
@@ -667,15 +651,11 @@ public class WeatherByVoiceService extends Service {
             }
 
             forecastToSay.append(Utils.getWeatherDescription(mainWeatherId,
-                    mainWeatherDescription,
-                    currentLocation.getLocaleAbbrev(),
                     getBaseContext()));
             if (nightMorningWarningAreSame && morningAfternoonWarningAreSame && morningEveningWarningAreSame && afternoonEveningWarningAreSame) {
                 forecastToSay.append(getString(R.string.tty_say_weather_forecast_rarely));
                 forecastToSay.append(" ");
                 forecastToSay.append(Utils.getWeatherDescription(warningWeatherId,
-                        warningWeatherDescription,
-                        currentLocation.getLocaleAbbrev(),
                         getBaseContext()));
             }
             forecastToSay.append(sayRainSnow(maxRain, maxSnow, rainSnowUnitFromPreferences, currentLocation));
@@ -702,8 +682,6 @@ public class WeatherByVoiceService extends Service {
                 forecastToSay.append(" ");
             }
             forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.mainWeatherId,
-                    weatherForecastForVoice.morningWeatherIds.mainWeatherDescriptionsFromOwm,
-                    currentLocation.getLocaleAbbrev(),
                     getBaseContext()));
             forecastToSay.append(" ");
         }
@@ -718,8 +696,6 @@ public class WeatherByVoiceService extends Service {
                 forecastToSay.append(getString(R.string.tty_say_weather_forecast_afternoon));
                 forecastToSay.append(" ");
                 forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.mainWeatherId,
-                        weatherForecastForVoice.morningWeatherIds.mainWeatherDescriptionsFromOwm,
-                        currentLocation.getLocaleAbbrev(),
                         getBaseContext()));
                 forecastToSay.append(" ");
             }
@@ -727,8 +703,6 @@ public class WeatherByVoiceService extends Service {
                 forecastToSay.append(getString(R.string.tty_say_weather_forecast_evening));
                 forecastToSay.append(" ");
                 forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.eveningWeatherIds.mainWeatherId,
-                        weatherForecastForVoice.eveningWeatherIds.mainWeatherDescriptionsFromOwm,
-                        currentLocation.getLocaleAbbrev(),
                         getBaseContext()));
                 forecastToSay.append(" ");
             }
@@ -744,16 +718,12 @@ public class WeatherByVoiceService extends Service {
             forecastToSay.append(getString(R.string.tty_say_weather_forecast_evening));
             forecastToSay.append(" ");
             forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.mainWeatherId,
-                    weatherForecastForVoice.morningWeatherIds.mainWeatherDescriptionsFromOwm,
-                    currentLocation.getLocaleAbbrev(),
                     getBaseContext()));
             forecastToSay.append(" ");
             if (afternoonWeather) {
                 forecastToSay.append(getString(R.string.tty_say_weather_forecast_afternoon));
                 forecastToSay.append(" ");
                 forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.eveningWeatherIds.mainWeatherId,
-                        weatherForecastForVoice.eveningWeatherIds.mainWeatherDescriptionsFromOwm,
-                        currentLocation.getLocaleAbbrev(),
                         getBaseContext()));
                 forecastToSay.append(" ");
             }
@@ -767,8 +737,6 @@ public class WeatherByVoiceService extends Service {
                 forecastToSay.append(getString(R.string.tty_say_weather_forecast_morning));
                 forecastToSay.append(" ");
                 forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.eveningWeatherIds.mainWeatherId,
-                        weatherForecastForVoice.eveningWeatherIds.mainWeatherDescriptionsFromOwm,
-                        currentLocation.getLocaleAbbrev(),
                         getBaseContext()));
                 forecastToSay.append(" ");
             }
@@ -779,8 +747,6 @@ public class WeatherByVoiceService extends Service {
             forecastToSay.append(getString(R.string.tty_say_weather_forecast_evening));
             forecastToSay.append(" ");
             forecastToSay.append(Utils.getWeatherDescription(weatherForecastForVoice.morningWeatherIds.mainWeatherId,
-                    weatherForecastForVoice.morningWeatherIds.mainWeatherDescriptionsFromOwm,
-                    currentLocation.getLocaleAbbrev(),
                     getBaseContext()));
             forecastToSay.append(" ");
             forecastToSay.append(sayRainSnow(maxRain, maxSnow, rainSnowUnitFromPreferences, currentLocation));

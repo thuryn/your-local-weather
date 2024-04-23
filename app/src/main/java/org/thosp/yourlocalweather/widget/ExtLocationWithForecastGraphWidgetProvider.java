@@ -87,7 +87,6 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
 
         if (weatherRecord != null) {
             Weather weather = weatherRecord.getWeather();
-            boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(context);
             String temeratureTypeFromPreferences = AppPreference.getTemeratureTypeFromPreferences(context);
             String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
                     context,
@@ -114,7 +113,7 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
                 weatherIconHolder.resourceIcon = Utils.getWeatherResourceIcon(weatherRecord);
             }
             ContextCompat.getMainExecutor(context).execute(()  -> {
-                remoteViews.setTextViewText(R.id.widget_ext_loc_forecast_graph_3x3_widget_city, Utils.getCityAndCountry(context, defaultApiKey, currentLocation));
+                remoteViews.setTextViewText(R.id.widget_ext_loc_forecast_graph_3x3_widget_city, Utils.getCityAndCountry(context, currentLocation));
                 remoteViews.setTextViewText(R.id.widget_ext_loc_forecast_graph_3x3_widget_temperature, temperatureWithUnit);
                 if (secondTemperature != null) {
                     remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_graph_3x3_widget_second_temperature, View.VISIBLE);
@@ -187,6 +186,10 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
         if ((weatherForecastRecord != null) && (weatherForecastRecord.getCompleteWeatherForecast() != null)) {
             for (DetailedWeatherForecast detailedWeatherForecast : weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
 
+                if (detailedWeatherForecast == null) {
+                    continue;
+                }
+
                 long forecastTime = detailedWeatherForecast.getDateTime();
                 Calendar forecastCalendar = Calendar.getInstance();
                 forecastCalendar.setTimeInMillis(forecastTime * 1000);
@@ -236,7 +239,11 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
                             R.id.widget_ext_loc_forecast_graph_3x3_forecast_day_5,
                             R.id.widget_ext_loc_forecast_graph_3x3_forecast_5_widget_icon,
                             R.id.widget_ext_loc_forecast_graph_3x3_forecast_5_widget_day,
-                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_5_widget_temperatures);
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_5_widget_temperatures,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_day_6,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_6_widget_icon,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_6_widget_day,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_6_widget_temperatures);
 
                     if (weatherForecastRecord != null) {
                         Bitmap graphImage = GraphUtils.getCombinedChart(

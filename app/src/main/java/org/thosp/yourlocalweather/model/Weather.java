@@ -3,8 +3,11 @@ package org.thosp.yourlocalweather.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.thosp.yourlocalweather.WmoCodes;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Weather implements Parcelable {
@@ -19,18 +22,18 @@ public class Weather implements Parcelable {
     private int clouds;
     private long sunrise;
     private long sunset;
-    private List<CurrentWeather> currentWeathers = new ArrayList<>();
+    private int weatherId;
 
     public Weather() {
         super();
     }
 
-    public void addCurrentWeather(Integer id, String description, String iconId) {
-        currentWeathers.add(new CurrentWeather(id, description, iconId));
+    public int getWeatherId() {
+        return weatherId;
     }
 
-    public List<CurrentWeather> getCurrentWeathers() {
-        return currentWeathers;
+    public void setWeatherId(int weatherId) {
+        this.weatherId = weatherId;
     }
 
     public float getTemperature() {
@@ -130,7 +133,7 @@ public class Weather implements Parcelable {
         parcel.writeInt(clouds);
         parcel.writeLong(sunrise);
         parcel.writeLong(sunset);
-        parcel.writeTypedList(currentWeathers);
+        parcel.writeInt(weatherId);
     }
 
     public static final Parcelable.Creator<Weather> CREATOR
@@ -155,6 +158,6 @@ public class Weather implements Parcelable {
         clouds = in.readInt();
         sunrise = in.readLong();
         sunset = in.readLong();
-        in.readTypedList(currentWeathers, CurrentWeather.CREATOR);
+        weatherId = in.readInt();
     }
 }

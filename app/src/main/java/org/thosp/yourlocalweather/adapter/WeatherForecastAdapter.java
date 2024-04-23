@@ -1,5 +1,7 @@
 package org.thosp.yourlocalweather.adapter;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -20,6 +23,8 @@ import java.util.Set;
 
 public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecastViewHolder> {
 
+    private final String TAG = "WeatherForecastAdapter";
+    private static final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy");
     private final Context mContext;
     private final Set<Integer> visibleColumns;
     private final Map<Integer, List<DetailedWeatherForecast>> mWeatherList;
@@ -56,7 +61,11 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
         keys = new ArrayList<>();
         Calendar forecastCalendar = Calendar.getInstance();
         for (DetailedWeatherForecast forecast: weatherForecastList) {
+            if (forecast == null) {
+                continue;
+            }
             forecastCalendar.setTimeInMillis(forecast.getDateTime() * 1000);
+            appendLog(context, TAG, "forecastCalendar:", sdf.format(forecastCalendar.getTime()));
             int forecastDay = forecastCalendar.get(Calendar.DAY_OF_YEAR);
             if (!mWeatherList.keySet().contains(forecastDay)) {
                 List<DetailedWeatherForecast> dayForecastList = new ArrayList<>();

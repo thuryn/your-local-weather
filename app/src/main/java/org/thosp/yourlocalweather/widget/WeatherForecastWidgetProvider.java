@@ -62,11 +62,10 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
         Long daysCount = widgetSettingsDbHelper.getParamLong(appWidgetId, "forecastDaysCount");
         Boolean hoursForecast = widgetSettingsDbHelper.getParamBoolean(appWidgetId, "hoursForecast");
 
-        boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(context);
         boolean fontBasedIcons = "weather_icon_set_fontbased".equals(AppPreference.getIconSet(context));
 
         ContextCompat.getMainExecutor(context).execute(()  -> {
-                    remoteViews.setTextViewText(R.id.widget_weather_forecast_1x3_widget_city, Utils.getCityAndCountry(context, defaultApiKey, currentLocation));
+                    remoteViews.setTextViewText(R.id.widget_weather_forecast_1x3_widget_city, Utils.getCityAndCountry(context, currentLocation));
                 });
         Boolean forecastDayAbbrev = widgetSettingsDbHelper.getParamBoolean(appWidgetId, "forecast_day_abbrev");
 
@@ -122,7 +121,11 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
                         R.id.widget_weather_forecast_1x3_forecast_day_5,
                         R.id.widget_weather_forecast_1x3_forecast_5_widget_icon,
                         R.id.widget_weather_forecast_1x3_forecast_5_widget_day,
-                        R.id.widget_weather_forecast_1x3_forecast_5_widget_temperatures);
+                        R.id.widget_weather_forecast_1x3_forecast_5_widget_temperatures,
+                        R.id.widget_weather_forecast_1x3_forecast_day_6,
+                        R.id.widget_weather_forecast_1x3_forecast_6_widget_icon,
+                        R.id.widget_weather_forecast_1x3_forecast_6_widget_day,
+                        R.id.widget_weather_forecast_1x3_forecast_6_widget_temperatures);
             } catch (Exception e) {
                 appendLog(context, TAG, "preLoadWeather:error updating weather forecast", e);
             }

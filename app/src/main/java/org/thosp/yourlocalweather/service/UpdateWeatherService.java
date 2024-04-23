@@ -22,6 +22,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.thosp.yourlocalweather.ConnectionDetector;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.WeatherJSONParser;
@@ -46,6 +47,7 @@ import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.net.MalformedURLException;
+import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
@@ -260,21 +262,7 @@ public class UpdateWeatherService extends AbstractCommonService {
                     nextAllowedAttemptToUpdateTime);
             readyForUpdate = (now > (lastUpdateTimeInMilis + updatePeriodForLocation)) && (now > nextAllowedAttemptToUpdateTime);
         } else {
-            appendLog(getBaseContext(),
-                    TAG,
-                    "checkWeatherForecastUpdate locationToCheck.getId():",
-                    locationToCheck.getId());
-            boolean longForecast = isLongWeatherForecast(updateRequest.getUpdateType());
-            appendLog(getBaseContext(),
-                    TAG,
-                    "checkWeatherForecastUpdate longForecast:",
-                    longForecast);
-            readyForUpdate = ForecastUtil.shouldUpdateForecast(this, locationToCheck.getId(),
-                    longForecast ? UpdateWeatherService.LONG_WEATHER_FORECAST_TYPE : UpdateWeatherService.WEATHER_FORECAST_TYPE);
-            appendLog(getBaseContext(),
-                    TAG,
-                    "checkWeatherForecastUpdate readyForUpdate:",
-                    readyForUpdate);
+            readyForUpdate = false;
         }
 
         if (!readyForUpdate) {
@@ -318,56 +306,6 @@ public class UpdateWeatherService extends AbstractCommonService {
             return;
         }
 
-        boolean freeWeather = ApiKeys.isWeatherForecastFeaturesFree(getBaseContext());
-
-        final String serviceURL;
-        String requestUri = null;
-        if (isCurrentWeather(updateType)) {
-            if (freeWeather) {
-                serviceURL = Constants.WEATHER_ENDPOINT;
-            } else {
-                serviceURL = Constants.SERVICE_WEATHER_ENDPOINT;
-            }
-            requestUri = "weather";
-        } else if (isWeatherForecast(updateType)) {
-            if (freeWeather) {
-                serviceURL = Constants.WEATHER_FORECAST_ENDPOINT;
-            } else {
-                serviceURL = Constants.SERVICE_WEATHER_FORECAST_ENDPOINT;
-            }
-            requestUri = "forecast";
-        } else if (isLongWeatherForecast(updateType)) {
-            if (freeWeather) {
-                serviceURL = Constants.WEATHER_FORECAST_ENDPOINT;
-                requestUri = "forecast";
-            } else {
-                serviceURL = Constants.SERVICE_WEATHER_FORECAST_ENDPOINT_DAILY;
-                requestUri = "forecast/daily";
-            }
-        } else {
-            appendLog(getBaseContext(), TAG, "serviceURL is null !!!");
-            gettingWeatherStarted = false;
-            updateWeatherUpdateMessages.poll();
-            return;
-        }
-
-        final String license;
-        if (!freeWeather) {
-            LicenseKey licenseKey = licenseKeysDbHelper.getLicenseKeyByLocationRequestId(requestUri);
-            if ((licenseKey != null) && (System.currentTimeMillis() <= (60000 + licenseKey.getLastCallTimeInMs()))) {
-                appendLog(getBaseContext(), TAG, "LicenseKey last call time in ms:", licenseKey.getLastCallTimeInMs());
-                appendLog(getBaseContext(), TAG, "Last call to licensed server is too recent.");
-                resendTheIntentInSeveralSeconds(10);
-                gettingWeatherStarted = false;
-                sendResult(ACTION_WEATHER_UPDATE_FAIL, getBaseContext(), locationToCheck.getId(), updateType);
-                return;
-            }
-            license = ApiKeys.getLicenseKey(getBaseContext(), licenseKey);
-            appendLog(getBaseContext(), TAG, "license:" + license);
-        } else {
-            license = null;
-        }
-
         if (updateRequest.isUpdateWeatherOnly()) {
             locationsDbHelper.updateLocationSource(locationToCheck.getId(), getString(R.string.location_weather_update_status_update_started));
             locationToCheck = locationsDbHelper.getLocationById(locationToCheck.getId());
@@ -393,27 +331,16 @@ public class UpdateWeatherService extends AbstractCommonService {
                 ", longitude",
                 currentLocation.getLongitude());
 
-        if (isCurrentWeather(updateType)) {
-            sendMessageToWakeUpService(
-                    AppWakeUpManager.WAKE_UP,
-                    AppWakeUpManager.SOURCE_CURRENT_WEATHER
-            );
-        } else {
-            sendMessageToWakeUpService(
-                    AppWakeUpManager.WAKE_UP,
-                    AppWakeUpManager.SOURCE_WEATHER_FORECAST
-            );
-        }
+        sendMessageToWakeUpService(
+                AppWakeUpManager.WAKE_UP,
+                AppWakeUpManager.SOURCE_CURRENT_WEATHER
+        );
 
         String weatherUrl = null;
         try {
             weatherUrl = Utils.getOwmUrl(
                     context,
-                    serviceURL,
-                    currentLocation,
-                    "metric",
-                    locale,
-                    license).toString();
+                    currentLocation).toString();
         } catch (MalformedURLException mue) {
             appendLog(context, TAG, "MalformedURLException:", mue);
             sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
@@ -447,68 +374,15 @@ public class UpdateWeatherService extends AbstractCommonService {
                                 appendLog(context, TAG, "Going to store result with updateType:", updateType);
                                 if (isCurrentWeather(updateType)) {
                                     appendLog(context, TAG, "Current weather type");
-                                    Weather weather;
-                                    if (ApiKeys.isWeatherForecastFeaturesFree(context)) {
-                                        weather = WeatherJSONParser.getWeather(weatherRaw, locale);
-                                    } else {
-                                        WeatherJSONParser.JSONParseResult parseResult = WeatherJSONParser.parseServerResult(weatherRaw);
-                                        licenseKeysDbHelper.updateToken("weather", parseResult.getToken());
-                                        appendLog(getBaseContext(), TAG, "new token for weather:" + parseResult.getToken());
-                                        weather = WeatherJSONParser.getWeather(parseResult.getOwmResponse(), locale);
-                                    }
+                                    JSONObject weatherData = new JSONObject(weatherRaw);
+                                    Weather weather = WeatherJSONParser.getWeather(weatherData, locale);
                                     saveWeatherAndSendResult(context, weather, currentLocation, updateType);
-                                } else if (isWeatherForecast(updateType)) {
-                                    appendLog(context, TAG, "Weather forecast type");
-                                    CompleteWeatherForecast completeWeatherForecast;
-                                    if (ApiKeys.isWeatherForecastFeaturesFree(context)) {
-                                        completeWeatherForecast = WeatherJSONParser.getWeatherForecast(weatherRaw);
-                                    } else {
-                                        WeatherJSONParser.JSONParseResult parseResult = WeatherJSONParser.parseServerResult(weatherRaw);
-                                        licenseKeysDbHelper.updateToken("forecast", parseResult.getToken());
-                                        appendLog(getBaseContext(), TAG, "new token for forecast:" + parseResult.getToken());
-                                        completeWeatherForecast = WeatherJSONParser.getWeatherForecast(parseResult.getOwmResponse());
-                                    }
-                                    saveWeatherAndSendResult(context, completeWeatherForecast, WEATHER_FORECAST_TYPE, updateType);
-                                } else if (isLongWeatherForecast(updateType)) {
-                                    appendLog(context, TAG, "Weather long forecast type");
-                                    WeatherJSONParser.JSONParseResult parseResult = WeatherJSONParser.parseServerResult(weatherRaw);
-                                    licenseKeysDbHelper.updateToken("forecast/daily", parseResult.getToken());
-                                    appendLog(getBaseContext(), TAG, "new token for forecast/daily:" + parseResult.getToken());
-                                    CompleteWeatherForecast completeWeatherForecast = WeatherJSONParser.getLongWeatherForecast(parseResult.getOwmResponse());
-                                    saveWeatherAndSendResult(context, completeWeatherForecast, LONG_WEATHER_FORECAST_TYPE, updateType);
+                                    CompleteWeatherForecast completeWeatherForecast = WeatherJSONParser.getWeatherForecast(context, weatherData);
+                                    saveWeatherAndSendResult(context, completeWeatherForecast, WEATHER_FORECAST_TYPE, START_WEATHER_FORECAST_UPDATE);
                                 } else {
                                     sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
                                 }
-
-                            } catch (TooEarlyUpdateException teue) {
-                                //if (updateRequest.isUpdateWeatherOnly()) {
-                                locationsDbHelper.updateLocationSource(
-                                        currentLocation.getId(),
-                                        getString(R.string.location_weather_update_status_too_early_update));
-                                //}
-                                timerHandler.removeCallbacksAndMessages(null);
-                                resendTheIntentInSeveralSeconds(70);
-                                sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
-                            } catch (LicenseNotValidException lnve) {
-                                if ((license == null) || license.equals(ApiKeys.getInitialLicenseKey(getBaseContext()))) {
-                                    timerHandler.removeCallbacksAndMessages(null);
-                                    locationsDbHelper.updateLastUpdatedAndLocationSource(currentLocation.getId(),
-                                            System.currentTimeMillis(), "$");
-                                    sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
-                                } else {
-                                    appendLog(context, TAG, "license not valid, going to try it by initial license key");
-                                    if (isCurrentWeather(updateType)) {
-                                        licenseKeysDbHelper.updateToken("weather", null);
-                                    } else if (isWeatherForecast(updateType)) {
-                                        licenseKeysDbHelper.updateToken("forecast", null);
-                                    } else if (isLongWeatherForecast(updateType)) {
-                                        licenseKeysDbHelper.updateToken("forecast/daily", null);
-                                    }
-                                    timerHandler.removeCallbacksAndMessages(null);
-                                    resendTheIntentInSeveralSeconds(5);
-                                    sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
-                                }
-                            } catch (JSONException e) {
+                            } catch (JSONException | ParseException e) {
                                 appendLog(context, TAG, "JSONException:", e);
                                 timerHandler.removeCallbacksAndMessages(null);
                                 sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);

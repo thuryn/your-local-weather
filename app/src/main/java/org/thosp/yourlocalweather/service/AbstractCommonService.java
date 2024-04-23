@@ -143,7 +143,11 @@ public class AbstractCommonService extends Service {
                                                                              forceUpdate,
                                                                              updateWeatherOnly,
                                                                              UpdateWeatherService.START_CURRENT_WEATHER_UPDATE));
-        startService(intent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(intent);
+        } else {
+            startService(intent);
+        }
     }
 
     protected void sendMessageToWeatherForecastService(long locationId) {

@@ -79,7 +79,6 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
 
         if (weatherRecord != null) {
             Weather weather = weatherRecord.getWeather();
-            boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(context);
             String remperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
                     context,
                     weather,
@@ -107,7 +106,7 @@ public class MoreWidgetProvider extends AbstractWidgetProvider {
             String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, timeStylePreference, currentLocation);
 
             ContextCompat.getMainExecutor(context).execute(()  -> {
-                remoteViews.setTextViewText(R.id.widget_more_3x3_widget_city, Utils.getCityAndCountry(context, defaultApiKey, currentLocation));
+                remoteViews.setTextViewText(R.id.widget_more_3x3_widget_city, Utils.getCityAndCountry(context, currentLocation));
                 remoteViews.setTextViewText(R.id.widget_more_3x3_widget_temperature, remperatureWithUnit);
 
                 if (secondTemperature != null) {

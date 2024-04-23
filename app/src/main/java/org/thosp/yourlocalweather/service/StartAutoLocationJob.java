@@ -169,7 +169,11 @@ public class StartAutoLocationJob extends AbstractAppJob {
     public void startSensorBasedUpdates() {
         Intent sendIntent = new Intent("org.thosp.yourlocalweather.action.START_SENSOR_BASED_UPDATES");
         sendIntent.setPackage("org.thosp.yourlocalweather");
-        startService(sendIntent);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(sendIntent);
+        } else {
+            startService(sendIntent);
+        }
     }
 
     public void stopSensorBasedUpdates() {

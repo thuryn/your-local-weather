@@ -52,8 +52,6 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
         String timeStylePreference = AppPreference.getTimeStylePreference(context);
 
         if (weatherRecord != null) {
-            boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(context);
-
             String temperatureWithUnit = TemperatureUtil.getTemperatureWithUnit(
                     context,
                     weatherRecord.getWeather(),
@@ -89,7 +87,7 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
                 } else {
                     remoteViews.setViewVisibility(R.id.widget_less_3x1_widget_second_temperature, View.GONE);
                 }
-                remoteViews.setTextViewText(R.id.widget_less_3x1_widget_city, Utils.getCityAndCountry(context, defaultApiKey, currentLocation));
+                remoteViews.setTextViewText(R.id.widget_less_3x1_widget_city, Utils.getCityAndCountry(context, currentLocation));
                 remoteViews.setTextViewText(R.id.widget_less_3x1_widget_description, weatherDescription);
                 if (weatherIconHolder.bitmapIcon != null) {
                     remoteViews.setImageViewBitmap(R.id.widget_less_3x1_widget_icon, weatherIconHolder.bitmapIcon);

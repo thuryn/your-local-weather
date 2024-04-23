@@ -133,11 +133,7 @@ public class Constants {
     public static final String GOOGLE_PLAY_WEB_URI =
             "https://play.google.com/store/apps/details?id=%s";
     public static final String F_DROID_WEB_URI = "https://f-droid.org/repository/browse/?fdid=%s";
-    public static final String WEATHER_ENDPOINT = "https://api.openweathermap.org/data/2.5/weather";
-    public static final String SERVICE_WEATHER_FORECAST_ENDPOINT_DAILY = "http://usve267973.serverprofi24.com/owm/forecast/daily";
-    public static final String WEATHER_FORECAST_ENDPOINT = "https://api.openweathermap.org/data/2.5/forecast";
-    public static final String SERVICE_WEATHER_ENDPOINT = "http://usve267973.serverprofi24.com/owm/weather";
-    public static final String SERVICE_WEATHER_FORECAST_ENDPOINT = "http://usve267973.serverprofi24.com/owm/forecast";
+    public static final String WEATHER_ENDPOINT = "https://api.open-meteo.com/v1/forecast?latitude={0}&longitude={1}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m&hourly=temperature_2m,relative_humidity_2m,rain,snowfall,weather_code,pressure_msl,cloud_cover,wind_speed_10m,wind_direction_10m&daily=sunrise,sunset&timezone=auto&forecast_days=16";
 
     public static final int PARSE_RESULT_SUCCESS = 0;
     public static final int TASK_RESULT_ERROR = -1;

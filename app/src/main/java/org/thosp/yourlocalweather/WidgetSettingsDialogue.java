@@ -496,13 +496,16 @@ public class WidgetSettingsDialogue extends Activity {
             if (hoursForecast) {
                 switch (storedDays.intValue()) {
                     case 3:
-                        predefinedSelection = 3;
-                        break;
-                    case 4:
                         predefinedSelection = 4;
                         break;
-                    case 5:
+                    case 4:
                         predefinedSelection = 5;
+                        break;
+                    case 5:
+                        predefinedSelection = 6;
+                        break;
+                    case 7:
+                        predefinedSelection = 7;
                         break;
                 }
             } else {
@@ -515,6 +518,9 @@ public class WidgetSettingsDialogue extends Activity {
                         break;
                     case 5:
                         predefinedSelection = 2;
+                        break;
+                    case 6:
+                        predefinedSelection = 3;
                         break;
                 }
             }
@@ -654,9 +660,11 @@ public class WidgetSettingsDialogue extends Activity {
                 case 0: numberOfDays = 3; hoursForecast = false; break;
                 case 1: numberOfDays = 4; hoursForecast = false; break;
                 case 2: numberOfDays = 5; hoursForecast = false; break;
-                case 3: numberOfDays = 3; hoursForecast = true; break;
-                case 4: numberOfDays = 4; hoursForecast = true; break;
-                case 5: numberOfDays = 5; hoursForecast = true; break;
+                case 3: numberOfDays = 6; hoursForecast = false; break;
+                case 4: numberOfDays = 3; hoursForecast = true; break;
+                case 5: numberOfDays = 4; hoursForecast = true; break;
+                case 6: numberOfDays = 5; hoursForecast = true; break;
+                case 7: numberOfDays = 6; hoursForecast = true; break;
             }
         }
 

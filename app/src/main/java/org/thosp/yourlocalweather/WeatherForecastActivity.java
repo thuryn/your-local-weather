@@ -90,17 +90,12 @@ public class WeatherForecastActivity extends ForecastingActivity {
 
     @Override
     protected void updateUI() {
-        boolean weatherForecastFeatureFree =  ApiKeys.isWeatherForecastFeaturesFree(this);
         int maxOrderId = locationsDbHelper.getMaxOrderId();
         runOnUiThread(new Runnable() {
               @Override
               public void run() {
                   View switchPanel = findViewById(R.id.forecast_switch_panel);
-                  if (weatherForecastFeatureFree) {
-                      switchPanel.setVisibility(View.INVISIBLE);
-                  } else {
-                      switchPanel.setVisibility(View.VISIBLE);
-                  }
+                  switchPanel.setVisibility(View.INVISIBLE);
                   if ((maxOrderId > 1) ||
                           ((maxOrderId == 1) && (locationsDbHelper.getLocationByOrderId(0).isEnabled()))) {
                       switchLocationButton.setVisibility(View.VISIBLE);
@@ -123,26 +118,23 @@ public class WeatherForecastActivity extends ForecastingActivity {
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId, forecastTypeRecord);
         appendLog(getBaseContext(), TAG, "Weather forecast record: ", weatherForecastRecord);
         if (weatherForecastRecord != null) {
-            weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().
-
-                    getWeatherForecastList());
+            weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
             locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());
         } else if (ForecastUtil.shouldUpdateForecast(this, locationId, UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
             /*if (forecastType.isChecked()) {
                 updateLongWeatherForecastFromNetwork("FORECAST");
             } else {*/
-            runOnUiThread(new Runnable() {
+            /*runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     updateWeatherForecastFromNetwork("FORECAST");
                 }
-            });
+            });*/
             //}
             return;
         }
 
-        boolean defaultApiKey = ApiKeys.isDefaultOpenweatherApiKey(this);
-        String cityAndCountry = Utils.getCityAndCountry(this, defaultApiKey, currentLocation);
+        String cityAndCountry = Utils.getCityAndCountry(this, currentLocation);
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
