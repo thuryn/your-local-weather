@@ -306,6 +306,6 @@
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">ניתן לשלוט ברקע הווידג\'ט בעזרת <b>אפשרות ערכת נושא הווידג\'ט</b>.</string>
     <string name="weather_condition_description_300" tools:ignore="MissingTranslation">טפטוף בעוצמה קלה</string>
     <string name="weather_condition_description_301" tools:ignore="MissingTranslation">טפטוף</string>
-    <string name="weather_condition_description_310" tools:ignore="MissingTranslation"></string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation"/>
     <string name="weather_condition_description_302" tools:ignore="MissingTranslation">טפטוף בעוצמה כבדה</string>
 </resources>
