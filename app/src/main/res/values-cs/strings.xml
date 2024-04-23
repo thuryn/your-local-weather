@@ -522,4 +522,58 @@
     <string name="pref_language_bg" tools:ignore="MissingTranslation">Bulharština</string>
     <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">Čínština (tradiční)</string>
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengálština (Bangladéš)</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">Zataženo</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">Mrznoucí déšť</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">Slabé přeháňky</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">Přeháňky</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">Písečná bouře</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">Vulkanický popel</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">Bouře</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">Bouřka s deštěm</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">Slabá bouřka</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">Místy bouřka</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">Bouřka se slabým mrholením</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">Bouřka s mrholením</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">Bouřka se silným mrholením</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">Slabé mrholení</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">Mrholení</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">Silné mrholení</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">Slabý déšť</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">Déšť</string>
+    <string name="weather_condition_description_312" tools:ignore="MissingTranslation">Silný děšť</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">Přeháňky</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">Sněhové přeháňky</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">Silné sněhové přeháňky</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">Kouř</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">Sněžení</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">Silné sněžení</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">Plískanice</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">Občasná plískanice</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">Slabý déšť se sněhem</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">Bouřka se slabým deštěm</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">Silné přeháňky</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">Občasné mrholení</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">Slabý déšť</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">Středně silný déšť</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">Silný déšť</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">Velmi silný déšť</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">Extrémně silný déšť</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">Silné přeháňky</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">Občasné přeháňky</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">Slabé sněžení</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">Déšť se sněhem</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">Slabé sněhové přeháňky</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">Opar</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">Písečné nebo prachové víry</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">Tornádo</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">Jasno</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">Skoro jasno</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">Slabá oblačnost</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">Oblačnost</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">Bouřka se silným deštěm</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">Bouřka</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">Silná bouřka</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">Mlha</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">Mlha</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">Prach</string>
 </resources>
