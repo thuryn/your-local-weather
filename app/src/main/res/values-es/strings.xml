@@ -136,10 +136,10 @@
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Anterior</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Terminar</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Guía de configuración inicial</string>
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation"> Activity names </string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Activity names</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Actualizar la configuración de ubicación</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Opción de fuente de ubicación</string>
-    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation"> Activity names </string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Activity names</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Ubicación y fuente de dirección</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Opción de estrategia de activación</string>
     <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Algunos modelos de teléfonos no reportan correctamente las celdas conectadas a menos que la pantalla esté encendida. La opción preferida (con la pantalla activada) tiene el inconveniente de que el teléfono enciende la pantalla durante varios segundos. Esto tiene un pequeño impacto en la duración de la batería. Empiece con él, intente apagarlo y vea si la ubicación aún se actualiza.</string>
@@ -175,8 +175,8 @@
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Configuración general</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">Esta opción tiene influencia en toda la aplicación.</string>
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Junto al botón de actualizar ubicación, hay un botón de gestión de ubicación (icono de lupa). Puede administrar las ubicaciones disponibles en la aplicación y los widgets. Hay una ubicación (Ubicación 0) disponible de forma predeterminada: está destinada a las actualizaciones automáticas de ubicación. Puede encontrar el botón de habilitar/deshabilitar cuando desliza esta ubicación hacia la izquierda. También puede añadir la ubicación manualmente. Al hacer clic en el botón +, puede seleccionar su ubicación en el mapa. También puede eliminar la ubicación con el botón Eliminar, al que se accede cuando desliza la ubicación hacia la izquierda.</string>
-    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> Activity names </string>
-    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"> Activity names </string>
-    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"> Activity names </string>
-    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation"> Activity names </string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation">Activity names</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">Activity names</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation">Activity names</string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Activity names</string>
 </resources>
