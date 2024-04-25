@@ -278,7 +278,7 @@
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Dessa meny-alternativ ställer in <b>språk</b>, den huvudsakliga appens <b>tema</b> och <b>uppsättningen av ikoner</b> som används i appen och widgetar.</string>
     <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"> <b>Aviseringar</b>
 \nNär du väljer alternativet för aviseringar så uppdaterar appen det aktuella vädret periodvis. Aktuellt väder läggs då i aviseringsområdet. Du kan även aktivera vibration - appen vibrerar när den är uppdaterad.</string>
-    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation"/>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">För att spara nätverkstrafik och snabba upp platsuppdateringen så kan du slå på <b>Cache-platser</b>. Detta cache lagrar geografiska koordinater och en adress. Applikationen måste anropa nätverksupplösningstjänsten oavsett hur den är inställd, men anropet till Nominatim\'s adressupplösning sker bara i det fallet att adressen inte finns i cacheminnet. När du aktiverar alternativet Cache-adresser så lagras adresser som du har besökt i applikationen. Ingen information från cacheminnet skickas utanför applikationen.</string>
     <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm.(åå)</string>
     <string name="pref_language_ar" tools:ignore="MissingTranslation">العَرَبِيَّة‎ (Arabiska)</string>
     <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/åå)</string>
@@ -324,4 +324,9 @@
     <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">Grafer att visa</string>
     <string name="pref_language_hu" tools:ignore="MissingTranslation">Magyar (Ungerska)</string>
     <string name="update_period_2hours" tools:ignore="MissingTranslation">2 timmar</string>
+    <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Licensnyckel</string>
+    <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">Tog bort platserna ovanför gränsen.</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">Nej mellan klockan 00:00 och 06:00 (Plats 1, 2, 3...)</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">Nej mellan klockan 00:00 och 06:00 (Plats 0)</string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Använd geolokalisering för visning</string>
 </resources>
