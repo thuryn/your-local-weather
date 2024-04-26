@@ -460,9 +460,9 @@
     <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Ditën shfaqe me shkurtimin përkatës</string>
     <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Numër ditësh për parashkimin</string>
     <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Rregullime vendndodhjeje</string>
-    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (interval 3 orësh)</string>
-    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (interval 3 orësh)</string>
-    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (interval 3 orësh)</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3 orë</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4 orë</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5 orë</string>
     <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Buton rregullimesh vendndodhjeje te widget-i</string>
     <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Buton rregullimesh veprimesh te widget-i</string>
     <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">Etiketë qyteti</string>
@@ -586,4 +586,6 @@
     <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">Për të marrë motin sipas vendndodhjes ku gjendeni aktualisht, aplikacioni lyp leje vendndodhjesh. Nëse pajtoheni me këtë, duhet të përzgjidhni mundësinë në skenën pasuese:</string>
     <string name="permission_available_notification" tools:ignore="MissingTranslation">U akordua leje për njoftime</string>
     <string name="theme_system" tools:ignore="MissingTranslation">Nga sistemi</string>
+    <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 orë</string>
+    <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 ditë</string>
 </resources>
