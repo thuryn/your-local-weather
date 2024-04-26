@@ -177,8 +177,14 @@ public class SearchActivity extends BaseActivity {
 
     public void onResume(){
         super.onResume();
-        registerReceiver(mWeatherUpdateReceiver,
-                new IntentFilter(ACTION_ADDRESS_RESOLUTION_RESULT));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(mWeatherUpdateReceiver,
+                    new IntentFilter(ACTION_ADDRESS_RESOLUTION_RESULT),
+                    RECEIVER_NOT_EXPORTED);
+        } else {
+            registerReceiver(mWeatherUpdateReceiver,
+                    new IntentFilter(ACTION_ADDRESS_RESOLUTION_RESULT));
+        }
         map.onResume();
     }
 

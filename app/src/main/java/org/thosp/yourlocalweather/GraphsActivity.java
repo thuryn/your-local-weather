@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -160,9 +161,15 @@ public class GraphsActivity extends ForecastingActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(mWeatherUpdateReceiver,
-                new IntentFilter(
-                        UpdateWeatherService.ACTION_GRAPHS_UPDATE_RESULT));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(mWeatherUpdateReceiver,
+                    new IntentFilter(
+                            UpdateWeatherService.ACTION_GRAPHS_UPDATE_RESULT), RECEIVER_NOT_EXPORTED);
+        } else {
+            registerReceiver(mWeatherUpdateReceiver,
+                    new IntentFilter(
+                            UpdateWeatherService.ACTION_GRAPHS_UPDATE_RESULT));
+        }
         if (inited) {
             YourLocalWeather.executor.submit(() -> {
                 updateUI();
@@ -852,11 +859,7 @@ public class GraphsActivity extends ForecastingActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_refresh:
-                /*if (forecastType.isChecked()) {
-                    updateLongWeatherForecastFromNetwork("GRAPHS");
-                } else {*/
-                    updateWeatherForecastFromNetwork("GRAPHS");
-                //}
+                sendMessageToCurrentWeatherService(currentLocation, "GRAPHS");
                 return true;
             case R.id.action_toggle_values:
                 toggleValues();
@@ -1062,14 +1065,14 @@ public class GraphsActivity extends ForecastingActivity {
                     locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());
                 }
             });
-        } else if (ForecastUtil.shouldUpdateForecast(this, locationId, UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
+        } else {
             /*if (forecastType.isChecked()) {
                 updateLongWeatherForecastFromNetwork("GRAPHS");
             } else {*/
             runOnUiThread(new Runnable() {
                               @Override
                               public void run() {
-                                  updateWeatherForecastFromNetwork("GRAPHS");
+                                  sendMessageToCurrentWeatherService(currentLocation, "GRAPHS");
                               }
                           });
             //}

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.IntentFilter;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -62,6 +63,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
                 "fonts/Roboto-Light.ttf");
         localityView.setTypeface(robotoLight);
 
+        appendLog(getBaseContext(), TAG, "Start processing forecast");
         YourLocalWeather.executor.submit(() -> {
                     visibleColumns = AppPreference.getInstance().getForecastActivityColumns(this);
                     connectionDetector = new ConnectionDetector(WeatherForecastActivity.this);
@@ -70,15 +72,6 @@ public class WeatherForecastActivity extends ForecastingActivity {
                     pressureUnitFromPreferences = AppPreference.getPressureUnitFromPreferences(this);
                     rainSnowUnitFromPreferences = AppPreference.getRainSnowUnitFromPreferences(this);
                     temperatureUnitFromPreferences = AppPreference.getTemperatureUnitFromPreferences(this);
-                    //forecastType = (Switch) findViewById(R.id.forecast_forecastType);
-
-            /*forecastType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    AppPreference.setForecastType(getBaseContext(), isChecked ? 2 : 1);
-                    updateUI();
-                }
-            });*/
-
                     updateUI();
                     inited = true;
                 });
@@ -86,10 +79,12 @@ public class WeatherForecastActivity extends ForecastingActivity {
         mRecyclerView.setOnTouchListener(new ActivityTransitionTouchListener(
                 MainActivity.class,
                 GraphsActivity.class, this));
+        appendLog(getBaseContext(), TAG, "Finished processing forecast");
     }
 
     @Override
     protected void updateUI() {
+        appendLog(getBaseContext(), TAG, "UpdateUI start processing");
         int maxOrderId = locationsDbHelper.getMaxOrderId();
         runOnUiThread(new Runnable() {
               @Override
@@ -112,7 +107,6 @@ public class WeatherForecastActivity extends ForecastingActivity {
             return;
         }
         appendLog(getBaseContext(), TAG, "locationId:", locationId, "currentLocation:", currentLocation.getOrderId());
-        //forecastType.setChecked(2 == AppPreference.getForecastType(getBaseContext()));
         int forecastTypeRecord = 1;//(forecastType.isChecked() ? 2 : 1);
         appendLog(getBaseContext(), TAG, "updateUI with forecastType:", forecastTypeRecord);
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId, forecastTypeRecord);
@@ -120,17 +114,8 @@ public class WeatherForecastActivity extends ForecastingActivity {
         if (weatherForecastRecord != null) {
             weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
             locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());
-        } else if (ForecastUtil.shouldUpdateForecast(this, locationId, UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
-            /*if (forecastType.isChecked()) {
-                updateLongWeatherForecastFromNetwork("FORECAST");
-            } else {*/
-            /*runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    updateWeatherForecastFromNetwork("FORECAST");
-                }
-            });*/
-            //}
+        } else {
+            sendMessageToCurrentWeatherService(currentLocation, "FORECAST");
             return;
         }
 
@@ -161,14 +146,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
                     mRecyclerView.setVisibility(View.VISIBLE);
                     android.setVisibility(View.GONE);
                 }
-                /*if (forecastType.isChecked()) {
-                    LongWeatherForecastAdapter adapter = new LongWeatherForecastAdapter(this,
-                            weatherForecastList.get(locationId),
-                            currentLocation.getLatitude(),
-                            currentLocation.getLocale(),
-                            visibleColumns);
-                    mRecyclerView.setAdapter(adapter);
-                } else {*/
+                appendLog(getBaseContext(), TAG, "UpdateUI create adapter processing");
                 WeatherForecastAdapter adapter = new WeatherForecastAdapter(WeatherForecastActivity.this,
                         weatherForecastList.get(locationId),
                         currentLocation.getLatitude(),
@@ -180,17 +158,23 @@ public class WeatherForecastActivity extends ForecastingActivity {
                         timeStylePreference,
                         visibleColumns);
                 mRecyclerView.setAdapter(adapter);
-                //}
             }
         });
+        appendLog(getBaseContext(), TAG, "UpdateUI finished processing");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        registerReceiver(mWeatherUpdateReceiver,
-                new IntentFilter(
-                        UpdateWeatherService.ACTION_FORECAST_UPDATE_RESULT));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(mWeatherUpdateReceiver,
+                    new IntentFilter(
+                            UpdateWeatherService.ACTION_FORECAST_UPDATE_RESULT), RECEIVER_NOT_EXPORTED);
+        } else {
+            registerReceiver(mWeatherUpdateReceiver,
+                    new IntentFilter(
+                            UpdateWeatherService.ACTION_FORECAST_UPDATE_RESULT));
+        }
         if (inited) {
             YourLocalWeather.executor.submit(() -> {
                 updateUI();
@@ -209,11 +193,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_forecast_refresh:
-                /*if (forecastType.isChecked()) {
-                    updateLongWeatherForecastFromNetwork("FORECAST");
-                } else {*/
-                    updateWeatherForecastFromNetwork("FORECAST");
-                //}
+                sendMessageToCurrentWeatherService(currentLocation, "FORECAST");
                 return true;
             case R.id.menu_forecast_settings:
                 showSettings();

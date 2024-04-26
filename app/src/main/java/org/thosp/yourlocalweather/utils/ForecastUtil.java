@@ -24,36 +24,6 @@ public class ForecastUtil {
 
     public static long AUTO_FORECAST_UPDATE_TIME_MILIS = 3600000; // 1h
 
-    public static boolean shouldUpdateForecast(Context context, long locationId, int forecastType) {
-        WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
-        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord =
-                weatherForecastDbHelper.getWeatherForecast(locationId, forecastType);
-        long now = Calendar.getInstance().getTimeInMillis();
-        if (weatherForecastRecord == null) {
-            appendLog(context,
-                    TAG,
-                    "weatherForecastRecord is null");
-            return true;
-        }
-        long lastUpdateTimeInMilis = (weatherForecastRecord != null)?weatherForecastRecord.getLastUpdatedTime():0;
-        long nextAllowedAttemptToUpdateTime = (weatherForecastRecord != null)?weatherForecastRecord.getNextAllowedAttemptToUpdateTime():0;
-        long firstForecastTime = 1000 * weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList().get(0).getDateTime();
-        appendLogLastUpdateTime(context,
-                TAG,
-                "weatherForecastRecord.getLastUpdatedTime():",
-                weatherForecastRecord,
-                ", now:",
-                now,
-                ", nextAllowedAttemptToUpdateTime=",
-                nextAllowedAttemptToUpdateTime);
-        if ((now > nextAllowedAttemptToUpdateTime) &&
-                ((firstForecastTime < now) || (lastUpdateTimeInMilis +
-                        AUTO_FORECAST_UPDATE_TIME_MILIS) <  now)) {
-            return true;
-        }
-        return false;
-    }
-
     public static Set<WeatherForecastPerDay> calculateWeatherForDays(Context context, WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord) {
         Set<WeatherForecastPerDay> result = new HashSet<>();
         Calendar forecastCalendar = Calendar.getInstance();
@@ -97,7 +67,7 @@ public class ForecastUtil {
         }
         for (DetailedWeatherForecast detailedWeatherForecast : weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
 
-            if (detailedWeatherForecast == null) {
+            if ((detailedWeatherForecast == null) || ((1000*detailedWeatherForecast.getDateTime()) < nowCalendar.getTimeInMillis())) {
                 continue;
             }
 
@@ -156,16 +126,20 @@ public class ForecastUtil {
             }
         }
         Integer warningWeatherId = null;
+        int rainHoursCounter = 0;
+        int snowHoursCounter = 0;
         if ((maxWeatherIdWithRain > 0) || (maxWeatherIdWithSnow > 0)) {
             double rainToConsider = (weatherMaxMinForDay.maxRain > 0.5) ? weatherMaxMinForDay.maxRain : 0;
             double snowToConsider = (weatherMaxMinForDay.maxSnow > 0.5) ? weatherMaxMinForDay.maxSnow : 0;
             if ((rainToConsider > 0) && (rainToConsider > snowToConsider)) {
                 warningWeatherId = maxWeatherIdWithRain;
+                rainHoursCounter++;
             } else if (snowToConsider > 0) {
                 warningWeatherId = maxWeatherIdWithSnow;
+                snowHoursCounter++;
             }
         }
-        if (weatherIdForTheDay == warningWeatherId) {
+        if ((weatherIdForTheDay == warningWeatherId) || (rainHoursCounter > 3) || (snowHoursCounter > 3)) {
             warningWeatherId = null;
         }
         return new WeatherIdsForDay(weatherIdForTheDay,

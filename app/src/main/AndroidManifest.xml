@@ -25,7 +25,8 @@
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <uses-permission android:name="android.permission.HIGH_SAMPLING_RATE_SENSORS" />
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
-
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.RUN_USER_INITIATED_JOBS" />
 
     <application
         android:allowBackup="true"
@@ -298,22 +299,26 @@
         <service
             android:name=".service.UpdateWeatherResendJob"
             android:label="Current weather retry job"
-            android:permission="android.permission.BIND_JOB_SERVICE" >
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="false">
         </service>
         <service
             android:name=".service.LocationUpdateServiceRetryJob"
             android:label="Location update retry job"
-            android:permission="android.permission.BIND_JOB_SERVICE" >
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="false">
         </service>
         <service
             android:name=".service.NetworkLocationCellsOnlyJob"
             android:label="Cells only scanning job"
-            android:permission="android.permission.BIND_JOB_SERVICE" >
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="false">
         </service>
         <service
             android:name=".service.StartAutoLocationJob"
             android:label="Start auto location update"
-            android:permission="android.permission.BIND_JOB_SERVICE" >
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="false">
         </service>
         <service
             android:name=".service.ReconciliationDbService"
@@ -339,6 +344,7 @@
         </service>
         <service
             android:name=".service.UpdateWeatherService"
+            android:foregroundServiceType="location"
             android:exported="true" >
             <intent-filter>
                 <action android:name="org.thosp.yourlocalweather.action.START_WEATHER_UPDATE" />

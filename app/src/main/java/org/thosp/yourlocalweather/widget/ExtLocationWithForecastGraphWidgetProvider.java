@@ -183,10 +183,12 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
 
         Map<Long, String> localizedHourMap = new HashMap<>();
         Map<Long, String> temperaturesMap = new HashMap<>();
+        appendLog(context, TAG, "preLoadWeather:weatherForecastRecord=", weatherForecastRecord);
         if ((weatherForecastRecord != null) && (weatherForecastRecord.getCompleteWeatherForecast() != null)) {
             for (DetailedWeatherForecast detailedWeatherForecast : weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
 
                 if (detailedWeatherForecast == null) {
+                    appendLog(context, TAG, "preLoadWeather:detailedWeatherForecast is null");
                     continue;
                 }
 
@@ -206,6 +208,8 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
             try {
                 ContextCompat.getMainExecutor(context).execute(() -> {
                     Long dayCountForForecast = (daysCount != null) ? daysCount : 5l;
+
+                    appendLog(context, TAG, "preLoadWeather:going to update weather forecast in widget");
 
                     WidgetUtils.updateWeatherForecast(
                             context,

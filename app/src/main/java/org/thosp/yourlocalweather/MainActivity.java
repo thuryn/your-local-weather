@@ -222,9 +222,16 @@ public class MainActivity extends BaseActivity
     public void onResume() {
         super.onResume();
         mAppBarLayout.addOnOffsetChangedListener(this);
-        registerReceiver(mWeatherUpdateReceiver,
-                new IntentFilter(
-                        UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT));
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            registerReceiver(mWeatherUpdateReceiver,
+                    new IntentFilter(
+                            UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT),
+                    RECEIVER_NOT_EXPORTED);
+        } else {
+            registerReceiver(mWeatherUpdateReceiver,
+                    new IntentFilter(
+                            UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT));
+        }
         if (inited) {
             YourLocalWeather.executor.submit(() -> {
                 updateActivityOnResume();
@@ -273,6 +280,9 @@ public class MainActivity extends BaseActivity
         this.mToolbarMenu = menu;
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.activity_main_menu, menu);
+        if (locationsDbHelper == null) {
+            return false;
+        }
         Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
         if (!autoLocation.isEnabled()) {
             menu.findItem(R.id.main_menu_detect_location).setVisible(false);
@@ -953,6 +963,31 @@ public class MainActivity extends BaseActivity
         });
     }
 
+    private void showWeatherProviderChangedDisclaimer() {
+        int initialGuideVersion = PreferenceManager.getDefaultSharedPreferences(getBaseContext())
+                .getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
+        if (initialGuideVersion != 6) {
+            return;
+        }
+        final Context localContext = getBaseContext();
+        final AlertDialog.Builder settingsAlert = new AlertDialog.Builder(MainActivity.this);
+        settingsAlert.setTitle(R.string.alertDialog_weather_changed_title);
+        settingsAlert.setMessage(R.string.alertDialog_weather_changed_message);
+        settingsAlert.setNeutralButton(R.string.alertDialog_battery_optimization_proceed,
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(localContext).edit();
+                        preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 7);
+                        preferences.apply();
+                        checkAndShowInitialGuide();
+                    }
+                });
+        runOnUiThread(() -> {
+            settingsAlert.show();
+        });
+    }
+
     private void checkNotificationPermission() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
             SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
@@ -1069,16 +1104,18 @@ public class MainActivity extends BaseActivity
                 return;
             } else if (initialGuideVersion == 5) {
                 SharedPreferences.Editor preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).edit();
-                preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 6);
+                preferences.putInt(Constants.APP_INITIAL_GUIDE_VERSION, 7);
                 preferences.apply();
                 initialGuideCompleted = true;
                 detectLocation();
                 return;
             } else if (initialGuideVersion == 6) {
+                showWeatherProviderChangedDisclaimer();
+                initialGuideCompleted = true;
+            } else if (initialGuideVersion == 7) {
                 initialGuideCompleted = true;
             }
             checkPermissionsSettingsAndShowAlert();
-            return;
         } else {
             saveInitialPreferences();
             checkPermissionsSettingsAndShowAlert();
@@ -1159,16 +1196,6 @@ public class MainActivity extends BaseActivity
         if (!initialGuideCompleted) {
             return;
         }
-        if ((location.getOrderId() == 0) &&
-                (location.getLongitude() == 0) &&
-                (location.getLatitude() == 0) &&
-                ((location.getAddress() == null) || (location.getLastLocationUpdate() == 0))) {
-            return;
-        }
-        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
-        intent.setPackage("org.thosp.yourlocalweather");
-        intent.putExtra("weatherRequest", new WeatherRequestDataHolder(location.getId(), updateSource, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE));
-        startService(intent);
-        sendMessageToWeatherForecastService(location.getId());
+        super.sendMessageToCurrentWeatherService(location, updateSource);
     }
 }

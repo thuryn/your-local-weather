@@ -53,13 +53,11 @@ public abstract class AbstractAppJob extends JobService {
     }
 
     protected void sendMessageToWeatherForecastService(long locationId, String updateSource) {
-        if (!ForecastUtil.shouldUpdateForecast(this, locationId, UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
-            return;
-        }
+        appendLog(getBaseContext(), TAG, "sendMessageToWeatherForecastService:locationId=", locationId);
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(locationId, updateSource, UpdateWeatherService.START_WEATHER_FORECAST_UPDATE));
-        startService(intent);
+        ContextCompat.startForegroundService(this, intent);
     }
 
     protected void sendMessageToCurrentWeatherService(Location location,
@@ -72,6 +70,7 @@ public abstract class AbstractAppJob extends JobService {
                                                       String updateSource,
                                                       int wakeUpSource,
                                                       boolean updateWeatherOnly) {
+        appendLog(getBaseContext(), TAG, "sendMessageToCurrentWeatherService:locationId=", location.getId());
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(location.getId(), updateSource, updateWeatherOnly, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE));

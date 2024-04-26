@@ -2,10 +2,12 @@ package org.thosp.yourlocalweather.service;
 
 import android.annotation.TargetApi;
 import android.app.job.JobParameters;
+import android.app.job.JobService;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.ServiceInfo;
 import android.os.Build;
 import android.os.IBinder;
 
@@ -13,6 +15,7 @@ import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.Utils;
 
 import java.util.Calendar;
@@ -23,6 +26,7 @@ import java.util.concurrent.Executors;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLogWithDate;
 
+import androidx.core.app.ServiceCompat;
 import androidx.core.content.ContextCompat;
 
 @TargetApi(Build.VERSION_CODES.M)
@@ -41,6 +45,10 @@ public class StartAutoLocationJob extends AbstractAppJob {
     @Override
     public boolean onStartJob(JobParameters params) {
         this.params = params;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
+            setNotification(params, NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(this),
+                    JobService.JOB_END_NOTIFICATION_POLICY_DETACH);
+        }
         YourLocalWeather.executor.submit(() -> {
             appendLog(this, TAG, "onStartJob");
             try {
@@ -169,17 +177,13 @@ public class StartAutoLocationJob extends AbstractAppJob {
     public void startSensorBasedUpdates() {
         Intent sendIntent = new Intent("org.thosp.yourlocalweather.action.START_SENSOR_BASED_UPDATES");
         sendIntent.setPackage("org.thosp.yourlocalweather");
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(sendIntent);
-        } else {
-            startService(sendIntent);
-        }
+        ContextCompat.startForegroundService(this, sendIntent);
     }
 
     public void stopSensorBasedUpdates() {
         Intent sendIntent = new Intent("org.thosp.yourlocalweather.action.STOP_SENSOR_BASED_UPDATES");
         sendIntent.setPackage("org.thosp.yourlocalweather");
-        startService(sendIntent);
+        ContextCompat.startForegroundService(this, sendIntent);
     }
 
     protected void sendIntent(String intent) {
@@ -189,6 +193,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
     }
 
     private void startLocationAndWeatherUpdate(boolean forceUpdate) {
+        appendLog(getBaseContext(), TAG, "startLocationAndWeatherUpdate:forceUpdate=", forceUpdate);
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
         Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
@@ -199,6 +204,7 @@ public class StartAutoLocationJob extends AbstractAppJob {
     }
 
     private void startLocationAndWeatherUpdate(String updateSource) {
+        appendLog(getBaseContext(), TAG, "startLocationAndWeatherUpdate:2:updateSource=", updateSource);
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
         Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");

@@ -1,13 +1,16 @@
 package org.thosp.yourlocalweather.service;
 
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
+import android.app.job.JobService;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.ServiceInfo;
 import android.net.TrafficStats;
 import android.os.Build;
 import android.os.Handler;
@@ -61,12 +64,13 @@ import cz.msebera.android.httpclient.Header;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLogLastUpdateTime;
 
+import androidx.core.app.ServiceCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.net.TrafficStatsCompat;
 
 public class UpdateWeatherService extends AbstractCommonService {
 
-    private static final String TAG = "UpdateWeatherService";
+        private static final String TAG = "UpdateWeatherService";
 
     private static final long MIN_WEATHER_UPDATE_TIME_IN_MS = 900000L; //15min
     private static final long MAX_WEATHER_UPDATE_TIME_IN_MS = 2700000L; //45m
@@ -143,7 +147,12 @@ public class UpdateWeatherService extends AbstractCommonService {
             return ret;
         }
         YourLocalWeather.executor.submit(() -> {
-            startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+            Notification notification = NotificationUtils.getNoWeatherNotification(getBaseContext());
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                startForeground(NotificationUtils.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+            } else {
+                startForeground(NotificationUtils.NOTIFICATION_ID, notification);
+            }
             appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
             boolean forceUpdate = false;
             Long locationId = null;
@@ -574,7 +583,7 @@ public class UpdateWeatherService extends AbstractCommonService {
 
         appendLog(context,
                 TAG,
-                "Result sent");
+                    "Result sent");
     }
 
     private void sendIntentToForecast(String result) {

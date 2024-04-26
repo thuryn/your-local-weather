@@ -267,27 +267,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         return dialog;
     }
 
-    protected void sendMessageToWeatherForecastService(Long locationId) {
-        if (!ForecastUtil.shouldUpdateForecast(this, locationId, UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
-            return;
-        }
-        sendMessageToWeatherForecastService(locationId, null);
-    }
-
-    protected void sendMessageToWeatherForecastService(Long locationId, String updateSource) {
-        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
-        intent.setPackage("org.thosp.yourlocalweather");
-        intent.putExtra("weatherRequest", new WeatherRequestDataHolder(locationId, updateSource, UpdateWeatherService.START_WEATHER_FORECAST_UPDATE));
-        ContextCompat.startForegroundService(getBaseContext(), intent);
-    }
-
-    protected void sendMessageToLongWeatherForecastService(Long locationId, String updateSource) {
-        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
-        intent.setPackage("org.thosp.yourlocalweather");
-        intent.putExtra("weatherRequest", new WeatherRequestDataHolder(locationId, updateSource, UpdateWeatherService.START_LONG_WEATHER_FORECAST_UPDATE));
-        ContextCompat.startForegroundService(getBaseContext(), intent);
-    }
-
     protected void sendMessageToReconciliationDbService(boolean force) {
         appendLog(this,
                 TAG,
@@ -295,6 +274,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_RECONCILIATION");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("force", force);
+        startService(intent);
+    }
+
+    protected void sendMessageToCurrentWeatherService(Location location, String updateSource) {
+        if ((location.getOrderId() == 0) &&
+                (location.getLongitude() == 0) &&
+                (location.getLatitude() == 0) &&
+                ((location.getAddress() == null) || (location.getLastLocationUpdate() == 0))) {
+            return;
+        }
+        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
+        intent.setPackage("org.thosp.yourlocalweather");
+        intent.putExtra("weatherRequest", new WeatherRequestDataHolder(location.getId(), updateSource, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE));
         startService(intent);
     }
 }

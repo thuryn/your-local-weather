@@ -12,6 +12,7 @@ import org.thosp.yourlocalweather.licence.TooEarlyUpdateException;
 import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.Weather;
+import org.thosp.yourlocalweather.utils.Utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -52,7 +53,7 @@ public class WeatherJSONParser {
                 weather.setPressure(Float.parseFloat(current.getString("pressure_msl")));
             }
             if (current.has("wind_speed_10m")) {
-                weather.setWindSpeed(Float.parseFloat(current.getString("wind_speed_10m")));
+                weather.setWindSpeed(Float.parseFloat(current.getString("wind_speed_10m")) / 3.6f);
             }
             if (current.has("wind_direction_10m")) {
                 weather.setWindDirection(Float.parseFloat(current.getString("wind_direction_10m")));
@@ -117,13 +118,33 @@ public class WeatherJSONParser {
             weatherForecast.setWindSpeed(getDoubleValue(windSpeedList, weatherForecastCounter) / 3.6);
             weatherForecast.setWindDegree(getDoubleValue(windDirectionList, weatherForecastCounter));
             weatherForecast.setCloudiness(getIntegerValue(cloudList, weatherForecastCounter));
-            weatherForecast.setRain(getDoubleValue(rainList, weatherForecastCounter));
-            weatherForecast.setSnow(10 * getDoubleValue(snowfallList, weatherForecastCounter));
-            weatherForecast.setWeatherId(getIntegerValue(weatherList, weatherForecastCounter));
+            double rain = getDoubleValue(rainList, weatherForecastCounter);
+            weatherForecast.setRain(rain);
+            double snow = 10 * getDoubleValue(snowfallList, weatherForecastCounter);
+            weatherForecast.setSnow(snow);
+            int weatherId = getIntegerValue(weatherList, weatherForecastCounter);
+            if ((Utils.isWeatherDescriptionWithRain(weatherId) && (rain == 0)) ||
+                (Utils.isWeatherDescriptionWithSnow(weatherId) && (snow == 0))) {
+                weatherId = 3;
+            }
+            weatherForecast.setWeatherId(getWeatherIdWithFix(weatherList, weatherForecastCounter, rain, snow));
 
             completeWeatherForecast.addDetailedWeatherForecast(weatherForecast);
         }
         return completeWeatherForecast;
+    }
+
+    /**
+     *  Provider send weatherId with rain, but rain amount is zero, so we have to fix it
+     * @return
+     */
+    private static int getWeatherIdWithFix(JSONArray weatherList, int weatherForecastCounter, double rain, double snow) throws JSONException {
+        int weatherId = getIntegerValue(weatherList, weatherForecastCounter);
+        if ((Utils.isWeatherDescriptionWithRain(weatherId) && (rain == 0)) ||
+                (Utils.isWeatherDescriptionWithSnow(weatherId) && (snow == 0))) {
+            weatherId = 3;
+        }
+        return weatherId;
     }
 
     private static double getDoubleValue(JSONArray inputArray, int index) throws JSONException {

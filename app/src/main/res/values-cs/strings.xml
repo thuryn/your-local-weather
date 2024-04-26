@@ -6,6 +6,8 @@
     <string name="label_choose_city">Vyberte město</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Překlad textů a hlasových pokynů</string>
     <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Tato aplikace má funkci hlasového výstupu. Tato funkce vyžaduje nainstalovaný systém TTS (Text-to-speech) a nastavení v této aplikaci. Vezměte, prosím, v úvahu, že překlady textů i hlasových pokynů dělají dobrovolníci pomocí služby https://hosted.weblate.org/projects/your-local-weather. Můžete též nastavit své vlastní hlasové pokyny v nastavení aplikace. Vývojáři této aplikace negarantují kvalitu a správnost překladů, stejně jako to, co aplikace řekne - používáním této aplikace berete na vědomí toto prohlášení.</string>
+    <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">Změna poskytovatele počasí</string>
+    <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">Tato aplikace od teďka používá open-meteo.com jako zdroj počasí, jelikož openweathermap.org ukončuje službu zdarma v Červnu 2024.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Omezení služby Mozilla location service</string>
     <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Přístup ke službě Mozilla location service byl omezen počínaje datem 1.3.2020. Aplikace je nucena používat službu systému Android pro získání sořadnic polohy. Adresa je nadále získávána systémem Nominatim. Vezměte, prosím, při používání aplikace tuto skutečnost v úvahu.</string>
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Změny oprávnění v Android 10</string>
@@ -129,14 +131,14 @@
     <string name="preference_display_update_nothing">Nic</string>
     <string name="preference_display_update_value">Jen aktualizované hodnoty</string>
     <string name="preference_display_update_location_source">Aktualizované hodnoty včetně zdroje pozice</string>
-    <string name="preference_display_update_value_info">- - probíhá aktualizace polohy a/nebo počasí\n. - polohu není možné najít, probíhá aktualizace počasí\nW - aktualizovnáno jen počasí\nL - aktualizována jen poloha\nG - aktualizována poloha z GPS a počasí\nN - aktualizována poloha ze sítě a počasí\nB - přístup do služby Openweathermap.org byl zakázán, zkuste aktualizaci počasí později, prosím\nE - platnost přístupového kódu pro službu Openweathermap.org vypršela. Pro opětovné získání přístupu je třeba aktualizovat aplikaci na novější verzi.</string>
+    <string name="preference_display_update_value_info">- - probíhá aktualizace polohy a/nebo počasí\n. - polohu není možné najít, probíhá aktualizace počasí\nW - aktualizovnáno jen počasí\nL - aktualizována jen poloha\nG - aktualizována poloha z GPS a počasí\nN - aktualizována poloha ze sítě a počasí\nB - přístup do služby open-meteo.com byl zakázán, zkuste aktualizaci počasí později, prosím\nE - platnost přístupového kódu pro službu open-meteo.com vypršela. Pro opětovné získání přístupu je třeba aktualizovat aplikaci na novější verzi.</string>
     <string name="preference_display_update_location_source_info">W - aktualizovnáno jen počasí
 \nL - aktualizována jen poloha
 \nG - aktualizována poloha z GPS a počasí
 \nN - aktualizována poloha ze sítě a počasí
 \nNi - aktualizována poloha z GSM sítě a počasí
-        \nB - přístup do služby Openweathermap.org byl zakázán, zkuste aktualizaci počasí později, prosím
-        \nE - platnost přístupového kódu pro službu Openweathermap.org vypršela. Pro opětovné získání přístupu je třeba aktualizovat aplikaci na novější verzi.</string>
+        \nB - přístup do služby open-meteo.com byl zakázán, zkuste aktualizaci počasí později, prosím
+        \nE - platnost přístupového kódu pro službu open-meteo.com vypršela. Pro opětovné získání přístupu je třeba aktualizovat aplikaci na novější verzi.</string>
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">O aplikaci</string>
     <string name="about_version_pref_title">Verze</string>
@@ -316,7 +318,7 @@
 \n
 \nK získání polohy je nejprve využita informace z mobilní sítě (BTS) a WIFI sítí přítomných v dané lokalitě. Z těchto informací jsou pomocí služby Mozilla location service získány souřadnice. Pro získání souřadnic je třeba alespoň jedna základnová stanice sítě GSM nebo alespoň 2 dostupné WIFI sítě nebo jakákoliv kombinace GSM a WIFI sítí. Pokud souřadnice nejsou dostupné, pokusí se aplikace získat polohu z GPS. Získané souřadnice jsou pomocí služby Nominatim převedena na adresu, která je zobrazena v aplikaci nebo widgetu.
 \n
-\nK získání aktuálního počasí je využita služba OpenWeatherMap.org.</string>
+\nK získání aktuálního počasí je využita služba open-meteo.com.</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Hlavní aplikace</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Hlavní aplikace obsahuje přehled aktuálního počasí. Pomocí tlačítka pro aktualizaci počasí nebo gestem tažením dolů, můžete provést aktualizaci momentálního stavu počasí. Tlačítko aktualizace se nachází v horním panelu aplikace. Vedle tlačítka pro aktualizaci počasí se nachází tlačítko pro aktualizaci polohy. Tlačítko pro aktualizaci polohy je dostupné, pokud je povolena poloha 0 (poloha 0 je určena pro automatickou aktualizaci polohy.</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Na následující obrazovce je možné najít předpověď počasí (následující stranu je možné vybrat v menu nebo gestem tažení vpravo/vlevo). Předpověď je aktualizována pomocí tlačítka pro aktualizaci nebo pokud právě vstoupíte na tuto obrazovku (avšak ne častěji než jednou za hodinu).</string>
@@ -406,7 +408,7 @@
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Momentálně nemůžete mít více než %1$d polohy.</string>
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Déšť a sníh</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Nastavení systému</string>
-    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">API klíč pro Openweathermap.org</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">API klíč pro open-meteo.com</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Vestavěný</string>
     <string name="pref_language_sv" tools:ignore="MissingTranslation">Švédština (Swedish)</string>
     <string name="pref_language_hi" tools:ignore="MissingTranslation">Hindština (Hindi)</string>

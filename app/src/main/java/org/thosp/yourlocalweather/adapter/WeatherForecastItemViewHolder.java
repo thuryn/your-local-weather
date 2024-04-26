@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thosp.yourlocalweather.R;
@@ -104,9 +105,9 @@ public class WeatherForecastItemViewHolder extends RecyclerView.ViewHolder {
             if (isMin == isMax) {
                 mTemperature.setTextColor(PreferenceUtil.getTextColor(context));
             } else if (isMax) {
-                mTemperature.setTextColor(Color.RED);
+                mTemperature.setTextColor(ContextCompat.getColor(context, R.color.max_temperature_color));
             } else {
-                mTemperature.setTextColor(Color.BLUE);
+                mTemperature.setTextColor(ContextCompat.getColor(context, R.color.min_temperature_color));
             }
         } else {
             mTemperature.setVisibility(View.GONE);

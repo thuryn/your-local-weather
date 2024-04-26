@@ -328,9 +328,21 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         IntentFilter filterScreenOn = new IntentFilter(Intent.ACTION_SCREEN_ON);
         IntentFilter filterScreenOff = new IntentFilter(Intent.ACTION_SCREEN_OFF);
         IntentFilter filterUserUnlocked = new IntentFilter(Intent.ACTION_USER_PRESENT);
-        getApplication().registerReceiver(screenOnReceiver, filterScreenOn);
-        getApplication().registerReceiver(screenOffReceiver, filterScreenOff);
-        getApplication().registerReceiver(userUnlockedReceiver, filterUserUnlocked);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getApplication().registerReceiver(screenOnReceiver, filterScreenOn, RECEIVER_EXPORTED);
+        } else {
+            getApplication().registerReceiver(screenOnReceiver, filterScreenOn);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getApplication().registerReceiver(screenOffReceiver, filterScreenOff, RECEIVER_EXPORTED);
+        } else {
+            getApplication().registerReceiver(screenOffReceiver, filterScreenOff);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            getApplication().registerReceiver(userUnlockedReceiver, filterUserUnlocked, RECEIVER_EXPORTED);
+        } else {
+            getApplication().registerReceiver(userUnlockedReceiver, filterUserUnlocked);
+        }
     }
 
     private void startNetworkConnectivityReceiver() {
@@ -339,7 +351,11 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
                 appendLog(getBaseContext(), TAG, "Start connectivity receiver with handler");
                 networkConnectivityReceiver = new NetworkConnectivityReceiver();
                 IntentFilter filterNetworkConnectivity = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-                getApplicationContext().registerReceiver(networkConnectivityReceiver, filterNetworkConnectivity);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                    getApplicationContext().registerReceiver(networkConnectivityReceiver, filterNetworkConnectivity, RECEIVER_NOT_EXPORTED);
+                } else {
+                    getApplicationContext().registerReceiver(networkConnectivityReceiver, filterNetworkConnectivity);
+                }
             } else {
                 appendLog(getBaseContext(), TAG, "Start connectivity receiver with callback");
                 ConnectivityManager connectivityManager

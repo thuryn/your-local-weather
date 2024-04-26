@@ -102,36 +102,6 @@ public abstract class ForecastingActivity extends BaseActivity {
         }
     }
 
-    protected void updateWeatherForecastFromNetwork(String updateSource) {
-        if (currentLocation == null) {
-            return;
-        }
-        boolean isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
-        if (isNetworkAvailable) {
-            setVisibleUpdating(true);
-            sendMessageToWeatherForecastService(currentLocation.getId(), updateSource);
-        } else {
-            Toast.makeText(this,
-                    R.string.connection_not_found,
-                    Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    protected void updateLongWeatherForecastFromNetwork(String updateSource) {
-        if (currentLocation == null) {
-            return;
-        }
-        boolean isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
-        if (isNetworkAvailable) {
-            setVisibleUpdating(true);
-            sendMessageToLongWeatherForecastService(currentLocation.getId(), updateSource);
-        } else {
-            Toast.makeText(this,
-                    R.string.connection_not_found,
-                    Toast.LENGTH_SHORT).show();
-        }
-    }
-
     protected void initializeWeatherForecastReceiver(final String actionResult) {
         mWeatherUpdateReceiver = new BroadcastReceiver() {
             @Override

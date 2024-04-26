@@ -14,6 +14,8 @@
     <color name="settings_content_color">#000000</color>
     <color name="divider_light">#ccc</color>
     <color name="link_color">#0000FF</color>
+    <color name="min_temperature_color">#8484fa</color>
+    <color name="max_temperature_color">#fa8491</color>
 
     <color name="widget_darkTheme_colorBackground">#fa202020</color>
     <color name="widget_darkTheme_textColorPrimary">#FFFFFF</color>

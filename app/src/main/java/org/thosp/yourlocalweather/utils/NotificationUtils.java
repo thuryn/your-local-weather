@@ -303,7 +303,7 @@ public class NotificationUtils {
                     weatherForecastRecord,
                     textColor,
                     null,
-                    5l,
+                    4l,
                     false,
                     null,
                     fontBasedIcons,

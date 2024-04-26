@@ -124,7 +124,6 @@ public class AbstractCommonService extends Service {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         org.thosp.yourlocalweather.model.Location currentLocation = locationsDbHelper.getLocationById(locationId);
         sendMessageToCurrentWeatherService(currentLocation, updateSource, wakeUpSource, forceUpdate, true);
-        sendMessageToWeatherForecastService(currentLocation.getId(), updateSource, forceUpdate);
     }
 
     protected void sendMessageToCurrentWeatherService(Location location, int wakeUpSource, boolean updateWeatherOnly) {
@@ -143,34 +142,7 @@ public class AbstractCommonService extends Service {
                                                                              forceUpdate,
                                                                              updateWeatherOnly,
                                                                              UpdateWeatherService.START_CURRENT_WEATHER_UPDATE));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            startForegroundService(intent);
-        } else {
-            startService(intent);
-        }
-    }
-
-    protected void sendMessageToWeatherForecastService(long locationId) {
-        sendMessageToWeatherForecastService(locationId, null, false);
-    }
-
-    protected void sendMessageToWeatherForecastService(long locationId, String updateSource, boolean forceUpdate) {
-        appendLog(this,
-                  TAG,
-                "going to check weather forecast");
-        if (!ForecastUtil.shouldUpdateForecast(this, locationId, UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
-            appendLog(this,
-                    TAG,
-                    "weather forecast is recent enough");
-            return;
-        }
-        appendLog(this,
-                TAG,
-                "sending message to get weather forecast");
-        Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
-        intent.setPackage("org.thosp.yourlocalweather");
-        intent.putExtra("weatherRequest", new WeatherRequestDataHolder(locationId, updateSource, forceUpdate, UpdateWeatherService.START_WEATHER_FORECAST_UPDATE));
-        ContextCompat.startForegroundService(getBaseContext(), intent);
+        ContextCompat.startForegroundService(this, intent);
     }
 
     protected void sendMessageToWakeUpService(int wakeAction, int wakeupSource) {

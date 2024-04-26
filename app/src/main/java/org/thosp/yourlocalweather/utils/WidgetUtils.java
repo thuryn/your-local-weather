@@ -1,5 +1,7 @@
 package org.thosp.yourlocalweather.utils;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -346,8 +348,10 @@ public class WidgetUtils {
         SimpleDateFormat sdfDayOfWeek = getDaysFormatter(context, widgetId, forecastDayAbbrev, location.getLocale());
 
         if (weatherForecastRecord == null) {
+            appendLog(context, TAG, "weatherForecastRecord is null");
             return;
         }
+
         if ((hoursForecastFromWidgetSettings != null) && hoursForecastFromWidgetSettings) {
             createForecastByHours(
                     context,
@@ -587,9 +591,10 @@ public class WidgetUtils {
             int forecast_6_widget_temperatures) {
 
         int hourCounter = 0;
+        long now = System.currentTimeMillis();
         for (DetailedWeatherForecast detailedWeatherForecast: weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
 
-            if (detailedWeatherForecast == null) {
+            if ((detailedWeatherForecast == null) || ((1000*detailedWeatherForecast.getDateTime()) < now)) {
                 continue;
             }
 
@@ -804,9 +809,11 @@ public class WidgetUtils {
                 fontColorId);
         forecastCalendar.set(Calendar.DAY_OF_YEAR, countedForecastForDay.dayInYear);
         forecastCalendar.set(Calendar.YEAR, countedForecastForDay.year);
+        String forecastDay = sdfDayOfWeek.format(forecastCalendar.getTime());
+        appendLog(context, TAG, "set forecast info for day:", countedForecastForDay.dayIndex + ":" + forecastDay);
         remoteViews.setTextViewText(
                 weatherIdForDayName,
-                sdfDayOfWeek.format(forecastCalendar.getTime()));
+                forecastDay);
         remoteViews.setTextColor(weatherIdForDayName, fontColorId);
         remoteViews.setTextViewText(
                 weatherIdForTemperatures,

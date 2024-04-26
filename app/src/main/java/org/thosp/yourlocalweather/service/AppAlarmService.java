@@ -82,7 +82,6 @@ public class AppAlarmService extends AbstractCommonService {
                 continue;
             } else {
                 sendMessageToCurrentWeatherService(location, AppWakeUpManager.SOURCE_CURRENT_WEATHER, true);
-                scheduleNextLocationWeatherForecastUpdate(location.getId());
             }
         }
     }
@@ -225,13 +224,6 @@ public class AppAlarmService extends AbstractCommonService {
                     SystemClock.elapsedRealtime() + updatePeriodMilis,
                     pendingIntent);
         }
-    }
-
-    private void scheduleNextLocationWeatherForecastUpdate(long locationId) {
-        if (!ForecastUtil.shouldUpdateForecast(this, locationId, UpdateWeatherService.WEATHER_FORECAST_TYPE)) {
-            return;
-        }
-        sendMessageToWeatherForecastService(locationId);
     }
 
     public void startSensorBasedUpdates() {

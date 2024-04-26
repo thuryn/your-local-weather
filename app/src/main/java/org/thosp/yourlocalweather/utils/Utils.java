@@ -563,7 +563,7 @@ public class Utils {
     }
 
     public static boolean isWeatherDescriptionWithRain(int weatherId) {
-        if (weatherId < 600) {
+        if (((weatherId > 50) && (weatherId < 70)) || ((weatherId >= 80) && (weatherId < 85))) {
             return true;
         } else {
             return false;
@@ -571,7 +571,7 @@ public class Utils {
     }
 
     public static boolean isWeatherDescriptionWithSnow(int weatherId) {
-        if ((weatherId >= 600) && (weatherId < 700)) {
+        if (((weatherId >= 70) && (weatherId < 80)) || ((weatherId >= 85) && (weatherId < 90))) {
             return true;
         } else {
             return false;
