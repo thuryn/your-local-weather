@@ -21,7 +21,7 @@
     <string name="location_not_found" tools:ignore="MissingTranslation">Vendndodhja s\\’u gjet</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Lejet s\\’janë akorduar ende - klikoni mbi simbolin e vendndodhjes te aplikacioni</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Hyrja skadoi. Ju lutemi, përmirësoni aplikacionin.</string>
-    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Kyçi juaj për API-n Openweathermap s\\’është i regjistruar.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Kyçi juaj për API Open_meteo s\\’është i regjistruar.</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Ndani motin me të tjerët</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">S\\’u gjet aplikacion komunikimesh</string>
     <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Qytet: %1$s 
@@ -163,7 +163,7 @@
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Shfaqje</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Përditëso vendndodhjen dhe motin</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Rregullime sistemi</string>
-    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Kyç API për Openweathermap.org</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Kyç API për Open-Meteo (https://open-meteo.com)</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">E brendshme</string>
     <string name="pref_title_language" tools:ignore="MissingTranslation">Gjuhë</string>
     <string name="pref_language_default" tools:ignore="MissingTranslation">Parazgjedhje Sistemi</string>
@@ -341,7 +341,7 @@
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">re të dendura</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Mund të zgjidhni metodën për vendndodhje - the <i>Sistemi</i> një përdor shërbime Google për ta marrë vendndodhjen nga rrjete (rrjete celularë dhe Wi-Fi). Mundësia <i>MLS dhe Nominatim vendor</i> përdor shërbim lokalizimi të Mozilla-s për të marrë koordinata vendndodhjesh dhe shërbimin Nominatim për të marrë emra vendndodhjesh. Mundësia e dytë lyp leje për thirrje telefonike për të sjellë të dhëna rreth rrjetit celular. Mundësia e parapëlqyer është parapërzgjedhur.</string>
     <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Disa telefona nuk raportojnë mbi celularë të lidhur, po qe se ekrani nuk është në punë. Mundësia e parapëlqyer (me ekranin në punë) ka mangësinë se telefoni e ndez ekranin për disa sekonda. Kjo ka një ndikim të vockël në kohëzgjatjen e baterisë. Fillojani me ekran të ndezur, dhe provoni ta fikni dhe shihni nëse vendndodhja ende përditësohet.</string>
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">Aplikacioni e përcakton vendndodhjen duke përdorur rrjete celularësh (BTS), Wi-Fi dhe, nëse me këta s\\’arrihet gjë, GPS për të shfaqur motin vendor, duke i marrë kështu të dhënat nga shërbimi Mozilla i lokalizimit. Aplikacioni ka nevojë të paktën për: një stacion bazë të rrjetit GSM ose dy rrjete të kapshëm wifi ose çfarëdo kombinimi rrjetesh GSM dhe Wi-Fi. Duke përdorur widget-in në telefonin apo tabletin tuaj, mund të shihni në skenën kryesore vendndodhjen tuaj dhe motin atë çast. Përditësimet e vendndodhjes mund të jenë periodike, (p.sh., çdo orë) ose aplikacioni mund të përdorë akselerometrin për të pikasur zhvendosje në një distancë më të madhe se sa një vlerë e dhënë. Duke e mbajtur në xhep, distanca rritet më shpejt. Mund t’i çaktivizoni përditësimet e vendndodhjes - atëherë përditësohet vetëm moti. Aplikacioni përditëson vendndodhjen dhe motin në intervale të caktuar. Mundeni, për shembull, të caktoni si periudhë përditësimesh një orë fiks. Moti përditësohet menjëherë The weather is updated immediately after location is, ose kur ekrani është i ndezur - por jo më shpesh se një herë në 15 minuta (dhe kur moti s’është përditësuar gjatë 15 minutave të fundit). Këto të dhëna përdoren për të marrë koordinata vendndodhjesh nga shërbimi Mozilla i lokalizimit. Aplikacioni provon të përdorë GPS, kur vendndodhja s’merret dot nga rrjet celular dhe rrjete Wi-Fi. Koordinatat e vendndodhjes përdoren për të marrë adresë nga shërbimi Nominatim. Adresa përdoret te aplikacioni ose widget-i. Për të marrë motin e atëçastshëm, aplikacioni përdor shërbimin OpenWeatherMap.org.</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Aplikacioni e përcakton vendndodhjen duke përdorur rrjete celularësh (BTS), Wi-Fi dhe, nëse me këta s\\’arrihet gjë, GPS për të shfaqur motin vendor, duke i marrë kështu të dhënat nga shërbimi Mozilla i lokalizimit. Aplikacioni ka nevojë të paktën për: një stacion bazë të rrjetit GSM ose dy rrjete të kapshëm wifi ose çfarëdo kombinimi rrjetesh GSM dhe Wi-Fi. Duke përdorur widget-in në telefonin apo tabletin tuaj, mund të shihni në skenën kryesore vendndodhjen tuaj dhe motin atë çast. Përditësimet e vendndodhjes mund të jenë periodike, (p.sh., çdo orë) ose aplikacioni mund të përdorë akselerometrin për të pikasur zhvendosje në një distancë më të madhe se sa një vlerë e dhënë. Duke e mbajtur në xhep, distanca rritet më shpejt. Mund t’i çaktivizoni përditësimet e vendndodhjes - atëherë përditësohet vetëm moti. Aplikacioni përditëson vendndodhjen dhe motin në intervale të caktuar. Mundeni, për shembull, të caktoni si periudhë përditësimesh një orë fiks. Moti përditësohet menjëherë The weather is updated immediately after location is, ose kur ekrani është i ndezur - por jo më shpesh se një herë në 15 minuta (dhe kur moti s’është përditësuar gjatë 15 minutave të fundit). Këto të dhëna përdoren për të marrë koordinata vendndodhjesh nga shërbimi Mozilla i lokalizimit. Aplikacioni provon të përdorë GPS, kur vendndodhja s’merret dot nga rrjet celular dhe rrjete Wi-Fi. Koordinatat e vendndodhjes përdoren për të marrë adresë nga shërbimi Nominatim. Adresa përdoret te aplikacioni ose widget-i. Për të marrë motin e atëçastshëm, aplikacioni përdor shërbimin Open-Meteo (https://open-meteo.com).</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Aplikacioni bazë përmban një përmbledhje të motit atë çast. Motin mund ta përditësoni duke përdorur butonin e rifreskimit te paneli i aplikacionit ose duke e rrëshqitur poshtë. Butonin e përditësimit të vendndodhjes mund ta gjeni në krah të butonit të rifreskimit të motit. Ky buton është i përdorshëm vetëm kur vendndodhja 0 është e aktivizuar (vendndodhja 0 është e menduar për përditësim të vetvetishëm të vendndodhjes).</string>
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Në krah të butoni të përditësimit të vendndodhjes gjendet një buton administrimi vendndodhjesh (ikonë thjerrëze zmadhimi). Mund të administroni vendndodhjet e përdorura te aplikacione dhe te widget-e. Si parazgjedhje, ka të gatshme një vendndodhje (Vendndodhja 0) - kjo është menduar për përditësime automatike të vendndodhjes. Butonin aktivizoje/çaktivizoje mund ta shihni kur e shtyni majtas këtë vendndodhje. Vendndodhje mund të shtoni edhe dorazi. Kur klikoni mbi butonin +, mund të zgjidhni vendndodhjen në hartë. Mundeni edhe të fshini vendndodhje me butonin Fshije - që shfaqet kur e shtyni vendndodhjen majtas.</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Parashikimin e motit e gjeni në skenën pasuese (përzgjidhni në menu skenën pasuese ose rrëshqitni gishtin nga e majta në të djathtë). Parashikimi i motit përditësohet përmes butonit të përditësimeve ose kur hyni te skena (por jo më shumë se një përditësim në orë).</string>
@@ -383,15 +383,15 @@
 \nV - përditësim vetëm i vendndodhjes
 \nG - përditësim i vendndodhjes nga GPS dhe i motit
 \nR - përditësim i vendndodhjes nga rrjeti dhe i motit
-\nD - është ndaluar hyrja te shërbimi Openweathermap.org, ju lutemi, provoni ta përditësoni motin më vonë
-\nS - token-i i hyrjes në Openweathermap.org ka skaduar. Lypset të përmirësoni aplikacionin që të rifitoni hyrje</string>
+\nD - është ndaluar hyrja te shërbimi Open-Meteo, ju lutemi, provoni ta përditësoni motin më vonë
+\nS - token-i i hyrjes në shërbimin Open-Meteo ka skaduar. Që të rifitoni hyrje, lypset të përmirësoni aplikacionin</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">M - përditësim vetëm i motit
 \nV - përditësim vetëm i vendndodhjes
 \nG - përditësim i vendndodhjes nga GPS dhe i motit
 \nR - përditësim i vendndodhjes nga rrjeti dhe i motit
 \nNi - përditësim i vendndodhjes nga rrjeti celular dhe i motit, vendndodhje e pikasur nga shërbim Mozilla vendndodhjesh
-\nD - është ndaluar hyrja te shërbimi Openweathermap.org, ju lutemi, provoni ta përditësoni motin më vonë
-\nS - token-i i hyrjes në shërbimin Openweathermap.org ka skaduar. Që të rifitoni hyrje, instaloni një version të mëvonshëm të aplikacionit</string>
+\nD - është ndaluar hyrja te shërbimi Open-Meteo, ju lutemi, provoni ta përditësoni motin më vonë
+\nS - token-i i hyrjes në shërbimin Open-Meteo ka skaduar. Që të rifitoni hyrje, instaloni një version të mëvonshëm të aplikacionit</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Kur venndodhja ngec gjatë dremitjesh të pajisjes, mund të provoni ta zgjoni kur është duke kërkuar për një rrjet celularësh</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Strategji Zgjimi</string>
     <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">Pas sasisë së dhënë të kohës, vlerat e ruajtura në fshehtinë do të hiqen</string>
@@ -521,7 +521,7 @@
     <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">jugperëndim</string>
     <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">perëndim</string>
     <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">veriperëndim</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Ky aplikacion përmban drejtim përmes zërit, bazuar në përkthime teksti dhe urdhra zanorë, falë vullnetarëve te https://hosted.weblate.org/projects/your-local-weather. Zhvilluesit e aplikacionit nuk garantojnë që ato janë të sakta - duke përdorur aplikacionin, pajtoheni me këtë pohim. Për ta përdorur, ju duhet i instaluar një sistem TTS (Tekst-në-të-folur) dhe drejtimi i aktivizuar zë që nga rregullimet e aplikacionit, prej nga ku mund të ujdisni urdhrat tuaj zanorë. "</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Ky aplikacion përmban drejtim përmes zërit, bazuar në përkthime teksti dhe urdhra zanorë, falë vullnetarëve te https://hosted.weblate.org/projects/your-local-weather. Zhvilluesit e aplikacionit nuk garantojnë që ato janë të sakta - duke përdorur aplikacionin, pajtoheni me këtë pohim. Për ta përdorur, ju duhet i instaluar një sistem TTS (Tekst-në-të-folur) dhe drejtimi i aktivizuar zë që nga rregullimet e aplikacionit, prej nga ku mund të ujdisni urdhrat tuaj zanorë.</string>
     <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Rregullime të reja drejtimi</string>
     <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation"/>
     <string name="voice_settings_language" tools:ignore="MissingTranslation">Gjuhë</string>
@@ -588,4 +588,6 @@
     <string name="theme_system" tools:ignore="MissingTranslation">Nga sistemi</string>
     <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 orë</string>
     <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 ditë</string>
+    <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">Ndryshoi furnizuesi i shërbimit të motit</string>
+    <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">Nga tani e tutje, ky aplikacion përdor Open-Meteo (https://open-meteo.com) si burimin e vet për motin, ngaqë openweathermap.org e përfundon shërbimin e vet falas më qershor 2024.</string>
 </resources>
