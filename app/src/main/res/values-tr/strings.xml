@@ -152,15 +152,15 @@
 \nL - yalnızca konum güncellendi
 \nG - GPS\'ten konum ve hava durumu güncellendi
 \nN - ağdan konum ve hava durumu güncellendi
-\nB - Openweathermap.org hizmetine erişim yasaklandı, lütfen hava durumunu daha sonra güncellemeyi deneyin
-\nE - Openweathermap.org hizmetinin erişim belirtecinin süresi doldu. Yeniden erişebilmek için uygulamayı yükseltmeniz gerekir</string>
+\nB - Open-Meteo hizmetine erişim yasaklandı, lütfen hava durumunu daha sonra güncellemeyi deneyin
+\nE - Open-Meteo hizmetinin erişim belirtecinin süresi doldu. Yeniden erişebilmek için uygulamayı yükseltmeniz gerekir</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - yalnızca hava durumu güncellendi
 \nL - yalnızca konum güncellendi
 \nG - GPS\'ten konum ve hava durumu güncellendi
 \nN - ağdan konum ve hava durumu güncellendi
 \nNi - hücresel şebekeden konum ve hava durumu güncellendi, konum Mozilla konum hizmeti ile keşfedildi
-\nB - Openweathermap.org hizmetine erişim yasaklandı, lütfen hava durumunu daha sonra güncellemeyi deneyin
-\nE - Openweathermap.org hizmetinin erişim belirtecinin süresi doldu. Erişimi yeniden kazanmak için uygulamanın sonraki bir sürümünü kurun</string>
+\nB - Open-Meteo hizmetine erişim yasaklandı, lütfen hava durumunu daha sonra güncellemeyi deneyin
+\nE - Open-Meteo hizmetinin erişim belirtecinin süresi doldu. Erişimi yeniden kazanmak için uygulamanın sonraki bir sürümünü kurun</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Cihaz uykudayken konum takılı kalırsa, hüresel ağ aranırken uyandırmayı deneyebilirsiniz</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Uyanma Stratejisi</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">Uyanma yok</string>
@@ -252,7 +252,7 @@
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Rüzgar</string>
     <string name="pref_title_pressure" tools:ignore="MissingTranslation">Basınç</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Konumlandırma yöntemini seçebilirsiniz - <i>Sistem</i> seçeneği konumu ağlar (telefon ve Wi-Fi ağları) üzerinden almak için Google hizmetlerini kullanır. <i>Yerel MLS ve Nominatim</i> seçeneği konum koordinatlarını almak için Mozilla konum hizmetini ve yer adlarını almak için Nominatim hizmetini kullanır. İkinci seçenek, telefon ağlarıyla ilgili bilgi almak için telefon araması izinlerini gerektirir. Tercih edilen seçenek seçili olandır.</string>
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">Uygulama, yerel hava durumunu göstermek için sırasıyla hücresel ağ (BTS), Wi-Fi ve bunlar başarısız olursa GPS kullanıp Mozilla konum hizmetinden koordinatları alarak konumu belirler. Uygulamanın en az şunlara ihtiyacı vardır: bir GSM şebekesi baz istasyonu veya iki erişilebilir Wi-Fi şebekesi veya GSM ve Wi-Fi şebekelerinin herhangi bir birleşimi. Widget\'ı telefonunuzda veya tabletinizde kullanarak ana ekranda konumunuzu ve o anki hava durumunu görebilirsiniz. Konum güncellemeleri belirli aralıklarla (örneğin saatlik) olabilir veya uygulama, bir değerden daha uzak mesafelerdeki hareketi algılamak için ivmeölçeri kullanabilir. Cebinizde taşındığında mesafe daha hızlı artar. Konum güncellemelerini kapatabilirsiniz - bu durumda yalnızca hava durumu güncellenir. Uygulama, konumu ve hava durumunu belirli aralıklarla günceller. Örneğin güncelleme süresini bir saat olarak ayarlayabilirsiniz. Hava durumu, konum belirlendikten hemen sonra veya ekran açıldığında güncellenir - ancak 15 dakikada bir defadan daha sık değil (ve son 15 dakikada hava durumu güncellenmediğinde). Bu bilgiler, Mozilla konum hizmeti tarafından konum koordinatlarını almak için kullanılır. Uygulama, hücresel ağdan ve Wi-Fi ağlarından konum bulunmadığında GPS kullanmaya çalışır. Nominatim hizmeti ile adresi öğrenmek için konum koordinatları kullanılır. Adres, uygulamada veya widget\'ta kullanılır. Uygulama, o anki hava durumunu almak için OpenWeatherMap.org hizmetini kullanır.</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Uygulama, yerel hava durumunu göstermek için sırasıyla hücresel ağ (BTS), Wi-Fi ve bunlar başarısız olursa GPS kullanıp Mozilla konum hizmetinden koordinatları alarak konumu belirler. Uygulamanın en az şunlara ihtiyacı vardır: bir GSM şebekesi baz istasyonu veya iki erişilebilir Wi-Fi şebekesi veya GSM ve Wi-Fi şebekelerinin herhangi bir birleşimi. Widget\'ı telefonunuzda veya tabletinizde kullanarak ana ekranda konumunuzu ve o anki hava durumunu görebilirsiniz. Konum güncellemeleri belirli aralıklarla (örneğin saatlik) olabilir veya uygulama, bir değerden daha uzak mesafelerdeki hareketi algılamak için ivmeölçeri kullanabilir. Cebinizde taşındığında mesafe daha hızlı artar. Konum güncellemelerini kapatabilirsiniz - bu durumda yalnızca hava durumu güncellenir. Uygulama, konumu ve hava durumunu belirli aralıklarla günceller. Örneğin güncelleme süresini bir saat olarak ayarlayabilirsiniz. Hava durumu, konum belirlendikten hemen sonra veya ekran açıldığında güncellenir - ancak 15 dakikada bir defadan daha sık değil (ve son 15 dakikada hava durumu güncellenmediğinde). Bu bilgiler, Mozilla konum hizmeti tarafından konum koordinatlarını almak için kullanılır. Uygulama, hücresel ağdan ve Wi-Fi ağlarından konum bulunmadığında GPS kullanmaya çalışır. Nominatim hizmeti ile adresi öğrenmek için konum koordinatları kullanılır. Adres, uygulamada veya widget\'ta kullanılır. Uygulama, o anki hava durumunu almak için Open-Meteo (https://open-meteo.com) hizmetini kullanır.</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Ana uygulama anlık hava durumunun genel görünümünü içerir. Yenileme düğmesini kullanarak veya ekranı aşağı kaydırarak hava durumunu güncelleyebilirsiniz. Konum güncelleme düğmesini hava durumunu yenileme düğmesinin yanında bulabilirsiniz. Bu düğme, yalnızca konum 0 etkinleştirildiğinde kullanılabilir (konum 0 konumun kendiliğinden güncellenmesi içindir).</string>
     <string name="help_page_2_content" tools:ignore="MissingTranslation">Uygulamada mevcut hava durumunun bazı ortak değerlerini içeren (örneğin sıcaklık) üç widget vardır. Bazı değerler belirli widget\'a özgüdür (örneğin gün batımı). Her widget\'ın sağ köşesinde son güncellemenin bir zamanı var. En son nelerin güncellendiğini görebilirsiniz (ayarlar menüsünde bu seçeneği etkinleştirdiğinizde). Güncelleme düğmesini, en son güncelleme zamanının yanında bulabilirsiniz. Bu düğmeye bastığınızda, hava durumu (ve güncelleme konumu seçildiğinde seçilen konum) koşulsuz olarak güncellenir. Pencere ögelerinde son seçenek konum değiştirmektir - geçerli konum metnine bastığınızda konum bir sonrakine değişir.</string>
     <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"> \u0020<b> Yerel MLS ve Nominatim </b> - Uygulama, Mozilla konum servislerinden konum ve coğrafi koordinatları alır. Nominatim servisleri adresi bu koordinatlardan alır. Mozilla Stumbler\'ı yükleyerek MLS için gelecekteki gelişmelere katkıda bulunabilirsiniz (https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler adresinde bulunabilir). Telefon görüşmesine izin vererek mevcut ve kullanılabilir şebeke bazındaki istasyonlar hakkında bilgi alın. Çevrenizdeki Wi-Fi ağları, konumunuzu daha kesin olarak tahmin etmek için kullanılır.</string>
@@ -306,7 +306,7 @@
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">İlerle</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">İptal</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Erişim süresi doldu. Uygulamayı yükseltin lütfen.</string>
-    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">OpenweathermapApiKey\'iniz kayıtlı değil.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Open-Meteo ApiKey\'iniz kayıtlı değil.</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Hava durumunu paylaş</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">İletişim uygulaması bulunamadı</string>
     <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Şehir: %1$s
@@ -381,7 +381,7 @@
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Birim ayarları</string>
     <string name="preference_title_power_save" tools:ignore="MissingTranslation">Güç tasarrufu seçenekleri</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Sistem ayarları</string>
-    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API anahtarı</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Open-Meteo (https://open-meteo.com) API anahtarı</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Gömülü</string>
     <string name="pref_language_sv" tools:ignore="MissingTranslation">Svenska (İsveççe)</string>
     <string name="pref_language_he" tools:ignore="MissingTranslation">עברית (İbranice)</string>
