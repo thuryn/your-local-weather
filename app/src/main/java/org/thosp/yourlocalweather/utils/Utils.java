@@ -286,11 +286,11 @@ public class Utils {
 
     public static int getWeatherResourceIcon(CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
         if (weatherRecord == null) {
-            return R.drawable.ic_weather_set_1_31;
+            return R.drawable.ic_weather_set_1_25;
         }
         Weather weather = weatherRecord.getWeather();
-        if ((weather == null) || (weather.getWeatherId() == 0)) {
-            return R.drawable.ic_weather_set_1_31;
+        if (weather == null) {
+            return R.drawable.ic_weather_set_1_25;
         }
         boolean strongWind = weather.getWindSpeed() > 5;
         boolean veryStrongWind = weather.getWindSpeed() > 15;

@@ -60,6 +60,7 @@ public class ForecastUtil {
         Map<Integer, List<DetailedWeatherForecast>> weatherList = new HashMap<>();
         Calendar nowCalendar = Calendar.getInstance();
         int nowDayOfYear = nowCalendar.get(Calendar.DAY_OF_YEAR);
+        int nowHOurOfDay = nowCalendar.get(Calendar.HOUR_OF_DAY);
         Calendar forecastCalendar = Calendar.getInstance();
         int maxForecastDay = 0;
         if ((weatherForecastRecord == null) || (weatherForecastRecord.getCompleteWeatherForecast() == null)) {
@@ -73,7 +74,7 @@ public class ForecastUtil {
 
             forecastCalendar.setTimeInMillis(detailedWeatherForecast.getDateTime() * 1000);
             int forecastDay = forecastCalendar.get(Calendar.DAY_OF_YEAR);
-            if (forecastDay == nowDayOfYear) {
+            if ((forecastDay == nowDayOfYear) && (nowHOurOfDay > 15)) {
                 continue;
             }
             if (maxForecastDay > forecastDay) {

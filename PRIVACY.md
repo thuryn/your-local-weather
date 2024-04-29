@@ -12,7 +12,7 @@ Permissions and APIs that Access Sensitive Information Policy
 
 YLW gather and store information about your location. YLW collects the location information in background to display current weather on the widget. To get the location, YLW require certain personally identifiable information, including but not limited to Cell network state (cellId, signal strength, network info provider), WIFI (available wifi networks, signal strength), longitude and latitude from GPS or Network location provider, addresses resolved by current location. The information that YLW requests is retained on your device and is not collected by me in any way.
 
-The app uses Mozilla location service(https://location.services.mozilla.com/) to get location from Cell&WIFI networks, Nominatim (https://nominatim.openstreetmap.org/) to get address from location info and OpenWeatherMap (http://openweathermap.org/) to get weather information). All these third party services may collect information that can identify you.
+The app uses Mozilla location service(https://location.services.mozilla.com/) to get location from Cell&WIFI networks, Nominatim (https://nominatim.openstreetmap.org/) to get address from location info and Open-Meteo (https://open-meteo.com/) to get weather information). All these third party services may collect information that can identify you.
 
 Log Data
 
