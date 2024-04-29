@@ -513,7 +513,7 @@
     <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">Yönlendirme dili seçenekleri</string>
     <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">hoparlör</string>
     <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">kablolu kulaklık</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Bu uygulama https://hosted.weblate.org/projects/your-local-weather adresindeki gönüllüler sayesinde, metin çevirileri yoluyla sesli yönlendirme ve sesli komutlara sahiptir. Uygulama geliştiricisi, doğru olduklarını garanti edemez - uygulamayı kullanarak bunu kabul edersiniz. Kullanmak için TTS (text-to-speech - metinden konuşmaya) kurulu ve kendi sesli komutlarınızı ayarlayabileceğiniz ayarlarda yönlendirmenin açık olması gerekmektedir. "</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Bu uygulama https://hosted.weblate.org/projects/your-local-weather adresindeki gönüllüler sayesinde, metin çevirileri yoluyla sesli yönlendirme ve sesli komutlara sahiptir. Uygulama geliştiricisi, doğru olduklarını garanti edemez - uygulamayı kullanarak bunu kabul edersiniz. Kullanmak için TTS (text-to-speech - metinden konuşmaya) kurulu ve kendi sesli komutlarınızı ayarlayabileceğiniz ayarlarda yönlendirmenin açık olması gerekmektedir.</string>
     <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">Bluetooth kulaklık yönlendirmesini aç</string>
     <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">Selamlama</string>
     <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">Hava Durumu açıklamasını söyle</string>
@@ -602,4 +602,6 @@
     <string name="theme_system" tools:ignore="MissingTranslation">Sisteme göre</string>
     <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 gün</string>
     <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 saat</string>
+    <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">Hava durumu sağlayıcısı değişti</string>
+    <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">openweathermap.org Haziran 2024\'te ücretsiz hizmetini sonlandıracağı için bu uygulama artık hava durumu kaynağı olarak Open-Meteo (https://open-meteo.com) kullanmaktadır.</string>
 </resources>
