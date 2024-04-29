@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Lokalno vreme</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="MissingTranslation">Lokalno vreme</string>
     <string name="enter_city_hint">Vnesite mesto</string>
     <string name="label_current_city">Trenutno mesto</string>
     <string name="label_choose_city">Izberite mesto</string>
@@ -13,7 +14,6 @@
     <string name="load_progress">Nalagam…</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Lokacija ni bila najdena</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Dovoljenja še niso dodeljena - kliknite na simbol lokacija v aplikaciji</string>
-
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Zapri</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Naprej</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Nazaj</string>
@@ -44,7 +44,6 @@
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Odzadje pripomočka(widget) lahk nazdorujete z <b> Možnost teme pripomočka</b>.</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Možnosti iskanja napak</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Tukaj najdete možnosti beleženja napak v datoteko. Ta možnost je uporabna, ko imate težave z aplikacijo.</string>
-
     <string name="title_activity_search" tools:ignore="MissingTranslation">Iskanje lokacijo</string>
     <string name="label_activity_main" tools:ignore="MissingTranslation">Trenutno vreme</string>
     <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Dnevna napoved</string>
@@ -52,13 +51,11 @@
     <string name="label_activity_help" tools:ignore="MissingTranslation">Pomoč</string>
     <string name="title_activity_license" tools:ignore="MissingTranslation">Licenca za %s</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Lokacije</string>
-
     <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Posodobi</string>
     <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Išči mesto</string>
     <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Zaznaj lokacijo</string>
     <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Menjaj vrednosti</string>
     <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Menjaj Y os</string>
-
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Nastavitve stolpca</string>
     <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Stoplci za prikaz</string>
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikona</string>
@@ -71,7 +68,6 @@
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Tlak</string>
     <string name="ok" tools:ignore="MissingTranslation">OK</string>
     <string name="cancel" tools:ignore="MissingTranslation">Prekliči</string>
-
     <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Odprite navigacijsko predal</string>
     <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Zaprite navigacijski predal</string>
     <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">Trenutno vreme</string>
@@ -81,10 +77,8 @@
     <string name="nav_feedback" tools:ignore="MissingTranslation">Povratne informacije</string>
     <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">Donirajte bitcoin</string>
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Pomoč</string>
-
     <string name="connection_not_found" tools:ignore="MissingTranslation">Preverite delovanje internetne povezave</string>
     <string name="toast_parse_error" tools:ignore="MissingTranslation">Prišlo je do napake. Poskusite pozneje!</string>
-
     <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
     <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
@@ -92,9 +86,7 @@
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">vozlov</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/h</string>
     <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
-
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Mesto iskanja</string>
-
     <string name="title_activity_settings" tools:ignore="MissingTranslation">Nastavitve</string>
     <string name="pref_title_temperature" tools:ignore="MissingTranslation">Temperatura</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Veter</string>
@@ -156,11 +148,11 @@
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Posodobljene vrednosti z lokacijskim virom</string>
     <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - posodobitev samo vremena
 \nL - posodobitev samo lokacije
-\nG - posodobitev vremena s pomočja GPS 
+\nG - posodobitev vremena s pomočja GPS
 \nN - posodobitev vremena s pomočja omrežja</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - posodobitev samo vremena
 \nL - posodobitev samo lokacije
-\nG - posodobitev vremena s pomočja GPS 
+\nG - posodobitev vremena s pomočja GPS
 \nN - posodobitev vremena s pomočja internetna omrežja
 \nNi - posodobitev vremena s pomočja GSM omrežja, odkrivanje lokacije s pomočje Mozilla iskalne funkcije</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Ko se določanje mesta med spanjem zatakne, lahko poskusite napravo zbuditi, ko išče GSM omrežje.</string>
@@ -192,13 +184,11 @@
     <string name="search_location_add" tools:ignore="MissingTranslation">Dodaj</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Dotaknite se zemljevida, da bi dobili želeno lokacijo in počakajte, da je naslov najden.</string>
     <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">"Trenutne vremenske razmere še niso bile posodobljene. Posodobite najprej prosim  trenutno vremenske razmere z gumbom osveži."</string>
-
     <string name="preference_title_activity_about" tools:ignore="MissingTranslation">O programu</string>
     <string name="about_version_pref_title" tools:ignore="MissingTranslation">Različica</string>
     <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Izvorna koda</string>
     <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Licenca</string>
     <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Libre programske licence</string>
-
     <string name="wind_label" tools:ignore="MissingTranslation">Vreme: %1$s %2$s %3$s</string>
     <string name="rain_label" tools:ignore="MissingTranslation">"Dež: %1$s  %2$s"</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Sneg: %1$s %2$s</string>
@@ -228,10 +218,8 @@
     <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Obe, navidezna najprej</string>
     <string name="appearance_only" tools:ignore="MissingTranslation">Le navidezna vrednost</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Prikaz temperature kot</string>
-
     <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Trenutna vremenska ikona</string>
     <string name="widget_refresh_button" tools:ignore="MissingTranslation">Pripomoček(widget) gumb osveži</string>
-
     <string name="wind_direction_north" tools:ignore="MissingTranslation">S↓</string>
     <string name="wind_direction_north_east" tools:ignore="MissingTranslation">SV↙</string>
     <string name="wind_direction_east" tools:ignore="MissingTranslation">V←</string>
@@ -240,14 +228,11 @@
     <string name="wind_direction_south_west" tools:ignore="MissingTranslation">JV↗</string>
     <string name="wind_direction_west" tools:ignore="MissingTranslation">Z→</string>
     <string name="wind_direction_north_west" tools:ignore="MissingTranslation">SZ↘</string>
-
     <string name="permission_location_rationale" tools:ignore="MissingTranslation">Dovoljenja za lokacijo je potrebno za določitev mesta</string>
     <string name="permission_not_granted" tools:ignore="MissingTranslation">Dovoljenja niso bila pridobljena!</string>
     <string name="permission_available_location" tools:ignore="MissingTranslation">Dovoljenja za lokacijo niso bila pridobljena</string>
     <string name="permission_location_need" tools:ignore="MissingTranslation">Pridobi lokacijska dovoljenja</string>
-
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Vreme in lokacija bodo posodobljeno v rednih časovnih intervalih ali pa jih lahko posodobite ročno</string>
-
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Izberite mesto beleženja</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Možnosti iskanja napak</string>
     <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Po določenem času bo datoteka s podatki izvajanja programa ponovno ustvarjena</string>
@@ -258,7 +243,6 @@
     <string name="log_file_72_label" tools:ignore="MissingTranslation">tri dni</string>
     <string name="log_file_168_label" tools:ignore="MissingTranslation">teden</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">mesec</string>
-
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Nabor ikon</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Ikone temelječe na pisavi</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin rdeče ikone</string>

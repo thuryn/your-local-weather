@@ -221,18 +221,18 @@
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Nic nie ma</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Zaktualizowano wartość</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Zaktualizowano wartość ze źródłem lokalizacji</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - zaktualizuje lokalizację i/lub pogodę 
-\n. - lokalizacja jest nieosiągalna, zaktualizuje pogodę według ostatniej lokalizacji 
-\nW - pogoda została zaktualizowana 
-\nL - aktualizacja tylko lokalizacji 
-\nG - lokalizacja z GPS i aktualna pogoda 
-\nN - lokalizacja z sieci i prognoza pogody 
-\nB - dostęp do serwisu Openweathermap.org został zbanowany, spróbuj zaktualizować pogodę później 
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - zaktualizuje lokalizację i/lub pogodę
+\n. - lokalizacja jest nieosiągalna, zaktualizuje pogodę według ostatniej lokalizacji
+\nW - pogoda została zaktualizowana
+\nL - aktualizacja tylko lokalizacji
+\nG - lokalizacja z GPS i aktualna pogoda
+\nN - lokalizacja z sieci i prognoza pogody
+\nB - dostęp do serwisu Openweathermap.org został zbanowany, spróbuj zaktualizować pogodę później
 \nE - token dostępu dla serwisu Openweathermap.org wygasł. Musisz uaktualnić aplikację, aby uzyskać dostęp ponownie</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - zaktualizowana tylko pogoda 
-\nL - aktualizacja tylko lokalizacji 
-\nG - lokalizacja z GPS i aktualna pogoda 
-\nN - lokalizacja z sieci i prognoza pogody 
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - zaktualizowana tylko pogoda
+\nL - aktualizacja tylko lokalizacji
+\nG - lokalizacja z GPS i aktualna pogoda
+\nN - lokalizacja z sieci i prognoza pogody
 \nNi - lokalizacja z sieci komórkowej i aktualna pogoda, lokalizacja odkryta przez usługę lokalizacyjną Mozilla
 \nB - dostęp do serwisu Openweathermap.org został zbanowany, spróbuj zaktualizować pogodę później
 \nE - token dostępu dla serwisu Openweathermap.org wygasł. Musisz uaktualnić aplikację, aby uzyskać dostęp ponownie</string>

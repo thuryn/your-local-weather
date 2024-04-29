@@ -240,11 +240,11 @@
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">La valeur mise à jour avec la source de localisation</string>
     <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - mise à jour de la localisation et/ou de la météo
 \n. - la localisation n\'est pas accessible, mise à jour de la météo à partir de la dernière localisation
-\nW — seule la météo a été mise à jour 
-\nL — seul l\'emplacement a été mis à jour 
-\nG — l\'emplacement et la météo ont été mis à jour par GPS 
-\nN — l\'emplacement et la météo ont été mis à jour par le réseau 
-\nB — l\'accès au service openweathermap.org a été banni, essayez de mettre à jour la météo plus tard 
+\nW — seule la météo a été mise à jour
+\nL — seul l\'emplacement a été mis à jour
+\nG — l\'emplacement et la météo ont été mis à jour par GPS
+\nN — l\'emplacement et la météo ont été mis à jour par le réseau
+\nB — l\'accès au service openweathermap.org a été banni, essayez de mettre à jour la météo plus tard
 \nE — le jeton d\'accès au service openweathermap.org a expiré. Vous devez mettre à jour l\'application</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W — seule la météo a été mise à jour
 \nL — seul l’emplacement a été mis à jour

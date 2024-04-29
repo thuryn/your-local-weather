@@ -273,13 +273,13 @@
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Sistema para obter a localização, Nominatim para obter o endereço (recomendado)</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Valor recentemente atualizado</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Valor atualizado com fonte da localização</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - vai-se atualizar a localização e/ou o tempo 
-\n. - a localização não está acessível, a atualizar o tempo à base da última localização 
-\nW - só foi atualizado o tempo 
-\nL - só foi atualizada a localização 
-\nG - atualizada a localização do GPS e o tempo 
-\nN - atualizada a localização da rede e o tempo 
-\nB - o acesso ao serviço Openweathermap.org foi bloqueado, por favor tente atualizar o tempo mais tarde 
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - vai-se atualizar a localização e/ou o tempo
+\n. - a localização não está acessível, a atualizar o tempo à base da última localização
+\nW - só foi atualizado o tempo
+\nL - só foi atualizada a localização
+\nG - atualizada a localização do GPS e o tempo
+\nN - atualizada a localização da rede e o tempo
+\nB - o acesso ao serviço Openweathermap.org foi bloqueado, por favor tente atualizar o tempo mais tarde
 \nE - o token de acesso ao serviço Openweathermap.org expirou. Tem de atualizar a aplicação para ter acesso novamente</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - apenas o tempo atualizado
 \nL - apenas a localização atualizada

@@ -7,13 +7,13 @@
 \nNi - localização da rede celular e tempo atualizado, localização descoberta pelo serviço de localização Mozilla
 \nB - o acesso ao Openweathermap.org serviço foi proibido, por favor, tente atualizar o tempo mais tarde
 \nE - o token de acesso para Openweathermap.org serviço expirou. Instalar uma versão posterior do aplicativo para recuperar o acesso</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - vai-se atualizar a localização e/ou o tempo 
-\n. - a localização não está acessível, a atualizar o tempo à base da última localização 
-\nW - só foi atualizado o tempo 
-\nL - só foi atualizada a localização 
-\nG - atualizada a localização do GPS e o tempo 
-\nN - atualizada a localização da rede e o tempo 
-\nB - o acesso ao serviço Openweathermap.org foi bloqueado, por favor tente atualizar o tempo mais tarde 
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - vai-se atualizar a localização e/ou o tempo
+\n. - a localização não está acessível, a atualizar o tempo à base da última localização
+\nW - só foi atualizado o tempo
+\nL - só foi atualizada a localização
+\nG - atualizada a localização do GPS e o tempo
+\nN - atualizada a localização da rede e o tempo
+\nB - o acesso ao serviço Openweathermap.org foi bloqueado, por favor tente atualizar o tempo mais tarde
 \nE - o token de acesso ao serviço Openweathermap.org expirou. Tem de atualizar a aplicação para ter acesso novamente</string>
     <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;Notificações&lt;/b&gt;
 \nQuando seleciona a opção de notificações, a aplicação atualiza o tempo atual periodicamente. O tempo atual é então mostrado na área de notificações. Também pode ativar a vibração - a aplicação vibra quando é atualizada."</string>

@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:tools="http://schemas.android.com/tools"><string name="app_name" tools:ignore="MissingTranslation">Твоя місцева погода</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="MissingTranslation">Твоя місцева погода</string>
     <string name="enter_city_hint">Введіть назву міста</string>
     <string name="label_current_city">Поточне місто</string>
     <string name="label_choose_city">Обрати місто</string>
@@ -10,7 +11,6 @@
     <string name="load_progress">Завантаження…</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Місцезнаходження не знайдено</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Дозволи ще не надано - натисніть на символ місцезнаходження у додатку</string>
-
     <string name="initial_guide_close" tools:ignore="MissingTranslation">Закрити</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Наступне</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Попереднє</string>
@@ -23,7 +23,6 @@
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Запит дозволів</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Доступ закінчився. Будь ласка, оновіть додаток.</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Ваш API-ключ Openweathermap не зареєстрований.</string>
-
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Помічник з початкового налаштування</string>
     <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Налаштовуючи додаток відповідно до ваших потреб, ви можете вибрати стратегію оновлення.
 \nЗамість стандартного оновлення при зміні місцезнаходження можна вибрати <i>Не оновлювати місцезнаходження</i>.</string>
@@ -75,7 +74,6 @@
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Коли виконується оновлення місцезнаходження та поточної погоди, статус оновлення відображається поряд з часом оновлення у віджеті. Ви можете контролювати відображуване параметром <b>Показувати результат оновлення</b>. Пояснення найбільш розвинутого параметру:</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Параметри налагодження</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Існує параметр для увімкнення запису журналу налагодження у файл. Цей параметр корисний, якщо виникають проблеми з програмою.</string>
-
     <string name="title_activity_search" tools:ignore="MissingTranslation">Пошук місцезнаходження</string>
     <string name="label_activity_main" tools:ignore="MissingTranslation">Поточна погода</string>
     <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Щоденний прогноз погоди</string>
@@ -83,13 +81,11 @@
     <string name="label_activity_help" tools:ignore="MissingTranslation">Допомога</string>
     <string name="title_activity_license" tools:ignore="MissingTranslation">Ліцензія на %s</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Місцезнаходження</string>
-
     <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Оновити</string>
     <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Пошук міста</string>
     <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Визначити місцезнаходження</string>
     <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Перемкнути значення</string>
     <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Перемкнути Y-вісь координат</string>
-
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Налаштування колонки</string>
     <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Відображати колонки</string>
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Піктограма</string>
@@ -102,7 +98,6 @@
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Тиск</string>
     <string name="ok" tools:ignore="MissingTranslation">OK</string>
     <string name="cancel" tools:ignore="MissingTranslation">Скасувати</string>
-
     <string name="navigation_drawer_open" tools:ignore="MissingTranslation">Відкрити навігаційне меню</string>
     <string name="navigation_drawer_close" tools:ignore="MissingTranslation">Закрити навігаційне меню</string>
     <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">Поточна погода</string>
@@ -112,11 +107,9 @@
     <string name="nav_feedback" tools:ignore="MissingTranslation">Зворотній зв\'язок</string>
     <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">Пожертвувати біткоїн</string>
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Допомога</string>
-
     <string name="location_not_initialized" tools:ignore="MissingTranslation">Місцезнаходження не ініціалізовано. Спочатку клацніть на коло місцезнаходження.</string>
     <string name="connection_not_found" tools:ignore="MissingTranslation">Перевірте з\'єднання з Інтернет</string>
     <string name="toast_parse_error" tools:ignore="MissingTranslation">Сталася помилка. Спробуйте пізніше.</string>
-
     <string name="pressure_measurement" tools:ignore="MissingTranslation">гПа</string>
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">мм рт.ст.</string>
     <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">дюйм рт.ст.</string>
@@ -127,9 +120,7 @@
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">км/год</string>
     <string name="millimetre_label" tools:ignore="MissingTranslation">мм</string>
     <string name="inches_label" tools:ignore="MissingTranslation">дюймів</string>
-
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Пошук місцезнаходження</string>
-
     <string name="title_activity_settings" tools:ignore="MissingTranslation">Налаштування</string>
     <string name="pref_title_temperature" tools:ignore="MissingTranslation">Температура</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Вітер</string>
@@ -193,20 +184,20 @@
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Нічого</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Щойно оновлене значення</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Оновлене значення з джерелом місцезнаходження</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - оновлення позиціювання та/або погоди 
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - оновлення позиціювання та/або погоди
 \n. - позиціювання недоступне, буде оновлено погоду за крайнім місцерозташуванням
-\nW - оновлено тільки погоду 
-\nL - оновлено тільки позиціювання 
-\nG - позиціювання по GPS і погоду оновлено 
-\nN - позиціювання по мережі і погоду оновлено 
-\nB - доступ до служби Openweathermap.org був заборонений, спробуйте оновити погоду пізніше 
+\nW - оновлено тільки погоду
+\nL - оновлено тільки позиціювання
+\nG - позиціювання по GPS і погоду оновлено
+\nN - позиціювання по мережі і погоду оновлено
+\nB - доступ до служби Openweathermap.org був заборонений, спробуйте оновити погоду пізніше
 \nE - токен доступу до служби Openweathermap.org прострочений. Вам потрібно оновити додаток, щоб знову отримати доступ</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - оновлено тільки погоду 
-\nL - оновлено тільки позиціювання 
-\nG - позиціювання по GPS і погоду оновлено 
-\nN - позиціювання по мережі і погоду оновлено 
-\nNi - позиціювання по стільниковій мережі і погоду оновлено, позиціювання визначено через службу позиціювання Mozilla 
-\nB - доступ до служби Openweathermap.org був заборонений, спробуйте оновити погоду пізніше 
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - оновлено тільки погоду
+\nL - оновлено тільки позиціювання
+\nG - позиціювання по GPS і погоду оновлено
+\nN - позиціювання по мережі і погоду оновлено
+\nNi - позиціювання по стільниковій мережі і погоду оновлено, позиціювання визначено через службу позиціювання Mozilla
+\nB - доступ до служби Openweathermap.org був заборонений, спробуйте оновити погоду пізніше
 \nE - токен доступу до служби Openweathermap.org прострочений. Вам потрібно оновити додаток, щоб знову отримати доступ</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">Якщо місцезнаходження застряє під час сну пристрою, ви можете спробувати пробудити його, коли він шукає стільникову мережу</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">Стратегія пробудження</string>
@@ -237,13 +228,11 @@
     <string name="search_location_add" tools:ignore="MissingTranslation">Додати</string>
     <string name="search_location_info" tools:ignore="MissingTranslation">Торкніться мапи, щоб отримати бажане місцезнаходження, та зачекайте, поки буде отримана адреса.</string>
     <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Поточна погода ще не оновлювалася. Спочатку оновіть поточну погоду за допомогою кнопки оновлення.</string>
-
     <string name="preference_title_activity_about" tools:ignore="MissingTranslation">Про додаток</string>
     <string name="about_version_pref_title" tools:ignore="MissingTranslation">Версія</string>
     <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Вихідний код</string>
     <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Ліцензія</string>
     <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Ліцензії Libre software</string>
-
     <string name="wind_label" tools:ignore="MissingTranslation">Вітер: %1$s %2$s %3$s</string>
     <string name="rain_label" tools:ignore="MissingTranslation">Дощ: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Сніг: %1$s %2$s</string>
@@ -273,10 +262,8 @@
     <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">Обидва, реальне переважає</string>
     <string name="appearance_only" tools:ignore="MissingTranslation">Тільки реальне значення</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Показувати температуру як</string>
-
     <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Піктограма поточної погоди</string>
     <string name="widget_refresh_button" tools:ignore="MissingTranslation">Кнопка оновлення віджету</string>
-
     <string name="wind_direction_north" tools:ignore="MissingTranslation">Пн↓</string>
     <string name="wind_direction_north_east" tools:ignore="MissingTranslation">ПнСх↙</string>
     <string name="wind_direction_east" tools:ignore="MissingTranslation">Сх←</string>
@@ -285,14 +272,11 @@
     <string name="wind_direction_south_west" tools:ignore="MissingTranslation">ПдЗх↗</string>
     <string name="wind_direction_west" tools:ignore="MissingTranslation">Зх→</string>
     <string name="wind_direction_north_west" tools:ignore="MissingTranslation">ПнЗх↘</string>
-
     <string name="permission_location_rationale" tools:ignore="MissingTranslation">Для визначення міста потрібен дозвіл визначати місцезнаходження</string>
     <string name="permission_not_granted" tools:ignore="MissingTranslation">Дозволи не надано!</string>
     <string name="permission_available_location" tools:ignore="MissingTranslation">Дозвіл визначити місцезнаходження надано</string>
     <string name="permission_location_need" tools:ignore="MissingTranslation">Надати дозвіл визначати місцезнаходження</string>
-
     <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Поточна мова опису погоди та адреси зміняться при наступному оновленні або ви можете примусово зробити це вручну.</string>
-
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Обрати теку для журналів</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Параметри налагодження</string>
     <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Через зазначений час файл журналу буде створено заново</string>
@@ -303,11 +287,10 @@
     <string name="log_file_72_label" tools:ignore="MissingTranslation">3 дні</string>
     <string name="log_file_168_label" tools:ignore="MissingTranslation">1 тиждень</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">1 місяць</string>
-
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Набір піктограм</string>
     <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Шрифтові піктограми</string>
     <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Піктограми Merlin the red</string>
-<string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Оптимізація батареї</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Оптимізація батареї</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Скасувати</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Поділитися погодою</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Додаток для комунікації не знайдено</string>
@@ -323,24 +306,20 @@
     <string name="graph_rain_label" tools:ignore="MissingTranslation">Дощь</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Сніг</string>
     <string name="graph_pressure_label" tools:ignore="MissingTranslation">Тиск</string>
-
     <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Напрям вітру</string>
     <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
     <string name="pref_title_time_style" tools:ignore="MissingTranslation">Формат часу</string>
     <string name="time_style_system" tools:ignore="MissingTranslation">Системний</string>
     <string name="time_style_12_h" tools:ignore="MissingTranslation">12 годинний ДП/ПП</string>
     <string name="time_style_24_h" tools:ignore="MissingTranslation">24 годинний</string>
-
     <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Стиль напрямку вітру</string>
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Вимкнуто</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Градуси відносно півночі</string>
     <string name="log_to_file_label" tools:ignore="MissingTranslation">Звіт до файлу</string>
     <string name="log_to_file_off" tools:ignore="MissingTranslation">Не вести звіт</string>
     <string name="log_to_file_on" tools:ignore="MissingTranslation">Звіт до файлу</string>
-
     <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
     <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
-
     <string name="weather_condition_description_200" tools:ignore="MissingTranslation">гроза з невеликим дощем</string>
     <string name="weather_condition_description_201" tools:ignore="MissingTranslation">гроза з дощем</string>
     <string name="weather_condition_description_202" tools:ignore="MissingTranslation">гроза з сильним дощем</string>
@@ -348,4 +327,4 @@
     <string name="weather_condition_description_781" tools:ignore="MissingTranslation">торнадо</string>
     <string name="weather_condition_description_800" tools:ignore="MissingTranslation">чисте небо</string>
     <string name="weather_condition_description_801" tools:ignore="MissingTranslation">хмарно</string>
-    </resources>
+</resources>

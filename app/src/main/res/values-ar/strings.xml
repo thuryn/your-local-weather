@@ -98,20 +98,20 @@
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">لا شيئ</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">فقط تحديث القيمة</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">القيمة المحدثة مع مصدر الموقع</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - الذهاب إلى تحديث الموقع و / أو الطقس 
-\n. - لا يمكن الوصول إلى الموقع ، حيث سيتم تحديث الطقس حسب الموقع الأخير 
-\nW - الطقس المحدثة فقط 
-\nL - الموقع المحدث فقط 
-\nG - الموقع من GPS والطقس المحدث 
-\nN - الموقع من الشبكة والطقس المحدثة 
-\nB - تم حظر الوصول إلى خدمة Openweathermap.org ، حاول تحديث الطقس لاحقًا ، من فضلك 
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - الذهاب إلى تحديث الموقع و / أو الطقس
+\n. - لا يمكن الوصول إلى الموقع ، حيث سيتم تحديث الطقس حسب الموقع الأخير
+\nW - الطقس المحدثة فقط
+\nL - الموقع المحدث فقط
+\nG - الموقع من GPS والطقس المحدث
+\nN - الموقع من الشبكة والطقس المحدثة
+\nB - تم حظر الوصول إلى خدمة Openweathermap.org ، حاول تحديث الطقس لاحقًا ، من فضلك
 \nE - انتهت صلاحية رمز الوصول الخاص بخدمة Openweathermap.org. تحتاج إلى ترقية التطبيق للوصول مرة أخرى</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - تحديث الطقس فقط 
-\nL - تم تحديث الموقع فقط 
-\nG - الموقع من GPS والطقس المحدث 
-\nN - الموقع من الشبكة والطقس المحدثة 
-\nNi - الموقع من الشبكة الخلوية والطقس المحدثة ، والموقع الذي اكتشفته خدمة الموقع Mozilla 
-\nB - تم حظر الوصول إلى خدمة Openweathermap.org ، حاول تحديث الطقس لاحقًا ، من فضلك 
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - تحديث الطقس فقط
+\nL - تم تحديث الموقع فقط
+\nG - الموقع من GPS والطقس المحدث
+\nN - الموقع من الشبكة والطقس المحدثة
+\nNi - الموقع من الشبكة الخلوية والطقس المحدثة ، والموقع الذي اكتشفته خدمة الموقع Mozilla
+\nB - تم حظر الوصول إلى خدمة Openweathermap.org ، حاول تحديث الطقس لاحقًا ، من فضلك
 \nE - انتهت صلاحية الرمز المميز لخدمة Openweathermap.org. تحتاج إلى ترقية التطبيق للوصول مرة أخرى</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">عندما يتعطل الموقع أثناء خمول الجهاز ، يمكنك محاولة إيقاظه عندما يبحث عن شبكة خلوية</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">استراتيجية الايقاظ</string>

@@ -171,16 +171,16 @@
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Niets</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Alleen de bijgewerkte gegevens</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Alleen \'bijgewerkt\' en de locatiebron</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - weer is bijgewerkt 
-\nL - locatie is bijgewerkt 
-\nG - locatie is bijgewerkt via GPS en weer is bijgewerkt 
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">W - weer is bijgewerkt
+\nL - locatie is bijgewerkt
+\nG - locatie is bijgewerkt via GPS en weer is bijgewerkt
 \nN - locatie is bijgewerkt via mobiel netwerk en weer is bijgewerkt
 \nB - toegang tot Openweathermap.org is verboden; probeer het later opnieuw
 \nE - de toegangssleutel voor Openweathermap.org is verlopen; werk de app bij om opnieuw toegang te krijgen</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - weer is bijgewerkt 
-\nL - locatie is bijgewerkt 
-\nG - locatie is bijgewerkt via GPS en weer is bijgewerkt 
-\nN - locatie is bijgewerkt via mobiel netwerk en weer is bijgewerkt 
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - weer is bijgewerkt
+\nL - locatie is bijgewerkt
+\nG - locatie is bijgewerkt via GPS en weer is bijgewerkt
+\nN - locatie is bijgewerkt via mobiel netwerk en weer is bijgewerkt
 \nNi - locatie is bijgewerkt via mobiel netwerk en weer is bijgewerkt; locatie is gevonden via de Mozilla-locatiedienst
 \nB - toegang tot Openweathermap.org is verboden; probeer het later opnieuw
 \nE - de toegangssleutel voor Openweathermap.org is verlopen; werk de app bij om opnieuw toegang te krijgen</string>

@@ -251,13 +251,13 @@
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">Ничего</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Обновлены только значения</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Обновленное значение и источник местоположения</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - обновление местоположения и/или погоды 
-\n. - местоположение недоступно, обновление погоды по последнему местоположению 
-\nW - обновлена только погода 
-\nL - обновлено только местоположение 
-\nG - обновлены погода и местоположение по GPS 
-\nN - обновлены погода и местоположение по сети 
-\nB - доступ к Openweathermap.org был запрешён, попробуйте, пожалуйста, обновить погоду позже 
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - обновление местоположения и/или погоды
+\n. - местоположение недоступно, обновление погоды по последнему местоположению
+\nW - обновлена только погода
+\nL - обновлено только местоположение
+\nG - обновлены погода и местоположение по GPS
+\nN - обновлены погода и местоположение по сети
+\nB - доступ к Openweathermap.org был запрешён, попробуйте, пожалуйста, обновить погоду позже
 \nE - токен доступа к сервису Openweathermap.org истёк. Обновите приложение, чтобы снова получить доступ</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Местоположение</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Ваш ключ API OpenWeatherMap не зарегистрирован.</string>

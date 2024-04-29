@@ -377,13 +377,13 @@
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Sistemi, për të marrë vendndodhjen, Nominatim për të marrë adresën (e këshilluar)</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Shfaq Përmbledhje Përditësimi</string>
     <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">Përditësoje vlerën me burim vendndodhjeje</string>
-    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - do të përditësohet vendndodhja dhe/ose moti 
-\n. - s\\’kapet dot vendndodhja, përditësim i motit sipas vendndodhjes së fundit 
-\nM - përditësim vetëm i motit 
-\nV - përditësim vetëm i vendndodhjes 
-\nG - përditësim i vendndodhjes nga GPS dhe i motit 
-\nR - përditësim i vendndodhjes nga rrjeti dhe i motit 
-\nD - është ndaluar hyrja te shërbimi Openweathermap.org, ju lutemi, provoni ta përditësoni motin më vonë 
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - do të përditësohet vendndodhja dhe/ose moti
+\n. - s\\’kapet dot vendndodhja, përditësim i motit sipas vendndodhjes së fundit
+\nM - përditësim vetëm i motit
+\nV - përditësim vetëm i vendndodhjes
+\nG - përditësim i vendndodhjes nga GPS dhe i motit
+\nR - përditësim i vendndodhjes nga rrjeti dhe i motit
+\nD - është ndaluar hyrja te shërbimi Openweathermap.org, ju lutemi, provoni ta përditësoni motin më vonë
 \nS - token-i i hyrjes në Openweathermap.org ka skaduar. Lypset të përmirësoni aplikacionin që të rifitoni hyrje</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">M - përditësim vetëm i motit
 \nV - përditësim vetëm i vendndodhjes
