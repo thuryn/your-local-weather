@@ -59,12 +59,17 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
 
         mWeatherList = new HashMap<>();
         keys = new ArrayList<>();
+        long now = System.currentTimeMillis();
         Calendar forecastCalendar = Calendar.getInstance();
         for (DetailedWeatherForecast forecast: weatherForecastList) {
             if (forecast == null) {
                 continue;
             }
-            forecastCalendar.setTimeInMillis(forecast.getDateTime() * 1000);
+            long forecastDateTimeInMs = forecast.getDateTime() * 1000;
+            if (forecastDateTimeInMs < now) {
+                continue;
+            }
+            forecastCalendar.setTimeInMillis(forecastDateTimeInMs);
             int forecastDay = forecastCalendar.get(Calendar.DAY_OF_YEAR);
             if (!mWeatherList.keySet().contains(forecastDay)) {
                 List<DetailedWeatherForecast> dayForecastList = new ArrayList<>();

@@ -203,6 +203,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     };
 
     private void processScreenOn(Context context) {
+        WidgetUtils.updateWidgets(context);
         Message completeMessage =
                 handler.obtainMessage();
         completeMessage.obj = context;

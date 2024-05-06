@@ -45,12 +45,12 @@ public class StartAutoLocationJob extends AbstractAppJob {
     @Override
     public boolean onStartJob(JobParameters params) {
         this.params = params;
+        appendLog(this, TAG, "onStartJob");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            setNotification(params, NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(this),
+            setNotification(params, NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNoWeatherNotification(this),
                     JobService.JOB_END_NOTIFICATION_POLICY_DETACH);
         }
         YourLocalWeather.executor.submit(() -> {
-            appendLog(this, TAG, "onStartJob");
             try {
                 performUpdateOfLocation();
                 startSensorBasedUpdates();
