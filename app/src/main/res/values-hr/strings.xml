@@ -257,7 +257,7 @@
     <string name="pref_title_language" tools:ignore="MissingTranslation">Jezik</string>
     <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Licencni ključ</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Ugrađeno</string>
-    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API ključ</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Open-Meteo (https://open-meteo.com) API ključ</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Postavke sustava</string>
     <string name="preference_title_power_save" tools:ignore="MissingTranslation">Opcije za štednju energije</string>
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Postavke jedinica</string>
@@ -315,9 +315,9 @@
     <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Licenca slobodnog softvera</string>
     <string name="title_activity_settings" tools:ignore="MissingTranslation">Postavke</string>
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Traži mjesto</string>
-    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5 puta (interval od 3 sata)</string>
-    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4 puta (interval od 3 sata)</string>
-    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3 puta (interval od 3 sata)</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5 sati</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4 sata</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3 sata</string>
     <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 dana</string>
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 dana</string>
     <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 dana</string>
@@ -493,7 +493,7 @@
 \nZalazak sunca: %7$s</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Program za komuniciranje nije pronađen</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Dijeli vrijeme</string>
-    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Tvoj OpenweathermapApiKey nije registriran.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Tvoj Open-Meteo ApiKey nije registriran.</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Pristup je istekao. Nadogradi program.</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Dozvole još nisu dodijeljene – pritisni znak mjesta u programu</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Mjesto nije pronađeno</string>
@@ -580,4 +580,9 @@
     <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">Izbrisana mjesta iznad ograničenja.</string>
     <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Dozvola za BT</string>
     <string name="theme_system" tools:ignore="MissingTranslation">Tema sustava</string>
+    <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">Trenutačno</string>
+    <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">Promjena pružatelja vremenske prognoze</string>
+    <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 dana</string>
+    <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 sati</string>
+    <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">Ova aplikacija od sada koristi Open-Meteo (https://open-meteo.com) kao izvor vremenske prognoze, budući da openweathermap.org ukida svoju besplatnu uslugu u lipnju 2024.</string>
 </resources>
