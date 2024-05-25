@@ -118,7 +118,7 @@
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Cancelar</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Configuración de ubicación y permisos</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">La aplicación necesita permisos para actualizar la ubicación usando el GPS.</string>
-    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Tu llave de la Api de Openweathermap no está registrada.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Su Open-Meteo ApiKey no está registrado.</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Compartir la meteorología</string>
     <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Ciudad: %1$s
 \nTemperatura: %2$s
@@ -136,10 +136,11 @@
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Anterior</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Terminar</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Guía de configuración inicial</string>
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Activity names</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Al ajustar la aplicación a sus necesidades, puede elegir la estrategia de actualización a continuación. 
+\nAl desviarse del valor predeterminado de actualización cuando cambia la ubicación, puede seleccionar <i> No actualizar la ubicación</i> .</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Actualizar la configuración de ubicación</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Opción de fuente de ubicación</string>
-    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Activity names</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Puede elegir el método de ubicación: el <i>System</i> one utiliza los servicios de Google para obtener la ubicación por redes (redes celulares y Wi-Fi). La opción <i>MLS local y Nominatim utiliza el servicio de ubicación de</i> Mozilla para obtener las coordenadas de ubicación y el servicio de Nominatim para obtener los nombres de las ubicaciones. La segunda opción requiere permisos de llamadas telefónicas para obtener información sobre la red celular. La opción preferida está preseleccionada.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Ubicación y fuente de dirección</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Opción de estrategia de activación</string>
     <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Algunos modelos de teléfonos no reportan correctamente las celdas conectadas a menos que la pantalla esté encendida. La opción preferida (con la pantalla activada) tiene el inconveniente de que el teléfono enciende la pantalla durante varios segundos. Esto tiene un pequeño impacto en la duración de la batería. Empiece con él, intente apagarlo y vea si la ubicación aún se actualiza.</string>
@@ -158,8 +159,8 @@
     <string name="graph_snow_label" tools:ignore="MissingTranslation">Nieve</string>
     <string name="graph_pressure_label" tools:ignore="MissingTranslation">Presión</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">No puedes tener más de %1$d ubicaciones por el momento.</string>
-    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Traducciones de texto e indicaciones de voz</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Esta aplicación tiene la función de salida de voz. Para habilitar esta función, necesita un sistema TTS (Text-to-speech) instalado y configurar la salida de voz según la configuración de la aplicación. Tenga en cuenta, por favor, que las traducciones de texto, así como los comandos de voz son traducidos por voluntarios mediante el servicio https://hosted.weblate.org/projects/your-local-weather También puede establecer sus propias órdenes de voz mediante la configuración de la aplicación. Los desarrolladores de esta aplicación no garantizan la calidad y exactitud de las traducciones, así como lo que dice la aplicación - usted está aceptando esta declaración al usar esta aplicación.</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Traducciones de textos y guías</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Esta aplicación proporciona instrucciones de audio a través de https://hosted.weblate.org/projects/your-local-weather traducción de texto y comandos de voz proporcionados por voluntarios. Los desarrolladores de la aplicación no pueden garantizar que sean correctas; usted lo acepta al utilizar la aplicación. Para usarlo, debe instalar TTS (texto a voz) y activar las instrucciones de voz en la configuración, donde puede configurar sus propios comandos de voz.</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Con esto concluye la guía. Puede encontrar otros ajustes en el menú Configuración (por ejemplo, idioma, unidades, etc.).
 \nLa siguiente pantalla le explicará los permisos solicitados y le dará la opción de solicitarlos.
 \n 
@@ -179,4 +180,12 @@
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">Activity names</string>
     <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation">Activity names</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Activity names</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Cambios de permisos en Android 10</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">A partir de Android 10, se requiere acceso detallado a la ubicación para obtener información sobre la red GSM/LTE conectada. Permita también la búsqueda de ubicación en segundo plano (si desea su ubicación todo el tiempo).</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">La aplicación requiere permiso de ubicación en segundo plano</string>
+    <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">El proveedor del tiempo cambió</string>
+    <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">Esta aplicación utiliza Open-Meteo (https://open-meteo.com) como fuente meteorológica a partir de ahora, ya que openweathermap.org finalizará su servicio gratuito en junio de 2024.</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Limitaciones del servicio de ubicación de Mozilla</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">El acceso al servicio de localización de Mozilla expiró el 1.3.2020. La aplicación se ve obligada a utilizar el sistema Andorid para descubrir las coordenadas de ubicación. La dirección aún está resuelta por Nominatim. Tenga esto en cuenta al utilizar la aplicación.</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">La aplicación requiere permiso de ubicación en segundo plano para obtener el clima según la ubicación donde realmente se encuentra. Si estás de acuerdo deberás seleccionar la opción en la siguiente pantalla:</string>
 </resources>
