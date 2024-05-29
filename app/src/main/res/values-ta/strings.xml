@@ -1,2 +1,587 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="MissingTranslation">உங்கள் உள்ளக வானிலை</string>
+    <string name="enter_city_hint" tools:ignore="MissingTranslation">நகரத்தை உள்ளிடவும்</string>
+    <string name="label_current_city" tools:ignore="MissingTranslation">தற்போதைய நகரம்</string>
+    <string name="label_choose_city" tools:ignore="MissingTranslation">நகரத்தைத் தேர்வுசெய்க</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">உரை மற்றும் வழிகாட்டுதல் மொழிபெயர்ப்புகள்</string>
+    <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">வானிலை வழங்குநர் மாறினார்</string>
+    <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">மொசில்லா இருப்பிட பணி வரம்பு</string>
+    <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">நிலை பார் படவுரு பாணி</string>
+    <string name="pref_title_vibrate" tools:ignore="MissingTranslation">அதிர்வு</string>
+    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">வானிலைக்கான புதுப்பிப்பு காலம் (இடம் 1,2,3 ...)</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">இல்லை 00:00 முதல் 06:00 மணி வரை (இடம் 1,2,3 ...)</string>
+    <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">இருப்பிடத்திற்கான புதுப்பிப்பு காலம் (இடம் 0)</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">இல்லை 00:00 முதல் 06:00 மணி வரை (இடம் 0)</string>
+    <string name="preference_title_activity_general" tools:ignore="MissingTranslation">பொது அமைப்புகள்</string>
+    <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">விட்செட்டில் அமைப்புகளைக் காட்டு</string>
+    <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">காண்பிக்க புவிஇருப்பிடத்தைப் பயன்படுத்தவும்</string>
+    <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">விட்செட் கருப்பொருள்</string>
+    <string name="theme_light" tools:ignore="MissingTranslation">ஒளி</string>
+    <string name="theme_system" tools:ignore="MissingTranslation">கணினி மூலம்</string>
+    <string name="theme_transparent" tools:ignore="MissingTranslation">ஒளி புகும்</string>
+    <string name="preference_title_category_display" tools:ignore="MissingTranslation">காட்சி</string>
+    <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">இருப்பிடம் மற்றும் வானிலை புதுப்பிக்கவும்</string>
+    <string name="preference_title_category_units" tools:ignore="MissingTranslation">அலகு அமைப்புகள்</string>
+    <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">உள்ளமைக்கப்பட்ட</string>
+    <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">உரிம விசை</string>
+    <string name="pref_title_language" tools:ignore="MissingTranslation">மொழி</string>
+    <string name="pref_language_default" tools:ignore="MissingTranslation">கணினி இயல்புநிலை</string>
+    <string name="pref_language_zh_rcn" tools:ignore="MissingTranslation">中文 (சீன)</string>
+    <string name="pref_language_sw" tools:ignore="MissingTranslation">கிச்வாஇலி (சுவாஇலி)</string>
+    <string name="pref_language_sv" tools:ignore="MissingTranslation">ச்வென்ச்கா (ச்வீடிச்)</string>
+    <string name="pref_language_he" tools:ignore="MissingTranslation">עבר (எபிரேய)</string>
+    <string name="pref_language_hi" tools:ignore="MissingTranslation">இந்தி (இந்தி)</string>
+    <string name="pref_language_nl" tools:ignore="MissingTranslation">நெடெர்லாண்ட்ச் (டச்சு)</string>
+    <string name="pref_language_fa" tools:ignore="MissingTranslation">பாரசீக (பாரசீக)</string>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">நன்சா (நன்சா)</string>
+    <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (போக்மால்) (நோர்வே (போக்மால்))</string>
+    <string name="pref_language_hu" tools:ignore="MissingTranslation">மாகியார் (அங்கேரிய)</string>
+    <string name="pref_language_es" tools:ignore="MissingTranslation">எச்பானோல் (ச்பானிச்)</string>
+    <string name="pref_language_el" tools:ignore="MissingTranslation">Ελληνικά (கிரேக்கம்)</string>
+    <string name="pref_language_ar" tools:ignore="MissingTranslation">الع 201 (அரபு)</string>
+    <string name="pref_language_uk" tools:ignore="MissingTranslation">Українська (உக்ரேனிய)</string>
+    <string name="pref_language_vi" tools:ignore="MissingTranslation">வியட்நாமிய</string>
+    <string name="pref_language_ro" tools:ignore="MissingTranslation">ரோமான் (ருமேனிய)</string>
+    <string name="pref_language_pt" tools:ignore="MissingTranslation">போர்த்துக்கள் (போர்த்துகீசியம்)</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">போர்த்துகச் (போர்ச்சுகல்) (போர்த்துகீசியம் (போர்ச்சுகல்))</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">போர்த்துகச் (பிரேசில்) (போர்த்துகீசியம் (பிரேசில்))</string>
+    <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (அல்பேனியன்)</string>
+    <string name="pref_language_be" tools:ignore="MissingTranslation">K (பெலாரூசியன்)</string>
+    <string name="pref_language_be_latn" tools:ignore="MissingTranslation">K (பெலாரூசியன், லத்தீன் ச்கிரிப்ட்)</string>
+    <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">பெங்காலி (பங்களாதேச்)</string>
+    <string name="pref_language_ca" tools:ignore="MissingTranslation">கேடலான் (கற்றலான்)</string>
+    <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (குரோசியன்)</string>
+    <string name="pref_language_da" tools:ignore="MissingTranslation">டான்ச்க் (டேனிச்)</string>
+    <string name="pref_language_en" tools:ignore="MissingTranslation">ஆங்கிலம்</string>
+    <string name="pref_language_fi" tools:ignore="MissingTranslation">சூமி (பின்னிச்)</string>
+    <string name="pref_language_fr" tools:ignore="MissingTranslation">ஃபிரான்சிச் (பிரஞ்சு)</string>
+    <string name="pref_language_gl" tools:ignore="MissingTranslation">கேலெகோ (காலிசியன்)</string>
+    <string name="pref_language_de" tools:ignore="MissingTranslation">டாய்ச் (செர்மன்)</string>
+    <string name="pref_language_it" tools:ignore="MissingTranslation">இத்தாலியானோ (இத்தாலியன்)</string>
+    <string name="pref_language_id" tools:ignore="MissingTranslation">இந்தோனேசிய (இந்தோனேசிய)</string>
+    <string name="pref_language_jp" tools:ignore="MissingTranslation">日本語 (சப்பானிய)</string>
+    <string name="pref_language_bg" tools:ignore="MissingTranslation">பல்கேரியன்</string>
+    <string name="pref_language_zh_rtw" tools:ignore="MissingTranslation">சீன (பாரம்பரிய)</string>
+    <string name="pref_language_sd" tools:ignore="MissingTranslation">சிந்துச்</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">கபாய்ல்</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">கொரிய</string>
+    <string name="location_geocoder_system" tools:ignore="MissingTranslation">மண்டலம்</string>
+    <string name="pref_title_theme" tools:ignore="MissingTranslation">கருப்பொருள்</string>
+    <string name="preference_display_update_title" tools:ignore="MissingTranslation">புதுப்பிப்பு சுருக்கத்தைக் காண்பி</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">லிதுவேனியன்</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">தாய்</string>
+    <string name="location_geocoder_title" tools:ignore="MissingTranslation">இடம் மற்றும் முகவரி மூல</string>
+    <string name="location_geocoder_local" tools:ignore="MissingTranslation">இருப்பிடத்தைப் பெறுவதற்கான கணினி, முகவரியைப் பெறுவதற்கான பெயரளவு (பரிந்துரைக்கப்படுகிறது)</string>
+    <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">எதுவும்</string>
+    <string name="preference_display_update_value" tools:ignore="MissingTranslation">புதுப்பிக்கப்பட்ட மதிப்பு</string>
+    <string name="preference_display_update_location_source" tools:ignore="MissingTranslation">இருப்பிட மூலத்துடன் புதுப்பிக்கப்பட்ட மதிப்பு</string>
+    <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">முதலில் வானிலை புதுப்பிக்க புதுப்பிப்பு பொத்தானைக் சொடுக்கு செய்க.</string>
+    <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">வழிகாட்டுதல் ஒலிபெருக்கி பின்னணி</string>
+    <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">ஒலிபெருக்கி, ஒலிபரப்பி</string>
+    <string name="pref_title_tts_wired_headset" tools:ignore="MissingTranslation">கம்பி எட்செட் வழிகாட்டலை இயக்கவும்</string>
+    <string name="pref_title_tts_wired_headset_label" tools:ignore="MissingTranslation">கம்பி எட்செட்</string>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">ஊடலை</string>
+    <string name="pref_title_tts_bt_all" tools:ignore="MissingTranslation">அனைத்தும்</string>
+    <string name="pref_title_tts_bt" tools:ignore="MissingTranslation">ஊடலை எட்செட் வழிகாட்டலை இயக்கவும்</string>
+    <string name="pref_title_tts_say_greeting" tools:ignore="MissingTranslation">வாழ்த்து</string>
+    <string name="pref_title_tts_say_custom" tools:ignore="MissingTranslation">தனிப்பயன்</string>
+    <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">இடம் என்று சொல்லுங்கள்</string>
+    <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">வானிலை விளக்கம் என்று சொல்லுங்கள்</string>
+    <string name="pref_title_tts_say_temperature" tools:ignore="MissingTranslation">வெப்பநிலை சொல்லுங்கள்</string>
+    <string name="pref_title_tts_say_forecast" tools:ignore="MissingTranslation">ஒரு நாள் முன்னறிவிப்பு சொல்லுங்கள்</string>
+    <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">சொல்:</string>
+    <string name="pref_title_tts_time" tools:ignore="MissingTranslation">நேரம்</string>
+    <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">பி.டி.க்கு இசைவு</string>
+    <string name="pref_title_tts_trigger_bt_devices" tools:ignore="MissingTranslation">சாதனம் (கள்) க்கு:</string>
+    <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">இயக்கப்பட்ட சாதனம் (கள்):</string>
+    <string name="pref_title_tts_say_wind" tools:ignore="MissingTranslation">காற்று என்று சொல்லுங்கள்</string>
+    <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">என்ன சொல்ல:</string>
+    <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">பயன்பாட்டின் இடம்:</string>
+    <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">வழிகாட்டுதலுக்காக தேர்ந்தெடுக்கப்பட்ட இடம்:</string>
+    <string name="snow_label" tools:ignore="MissingTranslation">பனி: %1 $ s %2 $ s</string>
+    <string name="humidity_label" tools:ignore="MissingTranslation">ஈரப்பதம்: %1 $ s %2 $ s</string>
+    <string name="label_humidity" tools:ignore="MissingTranslation">ஈரப்பதம்</string>
+    <string name="pressure_label" tools:ignore="MissingTranslation">அழுத்தம்: %1 $ s %2 $ s</string>
+    <string name="cloudiness_label" tools:ignore="MissingTranslation">மேகமூட்டம்: %1 $ s %2 $ s</string>
+    <string name="label_cloudiness" tools:ignore="MissingTranslation">மேகமூட்டம்</string>
+    <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">மாலை பொழுது</string>
+    <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">அரிதாக</string>
+    <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">மற்றும்</string>
+    <string name="rain_label" tools:ignore="MissingTranslation">மழை: %1 $ s %2 $ s</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">கடைசி புதுப்பிப்பு: %கள்</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">சூரிய உதயம்: %கள்</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">சூரிய அச்தமனம்: %கள்</string>
+    <string name="label_sunrise" tools:ignore="MissingTranslation">சூரிய தோன்றுகை</string>
+    <string name="label_sunset" tools:ignore="MissingTranslation">சூரிய மறைவு</string>
+    <string name="temperature_morning_title" tools:ignore="MissingTranslation">காலை</string>
+    <string name="temperature_day_title" tools:ignore="MissingTranslation">நாள்</string>
+    <string name="temperature_evening_title" tools:ignore="MissingTranslation">மாலை பொழுது</string>
+    <string name="label_temperature" tools:ignore="MissingTranslation">வெப்ப நிலை</string>
+    <string name="temperature_night_title" tools:ignore="MissingTranslation">இரவு</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">வெளிப்படையான வெப்பநிலை: %கள்</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">அளவிடப்பட்ட வெப்பநிலை: %கள்</string>
+    <string name="label_wind" tools:ignore="MissingTranslation">காற்று</string>
+    <string name="label_rain" tools:ignore="MissingTranslation">மழை</string>
+    <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">இரண்டுமே, அளவிடப்பட்ட முதன்மை</string>
+    <string name="label_snow" tools:ignore="MissingTranslation">பனி</string>
+    <string name="label_pressure" tools:ignore="MissingTranslation">அழுத்தம்</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">பனி புள்ளி: %கள்</string>
+    <string name="label_dew_point" tools:ignore="MissingTranslation">பனி புள்ளி</string>
+    <string name="measured_only" tools:ignore="MissingTranslation">அளவிடப்பட்ட மதிப்பு மட்டுமே</string>
+    <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">இரண்டுமே, தோற்றம் முதன்மை</string>
+    <string name="appearance_only" tools:ignore="MissingTranslation">தோற்ற மதிப்பு மட்டுமே</string>
+    <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">வெப்பநிலையைக் காட்டு</string>
+    <string name="location_weather_update_status_location_not_reachable" tools:ignore="MissingTranslation">.</string>
+    <string name="location_weather_update_status_update_started" tools:ignore="MissingTranslation">-</string>
+    <string name="location_weather_update_status_weather_only" tools:ignore="MissingTranslation">W</string>
+    <string name="location_weather_update_status_location_only" tools:ignore="MissingTranslation">எல்</string>
+    <string name="location_weather_update_status_location_from_gps" tools:ignore="MissingTranslation">G</string>
+    <string name="location_weather_update_status_location_from_network" tools:ignore="MissingTranslation">N</string>
+    <string name="location_weather_update_status_location_from_network_cells" tools:ignore="MissingTranslation">c</string>
+    <string name="widget_location_settings_button" tools:ignore="MissingTranslation">விட்செட் இருப்பிட அமைப்புகள் பொத்தான்</string>
+    <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
+    <string name="location_weather_update_status_location_from_last_location" tools:ignore="MissingTranslation">எல்</string>
+    <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">தற்போதைய வானிலை படவுரு</string>
+    <string name="widget_refresh_button" tools:ignore="MissingTranslation">விட்செட் புதுப்பிப்பு பொத்தான்</string>
+    <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">விட்செட் வரைபட அமைப்புகள் பொத்தான்</string>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">விட்செட் வானிலை விவரம் அமைப்புகள் பொத்தான்</string>
+    <string name="widget_action_settings_button" tools:ignore="MissingTranslation">விட்செட் செயல் அமைப்புகள் பொத்தான்</string>
+    <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">முன்னறிவிப்புக்கான நாட்களின் எண்ணிக்கை</string>
+    <string name="widget_action_graphs_screen" tools:ignore="MissingTranslation">வரைபடங்கள் திரை</string>
+    <string name="widget_action_switch_location" tools:ignore="MissingTranslation">இடத்தை மாற்றவும்</string>
+    <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">நகர சிட்டை</string>
+    <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">தற்போதைய வானிலை படவுரு</string>
+    <string name="widget_setting_actions_forecast_label" tools:ignore="MissingTranslation">வானிலை முன்னறிவிப்பு</string>
+    <string name="widget_setting_actions_graph_label" tools:ignore="MissingTranslation">வரைபடம்</string>
+    <string name="widget_action_main_screen" tools:ignore="MissingTranslation">முதன்மை திரை</string>
+    <string name="widget_action_forecast_screen" tools:ignore="MissingTranslation">வானிலை முன்னறிவிப்பு திரை</string>
+    <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">விட்செட்டில் இருப்பிடத்தைக் காட்டு</string>
+    <string name="wind_direction_nothing" tools:ignore="MissingTranslation">முடக்கப்பட்டது</string>
+    <string name="tts_say_wind_direction_west" tools:ignore="MissingTranslation">மேற்கு</string>
+    <string name="tts_say_wind_direction_north_west" tools:ignore="MissingTranslation">வடமேற்கு</string>
+    <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Abbrev n , ne↙,…</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">வடக்கிலிருந்து டிகிரி</string>
+    <string name="wind_direction_north" tools:ignore="MissingTranslation">N</string>
+    <string name="wind_direction_north_east" tools:ignore="MissingTranslation">Ne↙</string>
+    <string name="wind_direction_east" tools:ignore="MissingTranslation">இ</string>
+    <string name="wind_direction_south_east" tools:ignore="MissingTranslation">Se↖</string>
+    <string name="wind_direction_south" tools:ignore="MissingTranslation">கள்</string>
+    <string name="wind_direction_south_west" tools:ignore="MissingTranslation">Sw↗</string>
+    <string name="wind_direction_west" tools:ignore="MissingTranslation">W</string>
+    <string name="wind_direction_north_west" tools:ignore="MissingTranslation">Nw↘</string>
+    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">வடக்கு</string>
+    <string name="tts_say_wind_direction_south" tools:ignore="MissingTranslation">தெற்கு</string>
+    <string name="tts_say_wind_direction_south_west" tools:ignore="MissingTranslation">தென்மேற்கு</string>
+    <string name="permission_location_rationale" tools:ignore="MissingTranslation">நகரத்தை தீர்மானிக்க இருப்பிட அனுமதிகள் தேவை</string>
+    <string name="permission_not_granted" tools:ignore="MissingTranslation">அனுமதிகள் வழங்கப்படவில்லை!</string>
+    <string name="permission_available_notification" tools:ignore="MissingTranslation">அறிவிப்பு இசைவு வழங்கப்பட்டுள்ளது</string>
+    <string name="permission_location_need" tools:ignore="MissingTranslation">இருப்பிட அனுமதிகளை வழங்கவும்</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">தற்போதைய வானிலை விளக்க மொழி மற்றும் முகவரி அடுத்த புதுப்பிப்புடன் மாறும், அல்லது நீங்கள் அதை கைமுறையாக கட்டாயப்படுத்தலாம்.</string>
+    <string name="debug_category_title" tools:ignore="MissingTranslation">பிழைத்திருத்த விருப்பங்கள்</string>
+    <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">ஒரு குறிப்பிட்ட நேரத்திற்குப் பிறகு பதிவு கோப்பு மீண்டும் உருவாக்கப்படும்</string>
+    <string name="log_file_lasting_title" tools:ignore="MissingTranslation">பதிவு கோப்பின் சுழற்சி</string>
+    <string name="log_file_12_label" tools:ignore="MissingTranslation">12 மணி நேரம்</string>
+    <string name="log_file_24_label" tools:ignore="MissingTranslation">ஒரு நாள்</string>
+    <string name="log_file_48_label" tools:ignore="MissingTranslation">இரண்டு நாட்கள்</string>
+    <string name="log_file_72_label" tools:ignore="MissingTranslation">மூன்று நாட்கள்</string>
+    <string name="permission_available_location" tools:ignore="MissingTranslation">இருப்பிட அனுமதிகள் வழங்கப்பட்டுள்ளன</string>
+    <string name="log_to_file_label" tools:ignore="MissingTranslation">தாக்கல் செய்ய பதிவு</string>
+    <string name="log_file_168_label" tools:ignore="MissingTranslation">ஒரு வாரம்</string>
+    <string name="log_file_720_label" tools:ignore="MissingTranslation">ஒரு மாதம்</string>
+    <string name="log_to_file_off" tools:ignore="MissingTranslation">கோப்புக்கு உள்நுழைய வேண்டாம்</string>
+    <string name="log_to_file_on" tools:ignore="MissingTranslation">தாக்கல் செய்ய பதிவு</string>
+    <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">படவுரு தொகுப்பு</string>
+    <string name="preference_weather_weather_forecast_features_title" tools:ignore="MissingTranslation">வானிலை முன்னறிவிப்பு நற்பொருத்தங்கள்</string>
+    <string name="weather_forecast_features_free" tools:ignore="MissingTranslation">இலவச/வரையறுக்கப்பட்ட நற்பொருத்தங்கள்</string>
+    <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">கட்டண/நீட்டிக்கப்பட்ட நற்பொருத்தங்கள்</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">எழுத்துரு அடிப்படையிலான சின்னங்கள்</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">மெர்லின் தி ரெட் ஐகான்கள்</string>
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">° f</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">. C.</string>
+    <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">கே</string>
+    <string name="weather_condition_description_none" tools:ignore="MissingTranslation">எதுவுமில்லை</string>
+    <string name="weather_condition_description_200" tools:ignore="MissingTranslation">லேசான மழையுடன் இடியுடன் கூடிய மழை</string>
+    <string name="weather_condition_description_201" tools:ignore="MissingTranslation">மழையுடன் இடியுடன் கூடிய மழை</string>
+    <string name="weather_condition_description_202" tools:ignore="MissingTranslation">பலத்த மழையுடன் இடியுடன் கூடிய மழை</string>
+    <string name="weather_condition_description_210" tools:ignore="MissingTranslation">ஒளி இடியுடன் கூடிய மழை</string>
+    <string name="weather_condition_description_211" tools:ignore="MissingTranslation">இடியுடன் கூடிய மழை</string>
+    <string name="weather_condition_description_212" tools:ignore="MissingTranslation">கனமான இடியுடன் கூடிய மழை</string>
+    <string name="weather_condition_description_221" tools:ignore="MissingTranslation">கந்தலான இடியுடன் கூடிய மழை</string>
+    <string name="weather_condition_description_230" tools:ignore="MissingTranslation">ஒளி தூறல் கொண்டு இடியுடன் கூடிய மழை</string>
+    <string name="weather_condition_description_231" tools:ignore="MissingTranslation">தூறலுடன் இடியுடன் கூடிய மழை</string>
+    <string name="weather_condition_description_232" tools:ignore="MissingTranslation">கனமான தூறலுடன் இடியுடன் கூடிய மழை</string>
+    <string name="weather_condition_description_300" tools:ignore="MissingTranslation">ஒளி தீவிரம் தூறல்</string>
+    <string name="weather_condition_description_301" tools:ignore="MissingTranslation">தூறல்</string>
+    <string name="weather_condition_description_302" tools:ignore="MissingTranslation">கனமான தீவிரம் தூறல்</string>
+    <string name="weather_condition_description_310" tools:ignore="MissingTranslation">ஒளி தீவிரம் தூறல் மழை</string>
+    <string name="weather_condition_description_311" tools:ignore="MissingTranslation">தூறல் மழை</string>
+    <string name="weather_condition_description_312" tools:ignore="MissingTranslation">கனமான தீவிரம் தூறல் மழை</string>
+    <string name="weather_condition_description_313" tools:ignore="MissingTranslation">மழை மழை மற்றும் தூறல்</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">கனரக மழை மற்றும் தூறல்</string>
+    <string name="weather_condition_description_321" tools:ignore="MissingTranslation">மழை தூறல்</string>
+    <string name="weather_condition_description_500" tools:ignore="MissingTranslation">தூறல்</string>
+    <string name="weather_condition_description_501" tools:ignore="MissingTranslation">மிதமான மழை</string>
+    <string name="weather_condition_description_502" tools:ignore="MissingTranslation">கனமான தீவிரம் மழை</string>
+    <string name="weather_condition_description_503" tools:ignore="MissingTranslation">மிகவும் கனமான மழை</string>
+    <string name="weather_condition_description_504" tools:ignore="MissingTranslation">தீவிர மழை</string>
+    <string name="weather_condition_description_511" tools:ignore="MissingTranslation">உறைபனி மழை</string>
+    <string name="weather_condition_description_520" tools:ignore="MissingTranslation">ஒளி தீவிரம் மழை மழை</string>
+    <string name="weather_condition_description_521" tools:ignore="MissingTranslation">மழை மழை</string>
+    <string name="weather_condition_description_522" tools:ignore="MissingTranslation">கனமான தீவிரம் மழை மழை</string>
+    <string name="weather_condition_description_531" tools:ignore="MissingTranslation">கந்தல் மழை மழை</string>
+    <string name="weather_condition_description_600" tools:ignore="MissingTranslation">ஒளி பனி</string>
+    <string name="weather_condition_description_601" tools:ignore="MissingTranslation">பனி</string>
+    <string name="weather_condition_description_611" tools:ignore="MissingTranslation">பனிப்பொழிவு</string>
+    <string name="weather_condition_description_612" tools:ignore="MissingTranslation">சவர் ச்லீட்</string>
+    <string name="weather_condition_description_615" tools:ignore="MissingTranslation">லேசான மழை மற்றும் பனி</string>
+    <string name="weather_condition_description_616" tools:ignore="MissingTranslation">மழை மற்றும் பனி</string>
+    <string name="weather_condition_description_620" tools:ignore="MissingTranslation">லைட் சவர் பனி</string>
+    <string name="weather_condition_description_621" tools:ignore="MissingTranslation">மழை பனி</string>
+    <string name="weather_condition_description_622" tools:ignore="MissingTranslation">கனமான மழை பனி</string>
+    <string name="weather_condition_description_701" tools:ignore="MissingTranslation">மூடுபனி</string>
+    <string name="weather_condition_description_711" tools:ignore="MissingTranslation">புகை</string>
+    <string name="weather_condition_description_721" tools:ignore="MissingTranslation">மூடுபனி</string>
+    <string name="weather_condition_description_751" tools:ignore="MissingTranslation">மணல்</string>
+    <string name="weather_condition_description_761" tools:ignore="MissingTranslation">தூசு</string>
+    <string name="weather_condition_description_762" tools:ignore="MissingTranslation">எரிமலை சாம்பல்</string>
+    <string name="weather_condition_description_781" tools:ignore="MissingTranslation">சூறாவளி</string>
+    <string name="weather_condition_description_800" tools:ignore="MissingTranslation">தெளிந்த வானம்</string>
+    <string name="weather_condition_description_801" tools:ignore="MissingTranslation">சில மேகங்கள்</string>
+    <string name="weather_condition_description_802" tools:ignore="MissingTranslation">சிதறிய மேகங்கள்</string>
+    <string name="weather_condition_description_803" tools:ignore="MissingTranslation">உடைந்த மேகங்கள்</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">இந்த பயன்பாட்டில் உரை மொழிபெயர்ப்புகள் மற்றும் குரல் கட்டளைகள் மூலம் குரல் வழிகாட்டுதலைக் கொண்டுள்ளது. பயன்பாட்டைப் பயன்படுத்துவதன் மூலம் இதை நீங்கள் ஏற்றுக்கொள்கிறீர்கள். இதைப் பயன்படுத்த உங்களுக்கு TTS (உரை-க்கு-பேச்சு) நிறுவப்பட்டது மற்றும் அமைப்புகளில் வழிகாட்டுதல் இயக்கப்படுகிறது, அங்கு நீங்கள் உங்கள் சொந்த குரல் கட்டளைகளை அமைக்கலாம்.</string>
+    <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">இந்த பயன்பாடு திறந்த-மெட்டியோவை (https://open-meteo.com) இனிமேல் அதன் வானிலை மூலமாகப் பயன்படுத்துகிறது, ஏனெனில் OpenWeatherMap.org சூன் 2024 இல் தனது இலவச சேவையை முடித்து வருகிறது.</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">ஆண்ட்ராய்டு 10 இலிருந்து தொடங்கி, இணைக்கப்பட்ட GSM/LTE பிணையம் பற்றிய தகவல்களைப் பெற இருப்பிடத்திற்கான சிறந்த அணுகல் தேவை. பின்னணியிலும் இருப்பிடத்தைப் பெற இசைவு வழங்கவும் (உங்கள் இருப்பிடத்தை எப்போதும் விரும்பினால்).</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">பயன்பாட்டிற்கு நீங்கள் உண்மையில் இருக்கும் இடத்தின் மூலம் வானிலை பெற பின்னணி இருப்பிட இசைவு தேவைப்படுகிறது. நீங்கள் ஒப்புக்கொண்டால், அடுத்த திரையில் விருப்பத்தைத் தேர்ந்தெடுக்க வேண்டும்:</string>
+    <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">சி.பி.எச் பயன்படுத்தி இருப்பிடத்தைப் புதுப்பிக்க பயன்பாட்டிற்கு இசைவு தேவை.</string>
+    <string name="alertDialog_location_permission_positiveButton_settings" tools:ignore="MissingTranslation">சாதன அமைப்புகள்</string>
+    <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">அனுமதிகளைக் கோருங்கள்</string>
+    <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">ரத்துசெய்</string>
+    <string name="progressDialog_gps_locate" tools:ignore="MissingTranslation">தற்போதைய இருப்பிடத்தைக் கண்டறியவும்</string>
+    <string name="load_progress" tools:ignore="MissingTranslation">ஏற்றுகிறது…</string>
+    <string name="location_not_found" tools:ignore="MissingTranslation">இடம் கிடைக்கவில்லை</string>
+    <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">தொடர்பு பயன்பாடு கிடைக்கவில்லை</string>
+    <string name="notification_channel_name" tools:ignore="MissingTranslation">உங்கள் உள்ளக வானிலை</string>
+    <string name="graph_wind_label" tools:ignore="MissingTranslation">காற்று</string>
+    <string name="graph_rain_label" tools:ignore="MissingTranslation">மழை</string>
+    <string name="graph_snow_label" tools:ignore="MissingTranslation">பனி</string>
+    <string name="graph_pressure_label" tools:ignore="MissingTranslation">அழுத்தம்</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">இந்த நேரத்தில் %1 $ டி இடங்களுக்கு மேல் இருக்க உங்களுக்கு இசைவு இல்லை.</string>
+    <string name="initial_guide_next" tools:ignore="MissingTranslation">அடுத்தது</string>
+    <string name="initial_guide_previous" tools:ignore="MissingTranslation">முந்தைய</string>
+    <string name="initial_guide_finish" tools:ignore="MissingTranslation">முடிக்க</string>
+    <string name="initial_guide_title_8" tools:ignore="MissingTranslation">கேச் தீர்க்கப்பட்ட முகவரி</string>
+    <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation"><b> தெளிவான கேச் </b> பொத்தானைக் கொண்டு முகவரிகளின் தற்காலிக சேமிப்பை நீங்கள் அழிக்கலாம்.</string>
+    <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">நீங்கள் <b> விட்செட்டில் லேபிள்களைக் காண்பிக்கும் போது </b>, வானிலை நிலை மதிப்புகளுக்கான ஐகான்களுக்கு பதிலாக லேபிள்களைக் காணலாம்.</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">ஒருங்கிணைந்த வரைபடம்</string>
+    <string name="title_activity_search" tools:ignore="MissingTranslation">இடம் தேடல்</string>
+    <string name="label_activity_main" tools:ignore="MissingTranslation">தற்போதைய வானிலை</string>
+    <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">நாள்தோறும் முன்னறிவிப்பு</string>
+    <string name="title_activity_license" tools:ignore="MissingTranslation">%கள் உரிமம்</string>
+    <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">தோற்ற வெப்பநிலை</string>
+    <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">காற்று</string>
+    <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">காற்றடிக்கும் திசை</string>
+    <string name="forecast_settings_column_rainsnow" tools:ignore="MissingTranslation">மழை/பனி</string>
+    <string name="ok" tools:ignore="MissingTranslation">சரி</string>
+    <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">அழுத்தம்</string>
+    <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">பிட்காயின் நன்கொடை</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4 மணி நேரம்</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">லிப்ரே மென்பொருள் உரிமங்கள்</string>
+    <string name="pref_title_temperature" tools:ignore="MissingTranslation">வெப்ப நிலை</string>
+    <string name="preference_hide_desc" tools:ignore="MissingTranslation">வானிலை விளக்கத்தை மறைக்கவும்</string>
+    <string name="pref_title_category_notification" tools:ignore="MissingTranslation">அறிவிப்பு அமைப்புகள்</string>
+    <string name="update_period_by_sensors" tools:ignore="MissingTranslation">முடுக்கமானி மூலம்</string>
+    <string name="preference_title_activity_widget" tools:ignore="MissingTranslation">விட்செட் அமைப்புகள்</string>
+    <string name="preference_title_tts" tools:ignore="MissingTranslation">வழிகாட்டுதல் அமைப்புகள்</string>
+    <string name="preference_title_tts_lang" tools:ignore="MissingTranslation">வழிகாட்டுதல் மொழி விருப்பங்கள்</string>
+    <string name="preference_title_add_tts" tools:ignore="MissingTranslation">புதிய வழிகாட்டுதல் அமைப்புகள்</string>
+    <string name="preference_widget_update_location" tools:ignore="MissingTranslation">இருப்பிடத்தைப் புதுப்பிக்கவும்</string>
+    <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">விட்செட்டில் லேபிள்களைக் காட்டு</string>
+    <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">சொந்த தெளிவுத்திறனில் வரைபடத்தைக் காட்டு (வரைபடம் மிகவும் சிறியதாக இருக்கும்போது)</string>
+    <string name="theme_dark" tools:ignore="MissingTranslation">இருள்</string>
+    <string name="preference_title_power_save" tools:ignore="MissingTranslation">பவர் சேமி விருப்பங்கள்</string>
+    <string name="preference_title_category_system" tools:ignore="MissingTranslation">கணினி அமைப்புகளை</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">திறந்த-மெட்டியோ (https://open-meteo.com) பநிஇ விசை</string>
+    <string name="pref_language_eu" tools:ignore="MissingTranslation">யூச்காரா (பாச்க்)</string>
+    <string name="pref_language_cs" tools:ignore="MissingTranslation">Čeித்தினா (செக்)</string>
+    <string name="pref_language_pl" tools:ignore="MissingTranslation">போல்கி (போலிச்)</string>
+    <string name="pref_language_ru" tools:ignore="MissingTranslation">Р (ரச்யன்)</string>
+    <string name="pref_language_sr" tools:ignore="MissingTranslation">(செர்பியன்)</string>
+    <string name="pref_language_sl" tools:ignore="MissingTranslation">ச்லோவெனினா (ச்லோவேனியன்)</string>
+    <string name="pref_language_tr" tools:ignore="MissingTranslation">Turkçe (துருக்கிய)</string>
+    <string name="db_header" tools:ignore="MissingTranslation">முகவரி கேச் தரவுத்தளம்</string>
+    <string name="location_cache_lasting_title" tools:ignore="MissingTranslation">தற்காலிக சேமிப்பு மதிப்புகளின் அகவை</string>
+    <string name="location_cache_4380_label" tools:ignore="MissingTranslation">ஆறு மாதங்கள்</string>
+    <string name="search_location_add" tools:ignore="MissingTranslation">கூட்டு</string>
+    <string name="pref_title_tts_location_label" tools:ignore="MissingTranslation">இருப்பிடத்திற்கு:</string>
+    <string name="voice_setting_trigger_on_weather_update" tools:ignore="MissingTranslation">வானிலை புதுப்பிக்கப்படும் போது</string>
+    <string name="voice_setting_trigger_when_bt_connected" tools:ignore="MissingTranslation">ஊடலை சாதனம் இணைக்கப்படும்போது</string>
+    <string name="tty_say_weather_forecast_night" tools:ignore="MissingTranslation">இரவில்</string>
+    <string name="location_weather_update_status_access_banned" tools:ignore="MissingTranslation">B</string>
+    <string name="location_weather_update_status_access_expired" tools:ignore="MissingTranslation">இ</string>
+    <string name="location_weather_update_status_too_early_update" tools:ignore="MissingTranslation">ஓ</string>
+    <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">சுருக்கத்தால் நாள் காட்டு</string>
+    <string name="widget_setting_location_label" tools:ignore="MissingTranslation">இருப்பிட அமைப்பு</string>
+    <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">வடகிழக்கு</string>
+    <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">கிழக்கு</string>
+    <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">தென்கிழக்கு</string>
+    <string name="debug_choose_file" tools:ignore="MissingTranslation">பதிவு கோப்புறையைத் தேர்ந்தெடுக்கவும்</string>
+    <string name="weather_condition_description_602" tools:ignore="MissingTranslation">கனமான பனி</string>
+    <string name="weather_condition_description_731" tools:ignore="MissingTranslation">மணல், தூசி சுழல்கள்</string>
+    <string name="weather_condition_description_741" tools:ignore="MissingTranslation">மூடுபனி</string>
+    <string name="weather_condition_description_771" tools:ignore="MissingTranslation">குண்டுகள்</string>
+    <string name="weather_condition_description_804" tools:ignore="MissingTranslation">மேகமூட்டமான மேகங்கள்</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 நாட்கள்</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 நாட்கள்</string>
+    <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 நாட்கள்</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3 மணி நேரம்</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5 மணிநேரம்</string>
+    <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 மணி நேரம்</string>
+    <string name="hint_activity_search" tools:ignore="MissingTranslation">இடம் தேடல்</string>
+    <string name="title_activity_settings" tools:ignore="MissingTranslation">அமைப்புகள்</string>
+    <string name="pref_title_wind" tools:ignore="MissingTranslation">காற்று</string>
+    <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">காற்றின் திசை நடை</string>
+    <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">மழை மற்றும் பனி</string>
+    <string name="pref_title_pressure" tools:ignore="MissingTranslation">அழுத்தம்</string>
+    <string name="pref_title_notification" tools:ignore="MissingTranslation">அறிவிப்புகளை இயக்கவும்</string>
+    <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">இடைவெளியைப் புதுப்பிக்கவும்</string>
+    <string name="location_update_strategy_title" tools:ignore="MissingTranslation">இருப்பிட புதுப்பிப்பு அமைப்பு</string>
+    <string name="update_location_none" tools:ignore="MissingTranslation">இருப்பிடத்தைப் புதுப்பிக்க வேண்டாம்</string>
+    <string name="update_location_full" tools:ignore="MissingTranslation">இருப்பிடத்தைப் புதுப்பிக்கவும் (பரிந்துரைக்கப்படுகிறது)</string>
+    <string name="update_location_network_only" tools:ignore="MissingTranslation">சி.பி.எச் இல்லாமல் இருப்பிடத்தைப் புதுப்பிக்கவும்</string>
+    <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">தேவைப்படும்போது சி.பி.எச்</string>
+    <string name="update_period_nothing" tools:ignore="MissingTranslation">கையேடு மட்டுமே</string>
+    <string name="update_period_regular_only" tools:ignore="MissingTranslation">தவறாமல் புதுப்பிக்கும்போது</string>
+    <string name="update_period_15min" tools:ignore="MissingTranslation">15 நிமிடங்கள்</string>
+    <string name="update_period_30min" tools:ignore="MissingTranslation">30 மணித்துளி</string>
+    <string name="update_period_1hour" tools:ignore="MissingTranslation">ஒவ்வொரு மணி நேரமும்</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2 மணி நேரம்</string>
+    <string name="update_period_3hours" tools:ignore="MissingTranslation">3 மணி நேரம்</string>
+    <string name="update_period_6hours" tools:ignore="MissingTranslation">6 மணி நேரம்</string>
+    <string name="update_period_12hours" tools:ignore="MissingTranslation">12 மணி நேரம்</string>
+    <string name="update_period_24hours" tools:ignore="MissingTranslation">24 மணி நேரம்</string>
+    <string name="pref_title_notification_presence" tools:ignore="MissingTranslation">அறிவிப்பு இருப்பு</string>
+    <string name="notification_when_updated" tools:ignore="MissingTranslation">புதுப்பிக்கப்படும் போது</string>
+    <string name="notification_permanent" tools:ignore="MissingTranslation">நிரந்தர</string>
+    <string name="notification_on_lock_screen" tools:ignore="MissingTranslation">பூட்டுத் திரையில்</string>
+    <string name="notification_status_icon_sun" tools:ignore="MissingTranslation">சூரிய படவுரு</string>
+    <string name="notification_status_icon_temperature" tools:ignore="MissingTranslation">வெப்ப நிலை</string>
+    <string name="notification_status_icon_one_invisible_point" tools:ignore="MissingTranslation">கண்ணுக்கு தெரியாத</string>
+    <string name="notification_visual_style_build_in" tools:ignore="MissingTranslation">பாரம்பரிய</string>
+    <string name="notification_visual_style_custom_with_forecast" tools:ignore="MissingTranslation">ஒரு முன்னறிவிப்புடன் தனிப்பயன்</string>
+    <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">காட்சி அறிவிப்பு நடை</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">ஆரம்ப உள்ளமைவு வழிகாட்டி</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">உங்கள் தேவைகளுக்கு பயன்பாட்டை சரிசெய்து, அடுத்து புதுப்பிப்பு மூலோபாயத்தை தேர்வு செய்யலாம்
+\n இருப்பிடம் மாறும்போது புதுப்பிப்பின் இயல்புநிலையிலிருந்து திசை திருப்பி, நீங்கள் <i> இருப்பிடத்தைப் புதுப்பிக்க வேண்டாம் </i>.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">இருப்பிட அமைப்பைப் புதுப்பிக்கவும்</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">இருப்பிட மூல விருப்பம்</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">நீங்கள் இருப்பிட முறையை தேர்வு செய்யலாம் - <i> கணினி </i> ஒருவர் நெட்வொர்க்குகள் (செல் மற்றும் வைஃபை நெட்வொர்க்குகள்) மூலம் இருப்பிடத்தைப் பெற Google சேவைகளைப் பயன்படுத்துகிறார். <i> உள்ளக எம்.எல்.எச் மற்றும் நோமினாடிம் </i> விருப்பம் இருப்பிட ஒருங்கிணைப்புகள் மற்றும் பெயர்களைப் பெறுவதற்கு மொசில்லா இருப்பிட சேவையைப் பயன்படுத்துகிறது. இரண்டாவது விருப்பத்திற்கு செல்லுலார் பிணையம் பற்றிய தகவல்களைப் பெற தொலைபேசி அழைப்பு அனுமதிகள் தேவை. விருப்பமான விருப்பம் முன்கூட்டியே தேர்ந்தெடுக்கப்பட்டது.</string>
+    <string name="initial_guide_title_4" tools:ignore="MissingTranslation">இடம் மற்றும் முகவரி மூல</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">விழிப்புணர்வு மூலோபாய விருப்பம்</string>
+    <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">காட்சி இயக்கத்தில் இல்லாவிட்டால் சில தொலைபேசிகள் இணைக்கப்பட்ட கலங்களை சரியாக புகாரளிக்காது. விருப்பமான விருப்பம் (காட்சி சுவிட்ட் ஆன் உடன்) தொலைபேசி பல விநாடிகளுக்கு காட்சியை மாற்றும் குறைபாட்டைக் கொண்டுள்ளது. இது பேட்டரி ஆயுள் ஒரு சிறிய தாக்கத்தை ஏற்படுத்துகிறது. அதனுடன் தொடங்கவும், அதை அணைக்க முயற்சிக்கவும், இருப்பிடம் இன்னும் புதுப்பிக்கிறதா என்று பாருங்கள்.</string>
+    <string name="initial_guide_title_6" tools:ignore="MissingTranslation">விழித்தெழுந்த உத்தி</string>
+    <string name="initial_guide_title_7" tools:ignore="MissingTranslation">கேச் தீர்க்கப்பட்ட முகவரி விருப்பம்</string>
+    <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">கண்டுபிடிக்கப்பட்ட இடங்களை கேச்சிங் செய்வதன் மூலம் தரவு பயன்பாட்டைக் குறைக்கலாம். இடங்கள் பின்னர் பயன்பாட்டில் சேமிக்கப்படுகின்றன. அவை பிணையத்தில் மற்ற இடங்களை அனுப்பவோ அல்லது சேமிக்கவோ இல்லை.</string>
+    <string name="initial_guide_title_9" tools:ignore="MissingTranslation">வாழ்த்துக்கள்</string>
+    <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">காற்று மற்றும் வெப்பநிலைக்கு அடுத்ததாக மழை/பனி மதிப்புகளைக் காட்ட நீங்கள் வரைபடத்தில் தேர்ந்தெடுக்கும்போது (பார்களில்) மதிப்பு லாக் 10 என கணக்கிடப்படுகிறது. (அறிய முடியாத) அச்சின் அதிகபட்ச மதிப்பு சுமார் 160 மிமீ (அல்லது 6.3 அங்குலங்கள்) ஆகும்.</string>
+    <string name="forecast_settings_graph_combined" tools:ignore="MissingTranslation">இணைக்கப்பட்டது</string>
+    <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">வெப்ப நிலை</string>
+    <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">காற்று</string>
+    <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">மழை</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">மழை (பார்)</string>
+    <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">பனி</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">பனி (பட்டி)</string>
+    <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">வெப்ப நிலை</string>
+    <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">காற்று</string>
+    <string name="forecast_settings_graph_combined_rain_snow" tools:ignore="MissingTranslation">மழை/பனி</string>
+    <string name="forecast_settings_graph_combined_pressure" tools:ignore="MissingTranslation">அழுத்தம்</string>
+    <string name="forecast_settings_visible_graphs" tools:ignore="MissingTranslation">காண்பிக்க வரைபடங்கள்</string>
+    <string name="forecast_settings_combined_values" tools:ignore="MissingTranslation">ஒருங்கிணைந்த வரைபடத்திற்கான தரவு</string>
+    <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">புராணக்கதையை வரைபடத்தில் காட்டு</string>
+    <string name="navigation_drawer_open" tools:ignore="MissingTranslation">திறந்த வழிசெலுத்தல் அலமாரியை</string>
+    <string name="navigation_drawer_close" tools:ignore="MissingTranslation">வழிசெலுத்தல் அலமாரியை மூடு</string>
+    <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">தற்போதைய வானிலை</string>
+    <string name="nav_menu_daily_forecast" tools:ignore="MissingTranslation">நாள்தோறும் முன்னறிவிப்பு</string>
+    <string name="nav_menu_graphs" tools:ignore="MissingTranslation">வரைபடங்கள்</string>
+    <string name="nav_menu_settings" tools:ignore="MissingTranslation">அமைப்புகள்</string>
+    <string name="nav_feedback" tools:ignore="MissingTranslation">பின்னூட்டம்</string>
+    <string name="nav_menu_help" tools:ignore="MissingTranslation">உதவி</string>
+    <string name="location_not_initialized" tools:ignore="MissingTranslation">இடம் துவக்கப்படவில்லை. முதலில் இருப்பிட வட்டத்தில் சொடுக்கு செய்க.</string>
+    <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">வரம்புக்கு மேலே உள்ள இடங்களை நீக்கியது.</string>
+    <string name="connection_not_found" tools:ignore="MissingTranslation">உங்கள் இணைய இணைப்பை சரிபார்க்கவும்</string>
+    <string name="toast_parse_error" tools:ignore="MissingTranslation">தவறு நிகழ்ந்துவிட்டது. சிறிது நேரம் கழித்து முயலுங்கள்.</string>
+    <string name="too_early_update_error" tools:ignore="MissingTranslation">மிக ஆரம்ப புதுப்பிப்பு!</string>
+    <string name="pressure_measurement" tools:ignore="MissingTranslation">HPA</string>
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmhg</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inhg</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
+    <string name="pressure_measurement_psi" tools:ignore="MissingTranslation">psi</string>
+    <string name="pressure_measurement_kpa" tools:ignore="MissingTranslation">கே.பி.ஏ.</string>
+    <string name="wind_speed_meters" tools:ignore="MissingTranslation">செல்வி</string>
+    <string name="wind_speed_miles" tools:ignore="MissingTranslation">எம்.பி.எச்</string>
+    <string name="wind_speed_knots" tools:ignore="MissingTranslation">முடிச்சுகள்</string>
+    <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">கிமீ/மணி</string>
+    <string name="wind_speed_beaufort" tools:ignore="MissingTranslation">பீஃபோர்ட்</string>
+    <string name="millimetre_label" tools:ignore="MissingTranslation">மிமீ</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">மொசில்லா இருப்பிட சேவைக்கான அணுகல் 1.3.2020 வரை காலாவதியானது. இருப்பிட ஒருங்கிணைப்புகள் கண்டுபிடிப்புக்கு ஆண்டோரிட் அமைப்பைப் பயன்படுத்த பயன்பாடு கட்டாயப்படுத்தப்படுகிறது. முகவரி இன்னும் NOMINATIM ஆல் தீர்க்கப்படுகிறது. பயன்பாட்டைப் பயன்படுத்தும் போது இதைக் கவனியுங்கள்.</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">ஆண்ட்ராய்டு 10 இசைவு மாற்றங்கள்</string>
+    <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">பேட்டரி தேர்வுமுறை</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">பின்னணியில் முடுக்கமானி மூலம் இருப்பிடம், வானிலை அல்லது கண்காணிப்பு இருப்பிடத்தைப் புதுப்பிக்க பேட்டரி உகப்பாக்கத்தை அணைக்க பயன்பாடு கேட்கும்.</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">தொடரவும்</string>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">ரத்துசெய்</string>
+    <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">இடம் மற்றும் இசைவு அமைப்புகள்</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">பயன்பாட்டிற்கு பின்னணி இருப்பிட இசைவு தேவை</string>
+    <string name="alertDialog_location_permission_message_location_phone_settings" tools:ignore="MissingTranslation">இருப்பிடத்தைப் புதுப்பிக்க பயன்பாடு அமைக்கப்பட்டுள்ளது. அதற்கான அணுகல் தேவை. சாதன அமைப்புகளுக்குச் சென்று இருப்பிடத்தை இயக்கவும் அல்லது பயன்பாட்டு இருப்பிட புதுப்பிப்புகளை அணைக்கவும்.</string>
+    <string name="alertDialog_location_permission_message_location_network_permission" tools:ignore="MissingTranslation">வைஃபை மற்றும் சிஎச்எம் நெட்வொர்க்குகள் மூலம் இருப்பிடத்தைப் புதுப்பிக்க பயன்பாட்டிற்கு இசைவு தேவை.</string>
+    <string name="alertDialog_location_permission_message_location_phone_permission" tools:ignore="MissingTranslation">WI-FI மற்றும் GSM நெட்வொர்க்குகளைப் பயன்படுத்தி இருப்பிடத்தைப் புதுப்பிக்க சாதனத்திலிருந்து தகவல்களைப் படிக்க இசைவு தேவை. சாதனம் எந்த சிஎச்எம் அடிப்படை நிலையங்களுடன் இணைக்கப்பட்டுள்ளது என்பது பற்றிய தகவலைப் பெறுகிறது.</string>
+    <string name="permissions_not_granted" tools:ignore="MissingTranslation">அனுமதிகள் இன்னும் வழங்கப்படவில்லை - பயன்பாட்டில் உள்ள இருப்பிட சின்னத்தைக் சொடுக்கு செய்க</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">அணுகல் காலாவதியானது. தயவுசெய்து பயன்பாட்டை மேம்படுத்தவும்.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">உங்கள் திறந்த-மெட்டியோ அபிகே பதிவு செய்யப்படவில்லை.</string>
+    <string name="share_weather_title" tools:ignore="MissingTranslation">வானிலை பகிர்ந்து கொள்ளுங்கள்</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">நகரம்: %1 $ 
+\n வெப்பநிலை: %2 $ 
+\n விளக்கம்: %3 $ 
+\n காற்று: %4 $ s %5 $ 
+\n சூரிய உதயம்: %6 $ 
+\n சூரிய அச்தமனம்: %7 $ s</string>
+    <string name="notification_channel_description" tools:ignore="MissingTranslation">உங்கள் உள்ளக வானிலை அறிவிப்புகள்</string>
+    <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">வெப்ப நிலை</string>
+    <string name="initial_guide_close" tools:ignore="MissingTranslation">மூடு</string>
+    <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">இது வழிகாட்டியை முடிக்கிறது. அமைப்புகள் பட்டியலில் நீங்கள் பிற அமைப்புகளைக் காணலாம் (எடுத்துக்காட்டாக மொழி, அலகுகள் போன்றவை)
+\n அடுத்த திரை கோரப்பட்ட அனுமதிகளை விளக்கும் மற்றும் அவற்றைக் கோருவதற்கான விருப்பத்தை உங்களுக்கு வழங்கும்.
+\n பயன்பாட்டை அனுபவிக்கவும்.</string>
+    <string name="help_page_general_title" tools:ignore="MissingTranslation">பொது</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">செல்லுலார் பிணையம் (பி.டி.எச்), வைஃபை மற்றும் அவை தோல்வியுற்றால் இருப்பிடத்தை பயன்பாடு தீர்மானிக்கிறது; உள்ளக வானிலை காட்ட சி.பி.எச், மொசில்லா இருப்பிட சேவையிலிருந்து ஆயத்தொலைவுகளைப் பெறுகிறது. பயன்பாட்டிற்கு குறைந்தபட்சம் தேவை: சிஎச்எம் நெட்வொர்க்கின் ஒரு அடிப்படை நிலையம் அல்லது இரண்டு அடையக்கூடிய வைஃபை நெட்வொர்க்குகள் அல்லது சிஎச்எம் மற்றும் வைஃபை நெட்வொர்க்குகளின் எந்த கலவையும். உங்கள் தொலைபேசி அல்லது டேப்லெட்டில் உள்ள விட்செட்டைப் பயன்படுத்தி, உங்கள் இருப்பிடத்தையும் தற்போதைய வானிலை முதன்மையான திரையில் காணலாம். இருப்பிட புதுப்பிப்புகள் அவ்வப்போது, (எ.கா. மணிநேரம்) அல்லது பயன்பாடு ஒரு மதிப்பை விட அதிக தூரத்தின் இயக்கத்தைக் கண்டறிய முடுக்கமானியைப் பயன்படுத்தலாம். உங்கள் பாக்கெட்டில் கொண்டு செல்லப்படும் தூரம் வேகமாக அதிகரிக்கிறது. நீங்கள் இருப்பிட புதுப்பிப்புகளை அணைக்கலாம் - பின்னர் வானிலை மட்டுமே புதுப்பிக்கப்படும். பயன்பாடு குறிப்பிட்ட இடைவெளியில் இருப்பிடம் மற்றும் வானிலை புதுப்பிக்கிறது. உதாரணமாக நீங்கள் புதுப்பிப்பு காலத்தை ஒரு மணி நேரம் மணி வரை அமைக்கலாம். இருப்பிடம் முடிந்த உடனேயே வானிலை புதுப்பிக்கப்படுகிறது, அல்லது திரை இயக்கப்படும் போது - ஆனால் 15 நிமிடங்களுக்கு ஒரு முறை (மற்றும் கடைசி 15 நிமிடங்களில் வானிலை புதுப்பிக்கப்படாதபோது). மொசில்லா இருப்பிட சேவையின் இருப்பிட ஒருங்கிணைப்புகளைப் பெற இந்த தகவல்கள் பயன்படுத்தப்படுகின்றன. செல் பிணையம் மற்றும் வைஃபை நெட்வொர்க்குகளிலிருந்து இருப்பிடம் கிடைக்காதபோது பயன்பாடு சி.பி.எச் பயன்படுத்த முயற்சிக்கிறது. NOMINATIM சேவையின் மூலம் முகவரியைப் பெற இருப்பிட ஒருங்கிணைப்புகள் பயன்படுத்தப்படுகின்றன. முகவரி பயன்பாடு அல்லது விட்செட்டில் பயன்படுத்தப்படுகிறது. தற்போதைய வானிலை பெற பயன்பாடு திறந்த-மெட்டியோ (https://open-meteo.com) சேவையைப் பயன்படுத்துகிறது.</string>
+    <string name="help_page_1_title" tools:ignore="MissingTranslation">முதன்மை பயன்பாடு</string>
+    <string name="help_page_1_content_1" tools:ignore="MissingTranslation">முக்கிய பயன்பாட்டில் தற்போதைய வானிலை பற்றிய கண்ணோட்டம் உள்ளது. பயன்பாட்டுக் குழுவில் உள்ள புதுப்பிப்பு பொத்தானைப் பயன்படுத்தி அல்லது கீழே சறுக்குவதன் மூலம் வானிலை புதுப்பிக்கலாம். புதுப்பிப்பு வானிலை பொத்தானுக்கு அடுத்த புதுப்பிப்பு இருப்பிட பொத்தானைக் காணலாம். இருப்பிடம் 0 இயக்கப்பட்டால் மட்டுமே இந்த பொத்தானை கிடைக்கும் (இருப்பிடம் 0 இருப்பிடத்தின் தானியங்கு புதுப்பிப்புக்காக வடிவமைக்கப்பட்டுள்ளது).</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">புதுப்பிப்பு இருப்பிட பொத்தானுக்கு அடுத்து, இருப்பிட மேலாண்மை பொத்தானை (உருப்பெருக்கி ஐகான்) உள்ளது. பயன்பாடு மற்றும் விட்செட்களில் கிடைக்கும் இடங்களை நீங்கள் நிர்வகிக்கலாம். இயல்பாக ஒரு இடம் (இருப்பிடம் 0) கிடைக்கிறது - இது தானியங்கி இருப்பிட புதுப்பிப்புகளுக்கு நோக்கம் கொண்டது. இந்த இருப்பிடத்தை இடதுபுறமாக சறுக்கும்போது இயக்க/முடக்கு பொத்தானைக் காணலாம். நீங்கள் இருப்பிடத்தையும் கைமுறையாக சேர்க்கலாம். நீங்கள் + பொத்தானைக் சொடுக்கு செய்தால், உங்கள் இருப்பிடத்தை வரைபடத்தில் எடுக்கலாம். நீக்கு பொத்தானைக் கொண்டு இருப்பிடத்தையும் நீக்கலாம் - நீங்கள் இடத்தை இடதுபுறமாக சறுக்கும்போது அணுகக்கூடியது.</string>
+    <string name="help_page_1_content_2" tools:ignore="MissingTranslation">அடுத்த திரையில் வானிலை முன்னறிவிப்பைக் காணலாம் (மெனுவில் அடுத்த திரையைத் தேர்ந்தெடுக்கவும் அல்லது இடமிருந்து வலமாக ச்வைப் செய்யவும்). புதுப்பிப்பு பொத்தானால் அல்லது நீங்கள் திரையை உள்ளிடும்போது வானிலை முன்னறிவிப்பு புதுப்பிக்கப்படுகிறது (ஆனால் ஒரு மணி நேரத்திற்கு ஒன்றுக்கு மேற்பட்ட புதுப்பிப்பு இல்லை).</string>
+    <string name="help_page_1_content_3" tools:ignore="MissingTranslation">மூன்றாவது திரையில் வரைபடங்களால் காட்டப்படும் வானிலை முன்னறிவிப்பு உள்ளது.</string>
+    <string name="help_page_2_title" tools:ignore="MissingTranslation">நிரல்பலகை</string>
+    <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation"><b> விட்செட் கருப்பொருள் விருப்பம் </b> உடன் விட்செட் பின்னணியை நீங்கள் கட்டுப்படுத்தலாம்.</string>
+    <string name="inches_label" tools:ignore="MissingTranslation">அங்குலங்கள்</string>
+    <string name="pref_title_time_style" tools:ignore="MissingTranslation">நேர அமைப்பு</string>
+    <string name="time_style_system" tools:ignore="MissingTranslation">மண்டலம்</string>
+    <string name="help_page_2_content" tools:ignore="MissingTranslation">பயன்பாட்டில் மூன்று விட்செட்டுகள் உள்ளன, இதில் தற்போதைய வானிலை சில பொதுவான மதிப்புகள் உள்ளன (எடுத்துக்காட்டாக வெப்பநிலை). சில மதிப்புகள் குறிப்பிட்ட விட்செட்டுக்கு தனித்துவமானது (எடுத்துக்காட்டாக சூரிய அச்தமனம்). ஒவ்வொரு விட்செட்டின் வலது மூலையில் கடைசி புதுப்பிப்பின் நேரம் உள்ளது. கடைசியாக இருந்து புதுப்பிக்கப்பட்டதை நீங்கள் காணலாம் (அமைப்புகள் பட்டியலில் இந்த விருப்பத்தை நீங்கள் இயக்கியபோது). கடைசியாக புதுப்பிக்கப்பட்ட நேரத்திற்கு அடுத்து புதுப்பிப்பு பொத்தானைக் காணலாம். இந்த பொத்தானை நீங்கள் அழுத்தும்போது, வானிலை (மற்றும் தேர்ந்தெடுக்கப்பட்ட புதுப்பிப்பு இருப்பிட விருப்பத்தை தேர்வு செய்யும் இடம்) நிபந்தனையின்றி புதுப்பிக்கப்படும். விட்செட்டுகளில் கடைசி விருப்பம் இருப்பிடத்தை மாற்றுகிறது - தற்போதைய இருப்பிட உரையை அழுத்தும்போது இருப்பிடம் அடுத்தவருக்கு மாறுகிறது.</string>
+    <string name="help_page_3_title" tools:ignore="MissingTranslation">பொது அமைப்புகள்</string>
+    <string name="help_page_3_content" tools:ignore="MissingTranslation">இந்த விருப்பங்கள் முழு பயன்பாட்டிலும் செல்வாக்கைக் கொண்டுள்ளன.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> \u0020<b> வெப்பநிலை </b> - நீங்கள் வெப்பநிலை அலகு, <b> காற்று </b> ஐத் தேர்ந்தெடுக்கலாம் - நீங்கள் காற்றின் வேக அலகு மற்றும் <b> அழுத்தம் </b> ஐத் தேர்ந்தெடுக்கலாம் - அழுத்தத்திற்கான அலகு தேர்ந்தெடுக்கலாம். இந்த விருப்பங்களைப் பயன்படுத்தி மதிப்புகள் மீண்டும் கணக்கிடப்படுகின்றன.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"> \u0020<b> வானிலை விளக்கத்தை மறை </b> - தற்போதைய வானிலை பற்றிய விளக்கம் மறைக்கப்பட்டுள்ளது. மாறும் ஐகானால் மட்டுமே தற்போதைய வானிலை மட்டுமே பார்க்க முடியும்.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation">"  &lt;b&gt; இருப்பிடத்திற்கான புதுப்பிப்பு காலம் (இடம் 0) &lt;/b&gt; - இருப்பிடத்திற்கான புதுப்பிப்பு காலத்தை நீங்கள் அமைக்கலாம் 0 - இருப்பிடம் 0 செல்-, வைஃபை நெட்வொர்க்குகள் மற்றும் சி.பி.எச் ஆகியவற்றின் படி இருப்பிடத்தைப் புதுப்பிக்கும் திறன் உள்ளது. முடுக்கமானி &lt;/i&gt; மூலம் புதுப்பிப்பு &lt;i&gt; ஐ நீங்கள் தேர்ந்தெடுக்கும்போது, இயக்கத்தைக் கண்டறிய பயன்பாடு அதைப் பயன்படுத்துகிறது. இதிலிருந்து, தூரம் கணக்கிடப்படுகிறது. தூர வரம்பை எட்டும்போது, 15 நிமிடங்களில் எந்த புதுப்பிப்பும் நடக்காதபோது, இருப்பிடமும் தற்போதைய வானிலை புதுப்பிக்கப்படும். பயன்பாட்டால் உங்கள் இருப்பிடத்தைப் பெற முடியாதபோது, விட்செட்டில் அறியப்படாத இருப்பிட லேபிளைக் காணலாம். பயன்பாட்டிற்கு இருப்பிட நிலை இல்லாதபோது, அது 5 நிமிடங்களில் மீண்டும் முயற்சிக்கும். &lt;b&gt; வானிலைக்கான புதுப்பிப்பு காலத்தின் நேர இடைவெளிகளின் அடிப்படையில் இருப்பிட புதுப்பிப்பை நீங்கள் தேர்ந்தெடுக்கலாம் (இடம் 1,2,3 ...) &lt;/b&gt; - கைமுறையாக கண்டுபிடிக்கப்பட்ட இடங்களுக்கு புதுப்பிக்க வானிலை அமைக்கலாம்."</string>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">தேவைப்படும்போது &lt;/b&gt; விருப்பத்தை நீங்கள் சரிபார்க்கும்போது, செல் அல்லது வைஃபை நெட்வொர்க்குகளைப் பயன்படுத்தி உங்கள் இருப்பிடத்தைக் கண்டுபிடிக்க பயன்பாடு முயற்சிக்கும். பிணையம் சேவைகளைப் பயன்படுத்தி இருப்பிடத்தைக் கண்டுபிடிக்க முடியாதபோது, இருப்பிடத்தைப் பெற பயன்பாடு பல வினாடிகளுக்கு சி.பி.எச்.</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">"  &lt;b&gt; இடம் மற்றும் முகவரி மூல &lt;/b
+\n பயன்பாடு இருப்பிடத்தையும் முகவரியையும் எங்கிருந்து பெறுகிறது என்பதை நீங்கள் தேர்ந்தெடுக்கலாம்."</string>
+    <string name="time_style_12_h" tools:ignore="MissingTranslation">12 மணி நேர AM/PM</string>
+    <string name="time_style_24_h" tools:ignore="MissingTranslation">24 மணி நேரம்</string>
+    <string name="pref_title_date_style" tools:ignore="MissingTranslation">தேதி வடிவம்</string>
+    <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm (yy)</string>
+    <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">mm/dd (/yy)</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"> \u0020<b> உள்ளக எம்.எல்.எச் மற்றும் நோமினாடிம் </b> - மொசில்லா இருப்பிட சேவைகளிலிருந்து பயன்பாடு இருப்பிடம் மற்றும் புவியியல் ஆயத்தொலைவுகளைப் பெறுகிறது. NOMINATIM சேவைகள் அந்த ஆயத்தொகுப்புகளிலிருந்து முகவரியைப் பெறுகின்றன. மொசில்லா ச்டம்ப்ளரை நிறுவுவதன் மூலம் எம்.எல்.எச் -க்கு எதிர்கால மேம்பாடுகளுக்கு நீங்கள் பங்களிக்கலாம் (https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler இல் கிடைக்கிறது). தொலைபேசி அழைப்பு அனுமதியை வழங்குவதன் மூலம் செல் நெட்வொர்க்கிலிருந்து தற்போதைய செயலில் மற்றும் கிடைக்கக்கூடிய பிணைய அடிப்படை நிலையங்களைப் பற்றிய தகவலைப் பெறுங்கள். உங்களைச் சுற்றியுள்ள வைஃபை நெட்வொர்க்குகள் உங்கள் இருப்பிடத்தை இன்னும் துல்லியமாக யூகிக்கப் பயன்படுகின்றன.</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"> \u0020<b> சிச்டம் </b> - ஆண்ட்ராய்டு இல் கணினி சேவைகளால் பயன்பாடு இருப்பிடம் மற்றும் முகவரியைப் பெறுகிறது (பொதுவாக Google இருப்பிட சேவைகளுடன்).</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">இந்த பட்டியல் விருப்பங்கள் முதன்மையான பயன்பாட்டின் <b> மொழி </b>, <b> கருப்பொருள் </b> மற்றும் <b> படவுரு செட் </b> பயன்பாடு மற்றும் விட்செட்டுகளில் பயன்படுத்தப்படுகின்றன.</string>
+    <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">"  &lt;b&gt; அறிவிப்புகள் &lt;/b
+\n நீங்கள் அறிவிப்புகள் விருப்பத்தைத் தேர்ந்தெடுக்கும்போது, பயன்பாடு தற்போதைய வானிலை அவ்வப்போது புதுப்பிக்கிறது. தற்போதைய வானிலை பின்னர் அறிவிப்புகள் பகுதியில் வைக்கப்படுகிறது. நீங்கள் அதிர்வுகளையும் இயக்கலாம் - புதுப்பிக்கப்படும் போது பயன்பாடு அதிர்வு."</string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">பிணைய போக்குவரத்து மற்றும் வேக இருப்பிட புதுப்பிப்பை சேமிக்க நீங்கள் <b> கேச் இருப்பிடங்களை மாற்றலாம் </b> ஆன். இந்த கேச் புவியியல் ஒருங்கிணைப்புகளையும் முகவரியையும் சேமிக்கிறது. இந்த அமைப்பைப் பொருட்படுத்தாமல் பயன்பாடு பிணையம் தீர்மான சேவையை அழைக்க வேண்டும். ஆனால் முகவரி தற்காலிக சேமிப்பில் இல்லாவிட்டால், பெயரிடப்பட்ட முகவரி தீர்மானத்திற்கான அழைப்பு நடைபெறுகிறது. கேச் இருப்பிட விருப்பத்தை இயக்கும்போது, நீங்கள் பார்வையிட்ட முகவரிகள் பயன்பாட்டில் சேமிக்கப்படும். கேச்சிலிருந்து எந்த தகவலும் விண்ணப்பத்திற்கு வெளியே அனுப்பப்படவில்லை.</string>
+    <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">கேச் இருப்பிட விருப்பத்திற்கு அடுத்து (தேர்வுப்பெட்டி) <b> தற்காலிக சேமிப்பு மதிப்புகளின் அகவை </b> க்கு ஒரு அமைப்பு உள்ளது. சேமிக்கப்பட்ட ஒவ்வொரு முகவரியிலும் நேர முத்திரை உள்ளது. நேர முத்திரை பழையதாக இருக்கும்போது, தற்காலிக சேமிப்பு மதிப்புகளின் வயதில் அமைக்கப்பட்ட மதிப்பு, பதிவைப் புதுப்பிக்க பயன்பாடு NOMINATIM ஐ அழைக்கிறது.</string>
+    <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">கேச் &lt;/b&gt; பிரிவைப் பற்றிய &lt;b&gt; தகவல்களில் தற்காலிக சேமிப்பு மதிப்புகளின் பல கடைசி வரிசைகளை நீங்கள் காணலாம். மொத்த வரிசைகளையும் நீங்கள் காணலாம்.</string>
+    <string name="help_page_4_title" tools:ignore="MissingTranslation">விட்செட் அமைப்புகள்</string>
+    <string name="help_page_4_content" tools:ignore="MissingTranslation">விட்செட் அமைப்புகளில் அனைத்து விட்செட்களுக்கும் உள்ளமைவு விருப்பங்கள் உள்ளன.</string>
+    <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm (/yy)</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 நாட்கள்</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b> அண்ட்ராய்டு அரோரா சேவைகளின் தரமற்ற விற்பனையாளர் செயலாக்கங்களை சமாளிக்க எழுந்திரு உத்தி </b>. <i> இல்லை விழித்தெழுது </i> ஐத் தேர்ந்தெடுப்பது, இருப்பிடத்தை சரியாக புதுப்பிக்க வேண்டும்
+\n இல்லையென்றால், செல்- மற்றும் வைஃபை பிணையம் நிலையைப் படிக்க <i> சிபியு ஐ எழுந்திரு </i> ஐ முயற்சிக்கவும்
+\n <i> காட்சியுடன் எழுந்திருங்கள் </i> இருப்பிட புதுப்பிப்பின் போது கடைசி முயற்சியாக திரையை பல வினாடிகள் இயக்குகிறது.</string>
+    <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">இருப்பிடம் மற்றும் தற்போதைய வானிலை பற்றிய புதுப்பிப்பு செய்யப்படும்போது, விட்செட்டில் புதுப்பிப்பு நேரத்திற்கு அடுத்த புதுப்பிப்பின் நிலையை நீங்கள் காணலாம். <b> காட்சி புதுப்பிப்பு சுருக்கம் </b> விருப்பத்தால் காண்பிக்கப்படுவதை நீங்கள் கட்டுப்படுத்தலாம். மிகவும் மேம்பட்ட விருப்பத்தின் விளக்கம் பின்வருமாறு:</string>
+    <string name="help_page_5_title" tools:ignore="MissingTranslation">பிழைத்திருத்த விருப்பங்கள்</string>
+    <string name="help_page_5_content" tools:ignore="MissingTranslation">பதிவு கோப்பில் பிழைத்திருத்தத்தை செயல்படுத்த விருப்பங்கள் உள்ளன. பயன்பாட்டில் சில சிக்கல்கள் இருக்கும்போது இந்த விருப்பம் பயனுள்ளதாக இருக்கும்.</string>
+    <string name="label_activity_graphs" tools:ignore="MissingTranslation">வரைபடங்கள் வானிலை</string>
+    <string name="label_activity_help" tools:ignore="MissingTranslation">உதவி</string>
+    <string name="title_activity_locations" tools:ignore="MissingTranslation">இருப்பிடங்கள்</string>
+    <string name="voice_settings_language" tools:ignore="MissingTranslation">மொழி</string>
+    <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">புதுப்பிப்பு</string>
+    <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">சிட்டி தேடல்</string>
+    <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">இருப்பிடத்தைக் கண்டறியவும்</string>
+    <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">மதிப்புகளை மாற்றவும்</string>
+    <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Y- அச்சை மாற்றவும்</string>
+    <string name="menu_action_visible_graph_settings" tools:ignore="MissingTranslation">புலப்படும் வரைபட அமைப்புகள்</string>
+    <string name="menu_action_graph_combined_settings" tools:ignore="MissingTranslation">ஒருங்கிணைந்த வரைபட அமைப்புகள்</string>
+    <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">முன்னறிவிப்பு வகை</string>
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">நெடுவரிசை அமைப்பு</string>
+    <string name="forecast_settings_columns" tools:ignore="MissingTranslation">காண்பிக்க நெடுவரிசைகள்</string>
+    <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">படவுரு</string>
+    <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">விவரம்</string>
+    <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">வெப்ப நிலை</string>
+    <string name="forecast_settings_column_humidity" tools:ignore="MissingTranslation">ஈரப்பதம்</string>
+    <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">அழுத்தம்</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">. ↗</string>
+    <string name="cancel" tools:ignore="MissingTranslation">ரத்துசெய்</string>
+    <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - இருப்பிடம் மற்றும்/அல்லது வானிலை புதுப்பிக்கப் போகிறத
+\n . - இடம் அடைய முடியாது, கடைசி இடத்தின் அடிப்படையில் வானிலை புதுப்பிக்கிறத
+\n W - வானிலை மட்டுமே புதுப்பிக்கப்பட்டத
+\n எல் - இடம் மட்டுமே புதுப்பிக்கப்பட்டத
+\n ஐயா - சி.பி.எச் மற்றும் வானிலை புதுப்பிக்கப்பட்டத
+\n N - பிணையம் மற்றும் வானிலை புதுப்பிக்கப்பட்ட இடம
+\n பி - திறந்த -மெட்டியோ சேவைக்கான அணுகல் தடைசெய்யப்பட்டுள்ளது, பின்னர் வானிலை புதுப்பிக்க முயற்சிக்கவும், தயவுசெய்த
+\n மின் - திறந்த -மெட்டியோ சேவைக்கான அணுகல் கிள்ளாக்கு காலாவதியானது. மீண்டும் அணுகலைப் பெற நீங்கள் பயன்பாட்டை மேம்படுத்த வேண்டும்</string>
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - வானிலை மட்டுமே புதுப்பிக்கப்பட்டத
+\n எல் - இடம் மட்டுமே புதுப்பிக்கப்பட்டத
+\n ஐயா - சி.பி.எச் மற்றும் வானிலை புதுப்பிக்கப்பட்டத
+\n N - பிணையம் மற்றும் வானிலை புதுப்பிக்கப்பட்ட இடம
+\n நி - செல்லுலார் பிணையம் மற்றும் வானிலை புதுப்பிக்கப்பட்ட இடம், மொசில்லா இருப்பிட சேவையால் கண்டுபிடிக்கப்பட்ட இடம
+\n பி - திறந்த -மெட்டியோ சேவைக்கான அணுகல் தடைசெய்யப்பட்டுள்ளது, தயவுசெய்து வானிலை பின்னர் புதுப்பிக்க முயற்சிக்கவும
+\n மின் - திறந்த -மெட்டியோ சேவைக்கான அணுகல் கிள்ளாக்கு காலாவதியானது. அணுகலை மீண்டும் பெற பயன்பாட்டின் பின்னர் பதிப்பை நிறுவவும்</string>
+    <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">சாதன தூக்கத்தின் போது இருப்பிடம் சிக்கிக்கொள்ளும்போது, செல்லுலார் நெட்வொர்க்கைத் தேடும்போது அதை எழுப்ப முயற்சி செய்யலாம்</string>
+    <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">விழித்தெழுந்த உத்தி</string>
+    <string name="nowakeup_label" tools:ignore="MissingTranslation">எழுந்திருக்கவில்லை</string>
+    <string name="wakeuppartial_label" tools:ignore="MissingTranslation">சிபியு ஐ மட்டும் எழுப்புங்கள்</string>
+    <string name="wakeupfull_label" tools:ignore="MissingTranslation">காட்சியுடன் எழுந்திரு</string>
+    <string name="clear_cache_button" tools:ignore="MissingTranslation">தெளிவான தற்காலிக சேமிப்பு</string>
+    <string name="db_info" tools:ignore="MissingTranslation">கேச் பற்றிய செய்தி</string>
+    <string name="location_cache_lasting_summary" tools:ignore="MissingTranslation">குறிப்பிட்ட நேர தற்காலிக சேமிப்பு மதிப்புகள் அகற்றப்படும்</string>
+    <string name="location_cache_12_label" tools:ignore="MissingTranslation">12 மணி நேரம்</string>
+    <string name="location_cache_24_label" tools:ignore="MissingTranslation">ஒரு நாள்</string>
+    <string name="location_cache_168_label" tools:ignore="MissingTranslation">ஒரு வாரம்</string>
+    <string name="location_cache_720_label" tools:ignore="MissingTranslation">ஒரு மாதம்</string>
+    <string name="location_cache_2190_label" tools:ignore="MissingTranslation">மூன்று மாதங்கள்</string>
+    <string name="location_cache_8760_label" tools:ignore="MissingTranslation">ஒரு வருடம்</string>
+    <string name="location_cache_88888_label" tools:ignore="MissingTranslation">ஒருபோதும்</string>
+    <string name="location_cache_enable_label" tools:ignore="MissingTranslation">கேச் இருப்பிடங்கள்</string>
+    <string name="location_cache_enable_on" tools:ignore="MissingTranslation">காணப்பட்ட இடங்கள் தற்காலிக சேமிப்பில் உள்ளன</string>
+    <string name="location_cache_enable_off" tools:ignore="MissingTranslation">கண்டுபிடிக்கப்பட்ட இடங்கள் தற்காலிக சேமிப்பில் இல்லை</string>
+    <string name="locations_delete_location" tools:ignore="MissingTranslation">அழி</string>
+    <string name="locations_disable_location" tools:ignore="MissingTranslation">முடக்கு</string>
+    <string name="locations_enable_location" tools:ignore="MissingTranslation">இயக்கு</string>
+    <string name="locations_automatically_discovered" tools:ignore="MissingTranslation">தானாகவே கண்டுபிடிக்கப்பட்டது</string>
+    <string name="locations_disabled" tools:ignore="MissingTranslation">முடக்கப்பட்டது</string>
+    <string name="search_location_info" tools:ignore="MissingTranslation">விரும்பிய இடத்தைப் பெற வரைபடத்தைத் தட்டவும், முகவரியை தீர்க்க காத்திருக்கவும்.</string>
+    <string name="tty_say_weather_forecast_afternoon" tools:ignore="MissingTranslation">பிற்பகல்</string>
+    <string name="pref_title_tts_app_general_info" tools:ignore="MissingTranslation">பயன்பாடு TTS கணினிக்கு (உரை-க்கு-பேச்சு) உரை கட்டளைகளை அனுப்புகிறது, இது ஒரு குரலாக மாற்றுகிறது. இது வழக்கமாக இயல்பாக கணினியில் இருக்கும். இல்லையென்றால், அல்லது நிறுவப்பட்ட TTS நீங்கள் விரும்பிய மொழியை ஆதரிக்காது, ஒரு பயன்பாட்டுக் கடையிலிருந்து ஒன்றை நிறுவவும் (எடுத்துக்காட்டாக: https://search.f-droid.org/?q=tts).</string>
+    <string name="pref_title_tts_lang_app_default" tools:ignore="MissingTranslation">ஆப் லோகேல் மூலம்</string>
+    <string name="pref_title_tts_presence" tools:ignore="MissingTranslation">உங்கள் பயன்பாட்டு இடம் உங்கள் TTS (உரை-க்கு-பேச்சு) அமைப்பால் ஆதரிக்கப்படவில்லை. கீழே உள்ள ஆதரிக்கப்பட்டவற்றின் பட்டியலிலிருந்து வழிகாட்டுதல் மொழியைத் தேர்ந்தெடுக்கவும்.</string>
+    <string name="pref_title_tts_not_supported" tools:ignore="MissingTranslation">உங்கள் பயன்பாட்டு இடம் உங்கள் TTS (உரை-க்கு-பேச்சு) அமைப்பால் ஆதரிக்கப்படவில்லை. மேல் வலதுபுறத்தில் \"வழிகாட்டுதல் மொழி அமைப்புகள்\" க்குச் செல்லவும்.</string>
+    <string name="preference_title_activity_about" tools:ignore="MissingTranslation">பற்றி</string>
+    <string name="about_version_pref_title" tools:ignore="MissingTranslation">பதிப்பு</string>
+    <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">மூலக் குறியீடு</string>
+    <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">உரிமம்</string>
+    <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">லிப்ரே மென்பொருள் உரிமங்கள்</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">என்ன சொல்ல:</string>
+    <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">காலை வணக்கம்</string>
+    <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">வணக்கம்</string>
+    <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">மாலை வணக்கம்</string>
+    <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">இருப்பிடத்திற்கான தற்போதைய வானிலை %s</string>
+    <string name="tts_say_current_weather" tools:ignore="MissingTranslation">தற்போதைய வானிலை</string>
+    <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">நாள் நேரம்</string>
+    <string name="wind_label" tools:ignore="MissingTranslation">காற்று: %1 $ s %2 $ s %3 $ s</string>
+    <string name="tty_say_wind" tools:ignore="MissingTranslation">%3 $ s காற்று %1 $ s %2 $ s</string>
+    <string name="tty_say_temperature" tools:ignore="MissingTranslation">வெப்பநிலை %கள்</string>
+    <string name="tty_say_max_rain" tools:ignore="MissingTranslation">அதிகபட்ச மழை மழைப்பொழிவு %கள் மில்லிமீட்டர்</string>
+    <string name="tty_say_max_snow" tools:ignore="MissingTranslation">அதிகபட்ச பனி மழைப்பொழிவு %கள் மில்லிமீட்டர்</string>
+    <string name="tty_say_max_wind" tools:ignore="MissingTranslation">அதிகபட்சம் %1 $ s %2 $ s இல் %3 $ s காற்று</string>
+    <string name="tty_say_temp_max" tools:ignore="MissingTranslation">அதிகபட்ச வெப்பநிலை %1 $ s %2 $ s ஆகும்</string>
+    <string name="tty_say_temp_min" tools:ignore="MissingTranslation">குறைந்தபட்ச வெப்பநிலை %1 $ s %2 $ s ஆகும்</string>
+    <string name="tty_say_weather_forecast" tools:ignore="MissingTranslation">வானிலை முன்னறிவிப்பு</string>
+    <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">இன்று</string>
+    <string name="tty_say_weather_forecast_tomorrow" tools:ignore="MissingTranslation">நாளை</string>
+    <string name="tty_say_weather_forecast_morning" tools:ignore="MissingTranslation">காலை</string>
+</resources>
