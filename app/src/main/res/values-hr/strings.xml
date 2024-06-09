@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">Program određuje mjesto pomoću mobilne mreže (BTS), Wi-Fi mreže i ako one ne uspiju; GPS za prikaz lokalnog vremena, zauzvrat dobiva koordinate od Mozilline usluge za određivanje mjesta. Program treba barem: jednu osnovnu stanicu GSM mreže ili dvije dostupne wifi mreže ili bilo koju kombinaciju GSM i Wi-Fi mreža. Pomoću programčića na mobitelu ili tabletu na glavnom ekranu možeš vidjeti tvoje mjesto i trenutačno vrijeme. Mjesta se mogu aktualizirati u određena vremena (npr. svakih sat vremena) ili program može koristiti akcelerometar za otkrivanje kretanja koje odudara od određene udaljenosti. Kad se nosi u džepu, udaljenost se povećava brže. Aktualiziranje mjesta možeš isključiti – tada se aktualizira samo vrijeme. Program aktualizira mjesto i vrijeme u određenim intervalima. Na primjer, možeš postaviti vrijeme aktualiziranja na jedan sat. Vrijeme se aktualizira odmah nakon što je mjesto ili kad je ekran uključen – ali ne češće od jednom u roku od 15 minuta (i kada se vrijeme ne aktualizira u zadnjih 15 minuta). Te se informacije koriste za dobivanje koordinata mjesta od Mozilline usluge za određivanje mjesta. Progeram pokušava koristiti GPS kad mjesto nije dostupno putem mobilne mreže i Wi-Fi mreža. Koordinate mjesta koriste se za dobivanje adrese od Nominatim usluge. Adresa se koristi u programu ili u programčiću. Program koristi OpenWeatherMap.org uslugu za dobivanje podataka o trenutačnom vremenu.</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Program određuje mjesto pomoću mobilne mreže (BTS), Wi-Fi mreže i ako one ne uspiju; GPS za prikaz lokalnog vremena, zauzvrat dobiva koordinate od Mozilline usluge za određivanje mjesta. Program treba barem: jednu osnovnu stanicu GSM mreže ili dvije dostupne wifi mreže ili bilo koju kombinaciju GSM i Wi-Fi mreža. Pomoću programčića na mobitelu ili tabletu na glavnom ekranu možeš vidjeti tvoje mjesto i trenutačno vrijeme. Mjesta se mogu aktualizirati u određena vremena (npr. svakih sat vremena) ili program može koristiti akcelerometar za otkrivanje kretanja koje odudara od određene udaljenosti. Kad se nosi u džepu, udaljenost se povećava brže. Aktualiziranje mjesta možeš isključiti – tada se aktualizira samo vrijeme. Program aktualizira mjesto i vrijeme u određenim intervalima. Na primjer, možeš postaviti vrijeme aktualiziranja na jedan sat. Vrijeme se aktualizira odmah nakon što je mjesto ili kad je ekran uključen – ali ne češće od jednom u roku od 15 minuta (i kada se vrijeme ne aktualizira u zadnjih 15 minuta). Te se informacije koriste za dobivanje koordinata mjesta od Mozilline usluge za određivanje mjesta. Progeram pokušava koristiti GPS kad mjesto nije dostupno putem mobilne mreže i Wi-Fi mreža. Koordinate mjesta koriste se za dobivanje adrese od Nominatim usluge. Adresa se koristi u programu ili u programčiću. Program koristi Open-Meteo (https://open-meteo.com) uslugu za dobivanje podataka o trenutačnom vremenu.</string>
     <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"> <b>Period aktualiziranja za mjesto (mjesto 0)</b> – možeš postaviti razdoblje za aktualiziranje mjesta 0 – mjesto 0 može aktualizirati mjesto pomoću staničnih i Wi-Fi mreža te pomoću GPS-a. Kad odabereš aktualiziranje <i>akcelerometrom</i>, program to koristi za otkrivanje kretanja. Iz toga se izračunava udaljenost. Kad se dosegne ograničenje udaljenosti te ako se nije aktualiziralo u zadnjih 15 minuta, mjesto i trenutačno vrijeme se aktualiziraju. Kad program ne može dohvatiti tvoje mjesto, u programčiću možeš vidjeti oznaku za nepoznato mjesto. Kad program nema stanje mjesta, pokušat će ponovo za 5 minuta. Aktualiziranje mjesta možeš odabrati i na osnovi vremenskih intervala u <b>Period aktualiziranja za vrijeme (mjesto 1, 2, 3, …)</b> – gdje možeš postaviti aktualiziranje vremena za ručno otkrivena mjesta.</string>
     <string name="update_period_regular_only" tools:ignore="MissingTranslation">Nakon redovitog aktualiziranja</string>
     <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Period aktualiziranja za mjesto (mjesto 0)</string>
     <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Period aktualiziranja za vrijeme (mjesto 1, 2, 3, …)</string>
-    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">V – aktualizira se samo vrijeme
-\nMj – aktualizira se samo mjesto
-\nG – aktualiziraju se mjesto koje je određeno GPS-om i vrijeme
-\nM – aktualiziraju se mjesto koje je određeno mrežom i vrijeme
+    <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W – aktualizira se samo vrijeme
+\nL – aktualizira se samo mjesto
+\nG – aktualizira se mjesto koje je određeno GPS-om i vrijeme
+\nN – aktualizira se mjesto mreže i vrijeme
 \nNi – mjesto s mobilne mreže i aktualizirano vrijeme, mjesto koje je otkrila Mozillina usluga za određivanje mjesta
-\nIsklj – pristup usluzi Openweathermap.org je zabranjen, pokušaj aktualizirati vrijeme kasnije
-\nI – token za pristup usluzi Openweathermap.org je istekao. Za ponovni pristup usluzi, instaliraj noviju verziju programa</string>
+\nB – pristup usluzi Open-Meteo je blokiran, pokušaj aktualizirati vrijeme kasnije
+\nE – token za pristup usluzi Open-Meteo je istekao. Za ponovni pristup instaliraj noviju verziju programa</string>
     <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- – aktualizirat će se mjesto i/ili vrijeme
 \n. – mjesto nije dostupno, vrijeme se aktualizira na temelju zadnjeg mjesta
-\nV – aktualizira se samo vrijeme
-\nMj – aktualizira se samo mjesto
-\nG – aktualiziraju se mjesto koje je određeno GPS-om i vrijeme
-\nM – aktualiziraju se mjesto koje je određeno mrežom i vrijeme
-\nIsklj – pristup usluzi Openweathermap.org je zabranjen, pokušaj aktualizirati vrijeme kasnije
-\nI – token za pristup usluzi Openweathermap.org je istekao. Za ponovni pristup program moraš nadograditi</string>
+\nW – aktualizira se samo vrijeme
+\nL – aktualizira se samo mjesto
+\nG – aktualizira se mjesto koje je određeno GPS-om i vrijeme
+\nN – aktualizira se mjesto mreže i vrijeme
+\nB – pristup usluzi Open-Meteo je blokiran, pokušaj aktualizirati vrijeme kasnije
+\nE – token za pristup usluzi Open-Meteo je istekao. Za ponovni pristup instaliraj noviju verziju programa</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">Sažetak aktualiziranja prikaza</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Izvor mjesta i adrese</string>
     <string name="help_page_3_content_cache_locations_3" tools:ignore="MissingTranslation">Zadnjih nekoliko redaka predmemoriranih vrijednosti možeš vidjeti u odjeljku <b>Informacije o predmemoriji</b>. Također možeš vidjeti ukupni broj redaka.</string>
@@ -515,7 +515,7 @@
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Promjene dozvola za Android 10</string>
     <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Pristup Mozillinoj usluzi određivanja mjesta istekao je od 1.3.2020. Za otkrivanje koordinata mjesta, program mora koristiti Andorid sustav. Adresu i nadalje određuje Nominatim. Misli na to tijekom korištenja programa.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Ograničenje Mozilline usluge određivanja mjesta</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Ovaj program omogućuje govorno navođenje govorom pomoću prijevoda teksta i glasovnih naredbi koje su doprinijeli volonteri na https://hosted.weblate.org/projects/your-local-weather. Programer programa ne jamči da su točni – upotrebom programa prihvaćaš to ograničenje. Za korištenje govora moraš instalirati TTS (pretvaranje teksta u govor) te u postavkama uključiti navođenje. Tamo možeš postaviti vlastite govorne naredbe. "</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Ovaj program omogućuje govorno navođenje govorom pomoću prijevoda teksta i glasovnih naredbi koje su doprinijeli volonteri na https://hosted.weblate.org/projects/your-local-weather. Programer programa ne jamči da su točni – upotrebom programa prihvaćaš to ograničenje. Za korištenje govora moraš instalirati TTS (pretvaranje teksta u govor) te u postavkama uključiti navođenje. Tamo možeš postaviti vlastite govorne naredbe.</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Prijevodi teksta i navođenja</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">Odaberi grad</string>
     <string name="label_current_city" tools:ignore="MissingTranslation">Trenutačni grad</string>
