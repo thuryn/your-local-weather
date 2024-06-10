@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="label_current_city" tools:ignore="MissingTranslation">현재 도시</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">도시 선택</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"이 앱에는 https://hosted.weblate.org/projects/your-local-weather에서 자원 봉사자가 제공하는 텍스트 번역 및 음성 명령을 통한 음성 안내가 있습니다. 앱 개발자는 정확성을 보장할 수 없습니다. 앱을 사용하여 이를 수락합니다. 그것을 사용하려면 TTS(텍스트 음성 변환)가 설치되어 있고 설정에서 안내가 켜져 있어야 합니다. 여기에서 자신의 음성 명령을 설정할 수 있습니다. "</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">이 앱에는 https://hosted.weblate.org/projects/your-local-weather에서 자원봉사자가 제공하는 텍스트 번역 및 음성 명령을 통한 음성 안내가 포함되어 있습니다. 앱 개발자는 내용이 정확하다고 보장할 수 없습니다. 앱을 사용하여 이를 수락하면 됩니다. 이를 사용하려면 TTS(텍스트 음성 변환)가 설치되어 있어야 하며 설정에서 안내가 켜져 있어야 합니다. 여기서 음성 명령을 직접 설정할 수 있습니다.</string>
     <string name="app_name" tools:ignore="MissingTranslation">현지 날씨</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">텍스트 및 안내 번역</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">모질라 위치 서비스 제한</string>
@@ -21,7 +21,7 @@
     <string name="location_not_found" tools:ignore="MissingTranslation">위치를 찾을 수 없음</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">권한이 아직 부여되지 않았음 - 앱에서 위치 기호를 클릭</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">접속이 만료되었습니다. 앱을 업그레이드하세요.</string>
-    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">OpenweathermapApiKey가 등록되지 않았습니다.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Open-Meteo ApiKey가 등록되지 않았습니다.</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">날씨 공유</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">통신 앱을 찾을 수 없음</string>
     <string name="share_weather_descritpion" tools:ignore="MissingTranslation">도시: %1$s
@@ -72,7 +72,7 @@
 \n다음 화면은 요청된 권한을 설명하고 권한을 요청할 수 있는 옵션을 제공합니다.
 \n
 \n앱을 즐기세요.</string>
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">앱은 셀룰러 네트워크(BTS), Wi-Fi를 사용하여 위치를 확인하고 실패할 경우 위치를 확인합니다. GPS는 지역 날씨를 표시하고 모질라 위치 서비스에서 좌표를 가져옵니다. 응용 프로그램에는 최소한 하나의 GSM 네트워크 기지국 또는 두 개의 연결 가능한 Wi-Fi 네트워크 또는 GSM과 Wi-Fi 네트워크의 조합이 필요합니다. 스마트폰이나 태블릿의 위젯을 사용하여 메인 화면에서 내 위치와 현재 날씨를 볼 수 있습니다. 위치 업데이트는 주기적(예: 매시간)이거나 앱이 가속도계를 사용하여 값보다 더 먼 거리의 움직임을 감지할 수 있습니다. 주머니에 넣고 다니면 거리가 더 빨라집니다. 위치 업데이트를 끌 수 있습니다. 그러면 날씨만 업데이트됩니다. 앱은 지정된 간격으로 위치와 날씨를 업데이트합니다. 예를 들어 업데이트 기간을 1시간으로 설정할 수 있습니다. 날씨는 위치가 표시된 직후 또는 화면이 켜진 직후 업데이트되지만 15분에 한 번(그리고 지난 15분 동안 날씨가 업데이트되지 않은 경우)보다 자주 업데이트되지는 않습니다. 이 정보는 모질라 위치 서비스에서 위치 좌표를 얻는 데 사용됩니다. 앱은 셀 네트워크 및 Wi-Fi 네트워크에서 위치를 사용할 수 없는 경우 GPS 사용을 시도합니다. 위치 좌표는 Nominatim 서비스에서 주소를 얻는 데 사용됩니다. 주소는 앱 또는 위젯에서 사용됩니다. 앱은 현재 날씨를 얻기 위해 OpenWeatherMap.org 서비스를 사용합니다.</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">앱은 셀룰러 네트워크(BTS), Wi-Fi를 사용하여 위치를 확인하고 실패할 경우 위치를 확인합니다. GPS는 지역 날씨를 표시하고 모질라 위치 서비스에서 좌표를 가져옵니다. 응용 프로그램에는 최소한 하나의 GSM 네트워크 기지국 또는 두 개의 연결 가능한 Wi-Fi 네트워크 또는 GSM과 Wi-Fi 네트워크의 조합이 필요합니다. 스마트폰이나 태블릿의 위젯을 사용하여 메인 화면에서 내 위치와 현재 날씨를 볼 수 있습니다. 위치 업데이트는 주기적(예: 매시간)이거나 앱이 가속도계를 사용하여 값보다 더 먼 거리의 움직임을 감지할 수 있습니다. 주머니에 넣고 다니면 거리가 더 빨라집니다. 위치 업데이트를 끌 수 있습니다. 그러면 날씨만 업데이트됩니다. 앱은 지정된 간격으로 위치와 날씨를 업데이트합니다. 예를 들어 업데이트 기간을 1시간으로 설정할 수 있습니다. 날씨는 위치가 표시된 직후 또는 화면이 켜진 직후 업데이트되지만 15분에 한 번(그리고 지난 15분 동안 날씨가 업데이트되지 않은 경우)보다 자주 업데이트되지는 않습니다. 이 정보는 모질라 위치 서비스에서 위치 좌표를 얻는 데 사용됩니다. 앱은 셀 네트워크 및 Wi-Fi 네트워크에서 위치를 사용할 수 없는 경우 GPS 사용을 시도합니다. 위치 좌표는 Nominatim 서비스에서 주소를 얻는 데 사용됩니다. 주소는 앱 또는 위젯에서 사용됩니다. 이 앱은 현재 날씨를 얻기 위해 Open-Meteo(https://open-meteo.com) 서비스를 사용합니다.</string>
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">위치 업데이트 버튼 옆에는 위치 관리 버튼 (돋보기 아이콘)이 있습니다. 앱 및 위젯에서 사용 가능한 위치를 관리할 수 있습니다. 기본적으로 사용 가능한 하나의 위치 (위치 0)가 있습니다. 이는 자동 위치 업데이트를 위한 것입니다. 이 위치를 왼쪽으로 밀면 활성화/비활성화 버튼이 있습니다. 위치를 수동으로 추가할 수도 있습니다. + 버튼을 클릭하면 지도에서 위치를 선택할 수 있습니다. 위치를 왼쪽으로 이동할 때 액세스할 수 있는 삭제 버튼인 - 버튼으로 위치를 삭제할 수도 있습니다.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">일반 설정</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">이러한 옵션은 전체 앱에 영향을 미칩니다.</string>
@@ -96,7 +96,7 @@
     <string name="time_style_12_h" tools:ignore="MissingTranslation">12 시간 오전/오후</string>
     <string name="pref_title_date_style" tools:ignore="MissingTranslation">날짜 형식</string>
     <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">일/월(/년)</string>
-    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (3 시간 간격)</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3 시간</string>
     <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">필요할 때 GPS 켜기</string>
     <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"> <b>현지 MLS 및 Nominatim</b> - 앱은 모질라 위치 서비스에서 위치 및 지리적 좌표를 가져옵니다. Nominatim 서비스는 해당 좌표에서 주소를 가져옵니다. 모질라 스텀블러 (https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler 에서 사용 가능)를 설치하여 MLS의 향후 개선에 기여할 수 있습니다. 전화 통화 권한을 부여하여 셀 네트워크에서 현재 활성 및 사용 가능한 네트워크 기지국에 대한 정보를 가져옵니다. 주변의 Wi-Fi 네트워크를 사용하여 위치를 더 정확하게 추측합니다.</string>
     <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">온도</string>
@@ -115,10 +115,10 @@
     <string name="date_style_slash_month_first" tools:ignore="MissingTranslation">월/일(/년)</string>
     <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 일</string>
     <string name="date_style_dots" tools:ignore="MissingTranslation">일.월.(년)</string>
-    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (3 시간 간격)</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5 시간</string>
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 일</string>
     <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 일</string>
-    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (3 시간 간격)</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4 시간</string>
     <string name="pref_title_notification" tools:ignore="MissingTranslation">알림 활성화</string>
     <string name="pref_title_notification_refresh_interval" tools:ignore="MissingTranslation">새로 고침 간격</string>
     <string name="location_update_strategy_title" tools:ignore="MissingTranslation">위치 업데이트 설정</string>
@@ -143,20 +143,20 @@
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengali (방글라데시어)</string>
     <string name="pref_language_sr" tools:ignore="MissingTranslation">Српски (세르비아어)</string>
     <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - 위치 및/또는 날씨 업데이트 예정
-\n. - 위치에 도달할 수 없음, 마지막 위치를 기반으로 날씨 업데이트
+\n. - 위치에 연결할 수 없습니다. 마지막 위치를 기준으로 날씨를 업데이트합니다.
 \nW - 날씨만 업데이트됨
 \nL - 위치만 업데이트됨
-\nG - GPS 및 날씨의 위치 업데이트
-\nN - 업데이트된 네트워크 및 날씨의 위치
-\nB - Openweathermap.org 서비스에 대한 접속이 금지되었고, 나중에 날씨 업데이트
-\nE - Openweathermap.org 서비스에 대한 접속 토큰이 만료되었습니다. 재접속하려면 애플리케이션 업그레이드</string>
+\nG - GPS를 통한 위치 및 날씨 업데이트
+\nN - 네트워크의 위치 및 날씨 업데이트됨
+\nB - Open-Meteo 서비스에 대한 액세스가 금지되었습니다. 나중에 날씨를 업데이트해 보세요.
+\nE - Open-Meteo 서비스에 대한 액세스 토큰이 만료되었습니다. 다시 액세스하려면 애플리케이션을 업그레이드해야 합니다.</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - 날씨만 업데이트됨
 \nL - 위치만 업데이트됨
-\nG - GPS 및 날씨의 위치 업데이트
-\nN - 네트워크 및 날씨 업데이트의 위치
-\nNi - 셀룰러 네트워크의 위치 및 날씨 업데이트됨, 모질라 위치 서비스에서 발견한 위치
-\nB - Openweathermap.org 서비스에 대한 접속이 금지되었고, 나중에 날씨 업데이트
-\nE - Openweathermap.org 서비스에 대한 접속 토큰 만료. 접속 권한을 다시 얻으려면 최신 버전 앱 설치</string>
+\nG - GPS를 통한 위치 및 날씨 업데이트
+\nN - 네트워크의 위치 및 날씨 업데이트됨
+\nNi - 셀룰러 네트워크의 위치 및 날씨 업데이트, Mozilla 위치 서비스에서 위치 발견
+\nB - Open-Meteo 서비스에 대한 액세스가 금지되었습니다. 나중에 날씨를 업데이트해 보세요.
+\nE - Open-Meteo 서비스에 대한 액세스 토큰이 만료되었습니다. 액세스 권한을 다시 얻으려면 최신 버전의 앱을 설치하세요.</string>
     <string name="locations_enable_location" tools:ignore="MissingTranslation">활성화</string>
     <string name="pref_title_tts_say_location" tools:ignore="MissingTranslation">위치 말하기</string>
     <string name="pref_title_tts_say_weather_description" tools:ignore="MissingTranslation">날씨 설명 말하기</string>
@@ -322,7 +322,7 @@
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">단위 설정</string>
     <string name="preference_title_power_save" tools:ignore="MissingTranslation">절전 옵션</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">시스템 설정</string>
-    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API 키</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Open-Meteo (https://open-meteo.com) API 키</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">내장</string>
     <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">라이센스 키</string>
     <string name="pref_title_language" tools:ignore="MissingTranslation">언어</string>
@@ -580,4 +580,9 @@
     <string name="theme_system" tools:ignore="MissingTranslation">시스템별</string>
     <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">BT에 대한 허가</string>
     <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">한도를 초과하는 위치를 삭제했습니다.</string>
+    <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 일</string>
+    <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 시간</string>
+    <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">하루 중 시간</string>
+    <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">날씨 제공자가 변경됨</string>
+    <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">openweathermap.org가 2024년 6월에 무료 서비스를 종료함에 따라 이 애플리케이션은 지금부터 Open-Meteo(https://open-meteo.com)를 날씨 소스로 사용합니다.</string>
 </resources>
