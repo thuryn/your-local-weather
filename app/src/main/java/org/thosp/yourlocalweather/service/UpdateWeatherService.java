@@ -332,7 +332,6 @@ public class UpdateWeatherService extends AbstractCommonService {
                     "currentLocation is null");
             return;
         }
-        final String locale = currentLocation.getLocaleAbbrev();
         appendLog(context,
                 TAG,
                 "weather get params: latitude:",
@@ -387,7 +386,7 @@ public class UpdateWeatherService extends AbstractCommonService {
                                     Weather weather = WeatherJSONParser.getWeather(weatherData, locale);
                                     saveWeatherAndSendResult(context, weather, currentLocation, updateType);
                                     CompleteWeatherForecast completeWeatherForecast = WeatherJSONParser.getWeatherForecast(context, weatherData);
-                                    saveWeatherAndSendResult(context, completeWeatherForecast, WEATHER_FORECAST_TYPE, START_WEATHER_FORECAST_UPDATE);
+                                    saveWeatherAndSendResult(context, currentLocation, completeWeatherForecast, WEATHER_FORECAST_TYPE, START_WEATHER_FORECAST_UPDATE);
                                 } else {
                                     sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
                                 }
@@ -552,22 +551,14 @@ public class UpdateWeatherService extends AbstractCommonService {
         sendResult(ACTION_WEATHER_UPDATE_OK, context, location.getId(), updateType);
     }
 
-    private void saveWeatherAndSendResult(Context context, CompleteWeatherForecast completeWeatherForecast, int forecastType, int updateType) {
+    private void saveWeatherAndSendResult(Context context, Location location, CompleteWeatherForecast completeWeatherForecast, int forecastType, int updateType) {
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
         long lastUpdate = System.currentTimeMillis();
-        WeatherRequestDataHolder updateRequest = updateWeatherUpdateMessages.peek();
-        if (updateRequest == null) {
-            appendLog(context,
-                    TAG,
-                    "Update request is null");
-            gettingWeatherStarted = false;
-            return;
-        }
         appendLog(context,
                 TAG,
                 "Going to store forecast for locationId: ",
-                updateRequest.getLocationId());
-        weatherForecastDbHelper.saveWeatherForecast(updateRequest.getLocationId(),
+                location.getId());
+        weatherForecastDbHelper.saveWeatherForecast(location.getId(),
                 forecastType,
                 lastUpdate,
                 lastUpdate + MIN_WEATHER_UPDATE_TIME_IN_MS,
@@ -579,7 +570,7 @@ public class UpdateWeatherService extends AbstractCommonService {
         appendLog(context,
                 TAG,
                 "Graphs invalidated");
-        sendResult(ACTION_WEATHER_UPDATE_OK, context, updateRequest.getLocationId(), updateType);
+        sendResult(ACTION_WEATHER_UPDATE_OK, context, location.getId(), updateType);
 
         appendLog(context,
                 TAG,
