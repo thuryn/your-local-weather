@@ -1,7 +1,8 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:tools="http://schemas.android.com/tools"><string name="enter_city_hint">Indtaste by</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="enter_city_hint">Indtast by</string>
     <string name="label_current_city">Nuværende by</string>
-    <string name="label_choose_city">Vælge by</string>
+    <string name="label_choose_city">Vælg by</string>
     <string name="alertDialog_location_permission_positiveButton_permissions" tools:ignore="MissingTranslation">Forespørge tilladelse</string>
     <string name="alertDialog_location_permission_negativeButton" tools:ignore="MissingTranslation">Annullere</string>
     <string name="progressDialog_gps_locate">Find nuværende placering</string>
@@ -18,12 +19,10 @@
     <string name="label_activity_graphs" tools:ignore="MissingTranslation">Vejrgrafer</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">Hjælp</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Placeringer</string>
-
     <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Opdater</string>
     <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Søg efter by</string>
     <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Skift værdier</string>
     <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Skift Y-aksen</string>
-
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikon</string>
     <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Beskrivelse</string>
     <string name="forecast_settings_column_temperature" tools:ignore="MissingTranslation">Temperatur</string>
@@ -33,7 +32,6 @@
     <string name="forecast_settings_column_pressure" tools:ignore="MissingTranslation">Tryk</string>
     <string name="ok" tools:ignore="MissingTranslation">OK</string>
     <string name="cancel" tools:ignore="MissingTranslation">Annuller</string>
-
     <string name="nav_menu_current_weather" tools:ignore="MissingTranslation">Aktuelle vejr</string>
     <string name="nav_menu_daily_forecast" tools:ignore="MissingTranslation">Daglig vejrudsigt</string>
     <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Grafer</string>
@@ -41,9 +39,7 @@
     <string name="nav_feedback" tools:ignore="MissingTranslation">Tilbagemelding</string>
     <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">Doner Bitcoin</string>
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Hjælp</string>
-
     <string name="toast_parse_error" tools:ignore="MissingTranslation">Der opstod en fejl. Prøv senere.</string>
-
     <string name="pressure_measurement" tools:ignore="MissingTranslation">hPa</string>
     <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">mmHg</string>
     <string name="wind_speed_meters" tools:ignore="MissingTranslation">m/s</string>
@@ -51,9 +47,7 @@
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">knob</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">km/t</string>
     <string name="millimetre_label" tools:ignore="MissingTranslation">mm</string>
-
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Søg efter placering</string>
-
     <string name="title_activity_settings" tools:ignore="MissingTranslation">Indstillinger</string>
     <string name="pref_title_temperature" tools:ignore="MissingTranslation">Temperatur</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Vind</string>
@@ -141,7 +135,6 @@
     <string name="measured_only" tools:ignore="MissingTranslation">Kun målt værdi</string>
     <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">Begge, målt primær</string>
     <string name="pref_title_temperature_type" tools:ignore="MissingTranslation">Vis temperatur som</string>
-
     <string name="wind_direction_north" tools:ignore="MissingTranslation">N↓</string>
     <string name="wind_direction_north_east" tools:ignore="MissingTranslation">NØ↙</string>
     <string name="wind_direction_east" tools:ignore="MissingTranslation">Ø←</string>
@@ -150,14 +143,12 @@
     <string name="wind_direction_south_west" tools:ignore="MissingTranslation">SV↗</string>
     <string name="wind_direction_west" tools:ignore="MissingTranslation">V→</string>
     <string name="wind_direction_north_west" tools:ignore="MissingTranslation">NV↘</string>
-
     <string name="log_file_12_label" tools:ignore="MissingTranslation">12 timer</string>
     <string name="log_file_24_label" tools:ignore="MissingTranslation">en dag</string>
     <string name="log_file_48_label" tools:ignore="MissingTranslation">to dage</string>
     <string name="log_file_72_label" tools:ignore="MissingTranslation">tre dage</string>
     <string name="log_file_168_label" tools:ignore="MissingTranslation">en uge</string>
     <string name="log_file_720_label" tools:ignore="MissingTranslation">en måned</string>
-
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Ikonsæt</string>
     <string name="app_name" tools:ignore="MissingTranslation">Lokalt vejr</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Placering og tilladelse opsætning</string>
@@ -170,4 +161,6 @@
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Tillykke</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Hoved program</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">Kontroller</string>
-    </resources>
+    <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Annuller</string>
+    <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Fortsæt</string>
+</resources>
