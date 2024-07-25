@@ -1,25 +1,23 @@
 package org.thosp.yourlocalweather.service;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 import android.app.AlarmManager;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
-import android.app.job.JobService;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.pm.ServiceInfo;
 import android.net.TrafficStats;
 import android.os.Build;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Looper;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
 import android.os.SystemClock;
+
+import androidx.core.content.ContextCompat;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -30,20 +28,14 @@ import org.thosp.yourlocalweather.ConnectionDetector;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.WeatherJSONParser;
 import org.thosp.yourlocalweather.YourLocalWeather;
-import org.thosp.yourlocalweather.licence.LicenseNotValidException;
-import org.thosp.yourlocalweather.licence.TooEarlyUpdateException;
 import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
-import org.thosp.yourlocalweather.model.LicenseKey;
 import org.thosp.yourlocalweather.model.LicenseKeysDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
-import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.Constants;
-import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -53,20 +45,8 @@ import java.net.MalformedURLException;
 import java.text.ParseException;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Random;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import cz.msebera.android.httpclient.Header;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLogLastUpdateTime;
-
-import androidx.core.app.ServiceCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.net.TrafficStatsCompat;
 
 public class UpdateWeatherService extends AbstractCommonService {
 
@@ -497,7 +477,7 @@ public class UpdateWeatherService extends AbstractCommonService {
             }
             appendLog(getBaseContext(),
                     TAG,
-                    "sendResult: updateWidgets:",updateRequest.getUpdateSource());
+                    "sendResult: updateWidgets:", (updateRequest != null) ? updateRequest.getUpdateSource() : "");
             WidgetUtils.updateWidgets(getBaseContext());
             sendMessageToReconciliationDbService(false);
         } catch (Throwable exception) {

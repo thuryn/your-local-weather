@@ -1,33 +1,19 @@
 package org.thosp.yourlocalweather.service;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 import android.app.Service;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
-import android.location.Address;
-import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
-
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class AbstractCommonService extends Service {
 
@@ -164,7 +150,7 @@ public class AbstractCommonService extends Service {
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_RECONCILIATION");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("force", force);
-        ContextCompat.startForegroundService(getBaseContext(), intent);
+        startService(intent);
     }
     
     protected void sendIntent(String intent) {

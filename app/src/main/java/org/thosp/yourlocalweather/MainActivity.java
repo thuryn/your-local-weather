@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -53,8 +52,6 @@ import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
-import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
-import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.PressureWithUnit;
@@ -87,13 +84,6 @@ public class MainActivity extends BaseActivity
     private TextView mSunsetView;
     private AppBarLayout mAppBarLayout;
     private TextView iconSecondTemperatureView;
-    private TextView mIconWindView;
-    private TextView mIconHumidityView;
-    private TextView mIconPressureView;
-    private TextView mIconCloudinessView;
-    private TextView mIconSunriseView;
-    private TextView mIconSunsetView;
-    private TextView mIconDewPointView;
     private AppCompatImageButton switchLocationButton;
 
     private ConnectionDetector connectionDetector;
@@ -510,21 +500,21 @@ public class MainActivity extends BaseActivity
         Typeface robotoLight = Typeface.createFromAsset(this.getAssets(),
                 "fonts/Roboto-Light.ttf");
 
-        mIconWeatherView = (ImageView) findViewById(R.id.main_weather_icon);
-        mTemperatureView = (TextView) findViewById(R.id.main_temperature);
-	    dewPointView = (TextView) findViewById(R.id.main_dew_point);
-        secondTemperatureView = (TextView) findViewById(R.id.main_second_temperature);
-        mDescriptionView = (TextView) findViewById(R.id.main_description);
-        mPressureView = (TextView) findViewById(R.id.main_pressure);
-        mHumidityView = (TextView) findViewById(R.id.main_humidity);
-        mWindSpeedView = (TextView) findViewById(R.id.main_wind_speed);
-        mCloudinessView = (TextView) findViewById(R.id.main_cloudiness);
-        mLastUpdateView = (TextView) findViewById(R.id.main_last_update);
-        mSunriseView = (TextView) findViewById(R.id.main_sunrise);
-        mSunsetView = (TextView) findViewById(R.id.main_sunset);
-        mAppBarLayout = (AppBarLayout) findViewById(R.id.main_app_bar);
-        localityView = (TextView) findViewById(R.id.main_locality);
-        switchLocationButton = (AppCompatImageButton) findViewById(R.id.main_switch_location);
+        mIconWeatherView = findViewById(R.id.main_weather_icon);
+        mTemperatureView = findViewById(R.id.main_temperature);
+	    dewPointView = findViewById(R.id.main_dew_point);
+        secondTemperatureView = findViewById(R.id.main_second_temperature);
+        mDescriptionView = findViewById(R.id.main_description);
+        mPressureView = findViewById(R.id.main_pressure);
+        mHumidityView = findViewById(R.id.main_humidity);
+        mWindSpeedView = findViewById(R.id.main_wind_speed);
+        mCloudinessView = findViewById(R.id.main_cloudiness);
+        mLastUpdateView = findViewById(R.id.main_last_update);
+        mSunriseView = findViewById(R.id.main_sunrise);
+        mSunsetView = findViewById(R.id.main_sunset);
+        mAppBarLayout = findViewById(R.id.main_app_bar);
+        localityView = findViewById(R.id.main_locality);
+        switchLocationButton = findViewById(R.id.main_switch_location);
 
         mTemperatureView.setTypeface(robotoThin);
         dewPointView.setTypeface(robotoLight);
@@ -540,28 +530,28 @@ public class MainActivity extends BaseActivity
         /**
          * Initialize and configure weather icons
          */
-        iconSecondTemperatureView = (TextView) findViewById(R.id.main_second_temperature_icon);
+        iconSecondTemperatureView = findViewById(R.id.main_second_temperature_icon);
         iconSecondTemperatureView.setTypeface(weatherFontIcon);
         iconSecondTemperatureView.setText(iconSecondTemperature);
-        mIconWindView = (TextView) findViewById(R.id.main_wind_icon);
+        TextView mIconWindView = findViewById(R.id.main_wind_icon);
         mIconWindView.setTypeface(weatherFontIcon);
         mIconWindView.setText(mIconWind);
-        mIconHumidityView = (TextView) findViewById(R.id.main_humidity_icon);
+        TextView mIconHumidityView = findViewById(R.id.main_humidity_icon);
         mIconHumidityView.setTypeface(weatherFontIcon);
         mIconHumidityView.setText(mIconHumidity);
-        mIconPressureView = (TextView) findViewById(R.id.main_pressure_icon);
+        TextView mIconPressureView = findViewById(R.id.main_pressure_icon);
         mIconPressureView.setTypeface(weatherFontIcon);
         mIconPressureView.setText(mIconPressure);
-        mIconCloudinessView = (TextView) findViewById(R.id.main_cloudiness_icon);
+        TextView mIconCloudinessView = findViewById(R.id.main_cloudiness_icon);
         mIconCloudinessView.setTypeface(weatherFontIcon);
         mIconCloudinessView.setText(mIconCloudiness);
-        mIconSunriseView = (TextView) findViewById(R.id.main_sunrise_icon);
+        TextView mIconSunriseView = findViewById(R.id.main_sunrise_icon);
         mIconSunriseView.setTypeface(weatherFontIcon);
         mIconSunriseView.setText(mIconSunrise);
-        mIconSunsetView = (TextView) findViewById(R.id.main_sunset_icon);
+        TextView mIconSunsetView = findViewById(R.id.main_sunset_icon);
         mIconSunsetView.setTypeface(weatherFontIcon);
         mIconSunsetView.setText(mIconSunset);
-        mIconDewPointView = (TextView) findViewById(R.id.main_dew_point_icon);
+        TextView mIconDewPointView = findViewById(R.id.main_dew_point_icon);
         mIconDewPointView.setTypeface(weatherFontIcon);
         mIconDewPointView.setText(mIconDewPoint);
     }
@@ -1166,6 +1156,7 @@ public class MainActivity extends BaseActivity
         switchToNextLocationWhenCurrentIsAutoAndIsDisabled();
         Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
         int maxOrderId = locationsDbHelper.getMaxOrderId();
+        appendLog(getBaseContext(), TAG, "updateCurrentLocationAndButtonVisibility:maxOrderId:", maxOrderId);
         AppPreference.setCurrentLocationId(MainActivity.this, currentLocation);
         runOnUiThread(new Runnable() {
             @Override
@@ -1183,7 +1174,7 @@ public class MainActivity extends BaseActivity
                     }
                 }
                 if ((maxOrderId > 1) ||
-                        ((maxOrderId == 1) && (locationsDbHelper.getLocationByOrderId(0).isEnabled()))) {
+                        ((maxOrderId == 1) && autoLocation.isEnabled())) {
                     switchLocationButton.setVisibility(View.VISIBLE);
                 } else {
                     switchLocationButton.setVisibility(View.GONE);

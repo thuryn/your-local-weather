@@ -1,24 +1,18 @@
 package org.thosp.yourlocalweather.service;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
 
 import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsContract;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.LocationsFileDbHelper;
-import org.thosp.yourlocalweather.utils.NotificationUtils;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class ReconciliationDbService extends AbstractCommonService {
 
@@ -39,19 +33,20 @@ public class ReconciliationDbService extends AbstractCommonService {
         }
     };
 
-
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
 
+    @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
+        appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
         int ret = super.onStartCommand(intent, flags, startId);
         if (intent == null) {
             return ret;
         }
         YourLocalWeather.executor.submit(() -> {
-            startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+            //startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
             appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
             switch (intent.getAction()) {
                 case "org.thosp.yourlocalweather.action.START_RECONCILIATION": startReconciliation(intent.getBooleanExtra("force", false)); return;
@@ -85,6 +80,7 @@ public class ReconciliationDbService extends AbstractCommonService {
         LocationsFileDbHelper locationsFileDbHelper = LocationsFileDbHelper.getInstance(getApplicationContext());
         SQLiteDatabase db = locationsFileDbHelper.getWritableDatabase();
         for (Location location: locationsDbHelper.getAllRows()) {
+            appendLog(getBaseContext(), TAG, "reconciliation from in memory db to file db of location:", location.getId());
             Location locationInFile = locationsFileDbHelper.getLocationById(location.getId());
             if (locationInFile == null) {
                 insertLocation(db, location);
@@ -93,11 +89,13 @@ public class ReconciliationDbService extends AbstractCommonService {
             }
         }
         for (Location location: locationsFileDbHelper.getAllRows()) {
+            appendLog(getBaseContext(), TAG, "reconciliation from file db to in memory db of location:", location.getId());
             Location locationInRam = locationsDbHelper.getLocationById(location.getId());
             if (locationInRam == null) {
                 locationsFileDbHelper.deleteRecordFromTable(location);
             }
         }
+        appendLog(getBaseContext(), TAG, "reconciliation has finished");
         nextReconciliationTime = System.currentTimeMillis() + MIN_RECONCILIATION_TIME_SPAN_IN_MS;
     }
 
@@ -119,6 +117,7 @@ public class ReconciliationDbService extends AbstractCommonService {
                 LocationsContract.Locations.TABLE_NAME,
                 null,
                 values);
+        appendLog(getBaseContext(), TAG, "inserted location:", location.getId(), ", order:", location.getOrderId(), ", rowId:", newLocationRowId);
     }
 
     private void updateLocation(SQLiteDatabase db, Location location, Location locationInFile) {
@@ -130,12 +129,13 @@ public class ReconciliationDbService extends AbstractCommonService {
                 this,
                 TAG,
                 "update location:", location.getId());
-        db.updateWithOnConflict(
+        long existingLocationRowId = db.updateWithOnConflict(
                 LocationsContract.Locations.TABLE_NAME,
                 values,
                 LocationsContract.Locations._ID +"=" + locationInFile.getId(),
                 null,
                 SQLiteDatabase.CONFLICT_IGNORE);
+        appendLog(getBaseContext(), TAG, "updated location:", location.getId(), ", order:", location.getOrderId(), ", rowId:", existingLocationRowId);
     }
 
     private ContentValues prepareValues(Location location, Location locationInFile) {

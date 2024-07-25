@@ -1,5 +1,11 @@
 package org.thosp.yourlocalweather.utils;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
+
+import android.content.Context;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -12,14 +18,8 @@ import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
-
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
-
-import android.content.Context;
 
 /**
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
@@ -106,7 +106,7 @@ public class ForecastUtilTest {
         DetailedWeatherForecast detailedWeatherForecast = new DetailedWeatherForecast();
         detailedWeatherForecast.setDateTime(forecastDay.getTimeInMillis()/1000);
         detailedWeatherForecast.setTemperature(temp);
-        detailedWeatherForecast.addWeatherCondition(800, "01n", "clear sky");
+        //detailedWeatherForecast.addWeatherCondition(800, "01n", "clear sky");
 
         return detailedWeatherForecast;
     }
