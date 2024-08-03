@@ -292,9 +292,9 @@
     <string name="pref_language_es" tools:ignore="MissingTranslation">Español (Spanisch)</string>
     <string name="pref_language_el" tools:ignore="MissingTranslation">Ελληνικά (Griechisch)</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Zugang abgelaufen. Bitte aktualisieren Sie die App.</string>
-    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Ihr OpenweathermapApiKey ist nicht registriert.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Ihr Open-Meteo ApiKey ist nicht registriert.</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Systemeinstellungen</string>
-    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API-Schlüssel</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Open-Meteo (https://open-meteo.com) API-Schlüssel</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Integriert</string>
     <string name="pref_language_sw" tools:ignore="MissingTranslation">Kiswahili (Suaheli)</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Batterieoptimierung</string>
@@ -474,9 +474,9 @@
     <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 Tage</string>
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 Tage</string>
     <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 Tage</string>
-    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (3 Stunden Intervall)</string>
-    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (3 Stunden Intervall)</string>
-    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (3 Stunden Intervall)</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3 Stunden</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4 Stunden</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5 Stunden</string>
     <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Diagramm in nativer Auflösung anzeigen (wenn das Diagramm zu klein ist)</string>
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Einstellungen im Widget anzeigen</string>
     <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Schaltfläche für die Einstellungen der Widget-Grafik</string>
@@ -604,4 +604,7 @@
     <string name="pref_language_lt" tools:ignore="MissingTranslation">Litauisch</string>
     <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Erlaubnis für BT</string>
     <string name="theme_system" tools:ignore="MissingTranslation">Nach System</string>
+    <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 Tage</string>
+    <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 Stunden</string>
+    <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">Wetteranbieter geändert</string>
 </resources>
