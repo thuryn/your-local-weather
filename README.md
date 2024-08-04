@@ -24,7 +24,7 @@ Location is updated by a distance counted by accelerometer. When distance is lon
 
 To get the location, cell network (BTS) and WIFIs available on the place are used. These information are used to get location coordinates by Mozilla location service. Application try to use GPS when location is not available from cell network and WIFIs. Location coordinates are used to get address by Nominatim service. The address is used in the application or widget.
 
-Application uses OpenWeatherMap.org service to get current weather .
+Application uses Open-Meteo service to get current and forecast weather.
 
 Additional features include:
 * Multilingual
