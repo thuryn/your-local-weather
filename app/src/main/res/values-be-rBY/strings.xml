@@ -51,7 +51,7 @@
     <string name="pref_title_language" tools:ignore="MissingTranslation">Мова</string>
     <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Ліцэнзійны ключ</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Убудаваны</string>
-    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Ключ Openweathermap.org API</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Ключ Open-Meteo API</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Налады сістэмы</string>
     <string name="preference_title_power_save" tools:ignore="MissingTranslation">Параметры эканоміі электраэнергіі</string>
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Налады адзінак вымярэння</string>
@@ -360,9 +360,9 @@
 \n
 \nNi - абнавілася месцазнаходжанне па сотавай сетцы і надвор\'е, месцазнаходжанне вызначана службай Mozilla
 \n
-\nB - доступ да openweathermap.org быў забаронены, калі ласка, паспрабуйце абнавіць надвор\'е пазней
+\nB - доступ да Open-Meteo быў забаронены, калі ласка, паспрабуйце абнавіць надвор\'е пазней
 \n
-\nЕ - тэрмін дзеяння токена доступу да Openweathermap.org сыйшоў. Усталюйце навейшую версію праграмы, каб атрымаць доступ</string>
+\nЕ - тэрмін дзеяння токена доступу да Open-Meteo сыйшоў. Усталюйце навейшую версію праграмы, каб атрымаць доступ</string>
     <string name="preference_display_update_value_info" tools:ignore="MissingTranslation">- - абнаўленне месцазнаходжання і/або надвор\'я
 \n
 \n. - месцазнаходжанне недаступна, надвор\'е абнавілася па апошняй мясціне
@@ -391,9 +391,9 @@
     <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Ліцэнзіі вольнага праграмнага забеспячэння</string>
     <string name="title_activity_settings" tools:ignore="MissingTranslation">Налады</string>
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Пошук месцазнаходжання</string>
-    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (інтэрвал 3 гадзіны)</string>
-    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4х (інтэрвал 3 гадзіны)</string>
-    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (інтэрвал 3 гадзіны)</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5 гадзін</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4 гадзіны</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3 гадзіны</string>
     <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 дзён</string>
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 дні</string>
     <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 дні</string>
@@ -512,7 +512,7 @@
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Побач з кнопкай абнаўлення месцазнаходжання ёсць кнопка кіравання мясцінамі (значок лупы). Вы можаце кіраваць даступнымі мясцінамі ў праграме і віджэце. Ёсць адна прадвызначана даступная мясціна (0), прызначаная для аўтаматычнага абнаўлення месцазнаходжання. Вы можаце знайсці кнопку ўключэння/выключэння, ссоўваючы мясціну ўлева. Вы таксама можаце дадаць мясціну ўласнаручна. Націснуўшы \" + \", можна абраць сваё месцазнаходжанне на мапе. Вы таксама можаце выдаліць месцазнаходжанне пры дапамозе кнопкі \"Выдаліць\", якую можна знайсці ссунуўшы месцазнаходжанне ўлева.</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Асноўная праграма змяшчае агляд бягучага надвор\'я. Вы можаце абнавіць даныя пра надвор\'е кнопкай на панэлі або пацягнуўшы ўніз. Вы можаце знайсці кнопку абнаўлення месцазнаходжання побач з кнопкай абнаўлення надвор\'я. Гэтая кнопка даступная толькі тады, калі ў наладах абнаўлення абрана значэнне 0 (0 - аўтаматычнае абнаўлення месцазнаходжання).</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Асноўная праграма</string>
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">Праграма для вызначэння месцазнаходжання выкарыстоўвае сотавую сетку, Wi-Fi, а калі не атрымалася, то GPS, атрымліваючы каардынаты ад службы Mozilla. Праграме патрабуецца: адна базавая станцыя сеткі GSM, або дзве дасягальныя сеткі WiFi, або любое спалучэнне сетак GSM і Wi-Fi. Выкарыстоўваючы віджэт на вашым тэлефоне або планшэце, вы можаце ўбачыць сваё месцазнаходжанне і бягучае надвор\'е на галоўным экране. Абнаўленне месцазнаходжання можа быць перыядычным, або праграма можа выкарыстоўваць акселерометр для выяўлення перамяшчэнняў. Вы можаце выключыць абнаўленне месцазнаходжання, і абнаўляць пры неабходнасці. Праграма абнаўляе месцазнаходжанне і надвор\'е ў пэўныя прамежкі часу. Вы можаце наладзіць перыяд абнаўлення, напрыклад, штогадзіну. Надвор\'е абнаўляецца адразу пасля абнаўлення месцазнаходжання, або калі экран уключаны - але не часцей, чым раз на 15 хвілін (і калі надвор\'е не абнаўляецца апошнія 15 хвілін). Гэтыя звесткі выкарыстоўваюцца для атрымання каардынат месцазнаходжання пры дапамозе службы вызначэння месцазнаходжання Mozilla. Праграма спрабуе выкарыстоўваць GPS, калі сотавыя сеткі і сеткі Wi-Fi недаступныя. Каардынаты выкарыстоўваюцца для атрымання адрасу службай Nominatim. Адрас выкарыстоўваецца ў праграме або віджэтах. Праграма для вызначэння надвор\'я выкарыстоўвае службу openweathermap.org.</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Праграма для вызначэння месцазнаходжання выкарыстоўвае сотавую сетку, Wi-Fi, а калі не атрымалася, то GPS, атрымліваючы каардынаты ад службы Mozilla. Праграме патрабуецца: адна базавая станцыя сеткі GSM, або дзве дасягальныя сеткі WiFi, або любое спалучэнне сетак GSM і Wi-Fi. Выкарыстоўваючы віджэт на вашым тэлефоне або планшэце, вы можаце ўбачыць сваё месцазнаходжанне і бягучае надвор\'е на галоўным экране. Абнаўленне месцазнаходжання можа быць перыядычным, або праграма можа выкарыстоўваць акселерометр для выяўлення перамяшчэнняў. Вы можаце выключыць абнаўленне месцазнаходжання, і абнаўляць пры неабходнасці. Праграма абнаўляе месцазнаходжанне і надвор\'е ў пэўныя прамежкі часу. Вы можаце наладзіць перыяд абнаўлення, напрыклад, штогадзіну. Надвор\'е абнаўляецца адразу пасля абнаўлення месцазнаходжання, або калі экран уключаны - але не часцей, чым раз на 15 хвілін (і калі надвор\'е не абнаўляецца апошнія 15 хвілін). Гэтыя звесткі выкарыстоўваюцца для атрымання каардынат месцазнаходжання пры дапамозе службы вызначэння месцазнаходжання Mozilla. Праграма спрабуе выкарыстоўваць GPS, калі сотавыя сеткі і сеткі Wi-Fi недаступныя. Каардынаты выкарыстоўваюцца для атрымання адрасу службай Nominatim. Адрас выкарыстоўваецца ў праграме або віджэтах. Праграма для вызначэння надвор\'я выкарыстоўвае службу Open-Meteo (https://open-meteo.com).</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Асноўнае</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Вы завяршылі першапачатковую наладку. Вы можаце знайсці іншыя параметры ў меню налад (напрыклад, мова, адзінкі вымярэння і г.д.). 
 \nНа наступным экране можна знайсці тлумачэнні пра дазволы і атрымаць магчымасць наладзіць іх. 
@@ -552,7 +552,7 @@
 \nЗаход: %7$s</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Праграм для камунікацыі не знойдзена</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Падзяліцца надвор’ем</string>
-    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Ваш OpenweathermapApiKey не зарэгістраваны.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Ваш Open-Meteo ApiKey не зарэгістраваны.</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Тэрмін доступу мінуў. Калі ласка, абнавіце праграму.</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Дазволы не атрыманыя — націсніце на сімвал месцазнаходжання ў праграме</string>
     <string name="location_not_found" tools:ignore="MissingTranslation">Месцазнаходжанне не вызначана</string>
@@ -574,7 +574,7 @@
     <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Пачынаючы з Android 10, каб атрымаць інфармацыю пра падлучаную сетку GSM/LTE, неабходна мець доступ да дакладнага месцазнаходжання. Таксама дазвольце атрымліваць даныя пра месцазнаходжанне ў фонавым рэжыме (калі вы хочаце, каб вызначэнне месцазнаходжання было заўсёды даступна).</string>
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Змены дазволаў Android 10</string>
     <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Доступ да службы вызначэння месцазнаходжання Mozilla знік з 01.03.2020. Праграма вымушаная выкарыстоўваць сістэму Andorid для вызначэння каардынат месцазнаходжання. Адрас па-ранейшаму вызначаецца Nominatim. Прыміце гэта да ўвагі.</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"У гэтай праграме ёсць галасавыя падказкі ў выглядзе перакладу тэксту і галасавых загадаў ад валанцёраў, якія працуюць па адрасе https://hosted.weblate.org/projects/your-local-weather. Распрацоўнік праграмы не можа гарантаваць, што яны правільныя - вы прымаеце гэта, выкарыстоўваючы праграму. Для выкарыстання вам неабходна ўсталяваць TTS (Text-to-speech) і ўключыць падказкі ў наладах, дзе вы можаце ствараць уласныя галасавыя загады. "</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">У гэтай праграме ёсць галасавыя падказкі ў выглядзе перакладу тэксту і галасавых загадаў ад валанцёраў, якія працуюць па адрасе https://hosted.weblate.org/projects/your-local-weather. Распрацоўнік праграмы не можа гарантаваць, што яны правільныя - вы прымаеце гэта, выкарыстоўваючы праграму. Для выкарыстання вам неабходна ўсталяваць TTS (Text-to-speech) і ўключыць падказкі ў наладах, дзе вы можаце ствараць уласныя галасавыя загады.</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Пераклад тэксту і падказак</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">Абраць горад</string>
     <string name="label_current_city" tools:ignore="MissingTranslation">Бягучы горад</string>
@@ -595,4 +595,9 @@
     <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">Выдалены месцазнаходжання, якія выйшлі за ліміт.</string>
     <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Дазвол для BT</string>
     <string name="theme_system" tools:ignore="MissingTranslation">Як у сістэме</string>
+    <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">Час сутак</string>
+    <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">Пастаўшчык прагноза надвор\'я зменены</string>
+    <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">Цяпер гэты дадатак выкарыстоўвае Open-Meteo (https://open-meteo.com) як крыніцу прагноза надвор\'я, таму што openweathermap.org больш не прадастаўляе сваі бескаштоўные паслугі з Чэрвеня 2024.</string>
+    <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 гадзін</string>
+    <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 дзён</string>
 </resources>
