@@ -1,5 +1,7 @@
 package org.thosp.yourlocalweather.utils;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 import android.app.KeyguardManager;
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -8,12 +10,10 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
-import android.os.Build;
 import android.view.View;
 import android.widget.RemoteViews;
 
 import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.R;
@@ -24,9 +24,6 @@ import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
-import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -34,8 +31,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class NotificationUtils {
 
@@ -55,11 +50,20 @@ public class NotificationUtils {
         }
         showNotification(context, notification);
     }
-    
+
+    public static Notification getWeatherNotification(Context context, Location location) {
+        if (location == null) {
+            appendLog(context, TAG, "showNotification - location is null");
+            return getNoWeatherNotification(context);
+        } else {
+            return getWeatherNotification(context, location.getId());
+        }
+    }
+
     public static Notification getWeatherNotification(Context context, Long locationId) {
         if (locationId == null) {
             appendLog(context, TAG, "showNotification - locationId is null");
-            return null;
+            return getNoWeatherNotification(context);
         }
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(context);
         final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
@@ -89,7 +93,7 @@ public class NotificationUtils {
 
     public static Notification getNotificationForActivity(Context context) {
         checkAndCreateNotificationChannel(context);
-        return getWeatherNotification(context, getLocationForNotification(context).getId());
+        return getWeatherNotification(context, getLocationForNotification(context));
     }
 
     public static void checkAndCreateNotificationChannel(Context context) {
@@ -273,7 +277,7 @@ public class NotificationUtils {
         Map<Long, String> localizedHourMap = new HashMap<>();
         Map<Long, String> temperaturesMap = new HashMap<>();
 
-        List<DetailedWeatherForecast> weatherForecastList = new ArrayList();
+        List<DetailedWeatherForecast> weatherForecastList = new ArrayList<>();
 
         for(DetailedWeatherForecast detailedWeatherForecast: weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
             if (detailedWeatherForecast != null) {
@@ -303,7 +307,7 @@ public class NotificationUtils {
                     weatherForecastRecord,
                     textColor,
                     null,
-                    4l,
+                    4L,
                     false,
                     null,
                     fontBasedIcons,
@@ -364,11 +368,7 @@ public class NotificationUtils {
 
     public static boolean isScreenLocked(Context context) {
         KeyguardManager mKeyguardManager = (KeyguardManager) context.getSystemService(Context.KEYGUARD_SERVICE);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            return mKeyguardManager.isKeyguardLocked();
-        } else {
-            return mKeyguardManager.inKeyguardRestrictedInputMode();
-        }
+        return mKeyguardManager.isKeyguardLocked();
     }
 
     public static Location getLocationForNotification(Context context) {

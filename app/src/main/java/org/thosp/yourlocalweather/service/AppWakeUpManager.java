@@ -1,13 +1,15 @@
 package org.thosp.yourlocalweather.service;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLogWakeupSources;
+
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ServiceInfo;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;
 
@@ -17,13 +19,8 @@ import org.thosp.yourlocalweather.utils.NotificationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLogWakeupSources;
 
 public class AppWakeUpManager extends Service {
 
@@ -41,8 +38,8 @@ public class AppWakeUpManager extends Service {
 
     private PowerManager.WakeLock wakeLock;
     private PowerManager powerManager;
-    private static List<Integer> wakeUpSources = new ArrayList<>();
-    private Lock wakeUpSourcesLock = new ReentrantLock();
+    final private static List<Integer> wakeUpSources = new ArrayList<>();
+    final private Lock wakeUpSourcesLock = new ReentrantLock();
 
     Handler timerWakeUpHandler = new Handler();
     Runnable timerWakeUpRunnable = new Runnable() {
@@ -70,7 +67,11 @@ public class AppWakeUpManager extends Service {
             return ret;
         }
         YourLocalWeather.executor.submit(() -> {
-            startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()), ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+            } else {
+                startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+            }
             appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
             switch (intent.getAction()) {
                 case "org.thosp.yourlocalweather.action.WAKE_UP":
@@ -144,16 +145,7 @@ public class AppWakeUpManager extends Service {
 
     public void wakeUp() {
         appendLog(getBaseContext(), TAG, "powerManager:", powerManager);
-
-        boolean isInUse;
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            isInUse = powerManager.isInteractive();
-        } else {
-            isInUse = powerManager.isScreenOn();
-        }
-
-        if (isInUse || ((wakeLock != null) && wakeLock.isHeld())) {
+        if (powerManager.isInteractive() || ((wakeLock != null) && wakeLock.isHeld())) {
             appendLog(getBaseContext(), TAG, "lock is held");
             return;
         }
@@ -183,7 +175,7 @@ public class AppWakeUpManager extends Service {
         wakeLock = powerManager.newWakeLock(powerLockID, "YourLocalWeather:PowerLock");
         appendLog(getBaseContext(), TAG, "wakeLock:", wakeLock, ":", wakeLock.isHeld());
         if (!wakeLock.isHeld()) {
-            wakeLock.acquire();
+            wakeLock.acquire(10000L);
         }
         appendLog(getBaseContext(), TAG, "wakeLock acquired");
     }

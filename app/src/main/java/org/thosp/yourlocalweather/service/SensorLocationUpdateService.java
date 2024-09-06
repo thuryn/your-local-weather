@@ -1,24 +1,20 @@
 package org.thosp.yourlocalweather.service;
 
-import android.app.Notification;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ServiceInfo;
 import android.hardware.Sensor;
 import android.hardware.SensorManager;
-import android.os.Binder;
 import android.os.Build;
-import android.os.IBinder;
 
 import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class SensorLocationUpdateService extends SensorLocationUpdater {
 
@@ -38,7 +34,11 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
             return ret;
         }
         YourLocalWeather.executor.submit(() -> {
-            startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()), ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+            } else {
+                startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+            }
             appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
 
             switch (intent.getAction()) {
@@ -136,36 +136,19 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
         }
 
         sensorResolutionMultiplayer = 1 / senAccelerometer.getResolution();
-        int maxDelay = 10000;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            maxDelay = senAccelerometer.getMaxDelay();
-            appendLog(getBaseContext(),
-                  TAG,
-                  "Selected accelerometer sensor:",
-                  senAccelerometer,
-                  ", sensor's resolution:",
-                  senAccelerometer.getResolution(),
-                  ", sensor's max delay: ",
-                  senAccelerometer.getMaxDelay());
-        } else {
-            appendLog(getBaseContext(),
-                  TAG,
-                  "Selected accelerometer sensor:",
-                  senAccelerometer,
-                  ", sensor's resolution:",
-                  senAccelerometer.getResolution());
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            appendLog(getBaseContext(), TAG, "Result of registering (new) sensor listener: " + senSensorManager.registerListener(
-                    this,
-                    senAccelerometer ,
-                    maxDelay,
-                    maxDelay));
-        } else {
-            appendLog(getBaseContext(), TAG, "Result of registering sensor listener: " + senSensorManager.registerListener(
-                    this,
-                    senAccelerometer ,
-                    maxDelay));
-        }
+        int maxDelay = senAccelerometer.getMaxDelay();
+        appendLog(getBaseContext(),
+              TAG,
+              "Selected accelerometer sensor:",
+              senAccelerometer,
+              ", sensor's resolution:",
+              senAccelerometer.getResolution(),
+              ", sensor's max delay: ",
+              senAccelerometer.getMaxDelay());
+        appendLog(getBaseContext(), TAG, "Result of registering (new) sensor listener: " + senSensorManager.registerListener(
+                this,
+                senAccelerometer ,
+                maxDelay,
+                maxDelay));
     }
 }

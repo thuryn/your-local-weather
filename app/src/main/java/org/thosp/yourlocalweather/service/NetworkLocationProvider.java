@@ -1,5 +1,7 @@
 package org.thosp.yourlocalweather.service;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 import android.Manifest;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -12,6 +14,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.content.pm.ServiceInfo;
 import android.location.Location;
 import android.net.wifi.ScanResult;
 import android.net.wifi.WifiManager;
@@ -21,16 +24,12 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.telephony.TelephonyManager;
 
-import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
 
 import java.util.Calendar;
 import java.util.List;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class NetworkLocationProvider extends Service {
 
@@ -107,7 +106,6 @@ public class NetworkLocationProvider extends Service {
     public void onCreate() {
         super.onCreate();
         mTelephonyManager = ((TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE));
-        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
         alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
         wifiManager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
 
@@ -120,7 +118,7 @@ public class NetworkLocationProvider extends Service {
             appendLog(getBaseContext(), TAG,
                     "Unable to acquire wifi lock.", uoe);
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             registerReceiver(mReceiver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION), RECEIVER_NOT_EXPORTED);
         } else {
             registerReceiver(mReceiver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
@@ -143,7 +141,11 @@ public class NetworkLocationProvider extends Service {
 
         if (null != intent.getAction()) switch (intent.getAction()) {
             case "org.thosp.yourlocalweather.action.START_LOCATION_UPDATE":
-                startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()), ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+                } else {
+                    startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+                }
                 startLocationUpdate(intent.getParcelableExtra("inputLocation"));
                 return ret;
             case "org.thosp.yourlocalweather.action.LOCATION_UPDATE_CELLS_ONLY":
@@ -207,15 +209,9 @@ public class NetworkLocationProvider extends Service {
             jobScheduler.schedule(jobInfo);
         } else {
             intentToCancel = getIntentToGetCellsOnly();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-                alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                        SystemClock.elapsedRealtime() + 8000,
-                        intentToCancel);
-            } else {
-                alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                        SystemClock.elapsedRealtime() + 8000,
-                        intentToCancel);
-            }
+            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                    SystemClock.elapsedRealtime() + 8000,
+                    intentToCancel);
         }
         appendLog(getBaseContext(), TAG, "update():cells only task scheduled");
     }

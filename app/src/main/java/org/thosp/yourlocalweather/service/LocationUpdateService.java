@@ -11,6 +11,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ServiceInfo;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -43,8 +44,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.function.Consumer;
 
 public class LocationUpdateService extends AbstractCommonService implements ProcessResultFromAddressResolution, LocationListener {
@@ -84,9 +83,12 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         forceUpdate = false;
         updateSource = null;
         YourLocalWeather.executor.submit(() -> {
-                startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                    startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()), ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+                } else {
+                    startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+                }
                 appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
-                appendLog(getBaseContext(), TAG, "startForegroundService");
                 switch (intent.getAction()) {
                     case "org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE":
                         startLocationAndWeatherUpdate(intent);
@@ -756,6 +758,9 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         appendLog(getBaseContext(), TAG, "detectLocation:isNetworkEnabled=", isNetworkEnabled);
         if (isNetworkEnabled && ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             appendLog(getBaseContext(), TAG, "detectLocation:afterCheckSelfPermission");
+            if (Looper.myLooper() == null) {
+                Looper.prepare();
+            }
             final Looper locationLooper = Looper.myLooper();
             if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {
                 appendLog(getBaseContext(), TAG, "getCurrentLocation on new API");
@@ -879,14 +884,9 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         if (location == null) {
             return 0;
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-             return System.currentTimeMillis()
-                - SystemClock.elapsedRealtime()
-                + (location.getElapsedRealtimeNanos() / 1000000);
-        } else {
-            return location.getTime();
-        }
-
+         return System.currentTimeMillis()
+            - SystemClock.elapsedRealtime()
+            + (location.getElapsedRealtimeNanos() / 1000000);
     }
 
     private void resendTheIntentInSeveralSeconds(long timeInMilis, Intent intent) {

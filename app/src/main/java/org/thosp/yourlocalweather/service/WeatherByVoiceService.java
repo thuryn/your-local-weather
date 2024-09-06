@@ -1,13 +1,15 @@
 package org.thosp.yourlocalweather.service;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ServiceInfo;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
-import android.os.Message;
 import android.speech.tts.TextToSpeech;
 
 import androidx.annotation.Nullable;
@@ -22,7 +24,6 @@ import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
-import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.TimeUtils;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -37,19 +38,15 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class WeatherByVoiceService extends Service {
 
     private static final String TAG = "WeatherByVoiceService";
 
     private TextToSpeech tts;
-    private static String TTS_DELAY_BETWEEN_ITEM = "...---...";
-    private static String TTS_END = "_________";
-    private static long TTS_DELAY_BETWEEN_ITEM_IN_MS = 200;
+    final private static String TTS_DELAY_BETWEEN_ITEM = "...---...";
+    final private static String TTS_END = "_________";
+    final private static long TTS_DELAY_BETWEEN_ITEM_IN_MS = 200;
 
     private static final Queue<WeatherByVoiceRequestDataHolder> weatherByVoiceMessages = new LinkedList<>();
 
@@ -92,7 +89,11 @@ public class WeatherByVoiceService extends Service {
             return ret;
         }
         YourLocalWeather.executor.submit(() -> {
-            startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()), ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
+            } else {
+                startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+            }
             appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
             switch (intent.getAction()) {
                 case "org.thosp.yourlocalweather.action.SAY_WEATHER": sayWeatherByTime(intent); return;
