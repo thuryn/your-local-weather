@@ -21,7 +21,7 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "WeatherForecast.db";
     private static WeatherForecastDbHelper instance;
-    private Context context;
+    private final Context context;
 
     public synchronized static WeatherForecastDbHelper getInstance(Context ctx) {
         if (instance == null) {

@@ -87,7 +87,7 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
         }
 
         ContextCompat.getMainExecutor(context).execute(()  -> {
-            Long dayCountForForecast = (daysCount != null) ? daysCount : 5l;
+            Long dayCountForForecast = (daysCount != null) ? daysCount : 5L;
             try {
                 WidgetUtils.updateWeatherForecast(
                         context,
@@ -142,7 +142,7 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
         Boolean showLocation = widgetSettingsDbHelper.getParamBoolean(widgetId, "showLocation");
 
         ContextCompat.getMainExecutor(context).execute(()  -> {
-            boolean showLocationParam = (showLocation == null) ? false : showLocation;
+            boolean showLocationParam = showLocation != null && showLocation;
             if (showLocationParam) {
                 remoteViews.setViewVisibility(R.id.widget_weather_forecast_1x3_widget_city, View.VISIBLE);
             } else {

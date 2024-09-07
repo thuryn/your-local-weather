@@ -54,7 +54,7 @@ public class TimeUtils {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         if (nextAlarms.isEmpty()) {
-            alarmManager.cancel(TimeUtils.getPendingIntentForVoice(context, 0l));
+            alarmManager.cancel(TimeUtils.getPendingIntentForVoice(context, 0L));
             return;
         }
 

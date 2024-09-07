@@ -42,16 +42,16 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
     private static final long SCREEN_ON_RETRY_FIRST = 1000;
     private static final long SCREEN_ON_RETRY_NEXT = 1000;
 
-    private Lock receiversLock = new ReentrantLock();
+    private final Lock receiversLock = new ReentrantLock();
     private volatile boolean receiversRegistered;
     private NetworkConnectivityReceiver networkConnectivityReceiver;
     private NetworkConnectionReceiver networkConnectionReceiver;
 
     private volatile int screenOnRetryCounter;
     private volatile long lastOnscreenEvent;
-    private volatile Lock lastOnscreenEventLock = new ReentrantLock();
+    private final Lock lastOnscreenEventLock = new ReentrantLock();
 
-    private BroadcastReceiver userUnlockedReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver userUnlockedReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             YourLocalWeather.executor.submit(() -> {
@@ -67,7 +67,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         }
     };
 
-    private BroadcastReceiver screenOnReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver screenOnReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             YourLocalWeather.executor.submit(() -> {
@@ -91,7 +91,7 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
         }
     };
 
-    private BroadcastReceiver screenOffReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver screenOffReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             YourLocalWeather.executor.submit(() -> {
@@ -189,7 +189,6 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
                     stopSensorBasedUpdates();
                     return;
                 default:
-                    return;
             }
         });
         return ret;

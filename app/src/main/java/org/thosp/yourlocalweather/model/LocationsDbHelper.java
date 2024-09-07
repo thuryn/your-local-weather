@@ -24,7 +24,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
     private static final String TAG = "LocationsDbHelper";
 
     public static final int DATABASE_VERSION = 1;
-    private Context context;
+    private final Context context;
     private static LocationsDbHelper instance;
 
     public synchronized static LocationsDbHelper getInstance(Context ctx) {

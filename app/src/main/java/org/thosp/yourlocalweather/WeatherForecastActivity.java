@@ -55,10 +55,10 @@ public class WeatherForecastActivity extends ForecastingActivity {
         initializeWeatherForecastReceiver(UpdateWeatherService.ACTION_FORECAST_UPDATE_RESULT);
         setContentView(R.layout.activity_weather_forecast);
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.forecast_recycler_view);
+        mRecyclerView = findViewById(R.id.forecast_recycler_view);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        localityView = (TextView) findViewById(R.id.forecast_locality);
-        switchLocationButton = (AppCompatImageButton) findViewById(R.id.forecast_switch_location);
+        localityView = findViewById(R.id.forecast_locality);
+        switchLocationButton = findViewById(R.id.forecast_switch_location);
         Typeface robotoLight = Typeface.createFromAsset(this.getAssets(),
                 "fonts/Roboto-Light.ttf");
         localityView.setTypeface(robotoLight);
@@ -138,7 +138,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ImageView android = (ImageView) findViewById(R.id.android);
+                ImageView android = findViewById(R.id.android);
                 if (weatherForecastList.isEmpty()) {
                     mRecyclerView.setVisibility(View.INVISIBLE);
                     android.setVisibility(View.VISIBLE);
@@ -223,13 +223,11 @@ public class WeatherForecastActivity extends ForecastingActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which,
                                                 boolean isChecked) {
+                                // Else, if the item is already in the array, remove it
                                 if (isChecked) {
                                     // If the user checked the item, add it to the selected items
                                     mSelectedItems.add(which);
-                                } else if (mSelectedItems.contains(which)) {
-                                    // Else, if the item is already in the array, remove it
-                                    mSelectedItems.remove(which);
-                                }
+                                } else mSelectedItems.remove(which);
                             }
                         })
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {

@@ -45,7 +45,7 @@ public class StartupReceiver extends BroadcastReceiver {
             //this is for avoiding IllegalStateException
             ComponentName serviceComponent = new ComponentName(context, StartAutoLocationJob.class);
             JobInfo.Builder builder = new JobInfo.Builder(StartAutoLocationJob.JOB_ID, serviceComponent);
-            builder.setMinimumLatency(1 * 1000); // wait at least
+            builder.setMinimumLatency(1000); // wait at least
             builder.setOverrideDeadline(3 * 1000); // maximum delay
             JobScheduler jobScheduler = context.getSystemService(JobScheduler.class);
             jobScheduler.schedule(builder.build());

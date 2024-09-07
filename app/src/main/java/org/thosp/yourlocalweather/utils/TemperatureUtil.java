@@ -17,9 +17,9 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 public class TemperatureUtil {
 
     private static final String TAG = "TemperatureUtil";
-    private static double SOLAR_CONSTANT = 1395; // solar constant (w/m2)
-    private static double transmissionCoefficientClearDay = 0.81;
-    private static double transmissionCoefficientCloudy = 0.62;
+    private static final double SOLAR_CONSTANT = 1395; // solar constant (w/m2)
+    private static final double transmissionCoefficientClearDay = 0.81;
+    private static final double transmissionCoefficientCloudy = 0.62;
 
     public static float getApparentTemperature(double dryBulbTemperature,
                                                int humidity,

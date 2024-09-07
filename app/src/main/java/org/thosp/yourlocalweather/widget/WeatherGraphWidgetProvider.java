@@ -123,7 +123,7 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
         Boolean showLocation = widgetSettingsDbHelper.getParamBoolean(widgetId, "showLocation");
 
         ContextCompat.getMainExecutor(context).execute(()  -> {
-            boolean showLocationParam = (showLocation == null) ? false : showLocation;
+            boolean showLocationParam = showLocation != null && showLocation;
             if (showLocationParam) {
                 remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_widget_city, View.VISIBLE);
             } else {

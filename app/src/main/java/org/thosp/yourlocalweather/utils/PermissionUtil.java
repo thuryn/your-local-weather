@@ -43,10 +43,7 @@ public class PermissionUtil {
             return false;
         }
         List<String> permissions = getAllPermissions(context);
-        if ((permissions != null) && (permissions.size() > 0)) {
-            return true;
-        }
-        return false;
+        return (permissions != null) && (permissions.size() > 0);
     }
 
     private static List<String> getAllPermissions(Context context) {

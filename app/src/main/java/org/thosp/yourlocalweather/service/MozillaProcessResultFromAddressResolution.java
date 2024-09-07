@@ -12,9 +12,9 @@ public class MozillaProcessResultFromAddressResolution implements ProcessResultF
 
     public static final String TAG = "MozillaProcessResultFromAddressResolution";
 
-    private Context context;
-    private Location location;
-    private MozillaLocationService mozillaLocationService;
+    private final Context context;
+    private final Location location;
+    private final MozillaLocationService mozillaLocationService;
 
     public MozillaProcessResultFromAddressResolution(Context context, Location location, MozillaLocationService mozillaLocationService) {
         this.context = context;

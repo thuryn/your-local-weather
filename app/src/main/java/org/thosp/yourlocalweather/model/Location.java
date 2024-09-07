@@ -161,7 +161,7 @@ public class Location implements Parcelable {
             orderId = persistentBundle.getInt("orderId");
             localeAbbrev = persistentBundle.getString("locale");
             locale = new Locale(localeAbbrev);
-            nickname = persistentBundle.getString("nickname");;
+            nickname = persistentBundle.getString("nickname");
             accuracy = new Double(persistentBundle.getDouble("accuracy")).floatValue();
             locationSource = persistentBundle.getString("locationSource");
             lastLocationUpdate = persistentBundle.getLong("lastLocationUpdate");

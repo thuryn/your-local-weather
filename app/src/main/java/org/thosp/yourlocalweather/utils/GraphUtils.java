@@ -653,11 +653,7 @@ public class GraphUtils {
             yRight.setValueFormatter(new YAxisValueFormatter(locale, yAxisFractionalDigits, context.getString(AppPreference.getRainOrSnowUnit(rainSnowUnitFromPreferences))));
             rainSet.setAxisIndex(1);
         }
-        if (rightYaxis == null) {
-            yRight.setEnabled(false);
-        } else {
-            yRight.setEnabled(true);
-        }
+        yRight.setEnabled(rightYaxis != null);
 
         if (rainsnow && (leftYaxis != CombinedGraph.RAINSNOW) && (rightYaxis != CombinedGraph.RAINSNOW)) {
             YAxis rainAxis = combinedChart.getAxis(2);

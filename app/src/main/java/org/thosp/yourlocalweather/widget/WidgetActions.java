@@ -10,7 +10,7 @@ public enum WidgetActions {
     GRAPHS_SCREEN(3, GraphsActivity.class),
     LOCATION_SWITCH(4);
 
-    private long id;
+    private final long id;
     private Class activityClass;
 
     WidgetActions(long id, Class activityClass) {

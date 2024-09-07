@@ -8,9 +8,9 @@ import org.thosp.yourlocalweather.model.Weather;
 import java.io.Serializable;
 
 public class WeatherByVoiceRequestDataHolder implements Serializable {
-    private long timeNow;
-    private Weather weather;
-    private Location location;
+    private final long timeNow;
+    private final Weather weather;
+    private final Location location;
     private final long timestamp;
 
     public WeatherByVoiceRequestDataHolder(Location location, Weather weather, long timeNow) {
@@ -54,7 +54,7 @@ public class WeatherByVoiceRequestDataHolder implements Serializable {
 
     @Override
     public int hashCode() {
-        return (int) location.getOrderId();
+        return location.getOrderId();
     }
     
     @Override

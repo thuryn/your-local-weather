@@ -154,11 +154,7 @@ public class AppPreference {
                 Constants.KEY_PREF_TIME_STYLE, "system");
         if ("system".equals(timeStylePreferences)) {
             return !DateFormat.is24HourFormat(context);
-        } else if ("12h".equals(timeStylePreferences)) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return "12h".equals(timeStylePreferences);
     }
 
     private static short mpsToBft(double speed) {
@@ -458,10 +454,7 @@ public class AppPreference {
     }
 
     public static boolean isUpdateLocationEnabled(Context context, Location currentLocation) {
-        if ((currentLocation == null) || (currentLocation.getOrderId() != 0) || !currentLocation.isEnabled()) {
-            return false;
-        }
-        return true;
+        return (currentLocation != null) && (currentLocation.getOrderId() == 0) && currentLocation.isEnabled();
     }
         
     public static String getLocationGeocoderSource(Context context) {
@@ -534,7 +527,7 @@ public class AppPreference {
         Set<String> defaultVisibleGraphs = new HashSet<>();
         defaultVisibleGraphs.add("0");
         defaultVisibleGraphs.add("1");
-        defaultVisibleGraphs.add("2");;
+        defaultVisibleGraphs.add("2");
         defaultVisibleGraphs.add("4");
         defaultVisibleGraphs.add("6");
         defaultVisibleGraphs.add("7");
@@ -707,8 +700,8 @@ public class AppPreference {
     }
 
     public static class GraphGridColors {
-        private int mainGridColor;
-        private int secondaryGridColor;
+        private final int mainGridColor;
+        private final int secondaryGridColor;
 
         public GraphGridColors(int mainGridColor, int secondaryGridColor) {
             this.mainGridColor = mainGridColor;

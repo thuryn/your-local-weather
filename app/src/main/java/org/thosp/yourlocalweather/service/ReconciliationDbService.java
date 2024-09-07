@@ -50,7 +50,7 @@ public class ReconciliationDbService extends AbstractCommonService {
             appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
             switch (intent.getAction()) {
                 case "org.thosp.yourlocalweather.action.START_RECONCILIATION": startReconciliation(intent.getBooleanExtra("force", false)); return;
-                default: return;
+                default:
             }
         });
         return ret;

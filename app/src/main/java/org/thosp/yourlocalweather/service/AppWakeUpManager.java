@@ -81,7 +81,6 @@ public class AppWakeUpManager extends Service {
                     stopWakeUp(intent.getIntExtra("wakeupSource", 0));
                     return;
                 default:
-                    return;
             }
         });
         return ret;
@@ -115,9 +114,7 @@ public class AppWakeUpManager extends Service {
     private void stopWakeUp(Integer wakeUpSource) {
         wakeUpSourcesLock.lock();
         try {
-            if (wakeUpSources.contains(wakeUpSource)) {
-                wakeUpSources.remove(wakeUpSource);
-            }
+            wakeUpSources.remove(wakeUpSource);
             appendLogWakeupSources(getBaseContext(), TAG, "startWakeUp:", wakeUpSources);
             if (!wakeUpSources.isEmpty()) {
                 return;

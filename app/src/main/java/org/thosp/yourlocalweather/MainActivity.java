@@ -152,19 +152,19 @@ public class MainActivity extends BaseActivity
         /**
          * Configure SwipeRefreshLayout
          */
-        mSwipeRefresh = (SwipeRefreshLayout) findViewById(R.id.main_swipe_refresh);
+        mSwipeRefresh = findViewById(R.id.main_swipe_refresh);
         int top_to_padding = 150;
         mSwipeRefresh.setProgressViewOffset(false, 0, top_to_padding);
         mSwipeRefresh.setColorSchemeResources(R.color.swipe_red, R.color.swipe_green,
                 R.color.swipe_blue);
         mSwipeRefresh.setOnRefreshListener(swipeRefreshListener);
 
-        NestedScrollView main_scroll_view = (NestedScrollView) findViewById(R.id.main_scroll_view);
+        NestedScrollView main_scroll_view = findViewById(R.id.main_scroll_view);
         main_scroll_view.setOnTouchListener(new ActivityTransitionTouchListener(
                 null,
                 WeatherForecastActivity.class, this));
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         this.storedContext = this;
         fab.setOnClickListener(fabListener);
     }
@@ -175,7 +175,7 @@ public class MainActivity extends BaseActivity
             synchronized (this) {
                 startAlarms();
             }
-            return 0l;
+            return 0L;
         }
     }
 
@@ -315,7 +315,7 @@ public class MainActivity extends BaseActivity
         return super.onOptionsItemSelected(item);
     }
 
-    private SwipeRefreshLayout.OnRefreshListener swipeRefreshListener =
+    private final SwipeRefreshLayout.OnRefreshListener swipeRefreshListener =
             new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
@@ -571,7 +571,7 @@ public class MainActivity extends BaseActivity
     private void setUpdateButtonState(boolean isUpdate) {
         if (mToolbarMenu != null) {
             MenuItem updateItem = mToolbarMenu.findItem(R.id.main_menu_refresh);
-            ProgressBar progressUpdate = (ProgressBar) findViewById(R.id.toolbar_progress_bar);
+            ProgressBar progressUpdate = findViewById(R.id.toolbar_progress_bar);
             if (isUpdate) {
                 updateItem.setVisible(false);
                 progressUpdate.setVisibility(View.VISIBLE);
@@ -1004,7 +1004,7 @@ public class MainActivity extends BaseActivity
         preferences.apply();
     }
 
-    private ActivityResultLauncher<String> requestPermissionLauncher =
+    private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
                 if (isGranted) {
                     Snackbar.make(findViewById(android.R.id.content), R.string.permission_available_notification, Snackbar.LENGTH_SHORT).show();
@@ -1162,16 +1162,8 @@ public class MainActivity extends BaseActivity
             @Override
             public void run() {
                 if (mToolbarMenu != null) {
-                    if ((currentLocation.getOrderId() == 0) && !currentLocation.isEnabled()) {
-                        mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible(false);
-                    } else {
-                        mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible(true);
-                    }
-                    if (!autoLocation.isEnabled()) {
-                        mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(false);
-                    } else {
-                        mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(true);
-                    }
+                    mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible((currentLocation.getOrderId() != 0) || currentLocation.isEnabled());
+                    mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(autoLocation.isEnabled());
                 }
                 if ((maxOrderId > 1) ||
                         ((maxOrderId == 1) && autoLocation.isEnabled())) {

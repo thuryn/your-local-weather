@@ -98,7 +98,7 @@ public class WeatherByVoiceService extends Service {
             switch (intent.getAction()) {
                 case "org.thosp.yourlocalweather.action.SAY_WEATHER": sayWeatherByTime(intent); return;
                 case "org.thosp.yourlocalweather.action.START_VOICE_WEATHER_UPDATED": startVoiceCommand(intent); return;
-                default: return;
+                default:
             }
         });
         return ret;
@@ -118,8 +118,8 @@ public class WeatherByVoiceService extends Service {
 
     private void startVoiceCommand(Intent intent) {
         startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
-        Location weatherByVoiceLocation = (Location) intent.getParcelableExtra("weatherByVoiceLocation");
-        Weather weatherByVoiceWeather = (Weather) intent.getParcelableExtra("weatherByVoiceWeather");
+        Location weatherByVoiceLocation = intent.getParcelableExtra("weatherByVoiceLocation");
+        Weather weatherByVoiceWeather = intent.getParcelableExtra("weatherByVoiceWeather");
         Long weatherByVoiceTime = intent.getLongExtra("weatherByVoiceTime", 0);
         WeatherByVoiceRequestDataHolder weatherByVoiceRequest = new WeatherByVoiceRequestDataHolder(weatherByVoiceLocation, weatherByVoiceWeather, weatherByVoiceTime);
         appendLog(getBaseContext(), TAG, "weatherByVoiceLocation:", weatherByVoiceRequest);
@@ -313,11 +313,10 @@ public class WeatherByVoiceService extends Service {
         }
         if (TimeUtils.isCurrentSettingIndex(partsToSay, 4) || TimeUtils.isCurrentSettingIndex(partsToSay, 2)) {
             textToSay.add(TTS_DELAY_BETWEEN_ITEM);
-            StringBuilder weatherDescriptionToSay = new StringBuilder();
-            weatherDescriptionToSay.append(" ");
-            weatherDescriptionToSay.append(Utils.getWeatherDescription(getBaseContext(), currentLocation.getLocaleAbbrev(), weather));
-            weatherDescriptionToSay.append(" ");
-            textToSay.add(weatherDescriptionToSay.toString());
+            String weatherDescriptionToSay = " " +
+                    Utils.getWeatherDescription(getBaseContext(), currentLocation.getLocaleAbbrev(), weather) +
+                    " ";
+            textToSay.add(weatherDescriptionToSay);
         }
         if (TimeUtils.isCurrentSettingIndex(partsToSay, 6)) {
             textToSay.add(TTS_DELAY_BETWEEN_ITEM);
@@ -520,7 +519,7 @@ public class WeatherByVoiceService extends Service {
         return forecastToSay.toString();
     }
 
-    private double MIN_RAIN_SNOW_MM = 0.5;
+    private final double MIN_RAIN_SNOW_MM = 0.5;
 
     private String sayCommonWeatherForecastParts(ForecastUtil.WeatherForecastForVoice weatherForecastForVoice, String rainSnowUnitFromPreferences,
                                                  Location currentLocation) {
@@ -804,7 +803,7 @@ public class WeatherByVoiceService extends Service {
             }
             sayWhatWhenRecreated = null;
         } else {
-            appendLog(getBaseContext(), TAG, "Locale " + locale.toString() + " is not available in TTS");
+            appendLog(getBaseContext(), TAG, "Locale " + locale + " is not available in TTS");
             if (sayWhatWhenRecreated != null) {
                 return;
             }

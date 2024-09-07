@@ -463,7 +463,7 @@ public class Utils {
             case "regular_only":
                 return Long.MAX_VALUE;
             default:
-                return Integer.parseInt(intervalMinutes) * 60 * 1000;
+                return (long) Integer.parseInt(intervalMinutes) * 60 * 1000;
         }
     }
 
@@ -563,19 +563,11 @@ public class Utils {
     }
 
     public static boolean isWeatherDescriptionWithRain(int weatherId) {
-        if (((weatherId > 50) && (weatherId < 70)) || ((weatherId >= 80) && (weatherId < 85))) {
-            return true;
-        } else {
-            return false;
-        }
+        return ((weatherId > 50) && (weatherId < 70)) || ((weatherId >= 80) && (weatherId < 85));
     }
 
     public static boolean isWeatherDescriptionWithSnow(int weatherId) {
-        if (((weatherId >= 70) && (weatherId < 80)) || ((weatherId >= 85) && (weatherId < 90))) {
-            return true;
-        } else {
-            return false;
-        }
+        return ((weatherId >= 70) && (weatherId < 80)) || ((weatherId >= 85) && (weatherId < 90));
     }
 
     private static int getWeatherDescriptionResourceId(int weatherId) {

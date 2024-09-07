@@ -19,12 +19,12 @@ public class LongWeatherForecastAdapter extends RecyclerView.Adapter<LongWeather
     private final Context mContext;
     private final Set<Integer> visibleColumns;
     private final List<DetailedWeatherForecast> mWeatherList;
-    private double latitude;
-    private Locale locale;
-    private String pressureUnitFromPreferences;
-    private String rainSnowUnitFromPreferences;
-    private String windUnitFromPreferences;
-    private String temperatureUnitFromPreferences;
+    private final double latitude;
+    private final Locale locale;
+    private final String pressureUnitFromPreferences;
+    private final String rainSnowUnitFromPreferences;
+    private final String windUnitFromPreferences;
+    private final String temperatureUnitFromPreferences;
 
     public LongWeatherForecastAdapter(Context context,
                                       List<DetailedWeatherForecast> weatherForecastList,

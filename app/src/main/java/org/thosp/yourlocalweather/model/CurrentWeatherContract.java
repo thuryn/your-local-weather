@@ -6,7 +6,7 @@ public final class CurrentWeatherContract {
 
     private CurrentWeatherContract() {}
 
-    protected static final String SQL_CREATE_TABLE_CURRENT_WEATHER =
+    static final String SQL_CREATE_TABLE_CURRENT_WEATHER =
             "CREATE TABLE " + CurrentWeatherContract.CurrentWeather.TABLE_NAME + " (" +
                     CurrentWeatherContract.CurrentWeather._ID + " INTEGER PRIMARY KEY," +
                     CurrentWeatherContract.CurrentWeather.COLUMN_NAME_LOCATION_ID + " integer," +
@@ -14,7 +14,7 @@ public final class CurrentWeatherContract {
                     CurrentWeatherContract.CurrentWeather.COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS + " integer," +
                     CurrentWeatherContract.CurrentWeather.COLUMN_NAME_WEATHER + " blob)";
 
-    protected static final String SQL_DELETE_TABLE_CURRENT_WEATHER =
+    static final String SQL_DELETE_TABLE_CURRENT_WEATHER =
             "DROP TABLE IF EXISTS " + CurrentWeatherContract.CurrentWeather.TABLE_NAME;
 
     public static class CurrentWeather implements BaseColumns {

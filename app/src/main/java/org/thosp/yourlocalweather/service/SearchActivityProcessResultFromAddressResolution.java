@@ -14,8 +14,8 @@ public class SearchActivityProcessResultFromAddressResolution implements Process
 
     public static final String TAG = "SearchActivityProcessResultFromAddressResolution";
 
-    private Context context;
-    private Intent sendIntent;
+    private final Context context;
+    private final Intent sendIntent;
     private ProgressDialog mProgressDialog;
 
     public SearchActivityProcessResultFromAddressResolution(Context context,

@@ -9,7 +9,7 @@ import android.view.View;
 
 public class ActivityTransitionTouchListener implements View.OnTouchListener {
 
-    private static String TAG = "ActivityTransitionTouchListener";
+    private static final String TAG = "ActivityTransitionTouchListener";
 
     Class<?> destinationActivityOnLeftSide;
     Class<?> destinationActivityOnRightSide;

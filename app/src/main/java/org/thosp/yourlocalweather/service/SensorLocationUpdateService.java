@@ -44,7 +44,7 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
             switch (intent.getAction()) {
                 case "org.thosp.yourlocalweather.action.START_SENSOR_BASED_UPDATES": performSensorBasedUpdates();
                 case "org.thosp.yourlocalweather.action.STOP_SENSOR_BASED_UPDATES": stopSensorBasedUpdates(); return;
-                case "android.intent.action.CLEAR_SENSOR_VALUES": clearMeasuredLength(); return;
+                case "android.intent.action.CLEAR_SENSOR_VALUES": clearMeasuredLength();
             }
         });
         return START_STICKY;

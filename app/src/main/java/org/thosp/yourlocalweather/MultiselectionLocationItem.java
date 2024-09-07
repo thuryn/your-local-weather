@@ -2,9 +2,9 @@ package org.thosp.yourlocalweather;
 
 public class MultiselectionLocationItem {
 
-    private Long id;
-    private String name;
-    private Boolean value;
+    private final Long id;
+    private final String name;
+    private final Boolean value;
 
     public MultiselectionLocationItem(Long id, String name, Boolean value) {
         this.id = id;

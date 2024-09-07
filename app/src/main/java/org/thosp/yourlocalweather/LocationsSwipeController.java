@@ -29,7 +29,7 @@ public class LocationsSwipeController extends Callback {
     private RecyclerView.ViewHolder currentItemViewHolder = null;
     private LocationsSwipeControllerActions buttonsActions = null;
     private static final float buttonWidth = 300;
-    private Context context;
+    private final Context context;
 
     public LocationsSwipeController(LocationsSwipeControllerActions buttonsActions, Context context) {
         this.buttonsActions = buttonsActions;

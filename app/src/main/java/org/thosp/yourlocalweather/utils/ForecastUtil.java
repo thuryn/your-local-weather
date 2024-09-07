@@ -81,7 +81,7 @@ public class ForecastUtil {
                 forecastDay += 365;
             }
             maxForecastDay = forecastDay;
-            if (!weatherList.keySet().contains(forecastDay)) {
+            if (!weatherList.containsKey(forecastDay)) {
                 List<DetailedWeatherForecast> dayForecastList = new ArrayList<>();
                 weatherList.put(forecastDay, dayForecastList);
             }

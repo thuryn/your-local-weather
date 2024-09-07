@@ -83,11 +83,7 @@ public class NotificationPreferenceFragment extends PreferenceFragment implement
             if (switchPreference == null) {
                 return;
             }
-            if (updateBySensor) {
-                switchPreference.setEnabled(false);
-            } else {
-                switchPreference.setEnabled(true);
-            }
+            switchPreference.setEnabled(!updateBySensor);
         } else if (Constants.KEY_PREF_VIBRATE.equals(key)) {
             AppPreference.getInstance().clearVibrateEnabled();
         } else {
@@ -121,11 +117,7 @@ public class NotificationPreferenceFragment extends PreferenceFragment implement
                     notificationManager.cancelAll();
                 }
             } else if (Constants.KEY_PREF_INTERVAL_NOTIFICATION.equals(key)) {
-                if (updateBySensor || !switchPreference.isChecked()) {
-                    preference.setEnabled(false);
-                } else {
-                    preference.setEnabled(true);
-                }
+                preference.setEnabled(!updateBySensor && switchPreference.isChecked());
             } else {
                 preference.setEnabled(true);
             }
@@ -221,11 +213,7 @@ public class NotificationPreferenceFragment extends PreferenceFragment implement
                     notificationManager.cancelAll();
                 }
             } else if (Constants.KEY_PREF_INTERVAL_NOTIFICATION.equals(key)) {
-                if (updateBySensor || !isNotificationEnabled) {
-                    preference.setEnabled(false);
-                } else {
-                    preference.setEnabled(true);
-                }
+                preference.setEnabled(!updateBySensor && isNotificationEnabled);
             } else {
                 preference.setEnabled(true);
             }

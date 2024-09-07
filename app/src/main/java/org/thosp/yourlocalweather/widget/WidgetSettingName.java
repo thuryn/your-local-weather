@@ -8,8 +8,8 @@ public enum WidgetSettingName {
     LOCATION_SETTINGS("locationSettings", 4),
     WIDGET_ACTION_SETTINGS("widgetActionSettings", 5);
 
-    private int settingNameId;
-    private String widgetSettingName;
+    private final int settingNameId;
+    private final String widgetSettingName;
 
     WidgetSettingName(String widgetSettingName, int settingNameId) {
         this.settingNameId = settingNameId;

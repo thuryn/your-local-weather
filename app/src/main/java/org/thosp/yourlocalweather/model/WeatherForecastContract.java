@@ -6,7 +6,7 @@ public final class WeatherForecastContract {
 
     private WeatherForecastContract() {}
 
-    protected static final String SQL_CREATE_TABLE_WEATHER_FORECAST =
+    static final String SQL_CREATE_TABLE_WEATHER_FORECAST =
             "CREATE TABLE " + WeatherForecastContract.WeatherForecast.TABLE_NAME + " (" +
                     WeatherForecastContract.WeatherForecast._ID + " INTEGER PRIMARY KEY," +
                     WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + " integer," +
@@ -15,7 +15,7 @@ public final class WeatherForecastContract {
                     WeatherForecastContract.WeatherForecast.COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS + " integer," +
                     WeatherForecastContract.WeatherForecast.COLUMN_NAME_WEATHER_FORECAST + " blob)";
 
-    protected static final String SQL_DELETE_TABLE_WEATHER_FORECAST =
+    static final String SQL_DELETE_TABLE_WEATHER_FORECAST =
             "DROP TABLE IF EXISTS " + WeatherForecastContract.WeatherForecast.TABLE_NAME;
 
     public static class WeatherForecast implements BaseColumns {

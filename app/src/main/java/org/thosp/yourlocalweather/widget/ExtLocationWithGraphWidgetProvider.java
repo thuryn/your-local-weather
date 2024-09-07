@@ -192,7 +192,7 @@ public class ExtLocationWithGraphWidgetProvider extends AbstractWidgetProvider {
             });
         }
         final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
-        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());;
+        WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
         try {
                 ContextCompat.getMainExecutor(context).execute(() -> {
                     if (weatherForecastRecord != null) {

@@ -48,7 +48,7 @@ public class NetworkLocationProvider extends Service {
     private volatile Integer jobId;
     private AlarmManager alarmManager;
 
-    private WifiScanCallback mWifiScanResults = new WifiScanCallback() {
+    private final WifiScanCallback mWifiScanResults = new WifiScanCallback() {
 
         @Override
         public void onWifiResultsAvailable() {

@@ -6,7 +6,7 @@ public final class ReverseGeocodingCacheContract {
     
     private ReverseGeocodingCacheContract() {}
     
-    protected static final String SQL_CREATE_TABLE_LOCATION_ADDRESS_CACHE =
+    static final String SQL_CREATE_TABLE_LOCATION_ADDRESS_CACHE =
         "CREATE TABLE " + LocationAddressCache.TABLE_NAME + " (" +
         LocationAddressCache._ID + " INTEGER PRIMARY KEY," +
         LocationAddressCache.COLUMN_NAME_LONGITUDE + " double," +
@@ -15,7 +15,7 @@ public final class ReverseGeocodingCacheContract {
         LocationAddressCache.COLUMN_NAME_CREATED + " integer," +
         LocationAddressCache.COLUMN_NAME_ADDRESS + " blob)";
 
-    protected static final String SQL_DELETE_TABLE_LOCATION_ADDRESS_CACHE =
+    static final String SQL_DELETE_TABLE_LOCATION_ADDRESS_CACHE =
         "DROP TABLE IF EXISTS " + LocationAddressCache.TABLE_NAME;
         
     public static class LocationAddressCache implements BaseColumns {

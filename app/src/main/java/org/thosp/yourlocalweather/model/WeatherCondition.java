@@ -7,9 +7,9 @@ import org.thosp.yourlocalweather.WmoCodes;
 
 public class WeatherCondition implements Parcelable {
 
-    private Integer weatherId;
-    private String icon;
-    private String description;
+    private final Integer weatherId;
+    private final String icon;
+    private final String description;
 
     public WeatherCondition(WmoCodes wmoCodes) {
         this.weatherId = wmoCodes.getId();

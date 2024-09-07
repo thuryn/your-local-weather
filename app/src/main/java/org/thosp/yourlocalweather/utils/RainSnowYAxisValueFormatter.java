@@ -10,7 +10,7 @@ import java.util.Locale;
 
 public class RainSnowYAxisValueFormatter implements IAxisValueFormatter {
 
-    private NumberFormat decimalFormat;
+    private final NumberFormat decimalFormat;
 
     public RainSnowYAxisValueFormatter(Context context, Locale locale) {
         decimalFormat = NumberFormat.getNumberInstance(locale);

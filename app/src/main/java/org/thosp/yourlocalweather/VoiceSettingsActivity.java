@@ -198,7 +198,7 @@ public class VoiceSettingsActivity extends BaseActivity {
     }
 
     private void setupActionBar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
@@ -295,12 +295,12 @@ public class VoiceSettingsActivity extends BaseActivity {
     public class VoiceSettingHolder extends RecyclerView.ViewHolder {
 
         private Long voiceSettingId;
-        private TextView voiceSettingIdView;
-        private TextView voiceSettingTypeView;
-        private TextView voiceSettingAddInfo1View;
-        private TextView voiceSettingAddInfo2View;
-        private Button editButton;
-        private Button deleteButton;
+        private final TextView voiceSettingIdView;
+        private final TextView voiceSettingTypeView;
+        private final TextView voiceSettingAddInfo1View;
+        private final TextView voiceSettingAddInfo2View;
+        private final Button editButton;
+        private final Button deleteButton;
 
         VoiceSettingHolder(View itemView) {
             super(itemView);
@@ -542,7 +542,7 @@ public class VoiceSettingsActivity extends BaseActivity {
 
     private class VoiceSettingsAdapter extends RecyclerView.Adapter<VoiceSettingHolder> {
 
-        private List<Long> voiceSettingIds;
+        private final List<Long> voiceSettingIds;
 
         VoiceSettingsAdapter(List<Long> voiceSettingIds) {
             this.voiceSettingIds = voiceSettingIds;

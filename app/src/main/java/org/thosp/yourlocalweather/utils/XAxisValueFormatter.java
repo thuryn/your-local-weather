@@ -10,8 +10,8 @@ import java.util.Map;
 
 public class XAxisValueFormatter implements IAxisValueFormatter {
 
-    private Calendar calendar = Calendar.getInstance();
-    private SimpleDateFormat format;
+    private final Calendar calendar = Calendar.getInstance();
+    private final SimpleDateFormat format;
     private Integer lastDayUsed;
 
     public XAxisValueFormatter(Locale locale) {

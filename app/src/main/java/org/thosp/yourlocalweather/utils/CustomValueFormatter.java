@@ -9,7 +9,7 @@ import java.util.Locale;
 
 public class CustomValueFormatter implements IValueFormatter {
 
-    private NumberFormat decimalFormat;
+    private final NumberFormat decimalFormat;
 
     public CustomValueFormatter(Locale locale) {
         decimalFormat = NumberFormat.getNumberInstance(locale);

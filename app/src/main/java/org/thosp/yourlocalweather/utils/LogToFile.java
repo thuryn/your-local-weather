@@ -321,7 +321,7 @@ public class LogToFile {
         if (!isLoggingAvailable()) {
             return;
         }
-        appendLog(context, tag, text1, (value1 != null)? (value1 + ":" + String.valueOf(value1.size())) : "null");
+        appendLog(context, tag, text1, (value1 != null)? (value1 + ":" + value1.size()) : "null");
     }
 
     public static void appendLog(Context context, String tag, String text1, List value1, String text2, List value2) {
@@ -329,7 +329,7 @@ public class LogToFile {
         if (!isLoggingAvailable()) {
             return;
         }
-        appendLog(context, tag, text1, (value1 != null)? (value1 + ":" + String.valueOf(value1.size())) : "null", text2, (value2 != null)? (value2 + ":" + String.valueOf(value2.size())) : "null");
+        appendLog(context, tag, text1, (value1 != null)? (value1 + ":" + value1.size()) : "null", text2, (value2 != null)? (value2 + ":" + value2.size()) : "null");
     }
 
     public static void appendLog(Context context, String tag, String text1, CellLocation value1) {
@@ -652,10 +652,9 @@ public class LogToFile {
                     pfd = context.getContentResolver().
                             openFileDescriptor(logFileUri, "wt");
                     FileOutputStream fos = new FileOutputStream(pfd.getFileDescriptor());
-                    StringBuilder initialDate = new StringBuilder();
-                    initialDate.append(DATE_FORMATTER.format(now));
-                    initialDate.append(" rotated\n");
-                    fos.write(initialDate.toString().getBytes(StandardCharsets.UTF_8));
+                    String initialDate = DATE_FORMATTER.format(now) +
+                            " rotated\n";
+                    fos.write(initialDate.getBytes(StandardCharsets.UTF_8));
                     fos.close();
                 }
 

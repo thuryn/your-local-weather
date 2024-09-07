@@ -43,6 +43,7 @@ import org.thosp.yourlocalweather.utils.VoiceSettingParamType;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
@@ -110,7 +111,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
     }
 
     private void setTextHandler(int textViewId, final VoiceSettingParamType paramType) {
-        EditText textView = (EditText)findViewById(textViewId);
+        EditText textView = findViewById(textViewId);
 
         String originalValue = voiceSettingParametersDbHelper.getStringParam(
                 voiceSettingId,
@@ -158,7 +159,6 @@ public class AddVoiceSettingActivity extends BaseActivity {
                               if (!checkExistenceAndBtPermissions()) {
                                   btDevicesSpinner.setVisibility(View.GONE);
                                   allBtCheckbox.setVisibility(View.GONE);
-                                  return;
                               } else {
                                   btDevicesSpinner.setVisibility(View.VISIBLE);
                                   allBtCheckbox.setVisibility(View.VISIBLE);
@@ -192,9 +192,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 }
 
                 if (enabledBtDevices != null) {
-                    for (String btDeviceAddress: enabledBtDevices.split(",")) {
-                        selectedItems.add(btDeviceAddress);
-                    }
+                    Collections.addAll(selectedItems, enabledBtDevices.split(","));
                 }
 
                 if (ContextCompat.checkSelfPermission(AddVoiceSettingActivity.this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
@@ -233,7 +231,6 @@ public class AddVoiceSettingActivity extends BaseActivity {
                     btDevicesSpinner.setVisibility(View.GONE);
                     allBtCheckbox.setVisibility(View.GONE);
                     btDevicePanel.setVisibility(View.GONE);
-                    return;
                 } else {
                     btDevicesSpinner.setVisibility(View.VISIBLE);
                     allBtCheckbox.setVisibility(View.VISIBLE);
@@ -269,9 +266,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 }
 
                 if (enabledBtDevices != null) {
-                    for (String btDeviceName : enabledBtDevices.split(",")) {
-                        selectedItems.add(btDeviceName);
-                    }
+                    Collections.addAll(selectedItems, enabledBtDevices.split(","));
                 }
 
                 if (ContextCompat.checkSelfPermission(AddVoiceSettingActivity.this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
@@ -422,7 +417,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 VoiceSettingParamType.VOICE_SETTING_TIME_TO_START.getVoiceSettingParamTypeId());
         String timeStylePreference = AppPreference.getTimeStylePreference(getBaseContext());
 
-        Button voiceSettingButton = (Button) findViewById(R.id.button_voice_setting_time);
+        Button voiceSettingButton = findViewById(R.id.button_voice_setting_time);
 
         if (storedHourMinute == null) {
             voiceSettingButton.setText(getString(R.string.pref_title_tts_time));
@@ -441,7 +436,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
     }
 
     private void setupActionBar() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -488,7 +483,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
         }
 
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            long storedHourMinute = hourOfDay*100+minute;
+            long storedHourMinute = hourOfDay* 100L +minute;
             voiceSettingParametersDbHelper.saveLongParam(
                     voiceSettingId,
                     VoiceSettingParamType.VOICE_SETTING_TIME_TO_START.getVoiceSettingParamTypeId(),
@@ -501,7 +496,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
             c.set(Calendar.HOUR_OF_DAY, hourOfDay);
             c.set(Calendar.MINUTE, minute);
 
-            Button voiceSettingButton = (Button) getActivity().findViewById(R.id.button_voice_setting_time);
+            Button voiceSettingButton = getActivity().findViewById(R.id.button_voice_setting_time);
             voiceSettingButton.setText(AppPreference.getLocalizedTime(getContext(), c.getTime(), timeStylePreference, applicationLocale));
             prepareNextTime(getActivity(), voiceSettingId, timeStylePreference, applicationLocale, voiceSettingParametersDbHelper);
         }
@@ -621,9 +616,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 }
 
                 if (enabledBtDevices != null) {
-                    for (String btDeviceName : enabledBtDevices.split(",")) {
-                        selectedItems.add(btDeviceName);
-                    }
+                    Collections.addAll(selectedItems, enabledBtDevices.split(","));
                 }
 
                 for (Location location : currentLocations) {
@@ -649,7 +642,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 voiceSettingId,
                 VoiceSettingParamType.VOICE_SETTING_ENABLED_VOICE_DEVICES.getVoiceSettingParamTypeId());
         if (enabledVoiceDevices == null) {
-            enabledVoiceDevices = 0l;
+            enabledVoiceDevices = 0L;
         }
         boolean checked = ((CheckBox) view).isChecked();
         switch(view.getId()) {
@@ -813,7 +806,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 voiceSettingId,
                 VoiceSettingParamType.VOICE_SETTING_PARTS_TO_SAY.getVoiceSettingParamTypeId());
         if (partsToSay == null) {
-            partsToSay = 0l;
+            partsToSay = 0L;
         }
         boolean checked = ((CheckBox) view).isChecked();
         switch(view.getId()) {
@@ -998,7 +991,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
                     VoiceSettingParamType.VOICE_SETTING_TRIGGER_DAY_IN_WEEK.getVoiceSettingParamTypeId());
             String timeStylePreference = AppPreference.getTimeStylePreference(getBaseContext());
             if (daysOfWeek == null) {
-                daysOfWeek = 0l;
+                daysOfWeek = 0L;
             }
             boolean checked = ((CheckBox) view).isChecked();
             switch (view.getId()) {

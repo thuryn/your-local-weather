@@ -32,10 +32,10 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
     Locale locale;
     private final List<Integer> keys;
     private final String pressureUnitFromPreferences;
-    private String rainSnowUnitFromPreferences;
-    private String windUnitFromPreferences;
-    private String temperatureUnitFromPreferences;
-    private String timeStylePreference;
+    private final String rainSnowUnitFromPreferences;
+    private final String windUnitFromPreferences;
+    private final String temperatureUnitFromPreferences;
+    private final String timeStylePreference;
 
     public WeatherForecastAdapter(Context context,
                                   List<DetailedWeatherForecast> weatherForecastList,
@@ -71,7 +71,7 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
             }
             forecastCalendar.setTimeInMillis(forecastDateTimeInMs);
             int forecastDay = forecastCalendar.get(Calendar.DAY_OF_YEAR);
-            if (!mWeatherList.keySet().contains(forecastDay)) {
+            if (!mWeatherList.containsKey(forecastDay)) {
                 List<DetailedWeatherForecast> dayForecastList = new ArrayList<>();
                 mWeatherList.put(forecastDay, dayForecastList);
                 keys.add(forecastDay);

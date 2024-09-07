@@ -33,7 +33,7 @@ import static org.thosp.yourlocalweather.widget.WidgetSettingName.*;
 
 public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
-    private static String TAG = "AbstractWidgetProvider";
+    private static final String TAG = "AbstractWidgetProvider";
 
     protected Location currentLocation;
     volatile boolean servicesStarted = false;
@@ -177,6 +177,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                     for (int widgetIdToSearch : appWidgetIdsForWidget) {
                         if (widgetIdToSearch == appWidgetId) {
                             found = true;
+                            break;
                         }
                     }
                     if (!found) {

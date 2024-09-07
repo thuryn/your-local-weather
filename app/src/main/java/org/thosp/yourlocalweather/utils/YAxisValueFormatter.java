@@ -8,8 +8,8 @@ import java.util.Locale;
 
 public class YAxisValueFormatter implements IAxisValueFormatter {
 
-    private NumberFormat decimalFormat;
-    private String unit;
+    private final NumberFormat decimalFormat;
+    private final String unit;
 
     public YAxisValueFormatter(Locale locale, int fractionalDigits, String unit) {
         this.unit = unit;

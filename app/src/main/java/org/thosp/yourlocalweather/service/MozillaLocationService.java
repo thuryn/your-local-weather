@@ -37,7 +37,7 @@ public class MozillaLocationService {
 
     public static final String TAG = "MozillaLocationService";
 
-    private static AsyncHttpClient client = new AsyncHttpClient();
+    private static final AsyncHttpClient client = new AsyncHttpClient();
 
     private static MozillaLocationService instance;
     private Context context;

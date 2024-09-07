@@ -207,7 +207,7 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
 
             try {
                 ContextCompat.getMainExecutor(context).execute(() -> {
-                    Long dayCountForForecast = (daysCount != null) ? daysCount : 5l;
+                    Long dayCountForForecast = (daysCount != null) ? daysCount : 5L;
 
                     appendLog(context, TAG, "preLoadWeather:going to update weather forecast in widget");
 

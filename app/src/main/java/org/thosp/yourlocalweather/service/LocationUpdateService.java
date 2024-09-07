@@ -103,7 +103,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                     case "org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CANCELED":
                         onLocationChangedCanceled();
                         return;
-                    default: return;
+                    default:
                 }
         });
         return ret;
@@ -239,7 +239,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                 }
             }
             if (!additionalSourceSetted) {
-                networkSourceBuilder.append(location.getProvider().substring(0, 1));
+                networkSourceBuilder.append(location.getProvider().charAt(0));
             }
             currentLocationSource = networkSourceBuilder.toString();
             appendLog(getBaseContext(), TAG, "send update source to ", currentLocationSource);
@@ -403,11 +403,11 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         }
         Location inputLocation = null;
         if (intent.getExtras().getParcelable("inputLocation") != null) {
-            inputLocation = (Location) intent.getExtras().getParcelable("inputLocation");
+            inputLocation = intent.getExtras().getParcelable("inputLocation");
         }
         Address addresses = null;
         if (intent.getExtras().getParcelable("addresses") != null) {
-            addresses = (Address) intent.getExtras().getParcelable("addresses");
+            addresses = intent.getExtras().getParcelable("addresses");
         }
         appendLog(getBaseContext(), TAG, "LOCATION_UPDATE recieved:", inputLocation, ":", addresses);
         onLocationChanged(inputLocation, addresses);

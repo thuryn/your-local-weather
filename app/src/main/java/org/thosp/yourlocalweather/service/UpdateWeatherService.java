@@ -72,7 +72,7 @@ public class UpdateWeatherService extends AbstractCommonService {
     public static final int WEATHER_FORECAST_TYPE = 1;
     public static final int LONG_WEATHER_FORECAST_TYPE = 2;
 
-    private static AsyncHttpClient client = new AsyncHttpClient();
+    private static final AsyncHttpClient client = new AsyncHttpClient();
 
     private static volatile boolean gettingWeatherStarted;
 
@@ -334,7 +334,7 @@ public class UpdateWeatherService extends AbstractCommonService {
             sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
             return;
         }
-        String url = (weatherUrl != null) ? weatherUrl : null;
+        String url = weatherUrl;
         Handler mainHandler = new Handler(Looper.getMainLooper());
         Runnable myRunnable = new Runnable() {
             @Override
@@ -601,8 +601,8 @@ public class UpdateWeatherService extends AbstractCommonService {
             ComponentName serviceComponent = new ComponentName(this, UpdateWeatherResendJob.class);
             JobInfo.Builder builder = new JobInfo.Builder(UpdateWeatherResendJob.JOB_ID, serviceComponent);
 
-            builder.setMinimumLatency(seconds * 1000); // wait at least
-            builder.setOverrideDeadline((3 + seconds) * 1000); // maximum delay
+            builder.setMinimumLatency(seconds * 1000L); // wait at least
+            builder.setOverrideDeadline((3 + seconds) * 1000L); // maximum delay
             jobScheduler.schedule(builder.build());
             appendLog(getBaseContext(), TAG, "resendTheIntentInSeveralSeconds: sent");
         } else {
@@ -613,7 +613,7 @@ public class UpdateWeatherService extends AbstractCommonService {
                     PendingIntent.FLAG_IMMUTABLE);
             alarmManager.cancel(pendingIntent);
             alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + (1000 * seconds), pendingIntent);
+                    SystemClock.elapsedRealtime() + (1000L * seconds), pendingIntent);
         }
     }
 
@@ -645,7 +645,7 @@ public class UpdateWeatherService extends AbstractCommonService {
             NotificationUtils.weatherNotification(this, locationId);
         } else if ("on_lock_screen".equals(notificationPresence) && NotificationUtils.isScreenLocked(this)) {
             NotificationUtils.weatherNotification(this, locationId);
-        } else if ((updateSource != null) && "NOTIFICATION".equals(updateSource)) {
+        } else if ("NOTIFICATION".equals(updateSource)) {
             NotificationUtils.weatherNotification(this, locationId);
         }
     }

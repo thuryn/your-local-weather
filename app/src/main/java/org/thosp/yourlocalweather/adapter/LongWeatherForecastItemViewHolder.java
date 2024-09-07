@@ -27,35 +27,35 @@ public class LongWeatherForecastItemViewHolder extends RecyclerView.ViewHolder {
 
     private DetailedWeatherForecast mWeatherForecast;
 
-    private Context mContext;
+    private final Context mContext;
 
-    private TextView mTime;
-    private TextView mDate;
-    private TextView mIcon;
-    private TextView mTemperature;
-    private TextView mApparentTemperature;
-    private TextView mWind;
-    private TextView windDirection;
-    private TextView mHumidity;
-    private TextView mPressure;
-    private TextView mRainSnow;
-    private TextView mDescription;
+    private final TextView mTime;
+    private final TextView mDate;
+    private final TextView mIcon;
+    private final TextView mTemperature;
+    private final TextView mApparentTemperature;
+    private final TextView mWind;
+    private final TextView windDirection;
+    private final TextView mHumidity;
+    private final TextView mPressure;
+    private final TextView mRainSnow;
+    private final TextView mDescription;
 
     public LongWeatherForecastItemViewHolder(View itemView, Context context) {
         super(itemView);
         mContext = context;
 
-        mTime = (TextView) itemView.findViewById(R.id.forecast_time);
-        mDate = (TextView) itemView.findViewById(R.id.forecast_date);
-        mIcon = (TextView) itemView.findViewById(R.id.forecast_icon);
-        mTemperature = (TextView) itemView.findViewById(R.id.forecast_temperature);
-        mApparentTemperature = (TextView) itemView.findViewById(R.id.forecast_apparent_temperature);
-        mWind = (TextView) itemView.findViewById(R.id.forecast_wind);
-        windDirection = (TextView) itemView.findViewById(R.id.forecast_wind_direction);
-        mHumidity = (TextView) itemView.findViewById(R.id.forecast_humidity);
-        mPressure = (TextView) itemView.findViewById(R.id.forecast_pressure);
-        mRainSnow = (TextView) itemView.findViewById(R.id.forecast_rainsnow);
-        mDescription = (TextView) itemView.findViewById(R.id.forecast_description);
+        mTime = itemView.findViewById(R.id.forecast_time);
+        mDate = itemView.findViewById(R.id.forecast_date);
+        mIcon = itemView.findViewById(R.id.forecast_icon);
+        mTemperature = itemView.findViewById(R.id.forecast_temperature);
+        mApparentTemperature = itemView.findViewById(R.id.forecast_apparent_temperature);
+        mWind = itemView.findViewById(R.id.forecast_wind);
+        windDirection = itemView.findViewById(R.id.forecast_wind_direction);
+        mHumidity = itemView.findViewById(R.id.forecast_humidity);
+        mPressure = itemView.findViewById(R.id.forecast_pressure);
+        mRainSnow = itemView.findViewById(R.id.forecast_rainsnow);
+        mDescription = itemView.findViewById(R.id.forecast_description);
     }
 
     void bindWeather(Context context,

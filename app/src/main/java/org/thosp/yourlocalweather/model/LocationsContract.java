@@ -6,7 +6,7 @@ public final class LocationsContract {
 
     private LocationsContract() {}
 
-    protected static final String SQL_CREATE_TABLE_LOCATIONS =
+    static final String SQL_CREATE_TABLE_LOCATIONS =
             "CREATE TABLE " + LocationsContract.Locations.TABLE_NAME + " (" +
                     LocationsContract.Locations._ID + " INTEGER PRIMARY KEY," +
                     LocationsContract.Locations.COLUMN_NAME_LONGITUDE + " double," +
@@ -21,7 +21,7 @@ public final class LocationsContract {
                     LocationsContract.Locations.COLUMN_NAME_ENABLED + " integer," +
                     LocationsContract.Locations.COLUMN_NAME_ADDRESS + " blob)";
 
-    protected static final String SQL_DELETE_TABLE_LOCATIONS =
+    static final String SQL_DELETE_TABLE_LOCATIONS =
             "DROP TABLE IF EXISTS " + LocationsContract.Locations.TABLE_NAME;
 
     public static class Locations implements BaseColumns {

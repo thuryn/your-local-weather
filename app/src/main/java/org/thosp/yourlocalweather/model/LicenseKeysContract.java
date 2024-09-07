@@ -6,7 +6,7 @@ public final class LicenseKeysContract {
 
     private LicenseKeysContract() {}
 
-    protected static final String SQL_CREATE_TABLE_LICENSES =
+    static final String SQL_CREATE_TABLE_LICENSES =
             "CREATE TABLE " + LicenseKeysContract.LicenseKeys.TABLE_NAME + " (" +
                     LicenseKeysContract.LicenseKeys._ID + " INTEGER PRIMARY KEY," +
                     LicenseKeysContract.LicenseKeys.COLUMN_NAME_REQUEST_URI + " text," +
@@ -14,7 +14,7 @@ public final class LicenseKeysContract {
                     LicenseKeysContract.LicenseKeys.COLUMN_NAME_LAST_CALL_TIME_IN_MS + " integer," +
                     LicenseKeysContract.LicenseKeys.COLUMN_NAME_TOKEN + " text)";
 
-    protected static final String SQL_DELETE_TABLE_LICENSES =
+    static final String SQL_DELETE_TABLE_LICENSES =
             "DROP TABLE IF EXISTS " + LicenseKeysContract.LicenseKeys.TABLE_NAME;
 
     public static class LicenseKeys implements BaseColumns {

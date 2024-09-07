@@ -74,30 +74,30 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
         this.temperatureUnitFromPreferences = temperatureUnitFromPreferences;
         this.timeStylePreference = timeStylePreference;
 
-        mDate = (TextView) itemView.findViewById(R.id.forecast_date);
-        headerTime = (TextView) itemView.findViewById(R.id.forecast_header_time);
-        headerIcon = (TextView) itemView.findViewById(R.id.forecast_header_icon);
-        headerDescription = (TextView) itemView.findViewById(R.id.forecast_header_description);
-        headerTemperature = (TextView) itemView.findViewById(R.id.forecast_header_temperature);
-        headerApparentTemperature = (TextView) itemView.findViewById(R.id.forecast_header_apparent_temperature);
-        headerWind = (TextView) itemView.findViewById(R.id.forecast_header_wind);
-        headerWindDirection = (TextView) itemView.findViewById(R.id.forecast_header_wind_direction);
-        headerRainSnow = (TextView) itemView.findViewById(R.id.forecast_header_rainsnow);
-        headerHumidity = (TextView) itemView.findViewById(R.id.forecast_header_humidity);
-        headerPressure = (TextView) itemView.findViewById(R.id.forecast_header_presure);
+        mDate = itemView.findViewById(R.id.forecast_date);
+        headerTime = itemView.findViewById(R.id.forecast_header_time);
+        headerIcon = itemView.findViewById(R.id.forecast_header_icon);
+        headerDescription = itemView.findViewById(R.id.forecast_header_description);
+        headerTemperature = itemView.findViewById(R.id.forecast_header_temperature);
+        headerApparentTemperature = itemView.findViewById(R.id.forecast_header_apparent_temperature);
+        headerWind = itemView.findViewById(R.id.forecast_header_wind);
+        headerWindDirection = itemView.findViewById(R.id.forecast_header_wind_direction);
+        headerRainSnow = itemView.findViewById(R.id.forecast_header_rainsnow);
+        headerHumidity = itemView.findViewById(R.id.forecast_header_humidity);
+        headerPressure = itemView.findViewById(R.id.forecast_header_presure);
 
-        headerTimeUnit = (TextView) itemView.findViewById(R.id.forecast_header_time_unit);
-        headerIconUnit = (TextView) itemView.findViewById(R.id.forecast_header_icon_unit);
-        headerDescriptionUnit = (TextView) itemView.findViewById(R.id.forecast_header_description_unit);
-        headerTemperatureUnit = (TextView) itemView.findViewById(R.id.forecast_header_temperature_unit);
-        headerApparentTemperatureUnit = (TextView) itemView.findViewById(R.id.forecast_header_apparent_temperature_unit);
-        headerWindUnit = (TextView) itemView.findViewById(R.id.forecast_header_wind_unit);
-        headerWindDirectionUnit = (TextView) itemView.findViewById(R.id.forecast_header_wind_direction_unit);
-        headerRainSnowUnit = (TextView) itemView.findViewById(R.id.forecast_header_rainsnow_unit);
-        headerHumidityUnit = (TextView) itemView.findViewById(R.id.forecast_header_humidity_unit);
-        headerPressureUnit = (TextView) itemView.findViewById(R.id.forecast_header_presure_unit);
+        headerTimeUnit = itemView.findViewById(R.id.forecast_header_time_unit);
+        headerIconUnit = itemView.findViewById(R.id.forecast_header_icon_unit);
+        headerDescriptionUnit = itemView.findViewById(R.id.forecast_header_description_unit);
+        headerTemperatureUnit = itemView.findViewById(R.id.forecast_header_temperature_unit);
+        headerApparentTemperatureUnit = itemView.findViewById(R.id.forecast_header_apparent_temperature_unit);
+        headerWindUnit = itemView.findViewById(R.id.forecast_header_wind_unit);
+        headerWindDirectionUnit = itemView.findViewById(R.id.forecast_header_wind_direction_unit);
+        headerRainSnowUnit = itemView.findViewById(R.id.forecast_header_rainsnow_unit);
+        headerHumidityUnit = itemView.findViewById(R.id.forecast_header_humidity_unit);
+        headerPressureUnit = itemView.findViewById(R.id.forecast_header_presure_unit);
 
-        mRecyclerView = (RecyclerView) itemView.findViewById(R.id.forecast_recycler_view_item);
+        mRecyclerView = itemView.findViewById(R.id.forecast_recycler_view_item);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
     }
 
@@ -184,7 +184,7 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
         if (visibleColumns.contains(8)) {
             headerRainSnow.setVisibility(View.VISIBLE);
             headerRainSnow.setTypeface(typeface);
-            headerRainSnow.setText(String.valueOf((char) 0xf01a) + "/" + String.valueOf((char) 0xf01b));
+            headerRainSnow.setText((char) 0xf01a + "/" + (char) 0xf01b);
             headerRainSnowUnit.setVisibility(View.VISIBLE);
             headerRainSnowUnit.setText(AppPreference.getRainOrSnowUnit(rainSnowUnitFromPreferences));
             ViewGroup.LayoutParams params=headerRainSnow.getLayoutParams();

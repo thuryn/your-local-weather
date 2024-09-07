@@ -16,16 +16,16 @@ import java.util.Set;
 
 public class WeatherForecastItemAdapter extends RecyclerView.Adapter<WeatherForecastItemViewHolder> {
 
-    private Context mContext;
-    private Set<Integer> visibleColumns;
-    private List<DetailedWeatherForecast> mWeatherList;
-    private double latitude;
-    private Locale locale;
-    private String pressureUnitFromPreferences;
-    private String rainSnowUnitFromPreferences;
-    private String windUnitFromPreferences;
-    private String temperatureUnitFromPreferences;
-    private String timeStylePreference;
+    private final Context mContext;
+    private final Set<Integer> visibleColumns;
+    private final List<DetailedWeatherForecast> mWeatherList;
+    private final double latitude;
+    private final Locale locale;
+    private final String pressureUnitFromPreferences;
+    private final String rainSnowUnitFromPreferences;
+    private final String windUnitFromPreferences;
+    private final String temperatureUnitFromPreferences;
+    private final String timeStylePreference;
     double minTemp, maxTemp;
 
     public WeatherForecastItemAdapter(Context context,

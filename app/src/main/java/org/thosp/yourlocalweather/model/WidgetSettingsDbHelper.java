@@ -43,12 +43,9 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
         new Thread(new Runnable() {
             public void run() {
                 SQLiteDatabase db = getWritableDatabase();
-                try {
-                    String selection = WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + " = ?";
-                    String[] selectionArgs = {widgetId.toString()};
-                    db.delete(WidgetSettingsContract.WidgetSettings.TABLE_NAME, selection, selectionArgs);
-                } finally {
-                }
+                String selection = WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + " = ?";
+                String[] selectionArgs = {widgetId.toString()};
+                db.delete(WidgetSettingsContract.WidgetSettings.TABLE_NAME, selection, selectionArgs);
             }
         }).start();
     }
@@ -58,24 +55,21 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
             public void run() {
                 SQLiteDatabase db = getWritableDatabase();
 
-                try {
-                    String oldValue = getParamString(widgetId, paramName);
+                String oldValue = getParamString(widgetId, paramName);
 
-                    ContentValues values = new ContentValues();
-                    values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_STRING, value);
-                    if (oldValue == null) {
-                        values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME, paramName);
-                        values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID, widgetId);
-                        db.insert(WidgetSettingsContract.WidgetSettings.TABLE_NAME, null, values);
-                    } else {
-                        db.updateWithOnConflict(WidgetSettingsContract.WidgetSettings.TABLE_NAME,
-                                values,
-                                WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId +
-                                        " AND " + WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME + "=\"" + paramName + "\"",
-                                null,
-                                SQLiteDatabase.CONFLICT_IGNORE);
-                    }
-                } finally {
+                ContentValues values = new ContentValues();
+                values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_STRING, value);
+                if (oldValue == null) {
+                    values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME, paramName);
+                    values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID, widgetId);
+                    db.insert(WidgetSettingsContract.WidgetSettings.TABLE_NAME, null, values);
+                } else {
+                    db.updateWithOnConflict(WidgetSettingsContract.WidgetSettings.TABLE_NAME,
+                            values,
+                            WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId +
+                                    " AND " + WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME + "=\"" + paramName + "\"",
+                            null,
+                            SQLiteDatabase.CONFLICT_IGNORE);
                 }
             }
         }).start();
@@ -86,32 +80,29 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
             public void run() {
                 SQLiteDatabase db = getWritableDatabase();
 
-                try {
-                    Boolean oldValue = getParamBoolean(widgetId, paramName);
+                Boolean oldValue = getParamBoolean(widgetId, paramName);
 
-                    ContentValues values = new ContentValues();
-                    Long valueToStore;
-                    if (value == null) {
-                        valueToStore = null;
-                    } else if (value) {
-                        valueToStore = 1l;
-                    } else {
-                        valueToStore = 0l;
-                    }
-                    values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_LONG, valueToStore);
-                    if (oldValue == null) {
-                        values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME, paramName);
-                        values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID, widgetId);
-                        db.insert(WidgetSettingsContract.WidgetSettings.TABLE_NAME, null, values);
-                    } else {
-                        db.updateWithOnConflict(WidgetSettingsContract.WidgetSettings.TABLE_NAME,
-                                values,
-                                WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId +
-                                        " AND " + WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME + "=\"" + paramName + "\"",
-                                null,
-                                SQLiteDatabase.CONFLICT_IGNORE);
-                    }
-                } finally {
+                ContentValues values = new ContentValues();
+                Long valueToStore;
+                if (value == null) {
+                    valueToStore = null;
+                } else if (value) {
+                    valueToStore = 1l;
+                } else {
+                    valueToStore = 0l;
+                }
+                values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_LONG, valueToStore);
+                if (oldValue == null) {
+                    values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME, paramName);
+                    values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID, widgetId);
+                    db.insert(WidgetSettingsContract.WidgetSettings.TABLE_NAME, null, values);
+                } else {
+                    db.updateWithOnConflict(WidgetSettingsContract.WidgetSettings.TABLE_NAME,
+                            values,
+                            WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId +
+                                    " AND " + WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME + "=\"" + paramName + "\"",
+                            null,
+                            SQLiteDatabase.CONFLICT_IGNORE);
                 }
             }
         }).start();
@@ -122,24 +113,21 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
             public void run() {
                 SQLiteDatabase db = getWritableDatabase();
 
-                try {
-                    Long oldValue = getParamLong(widgetId, paramName);
+                Long oldValue = getParamLong(widgetId, paramName);
 
-                    ContentValues values = new ContentValues();
-                    values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_LONG, value);
-                    if (oldValue == null) {
-                        values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME, paramName);
-                        values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID, widgetId);
-                        db.insert(WidgetSettingsContract.WidgetSettings.TABLE_NAME, null, values);
-                    } else {
-                        db.updateWithOnConflict(WidgetSettingsContract.WidgetSettings.TABLE_NAME,
-                                values,
-                                WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId +
-                                " AND " + WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME + "=\"" + paramName + "\"",
-                                null,
-                                SQLiteDatabase.CONFLICT_IGNORE);
-                    }
-                } finally {
+                ContentValues values = new ContentValues();
+                values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_LONG, value);
+                if (oldValue == null) {
+                    values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME, paramName);
+                    values.put(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID, widgetId);
+                    db.insert(WidgetSettingsContract.WidgetSettings.TABLE_NAME, null, values);
+                } else {
+                    db.updateWithOnConflict(WidgetSettingsContract.WidgetSettings.TABLE_NAME,
+                            values,
+                            WidgetSettingsContract.WidgetSettings.COLUMN_NAME_WIDGET_ID + "=" + widgetId +
+                            " AND " + WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_NAME + "=\"" + paramName + "\"",
+                            null,
+                            SQLiteDatabase.CONFLICT_IGNORE);
                 }
             }
         }).start();
@@ -233,11 +221,7 @@ public class WidgetSettingsDbHelper extends SQLiteOpenHelper {
                 Long longValue = cursor.getLong(cursor.getColumnIndexOrThrow(WidgetSettingsContract.WidgetSettings.COLUMN_NAME_PARAM_LONG));
                 if (longValue == null) {
                     return null;
-                } else if (longValue > 0) {
-                    return true;
-                } else {
-                    return false;
-                }
+                } else return longValue > 0;
             } else {
                 return null;
             }

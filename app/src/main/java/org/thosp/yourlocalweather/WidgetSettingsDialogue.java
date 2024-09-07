@@ -163,11 +163,7 @@ public class WidgetSettingsDialogue extends Activity {
         switches[5] = forecastSettingView.findViewById(R.id.widget_setting_weather_detail_sunrise_switch);
         switches[6] = forecastSettingView.findViewById(R.id.widget_setting_weather_detail_sunset_switch);
         for (int i = 0; i < NUMBER_OF_WEATHER_DETAIL_OPTIONS; i++) {
-            if (!checkedItems[i] && fullSetOfOptions) {
-                switches[i].setEnabled(false);
-            } else {
-                switches[i].setEnabled(true);
-            }
+            switches[i].setEnabled(checkedItems[i] || !fullSetOfOptions);
             switches[i].setChecked(checkedItems[i]);
             switchListeners[i] = new CurrentWeatherDetailSwitchListener(
                     checkedItems[i],
@@ -357,7 +353,7 @@ public class WidgetSettingsDialogue extends Activity {
         }
 
         if (locationId == null) {
-            locationId = 0l;
+            locationId = 0L;
             currentLocation = locationsDbHelper.getLocationById(locationId);
         }
 
@@ -525,7 +521,7 @@ public class WidgetSettingsDialogue extends Activity {
                 }
             }
         } else {
-            storedDays = 5l;
+            storedDays = 5L;
         }
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.forecast_number_of_days_hours, android.R.layout.simple_spinner_item);

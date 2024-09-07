@@ -21,9 +21,9 @@ public class NetworkConnectionReceiver extends ConnectivityManager.NetworkCallba
 
     private static final String TAG = "NetworkConnectionReceiver";
 
-    private static Queue<String> screenOnOffUpdateServiceActions = new LinkedList<>();
+    private static final Queue<String> screenOnOffUpdateServiceActions = new LinkedList<>();
     private ScreenOnOffUpdateService screenOnOffUpdateService;
-    private Context context;
+    private final Context context;
     private boolean wasOffline;
 
     public NetworkConnectionReceiver(Context context) {
@@ -95,7 +95,7 @@ public class NetworkConnectionReceiver extends ConnectivityManager.NetworkCallba
         context.getApplicationContext().unbindService(screenOnOffUpdateServiceConnection);
     }
 
-    private ServiceConnection screenOnOffUpdateServiceConnection = new ServiceConnection() {
+    private final ServiceConnection screenOnOffUpdateServiceConnection = new ServiceConnection() {
 
         @Override
         public void onServiceConnected(ComponentName className,

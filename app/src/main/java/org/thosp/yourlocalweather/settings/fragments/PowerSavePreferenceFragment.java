@@ -28,7 +28,7 @@ import java.util.Locale;
 public class PowerSavePreferenceFragment extends PreferenceFragment implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
-    private static SimpleDateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("en"));
+    private static final SimpleDateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", new Locale("en"));
 
     private final String[] SUMMARIES_TO_UPDATE = {
             Constants.KEY_WAKE_UP_STRATEGY,
