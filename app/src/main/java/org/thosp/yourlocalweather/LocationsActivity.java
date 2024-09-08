@@ -134,7 +134,7 @@ public class LocationsActivity extends BaseActivity {
         updateAddLocationButton(allLocations);
         locationsAdapter = new LocationsAdapter(allLocations);
         recyclerView.setAdapter(locationsAdapter);
-        sendMessageToReconciliationDbService(true);
+        sendMessageToReconciliationDbService();
     }
 
     private void deleteLocation(int position) {
@@ -159,7 +159,7 @@ public class LocationsActivity extends BaseActivity {
         updateAddLocationButton(allLocations);
         locationsAdapter = new LocationsAdapter(allLocations);
         recyclerView.setAdapter(locationsAdapter);
-        sendMessageToReconciliationDbService(true);
+        sendMessageToReconciliationDbService();
     }
 
     private void updateAddLocationButton(List<Location> allLocations) {

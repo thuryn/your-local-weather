@@ -102,6 +102,9 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
     }
 
     void bindWeather(Context context, double latitude, Locale locale, String windUnitFromPreferences, List<DetailedWeatherForecast> weather) {
+        if (weather == null) {
+            return;
+        }
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMMM", locale);
         Date date = new Date(weather.get(0).getDateTime() * 1000);
         Calendar currentRowDate = Calendar.getInstance();
