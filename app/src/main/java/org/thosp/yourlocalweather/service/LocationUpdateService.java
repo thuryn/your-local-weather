@@ -125,7 +125,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
     }
 
     @Override
-    public void processCanceledRequest() {
+    public void processCanceledRequest(Context context) {
         onLocationChangedCanceled();
     }
 

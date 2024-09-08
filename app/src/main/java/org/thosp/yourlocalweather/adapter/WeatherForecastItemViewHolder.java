@@ -1,7 +1,6 @@
 package org.thosp.yourlocalweather.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
-import org.thosp.yourlocalweather.model.WeatherCondition;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
@@ -23,10 +21,6 @@ import java.util.Locale;
 import java.util.Set;
 
 public class WeatherForecastItemViewHolder extends RecyclerView.ViewHolder {
-
-    private final String TAG = "ForecastViewHolder";
-
-    private DetailedWeatherForecast mWeatherForecast;
 
     private final Context mContext;
 
@@ -69,7 +63,6 @@ public class WeatherForecastItemViewHolder extends RecyclerView.ViewHolder {
                      Set<Integer> visibleColumns,
                      boolean isMin,
                      boolean isMax) {
-        mWeatherForecast = weather;
 
         Typeface typeface = Typeface.createFromAsset(mContext.getAssets(), "fonts/weathericons-regular-webfont.ttf");
 

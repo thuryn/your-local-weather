@@ -9,8 +9,8 @@
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">மொசில்லா இருப்பிட பணி வரம்பு</string>
     <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">நிலை பார் படவுரு பாணி</string>
     <string name="pref_title_vibrate" tools:ignore="MissingTranslation">அதிர்வு</string>
-    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">வானிலைக்கான புதுப்பிப்பு காலம் (இடம் 1,2,3 ...)</string>
-    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">இல்லை 00:00 முதல் 06:00 மணி வரை (இடம் 1,2,3 ...)</string>
+    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">வானிலைக்கான புதுப்பிப்பு காலம் (இடம் 1,2,3 …)</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">இல்லை 00:00 முதல் 06:00 மணி வரை (இடம் 1,2,3 …)</string>
     <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">இருப்பிடத்திற்கான புதுப்பிப்பு காலம் (இடம் 0)</string>
     <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">இல்லை 00:00 முதல் 06:00 மணி வரை (இடம் 0)</string>
     <string name="preference_title_activity_general" tools:ignore="MissingTranslation">பொது அமைப்புகள்</string>
@@ -99,19 +99,19 @@
     <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">என்ன சொல்ல:</string>
     <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">பயன்பாட்டின் இடம்:</string>
     <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">வழிகாட்டுதலுக்காக தேர்ந்தெடுக்கப்பட்ட இடம்:</string>
-    <string name="snow_label" tools:ignore="MissingTranslation">பனி: %1 $ s %2 $ s</string>
-    <string name="humidity_label" tools:ignore="MissingTranslation">ஈரப்பதம்: %1 $ s %2 $ s</string>
+    <string name="snow_label" tools:ignore="MissingTranslation">பனி: %1$s %2$s</string>
+    <string name="humidity_label" tools:ignore="MissingTranslation">ஈரப்பதம்: %1$s%2$s</string>
     <string name="label_humidity" tools:ignore="MissingTranslation">ஈரப்பதம்</string>
-    <string name="pressure_label" tools:ignore="MissingTranslation">அழுத்தம்: %1 $ s %2 $ s</string>
-    <string name="cloudiness_label" tools:ignore="MissingTranslation">மேகமூட்டம்: %1 $ s %2 $ s</string>
+    <string name="pressure_label" tools:ignore="MissingTranslation">அழுத்தம்: %1$s %2$s</string>
+    <string name="cloudiness_label" tools:ignore="MissingTranslation">மேகமூட்டம்: %1$s%2$s</string>
     <string name="label_cloudiness" tools:ignore="MissingTranslation">மேகமூட்டம்</string>
     <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">மாலை பொழுது</string>
     <string name="tty_say_weather_forecast_rarely" tools:ignore="MissingTranslation">அரிதாக</string>
     <string name="tty_say_weather_forecast_and" tools:ignore="MissingTranslation">மற்றும்</string>
-    <string name="rain_label" tools:ignore="MissingTranslation">மழை: %1 $ s %2 $ s</string>
-    <string name="last_update_label" tools:ignore="MissingTranslation">கடைசி புதுப்பிப்பு: %கள்</string>
-    <string name="sunrise_label" tools:ignore="MissingTranslation">சூரிய உதயம்: %கள்</string>
-    <string name="sunset_label" tools:ignore="MissingTranslation">சூரிய அச்தமனம்: %கள்</string>
+    <string name="rain_label" tools:ignore="MissingTranslation">மழை: %1$s %2$s</string>
+    <string name="last_update_label" tools:ignore="MissingTranslation">கடைசி புதுப்பிப்பு: %s</string>
+    <string name="sunrise_label" tools:ignore="MissingTranslation">சூரிய உதயம்: %s</string>
+    <string name="sunset_label" tools:ignore="MissingTranslation">சூரிய அச்தமனம்: %s</string>
     <string name="label_sunrise" tools:ignore="MissingTranslation">சூரிய தோன்றுகை</string>
     <string name="label_sunset" tools:ignore="MissingTranslation">சூரிய மறைவு</string>
     <string name="temperature_morning_title" tools:ignore="MissingTranslation">காலை</string>
@@ -119,14 +119,14 @@
     <string name="temperature_evening_title" tools:ignore="MissingTranslation">மாலை பொழுது</string>
     <string name="label_temperature" tools:ignore="MissingTranslation">வெப்ப நிலை</string>
     <string name="temperature_night_title" tools:ignore="MissingTranslation">இரவு</string>
-    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">வெளிப்படையான வெப்பநிலை: %கள்</string>
-    <string name="label_measured_temperature" tools:ignore="MissingTranslation">அளவிடப்பட்ட வெப்பநிலை: %கள்</string>
+    <string name="label_apparent_temperature" tools:ignore="MissingTranslation">வெளிப்படையான வெப்பநிலை: %s</string>
+    <string name="label_measured_temperature" tools:ignore="MissingTranslation">அளவிடப்பட்ட வெப்பநிலை: %s</string>
     <string name="label_wind" tools:ignore="MissingTranslation">காற்று</string>
     <string name="label_rain" tools:ignore="MissingTranslation">மழை</string>
     <string name="measured_appearance_primary_measured" tools:ignore="MissingTranslation">இரண்டுமே, அளவிடப்பட்ட முதன்மை</string>
     <string name="label_snow" tools:ignore="MissingTranslation">பனி</string>
     <string name="label_pressure" tools:ignore="MissingTranslation">அழுத்தம்</string>
-    <string name="dew_point_label" tools:ignore="MissingTranslation">பனி புள்ளி: %கள்</string>
+    <string name="dew_point_label" tools:ignore="MissingTranslation">பனி புள்ளி: %s</string>
     <string name="label_dew_point" tools:ignore="MissingTranslation">பனி புள்ளி</string>
     <string name="measured_only" tools:ignore="MissingTranslation">அளவிடப்பட்ட மதிப்பு மட்டுமே</string>
     <string name="measured_appearance_primary_appearance" tools:ignore="MissingTranslation">இரண்டுமே, தோற்றம் முதன்மை</string>
@@ -267,7 +267,7 @@
     <string name="graph_rain_label" tools:ignore="MissingTranslation">மழை</string>
     <string name="graph_snow_label" tools:ignore="MissingTranslation">பனி</string>
     <string name="graph_pressure_label" tools:ignore="MissingTranslation">அழுத்தம்</string>
-    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">இந்த நேரத்தில் %1 $ டி இடங்களுக்கு மேல் இருக்க உங்களுக்கு இசைவு இல்லை.</string>
+    <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">இந்த நேரத்தில் %1$d டி இடங்களுக்கு மேல் இருக்க உங்களுக்கு இசைவு இல்லை.</string>
     <string name="initial_guide_next" tools:ignore="MissingTranslation">அடுத்தது</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">முந்தைய</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">முடிக்க</string>
@@ -278,7 +278,7 @@
     <string name="title_activity_search" tools:ignore="MissingTranslation">இடம் தேடல்</string>
     <string name="label_activity_main" tools:ignore="MissingTranslation">தற்போதைய வானிலை</string>
     <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">நாள்தோறும் முன்னறிவிப்பு</string>
-    <string name="title_activity_license" tools:ignore="MissingTranslation">%கள் உரிமம்</string>
+    <string name="title_activity_license" tools:ignore="MissingTranslation">%s உரிமம்</string>
     <string name="forecast_settings_column_apparent_temperature" tools:ignore="MissingTranslation">தோற்ற வெப்பநிலை</string>
     <string name="forecast_settings_column_wind" tools:ignore="MissingTranslation">காற்று</string>
     <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">காற்றடிக்கும் திசை</string>
@@ -439,12 +439,12 @@
     <string name="subscription_expired" tools:ignore="MissingTranslation">அணுகல் காலாவதியானது. தயவுசெய்து பயன்பாட்டை மேம்படுத்தவும்.</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">உங்கள் திறந்த-மெட்டியோ அபிகே பதிவு செய்யப்படவில்லை.</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">வானிலை பகிர்ந்து கொள்ளுங்கள்</string>
-    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">நகரம்: %1 $ 
-\n வெப்பநிலை: %2 $ 
-\n விளக்கம்: %3 $ 
-\n காற்று: %4 $ s %5 $ 
-\n சூரிய உதயம்: %6 $ 
-\n சூரிய அச்தமனம்: %7 $ s</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">நகரம்: %1$s
+\n வெப்பநிலை: %2$s
+\n விளக்கம்: %3$s
+\n காற்று: %4$s %5$s
+\n சூரிய உதயம்: %6$s
+\n சூரிய அச்தமனம்: %7$s</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">உங்கள் உள்ளக வானிலை அறிவிப்புகள்</string>
     <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">வெப்ப நிலை</string>
     <string name="initial_guide_close" tools:ignore="MissingTranslation">மூடு</string>
@@ -468,7 +468,7 @@
     <string name="help_page_3_content" tools:ignore="MissingTranslation">இந்த விருப்பங்கள் முழு பயன்பாட்டிலும் செல்வாக்கைக் கொண்டுள்ளன.</string>
     <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> \u0020<b> வெப்பநிலை </b> - நீங்கள் வெப்பநிலை அலகு, <b> காற்று </b> ஐத் தேர்ந்தெடுக்கலாம் - நீங்கள் காற்றின் வேக அலகு மற்றும் <b> அழுத்தம் </b> ஐத் தேர்ந்தெடுக்கலாம் - அழுத்தத்திற்கான அலகு தேர்ந்தெடுக்கலாம். இந்த விருப்பங்களைப் பயன்படுத்தி மதிப்புகள் மீண்டும் கணக்கிடப்படுகின்றன.</string>
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"> \u0020<b> வானிலை விளக்கத்தை மறை </b> - தற்போதைய வானிலை பற்றிய விளக்கம் மறைக்கப்பட்டுள்ளது. மாறும் ஐகானால் மட்டுமே தற்போதைய வானிலை மட்டுமே பார்க்க முடியும்.</string>
-    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation">"  &lt;b&gt; இருப்பிடத்திற்கான புதுப்பிப்பு காலம் (இடம் 0) &lt;/b&gt; - இருப்பிடத்திற்கான புதுப்பிப்பு காலத்தை நீங்கள் அமைக்கலாம் 0 - இருப்பிடம் 0 செல்-, வைஃபை நெட்வொர்க்குகள் மற்றும் சி.பி.எச் ஆகியவற்றின் படி இருப்பிடத்தைப் புதுப்பிக்கும் திறன் உள்ளது. முடுக்கமானி &lt;/i&gt; மூலம் புதுப்பிப்பு &lt;i&gt; ஐ நீங்கள் தேர்ந்தெடுக்கும்போது, இயக்கத்தைக் கண்டறிய பயன்பாடு அதைப் பயன்படுத்துகிறது. இதிலிருந்து, தூரம் கணக்கிடப்படுகிறது. தூர வரம்பை எட்டும்போது, 15 நிமிடங்களில் எந்த புதுப்பிப்பும் நடக்காதபோது, இருப்பிடமும் தற்போதைய வானிலை புதுப்பிக்கப்படும். பயன்பாட்டால் உங்கள் இருப்பிடத்தைப் பெற முடியாதபோது, விட்செட்டில் அறியப்படாத இருப்பிட லேபிளைக் காணலாம். பயன்பாட்டிற்கு இருப்பிட நிலை இல்லாதபோது, அது 5 நிமிடங்களில் மீண்டும் முயற்சிக்கும். &lt;b&gt; வானிலைக்கான புதுப்பிப்பு காலத்தின் நேர இடைவெளிகளின் அடிப்படையில் இருப்பிட புதுப்பிப்பை நீங்கள் தேர்ந்தெடுக்கலாம் (இடம் 1,2,3 ...) &lt;/b&gt; - கைமுறையாக கண்டுபிடிக்கப்பட்ட இடங்களுக்கு புதுப்பிக்க வானிலை அமைக்கலாம்."</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation">"  &lt;b&gt; இருப்பிடத்திற்கான புதுப்பிப்பு காலம் (இடம் 0) &lt;/b&gt; - இருப்பிடத்திற்கான புதுப்பிப்பு காலத்தை நீங்கள் அமைக்கலாம் 0 - இருப்பிடம் 0 செல்-, வைஃபை நெட்வொர்க்குகள் மற்றும் சி.பி.எச் ஆகியவற்றின் படி இருப்பிடத்தைப் புதுப்பிக்கும் திறன் உள்ளது. முடுக்கமானி &lt;/i&gt; மூலம் புதுப்பிப்பு &lt;i&gt; ஐ நீங்கள் தேர்ந்தெடுக்கும்போது, இயக்கத்தைக் கண்டறிய பயன்பாடு அதைப் பயன்படுத்துகிறது. இதிலிருந்து, தூரம் கணக்கிடப்படுகிறது. தூர வரம்பை எட்டும்போது, 15 நிமிடங்களில் எந்த புதுப்பிப்பும் நடக்காதபோது, இருப்பிடமும் தற்போதைய வானிலை புதுப்பிக்கப்படும். பயன்பாட்டால் உங்கள் இருப்பிடத்தைப் பெற முடியாதபோது, விட்செட்டில் அறியப்படாத இருப்பிட லேபிளைக் காணலாம். பயன்பாட்டிற்கு இருப்பிட நிலை இல்லாதபோது, அது 5 நிமிடங்களில் மீண்டும் முயற்சிக்கும். &lt;b&gt; வானிலைக்கான புதுப்பிப்பு காலத்தின் நேர இடைவெளிகளின் அடிப்படையில் இருப்பிட புதுப்பிப்பை நீங்கள் தேர்ந்தெடுக்கலாம் (இடம் 1,2,3 …) &lt;/b&gt; - கைமுறையாக கண்டுபிடிக்கப்பட்ட இடங்களுக்கு புதுப்பிக்க வானிலை அமைக்கலாம்."</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">தேவைப்படும்போது &lt;/b&gt; விருப்பத்தை நீங்கள் சரிபார்க்கும்போது, செல் அல்லது வைஃபை நெட்வொர்க்குகளைப் பயன்படுத்தி உங்கள் இருப்பிடத்தைக் கண்டுபிடிக்க பயன்பாடு முயற்சிக்கும். பிணையம் சேவைகளைப் பயன்படுத்தி இருப்பிடத்தைக் கண்டுபிடிக்க முடியாதபோது, இருப்பிடத்தைப் பெற பயன்பாடு பல வினாடிகளுக்கு சி.பி.எச்.</string>
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">"  &lt;b&gt; இடம் மற்றும் முகவரி மூல &lt;/b
 \n பயன்பாடு இருப்பிடத்தையும் முகவரியையும் எங்கிருந்து பெறுகிறது என்பதை நீங்கள் தேர்ந்தெடுக்கலாம்."</string>
@@ -572,14 +572,14 @@
     <string name="tts_say_current_weather_with_location" tools:ignore="MissingTranslation">இருப்பிடத்திற்கான தற்போதைய வானிலை %s</string>
     <string name="tts_say_current_weather" tools:ignore="MissingTranslation">தற்போதைய வானிலை</string>
     <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">நாள் நேரம்</string>
-    <string name="wind_label" tools:ignore="MissingTranslation">காற்று: %1 $ s %2 $ s %3 $ s</string>
-    <string name="tty_say_wind" tools:ignore="MissingTranslation">%3 $ s காற்று %1 $ s %2 $ s</string>
-    <string name="tty_say_temperature" tools:ignore="MissingTranslation">வெப்பநிலை %கள்</string>
-    <string name="tty_say_max_rain" tools:ignore="MissingTranslation">அதிகபட்ச மழை மழைப்பொழிவு %கள் மில்லிமீட்டர்</string>
-    <string name="tty_say_max_snow" tools:ignore="MissingTranslation">அதிகபட்ச பனி மழைப்பொழிவு %கள் மில்லிமீட்டர்</string>
-    <string name="tty_say_max_wind" tools:ignore="MissingTranslation">அதிகபட்சம் %1 $ s %2 $ s இல் %3 $ s காற்று</string>
-    <string name="tty_say_temp_max" tools:ignore="MissingTranslation">அதிகபட்ச வெப்பநிலை %1 $ s %2 $ s ஆகும்</string>
-    <string name="tty_say_temp_min" tools:ignore="MissingTranslation">குறைந்தபட்ச வெப்பநிலை %1 $ s %2 $ s ஆகும்</string>
+    <string name="wind_label" tools:ignore="MissingTranslation">காற்று: %1$s %2$s %3$s</string>
+    <string name="tty_say_wind" tools:ignore="MissingTranslation">%3$s காற்று %1$s %2$s</string>
+    <string name="tty_say_temperature" tools:ignore="MissingTranslation">வெப்பநிலை %s</string>
+    <string name="tty_say_max_rain" tools:ignore="MissingTranslation">அதிகபட்ச மழை மழைப்பொழிவு %s மில்லிமீட்டர்</string>
+    <string name="tty_say_max_snow" tools:ignore="MissingTranslation">அதிகபட்ச பனி மழைப்பொழிவு %s மில்லிமீட்டர்</string>
+    <string name="tty_say_max_wind" tools:ignore="MissingTranslation">அதிகபட்சம் %1$s %2$s இல் %3$s காற்று</string>
+    <string name="tty_say_temp_max" tools:ignore="MissingTranslation">அதிகபட்ச வெப்பநிலை %1$s %2$s ஆகும்</string>
+    <string name="tty_say_temp_min" tools:ignore="MissingTranslation">குறைந்தபட்ச வெப்பநிலை %1$s %2$s ஆகும்</string>
     <string name="tty_say_weather_forecast" tools:ignore="MissingTranslation">வானிலை முன்னறிவிப்பு</string>
     <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">இன்று</string>
     <string name="tty_say_weather_forecast_tomorrow" tools:ignore="MissingTranslation">நாளை</string>

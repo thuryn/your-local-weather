@@ -13,27 +13,25 @@ public class MozillaProcessResultFromAddressResolution implements ProcessResultF
     public static final String TAG = "MozillaProcessResultFromAddressResolution";
 
     private final Context context;
-    private final Location location;
     private final MozillaLocationService mozillaLocationService;
 
-    public MozillaProcessResultFromAddressResolution(Context context, Location location, MozillaLocationService mozillaLocationService) {
+    public MozillaProcessResultFromAddressResolution(Context context, MozillaLocationService mozillaLocationService) {
         this.context = context;
-        this.location = location;
         this.mozillaLocationService = mozillaLocationService;
     }
 
     public void processAddresses(Location location, List<Address> addresses) {
         appendLog(context, TAG, "processUpdateOfLocation:addresses:", addresses);
         Address resolvedAddress = null;
-        if ((addresses != null) && (addresses.size() > 0)) {
+        if ((addresses != null) && (!addresses.isEmpty())) {
             resolvedAddress = addresses.get(0);
         }
         appendLog(context, TAG, "processUpdateOfLocation:location:", location, ", address=", resolvedAddress);
-        mozillaLocationService.reportNewLocation(location, resolvedAddress);
+        mozillaLocationService.reportNewLocation(context, location, resolvedAddress);
     }
 
     @Override
-    public void processCanceledRequest() {
-        mozillaLocationService.reportCanceledRequestForNewLocation();
+    public void processCanceledRequest(Context context) {
+        mozillaLocationService.reportCanceledRequestForNewLocation(context);
     }
 }

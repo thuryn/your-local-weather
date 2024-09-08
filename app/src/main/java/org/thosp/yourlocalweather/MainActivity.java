@@ -502,7 +502,7 @@ public class MainActivity extends BaseActivity
 
         mIconWeatherView = findViewById(R.id.main_weather_icon);
         mTemperatureView = findViewById(R.id.main_temperature);
-	    dewPointView = findViewById(R.id.main_dew_point);
+        dewPointView = findViewById(R.id.main_dew_point);
         secondTemperatureView = findViewById(R.id.main_second_temperature);
         mDescriptionView = findViewById(R.id.main_description);
         mPressureView = findViewById(R.id.main_pressure);

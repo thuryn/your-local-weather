@@ -1,17 +1,19 @@
 package org.thosp.yourlocalweather.widget;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 import android.content.Context;
 import android.content.Intent;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.RemoteViews;
+
+import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
-import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.GraphUtils;
@@ -19,10 +21,6 @@ import org.thosp.yourlocalweather.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.Set;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
-
-import androidx.core.content.ContextCompat;
 
 public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
 
@@ -33,7 +31,7 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         super.onReceive(context, intent);
-        if (intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE_OPTIONS") ||
+        if ((intent.getAction() != null) && intent.getAction().equals("android.appwidget.action.APPWIDGET_UPDATE_OPTIONS") ||
                 intent.getAction().equals(Constants.ACTION_APPWIDGET_CHANGE_GRAPH_SCALE)) {
             GraphUtils.invalidateGraph();
             refreshWidgetValues(context);
@@ -77,9 +75,7 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
         WeatherGraphWidgetProvider.setWidgetTheme(context, remoteViews, appWidgetId);
         WeatherGraphWidgetProvider.setWidgetIntents(context, remoteViews, WeatherGraphWidgetProvider.class, appWidgetId);
 
-        ContextCompat.getMainExecutor(context).execute(()  -> {
-                    remoteViews.setTextViewText(R.id.widget_weather_graph_1x3_widget_city, Utils.getCityAndCountry(context, currentLocation));
-                });
+        ContextCompat.getMainExecutor(context).execute(()  -> remoteViews.setTextViewText(R.id.widget_weather_graph_1x3_widget_city, Utils.getCityAndCountry(context, currentLocation)));
 
         try {
             final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
@@ -136,7 +132,7 @@ public class WeatherGraphWidgetProvider extends AbstractWidgetProvider {
 
     @Override
     ArrayList<String> getEnabledActionPlaces() {
-        ArrayList<String> enabledWidgetActions = new ArrayList();
+        ArrayList<String> enabledWidgetActions = new ArrayList<>();
         enabledWidgetActions.add("action_graph");
         return enabledWidgetActions;
     }

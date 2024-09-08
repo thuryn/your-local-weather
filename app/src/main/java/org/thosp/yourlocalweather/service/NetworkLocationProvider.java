@@ -35,10 +35,6 @@ public class NetworkLocationProvider extends Service {
 
     public static final String TAG = "NetworkLocationProvider";
 
-    public enum NetworkLocationProviderActions {
-        START_LOCATION_UPDATE, LOCATION_UPDATE_CELLS_ONLY
-    }
-
     public TelephonyManager mTelephonyManager;
     WifiManager.WifiLock mWifiLock;
     private WifiManager wifiManager;
@@ -177,7 +173,7 @@ public class NetworkLocationProvider extends Service {
             }
         }
         if (inputLocation != null) {
-            MozillaLocationService.getInstance(getBaseContext()).processUpdateOfLocation(getBaseContext(), inputLocation);
+            MozillaLocationService.getInstance().processUpdateOfLocation(getBaseContext(), inputLocation);
         } else {
             sendUpdateToLocationBackends();
         }
@@ -209,9 +205,13 @@ public class NetworkLocationProvider extends Service {
             jobScheduler.schedule(jobInfo);
         } else {
             intentToCancel = getIntentToGetCellsOnly();
-            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + 8000,
-                    intentToCancel);
+            try {
+                alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                        SystemClock.elapsedRealtime() + 8000,
+                        intentToCancel);
+            } catch (SecurityException se) {
+                appendLog(getBaseContext(), TAG, "SecurityException in update():", se);
+            }
         }
         appendLog(getBaseContext(), TAG, "update():cells only task scheduled");
     }
@@ -220,7 +220,7 @@ public class NetworkLocationProvider extends Service {
         appendLog(getBaseContext(), TAG,
                 "getLocationFromWifisAndCells(), scans=",
                         scans);
-        MozillaLocationService.getInstance(getBaseContext()).getLocationFromCellsAndWifis(getBaseContext(),
+        MozillaLocationService.getInstance().getLocationFromCellsAndWifis(getBaseContext(),
                                                                           LocationNetworkSourcesService.getInstance().getCells(getBaseContext(),
                                                                           mTelephonyManager),
                                                                           scans);

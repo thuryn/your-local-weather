@@ -1,5 +1,10 @@
 package org.thosp.yourlocalweather.service;
 
+import static android.os.Build.VERSION.RELEASE;
+import static org.thosp.yourlocalweather.BuildConfig.VERSION_NAME;
+import static org.thosp.yourlocalweather.model.ReverseGeocodingCacheContract.LocationAddressCache;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -9,8 +14,9 @@ import android.location.Location;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Parcel;
-import android.preference.PreferenceManager;
 import android.util.Log;
+
+import androidx.annotation.NonNull;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -20,7 +26,6 @@ import org.json.JSONObject;
 import org.microg.address.Formatter;
 import org.thosp.yourlocalweather.model.ReverseGeocodingCacheDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.Constants;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,11 +38,6 @@ import java.util.Locale;
 import java.util.Map;
 
 import cz.msebera.android.httpclient.Header;
-
-import static android.os.Build.VERSION.RELEASE;
-import static org.thosp.yourlocalweather.BuildConfig.VERSION_NAME;
-import static org.thosp.yourlocalweather.model.ReverseGeocodingCacheContract.LocationAddressCache;
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class NominatimLocationService {
 
@@ -108,7 +108,7 @@ public class NominatimLocationService {
                     nextAlowedRequestTimestamp,
                     ", now=",
                     now);
-            processResultFromAddressResolution.processCanceledRequest();
+            processResultFromAddressResolution.processCanceledRequest(context);
             return;
         }
 
@@ -117,48 +117,43 @@ public class NominatimLocationService {
                 locale.split("_")[0], latitude, longitude);
         appendLog(context, TAG, "Constructed URL ", url);
         Handler mainHandler = new Handler(Looper.getMainLooper());
-        Runnable myRunnable = new Runnable() {
+        Runnable myRunnable = () -> client.get(url, null, new AsyncHttpResponseHandler() {
+
             @Override
-            public void run() {
-                client.get(url, null, new AsyncHttpResponseHandler() {
-
-                    @Override
-                    public void onStart() {
-                        // called before request is started
-                    }
-
-                    @Override
-                    public void onSuccess(int statusCode, Header[] headers, byte[] response) {
-                        try {
-                            String rawResult = new String(response);
-                            JSONObject result = new JSONObject(rawResult);
-                            appendLog(context, TAG, "result from nominatim server:", rawResult);
-
-                            Address address = parseResponse(localeFromLocaleString(locale), result);
-                            if (address != null) {
-                                List<Address> addresses = new ArrayList<>();
-                                addresses.add(address);
-                                storeAddressToCache(context, mDbHelper, latitude, longitude, locale, address);
-                                processResultFromAddressResolution.processAddresses(location, addresses);
-                            }
-                        } catch (JSONException jsonException) {
-                            appendLog(context, TAG, "jsonException:", jsonException);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                        appendLog(context, TAG, "onFailure:", statusCode);
-                        processResultFromAddressResolution.processAddresses(location, null);
-                    }
-
-                    @Override
-                    public void onRetry(int retryNo) {
-                        // called when request is retried
-                    }
-                });
+            public void onStart() {
+                // called before request is started
             }
-        };
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                try {
+                    String rawResult = new String(response);
+                    JSONObject result = new JSONObject(rawResult);
+                    appendLog(context, TAG, "result from nominatim server:", rawResult);
+
+                    Address address = parseResponse(localeFromLocaleString(locale), result);
+                    if (address != null) {
+                        List<Address> addresses = new ArrayList<>();
+                        addresses.add(address);
+                        storeAddressToCache(context, mDbHelper, latitude, longitude, locale, address);
+                        processResultFromAddressResolution.processAddresses(location, addresses);
+                    }
+                } catch (JSONException jsonException) {
+                    appendLog(context, TAG, "jsonException:", jsonException);
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                appendLog(context, TAG, "onFailure:", statusCode);
+                processResultFromAddressResolution.processAddresses(location, null);
+            }
+
+            @Override
+            public void onRetry(int retryNo) {
+                // called when request is retried
+            }
+        });
         mainHandler.post(myRunnable);
     }
 
@@ -316,17 +311,15 @@ public class NominatimLocationService {
                 String.valueOf(latitudeLow),
                 locale };
 
-        Cursor cursor = null;
-        try {
-            cursor = db.query(
-                    LocationAddressCache.TABLE_NAME,
-                    projection,
-                    selection,
-                    selectionArgs,
-                    null,
-                    null,
-                    null
-            );
+        try (Cursor cursor = db.query(
+                LocationAddressCache.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        )) {
 
             if (!cursor.moveToNext()) {
                 cursor.close();
@@ -336,10 +329,6 @@ public class NominatimLocationService {
             byte[] cachedAddressBytes = cursor.getBlob(
                     cursor.getColumnIndexOrThrow(LocationAddressCache.COLUMN_NAME_ADDRESS));
             return ReverseGeocodingCacheDbHelper.getAddressFromBytes(cachedAddressBytes);
-        } finally {
-            if (cursor != null) {
-                cursor.close();
-            }
         }
     }
 
@@ -380,9 +369,7 @@ public class NominatimLocationService {
                     LocationAddressCache._ID
             };
 
-            Cursor cursor = null;
-            try {
-                cursor = db.query(
+            try (Cursor cursor = db.query(
                     LocationAddressCache.TABLE_NAME,
                     projection,
                     null,
@@ -390,7 +377,7 @@ public class NominatimLocationService {
                     null,
                     null,
                     null
-                );
+            )) {
 
                 while (cursor.moveToNext()) {
                     Integer recordId = cursor.getInt(
@@ -403,22 +390,19 @@ public class NominatimLocationService {
                         mDbHelper.deleteRecordFromTable(recordId);
                     }
                 }
-            } finally {
-                if (cursor != null) {
-                    cursor.close();
-                }
             }
             cachedAddresses = new ArrayList<>();
         }
     }
 
-    class IterableIterator<T> implements Iterable<T> {
+    static class IterableIterator<T> implements Iterable<T> {
         Iterator<T> i;
 
         public IterableIterator(Iterator<T> i) {
             this.i = i;
         }
 
+        @NonNull
         @Override
         public Iterator<T> iterator() {
             return i;

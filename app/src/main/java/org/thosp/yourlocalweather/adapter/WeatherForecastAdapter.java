@@ -1,18 +1,16 @@
 package org.thosp.yourlocalweather.adapter;
 
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
-
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -23,8 +21,6 @@ import java.util.Set;
 
 public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecastViewHolder> {
 
-    private final String TAG = "WeatherForecastAdapter";
-    private static final SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy");
     private final Context mContext;
     private final Set<Integer> visibleColumns;
     private final Map<Integer, List<DetailedWeatherForecast>> mWeatherList;
@@ -76,10 +72,14 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
                 mWeatherList.put(forecastDay, dayForecastList);
                 keys.add(forecastDay);
             }
-            mWeatherList.get(forecastDay).add(forecast);
+            List<DetailedWeatherForecast> listForDay = mWeatherList.get(forecastDay);
+            if (listForDay != null) {
+                listForDay.add(forecast);
+            }
         }
     }
 
+    @NonNull
     @Override
     public WeatherForecastViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());

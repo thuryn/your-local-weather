@@ -1,14 +1,13 @@
 package org.thosp.yourlocalweather.service;
 
-import android.content.ComponentName;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.location.Address;
 import android.location.Location;
 import android.net.wifi.ScanResult;
 import android.os.Handler;
-import android.os.IBinder;
 import android.os.Looper;
 import android.telephony.TelephonyManager;
 import android.util.Log;
@@ -20,18 +19,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.PreferenceUtil;
 
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
-
-import androidx.core.content.ContextCompat;
 
 public class MozillaLocationService {
 
@@ -40,15 +32,13 @@ public class MozillaLocationService {
     private static final AsyncHttpClient client = new AsyncHttpClient();
 
     private static MozillaLocationService instance;
-    private Context context;
 
     private MozillaLocationService() {
     }
 
-    public synchronized static MozillaLocationService getInstance(Context context) {
+    public synchronized static MozillaLocationService getInstance() {
         if (instance == null) {
             instance = new MozillaLocationService();
-            instance.context = context.getApplicationContext();
         }
         return instance;
     }
@@ -75,51 +65,44 @@ public class MozillaLocationService {
             appendLog(context, TAG, "MLS request = " + request);
             final StringEntity entity = new StringEntity(request);
             Handler mainHandler = new Handler(Looper.getMainLooper());
-            Runnable myRunnable = new Runnable() {
+            Runnable myRunnable = () -> client.post(context,
+                        String.format(SERVICE_URL, API_KEY),
+                        entity,
+                        "application/json",
+                        new AsyncHttpResponseHandler() {
+
                 @Override
-                public void run() {
-                    client.post(context,
-                                String.format(SERVICE_URL, API_KEY),
-                                entity,
-                                "application/json",
-                                new AsyncHttpResponseHandler() {
-
-                        @Override
-                        public void onStart() {
-                            // called before request is started
-                        }
-
-                        @Override
-                        public void onSuccess(int statusCode, Header[] headers, byte[] httpResponse) {
-                            Location response = null;
-                            try {
-                                String result = new String(httpResponse);
-                                appendLog(context, TAG, "response: ", result);
-                                JSONObject responseJson = new JSONObject(result);
-                                double lat = responseJson.getJSONObject("location").getDouble("lat");
-                                double lon = responseJson.getJSONObject("location").getDouble("lng");
-                                double acc = responseJson.getDouble("accuracy");
-                                response = create(PROVIDER, lat, lon, (float) acc);
-                                processUpdateOfLocation(context, response);
-                            } catch (JSONException e) {
-                                appendLog(context, TAG, e.toString());
-                                processUpdateOfLocation(context, null);
-                            }
-                        }
-
-                        @Override
-                        public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                            appendLog(context, TAG, "onFailure:", statusCode);
-                            processUpdateOfLocation(context, null);
-                        }
-
-                        @Override
-                        public void onRetry(int retryNo) {
-                            // called when request is retried
-                        }
-                    });
+                public void onStart() {
+                    // called before request is started
                 }
-            };
+
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, byte[] httpResponse) {
+                    try {
+                        String result = new String(httpResponse);
+                        appendLog(context, TAG, "response: ", result);
+                        JSONObject responseJson = new JSONObject(result);
+                        double lat = responseJson.getJSONObject("location").getDouble("lat");
+                        double lon = responseJson.getJSONObject("location").getDouble("lng");
+                        double acc = responseJson.getDouble("accuracy");
+                        processUpdateOfLocation(context, create(PROVIDER, lat, lon, (float) acc));
+                    } catch (JSONException e) {
+                        appendLog(context, TAG, e.toString());
+                        processUpdateOfLocation(context, null);
+                    }
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                    appendLog(context, TAG, "onFailure:", statusCode);
+                    processUpdateOfLocation(context, null);
+                }
+
+                @Override
+                public void onRetry(int retryNo) {
+                    // called when request is retried
+                }
+            });
             mainHandler.post(myRunnable);
         } catch (Exception e) {
             Log.w(TAG, e);
@@ -146,12 +129,12 @@ public class MozillaLocationService {
                     location.getLongitude(),
                     1,
                     locale,
-                    new MozillaProcessResultFromAddressResolution(context, location, this),
+                    new MozillaProcessResultFromAddressResolution(context, this),
                     location);
             return;
         }
         appendLog(context, TAG, "processUpdateOfLocation:reportNewLocation:", location);
-        reportNewLocation(location, null);
+        reportNewLocation(context, location, null);
     }
 
     private static String createRequest(List<Cell> cells, List<ScanResult> wiFis) throws JSONException {
@@ -203,7 +186,7 @@ public class MozillaLocationService {
     }
 
     /**
-     * see https://mozilla-ichnaea.readthedocs.org/en/latest/cell.html
+     * see <a href="https://mozilla-ichnaea.readthedocs.org/en/latest/cell.html">...</a>
      */
     @SuppressWarnings("MagicNumber")
     private static int calculateAsu(String networkType, int signal) {
@@ -279,13 +262,13 @@ public class MozillaLocationService {
         return location;
     }
 
-    protected void reportCanceledRequestForNewLocation() {
+    protected void reportCanceledRequestForNewLocation(Context context) {
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CANCELED");
         intent.setPackage("org.thosp.yourlocalweather");
         context.startService(intent);
     }
 
-    protected void reportNewLocation(Location location, Address address) {
+    protected void reportNewLocation(Context context, Location location, Address address) {
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CHANGED");
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("location", location);

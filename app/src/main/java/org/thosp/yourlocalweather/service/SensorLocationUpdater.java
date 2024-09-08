@@ -1,28 +1,18 @@
 package org.thosp.yourlocalweather.service;
 
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.os.Build;
-import android.os.IBinder;
-
-import org.thosp.yourlocalweather.YourLocalWeather;
-import org.thosp.yourlocalweather.model.LocationsDbHelper;
-
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLogSensorsCheck;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLogSensorsEnd;
 
+import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+
 import androidx.core.content.ContextCompat;
+
+import org.thosp.yourlocalweather.YourLocalWeather;
+import org.thosp.yourlocalweather.model.LocationsDbHelper;
 
 public class SensorLocationUpdater extends AbstractCommonService implements SensorEventListener {
 
@@ -66,9 +56,7 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
             if (mySensor.getType() != Sensor.TYPE_ACCELEROMETER) {
                 return;
             }
-            YourLocalWeather.executor.submit(() -> {
-                processSensorEvent(sensorEvent);
-            });
+            YourLocalWeather.executor.submit(() -> processSensorEvent(sensorEvent));
         } catch (Exception e) {
             appendLog(getBaseContext(), TAG, "Exception on onSensorChanged", e);
         }
@@ -102,11 +90,11 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
                                               countedAcc,
                                               dT);
                     }
-                    currentLengthLowPassed += countedLength;
+                    currentLengthLowPassed += (float) countedLength;
                     lastMovement = highPassFilter(sensorEvent);
                     return;
                 }
-                currentLength += countedLength;
+                currentLength += (float) countedLength;
             } else {
                 countedLength = 0;
                 countedAcc = 0;
@@ -189,7 +177,7 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
         return new MoveVector(sensorEvent.values[0] - gravity[0], sensorEvent.values[1] - gravity[1], sensorEvent.values[2] - gravity[2]);
     }
 
-    private class MoveVector {
+    private static class MoveVector {
         private final float x;
         private final float y;
         private final float z;

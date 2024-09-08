@@ -15,8 +15,6 @@
         android:padding="8dp">
 
         <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -38,14 +36,11 @@
                 android:fontFamily="sans-serif"
                 android:textSize="14sp"
                 android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
                 android:textAppearance="?android:attr/textAppearanceListItemSmall"
                 tools:text="GB"/>
         </LinearLayout>
 
         <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -66,7 +61,6 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
                 android:layout_marginStart="20dp"
-                android:layout_marginLeft="20dp"
                 android:textSize="14sp"
                 android:textAppearance="?android:attr/textAppearanceListItemSmall"
                 tools:text="GB"/>
@@ -97,7 +91,7 @@
                 android:backgroundTint="@color/swipe_red"
                 android:fontFamily="sans-serif"
                 android:text="@string/locations_delete_location"
-                tools:backgroundTint="red" />
+                tools:backgroundTint="@color/swipe_red" />
         </LinearLayout>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

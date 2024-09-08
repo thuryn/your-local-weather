@@ -1,17 +1,12 @@
 package org.thosp.yourlocalweather;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 import android.app.ProgressDialog;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.res.Configuration;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
 import android.preference.PreferenceActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +21,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.TaskStackBuilder;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -35,34 +29,19 @@ import com.google.android.material.navigation.NavigationView;
 import org.thosp.yourlocalweather.help.HelpActivity;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
 import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 import org.thosp.yourlocalweather.settings.fragments.AboutPreferenceFragment;
-import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
-import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
-
 public abstract class BaseActivity extends AppCompatActivity {
-
-    private final String TAG = "BaseActivity";
 
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private Toolbar mToolbar;
-    private TextView mHeaderCity;
+    //private TextView mHeaderCity;
     protected LocationsDbHelper locationsDbHelper;
     protected Location currentLocation;
     protected TextView localityView;
@@ -111,9 +90,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         Context savedContext = this;
         YourLocalWeather.executor.submit(() -> {
             AppPreference.setCurrentLocationId(savedContext, currentLocation);
-            runOnUiThread(() -> {
-                localityView.setText(Utils.getCityAndCountry(savedContext, currentLocation));
-            });
+            runOnUiThread(() -> localityView.setText(Utils.getCityAndCountry(savedContext, currentLocation)));
             updateUI();
         });
     }
@@ -135,19 +112,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         mDrawerToggle.syncState();
 
         if (mToolbar != null) {
-            mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mDrawerLayout.openDrawer(GravityCompat.START);
-                }
-            });
+            mToolbar.setNavigationOnClickListener(view -> mDrawerLayout.openDrawer(GravityCompat.START));
         }
 
         configureNavView();
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         if (mDrawerLayout != null) {
             mDrawerToggle.onConfigurationChanged(newConfig);
@@ -159,7 +131,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(navigationViewListener);
 
         View headerLayout = navigationView.getHeaderView(0);
-        mHeaderCity = headerLayout.findViewById(R.id.nav_header_city);
+        //mHeaderCity = headerLayout.findViewById(R.id.nav_header_city);
         //mHeaderCity.setText(Utils.getCityAndCountry(this));
     }
 
@@ -218,25 +190,18 @@ public abstract class BaseActivity extends AppCompatActivity {
             };
 
     private void createBackStack(Intent intent) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            TaskStackBuilder builder = TaskStackBuilder.create(this);
-            builder.addNextIntentWithParentStack(intent);
-            builder.startActivities();
-        } else {
-            startActivity(intent);
-            finish();
-        }
+        TaskStackBuilder builder = TaskStackBuilder.create(this);
+        builder.addNextIntentWithParentStack(intent);
+        builder.startActivities();
     }
 
-    protected Toolbar getToolbar() {
+    protected void getToolbar() {
         if (mToolbar == null) {
             mToolbar = findViewById(R.id.toolbar);
             if (mToolbar != null) {
                 setSupportActionBar(mToolbar);
             }
         }
-
-        return mToolbar;
     }
 
     @Override
@@ -267,13 +232,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         return dialog;
     }
 
-    protected void sendMessageToReconciliationDbService(boolean force) {
+    protected void sendMessageToReconciliationDbService() {
+        String TAG = "BaseActivity";
         appendLog(this,
                 TAG,
                 "going run reconciliation DB service");
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_RECONCILIATION");
         intent.setPackage("org.thosp.yourlocalweather");
-        intent.putExtra("force", force);
+        intent.putExtra("force", true);
         startService(intent);
     }
 

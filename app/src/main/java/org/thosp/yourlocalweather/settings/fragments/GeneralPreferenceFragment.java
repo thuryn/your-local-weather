@@ -1,18 +1,12 @@
 package org.thosp.yourlocalweather.settings.fragments;
 
-import android.app.Activity;
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 import android.app.DialogFragment;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
 import android.preference.EditTextPreference;
 import android.preference.ListPreference;
 import android.preference.PreferenceFragment;
@@ -23,20 +17,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.google.android.material.textfield.TextInputEditText;
-
-import org.thosp.yourlocalweather.MainActivity;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.SettingsActivity;
 import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.service.ReconciliationDbService;
 import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
-import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.security.MessageDigest;
@@ -44,18 +33,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
-
-import androidx.core.content.ContextCompat;
 
 public class GeneralPreferenceFragment extends PreferenceFragment implements
         SharedPreferences.OnSharedPreferenceChangeListener {
