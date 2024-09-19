@@ -166,7 +166,7 @@
     <string name="location_geocoder_system" tools:ignore="MissingTranslation">系统</string>
     <string name="app_name" tools:ignore="MissingTranslation">天气</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">访问权限已过期。请升级应用。</string>
-    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">您的 OpenweathermapApiKey 未注册。</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">您的 Open-Meteo ApiKey 未注册。</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">您可以选择定位方法 - <i>系统</i> 选项使用 Google 服务通过网络（蜂窝网络和 Wi-Fi）获取位置。<i>本地 MLS 和 Nominatim</i> 选项使用 Mozilla 位置服务获取位置坐标并使用 Nominatim 服务获取地址名称。第二个选项需要电话呼叫权限以获取有关蜂窝网络的信息。已预选为首选项。</string>
     <string name="initial_guide_title_5" tools:ignore="MissingTranslation">唤醒策略选项</string>
     <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">某些手机型号不会正确报告已连接的蜂窝网络除非屏幕点亮。首选项（屏幕点亮）有一个缺点，即手机会点亮屏幕几秒钟。这对电池寿命有很小的影响。开始时开启它，并尝试关闭它，看看是否仍然更新位置。</string>
@@ -178,7 +178,7 @@
 \n下一个屏幕将解释所请求的权限，并为您提供请求它们的选项。
 \n 
 \n享受这个应用吧。</string>
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">此应用使用蜂窝网络（BTS）、Wi-Fi 以及，如果以上方法失败，GPS 定位以显示当地天气，同时从 Mozilla 位置服务获取坐标。此应用至少需要：一个 GMS 网络基站或两个可达 Wi-Fi 网络或任何 GMS 和 Wi-Fi 网络联合。使用手机或平板电脑上的微件，您可以在主屏幕上看到您的位置和当前天气。位置更新可以是周期性的（例如每小时），或者应用可以使用加速度计检测距离大于一定值的移动。在你的口袋里，距离增加得更快。您可以关闭位置更新 - 仅更新天气。应用会以指定的时间间隔更新位置和天气。例如，您可以将更新周期设置为一小时。天气在更新位置后或屏幕打开时立即更新 - 但间隔不小于 15 分钟（且在过去的 15 分钟内未更新天气）。这些信息用于通过 Mozilla 位置服务获取位置坐标。当无法从蜂窝网络和 Wi-Fi 网络中获取位置时，应用将尝试使用 GPS。位置坐标用于通过 Nominatim 服务获取地址。该地址在应用或微件中使用。此应用使用 OpenWeatherMap.org 服务来获取当前天气。</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">此应用使用蜂窝网络（BTS）、Wi-Fi 以及，如果以上方法失败，GPS 定位以显示当地天气，同时从 Mozilla 位置服务获取坐标。此应用至少需要：一个 GMS 网络基站或两个可达 Wi-Fi 网络或任何 GMS 和 Wi-Fi 网络联合。使用手机或平板电脑上的微件，您可以在主屏幕上看到您的位置和当前天气。位置更新可以是周期性的（例如每小时），或者应用可以使用加速度计检测距离大于一定值的移动。在你的口袋里，距离增加得更快。您可以关闭位置更新 - 仅更新天气。应用会以指定的时间间隔更新位置和天气。例如，您可以将更新周期设置为一小时。天气在更新位置后或屏幕打开时立即更新 - 但间隔不小于 15 分钟（且在过去的 15 分钟内未更新天气）。这些信息用于通过 Mozilla 位置服务获取位置坐标。当无法从蜂窝网络和 Wi-Fi 网络中获取位置时，应用将尝试使用 GPS。位置坐标用于通过 Nominatim 服务获取地址。该地址在应用或微件中使用。此应用使用 Open-Meteo (https://open-meteo.com) 服务来获取当前天气。</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">主应用包括当前天气的概览。您可以用应用面板中的刷新按钮或下划更新天气。您可以在刷新天气按钮旁找到更新位置按钮。此按钮仅在位置 0 启用时可用（位置 0 用于自动更新位置）。</string>
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">在更新位置按钮旁边，有一个位置管理按钮（放大镜图标）。您可以管理应用和微件中的可用位置。默认情况下，有一个位置（位置 0）可用 - 这是用于自动位置更新的。当您向左滑动此位置时，可以找到启用/禁用按钮。您还可以手动添加位置。当您单击 + 按钮时，您可以在地图上拾取您的位置。您还可以使用删除按钮删除该位置 - 向左滑动位置可访问它。</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">您可以在下一个屏幕上找到天气预报（选择菜单中的下一个屏幕或从左向右滑动）。天气预报在点击更新按钮或者当您进入屏幕时更新（但每小时不超过一次更新）。</string>
@@ -190,7 +190,7 @@
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">
         <b>位置和地址源</b> 
 \n您可以选择应用从何处获取位置和地址。</string>
-    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"> &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;本地 MLS 和 Nominatim&lt;/b&gt; - 应用从 Mozilla 位置服务获取定位及地理坐标。Nominatim 服务从坐标获取地址。您可以通过安装 Mozilla Stumbler（从 https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler 获取）为 MLS 的未来改进做出贡献。通过授予电话呼叫权限，从蜂窝网络获取有关当前活动和可用网络基站的信息。您周围的 Wi-Fi 网络被用于更精确地猜测您的位置。<b>本地 MLS 和 Nominatim</b> - 应用通过 Mozilla 位置服务获取位置。Nominatim 服务从坐标获取地址。您可以通过安装 Mozilla Stumbler（在 available at https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler 提供）为 MLS 的未来改进做出贡献。通过授予电话呼叫权限，从蜂窝网络获取有关当前活动和可用网络基站的信息。使用周围的 Wi-Fi 网络来更精确地猜测您的位置。</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"> \u0020&lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt;本地 MLS 和 Nominatim&lt;/b&gt; - 应用从 Mozilla 位置服务获取定位及地理坐标。Nominatim 服务从坐标获取地址。您可以通过安装 Mozilla Stumbler（从 https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler 获取）为 MLS 的未来改进做出贡献。通过授予电话呼叫权限，从蜂窝网络获取有关当前活动和可用网络基站的信息。您周围的 Wi-Fi 网络被用于更精确地猜测您的位置。<b>本地 MLS 和 Nominatim</b> - 应用通过 Mozilla 位置服务获取位置。Nominatim 服务从坐标获取地址。您可以通过安装 Mozilla Stumbler（在 available at https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler 提供）为 MLS 的未来改进做出贡献。通过授予电话呼叫权限，从蜂窝网络获取有关当前活动和可用网络基站的信息。使用周围的 Wi-Fi 网络来更精确地猜测您的位置。</string>
     <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
         <b>系统</b> - 应用通过 Android 中的系统服务获取位置和地址（通常使用 Google 定位服务）。</string>
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">这些菜单选项设置 <b>语言</b> ，主应用的 <b>主题</b> 和用于应用和微件的 <b>图标集</b> 。</string>
@@ -221,7 +221,7 @@
     <string name="update_period_nothing" tools:ignore="MissingTranslation">仅手动</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">在微件中显示标签</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">系统设置</string>
-    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API 密钥</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Open-Meteo (https://open-meteo.com) API 密钥</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">内置</string>
     <string name="pref_language_uk" tools:ignore="MissingTranslation">Ukrainian（乌克兰语）</string>
     <string name="pref_language_ro" tools:ignore="MissingTranslation">Romanian（罗马尼亚语）</string>
@@ -238,15 +238,15 @@
 \nL - 仅位置已更新
 \nG - 位置来自 GPS 且天气已更新
 \nN - 位置来自网络且天气已更新
-\nB - Openweathermap.org 服务访问已被禁止，请尝试稍后更新天气
-\nE - Openweathermap.org 服务访问令牌已过期。您需要更新应用以再次获取令牌</string>
+\nB - Open-Meteo 服务访问已被禁止，请尝试稍后更新天气
+\nE - Open-Meteo 服务访问令牌已过期。您需要更新应用以再次获取令牌</string>
     <string name="preference_display_update_location_source_info" tools:ignore="MissingTranslation">W - 仅天气更新时
 \nL - 仅位置更新时
 \nG - GPS位置及天气更新时
 \nN - 网络位置及天气更新时
 \nNi - 蜂窝网络位置及天气更新时，位置发现来自 Mozilla 位置服务
-\nB - Openweathermap.org 服务访问已被禁止，请尝试稍后更新天气
-\nE - Openweathermap.org 服务访问令牌已过期。安装新版本的应用程序以重新获得访问权限</string>
+\nB - Open-Meteo 服务访问已被禁止，请尝试稍后更新天气
+\nE - Open-Meteo 服务的访问令牌已过期。安装新版本的应用程序以重新获得访问权限</string>
     <string name="wake_up_strategy_summary" tools:ignore="MissingTranslation">当定位在设备休眠期间被卡住时，你可以尝试在它寻找蜂窝网络时唤醒它</string>
     <string name="wake_up_strategy_title" tools:ignore="MissingTranslation">唤醒策略</string>
     <string name="nowakeup_label" tools:ignore="MissingTranslation">无唤醒</string>
@@ -415,9 +415,9 @@
     <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 天</string>
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 天</string>
     <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 天</string>
-    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x（3 小时间隔）</string>
-    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x（4 小时间隔）</string>
-    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x（5 小时间隔）</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3 小时</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4 小时</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5 小时</string>
     <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">按原始分辨率显示图形（当图形太小时）</string>
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">在微件上显示设置</string>
     <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">微件图形设置按钮</string>
@@ -487,7 +487,7 @@
     <string name="pref_language_vi" tools:ignore="MissingTranslation">越南语</string>
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">孟加拉语</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">文本和声音指示翻译</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"本应用有声音输出功能。要启用该功能，你需要在本机安装一个文本转语音系统并按照应用设置设定语音输出。文本翻译及语音命令均由志愿者翻译(https://hosted.weblate.org/projects/your-local-weather service)。你也可以按照应用设置设定你自己的语音命令。本应用的开发者不保证翻译的质量和准确性以及应用说什么- 使用本应用代表您接受这份声明。 "</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">本应用的语音指引功能由 https://hosted.weblate.org/projects/your-local-weather 志愿者提供的文本翻译和语音指令驱动。应用开发者无法保证文本翻译和语音指令正确无误。使用本应用即代表您接受这一点。要使用该功能，你需要安装 TTS（文本转语音）并在设置中打开语音指引，你可以在设置中设定自己的语音指令。</string>
     <string name="preference_title_tts" tools:ignore="MissingTranslation">语音设置</string>
     <string name="preference_title_add_tts" tools:ignore="MissingTranslation">新声音设置</string>
     <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">启用声音转扬声器</string>
