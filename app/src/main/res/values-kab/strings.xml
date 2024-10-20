@@ -42,7 +42,7 @@
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Asnas n taywalt ur yettwufa ara</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Bḍu lḥal n tegnawt</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">OpenweathermapApiKey inek ur tettwasekles ara.</string>
-    <string name="subscription_expired" tools:ignore="MissingTranslation">Anekcum ifut. Leqqem asnas, ma ulac aɣilif;</string>
+    <string name="subscription_expired" tools:ignore="MissingTranslation">Anekcum ifut. Leqqem asnas, ma ulac aɣilif.</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Tisirag ur ttwaqeblent ara yakan - sit ɣef uzamul n wadeg deg usnas</string>
     <string name="load_progress" tools:ignore="MissingTranslation">Asali...</string>
     <string name="progressDialog_gps_locate" tools:ignore="MissingTranslation">Af-d adeg amiran</string>
@@ -252,7 +252,7 @@
     <string name="label_activity_main" tools:ignore="MissingTranslation">Tagnawt tamirant</string>
     <string name="title_activity_search" tools:ignore="MissingTranslation">Nadi adeg</string>
     <string name="help_page_4_title" tools:ignore="MissingTranslation">Iɣewwaṛen n usfaylurar</string>
-    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"> <b>Ffer aglam n tegnawt</b> - aglam namiran n tegnawt yeffer. Tzemreḍ kan ad twaliḍ tangnawt tamirant s ubeddel n tignit.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"> \u0020<b>Ffer aglam n tegnawt</b> - aglam namiran n tegnawt yeffer. Tzemreḍ kan ad twaliḍ tangnawt tamirant s ubeddel n tignit.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Iɣewwaṛen Imuta</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">Iwiǧiten</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Amatu</string>
