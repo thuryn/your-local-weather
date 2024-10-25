@@ -67,7 +67,7 @@
     <string name="nav_menu_bitcoin_donation">Přispět Bitcoiny</string>
     <!-- Toast messages -->
     <string name="connection_not_found">Zkontrolujte své připojení na Internet</string>
-    <string name="toast_parse_error">Vyskytla se chyba. Zkuste to znovu později!</string>
+    <string name="toast_parse_error">Vyskytla se chyba. Zkuste to znovu později.</string>
     <string name="too_early_update_error">Aktualizace byla provedena příliš brzy!</string>
     <!-- Units and Measurement-->
     <string name="pressure_measurement">hPa</string>
@@ -115,9 +115,9 @@
     <string name="preference_title_tts">Nastavení pokynů</string>
     <string name="preference_title_tts_lang">Možnosti jazyka pokynů</string>
     <string name="pref_title_tts_lang_app_default">Dle jazyka aplikace</string>
-    <string name="pref_title_tts_not_supported">Jazyk aplikace není podporován systémem TTS (Text-to-speech). Přejděte do nastavení jazyka v pravém horním rohu této obrazovky.</string>
-    <string name="pref_title_tts_presence">Jazyk aplikace není podporován systémem TTS (Text-to-speech). Níže můžete vybrat jazyk pro hlas z podporovaných jazyků.</string>
-    <string name="pref_title_tts_app_general_info">Applikace jen posílá příkazy do systému TTS (Text-to-speech). TTS je odpovědný za převod textu na řeč. TTS je obvykle automaticky přítomen v systému. Pokud ne nebo pokud TTS nepodporuje Vámi požadovaný jazyk, můžete si TTS nainstalovat z obchodu s aplikacemi (např.: https://play.google.com/store/search?q=TTS ).</string>
+    <string name="pref_title_tts_not_supported">Systém TTS (převod textu na řeč) nepodporuje lokalizaci vaší aplikace. Přejděte na „Guidance language settings“ v pravém horním rohu.</string>
+    <string name="pref_title_tts_presence">Systém TTS (převod textu na řeč) nepodporuje lokalizaci vaší aplikace. Vyberte naváděcí jazyk z níže uvedeného seznamu podporovaných jazyků.</string>
+    <string name="pref_title_tts_app_general_info">Aplikace odesílá textové příkazy do systému TTS (převod textu na řeč), který je převádí na hlas. Ten je v systému obvykle přítomen ve výchozím nastavení. Pokud tomu tak není nebo nainstalovaný systém TTS nepodporuje požadovaný jazyk, nainstalujte si nějaký z obchodu s aplikacemi (například: https://search.f-droid.org/?q=TTS ).</string>
     <string name="preference_widget_update_location">Aktualizace polohy</string>
     <string name="preference_widget_show_labels">Zobrazit popisek ve widgetu</string>
     <string name="preference_widget_use_geocoder">Použít geolokaci pro zobrazení</string>
@@ -131,14 +131,8 @@
     <string name="preference_display_update_nothing">Nic</string>
     <string name="preference_display_update_value">Jen aktualizované hodnoty</string>
     <string name="preference_display_update_location_source">Aktualizované hodnoty včetně zdroje pozice</string>
-    <string name="preference_display_update_value_info">- - probíhá aktualizace polohy a/nebo počasí\n. - polohu není možné najít, probíhá aktualizace počasí\nW - aktualizovnáno jen počasí\nL - aktualizována jen poloha\nG - aktualizována poloha z GPS a počasí\nN - aktualizována poloha ze sítě a počasí\nB - přístup do služby Open-Meteo byl zakázán, zkuste aktualizaci počasí později, prosím\nE - platnost přístupového kódu pro službu open-meteo.com vypršela. Pro opětovné získání přístupu je třeba aktualizovat aplikaci na novější verzi.</string>
-    <string name="preference_display_update_location_source_info">W - aktualizovnáno jen počasí
-\nL - aktualizována jen poloha
-\nG - aktualizována poloha z GPS a počasí
-\nN - aktualizována poloha ze sítě a počasí
-\nNi - aktualizována poloha z GSM sítě a počasí
-        \nB - přístup do služby Open-Meteo byl zakázán, zkuste aktualizaci počasí později, prosím
-        \nE - platnost přístupového kódu pro službu Open-Meteo vypršela. Pro opětovné získání přístupu je třeba aktualizovat aplikaci na novější verzi.</string>
+    <string name="preference_display_update_value_info">- aktualizace polohy a/nebo počasí\n. - poloha není dosažitelná, aktualizace počasí na základě poslední polohy\nW - aktualizuje se pouze počasí\nL - aktualizuje se pouze poloha\nG - poloha z GPS a počasí aktualizováno\nN - poloha ze sítě a aktualizované počasí\nB - přístup ke službě Open-Meteo byl zakázán, zkuste aktualizovat počasí později, prosím\nE - platnost přístupového tokenu ke službě Open-Meteo vypršela. Pro opětovné získání přístupu je třeba aktualizovat aplikaci</string>
+    <string name="preference_display_update_location_source_info">W - aktualizovnáno jen počasí\nL - aktualizována jen poloha\nG - aktualizována poloha z GPS a počasí\nN - aktualizována poloha ze sítě a počasí\nNi - aktualizována poloha z GSM sítě a počasí\nB - přístup do služby Open-Meteo byl zakázán, zkuste aktualizaci počasí později, prosím\nE - platnost přístupového kódu pro službu Open-Meteo vypršela. Pro opětovné získání přístupu je třeba aktualizovat aplikaci na novější verzi</string>
     <!-- Preference Screen About -->
     <string name="preference_title_activity_about">O aplikaci</string>
     <string name="about_version_pref_title">Verze</string>
@@ -157,7 +151,7 @@
     <string name="pref_title_tts_trigger_type_label" tools:ignore="MissingTranslation">Říci:</string>
     <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Čas</string>
     <!-- Weather conditions label strings -->
-    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Řeknu:</string>
+    <string name="tts_say_text_label" tools:ignore="MissingTranslation">Jak to říct:</string>
     <string name="tts_say_greeting_morning" tools:ignore="MissingTranslation">Dobré ráno</string>
     <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Dobrý den</string>
     <string name="tts_say_greeting_evening" tools:ignore="MissingTranslation">Dobrý večer</string>
@@ -215,7 +209,7 @@
     <!-- Wind directions -->
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Nezobrazovat</string>
     <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Zkratka S↓, SV↙, …</string>
-    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Stupeň od Severu</string>
+    <string name="wind_direction_deg" tools:ignore="MissingTranslation">Stupňů od severu</string>
     <string name="wind_direction_north">S↓</string>
     <string name="wind_direction_north_east">SV↙</string>
     <string name="wind_direction_east">V←</string>
@@ -225,10 +219,10 @@
     <string name="wind_direction_west">Z→</string>
     <string name="wind_direction_north_west">SZ↘</string>
     <string name="tts_say_wind_direction_north">severní</string>
-    <string name="tts_say_wind_direction_north_east">severo-východní</string>
-    <string name="tts_say_wind_direction_east">východní</string>
-    <string name="tts_say_wind_direction_south_east">jiho-východní</string>
-    <string name="tts_say_wind_direction_south">jižní</string>
+    <string name="tts_say_wind_direction_north_east">severovýchod</string>
+    <string name="tts_say_wind_direction_east">východ</string>
+    <string name="tts_say_wind_direction_south_east">jihovýchod</string>
+    <string name="tts_say_wind_direction_south">jih</string>
     <string name="tts_say_wind_direction_south_west">jiho-západní</string>
     <string name="tts_say_wind_direction_west">západ</string>
     <string name="tts_say_wind_direction_north_west">severo-západní</string>
@@ -266,7 +260,7 @@
     <string name="location_cache_8760_label" tools:ignore="MissingTranslation">rok</string>
     <string name="location_cache_88888_label" tools:ignore="MissingTranslation">nikdy</string>
     <string name="permission_location_need" tools:ignore="MissingTranslation">Je třeba udělit oprávnění pro získání polohy</string>
-    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Pro aplikaci změn vyčkejte na automatickou aktualizaci počasí a polohy nebo tuto aktualizaci proveďte ručně</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Aktuální jazyk popisu počasí a adresa se změní při příští aktualizaci, nebo ji můžete vynutit ručně.</string>
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Vybrat adresář pro logování</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Volby pro ladění</string>
     <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Po nastaveném čase bude soubor s logy znovu vytvořen</string>
@@ -288,9 +282,7 @@
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Předchozí</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Ukončit</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Průvodce prvotním nastavením</string>
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Tento průvodce Vám pomůže nastavit aplikaci dle Vašich potřeb. Na následující obrazovce si můžete vybrat strategii aktualizace.
-\nPokud vyberete <i>Neaktualizovat polohu</i>, aplikace provede jen aktualizaci počasí.
-\nAvšak aktualizace polohy je jedna ze nejlepších vlastností této aplikace. A proto je volba <i>Aktualizovat polohu</i> doporučenou volbou a je i zároveň předvybrána.</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Po přizpůsobení aplikace vašim potřebám můžete zvolit další strategii aktualizace. \nOd výchozí aktualizace při změně polohy se můžete odklonit výběrem možnosti <i>Neaktualizovat polohu</i>.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Nastavení aktualizace polohy</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Volba zdroje polohy</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Můžete vybrat zdroj polohy - volba <i>Systém</i> využívá služeb operačního systému (služby Google) pro získání polohy pomocí sítí (mobilní a wifi sítě). Volba <i>Místní MLS a Nominatim</i> využívá služby pro získání souřadníc polohy společnosti Mozilla a službu Nominatim pro získání adresy. Druhá volba vyžaduje oprávnění pro ovládání telefonních hovorů pro získání informací o mobilní síti. Preferovaná volba je předvybrána.</string>
@@ -307,18 +299,7 @@
 \n
 \nUžijte si aplikaci.</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Obecné</string>
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">Aplikace využívá mobilní síť, WIFI sítě a případně GPS pro získání Vaší polohy a zobrazení počasí v místě, kde se právě nacházíte.
-\nPokud využijete widget na svém telefonu nebo tabletu, uvidíte Vaší polohu a aktuální počasí na své hlavní obrazovce. Aktualizace polohy může být nastavena dle zadané periody (například každou hodinu) nebo aplikace může využívat akcelerometr u detekci pohybu. Aktualizaci polohy je možné vypnout - pak se bude aktualizovat jen počasí.
-\n
-\nAktualizace dle zadané periody:
-\nAplikace po zadané periodě provede aktualizaci polohy a načtení aktuálního počasí. Například můžete nastavit aktualizaci na každou hodinu.
-\n
-\nAktualizace dle akcelerometru:
-\nPoloha bude aktualizována dle načtené vzdálenosti měřené akcelerometrem. Pokud naměřená vzdálenost bude větší než prahová hodnota, dojde k načtení aktuální polohy. Naměřená hodnota závisí na způsobu pohybu - pokud máte telefon v kapse, naměřená vzdálenost bude přibývat rychleji - telefon se pohybuje sem a tam v rytmu chůze. Po každé aktualizaci polohy bude též aktualizováno počasí. Počasí bude aktualizováno též při každém rozsvícení displeje - avšak ne častěji, než jednou za 15 minut (pokud nebyla během posledních 15 minut aktualizována poloha).
-\n
-\nK získání polohy je nejprve využita informace z mobilní sítě (BTS) a WIFI sítí přítomných v dané lokalitě. Z těchto informací jsou pomocí služby Mozilla location service získány souřadnice. Pro získání souřadnic je třeba alespoň jedna základnová stanice sítě GSM nebo alespoň 2 dostupné WIFI sítě nebo jakákoliv kombinace GSM a WIFI sítí. Pokud souřadnice nejsou dostupné, pokusí se aplikace získat polohu z GPS. Získané souřadnice jsou pomocí služby Nominatim převedena na adresu, která je zobrazena v aplikaci nebo widgetu.
-\n
-\nK získání aktuálního počasí je využita služba Open-Meteo (https://open-meteo.com).</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Aplikace určuje polohu pomocí mobilní sítě (BTS), Wi-Fi, a pokud tyto sítě selžou, pomocí GPS pro zobrazení místního počasí, přičemž souřadnice získává z lokalizační služby Mozilla. Aplikace potřebuje alespoň: jednu základnovou stanici sítě GSM nebo dvě dosažitelné sítě Wi-Fi nebo libovolnou kombinaci sítí GSM a Wi-Fi. Pomocí widgetu v telefonu nebo tabletu můžete na hlavní obrazovce zobrazit svou polohu a aktuální počasí. Aktualizace polohy mohou být pravidelné, (např. jednou za hodinu) nebo může aplikace využívat akcelerometr k detekci pohybu ve větší vzdálenosti, než je daná hodnota. Při nošení v kapse se vzdálenost zvyšuje rychleji. Aktualizace polohy můžete vypnout - pak se aktualizuje pouze počasí. Aplikace aktualizuje polohu a počasí v určených intervalech. Můžete například nastavit periodu aktualizace na jednu hodinovou hodinu. Počasí se aktualizuje ihned po aktualizaci polohy nebo po zapnutí obrazovky - ne však častěji než jednou za 15 minut (a pokud se počasí neaktualizovalo v posledních 15 minutách). Tyto informace jsou použity k získání souřadnic polohy polohovou službou Mozilla. Aplikace se snaží použít GPS, pokud není poloha dostupná z mobilní sítě a sítí Wi-Fi. Souřadnice polohy jsou použity k získání adresy službou Nominatim. Adresa se použije v aplikaci nebo widgetu. Aplikace používá službu Open-Meteo (https://open-meteo.com) k získání aktuálního počasí.</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Hlavní aplikace</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Hlavní aplikace obsahuje přehled aktuálního počasí. Počasí můžete aktualizovat pomocí tlačítka obnovení na panelu aplikace nebo posunutím dolů. Tlačítko aktualizace polohy najdete vedle tlačítka aktualizace počasí. Toto tlačítko je k dispozici pouze v případě, že je povolena poloha 0 (poloha 0 je určena pro automatickou aktualizaci polohy).</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Na následující obrazovce je možné najít předpověď počasí (následující stranu je možné vybrat v menu nebo gestem tažení vpravo/vlevo). Předpověď je aktualizována pomocí tlačítka pro aktualizaci nebo pokud právě vstoupíte na tuto obrazovku (avšak ne častěji než jednou za hodinu).</string>
@@ -331,7 +312,7 @@
         <b>Teplota</b> - Zde je možné vybrat jednotky pro teplotu, <b>Rychlost větru</b> a <b>Tlak</b>. Hodnoty jsou přepočítány dle tohoto nastavení.</string>
     <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation">
         <b>Skrýt popis počasí</b> - popis počasí se nebude zobrazovat. Aktuální počasí je zřejmé jen z ikony.</string>
-    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"> <b>Interval aktualizace pro polohu (Poloha 0)</b> - zde můžete nastavit interval aktualizace pro polohu 0 - poloha 0 má schopnost aktualizace polohy dle mobilní a wifi sítě a dle GPS. Pokud zvolíte volbu <i>Dle akcelerometru</i>, aplikace používá akcelerometr pro detekci pohybu. Pokud je zaznamenán pohyb, aplikace počítá vzdálenost. Pokud je překročen limit délky a poslední aktualizace byla provedena za déle než 15 minut, aplikace provede aktualizaci polohy a aktuálního počasí. Pokud aplikace není schopna zjistit polohu, zobrazí se nápis Neznámá poloha ve widgetu. Pokud se aplikace nachází ve stavu s nezjištěnou polohou, další aktualizace se provede již za 5 minut. Též můžete zvolit aktualizaci polohy dle zadaného intervalu. Volbou <b> Interval aktualizace pro počasí (Polohy 1, 2, 3...)</b> nastavíte interval aktualizace počasí pro ručně vyhledané polohy.</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"> \u0020<b>Interval aktualizace pro polohu (Poloha 0)</b> - zde můžete nastavit interval aktualizace pro polohu 0 - poloha 0 má schopnost aktualizace polohy dle mobilní a wifi sítě a dle GPS. Pokud zvolíte volbu <i>Dle akcelerometru</i>, aplikace používá akcelerometr pro detekci pohybu. Pokud je zaznamenán pohyb, aplikace počítá vzdálenost. Pokud je překročen limit délky a poslední aktualizace byla provedena za déle než 15 minut, aplikace provede aktualizaci polohy a aktuálního počasí. Pokud aplikace není schopna zjistit polohu, zobrazí se nápis Neznámá poloha ve widgetu. Pokud se aplikace nachází ve stavu s nezjištěnou polohou, další aktualizace se provede již za 5 minut. Též můžete zvolit aktualizaci polohy dle zadaného intervalu. Volbou <b> Interval aktualizace pro počasí (Polohy 1, 2, 3...)</b> nastavíte interval aktualizace počasí pro ručně vyhledané polohy.</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Pokud zaškrtnete volbu <b>Zapnout GPS, pokud je to nezbytné</b>, aplikace se pokusí najít polohu nejprve pomocí mobilní a wifi sítě. Pokud se vyhledání polohy nezdaří, aplikace zapne GPS na několik vteřin a pokusí se najít polohu pomocí GPS.</string>
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">
         <b>Zdroj polohy a adresy</b>
@@ -355,7 +336,7 @@
     <string name="help_page_4_content" tools:ignore="MissingTranslation">Nastavení widgetů obsahuje volby nastavení pro všechny widgety.</string>
     <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Pokud zaškrtnete volbu <b>Zobrazit popisky ve widgetu</b>, vlastnosti počasí ve widgetu budou zobrazeny s popisky.</string>
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Pomocí volby <b>Volba tématu widgetu</b> můžete nastavit pozadí widgetu.</string>
-    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation">Volba <b>Strategie aktivace</b> slouží pro překonání problémů s chybnou implementací služeb v Androidu od různých výrobců. Pokud zvolíte <i>Neaktivovat</i> a poloha je aktualizována správně, máte funkční implementaci. Pokud však poloha není aktualizována správně, můžete zkusit volbu <i>Aktivovat jen CPU</i>. Tato volba způsobí jen aktivaci mikroprocesoru (CPU) a pak se pokusí získat stav mobilní a wifi sítě. Poslední volba <i>Aktivace se zapnutým displejem</i> způsobí, že displej se během aktualizace polohy zapne na několik vteřin. Na některých modelech telefonu je toto jediná volba, během které je aplikace schopna zjistit skutečný stav mobilní a wifi sítí. Tato volba spotřebuje nějaké množství baterie, avšak vliv na životnost baterie je skutečně velice malý.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b>Strategie probuzení</b> slouží k překonání chybných implementací služeb Android Aurora od dodavatelů. Výběrem možnosti <i>Žádné probuzení</i> by mělo dojít ke správné aktualizaci polohy. \nPokud tomu tak není, zkuste <i>Pouze probuzení procesoru</i> pro načtení stavu mobilní sítě a sítě Wi-Fi. \n<i>Probuzení displejem</i> zapne na několik sekund obrazovku během aktualizace polohy jako poslední možnost.</string>
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Po aktualizaci polohy a aktuálního počasí je možné vidět stav po aktualizaci vedle času poslední aktualizace ve widgetu. Pomocí volby <b>Zobrazení přehledu aktualizace</b> můžete ovlivnit, jak se přehled zobrazuje. Zde je vysvětlivka, pokud zvolíte nejpopisnější volbu:</string>
     <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Kombinovaný graf</string>
     <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">Pokud v grafu vyberete zobrazení deště/sněhu jako další hodnotu k teplotě a dešti (jako sloupce), bude hodnota počítána jako log10. Maximální hodnota na (neviditelné) ose je potom asi 160 mm (resp. 6.3 v palcích).</string>
@@ -387,7 +368,7 @@
     <string name="pref_language_es" tools:ignore="MissingTranslation">Španělština (Spanish)</string>
     <string name="pref_language_el" tools:ignore="MissingTranslation">Řečtina (Greek)</string>
     <string name="pref_language_ar" tools:ignore="MissingTranslation">Arabština (Arabic)</string>
-    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Vedle tlačítka pro pro vyhledání polohy je tlačítko pro správu poloh (tlačítko lupy). Na obrazovce pro správu poloh je vždy přítomna jedna poloha (Poloha 0) - tato poloha je určena pro automatické rozpoznávání polohy. Pokud tuto polohu posunete doleva, objeví se tlačítko pro povolení/zakázání automatické aktualizace polohy. Pomocí tlačítka \"+\" můžete přidat polohu ručně pomocí mapy. Pokud budete chtít takto nalezenou polohu smazat, opět posunete polohu doleva a tlačítkem Smazat polohu odstraníte.</string>
+    <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Vedle tlačítka aktualizovat polohu se nachází tlačítko pro správu polohy (ikona lupy). Můžete spravovat umístění dostupná v aplikaci a widgety. Ve výchozím nastavení je k dispozici jedno umístění (umístění 0) - to je určeno pro automatické aktualizace umístění. Po posunutí tohoto umístění doleva najdete tlačítko pro povolení/zakázání. Umístění můžete přidat také ručně. Po kliknutí na tlačítko + můžete vybrat polohu na mapě. Polohu můžete také odstranit pomocí tlačítka Odstranit - to je dostupné po posunutí polohy doleva.</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Přístup k aktualizaci počasí vypršel. Prosím, aktualizujte aplikaci.</string>
     <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Váš Open-Meteo ApiKey není registrován.</string>
     <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
@@ -553,7 +534,7 @@
     <string name="weather_condition_description_612" tools:ignore="MissingTranslation">Občasná plískanice</string>
     <string name="weather_condition_description_615" tools:ignore="MissingTranslation">Slabý déšť se sněhem</string>
     <string name="weather_condition_description_200" tools:ignore="MissingTranslation">Bouřka se slabým deštěm</string>
-    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">Silné přeháňky</string>
+    <string name="weather_condition_description_314" tools:ignore="MissingTranslation">silný déšť a mrholení</string>
     <string name="weather_condition_description_321" tools:ignore="MissingTranslation">Občasné mrholení</string>
     <string name="weather_condition_description_500" tools:ignore="MissingTranslation">Slabý déšť</string>
     <string name="weather_condition_description_501" tools:ignore="MissingTranslation">Středně silný déšť</string>
@@ -592,4 +573,16 @@
     <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Licenční klíč</string>
     <string name="pref_language_sd" tools:ignore="MissingTranslation">Sindhština</string>
     <string name="pref_title_tts_speaker_label" tools:ignore="MissingTranslation">reproduktor</string>
+    <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
+    <string name="pref_title_tts_lang_select_locale" tools:ignore="MissingTranslation">Vybraná lokalita pro orientaci:</string>
+    <string name="location_weather_update_status_too_early_update" tools:ignore="MissingTranslation">O</string>
+    <string name="location_weather_update_status_location_from_last_location" tools:ignore="MissingTranslation">l</string>
+    <string name="preference_weather_weather_forecast_features_title" tools:ignore="MissingTranslation">Funkce předpovědi počasí</string>
+    <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">Co říci:</string>
+    <string name="pref_title_tts_lang_app_locale" tools:ignore="MissingTranslation">Lokalizace aplikace:</string>
+    <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Povolení pro BT</string>
+    <string name="pref_title_tts_trigger_bt_devices" tools:ignore="MissingTranslation">Pro zařízení:</string>
+    <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">Povolené zařízení:</string>
+    <string name="weather_forecast_features_free" tools:ignore="MissingTranslation">Bezplatné/omezené funkce</string>
+    <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">Placené/rozšířené funkce</string>
 </resources>
