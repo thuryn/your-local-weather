@@ -762,6 +762,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                 Looper.prepare();
             }
             final Looper locationLooper = Looper.myLooper();
+            appendLog(getBaseContext(), TAG, "detectLocation:locationLooper");
             if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {
                 appendLog(getBaseContext(), TAG, "getCurrentLocation on new API");
                 locationManager.getCurrentLocation(LocationManager.NETWORK_PROVIDER, null, getMainExecutor(),
@@ -779,10 +780,12 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                 return;
             } else {
                 locationManager.requestSingleUpdate(LocationManager.NETWORK_PROVIDER, this, Looper.getMainLooper());
+                appendLog(getBaseContext(), TAG, "detectLocation:requestSingleUpdate");
             }
 
             final LocationListener locationListener = this;
             final Handler locationHandler = new Handler(locationLooper);
+            appendLog(getBaseContext(), TAG, "detectLocation:locationHandler");
             locationHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {

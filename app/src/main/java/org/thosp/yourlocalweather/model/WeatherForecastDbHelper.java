@@ -62,9 +62,12 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
     public void saveWeatherForecast(long locationId, int forecastType, long weatherUpdateTime, final long nextAllowedAttemptToUpdateTime, CompleteWeatherForecast completeWeatherForecast) {
         new Thread(new Runnable() {
             public void run() {
+                appendLog(context, TAG, "saveWeatherForecast: locationId:", locationId, "forecastType:", forecastType);
                 SQLiteDatabase db = getWritableDatabase();
 
                 WeatherForecastRecord oldWeatherForecast = getWeatherForecast(locationId, forecastType);
+
+                appendLog(context, TAG, "saveWeatherForecast: oldWeatherForecast:", oldWeatherForecast);
 
                 ContentValues values = new ContentValues();
                 values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_WEATHER_FORECAST,
@@ -75,13 +78,15 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
                 values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_FORECAST_TYPE, forecastType);
                 if (oldWeatherForecast == null) {
                     db.insertOrThrow(WeatherForecastContract.WeatherForecast.TABLE_NAME, null, values);
+                    appendLog(context, TAG, "saveWeatherForecast: inserted new record");
                 } else {
                     db.updateWithOnConflict(WeatherForecastContract.WeatherForecast.TABLE_NAME,
                             values,
                             WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID + "=" + locationId +
                                     " AND " + WeatherForecastContract.WeatherForecast.COLUMN_NAME_FORECAST_TYPE + "=" + forecastType,
                             null,
-                            SQLiteDatabase.CONFLICT_IGNORE);
+                            SQLiteDatabase.CONFLICT_REPLACE);
+                    appendLog(context, TAG, "saveWeatherForecast: updated old record");
                 }
             }
         }).start();

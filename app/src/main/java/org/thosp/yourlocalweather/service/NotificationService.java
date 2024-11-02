@@ -60,9 +60,13 @@ public class NotificationService extends AbstractCommonService {
         appendLog(this, TAG, "Build.VERSION.SDK_INT:", Build.VERSION.SDK_INT);
         PendingIntent pendingIntent = getPendingIntentForNotifiation();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+            try {
+                alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + intervalMillis,
                     pendingIntent);
+            } catch (SecurityException se) {
+                appendLog(getBaseContext(), TAG, "SecurityException in update():", se);
+            }
         } else {
             alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + intervalMillis,

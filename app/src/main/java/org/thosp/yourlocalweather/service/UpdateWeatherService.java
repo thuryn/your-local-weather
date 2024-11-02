@@ -70,7 +70,6 @@ public class UpdateWeatherService extends AbstractCommonService {
     public static final String ACTION_GRAPHS_UPDATE_RESULT = "org.thosp.yourlocalweather.action.GRAPHS_UPDATE_RESULT";
 
     public static final int WEATHER_FORECAST_TYPE = 1;
-    public static final int LONG_WEATHER_FORECAST_TYPE = 2;
 
     private static final AsyncHttpClient client = new AsyncHttpClient();
 
@@ -439,7 +438,6 @@ public class UpdateWeatherService extends AbstractCommonService {
         currentWeatherDbHelper.updateNextAllowedAttemptToUpdateTime(locationId, nextAllowedAttemptToUpdateTimeForUpdate);
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
         weatherForecastDbHelper.updateNextAllowedAttemptToUpdateTime(locationId, WEATHER_FORECAST_TYPE, nextAllowedAttemptToUpdateTimeForUpdate);
-        weatherForecastDbHelper.updateNextAllowedAttemptToUpdateTime(locationId, LONG_WEATHER_FORECAST_TYPE, nextAllowedAttemptToUpdateTimeForUpdate);
     }
 
     private void sendResult(String result, Context context, Long locationId, int updateType, Long nextAllowedAttemptToUpdateTime) {
