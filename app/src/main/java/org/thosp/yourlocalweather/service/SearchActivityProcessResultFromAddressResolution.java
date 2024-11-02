@@ -40,7 +40,7 @@ public class SearchActivityProcessResultFromAddressResolution implements Process
     }
 
     @Override
-    public void processCanceledRequest() {
+    public void processCanceledRequest(Context context) {
         processAddresses(null, null);
     }
 }
