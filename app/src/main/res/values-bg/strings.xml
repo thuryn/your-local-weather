@@ -21,7 +21,7 @@
     <string name="location_not_found" tools:ignore="MissingTranslation">Не е намерено местоположение</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Разрешенията все още не са предоставени - натиснете символа за местоположение в приложението</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Достъп отказан. Моля, обновете приложението.</string>
-    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Вашият OpenweathermapApiKey не е регистриран.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Вашият Open-Meteo ApiKey не е регистриран.</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Сподели времето</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Не е намерено приложение за комуникация</string>
     <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Град: %1$s
@@ -42,9 +42,8 @@
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Предишен</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Край</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Ръководство за първоначална конфигурация</string>
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Може да изберете стратегия за обновяване. 
-\nАко не искате обновяване при промяна на местоположението, може да изберете &lt;i xmlns:tools=\"http://schemas.android.com/tools\"&gt;Не обновявай местоположението&lt;/i&gt;.<i>Не обновявай местоположението</i>.</string>
-    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Използвай настройките за местоположение</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Може да изберете стратегия за обновяване.\nАко не искате обновяване при промяна на местоположението, може да изберете <i>Не обновявай местоположението</i>.</string>
+    <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Актуализирай настройките за местоположение</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Вариант за източник на местоположение</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Услуги за откриване на местоположението - <i>Системна</i> използва услугите на Гугъл, за да извлече местоположение от мрежата (клетъчни и Wi-Fi). <i>MLS и Nominatim</i> използва услигите на Mozilla. За втория вариант са необходими разрешения за извличане на информация за клетъчните мрежи. Предпочитаният вариант е предварително избран.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Източници на местоположение и адрес</string>
@@ -65,19 +64,19 @@
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Не можете да имате повече от %1$d местоположения в момента.</string>
     <string name="weather_condition_description_701" tools:ignore="MissingTranslation">мъгла</string>
     <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Кратко N↓, NE↙, …</string>
-    <string name="widget_details_setting_button" tools:ignore="MissingTranslation"/>
+    <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Бутон за настройки на подробности за времето</string>
     <string name="preference_display_update_value" tools:ignore="MissingTranslation">Само актуализирана стойност</string>
     <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Използване на геолокация за показване</string>
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Показване на настройки в джаджата</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Преводи на текст и насоки</string>
-    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"> <b>Скриване на описанието на времето</b> - описанието на текущото време е скрито. Можете да виждате само текущото време чрез променящата се икона.</string>
-    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> <b>Температура</b> - Можете да изберете единица за температурата, <b>Вятър</b> - Можете да изберете единицата за скорост на вятъра и <b>Налягане</b> - Можете да изберете единицата за налягане. Стойностите се преизчисляват с помощта на тези опции.</string>
+    <string name="help_page_3_content_hide_description" tools:ignore="MissingTranslation"> \u0020<b>Скриване на описанието на времето</b> - описанието на текущото време е скрито. Можете да виждате само текущото време чрез променящата се икона.</string>
+    <string name="help_page_3_content_units" tools:ignore="MissingTranslation"> \u0020<b>Температура</b> - Можете да изберете единица за температурата, <b>Вятър</b> - Можете да изберете единицата за скорост на вятъра и <b>Налягане</b> - Можете да изберете единицата за налягане. Стойностите се преизчисляват с помощта на тези опции.</string>
     <string name="help_page_3_content" tools:ignore="MissingTranslation">Тези опции имат влияние върху цялото приложение.</string>
     <string name="help_page_3_title" tools:ignore="MissingTranslation">Общи настройки</string>
     <string name="help_page_2_title" tools:ignore="MissingTranslation">Джаджи</string>
     <string name="help_page_1_content_3" tools:ignore="MissingTranslation">Третият екран съдържа прогноза за времето, показана с диаграми.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Ограничение на услугата за местоположение на Mozilla</string>
-    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation"/>
+    <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>
     <string name="pref_title_tts_not_supported" tools:ignore="MissingTranslation">Регионалните настройки на приложението не се поддържат от TTS системата ви (текст в реч). Изберете „Настройки на език на ръководство“ горе вдясно.</string>
     <string name="pref_title_tts_presence" tools:ignore="MissingTranslation">Регионалните настройки на приложението не се поддържат от TTS системата ви (текст в реч). Изберете език за ръководство от списъка на поддържаните по-долу.</string>
     <string name="pref_title_tts_lang_app_default" tools:ignore="MissingTranslation">По регионални настройки на приложението</string>
@@ -108,7 +107,7 @@
     <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
     <string name="tts_say_text_label" tools:ignore="MissingTranslation">Кажи:</string>
     <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">Кажи:</string>
-    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Достъпът до услугата за местоположение на Mozilla изтече след 1.3.2020. Приложението е принудено да използва Andorid система за откриване на координати на местоположението. Адресът все още е решен от Nominatim. Имайте това предвид, когато използвате това приложение.</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Достъпът до услугата за местоположение на Mozilla изтече след 1.3.2020. Приложението е принудено да използва Andorid системата за откриване на координати на местоположението. Адресът все още е решен от Nominatim. Имайте това предвид, когато използвате това приложение.</string>
     <string name="weather_condition_description_801" tools:ignore="MissingTranslation">малко облаци</string>
     <string name="weather_condition_description_602" tools:ignore="MissingTranslation">силен сняг</string>
     <string name="weather_condition_description_202" tools:ignore="MissingTranslation">гръмотевична буря със силен дъжд</string>
@@ -126,7 +125,7 @@
     <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">югоизток</string>
     <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">изток</string>
     <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">североизток</string>
-    <string name="wind_direction_north" tools:ignore="MissingTranslation"/>
+    <string name="wind_direction_north" tools:ignore="MissingTranslation">С↓</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Градуси от север</string>
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Изключено</string>
     <string name="widget_setting_location_show_location" tools:ignore="MissingTranslation">Покажи местоположение в джаджи</string>
@@ -247,7 +246,7 @@
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Актуализиране на местоположение и време</string>
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Настройки на единиците</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Вграден</string>
-    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org API ключ</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Open-Meteo (https://open-meteo.com) API ключ</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Системни настройки</string>
     <string name="preference_title_power_save" tools:ignore="MissingTranslation">Опции за икономия на енергия</string>
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Тема на джаджите</string>
@@ -293,9 +292,9 @@
     <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Стил на посоката на вятъра</string>
     <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Либре софтуерни лицензи</string>
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Търсене на местоположение</string>
-    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5х (на 3 часа)</string>
-    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4х (на 3 часа)</string>
-    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3х (на 3 часа)</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5 часа</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4 часа</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3 часа</string>
     <string name="inches_label" tools:ignore="MissingTranslation">инч</string>
     <string name="millimetre_label" tools:ignore="MissingTranslation">мм</string>
     <string name="wind_speed_kilometers" tools:ignore="MissingTranslation">км/ч</string>
@@ -321,8 +320,8 @@
     <string name="help_page_2_content" tools:ignore="MissingTranslation">Приложението има три джаджи, съдържащи някои общи стойности на текущото време (например температура). Някои стойности са само за конкретната джаджа (например залез). В десния ъгъл на всяка джаджа пише времето на последната актуализация . Можете да видите какво е актуализирано от последния път (когато сте активирали тази опция в менюто с настройки). Бутона за актуализиране се намира до времето на последна актуализация. Когато натиснете този бутон, времето (и местоположението при избрана опция за актуализиране на местоположението) се актуализира безусловно. Последната опция в джаджите е промяна на местоположението - когато натиснете името на текущото местоположение, местоположението преминава на следващото.</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Можете да намерите прогнозата за времето на следващия екран (изберете следващия екран в менюто или плъзнете от ляво надясно). Прогнозата за времето се актуализира чрез бутон за актуализиране или при отваряне на екрана (но не повече от една актуализация на час).</string>
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">До бутона за актуализиране на местоположението има бутон за управление на местоположението (икона на лупа). Можете да управлявате местоположенията, налични в приложението и джаджите. Има едно местоположение (Местоположение 0) по подразбиране - това е предназначено за автоматично актуализиране на местоположението. Можете да намерите бутона за активиране / изключване, когато плъзнете това местоположение наляво. Можете също да добавите местоположение ръчно. Натиснете бутона + и изберете местоположението си на карта. Можете също да изтриете местоположението с бутона Изтриване - който е достъпен, когато плъзнете местоположението наляво.</string>
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">Приложението определя местоположението с помощта на клетъчна мрежа (BTS), Wi-Fi, и ако те не успеят, GPS, за да показва местно време, и получава координатите от услугата за локация на Mozilla. Приложението се нуждае от поне една базова станция на GSM мрежа или от две достъпни wifi мрежи, или от всяка комбинация от GSM и Wi-Fi мрежи. Използвайки джаджата на телефона или таблета си, можете да видите вашето местоположение и текущото време на главния екран. Актуализациите на местоположението могат да бъдат периодични (напр. почасови) или приложението може да използва акселерометъра, за да открие движение на по-голямо разстояние от стойност. При носене в джоба, разстоянието се увеличава по-бързо. Можете да изключите актуализациите на местоположението - след това само времето се актуализира. Приложението актуализира местоположение и време през определени интервали. Можете например да зададете период на актуализация на всеки час. Времето се актуализира веднага след местоположението или когато екранът е включен - но не по-често от веднъж на 15 минути (и когато времето не е актуализирано през последните 15 минути). Тази информация се използва за получаване на координати за местоположение от услугата за местоположение на Mozilla. Приложението се опитва да използва GPS, когато местоположението не е достъпно от клетъчна мрежа и Wi-Fi мрежи. Координатите за местоположение се използват за получаване на адрес от услугата Nominatim. Адресът се използва в приложението или джаджата. Приложението използва услугата OpenWeatherMap.org, за да получи актуално време.</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Това приложение има гласово ръководство чрез преводи на текст и гласови команди, любезно предоставени от доброволци в https://hosted.weblate.org/projects/your-local-weather. Разработчикът на приложението не може да гарантира, че те са правилни - приемате това, като използвате приложението. За да го използвате, имате нужда от инсталиран TTS (текст в реч) и включени насоки в настройките, където можете да задавате свои собствени гласови команди. "</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Приложението определя местоположението с помощта на клетъчна мрежа (BTS), Wi-Fi, и ако те не успеят, GPS, за да показва местно време, и получава координатите от услугата за локация на Mozilla. Приложението се нуждае от поне една базова станция на GSM мрежа или от две достъпни wifi мрежи, или от всяка комбинация от GSM и Wi-Fi мрежи. Използвайки джаджата на телефона или таблета си, можете да видите вашето местоположение и текущото време на главния екран. Актуализациите на местоположението могат да бъдат периодични (напр. почасови) или приложението може да използва акселерометъра, за да открие движение на по-голямо разстояние от стойност. При носене в джоба, разстоянието се увеличава по-бързо. Можете да изключите актуализациите на местоположението - след това само времето се актуализира. Приложението актуализира местоположение и време през определени интервали. Можете например да зададете период на актуализация на всеки час. Времето се актуализира веднага след местоположението или когато екранът е включен - но не по-често от веднъж на 15 минути (и когато времето не е актуализирано през последните 15 минути). Тази информация се използва за получаване на координати за местоположение от услугата за местоположение на Mozilla. Приложението се опитва да използва GPS, когато местоположението не е достъпно от клетъчна мрежа и Wi-Fi мрежи. Координатите за местоположение се използват за получаване на адрес от услугата Nominatim. Адресът се използва в приложението или джаджата. Приложението използва услугата Open-Meteo (https://open-meteo.com), за да получи актуално време.</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Това приложение има гласово ръководство чрез преводи на текст и гласови команди, любезно предоставени от доброволци в https://hosted.weblate.org/projects/your-local-weather. Разработчикът на приложението не може да гарантира, че те са правилни - приемате това, като използвате приложението. За да го използвате, имате нужда от инсталиран TTS (текст в реч) и включени насоки в настройките, където можете да задавате свои собствени гласови команди.</string>
     <string name="current_weather_has_not_been_fetched" tools:ignore="MissingTranslation">Моля, първо натиснете бутона за обновяване, за да актуализирате времето.</string>
     <string name="location_not_initialized" tools:ignore="MissingTranslation">Няма посочено местоположение. Натиснете иконата с местоположението.</string>
     <string name="weather_condition_description_802" tools:ignore="MissingTranslation">разпръснати облаци</string>
@@ -415,5 +414,23 @@
     <string name="title_activity_search" tools:ignore="MissingTranslation">Търсене на местоположение</string>
     <string name="toolbar_menu_search_city" tools:ignore="MissingTranslation">Търсене на град</string>
     <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Разпознаване на местоположението</string>
-    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation"/>
+    <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Когато поставите отметка на опцията <b>Включи GPS, когато е необходимо</b>, приложението ще се опита да намери местоположението ви с помощта на клетъчни или wifi мрежи. Когато местоположението не може да бъде намерено чрез мрежови услуги, приложението включва GPS за няколко секунди, за да получи местоположението.</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">Приложението изисква разрешение за местоположение във фонов режим</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">Приложението изисква разрешение за фоново местоположение, за да получи прогнозата за времето по местоположение, където всъщност се намирате. Ако сте съгласни, трябва да изберете опцията на следващия екран:</string>
+    <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"> \u0020<b>Период на актуализиране за местоположение (Местоположение 0)</b> - можете да зададете период на актуализиране за местоположение 0 - местоположение 0 има възможност да актуализира местоположението според клетъчни, Wi-Fi мрежи и GPS. Когато изберете актуализация <i>По акселерометър</i>, приложението използва това, за да открие движение. От това се изчислява разстоянието. Когато ограничението на разстоянието бъде достигнато и не е извършена актуализация за 15 минути, местоположението и текущото време се актуализират. Когато приложението не може да извлече вашето местоположение, можете да видите етикет за неизвестно местоположение в изпълнимия модул. Когато приложението няма състояние на местоположение, то ще опита отново след 5 минути. Можете също така да изберете актуализиране на местоположение въз основа на интервали от време в <b>Период на актуализиране за времето (Местоположение 1,2,3...)</b> - където можете да зададете времето да се актуализира за ръчно открити местоположения.</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"> \u0020<b>Местоположение и източник на адрес</b>\nМожете да изберете откъде приложението получава местоположението и адреса.</string>
+    <string name="wind_direction_south_east" tools:ignore="MissingTranslation">ЮИ↖</string>
+    <string name="wind_direction_north_east" tools:ignore="MissingTranslation">СИ↙</string>
+    <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">Доставчикът на прогнозата за времето е променен</string>
+    <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">Това приложение използва Open-Meteo (https://open-meteo.com) като източник за времето отсега нататък, тъй като openweathermap.org прекратява своята безплатна услуга през юни 2024 г.</string>
+    <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Промени в разрешенията за Android 10</string>
+    <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Започвайки от Android 10, е необходим прецизен достъп до местоположението, за да получите информация за свързаната GSM/LTE мрежа. Дайте разрешение и за извличане на местоположение във фонов режим (ако искате вашето местоположение през цялото време).</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"> \u0020<b>Local MLS и Nominatim</b> – Приложението получава местоположение и географски координати от услугите за местоположение на Mozilla. Услугите на Nominatim извличат адреса от тези координати. Можете да допринесете за бъдещи подобрения на MLS, като инсталирате Mozilla Stumbler (наличен на https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler). Получете информация за текущи активни и налични мрежови базови станции от клетъчната мрежа, като предоставите разрешение за телефонно обаждане. Wi-Fi мрежите около вас се използват за по-точно отгатване на местоположението ви.</string>
+    <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"> \u0020<b>Система</b> - Приложението получава местоположение и адрес от системните услуги в Android (обикновено с услугите за местоположение на Google).</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Тези опции на менюто задават <b>езика</b>, <b>темата</b> на основното приложение и <b>набора икони</b>, използвани в приложението и уиджетите.</string>
+    <string name="wind_direction_south" tools:ignore="MissingTranslation">Ю↑</string>
+    <string name="wind_direction_south_west" tools:ignore="MissingTranslation">ЮЗ↗</string>
+    <string name="wind_direction_west" tools:ignore="MissingTranslation">З→</string>
+    <string name="wind_direction_north_west" tools:ignore="MissingTranslation">СЗ↘</string>
+    <string name="wind_direction_east" tools:ignore="MissingTranslation">И←</string>
 </resources>
