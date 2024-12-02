@@ -578,4 +578,13 @@
     <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">从现在起本程序使用 Open-Meteo (https://open-meteo.com) 作为天气预报源，因 openweathermap.org 于 2024 年 6 月结束其免费服务。</string>
     <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">程序需要后台位置权限按照你所在实际位置获取气象数据。如果你同意，应该在下个屏幕选中该选项：</string>
     <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">当你在图表上选择在风和温度旁边显示雨/雪值时（以条形显示），该值计算为log10。（不可见）轴的最大值约为160毫米（或6.3英寸）。</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">00:00 到 06:00 之间不更新（位置 1、2、3…）</string>
+    <string name="permission_available_notification" tools:ignore="MissingTranslation">已授予通知权限</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">韩国语</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">立陶宛语</string>
+    <string name="theme_system" tools:ignore="MissingTranslation">跟随系统</string>
+    <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">删除了超出上限的位置。</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">00:00 到 06:00 之间不更新（位置 0）</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">卡拜尔语</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">泰语</string>
 </resources>
