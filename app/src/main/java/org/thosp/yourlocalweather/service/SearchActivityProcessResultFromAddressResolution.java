@@ -32,7 +32,7 @@ public class SearchActivityProcessResultFromAddressResolution implements Process
             mProgressDialog = null;
         }
         appendLog(context, TAG, "processUpdateOfLocation:addresses:", addresses);
-        if ((addresses != null) && (addresses.size() > 0)) {
+        if ((addresses != null) && (!addresses.isEmpty())) {
             sendIntent.putExtra("addresses", addresses.get(0));
         }
         appendLog(context, TAG, "processUpdateOfLocation:sendIntent:", sendIntent);

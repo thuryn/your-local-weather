@@ -3,7 +3,6 @@ package org.thosp.yourlocalweather.utils;
 import android.content.Context;
 
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
-import org.thosp.yourlocalweather.model.WeatherCondition;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 
 import java.util.ArrayList;
@@ -15,12 +14,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLogLastUpdateTime;
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
-
 public class ForecastUtil {
 
     private static final String TAG = "ForecastUtil";
+    private static final int DAYS_IN_CURRENT_YEAR = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_YEAR);
 
     public static long AUTO_FORECAST_UPDATE_TIME_MILIS = 3600000; // 1h
 
@@ -35,8 +32,8 @@ public class ForecastUtil {
         for (int dayInYear = firstDayOfYear; dayInYear < daysInList; dayInYear++) {
             int dayInYearForList;
             int yearForList;
-            if (dayInYear > 365) {
-                dayInYearForList = dayInYear - 365;
+            if (dayInYear > DAYS_IN_CURRENT_YEAR) {
+                dayInYearForList = dayInYear - DAYS_IN_CURRENT_YEAR;
                 yearForList = initialYearForTheList + 1;
             } else {
                 dayInYearForList = dayInYear;
