@@ -88,7 +88,7 @@
     <string name="forecast_settings_graph_combined_show_legend" tools:ignore="MissingTranslation">Tampilkan legenda di grafik</string>
     <string name="nav_menu_graphs" tools:ignore="MissingTranslation">Grafik</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Terjemahan teks dan panduan</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Aplikasi ini memiliki panduan suara dengan cara terjemahan teks dan perintah suara milik sukarelawan di https://hosted.weblate.org/projects/your-local-weather. Dev aplikasi tidak dapat menjamin mereka benar - Anda menerima ini dengan menggunakan aplikasi. Untuk menggunakannya, Anda memerlukan TTS (Text-to-speech) yang diinstal dan panduan diaktifkan di pengaturan, di mana Anda dapat mengatur perintah suara Anda sendiri. "</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Aplikasi ini memiliki panduan suara dengan cara terjemahan teks dan perintah suara milik sukarelawan di https://hosted.weblate.org/projects/your-local-weather. Dev aplikasi tidak dapat menjamin mereka benar - Anda menerima ini dengan menggunakan aplikasi. Untuk menggunakannya, Anda memerlukan TTS (Text-to-speech) yang diinstal dan panduan diaktifkan di pengaturan, di mana Anda dapat mengatur perintah suara Anda sendiri.</string>
     <string name="voice_settings_language" tools:ignore="MissingTranslation">Bahasa</string>
     <string name="weather_condition_description_620" tools:ignore="MissingTranslation">hujan salju ringan</string>
     <string name="weather_condition_description_616" tools:ignore="MissingTranslation">hujan dan salju</string>
@@ -359,4 +359,6 @@
     <string name="pref_title_theme" tools:ignore="MissingTranslation">Tema</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">Sistem untuk mendapatkan lokasi, Nominatim untuk mendapatkan alamat (disarankan)</string>
     <string name="location_geocoder_title" tools:ignore="MissingTranslation">Lokasi dan Sumber Alamat</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">Aplikasi memerlukan izin lokasi latar belakang</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">Aplikasi ini memerlukan izin lokasi latar belakang untuk mendapatkan informasi cuaca berdasarkan lokasi Anda saat ini. Jika Anda setuju, Anda harus memilih opsi pada layar berikutnya:</string>
 </resources>
