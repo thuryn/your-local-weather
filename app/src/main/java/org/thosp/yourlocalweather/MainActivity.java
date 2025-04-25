@@ -212,16 +212,10 @@ public class MainActivity extends BaseActivity
     public void onResume() {
         super.onResume();
         mAppBarLayout.addOnOffsetChangedListener(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            registerReceiver(mWeatherUpdateReceiver,
-                    new IntentFilter(
-                            UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT),
-                    RECEIVER_NOT_EXPORTED);
-        } else {
-            registerReceiver(mWeatherUpdateReceiver,
-                    new IntentFilter(
-                            UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT));
-        }
+        ContextCompat.registerReceiver(this, mWeatherUpdateReceiver,
+                new IntentFilter(
+                        UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT),
+                        ContextCompat.RECEIVER_NOT_EXPORTED);
         if (inited) {
             YourLocalWeather.executor.submit(() -> {
                 updateActivityOnResume();
@@ -409,7 +403,7 @@ public class MainActivity extends BaseActivity
                 weatherRecord.getLastUpdatedTime(),
                 temperatureUnitFromPreferences,
                 currentLocation.getLocale());
-        String weatherDescription = Utils.getWeatherDescription(MainActivity.this, currentLocation.getLocaleAbbrev(), weather);
+        String weatherDescription = Utils.getWeatherDescription(MainActivity.this, weather);
         String pressureValue = pressure.getPressure(AppPreference.getPressureDecimalPlaces(pressureUnitFromPreferences));
         String cityAndCountry = Utils.getCityAndCountry(MainActivity.this, currentLocation);
         boolean fontBasedIconSet = "weather_icon_set_fontbased".equals(AppPreference.getIconSet(MainActivity.this));
@@ -684,7 +678,7 @@ public class MainActivity extends BaseActivity
                 String description;
                 String sunrise;
                 String sunset;
-                description = Utils.getWeatherDescription(MainActivity.this, currentLocation.getLocaleAbbrev(), weather);
+                description = Utils.getWeatherDescription(MainActivity.this, weather);
                 sunrise = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunrise(), timeStylePreference, currentLocation.getLocale());
                 sunset = Utils.unixTimeToFormatTime(MainActivity.this, weather.getSunset(), timeStylePreference, currentLocation.getLocale());
                 String weatherDescription = getString(R.string.share_weather_descritpion,

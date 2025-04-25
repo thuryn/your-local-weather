@@ -198,7 +198,7 @@ public class NotificationUtils {
                         + cityAndCountry)
                 .setContentTitle(temperatureWithUnit +
                         "  " +
-                        Utils.getWeatherDescription(context, location.getLocaleAbbrev(), weatherRecord.getWeather()))
+                        Utils.getWeatherDescription(context, weatherRecord.getWeather()))
                 .setContentText(cityAndCountry)
                 .setVibrate(isVibrateEnabled(context))
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
@@ -236,7 +236,6 @@ public class NotificationUtils {
                 temperatureUnitFromPreferences,
                 location.getLocale());
         String weatherDescription = Utils.getWeatherDescription(context,
-                location.getLocaleAbbrev(),
                 weather);
         boolean fontBasedIcons = "weather_icon_set_fontbased".equals(AppPreference.getIconSet(context));
         final WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);

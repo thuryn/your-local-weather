@@ -314,7 +314,7 @@ public class WeatherByVoiceService extends Service {
         if (TimeUtils.isCurrentSettingIndex(partsToSay, 4) || TimeUtils.isCurrentSettingIndex(partsToSay, 2)) {
             textToSay.add(TTS_DELAY_BETWEEN_ITEM);
             String weatherDescriptionToSay = " " +
-                    Utils.getWeatherDescription(getBaseContext(), currentLocation.getLocaleAbbrev(), weather) +
+                    Utils.getWeatherDescription(getBaseContext(), weather) +
                     " ";
             textToSay.add(weatherDescriptionToSay);
         }

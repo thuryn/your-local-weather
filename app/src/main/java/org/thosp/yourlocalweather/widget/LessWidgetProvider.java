@@ -10,7 +10,6 @@ import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
-import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -68,7 +67,6 @@ public class LessWidgetProvider extends AbstractWidgetProvider {
                     temperatureUnitFromPreferences,
                     currentLocation.getLocale());
             String weatherDescription = Utils.getWeatherDescription(context,
-                    currentLocation.getLocaleAbbrev(),
                     weatherRecord.getWeather());
             IconHolder weatherIconHolder = new IconHolder();
             if (fontBasedIcons) {

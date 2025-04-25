@@ -75,7 +75,7 @@ public class ForecastUtil {
                 continue;
             }
             if (maxForecastDay > forecastDay) {
-                forecastDay += 365;
+                forecastDay += DAYS_IN_CURRENT_YEAR;
             }
             maxForecastDay = forecastDay;
             if (!weatherList.containsKey(forecastDay)) {

@@ -16,17 +16,14 @@ import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
-import android.net.Uri;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.TypedValue;
 import android.widget.ImageView;
 import android.widget.RemoteViews;
 
 import org.thosp.yourlocalweather.R;
-import org.thosp.yourlocalweather.model.CurrentWeather;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
@@ -549,7 +546,7 @@ public class Utils {
         return getCityAndCountryFromAddress(location.getAddress());
     }
 
-    public static String getWeatherDescription(Context context, String locale, Weather weather) {
+    public static String getWeatherDescription(Context context, Weather weather) {
         if((weather == null) || AppPreference.hideDescription(context)) {
             return " ";
         }

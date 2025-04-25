@@ -29,6 +29,7 @@ import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.WeatherJSONParser;
 import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
+import org.thosp.yourlocalweather.model.CompleteWeatherInfo;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.LicenseKeysDbHelper;
 import org.thosp.yourlocalweather.model.Location;
@@ -366,6 +367,7 @@ public class UpdateWeatherService extends AbstractCommonService {
                                     saveWeatherAndSendResult(context, weather, currentLocation, updateType);
                                     CompleteWeatherForecast completeWeatherForecast = WeatherJSONParser.getWeatherForecast(context, weatherData);
                                     saveWeatherAndSendResult(context, currentLocation, completeWeatherForecast, WEATHER_FORECAST_TYPE, START_WEATHER_FORECAST_UPDATE);
+                                    broadcastWeatherUpdate(currentLocation, weather, completeWeatherForecast);
                                 } else {
                                     sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
                                 }
@@ -480,6 +482,26 @@ public class UpdateWeatherService extends AbstractCommonService {
             sendMessageToReconciliationDbService(false);
         } catch (Throwable exception) {
             appendLog(context, TAG, "Exception occured when starting the service:", exception);
+        }
+    }
+
+    protected void broadcastWeatherUpdate(Location location, Weather weather, CompleteWeatherForecast completeWeatherForecast) {
+        appendLog(this,
+                TAG,
+                "going to broadcast Weather update");
+        try {
+            CompleteWeatherInfo completeWeatherInfo = new CompleteWeatherInfo();
+            completeWeatherInfo.updateLocation(this, location);
+            completeWeatherInfo.updateCurrentWeather(this, weather);
+            completeWeatherInfo.updateWeatherForecastList(this, completeWeatherForecast.getWeatherForecastList());
+            Intent intent = new Intent("org.thosp.yourlocalweather.action.WEATHER_UPDATE");
+            intent.putExtra("complete_weather_forecast", completeWeatherInfo);
+            intent.setPackage("org.omnirom.omnijaws");
+            sendBroadcast(intent);
+        } catch (Exception e) {
+            appendLog(this,
+                    TAG,
+                    e);
         }
     }
 

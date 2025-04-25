@@ -13,7 +13,6 @@ import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
-import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -108,7 +107,6 @@ public class ExtLocationWithForecastWidgetProvider extends AbstractWidgetProvide
                     temperatureUnitFromPreferences,
                     currentLocation.getLocale());
             String weatherDescription = Utils.getWeatherDescription(context,
-                    currentLocation.getLocaleAbbrev(),
                     weather);
             IconHolder weatherIconHolder = new IconHolder();
             if (fontBasedIcons) {

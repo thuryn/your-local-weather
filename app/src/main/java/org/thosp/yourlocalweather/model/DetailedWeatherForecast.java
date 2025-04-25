@@ -3,26 +3,21 @@ package org.thosp.yourlocalweather.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import org.thosp.yourlocalweather.WmoCodes;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 public class DetailedWeatherForecast implements Parcelable {
 
-    private long dateTime;
-    private double temperatureMin;
-    private double temperatureMax;
-    private double temperature;
-    private double pressure;
-    private int humidity;
-    private double windSpeed;
-    private double windDegree;
-    private int cloudiness;
-    private double rain;
-    private double snow;
-    private int weatherId;
+    protected long dateTime;
+    protected double temperatureMin;
+    protected double temperatureMax;
+    protected double temperature;
+    protected double pressure;
+    protected int humidity;
+    protected double windSpeed;
+    protected double windDegree;
+    protected int cloudiness;
+
+    protected double rain;
+    protected double snow;
+    protected int weatherId;
 
     public DetailedWeatherForecast() {
         super();
