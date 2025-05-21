@@ -263,7 +263,15 @@ public class WidgetUtils {
             Integer forecast_6_widget_day_layout,
             int forecast_6_widget_icon,
             int forecast_6_widget_day,
-            int forecast_6_widget_temperatures) {
+            int forecast_6_widget_temperatures,
+            Integer forecast_7_widget_day_layout,
+            int forecast_7_widget_icon,
+            int forecast_7_widget_day,
+            int forecast_7_widget_temperatures,
+            Integer forecast_8_widget_day_layout,
+            int forecast_8_widget_icon,
+            int forecast_8_widget_day,
+            int forecast_8_widget_temperatures) {
         updateWeatherForecast(
                 context,
                 location,
@@ -301,7 +309,15 @@ public class WidgetUtils {
                 forecast_6_widget_day_layout,
                 forecast_6_widget_icon,
                 forecast_6_widget_day,
-                forecast_6_widget_temperatures);
+                forecast_6_widget_temperatures,
+                forecast_7_widget_day_layout,
+                forecast_7_widget_icon,
+                forecast_7_widget_day,
+                forecast_7_widget_temperatures,
+                forecast_8_widget_day_layout,
+                forecast_8_widget_icon,
+                forecast_8_widget_day,
+                forecast_8_widget_temperatures);
     }
 
     public static void updateWeatherForecast(
@@ -341,7 +357,15 @@ public class WidgetUtils {
             Integer forecast_6_widget_day_layout,
             int forecast_6_widget_icon,
             int forecast_6_widget_day,
-            int forecast_6_widget_temperatures) {
+            int forecast_6_widget_temperatures,
+            Integer forecast_7_widget_day_layout,
+            int forecast_7_widget_icon,
+            int forecast_7_widget_day,
+            int forecast_7_widget_temperatures,
+            Integer forecast_8_widget_day_layout,
+            int forecast_8_widget_icon,
+            int forecast_8_widget_day,
+            int forecast_8_widget_temperatures) {
         if (location == null) {
             return;
         }
@@ -385,7 +409,15 @@ public class WidgetUtils {
                     forecast_6_widget_day_layout,
                     forecast_6_widget_icon,
                     forecast_6_widget_day,
-                    forecast_6_widget_temperatures
+                    forecast_6_widget_temperatures,
+                    forecast_7_widget_day_layout,
+                    forecast_7_widget_icon,
+                    forecast_7_widget_day,
+                    forecast_7_widget_temperatures,
+                    forecast_8_widget_day_layout,
+                    forecast_8_widget_icon,
+                    forecast_8_widget_day,
+                    forecast_8_widget_temperatures
             );
         } else {
             createForecastByDays(
@@ -420,7 +452,15 @@ public class WidgetUtils {
                     forecast_6_widget_day_layout,
                     forecast_6_widget_icon,
                     forecast_6_widget_day,
-                    forecast_6_widget_temperatures);
+                    forecast_6_widget_temperatures,
+                    forecast_7_widget_day_layout,
+                    forecast_7_widget_icon,
+                    forecast_7_widget_day,
+                    forecast_7_widget_temperatures,
+                    forecast_8_widget_day_layout,
+                    forecast_8_widget_icon,
+                    forecast_8_widget_day,
+                    forecast_8_widget_temperatures);
         }
     }
 
@@ -456,7 +496,15 @@ public class WidgetUtils {
             Integer forecast_6_widget_day_layout,
             int forecast_6_widget_icon,
             int forecast_6_widget_day,
-            int forecast_6_widget_temperatures
+            int forecast_6_widget_temperatures,
+            Integer forecast_7_widget_day_layout,
+            int forecast_7_widget_icon,
+            int forecast_7_widget_day,
+            int forecast_7_widget_temperatures,
+            Integer forecast_8_widget_day_layout,
+            int forecast_8_widget_icon,
+            int forecast_8_widget_day,
+            int forecast_8_widget_temperatures
     ) {
         Set<ForecastUtil.WeatherForecastPerDay> countedForecast = ForecastUtil.calculateWeatherForDays(context, weatherForecastRecord);
         for (ForecastUtil.WeatherForecastPerDay countedForecastForDay: countedForecast) {
@@ -551,6 +599,36 @@ public class WidgetUtils {
                             temperatureUnitFromPreferences,
                             fontBasedIcons);
                     break;
+                case 7:
+                    setForecastDayInfo(
+                            context,
+                            countedForecastForDay,
+                            fontColorId,
+                            daysCount,
+                            remoteViews,
+                            forecast_7_widget_day_layout,
+                            forecast_7_widget_icon,
+                            forecast_7_widget_day,
+                            forecast_7_widget_temperatures,
+                            sdfDayOfWeek,
+                            temperatureUnitFromPreferences,
+                            fontBasedIcons);
+                    break;
+                case 8:
+                    setForecastDayInfo(
+                            context,
+                            countedForecastForDay,
+                            fontColorId,
+                            daysCount,
+                            remoteViews,
+                            forecast_8_widget_day_layout,
+                            forecast_8_widget_icon,
+                            forecast_8_widget_day,
+                            forecast_8_widget_temperatures,
+                            sdfDayOfWeek,
+                            temperatureUnitFromPreferences,
+                            fontBasedIcons);
+                    break;
             }
         }
         return weatherForecastRecord;
@@ -588,7 +666,15 @@ public class WidgetUtils {
             Integer forecast_6_widget_day_layout,
             int forecast_6_widget_icon,
             int forecast_6_widget_day,
-            int forecast_6_widget_temperatures) {
+            int forecast_6_widget_temperatures,
+            Integer forecast_7_widget_day_layout,
+            int forecast_7_widget_icon,
+            int forecast_7_widget_day,
+            int forecast_7_widget_temperatures,
+            Integer forecast_8_widget_day_layout,
+            int forecast_8_widget_icon,
+            int forecast_8_widget_day,
+            int forecast_8_widget_temperatures) {
 
         int hourCounter = 0;
         long now = System.currentTimeMillis();
@@ -711,6 +797,46 @@ public class WidgetUtils {
                             detailedWeatherForecast.getWeatherId(),
                             forecast_6_widget_day,
                             forecast_6_widget_temperatures,
+                            detailedWeatherForecast.getDateTime(),
+                            detailedWeatherForecast.getTemperatureMax(),
+                            detailedWeatherForecast.getTemperatureMin(),
+                            detailedWeatherForecast.getWindSpeed(),
+                            localizedHourMap,
+                            temperaturesMap,
+                            fontBasedIcons);
+                    break;
+                case 7:
+                    setForecastHourInfo(
+                            context,
+                            fontColorId,
+                            hourCounter,
+                            hoursCount,
+                            remoteViews,
+                            forecast_7_widget_day_layout,
+                            forecast_7_widget_icon,
+                            detailedWeatherForecast.getWeatherId(),
+                            forecast_7_widget_day,
+                            forecast_7_widget_temperatures,
+                            detailedWeatherForecast.getDateTime(),
+                            detailedWeatherForecast.getTemperatureMax(),
+                            detailedWeatherForecast.getTemperatureMin(),
+                            detailedWeatherForecast.getWindSpeed(),
+                            localizedHourMap,
+                            temperaturesMap,
+                            fontBasedIcons);
+                    break;
+                case 8:
+                    setForecastHourInfo(
+                            context,
+                            fontColorId,
+                            hourCounter,
+                            hoursCount,
+                            remoteViews,
+                            forecast_8_widget_day_layout,
+                            forecast_8_widget_icon,
+                            detailedWeatherForecast.getWeatherId(),
+                            forecast_8_widget_day,
+                            forecast_8_widget_temperatures,
                             detailedWeatherForecast.getDateTime(),
                             detailedWeatherForecast.getTemperatureMax(),
                             detailedWeatherForecast.getTemperatureMin(),

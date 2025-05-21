@@ -88,19 +88,24 @@ public class WeatherByVoiceService extends Service {
         if (intent == null) {
             return ret;
         }
-        YourLocalWeather.executor.submit(() -> {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()), ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
-            } else {
-                startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
-            }
-            appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
-            switch (intent.getAction()) {
-                case "org.thosp.yourlocalweather.action.SAY_WEATHER": sayWeatherByTime(intent); return;
-                case "org.thosp.yourlocalweather.action.START_VOICE_WEATHER_UPDATED": startVoiceCommand(intent); return;
-                default:
-            }
-        });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()), ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
+        } else {
+            startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+        }
+        appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
+        switch (intent.getAction()) {
+            case "org.thosp.yourlocalweather.action.SAY_WEATHER":
+                sayWeatherByTime(intent);
+                stopForeground(true);
+                return ret;
+            case "org.thosp.yourlocalweather.action.START_VOICE_WEATHER_UPDATED":
+                startVoiceCommand(intent);
+                stopForeground(true);
+                return ret;
+            default:
+        }
+        stopForeground(true);
         return ret;
     }
 

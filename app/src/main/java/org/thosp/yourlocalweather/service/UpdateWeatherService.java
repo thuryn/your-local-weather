@@ -51,7 +51,7 @@ import cz.msebera.android.httpclient.Header;
 
 public class UpdateWeatherService extends AbstractCommonService {
 
-        private static final String TAG = "UpdateWeatherService";
+    private static final String TAG = "UpdateWeatherService";
 
     private static final long MIN_WEATHER_UPDATE_TIME_IN_MS = 900000L; //15min
     private static final long MAX_WEATHER_UPDATE_TIME_IN_MS = 2700000L; //45m
@@ -457,7 +457,6 @@ public class UpdateWeatherService extends AbstractCommonService {
                     AppWakeUpManager.SOURCE_WEATHER_FORECAST
             );
         }
-        NotificationUtils.cancelNotification(getBaseContext(), 1);
 
         gettingWeatherStarted = false;
         WeatherRequestDataHolder updateRequest = updateWeatherUpdateMessages.poll();
@@ -483,6 +482,8 @@ public class UpdateWeatherService extends AbstractCommonService {
         } catch (Throwable exception) {
             appendLog(context, TAG, "Exception occured when starting the service:", exception);
         }
+        NotificationUtils.cancelUpdateNotification(getBaseContext());
+        stopForeground(true);
     }
 
     protected void broadcastWeatherUpdate(Location location, Weather weather, CompleteWeatherForecast completeWeatherForecast) {
@@ -656,9 +657,10 @@ public class UpdateWeatherService extends AbstractCommonService {
                 AppWakeUpManager.FALL_DOWN,
                 AppWakeUpManager.SOURCE_NOTIFICATION
         );
-        NotificationUtils.cancelNotification(getBaseContext(), 1);
+        NotificationUtils.cancelUpdateNotification(getBaseContext());
         if ((locationForNotification == null) || (locationForNotification.getId() != locationId)) {
-          return;
+            stopForeground(true);
+            return;
         }
         String notificationPresence = AppPreference.getNotificationPresence(this);
         if ("permanent".equals(notificationPresence)) {
@@ -668,6 +670,7 @@ public class UpdateWeatherService extends AbstractCommonService {
         } else if ("NOTIFICATION".equals(updateSource)) {
             NotificationUtils.weatherNotification(this, locationId);
         }
+        stopForeground(true);
     }
 
     protected void sendMessageToWeatherByVoiceService(Location location,

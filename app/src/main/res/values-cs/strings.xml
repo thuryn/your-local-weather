@@ -561,6 +561,10 @@
     <string name="weather_condition_description_761" tools:ignore="MissingTranslation">Prach</string>
     <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 dní</string>
     <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 hodin</string>
+    <string name="forecast_number_of_days_hours_7_days" tools:ignore="MissingTranslation">7 dní</string>
+    <string name="forecast_number_of_days_hours_7_hours" tools:ignore="MissingTranslation">7 hodin</string>
+    <string name="forecast_number_of_days_hours_8_days" tools:ignore="MissingTranslation">8 dní</string>
+    <string name="forecast_number_of_days_hours_8_hours" tools:ignore="MissingTranslation">8 hodin</string>
     <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Typ předpovědi</string>
     <string name="pref_language_hr" tools:ignore="MissingTranslation">Chorvatština (Croatian)</string>
     <string name="pref_title_tts_bt_label" tools:ignore="MissingTranslation">Bluetooth</string>

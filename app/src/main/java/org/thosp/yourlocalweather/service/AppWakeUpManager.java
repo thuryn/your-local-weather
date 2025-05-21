@@ -3,6 +3,7 @@ package org.thosp.yourlocalweather.service;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLogWakeupSources;
 
+import android.app.Notification;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -13,7 +14,6 @@ import android.os.IBinder;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;
 
-import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
 
@@ -66,23 +66,22 @@ public class AppWakeUpManager extends Service {
         if (intent == null) {
             return ret;
         }
-        YourLocalWeather.executor.submit(() -> {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()), ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
-            } else {
-                startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
-            }
-            appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
-            switch (intent.getAction()) {
-                case "org.thosp.yourlocalweather.action.WAKE_UP":
-                    startWakeUp(intent.getIntExtra("wakeupSource", 0));
-                    return;
-                case "org.thosp.yourlocalweather.action.FALL_DOWN":
-                    stopWakeUp(intent.getIntExtra("wakeupSource", 0));
-                    return;
-                default:
-            }
-        });
+        Notification notification = NotificationUtils.getNotificationForActivity(getBaseContext());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            startForeground(NotificationUtils.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+        } else {
+            startForeground(NotificationUtils.NOTIFICATION_ID, notification);
+        }
+        appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
+        switch (intent.getAction()) {
+            case "org.thosp.yourlocalweather.action.WAKE_UP":
+                startWakeUp(intent.getIntExtra("wakeupSource", 0));
+                return ret;
+            case "org.thosp.yourlocalweather.action.FALL_DOWN":
+                stopWakeUp(intent.getIntExtra("wakeupSource", 0));
+                return ret;
+            default:
+        }
         return ret;
     }
 
@@ -115,7 +114,7 @@ public class AppWakeUpManager extends Service {
         wakeUpSourcesLock.lock();
         try {
             wakeUpSources.remove(wakeUpSource);
-            appendLogWakeupSources(getBaseContext(), TAG, "startWakeUp:", wakeUpSources);
+            appendLogWakeupSources(getBaseContext(), TAG, "stopWakeUp:", wakeUpSources);
             if (!wakeUpSources.isEmpty()) {
                 return;
             }
@@ -138,6 +137,8 @@ public class AppWakeUpManager extends Service {
                 // ignoring this exception, probably wakeLock was already released
             }
         }
+        NotificationUtils.cancelUpdateNotification(getBaseContext());
+        stopForeground(true);
     }
 
     public void wakeUp() {

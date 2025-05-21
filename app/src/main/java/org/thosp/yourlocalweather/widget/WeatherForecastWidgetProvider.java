@@ -9,7 +9,6 @@ import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.model.WidgetSettingsDbHelper;
-import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -125,7 +124,15 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
                         R.id.widget_weather_forecast_1x3_forecast_day_6,
                         R.id.widget_weather_forecast_1x3_forecast_6_widget_icon,
                         R.id.widget_weather_forecast_1x3_forecast_6_widget_day,
-                        R.id.widget_weather_forecast_1x3_forecast_6_widget_temperatures);
+                        R.id.widget_weather_forecast_1x3_forecast_6_widget_temperatures,
+                        R.id.widget_weather_forecast_1x3_forecast_day_7,
+                        R.id.widget_weather_forecast_1x3_forecast_7_widget_icon,
+                        R.id.widget_weather_forecast_1x3_forecast_7_widget_day,
+                        R.id.widget_weather_forecast_1x3_forecast_7_widget_temperatures,
+                        R.id.widget_weather_forecast_1x3_forecast_day_8,
+                        R.id.widget_weather_forecast_1x3_forecast_8_widget_icon,
+                        R.id.widget_weather_forecast_1x3_forecast_8_widget_day,
+                        R.id.widget_weather_forecast_1x3_forecast_8_widget_temperatures);
             } catch (Exception e) {
                 appendLog(context, TAG, "preLoadWeather:error updating weather forecast", e);
             }
@@ -159,6 +166,12 @@ public class WeatherForecastWidgetProvider extends AbstractWidgetProvider {
             remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_4_widget_temperatures, textColorId);
             remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_5_widget_day, textColorId);
             remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_5_widget_temperatures, textColorId);
+            remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_6_widget_day, textColorId);
+            remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_6_widget_temperatures, textColorId);
+            remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_7_widget_day, textColorId);
+            remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_7_widget_temperatures, textColorId);
+            remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_8_widget_day, textColorId);
+            remoteViews.setTextColor(R.id.widget_weather_forecast_1x3_forecast_8_widget_temperatures, textColorId);
         });
 
         appendLog(context, TAG, "setWidgetTheme:end");

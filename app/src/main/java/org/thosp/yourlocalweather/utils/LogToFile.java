@@ -15,14 +15,10 @@ import android.os.Messenger;
 import android.os.ParcelFileDescriptor;
 import android.os.PowerManager;
 import android.preference.PreferenceManager;
-import android.provider.DocumentsContract;
 import android.telephony.CellLocation;
 import android.util.Log;
 import android.widget.Switch;
 
-import androidx.documentfile.provider.DocumentFile;
-
-import org.thosp.yourlocalweather.SettingsActivity;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
@@ -32,7 +28,6 @@ import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileDescriptor;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -634,6 +629,18 @@ public class LogToFile {
 
     public static void appendLog(Context context, String tag, String... texts) {
         appendLog(context, tag, null, texts);
+    }
+
+    public static void appendLogCurrentStacktrace(Context context, String tag) {
+        StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
+        StringBuilder stackTraceString = new StringBuilder();
+        stackTraceString.append("Current Stack Trace:\n");
+        for (StackTraceElement element: stackTraceElements) {
+            stackTraceString.append("\t at ")
+                    .append(element.toString())
+                    .append("\n");
+        }
+        appendLog(context, tag, stackTraceString.toString());
     }
 
     public static void appendLog(Context context, String tag, String text, Throwable throwable) {

@@ -242,7 +242,15 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
                             R.id.widget_ext_loc_forecast_graph_3x3_forecast_day_6,
                             R.id.widget_ext_loc_forecast_graph_3x3_forecast_6_widget_icon,
                             R.id.widget_ext_loc_forecast_graph_3x3_forecast_6_widget_day,
-                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_6_widget_temperatures);
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_6_widget_temperatures,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_day_7,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_7_widget_icon,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_7_widget_day,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_7_widget_temperatures,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_day_8,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_8_widget_icon,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_8_widget_day,
+                            R.id.widget_ext_loc_forecast_graph_3x3_forecast_8_widget_temperatures);
 
                     if (weatherForecastRecord != null) {
                         Bitmap graphImage = GraphUtils.getCombinedChart(
@@ -308,6 +316,12 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
                     remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_forecast_4_widget_temperatures, textColorId);
                     remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_forecast_5_widget_day, textColorId);
                     remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_forecast_5_widget_temperatures, textColorId);
+                    remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_forecast_6_widget_day, textColorId);
+                    remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_forecast_6_widget_temperatures, textColorId);
+                    remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_forecast_7_widget_day, textColorId);
+                    remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_forecast_7_widget_temperatures, textColorId);
+                    remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_forecast_8_widget_day, textColorId);
+                    remoteViews.setTextColor(R.id.widget_ext_loc_forecast_graph_3x3_forecast_8_widget_temperatures, textColorId);
                     remoteViews.setInt(R.id.widget_ext_loc_forecast_graph_3x3_header_layout, "setBackgroundColor", windowHeaderBackgroundColorId);
                 });
         appendLog(context, TAG, "setWidgetTheme:end");

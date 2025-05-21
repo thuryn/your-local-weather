@@ -38,14 +38,18 @@ public class NotificationUtils {
 
     public static final int NOTIFICATION_ID = 2109876543;
 
+    public static Notification updateNotification;
+
     public static void weatherNotification(Context context, Long locationId) {
-        /*String updateAutoPeriodStr = AppPreference.getLocationAutoUpdatePeriod(context);
-        boolean updateBySensor = "0".equals(updateAutoPeriodStr);
-        if (updateBySensor) {
+        if (!AppPreference.getInstance().isNotificationEnabled(context)) {
+            cancelNotification(context, NOTIFICATION_ID);
+            updateNotification = null;
             return;
-        }*/
+        }
         Notification notification = getWeatherNotification(context, locationId);
         if (notification == null) {
+            cancelNotification(context, NOTIFICATION_ID);
+            updateNotification = null;
             return;
         }
         showNotification(context, notification);
@@ -83,12 +87,13 @@ public class NotificationUtils {
     }
 
     public static Notification getNoWeatherNotification(Context context) {
-        return new NotificationCompat.Builder(context, "yourLocalWeather")
+        updateNotification = new NotificationCompat.Builder(context, "yourLocalWeather")
                 .setSmallIcon(R.drawable.ic_refresh_white_18dp_1)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setAutoCancel(true)
                 .setOngoing(false)
                 .build();
+        return updateNotification;
     }
 
     public static Notification getNotificationForActivity(Context context) {
@@ -161,6 +166,13 @@ public class NotificationUtils {
         NotificationManager notificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         notificationManager.notify(NOTIFICATION_ID, notification);
+    }
+
+    public static void cancelUpdateNotification(Context context) {
+        if (updateNotification != null) {
+            cancelNotification(context, NOTIFICATION_ID);
+            updateNotification = null;
+        }
     }
 
     public static void cancelNotification(Context context, int notificationId) {
@@ -337,7 +349,15 @@ public class NotificationUtils {
                     null,
                     R.id.notification_weather_forecast_expanded_forecast_6_widget_icon,
                     R.id.notification_weather_forecast_expanded_forecast_6_widget_day,
-                    R.id.notification_weather_forecast_expanded_forecast_6_widget_temperatures);
+                    R.id.notification_weather_forecast_expanded_forecast_6_widget_temperatures,
+                    null,
+                    R.id.notification_weather_forecast_expanded_forecast_7_widget_icon,
+                    R.id.notification_weather_forecast_expanded_forecast_7_widget_day,
+                    R.id.notification_weather_forecast_expanded_forecast_7_widget_temperatures,
+                    null,
+                    R.id.notification_weather_forecast_expanded_forecast_8_widget_icon,
+                    R.id.notification_weather_forecast_expanded_forecast_8_widget_day,
+                    R.id.notification_weather_forecast_expanded_forecast_8_widget_temperatures);
         } catch (Exception e) {
             appendLog(context, TAG, "preLoadWeather:error updating weather forecast", e);
         }

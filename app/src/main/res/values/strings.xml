@@ -227,10 +227,14 @@
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 days</string>
     <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 days</string>
     <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 days</string>
+    <string name="forecast_number_of_days_hours_7_days" tools:ignore="MissingTranslation">7 days</string>
+    <string name="forecast_number_of_days_hours_8_days" tools:ignore="MissingTranslation">8 days</string>
     <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3 hours</string>
     <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4 hours</string>
     <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5 hours</string>
     <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 hours</string>
+    <string name="forecast_number_of_days_hours_7_hours" tools:ignore="MissingTranslation">7 hours</string>
+    <string name="forecast_number_of_days_hours_8_hours" tools:ignore="MissingTranslation">8 hours</string>
     <!-- Search Screen strings -->
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Search location</string>
     <!-- Preference Screen strings -->

@@ -13,6 +13,7 @@ import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 public class AbstractCommonService extends Service {
@@ -137,6 +138,7 @@ public class AbstractCommonService extends Service {
             intent = new Intent("org.thosp.yourlocalweather.action.WAKE_UP");
         } else {
             intent = new Intent("org.thosp.yourlocalweather.action.FALL_DOWN");
+            NotificationUtils.cancelUpdateNotification(getBaseContext());
         }
         intent.setPackage("org.thosp.yourlocalweather");
         intent.putExtra("wakeupSource", wakeupSource);

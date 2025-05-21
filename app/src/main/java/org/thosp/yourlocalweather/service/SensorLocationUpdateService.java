@@ -2,6 +2,7 @@ package org.thosp.yourlocalweather.service;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ServiceInfo;
@@ -9,7 +10,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Build;
 
-import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
 
@@ -33,21 +33,31 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
         if (intent == null) {
             return ret;
         }
-        YourLocalWeather.executor.submit(() -> {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()), ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
-            } else {
-                startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
-            }
-            appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
+        Notification notification = NotificationUtils.getNotificationForActivity(getBaseContext());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            startForeground(NotificationUtils.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+        } else {
+            startForeground(NotificationUtils.NOTIFICATION_ID, notification);
+        }
+        appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
 
-            switch (intent.getAction()) {
-                case "org.thosp.yourlocalweather.action.START_SENSOR_BASED_UPDATES": performSensorBasedUpdates();
-                case "org.thosp.yourlocalweather.action.STOP_SENSOR_BASED_UPDATES": stopSensorBasedUpdates(); return;
-                case "android.intent.action.CLEAR_SENSOR_VALUES": clearMeasuredLength();
-            }
-        });
-        return START_STICKY;
+        switch (intent.getAction()) {
+            case "org.thosp.yourlocalweather.action.START_SENSOR_BASED_UPDATES":
+                performSensorBasedUpdates();
+                return START_STICKY;
+            case "org.thosp.yourlocalweather.action.STOP_SENSOR_BASED_UPDATES":
+                stopSensorBasedUpdates();
+                stopForeground(true);
+                return START_NOT_STICKY;
+            case "android.intent.action.CLEAR_SENSOR_VALUES":
+                clearMeasuredLength();
+                stopForeground(true);
+                return START_NOT_STICKY;
+            default:
+                NotificationUtils.cancelUpdateNotification(getBaseContext());
+        }
+        stopForeground(true);
+        return START_NOT_STICKY;
     }
     
     @Override
@@ -63,6 +73,7 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
     private void stopSensorBasedUpdates() {
         receiversLock.lock();
         try {
+            NotificationUtils.cancelUpdateNotification(getBaseContext());
             if (!receiversRegistered || (senSensorManager == null)) {
                 return;
             }
@@ -91,6 +102,7 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
                     TAG,
                     "startSensorBasedUpdates ", senSensorManager);
             if (senSensorManager != null) {
+                stopForeground(true);
                 return;
             }
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());

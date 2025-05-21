@@ -492,16 +492,22 @@ public class WidgetSettingsDialogue extends Activity {
             if (hoursForecast) {
                 switch (storedDays.intValue()) {
                     case 3:
-                        predefinedSelection = 4;
-                        break;
-                    case 4:
-                        predefinedSelection = 5;
-                        break;
-                    case 5:
                         predefinedSelection = 6;
                         break;
-                    case 7:
+                    case 4:
                         predefinedSelection = 7;
+                        break;
+                    case 5:
+                        predefinedSelection = 8;
+                        break;
+                    case 6:
+                        predefinedSelection = 9;
+                        break;
+                    case 7:
+                        predefinedSelection = 10;
+                        break;
+                    case 8:
+                        predefinedSelection = 11;
                         break;
                 }
             } else {
@@ -517,6 +523,12 @@ public class WidgetSettingsDialogue extends Activity {
                         break;
                     case 6:
                         predefinedSelection = 3;
+                        break;
+                    case 7:
+                        predefinedSelection = 4;
+                        break;
+                    case 8:
+                        predefinedSelection = 5;
                         break;
                 }
             }
@@ -657,10 +669,14 @@ public class WidgetSettingsDialogue extends Activity {
                 case 1: numberOfDays = 4; hoursForecast = false; break;
                 case 2: numberOfDays = 5; hoursForecast = false; break;
                 case 3: numberOfDays = 6; hoursForecast = false; break;
-                case 4: numberOfDays = 3; hoursForecast = true; break;
-                case 5: numberOfDays = 4; hoursForecast = true; break;
-                case 6: numberOfDays = 5; hoursForecast = true; break;
-                case 7: numberOfDays = 6; hoursForecast = true; break;
+                case 4: numberOfDays = 7; hoursForecast = false; break;
+                case 5: numberOfDays = 8; hoursForecast = false; break;
+                case 6: numberOfDays = 3; hoursForecast = true; break;
+                case 7: numberOfDays = 4; hoursForecast = true; break;
+                case 8: numberOfDays = 5; hoursForecast = true; break;
+                case 9: numberOfDays = 6; hoursForecast = true; break;
+                case 10: numberOfDays = 7; hoursForecast = true; break;
+                case 11: numberOfDays = 8; hoursForecast = true; break;
             }
         }
 

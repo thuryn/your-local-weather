@@ -4,6 +4,7 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 import android.Manifest;
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
@@ -82,30 +83,29 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         }
         forceUpdate = false;
         updateSource = null;
-        YourLocalWeather.executor.submit(() -> {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()), ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
-                } else {
-                    startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
-                }
-                appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
-                switch (intent.getAction()) {
-                    case "org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE":
-                        startLocationAndWeatherUpdate(intent);
-                        return;
-                    case "org.thosp.yourlocalweather.action.START_LOCATION_ONLY_UPDATE":
-                        updateNetworkLocation(intent);
-                        return;
-                    case "org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CHANGED":
-                        onLocationChanged(intent.getParcelableExtra("location"),
-                                        intent.hasExtra("address") ? intent.getParcelableExtra("address") : null);
-                        return;
-                    case "org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CANCELED":
-                        onLocationChangedCanceled();
-                        return;
-                    default:
-                }
-        });
+        Notification notification = NotificationUtils.getNotificationForActivity(getBaseContext());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            startForeground(NotificationUtils.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+        } else {
+            startForeground(NotificationUtils.NOTIFICATION_ID, notification);
+        }
+        appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
+        switch (intent.getAction()) {
+            case "org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE":
+                startLocationAndWeatherUpdate(intent);
+                return ret;
+            case "org.thosp.yourlocalweather.action.START_LOCATION_ONLY_UPDATE":
+                updateNetworkLocation(intent);
+                return ret;
+            case "org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CHANGED":
+                onLocationChanged(intent.getParcelableExtra("location"),
+                                intent.hasExtra("address") ? intent.getParcelableExtra("address") : null);
+                return ret;
+            case "org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CANCELED":
+                onLocationChangedCanceled();
+                return ret;
+            default:
+        }
         return ret;
     }
 
@@ -189,7 +189,8 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
 
         if ((location == null) && gpsRequestLocation()) {
             updateLocationInProcess = false;
-            NotificationUtils.cancelNotification(getBaseContext(), 1);
+            NotificationUtils.cancelUpdateNotification(getBaseContext());
+            stopForeground(true);
             return;
         }
 
@@ -398,7 +399,8 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
 
     private void startLocationUpdateOnly(Intent intent) {
         if (intent.getExtras() == null) {
-            NotificationUtils.cancelNotification(getBaseContext(), 1);
+            NotificationUtils.cancelUpdateNotification(getBaseContext());
+            stopForeground(true);
             return;
         }
         Location inputLocation = null;
@@ -416,7 +418,8 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
     private void startLocationAndWeatherUpdate(Intent intent) {
         appendLog(getBaseContext(), TAG, "startLocationAndWeatherUpdate:", intent);
         if (intent.getExtras() == null) {
-            NotificationUtils.cancelNotification(getBaseContext(), 1);
+            NotificationUtils.cancelUpdateNotification(getBaseContext());
+            stopForeground(true);
             return;
         }
         this.updateSource = intent.getStringExtra("updateSource");
@@ -569,11 +572,12 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                     timerNetworkAvailabilityHandler.postDelayed(timerNetworkAvailabilityRunnable, NETWORK_AVAILABILITY_TIMEOUT_IN_MS);
                 }
                 updateLocationInProcess = false;
-                NotificationUtils.cancelNotification(getBaseContext(), 1);
+                NotificationUtils.cancelUpdateNotification(getBaseContext());
                 sendMessageToWakeUpService(
                         AppWakeUpManager.FALL_DOWN,
                         AppWakeUpManager.SOURCE_LOCATION_UPDATE
                 );
+                stopForeground(true);
                 return false;
             }
             timerNetworkAvailabilityHandler.removeCallbacksAndMessages(null);
@@ -586,7 +590,8 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                     AppWakeUpManager.FALL_DOWN,
                     AppWakeUpManager.SOURCE_LOCATION_UPDATE
             );
-            NotificationUtils.cancelNotification(getBaseContext(), 1);
+            NotificationUtils.cancelUpdateNotification(getBaseContext());
+            stopForeground(true);
             return false;
         }
 
@@ -608,7 +613,8 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                 AppWakeUpManager.FALL_DOWN,
                 AppWakeUpManager.SOURCE_LOCATION_UPDATE
         );
-        NotificationUtils.cancelNotification(getBaseContext(), 1);
+        NotificationUtils.cancelUpdateNotification(getBaseContext());
+        stopForeground(true);
         return false;
     }
 
@@ -647,7 +653,8 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                     AppWakeUpManager.FALL_DOWN,
                     AppWakeUpManager.SOURCE_LOCATION_UPDATE
             );
-            NotificationUtils.cancelNotification(getBaseContext(), 1);
+            NotificationUtils.cancelUpdateNotification(getBaseContext());
+            stopForeground(true);
             return;
         }
 
@@ -697,7 +704,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                     AppWakeUpManager.FALL_DOWN,
                     AppWakeUpManager.SOURCE_LOCATION_UPDATE
             );
-            NotificationUtils.cancelNotification(getBaseContext(), 1);
+            NotificationUtils.cancelNotification(getBaseContext(), NotificationUtils.NOTIFICATION_ID);
             return true;
         }
 
@@ -710,7 +717,8 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                     AppWakeUpManager.FALL_DOWN,
                     AppWakeUpManager.SOURCE_LOCATION_UPDATE
             );
-            NotificationUtils.cancelNotification(getBaseContext(), 1);
+            NotificationUtils.cancelUpdateNotification(getBaseContext());
+            stopForeground(true);
             return true;
         }
 
@@ -736,7 +744,8 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
                 AppWakeUpManager.FALL_DOWN,
                 AppWakeUpManager.SOURCE_LOCATION_UPDATE
         );
-        NotificationUtils.cancelNotification(getBaseContext(), 1);
+        NotificationUtils.cancelUpdateNotification(getBaseContext());
+        stopForeground(true);
         return true;
     }
 
@@ -799,13 +808,14 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
     private void detectLocationByNetAndGPS() {
         appendLog(getBaseContext(), TAG, "detectLocation:lastLocationUpdateTime=", lastLocationUpdateTime);
         if ((lastLocationUpdateTime > 0) && ((System.currentTimeMillis() - (2 * LOCATION_TIMEOUT_IN_MS)) < lastLocationUpdateTime)) {
-            NotificationUtils.cancelNotification(getBaseContext(), 1);
+            NotificationUtils.cancelUpdateNotification(getBaseContext());
             updateLocationInProcess = false;
             sendMessageToWakeUpService(
                     AppWakeUpManager.FALL_DOWN,
                     AppWakeUpManager.SOURCE_LOCATION_UPDATE
             );
             appendLog(getBaseContext(), TAG, "detectLocation:canceled");
+            stopForeground(true);
             return;
         }
         final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());

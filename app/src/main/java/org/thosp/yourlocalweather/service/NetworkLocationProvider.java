@@ -4,6 +4,7 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 import android.Manifest;
 import android.app.AlarmManager;
+import android.app.Notification;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.app.job.JobInfo;
@@ -137,10 +138,11 @@ public class NetworkLocationProvider extends Service {
 
         if (null != intent.getAction()) switch (intent.getAction()) {
             case "org.thosp.yourlocalweather.action.START_LOCATION_UPDATE":
+                Notification notification = NotificationUtils.getNotificationForActivity(getBaseContext());
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()), ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+                    startForeground(NotificationUtils.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
                 } else {
-                    startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
+                    startForeground(NotificationUtils.NOTIFICATION_ID, notification);
                 }
                 startLocationUpdate(intent.getParcelableExtra("inputLocation"));
                 return ret;
@@ -158,6 +160,7 @@ public class NetworkLocationProvider extends Service {
                 "LOCATION_UPDATE_CELLS_ONLY:nextScanningAllowedFrom:",
                 nextScanningAllowedFrom);
         if (nextScanningAllowedFrom == null) {
+            stopForeground(true);
             return;
         }
         nextScanningAllowedFrom = null;
@@ -169,6 +172,8 @@ public class NetworkLocationProvider extends Service {
         if (nextScanningAllowedFrom != null) {
             Calendar now = Calendar.getInstance();
             if (now.before(nextScanningAllowedFrom)) {
+                NotificationUtils.cancelUpdateNotification(getBaseContext());
+                stopForeground(true);
                 return;
             }
         }
@@ -177,6 +182,8 @@ public class NetworkLocationProvider extends Service {
         } else {
             sendUpdateToLocationBackends();
         }
+        NotificationUtils.cancelUpdateNotification(getBaseContext());
+        stopForeground(true);
     }
 
     private void sendUpdateToLocationBackends() {
@@ -224,6 +231,8 @@ public class NetworkLocationProvider extends Service {
                                                                           LocationNetworkSourcesService.getInstance().getCells(getBaseContext(),
                                                                           mTelephonyManager),
                                                                           scans);
+        NotificationUtils.cancelUpdateNotification(getBaseContext());
+        stopForeground(true);
     }
 
     private PendingIntent getIntentToGetCellsOnly() {
