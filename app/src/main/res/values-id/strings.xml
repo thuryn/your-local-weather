@@ -49,8 +49,7 @@
     <string name="help_page_3_content" tools:ignore="MissingTranslation">Opsi ini memiliki pengaruh pada seluruh aplikasi.</string>
     <string name="app_name" tools:ignore="MissingTranslation">Cuaca di tempat anda</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">Notifikasi Your local weather</string>
-    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation">" &lt;b xmlns:tools=\"http://schemas.android.com/tools\"&gt; Lokasi dan sumber alamat&lt;/b&gt;
-\nAnda dapat memilih dari mana aplikasi mendapatkan lokasi dan alamat."</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"> <b> Lokasi dan sumber alamat</b>\n\nAnda dapat memilih dari mana aplikasi mendapatkan lokasi dan alamat.</string>
     <string name="title_activity_search" tools:ignore="MissingTranslation">Cari Lokasi</string>
     <string name="label_activity_main" tools:ignore="MissingTranslation">Cuaca Saat ini</string>
     <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Cuaca Harian</string>
