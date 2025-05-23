@@ -591,4 +591,8 @@
     <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6小时</string>
     <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6天</string>
     <string name="update_period_2hours" tools:ignore="MissingTranslation">2小时</string>
+    <string name="forecast_number_of_days_hours_7_days" tools:ignore="MissingTranslation">7 天</string>
+    <string name="forecast_number_of_days_hours_8_hours" tools:ignore="MissingTranslation">8 小时</string>
+    <string name="forecast_number_of_days_hours_8_days" tools:ignore="MissingTranslation">8 天</string>
+    <string name="forecast_number_of_days_hours_7_hours" tools:ignore="MissingTranslation">7 小时</string>
 </resources>
