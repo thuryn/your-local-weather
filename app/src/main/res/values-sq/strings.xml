@@ -127,7 +127,7 @@
     <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/yy)</string>
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Kërko vendndodhje</string>
     <string name="title_activity_settings" tools:ignore="MissingTranslation">Rregullime</string>
-    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Licenca software-i të lirë</string>
+    <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Licenca software-i Libre</string>
     <string name="pref_title_temperature" tools:ignore="MissingTranslation">Temperaturë</string>
     <string name="pref_title_wind" tools:ignore="MissingTranslation">Erë</string>
     <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Stil drejtimi ere</string>
@@ -212,7 +212,7 @@
     <string name="about_version_pref_title" tools:ignore="MissingTranslation">Version</string>
     <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Kod Burim</string>
     <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Licencë</string>
-    <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Licenca software-i të lirë</string>
+    <string name="about_open_source_licenses_pref_title" tools:ignore="MissingTranslation">Licenca software-i Libre</string>
     <string name="wind_label" tools:ignore="MissingTranslation">Erë: %1$s %2$s %3$s</string>
     <string name="rain_label" tools:ignore="MissingTranslation">Shi: %1$s %2$s</string>
     <string name="snow_label" tools:ignore="MissingTranslation">Borë: %1$s %2$s</string>
@@ -590,4 +590,8 @@
     <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 ditë</string>
     <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">Ndryshoi furnizuesi i shërbimit të motit</string>
     <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">Nga tani e tutje, ky aplikacion përdor Open-Meteo (https://open-meteo.com) si burimin e vet për motin, ngaqë openweathermap.org e përfundon shërbimin e vet falas më qershor 2024.</string>
+    <string name="forecast_number_of_days_hours_7_days" tools:ignore="MissingTranslation">7 ditë</string>
+    <string name="forecast_number_of_days_hours_8_days" tools:ignore="MissingTranslation">8 ditë</string>
+    <string name="forecast_number_of_days_hours_7_hours" tools:ignore="MissingTranslation">7 orë</string>
+    <string name="forecast_number_of_days_hours_8_hours" tools:ignore="MissingTranslation">8 orë</string>
 </resources>
