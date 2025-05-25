@@ -159,7 +159,7 @@
     <string name="tty_say_weather_forecast_today" tools:ignore="MissingTranslation">Ass-a</string>
     <string name="tts_say_current_weather" tools:ignore="MissingTranslation">Tagnawt tamirant</string>
     <string name="about_app_license_pref_title" tools:ignore="MissingTranslation">Licence</string>
-    <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Tangalt aγbalu</string>
+    <string name="about_source_code_pref_title" tools:ignore="MissingTranslation">Tangalt aɣbalu</string>
     <string name="about_version_pref_title" tools:ignore="MissingTranslation">Version</string>
     <string name="preference_title_activity_about" tools:ignore="MissingTranslation">Ɣef</string>
     <string name="pref_title_tts_time" tools:ignore="MissingTranslation">Akud</string>
