@@ -229,7 +229,7 @@
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Continuar</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Cancelar</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">O acesso expirou. Por favor atualize a app.</string>
-    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">A sua chave da API do Openweathermap não está registada.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">A sua chave da API do Open-Meteo não está registada.</string>
     <string name="help_page_1_content_1_2" tools:ignore="MissingTranslation">Ao lado do botão de atualização de local, há um botão de gestão do local (ícone da lupa). Pode gerir os locais disponíveis na app e nos widgets. Há um local (local 0) disponível por predefinição - isso destina-se a atualizações automáticas de localização. Pode encontrar o botão ativar/desativar quando desliza este local para a esquerda. Também pode adicionar o local manualmente. Quando clicar no botão + pode procurar a sua localização do mapa. Também pode apagar o local com o botão Apagar - que está acessível quando desliza o local para a esquerda.</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Quando marcar a opção <b>Ligar GPS quando necessário</b>, a app tentará encontrar a sua localização usando redes celulares ou wifi. Quando a localização não encontra-se a usar serviços de rede, a app liga o GPS por alguns segundos para obter a localização.</string>
     <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"> <b>Fonte da localização e endereço</b> 
@@ -264,7 +264,7 @@
     <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Período de atualização do tempo (localização 1, 2, 3...)</string>
     <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Período de atualização da localização (localização 0)</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Configurações do sistema</string>
-    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Chave da API do Openweathermap.org</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Chave da API do Open-Meteo (https://open-meteo.com)</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Integrado</string>
     <string name="pref_language_default" tools:ignore="MissingTranslation">Configurações do sistema</string>
     <string name="pref_language_sv" tools:ignore="MissingTranslation">Svenska (Sueco)</string>
@@ -454,9 +454,9 @@
     <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 dias</string>
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 dias</string>
     <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 dias</string>
-    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (intervalo de 3 horas)</string>
-    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (intervalo de 3 horas)</string>
-    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (intervalo de 3 horas)</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3 horas</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4 horas</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5 horas</string>
     <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Mostrar gráfico na resolução nativa (quando o gráfico é muito pequeno)</string>
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Mostrar configurações no widget</string>
     <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Botão widget de configuração de gráficos</string>
@@ -584,4 +584,12 @@
     <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">Não entre as 00:00 e as 06:00 horas (Localização 1,2,3...)</string>
     <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">Não entre as 00:00 e as 06:00 horas (Localização 0)</string>
     <string name="permission_available_notification" tools:ignore="MissingTranslation">A permissão de notificação foi concedida</string>
+    <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 horas</string>
+    <string name="forecast_number_of_days_hours_7_hours" tools:ignore="MissingTranslation">7 horas</string>
+    <string name="forecast_number_of_days_hours_8_hours" tools:ignore="MissingTranslation">8 horas</string>
+    <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">O provedor de tempo mudou</string>
+    <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">Esta aplicação usa Open-Meteo (https://open-meteo.com) como a sua fonte do tempo, como openweathermap.org terminou o seu serviço gratuito em junho de 2024.</string>
+    <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 dias</string>
+    <string name="forecast_number_of_days_hours_7_days" tools:ignore="MissingTranslation">7 dias</string>
+    <string name="forecast_number_of_days_hours_8_days" tools:ignore="MissingTranslation">8 dias</string>
 </resources>
