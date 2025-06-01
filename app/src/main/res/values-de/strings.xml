@@ -608,4 +608,8 @@
     <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 Stunden</string>
     <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">Wetteranbieter geändert</string>
     <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">Diese Anwendung nutzt ab sofort Open-Meteo (https://open-meteo.com) als Wetterquelle, da openweathermap.org seinen kostenlosen Dienst im Juni 2024 beendet.</string>
+    <string name="forecast_number_of_days_hours_7_hours" tools:ignore="MissingTranslation">7 Stunden</string>
+    <string name="forecast_number_of_days_hours_8_hours" tools:ignore="MissingTranslation">8 Stunden</string>
+    <string name="forecast_number_of_days_hours_7_days" tools:ignore="MissingTranslation">7 Tage</string>
+    <string name="forecast_number_of_days_hours_8_days" tools:ignore="MissingTranslation">8 Tage</string>
 </resources>
