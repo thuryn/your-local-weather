@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name" tools:ignore="MissingTranslation">আপনার পূর্বাভাস</string>
+    <string name="app_name" tools:ignore="MissingTranslation">আপনার স্থানীয় আবহাওয়া</string>
     <string name="enter_city_hint" tools:ignore="MissingTranslation">শহরের নাম</string>
     <string name="label_current_city" tools:ignore="MissingTranslation">বর্তমান শহর</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">শহর নির্বাচন করুন</string>
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">ব্যাটারি অপ্টিমাইজেশন</string>
-    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">অ্যাপ্লিকেশনটি ব্যাকগ্রাউন্ডে অ্যাকসিলোমিটারের সাহায্যে অবস্থান, আবহাওয়া বা অবস্থান পরিবর্তন করতে আপনাকে ব্যাটারি অপ্টিমাইজেশন বন্ধ করতে বলবে।</string>
+    <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">অ্যাপ্লিকেশনটি ব্যাকগ্রাউন্ডে ত্বরণ পরিমাপক এর সাহায্যে অবস্থান হালনাগাদ, আবহাওয়া বা অবস্থান অনুসরণ করতে আপনাকে ব্যাটারি অপ্টিমাইজেশন বন্ধ করতে বলবে।</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">চলা</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">বাতিল</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">অবস্থান এবং অনুমতি সেটিংস</string>
