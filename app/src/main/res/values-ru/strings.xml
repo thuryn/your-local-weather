@@ -104,8 +104,7 @@
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Назад</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Закончить</string>
     <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Гид начальной настройки</string>
-    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Изменяя приложение по вашим потребностям, можно выбрать следующую стратегию обновления.
-\nЧтобы отклониться от значения местоположения по умолчанию, можно выбрать <i>Не обновлять местоположение</i>.</string>
+    <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Изменяя приложение по вашим потребностям, вы можете выбрать следующую стратегию обновления.\nЧтобы изменить значение местоположения по умолчанию, вы можете выбрать <i>Не обновлять местоположение</i>.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Настройка обновления местоположения</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Источники местоположения</string>
     <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Вы можете выбрать источник местоположения - <i>Система</i> использует службы Google для получения местоположения по сетям (сотовые и Wi-Fi-сети). Параметр <i>Local MLS и Nominatim</i> использует службу определения местоположения Mozilla, чтобы получить координаты местоположения и службу Nominatim, чтобы получать его название. Второй вариант требует разрешения на телефонные звонки для получения информации о сотовой сети. Предпочтительный вариант предварительно выбран.</string>
@@ -122,7 +121,7 @@
 \n
 \nНаслаждайтесь приложением.</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Главное</string>
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">Приложение использует сотовую сеть, Wi-Fi и GPS, чтобы получить ваше местоположение и показать вам погоду в том месте, где вы находитесь. Если вы используете виджет на своем телефоне или планшете, вы можете увидеть свое местоположение и текущую погоду на главном экране. Обновление местоположения может быть периодическим (например, раз в час) или по акселерометру для обнаружения больших перемещений. Акселерометр в телефоне, переносимом в кармане, насчитает большее расстояние из-за движения телефона вперед и назад по ходу движения. В любом случае, вы можете отключить обновление и узнавать текущую погоду по необходимости. Погода обновляется сразу после обновления местоположения. Погода обновляется, когда экран включён, но не чаще, чем раз в 15 минут (или если погода не обновлялась последние 15 минут). Для получения местоположения используются сотовая сеть (BTS) и Wi-Fi. По этим данным через сервис определения местоположения Mozilla определяются координаты. Если положение не удалось определить по сотовой сети или Wi-Fi, приложение попробует использовать GPS. Координаты местоположения используются для получения адреса через сервис Nominatim. Адрес используется в приложении или виджете. Прогноз погоды приложение берёт с OpenWeatherMap.org.</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Приложение использует сотовую сеть, Wi-Fi и GPS, чтобы получить ваше местоположение и показать вам погоду в том месте, где вы находитесь. Если вы используете виджет на своем телефоне или планшете, вы можете увидеть свое местоположение и текущую погоду на главном экране. Обновление местоположения может быть периодическим (например, раз в час) или по акселерометру для обнаружения больших перемещений. Акселерометр в телефоне, переносимом в кармане, насчитает большее расстояние из-за движения телефона вперед и назад по ходу движения. В любом случае, вы можете отключить обновление и узнавать текущую погоду по необходимости. Погода обновляется сразу после обновления местоположения. Погода обновляется, когда экран включён, но не чаще, чем раз в 15 минут (или если погода не обновлялась последние 15 минут). Для получения местоположения используются сотовая сеть (BTS) и Wi-Fi. По этим данным через сервис определения местоположения Mozilla определяются координаты. Если положение не удалось определить по сотовой сети или Wi-Fi, приложение попробует использовать GPS. Координаты местоположения используются для получения адреса через сервис Nominatim. Адрес используется в приложении или виджете. Прогноз погоды приложение берёт с Open-Meteo (https://open-meteo.com).</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Основное приложение</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Основное приложение содержит обзор текущей погоды. Вы можете обновить погоду, нажав кнопку обновления на панели приложений или потянув вниз. Кнопка обновления/поиск находится рядом с кнопкой обновления погоды. Кнопка обновления местоположения, доступна когда вы выбрали местоположение обновления в меню настроек. Кнопка поиска местоположения доступна, когда вы выбрали опцию обновления погоды только в меню настроек.</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Вы можете найти прогноз погоды на следующем экране (выберите следующий экран в меню или проведите по экрану слева направо). Прогноз погоды обновляется кнопкой обновления или при входе в экран (но не более одного обновления в час).</string>
@@ -260,14 +259,14 @@
 \nB - доступ к Openweathermap.org был запрешён, попробуйте, пожалуйста, обновить погоду позже
 \nE - токен доступа к сервису Openweathermap.org истёк. Обновите приложение, чтобы снова получить доступ</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Местоположение</string>
-    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Ваш ключ API OpenWeatherMap не зарегистрирован.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Ваш ключ к Open-Meteo не зарегистрирован.</string>
     <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">дюйм рт.ст.</string>
     <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">мбар</string>
     <string name="wind_speed_knots" tools:ignore="MissingTranslation">узлы</string>
     <string name="update_location_gps_enabled" tools:ignore="MissingTranslation">Включать GPS при необходимости</string>
     <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Интервал обновления местоположения (Место 0)</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Системные настройки</string>
-    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">API ключ Openweathermap.org</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">API ключ к Open-Meteo (https://open-meteo.com)</string>
     <string name="pref_language_uk" tools:ignore="MissingTranslation">Українська (Украинский)</string>
     <string name="pref_language_ro" tools:ignore="MissingTranslation">Română (Румынский)</string>
     <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Português (Португальский)</string>
@@ -312,9 +311,9 @@
     <string name="forecast_settings_graph_temperature" tools:ignore="MissingTranslation">Температура</string>
     <string name="forecast_settings_graph_wind" tools:ignore="MissingTranslation">Ветер</string>
     <string name="forecast_settings_graph_rain" tools:ignore="MissingTranslation">Дождь</string>
-    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Дождь (столб)</string>
+    <string name="forecast_settings_graph_rain_bar" tools:ignore="MissingTranslation">Дождь (столбец)</string>
     <string name="forecast_settings_graph_snow" tools:ignore="MissingTranslation">Снег</string>
-    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Снег (столб)</string>
+    <string name="forecast_settings_graph_snow_bar" tools:ignore="MissingTranslation">Снег (столбец)</string>
     <string name="forecast_settings_graph_pressure" tools:ignore="MissingTranslation">Давление</string>
     <string name="forecast_settings_graph_combined_temperature" tools:ignore="MissingTranslation">Температура</string>
     <string name="forecast_settings_graph_combined_wind" tools:ignore="MissingTranslation">Ветер</string>
@@ -335,9 +334,9 @@
     <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 дня</string>
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 дня</string>
     <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 дней</string>
-    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (3-часовой интервал)</string>
-    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (3-часовой интервал)</string>
-    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (3-часовой интервал)</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3 часа</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4 часа</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5 часов</string>
     <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Лицензии открытого программного обеспечения</string>
     <string name="pref_title_wind_direction" tools:ignore="MissingTranslation">Стиль направления ветра</string>
     <string name="pref_title_rain_snow" tools:ignore="MissingTranslation">Дождь и снег</string>
@@ -563,7 +562,7 @@
     <string name="voice_settings_language" tools:ignore="MissingTranslation">Язык</string>
     <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Доступ к службе определения местоположения Mozilla истек с 1.3.2020. Приложение вынуждено использовать систему Andorid для определения координат местоположения. Адрес все еще определяется Nominatim. Учтите это при использовании приложения.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Ограничение службы определения местоположения Mozilla</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"В этом приложении есть голосовые подсказки в виде перевода текста и голосовых команд, любезно предоставленных волонтерами на https://hosted.weblate.org/projects/your-local-weather. Разработчик приложения не может гарантировать, что они верны - вы принимаете это, используя приложение. Для его использования у вас должен быть установлен TTS (преобразование текста в речь) и включены подсказки в настройках, где вы можете установить свои собственные голосовые команды. "</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">В этом приложении есть голосовые подсказки в виде перевода текста и голосовых команд, любезно предоставленных волонтерами на https://hosted.weblate.org/projects/your-local-weather. Разработчик приложения не может гарантировать, что они верны - вы принимаете это, используя приложение. Для его использования у вас должен быть установлен синтез речи TTS (преобразование текста в речь) и включены подсказки в настройках, где вы можете установить свои собственные голосовые команды.</string>
     <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Начиная с Android 10, для получения информации о подключённой сети GSM/LTE необходим детальный доступ к местоположению. Разрешите также получать данные о местоположении в фоновом режиме (если вы хотите, чтобы ваше местоположение было всегда актуально).</string>
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Изменения разрешений Android 10</string>
     <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
@@ -587,4 +586,12 @@
     <string name="pref_language_lt" tools:ignore="MissingTranslation">Литовский</string>
     <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Разрешение для BT</string>
     <string name="theme_system" tools:ignore="MissingTranslation">Как в системе</string>
+    <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">Сменился поставщик погоды</string>
+    <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">Теперь это приложение использует Open-Meteo (https://open-meteo.com) в качестве источника погоды, так как OpenWeatherMap.org прекращает бесплатное обслуживание в июне 2024 года.</string>
+    <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 дней</string>
+    <string name="forecast_number_of_days_hours_7_days" tools:ignore="MissingTranslation">7 дней</string>
+    <string name="forecast_number_of_days_hours_8_days" tools:ignore="MissingTranslation">8 дней</string>
+    <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 часов</string>
+    <string name="forecast_number_of_days_hours_7_hours" tools:ignore="MissingTranslation">7 часов</string>
+    <string name="forecast_number_of_days_hours_8_hours" tools:ignore="MissingTranslation">8 часов</string>
 </resources>
