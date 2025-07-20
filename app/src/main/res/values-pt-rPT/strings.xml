@@ -485,7 +485,7 @@
     <string name="widget_details_setting_button" tools:ignore="MissingTranslation">Botão de definições de detalhes de tempo de widget</string>
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamita</string>
     <string name="pref_language_bn_rBD" tools:ignore="MissingTranslation">Bengali (Bangladesh)</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Esta app tem orientação de voz através de traduções de texto e comandos de voz cortesia de voluntários em https://hosted.weblate.org/projects/your-local-weather. A app dev não pode garantir que eles estão corretos - aceita-o usando a app. Para utilizá-la precisa ter o TTS (Text-to-speech) instalado e o guia ligado nas configurações, onde pode definir os seus próprios comandos de voz. "</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Esta app tem orientação de voz por traduções de texto e comandos de voz cortesia de voluntários em https://hosted.weblate.org/projects/your-local-weather. A app dev não pode garantir que eles estão corretos - aceita-o a usar a app. Para usá-la precisa de ter o TTS (Text-to-speech) instalado e o guia ligado nas configurações, onde pode definir os seus próprios comandos de voz.</string>
     <string name="preference_title_tts" tools:ignore="MissingTranslation">Configurações de orientação</string>
     <string name="preference_title_add_tts" tools:ignore="MissingTranslation">Novas configurações de orientação</string>
     <string name="pref_title_tts_speaker_enabled" tools:ignore="MissingTranslation">Reprodução de altifalantes de orientação</string>
