@@ -35,7 +35,15 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
         }
         Notification notification = NotificationUtils.getNotificationForActivity(getBaseContext());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            startForeground(NotificationUtils.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+            //check permission
+            try {
+                startForeground(NotificationUtils.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+            } catch (Exception e) {
+                appendLog(getBaseContext(), TAG, "Failed to start foreground service", e);
+                // Fallback or error handling
+                // For example, stop the service if it cannot run in the foreground
+                stopSelf();
+            }
         } else {
             startForeground(NotificationUtils.NOTIFICATION_ID, notification);
         }

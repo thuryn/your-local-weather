@@ -81,6 +81,10 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         if (intent == null) {
             return ret;
         }
+        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) &&
+                (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
+            return ret;
+        }
         forceUpdate = false;
         updateSource = null;
         Notification notification = NotificationUtils.getNotificationForActivity(getBaseContext());
