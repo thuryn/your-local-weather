@@ -192,8 +192,7 @@
     <string name="weather_condition_description_212" tools:ignore="MissingTranslation">강한 뇌우</string>
     <string name="weather_condition_description_211" tools:ignore="MissingTranslation">뇌우</string>
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation"><b>필요할 때 GPS 켜기</b> 옵션을 선택하면 앱이 셀 또는 Wi-Fi 네트워크를 사용하여 위치를 찾으려고 시도합니다. 네트워크 서비스를 사용하여 위치를 찾을 수 없는 경우 앱은 위치를 얻기 위해 몇 초 동안 GPS를 켭니다.</string>
-    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"> \u0020<b>위치 및 주소 소스</b> \u0020
-\n앱이 위치와 주소를 가져오는 위치를 선택할 수 있습니다.</string>
+    <string name="help_page_3_content_location_address_source" tools:ignore="MissingTranslation"><b>위치 및 주소 출처</b>  \n앱이 위치와 주소를 가져오는 위치를 선택 할 수 있습니다.</string>
     <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation"> \u0020<b>시스템</b> - 애플리케이션은 안드로이드의 시스템 서비스 (일반적으로 구글 위치 서비스 사용)에서 위치와 주소를 가져옵니다.</string>
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">이 메뉴 옵션은 <b>언어</b>, 메인 애플리케이션의 <b>테마</b> 및 애플리케이션 및 위젯에서 사용되는 <b>아이콘 세트</b>를 설정합니다.</string>
     <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"> \u0020<b>알림</b> 
@@ -585,4 +584,8 @@
     <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">하루 중 시간</string>
     <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">날씨 제공자가 변경됨</string>
     <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">openweathermap.org가 2024년 6월에 무료 서비스를 종료함에 따라 이 애플리케이션은 지금부터 Open-Meteo(https://open-meteo.com)를 날씨 소스로 사용합니다.</string>
+    <string name="forecast_number_of_days_hours_7_days" tools:ignore="MissingTranslation">7 일</string>
+    <string name="forecast_number_of_days_hours_8_days" tools:ignore="MissingTranslation">8 일</string>
+    <string name="forecast_number_of_days_hours_7_hours" tools:ignore="MissingTranslation">7 시간</string>
+    <string name="forecast_number_of_days_hours_8_hours" tools:ignore="MissingTranslation">8 시간</string>
 </resources>
