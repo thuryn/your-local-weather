@@ -585,4 +585,8 @@
     <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 dana</string>
     <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 sati</string>
     <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">Ova aplikacija od sada koristi Open-Meteo (https://open-meteo.com) kao izvor vremenske prognoze, budući da openweathermap.org ukida svoju besplatnu uslugu u lipnju 2024.</string>
+    <string name="forecast_number_of_days_hours_7_days" tools:ignore="MissingTranslation">7 dana</string>
+    <string name="forecast_number_of_days_hours_8_days" tools:ignore="MissingTranslation">8 dana</string>
+    <string name="forecast_number_of_days_hours_7_hours" tools:ignore="MissingTranslation">7 sati</string>
+    <string name="forecast_number_of_days_hours_8_hours" tools:ignore="MissingTranslation">8 sati</string>
 </resources>
