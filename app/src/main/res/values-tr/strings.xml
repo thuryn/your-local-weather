@@ -604,4 +604,8 @@
     <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 saat</string>
     <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">Hava durumu sağlayıcısı değişti</string>
     <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">openweathermap.org Haziran 2024\'te ücretsiz hizmetini sonlandıracağı için bu uygulama artık hava durumu kaynağı olarak Open-Meteo (https://open-meteo.com) kullanmaktadır.</string>
+    <string name="forecast_number_of_days_hours_7_days" tools:ignore="MissingTranslation">7 gün</string>
+    <string name="forecast_number_of_days_hours_8_days" tools:ignore="MissingTranslation">8 gün</string>
+    <string name="forecast_number_of_days_hours_7_hours" tools:ignore="MissingTranslation">7 saat</string>
+    <string name="forecast_number_of_days_hours_8_hours" tools:ignore="MissingTranslation">8 saat</string>
 </resources>
