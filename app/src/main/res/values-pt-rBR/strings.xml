@@ -34,7 +34,7 @@
     <string name="alertDialog_battery_optimization_message" tools:ignore="MissingTranslation">O aplicativo irá pedir para que a otimização da bateria seja desligada para que sejam atualizadas a localização, a previsão do tempo ou rastreamento de localização pelo acelerômetro em processamento em segundo plano.</string>
     <string name="alertDialog_battery_optimization_proceed" tools:ignore="MissingTranslation">Continue</string>
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Cancelar</string>
-    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Seu OpenweathermapApiKey não está registrado.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Sua chave de API do Open-Meteo não está registrada.</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Compartilhar clima</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Aplicativo de comunicação não encontrado</string>
     <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Cidade: %1$s
@@ -60,7 +60,7 @@
         <b>Sistema</b> - O aplicativo obtém a localização e o endereço por serviços do sistema no Android (geralmente pelo Google Location Services).</string>
     <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Estratégia para acordar</string>
     <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Você pode economizar tráfego de rede armazenando locais em cache. Os locais são armazenados no aplicativo. Eles não são enviados ou armazenados em outros lugares da rede.</string>
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">A aplicação determina a localização utilizando a rede de celulares (BTS), Wi-Fi e se essas falharem, o GPS para mostrar a previsão meteorológica local, utilizando as coordenadas do serviço de localização da Mozilla. A aplicação precisa de pelo menos: uma estação-base de rede GSM ou duas redes Wi-Fi acessíveis ou qualquer combinação de redes GSM e Wi-Fi. Utilizando o widget no seu celular ou tablet, pode ver a sua localização e clima atualizados na tela principal. As atualizações da localização podem ser periódicas (por ex. horárias), ou a aplicação pode utilizar o acelerômetro para detectar o movimento de distâncias maiores que um valor. Transportado no seu bolso, a distância aumenta mais rapidamente. Pode desativar as atualizações de localização - nesse caso apenas o clima será atualizado. A aplicação atualiza a localização e o clima em intervalos específicos. Pode, por exemplo, especificar o período de atualização para uma hora. O clima é atualizado automaticamente após a atualização da localização ou quando a tela é ligada - mas não mais do que uma vez a cada 15 minutos (e quando o clima não foi atualizado nos últimos 15 minutos). Esta informação é utilizada para obter as coordenadas de localização pelo serviço de localização da Mozilla. A aplicação tenta utilizar o GPS quando a localização não está disponível a partir da rede de celulares e redes Wi-Fi. As coordenadas de localização são utilizadas para obter endereços pelo serviço Nominatim. O endereço é utilizado na aplicação ou no widget. A aplicação utiliza o serviço OpenWeatherMap.org para obter as informações meteorológicas atualizadas.</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">O aplicativo determina a localização usando a rede celular (BTS), Wi-Fi e, caso essas opções falhem, o GPS para exibir a previsão do tempo local, obtendo as coordenadas do serviço de localização da Mozilla. O aplicativo precisa de pelo menos uma estação base de rede GSM ou duas redes Wi-Fi acessíveis, ou qualquer combinação de redes GSM e Wi-Fi. Usando o widget no seu telefone ou tablet, você pode ver sua localização e a previsão do tempo atual na tela principal. As atualizações de localização podem ser periódicas (por exemplo, a cada hora) ou o aplicativo pode usar o acelerômetro para detectar movimentos a distâncias maiores do que um determinado valor. Se o aplicativo estiver no seu bolso, a distância aumenta mais rapidamente. Você pode desativar as atualizações de localização — nesse caso, apenas a previsão do tempo será atualizada. O aplicativo atualiza a localização e a previsão do tempo em intervalos especificados. Você pode, por exemplo, definir o período de atualização para uma hora em ponto. A previsão do tempo é atualizada imediatamente após a localização ou quando a tela é ligada, mas não mais do que uma vez a cada 15 minutos (e quando a previsão do tempo não foi atualizada nos últimos 15 minutos). Essas informações são usadas pelo serviço de localização da Mozilla para obter as coordenadas de localização. O aplicativo tenta usar o GPS quando a localização não está disponível nas redes celulares e Wi-Fi. As coordenadas de localização são usadas para obter o endereço pelo serviço Nominatim. O endereço é usado no aplicativo ou widget. O aplicativo usa o serviço Open-Meteo (https://open-meteo.com) para obter a previsão do tempo atual.</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">O aplicativo principal contém uma visão geral do tempo atual. Você pode atualizar o clima usando o botão Atualizar no painel do aplicativo ou deslizando para baixo. Você pode encontrar o botão de localização da atualização ao lado do botão Atualizar clima. Este botão só está disponível quando a localização 0 está ativada (a localização 0 é destinada à atualização automatizada da localização).</string>
     <string name="snackbar_add_location_disabled" tools:ignore="MissingTranslation">Você não tem permissão para ter mais de %1$d localizações no momento.</string>
     <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Endereço resolvido em cache</string>
@@ -158,7 +158,7 @@
     <string name="pref_title_language" tools:ignore="MissingTranslation">Idioma</string>
     <string name="weather_forecast_license_key_title" tools:ignore="MissingTranslation">Chave de licença</string>
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">Embutido</string>
-    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Openweathermap.org chave da API</string>
+    <string name="open_weather_map_api_key" tools:ignore="MissingTranslation">Chave da API do Open-Meteo (https://open-meteo.com)</string>
     <string name="preference_title_category_system" tools:ignore="MissingTranslation">Configurações do sistema</string>
     <string name="preference_title_power_save" tools:ignore="MissingTranslation">Opções de economia de energia</string>
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Configurações da unidade</string>
@@ -219,9 +219,9 @@
     <string name="title_open_source_licenses" tools:ignore="MissingTranslation">Licenças de software Livre</string>
     <string name="title_activity_settings" tools:ignore="MissingTranslation">Configurações</string>
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Local de pesquisa</string>
-    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5x (intervalo de 3 horas)</string>
-    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4x (intervalo de 3 horas)</string>
-    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3x (intervalo de 3 horas)</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5 horas</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4 horas</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3 horas</string>
     <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 dias</string>
     <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 dias</string>
     <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 dias</string>
@@ -565,4 +565,29 @@
     <string name="pref_title_tts_what_to_say" tools:ignore="MissingTranslation">O que dizer:</string>
     <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">A partir do Android 10, é necessário ter um acesso de localização bem definido para obter informações sobre a rede GSM/LTE conectada. Conceda permissão para também buscar a localização em segundo plano (se quiser a sua localização o tempo todo).</string>
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Alterações de permissão do Android 10</string>
+    <string name="alertDialog_weather_changed_title" tools:ignore="MissingTranslation">O serviço de previsão do tempo foi alterado</string>
+    <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">Este aplicativo utiliza o Open-Meteo (https://open-meteo.com) como fonte de dados meteorológicos a partir de agora, visto que o openweathermap.org encerrará seu serviço gratuito em junho de 2024.</string>
+    <string name="alertDialog_background_location_permission_title" tools:ignore="MissingTranslation">O aplicativo requer permissão de localização em segundo plano</string>
+    <string name="alertDialog_background_location_permission_message" tools:ignore="MissingTranslation">O aplicativo requer permissão de localização em segundo plano para obter a previsão do tempo com base na sua localização atual. Se você concordar, selecione a opção na próxima tela:</string>
+    <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Gráfico combinado</string>
+    <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">Ao selecionar um gráfico para exibir os valores de chuva/neve ao lado do vento e da temperatura (em barras), o valor é calculado como log10. O valor máximo do eixo (invisível) é de aproximadamente 160 mm (ou 6,3 polegadas).</string>
+    <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">Locais excluídos acima do limite.</string>
+    <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 dias</string>
+    <string name="forecast_number_of_days_hours_7_days" tools:ignore="MissingTranslation">7 dias</string>
+    <string name="forecast_number_of_days_hours_8_days" tools:ignore="MissingTranslation">8 dias</string>
+    <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 horas</string>
+    <string name="forecast_number_of_days_hours_7_hours" tools:ignore="MissingTranslation">7 horas</string>
+    <string name="forecast_number_of_days_hours_8_hours" tools:ignore="MissingTranslation">8 horas</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2 horas</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">Não entre 00:00 e 06:00 horas (Local 1,2,3...)</string>
+    <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">Não entre 00:00 e 06:00 horas (Local 0)</string>
+    <string name="theme_system" tools:ignore="MissingTranslation">Pelo sistema</string>
+    <string name="pref_language_hr" tools:ignore="MissingTranslation">Hrvatski (Croata)</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">Cabila</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">Koreano</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">Lituano</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">Tailandês</string>
+    <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Autorização para BT</string>
+    <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">Hora do dia</string>
+    <string name="permission_available_notification" tools:ignore="MissingTranslation">A permissão para notificação foi concedida</string>
 </resources>
