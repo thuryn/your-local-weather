@@ -173,7 +173,7 @@
     <string name="pref_language_he" tools:ignore="MissingTranslation">עברית (Hebraisht)</string>
     <string name="pref_language_nb_rNO" tools:ignore="MissingTranslation">Norsk (Bokmål) (Norvegjishte (Bokmål))</string>
     <string name="pref_language_nl" tools:ignore="MissingTranslation">Nederlands (Hollandisht)</string>
-    <string name="pref_language_ny" tools:ignore="MissingTranslation"/>
+    <string name="pref_language_ny" tools:ignore="MissingTranslation">Nianja (Nianja)</string>
     <string name="pref_language_hu" tools:ignore="MissingTranslation">Magyar (Hungarisht)</string>
     <string name="pref_language_es" tools:ignore="MissingTranslation">Español (Spanjisht)</string>
     <string name="pref_language_el" tools:ignore="MissingTranslation">Ελληνικά (Greqisht)</string>
@@ -594,4 +594,9 @@
     <string name="forecast_number_of_days_hours_8_days" tools:ignore="MissingTranslation">8 ditë</string>
     <string name="forecast_number_of_days_hours_7_hours" tools:ignore="MissingTranslation">7 orë</string>
     <string name="forecast_number_of_days_hours_8_hours" tools:ignore="MissingTranslation">8 orë</string>
+    <string name="menu_forecast_min_max_settings" tools:ignore="MissingTranslation">Shfaq vetëm vlera min./maks.</string>
+    <string name="preference_widget_text_color" tools:ignore="MissingTranslation">Ngjyrë teksti te widget-i</string>
+    <string name="preference_widget_text_color_summary" tools:ignore="MissingTranslation">Prekeni, që t’i ndryshoni ngjyrën</string>
+    <string name="preference_widget_background_color" tools:ignore="MissingTranslation">Ngjyrë dhe patejdukshmëri ngjyre sfondi të tejdukshëm</string>
+    <string name="preference_widget_background_color_summary" tools:ignore="MissingTranslation">Prekeni, që t’i ndryshoni ngjyrën</string>
 </resources>
