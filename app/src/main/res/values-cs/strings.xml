@@ -46,6 +46,7 @@
     <string name="menu_action_toggle_yaxis">Přepnout osu Y</string>
     <!-- Weather forecast -->
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Nastavení sloupců</string>
+    <string name="menu_forecast_min_max_settings" tools:ignore="MissingTranslation">Zobrazit jen min/max hodnoty</string>
     <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Zobrazení sloupců</string>
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikona</string>
     <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Popis</string>
@@ -106,8 +107,8 @@
     <string name="update_period_12hours">12 hodin</string>
     <string name="update_period_24hours">24 hodin</string>
     <string name="pref_title_vibrate">Vibrovat</string>
-    <string name="preference_widget_title_update_period">Interval aktualizace počasí (Poloha 1,2,3...)</string>
-    <string name="preference_widget_title_update_night">Ne mezi 00:00 a 06:00 hodinou (Poloha 1,2,3...)</string>
+    <string name="preference_widget_title_update_period">Interval aktualizace počasí (Poloha 1,2,3&#8230;)</string>
+    <string name="preference_widget_title_update_night">Ne mezi 00:00 a 06:00 hodinou (Poloha 1,2,3&#8230;)</string>
     <string name="preference_widget_title_update_auto_period">Interval aktualizace polohy (Poloha 0)</string>
     <string name="preference_widget_title_update_auto_night">Ne mezi 00:00 a 06:00 hodinou (Poloha 0)</string>
     <string name="preference_title_activity_general">Obecná nastavení</string>
@@ -120,6 +121,10 @@
     <string name="pref_title_tts_app_general_info">Aplikace odesílá textové příkazy do systému TTS (převod textu na řeč), který je převádí na hlas. Ten je v systému obvykle přítomen ve výchozím nastavení. Pokud tomu tak není nebo nainstalovaný systém TTS nepodporuje požadovaný jazyk, nainstalujte si nějaký z obchodu s aplikacemi (například: https://search.f-droid.org/?q=TTS ).</string>
     <string name="preference_widget_update_location">Aktualizace polohy</string>
     <string name="preference_widget_show_labels">Zobrazit popisek ve widgetu</string>
+    <string name="preference_widget_text_color" tools:ignore="MissingTranslation">Barva textu ve widgetu</string>
+    <string name="preference_widget_text_color_summary" tools:ignore="MissingTranslation">Klepnutím změníte barvu</string>
+    <string name="preference_widget_background_color" tools:ignore="MissingTranslation">Průhledná barva a neprůhlednost pozadí</string>
+    <string name="preference_widget_background_color_summary" tools:ignore="MissingTranslation">Klepnutím změníte barvu</string>
     <string name="preference_widget_use_geocoder">Použít geolokaci pro zobrazení</string>
     <string name="preference_widget_theme_title">Téma widgetu</string>
     <string name="theme_dark">Tmavé</string>

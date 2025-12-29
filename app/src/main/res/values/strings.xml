@@ -132,6 +132,7 @@
     <!-- Weather forecast -->
     <string name="menu_forecast_type_settings" tools:ignore="MissingTranslation">Forecast type</string>
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Column setting</string>
+    <string name="menu_forecast_min_max_settings" tools:ignore="MissingTranslation">Show min/max values only</string>
     <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Columns to show</string>
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Icon</string>
     <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Description</string>
@@ -277,8 +278,8 @@
     <string name="pref_title_notification_visual_style" tools:ignore="MissingTranslation">Visual notification style</string>
     <string name="pref_title_notification_status_icon" tools:ignore="MissingTranslation">Status bar icon style</string>
     <string name="pref_title_vibrate" tools:ignore="MissingTranslation">Vibrate</string>
-    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Update period for weather (Location 1,2,3...)</string>
-    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">No between 00:00 and 06:00 o\'clock (Location 1,2,3...)</string>
+    <string name="preference_widget_title_update_period" tools:ignore="MissingTranslation">Update period for weather (Location 1,2,3&#8230;)</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">No between 00:00 and 06:00 o\'clock (Location 1,2,3&#8230;)</string>
     <string name="preference_widget_title_update_auto_period" tools:ignore="MissingTranslation">Update period for location (Location 0)</string>
     <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">No between 00:00 and 06:00 o\'clock (Location 0)</string>
     <string name="preference_title_activity_general" tools:ignore="MissingTranslation">General Settings</string>
@@ -288,6 +289,10 @@
     <string name="preference_title_add_tts" tools:ignore="MissingTranslation">New guidance settings</string>
     <string name="preference_widget_update_location" tools:ignore="MissingTranslation">Update Location</string>
     <string name="preference_widget_show_labels" tools:ignore="MissingTranslation">Show labels in widget</string>
+    <string name="preference_widget_text_color" tools:ignore="MissingTranslation">Text color in widget</string>
+    <string name="preference_widget_text_color_summary" tools:ignore="MissingTranslation">Tap to change color</string>
+    <string name="preference_widget_background_color" tools:ignore="MissingTranslation">Transparent background color and opacity</string>
+    <string name="preference_widget_background_color_summary" tools:ignore="MissingTranslation">Tap to change color</string>
     <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Show graph in native resolution (when the graph is too small)</string>
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Show settings on widget</string>
     <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Use geolocation for displaying</string>
@@ -323,8 +328,8 @@
     <string name="pref_language_vi" tools:ignore="MissingTranslation">Vietnamese</string>
     <string name="pref_language_ro" tools:ignore="MissingTranslation">Română (Romanian)</string>
     <string name="pref_language_pt" tools:ignore="MissingTranslation">Português (Portuguese)</string>
-    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Português (Portugal) (Portugese (Portugal))</string>
-    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Português (Brasil) (Portugese (Brazil))</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Português (Portugal) (Portuguese (Portugal))</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Português (Brasil) (Portuguese (Brazil))</string>
     <string name="pref_language_sq" tools:ignore="MissingTranslation">Shqip (Albanian)</string>
     <string name="pref_language_eu" tools:ignore="MissingTranslation">Euskara (Basque)</string>
     <string name="pref_language_be" tools:ignore="MissingTranslation">Беларуская (Belarusian)</string>
@@ -542,7 +547,7 @@
     <string name="wind_direction_south_west" tools:ignore="MissingTranslation">SW↗</string>
     <string name="wind_direction_west" tools:ignore="MissingTranslation">W→</string>
     <string name="wind_direction_north_west" tools:ignore="MissingTranslation">NW↘</string>
-    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">nothern</string>
+    <string name="tts_say_wind_direction_north" tools:ignore="MissingTranslation">northern</string>
     <string name="tts_say_wind_direction_north_east" tools:ignore="MissingTranslation">northeast</string>
     <string name="tts_say_wind_direction_east" tools:ignore="MissingTranslation">east</string>
     <string name="tts_say_wind_direction_south_east" tools:ignore="MissingTranslation">southeast</string>

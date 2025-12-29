@@ -12,6 +12,6 @@
         android:title="@string/menu_forecast_column_settings"/>
     <item
         android:id="@+id/menu_forecast_min_max"
-        android:title="Zobrazit jen Min/Max"
+        android:title="@string/menu_forecast_min_max_settings"
         android:checkable="true" />
 </menu>

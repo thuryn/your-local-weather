@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
-                  xmlns:app="http://schemas.android.com/apk/res-auto">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="widget_show_controls"
@@ -12,8 +11,8 @@
     <org.thosp.yourlocalweather.settings.ColorPreference
         android:key="widget_text_color_pref_key"
         android:defaultValue="0xff6699cc"
-        android:title="Text color"
-        android:summary="Klepnutím změníte barvu" />
+        android:title="@string/preference_widget_text_color"
+        android:summary="@string/preference_widget_text_color_summary" />
     <ListPreference
         android:defaultValue="dark"
         android:dialogTitle="@string/preference_widget_theme_title"
@@ -24,8 +23,8 @@
     <org.thosp.yourlocalweather.settings.ColorPreference
         android:key="widget_background_color_pref_key"
         android:defaultValue="0xff000000"
-        android:title="Transparent background color and opacity"
-        android:summary="Klepnutím změníte barvu" />
+        android:title="@string/preference_widget_background_color"
+        android:summary="@string/preference_widget_background_color_summary" />
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="widget_graphs_native_scale"
