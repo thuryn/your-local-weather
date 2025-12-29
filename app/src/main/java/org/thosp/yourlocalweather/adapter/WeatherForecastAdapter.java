@@ -23,6 +23,8 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
 
     private final Context mContext;
     private final Set<Integer> visibleColumns;
+
+    private final boolean showMinMaxOnly;
     private final Map<Integer, List<DetailedWeatherForecast>> mWeatherList;
     double latitude;
     Locale locale;
@@ -42,9 +44,11 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
                                   String windUnitFromPreferences,
                                   String temperatureUnitFromPreferences,
                                   String timeStylePreference,
-                                  Set<Integer> visibleColumns) {
+                                  Set<Integer> visibleColumns,
+                                  boolean showMinMaxOnly) {
         mContext = context;
         this.visibleColumns = visibleColumns;
+        this.showMinMaxOnly = showMinMaxOnly;
         this.latitude = latitude;
         this.locale = locale;
         this.pressureUnitFromPreferences = pressureUnitFromPreferences;
@@ -97,7 +101,31 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
     @Override
     public void onBindViewHolder(WeatherForecastViewHolder holder, int position) {
         List<DetailedWeatherForecast> weather = mWeatherList.get(keys.get(position));
-        holder.bindWeather(mContext, latitude, locale, windUnitFromPreferences, weather);
+
+        if (showMinMaxOnly) {
+            double minTemp = Integer.MAX_VALUE;
+            int minTempIndex = 0;
+            double maxTemp = Integer.MIN_VALUE;
+            int maxTempIndex = 0;
+            for(DetailedWeatherForecast item : weather){
+                double temp = item.getTemperature();
+                if(temp > maxTemp) {
+                    maxTempIndex = weather.indexOf(item);
+                    maxTemp = temp;
+                }
+                if(temp < minTemp) {
+                    minTempIndex = weather.indexOf(item);
+                    minTemp = temp;
+                }
+            }
+            List<DetailedWeatherForecast> minMaxWeather =
+                    (maxTempIndex > minTempIndex) ?
+                            List.of(weather.get(minTempIndex), weather.get(maxTempIndex)) :
+                            List.of(weather.get(maxTempIndex), weather.get(minTempIndex));
+            holder.bindWeather(mContext, latitude, locale, windUnitFromPreferences, minMaxWeather);
+        } else {
+            holder.bindWeather(mContext, latitude, locale, windUnitFromPreferences, weather);
+        }
     }
 
     @Override

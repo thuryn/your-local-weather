@@ -2,20 +2,21 @@ package org.thosp.yourlocalweather.settings.fragments;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
-import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.preference.EditTextPreference;
-import android.preference.ListPreference;
-import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.fragment.app.DialogFragment;
+import androidx.preference.EditTextPreference;
+import androidx.preference.ListPreference;
+import androidx.preference.PreferenceFragmentCompat;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.SettingsActivity;
@@ -38,7 +39,7 @@ import java.util.List;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 
-public class GeneralPreferenceFragment extends PreferenceFragment implements
+public class GeneralPreferenceFragment extends PreferenceFragmentCompat implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String TAG = "GeneralPreferenceFragment";
@@ -53,9 +54,8 @@ public class GeneralPreferenceFragment extends PreferenceFragment implements
     };
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.pref_general);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        setPreferencesFromResource(R.xml.pref_general, rootKey);
     }
 
     @Override
@@ -98,7 +98,7 @@ public class GeneralPreferenceFragment extends PreferenceFragment implements
                     updateLocationsLocale(newLocale);
                     WidgetUtils.updateWidgets(getActivity());
                     DialogFragment dialog = new SettingsActivity.SettingsAlertDialog().newInstance(R.string.update_locale_dialog_message);
-                    dialog.show(getActivity().getFragmentManager(), "restartApp");
+                    dialog.show(getParentFragmentManager(), "restartApp");
                 }
                 break;
             case Constants.PREF_THEME:

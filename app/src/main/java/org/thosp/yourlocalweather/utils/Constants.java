@@ -57,6 +57,8 @@ public class Constants {
     public static final String KEY_PREF_WIDGET_SHOW_LABELS = "widget_show_labels_pref_key";
     public static final String KEY_PREF_WIDGET_TEXT_COLOR = "widget_text_color_pref_key";
     public static final String KEY_PREF_WIDGET_THEME = "widget_theme_pref_key";
+
+    public static final String KEY_PREF_WIDGET_TRANSPARENT_BACKGROUND_COLOR = "widget_background_color_pref_key";
     public static final String KEY_PREF_LOCATION_UPDATE_PERIOD = "location_update_period_pref_key";
     public static final String KEY_PREF_LOCATION_UPDATE_NIGHT = "location_update_period_night_pref_key";
     public static final String KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD = "location_auto_update_period_pref_key";
@@ -78,6 +80,8 @@ public class Constants {
     public static final String KEY_WAKE_UP_STRATEGY = "wake.up.strategy";
     public static final String KEY_PREF_FORECAST_TYPE = "forecast_type_pref_key";
     public static final String KEY_PREF_FORECAST_ACTIVITY_COLUMNS = "forecast_activity_columns_pref_key";
+
+    public static final String KEY_PREF_FORECAST_ACTIVITY_SHOW_MIN_MAX = "forecast_activity_show_min_max_pref_key";
     public static final String KEY_PREF_GRAPHS_ACTIVITY_VISIBLE_GRAPHS = "graphs_activity_visible_graphs";
     public static final String KEY_PREF_COMBINED_GRAPH_VALUES = "graphs_activity_combined_values";
     public static final String KEY_PREF_WIDGET_GRAPH_NATIVE_SCALE = "widget_graphs_native_scale";

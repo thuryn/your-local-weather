@@ -3,18 +3,19 @@ package org.thosp.yourlocalweather.settings.fragments;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.PreferenceFragment;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.preference.ListPreference;
+import androidx.preference.PreferenceFragmentCompat;
+
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 
-public class UnitsPreferenceFragment extends PreferenceFragment implements
+public class UnitsPreferenceFragment extends PreferenceFragmentCompat implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     private final String[] SUMMARIES_TO_UPDATE = {
@@ -29,9 +30,8 @@ public class UnitsPreferenceFragment extends PreferenceFragment implements
     };
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.pref_units);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        setPreferencesFromResource(R.xml.pref_units, rootKey);
     }
 
     @Override

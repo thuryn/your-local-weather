@@ -108,9 +108,6 @@ public class GraphUtils {
                                                             rainSnowUnitFromPreferences,
                                                             windUnitFromPreferences);
 
-        combinedChart.setBackgroundColor(ContextCompat.getColor(context,
-                R.color.widget_transparentTheme_colorBackground));
-
         int bitmapHeight = height;
 
         if (!showLegend) {
@@ -302,7 +299,6 @@ public class GraphUtils {
         if (textSize != null) {
             combinedChart.getLegend().setTextSize(textSize);
         }
-        combinedChart.setBackgroundColor(backgroundColorId);
         combinedChart.setGridBackgroundColor(textColorId);
 
         List<DetailedWeatherForecast> weatherForecastList = new ArrayList();

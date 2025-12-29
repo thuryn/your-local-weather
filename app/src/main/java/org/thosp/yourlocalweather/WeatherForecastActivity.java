@@ -12,31 +12,24 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.Switch;
-import android.widget.TextView;
-
-import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.app.NavUtils;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.thosp.yourlocalweather.adapter.LongWeatherForecastAdapter;
 import org.thosp.yourlocalweather.adapter.WeatherForecastAdapter;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
-import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
+import static org.thosp.yourlocalweather.utils.AppPreference.getForecastMinMaxOnly;
+import static org.thosp.yourlocalweather.utils.AppPreference.setForecastMinMaxOnly;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class WeatherForecastActivity extends ForecastingActivity {
@@ -133,6 +126,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
         String windUnitFromPreferences = AppPreference.getWindUnitFromPreferences(this);
         String temperatureUnitFromPreferences = AppPreference.getTemperatureUnitFromPreferences(this);
         String timeStylePreference = AppPreference.getTimeStylePreference(this);
+        boolean showMinMaxOnly = getForecastMinMaxOnly(this);
 
         runOnUiThread(new Runnable() {
             @Override
@@ -155,7 +149,8 @@ public class WeatherForecastActivity extends ForecastingActivity {
                         windUnitFromPreferences,
                         temperatureUnitFromPreferences,
                         timeStylePreference,
-                        visibleColumns);
+                        visibleColumns,
+                        showMinMaxOnly);
                 mRecyclerView.setAdapter(adapter);
             }
         });
@@ -165,15 +160,12 @@ public class WeatherForecastActivity extends ForecastingActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            registerReceiver(mWeatherUpdateReceiver,
-                    new IntentFilter(
-                            UpdateWeatherService.ACTION_FORECAST_UPDATE_RESULT), RECEIVER_NOT_EXPORTED);
-        } else {
-            registerReceiver(mWeatherUpdateReceiver,
-                    new IntentFilter(
-                            UpdateWeatherService.ACTION_FORECAST_UPDATE_RESULT));
-        }
+        ContextCompat.registerReceiver(
+                this,
+                mWeatherUpdateReceiver,
+                new IntentFilter(UpdateWeatherService.ACTION_FORECAST_UPDATE_RESULT),
+                ContextCompat.RECEIVER_NOT_EXPORTED
+        );
         if (inited) {
             YourLocalWeather.executor.submit(() -> {
                 updateUI();
@@ -185,6 +177,11 @@ public class WeatherForecastActivity extends ForecastingActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.weather_forecast_menu, menu);
+
+        MenuItem toggleItem = menu.findItem(R.id.menu_forecast_min_max);
+        boolean showOnlyMinMax = getForecastMinMaxOnly(this);
+        toggleItem.setChecked(showOnlyMinMax);
+
         return true;
     }
 
@@ -197,11 +194,24 @@ public class WeatherForecastActivity extends ForecastingActivity {
             case R.id.menu_forecast_settings:
                 showSettings();
                 return true;
+            case R.id.menu_forecast_min_max:
+                processMinMaxSettings(item);
+                return true;
             case android.R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void processMinMaxSettings(MenuItem item) {
+        boolean newState = !item.isChecked();
+        item.setChecked(newState);
+        setForecastMinMaxOnly(this, newState);
+
+        YourLocalWeather.executor.submit(() -> {
+            updateUI();
+        });
     }
 
     private void showSettings() {

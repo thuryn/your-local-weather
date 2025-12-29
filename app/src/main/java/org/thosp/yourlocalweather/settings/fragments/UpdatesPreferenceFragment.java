@@ -9,13 +9,14 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.Location;
@@ -25,7 +26,7 @@ import org.thosp.yourlocalweather.utils.Constants;
 
 import java.util.List;
 
-public class UpdatesPreferenceFragment extends PreferenceFragment implements
+public class UpdatesPreferenceFragment extends PreferenceFragmentCompat implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     private final String[] SUMMARIES_TO_UPDATE = {
@@ -45,9 +46,8 @@ public class UpdatesPreferenceFragment extends PreferenceFragment implements
     };
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.pref_updates);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        setPreferencesFromResource(R.xml.pref_updates, rootKey);
 
         SensorManager senSensorManager = (SensorManager) getActivity()
                 .getSystemService(Context.SENSOR_SERVICE);

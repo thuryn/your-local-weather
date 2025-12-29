@@ -5,14 +5,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
-import android.preference.SwitchPreference;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.SwitchPreference;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.Location;
@@ -21,7 +22,7 @@ import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 
-public class NotificationPreferenceFragment extends PreferenceFragment implements
+public class NotificationPreferenceFragment extends PreferenceFragmentCompat implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     private final String[] SUMMARIES_TO_UPDATE = {
@@ -56,9 +57,8 @@ public class NotificationPreferenceFragment extends PreferenceFragment implement
             };
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.pref_notification);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        setPreferencesFromResource(R.xml.pref_notification, rootKey);
         final SwitchPreference notificationSwitch = (SwitchPreference) findPreference(
                 Constants.KEY_PREF_IS_NOTIFICATION_ENABLED);
         notificationSwitch.setOnPreferenceChangeListener(notificationListener);

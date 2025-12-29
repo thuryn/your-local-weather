@@ -4,16 +4,11 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
-import android.provider.DocumentsContract;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -22,6 +17,8 @@ import android.view.ViewGroup;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
 
 import com.obsez.android.lib.filechooser.ChooserDialog;
 
@@ -41,12 +38,11 @@ import static org.thosp.yourlocalweather.utils.Constants.KEY_DEBUG_URI_AUTHORITY
 import static org.thosp.yourlocalweather.utils.Constants.KEY_DEBUG_URI_PATH;
 import static org.thosp.yourlocalweather.utils.Constants.KEY_DEBUG_URI_SCHEME;
 
-public class DebugOptionsPreferenceFragment extends PreferenceFragment {
+public class DebugOptionsPreferenceFragment extends PreferenceFragmentCompat {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.pref_debug);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        setPreferencesFromResource(R.xml.pref_debug, rootKey);
         initLogFileChooser();
         initLogFileLasting();
     }

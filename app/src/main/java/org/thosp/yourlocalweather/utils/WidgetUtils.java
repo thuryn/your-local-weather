@@ -276,7 +276,7 @@ public class WidgetUtils {
                 context,
                 location,
                 weatherForecastRecord,
-                AppPreference.getTextColor(context),
+                AppPreference.getWidgetTextColor(context),
                 widgetId,
                 daysCountFromWidgetSettings,
                 hoursForecastFromWidgetSettings,

@@ -1,15 +1,12 @@
 package org.thosp.yourlocalweather.settings.fragments;
 
 import android.app.Dialog;
-import android.app.DialogFragment;
+import androidx.fragment.app.DialogFragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceScreen;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.method.LinkMovementMethod;
@@ -25,24 +22,38 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.utils.Constants;
 
-public class AboutPreferenceFragment extends PreferenceFragment {
+public class AboutPreferenceFragment extends PreferenceFragmentCompat {
 
     private static final String TAG = "AboutPreferenceFragment";
     PackageManager mPackageManager;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.pref_about);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        setPreferencesFromResource(R.xml.pref_about, rootKey);
 
         mPackageManager = getActivity().getPackageManager();
         findPreference(Constants.KEY_PREF_ABOUT_VERSION).setSummary(getVersionName());
         findPreference(Constants.KEY_PREF_ABOUT_F_DROID).setIntent(fDroidIntent());
         findPreference(Constants.KEY_PREF_ABOUT_GOOGLE_PLAY).setIntent(googlePlayIntent());
+
+        Preference licensePref = findPreference(Constants.KEY_PREF_ABOUT_OPEN_SOURCE_LICENSES);
+
+        if (licensePref != null) {
+            licensePref.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+                @Override
+                public boolean onPreferenceClick(Preference preference) {
+                    LicensesDialogFragment licensesDialog = LicensesDialogFragment.newInstance();
+                    licensesDialog.show(getParentFragmentManager(), "LicensesDialog");
+                    return true;
+                }
+            });
+        }
     }
 
     @Override
@@ -56,16 +67,6 @@ public class AboutPreferenceFragment extends PreferenceFragment {
             view.setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
         }
         return view;
-    }
-
-    @Override
-    public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen,
-                                         Preference preference) {
-        if (preference.equals(findPreference(Constants.KEY_PREF_ABOUT_OPEN_SOURCE_LICENSES))) {
-            LicensesDialogFragment licensesDialog = LicensesDialogFragment.newInstance();
-            licensesDialog.show(getFragmentManager(), "LicensesDialog");
-        }
-        return super.onPreferenceTreeClick(preferenceScreen, preference);
     }
 
     private String getVersionName() {

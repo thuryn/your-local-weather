@@ -3,25 +3,45 @@ package org.thosp.yourlocalweather.settings.fragments;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.ListPreference;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.preference.ListPreference;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragmentCompat;
+
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 
-public class WidgetPreferenceFragment extends PreferenceFragment implements
+public class WidgetPreferenceFragment extends PreferenceFragmentCompat implements
         SharedPreferences.OnSharedPreferenceChangeListener {
-
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        addPreferencesFromResource(R.xml.pref_widget);
+    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+        setPreferencesFromResource(R.xml.pref_widget, rootKey);
+
+        ListPreference themePref = findPreference("widget_theme_pref_key");
+        Preference colorPref = findPreference("widget_background_color_pref_key");
+
+        if (themePref != null && colorPref != null) {
+            themePref.setOnPreferenceChangeListener(new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    String stringValue = newValue.toString();
+                    updateColorState(colorPref, stringValue);
+                    return true;
+                }
+            });
+
+            updateColorState(colorPref, themePref.getValue());
+        }
+    }
+
+    private void updateColorState(Preference colorPref, String themeValue) {
+        boolean shouldEnable = "transparent".equals(themeValue);
+        colorPref.setEnabled(shouldEnable);
     }
 
     @Override
@@ -54,6 +74,7 @@ public class WidgetPreferenceFragment extends PreferenceFragment implements
                 getActivity().sendBroadcast(intent);
                 break;
             case Constants.KEY_PREF_WIDGET_TEXT_COLOR:
+            case Constants.KEY_PREF_WIDGET_TRANSPARENT_BACKGROUND_COLOR:
                 intent = new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED);
                 intent.setPackage("org.thosp.yourlocalweather");
                 getActivity().sendBroadcast(intent);

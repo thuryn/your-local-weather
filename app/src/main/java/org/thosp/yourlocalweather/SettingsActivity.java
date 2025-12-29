@@ -1,57 +1,54 @@
 package org.thosp.yourlocalweather;
 
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.preference.PreferenceFragment;
-import android.util.TypedValue;
 import android.view.MenuItem;
-import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.ContextCompat;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.preference.Preference;
+import androidx.preference.PreferenceFragment;
+import androidx.preference.PreferenceFragmentCompat;
 
-import org.thosp.yourlocalweather.settings.fragments.AboutPreferenceFragment;
-import org.thosp.yourlocalweather.settings.fragments.DebugOptionsPreferenceFragment;
-import org.thosp.yourlocalweather.settings.fragments.GeneralPreferenceFragment;
-import org.thosp.yourlocalweather.settings.fragments.NotificationPreferenceFragment;
-import org.thosp.yourlocalweather.settings.fragments.PowerSavePreferenceFragment;
-import org.thosp.yourlocalweather.settings.fragments.UnitsPreferenceFragment;
-import org.thosp.yourlocalweather.settings.fragments.UpdatesPreferenceFragment;
-import org.thosp.yourlocalweather.settings.fragments.WidgetPreferenceFragment;
+import org.thosp.yourlocalweather.settings.fragments.MainSettingsFragment;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
-import org.thosp.yourlocalweather.utils.PreferenceUtil;
 
-import java.util.List;
-
-public class SettingsActivity extends AppCompatPreferenceActivity {
+public class SettingsActivity extends AppCompatActivity implements
+        PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ((YourLocalWeather) getApplication()).applyTheme(this);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-        }
         super.onCreate(savedInstanceState);
-        setupActionBar();
+        setContentView(R.layout.activity_settings);
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
-        int horizontalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
-        int verticalMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 2, getResources().getDisplayMetrics());
-        int topMargin = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 56, getResources().getDisplayMetrics());
-        getListView().setPadding(horizontalMargin, topMargin, horizontalMargin, verticalMargin);
-    }
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            android.view.Window window = getWindow();
+            window.addFlags(android.view.WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
+        }
 
-    @Override
-    public void onBuildHeaders(List<Header> target) {
-        super.onBuildHeaders(target);
-        loadHeadersFromResource(R.xml.pref_headers, target);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.settings_container, new MainSettingsFragment()) // <-- Startujeme hlavní menu
+                    .commit();
+        }
     }
 
     @Override
@@ -59,27 +56,22 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         super.attachBaseContext(LanguageUtil.setLanguage(base, AppPreference.getInstance().getLanguage(base)));
     }
 
-    private void setupActionBar() {
-        getLayoutInflater().inflate(R.layout.activity_settings, findViewById(android.R.id.content));
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
-    }
-
     @Override
-    protected boolean isValidFragment(String fragmentName) {
-        return PreferenceFragment.class.getName().equals(fragmentName)
-                || GeneralPreferenceFragment.class.getName().equals(fragmentName)
-                || UnitsPreferenceFragment.class.getName().equals(fragmentName)
-                || UpdatesPreferenceFragment.class.getName().equals(fragmentName)
-                || NotificationPreferenceFragment.class.getName().equals(fragmentName)
-                || PowerSavePreferenceFragment.class.getName().equals(fragmentName)
-                || DebugOptionsPreferenceFragment.class.getName().equals(fragmentName)
-                || WidgetPreferenceFragment.class.getName().equals(fragmentName)
-                || AboutPreferenceFragment.class.getName().equals(fragmentName);
+    public boolean onPreferenceStartFragment(PreferenceFragmentCompat caller, Preference pref) {
+        final Bundle args = pref.getExtras();
+
+        final Fragment fragment = getSupportFragmentManager().getFragmentFactory().instantiate(
+                getClassLoader(),
+                pref.getFragment());
+
+        fragment.setArguments(args);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.settings_container, fragment)
+                .addToBackStack(null)
+                .commit();
+
+        return true;
     }
 
     @Override

@@ -1,11 +1,10 @@
 package org.thosp.yourlocalweather.utils;
 
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.text.format.DateFormat;
 
 import androidx.core.content.ContextCompat;
@@ -13,15 +12,12 @@ import androidx.core.content.ContextCompat;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
-import org.thosp.yourlocalweather.service.MozillaLocationService;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class AppPreference {
 
@@ -87,6 +83,15 @@ public class AppPreference {
     public static String getTimeStylePreference(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
                 Constants.KEY_PREF_TIME_STYLE, "system");
+    }
+
+    public static void setForecastMinMaxOnly(Context context, boolean newValue) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(
+                Constants.KEY_PREF_FORECAST_ACTIVITY_SHOW_MIN_MAX, newValue).apply();
+    }
+    public static boolean getForecastMinMaxOnly(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+                Constants.KEY_PREF_FORECAST_ACTIVITY_SHOW_MIN_MAX, false);
     }
 
     public static String getLocalizedTime(Context context, Date inputTime, String timeStylePreference, Locale locale) {
@@ -625,8 +630,8 @@ public class AppPreference {
                 return ContextCompat.getColor(context,
                         R.color.widget_lightTheme_colorBackground);
             default:
-                return ContextCompat.getColor(context,
-                        R.color.widget_transparentTheme_colorBackground);
+                return PreferenceManager.getDefaultSharedPreferences(context).getInt(
+                                Constants.KEY_PREF_WIDGET_TRANSPARENT_BACKGROUND_COLOR, 0x80000000);
         }
     }
     

@@ -10,4 +10,8 @@
         android:id="@+id/menu_forecast_settings"
         android:icon="@drawable/ic_menu_settings"
         android:title="@string/menu_forecast_column_settings"/>
+    <item
+        android:id="@+id/menu_forecast_min_max"
+        android:title="Zobrazit jen Min/Max"
+        android:checkable="true" />
 </menu>
