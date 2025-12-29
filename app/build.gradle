@@ -2,29 +2,16 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.github.triplet.play'
 
 android {
-    playAccountConfigs {
-        defaultAccountConfig {
-            jsonFile = file('../../your-local-weather-addons/keys.json')
-        }
-    }
-
-    play {
-        track = 'production'
-        untrackOld = true
-        uploadImages = true
-    }
-
-    compileSdk 34
+    compileSdk = 36
     defaultConfig {
-        applicationId "org.thosp.yourlocalweather"
-        minSdkVersion 21
-        targetSdkVersion 36
-        versionCode 181
-        versionName "6.1.2"
-        vectorDrawables.useSupportLibrary true
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        playAccountConfig = playAccountConfigs.defaultAccountConfig
-        multiDexEnabled true
+        applicationId = "org.thosp.yourlocalweather"
+        minSdk = 21
+        targetSdk = 36
+        versionCode = 182
+        versionName = "6.2.0"
+        vectorDrawables.useSupportLibrary = true
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
     }
 
     buildTypes {
@@ -57,26 +44,31 @@ android {
     namespace 'org.thosp.yourlocalweather'
 }
 
+play {
+    serviceAccountCredentials.set(file('../../your-local-weather-addons/keys.json'))
+    track.set('production')
+}
+
 dependencies {
 // AndroidX
     implementation 'androidx.appcompat:appcompat:1.7.1'
     implementation 'androidx.preference:preference:1.2.1'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
-    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0'
+    implementation 'com.google.android.material:material:1.13.0'
     implementation 'com.android.support:multidex:1.0.3'
 
 // Third-party
     implementation 'com.github.yukuku:ambilwarna:2.0.1'
     implementation 'com.github.thuryn:MPAndroidChart:v4.0.4'
     //implementation files('../../../MPAndroidChart/MPChartLib/build/intermediates/compile_library_classes/debug/classes.jar')
-    implementation 'org.microg:address-formatter:0.2.1'
+    implementation 'org.microg:address-formatter:0.3.1'
     implementation 'com.github.hedzr:android-file-chooser:v1.2.0-final'
     implementation 'com.loopj.android:android-async-http:1.4.11'
     implementation 'org.osmdroid:osmdroid-android:6.1.20'
 
 // Testing
     testImplementation 'junit:junit:4.13.2'
-    testImplementation 'org.mockito:mockito-core:5.11.0'
+    testImplementation 'org.mockito:mockito-core:5.21.0'
 }

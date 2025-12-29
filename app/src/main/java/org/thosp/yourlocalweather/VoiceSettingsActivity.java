@@ -5,12 +5,9 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Canvas;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
 import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,23 +16,20 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.ActivityCompat;
 import androidx.core.app.NavUtils;
 import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thosp.yourlocalweather.model.VoiceSettingParametersDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.TimeUtils;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.VoiceSettingParamType;
@@ -47,8 +41,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -73,28 +65,23 @@ public class VoiceSettingsActivity extends BaseActivity {
             if (tts == null) {
                 return;
             }
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                Set<Locale> ttsAvailableLanguages;
-                try {
-                    ttsAvailableLanguages = tts.getAvailableLanguages();
-                } catch (Exception e) {
-                    appendLog(VoiceSettingsActivity.this, TAG, e);
-                    ttsAvailableLanguages = getAvailableLanguagesFormLocale();
-                }
-                processTtsLanguages(ttsAvailableLanguages);
+            Set<Locale> ttsAvailableLanguages;
+            try {
+                ttsAvailableLanguages = tts.getAvailableLanguages();
+            } catch (Exception e) {
+                appendLog(VoiceSettingsActivity.this, TAG, e);
+                ttsAvailableLanguages = getAvailableLanguagesFormLocale();
             }
+            processTtsLanguages(ttsAvailableLanguages);
         }
     };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        ((YourLocalWeather) getApplication()).applyTheme(this);
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         YourLocalWeather.executor.submit(() -> {
             applicationLocale = new Locale(AppPreference.getInstance().getLanguage(this));
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-            }
             voiceSettingParametersDbHelper = VoiceSettingParametersDbHelper.getInstance(this);
             timeStylePreference = AppPreference.getTimeStylePreference(this);
             inited = true;

@@ -115,11 +115,10 @@ public class NetworkLocationProvider extends Service {
             appendLog(getBaseContext(), TAG,
                     "Unable to acquire wifi lock.", uoe);
         }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            registerReceiver(mReceiver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION), RECEIVER_NOT_EXPORTED);
-        } else {
-            registerReceiver(mReceiver, new IntentFilter(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION));
-        }
+        ContextCompat.registerReceiver(this, mReceiver,
+                new IntentFilter(
+                        WifiManager.SCAN_RESULTS_AVAILABLE_ACTION),
+                ContextCompat.RECEIVER_NOT_EXPORTED);
     }
 
     @Override

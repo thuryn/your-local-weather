@@ -1,6 +1,5 @@
 package org.thosp.yourlocalweather;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
@@ -12,19 +11,17 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
-import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.model.VoiceSettingParametersDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.VoiceSettingParamType;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -45,21 +42,16 @@ public class VoiceLanguageOptionsActivity extends BaseActivity {
         @Override
         public void run() {
             recreateTts();
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                ttsAvailableLanguages = tts.getAvailableLanguages();
-                populateLanguageOptionsSpinner();
-            }
+            ttsAvailableLanguages = tts.getAvailableLanguages();
+            populateLanguageOptionsSpinner();
         }
     };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        ((YourLocalWeather) getApplication()).applyTheme(this);
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         applicationLocale = new Locale(AppPreference.getInstance().getLanguage(this));
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-        }
         setContentView(R.layout.activity_voice_language_options);
 
         setupActionBar();
@@ -122,7 +114,7 @@ public class VoiceLanguageOptionsActivity extends BaseActivity {
             langNotSupported.setText(getString(R.string.pref_title_tts_presence));
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_spinner_item, spinnerArray);
 
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -154,34 +146,20 @@ public class VoiceLanguageOptionsActivity extends BaseActivity {
     }
 
     private void recreateTts() {
-        TextToSpeech.OnInitListener onInitListener = new TextToSpeech.OnInitListener() {
-            @Override
-            public void onInit(int status) {
-                appendLog(getBaseContext(), TAG, "TextToSpeech initialized with status: " + status);
-                if ((tts != null) && (status == TextToSpeech.SUCCESS)) {
-                    prepareTtsLanguages();
-                }
+        TextToSpeech.OnInitListener onInitListener = status -> {
+            appendLog(getBaseContext(), TAG, "TextToSpeech initialized with status: " + status);
+            if ((tts != null) && (status == TextToSpeech.SUCCESS)) {
+                prepareTtsLanguages();
             }
         };
         tts = new TextToSpeech(getBaseContext(), onInitListener);
     }
 
     private void prepareTtsLanguages() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            ttsAvailableLanguages = tts.getAvailableLanguages();
-            if (ttsAvailableLanguages.isEmpty()) {
-                timerHandler.postDelayed(timerRunnable, 1000);
-                return;
-            }
-        } else {
-            ttsAvailableLanguages = new HashSet<>();
-            Locale[] locales = Locale.getAvailableLocales();
-            for (Locale loc : locales) {
-                if (!loc.toString().toLowerCase().contains("os")
-                        && tts.isLanguageAvailable(loc) >= 0) {
-                    ttsAvailableLanguages.add(loc);
-                }
-            }
+        ttsAvailableLanguages = tts.getAvailableLanguages();
+        if (ttsAvailableLanguages.isEmpty()) {
+            timerHandler.postDelayed(timerRunnable, 1000);
+            return;
         }
         populateLanguageOptionsSpinner();
     }

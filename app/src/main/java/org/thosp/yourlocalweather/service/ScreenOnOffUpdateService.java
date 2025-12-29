@@ -26,12 +26,12 @@ import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.util.Calendar;
 import java.util.List;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
+import androidx.core.content.ContextCompat;
 
 public class ScreenOnOffUpdateService extends AbstractCommonService {
 
@@ -350,12 +350,9 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) {
                 appendLog(getBaseContext(), TAG, "Start connectivity receiver with handler");
                 networkConnectivityReceiver = new NetworkConnectivityReceiver();
-                IntentFilter filterNetworkConnectivity = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    getApplicationContext().registerReceiver(networkConnectivityReceiver, filterNetworkConnectivity, RECEIVER_NOT_EXPORTED);
-                } else {
-                    getApplicationContext().registerReceiver(networkConnectivityReceiver, filterNetworkConnectivity);
-                }
+                ContextCompat.registerReceiver(this, networkConnectivityReceiver,
+                        new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION),
+                        ContextCompat.RECEIVER_NOT_EXPORTED);
             } else {
                 appendLog(getBaseContext(), TAG, "Start connectivity receiver with callback");
                 ConnectivityManager connectivityManager

@@ -32,6 +32,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -118,7 +119,7 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        ((YourLocalWeather) getApplication()).applyTheme(this);
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
 
         YourLocalWeather.executor.submit(() -> {

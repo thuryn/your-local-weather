@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
@@ -34,8 +35,8 @@ import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.service.NominatimLocationService;
 import org.thosp.yourlocalweather.service.SearchActivityProcessResultFromAddressResolution;
 import org.thosp.yourlocalweather.service.SensorLocationUpdater;
+import org.thosp.yourlocalweather.service.UpdateWeatherService;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 
 import java.util.List;
@@ -77,11 +78,8 @@ public class SearchActivity extends BaseActivity {
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        ((YourLocalWeather) getApplication()).applyTheme(this);
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-        }
 
         Configuration.getInstance().setOsmdroidBasePath(getCacheDir());
         Configuration.getInstance().setOsmdroidTileCache(getCacheDir());
@@ -177,14 +175,10 @@ public class SearchActivity extends BaseActivity {
 
     public void onResume(){
         super.onResume();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            registerReceiver(mWeatherUpdateReceiver,
-                    new IntentFilter(ACTION_ADDRESS_RESOLUTION_RESULT),
-                    RECEIVER_NOT_EXPORTED);
-        } else {
-            registerReceiver(mWeatherUpdateReceiver,
-                    new IntentFilter(ACTION_ADDRESS_RESOLUTION_RESULT));
-        }
+        ContextCompat.registerReceiver(this, mWeatherUpdateReceiver,
+                new IntentFilter(
+                        UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT),
+                ContextCompat.RECEIVER_NOT_EXPORTED);
         map.onResume();
     }
 

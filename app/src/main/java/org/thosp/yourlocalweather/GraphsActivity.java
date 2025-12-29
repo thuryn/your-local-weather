@@ -7,21 +7,19 @@ import android.content.DialogInterface;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.NavUtils;
+import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 
 import org.thosp.charting.charts.BarChart;
@@ -41,10 +39,8 @@ import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
 import org.thosp.yourlocalweather.settings.GraphValuesSwitchListener;
-import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.CustomValueFormatter;
-import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.RainSnowYAxisValueFormatter;
@@ -57,10 +53,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 public class GraphsActivity extends ForecastingActivity {
 
@@ -161,15 +153,10 @@ public class GraphsActivity extends ForecastingActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            registerReceiver(mWeatherUpdateReceiver,
-                    new IntentFilter(
-                            UpdateWeatherService.ACTION_GRAPHS_UPDATE_RESULT), RECEIVER_NOT_EXPORTED);
-        } else {
-            registerReceiver(mWeatherUpdateReceiver,
-                    new IntentFilter(
-                            UpdateWeatherService.ACTION_GRAPHS_UPDATE_RESULT));
-        }
+        ContextCompat.registerReceiver(this, mWeatherUpdateReceiver,
+                new IntentFilter(
+                        UpdateWeatherService.ACTION_GRAPHS_UPDATE_RESULT),
+                ContextCompat.RECEIVER_NOT_EXPORTED);
         if (inited) {
             YourLocalWeather.executor.submit(() -> {
                 updateUI();
