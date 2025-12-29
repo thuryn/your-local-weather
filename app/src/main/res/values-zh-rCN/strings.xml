@@ -225,8 +225,8 @@
     <string name="open_weather_map_api_default_key" tools:ignore="MissingTranslation">内置</string>
     <string name="pref_language_uk" tools:ignore="MissingTranslation">Ukrainian（乌克兰语）</string>
     <string name="pref_language_ro" tools:ignore="MissingTranslation">Romanian（罗马尼亚语）</string>
-    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">Portuguese（葡萄牙）</string>
-    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">Portuguese（巴西）</string>
+    <string name="pref_language_pt_pt" tools:ignore="MissingTranslation">葡萄牙语</string>
+    <string name="pref_language_pt_br" tools:ignore="MissingTranslation">葡萄牙语（巴西）</string>
     <string name="location_geocoder_local" tools:ignore="MissingTranslation">通过系统定位获取位置， Nominatim获取地址（推荐）</string>
     <string name="preference_display_update_title" tools:ignore="MissingTranslation">显示更新摘要</string>
     <string name="preference_display_update_nothing" tools:ignore="MissingTranslation">无</string>
@@ -595,4 +595,9 @@
     <string name="forecast_number_of_days_hours_8_hours" tools:ignore="MissingTranslation">8 小时</string>
     <string name="forecast_number_of_days_hours_8_days" tools:ignore="MissingTranslation">8 天</string>
     <string name="forecast_number_of_days_hours_7_hours" tools:ignore="MissingTranslation">7 小时</string>
+    <string name="menu_forecast_min_max_settings" tools:ignore="MissingTranslation">只显示最小/最大值</string>
+    <string name="preference_widget_text_color" tools:ignore="MissingTranslation">小部件文本颜色</string>
+    <string name="preference_widget_text_color_summary" tools:ignore="MissingTranslation">轻按更改颜色</string>
+    <string name="preference_widget_background_color" tools:ignore="MissingTranslation">透明背景色和不透明度</string>
+    <string name="preference_widget_background_color_summary" tools:ignore="MissingTranslation">轻按更改颜色</string>
 </resources>
