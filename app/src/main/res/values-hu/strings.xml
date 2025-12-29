@@ -1,5 +1,6 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<resources xmlns:tools="http://schemas.android.com/tools"><string name="enter_city_hint">Város megadása</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="enter_city_hint">Város megadása</string>
     <string name="label_current_city">Jelenlegi város</string>
     <string name="label_choose_city">Város választása</string>
     <string name="alertDialog_location_permission_message_location_phone_settings">Az app-nak a helyszín frissítéséhez szüksége van hozzáférésre. Menj az eszköz beállításokba, kapcsold be GPS-t.</string>
@@ -7,36 +8,29 @@
     <string name="alertDialog_location_permission_negativeButton">Mégsem</string>
     <string name="progressDialog_gps_locate">Jelenlegi pozíció megkeresése</string>
     <string name="load_progress">Betöltés…</string>
-
     <string name="title_activity_search">Pozíció keresése</string>
     <string name="label_activity_main">Jelenlegi időjárás</string>
     <string name="label_activity_weather_forecast">Napi előrejelzés</string>
     <string name="label_activity_graphs">Időjárási diagramok</string>
     <string name="title_activity_license">%s licensze</string>
-
     <string name="toolbar_menu_refresh">Frissítés</string>
     <string name="toolbar_menu_search_city">Város keresése</string>
     <string name="toolbar_menu_detect_location">Pozíció meghatározása</string>
     <string name="menu_action_toggle_values">Értékek állítása</string>
     <string name="menu_action_toggle_yaxis">Y-tengely átállítása</string>
-
     <string name="nav_menu_current_weather">Jelenlegi időjárás</string>
     <string name="nav_menu_daily_forecast">Napi előrejelzés</string>
     <string name="nav_menu_graphs">Diagramok</string>
     <string name="nav_menu_settings">Beállítások</string>
     <string name="nav_feedback">Visszajelzés</string>
     <string name="nav_menu_bitcoin_donation">Bitcoin adományozása</string>
-
     <string name="connection_not_found">Ellenőrizze az internet-kapcsolatot</string>
     <string name="toast_parse_error">Hiba történt. Próbálja meg később!</string>
-
     <string name="pressure_measurement">hPa</string>
     <string name="wind_speed_meters">m/s</string>
     <string name="wind_speed_miles">mph</string>
     <string name="millimetre_label">mm</string>
-
     <string name="hint_activity_search">Pozíció meghatározása</string>
-
     <string name="title_activity_settings">Beállítások</string>
     <string name="pref_title_temperature">Hőmérséklet</string>
     <string name="preference_hide_desc">Időjárás leírásának elrejtése</string>
@@ -64,13 +58,11 @@
     <string name="pref_title_language">Nyelv</string>
     <string name="pref_language_default">Alapértelmezett (rendszer)</string>
     <string name="pref_title_theme">Kinézet</string>
-    
     <string name="preference_title_activity_about">Az alkalmazásról</string>
     <string name="about_version_pref_title">Verzió</string>
     <string name="about_source_code_pref_title">Forráskód</string>
     <string name="about_app_license_pref_title">Licensz</string>
     <string name="about_open_source_licenses_pref_title">Nyílt forrású licenszek</string>
-
     <string name="wind_label">Szélsebesség: %1$s %2$s %3$s</string>
     <string name="rain_label">Eső: %1$s %2$s</string>
     <string name="snow_label">Hó: %1$s %2$s</string>
@@ -92,10 +84,8 @@
     <string name="label_wind">Szélsebesség</string>
     <string name="label_rain">Eső</string>
     <string name="label_snow">Hó</string>
-
     <string name="widget_weather_icon_description">Aktuális időjárás ikon</string>
     <string name="widget_refresh_button">\"Widget frissítés\" gomb</string>
-
     <string name="wind_direction_north">É</string>
     <string name="wind_direction_north_east">ÉK</string>
     <string name="wind_direction_east">K</string>
@@ -104,13 +94,11 @@
     <string name="wind_direction_south_west">DNY</string>
     <string name="wind_direction_west">NY</string>
     <string name="wind_direction_north_west">ÉNY</string>
-
     <string name="permission_location_rationale">Helymeghatározási engedély szükséges a jelenlegi város meghatározásához</string>
     <string name="permission_not_granted">Az engedély nincs megadva!</string>
     <string name="permission_available_location">Helymeghatározási engedély megadva</string>
     <string name="permission_location_need">Kérem, adja meg az engedélyt a helymeghatározáshoz</string>
-
-<string name="app_name" tools:ignore="MissingTranslation">Helyi időjárás</string>
+    <string name="app_name" tools:ignore="MissingTranslation">Helyi időjárás</string>
     <string name="alertDialog_location_permission_title" tools:ignore="MissingTranslation">Hely és engedélyek beállítása</string>
     <string name="alertDialog_location_permission_message_location_gps_permission" tools:ignore="MissingTranslation">Az app-nak szüksége van a GPS-re.</string>
-    </resources>
+</resources>
