@@ -51,7 +51,7 @@
     <string name="update_period_12hours">12 Stunden</string>
     <string name="update_period_24hours">24 Stunden</string>
     <string name="pref_title_vibrate">Vibrieren</string>
-    <string name="preference_widget_title_update_period">Wetteraktualisierungsintervall (Standort 1,2,3 ...)</string>
+    <string name="preference_widget_title_update_period">Wetteraktualisierungsintervall (Standort 1,2,3...)</string>
     <string name="preference_title_activity_general">Allgemeine Einstellungen</string>
     <string name="preference_title_activity_widget">Widget-Einstellungen</string>
     <string name="preference_hide_desc">Wetterbeschreibung ausblenden</string>
@@ -597,7 +597,7 @@
     <string name="pref_language_th" tools:ignore="MissingTranslation">Thailändisch</string>
     <string name="permission_available_notification" tools:ignore="MissingTranslation">Benachrichtigungsberechtigung wurde erteilt</string>
     <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">Gelöschte Orte oberhalb des Grenzwertes.</string>
-    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">Nicht zwischen 00:00 und 06:00 Uhr (Standort 1,2,3,...)</string>
+    <string name="preference_widget_title_update_night" tools:ignore="MissingTranslation">Nicht zwischen 00:00 und 06:00 Uhr (Standort 1,2,3...)</string>
     <string name="preference_widget_title_update_auto_night" tools:ignore="MissingTranslation">Nicht zwischen 00:00 und 06:00 Uhr (Standort 0)</string>
     <string name="pref_language_kab" tools:ignore="MissingTranslation">Kabylisch</string>
     <string name="pref_language_ko" tools:ignore="MissingTranslation">Koreanisch</string>
@@ -612,4 +612,7 @@
     <string name="forecast_number_of_days_hours_8_hours" tools:ignore="MissingTranslation">8 Stunden</string>
     <string name="forecast_number_of_days_hours_7_days" tools:ignore="MissingTranslation">7 Tage</string>
     <string name="forecast_number_of_days_hours_8_days" tools:ignore="MissingTranslation">8 Tage</string>
+    <string name="menu_forecast_min_max_settings" tools:ignore="MissingTranslation">Zeige nur minimal / maximale Werte</string>
+    <string name="preference_widget_text_color" tools:ignore="MissingTranslation">Textfarbe im Widget</string>
+    <string name="preference_widget_text_color_summary" tools:ignore="MissingTranslation">Berühre um die Farbe zu ändern</string>
 </resources>
