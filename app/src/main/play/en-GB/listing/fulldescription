@@ -2,7 +2,7 @@ Uses cell networks, Wi-Fi networks and GPS to get your location and show you the
 Location updates can be set to a certain period, or the app can use accelerometer to detect movement.
 By using the optional widget, you can see your location and current weather on the main screen.
 
-The OpenWeatherMap.org service is used for weather data.
+The open-meteo.com service is used for weather data.
 
 Additional features include
     Current weather
