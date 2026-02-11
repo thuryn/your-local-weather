@@ -325,4 +325,6 @@
     <string name="weather_condition_description_781" tools:ignore="MissingTranslation">торнадо</string>
     <string name="weather_condition_description_800" tools:ignore="MissingTranslation">чисте небо</string>
     <string name="weather_condition_description_801" tools:ignore="MissingTranslation">хмарно</string>
+    <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Попередження щодо голосових функцій</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Цей застосунок має голосові підказки, що працюють завдяки перекладам тексту та голосовим командам, наданим волонтерами з https://hosted.weblate.org/projects/your-local-weather. Розробник застосунку не може гарантувати їхню коректність - користуючись застосунком, ви приймаєте це. Для роботи голосових функцій потрібен встановлений TTS (Text‑to‑speech) і ввімкнені підказки в налаштуваннях, де ви також можете задати власні голосові команди.</string>
 </resources>
