@@ -25,7 +25,7 @@
 \nDesviando do padrão de atualização quando o local muda, você pode selecionar <i>Não atualize a localização</i>.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Configuração de atualização da localização</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Opção de fonte da localização</string>
-    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Você pode escolher o método de localização - o <i>System</i> se usa os serviços do Google para obter a localização por redes (redes celulares e Wi-Fi). A opção <i>A opção Local MLS e Nominatim</i> usa o serviço de localização da Mozilla para obter coordenadas de localização e serviço Nominatim para obter nomes de localização. A segunda opção requer permissões de chamadas telefônicas para obter informações sobre a rede celular. A opção preferida está pré-selecionada.</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Você pode escolher o método de localização - o <i>System</i> se usa os serviços do Google para obter a localização por redes (celulares e Wi-Fi). A opção <i>A opção Local MLS e Nominatim</i> usa o serviço de localização da Mozilla para obter coordenadas de localização e serviço Nominatim para obter nomes de localização. A segunda opção requer permissões de chamadas telefônicas para obter informações sobre a rede celular. A opção preferida está pré-selecionada.</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Acesso expirado. Atualize o aplicativo, por favor.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Fonte da localização de endereço</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Parabéns</string>
@@ -306,8 +306,7 @@
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Há opções para ativar a depuração no arquivo de log. Esta opção é útil quando há algum problema com a aplicação.</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Opções de depuração</string>
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">Quando uma atualização de localização e tempo atual é realizada, você pode ver o status da atualização ao lado do tempo de atualização no widget. Você pode controlar o que é exibido pelo <b>Exibir resumo de atualização</b>. A explicação da opção mais avançada segue:</string>
-    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b>Wake up strategy</b> está disponível para superar a implementação de buggy do serviço android por diferentes fornecedores. Quando você seleciona <i>Sem despertar</i>, e o local é atualizado corretamente
-\nVocê tem uma implementação correta. Quando o local não é atualizado corretamente, você pode experimentar <i>Apenas acordar CPU</i>. Esta opção acorda a CPU e tenta ler o estado da rede celular e wi-fi. A última opção <i>Acorde com o display</i> alterna a tela por vários segundos durante a atualização de local. como último recurso.</string>
+    <string name="help_page_4_content_wake_up_strategy" tools:ignore="MissingTranslation"><b>Wake up strategy</b> está disponível para superar a implementação de buggy do serviço android por diferentes fornecedores. Quando você seleciona <i>Sem despertar</i>, e o local é atualizado corretamente\nVocê tem uma implementação correta. Quando o local não é atualizado corretamente, você pode experimentar <i>Apenas acordar CPU</i>. Esta opção acorda a CPU e tenta ler o estado da rede celular e wi-fi.\n<i>Acorde com o display</i> alterna a tela por vários segundos durante a atualização de local. como último recurso.</string>
     <string name="help_page_4_content_widget_theme" tools:ignore="MissingTranslation">Você pode controlar o plano de fundo do widget com a opção <b>Opção tema de widget</b>.</string>
     <string name="help_page_4_content_show_labels_in_widget" tools:ignore="MissingTranslation">Quando você habilita <b>Mostrar rótulos no widget</b>, você pode ver rótulos em vez de ícones para valores de condições climáticas.</string>
     <string name="help_page_4_content" tools:ignore="MissingTranslation">As configurações do widget contêm opções de configuração para todos os widgets.</string>
@@ -590,4 +589,9 @@
     <string name="pref_title_tts_permission" tools:ignore="MissingTranslation">Autorização para BT</string>
     <string name="voice_setting_trigger_at_time" tools:ignore="MissingTranslation">Hora do dia</string>
     <string name="permission_available_notification" tools:ignore="MissingTranslation">A permissão para notificação foi concedida</string>
+    <string name="menu_forecast_min_max_settings" tools:ignore="MissingTranslation">Mostrar apenas valores mínimos/máximos</string>
+    <string name="preference_widget_text_color" tools:ignore="MissingTranslation">Cor do texto no widget</string>
+    <string name="preference_widget_text_color_summary" tools:ignore="MissingTranslation">Toque para mudar a cor</string>
+    <string name="preference_widget_background_color" tools:ignore="MissingTranslation">Cor de fundo transparente e opacidade</string>
+    <string name="preference_widget_background_color_summary" tools:ignore="MissingTranslation">Toque para mudar a cor</string>
 </resources>
