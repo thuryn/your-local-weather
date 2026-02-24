@@ -7,8 +7,8 @@ android {
         applicationId = "org.thosp.yourlocalweather"
         minSdk = 21
         targetSdk = 36
-        versionCode = 183
-        versionName = "6.2.1"
+        versionCode = 184
+        versionName = "6.3.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
@@ -58,6 +58,7 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0'
     implementation 'com.google.android.material:material:1.13.0'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation "com.google.android.gms:play-services-wearable:19.0.0"
 
 // Third-party
     implementation 'com.github.yukuku:ambilwarna:2.0.1'

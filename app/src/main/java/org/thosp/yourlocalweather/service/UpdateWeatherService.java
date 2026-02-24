@@ -19,6 +19,9 @@ import android.os.SystemClock;
 
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.wearable.MessageClient;
+import com.google.android.gms.wearable.Node;
+import com.google.android.gms.wearable.Wearable;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -39,12 +42,15 @@ import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
+import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.net.MalformedURLException;
+import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.util.LinkedList;
+import java.util.Locale;
 import java.util.Queue;
 
 import cz.msebera.android.httpclient.Header;
@@ -367,7 +373,7 @@ public class UpdateWeatherService extends AbstractCommonService {
                                     saveWeatherAndSendResult(context, weather, currentLocation, updateType);
                                     CompleteWeatherForecast completeWeatherForecast = WeatherJSONParser.getWeatherForecast(context, weatherData);
                                     saveWeatherAndSendResult(context, currentLocation, completeWeatherForecast, WEATHER_FORECAST_TYPE, START_WEATHER_FORECAST_UPDATE);
-                                    broadcastWeatherUpdate(currentLocation, weather, completeWeatherForecast);
+                                    broadcastWeatherUpdate(currentLocation, weather, completeWeatherForecast, locale);
                                 } else {
                                     sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
                                 }
@@ -486,7 +492,7 @@ public class UpdateWeatherService extends AbstractCommonService {
         stopForeground(true);
     }
 
-    protected void broadcastWeatherUpdate(Location location, Weather weather, CompleteWeatherForecast completeWeatherForecast) {
+    protected void broadcastWeatherUpdate(Location location, Weather weather, CompleteWeatherForecast completeWeatherForecast, String locale) {
         appendLog(this,
                 TAG,
                 "going to broadcast Weather update");
@@ -499,6 +505,44 @@ public class UpdateWeatherService extends AbstractCommonService {
             intent.putExtra("complete_weather_forecast", completeWeatherInfo);
             intent.setPackage("org.omnirom.omnijaws");
             sendBroadcast(intent);
+        } catch (Exception e) {
+            appendLog(this,
+                    TAG,
+                    e);
+        }
+        if (location.getOrderId() == 0) {
+            sendUpdate2Wearables(weather, locale);
+        }
+    }
+
+    private void sendUpdate2Wearables(Weather weather, String locale) {
+        appendLog(this,
+                TAG, "Sending messages to all wearables");
+        String currentTemp = TemperatureUtil.getMeasuredTemperatureWithUnit(
+                this,
+                weather.getTemperature(),
+                AppPreference.getTemperatureUnitFromPreferences(this),
+                Locale.forLanguageTag(locale));
+        MessageClient messageClient = Wearable.getMessageClient(this);
+
+        try {
+            Wearable.getNodeClient(this).getConnectedNodes().addOnSuccessListener(nodes -> {
+                for (Node node: nodes) {
+                    appendLog(this,
+                            TAG, "Sending messages to the wearable ", node.getId());
+                    messageClient.sendMessage(node.getId(), "/weather_update", currentTemp.getBytes(StandardCharsets.UTF_8))
+                            .addOnSuccessListener(messageId -> {
+                                appendLog(this,
+                                        TAG, "Message with ID " + messageId + " has been successfully sent!");
+                            })
+                            .addOnFailureListener(e -> {
+                                appendLog(this,
+                                        TAG, "Sending message to wearable id " + node.getId() + " failed", e);
+                            });
+                }
+            });
+            appendLog(this,
+                    TAG, "Sending messages to all wearables finished");
         } catch (Exception e) {
             appendLog(this,
                     TAG,
