@@ -14,7 +14,7 @@ android {
         applicationId "org.thosp.yourlocalweather"
         minSdk 30
         targetSdk 36
-        versionCode = 10184
+        versionCode = 10185
         versionName = "6.3.0"
 
     }
