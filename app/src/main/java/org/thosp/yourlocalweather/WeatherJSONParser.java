@@ -36,7 +36,7 @@ public class WeatherJSONParser {
         throw new LicenseNotValidException("Result is not OK. Result = " + result);
     }
 
-    public static Weather getWeather(JSONObject weatherData, String locale) throws JSONException, ParseException {
+    public static Weather getWeather(JSONObject weatherData) throws JSONException, ParseException {
         Weather weather = new Weather();
         if (weatherData.has("current")) {
             JSONObject current = weatherData.getJSONObject("current");

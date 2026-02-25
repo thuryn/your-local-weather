@@ -208,7 +208,7 @@ public class TemperatureUtil {
 
     public static boolean isTemperatureUnitKelvin(Context context) {
         return "kelvin".equals(PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius"));
+                Constants.KEY_PREF_TEMPERATURE_UNITS, "°C"));
     }
 
     public static double getTemperatureInPreferredUnit(String temperatureUnitFromPreferences, double inputValue) {

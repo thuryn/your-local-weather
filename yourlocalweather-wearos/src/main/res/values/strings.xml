@@ -3,4 +3,14 @@
     <string name="hello_world">Hello, %1$s!</string>
     <string name="tile_label">Example tile</string>
     <string name="complication_label">Current temperature</string>
+
+    <string name="icon_wind" translatable="false">\uF050</string>
+    <string name="icon_humidity" translatable="false">\uF07A</string>
+    <string name="icon_barometer" translatable="false">\uF079</string>
+    <string name="icon_cloudiness" translatable="false">\uF013</string>
+    <string name="icon_sunrise" translatable="false">\uF051</string>
+    <string name="icon_sunset" translatable="false">\uF052</string>
+    <string name="icon_thermometer" translatable="false">\uf055</string>
+    <string name="icon_dew_point" translatable="false">\uF04E</string>
+    <string name="icon_forecast" translatable="false">\uF073</string>
 </resources>

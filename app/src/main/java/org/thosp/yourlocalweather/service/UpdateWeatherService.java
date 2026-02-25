@@ -25,6 +25,7 @@ import com.google.android.gms.wearable.Wearable;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.thosp.yourlocalweather.ConnectionDetector;
@@ -34,6 +35,7 @@ import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
 import org.thosp.yourlocalweather.model.CompleteWeatherInfo;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
+import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.LicenseKeysDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
@@ -49,8 +51,12 @@ import org.thosp.yourlocalweather.utils.WidgetUtils;
 import java.net.MalformedURLException;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Queue;
 
 import cz.msebera.android.httpclient.Header;
@@ -363,17 +369,15 @@ public class UpdateWeatherService extends AbstractCommonService {
 
                                 timerHandler.removeCallbacksAndMessages(null);
 
-                                final String locale = currentLocation.getLocaleAbbrev();
-
                                 appendLog(context, TAG, "Going to store result with updateType:", updateType);
                                 if (isCurrentWeather(updateType)) {
                                     appendLog(context, TAG, "Current weather type");
                                     JSONObject weatherData = new JSONObject(weatherRaw);
-                                    Weather weather = WeatherJSONParser.getWeather(weatherData, locale);
+                                    Weather weather = WeatherJSONParser.getWeather(weatherData);
                                     saveWeatherAndSendResult(context, weather, currentLocation, updateType);
                                     CompleteWeatherForecast completeWeatherForecast = WeatherJSONParser.getWeatherForecast(context, weatherData);
                                     saveWeatherAndSendResult(context, currentLocation, completeWeatherForecast, WEATHER_FORECAST_TYPE, START_WEATHER_FORECAST_UPDATE);
-                                    broadcastWeatherUpdate(currentLocation, weather, completeWeatherForecast, locale);
+                                    broadcastWeatherUpdate(currentLocation, weather, completeWeatherForecast);
                                 } else {
                                     sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
                                 }
@@ -492,7 +496,7 @@ public class UpdateWeatherService extends AbstractCommonService {
         stopForeground(true);
     }
 
-    protected void broadcastWeatherUpdate(Location location, Weather weather, CompleteWeatherForecast completeWeatherForecast, String locale) {
+    protected void broadcastWeatherUpdate(Location location, Weather weather, CompleteWeatherForecast completeWeatherForecast) {
         appendLog(this,
                 TAG,
                 "going to broadcast Weather update");
@@ -511,26 +515,86 @@ public class UpdateWeatherService extends AbstractCommonService {
                     e);
         }
         if (location.getOrderId() == 0) {
-            sendUpdate2Wearables(weather, locale);
+            sendUpdate2Wearables(location, weather, completeWeatherForecast);
         }
     }
 
-    private void sendUpdate2Wearables(Weather weather, String locale) {
+    private void sendUpdate2Wearables(Location location, Weather weather, CompleteWeatherForecast completeWeatherForecast) {
         appendLog(this,
                 TAG, "Sending messages to all wearables");
-        String currentTemp = TemperatureUtil.getMeasuredTemperatureWithUnit(
-                this,
-                weather.getTemperature(),
-                AppPreference.getTemperatureUnitFromPreferences(this),
-                Locale.forLanguageTag(locale));
         MessageClient messageClient = Wearable.getMessageClient(this);
 
         try {
+            JSONObject weatherJson = new JSONObject();
+            weatherJson.put("locationName", Utils.getCityAndCountry(this, location));
+            weatherJson.put("currentTemperature", weather.getTemperature());
+            weatherJson.put("apparentTemperature", TemperatureUtil.getApparentTemperature(
+                    weather.getTemperature(),
+                    weather.getHumidity(),
+                    weather.getWindSpeed(),
+                    weather.getClouds(),
+                    location.getLatitude(),
+                    System.currentTimeMillis()));
+            weatherJson.put("temperatureUnit", TemperatureUtil.getTemperatureUnit(this, AppPreference.getTemperatureUnitFromPreferences(this)));
+            weatherJson.put("humidity", weather.getHumidity());
+            weatherJson.put("weatherDescription", Utils.getWeatherDescription(this, weather));
+            weatherJson.put("sunrise", weather.getSunrise());
+            weatherJson.put("sunset", weather.getSunset());
+            weatherJson.put("windSpeed", weather.getWindSpeed());
+            weatherJson.put("windDegree", weather.getWindDirection());
+            weatherJson.put("pressure", weather.getPressure());
+            weatherJson.put("cloudiness", weather.getClouds());
+
+            JSONArray dailyForecast = new JSONArray();
+            Map<Integer, double[]> dailyValues = new HashMap<>();
+
+            for (DetailedWeatherForecast forecast : completeWeatherForecast.getWeatherForecastList()) {
+                Calendar forecastCalendar = Calendar.getInstance();
+                forecastCalendar.setTimeInMillis(forecast.getDateTime() * 1000);
+                int dayOfYear = forecastCalendar.get(Calendar.DAY_OF_YEAR);
+
+                double[] values = dailyValues.get(dayOfYear);
+                if (values == null) {
+                    values = new double[]{
+                            forecast.getTemperatureMin(),
+                            forecast.getTemperatureMax(),
+                            forecast.getWindSpeed(),
+                            forecast.getPressure(),
+                            forecast.getRain(),
+                            forecast.getSnow(),
+                            forecast.getHumidity()
+                    };
+                } else {
+                    values[0] = Math.min(values[0], forecast.getTemperatureMin());
+                    values[1] = Math.max(values[1], forecast.getTemperatureMax());
+                    values[2] = Math.max(values[2], forecast.getWindSpeed());
+                    values[3] = Math.max(values[3], forecast.getPressure());
+                    values[4] = Math.max(values[4], forecast.getRain());
+                    values[5] = Math.max(values[5], forecast.getSnow());
+                    values[6] = Math.max(values[6], forecast.getHumidity());
+                }
+                dailyValues.put(dayOfYear, values);
+            }
+
+            for (Map.Entry<Integer, double[]> entry : dailyValues.entrySet()) {
+                JSONObject forecastJson = new JSONObject();
+                forecastJson.put("dayOfYear", entry.getKey());
+                forecastJson.put("minTemp", entry.getValue()[0]);
+                forecastJson.put("maxTemp", entry.getValue()[1]);
+                forecastJson.put("maxWind", entry.getValue()[2]);
+                forecastJson.put("maxPressure", entry.getValue()[3]);
+                forecastJson.put("maxRain", entry.getValue()[4]);
+                forecastJson.put("maxSnow", entry.getValue()[5]);
+                forecastJson.put("maxHumidity", entry.getValue()[6]);
+                dailyForecast.put(forecastJson);
+            }
+            weatherJson.put("dailyForecast", dailyForecast);
+
             Wearable.getNodeClient(this).getConnectedNodes().addOnSuccessListener(nodes -> {
                 for (Node node: nodes) {
                     appendLog(this,
                             TAG, "Sending messages to the wearable ", node.getId());
-                    messageClient.sendMessage(node.getId(), "/weather_update", currentTemp.getBytes(StandardCharsets.UTF_8))
+                    messageClient.sendMessage(node.getId(), "/weather_update", weatherJson.toString().getBytes(StandardCharsets.UTF_8))
                             .addOnSuccessListener(messageId -> {
                                 appendLog(this,
                                         TAG, "Message with ID " + messageId + " has been successfully sent!");

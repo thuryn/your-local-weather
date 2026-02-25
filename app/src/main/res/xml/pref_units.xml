@@ -15,7 +15,7 @@
         android:key="date_style_pref_key"
         android:title="@string/pref_title_date_style"/>
     <ListPreference
-        android:defaultValue="celsius"
+        android:defaultValue="°C"
         android:dialogTitle="@string/pref_title_temperature"
         android:entries="@array/pref_temperature_units_entries"
         android:entryValues="@array/pref_temperature_units_values"

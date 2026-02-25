@@ -122,7 +122,7 @@ public class AppPreference {
 
     public static String getTemperatureUnitFromPreferences(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_TEMPERATURE_UNITS, "celsius");
+                Constants.KEY_PREF_TEMPERATURE_UNITS, "°C");
     }
 
     public static String getPressureUnitFromPreferences(Context context) {

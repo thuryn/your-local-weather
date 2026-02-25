@@ -14,6 +14,7 @@
         <service
             android:name=".complication.MainComplicationService"
             android:exported="true"
+            android:icon="@drawable/complication_preview"
             android:label="@string/complication_label"
             android:permission="com.google.android.wearable.permission.BIND_COMPLICATION_PROVIDER">
             <intent-filter>
@@ -27,7 +28,7 @@
                 android:name="android.support.wearable.complications.UPDATE_PERIOD_SECONDS"
                 android:value="3600" />
         </service>
-        <!-- service
+        <service
             android:name=".tile.MainTileService"
             android:exported="true"
             android:label="@string/tile_label"
@@ -39,7 +40,7 @@
             <meta-data
                 android:name="androidx.wear.tiles.PREVIEW"
                 android:resource="@drawable/tile_preview" />
-        </service -->
+        </service>
 
         <service
             android:name=".WeatherListenerService"

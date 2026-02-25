@@ -26,6 +26,9 @@ public class ForecastUtil {
         Calendar forecastCalendar = Calendar.getInstance();
         int initialYearForTheList = forecastCalendar.get(Calendar.YEAR);
         Map<Integer, List<DetailedWeatherForecast>> weatherList = createWeatherList(weatherForecastRecord);
+        if ((weatherList == null) || weatherList.isEmpty()) {
+            return result;
+        }
         Integer firstDayOfYear = Collections.min(weatherList.keySet());
         int dayCounter = 0;
         int daysInList = firstDayOfYear + weatherList.keySet().size();

@@ -7,27 +7,34 @@ import androidx.wear.watchface.complications.datasource.ComplicationDataSourceUp
 import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.WearableListenerService
 import org.thosp.yourlocalweather_wearos.complication.MainComplicationService
+import org.thosp.yourlocalweather_wearos.tile.MainTileService
+import androidx.wear.tiles.TileService
 
 class WeatherListenerService : WearableListenerService() {
 
     override fun onMessageReceived(messageEvent: MessageEvent) {
-        // Zkontrolujeme, jestli je to opravdu zpráva pro nás (stejná adresa jako v mobilu)
         if (messageEvent.path == "/weather_update") {
 
-            // 1. Rozbalíme data z mobilu
-            val newTemp = String(messageEvent.data)
-            Log.d("WeatherSync", "Z mobilu přiletěla teplota: $newTemp")
+            val weatherDataJson = String(messageEvent.data)
+            Log.d("WeatherSync", "Received weather data: $weatherDataJson")
 
-            // 2. Uložíme ji do paměti hodinek (SharedPreferences)
-            // Aby si ji za zlomek vteřiny mohla přečíst naše Komplikace
             val prefs = applicationContext.getSharedPreferences("WeatherPrefs", Context.MODE_PRIVATE)
-            prefs.edit().putString("current_temp", newTemp).apply()
+            val editor = prefs.edit()
+            editor.putString("weather_data_json", weatherDataJson)
 
-            // 3. Vynutíme překreslení ciferníku (Tohle je TEN krok z minula!)
-            // Tím říkáme: "Haló, ciferníku, mám v paměti nová data, zavolej moji ComplicationService!"
-            val componentName = ComponentName(this, MainComplicationService::class.java)
-            val request = ComplicationDataSourceUpdateRequester.create(applicationContext, componentName)
-            request.requestUpdateAll()
+            if (prefs.contains("current_temp")) {
+                editor.remove("current_temp")
+            }
+
+            editor.apply()
+
+            // Update Complication
+            val complicationComponentName = ComponentName(this, MainComplicationService::class.java)
+            val complicationRequest = ComplicationDataSourceUpdateRequester.create(applicationContext, complicationComponentName)
+            complicationRequest.requestUpdateAll()
+
+            // Update Tile
+            TileService.getUpdater(this).requestUpdate(MainTileService::class.java)
 
         } else {
             super.onMessageReceived(messageEvent)

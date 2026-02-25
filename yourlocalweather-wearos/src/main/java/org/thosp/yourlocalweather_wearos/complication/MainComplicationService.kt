@@ -23,7 +23,9 @@ import android.graphics.Paint
 import android.graphics.Typeface
 import android.graphics.drawable.Icon
 import android.util.Log
+import org.json.JSONObject
 import org.thosp.yourlocalweather_wearos.presentation.MainActivity
+import java.util.Locale
 
 
 /**
@@ -32,12 +34,40 @@ import org.thosp.yourlocalweather_wearos.presentation.MainActivity
 class MainComplicationService : SuspendingComplicationDataSourceService() {
 
     override fun getPreviewData(type: ComplicationType): ComplicationData? {
-        return createComplicationData(type, "20°C", null)
+        return createComplicationData(type, "20°C", 20f, null)
     }
 
     override suspend fun onComplicationRequest(request: ComplicationRequest): ComplicationData {
         val prefs = applicationContext.getSharedPreferences("WeatherPrefs", Context.MODE_PRIVATE)
-        val currentTemperature = prefs.getString("current_temp", "--°C") ?: "--°C"
+        val weatherDataJson = prefs.getString("weather_data_json", null)
+
+        var tempText = "--°"
+        var tempValue = 0f
+
+        if (weatherDataJson != null) {
+            try {
+                val json = JSONObject(weatherDataJson)
+                tempValue = json.getDouble("currentTemperature").toFloat()
+                val unit = json.getString("temperatureUnit")
+                tempText = "${Math.round(tempValue)}$unit"
+            } catch (e: Exception) {
+                Log.e("MainComplicationService", "Error parsing weather data", e)
+            }
+        } else if (prefs.contains("current_temp")) {
+            // Fallback to read old data for a seamless transition.
+            // This will be removed by WeatherListenerService on the first new update.
+            tempText = prefs.getString("current_temp", "--°") ?: "--°"
+            try {
+                // The old format was a string like "20°C". We need the float for Ranged complication.
+                val tempString = tempText.filter { it.isDigit() || it == '-' || it == '.' }
+                if (tempString.isNotEmpty()) {
+                    tempValue = tempString.toFloat()
+                }
+            } catch (e: NumberFormatException) {
+                Log.w("Complication", "Could not parse old temperature value: $tempText", e)
+            }
+        }
+
         val intent = Intent(applicationContext, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP
         }
@@ -48,17 +78,17 @@ class MainComplicationService : SuspendingComplicationDataSourceService() {
             intent,
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
-       return createComplicationData(request.complicationType, currentTemperature, tapIntent)
+        return createComplicationData(request.complicationType, tempText, tempValue, tapIntent)
     }
 
-    private fun createComplicationData(type: ComplicationType, currentTemperature: String, tapIntent: PendingIntent?): ComplicationData =
+    private fun createComplicationData(type: ComplicationType, tempText: String, tempValue: Float, tapIntent: PendingIntent?): ComplicationData =
         when (type) {
             ComplicationType.SHORT_TEXT -> {
-                createComplicationData(currentTemperature, "Temperature", createTextIcon(currentTemperature), tapIntent)
+                createShortTextComplicationData(tempText, "Temperature", createTextIcon(tempText), tapIntent)
             }
 
             ComplicationType.LONG_TEXT -> {
-                val complicationValue = PlainComplicationText.Builder(currentTemperature).build();
+                val complicationValue = PlainComplicationText.Builder(tempText).build();
                 val complicationDesc = PlainComplicationText.Builder("Temperature").build();
                 val builder = LongTextComplicationData.Builder(complicationValue, complicationDesc)
                 if (tapIntent != null) {
@@ -68,15 +98,8 @@ class MainComplicationService : SuspendingComplicationDataSourceService() {
             }
 
             ComplicationType.RANGED_VALUE -> {
-                val complicationValue = PlainComplicationText.Builder(currentTemperature).build();
+                val complicationValue = PlainComplicationText.Builder(tempText).build();
                 val complicationDesc = PlainComplicationText.Builder("Temperature").build();
-                var tempValue = 0f
-                try {
-                    tempValue =
-                        currentTemperature.substring(0, currentTemperature.length - 2).toFloat()
-                } catch (e: Exception) {
-                    Log.e("YourLocalWeather complication", "Error parsing temperature value", e)
-                }
                 val builder = RangedValueComplicationData.Builder(
                     value = tempValue,
                     min = -20f,
@@ -92,7 +115,7 @@ class MainComplicationService : SuspendingComplicationDataSourceService() {
 
             ComplicationType.MONOCHROMATIC_IMAGE -> {
                 val complicationDesc = PlainComplicationText.Builder("Temperature").build();
-                val dynamicIcon = createTextIcon(currentTemperature)
+                val dynamicIcon = createTextIcon(tempText)
                 val builder = MonochromaticImageComplicationData.Builder(
                     MonochromaticImage.Builder(dynamicIcon).build(),
                     complicationDesc
@@ -105,7 +128,7 @@ class MainComplicationService : SuspendingComplicationDataSourceService() {
 
             ComplicationType.SMALL_IMAGE -> {
                 val complicationDesc = PlainComplicationText.Builder("Temperature").build()
-                val dynamicIcon = createTextIcon(currentTemperature)
+                val dynamicIcon = createTextIcon(tempText)
                 val builder = SmallImageComplicationData.Builder(
                     SmallImage.Builder(dynamicIcon, SmallImageType.ICON).build(),
                     complicationDesc
@@ -115,7 +138,7 @@ class MainComplicationService : SuspendingComplicationDataSourceService() {
                 }
                 builder.build()
             }
-            else -> createComplicationData("-20", "Temperature", createTextIcon("-20"), tapIntent)
+            else -> createComplicationData(ComplicationType.SHORT_TEXT, "--", 0f, tapIntent)
         }
 
     private fun createTextIcon(text: String): Icon {
@@ -138,7 +161,7 @@ class MainComplicationService : SuspendingComplicationDataSourceService() {
         return Icon.createWithBitmap(bitmap)
     }
 
-    private fun createComplicationData(text: String, contentDescription: String, icon: Icon, tapIntent: PendingIntent?): ComplicationData {
+    private fun createShortTextComplicationData(text: String, contentDescription: String, icon: Icon, tapIntent: PendingIntent?): ComplicationData {
         val builder = ShortTextComplicationData.Builder(
             text = PlainComplicationText.Builder(text).build(),
             contentDescription = PlainComplicationText.Builder(contentDescription).build()
