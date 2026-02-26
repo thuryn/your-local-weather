@@ -1,9 +1,4 @@
 <resources>
-    <string name="app_name">Your Local Weather</string>
-    <string name="hello_world">Hello, %1$s!</string>
-    <string name="tile_label">Example tile</string>
-    <string name="complication_label">Current temperature</string>
-
     <string name="icon_wind" translatable="false">\uF050</string>
     <string name="icon_humidity" translatable="false">\uF07A</string>
     <string name="icon_barometer" translatable="false">\uF079</string>
