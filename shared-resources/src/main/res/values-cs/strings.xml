@@ -594,4 +594,10 @@
     <string name="pref_title_tts_enabled_devices" tools:ignore="MissingTranslation">Povolené zařízení:</string>
     <string name="weather_forecast_features_free" tools:ignore="MissingTranslation">Bezplatné/omezené funkce</string>
     <string name="weather_forecast_features_paid" tools:ignore="MissingTranslation">Placené/rozšířené funkce</string>
+
+    <string name="today" tools:ignore="MissingTranslation">Dnes</string>
+    <string name="tomorrow" tools:ignore="MissingTranslation">Zítra</string>
+    <string name="day_after_tomorrow" tools:ignore="MissingTranslation">Pozítří</string>
+    <string name="complication_no_unit_label" tools:ignore="MissingTranslation">Aktuální teplota bez jednotky</string>
+    <string name="complication_with_unit_label" tools:ignore="MissingTranslation">Aktuální teplota včetně jednotky</string>
 </resources>

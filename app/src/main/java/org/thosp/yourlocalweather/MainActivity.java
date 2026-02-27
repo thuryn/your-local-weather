@@ -43,14 +43,10 @@ import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.google.android.gms.wearable.MessageClient;
-import com.google.android.gms.wearable.Node;
-import com.google.android.gms.wearable.Wearable;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import org.json.JSONObject;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
@@ -64,7 +60,6 @@ import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WindWithUnit;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -93,7 +88,6 @@ public class MainActivity extends BaseActivity
     private AppCompatImageButton switchLocationButton;
 
     private ConnectionDetector connectionDetector;
-    private Boolean isNetworkAvailable;
     public static ProgressDialog mProgressDialog;
     private SwipeRefreshLayout mSwipeRefresh;
     private Menu mToolbarMenu;
@@ -117,8 +111,6 @@ public class MainActivity extends BaseActivity
     private String mIconSunset;
     private String mIconDewPoint;
     private String mPercentSign;
-
-    private static final int REQUEST_LOCATION = 0;
     public Context storedContext;
     private Handler refreshDialogHandler;
 
@@ -319,7 +311,7 @@ public class MainActivity extends BaseActivity
             new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
-                    isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
+                    Boolean isNetworkAvailable = connectionDetector.isNetworkAvailableAndConnected();
                     if (isNetworkAvailable && (currentLocation != null)) {
                         currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
                         sendMessageToCurrentWeatherService(currentLocation, "MAIN");
@@ -1158,19 +1150,16 @@ public class MainActivity extends BaseActivity
         int maxOrderId = locationsDbHelper.getMaxOrderId();
         appendLog(getBaseContext(), TAG, "updateCurrentLocationAndButtonVisibility:maxOrderId:", maxOrderId);
         AppPreference.setCurrentLocationId(MainActivity.this, currentLocation);
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                if (mToolbarMenu != null) {
-                    mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible((currentLocation.getOrderId() != 0) || currentLocation.isEnabled());
-                    mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(autoLocation.isEnabled());
-                }
-                if ((maxOrderId > 1) ||
-                        ((maxOrderId == 1) && autoLocation.isEnabled())) {
-                    switchLocationButton.setVisibility(View.VISIBLE);
-                } else {
-                    switchLocationButton.setVisibility(View.GONE);
-                }
+        runOnUiThread(() -> {
+            if (mToolbarMenu != null) {
+                mToolbarMenu.findItem(R.id.main_menu_refresh).setVisible((currentLocation.getOrderId() != 0) || currentLocation.isEnabled());
+                mToolbarMenu.findItem(R.id.main_menu_detect_location).setVisible(autoLocation.isEnabled());
+            }
+            if ((maxOrderId > 1) ||
+                    ((maxOrderId == 1) && autoLocation.isEnabled())) {
+                switchLocationButton.setVisibility(View.VISIBLE);
+            } else {
+                switchLocationButton.setVisibility(View.GONE);
             }
         });
     }

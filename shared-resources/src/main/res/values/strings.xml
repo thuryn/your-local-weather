@@ -643,4 +643,10 @@
     <string name="weather_condition_description_802" tools:ignore="MissingTranslation">scattered clouds</string>
     <string name="weather_condition_description_803" tools:ignore="MissingTranslation">broken clouds</string>
     <string name="weather_condition_description_804" tools:ignore="MissingTranslation">overcast clouds</string>
+
+    <string name="today" tools:ignore="MissingTranslation">Today</string>
+    <string name="tomorrow" tools:ignore="MissingTranslation">Tomorrow</string>
+    <string name="day_after_tomorrow" tools:ignore="MissingTranslation">Day after tomorrow</string>
+    <string name="complication_no_unit_label" tools:ignore="MissingTranslation">Current temperature without unit</string>
+    <string name="complication_with_unit_label" tools:ignore="MissingTranslation">Current temperature with unit</string>
 </resources>

@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -42,6 +41,7 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import kotlin.math.roundToInt
+import androidx.compose.ui.res.stringResource
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -124,6 +124,18 @@ fun WearApp() {
         val listState = rememberScalingLazyListState()
         val formattedLocation = StringUtils.formatLocationName(locationName)
 
+        val cal = Calendar.getInstance()
+        val currentHour = cal.get(Calendar.HOUR_OF_DAY)
+        val todayDayOfYear = cal.get(Calendar.DAY_OF_YEAR)
+        cal.add(Calendar.DAY_OF_YEAR, 1)
+        val tomorrowDayOfYear = cal.get(Calendar.DAY_OF_YEAR)
+        cal.add(Calendar.DAY_OF_YEAR, 1)
+        val dayAfterTomorrowDayOfYear = cal.get(Calendar.DAY_OF_YEAR)
+
+        val filteredForecasts = dailyForecasts.filter { forecast ->
+            !(currentHour >= 20 && forecast.dayOfYear == todayDayOfYear)
+        }
+
         ScalingLazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -160,8 +172,8 @@ fun WearApp() {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    IconWithText(context.getString(R.string.icon_humidity), "$humidity%")
-                    IconWithText(context.getString(R.string.icon_barometer), "${pressure.roundToInt()} hPa")
+                    IconWithText(stringResource(R.string.icon_humidity), "$humidity%")
+                    IconWithText(stringResource(R.string.icon_barometer), "${pressure.roundToInt()} hPa")
                 }
             }
             item {
@@ -169,8 +181,8 @@ fun WearApp() {
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    IconWithText(context.getString(R.string.icon_wind), "${windSpeed.roundToInt()} m/s")
-                    IconWithText(context.getString(R.string.icon_cloudiness), "$cloudiness%")
+                    IconWithText(stringResource(R.string.icon_wind), "${windSpeed.roundToInt()} m/s")
+                    IconWithText(stringResource(R.string.icon_cloudiness), "$cloudiness%")
                 }
             }
             item {
@@ -178,24 +190,23 @@ fun WearApp() {
                     modifier = Modifier.fillMaxWidth().padding(bottom = 8.dp),
                     horizontalArrangement = Arrangement.SpaceEvenly
                 ) {
-                    IconWithText(context.getString(R.string.icon_sunrise), if (sunrise > 0) sdf.format(Date(sunrise * 1000)) else "--:--")
-                    IconWithText(context.getString(R.string.icon_sunset), if (sunset > 0) sdf.format(Date(sunset * 1000)) else "--:--")
+                    IconWithText(stringResource(R.string.icon_sunrise), if (sunrise > 0) sdf.format(Date(sunrise * 1000)) else "--:--")
+                    IconWithText(stringResource(R.string.icon_sunset), if (sunset > 0) sdf.format(Date(sunset * 1000)) else "--:--")
                 }
             }
 
-            if (dailyForecasts.isNotEmpty()) {
+            if (filteredForecasts.isNotEmpty()) {
                 item {
                     Text(
-                        text = context.getString(R.string.icon_forecast),
-                        fontFamily = weatherIcons,
-                        fontSize = 24.sp,
+                        text = stringResource(R.string.label_activity_weather_forecast),
+                        style = MaterialTheme.typography.titleMedium,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.padding(top = 10.dp, bottom = 4.dp)
                     )
                 }
             }
 
-            items(dailyForecasts) { forecast ->
+            items(filteredForecasts) { forecast ->
                 val calendar = Calendar.getInstance()
                 val currentYear = calendar.get(Calendar.YEAR)
                 calendar.set(Calendar.YEAR, currentYear)
@@ -206,7 +217,13 @@ fun WearApp() {
                 }
 
                 val dateFormat = SimpleDateFormat("EEE, d. MMM", Locale.getDefault())
-                val dateText = dateFormat.format(calendar.time)
+                
+                val dateText = when (forecast.dayOfYear) {
+                    todayDayOfYear -> stringResource(R.string.today)
+                    tomorrowDayOfYear -> stringResource(R.string.tomorrow)
+                    dayAfterTomorrowDayOfYear -> stringResource(R.string.day_after_tomorrow)
+                    else -> dateFormat.format(calendar.time)
+                }
 
                 Column(
                     modifier = Modifier
@@ -226,12 +243,23 @@ fun WearApp() {
                         modifier = Modifier.fillMaxWidth()
                     )
                     if (forecast.precipitation > 0) {
-                        Text(
-                            text = String.format(Locale.getDefault(), "%.1f mm", forecast.precipitation),
-                            style = MaterialTheme.typography.bodyMedium,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.fillMaxWidth()
-                        )
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                text = stringResource(R.string.icon_shower_rain),
+                                fontFamily = weatherIcons,
+                                fontSize = 16.sp,
+                                modifier = Modifier.padding(end = 4.dp)
+                            )
+                            Text(
+                                text = String.format(Locale.getDefault(), "%.1f mm", forecast.precipitation),
+                                style = MaterialTheme.typography.bodyMedium,
+                                textAlign = TextAlign.Center
+                            )
+                        }
                     }
                 }
             }

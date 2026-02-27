@@ -14,8 +14,8 @@
         <service
             android:name=".complication.MainComplicationService"
             android:exported="true"
-            android:icon="@drawable/complication_preview"
-            android:label="@string/label_temperature"
+            android:icon="@drawable/complication_with_unit"
+            android:label="@string/complication_with_unit_label"
             android:permission="com.google.android.wearable.permission.BIND_COMPLICATION_PROVIDER">
             <intent-filter>
                 <action android:name="android.support.wearable.complications.ACTION_COMPLICATION_UPDATE_REQUEST" />
@@ -28,6 +28,25 @@
                 android:name="android.support.wearable.complications.UPDATE_PERIOD_SECONDS"
                 android:value="3600" />
         </service>
+
+        <service
+            android:name=".complication.NoUnitComplicationService"
+            android:exported="true"
+            android:icon="@drawable/complication_without_unit"
+            android:label="@string/complication_no_unit_label"
+            android:permission="com.google.android.wearable.permission.BIND_COMPLICATION_PROVIDER">
+            <intent-filter>
+                <action android:name="android.support.wearable.complications.ACTION_COMPLICATION_UPDATE_REQUEST" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.wearable.complications.SUPPORTED_TYPES"
+                android:value="SHORT_TEXT,LONG_TEXT,RANGED_VALUE,ICON,MONOCHROMATIC_IMAGE,SMALL_IMAGE" />
+            <meta-data
+                android:name="android.support.wearable.complications.UPDATE_PERIOD_SECONDS"
+                android:value="3600" />
+        </service>
+
         <service
             android:name=".tile.MainTileService"
             android:exported="true"

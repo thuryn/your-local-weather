@@ -54,8 +54,6 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Queue;
 
@@ -547,10 +545,19 @@ public class UpdateWeatherService extends AbstractCommonService {
 
             JSONArray dailyForecast = new JSONArray();
             Map<Integer, double[]> dailyValues = new HashMap<>();
+            Map<Integer, Map<Integer, Integer>> dailyWeatherIds = new HashMap<>();
+
+            // Získáme aktuální čas v sekundách (unix timestamp) - odřízneme vše v minulosti
+            long currentTimestampInSeconds = System.currentTimeMillis() / 1000L;
 
             for (DetailedWeatherForecast forecast : completeWeatherForecast.getWeatherForecastList()) {
+                // Pokud je čas předpovědi v minulosti, tak ji úplně ignorujeme pro výpočet denních maxim a minim
+                if (forecast.getDateTime() < currentTimestampInSeconds) {
+                    continue;
+                }
+
                 Calendar forecastCalendar = Calendar.getInstance();
-                forecastCalendar.setTimeInMillis(forecast.getDateTime() * 1000);
+                forecastCalendar.setTimeInMillis(forecast.getDateTime() * 1000L);
                 int dayOfYear = forecastCalendar.get(Calendar.DAY_OF_YEAR);
 
                 double[] values = dailyValues.get(dayOfYear);
@@ -574,18 +581,45 @@ public class UpdateWeatherService extends AbstractCommonService {
                     values[6] = Math.max(values[6], forecast.getHumidity());
                 }
                 dailyValues.put(dayOfYear, values);
+                
+                Map<Integer, Integer> idCounts = dailyWeatherIds.get(dayOfYear);
+                if (idCounts == null) {
+                    idCounts = new HashMap<>();
+                    dailyWeatherIds.put(dayOfYear, idCounts);
+                }
+                Integer weatherId = forecast.getWeatherId();
+                if (weatherId != null) {
+                    Integer count = idCounts.get(weatherId);
+                    idCounts.put(weatherId, (count == null ? 0 : count) + 1);
+                }
             }
 
             for (Map.Entry<Integer, double[]> entry : dailyValues.entrySet()) {
+                int dayOfYear = entry.getKey();
+                double[] values = entry.getValue();
+                
+                int mainWeatherId = 0;
+                int maxCount = -1;
+                Map<Integer, Integer> idCounts = dailyWeatherIds.get(dayOfYear);
+                if (idCounts != null) {
+                    for (Map.Entry<Integer, Integer> countEntry : idCounts.entrySet()) {
+                        if (countEntry.getValue() > maxCount) {
+                            maxCount = countEntry.getValue();
+                            mainWeatherId = countEntry.getKey();
+                        }
+                    }
+                }
+
                 JSONObject forecastJson = new JSONObject();
-                forecastJson.put("dayOfYear", entry.getKey());
-                forecastJson.put("minTemp", entry.getValue()[0]);
-                forecastJson.put("maxTemp", entry.getValue()[1]);
-                forecastJson.put("maxWind", entry.getValue()[2]);
-                forecastJson.put("maxPressure", entry.getValue()[3]);
-                forecastJson.put("maxRain", entry.getValue()[4]);
-                forecastJson.put("maxSnow", entry.getValue()[5]);
-                forecastJson.put("maxHumidity", entry.getValue()[6]);
+                forecastJson.put("dayOfYear", dayOfYear);
+                forecastJson.put("minTemp", values[0]);
+                forecastJson.put("maxTemp", values[1]);
+                forecastJson.put("maxWind", values[2]);
+                forecastJson.put("maxPressure", values[3]);
+                forecastJson.put("maxRain", values[4]);
+                forecastJson.put("maxSnow", values[5]);
+                forecastJson.put("maxHumidity", values[6]);
+                forecastJson.put("weatherId", mainWeatherId);
                 dailyForecast.put(forecastJson);
             }
             weatherJson.put("dailyForecast", dailyForecast);
