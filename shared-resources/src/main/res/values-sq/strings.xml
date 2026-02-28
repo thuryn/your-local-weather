@@ -21,7 +21,7 @@
     <string name="location_not_found" tools:ignore="MissingTranslation">Vendndodhja s\\’u gjet</string>
     <string name="permissions_not_granted" tools:ignore="MissingTranslation">Lejet s\\’janë akorduar ende - klikoni mbi simbolin e vendndodhjes te aplikacioni</string>
     <string name="subscription_expired" tools:ignore="MissingTranslation">Hyrja skadoi. Ju lutemi, përmirësoni aplikacionin.</string>
-    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Kyçi juaj për API Open_meteo s\\’është i regjistruar.</string>
+    <string name="subscription_is_wrong" tools:ignore="MissingTranslation">Kyçi juaj për API Open-Meteo s\\’është i regjistruar.</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Ndani motin me të tjerët</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">S\\’u gjet aplikacion komunikimesh</string>
     <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Qytet: %1$s 
@@ -354,7 +354,7 @@
     <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"> <b>MLS vendore dhe Nominatim</b> - Aplikacioni i merr vendndodhjen dhe koordinatat gjeografike prej shërbimeve Mozilla të lokalizimit. Shërbimet Nominatim sjellin adresën bazuar në këto koordinata. Mund të jepni ndihmesë për përmirësime të ardhshme të MLS-s duke instaluar Mozilla Stumbler (i gatshëm te https://play.google.com/store/apps/details\?id=org.mozilla.mozstumbler). Merrni të dhëna rreth stacionesh rrjeti të tanishëm aktivë dhe të passhëm prej rrjetit celular duke i akorduar leje thirrjesh telefonike. Rrjetet Wi-Fi përreth jush përdoren për të hamendësuar më saktë vendndodhjen tuaj.</string>
     <string name="help_page_3_content_location_address_source_2" tools:ignore="MissingTranslation">
         <b>Sistemi</b> - Aplikacioni e merr vendndodhjen dhe adresën prej shërbimeve të sistemit në Android (zakonisht nga shërbime Google për vendndodhje).</string>
-    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Këto mundësi menuje ujdisin <b>gjuhën</b>, <b>temën</b>e aplikacionit kryesor dhe <b>grupin e ikonave</b> të përdorura te aplikacioni dhe widget-et.</string>
+    <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Këto mundësi menuje ujdisin <b>gjuhën</b>, <b>temën</b> e aplikacionit kryesor dhe <b>grupin e ikonave</b> të përdorura te aplikacioni dhe widget-et.</string>
     <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">
         <b>Njoftime</b> 
 \nKur përzgjidhni mundësinë e njoftimeve, aplikacioni e përditëson motin në mënyrë periodike. Moti atë çast mandej vendoset se zona e njoftimeve. Mundeni edhe të aktivizoni dridhjen - aplikacioni dridhet kur bëhet përditësim i motit.</string>
