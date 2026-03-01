@@ -1,8 +1,22 @@
 <resources>
 
-    <style name="MainActivityTheme.Starting" parent="Theme.SplashScreen">
+    <!--
+      Používáme Theme.SplashScreen.IconBackground místo pouhého Theme.SplashScreen.
+      To zajistí bezpečné zobrazení ikony i v případě, že původní ikona není
+      striktně kruhová, čímž splníme přísná pravidla Wear OS 4+.
+    -->
+    <style name="MainActivityTheme.Starting" parent="Theme.SplashScreen.IconBackground">
+        <!-- Černé pozadí celého splash screenu -->
         <item name="windowSplashScreenBackground">@android:color/black</item>
+
+        <!-- Odkaz na XML drawable naší ikony -->
         <item name="windowSplashScreenAnimatedIcon">@drawable/splash_icon</item>
+
+        <!-- Bílé pozadí pod samotnou ikonou, pokud má ikona průhledná místa,
+             aby se neslila s černým pozadím -->
+        <item name="windowSplashScreenIconBackgroundColor">@android:color/white</item>
+
+        <!-- Přechod na výchozí Wear OS téma po načtení -->
         <item name="postSplashScreenTheme">@android:style/Theme.DeviceDefault</item>
     </style>
 </resources>
