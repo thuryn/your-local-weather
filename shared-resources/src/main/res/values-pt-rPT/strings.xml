@@ -592,4 +592,14 @@
     <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 dias</string>
     <string name="forecast_number_of_days_hours_7_days" tools:ignore="MissingTranslation">7 dias</string>
     <string name="forecast_number_of_days_hours_8_days" tools:ignore="MissingTranslation">8 dias</string>
+    <string name="menu_forecast_min_max_settings" tools:ignore="MissingTranslation">Mostrar apenas valores min/max</string>
+    <string name="preference_widget_text_color" tools:ignore="MissingTranslation">Cor do texto no widget</string>
+    <string name="preference_widget_text_color_summary" tools:ignore="MissingTranslation">Toque para mudar a cor</string>
+    <string name="preference_widget_background_color" tools:ignore="MissingTranslation">Cor de fundo transparente e opacidade</string>
+    <string name="preference_widget_background_color_summary" tools:ignore="MissingTranslation">Toque para mudar a cor</string>
+    <string name="today" tools:ignore="MissingTranslation">Hoje</string>
+    <string name="tomorrow" tools:ignore="MissingTranslation">Amanhã</string>
+    <string name="day_after_tomorrow" tools:ignore="MissingTranslation">Depois de amanhã</string>
+    <string name="complication_no_unit_label" tools:ignore="MissingTranslation">Temperatura atual sem unidade</string>
+    <string name="complication_with_unit_label" tools:ignore="MissingTranslation">Temperatura atual com unidade</string>
 </resources>
