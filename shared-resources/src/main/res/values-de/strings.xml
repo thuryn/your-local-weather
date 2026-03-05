@@ -303,8 +303,7 @@
     <string name="alertDialog_battery_optimization_cancel" tools:ignore="MissingTranslation">Abbrechen</string>
     <string name="forecast_settings_column_wind_direction" tools:ignore="MissingTranslation">Windrichtung</string>
     <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
-    <string name="location_not_initialized" tools:ignore="MissingTranslation">Standort wurde noch nicht initialisiert.
-\nZur Lokalisierung auf den Kreis klicken.</string>
+    <string name="location_not_initialized" tools:ignore="MissingTranslation">Standort wurde noch nicht initialisiert. Zur Lokalisierung auf den Kreis klicken.</string>
     <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">inHg</string>
     <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">mbar</string>
     <string name="inches_label" tools:ignore="MissingTranslation">Zoll</string>
@@ -615,4 +614,11 @@
     <string name="menu_forecast_min_max_settings" tools:ignore="MissingTranslation">Zeige nur minimal / maximale Werte</string>
     <string name="preference_widget_text_color" tools:ignore="MissingTranslation">Textfarbe im Widget</string>
     <string name="preference_widget_text_color_summary" tools:ignore="MissingTranslation">Berühre um die Farbe zu ändern</string>
+    <string name="preference_widget_background_color" tools:ignore="MissingTranslation">Transparente Hintergrundfarbe und Deckkraft</string>
+    <string name="preference_widget_background_color_summary" tools:ignore="MissingTranslation">Berühren um die Farbe zu ändern</string>
+    <string name="today" tools:ignore="MissingTranslation">Heute</string>
+    <string name="tomorrow" tools:ignore="MissingTranslation">Morgen</string>
+    <string name="day_after_tomorrow" tools:ignore="MissingTranslation">Übermorgen</string>
+    <string name="complication_no_unit_label" tools:ignore="MissingTranslation">Aktuelle Temperatur ohne Einheit</string>
+    <string name="complication_with_unit_label" tools:ignore="MissingTranslation">Aktuelle Temperatur mit Einheit</string>
 </resources>
