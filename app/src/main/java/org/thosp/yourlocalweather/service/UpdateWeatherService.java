@@ -545,20 +545,32 @@ public class UpdateWeatherService extends AbstractCommonService {
 
             JSONArray dailyForecast = new JSONArray();
             Map<Integer, double[]> dailyValues = new HashMap<>();
+            
+            // Pro ikony budeme sbírat stav BEZ ignorování minulosti, 
+            // ale jenom pro ty předpovědi, co mají smysl.
             Map<Integer, Map<Integer, Integer>> dailyWeatherIds = new HashMap<>();
 
-            // Získáme aktuální čas v sekundách (unix timestamp) - odřízneme vše v minulosti
             long currentTimestampInSeconds = System.currentTimeMillis() / 1000L;
 
             for (DetailedWeatherForecast forecast : completeWeatherForecast.getWeatherForecastList()) {
-                // Pokud je čas předpovědi v minulosti, tak ji úplně ignorujeme pro výpočet denních maxim a minim
+                Calendar forecastCalendar = Calendar.getInstance();
+                forecastCalendar.setTimeInMillis(forecast.getDateTime() * 1000L);
+                int dayOfYear = forecastCalendar.get(Calendar.DAY_OF_YEAR);
+
                 if (forecast.getDateTime() < currentTimestampInSeconds) {
                     continue;
                 }
 
-                Calendar forecastCalendar = Calendar.getInstance();
-                forecastCalendar.setTimeInMillis(forecast.getDateTime() * 1000L);
-                int dayOfYear = forecastCalendar.get(Calendar.DAY_OF_YEAR);
+                Map<Integer, Integer> idCounts = dailyWeatherIds.get(dayOfYear);
+                if (idCounts == null) {
+                    idCounts = new HashMap<>();
+                    dailyWeatherIds.put(dayOfYear, idCounts);
+                }
+                Integer weatherId = forecast.getWeatherId();
+                if (weatherId != null) {
+                    Integer count = idCounts.get(weatherId);
+                    idCounts.put(weatherId, (count == null ? 0 : count) + 1);
+                }
 
                 double[] values = dailyValues.get(dayOfYear);
                 if (values == null) {
@@ -581,17 +593,6 @@ public class UpdateWeatherService extends AbstractCommonService {
                     values[6] = Math.max(values[6], forecast.getHumidity());
                 }
                 dailyValues.put(dayOfYear, values);
-                
-                Map<Integer, Integer> idCounts = dailyWeatherIds.get(dayOfYear);
-                if (idCounts == null) {
-                    idCounts = new HashMap<>();
-                    dailyWeatherIds.put(dayOfYear, idCounts);
-                }
-                Integer weatherId = forecast.getWeatherId();
-                if (weatherId != null) {
-                    Integer count = idCounts.get(weatherId);
-                    idCounts.put(weatherId, (count == null ? 0 : count) + 1);
-                }
             }
 
             for (Map.Entry<Integer, double[]> entry : dailyValues.entrySet()) {
@@ -621,6 +622,8 @@ public class UpdateWeatherService extends AbstractCommonService {
                 forecastJson.put("maxHumidity", values[6]);
                 forecastJson.put("weatherId", mainWeatherId);
                 dailyForecast.put(forecastJson);
+                appendLog(this,
+                        TAG, "Added forecast for wearos with day of year ", (dayOfYear + ", " + dayOfYear % 365), " and main weather id:", String.valueOf(mainWeatherId));
             }
             weatherJson.put("dailyForecast", dailyForecast);
 

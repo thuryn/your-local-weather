@@ -1,34 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="AppBaseThemeLight" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+
         <item name="colorAccent">@color/colorAccent</item>
+
         <item name="android:textViewStyle">@style/TextViewStyle</item>
-        <item name="actionBarTheme">@style/AppThemeLight.Toolbar</item>
-        <item name="actionBarPopupTheme">@style/AppThemeLight.Toolbar</item>
-    </style>
-
-    <style name="AppBaseThemeDark" parent="Theme.AppCompat.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccentDark</item>
-        <item name="android:textViewStyle">@style/TextViewStyle</item>
-        <item name="actionBarTheme">@style/AppThemeLight.Toolbar</item>
-        <item name="actionBarPopupTheme">@style/AppThemeLight.Toolbar</item>
-    </style>
-
-    <style name="AppThemeDark" parent="AppBaseThemeDark">
-    </style>
-
-    <style name="AppThemeLight" parent="AppBaseThemeLight">
+        <item name="actionBarTheme">@style/AppTheme.Toolbar</item>
+        <item name="actionBarPopupTheme">@style/AppTheme.Toolbar</item>
     </style>
 
     <style name="TextViewStyle" parent="android:Widget.TextView">
-        <item name="android:textColor">?android:attr/textColorPrimary</item>
+        <item name="android:textColor">@color/my_text_primary</item>
     </style>
 
-    <style name="AppThemeLight.Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    <style name="AppTheme.Toolbar" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="android:background">@color/colorPrimary</item>
     </style>
 
@@ -46,7 +33,7 @@
         <item name="android:textAlignment" tools:targetApi="17">gravity</item>
         <item name="android:textSize">18sp</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/colorAccentDark</item>
+        <item name="android:textColor">@color/colorAccent</item>
     </style>
 
     <style name="MainConditions">

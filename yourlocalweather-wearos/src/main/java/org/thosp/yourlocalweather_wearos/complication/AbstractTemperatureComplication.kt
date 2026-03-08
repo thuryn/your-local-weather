@@ -3,6 +3,14 @@ package org.thosp.yourlocalweather_wearos.complication
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Typeface
+import android.graphics.drawable.Icon
+import android.util.Log
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.graphics.createBitmap
 import androidx.wear.watchface.complications.data.ComplicationData
 import androidx.wear.watchface.complications.data.ComplicationType
 import androidx.wear.watchface.complications.data.LongTextComplicationData
@@ -16,18 +24,10 @@ import androidx.wear.watchface.complications.data.SmallImageComplicationData
 import androidx.wear.watchface.complications.data.SmallImageType
 import androidx.wear.watchface.complications.datasource.ComplicationRequest
 import androidx.wear.watchface.complications.datasource.SuspendingComplicationDataSourceService
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
-import android.graphics.Typeface
-import android.graphics.drawable.Icon
-import android.util.Log
-import androidx.core.content.res.ResourcesCompat
 import org.json.JSONObject
 import org.thosp.yourlocalweather_wearos.R
 import org.thosp.yourlocalweather_wearos.presentation.MainActivity
 import java.util.Calendar
-import androidx.core.graphics.createBitmap
 
 
 /**
@@ -51,16 +51,17 @@ abstract class AbstractTemperatureComplication : SuspendingComplicationDataSourc
             try {
                 val json = JSONObject(weatherDataJson)
                 tempValue = json.getDouble("currentTemperature").toFloat()
+                val sunrise = json.optLong("sunrise", 0)
+                val sunset = json.optLong("sunset", 0)
                 val unit = getUnit(json)
                 tempText = "${Math.round(tempValue)}$unit"
 
                 val currentDayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
-                val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-                val startingDay = if (currentHour < 20) currentDayOfYear else (currentDayOfYear + 1) % 365
+                val startingDay = currentDayOfYear % 365
 
                 val dailyForecastJson = json.optJSONArray("dailyForecast")
                 if (dailyForecastJson != null) {
-                    var weatherId = 0
+                    var weatherId: Int? = null
                     for (i in 0 until dailyForecastJson.length()) {
                         val forecastJson = dailyForecastJson.getJSONObject(i)
                         if (forecastJson.getInt("dayOfYear") == startingDay) {
@@ -68,10 +69,10 @@ abstract class AbstractTemperatureComplication : SuspendingComplicationDataSourc
                             break
                         }
                     }
-                    if (weatherId == 0 && dailyForecastJson.length() > 0) {
+                    if ((weatherId == null) && dailyForecastJson.length() > 0) {
                         weatherId = dailyForecastJson.getJSONObject(0).optInt("weatherId", 0)
                     }
-                    iconText = getStrIcon(applicationContext, weatherId)
+                    iconText = getStrIcon(applicationContext, weatherId, sunrise, sunset)
                 }
 
             } catch (e: Exception) {
@@ -103,15 +104,17 @@ abstract class AbstractTemperatureComplication : SuspendingComplicationDataSourc
         return createComplicationData(request.complicationType, tempText, tempValue, iconText, tapIntent)
     }
 
-    private fun getStrIcon(context: Context, weatherId: Int): String {
-        if (weatherId == 0) return context.getString(R.string.icon_clear_sky_day)
+    private fun getStrIcon(context: Context, weatherId: Int?, sunrise: Long, sunset: Long): String {
+        if (weatherId == null) return context.getString(R.string.icon_clear_sky_day)
+        val currentTimeInMilis = Calendar.getInstance().timeInMillis
+        val isNight = (currentTimeInMilis < (sunrise * 1000)) || (currentTimeInMilis > (sunset * 1000))
         return when (weatherId) {
-            0 -> context.getString(R.string.icon_clear_sky_day)
-            1 -> context.getString(R.string.icon_few_clouds_day)
+            0 -> context.getString(if (isNight) R.string.icon_clear_sky_night else R.string.icon_clear_sky_day)
+            1 -> context.getString(if (isNight) R.string.icon_few_clouds_night else R.string.icon_few_clouds_day)
             2 -> context.getString(R.string.icon_scattered_clouds)
             3 -> context.getString(R.string.icon_broken_clouds)
             51, 61, 56, 66, 80 -> context.getString(R.string.icon_shower_rain)
-            53, 55, 57, 63, 65, 67, 81, 82 -> context.getString(R.string.icon_rain_day)
+            53, 55, 57, 63, 65, 67, 81, 82 -> context.getString(if (isNight) R.string.icon_rain_night else R.string.icon_rain_day)
             96, 95, 99 -> context.getString(R.string.icon_thunderstorm)
             71, 73, 75, 77, 85, 86 -> context.getString(R.string.icon_snow)
             45, 48 -> context.getString(R.string.icon_mist)

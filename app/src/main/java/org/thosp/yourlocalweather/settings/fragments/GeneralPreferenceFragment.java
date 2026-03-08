@@ -105,9 +105,7 @@ public class GeneralPreferenceFragment extends PreferenceFragmentCompat implemen
                 entrySummary(key);
                 if (changing) {
                     YourLocalWeather app = (YourLocalWeather) getActivity().getApplication();
-                    app.reloadTheme();
                     app.applyTheme(getActivity());
-                    YourLocalWeather.restartApp(getActivity());
                 }
                 break;
             case Constants.KEY_PREF_WEATHER_ICON_SET:

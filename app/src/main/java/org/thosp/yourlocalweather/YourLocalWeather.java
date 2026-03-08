@@ -10,7 +10,6 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
-import android.os.StrictMode;
 import android.preference.PreferenceManager;
 
 import org.thosp.yourlocalweather.service.StartAutoLocationJob;
@@ -28,11 +27,11 @@ import androidx.appcompat.app.AppCompatDelegate;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import static org.thosp.yourlocalweather.utils.PreferenceUtil.Theme.*;
+
 public class YourLocalWeather extends Application {
 
     private static final String TAG = "YourLocalWeather";
-
-    private static Theme sTheme = Theme.light;
 
     public static ExecutorService executor = Executors.newFixedThreadPool(2);
 
@@ -44,17 +43,16 @@ public class YourLocalWeather extends Application {
         /*StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder().detectAll().build());
         StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder().detectAll().build());*/
 
+        applyTheme(this);
+        PreferenceManager.getDefaultSharedPreferences(this)
+                .edit()
+                .putString(Constants.PREF_OS_LANGUAGE, Resources.getSystem().getConfiguration().locale.getLanguage())
+                .apply();
+        AppPreference appPreference = AppPreference.getInstance();
+        appPreference.clearLanguage();
+        LanguageUtil.setLanguage(this, appPreference.getLanguage(this));
+
         executor.submit(() -> {
-            PreferenceManager.getDefaultSharedPreferences(this)
-                    .edit()
-                    .putString(Constants.PREF_OS_LANGUAGE, Resources.getSystem().getConfiguration().locale.getLanguage())
-                    .apply();
-            AppPreference appPreference = AppPreference.getInstance();
-            appPreference.clearLanguage();
-            LanguageUtil.setLanguage(this, appPreference.getLanguage(this));
-
-            sTheme = PreferenceUtil.getThemeFromPreferences(this);
-
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 JobScheduler jobScheduler = getSystemService(JobScheduler.class);
                 appendLog(this, TAG, "scheduleStart at YourLocalWeather");
@@ -87,44 +85,19 @@ public class YourLocalWeather extends Application {
         super.attachBaseContext(LanguageUtil.setLanguage(base, AppPreference.getInstance().getLanguage(base)));
     }
 
-    public void reloadTheme() {
-        sTheme = PreferenceUtil.getThemeFromPreferences(this);
-    }
-
-    public void applyTheme(Activity activity) {
-        activity.setTheme(getThemeResId(activity));
-    }
-
-    public static int getThemeResId(Activity activity) {
-        Theme currentTheme;
-        if (sTheme.equals(Theme.system)) {
-            if (PreferenceUtil.getIsOsDarkTheme(activity)) {
-                currentTheme = Theme.dark;
-            } else {
-                currentTheme = Theme.light;
-            }
-        } else {
-            currentTheme = sTheme;
-        }
-        switch (currentTheme) {
+    public static void applyTheme(Context context) {
+        Theme theme = PreferenceUtil.getThemeFromPreferences(context);
+        switch (theme) {
             case light:
-                return R.style.AppThemeLight;
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                break;
             case dark:
-                return R.style.AppThemeDark;
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                break;
+            case system:
             default:
-                return R.style.AppThemeLight;
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM);
+                break;
         }
-    }
-
-    public static void restartApp(Activity activity) {
-        Intent intent = activity.getIntent();
-        if (intent == null) {
-            return;
-        }
-        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        activity.finish();
-        activity.overridePendingTransition(0, 0);
-        activity.startActivity(intent);
-        activity.overridePendingTransition(0, 0);
     }
 }

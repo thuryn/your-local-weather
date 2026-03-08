@@ -131,7 +131,6 @@ public class MainActivity extends BaseActivity
             temeratureTypeFromPreferences = AppPreference.getTemeratureTypeFromPreferences(MainActivity.this);
 
             initializeWeatherReceiver();
-            updateActivityOnResume();
             checkSettingsAndPermisions();
             inited = true;
         });
@@ -165,6 +164,8 @@ public class MainActivity extends BaseActivity
         FloatingActionButton fab = findViewById(R.id.fab);
         this.storedContext = this;
         fab.setOnClickListener(fabListener);
+
+        updateActivityOnResume();
     }
 
     class StartAlarmsTask extends AsyncTask<Integer[], Integer, Long> {

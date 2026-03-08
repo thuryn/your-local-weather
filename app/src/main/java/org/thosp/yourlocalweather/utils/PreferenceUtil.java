@@ -32,20 +32,8 @@ public class PreferenceUtil {
         return Theme.valueOf(PreferenceManager.getDefaultSharedPreferences(context).getString(Constants.PREF_THEME, "system"));
     }
 
-    public static Theme getTheme(Context context) {
-        Theme theme = getThemeFromPreferences(context);
-        if (theme.equals(Theme.system)) {
-            if (getIsOsDarkTheme(context)) {
-                theme = Theme.dark;
-            } else {
-                theme = Theme.light;
-            }
-        }
-        return theme;
-    }
-
     public static AppPreference.GraphGridColors getGraphGridColor(Context context) {
-        switch (getTheme(context)) {
+        switch (getThemeFromPreferences(context)) {
             case dark:
                 return new AppPreference.GraphGridColors(Color.WHITE, Color.GRAY);
             case light:
@@ -56,7 +44,7 @@ public class PreferenceUtil {
     }
 
     public static int getTextColor(Context context) {
-        switch (getTheme(context)) {
+        switch (getThemeFromPreferences(context)) {
             case dark:
                 return Color.WHITE;
             case light:
@@ -67,7 +55,7 @@ public class PreferenceUtil {
     }
 
     public static int getNotificationTextColor(Context context) {
-        if (getIsOsDarkTheme(context)) {
+        if (getThemeFromPreferences(context) == Theme.light) {
             return Color.WHITE;
         } else {
             return Color.BLACK;
@@ -75,7 +63,7 @@ public class PreferenceUtil {
     }
 
     public static int getBackgroundColor(Context context) {
-        switch (getTheme(context)) {
+        switch (getThemeFromPreferences(context)) {
             case dark:
                 return ContextCompat.getColor(context,
                         R.color.widget_darkTheme_colorBackground);
@@ -85,8 +73,5 @@ public class PreferenceUtil {
                 return ContextCompat.getColor(context,
                         R.color.widget_transparentTheme_colorBackground);
         }
-    }
-    public static boolean getIsOsDarkTheme(Context context) {
-        return (context.getResources().getConfiguration().uiMode & Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES;
     }
 }
