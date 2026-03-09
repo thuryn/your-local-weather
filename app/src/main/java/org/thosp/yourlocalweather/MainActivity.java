@@ -119,10 +119,11 @@ public class MainActivity extends BaseActivity
         EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
 
+        locationsDbHelper = LocationsDbHelper.getInstance(MainActivity.this);
+        weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(MainActivity.this);
+        currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(MainActivity.this);
+
         YourLocalWeather.executor.submit(() -> {
-            locationsDbHelper = LocationsDbHelper.getInstance(MainActivity.this);
-            weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(MainActivity.this);
-            currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(MainActivity.this);
             connectionDetector = new ConnectionDetector(MainActivity.this);
             timeStylePreference = AppPreference.getTimeStylePreference(MainActivity.this);
             pressureUnitFromPreferences = AppPreference.getPressureUnitFromPreferences(MainActivity.this);

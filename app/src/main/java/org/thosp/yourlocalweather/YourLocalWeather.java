@@ -16,6 +16,7 @@ import org.thosp.yourlocalweather.service.StartAutoLocationJob;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
+import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.PreferenceUtil;
 import org.thosp.yourlocalweather.utils.PreferenceUtil.Theme;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
@@ -51,6 +52,7 @@ public class YourLocalWeather extends Application {
         AppPreference appPreference = AppPreference.getInstance();
         appPreference.clearLanguage();
         LanguageUtil.setLanguage(this, appPreference.getLanguage(this));
+        NotificationUtils.checkAndCreateNotificationChannel(this);
 
         executor.submit(() -> {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
