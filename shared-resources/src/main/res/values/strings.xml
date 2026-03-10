@@ -177,28 +177,6 @@
     <string name="connection_not_found" tools:ignore="MissingTranslation">Check your Internet connection</string>
     <string name="toast_parse_error" tools:ignore="MissingTranslation">An error has occurred. Try later.</string>
     <string name="too_early_update_error" tools:ignore="MissingTranslation">Too early update!</string>
-    <!-- Weather icons -->
-    <string name="icon_clear_sky_day" translatable="false"></string>
-    <string name="icon_clear_sky_night" translatable="false"></string>
-    <string name="icon_few_clouds_day" translatable="false"></string>
-    <string name="icon_few_clouds_night" translatable="false"></string>
-    <string name="icon_scattered_clouds" translatable="false"></string>
-    <string name="icon_broken_clouds" translatable="false"></string>
-    <string name="icon_shower_rain" translatable="false"></string>
-    <string name="icon_rain_day" translatable="false"></string>
-    <string name="icon_rain_night" translatable="false"></string>
-    <string name="icon_thunderstorm" translatable="false"></string>
-    <string name="icon_snow" translatable="false"></string>
-    <string name="icon_mist" translatable="false"></string>
-    <string name="icon_weather_default" translatable="false"></string>
-    <string name="icon_wind" translatable="false"></string>
-    <string name="icon_humidity" translatable="false"></string>
-    <string name="icon_barometer" translatable="false"></string>
-    <string name="icon_cloudiness" translatable="false"></string>
-    <string name="icon_sunrise" translatable="false"></string>
-    <string name="icon_sunset" translatable="false"></string>
-    <string name="icon_thermometer" translatable="false">\uf055</string>
-    <string name="icon_dew_point" translatable="false"></string>
     <!-- Units and Measurement-->
     <string name="percent_sign" translatable="false">\u0025</string>
     <string name="temperature_with_degree" translatable="false">%s</string>

@@ -6,11 +6,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
-import org.thosp.yourlocalweather.model.WeatherCondition;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -69,9 +69,7 @@ public class LongWeatherForecastItemViewHolder extends RecyclerView.ViewHolder {
                      Set<Integer> visibleColumns) {
         mWeatherForecast = weather;
 
-        Typeface typeface = Typeface.createFromAsset(mContext.getAssets(),
-                "fonts/weathericons-regular-webfont.ttf");
-
+        Typeface typeface = ResourcesCompat.getFont(context, R.font.weathericons);
         if (visibleColumns.contains(1)) {
             SimpleDateFormat dateFormat = new SimpleDateFormat("d.M", locale);
             Date date = new Date(weather.getDateTime() * 1000);
@@ -86,7 +84,7 @@ public class LongWeatherForecastItemViewHolder extends RecyclerView.ViewHolder {
         if (visibleColumns.contains(2)) {
             mIcon.setVisibility(View.VISIBLE);
             mIcon.setTypeface(typeface);
-            mIcon.setText(Utils.getStrIcon(mContext, weather.getWeatherId()));
+            mIcon.setText(org.thosp.shared_resources.Utils.getStrIcon(mContext, weather.getWeatherId(), 0, 0));
         } else {
             mIcon.setVisibility(View.GONE);
         }

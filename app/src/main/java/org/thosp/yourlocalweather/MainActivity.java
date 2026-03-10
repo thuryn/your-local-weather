@@ -40,6 +40,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.AppCompatImageButton;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
@@ -487,8 +488,7 @@ public class MainActivity extends BaseActivity
         /**
          * Create typefaces from Asset
          */
-        Typeface weatherFontIcon = Typeface.createFromAsset(this.getAssets(),
-                "fonts/weathericons-regular-webfont.ttf");
+        Typeface weatherFontIcon = ResourcesCompat.getFont(this, R.font.weathericons);
         Typeface robotoThin = Typeface.createFromAsset(this.getAssets(),
                 "fonts/Roboto-Thin.ttf");
         Typeface robotoLight = Typeface.createFromAsset(this.getAssets(),
@@ -551,15 +551,15 @@ public class MainActivity extends BaseActivity
     }
 
     private void weatherConditionsIcons() {
-        mIconWind = getString(R.string.icon_wind);
-        mIconHumidity = getString(R.string.icon_humidity);
-        mIconPressure = getString(R.string.icon_barometer);
-        mIconCloudiness = getString(R.string.icon_cloudiness);
+        mIconWind = getString(R.string.wi_windy);
+        mIconHumidity = getString(R.string.wi_humidity);
+        mIconPressure = getString(R.string.wi_barometer);
+        mIconCloudiness = getString(R.string.wi_cloud);
         mPercentSign = getString(R.string.percent_sign);
-        mIconSunrise = getString(R.string.icon_sunrise);
-        mIconSunset = getString(R.string.icon_sunset);
-        iconSecondTemperature = getString(R.string.icon_thermometer);
-        mIconDewPoint = getString(R.string.icon_dew_point);
+        mIconSunrise = getString(R.string.wi_sunrise);
+        mIconSunset = getString(R.string.wi_sunset);
+        iconSecondTemperature = getString(R.string.wi_thermometer);
+        mIconDewPoint = getString(R.string.wi_raindrop);
     }
 
     private void setUpdateButtonState(boolean isUpdate) {

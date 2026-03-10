@@ -25,6 +25,7 @@ import androidx.wear.watchface.complications.data.SmallImageType
 import androidx.wear.watchface.complications.datasource.ComplicationRequest
 import androidx.wear.watchface.complications.datasource.SuspendingComplicationDataSourceService
 import org.json.JSONObject
+import org.thosp.shared_resources.Utils
 import org.thosp.yourlocalweather_wearos.R
 import org.thosp.yourlocalweather_wearos.presentation.MainActivity
 import java.util.Calendar
@@ -36,16 +37,16 @@ import java.util.Calendar
 abstract class AbstractTemperatureComplication : SuspendingComplicationDataSourceService() {
 
     override fun getPreviewData(type: ComplicationType): ComplicationData? {
-        return createComplicationData(type, "20°C", 20f, getString(R.string.icon_clear_sky_day), null)
+        return createComplicationData(type, "20°C", 20f, getString(R.string.wi_wu_sunny), null)
     }
 
     override suspend fun onComplicationRequest(request: ComplicationRequest): ComplicationData {
-        val prefs = applicationContext.getSharedPreferences("WeatherPrefs", Context.MODE_PRIVATE)
+        val prefs = applicationContext.getSharedPreferences("WeatherPrefs", MODE_PRIVATE)
         val weatherDataJson = prefs.getString("weather_data_json", null)
 
         var tempText = "--°"
         var tempValue = 0f
-        var iconText = getString(R.string.icon_weather_default)
+        var iconText = getString(R.string.wi_wu_sunny)
 
         if (weatherDataJson != null) {
             try {
@@ -72,7 +73,7 @@ abstract class AbstractTemperatureComplication : SuspendingComplicationDataSourc
                     if ((weatherId == null) && dailyForecastJson.length() > 0) {
                         weatherId = dailyForecastJson.getJSONObject(0).optInt("weatherId", 0)
                     }
-                    iconText = getStrIcon(applicationContext, weatherId, sunrise, sunset)
+                    iconText = Utils.getStrIcon(applicationContext, weatherId, sunrise, sunset)
                 }
 
             } catch (e: Exception) {
@@ -102,24 +103,6 @@ abstract class AbstractTemperatureComplication : SuspendingComplicationDataSourc
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         return createComplicationData(request.complicationType, tempText, tempValue, iconText, tapIntent)
-    }
-
-    private fun getStrIcon(context: Context, weatherId: Int?, sunrise: Long, sunset: Long): String {
-        if (weatherId == null) return context.getString(R.string.icon_clear_sky_day)
-        val currentTimeInMilis = Calendar.getInstance().timeInMillis
-        val isNight = (currentTimeInMilis < (sunrise * 1000)) || (currentTimeInMilis > (sunset * 1000))
-        return when (weatherId) {
-            0 -> context.getString(if (isNight) R.string.icon_clear_sky_night else R.string.icon_clear_sky_day)
-            1 -> context.getString(if (isNight) R.string.icon_few_clouds_night else R.string.icon_few_clouds_day)
-            2 -> context.getString(R.string.icon_scattered_clouds)
-            3 -> context.getString(R.string.icon_broken_clouds)
-            51, 61, 56, 66, 80 -> context.getString(R.string.icon_shower_rain)
-            53, 55, 57, 63, 65, 67, 81, 82 -> context.getString(if (isNight) R.string.icon_rain_night else R.string.icon_rain_day)
-            96, 95, 99 -> context.getString(R.string.icon_thunderstorm)
-            71, 73, 75, 77, 85, 86 -> context.getString(R.string.icon_snow)
-            45, 48 -> context.getString(R.string.icon_mist)
-            else -> context.getString(R.string.icon_weather_default)
-        }
     }
 
     abstract fun getUnit(json: JSONObject): String
@@ -185,7 +168,7 @@ abstract class AbstractTemperatureComplication : SuspendingComplicationDataSourc
                 }
                 builder.build()
             }
-            else -> createComplicationData(ComplicationType.SHORT_TEXT, "--", 0f, getString(R.string.icon_weather_default), tapIntent)
+            else -> createComplicationData(ComplicationType.SHORT_TEXT, "--", 0f, getString(R.string.wi_wu_sunny), tapIntent)
         }
 
     // Puvodni metoda - pro komplikace, ktere text vykresluji samy (SHORT_TEXT, RANGED_VALUE)

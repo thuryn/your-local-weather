@@ -45,9 +45,11 @@ import java.util.Locale;
 import java.util.Set;
 import java.util.TimeZone;
 
+import static org.thosp.shared_resources.Utils.getStrIcon;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 
 public class Utils {
 
@@ -61,8 +63,7 @@ public class Utils {
         Bitmap bitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_4444);
         Canvas canvas = new Canvas(bitmap);
         Paint paint = new Paint();
-        Typeface weatherFont = Typeface.createFromAsset(context.getAssets(),
-                                                        "fonts/weathericons-regular-webfont.ttf");
+        Typeface weatherFont = ResourcesCompat.getFont(context, R.font.weathericons);
 
         paint.setAntiAlias(true);
         paint.setSubpixelText(true);
@@ -77,70 +78,10 @@ public class Utils {
 
     public static String getStrIconFromWEatherRecord(Context context, CurrentWeatherDbHelper.WeatherRecord weatherRecord) {
         if ((weatherRecord == null) || (weatherRecord.getWeather() == null)) {
-            return context.getString(R.string.icon_clear_sky_day);
+            return context.getString(R.string.wi_day_sunny);
         }
-        return getStrIcon(context, weatherRecord.getWeather().getWeatherId());
-    }
-
-    public static String getStrIcon(Context context, int weatherId) {
-        if (weatherId == 0) {
-            return context.getString(R.string.icon_clear_sky_day);
-        }
-        String icon;
-        switch (weatherId) {
-            case 0:
-                icon = context.getString(R.string.icon_clear_sky_day);
-                //icon = context.getString(R.string.icon_clear_sky_night);
-                break;
-            case 1:
-                icon = context.getString(R.string.icon_few_clouds_day);
-                //icon = context.getString(R.string.icon_few_clouds_night);
-                break;
-            case 2:
-                icon = context.getString(R.string.icon_scattered_clouds);
-                break;
-            case 3:
-                icon = context.getString(R.string.icon_broken_clouds);
-                break;
-            case 51:
-            case 61:
-            case 56:
-            case 66:
-            case 80:
-                icon = context.getString(R.string.icon_shower_rain);
-                break;
-            case 53:
-            case 55:
-            case 57:
-            case 63:
-            case 65:
-            case 67:
-            case 81:
-            case 82:
-                icon = context.getString(R.string.icon_rain_day);
-                break;
-            case 96:
-            case 95:
-            case 99:
-                icon = context.getString(R.string.icon_thunderstorm);
-                break;
-            case 71:
-            case 73:
-            case 75:
-            case 77:
-            case 85:
-            case 86:
-                icon = context.getString(R.string.icon_snow);
-                break;
-            case 45:
-            case 48:
-                icon = context.getString(R.string.icon_mist);
-                break;
-            default:
-                icon = context.getString(R.string.icon_weather_default);
-        }
-
-        return icon;
+        Weather weather = weatherRecord.getWeather();
+        return getStrIcon(context, weather.getWeatherId(), weather.getSunrise(), weather.getSunset());
     }
 
     public static void setWeatherIconWithColor(ImageView imageView,
@@ -172,7 +113,7 @@ public class Utils {
                                        int fontColorId) {
         if (fontBasedIcons) {
             remoteViews.setImageViewBitmap(viewIconId,
-                    createWeatherIconWithColor(context, getStrIcon(context, weatherId), fontColorId));
+                    createWeatherIconWithColor(context, org.thosp.shared_resources.Utils.getStrIcon(context, weatherId, 0, 0), fontColorId));
         } else {
             remoteViews.setImageViewResource(viewIconId, Utils.getWeatherResourceIcon(weatherId, maxTemp, maxWind));
         }

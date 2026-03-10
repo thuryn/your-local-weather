@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thosp.yourlocalweather.R;
@@ -64,8 +65,7 @@ public class WeatherForecastItemViewHolder extends RecyclerView.ViewHolder {
                      boolean isMin,
                      boolean isMax) {
 
-        Typeface typeface = Typeface.createFromAsset(mContext.getAssets(), "fonts/weathericons-regular-webfont.ttf");
-
+        Typeface typeface = ResourcesCompat.getFont(context, R.font.weathericons);
         if (visibleColumns.contains(1)) {
             mTime.setVisibility(View.VISIBLE);
             Date date = new Date(weather.getDateTime() * 1000);
@@ -81,7 +81,7 @@ public class WeatherForecastItemViewHolder extends RecyclerView.ViewHolder {
         if (visibleColumns.contains(2)) {
             mIcon.setVisibility(View.VISIBLE);
             mIcon.setTypeface(typeface);
-            mIcon.setText(Utils.getStrIcon(mContext, weather.getWeatherId()));
+            mIcon.setText(org.thosp.shared_resources.Utils.getStrIcon(mContext, weather.getWeatherId(), 0, 0));
         } else {
             mIcon.setVisibility(View.GONE);
         }

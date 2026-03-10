@@ -270,7 +270,7 @@ fun WearApp() {
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Text(
-                                        text = stringResource(R.string.icon_shower_rain),
+                                        text = stringResource(R.string.wi_rain),
                                         fontFamily = weatherIcons,
                                         fontSize = 16.sp,
                                         modifier = Modifier.padding(end = 4.dp)

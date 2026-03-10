@@ -56,7 +56,7 @@ public class WidgetUtils {
             remoteViews.setViewVisibility(widgetSunsetIconId, TextView.GONE);
         } else {
             String sunset = ": " + value;
-            remoteViews.setImageViewBitmap(widgetSunsetIconId, Utils.createWeatherIcon(context, context.getString(R.string.icon_sunset)));
+            remoteViews.setImageViewBitmap(widgetSunsetIconId, Utils.createWeatherIcon(context, context.getString(R.string.wi_sunset)));
             remoteViews.setViewVisibility(widgetSunsetIconId, TextView.VISIBLE);
             remoteViews.setTextViewText(widgetSunsetId, sunset);
         }
@@ -78,7 +78,7 @@ public class WidgetUtils {
             remoteViews.setViewVisibility(widgetSunriseIconId, TextView.GONE);
         } else {
             String sunrise = ": " + value;
-            remoteViews.setImageViewBitmap(widgetSunriseIconId, Utils.createWeatherIcon(context, context.getString(R.string.icon_sunrise)));
+            remoteViews.setImageViewBitmap(widgetSunriseIconId, Utils.createWeatherIcon(context, context.getString(R.string.wi_sunrise)));
             remoteViews.setViewVisibility(widgetSunriseIconId, TextView.VISIBLE);
             remoteViews.setTextViewText(widgetSunriseId, sunrise);
         }
@@ -104,7 +104,7 @@ public class WidgetUtils {
             remoteViews.setViewVisibility(dewPointIconId, TextView.GONE);
         } else {
             String dewPointValue = ": " + value;
-            remoteViews.setImageViewBitmap(dewPointIconId, Utils.createWeatherIcon(context, context.getString(R.string.icon_dew_point)));
+            remoteViews.setImageViewBitmap(dewPointIconId, Utils.createWeatherIcon(context, context.getString(R.string.wi_raindrop)));
             remoteViews.setViewVisibility(dewPointIconId, TextView.VISIBLE);
             remoteViews.setTextViewText(dewPointId, dewPointValue);
         }
@@ -129,7 +129,7 @@ public class WidgetUtils {
             remoteViews.setViewVisibility(humidityIconId, TextView.GONE);
         } else {
             String humidity = ": " + value + percentSign;
-            remoteViews.setImageViewBitmap(humidityIconId, Utils.createWeatherIcon(context, context.getString(R.string.icon_humidity)));
+            remoteViews.setImageViewBitmap(humidityIconId, Utils.createWeatherIcon(context, context.getString(R.string.wi_humidity)));
             remoteViews.setViewVisibility(humidityIconId, TextView.VISIBLE);
             remoteViews.setTextViewText(humidityId, humidity);
         }
@@ -163,7 +163,7 @@ public class WidgetUtils {
                         + windWithUnit.getWindUnit()
                         + " "
                         + windWithUnit.getWindDirection();
-            remoteViews.setImageViewBitmap(widgetWindIconId, Utils.createWeatherIcon(context, context.getString(R.string.icon_wind)));
+            remoteViews.setImageViewBitmap(widgetWindIconId, Utils.createWeatherIcon(context, context.getString(R.string.wi_windy)));
             remoteViews.setViewVisibility(widgetWindIconId, TextView.VISIBLE);
             remoteViews.setTextViewText(widgetWindId, wind);
         }
@@ -185,7 +185,7 @@ public class WidgetUtils {
             remoteViews.setViewVisibility(widgetPressureIconId, TextView.GONE);
         } else {
             String pressure = ": " + pressureWithUnit.getPressure(0) + " " + pressureWithUnit.getPressureUnit();
-            remoteViews.setImageViewBitmap(widgetPressureIconId, Utils.createWeatherIcon(context, context.getString(R.string.icon_barometer)));
+            remoteViews.setImageViewBitmap(widgetPressureIconId, Utils.createWeatherIcon(context, context.getString(R.string.wi_barometer)));
             remoteViews.setViewVisibility(widgetPressureIconId, TextView.VISIBLE);
             remoteViews.setTextViewText(widgetPressureId, pressure);
         }
@@ -206,7 +206,7 @@ public class WidgetUtils {
             remoteViews.setViewVisibility(widgetCloudsIconId, TextView.GONE);
         } else {
             String cloudnes = ": " + value + " " + percentSign;
-            remoteViews.setImageViewBitmap(widgetCloudsIconId, Utils.createWeatherIcon(context, context.getString(R.string.icon_cloudiness)));
+            remoteViews.setImageViewBitmap(widgetCloudsIconId, Utils.createWeatherIcon(context, context.getString(R.string.wi_cloud)));
             remoteViews.setViewVisibility(widgetCloudsIconId, TextView.VISIBLE);
             remoteViews.setTextViewText(widgetCloudsId, cloudnes);
         }

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -111,9 +112,7 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
         currentRowDate.setTime(date);
         mDate.setText(dateFormat.format(date));
 
-        Typeface typeface = Typeface.createFromAsset(mContext.getAssets(),
-                "fonts/weathericons-regular-webfont.ttf");
-
+        Typeface typeface = ResourcesCompat.getFont(context, R.font.weathericons);
         if (visibleColumns.contains(1)) {
             headerTemperature.setVisibility(View.VISIBLE);
             headerTime.setTypeface(typeface);
