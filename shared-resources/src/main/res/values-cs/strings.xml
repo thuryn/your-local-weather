@@ -346,6 +346,10 @@
     <string name="help_page_4_title_graph" tools:ignore="MissingTranslation">Kombinovaný graf</string>
     <string name="help_page_4_content_widget_graph" tools:ignore="MissingTranslation">Pokud v grafu vyberete zobrazení deště/sněhu jako další hodnotu k teplotě a dešti (jako sloupce), bude hodnota počítána jako log10. Maximální hodnota na (neviditelné) ose je potom asi 160 mm (resp. 6.3 v palcích).</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">Zde se nacházejí volby pro ladění aplikace. Tato volba je užitečná, pokud nastanou s aplikací problémy.</string>
+    <string name="help_page_6_wearos_title" tools:ignore="MissingTranslation">Chytré hodinky</string>
+    <string name="help_page_6_wearos_main" tools:ignore="MissingTranslation">Aplikace ukazuje aktuální počasí a předpověď na příští dny. Aby fungovala synchronizace, je potřeba, aby obě aplikace byly z stažebné z Google Play nebo z github.com. Po té, co aplikace v mobilním telefonu aktualizuje předpověď počasí, pošle aktualizaci též do hodinek.</string>
+    <string name="help_page_6_wearos_tile" tools:ignore="MissingTranslation">Aplikace má i dlaždici, která ukazuje aktuální počasí a dále buď předpověď na aktuální a zítřejší den nebo předpověď na zítra a pozítří, pokud je po 20 hodině.</string>
+    <string name="help_page_6_wearos_complication" tools:ignore="MissingTranslation">K dispozici jsou dvě komplikace - jedna ukazuje teplotu, druhá ukazuje teplotu s měnou. Obě komplikace také ukazují ikonu počasí, která reprezentuje předpověď počasí na daný den (ne aktuální počasí). Vzhled komplikací závísí i na ciferníku.</string>
     <string name="location_cache_enable_label" tools:ignore="MissingTranslation">Ukládání polohy do vyrovnávací paměti</string>
     <string name="location_cache_enable_on" tools:ignore="MissingTranslation">Nalezené polohy jsou ukládány</string>
     <string name="location_cache_enable_off" tools:ignore="MissingTranslation">Nalezené polohy nejsou ukládány</string>

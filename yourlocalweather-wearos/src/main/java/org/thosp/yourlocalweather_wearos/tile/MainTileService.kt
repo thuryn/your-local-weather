@@ -1,6 +1,7 @@
 package org.thosp.yourlocalweather_wearos.tile
 
 import android.content.Context
+import android.graphics.Bitmap
 import androidx.wear.protolayout.DimensionBuilders
 import androidx.wear.protolayout.LayoutElementBuilders
 import androidx.wear.protolayout.ModifiersBuilders
@@ -27,14 +28,17 @@ import androidx.wear.protolayout.material3.MaterialScope
 import org.thosp.yourlocalweather_wearos.R
 import kotlin.math.roundToInt
 import androidx.core.content.edit
-
-private const val RESOURCES_VERSION = "0"
+import androidx.wear.protolayout.ResourceBuilders
+import org.thosp.shared_resources.Utils
+import org.thosp.yourlocalweather_wearos.utils.StringUtils
+import androidx.wear.protolayout.DimensionBuilders.dp
 
 data class DailyForecastTile(
     val dayOfYear: Int,
     val minTemp: Int,
     val maxTemp: Int,
-    val precipitation: Double
+    val precipitation: Double,
+    val weatherId: Int
 )
 
 class MainTileService : TileService() {
@@ -42,12 +46,46 @@ class MainTileService : TileService() {
         Futures.immediateFuture(tile(requestParams, this))
 
     override fun onTileResourcesRequest(requestParams: ResourcesRequest): ListenableFuture<Resources> =
-        Futures.immediateFuture(resources(requestParams))
+        Futures.immediateFuture(resources(requestParams, this))
 }
 
-private fun resources(requestParams: ResourcesRequest): Resources {
+private fun resources(requestParams: ResourcesRequest, context: Context): Resources {
+    val requestedVersion = requestParams.version
+
+    val parts = requestedVersion.split("_")
+    val iconText0 = parts.getOrNull(1) ?: "--"
+    val iconText1 = parts.getOrNull(2) ?: "--"
+    val bitmap0 = StringUtils.createWeatherBitmap(context, iconText0)
+    val bitmap1 = StringUtils.createWeatherBitmap(context, iconText1)
+
     return Resources.Builder()
-        .setVersion(RESOURCES_VERSION)
+        .setVersion(requestedVersion)
+        .addIdToImageMapping(
+            "icon_0", // ID z Layoutu
+            ResourceBuilders.ImageResource.Builder()
+                .setInlineResource(bitmapToInlineImage(bitmap0))
+                .build()
+        )
+
+        // Přidání DRUHÉHO obrázku
+        .addIdToImageMapping(
+            "icon_1", // ID z Layoutu
+            ResourceBuilders.ImageResource.Builder()
+                .setInlineResource(bitmapToInlineImage(bitmap1))
+                .build()
+        )
+        .build()
+}
+
+private fun bitmapToInlineImage(bitmap: Bitmap): ResourceBuilders.InlineImageResource {
+    val buffer = java.nio.ByteBuffer.allocate(bitmap.byteCount)
+    bitmap.copyPixelsToBuffer(buffer)
+
+    return ResourceBuilders.InlineImageResource.Builder()
+        .setData(buffer.array())
+        .setWidthPx(bitmap.width)
+        .setHeightPx(bitmap.height)
+        .setFormat(ResourceBuilders.IMAGE_FORMAT_ARGB_8888)
         .build()
 }
 
@@ -64,6 +102,8 @@ private fun tile(
     var tempUnit = "°C"
     var weatherDescription = "--"
     var dailyForecasts = emptyList<DailyForecastTile>()
+    var sunrise = 0L
+    var sunset = 0L
 
     if (weatherDataJson != null) {
         try {
@@ -71,6 +111,8 @@ private fun tile(
             locationName = json.optString("locationName", "--")
             currentTemp = json.optDouble("currentTemperature", 0.0).roundToInt()
             apparentTemp = json.optDouble("apparentTemperature", 0.0).roundToInt()
+            sunrise = json.optLong("sunrise", 0)
+            sunset = json.optLong("sunset", 0)
             tempUnit = json.optString("temperatureUnit", "°C")
             weatherDescription = json.optString("weatherDescription", "--")
 
@@ -85,7 +127,8 @@ private fun tile(
                             dayOfYear = forecastJson.getInt("dayOfYear"),
                             minTemp = forecastJson.getDouble("minTemp").roundToInt(),
                             maxTemp = forecastJson.getDouble("maxTemp").roundToInt(),
-                            precipitation = precipitation
+                            precipitation = precipitation,
+                            weatherId = forecastJson.optInt("weatherId", 0)
                         )
                     )
                 }
@@ -98,8 +141,23 @@ private fun tile(
 
     val city = locationName.split(',').firstOrNull()?.trim() ?: locationName
 
+    val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+    val currentDayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
+    val startingDay = if (currentHour < 20) currentDayOfYear else (currentDayOfYear + 1) % 365
+    val filteredForecasts = dailyForecasts.filter { it.dayOfYear >= startingDay }
+    val displayForecasts = filteredForecasts.take(2)
+
+    var iconText0 = "--"
+    var iconText1 = "--"
+    if ((displayForecasts != null) && !displayForecasts.isEmpty()) {
+        iconText0 = Utils.getStrIcon(context, displayForecasts[0].weatherId, 0, 0) //it's forecast
+        iconText1 = Utils.getStrIcon(context, displayForecasts[1].weatherId, 0, 0) //it's forecast
+    }
+
+    val currentTileVersion = "v1_${iconText0}_${iconText1}"
+
     return TileBuilders.Tile.Builder()
-        .setResourcesVersion(RESOURCES_VERSION)
+        .setResourcesVersion(currentTileVersion)
         .setTileTimeline(
             TimelineBuilders.Timeline.fromLayoutElement(
                 materialScope(context, requestParams.deviceConfiguration) {
@@ -140,7 +198,7 @@ private fun tile(
                                         .setHeight(DimensionBuilders.dp(8f))
                                         .build()
                                 )
-                                .addContent(createForecastRow(context, dailyForecasts, tempUnit))
+                                .addContent(createForecastRow(context, displayForecasts, tempUnit, sunrise, sunset))
                                 .build()
                         )
                         .build()
@@ -150,28 +208,16 @@ private fun tile(
         .build()
 }
 
-private fun MaterialScope.createForecastRow(context: Context, forecasts: List<DailyForecastTile>, tempUnit: String): LayoutElementBuilders.LayoutElement {
+private fun MaterialScope.createForecastRow(context: Context, displayForecasts: List<DailyForecastTile>, tempUnit: String, sunrise: Long, sunset: Long): LayoutElementBuilders.LayoutElement {
     val rowBuilder = LayoutElementBuilders.Row.Builder()
         .setWidth(DimensionBuilders.expand())
         .setVerticalAlignment(LayoutElementBuilders.VERTICAL_ALIGN_CENTER)
 
-    if (forecasts.isEmpty()) {
+    if (displayForecasts.isEmpty()) {
         return LayoutElementBuilders.Box.Builder().build()
     }
 
     val currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-    
-    // Zde je oprava - na Tile chceme ukázat dnešek a zítřek POUZE pokud je dřív než např. 20:00, 
-    // ale nesmíme se spoléhat na fixní list forecast.take(2), protože json může mít data 
-    // posunutá a první forecast nemusí nutně být ten dnešní. 
-    // Místo toho z listu vyfiltrujeme dny začínající aktuálním dnem.
-    val currentDayOfYear = Calendar.getInstance().get(Calendar.DAY_OF_YEAR)
-    
-    // Vybereme jen dny od dneška (nebo od zítřka, pokud je už pozdě večer)
-    val startingDay = if (currentHour < 20) currentDayOfYear else (currentDayOfYear + 1) % 365
-    
-    val filteredForecasts = forecasts.filter { it.dayOfYear >= startingDay }
-    val displayForecasts = filteredForecasts.take(2)
 
     val labels = if (currentHour < 20) {
         listOf(context.getString(R.string.today), context.getString(R.string.tomorrow))
@@ -179,17 +225,12 @@ private fun MaterialScope.createForecastRow(context: Context, forecasts: List<Da
         listOf(context.getString(R.string.tomorrow), context.getString(R.string.day_after_tomorrow))
     }
 
-    // Pro bezpečné roztlačení úplně napříč Tile odebereme veškeré prázdné mezery a boxy, 
-    // které způsobovaly kolaps.
-    // Místo toho nastavíme samotným sloupcům weight(1f), čímž se Row rovnoměrně rozdělí 
-    // napůl a každá půlka vycentruje svůj obsah.
     for (i in displayForecasts.indices) {
         val forecast = displayForecasts[i]
         
         val labelText = if (i < labels.size) labels[i] else "--"
 
         val column = LayoutElementBuilders.Column.Builder()
-            // ZMĚNA: Váha přímo na Column. Jeden column tak dostane přesně polovinu (nebo 1/3 atd.) obrazovky.
             .setWidth(DimensionBuilders.weight(1f))
             .setHorizontalAlignment(LayoutElementBuilders.HORIZONTAL_ALIGN_CENTER)
             
@@ -202,6 +243,11 @@ private fun MaterialScope.createForecastRow(context: Context, forecasts: List<Da
                 typography = Typography.BODY_SMALL
             )
         )
+        column.addContent(
+            LayoutElementBuilders.Spacer.Builder()
+                .setHeight(dp(1f))
+                .build()
+        )
         // Teploty s předanou jednotkou z telefonu
         column.addContent(
             text(
@@ -213,6 +259,12 @@ private fun MaterialScope.createForecastRow(context: Context, forecasts: List<Da
 
         // Srážky
         if (forecast.precipitation > 0) {
+            column.addContent(
+                LayoutElementBuilders.Spacer.Builder()
+                    .setHeight(dp(1f))
+                    .build()
+            )
+
             val precipText = String.format(Locale.getDefault(), "💧 %.1f mm", forecast.precipitation)
             column.addContent(
                 text(
@@ -223,6 +275,20 @@ private fun MaterialScope.createForecastRow(context: Context, forecasts: List<Da
             )
         }
 
+        column.addContent(
+            LayoutElementBuilders.Spacer.Builder()
+                .setHeight(dp(3f))
+                .build()
+        )
+
+        column.addContent(
+            LayoutElementBuilders.Image.Builder()
+                .setResourceId("icon_" + i)
+                .setWidth(dp(24f))  // Nastavte požadovanou šířku
+                .setHeight(dp(24f)) // Nastavte požadovanou výšku
+                .build()
+        )
+
         rowBuilder.addContent(column.build())
     }
     
@@ -232,6 +298,8 @@ private fun MaterialScope.createForecastRow(context: Context, forecasts: List<Da
 
 @Preview(device = WearDevices.SMALL_ROUND)
 @Preview(device = WearDevices.LARGE_ROUND)
+@Preview(device = WearDevices.RECT)
+@Preview(device = WearDevices.SQUARE)
 fun tilePreview(context: Context): TilePreviewData {
     val mockJson = JSONObject()
     mockJson.put("locationName", "Praha 8, Karlin, Czech Republic")
@@ -259,7 +327,8 @@ fun tilePreview(context: Context): TilePreviewData {
     val prefs = context.getSharedPreferences("WeatherPrefs", Context.MODE_PRIVATE)
     prefs.edit { putString("weather_data_json", mockJson.toString()) }
 
-    return TilePreviewData(::resources) {
-        tile(it, context)
-    }
+    return TilePreviewData(
+        onTileResourceRequest = { request -> resources(request, context) },
+        onTileRequest = { request -> tile(request, context) }
+    )
 }

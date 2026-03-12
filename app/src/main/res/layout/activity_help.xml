@@ -218,6 +218,95 @@
                     android:textStyle="bold"
                     android:textSize="24sp"
                     android:paddingTop="24sp"
+                    android:text="@string/help_page_6_wearos_title" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/wearos_main_panel"
+                    android:layout_marginTop="24dp"
+                    android:padding="8dp" >
+
+                    <ImageView
+                        android:id="@+id/wearos_main_id"
+                        android:layout_width="196dp"
+                        android:layout_height="196dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/wearos_main"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/wearos_main_panel" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/help_page_6_wearos_main"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/wearos_main_id"
+                        app:layout_constraintStart_toEndOf="@id/wearos_main_id"
+                        app:layout_constraintTop_toTopOf="@id/wearos_main_id" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/wearos_tile_panel"
+                    android:layout_marginTop="24dp"
+                    android:padding="8dp" >
+
+                    <ImageView
+                        android:id="@+id/wearos_tile_id"
+                        android:layout_width="196dp"
+                        android:layout_height="196dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/wearos_tile"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/wearos_tile_panel" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/help_page_6_wearos_tile"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/wearos_tile_id"
+                        app:layout_constraintStart_toEndOf="@id/wearos_tile_id"
+                        app:layout_constraintTop_toTopOf="@id/wearos_tile_id" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/wearos_complication_panel"
+                    android:layout_marginTop="24dp"
+                    android:padding="8dp" >
+
+                    <ImageView
+                        android:id="@+id/wearos_complication_id"
+                        android:layout_width="196dp"
+                        android:layout_height="196dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/wearos_complication"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/wearos_complication_panel" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/help_page_6_wearos_complication"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="@id/wearos_complication_id"
+                        app:layout_constraintStart_toEndOf="@id/wearos_complication_id"
+                        app:layout_constraintTop_toTopOf="@id/wearos_complication_id" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="24sp"
+                    android:paddingTop="24sp"
                     android:text="@string/alertDialog_voice_disclaimer_title" />
 
                 <TextView

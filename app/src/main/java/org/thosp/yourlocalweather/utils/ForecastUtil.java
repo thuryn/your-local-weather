@@ -2,6 +2,7 @@ package org.thosp.yourlocalweather.utils;
 
 import android.content.Context;
 
+import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 
@@ -57,16 +58,23 @@ public class ForecastUtil {
     }
 
     public static Map<Integer, List<DetailedWeatherForecast>> createWeatherList(WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord) {
+        if ((weatherForecastRecord == null) || (weatherForecastRecord.getCompleteWeatherForecast() == null)) {
+            return new HashMap<>();
+        }
+        return createWeatherList(weatherForecastRecord.getCompleteWeatherForecast(), false);
+    }
+
+    public static Map<Integer, List<DetailedWeatherForecast>> createWeatherList(CompleteWeatherForecast completeWeatherForecast, boolean includesToday) {
         Map<Integer, List<DetailedWeatherForecast>> weatherList = new HashMap<>();
         Calendar nowCalendar = Calendar.getInstance();
         int nowDayOfYear = nowCalendar.get(Calendar.DAY_OF_YEAR);
         int nowHOurOfDay = nowCalendar.get(Calendar.HOUR_OF_DAY);
         Calendar forecastCalendar = Calendar.getInstance();
         int maxForecastDay = 0;
-        if ((weatherForecastRecord == null) || (weatherForecastRecord.getCompleteWeatherForecast() == null)) {
+        if (completeWeatherForecast == null) {
             return weatherList;
         }
-        for (DetailedWeatherForecast detailedWeatherForecast : weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList()) {
+        for (DetailedWeatherForecast detailedWeatherForecast : completeWeatherForecast.getWeatherForecastList()) {
 
             if ((detailedWeatherForecast == null) || ((1000*detailedWeatherForecast.getDateTime()) < nowCalendar.getTimeInMillis())) {
                 continue;
@@ -74,7 +82,7 @@ public class ForecastUtil {
 
             forecastCalendar.setTimeInMillis(detailedWeatherForecast.getDateTime() * 1000);
             int forecastDay = forecastCalendar.get(Calendar.DAY_OF_YEAR);
-            if ((forecastDay == nowDayOfYear) && (nowHOurOfDay > 15)) {
+            if (!includesToday && (forecastDay == nowDayOfYear) && (nowHOurOfDay > 15)) {
                 continue;
             }
             if (maxForecastDay > forecastDay) {
@@ -288,11 +296,13 @@ public class ForecastUtil {
     }
 
     public static WeatherMaxMinForDay calculateWeatherMaxMinForDay(List<DetailedWeatherForecast> forecastListForDay) {
-        double maxRain = Double.MIN_VALUE;
-        double maxSnow = Double.MIN_VALUE;
+        double maxRain = 0.0;
+        double maxSnow = 0.0;
         double maxTemp = -Double.MAX_VALUE;
         double minTemp = Double.MAX_VALUE;
         double maxWind = 0;
+        double maxPressure = 0;
+        double maxHumidity = 0;
         Long maxRainTime = null;
         Long maxSnowTime = null;
         Long maxTempTime = null;
@@ -328,6 +338,12 @@ public class ForecastUtil {
                 maxWind = weatherForecastForDay.getWindSpeed();
                 maxWindTime = currentWeatherForecastDateTime;
             }
+            if (maxPressure < weatherForecastForDay.getPressure()) {
+                maxPressure = weatherForecastForDay.getPressure();
+            }
+            if (maxHumidity < weatherForecastForDay.getHumidity()) {
+                maxHumidity = weatherForecastForDay.getHumidity();
+            }
             if (!windDirectionCounter.containsKey(weatherForecastForDay.getWindDegree())) {
                 windDirectionCounter.put(weatherForecastForDay.getWindDegree(), 0);
             }
@@ -350,7 +366,21 @@ public class ForecastUtil {
                 resultWindDegree = windDegree;
             }
         }
-        return new WeatherMaxMinForDay(dayOfYear, maxTemp, maxTempTime, minTemp, minTempTime, maxWind, maxWindTime, maxRain, maxRainTime, maxSnow, maxSnowTime, resultWindDegree);
+        return new WeatherMaxMinForDay(
+                dayOfYear,
+                maxTemp,
+                maxTempTime,
+                minTemp,
+                minTempTime,
+                maxWind,
+                maxWindTime,
+                maxRain,
+                maxRainTime,
+                maxSnow,
+                maxSnowTime,
+                resultWindDegree,
+                maxPressure,
+                maxHumidity);
     }
 
     public static class WeatherForecastForVoice {
@@ -402,6 +432,9 @@ public class ForecastUtil {
         public double maxWind;
         public double maxRain;
         public double maxSnow;
+
+        public double maxPressure;
+        public double maxHumidity;
         public double windDegree;
         public Long maxRainTime;
         public Long maxSnowTime;
@@ -421,7 +454,9 @@ public class ForecastUtil {
                 Long maxRainTime,
                 double maxSnow,
                 Long maxSnowTime,
-                double windDegree) {
+                double windDegree,
+                double maxPressure,
+                double maxHumidity) {
             this.dayOfYear = dayOfYear;
             this.maxTemp = maxTemp;
             this.minTemp = minTemp;
@@ -434,6 +469,8 @@ public class ForecastUtil {
             this.maxTempTime = maxTempTime;
             this.minTempTime = minTempTime;
             this.maxWindTime = maxWindTime;
+            this.maxPressure = maxPressure;
+            this.maxHumidity = maxHumidity;
         }
     }
 

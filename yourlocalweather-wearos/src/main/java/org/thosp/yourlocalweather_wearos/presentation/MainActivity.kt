@@ -46,6 +46,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.wear.compose.material3.AppScaffold
 import androidx.wear.compose.material3.ScreenScaffold
+import org.thosp.shared_resources.Utils
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,7 +62,8 @@ data class DailyForecast(
     val dayOfYear: Int,
     val minTemp: Int,
     val maxTemp: Int,
-    val precipitation: Double
+    val precipitation: Double,
+    val weatherId: String
 )
 
 val weatherIcons = FontFamily(Font(R.font.weathericons))
@@ -114,7 +116,8 @@ fun WearApp() {
                                 dayOfYear = forecastJson.getInt("dayOfYear"),
                                 minTemp = forecastJson.getDouble("minTemp").roundToInt(),
                                 maxTemp = forecastJson.getDouble("maxTemp").roundToInt(),
-                                precipitation = precipitation
+                                precipitation = precipitation,
+                                weatherId = Utils.getStrIcon(context, forecastJson.optInt("weatherId", 0), 0, 0) //it's forecast
                             )
                         )
                     }
@@ -286,6 +289,15 @@ fun WearApp() {
                                     )
                                 }
                             }
+
+                            Text(
+                                text = forecast.weatherId,
+                                fontFamily = weatherIcons,
+                                fontSize = 24.sp, // Zde si nastavíte velikost ikony
+                                color = MaterialTheme.colorScheme.onSurface, // Barva ikony
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier.fillMaxWidth()
+                            )
                         }
                     }
                 }

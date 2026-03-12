@@ -35,7 +35,6 @@ import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.service.NominatimLocationService;
 import org.thosp.yourlocalweather.service.SearchActivityProcessResultFromAddressResolution;
 import org.thosp.yourlocalweather.service.SensorLocationUpdater;
-import org.thosp.yourlocalweather.service.UpdateWeatherService;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Utils;
 
@@ -177,7 +176,7 @@ public class SearchActivity extends BaseActivity {
         super.onResume();
         ContextCompat.registerReceiver(this, mWeatherUpdateReceiver,
                 new IntentFilter(
-                        UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT),
+                        ACTION_ADDRESS_RESOLUTION_RESULT),
                 ContextCompat.RECEIVER_NOT_EXPORTED);
         map.onResume();
     }

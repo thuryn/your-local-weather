@@ -1,5 +1,8 @@
 package org.thosp.yourlocalweather.service;
 
+import static org.thosp.yourlocalweather.utils.ForecastUtil.calculateWeatherMaxMinForDay;
+import static org.thosp.yourlocalweather.utils.ForecastUtil.createWeatherList;
+import static org.thosp.yourlocalweather.utils.ForecastUtil.getWeatherIdForDay;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 import android.app.AlarmManager;
@@ -42,6 +45,7 @@ import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
@@ -52,8 +56,8 @@ import java.net.MalformedURLException;
 import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
 import java.util.Calendar;
-import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 
@@ -542,88 +546,35 @@ public class UpdateWeatherService extends AbstractCommonService {
             weatherJson.put("windDegree", weather.getWindDirection());
             weatherJson.put("pressure", weather.getPressure());
             weatherJson.put("cloudiness", weather.getClouds());
+            weatherJson.put("weatherId", weather.getWeatherId());
+
+            int today = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
 
             JSONArray dailyForecast = new JSONArray();
-            Map<Integer, double[]> dailyValues = new HashMap<>();
-            
-            // Pro ikony budeme sbírat stav BEZ ignorování minulosti, 
-            // ale jenom pro ty předpovědi, co mají smysl.
-            Map<Integer, Map<Integer, Integer>> dailyWeatherIds = new HashMap<>();
+            Map<Integer, List<DetailedWeatherForecast>> weatherList = createWeatherList(completeWeatherForecast, true);
 
-            long currentTimestampInSeconds = System.currentTimeMillis() / 1000L;
-
-            for (DetailedWeatherForecast forecast : completeWeatherForecast.getWeatherForecastList()) {
-                Calendar forecastCalendar = Calendar.getInstance();
-                forecastCalendar.setTimeInMillis(forecast.getDateTime() * 1000L);
-                int dayOfYear = forecastCalendar.get(Calendar.DAY_OF_YEAR);
-
-                if (forecast.getDateTime() < currentTimestampInSeconds) {
-                    continue;
-                }
-
-                Map<Integer, Integer> idCounts = dailyWeatherIds.get(dayOfYear);
-                if (idCounts == null) {
-                    idCounts = new HashMap<>();
-                    dailyWeatherIds.put(dayOfYear, idCounts);
-                }
-                Integer weatherId = forecast.getWeatherId();
-                if (weatherId != null) {
-                    Integer count = idCounts.get(weatherId);
-                    idCounts.put(weatherId, (count == null ? 0 : count) + 1);
-                }
-
-                double[] values = dailyValues.get(dayOfYear);
-                if (values == null) {
-                    values = new double[]{
-                            forecast.getTemperatureMin(),
-                            forecast.getTemperatureMax(),
-                            forecast.getWindSpeed(),
-                            forecast.getPressure(),
-                            forecast.getRain(),
-                            forecast.getSnow(),
-                            forecast.getHumidity()
-                    };
-                } else {
-                    values[0] = Math.min(values[0], forecast.getTemperatureMin());
-                    values[1] = Math.max(values[1], forecast.getTemperatureMax());
-                    values[2] = Math.max(values[2], forecast.getWindSpeed());
-                    values[3] = Math.max(values[3], forecast.getPressure());
-                    values[4] = Math.max(values[4], forecast.getRain());
-                    values[5] = Math.max(values[5], forecast.getSnow());
-                    values[6] = Math.max(values[6], forecast.getHumidity());
-                }
-                dailyValues.put(dayOfYear, values);
-            }
-
-            for (Map.Entry<Integer, double[]> entry : dailyValues.entrySet()) {
+            for (Map.Entry<Integer, List<DetailedWeatherForecast>> entry : weatherList.entrySet()) {
                 int dayOfYear = entry.getKey();
-                double[] values = entry.getValue();
-                
-                int mainWeatherId = 0;
-                int maxCount = -1;
-                Map<Integer, Integer> idCounts = dailyWeatherIds.get(dayOfYear);
-                if (idCounts != null) {
-                    for (Map.Entry<Integer, Integer> countEntry : idCounts.entrySet()) {
-                        if (countEntry.getValue() > maxCount) {
-                            maxCount = countEntry.getValue();
-                            mainWeatherId = countEntry.getKey();
-                        }
-                    }
-                }
+                ForecastUtil.WeatherMaxMinForDay weatherMaxMinForDay = calculateWeatherMaxMinForDay(entry.getValue());
+                ForecastUtil.WeatherIdsForDay weatherIdsForDay = getWeatherIdForDay(
+                        this,
+                        entry.getValue(),
+                        weatherMaxMinForDay);
 
                 JSONObject forecastJson = new JSONObject();
                 forecastJson.put("dayOfYear", dayOfYear);
-                forecastJson.put("minTemp", values[0]);
-                forecastJson.put("maxTemp", values[1]);
-                forecastJson.put("maxWind", values[2]);
-                forecastJson.put("maxPressure", values[3]);
-                forecastJson.put("maxRain", values[4]);
-                forecastJson.put("maxSnow", values[5]);
-                forecastJson.put("maxHumidity", values[6]);
-                forecastJson.put("weatherId", mainWeatherId);
+                forecastJson.put("minTemp", weatherMaxMinForDay.minTemp);
+                forecastJson.put("maxTemp", weatherMaxMinForDay.maxTemp);
+                forecastJson.put("maxWind", weatherMaxMinForDay.maxWind);
+                forecastJson.put("maxPressure", weatherMaxMinForDay.maxPressure);
+                forecastJson.put("maxRain", weatherMaxMinForDay.maxRain);
+                forecastJson.put("maxSnow", weatherMaxMinForDay.maxSnow);
+                forecastJson.put("maxHumidity", weatherMaxMinForDay.maxHumidity);
+                forecastJson.put("weatherId", weatherIdsForDay.mainWeatherId);
+                forecastJson.put("weatherDescription", weatherIdsForDay.mainWeatherDescriptionsFromOwm);
                 dailyForecast.put(forecastJson);
                 appendLog(this,
-                        TAG, "Added forecast for wearos with day of year ", (dayOfYear + ", " + dayOfYear % 365), " and main weather id:", String.valueOf(mainWeatherId));
+                        TAG, "Added forecast for wearos with day of year ", (dayOfYear + ", " + dayOfYear % 365), " and main weather id:", String.valueOf(weatherIdsForDay.mainWeatherId));
             }
             weatherJson.put("dailyForecast", dailyForecast);
 

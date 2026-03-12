@@ -112,6 +112,10 @@
     <string name="help_page_4_content_display_update_summary" tools:ignore="MissingTranslation">When an update of location and current weather is performed you can see the status of the update next to the update time in widget. You can control what is displayed by the <b>Display update summary</b> option. The explanation of the most advanced option follows:</string>
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Debug options</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">There are options to enable debugging into log file. This option is useful when there is some trouble with application.</string>
+    <string name="help_page_6_wearos_title" tools:ignore="MissingTranslation">Smart watch</string>
+    <string name="help_page_6_wearos_main" tools:ignore="MissingTranslation">The application shows the current weather and the forecast for the next few days. For synchronization to work, both applications must be downloaded from Google Play or github.com. After the application on the mobile phone updates the weather forecast, it also sends the update to the watch.</string>
+    <string name="help_page_6_wearos_tile" tools:ignore="MissingTranslation">The application also has a tile that shows the current weather and either the forecast for the current day and tomorrow or the forecast for tomorrow and the day after tomorrow if it is after 8 p.m.</string>
+    <string name="help_page_6_wearos_complication" tools:ignore="MissingTranslation">There are two complications available - one shows the temperature, the other shows the temperature with currency. Both complications also show a weather icon that represents the weather forecast for the day (not the current weather). The appearance of the complications also depends on the watch face.</string>
     <!-- Activity names -->
     <string name="title_activity_search" tools:ignore="MissingTranslation">Search Location</string>
     <string name="label_activity_main" tools:ignore="MissingTranslation">Current Weather</string>

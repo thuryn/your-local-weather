@@ -1,7 +1,6 @@
 package org.thosp.yourlocalweather_wearos.complication
 
 import android.app.PendingIntent
-import android.content.Context
 import android.content.Intent
 import android.graphics.Canvas
 import android.graphics.Color
@@ -28,6 +27,7 @@ import org.json.JSONObject
 import org.thosp.shared_resources.Utils
 import org.thosp.yourlocalweather_wearos.R
 import org.thosp.yourlocalweather_wearos.presentation.MainActivity
+import org.thosp.yourlocalweather_wearos.utils.StringUtils
 import java.util.Calendar
 
 
@@ -51,9 +51,7 @@ abstract class AbstractTemperatureComplication : SuspendingComplicationDataSourc
         if (weatherDataJson != null) {
             try {
                 val json = JSONObject(weatherDataJson)
-                tempValue = json.getDouble("currentTemperature").toFloat()
-                val sunrise = json.optLong("sunrise", 0)
-                val sunset = json.optLong("sunset", 0)
+                tempValue = json.optDouble("currentTemperature", 0.0).toFloat()
                 val unit = getUnit(json)
                 tempText = "${Math.round(tempValue)}$unit"
 
@@ -73,22 +71,10 @@ abstract class AbstractTemperatureComplication : SuspendingComplicationDataSourc
                     if ((weatherId == null) && dailyForecastJson.length() > 0) {
                         weatherId = dailyForecastJson.getJSONObject(0).optInt("weatherId", 0)
                     }
-                    iconText = Utils.getStrIcon(applicationContext, weatherId, sunrise, sunset)
+                    iconText = Utils.getStrIcon(applicationContext, weatherId, 0, 0) //it's forecast
                 }
-
             } catch (e: Exception) {
                 Log.e("MainComplicationService", "Error parsing weather data", e)
-            }
-        } else if (prefs.contains("current_temp")) {
-            // Fallback to read old data for a seamless transition.
-            tempText = prefs.getString("current_temp", "--°") ?: "--°"
-            try {
-                val tempString = tempText.filter { it.isDigit() || it == '-' || it == '.' }
-                if (tempString.isNotEmpty()) {
-                    tempValue = tempString.toFloat()
-                }
-            } catch (e: NumberFormatException) {
-                Log.w("Complication", "Could not parse old temperature value: $tempText", e)
             }
         }
 
@@ -110,14 +96,14 @@ abstract class AbstractTemperatureComplication : SuspendingComplicationDataSourc
     private fun createComplicationData(type: ComplicationType, tempText: String, tempValue: Float, iconText: String, tapIntent: PendingIntent?): ComplicationData =
         when (type) {
             ComplicationType.SHORT_TEXT -> {
-                createShortTextComplicationData(tempText, "Temperature", createWeatherIcon(iconText), tapIntent)
+                createShortTextComplicationData(tempText, "Temperature", StringUtils.createWeatherIcon(applicationContext, iconText), tapIntent)
             }
 
             ComplicationType.LONG_TEXT -> {
                 val complicationValue = PlainComplicationText.Builder(tempText).build()
                 val complicationDesc = PlainComplicationText.Builder("Temperature").build()
                 val builder = LongTextComplicationData.Builder(complicationValue, complicationDesc)
-                builder.setMonochromaticImage(MonochromaticImage.Builder(createWeatherIcon(iconText)).build())
+                builder.setMonochromaticImage(MonochromaticImage.Builder(StringUtils.createWeatherIcon(applicationContext, iconText)).build())
                 if (tapIntent != null) {
                     builder.setTapAction(tapIntent)
                 }
@@ -134,7 +120,7 @@ abstract class AbstractTemperatureComplication : SuspendingComplicationDataSourc
                     contentDescription = complicationDesc
                 )
                 builder.setText(complicationValue)
-                builder.setMonochromaticImage(MonochromaticImage.Builder(createWeatherIcon(iconText)).build())
+                builder.setMonochromaticImage(MonochromaticImage.Builder(StringUtils.createWeatherIcon(applicationContext, iconText)).build())
                 if (tapIntent != null) {
                     builder.setTapAction(tapIntent)
                 }
@@ -170,30 +156,6 @@ abstract class AbstractTemperatureComplication : SuspendingComplicationDataSourc
             }
             else -> createComplicationData(ComplicationType.SHORT_TEXT, "--", 0f, getString(R.string.wi_wu_sunny), tapIntent)
         }
-
-    // Puvodni metoda - pro komplikace, ktere text vykresluji samy (SHORT_TEXT, RANGED_VALUE)
-    private fun createWeatherIcon(text: String): Icon {
-        val size = 96
-        val bitmap = createBitmap(size, size)
-        val canvas = Canvas(bitmap)
-
-        val weatherFont = ResourcesCompat.getFont(applicationContext, R.font.weathericons)
-
-        val paint = Paint().apply {
-            color = Color.WHITE
-            textAlign = Paint.Align.CENTER
-            textSize = size / 1.5f
-            typeface = weatherFont
-            isAntiAlias = true
-        }
-
-        val xPos = (canvas.width / 2).toFloat()
-        // Posunuto lehce nahoru, jak jste si přál minule pro bezne ikony
-        val yPos = (canvas.height / 2 - (paint.descent() + paint.ascent()) / 2) - (size / 8)
-
-        canvas.drawText(text, xPos, yPos, paint)
-        return Icon.createWithBitmap(bitmap)
-    }
 
     private fun createCombinedIcon(iconText: String, tempText: String): Icon {
         val size = 256
