@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.github.triplet.play'
+apply plugin: 'org.jetbrains.kotlin.android'
 
 android {
     compileSdk = 36
     defaultConfig {
         applicationId = "org.thosp.yourlocalweather"
-        minSdk = 21
+        minSdk = 23
         targetSdk = 36
         versionCode = 190
         versionName = "6.3.6"
@@ -45,6 +46,9 @@ android {
     }
 
     namespace 'org.thosp.yourlocalweather'
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 play {
@@ -62,6 +66,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.13.0'
     implementation 'com.android.support:multidex:1.0.3'
     implementation "com.google.android.gms:play-services-wearable:19.0.0"
+    implementation "androidx.wear:wear-remote-interactions:1.0.0"
 
 // Third-party
     implementation 'com.github.yukuku:ambilwarna:2.0.1'
@@ -74,6 +79,7 @@ dependencies {
 
 // Shared Resources
     implementation project(':shared-resources')
+    implementation 'androidx.core:core-ktx:1.18.0'
 
 // Testing
     testImplementation 'junit:junit:4.13.2'

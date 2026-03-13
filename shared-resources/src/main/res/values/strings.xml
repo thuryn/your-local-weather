@@ -113,7 +113,8 @@
     <string name="help_page_5_title" tools:ignore="MissingTranslation">Debug options</string>
     <string name="help_page_5_content" tools:ignore="MissingTranslation">There are options to enable debugging into log file. This option is useful when there is some trouble with application.</string>
     <string name="help_page_6_wearos_title" tools:ignore="MissingTranslation">Smart watch</string>
-    <string name="help_page_6_wearos_main" tools:ignore="MissingTranslation">The application shows the current weather and the forecast for the next few days. For synchronization to work, both applications must be downloaded from Google Play or github.com. After the application on the mobile phone updates the weather forecast, it also sends the update to the watch.</string>
+    <string name="help_page_6_wearos_general" tools:ignore="MissingTranslation">The application shows the current weather and the forecast for the next few days. To get synchronization to work, both applications must be downloaded from the same source - Google Play (https://play.google.com/store/apps/details?id=org.thosp.yourlocalweather) or Github (https://github.com/thuryn/your-local-weather/releases).</string>
+    <string name="help_page_6_wearos_main" tools:ignore="MissingTranslation">The application shows the current weather and the forecast for the next few days. After the application on the mobile phone updates the weather forecast, it also sends the update to the watch.</string>
     <string name="help_page_6_wearos_tile" tools:ignore="MissingTranslation">The application also has a tile that shows the current weather and either the forecast for the current day and tomorrow or the forecast for tomorrow and the day after tomorrow if it is after 8 p.m.</string>
     <string name="help_page_6_wearos_complication" tools:ignore="MissingTranslation">There are two complications available - one shows the temperature, the other shows the temperature with currency. Both complications also show a weather icon that represents the weather forecast for the day (not the current weather). The appearance of the complications also depends on the watch face.</string>
     <!-- Activity names -->
@@ -121,9 +122,25 @@
     <string name="label_activity_main" tools:ignore="MissingTranslation">Current Weather</string>
     <string name="label_activity_weather_forecast" tools:ignore="MissingTranslation">Daily Forecast</string>
     <string name="label_activity_graphs" tools:ignore="MissingTranslation">Graphs Weather</string>
+    <string name="label_activity_wearos" tools:ignore="MissingTranslation">Wearable devices</string>
     <string name="label_activity_help" tools:ignore="MissingTranslation">Help</string>
     <string name="title_activity_license" tools:ignore="MissingTranslation">License for %s</string>
     <string name="title_activity_locations" tools:ignore="MissingTranslation">Locations</string>
+    <!-- Main activty -->
+    <string name="activity_main_wearos_more_info" tools:ignore="MissingTranslation">More info</string>
+    <string name="activity_main_wearos_without_app_title" tools:ignore="MissingTranslation">Watch app</string>
+    <string name="activity_main_wearos_without_app_message" tools:ignore="MissingTranslation">We have detected that you have a Wear OS watch connected! Would you like to add our app to it?</string>
+    <string name="activity_main_wearos_with_app_title" tools:ignore="MissingTranslation">Do you have a smart watch?</string>
+    <string name="activity_main_wearos_with_app_message" tools:ignore="MissingTranslation">Our app is also available for Wear OS watches. Always have the weather on your wrist!</string>
+    <!-- Wearos activity -->
+    <string name="activity_wearos_title" tools:ignore="MissingTranslation">WearOS devices</string>
+    <string name="activity_wearos_wearos_device_not_found" tools:ignore="MissingTranslation">No connected watches found.</string>
+    <string name="activity_wearos_error_getting_device_status" tools:ignore="MissingTranslation">Error while checking application status.</string>
+    <string name="activity_wearos_error_on_device_finding" tools:ignore="MissingTranslation">Error while searching for watch</string>
+    <string name="activity_wearos_connected_devices" tools:ignore="MissingTranslation">Currently connected devices</string>
+    <string name="activity_wearos_search_for_devices" tools:ignore="MissingTranslation">Searching for devices</string>
+    <string name="activity_wearos_app_installed" tools:ignore="MissingTranslation">Installed ✓</string>
+    <string name="activity_wearos_app_install_from_play" tools:ignore="MissingTranslation">Install from Play store</string>
     <!-- Toolbar menu -->
     <string name="voice_settings_language" tools:ignore="MissingTranslation">Language</string>
     <string name="toolbar_menu_refresh" tools:ignore="MissingTranslation">Update</string>
@@ -175,6 +192,7 @@
     <string name="nav_feedback" tools:ignore="MissingTranslation">Feedback</string>
     <string name="nav_menu_bitcoin_donation" tools:ignore="MissingTranslation">Donate bitcoin</string>
     <string name="nav_menu_help" tools:ignore="MissingTranslation">Help</string>
+    <string name="nav_menu_wearos" tools:ignore="MissingTranslation">WearOs devices</string>
     <!-- Toast messages -->
     <string name="location_not_initialized" tools:ignore="MissingTranslation">Location is not initialized. Click on location circle first.</string>
     <string name="locations_deleted_because_of_limit" tools:ignore="MissingTranslation">Deleted locations above the limit.</string>

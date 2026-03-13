@@ -118,6 +118,14 @@
                 android:value=".MainActivity"/>
         </activity>
         <activity
+            android:name=".WearosActivity"
+            android:label="@string/label_activity_wearos"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
+        <activity
             android:name=".LicenseActivity"
             android:exported="false"
             tools:ignore="GoogleAppIndexingUrlError">

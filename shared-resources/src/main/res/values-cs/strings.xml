@@ -44,6 +44,21 @@
     <string name="toolbar_menu_detect_location">Zjistit lokalitu</string>
     <string name="menu_action_toggle_values">Přepnout hodnoty</string>
     <string name="menu_action_toggle_yaxis">Přepnout osu Y</string>
+    <!-- Main activty -->
+    <string name="activity_main_wearos_more_info" tools:ignore="MissingTranslation">Více informací</string>
+    <string name="activity_main_wearos_without_app_title" tools:ignore="MissingTranslation">Aplikace pro hodinky</string>
+    <string name="activity_main_wearos_without_app_message" tools:ignore="MissingTranslation">Zjistili jsme, že máte připojené hodinky s Wear OS! Chcete si do nich přidat naši aplikaci?</string>
+    <string name="activity_main_wearos_with_app_title" tools:ignore="MissingTranslation">Máte chytré hodinky?</string>
+    <string name="activity_main_wearos_with_app_message" tools:ignore="MissingTranslation">Naše aplikace je dostupná i pro hodinky s Wear OS. Mějte počasí vždy na zápěstí!</string>
+    <!-- Wearos activity -->
+    <string name="activity_wearos_title" tools:ignore="MissingTranslation">Zařízení WearOS</string>
+    <string name="activity_wearos_wearos_device_not_found" tools:ignore="MissingTranslation">Nebyly nalezeny žádné připojené hodinky</string>
+    <string name="activity_wearos_error_getting_device_status" tools:ignore="MissingTranslation">Chyba při zjišťování stavu aplikací</string>
+    <string name="activity_wearos_error_on_device_finding" tools:ignore="MissingTranslation">Chyba při hledání hodinek</string>
+    <string name="activity_wearos_connected_devices" tools:ignore="MissingTranslation">Aktuálně připojené zařízení</string>
+    <string name="activity_wearos_search_for_devices" tools:ignore="MissingTranslation">Vyhledávám zařízení</string>
+    <string name="activity_wearos_app_installed" tools:ignore="MissingTranslation">Nainstalováno ✓</string>
+    <string name="activity_wearos_app_install_from_play" tools:ignore="MissingTranslation">Instalovat z obchodu Play</string>
     <!-- Weather forecast -->
     <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Nastavení sloupců</string>
     <string name="menu_forecast_min_max_settings" tools:ignore="MissingTranslation">Zobrazit jen min/max hodnoty</string>

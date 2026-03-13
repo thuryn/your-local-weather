@@ -182,6 +182,75 @@
                 android:orientation="vertical"
                 android:padding="@dimen/activity_vertical_margin">
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/wearos_banner_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:visibility="gone"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="4dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#E3F2FD"
+                        android:padding="16dp">
+
+                        <ImageView
+                            android:id="@+id/wearos_banner_icon"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="16dp"
+                            android:src="@drawable/ic_menu_watch"
+                            app:tint="#1976D2" />
+
+                        <TextView
+                            android:id="@+id/wearos_banner_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@id/wearos_banner_icon"
+                            android:layout_toStartOf="@id/wearos_banner_close"
+                            android:textColor="#0D47A1"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/wearos_banner_message"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/wearos_banner_title"
+                            android:layout_toEndOf="@id/wearos_banner_icon"
+                            android:layout_toStartOf="@id/wearos_banner_close"
+                            android:layout_marginTop="4dp"
+                            android:layout_marginBottom="12dp"
+                            android:textColor="#1565C0"
+                            android:textSize="14sp" />
+
+                        <Button
+                            android:id="@+id/wearos_banner_action"
+                            style="@style/Widget.AppCompat.Button.Borderless"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/wearos_banner_message"
+                            android:layout_toEndOf="@id/wearos_banner_icon"
+                            android:text="@string/activity_main_wearos_more_info"
+                            android:textColor="#1976D2" />
+
+                        <ImageButton
+                            android:id="@+id/wearos_banner_close"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_alignParentEnd="true"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:src="@android:drawable/ic_menu_close_clear_cancel"
+                            app:tint="#1976D2" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
                 <LinearLayout
                     style="@style/MainLinearLayout"
                     android:layout_width="match_parent"

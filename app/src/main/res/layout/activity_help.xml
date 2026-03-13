@@ -220,6 +220,11 @@
                     android:paddingTop="24sp"
                     android:text="@string/help_page_6_wearos_title" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/help_page_6_wearos_general" />
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

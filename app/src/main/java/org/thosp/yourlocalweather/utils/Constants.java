@@ -10,6 +10,8 @@ public class Constants {
     public static final String PREF_FORECAST_NAME = "weather_forecast";
     public static final String APP_INITIAL_GUIDE_VERSION = "initial_guide_version";
 
+    public static final String WEAROS_APP_PRESENCE = "wearos_app_presence";
+
     /**
      * Preferences constants
      */

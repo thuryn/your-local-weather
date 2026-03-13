@@ -155,6 +155,10 @@ public abstract class BaseActivity extends AppCompatActivity {
                             createBackStack(new Intent(BaseActivity.this,
                                                        SettingsActivity.class));
                             break;
+                        case R.id.nav_wearos:
+                            createBackStack(new Intent(BaseActivity.this,
+                                    WearosActivity.class));
+                            break;
                         case R.id.nav_about:
                             Intent intent = new Intent(BaseActivity.this,
                                     SettingsActivity.class);
