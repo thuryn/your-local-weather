@@ -599,4 +599,26 @@
     <string name="preference_widget_text_color_summary" tools:ignore="MissingTranslation">Prekeni, që t’i ndryshoni ngjyrën</string>
     <string name="preference_widget_background_color" tools:ignore="MissingTranslation">Ngjyrë dhe patejdukshmëri ngjyre sfondi të tejdukshëm</string>
     <string name="preference_widget_background_color_summary" tools:ignore="MissingTranslation">Prekeni, që t’i ndryshoni ngjyrën</string>
+    <string name="help_page_6_wearos_general" tools:ignore="MissingTranslation">Aplikacioni shfaq motin tani dhe parashikimin për pak ditët e ardhshme. Që të funksionojë njëkohësimi, të dy aplikacionet duhen shkarkuar nga i njëjti burim - Google Play (https://play.google.com/store/apps/details?id=org.thosp.yourlocalweather), ose Github (https://github.com/thuryn/your-local-weather/releases).</string>
+    <string name="help_page_6_wearos_main" tools:ignore="MissingTranslation">Aplikacioni shfaq motin tani dhe parashikimin për pak ditët e ardhshme. Pasi aplikacioni në telefonin celular përditëson motin, ai dërgon përditësimin edhe te sahati.</string>
+    <string name="help_page_6_wearos_tile" tools:ignore="MissingTranslation">Aplikacioni ka gjithashtu një kuadrat që shfaq motin atë çast dhe, ose parashikimin për atë ditë dhe të nesërmen, ose parashikimin për nesër dhe pasnesër, nëse bëhet fjalë për pas 8 p.m.</string>
+    <string name="activity_main_wearos_more_info" tools:ignore="MissingTranslation">Më tepër informacion</string>
+    <string name="activity_main_wearos_without_app_title" tools:ignore="MissingTranslation">Aplikacion sahati</string>
+    <string name="activity_main_wearos_without_app_message" tools:ignore="MissingTranslation">Kemi pikasur se keni të lidhur një sahat me Wear OS! Doni të shtohet në të aplikacioni ynë?</string>
+    <string name="activity_main_wearos_with_app_title" tools:ignore="MissingTranslation">A keni një sahat të mençur?</string>
+    <string name="activity_main_wearos_with_app_message" tools:ignore="MissingTranslation">Aplikacioni ynë është i gatshëm edhe për sahate me Wear OS. Mbajeni përherë motin në dorë!</string>
+    <string name="activity_wearos_title" tools:ignore="MissingTranslation">Pajisje WearOS</string>
+    <string name="activity_wearos_wearos_device_not_found" tools:ignore="MissingTranslation">S’u gjetën sahate të lidhura.</string>
+    <string name="activity_wearos_error_getting_device_status" tools:ignore="MissingTranslation">Gabim gjatë kontrollit të gjendjes së aplikacionit.</string>
+    <string name="activity_wearos_error_on_device_finding" tools:ignore="MissingTranslation">Gabim teksa kërkohej për sahat</string>
+    <string name="activity_wearos_connected_devices" tools:ignore="MissingTranslation">Pajisje aktualisht të lidhura</string>
+    <string name="activity_wearos_search_for_devices" tools:ignore="MissingTranslation">Po kërkohet për pajisje</string>
+    <string name="activity_wearos_app_installed" tools:ignore="MissingTranslation">I instaluar ✓</string>
+    <string name="activity_wearos_app_install_from_play" tools:ignore="MissingTranslation">Instalojeni që nga “Play store”</string>
+    <string name="nav_menu_wearos" tools:ignore="MissingTranslation">Pajisje WearOs</string>
+    <string name="today" tools:ignore="MissingTranslation">Sot</string>
+    <string name="tomorrow" tools:ignore="MissingTranslation">Nesër</string>
+    <string name="day_after_tomorrow" tools:ignore="MissingTranslation">Pasnesër</string>
+    <string name="complication_no_unit_label" tools:ignore="MissingTranslation">Temperatura e çastit, pa njësi</string>
+    <string name="complication_with_unit_label" tools:ignore="MissingTranslation">Temperatura e çastit, me njësi</string>
 </resources>
