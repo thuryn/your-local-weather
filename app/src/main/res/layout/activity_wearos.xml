@@ -87,7 +87,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/help_page_6_wearos_general" />
+                android:text="@string/help_page_6_wearos_general"
+                android:autoLink="web" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

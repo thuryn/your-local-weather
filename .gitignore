@@ -17,4 +17,5 @@ django
 app/private/
 app/release/
 app/debug/
-/yourlocalweather-wearos/release/yourlocalweather-wearos-release.aab
+/wearos/release/yourlocalweather-wearos-release.aab
+/wearos/release/*
