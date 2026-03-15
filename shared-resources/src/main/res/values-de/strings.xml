@@ -621,4 +621,6 @@
     <string name="day_after_tomorrow" tools:ignore="MissingTranslation">Übermorgen</string>
     <string name="complication_no_unit_label" tools:ignore="MissingTranslation">Aktuelle Temperatur ohne Einheit</string>
     <string name="complication_with_unit_label" tools:ignore="MissingTranslation">Aktuelle Temperatur mit Einheit</string>
+    <string name="activity_wearos_app_installed" tools:ignore="MissingTranslation">Installiert ✓</string>
+    <string name="activity_wearos_title" tools:ignore="MissingTranslation">WearOS-Geräte</string>
 </resources>
