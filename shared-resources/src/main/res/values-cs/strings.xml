@@ -619,4 +619,9 @@
     <string name="day_after_tomorrow" tools:ignore="MissingTranslation">Pozítří</string>
     <string name="complication_no_unit_label" tools:ignore="MissingTranslation">Aktuální teplota bez jednotky</string>
     <string name="complication_with_unit_label" tools:ignore="MissingTranslation">Aktuální teplota včetně jednotky</string>
+
+    <string name="wearos_main_activity_missing_connection_label" tools:ignore="MissingTranslation">Chybí spojení s telefonem</string>
+    <string name="wearos_main_activity_missing_connection_info" tools:ignore="MissingTranslation">Nainstalujte si aplikaci i do mobilu z github.com nebo Play store.</string>
+    <string name="wearos_main_activity_not_connected" tools:ignore="MissingTranslation">Telefon není připojen k hodinkám.</string>
+    <string name="wearos_main_activity_checking_connection" tools:ignore="MissingTranslation">Kontrola připojení k telefonu…</string>
 </resources>

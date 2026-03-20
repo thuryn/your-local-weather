@@ -649,4 +649,9 @@
     <string name="day_after_tomorrow" tools:ignore="MissingTranslation">Day after tomorrow</string>
     <string name="complication_no_unit_label" tools:ignore="MissingTranslation">Current temperature without unit</string>
     <string name="complication_with_unit_label" tools:ignore="MissingTranslation">Current temperature with unit</string>
+
+    <string name="wearos_main_activity_missing_connection_label" tools:ignore="MissingTranslation">No connection to phone</string>
+    <string name="wearos_main_activity_missing_connection_info" tools:ignore="MissingTranslation">Install the application on your mobile phone from github.com or Play store.</string>
+    <string name="wearos_main_activity_not_connected" tools:ignore="MissingTranslation">The phone is not connected to the watch.</string>
+    <string name="wearos_main_activity_checking_connection" tools:ignore="MissingTranslation">Checking connection to phone…</string>
 </resources>
