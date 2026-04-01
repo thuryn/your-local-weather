@@ -623,4 +623,22 @@
     <string name="complication_with_unit_label" tools:ignore="MissingTranslation">Aktuelle Temperatur mit Einheit</string>
     <string name="activity_wearos_app_installed" tools:ignore="MissingTranslation">Installiert ✓</string>
     <string name="activity_wearos_title" tools:ignore="MissingTranslation">WearOS-Geräte</string>
+    <string name="help_page_6_wearos_title" tools:ignore="MissingTranslation">Smartwatch</string>
+    <string name="help_page_6_wearos_general" tools:ignore="MissingTranslation">Die Anwendung zeigt das aktuelle Wetter und die Prognose für die nächsten Tage. Um die Synchronisation zum Laufen zu bringen, müssen beide Anwendungen von der gleichen Quelle heruntergeladen werden - Google Play (https://play.google.com/store/apps/details?id=org.thosp.yourlocalweather) oder Github (https://github.com/thuryn/your-local-weather/releases).</string>
+    <string name="help_page_6_wearos_main" tools:ignore="MissingTranslation">Die Anwendung zeigt das aktuelle Wetter und die Prognose für die nächsten Tage. Nachdem die Anwendung auf dem Handy die Wettervorhersage aktualisiert hat, sendet es auch diese Aktualisierung auf die Uhr.</string>
+    <string name="help_page_6_wearos_tile" tools:ignore="MissingTranslation">Die Anwendung hat auch eine Fliese, die das aktuelle Wetter und entweder die Prognose für den aktuellen Tag und morgen oder die Prognose für morgen und übermorgen zeigt, wenn es nach 20 Uhr ist.</string>
+    <string name="help_page_6_wearos_complication" tools:ignore="MissingTranslation">Es gibt zwei Komplikationen - eine zeigt die Temperatur, die andere zeigt die Temperatur mit Währung. Beide Komplikationen zeigen auch ein Wettersymbol, das die Wettervorhersage für den Tag darstellt (nicht das aktuelle Wetter). Das Aussehen der Komplikationen hängt auch vom Zifferblatt ab.</string>
+    <string name="label_activity_wearos" tools:ignore="MissingTranslation">Tragbare Geräte</string>
+    <string name="activity_main_wearos_more_info" tools:ignore="MissingTranslation">Mehr Info</string>
+    <string name="activity_main_wearos_without_app_title" tools:ignore="MissingTranslation">Uhren-App</string>
+    <string name="activity_main_wearos_without_app_message" tools:ignore="MissingTranslation">Wir haben erkannt, dass Sie eine Wear OS-Uhr angeschlossen haben! Möchten Sie ihr unsere App hinzufügen?</string>
+    <string name="activity_main_wearos_with_app_title" tools:ignore="MissingTranslation">Haben Sie eine Smartwatch?</string>
+    <string name="activity_main_wearos_with_app_message" tools:ignore="MissingTranslation">Unsere App ist auch für Wear OS-Uhren verfügbar. Immer das Wetter am Handgelenk dabei haben!</string>
+    <string name="activity_wearos_wearos_device_not_found" tools:ignore="MissingTranslation">Keine verbundenen Uhren gefunden.</string>
+    <string name="activity_wearos_error_getting_device_status" tools:ignore="MissingTranslation">Fehler beim Überprüfen des Anwendungsstatus.</string>
+    <string name="activity_wearos_error_on_device_finding" tools:ignore="MissingTranslation">Fehler bei der Suche nach einer Uhr</string>
+    <string name="activity_wearos_connected_devices" tools:ignore="MissingTranslation">Derzeit angeschlossene Geräte</string>
+    <string name="activity_wearos_search_for_devices" tools:ignore="MissingTranslation">Suche nach Geräten</string>
+    <string name="activity_wearos_app_install_from_play" tools:ignore="MissingTranslation">Vom Play Store installieren</string>
+    <string name="nav_menu_wearos" tools:ignore="MissingTranslation">WearOS-Geräte</string>
 </resources>
