@@ -621,4 +621,8 @@
     <string name="day_after_tomorrow" tools:ignore="MissingTranslation">Pasnesër</string>
     <string name="complication_no_unit_label" tools:ignore="MissingTranslation">Temperatura e çastit, pa njësi</string>
     <string name="complication_with_unit_label" tools:ignore="MissingTranslation">Temperatura e çastit, me njësi</string>
+    <string name="wearos_main_activity_missing_connection_label" tools:ignore="MissingTranslation">S’ka lidhje me telefonin</string>
+    <string name="wearos_main_activity_missing_connection_info" tools:ignore="MissingTranslation">Instalojeni aplikacionin në telefonin tuaj celular që nga github.com ose “Play store”.</string>
+    <string name="wearos_main_activity_not_connected" tools:ignore="MissingTranslation">Telefoni s’është i lidhur me sahatin.</string>
+    <string name="wearos_main_activity_checking_connection" tools:ignore="MissingTranslation">Po kontrollohet lidhja me telefonin…</string>
 </resources>
