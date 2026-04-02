@@ -641,4 +641,8 @@
     <string name="activity_wearos_search_for_devices" tools:ignore="MissingTranslation">Suche nach Geräten</string>
     <string name="activity_wearos_app_install_from_play" tools:ignore="MissingTranslation">Vom Play Store installieren</string>
     <string name="nav_menu_wearos" tools:ignore="MissingTranslation">WearOS-Geräte</string>
+    <string name="wearos_main_activity_missing_connection_label" tools:ignore="MissingTranslation">Keine Verbindung zum Telefon</string>
+    <string name="wearos_main_activity_missing_connection_info" tools:ignore="MissingTranslation">Installieren Sie die Anwendung auf Ihrem Handy von github.com oder Play Store.</string>
+    <string name="wearos_main_activity_not_connected" tools:ignore="MissingTranslation">Das Telefon ist nicht mit der Uhr verbunden.</string>
+    <string name="wearos_main_activity_checking_connection" tools:ignore="MissingTranslation">Prüfe Verbindung zum Telefon…</string>
 </resources>
