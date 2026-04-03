@@ -237,4 +237,8 @@
     <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">城市標籤</string>
     <string name="widget_setting_actions_main_icon_label" tools:ignore="MissingTranslation">目前天氣圖示</string>
     <string name="alertDialog_weather_changed_message" tools:ignore="MissingTranslation">從現在起，此應用程式使用 Open-Meteo（https://open-meteo.com）作為天氣來源，因為 openweathermap.org 將於 2024 年 6 月結束其免費服務。</string>
+    <string name="nav_menu_graphs" tools:ignore="MissingTranslation">圖表</string>
+    <string name="pressure_measurement_mmhg" tools:ignore="MissingTranslation">毫米汞柱</string>
+    <string name="pressure_measurement_inhg" tools:ignore="MissingTranslation">英寸汞柱</string>
+    <string name="pressure_measurement_mbar" tools:ignore="MissingTranslation">毫巴</string>
 </resources>
