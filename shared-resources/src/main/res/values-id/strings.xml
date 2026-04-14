@@ -577,4 +577,33 @@
     <string name="weather_condition_description_621" tools:ignore="MissingTranslation">hujan salju lebat</string>
     <string name="weather_condition_description_622" tools:ignore="MissingTranslation">hujan salju lebat</string>
     <string name="weather_condition_description_701" tools:ignore="MissingTranslation">kabut tipis</string>
+    <string name="help_page_6_wearos_title" tools:ignore="MissingTranslation">Jam tangan pintar</string>
+    <string name="help_page_6_wearos_general" tools:ignore="MissingTranslation">Aplikasi ini menampilkan cuaca terkini dan prakiraan untuk beberapa hari ke depan. Agar sinkronisasi dapat berfungsi, kedua aplikasi harus diunduh dari sumber yang sama - Google Play (https://play.google.com/store/apps/details?id=org.thosp.yourlocalweather) atau Github (https://github.com/thuryn/your-local-weather/releases).</string>
+    <string name="help_page_6_wearos_main" tools:ignore="MissingTranslation">Aplikasi ini menampilkan cuaca terkini dan prakiraan untuk beberapa hari ke depan. Setelah aplikasi di ponsel memperbarui prakiraan cuaca, aplikasi juga mengirimkan pembaruan tersebut ke jam tangan.</string>
+    <string name="help_page_6_wearos_tile" tools:ignore="MissingTranslation">Aplikasi ini juga memiliki tile yang menampilkan cuaca terkini dan prakiraan untuk hari ini dan besok, atau prakiraan untuk besok dan lusa jika sudah lewat pukul 20.00.</string>
+    <string name="help_page_6_wearos_complication" tools:ignore="MissingTranslation">Tersedia dua komplikasi - satu menampilkan suhu, yang lain menampilkan suhu dengan mata uang. Kedua komplikasi juga menampilkan ikon cuaca yang mewakili prakiraan cuaca untuk hari tersebut (bukan cuaca terkini). Tampilan komplikasi juga bergantung pada tampilan jam.</string>
+    <string name="label_activity_wearos" tools:ignore="MissingTranslation">Perangkat wearable</string>
+    <string name="activity_main_wearos_more_info" tools:ignore="MissingTranslation">Info selengkapnya</string>
+    <string name="activity_main_wearos_without_app_title" tools:ignore="MissingTranslation">Aplikasi jam tangan</string>
+    <string name="activity_main_wearos_without_app_message" tools:ignore="MissingTranslation">Kami mendeteksi bahwa Anda memiliki jam tangan Wear OS yang terhubung! Apakah Anda ingin menambahkan aplikasi kami ke jam tangan tersebut?</string>
+    <string name="activity_main_wearos_with_app_title" tools:ignore="MissingTranslation">Apakah Anda memiliki jam tangan pintar?</string>
+    <string name="activity_main_wearos_with_app_message" tools:ignore="MissingTranslation">Aplikasi kami juga tersedia untuk jam tangan Wear OS. Selalu pantau cuaca di pergelangan tangan Anda!</string>
+    <string name="activity_wearos_title" tools:ignore="MissingTranslation">Perangkat WearOS</string>
+    <string name="activity_wearos_wearos_device_not_found" tools:ignore="MissingTranslation">Tidak ada jam tangan yang terhubung ditemukan.</string>
+    <string name="activity_wearos_error_getting_device_status" tools:ignore="MissingTranslation">Kesalahan saat memeriksa status aplikasi.</string>
+    <string name="activity_wearos_error_on_device_finding" tools:ignore="MissingTranslation">Kesalahan saat mencari jam tangan</string>
+    <string name="activity_wearos_connected_devices" tools:ignore="MissingTranslation">Perangkat yang sedang terhubung</string>
+    <string name="activity_wearos_search_for_devices" tools:ignore="MissingTranslation">Mencari perangkat</string>
+    <string name="activity_wearos_app_installed" tools:ignore="MissingTranslation">Terpasang ✓</string>
+    <string name="activity_wearos_app_install_from_play" tools:ignore="MissingTranslation">Pasang dari Play Store</string>
+    <string name="nav_menu_wearos" tools:ignore="MissingTranslation">Perangkat WearOs</string>
+    <string name="today" tools:ignore="MissingTranslation">Hari ini</string>
+    <string name="tomorrow" tools:ignore="MissingTranslation">Besok</string>
+    <string name="day_after_tomorrow" tools:ignore="MissingTranslation">Lusa</string>
+    <string name="complication_no_unit_label" tools:ignore="MissingTranslation">Suhu saat ini tanpa satuan</string>
+    <string name="complication_with_unit_label" tools:ignore="MissingTranslation">Suhu saat ini dengan satuan</string>
+    <string name="wearos_main_activity_missing_connection_label" tools:ignore="MissingTranslation">Tidak ada koneksi ke ponsel</string>
+    <string name="wearos_main_activity_missing_connection_info" tools:ignore="MissingTranslation">Pasang aplikasi di ponsel Anda dari github.com atau Play Store.</string>
+    <string name="wearos_main_activity_not_connected" tools:ignore="MissingTranslation">Ponsel tidak terhubung ke jam tangan.</string>
+    <string name="wearos_main_activity_checking_connection" tools:ignore="MissingTranslation">Memeriksa koneksi ke ponsel…</string>
 </resources>
