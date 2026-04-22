@@ -26,24 +26,24 @@
     <string name="initial_guide_next" tools:ignore="MissingTranslation">Nästa</string>
     <string name="initial_guide_previous" tools:ignore="MissingTranslation">Föregående</string>
     <string name="initial_guide_finish" tools:ignore="MissingTranslation">Klar</string>
-    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Initial konfigurationsguide</string>
+    <string name="initial_guide_title_1" tools:ignore="MissingTranslation">Inledande konfigurationsguide</string>
     <string name="initial_guide_paragraph_1" tools:ignore="MissingTranslation">Om du anpassar appen till dina behov kan du välja uppdateringsstrategi nästa. 
 \nOm du vill avvika från standarduppdateringen när platsen ändras kan du välja <i>Uppdatera inte plats</i>.</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Uppdatera platsinställning</string>
-    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Platskälla alternativ</string>
-    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Du kan välja platsmetoden - <i>Systemet</i> använder Google-tjänster för att hämta platsen via nätverk (mobil- och Wi-Fi-nätverk). <i>Lokala MLS och Nominatim</i> alternativ använder Mozilla-platstjänst för att hämta koordinaterna för platsen och Nominatim-tjänst för att få platsnamn. Den andra inställningen kräver telefonsamtalsbehörigheter för att hämta information om mobilnätverket. Den föredragna inställningen är förvald.</string>
+    <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Alternativ för platskälla</string>
+    <string name="initial_guide_paragraph_3" tools:ignore="MissingTranslation">Du kan välja platsmetod - den med <i>System</i> använder Googles tjänster för att hämta platsen via nätverk (mobil- och Wi-Fi-nätverk). Alternativet <i>Lokal MLS och Nominatim</i> använder Mozillas platstjänst för att hämta platskoordinater och Nominatim-tjänsten för att hämta platsnamn. Det andra alternativet kräver behörighet för telefonsamtal för att hämta information om mobilnätet. Det föredragna alternativet är förvalt.</string>
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Plats- och adresskälla</string>
     <string name="initial_guide_paragraph_5" tools:ignore="MissingTranslation">Några telefoner rapporterar inte anslutna celler korrekt om inte skärmen är på. Det föredragna alternativet (med skärm påslagen) har en nackdel att telefonen slår på skärmen i flera sekunder. Detta har en liten inverkan på batteriets livslängd. Börja med det på och försök att stänga av det och se om platsen fortfarande uppdateras.</string>
     <string name="initial_guide_paragraph_7" tools:ignore="MissingTranslation">Du kan minska dataanvändningen genom att mellanlagra hittade platser. Platserna lagras sedan i appen. De skickas eller lagras inte på andra platser i nätverket.</string>
     <string name="initial_guide_title_9" tools:ignore="MissingTranslation">Grattis</string>
-    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Vakna upp-strategi alternativ</string>
+    <string name="initial_guide_title_5" tools:ignore="MissingTranslation">Alternativ för väckningsstrategi</string>
     <string name="initial_guide_title_6" tools:ignore="MissingTranslation">Vakna upp-strategi</string>
     <string name="initial_guide_paragraph_9" tools:ignore="MissingTranslation">Detta avslutar guiden. Du kan hitta andra inställningar i inställningsmenyn (till exempel språk, enheter m.m.).
 \nNästa skärm kommer att förklara de begärda behörigheterna och ge dig möjlighet att begära dem.
 \n
 \nNjut av appen.</string>
     <string name="help_page_general_title" tools:ignore="MissingTranslation">Allmänt</string>
-    <string name="help_page_general_content" tools:ignore="MissingTranslation">Appen bestämmer plats med hjälp av mobilnät (BTS), Wi-Fi, och om de misslyckas; GPS för att visa lokalt väder, i sin tur få koordinaterna från Mozilla-platstjänst. Ansökan behöver minst: en basstation i GSM-nätet eller två nåbara Wi-Fi-nätverk eller någon kombination av GSM och Wi-Fi-nätverk. Med gränssnittskomponenten på din telefon eller surfplatta kan du se din plats och aktuellt väder på huvudskärmen. Platsuppdateringar kan vara periodiska, (ex. timvis) eller appen kan använda accelerometern för att upptäcka rörelse av större avstånd än ett värde. Om den bärs i fickan ökar avståndet snabbare. Du kan stänga av platsuppdateringar - då uppdateras endast väder. Appen uppdaterar plats och väder i angivna intervall. Du kan till exempel ställa in uppdateringsperiod till klockan ett. Vädret uppdateras omedelbart efter platsen är, eller när skärmen är påslagen - men inte oftare än en gång per 15 minuter (och när vädret inte uppdateras under de senaste 15 minuterna). Dessa uppgifter används för att få platskoordinater av Mozilla-platstjänst. Appen försöker använda GPS när platsen inte är tillgänglig från mobilnät och Wi-Fi-nätverk. Plats koordinater används för att få adress genom tjänsten Nominatim. Adressen används i appen eller gränssnittskomponenten. Appen använder tjänsten OpenWeatherMap.org för att få aktuellt väder.</string>
+    <string name="help_page_general_content" tools:ignore="MissingTranslation">Appen fastställer platsen med hjälp av mobilnät (BTS), Wi-Fi, och om dessa misslyckas; GPS för att visa lokalt väder, vilket i sin tur hämtar koordinaterna från Mozillas platstjänst. Applikationen behöver minst: en basstation i GSM-nätverket eller två nåbara wifi-nätverk eller någon kombination av GSM- och Wi-Fi-nätverk. Med hjälp av widgeten på din telefon eller surfplatta kan du se din plats och aktuellt väder på huvudskärmen. Platsuppdateringar kan vara periodiska (t.ex. varje timme) eller så kan appen använda accelerometern för att upptäcka rörelser på större avstånd än ett visst värde. Med den i fickan ökar avståndet snabbare. Du kan stänga av platsuppdateringar - endast väder uppdateras då. Appen uppdaterar plats och väder med angivna intervall. Du kan till exempel ställa in uppdateringsperioden till klockan en timme. Vädret uppdateras omedelbart efter att platsen är påslagen, eller när skärmen slås på - men inte oftare än en gång per 15 minuter (och när vädret inte har uppdaterats under de senaste 15 minuterna). Denna information används för att hämta platskoordinater från Mozillas platstjänst. Appen försöker använda GPS när platsen inte är tillgänglig från mobilnätverket och Wi-Fi-nätverk. Positionskoordinater används för att hämta adresser via Nominatim-tjänsten. Adressen används i appen eller widgeten. Appen använder Open-Meteo (https://open-meteo.com)-tjänsten för att få aktuellt väder.</string>
     <string name="help_page_1_title" tools:ignore="MissingTranslation">Huvudapp</string>
     <string name="help_page_1_content_1" tools:ignore="MissingTranslation">Huvudappen innehåller en översikt över det aktuella vädret. Du kan uppdatera vädret med hjälp av uppdateringsknappen i appanelen eller genom att glida nedåt. Du kan hitta knappen för att uppdatera plats bredvid knappen för att uppdatera väder. Den här knappen är endast tillgänglig när plats 0 är aktiverad (plats 0 är avsedd för automatisk uppdatering av plats).</string>
     <string name="help_page_1_content_2" tools:ignore="MissingTranslation">Du hittar väderprognos på nästa skärm (välj nästa skärm i menyn eller svep från vänster till höger). Väderprognosen uppdateras med uppdateringsknappen eller när du öppnar skärmen (men inte mer än en uppdatering per timme).</string>
@@ -72,7 +72,7 @@
     <string name="toolbar_menu_detect_location" tools:ignore="MissingTranslation">Identifiera plats</string>
     <string name="menu_action_toggle_values" tools:ignore="MissingTranslation">Växla värden</string>
     <string name="menu_action_toggle_yaxis" tools:ignore="MissingTranslation">Växla Y-axel</string>
-    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Kolumninställning</string>
+    <string name="menu_forecast_column_settings" tools:ignore="MissingTranslation">Kolumninställningar</string>
     <string name="forecast_settings_columns" tools:ignore="MissingTranslation">Kolumner att visa</string>
     <string name="forecast_settings_column_icon" tools:ignore="MissingTranslation">Ikon</string>
     <string name="forecast_settings_column_description" tools:ignore="MissingTranslation">Beskrivning</string>
@@ -152,12 +152,7 @@
     <string name="help_page_3_content_hide_update_location_3" tools:ignore="MissingTranslation">Om du markerar alternativet <b>Slå på GPS vid behov</b> så kommer appen att försöka hitta platsen med hjälp av mobilt nätverk eller Wi-Fi-nätverk. När platsen inte kan hittas när nätverkstjänster används så startar appen GPS:en i några sekunder för att fastställa platsen.</string>
     <string name="share_weather_title" tools:ignore="MissingTranslation">Dela väder</string>
     <string name="share_weather_app_not_found" tools:ignore="MissingTranslation">Kommunikationsapp hittades inte</string>
-    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Stad: %1$s
-\nTemperatur: %2$s
-\nBeskrivning: %3$s
-\nVind: %4$s %5$s
-\nGryning: %6$s
-\nSkymning: %7$s</string>
+    <string name="share_weather_descritpion" tools:ignore="MissingTranslation">Stad: %1$s \nTemperatur: %2$s \nBeskrivning: %3$s \nVind: %4$s %5$s \nSoluppgång: %6$s \nSolnedgång: %7$s</string>
     <string name="notification_channel_name" tools:ignore="MissingTranslation">Ditt lokala väder</string>
     <string name="notification_channel_description" tools:ignore="MissingTranslation">Dina lokala väderaviseringar</string>
     <string name="graph_temperature_day_label" tools:ignore="MissingTranslation">Temperatur</string>
@@ -229,7 +224,7 @@
     <string name="wind_direction_nothing" tools:ignore="MissingTranslation">Inaktiverad</string>
     <string name="wind_direction_abbreviation" tools:ignore="MissingTranslation">Förkortning N↓, NO↙, …</string>
     <string name="wind_direction_deg" tools:ignore="MissingTranslation">Grader från norr</string>
-    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Aktuellt väder beskrivningsspråk och adressen kommer att ändras med nästa uppdatering, eller så kan du tvinga det manuellt.</string>
+    <string name="update_locale_dialog_message" tools:ignore="MissingTranslation">Nuvarande språk för väderbeskrivningar och adressen kommer att ändras med nästa uppdatering, eller så kan du tvinga det fram manuellt.</string>
     <string name="debug_choose_file" tools:ignore="MissingTranslation">Välj loggmapp</string>
     <string name="debug_category_title" tools:ignore="MissingTranslation">Felsökningsalternativ</string>
     <string name="log_file_lasting_summary" tools:ignore="MissingTranslation">Efter en viss tid kommer loggfilen att återskapas</string>
@@ -238,8 +233,8 @@
     <string name="log_to_file_off" tools:ignore="MissingTranslation">Logga inte till fil</string>
     <string name="log_to_file_on" tools:ignore="MissingTranslation">Logga till fil</string>
     <string name="preference_weather_icon_set_title" tools:ignore="MissingTranslation">Ikonuppsättning</string>
-    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Typsnitts baserade ikoner</string>
-    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlin de röda ikonerna</string>
+    <string name="weather_icon_set_fontbased" tools:ignore="MissingTranslation">Teckensnittsbaserade ikoner</string>
+    <string name="weather_icon_set_merlin_the_red" tools:ignore="MissingTranslation">Merlins röda ikoner</string>
     <string name="weather_condition_description_200" tools:ignore="MissingTranslation">åskväder med lätt regn</string>
     <string name="weather_condition_description_500" tools:ignore="MissingTranslation">lätt regn</string>
     <string name="weather_condition_description_600" tools:ignore="MissingTranslation">lätt snö</string>
@@ -262,11 +257,11 @@
     <string name="initial_guide_title_7" tools:ignore="MissingTranslation">Cache-upplöst adressalternativ</string>
     <string name="initial_guide_title_8" tools:ignore="MissingTranslation">Cache-löst adress</string>
     <string name="help_page_3_content_hide_update_location_1" tools:ignore="MissingTranslation"> <b>Uppdateringsperiod för plats (plats 0) </b> - du kan ställa in uppdateringsperiod för plats 0 - plats 0 har möjlighet att uppdatera plats enligt mobil-, Wi-Fi-nätverk och GPS. När du väljer uppdatera <i>Med accelerometer</i> använder appen det för att upptäcka rörelse. Av detta beräknas avståndet. När avståndsgränsen uppnås, och ingen uppdatering har hänt på 15 minuter, uppdateras platsen och det aktuella vädret. När appen inte kan hämta plats kan du se okänd platsetikett i widgeten. När appen inte har något platsstillstånd kommer den att försöka igen om 5 minuter. Du kan också välja platsuppdatering baserat på tidsintervall i <b> Uppdateringsperiod för väder (plats 1,2,3 ...) </b> - där du kan ställa in väder för att uppdatera för manuellt upptäckta platser.</string>
-    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"> <b xmlns:tools="https://schemas.android.com/tools">Lokal MLS och Nominatim</b> - Appen hämtar platsen och geografiska koordinater från Mozilla\'s platstjänster. Nominatim-tjänsterna hämtar adressen från dessa koordinater. Du kan bidra till framtida förbättringar till MLS genom att installera Mozilla Stumbler (tillgänligt på https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler). Hämta information om nuvarande aktuella och tillgängliga basstationer i nätverket från mobilnätverket genom att godkänna åtkomst för telefonsamtal. Wi-Fi-nätverken runt omkring dig används för att gissa din plats mer exakt.</string>
+    <string name="help_page_3_content_location_address_source_1" tools:ignore="MissingTranslation"><b>Lokal MLS och Nominatim</b> – Appen hämtar plats och geografiska koordinater från Mozillas platstjänster. Nominatim-tjänster hämtar adressen från dessa koordinater. Du kan bidra till framtida förbättringar av MLS genom att installera Mozilla Stumbler (tillgänglig på https://play.google.com/store/apps/details?id=org.mozilla.mozstumbler). Få information om aktuella aktiva och tillgängliga nätverksbasstationer från mobilnätet genom att ge samtalsbehörighet. Wi-Fi-nätverk runt omkring dig används för att gissa din plats mer exakt.</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Översättningar av text och vägledning</string>
     <string name="label_dew_point" tools:ignore="MissingTranslation">Daggpunkt</string>
     <string name="dew_point_label" tools:ignore="MissingTranslation">Daggpunkt: %s</string>
-    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Åtkomsten till Mozilla\'s platstjänst slutade gälla den 1/3 2020. Appen är tvungen att använda Android-systemet upptäckter av plats-koordinater. Adressen är fortfarande löst av Nominatim. Vänligen överväg detta när appen används.</string>
+    <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Åtkomsten till Mozillas platstjänst upphörde den 1 mars 2020. Appen tvingas använda Andorid-systemet för att identifiera platskoordinater. Adressen löses fortfarande av Nominatim. Tänk på detta när du använder appen.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Begränsning för Mozilla\'s lokaliseringstjänst</string>
     <string name="alertDialog_android_10_permissions_title" tools:ignore="MissingTranslation">Åtkomstförändringar för Android 10</string>
     <string name="alertDialog_android_10_permissions_message" tools:ignore="MissingTranslation">Från och med Android 10 krävs finmaskig åtkomst till plats för att få information om det anslutna GSM/LTE-nätverket. Ge tillstånd att hämta plats i bakgrunden också (om du vill ha din plats hela tiden).</string>
@@ -278,7 +273,7 @@
     <string name="help_page_3_content_display" tools:ignore="MissingTranslation">Dessa meny-alternativ ställer in <b>språk</b>, den huvudsakliga appens <b>tema</b> och <b>uppsättningen av ikoner</b> som används i appen och widgetar.</string>
     <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation"> <b>Aviseringar</b>
 \nNär du väljer alternativet för aviseringar så uppdaterar appen det aktuella vädret periodvis. Aktuellt väder läggs då i aviseringsområdet. Du kan även aktivera vibration - appen vibrerar när den är uppdaterad.</string>
-    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">För att spara nätverkstrafik och snabba upp platsuppdateringen så kan du slå på <b>Cache-platser</b>. Detta cache lagrar geografiska koordinater och en adress. Applikationen måste anropa nätverksupplösningstjänsten oavsett hur den är inställd, men anropet till Nominatim\'s adressupplösning sker bara i det fallet att adressen inte finns i cacheminnet. När du aktiverar alternativet Cache-adresser så lagras adresser som du har besökt i applikationen. Ingen information från cacheminnet skickas utanför applikationen.</string>
+    <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">För att spara nätverkstrafik och snabba upp platsuppdateringar kan du aktivera <b>Cacheplatser</b>. Denna cache lagrar geografiska koordinater och en adress. Programmet måste anropa nätverksupplösningstjänsten oavsett denna inställning. Men anropet till Nominatim-adressupplösning sker bara om adressen inte finns i cachen. När du aktiverar alternativet Cacheplatser lagras adresser som du har besökt i programmet. Ingen information från cachen skickas utanför programmet.</string>
     <string name="date_style_dots" tools:ignore="MissingTranslation">dd.mm.(åå)</string>
     <string name="pref_language_ar" tools:ignore="MissingTranslation">العَرَبِيَّة‎ (Arabiska)</string>
     <string name="date_style_slash_day_first" tools:ignore="MissingTranslation">dd/mm(/åå)</string>
