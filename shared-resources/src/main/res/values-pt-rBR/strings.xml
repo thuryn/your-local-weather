@@ -594,4 +594,8 @@
     <string name="preference_widget_text_color_summary" tools:ignore="MissingTranslation">Toque para mudar a cor</string>
     <string name="preference_widget_background_color" tools:ignore="MissingTranslation">Cor de fundo transparente e opacidade</string>
     <string name="preference_widget_background_color_summary" tools:ignore="MissingTranslation">Toque para mudar a cor</string>
+    <string name="help_page_6_wearos_title" tools:ignore="MissingTranslation">Smart watch</string>
+    <string name="help_page_6_wearos_general" tools:ignore="MissingTranslation">O aplicativo mostra o clima atual e a previsão para os próximos dias. Para que a sincronização funcione, ambos os aplicativos devem ser baixados da mesma fonte: Google Play (https://play.google.com/store/apps/details?id=org.thosp.yourlocalweather) ou Github (https://github.com/thuryn/your-local-weather/releases).</string>
+    <string name="help_page_6_wearos_main" tools:ignore="MissingTranslation">O aplicativo mostra o clima atual e a previsão para os próximos dias. Após a atualização da previsão do tempo no celular, o aplicativo também envia a atualização para o relógio.</string>
+    <string name="help_page_6_wearos_tile" tools:ignore="MissingTranslation">O aplicativo também possui um bloco que mostra o clima atual e a previsão para o dia atual e amanhã, ou a previsão para amanhã e depois de amanhã, caso já tenham sido 20h.</string>
 </resources>
