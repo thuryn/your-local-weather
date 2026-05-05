@@ -23,7 +23,7 @@
     <string name="alertDialog_battery_optimization_title" tools:ignore="MissingTranslation">Aṣeggem n tbatrit</string>
     <string name="alertDialog_mls_service_message" tools:ignore="MissingTranslation">Ankcum ɣer umeẓlu n useideg n Mozilla yemmut deg 01/03/2020. Asnas-a ittuḥettem ad iseqdec anagraw Android i tifin n tsidag n umkan. Maca tansa ad tt-yefru Nominatim. Ma ulac aɣilif, err deg uqerru-k aya ticki tseqdsaceḍ asnas-a.</string>
     <string name="alertDialog_mls_service_title" tools:ignore="MissingTranslation">Tilisa n umeẓlu n usideg Mozilla</string>
-    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">"Asnas-a yegber aɛqal n taɣect s useqdec n tsuqilin n uḍris akked tiludna n taɣect i d-ttmuddun iwiziwen deg https://hosted.weblate.org/projects/your-local-weather. Aneflay n usnas ur izmir ara ad yeḍmen d akken ṣeḥḥant - ad t-tqebleḍ ds useqdec n usnas-a. Akken ad tesqedceḍ-t, aɛqal n taɣect issefk ad ibedd daɣen ad yermed deg yiɣewwaṛen, anida i tsefrakeḍ neɣ tettṣeggimeḍ tiludna n taɣect. "</string>
+    <string name="alertDialog_voice_disclaimer_message" tools:ignore="MissingTranslation">Asnas-a yegber aɛqal n taɣect s useqdec n tsuqilin n uḍris akked tiludna n taɣect i d-ttmuddun iwiziwen deg https://hosted.weblate.org/projects/your-local-weather. Aneflay n usnas ur izmir ara ad yeḍmen d akken ṣeḥḥant - ad t-tqebleḍ s useqdec n usnas-a. Akken ad tesqedceḍ-t, aɛqal n taɣect issefk ad ibedd daɣen ad yermed deg yiɣewwaṛen, anida i tsefrakeḍ neɣ tettṣeggimeḍ tiludna n taɣect.</string>
     <string name="alertDialog_voice_disclaimer_title" tools:ignore="MissingTranslation">Tisuqilin n uḍris akked umnir</string>
     <string name="label_choose_city" tools:ignore="MissingTranslation">Fren tamdint</string>
     <string name="label_current_city" tools:ignore="MissingTranslation">Tamdint tamirant</string>
@@ -266,4 +266,31 @@
     <string name="initial_guide_title_4" tools:ignore="MissingTranslation">Aɣbalu n wadig d tansa</string>
     <string name="initial_guide_title_3" tools:ignore="MissingTranslation">Taxtiṛt n uɣbalu n wadig</string>
     <string name="initial_guide_title_2" tools:ignore="MissingTranslation">Iɣewwaren n uleqqem n wadig</string>
+    <string name="forecast_column_wind_direction_unit" tools:ignore="MissingTranslation">↑↗→</string>
+    <string name="pref_language_kab" tools:ignore="MissingTranslation">Taqbaylit</string>
+    <string name="pref_language_ko" tools:ignore="MissingTranslation">Takurit</string>
+    <string name="pref_language_lt" tools:ignore="MissingTranslation">Talitwanit</string>
+    <string name="pref_language_th" tools:ignore="MissingTranslation">Taṭaylandit</string>
+    <string name="tts_say_greeting_day" tools:ignore="MissingTranslation">Azul</string>
+    <string name="tty_say_weather_forecast_morning" tools:ignore="MissingTranslation">taṣebḥit</string>
+    <string name="tty_say_weather_forecast_afternoon" tools:ignore="MissingTranslation">deg azal</string>
+    <string name="tty_say_weather_forecast_evening" tools:ignore="MissingTranslation">tameddit</string>
+    <string name="today" tools:ignore="MissingTranslation">Ass-a</string>
+    <string name="tomorrow" tools:ignore="MissingTranslation">Azekka</string>
+    <string name="temperature_unit_fahrenheit" tools:ignore="MissingTranslation">°F</string>
+    <string name="temperature_unit_celsius" tools:ignore="MissingTranslation">°C</string>
+    <string name="temperature_unit_kelvin" tools:ignore="MissingTranslation">K</string>
+    <string name="forecast_number_of_days_hours_3_days" tools:ignore="MissingTranslation">3 n wussan</string>
+    <string name="forecast_number_of_days_hours_4_days" tools:ignore="MissingTranslation">4 n wussan</string>
+    <string name="forecast_number_of_days_hours_5_days" tools:ignore="MissingTranslation">5 n wussan</string>
+    <string name="forecast_number_of_days_hours_6_days" tools:ignore="MissingTranslation">6 n wussan</string>
+    <string name="forecast_number_of_days_hours_7_days" tools:ignore="MissingTranslation">7 n wussan</string>
+    <string name="forecast_number_of_days_hours_8_days" tools:ignore="MissingTranslation">8 n wussan</string>
+    <string name="forecast_number_of_days_hours_3_hours" tools:ignore="MissingTranslation">3 n yesragen</string>
+    <string name="forecast_number_of_days_hours_4_hours" tools:ignore="MissingTranslation">4 n yesragen</string>
+    <string name="forecast_number_of_days_hours_5_hours" tools:ignore="MissingTranslation">5 n yesragen</string>
+    <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 n yesragen</string>
+    <string name="forecast_number_of_days_hours_7_hours" tools:ignore="MissingTranslation">7 n yesragen</string>
+    <string name="forecast_number_of_days_hours_8_hours" tools:ignore="MissingTranslation">8 n yesragen</string>
+    <string name="update_period_2hours" tools:ignore="MissingTranslation">2 n yesragen</string>
 </resources>
