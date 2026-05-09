@@ -45,8 +45,9 @@ public class NotificationPreferenceFragment extends PreferenceFragmentCompat imp
                 public boolean onPreferenceChange(Preference preference, Object o) {
                     boolean isEnabled = (boolean) o;
                     AppPreference.getInstance().setNotificationEnabled(getActivity(), isEnabled);
+                    Context context = requireContext();
                     Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_NOTIFICATION_ALARM_SERVICE");
-                    intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+                    intentToStartUpdate.setPackage(context.getPackageName());
                     getActivity().startService(intentToStartUpdate);
                     updateSummaries(isEnabled);
                     NotificationManager notificationManager =
@@ -145,8 +146,9 @@ public class NotificationPreferenceFragment extends PreferenceFragmentCompat imp
             case Constants.KEY_PREF_INTERVAL_NOTIFICATION:
                 entrySummary(key, changing);
                 if (changing) {
+                    Context context = requireContext();
                     Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");
-                    intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+                    intentToStartUpdate.setPackage(context.getPackageName());
                     getActivity().startService(intentToStartUpdate);
                 }
                 break;

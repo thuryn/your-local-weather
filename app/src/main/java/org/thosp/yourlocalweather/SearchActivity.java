@@ -141,7 +141,7 @@ public class SearchActivity extends BaseActivity {
                 longitude = p.getLongitude();
                 locale = AppPreference.getInstance().getLanguage(getApplicationContext());
                 final Intent resultionResult = new Intent(ACTION_ADDRESS_RESOLUTION_RESULT);
-                resultionResult.setPackage("org.thosp.yourlocalweather");
+                resultionResult.setPackage(getBaseContext().getPackageName());
 
                 Thread thread = new Thread() {
                     @Override
@@ -242,7 +242,7 @@ public class SearchActivity extends BaseActivity {
 
         if (currentMaxOrderId == 0) {
             Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");
-            intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+            intentToStartUpdate.setPackage(getBaseContext().getPackageName());
             startService(intentToStartUpdate);
         }
         sendMessageToReconciliationDbService();

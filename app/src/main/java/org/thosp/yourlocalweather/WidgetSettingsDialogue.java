@@ -190,7 +190,7 @@ public class WidgetSettingsDialogue extends Activity {
                         widgetSettingsDbHelper.saveParamString(widgetId, "currentWeatherDetails", valuesToStore.toString());
 
                         Intent refreshWidgetIntent = new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
-                        refreshWidgetIntent.setPackage("org.thosp.yourlocalweather");
+                        refreshWidgetIntent.setPackage(getBaseContext().getPackageName());
                         sendBroadcast(refreshWidgetIntent);
                         finish();
                     }
@@ -311,7 +311,7 @@ public class WidgetSettingsDialogue extends Activity {
                                     graphActionsListener.getWidgetAction().getId());
                         }
                         Intent intent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_SETTINGS);
-                        intent.setPackage("org.thosp.yourlocalweather");
+                        intent.setPackage(getBaseContext().getPackageName());
                         intent.putExtra("widgetId", widgetId);
                         sendBroadcast(intent);
                         finish();
@@ -430,7 +430,7 @@ public class WidgetSettingsDialogue extends Activity {
                         }
                         GraphUtils.invalidateGraph();
                         Intent intent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_SETTINGS);
-                        intent.setPackage("org.thosp.yourlocalweather");
+                        intent.setPackage(getBaseContext().getPackageName());
                         intent.putExtra("widgetId", widgetId);
                         sendBroadcast(intent);
                         finish();
@@ -551,7 +551,7 @@ public class WidgetSettingsDialogue extends Activity {
                         widgetSettingsDbHelper.saveParamLong(widgetId, "forecastDaysCount", numberOfDaysListener.getNumberOfDays());
                         widgetSettingsDbHelper.saveParamBoolean(widgetId, "hoursForecast", numberOfDaysListener.isHoursForecast());
                         Intent intent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_SETTINGS);
-                        intent.setPackage("org.thosp.yourlocalweather");
+                        intent.setPackage(getBaseContext().getPackageName());
                         intent.putExtra("widgetId", widgetId);
                         sendBroadcast(intent);
                         finish();
@@ -639,7 +639,7 @@ public class WidgetSettingsDialogue extends Activity {
                         widgetSettingsDbHelper.saveParamBoolean(widgetId, "combinedGraphShowLegend", showLegendSwitchListener.isChecked());
                         GraphUtils.invalidateGraph();
                         Intent refreshWidgetIntent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_GRAPH_SCALE);
-                        refreshWidgetIntent.setPackage("org.thosp.yourlocalweather");
+                        refreshWidgetIntent.setPackage(getBaseContext().getPackageName());
                         sendBroadcast(refreshWidgetIntent);
                         finish();
                     }

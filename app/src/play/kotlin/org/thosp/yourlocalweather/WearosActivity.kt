@@ -8,10 +8,13 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.wear.remote.interactions.RemoteActivityHelper
+import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.wearable.CapabilityClient
 import com.google.android.gms.wearable.Node
 import com.google.android.gms.wearable.Wearable
+import com.google.android.gms.wearable.WearableStatusCodes
 import java.util.concurrent.Executors
+import androidx.core.net.toUri
 
 class WearosActivity : BaseActivity() {
 
@@ -51,9 +54,18 @@ class WearosActivity : BaseActivity() {
                 .addOnFailureListener {
                     loadingText.text = this@WearosActivity.getString(R.string.activity_wearos_error_getting_device_status)
                 }
-        }.addOnFailureListener {
-            loadingText.text = this@WearosActivity.getString(R.string.activity_wearos_error_on_device_finding)
-        }
+        }.addOnFailureListener(
+            { exception: java.lang.Exception? ->
+                if (exception is ApiException) {
+                    if (exception.statusCode == WearableStatusCodes.API_NOT_CONNECTED) {
+                        loadingText.text = this@WearosActivity.getString(R.string.activity_wearos_wearos_device_not_found)
+                    } else {
+                        loadingText.text = this@WearosActivity.getString(R.string.activity_wearos_error_on_device_finding)
+                    }
+                } else {
+                    loadingText.text = this@WearosActivity.getString(R.string.activity_wearos_error_on_device_finding)
+                }
+            })
     }
 
     private fun renderDevicesTable(allNodes: List<Node>, installedNodes: Set<Node>) {
@@ -89,7 +101,7 @@ class WearosActivity : BaseActivity() {
     private fun installOnWearable(nodeId: String) {
         val intent = Intent(Intent.ACTION_VIEW)
             .addCategory(Intent.CATEGORY_BROWSABLE)
-            .setData(Uri.parse("market://details?id=org.thosp.yourlocalweather"))
+            .setData("market://details?id=org.thosp.yourlocalweather".toUri())
 
         val remoteActivityHelper = RemoteActivityHelper(this, executor)
         remoteActivityHelper.startRemoteActivity(intent, nodeId)

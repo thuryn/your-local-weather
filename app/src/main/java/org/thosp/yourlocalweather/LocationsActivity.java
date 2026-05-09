@@ -124,7 +124,7 @@ public class LocationsActivity extends BaseActivity {
         Location location = locationsAdapter.locations.get(0);
         locationsDbHelper.updateEnabled(location.getId(), !location.isEnabled());
         Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");
-        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        intentToStartUpdate.setPackage(getBaseContext().getPackageName());
         startService(intentToStartUpdate);
         List<Location> allLocations = locationsDbHelper.getAllRows();
         updateAddLocationButton(allLocations);
@@ -144,7 +144,7 @@ public class LocationsActivity extends BaseActivity {
 
         if (locatonOrder == 1) {
             Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");
-            intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+            intentToStartUpdate.setPackage(getBaseContext().getPackageName());
             this.startService(intentToStartUpdate);
         }
 

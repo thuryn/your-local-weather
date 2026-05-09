@@ -3,11 +3,8 @@ package org.thosp.yourlocalweather.service;
 import android.app.AlarmManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
 import android.os.SystemClock;
@@ -16,16 +13,10 @@ import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.Constants;
-import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 
 import java.util.Calendar;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -101,7 +92,7 @@ public class AppAlarmService extends AbstractCommonService {
 
         long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
         Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
-        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        intentToStartUpdate.setPackage(getBaseContext().getPackageName());
         intentToStartUpdate.putExtra("locationId", locationId);
         ContextCompat.startForegroundService(getBaseContext(), intentToStartUpdate);
     }
@@ -181,10 +172,6 @@ public class AppAlarmService extends AbstractCommonService {
             alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + intervalMillis,
                     notificationPendingIntent);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + intervalMillis,
-                    notificationPendingIntent);
         } else {
             alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + intervalMillis,
@@ -194,10 +181,9 @@ public class AppAlarmService extends AbstractCommonService {
 
     private PendingIntent getPendingIntentForNotifiation() {
         Intent sendIntent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_NOTIFICATION_UPDATE");
-        sendIntent.setPackage("org.thosp.yourlocalweather");
-        PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(), 0, sendIntent,
+        sendIntent.setPackage(getBaseContext().getPackageName());
+        return PendingIntent.getService(getBaseContext(), 0, sendIntent,
                 PendingIntent.FLAG_IMMUTABLE);
-        return pendingIntent;
     }
 
     private static void scheduleNextRegularAlarm(Context context, boolean autoLocation, long updatePeriodMilis) {
@@ -213,10 +199,6 @@ public class AppAlarmService extends AbstractCommonService {
         alarmManager.cancel(pendingIntent);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + updatePeriodMilis,
-                    pendingIntent);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
                     SystemClock.elapsedRealtime() + updatePeriodMilis,
                     pendingIntent);
         } else {
@@ -241,13 +223,13 @@ public class AppAlarmService extends AbstractCommonService {
 
     protected void sendIntent(String intent) {
         Intent sendIntent = new Intent(intent);
-        sendIntent.setPackage("org.thosp.yourlocalweather");
+        sendIntent.setPackage(getBaseContext().getPackageName());
         startService(sendIntent);
     }
 
     private static PendingIntent getPendingSensorStartIntent(Context context) {
         Intent sendIntent = new Intent("org.thosp.yourlocalweather.action.START_SENSOR_BASED_UPDATES");
-        sendIntent.setPackage("org.thosp.yourlocalweather");
+        sendIntent.setPackage(context.getPackageName());
         return PendingIntent.getService(context,
                 0,
                 sendIntent,
@@ -256,7 +238,7 @@ public class AppAlarmService extends AbstractCommonService {
 
     private static PendingIntent getPendingScreenStartIntent(Context context) {
         Intent sendIntent = new Intent("org.thosp.yourlocalweather.action.START_SCREEN_BASED_UPDATES");
-        sendIntent.setPackage("org.thosp.yourlocalweather");
+        sendIntent.setPackage(context.getPackageName());
         return PendingIntent.getService(context,
                 0,
                 sendIntent,
@@ -278,7 +260,7 @@ public class AppAlarmService extends AbstractCommonService {
         } else {
             intent = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM_REGULAR");
         }
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(context.getPackageName());
         return PendingIntent.getService(context,
                 0,
                 intent,

@@ -8,8 +8,8 @@ android {
         applicationId = "org.thosp.yourlocalweather"
         minSdk = 23
         targetSdk = 36
-        versionCode = 192
-        versionName = "6.3.8"
+        versionCode = 193
+        versionName = "6.4.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
@@ -49,6 +49,18 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    flavorDimensions "version"
+
+    productFlavors {
+        foss {
+            dimension "version"
+            versionNameSuffix "-FOSS"
+        }
+        play {
+            dimension "version"
+        }
+    }
 }
 
 play {
@@ -65,7 +77,7 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.2.0'
     implementation 'com.google.android.material:material:1.13.0'
     implementation 'com.android.support:multidex:1.0.3'
-    implementation "com.google.android.gms:play-services-wearable:19.0.0"
+    playImplementation "com.google.android.gms:play-services-wearable:19.0.0"
     implementation "androidx.wear:wear-remote-interactions:1.2.0"
 
 // Third-party

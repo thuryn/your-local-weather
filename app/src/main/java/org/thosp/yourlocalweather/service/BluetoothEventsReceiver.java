@@ -2,16 +2,10 @@ package org.thosp.yourlocalweather.service;
 
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
-import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.os.Handler;
-import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
 import android.preference.PreferenceManager;
 
 import org.thosp.yourlocalweather.model.VoiceSettingParametersDbHelper;
@@ -19,12 +13,8 @@ import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.VoiceSettingParamType;
 
 import java.util.HashSet;
-import java.util.LinkedList;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Set;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
@@ -46,7 +36,7 @@ public class BluetoothEventsReceiver extends BroadcastReceiver {
                 return;
             }
             Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.SAY_WEATHER");
-            intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+            intentToStartUpdate.setPackage(context.getPackageName());
             intentToStartUpdate.putExtra("voiceSettingId", voiceSettingId);
             intentToStartUpdate.putExtra("initiatedFromBtDevice", true);
             context.startService(intentToStartUpdate);

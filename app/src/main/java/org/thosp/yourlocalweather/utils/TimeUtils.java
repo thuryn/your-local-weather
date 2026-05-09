@@ -182,7 +182,7 @@ public class TimeUtils {
 
     public static PendingIntent getPendingIntentForVoice(Context context, Long voiceSettingId) {
         Intent sendIntent = new Intent("org.thosp.yourlocalweather.action.SAY_WEATHER");
-        sendIntent.setPackage("org.thosp.yourlocalweather");
+        sendIntent.setPackage(context.getPackageName());
         sendIntent.putExtra("voiceSettingId", voiceSettingId);
         PendingIntent pendingIntent = PendingIntent.getService(context, 0, sendIntent,
                 PendingIntent.FLAG_IMMUTABLE);

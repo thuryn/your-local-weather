@@ -919,7 +919,7 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
     private void startLocationUpdate(Location inputLocation) {
         appendLog(getBaseContext(), TAG, "startLocationUpdate");
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_UPDATE");
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(getBaseContext().getPackageName());
         intent.putExtra("inputLocation", inputLocation);
         ContextCompat.startForegroundService(getBaseContext(), intent);
     }

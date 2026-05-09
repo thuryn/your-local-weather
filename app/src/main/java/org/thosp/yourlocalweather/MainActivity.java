@@ -27,8 +27,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -46,9 +44,6 @@ import androidx.core.content.res.ResourcesCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.google.android.gms.wearable.CapabilityClient;
-import com.google.android.gms.wearable.Node;
-import com.google.android.gms.wearable.Wearable;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -67,15 +62,15 @@ import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WindWithUnit;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class MainActivity extends BaseActivity
                           implements AppBarLayout.OnOffsetChangedListener,
                                      ActivityCompat.OnRequestPermissionsResultCallback {
 
     private static final String TAG = "MainActivity";
+
+    private WearActivityManager wearServiceManager = new WearActivityManagerImpl(MainActivity.this);
 
     private volatile boolean inited;
 
@@ -152,7 +147,7 @@ public class MainActivity extends BaseActivity
         StartAlarmsTask startAlarmsTask = new StartAlarmsTask();
         startAlarmsTask.execute(new Integer[0]);
         Intent intentToStartUpdate = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
-        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        intentToStartUpdate.setPackage(getBaseContext().getPackageName());
         startService(intentToStartUpdate);
 
         /**
@@ -211,7 +206,7 @@ public class MainActivity extends BaseActivity
             }
         } else {*/
             Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_ALARM_SERVICE");
-            intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+            intentToStartUpdate.setPackage(getBaseContext().getPackageName());
             startService(intentToStartUpdate);
         //}
     }
@@ -235,7 +230,7 @@ public class MainActivity extends BaseActivity
         updateCurrentLocationAndButtonVisibility();
         checkSettingsAndPermisions();
         updateUI();
-        checkWearables();
+        wearServiceManager.checkWearables();
     }
 
     @Override
@@ -360,108 +355,6 @@ public class MainActivity extends BaseActivity
             mLastUpdateView.setText(MainActivity.this.getString(R.string.last_update_label, lastUpdate));
             localityView.setText(cityAndCountry);
         });
-    }
-
-    private void checkWearables() {
-        Wearable.getNodeClient(this).getConnectedNodes().addOnSuccessListener(nodes -> {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-            boolean promoShown = prefs.getBoolean("wearos_promo_shown", false);
-            // Načteme všechna ID zařízení, o kterých už víme
-            Set<String> knownNodes = new HashSet<>(prefs.getStringSet("wearos_known_nodes", new HashSet<>()));
-
-            // PŘÍPAD 1: Žádné připojené zařízení
-            if (nodes.isEmpty()) {
-                if (!promoShown) {
-                    showWearOsBanner(
-                            MainActivity.this.getString(R.string.activity_main_wearos_without_app_title),
-                            MainActivity.this.getString(R.string.activity_main_wearos_without_app_message),
-                            promoShown,
-                            false,
-                            null
-                    );
-                }
-            }
-            // PŘÍPAD 2 a 3: Máme připojená zařízení
-            else {
-                Wearable.getCapabilityClient(this)
-                        .getCapability("your_local_weather_companion", CapabilityClient.FILTER_ALL)
-                        .addOnSuccessListener(capabilityInfo -> {
-                            Set<Node> installedNodes = capabilityInfo.getNodes();
-                            boolean shouldShowInstallBanner = false;
-                            boolean prefsChanged = false;
-
-                            for (Node node : nodes) {
-                                if (installedNodes.contains(node)) {
-                                    // Uživatel appku na hodinkách MÁ.
-                                    // Potichu si hodinky uložíme jako "známé", ať ho neotravujeme, když ji smaže.
-                                    if (!knownNodes.contains(node.getId())) {
-                                        knownNodes.add(node.getId());
-                                        prefsChanged = true;
-                                    }
-                                } else {
-                                    // Uživatel appku na hodinkách NEMÁ.
-                                    // Ptali jsme se už na tyto konkrétní hodinky?
-                                    if (!knownNodes.contains(node.getId())) {
-                                        shouldShowInstallBanner = true;
-                                        knownNodes.add(node.getId());
-                                        prefsChanged = true;
-                                    }
-                                }
-                            }
-
-                            // Pokud jsme objevili nové hodinky bez aplikace, ukážeme banner
-                            if (shouldShowInstallBanner) {
-                                showWearOsBanner(
-                                        MainActivity.this.getString(R.string.activity_main_wearos_without_app_title),
-                                        MainActivity.this.getString(R.string.activity_main_wearos_without_app_message),
-                                        promoShown,
-                                        prefsChanged,
-                                        knownNodes
-                                );
-                            }
-                        });
-            }
-        }).addOnFailureListener(exception ->
-                appendLog(this, TAG, "Error looking for wearables", exception)
-        );
-    }
-
-    // Metoda, která zviditelní náš nový neintruzivní Banner
-    private void showWearOsBanner(String title, String message, boolean promoShown, boolean prefsChanged, Set<String> knownNodes) {
-        runOnUiThread(() -> {
-            View bannerLayout = findViewById(R.id.wearos_banner_layout);
-            if (bannerLayout != null) {
-                TextView titleView = bannerLayout.findViewById(R.id.wearos_banner_title);
-                TextView messageView = bannerLayout.findViewById(R.id.wearos_banner_message);
-                Button actionButton = bannerLayout.findViewById(R.id.wearos_banner_action);
-                ImageButton closeButton = bannerLayout.findViewById(R.id.wearos_banner_close);
-                titleView.setText(title);
-                messageView.setText(message);
-                actionButton.setOnClickListener(v -> {
-                    storeWearosPromo(promoShown, prefsChanged, knownNodes);
-                    startActivity(new Intent(MainActivity.this, WearosActivity.class));
-                    bannerLayout.setVisibility(View.GONE);
-                });
-                closeButton.setOnClickListener(v -> {
-                    storeWearosPromo(promoShown, prefsChanged, knownNodes);
-                    bannerLayout.setVisibility(View.GONE);
-                });
-                bannerLayout.setVisibility(View.VISIBLE);
-            }
-        });
-    }
-
-    private void storeWearosPromo(boolean promoShown, boolean prefsChanged, Set<String> knownNodes) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        SharedPreferences.Editor editor = prefs.edit();
-        if (prefsChanged) {
-            editor.putStringSet("wearos_known_nodes", knownNodes);
-        }
-        // Pokud zjistíme, že má hodinky, už nikdy mu neukážeme obecné promo
-        if (!promoShown) {
-            editor.putBoolean("wearos_promo_shown", true);
-        }
-        editor.apply();
     }
 
     @Override
@@ -1236,7 +1129,7 @@ public class MainActivity extends BaseActivity
             return;
         }
         Intent startLocationUpdateIntent = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
-        startLocationUpdateIntent.setPackage("org.thosp.yourlocalweather");
+        startLocationUpdateIntent.setPackage(getBaseContext().getPackageName());
         startLocationUpdateIntent.putExtra("updateSource", "MAIN");
         startLocationUpdateIntent.putExtra("locationId", currentLocation.getId());
         ContextCompat.startForegroundService(getBaseContext(), startLocationUpdateIntent);

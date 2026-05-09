@@ -1007,7 +1007,7 @@ public class WidgetUtils {
     public static void startBackgroundService(Context context,
                                               Intent intent,
                                               long triggerInMillis ) {
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(context.getPackageName());
         ContextCompat.startForegroundService(context, intent);
     }
 

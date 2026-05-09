@@ -34,7 +34,7 @@ public class StartupReceiver extends BroadcastReceiver {
         scheduleStart(context);
         appendLog(context, TAG, "scheduleStart end");
         Intent intentToStartUpdate = new Intent("android.appwidget.action.APPWIDGET_UPDATE");
-        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        intentToStartUpdate.setPackage(context.getPackageName());
         context.startService(intentToStartUpdate);
         TimeUtils.setupAlarmForVoice(context);
     }
@@ -51,7 +51,7 @@ public class StartupReceiver extends BroadcastReceiver {
             jobScheduler.schedule(builder.build());
         } else {
             Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_ALARM_SERVICE");
-            intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+            intentToStartUpdate.setPackage(context.getPackageName());
             context.startService(intentToStartUpdate);
         }
     }

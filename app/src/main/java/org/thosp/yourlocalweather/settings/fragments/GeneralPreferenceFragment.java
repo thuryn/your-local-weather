@@ -2,6 +2,7 @@ package org.thosp.yourlocalweather.settings.fragments;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -80,11 +81,12 @@ public class GeneralPreferenceFragment extends PreferenceFragmentCompat implemen
     }
 
     private void updateSummary(String key, boolean changing) {
+        Context context = requireContext();
         switch (key) {
             case Constants.KEY_PREF_HIDE_DESCRIPTION:
                 if (changing) {
                     Intent intent = new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
-                    intent.setPackage("org.thosp.yourlocalweather");
+                    intent.setPackage(context.getPackageName());
                     getActivity().sendBroadcast(intent);
                 }
                 break;
@@ -252,8 +254,9 @@ public class GeneralPreferenceFragment extends PreferenceFragmentCompat implemen
         appendLog(getActivity(),
                 TAG,
                 "going run reconciliation DB service");
+        Context context = requireContext();
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_RECONCILIATION");
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(context.getPackageName());
         intent.putExtra("force", force);
         getActivity().startService(intent);
     }

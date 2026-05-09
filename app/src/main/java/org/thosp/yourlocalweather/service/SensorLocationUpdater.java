@@ -147,7 +147,7 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
         Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
-        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        intentToStartUpdate.setPackage(getBaseContext().getPackageName());
         intentToStartUpdate.putExtra("locationId", locationId);
         ContextCompat.startForegroundService(getBaseContext(), intentToStartUpdate);
         processLocationUpdate = false;

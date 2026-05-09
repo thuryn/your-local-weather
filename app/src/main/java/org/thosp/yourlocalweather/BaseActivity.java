@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -128,6 +129,12 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private void configureNavView() {
         NavigationView navigationView = findViewById(R.id.navigation_view);
+        Menu navMenu = navigationView.getMenu();
+        MenuItem wearMenuItem = navMenu.findItem(R.id.nav_wearos);
+
+        if (wearMenuItem != null) {
+            wearMenuItem.setVisible(getResources().getBoolean(R.bool.is_wearos_enabled));
+        }
         navigationView.setNavigationItemSelectedListener(navigationViewListener);
 
         View headerLayout = navigationView.getHeaderView(0);
@@ -156,8 +163,11 @@ public abstract class BaseActivity extends AppCompatActivity {
                                                        SettingsActivity.class));
                             break;
                         case R.id.nav_wearos:
-                            createBackStack(new Intent(BaseActivity.this,
-                                    WearosActivity.class));
+                            if (getResources().getBoolean(R.bool.is_wearos_enabled)) {
+                                Intent wearIntent = new Intent();
+                                wearIntent.setClassName(BaseActivity.this, "org.thosp.yourlocalweather.WearosActivity");
+                                createBackStack(wearIntent);
+                            }
                             break;
                         case R.id.nav_about:
                             Intent intent = new Intent(BaseActivity.this,
@@ -242,7 +252,7 @@ public abstract class BaseActivity extends AppCompatActivity {
                 TAG,
                 "going run reconciliation DB service");
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_RECONCILIATION");
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(getBaseContext().getPackageName());
         intent.putExtra("force", true);
         startService(intent);
     }
@@ -255,7 +265,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             return;
         }
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(getBaseContext().getPackageName());
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(location.getId(), updateSource, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE));
         startService(intent);
     }

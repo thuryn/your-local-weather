@@ -76,7 +76,7 @@ public class NotificationService extends AbstractCommonService {
 
     private PendingIntent getPendingIntentForNotifiation() {
         Intent sendIntent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_NOTIFICATION_UPDATE");
-        sendIntent.setPackage("org.thosp.yourlocalweather");
+        sendIntent.setPackage(getBaseContext().getPackageName());
         PendingIntent pendingIntent = PendingIntent.getService(getBaseContext(), 0, sendIntent,
                 PendingIntent.FLAG_IMMUTABLE);
         return pendingIntent;

@@ -264,13 +264,13 @@ public class MozillaLocationService {
 
     protected void reportCanceledRequestForNewLocation(Context context) {
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CANCELED");
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(context.getPackageName());
         context.startService(intent);
     }
 
     protected void reportNewLocation(Context context, Location location, Address address) {
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_ON_LOCATION_CHANGED");
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(context.getPackageName());
         intent.putExtra("location", location);
         if (address != null) {
             intent.putExtra("address", address);

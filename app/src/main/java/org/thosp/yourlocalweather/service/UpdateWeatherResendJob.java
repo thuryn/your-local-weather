@@ -3,17 +3,11 @@ package org.thosp.yourlocalweather.service;
 import android.annotation.TargetApi;
 import android.app.job.JobParameters;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Build;
-import android.os.Message;
-import android.os.RemoteException;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 import org.thosp.yourlocalweather.YourLocalWeather;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 @TargetApi(Build.VERSION_CODES.M)
 public class UpdateWeatherResendJob extends AbstractAppJob {
@@ -42,7 +36,7 @@ public class UpdateWeatherResendJob extends AbstractAppJob {
     protected void sendRetryMessageToCurrentWeatherService() {
         appendLog(getBaseContext(), TAG, "sendRetryMessageToCurrentWeatherService:1");
         Intent intent = new Intent("org.thosp.yourlocalweather.action.RESEND_WEATHER_UPDATE");
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(getBaseContext().getPackageName());
         startService(intent);
         jobFinished(params, false);
     }

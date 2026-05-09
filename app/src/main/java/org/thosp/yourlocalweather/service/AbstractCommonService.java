@@ -36,7 +36,7 @@ public class AbstractCommonService extends Service {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
         long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
         Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
-        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        intentToStartUpdate.setPackage(getBaseContext().getPackageName());
         intentToStartUpdate.putExtra("locationId", locationId);
         intentToStartUpdate.putExtra("forceUpdate", byLastLocationOnly);
         ContextCompat.startForegroundService(getBaseContext(), intentToStartUpdate);
@@ -52,7 +52,7 @@ public class AbstractCommonService extends Service {
                     break;
                 case "NOTIFICATION":
                     Intent sendIntent = new Intent("android.intent.action.SHOW_WEATHER_NOTIFICATION");
-                    sendIntent.setPackage("org.thosp.yourlocalweather");
+                    sendIntent.setPackage(getBaseContext().getPackageName());
                     WidgetUtils.startBackgroundService(
                             getBaseContext(),
                             sendIntent);
@@ -63,7 +63,7 @@ public class AbstractCommonService extends Service {
 
     protected void sendIntentToMain() {
         Intent intent = new Intent(UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT);
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(getBaseContext().getPackageName());
         intent.putExtra(
                 UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT,
                 UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL);
@@ -79,7 +79,7 @@ public class AbstractCommonService extends Service {
 
     protected void sendIntentToMain(String result) {
         Intent intent = new Intent(UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT);
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(getBaseContext().getPackageName());
         if (result.equals(UpdateWeatherService.ACTION_WEATHER_UPDATE_OK)) {
             intent.putExtra(
                     UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT,
@@ -123,7 +123,7 @@ public class AbstractCommonService extends Service {
                                                       boolean forceUpdate,
                                                       boolean updateWeatherOnly) {
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(getBaseContext().getPackageName());
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(location.getId(),
                                                                              updateSource,
                                                                              forceUpdate,
@@ -140,7 +140,7 @@ public class AbstractCommonService extends Service {
             intent = new Intent("org.thosp.yourlocalweather.action.FALL_DOWN");
             NotificationUtils.cancelUpdateNotification(getBaseContext());
         }
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(getBaseContext().getPackageName());
         intent.putExtra("wakeupSource", wakeupSource);
         ContextCompat.startForegroundService(getBaseContext(), intent);
     }
@@ -150,14 +150,14 @@ public class AbstractCommonService extends Service {
                 TAG,
                 "going run reconciliation DB service");
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_RECONCILIATION");
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(getBaseContext().getPackageName());
         intent.putExtra("force", force);
         startService(intent);
     }
     
     protected void sendIntent(String intent) {
         Intent sendIntent = new Intent(intent);
-        sendIntent.setPackage("org.thosp.yourlocalweather");
+        sendIntent.setPackage(getBaseContext().getPackageName());
         ContextCompat.startForegroundService(getBaseContext(), sendIntent);
     }
 }

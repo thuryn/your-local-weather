@@ -1,8 +1,5 @@
 package org.thosp.yourlocalweather.service;
 
-import static org.thosp.yourlocalweather.utils.ForecastUtil.calculateWeatherMaxMinForDay;
-import static org.thosp.yourlocalweather.utils.ForecastUtil.createWeatherList;
-import static org.thosp.yourlocalweather.utils.ForecastUtil.getWeatherIdForDay;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 import android.app.AlarmManager;
@@ -22,43 +19,34 @@ import android.os.SystemClock;
 
 import androidx.core.content.ContextCompat;
 
-import com.google.android.gms.wearable.MessageClient;
-import com.google.android.gms.wearable.Node;
-import com.google.android.gms.wearable.Wearable;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.thosp.yourlocalweather.ConnectionDetector;
 import org.thosp.yourlocalweather.R;
+import org.thosp.yourlocalweather.WearServiceManager;
+import org.thosp.yourlocalweather.WearServiceManagerImpl;
 import org.thosp.yourlocalweather.WeatherJSONParser;
 import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.CompleteWeatherForecast;
 import org.thosp.yourlocalweather.model.CompleteWeatherInfo;
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper;
-import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.LicenseKeysDbHelper;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.Weather;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
-import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.GraphUtils;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
-import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.net.MalformedURLException;
-import java.nio.charset.StandardCharsets;
 import java.text.ParseException;
-import java.util.Calendar;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 import java.util.Queue;
 
 import cz.msebera.android.httpclient.Header;
@@ -91,6 +79,8 @@ public class UpdateWeatherService extends AbstractCommonService {
     private static volatile boolean gettingWeatherStarted;
 
     protected static final Queue<WeatherRequestDataHolder> updateWeatherUpdateMessages = new LinkedList<>();
+
+    private WearServiceManager wearServiceManager = new WearServiceManagerImpl(UpdateWeatherService.this);
 
     Handler timerHandler = new Handler();
     Runnable timerRunnable = new Runnable() {
@@ -517,88 +507,7 @@ public class UpdateWeatherService extends AbstractCommonService {
                     e);
         }
         if (location.getOrderId() == 0) {
-            sendUpdate2Wearables(location, weather, completeWeatherForecast);
-        }
-    }
-
-    private void sendUpdate2Wearables(Location location, Weather weather, CompleteWeatherForecast completeWeatherForecast) {
-        appendLog(this,
-                TAG, "Sending messages to all wearables");
-        MessageClient messageClient = Wearable.getMessageClient(this);
-
-        try {
-            JSONObject weatherJson = new JSONObject();
-            weatherJson.put("locationName", Utils.getCityAndCountry(this, location));
-            weatherJson.put("currentTemperature", weather.getTemperature());
-            weatherJson.put("apparentTemperature", TemperatureUtil.getApparentTemperature(
-                    weather.getTemperature(),
-                    weather.getHumidity(),
-                    weather.getWindSpeed(),
-                    weather.getClouds(),
-                    location.getLatitude(),
-                    System.currentTimeMillis()));
-            weatherJson.put("temperatureUnit", TemperatureUtil.getTemperatureUnit(this, AppPreference.getTemperatureUnitFromPreferences(this)));
-            weatherJson.put("humidity", weather.getHumidity());
-            weatherJson.put("weatherDescription", Utils.getWeatherDescription(this, weather));
-            weatherJson.put("sunrise", weather.getSunrise());
-            weatherJson.put("sunset", weather.getSunset());
-            weatherJson.put("windSpeed", weather.getWindSpeed());
-            weatherJson.put("windDegree", weather.getWindDirection());
-            weatherJson.put("pressure", weather.getPressure());
-            weatherJson.put("cloudiness", weather.getClouds());
-            weatherJson.put("weatherId", weather.getWeatherId());
-
-            int today = Calendar.getInstance().get(Calendar.DAY_OF_YEAR);
-
-            JSONArray dailyForecast = new JSONArray();
-            Map<Integer, List<DetailedWeatherForecast>> weatherList = createWeatherList(completeWeatherForecast, true);
-
-            for (Map.Entry<Integer, List<DetailedWeatherForecast>> entry : weatherList.entrySet()) {
-                int dayOfYear = entry.getKey();
-                ForecastUtil.WeatherMaxMinForDay weatherMaxMinForDay = calculateWeatherMaxMinForDay(entry.getValue());
-                ForecastUtil.WeatherIdsForDay weatherIdsForDay = getWeatherIdForDay(
-                        this,
-                        entry.getValue(),
-                        weatherMaxMinForDay);
-
-                JSONObject forecastJson = new JSONObject();
-                forecastJson.put("dayOfYear", dayOfYear);
-                forecastJson.put("minTemp", weatherMaxMinForDay.minTemp);
-                forecastJson.put("maxTemp", weatherMaxMinForDay.maxTemp);
-                forecastJson.put("maxWind", weatherMaxMinForDay.maxWind);
-                forecastJson.put("maxPressure", weatherMaxMinForDay.maxPressure);
-                forecastJson.put("maxRain", weatherMaxMinForDay.maxRain);
-                forecastJson.put("maxSnow", weatherMaxMinForDay.maxSnow);
-                forecastJson.put("maxHumidity", weatherMaxMinForDay.maxHumidity);
-                forecastJson.put("weatherId", weatherIdsForDay.mainWeatherId);
-                forecastJson.put("weatherDescription", weatherIdsForDay.mainWeatherDescriptionsFromOwm);
-                dailyForecast.put(forecastJson);
-                appendLog(this,
-                        TAG, "Added forecast for wearos with day of year ", (dayOfYear + ", " + dayOfYear % 365), " and main weather id:", String.valueOf(weatherIdsForDay.mainWeatherId));
-            }
-            weatherJson.put("dailyForecast", dailyForecast);
-
-            Wearable.getNodeClient(this).getConnectedNodes().addOnSuccessListener(nodes -> {
-                for (Node node: nodes) {
-                    appendLog(this,
-                            TAG, "Sending messages to the wearable ", node.getId());
-                    messageClient.sendMessage(node.getId(), "/weather_update", weatherJson.toString().getBytes(StandardCharsets.UTF_8))
-                            .addOnSuccessListener(messageId -> {
-                                appendLog(this,
-                                        TAG, "Message with ID " + messageId + " has been successfully sent!");
-                            })
-                            .addOnFailureListener(e -> {
-                                appendLog(this,
-                                        TAG, "Sending message to wearable id " + node.getId() + " failed", e);
-                            });
-                }
-            });
-            appendLog(this,
-                    TAG, "Sending messages to all wearables finished");
-        } catch (Exception e) {
-            appendLog(this,
-                    TAG,
-                    e);
+            wearServiceManager.sendUpdate2Wearables(location, weather, completeWeatherForecast);
         }
     }
 
@@ -676,7 +585,7 @@ public class UpdateWeatherService extends AbstractCommonService {
 
     private void sendIntentToForecast(String result) {
         Intent intent = new Intent(ACTION_FORECAST_UPDATE_RESULT);
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(getBaseContext().getPackageName());
         if (result.equals(ACTION_WEATHER_UPDATE_OK)) {
             intent.putExtra(ACTION_FORECAST_UPDATE_RESULT, ACTION_WEATHER_UPDATE_OK);
         } else if (result.equals(ACTION_WEATHER_UPDATE_FAIL)) {
@@ -694,7 +603,7 @@ public class UpdateWeatherService extends AbstractCommonService {
 
     private void sendIntentToGraphs(String result) {
         Intent intent = new Intent(ACTION_GRAPHS_UPDATE_RESULT);
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(getBaseContext().getPackageName());
         if (result.equals(ACTION_WEATHER_UPDATE_OK)) {
             intent.putExtra(ACTION_GRAPHS_UPDATE_RESULT, ACTION_WEATHER_UPDATE_OK);
         } else if (result.equals(ACTION_WEATHER_UPDATE_FAIL)) {
@@ -773,7 +682,7 @@ public class UpdateWeatherService extends AbstractCommonService {
                                                       Weather weather,
                                                       long now) {
         Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_VOICE_WEATHER_UPDATED");
-        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        intentToStartUpdate.setPackage(getBaseContext().getPackageName());
         intentToStartUpdate.putExtra("weatherByVoiceLocation", location);
         intentToStartUpdate.putExtra("weatherByVoiceWeather", weather);
         intentToStartUpdate.putExtra("weatherByVoiceTime", now);

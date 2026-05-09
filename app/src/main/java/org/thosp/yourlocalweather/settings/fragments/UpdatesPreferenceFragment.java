@@ -139,12 +139,13 @@ public class UpdatesPreferenceFragment extends PreferenceFragmentCompat implemen
 
     private void updateSummary(String key, boolean changing) {
         entrySummary(key);
+        Context context = requireContext();
         switch (key) {
             case Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD:
                 if (changing) {
                     AppPreference.getInstance().clearLocationAutoUpdatePeriod();
                     Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");
-                    intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+                    intentToStartUpdate.setPackage(context.getPackageName());
                     getActivity().startService(intentToStartUpdate);
                 }
                 break;
@@ -152,7 +153,7 @@ public class UpdatesPreferenceFragment extends PreferenceFragmentCompat implemen
                 if (changing) {
                     AppPreference.getInstance().clearLocationUpdatePeriod();
                     Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");
-                    intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+                    intentToStartUpdate.setPackage(context.getPackageName());
                     getActivity().startService(intentToStartUpdate);
                 }
                 break;

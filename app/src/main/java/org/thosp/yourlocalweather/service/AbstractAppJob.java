@@ -5,29 +5,17 @@ import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.app.job.JobService;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Build;
-import android.os.IBinder;
-import android.os.Message;
-import android.os.Messenger;
-import android.os.RemoteException;
 
 import org.thosp.yourlocalweather.model.Location;
-import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.Utils;
-
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 import androidx.core.content.ContextCompat;
 
-@TargetApi(Build.VERSION_CODES.M)
+@androidx.annotation.RequiresApi(Build.VERSION_CODES.M)
 public abstract class AbstractAppJob extends JobService {
 
     private static final String TAG = "AbstractAppJob";
@@ -55,7 +43,7 @@ public abstract class AbstractAppJob extends JobService {
     protected void sendMessageToWeatherForecastService(long locationId, String updateSource) {
         appendLog(getBaseContext(), TAG, "sendMessageToWeatherForecastService:locationId=", locationId);
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(getBaseContext().getPackageName());
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(locationId, updateSource, UpdateWeatherService.START_WEATHER_FORECAST_UPDATE));
         ContextCompat.startForegroundService(this, intent);
     }
@@ -72,7 +60,7 @@ public abstract class AbstractAppJob extends JobService {
                                                       boolean updateWeatherOnly) {
         appendLog(getBaseContext(), TAG, "sendMessageToCurrentWeatherService:locationId=", location.getId());
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
-        intent.setPackage("org.thosp.yourlocalweather");
+        intent.setPackage(getBaseContext().getPackageName());
         intent.putExtra("weatherRequest", new WeatherRequestDataHolder(location.getId(), updateSource, updateWeatherOnly, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE));
         ContextCompat.startForegroundService(this, intent);
     }

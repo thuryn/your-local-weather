@@ -289,7 +289,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
             Intent intentRefreshService = new Intent(context, widgetClass);
             intentRefreshService.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
-            intentRefreshService.setPackage("org.thosp.yourlocalweather");
+            intentRefreshService.setPackage(context.getPackageName());
             intentRefreshService.putExtra("widgetId", widgetId);
             PendingIntent pendingIntent = PendingIntent.getBroadcast(context, widgetId,
                     intentRefreshService, PendingIntent.FLAG_IMMUTABLE);
@@ -414,7 +414,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
     private static void setSettingButtonAction(Context context, int widgetId, WidgetSettingName settingName, int buttonId, RemoteViews remoteViews, Class widgetClass) {
         Intent intentWeatherForecastWidgetProvider = new Intent(context, widgetClass);
         intentWeatherForecastWidgetProvider.setAction(Constants.ACTION_APPWIDGET_SETTINGS_OPENED);
-        intentWeatherForecastWidgetProvider.setPackage("org.thosp.yourlocalweather");
+        intentWeatherForecastWidgetProvider.setPackage(context.getPackageName());
         intentWeatherForecastWidgetProvider.putExtra("settingName", settingName.getWidgetSettingName());
         intentWeatherForecastWidgetProvider.putExtra("widgetId", widgetId);
         PendingIntent pendingWeatherForecastWidgetProvider = PendingIntent.getBroadcast(context, widgetId + settingName.getSettingNameId(),
@@ -486,14 +486,14 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
         long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
         Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
-        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        intentToStartUpdate.setPackage(context.getPackageName());
         intentToStartUpdate.putExtra("locationId", locationId);
         ContextCompat.startForegroundService(context, intentToStartUpdate);
     }
 
     private void startWeatherUpdate(Context context, Location location) {
         Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
-        intentToStartUpdate.setPackage("org.thosp.yourlocalweather");
+        intentToStartUpdate.setPackage(context.getPackageName());
         intentToStartUpdate.putExtra("weatherRequest", new WeatherRequestDataHolder(location.getId(),
                 null,
                 true,
