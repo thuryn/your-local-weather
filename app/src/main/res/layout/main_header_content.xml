@@ -47,7 +47,8 @@
         android:orientation="horizontal"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_locality_panel">
+        app:layout_constraintTop_toBottomOf="@+id/main_locality_panel"
+        android:id="@+id/main_weather_condition_panel">
 
         <ImageView
             android:id="@+id/main_weather_icon"
@@ -70,9 +71,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_weather_condition_panel">
 
         <TextView
             android:id="@+id/main_description"

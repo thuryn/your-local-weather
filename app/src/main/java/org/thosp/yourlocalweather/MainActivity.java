@@ -572,6 +572,7 @@ public class MainActivity extends BaseActivity
                                 if (act != null && act.binding != null) {
                                     act.binding.mainContent.mainSwipeRefresh.setRefreshing(false);
                                     act.setUpdateButtonState(false);
+                                    act.updateLocationCityTimeAndSource();
                                     YourLocalWeather.executor.submit(() -> act.updateUI());
                                 }
                             });
