@@ -83,30 +83,47 @@ public class WeatherByVoiceService extends Service {
     }
 
     @Override
-    public int onStartCommand(Intent intent, int flags, final int startId) {
-        int ret = super.onStartCommand(intent, flags, startId);
-        if (intent == null) {
-            return ret;
+    public void onDestroy() {
+        if (tts != null) {
+            tts.stop();
+            tts.shutdown();
+            appendLog(getBaseContext(), TAG, "TTS Engine shutdown completed");
         }
+        super.onDestroy();
+    }
+
+    private int lastStartId;
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        super.onStartCommand(intent, flags, startId);
+        this.lastStartId = startId;
+
+        if (intent == null) {
+            stopSelf(startId);
+            return START_NOT_STICKY;
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()), ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK);
         } else {
             startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
         }
         appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
+
         switch (intent.getAction()) {
             case "org.thosp.yourlocalweather.action.SAY_WEATHER":
                 sayWeatherByTime(intent);
-                stopForeground(true);
-                return ret;
+                return START_NOT_STICKY;
             case "org.thosp.yourlocalweather.action.START_VOICE_WEATHER_UPDATED":
                 startVoiceCommand(intent);
-                stopForeground(true);
-                return ret;
+                return START_NOT_STICKY;
             default:
         }
+
         stopForeground(true);
-        return ret;
+        stopSelf(startId);
+        return START_NOT_STICKY;
     }
 
     private void sayWeatherByTime(Intent intent) {
@@ -115,6 +132,8 @@ public class WeatherByVoiceService extends Service {
         appendLog(getBaseContext(), TAG, "sayWeatherByTime:", voiceSettingId);
 
         if (voiceSettingId == Long.MAX_VALUE) {
+            stopForeground(true);
+            stopSelf(lastStartId);
             return;
         }
         TimeUtils.setupAlarmForVoice(getBaseContext());
@@ -248,20 +267,12 @@ public class WeatherByVoiceService extends Service {
     public void startVoiceCommand() {
         appendLog(getBaseContext(), TAG, "startVoiceCommand");
 
-        appendLog(getBaseContext(),
-                TAG,
-                "weatherByVoiceMessages.size before peek = ", weatherByVoiceMessages);
-
         WeatherByVoiceRequestDataHolder updateRequest = weatherByVoiceMessages.poll();
 
-        appendLog(getBaseContext(),
-                TAG,
-                "weatherByVoiceMessages.size after peek = ", weatherByVoiceMessages);
-
         if (updateRequest == null) {
-            appendLog(getBaseContext(),
-                    TAG,
-                    "updateRequest is null");
+            appendLog(getBaseContext(), TAG, "updateRequest is null - stopping service");
+            stopForeground(true);
+            stopSelf(lastStartId);
             return;
         }
         sayCurrentWeatherForLocation(updateRequest);
@@ -786,24 +797,14 @@ public class WeatherByVoiceService extends Service {
         if (available >= TextToSpeech.LANG_AVAILABLE) {
             tts.setLanguage(locale);
             tts.setSpeechRate(1.0f);
-            if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                int counter = 0;
-                for (String text: texts) {
-                    if (TTS_DELAY_BETWEEN_ITEM.equals(text)) {
-                        tts.playSilentUtterance(TTS_DELAY_BETWEEN_ITEM_IN_MS, TextToSpeech.QUEUE_ADD, "111111" + (counter++));
-                    } else if (TTS_END.equals(text)) {
-                        tts.playSilentUtterance(TTS_DELAY_BETWEEN_ITEM_IN_MS, TextToSpeech.QUEUE_ADD, TTS_END);
-                    } else {
-                        tts.speak(text, TextToSpeech.QUEUE_ADD, null, "111111" + (counter++));
-                    }
-                }
-            } else {
-                for (String text: texts) {
-                    if (TTS_DELAY_BETWEEN_ITEM.equals(text)) {
-                        tts.playSilence(TTS_DELAY_BETWEEN_ITEM_IN_MS, TextToSpeech.QUEUE_ADD, null);
-                    } else {
-                        tts.speak(text, TextToSpeech.QUEUE_ADD, null);
-                    }
+            int counter = 0;
+            for (String text: texts) {
+                if (TTS_DELAY_BETWEEN_ITEM.equals(text)) {
+                    tts.playSilentUtterance(TTS_DELAY_BETWEEN_ITEM_IN_MS, TextToSpeech.QUEUE_ADD, "111111" + (counter++));
+                } else if (TTS_END.equals(text)) {
+                    tts.playSilentUtterance(TTS_DELAY_BETWEEN_ITEM_IN_MS, TextToSpeech.QUEUE_ADD, TTS_END);
+                } else {
+                    tts.speak(text, TextToSpeech.QUEUE_ADD, null, "111111" + (counter++));
                 }
             }
             sayWhatWhenRecreated = null;
@@ -948,8 +949,30 @@ public class WeatherByVoiceService extends Service {
             @Override
             public void onInit(int status) {
                 appendLog(getBaseContext(), TAG, "TextToSpeech initialized with status: " + status);
-                if ((tts != null) && (status == TextToSpeech.SUCCESS) && (what != null)) {
-                    say(what);
+                if (status == TextToSpeech.SUCCESS && tts != null) {
+                    tts.setOnUtteranceProgressListener(new android.speech.tts.UtteranceProgressListener() {
+                        @Override
+                        public void onStart(String utteranceId) {}
+
+                        @Override
+                        public void onDone(String utteranceId) {
+                            if (TTS_END.equals(utteranceId)) {
+                                appendLog(getBaseContext(), TAG, "TTS playback completed, checking next queue item");
+                                new Handler(android.os.Looper.getMainLooper()).post(() -> startVoiceCommand());
+                            }
+                        }
+
+                        @Override
+                        public void onError(String utteranceId) {
+                            if (TTS_END.equals(utteranceId)) {
+                                new Handler(android.os.Looper.getMainLooper()).post(() -> startVoiceCommand());
+                            }
+                        }
+                    });
+
+                    if (what != null) {
+                        say(what);
+                    }
                 }
             }
         };

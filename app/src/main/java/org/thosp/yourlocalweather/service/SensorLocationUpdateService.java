@@ -35,14 +35,12 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
         }
         Notification notification = NotificationUtils.getNotificationForActivity(getBaseContext());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            //check permission
             try {
                 startForeground(NotificationUtils.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
             } catch (Exception e) {
                 appendLog(getBaseContext(), TAG, "Failed to start foreground service", e);
-                // Fallback or error handling
-                // For example, stop the service if it cannot run in the foreground
                 stopSelf();
+                return START_NOT_STICKY;
             }
         } else {
             startForeground(NotificationUtils.NOTIFICATION_ID, notification);
@@ -52,19 +50,30 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
         switch (intent.getAction()) {
             case "org.thosp.yourlocalweather.action.START_SENSOR_BASED_UPDATES":
                 performSensorBasedUpdates();
+                if (!receiversRegistered) {
+                    stopForeground(true);
+                    stopSelf(startId);
+                    return START_NOT_STICKY;
+                }
                 return START_STICKY;
+
             case "org.thosp.yourlocalweather.action.STOP_SENSOR_BASED_UPDATES":
                 stopSensorBasedUpdates();
                 stopForeground(true);
+                stopSelf(startId);
                 return START_NOT_STICKY;
+
             case "android.intent.action.CLEAR_SENSOR_VALUES":
                 clearMeasuredLength();
                 stopForeground(true);
+                stopSelf(startId);
                 return START_NOT_STICKY;
+
             default:
                 NotificationUtils.cancelUpdateNotification(getBaseContext());
         }
         stopForeground(true);
+        stopSelf(startId);
         return START_NOT_STICKY;
     }
     

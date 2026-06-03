@@ -22,7 +22,6 @@ import android.net.wifi.WifiManager;
 import android.os.Binder;
 import android.os.Build;
 import android.os.IBinder;
-import android.os.SystemClock;
 import android.telephony.TelephonyManager;
 
 import androidx.core.content.ContextCompat;
@@ -55,15 +54,9 @@ public class NetworkLocationProvider extends Service {
             }
             nextScanningAllowedFrom = null;
             scanning = false;
-            if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
-                if (jobId != null) {
-                    JobScheduler jobScheduler = getSystemService(JobScheduler.class);
-                    jobScheduler.cancel(jobId);
-                }
-            } else {
-                if (intentToCancel != null) {
-                    alarmManager.cancel(intentToCancel);
-                }
+            if (jobId != null) {
+                JobScheduler jobScheduler = getSystemService(JobScheduler.class);
+                jobScheduler.cancel(jobId);
             }
             List<ScanResult> scans = null;
             try {
@@ -77,7 +70,7 @@ public class NetworkLocationProvider extends Service {
             if (scans == null) {
                 appendLog(getBaseContext(), TAG, "WifiManager.getScanResults returned null");
             }
-            getLocationFromWifisAndCells(scans);
+            getLocationFromWifisAndCells(scans, lastStartId);
         }
     };
 
@@ -129,63 +122,72 @@ public class NetworkLocationProvider extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        int ret = super.onStartCommand(intent, flags, startId);
+        super.onStartCommand(intent, flags, startId);
 
         if (intent == null) {
-            return ret;
+            stopSelf(startId);
+            return START_NOT_STICKY;
         }
 
-        if (null != intent.getAction()) switch (intent.getAction()) {
-            case "org.thosp.yourlocalweather.action.START_LOCATION_UPDATE":
-                Notification notification = NotificationUtils.getNotificationForActivity(getBaseContext());
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    startForeground(NotificationUtils.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
-                } else {
-                    startForeground(NotificationUtils.NOTIFICATION_ID, notification);
-                }
-                startLocationUpdate(intent.getParcelableExtra("inputLocation"));
-                return ret;
-            case "org.thosp.yourlocalweather.action.LOCATION_UPDATE_CELLS_ONLY":
-                startLocationUpdateCellsOnly();
-                return ret;
-            default:
-                break;
+        if (null != intent.getAction()) {
+            switch (intent.getAction()) {
+                case "org.thosp.yourlocalweather.action.START_LOCATION_UPDATE":
+                    Notification notification = NotificationUtils.getNotificationForActivity(getBaseContext());
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                        startForeground(NotificationUtils.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+                    } else {
+                        startForeground(NotificationUtils.NOTIFICATION_ID, notification);
+                    }
+                    startLocationUpdate(intent.getParcelableExtra("inputLocation"), startId);
+                    return START_NOT_STICKY;
+
+                case "org.thosp.yourlocalweather.action.LOCATION_UPDATE_CELLS_ONLY":
+                    startLocationUpdateCellsOnly(startId);
+                    return START_NOT_STICKY;
+
+                default:
+                    break;
+            }
         }
-        return START_STICKY;
+        stopSelf(startId);
+        return START_NOT_STICKY;
     }
 
-    public void startLocationUpdateCellsOnly() {
+    public void startLocationUpdateCellsOnly(int startId) {
         appendLog(getBaseContext(), TAG,
                 "LOCATION_UPDATE_CELLS_ONLY:nextScanningAllowedFrom:",
                 nextScanningAllowedFrom);
         if (nextScanningAllowedFrom == null) {
             stopForeground(true);
+            stopSelf(startId); // ZDE: práce skončila, stop
             return;
         }
         nextScanningAllowedFrom = null;
         scanning = false;
-        getLocationFromWifisAndCells(null);
+        getLocationFromWifisAndCells(null, startId);
     }
 
-    public void startLocationUpdate(Location inputLocation) {
+    public void startLocationUpdate(Location inputLocation, int startId) {
         if (nextScanningAllowedFrom != null) {
             Calendar now = Calendar.getInstance();
             if (now.before(nextScanningAllowedFrom)) {
                 NotificationUtils.cancelUpdateNotification(getBaseContext());
                 stopForeground(true);
+                stopSelf(startId);
                 return;
             }
         }
         if (inputLocation != null) {
             MozillaLocationService.getInstance().processUpdateOfLocation(getBaseContext(), inputLocation);
+            NotificationUtils.cancelUpdateNotification(getBaseContext());
+            stopForeground(true);
+            stopSelf(startId);
         } else {
-            sendUpdateToLocationBackends();
+            sendUpdateToLocationBackends(startId);
         }
-        NotificationUtils.cancelUpdateNotification(getBaseContext());
-        stopForeground(true);
     }
 
-    private void sendUpdateToLocationBackends() {
+    private void sendUpdateToLocationBackends(int startId) {
         appendLog(getBaseContext(), TAG,
                 "update():nextScanningAllowedFrom:",
                 nextScanningAllowedFrom);
@@ -200,38 +202,31 @@ public class NetworkLocationProvider extends Service {
                 nextScanningAllowedFrom.add(Calendar.MINUTE, 15);
             }
         }
-        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.M) {
-            ComponentName serviceComponent = new ComponentName(this, NetworkLocationCellsOnlyJob.class);
-            JobInfo.Builder builder = new JobInfo.Builder(NetworkLocationCellsOnlyJob.JOB_ID, serviceComponent);
-            builder.setMinimumLatency(8000); // wait at least
-            builder.setOverrideDeadline(10000); // maximum delay
-            JobInfo jobInfo = builder.build();
-            jobId= jobInfo.getId();
-            JobScheduler jobScheduler = getSystemService(JobScheduler.class);
-            jobScheduler.schedule(jobInfo);
-        } else {
-            intentToCancel = getIntentToGetCellsOnly();
-            try {
-                alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                        SystemClock.elapsedRealtime() + 8000,
-                        intentToCancel);
-            } catch (SecurityException se) {
-                appendLog(getBaseContext(), TAG, "SecurityException in update():", se);
-            }
-        }
+
+        ComponentName serviceComponent = new ComponentName(this, NetworkLocationCellsOnlyJob.class);
+        JobInfo.Builder builder = new JobInfo.Builder(NetworkLocationCellsOnlyJob.JOB_ID, serviceComponent);
+        builder.setMinimumLatency(8000);
+        builder.setOverrideDeadline(10000);
+        JobInfo jobInfo = builder.build();
+        jobId= jobInfo.getId();
+        JobScheduler jobScheduler = getSystemService(JobScheduler.class);
+        jobScheduler.schedule(jobInfo);
+        this.lastStartId = startId;
         appendLog(getBaseContext(), TAG, "update():cells only task scheduled");
     }
+    private int lastStartId;
 
-    private void getLocationFromWifisAndCells(List<ScanResult> scans) {
+    private void getLocationFromWifisAndCells(List<ScanResult> scans, int startId) {
         appendLog(getBaseContext(), TAG,
                 "getLocationFromWifisAndCells(), scans=",
-                        scans);
+                scans);
         MozillaLocationService.getInstance().getLocationFromCellsAndWifis(getBaseContext(),
-                                                                          LocationNetworkSourcesService.getInstance().getCells(getBaseContext(),
-                                                                          mTelephonyManager),
-                                                                          scans);
+                LocationNetworkSourcesService.getInstance().getCells(getBaseContext(),
+                        mTelephonyManager),
+                scans);
         NotificationUtils.cancelUpdateNotification(getBaseContext());
         stopForeground(true);
+        stopSelf(startId);
     }
 
     private PendingIntent getIntentToGetCellsOnly() {

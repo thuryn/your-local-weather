@@ -20,15 +20,24 @@ public class NotificationService extends AbstractCommonService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
-        int ret = super.onStartCommand(intent, flags, startId);
+        super.onStartCommand(intent, flags, startId);
         appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
 
         if (intent == null) {
-            return ret;
+            stopSelf(startId);
+            return START_NOT_STICKY;
         }
+
         switch (intent.getAction()) {
-            case "org.thosp.yourlocalweather.action.START_WEATHER_NOTIFICATION_UPDATE": startWeatherCheck(); scheduleNextNotificationAlarm(); return ret;
-            default: return ret;
+            case "org.thosp.yourlocalweather.action.START_WEATHER_NOTIFICATION_UPDATE":
+                startWeatherCheck();
+                scheduleNextNotificationAlarm();
+                stopSelf(startId);
+                return START_NOT_STICKY;
+
+            default:
+                stopSelf(startId);
+                return START_NOT_STICKY;
         }
     }
 
@@ -59,18 +68,12 @@ public class NotificationService extends AbstractCommonService {
         long intervalMillis = Utils.intervalMillisForAlarm(intervalPref);
         appendLog(this, TAG, "Build.VERSION.SDK_INT:", Build.VERSION.SDK_INT);
         PendingIntent pendingIntent = getPendingIntentForNotifiation();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            try {
-                alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + intervalMillis,
-                    pendingIntent);
-            } catch (SecurityException se) {
-                appendLog(getBaseContext(), TAG, "SecurityException in update():", se);
-            }
-        } else {
-            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + intervalMillis,
-                    pendingIntent);
+        try {
+            alarmManager.setExact(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime() + intervalMillis,
+                pendingIntent);
+        } catch (SecurityException se) {
+            appendLog(getBaseContext(), TAG, "SecurityException in update():", se);
         }
     }
 

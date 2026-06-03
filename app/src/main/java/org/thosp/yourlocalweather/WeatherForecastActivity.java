@@ -6,19 +6,17 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.IntentFilter;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import androidx.core.app.NavUtils;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import org.thosp.yourlocalweather.adapter.WeatherForecastAdapter;
+import org.thosp.yourlocalweather.databinding.ActivityWeatherForecastBinding;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
@@ -38,7 +36,8 @@ public class WeatherForecastActivity extends ForecastingActivity {
 
     private volatile boolean inited;
 
-    private RecyclerView mRecyclerView;
+    // 1. Deklarujeme instanční proměnnou bindingu
+    private ActivityWeatherForecastBinding binding;
     private Set<Integer> visibleColumns = new HashSet<>();
 
     @SuppressLint("MissingInflatedId")
@@ -46,30 +45,55 @@ public class WeatherForecastActivity extends ForecastingActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initializeWeatherForecastReceiver(UpdateWeatherService.ACTION_FORECAST_UPDATE_RESULT);
-        setContentView(R.layout.activity_weather_forecast);
 
-        mRecyclerView = findViewById(R.id.forecast_recycler_view);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        localityView = findViewById(R.id.forecast_locality);
-        switchLocationButton = findViewById(R.id.forecast_switch_location);
-        Typeface robotoLight = Typeface.createFromAsset(this.getAssets(),
-                "fonts/Roboto-Light.ttf");
+        // 2. Inicializujeme View Binding a nastavíme root view
+        binding = ActivityWeatherForecastBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        // 3. Přístup k RecyclerView a naplnění proměnných z parent třídy přes binding
+        binding.forecastRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        localityView = binding.forecastLocality;
+        switchLocationButton = binding.forecastSwitchLocation;
+
+        Typeface robotoLight = Typeface.createFromAsset(this.getAssets(), "fonts/Roboto-Light.ttf");
         localityView.setTypeface(robotoLight);
 
         appendLog(getBaseContext(), TAG, "Start processing forecast");
-        YourLocalWeather.executor.submit(() -> {
-                    visibleColumns = AppPreference.getInstance().getForecastActivityColumns(this);
-                    connectionDetector = new ConnectionDetector(WeatherForecastActivity.this);
-                    connectionDetector = new ConnectionDetector(this);
-                    locationsDbHelper = LocationsDbHelper.getInstance(this);
-                    pressureUnitFromPreferences = AppPreference.getPressureUnitFromPreferences(this);
-                    rainSnowUnitFromPreferences = AppPreference.getRainSnowUnitFromPreferences(this);
-                    temperatureUnitFromPreferences = AppPreference.getTemperatureUnitFromPreferences(this);
-                    updateUI();
-                    inited = true;
-                });
 
-        mRecyclerView.setOnTouchListener(new ActivityTransitionTouchListener(
+        final Context appContext = this.getApplicationContext();
+        final java.lang.ref.WeakReference<WeatherForecastActivity> activityRef = new java.lang.ref.WeakReference<>(this);
+
+        YourLocalWeather.executor.submit(() -> {
+            WeatherForecastActivity activity = activityRef.get();
+            if (activity == null || activity.isFinishing() || activity.isDestroyed()) {
+                return;
+            }
+
+            Set<Integer> cols = AppPreference.getInstance().getForecastActivityColumns(appContext);
+            ConnectionDetector detector = new ConnectionDetector(appContext);
+            LocationsDbHelper dbHelper = LocationsDbHelper.getInstance(appContext);
+            String pressUnit = AppPreference.getPressureUnitFromPreferences(appContext);
+            String rainSnowUnit = AppPreference.getRainSnowUnitFromPreferences(appContext);
+            String tempUnit = AppPreference.getTemperatureUnitFromPreferences(appContext);
+
+            activity.runOnUiThread(() -> {
+                WeatherForecastActivity act = activityRef.get();
+                if (act != null && !act.isFinishing() && !act.isDestroyed()) {
+                    act.visibleColumns = cols;
+                    act.connectionDetector = detector;
+                    act.locationsDbHelper = dbHelper;
+                    act.pressureUnitFromPreferences = pressUnit;
+                    act.rainSnowUnitFromPreferences = rainSnowUnit;
+                    act.temperatureUnitFromPreferences = tempUnit;
+
+                    act.updateUI();
+                    act.inited = true;
+                }
+            });
+        });
+
+        binding.forecastRecyclerView.setOnTouchListener(new ActivityTransitionTouchListener(
                 MainActivity.class,
                 GraphsActivity.class, this));
         appendLog(getBaseContext(), TAG, "Finished processing forecast");
@@ -77,21 +101,28 @@ public class WeatherForecastActivity extends ForecastingActivity {
 
     @Override
     protected void updateUI() {
+        // Pojistka pro případ, že asynchronní exekutor zavolá updateUI po onDestroy()
+        if (binding == null) {
+            return;
+        }
+
         appendLog(getBaseContext(), TAG, "UpdateUI start processing");
         int maxOrderId = locationsDbHelper.getMaxOrderId();
         runOnUiThread(new Runnable() {
-              @Override
-              public void run() {
-                  View switchPanel = findViewById(R.id.forecast_switch_panel);
-                  switchPanel.setVisibility(View.INVISIBLE);
-                  if ((maxOrderId > 1) ||
-                          ((maxOrderId == 1) && (locationsDbHelper.getLocationByOrderId(0).isEnabled()))) {
-                      switchLocationButton.setVisibility(View.VISIBLE);
-                  } else {
-                      switchLocationButton.setVisibility(View.GONE);
-                  }
-              }
-          });
+            @Override
+            public void run() {
+                if (binding == null) return;
+
+                // Použití bindingu namísto findViewById v celém UI threadu
+                binding.forecastSwitchPanel.setVisibility(View.INVISIBLE);
+                if ((maxOrderId > 1) ||
+                        ((maxOrderId == 1) && (locationsDbHelper.getLocationByOrderId(0).isEnabled()))) {
+                    switchLocationButton.setVisibility(View.VISIBLE);
+                } else {
+                    switchLocationButton.setVisibility(View.GONE);
+                }
+            }
+        });
 
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
         long locationId = AppPreference.getCurrentLocationId(WeatherForecastActivity.this);
@@ -115,7 +146,9 @@ public class WeatherForecastActivity extends ForecastingActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                localityView.setText(cityAndCountry);
+                if (localityView != null) {
+                    localityView.setText(cityAndCountry);
+                }
             }
         });
 
@@ -131,13 +164,14 @@ public class WeatherForecastActivity extends ForecastingActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                ImageView android = findViewById(R.id.android);
+                if (binding == null) return;
+
                 if (weatherForecastList.isEmpty()) {
-                    mRecyclerView.setVisibility(View.INVISIBLE);
-                    android.setVisibility(View.VISIBLE);
+                    binding.forecastRecyclerView.setVisibility(View.INVISIBLE);
+                    binding.android.setVisibility(View.VISIBLE);
                 } else {
-                    mRecyclerView.setVisibility(View.VISIBLE);
-                    android.setVisibility(View.GONE);
+                    binding.forecastRecyclerView.setVisibility(View.VISIBLE);
+                    binding.android.setVisibility(View.GONE);
                 }
                 appendLog(getBaseContext(), TAG, "UpdateUI create adapter processing");
                 WeatherForecastAdapter adapter = new WeatherForecastAdapter(WeatherForecastActivity.this,
@@ -151,7 +185,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
                         timeStylePreference,
                         visibleColumns,
                         showMinMaxOnly);
-                mRecyclerView.setAdapter(adapter);
+                binding.forecastRecyclerView.setAdapter(adapter);
             }
         });
         appendLog(getBaseContext(), TAG, "UpdateUI finished processing");
@@ -232,9 +266,7 @@ public class WeatherForecastActivity extends ForecastingActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which,
                                                 boolean isChecked) {
-                                // Else, if the item is already in the array, remove it
                                 if (isChecked) {
-                                    // If the user checked the item, add it to the selected items
                                     mSelectedItems.add(which);
                                 } else mSelectedItems.remove(which);
                             }
@@ -261,5 +293,11 @@ public class WeatherForecastActivity extends ForecastingActivity {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        binding = null;
     }
 }

@@ -35,26 +35,45 @@ public class AppAlarmService extends AbstractCommonService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
-        int ret = super.onStartCommand(intent, flags, startId);
+        super.onStartCommand(intent, flags, startId); // Zavoláme nadtřídu, ret ignorujeme
 
         if (intent == null) {
-            return ret;
+            stopSelf(startId);
+            return START_NOT_STICKY;
         }
+
+        final String action = intent.getAction();
+
         YourLocalWeather.executor.submit(() -> {
-            appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
-            if ("org.thosp.yourlocalweather.action.START_ALARM_SERVICE".equals(intent.getAction())) {
-                setAlarm();
-            } else if ("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE".equals(intent.getAction())) {
-                setAlarm();
-            } else if ("org.thosp.yourlocalweather.action.RESTART_NOTIFICATION_ALARM_SERVICE".equals(intent.getAction())) {
-                scheduleNextNotificationAlarm();
-            } else if ("org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM_AUTO".equals(intent.getAction())) {
-                startLocationWeatherAlarmAuto();
-            } else if ("org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM_REGULAR".equals(intent.getAction())) {
-                startLocationWeatherAlarmRegular();
+            try {
+                appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", action);
+                if (action == null) {
+                    return;
+                }
+
+                switch (action) {
+                    case "org.thosp.yourlocalweather.action.START_ALARM_SERVICE":
+                    case "org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE":
+                        setAlarm();
+                        break;
+                    case "org.thosp.yourlocalweather.action.RESTART_NOTIFICATION_ALARM_SERVICE":
+                        scheduleNextNotificationAlarm();
+                        break;
+                    case "org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM_AUTO":
+                        startLocationWeatherAlarmAuto();
+                        break;
+                    case "org.thosp.yourlocalweather.action.START_LOCATION_WEATHER_ALARM_REGULAR":
+                        startLocationWeatherAlarmRegular();
+                        break;
+                    default:
+                        break;
+                }
+            } finally {
+                stopSelf(startId);
             }
         });
-        return ret;
+
+        return START_NOT_STICKY;
     }
 
     private void startLocationWeatherAlarmRegular() {
@@ -168,15 +187,9 @@ public class AppAlarmService extends AbstractCommonService {
         }
 
         alarmManager.cancel(notificationPendingIntent);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + intervalMillis,
-                    notificationPendingIntent);
-        } else {
-            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + intervalMillis,
-                    notificationPendingIntent);
-        }
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime() + intervalMillis,
+                notificationPendingIntent);
     }
 
     private PendingIntent getPendingIntentForNotifiation() {
@@ -197,15 +210,9 @@ public class AppAlarmService extends AbstractCommonService {
 
         PendingIntent pendingIntent = getPendingIntent(context, autoLocation);
         alarmManager.cancel(pendingIntent);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + updatePeriodMilis,
-                    pendingIntent);
-        } else {
-            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + updatePeriodMilis,
-                    pendingIntent);
-        }
+        alarmManager.setExactAndAllowWhileIdle(AlarmManager.ELAPSED_REALTIME_WAKEUP,
+                SystemClock.elapsedRealtime() + updatePeriodMilis,
+                pendingIntent);
     }
 
     public void startSensorBasedUpdates() {

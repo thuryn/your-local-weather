@@ -1,19 +1,15 @@
 package org.thosp.yourlocalweather.service;
 
-import android.annotation.TargetApi;
 import android.app.job.JobParameters;
 import android.app.job.JobService;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.os.Build;
 import android.os.IBinder;
-
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
-@TargetApi(Build.VERSION_CODES.M)
 public class NetworkLocationCellsOnlyJob extends JobService {
     private static final String TAG = "NetworkLocationCellsOnlyJob";
     public static final int JOB_ID = 47038763;
@@ -50,7 +46,7 @@ public class NetworkLocationCellsOnlyJob extends JobService {
             NetworkLocationProvider.NetworkLocationProviderBinder binder =
                     (NetworkLocationProvider.NetworkLocationProviderBinder) service;
             networkLocationProvider = binder.getService();
-            networkLocationProvider.startLocationUpdateCellsOnly();
+            networkLocationProvider.startLocationUpdateCellsOnly(0);
             jobFinished(params, false);
         }
 

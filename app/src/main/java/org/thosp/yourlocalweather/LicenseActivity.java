@@ -4,12 +4,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+
+import org.thosp.yourlocalweather.databinding.ActivityLicenseBinding;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -20,11 +20,18 @@ import static org.thosp.yourlocalweather.R.string.title_activity_license;
 
 public class LicenseActivity extends AppCompatActivity {
 
+    // 1. Deklarujeme instanční proměnnou pro vygenerovaný binding
+    private ActivityLicenseBinding binding;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         ((YourLocalWeather) getApplication()).applyTheme(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_license);
+
+        // 2. Inicializujeme View Binding a nastavíme root view
+        binding = ActivityLicenseBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         setupActionBar();
 
         final String path = getIntent().getData().getPath();
@@ -32,12 +39,13 @@ public class LicenseActivity extends AppCompatActivity {
         setTitle(getString(title_activity_license).replace("%s", path.substring(24)));
 
         try {
-            TextView licenseTextView = findViewById(R.id.license_license_text);
             final String licenseText = readLicense(getAssets().open(path.substring(15)));
+
+            // 3. K TextView přistupujeme bezpečně a přímo skrze binding objekt
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                licenseTextView.setText(Html.fromHtml(licenseText.replace("\n\n", "<br/><br/>"), Html.FROM_HTML_MODE_LEGACY));
+                binding.licenseLicenseText.setText(Html.fromHtml(licenseText.replace("\n\n", "<br/><br/>"), Html.FROM_HTML_MODE_LEGACY));
             } else {
-                licenseTextView.setText(Html.fromHtml(licenseText.replace("\n\n", "<br/><br/>")));
+                binding.licenseLicenseText.setText(Html.fromHtml(licenseText.replace("\n\n", "<br/><br/>")));
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -45,8 +53,8 @@ public class LicenseActivity extends AppCompatActivity {
     }
 
     private void setupActionBar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        // 4. Toolbar získáváme typově bezpečně přímo z bindingu
+        setSupportActionBar(binding.toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -78,5 +86,11 @@ public class LicenseActivity extends AppCompatActivity {
             reader.close();
         }
         return builder.toString();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        binding = null;
     }
 }

@@ -175,23 +175,38 @@ public class ScreenOnOffUpdateService extends AbstractCommonService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
-        int ret = super.onStartCommand(intent, flags, startId);
+        super.onStartCommand(intent, flags, startId); // Zavoláme, ale ret z nadtřídy ignorujeme
+
         if (intent == null) {
-            return ret;
+            stopSelf(startId);
+            return START_NOT_STICKY;
         }
+
+        final String action = intent.getAction();
+
         YourLocalWeather.executor.submit(() -> {
-            appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
-            switch (intent.getAction()) {
+            appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", action);
+            if (action == null) {
+                stopSelf(startId);
+                return;
+            }
+
+            switch (action) {
                 case "org.thosp.yourlocalweather.action.START_SCREEN_BASED_UPDATES":
                     startSensorBasedUpdates();
                     return;
+
                 case "org.thosp.yourlocalweather.action.STOP_SCREEN_BASED_UPDATES":
                     stopSensorBasedUpdates();
+                    stopSelf(startId);
                     return;
+
                 default:
+                    stopSelf(startId);
+                    break;
             }
         });
-        return ret;
+        return "org.thosp.yourlocalweather.action.START_SCREEN_BASED_UPDATES".equals(action) ? START_STICKY : START_NOT_STICKY;
     }
 
     Handler handler = new Handler(Looper.getMainLooper()) {

@@ -23,13 +23,12 @@ public class ReconciliationDbService extends AbstractCommonService {
     private static volatile long nextReconciliationTime;
 
     Handler timerHandler = new Handler();
-    Runnable timerRunnable = new Runnable() {
+    private int lastStartId;
 
+    Runnable timerRunnable = new Runnable() {
         @Override
         public void run() {
-            YourLocalWeather.executor.submit(() -> {
-                startReconciliation(false);
-            });
+            YourLocalWeather.executor.submit(() -> startReconciliation(false, lastStartId));
         }
     };
 
@@ -41,44 +40,50 @@ public class ReconciliationDbService extends AbstractCommonService {
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
         appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
-        int ret = super.onStartCommand(intent, flags, startId);
+        super.onStartCommand(intent, flags, startId);
+        this.lastStartId = startId;
+
         if (intent == null) {
-            return ret;
+            stopSelf(startId);
+            return START_NOT_STICKY;
         }
+
+        final String action = intent.getAction();
+        final boolean force = intent.getBooleanExtra("force", false);
+
         YourLocalWeather.executor.submit(() -> {
-            //startForeground(NotificationUtils.NOTIFICATION_ID, NotificationUtils.getNotificationForActivity(getBaseContext()));
-            appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
-            switch (intent.getAction()) {
-                case "org.thosp.yourlocalweather.action.START_RECONCILIATION": startReconciliation(intent.getBooleanExtra("force", false)); return;
-                default:
+            appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", action);
+            if ("org.thosp.yourlocalweather.action.START_RECONCILIATION".equals(action)) {
+                startReconciliation(force, startId);
+            } else {
+                stopSelf(startId);
             }
         });
-        return ret;
+
+        return START_NOT_STICKY;
     }
 
-    protected void startReconciliation(boolean force) {
+    protected void startReconciliation(boolean force, int startId) {
         appendLog(this, TAG, "onHandleIntent");
         long nowInMilis = System.currentTimeMillis();
         timerHandler.removeCallbacksAndMessages(null);
+
         if (!force) {
             if (nextReconciliationTime == 0) {
                 nextReconciliationTime = nowInMilis + MIN_RECONCILIATION_TIME_SPAN_IN_MS;
-                appendLog(
-                        this,
-                        TAG,
-                        "nextReconciliationTime is 0");
+                appendLog(this, TAG, "nextReconciliationTime is 0");
             } else if (nextReconciliationTime > nowInMilis) {
-                appendLog(
-                        this,
-                        TAG,
-                        "rescheduling with inMilis:", nextReconciliationTime, ":", nowInMilis);
+                appendLog(this, TAG, "rescheduling with inMilis:", nextReconciliationTime, ":", nowInMilis);
+                this.lastStartId = startId;
                 timerHandler.postDelayed(timerRunnable, MIN_RECONCILIATION_TIME_SPAN_IN_MS);
                 return;
             }
         }
+
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getApplicationContext());
         LocationsFileDbHelper locationsFileDbHelper = LocationsFileDbHelper.getInstance(getApplicationContext());
         SQLiteDatabase db = locationsFileDbHelper.getWritableDatabase();
+
         for (Location location: locationsDbHelper.getAllRows()) {
             appendLog(getBaseContext(), TAG, "reconciliation from in memory db to file db of location:", location.getId());
             Location locationInFile = locationsFileDbHelper.getLocationById(location.getId());
@@ -95,8 +100,10 @@ public class ReconciliationDbService extends AbstractCommonService {
                 locationsFileDbHelper.deleteRecordFromTable(location);
             }
         }
+
         appendLog(getBaseContext(), TAG, "reconciliation has finished");
         nextReconciliationTime = System.currentTimeMillis() + MIN_RECONCILIATION_TIME_SPAN_IN_MS;
+        stopSelf(startId);
     }
 
     private void insertLocation(SQLiteDatabase db, Location location) {

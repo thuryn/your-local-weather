@@ -57,15 +57,36 @@ public class AppWakeUpManager extends Service {
     }
 
     @Override
+    public void onDestroy() {
+        timerWakeUpHandler.removeCallbacksAndMessages(null);
+        if ((wakeLock != null) && wakeLock.isHeld()) {
+            try {
+                wakeLock.release();
+            } catch (Throwable th) {
+                // ignore
+            }
+        }
+        stopForeground(true);
+        super.onDestroy();
+    }
+
+    @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
 
+    private int lastStartId;
+
+    @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
-        int ret = super.onStartCommand(intent, flags, startId);
+        super.onStartCommand(intent, flags, startId);
+        this.lastStartId = startId;
+
         if (intent == null) {
-            return ret;
+            stopSelf(startId);
+            return START_NOT_STICKY;
         }
+
         Notification notification = NotificationUtils.getNotificationForActivity(getBaseContext());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             startForeground(NotificationUtils.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
@@ -73,16 +94,20 @@ public class AppWakeUpManager extends Service {
             startForeground(NotificationUtils.NOTIFICATION_ID, notification);
         }
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
+
         switch (intent.getAction()) {
             case "org.thosp.yourlocalweather.action.WAKE_UP":
                 startWakeUp(intent.getIntExtra("wakeupSource", 0));
-                return ret;
+                return START_NOT_STICKY;
             case "org.thosp.yourlocalweather.action.FALL_DOWN":
                 stopWakeUp(intent.getIntExtra("wakeupSource", 0));
-                return ret;
+                return START_NOT_STICKY;
             default:
+                break;
         }
-        return ret;
+        stopForeground(true);
+        stopSelf(startId);
+        return START_NOT_STICKY;
     }
 
     @Override
@@ -139,6 +164,7 @@ public class AppWakeUpManager extends Service {
         }
         NotificationUtils.cancelUpdateNotification(getBaseContext());
         stopForeground(true);
+        stopSelf(lastStartId);
     }
 
     public void wakeUp() {

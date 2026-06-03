@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,7 +43,6 @@ public abstract class BaseActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mDrawerToggle;
     private Toolbar mToolbar;
-    //private TextView mHeaderCity;
     protected LocationsDbHelper locationsDbHelper;
     protected Location currentLocation;
     protected TextView localityView;
@@ -54,6 +54,19 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
+
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if (isNavDrawerOpen()) {
+                    closeNavDraw();
+                } else {
+                    // Pokud je menu zavřené, vypneme tento callback a vyvoláme výchozí akci zpět (např. zavření aktivity)
+                    setEnabled(false);
+                    getOnBackPressedDispatcher().onBackPressed();
+                }
+            }
+        });
     }
 
     @Override
@@ -88,35 +101,70 @@ public abstract class BaseActivity extends AppCompatActivity {
                 currentLocation = locationsDbHelper.getLocationByOrderId(newLocationOrderId);
             }
         }
-        Context savedContext = this;
+
+        final Context appContext = this.getApplicationContext();
+        final java.lang.ref.WeakReference<BaseActivity> activityRef = new java.lang.ref.WeakReference<>(this);
+        final Location locToSave = this.currentLocation;
+
         YourLocalWeather.executor.submit(() -> {
-            AppPreference.setCurrentLocationId(savedContext, currentLocation);
-            runOnUiThread(() -> localityView.setText(Utils.getCityAndCountry(savedContext, currentLocation)));
-            updateUI();
+            AppPreference.setCurrentLocationId(appContext, locToSave);
+
+            BaseActivity activity = activityRef.get();
+            if (activity == null || activity.isFinishing() || activity.isDestroyed()) {
+                return;
+            }
+
+            activity.runOnUiThread(() -> {
+                BaseActivity act = activityRef.get();
+                if (act != null && !act.isFinishing() && !act.isDestroyed()) {
+                    if (act.localityView != null && locToSave != null) {
+                        act.localityView.setText(Utils.getCityAndCountry(appContext, locToSave));
+                    }
+                    act.updateUI();
+                }
+            });
         });
     }
 
     protected abstract void updateUI();
 
     private void setupNavDrawer() {
-        mDrawerLayout = findViewById(R.id.drawer_layout);
+        View decorView = getWindow().getDecorView();
+
+        int drawerId = decorView.getResources().getIdentifier("drawer_layout", "id", getPackageName());
+        if (drawerId != 0) {
+            mDrawerLayout = decorView.findViewById(drawerId);
+        }
 
         if (mDrawerLayout == null) {
             return;
         }
+
+        // Vynutíme dohledání Baru, pokud se při setContentView nenačetl včas
+        if (mToolbar == null) {
+            getToolbar();
+        }
+
         mDrawerToggle = new ActionBarDrawerToggle(this,
-                                                  mDrawerLayout,
-                                                  mToolbar,
-                                                  R.string.navigation_drawer_open,
-                                                  R.string.navigation_drawer_close);
+                mDrawerLayout,
+                mToolbar,
+                R.string.navigation_drawer_open,
+                R.string.navigation_drawer_close);
         mDrawerLayout.addDrawerListener(mDrawerToggle);
+
+        // Zde je oprava: Pokud máme Action Bar, řekneme mu, aby zobrazil navigační tlačítko
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setHomeButtonEnabled(true);
+        }
+
         mDrawerToggle.syncState();
 
         if (mToolbar != null) {
             mToolbar.setNavigationOnClickListener(view -> mDrawerLayout.openDrawer(GravityCompat.START));
         }
 
-        configureNavView();
+        configureNavView(decorView);
     }
 
     @Override
@@ -127,8 +175,17 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    private void configureNavView() {
-        NavigationView navigationView = findViewById(R.id.navigation_view);
+    private void configureNavView(View decorView) {
+        int navViewId = decorView.getResources().getIdentifier("navigation_view", "id", getPackageName());
+        if (navViewId == 0) {
+            return;
+        }
+
+        NavigationView navigationView = decorView.findViewById(navViewId);
+        if (navigationView == null) {
+            return;
+        }
+
         Menu navMenu = navigationView.getMenu();
         MenuItem wearMenuItem = navMenu.findItem(R.id.nav_wearos);
 
@@ -137,9 +194,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
         navigationView.setNavigationItemSelectedListener(navigationViewListener);
 
+        // DEMONSTRACE: Pokud byste chtěl v budoucnu odkomentovat hlavičku a město,
+        // získáte pro layout nav_header_main.xml typově bezpečný sub-binding takto:
+        /*
         View headerLayout = navigationView.getHeaderView(0);
-        //mHeaderCity = headerLayout.findViewById(R.id.nav_header_city);
-        //mHeaderCity.setText(Utils.getCityAndCountry(this));
+        NavHeaderMainBinding headerBinding = NavHeaderMainBinding.bind(headerLayout);
+        headerBinding.navHeaderCity.setText(Utils.getCityAndCountry(this));
+        */
     }
 
     private final NavigationView.OnNavigationItemSelectedListener navigationViewListener =
@@ -152,15 +213,15 @@ public abstract class BaseActivity extends AppCompatActivity {
                             break;
                         case R.id.nav_menu_graphs:
                             createBackStack(new Intent(BaseActivity.this,
-                                                       GraphsActivity.class));
+                                    GraphsActivity.class));
                             break;
                         case R.id.nav_menu_weather_forecast:
                             createBackStack(new Intent(BaseActivity.this,
-                                                       WeatherForecastActivity.class));
+                                    WeatherForecastActivity.class));
                             break;
                         case R.id.nav_settings:
                             createBackStack(new Intent(BaseActivity.this,
-                                                       SettingsActivity.class));
+                                    SettingsActivity.class));
                             break;
                         case R.id.nav_wearos:
                             if (getResources().getBoolean(R.bool.is_wearos_enabled)) {
@@ -193,12 +254,14 @@ public abstract class BaseActivity extends AppCompatActivity {
                                 startActivity(Intent.createChooser(sendMessage, "Send feedback"));
                             } catch (android.content.ActivityNotFoundException e) {
                                 Toast.makeText(BaseActivity.this, "Communication app not found",
-                                               Toast.LENGTH_SHORT).show();
+                                        Toast.LENGTH_SHORT).show();
                             }
                             break;
                     }
 
-                    mDrawerLayout.closeDrawer(GravityCompat.START);
+                    if (mDrawerLayout != null) {
+                        mDrawerLayout.closeDrawer(GravityCompat.START);
+                    }
                     return true;
                 }
             };
@@ -211,19 +274,17 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void getToolbar() {
         if (mToolbar == null) {
-            mToolbar = findViewById(R.id.toolbar);
-            if (mToolbar != null) {
-                setSupportActionBar(mToolbar);
+            View decorView = getWindow().getDecorView();
+            int toolbarId = decorView.getResources().getIdentifier("toolbar", "id", getPackageName());
+            if (toolbarId != 0) {
+                mToolbar = decorView.findViewById(toolbarId);
+                if (mToolbar != null) {
+                    setSupportActionBar(mToolbar);
+                    if (getSupportActionBar() != null) {
+                        getSupportActionBar().setDisplayShowTitleEnabled(false);
+                    }
+                }
             }
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        if (isNavDrawerOpen()) {
-            closeNavDraw();
-        } else {
-            super.onBackPressed();
         }
     }
 
@@ -248,9 +309,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void sendMessageToReconciliationDbService() {
         String TAG = "BaseActivity";
-        appendLog(this,
-                TAG,
-                "going run reconciliation DB service");
+        appendLog(this, TAG, "going run reconciliation DB service");
         Intent intent = new Intent("org.thosp.yourlocalweather.action.START_RECONCILIATION");
         intent.setPackage(getBaseContext().getPackageName());
         intent.putExtra("force", true);

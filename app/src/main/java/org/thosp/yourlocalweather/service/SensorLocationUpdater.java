@@ -45,7 +45,12 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
         gravity[0] = 0;
         gravity[1] = 0;
         gravity[2] = 0;
-        return super.onStartCommand(intent, flags, startId);
+
+        if (intent == null) {
+            return START_NOT_STICKY;
+        }
+        super.onStartCommand(intent, flags, startId);
+        return START_NOT_STICKY;
     }
 
     @Override

@@ -2,9 +2,7 @@ package org.thosp.yourlocalweather.service;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
-import android.app.AlarmManager;
 import android.app.Notification;
-import android.app.PendingIntent;
 import android.app.job.JobInfo;
 import android.app.job.JobScheduler;
 import android.content.ComponentName;
@@ -15,7 +13,6 @@ import android.net.TrafficStats;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.SystemClock;
 
 import androidx.core.content.ContextCompat;
 
@@ -124,12 +121,19 @@ public class UpdateWeatherService extends AbstractCommonService {
         }
     };
 
+    // Přidáme instanční proměnnou pro sledování posledního startId
+    private int lastStartId;
+
     @Override
     public int onStartCommand(Intent intent, int flags, final int startId) {
-        int ret = super.onStartCommand(intent, flags, startId);
+        super.onStartCommand(intent, flags, startId); // Zavoláme parenta, ale ret ignorujeme
+        this.lastStartId = startId;
+
         if (intent == null) {
-            return ret;
+            stopSelf(startId);
+            return START_NOT_STICKY;
         }
+
         YourLocalWeather.executor.submit(() -> {
             Notification notification = NotificationUtils.getNoWeatherNotification(getBaseContext());
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -138,40 +142,35 @@ public class UpdateWeatherService extends AbstractCommonService {
                 startForeground(NotificationUtils.NOTIFICATION_ID, notification);
             }
             appendLog(getBaseContext(), TAG, "onStartCommand:", intent);
-            boolean forceUpdate = false;
-            Long locationId = null;
-            String updateSource = null;
-            boolean updateWeatherOnly = false;
-            int updateType = WEATHER_FORECAST_TYPE;
+
+            if (intent.getAction() == null) {
+                stopForeground(true);
+                stopSelf(startId);
+                return;
+            }
+
             if (intent.getAction().equals("org.thosp.yourlocalweather.action.RESEND_WEATHER_UPDATE")) {
                 startWeatherUpdate();
                 return;
             }
+
             if (intent.hasExtra("weatherRequest")) {
                 updateWeatherUpdateMessages.add((WeatherRequestDataHolder) intent.getSerializableExtra("weatherRequest"));
             } else {
-                if (intent.hasExtra("forceUpdate")) {
-                    forceUpdate = intent.getBooleanExtra("forceUpdate", false);
-                }
-                if (intent.hasExtra("locationId")) {
-                    locationId = intent.getLongExtra("locationId", 0);
-                }
-                if (intent.hasExtra("updateSource")) {
-                    updateSource = intent.getStringExtra("updateSource");
-                }
-                if (intent.hasExtra("updateWeatherOnly")) {
-                    updateWeatherOnly = intent.getBooleanExtra("updateWeatherOnly", false);
-                }
-                if (intent.hasExtra("updateType")) {
-                    updateType = intent.getIntExtra("updateType", WEATHER_FORECAST_TYPE);
-                }
-                if (locationId != null) {
+                boolean forceUpdate = intent.getBooleanExtra("forceUpdate", false);
+                long locationId = intent.getLongExtra("locationId", 0);
+                String updateSource = intent.getStringExtra("updateSource");
+                boolean updateWeatherOnly = intent.getBooleanExtra("updateWeatherOnly", false);
+                int updateType = intent.getIntExtra("updateType", WEATHER_FORECAST_TYPE);
+
+                if (locationId != 0) {
                     updateWeatherUpdateMessages.add(new WeatherRequestDataHolder(locationId, updateSource, forceUpdate, updateWeatherOnly, updateType));
                 }
             }
             startWeatherUpdate();
         });
-        return ret;
+
+        return START_NOT_STICKY;
     }
 
     public void startWeatherUpdate() {
@@ -463,10 +462,10 @@ public class UpdateWeatherService extends AbstractCommonService {
         gettingWeatherStarted = false;
         WeatherRequestDataHolder updateRequest = updateWeatherUpdateMessages.poll();
         appendLog(getBaseContext(),
-                  TAG,
+                TAG,
                 "Update request: " + updateRequest);
         appendLog(getBaseContext(),
-                  TAG,
+                TAG,
                 "currentWeatherUpdateMessages.size after pull when sending result = ", updateWeatherUpdateMessages);
         try {
             appendLog(getBaseContext(),
@@ -484,8 +483,10 @@ public class UpdateWeatherService extends AbstractCommonService {
         } catch (Throwable exception) {
             appendLog(context, TAG, "Exception occured when starting the service:", exception);
         }
+
         NotificationUtils.cancelUpdateNotification(getBaseContext());
         stopForeground(true);
+        stopSelf(lastStartId);
     }
 
     protected void broadcastWeatherUpdate(Location location, Weather weather, CompleteWeatherForecast completeWeatherForecast) {
@@ -621,26 +622,15 @@ public class UpdateWeatherService extends AbstractCommonService {
 
     private void resendTheIntentInSeveralSeconds(int seconds) {
         appendLog(getBaseContext(), TAG, "resendTheIntentInSeveralSeconds:SDK:", Build.VERSION.SDK_INT);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            JobScheduler jobScheduler = getSystemService(JobScheduler.class);
-            jobScheduler.cancelAll();
-            ComponentName serviceComponent = new ComponentName(this, UpdateWeatherResendJob.class);
-            JobInfo.Builder builder = new JobInfo.Builder(UpdateWeatherResendJob.JOB_ID, serviceComponent);
+        JobScheduler jobScheduler = getSystemService(JobScheduler.class);
+        jobScheduler.cancelAll();
+        ComponentName serviceComponent = new ComponentName(this, UpdateWeatherResendJob.class);
+        JobInfo.Builder builder = new JobInfo.Builder(UpdateWeatherResendJob.JOB_ID, serviceComponent);
 
-            builder.setMinimumLatency(seconds * 1000L); // wait at least
-            builder.setOverrideDeadline((3 + seconds) * 1000L); // maximum delay
-            jobScheduler.schedule(builder.build());
-            appendLog(getBaseContext(), TAG, "resendTheIntentInSeveralSeconds: sent");
-        } else {
-            AlarmManager alarmManager = (AlarmManager) getBaseContext().getSystemService(Context.ALARM_SERVICE);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(getBaseContext(),
-                    0,
-                    new Intent(getBaseContext(), UpdateWeatherService.class),
-                    PendingIntent.FLAG_IMMUTABLE);
-            alarmManager.cancel(pendingIntent);
-            alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                    SystemClock.elapsedRealtime() + (1000L * seconds), pendingIntent);
-        }
+        builder.setMinimumLatency(seconds * 1000L); // wait at least
+        builder.setOverrideDeadline((3 + seconds) * 1000L); // maximum delay
+        jobScheduler.schedule(builder.build());
+        appendLog(getBaseContext(), TAG, "resendTheIntentInSeveralSeconds: sent");
     }
 
     private boolean isCurrentWeather(int updateType) {

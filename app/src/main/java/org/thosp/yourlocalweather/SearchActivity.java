@@ -13,12 +13,9 @@ import android.location.Address;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 
 import org.osmdroid.api.IMapController;
@@ -27,8 +24,8 @@ import org.osmdroid.events.MapEventsReceiver;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.CustomZoomButtonsController;
-import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.MapEventsOverlay;
+import org.thosp.yourlocalweather.databinding.ActivitySearchBinding;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsContract;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
@@ -45,18 +42,16 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 public class SearchActivity extends BaseActivity {
 
     public static final String TAG = "SearchActivity";
-
     public static final String ACTION_ADDRESS_RESOLUTION_RESULT = "org.thosp.yourlocalweather.action.ADDRESS_RESOLUTION_RESULT";
 
-    private MapView map;
-    private TextView resolvedLocationAddress;
-    private Context mContext;
+    // 1. Definujeme vygenerovanou třídu bindingu namísto původních UI prvků
+    private ActivitySearchBinding binding;
+
     private BroadcastReceiver mWeatherUpdateReceiver;
     private double longitude;
     private double latitude;
     private Address address;
     private String locale;
-    private Button addLocatonButton;
     private ProgressDialog mProgressDialog;
 
     private void initializeWeatherReceiver() {
@@ -65,11 +60,11 @@ public class SearchActivity extends BaseActivity {
             public void onReceive(Context context, Intent intent) {
                 if (intent.hasExtra("addresses")) {
                     address = intent.getExtras().getParcelable("addresses");
-                    resolvedLocationAddress.setText(Utils.getCityAndCountryFromAddress(address));
+                    binding.resolvedLocationAddress.setText(Utils.getCityAndCountryFromAddress(address));
                 } else {
-                    resolvedLocationAddress.setText(context.getString(R.string.location_not_found));
+                    binding.resolvedLocationAddress.setText(context.getString(R.string.location_not_found));
                 }
-                addLocatonButton.setVisibility(View.VISIBLE);
+                binding.searchAddLocationButton.setVisibility(View.VISIBLE);
             }
         };
     }
@@ -86,22 +81,24 @@ public class SearchActivity extends BaseActivity {
                 BuildConfig.VERSION_NAME,
                 Build.VERSION.RELEASE));
 
-        setContentView(R.layout.activity_search);
+        // 2. Nafoukneme layout pomocí bindingu a nastavíme Root View
+        binding = ActivitySearchBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         setupActionBar();
 
-        addLocatonButton = findViewById(R.id.search_add_location_button);
-        addLocatonButton.setVisibility(View.GONE);
+        binding.searchAddLocationButton.setVisibility(View.GONE);
 
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(this);
         List<Location> currentLocations = locationsDbHelper.getAllRows();
         Location lastLocation = currentLocations.get(currentLocations.size() - 1);
 
-        map = findViewById(R.id.map);
-        map.setTileSource(TileSourceFactory.MAPNIK);
-        map.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.SHOW_AND_FADEOUT);
-        map.setMultiTouchControls(true);
+        // 3. Přistupujeme k mapě a dalším prvkům bezpečně bez findViewById
+        binding.map.setTileSource(TileSourceFactory.MAPNIK);
+        binding.map.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.SHOW_AND_FADEOUT);
+        binding.map.setMultiTouchControls(true);
 
-        IMapController mapController = map.getController();
+        IMapController mapController = binding.map.getController();
         mapController.setZoom(11.0);
         GeoPoint startPoint;
         if ((lastLocation.getLongitude() == 0) && (lastLocation.getLatitude() == 0)) {
@@ -111,14 +108,13 @@ public class SearchActivity extends BaseActivity {
         }
         mapController.setCenter(startPoint);
 
-        resolvedLocationAddress = findViewById(R.id.resolved_location_address);
-        resolvedLocationAddress.setText(R.string.search_location_info);
-        mContext = this;
+        binding.resolvedLocationAddress.setText(R.string.search_location_info);
+
+        final Context appContext = this.getApplicationContext();
 
         MapEventsReceiver mReceive = new MapEventsReceiver() {
             @Override
             public boolean singleTapConfirmedHelper(final GeoPoint p) {
-
                 mProgressDialog = new ProgressDialog(SearchActivity.this);
                 mProgressDialog.setMessage(getString(R.string.progressDialog_gps_locate));
                 mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
@@ -139,23 +135,22 @@ public class SearchActivity extends BaseActivity {
 
                 latitude = p.getLatitude();
                 longitude = p.getLongitude();
-                locale = AppPreference.getInstance().getLanguage(getApplicationContext());
-                final Intent resultionResult = new Intent(ACTION_ADDRESS_RESOLUTION_RESULT);
-                resultionResult.setPackage(getBaseContext().getPackageName());
+                locale = AppPreference.getInstance().getLanguage(appContext);
 
-                Thread thread = new Thread() {
-                    @Override
-                    public void run() {
-                            NominatimLocationService.getInstance().getFromLocation(
-                                    mContext,
-                                    p.getLatitude(),
-                                    p.getLongitude(),
-                                    1,
-                                    locale,
-                                    new SearchActivityProcessResultFromAddressResolution(mContext, resultionResult, mProgressDialog),
-                                    null);
-                    }
-                };
+                final Intent resultionResult = new Intent(ACTION_ADDRESS_RESOLUTION_RESULT);
+                resultionResult.setPackage(appContext.getPackageName());
+
+                // Použijeme standardní Runnable s předáním bezpečného appContextu
+                Thread thread = new Thread(() -> {
+                    NominatimLocationService.getInstance().getFromLocation(
+                            appContext,
+                            p.getLatitude(),
+                            p.getLongitude(),
+                            1,
+                            locale,
+                            new SearchActivityProcessResultFromAddressResolution(appContext, resultionResult, mProgressDialog),
+                            null);
+                });
                 thread.start();
                 return false;
             }
@@ -167,7 +162,7 @@ public class SearchActivity extends BaseActivity {
         };
 
         MapEventsOverlay overlayEvents = new MapEventsOverlay(mReceive);
-        map.getOverlays().add(overlayEvents);
+        binding.map.getOverlays().add(overlayEvents);
 
         initializeWeatherReceiver();
     }
@@ -178,7 +173,7 @@ public class SearchActivity extends BaseActivity {
                 new IntentFilter(
                         ACTION_ADDRESS_RESOLUTION_RESULT),
                 ContextCompat.RECEIVER_NOT_EXPORTED);
-        map.onResume();
+        binding.map.onResume();
     }
 
     @Override
@@ -191,7 +186,7 @@ public class SearchActivity extends BaseActivity {
             mProgressDialog.dismiss();
             mProgressDialog = null;
         }
-        map.onPause();
+        binding.map.onPause();
     }
 
     @Override
@@ -202,11 +197,12 @@ public class SearchActivity extends BaseActivity {
             mProgressDialog = null;
         }
         unregisterReceiver(mWeatherUpdateReceiver);
+        // Vyčistíme referenci na binding, aby mohl Garbage Collector uvolnit celou XML strukturu
+        binding = null;
     }
 
     private void setupActionBar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -235,10 +231,7 @@ public class SearchActivity extends BaseActivity {
         long newLocationRowId = db.insert(LocationsContract.Locations.TABLE_NAME, null, values);
 
         SensorLocationUpdater.autolocationForSensorEventAddressFound = true;
-        appendLog(this,
-                TAG,
-                "autolocationForSensorEventAddressFound=",
-                        SensorLocationUpdater.autolocationForSensorEventAddressFound);
+        appendLog(this, TAG, "autolocationForSensorEventAddressFound=", SensorLocationUpdater.autolocationForSensorEventAddressFound);
 
         if (currentMaxOrderId == 0) {
             Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");

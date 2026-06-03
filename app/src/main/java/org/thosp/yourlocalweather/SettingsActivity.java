@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
+import org.thosp.yourlocalweather.databinding.ActivitySettingsBinding;
 import org.thosp.yourlocalweather.settings.fragments.MainSettingsFragment;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
@@ -22,13 +23,20 @@ import org.thosp.yourlocalweather.utils.LanguageUtil;
 public class SettingsActivity extends AppCompatActivity implements
         PreferenceFragmentCompat.OnPreferenceStartFragmentCallback {
 
+    // 1. Deklarujeme vygenerovanou binding třídu
+    private ActivitySettingsBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_settings);
-        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        // 2. Inicializujeme View Binding
+        binding = ActivitySettingsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        // 3. Toolbar získáme přímo z bindingu bez findViewById
+        setSupportActionBar(binding.toolbar);
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -37,7 +45,7 @@ public class SettingsActivity extends AppCompatActivity implements
         if (savedInstanceState == null) {
             getSupportFragmentManager()
                     .beginTransaction()
-                    .replace(R.id.settings_container, new MainSettingsFragment()) // <-- Startujeme hlavní menu
+                    .replace(binding.settingsContainer.getId(), new MainSettingsFragment())
                     .commit();
         }
     }
@@ -58,7 +66,7 @@ public class SettingsActivity extends AppCompatActivity implements
         fragment.setArguments(args);
 
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.settings_container, fragment)
+                .replace(binding.settingsContainer.getId(), fragment)
                 .addToBackStack(null)
                 .commit();
 
@@ -73,6 +81,13 @@ public class SettingsActivity extends AppCompatActivity implements
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 4. Uvolníme referenci pro správné vyčištění paměti
+        binding = null;
     }
 
     public static class SettingsAlertDialog extends DialogFragment {
@@ -102,5 +117,4 @@ public class SettingsActivity extends AppCompatActivity implements
             return builder.create();
         }
     }
-
 }

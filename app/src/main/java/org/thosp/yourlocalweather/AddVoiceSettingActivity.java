@@ -16,19 +16,17 @@ import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
+import org.thosp.yourlocalweather.databinding.ActivityAddVoiceSettingBinding;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.VoiceSettingParametersDbHelper;
@@ -49,6 +47,9 @@ public class AddVoiceSettingActivity extends BaseActivity {
 
     public static final String TAG = "SearchActivity";
 
+    // 1. Deklarujeme instanční proměnnou bindingu
+    private ActivityAddVoiceSettingBinding binding;
+
     private Long voiceSettingId;
     private VoiceSettingParametersDbHelper voiceSettingParametersDbHelper;
     private Locale applicationLocale;
@@ -59,7 +60,10 @@ public class AddVoiceSettingActivity extends BaseActivity {
         EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_add_voice_setting);
+        // 2. Inicializujeme View Binding
+        binding = ActivityAddVoiceSettingBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         setupActionBar();
         YourLocalWeather.executor.submit(() -> {
             voiceSettingParametersDbHelper = VoiceSettingParametersDbHelper.getInstance(this);
@@ -77,7 +81,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
 
     private boolean checkExistenceAndBtPermissions() {
         return (Utils.getBluetoothAdapter(getBaseContext()) != null) &&
-            ContextCompat.checkSelfPermission(AddVoiceSettingActivity.this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED;
+                ContextCompat.checkSelfPermission(AddVoiceSettingActivity.this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED;
     }
 
     private void updateItemsFromDb() {
@@ -87,76 +91,67 @@ public class AddVoiceSettingActivity extends BaseActivity {
         populateTtsDeviceEnabled();
         populateTtsSeySetting();
         populateTextes();
-        populateTriggerBtDevices(R.id.trigger_bt_when_devices, R.id.trigger_bt_all_devices, VoiceSettingParamType.VOICE_SETTING_TRIGGER_ENABLED_BT_DEVICES);
-        populateBtDevices(R.id.bt_when_devices, R.id.bt_all_devices, VoiceSettingParamType.VOICE_SETTING_ENABLED_WHEN_BT_DEVICES);
+
+        // Předáváme přímo konkrétní View komponenty namísto původních int ID
+        populateTriggerBtDevices(binding.triggerBtWhenDevices, binding.triggerBtAllDevices, VoiceSettingParamType.VOICE_SETTING_TRIGGER_ENABLED_BT_DEVICES);
+        populateBtDevices(binding.btWhenDevices, binding.btAllDevices, VoiceSettingParamType.VOICE_SETTING_ENABLED_WHEN_BT_DEVICES);
         populateLocations();
     }
 
     private void populateTextes() {
-        setTextHandler(R.id.tts_say_greeting_custom_text_morning, VoiceSettingParamType.VOICE_SETTING_GREETING_CUSTOM_MORNING);
-        setTextHandler(R.id.tts_say_greeting_custom_text_day, VoiceSettingParamType.VOICE_SETTING_GREETING_CUSTOM_DAY);
-        setTextHandler(R.id.tts_say_greeting_custom_text_evening, VoiceSettingParamType.VOICE_SETTING_GREETING_CUSTOM_EVENING);
-        setTextHandler(R.id.tts_say_location_custom_text, VoiceSettingParamType.VOICE_SETTING_LOCATION_CUSTOM);
-        setTextHandler(R.id.tts_say_weather_description_custom_text, VoiceSettingParamType.VOICE_SETTING_WEATHER_DESCRIPTION_CUSTOM);
-        setTextHandler(R.id.tts_say_temperature_custom_text, VoiceSettingParamType.VOICE_SETTING_TEMPERATURE_CUSTOM);
-        setTextHandler(R.id.tts_say_wind_custom_text, VoiceSettingParamType.VOICE_SETTING_WIND_CUSTOM);
+        setTextHandler(binding.ttsSayGreetingCustomTextMorning, VoiceSettingParamType.VOICE_SETTING_GREETING_CUSTOM_MORNING);
+        setTextHandler(binding.ttsSayGreetingCustomTextDay, VoiceSettingParamType.VOICE_SETTING_GREETING_CUSTOM_DAY);
+        setTextHandler(binding.ttsSayGreetingCustomTextEvening, VoiceSettingParamType.VOICE_SETTING_GREETING_CUSTOM_EVENING);
+        setTextHandler(binding.ttsSayLocationCustomText, VoiceSettingParamType.VOICE_SETTING_LOCATION_CUSTOM);
+        setTextHandler(binding.ttsSayWeatherDescriptionCustomText, VoiceSettingParamType.VOICE_SETTING_WEATHER_DESCRIPTION_CUSTOM);
+        setTextHandler(binding.ttsSayTemperatureCustomText, VoiceSettingParamType.VOICE_SETTING_TEMPERATURE_CUSTOM);
+        setTextHandler(binding.ttsSayWindCustomText, VoiceSettingParamType.VOICE_SETTING_WIND_CUSTOM);
     }
 
-    private void setTextHandler(int textViewId, final VoiceSettingParamType paramType) {
-        EditText textView = findViewById(textViewId);
-
+    private void setTextHandler(EditText editText, final VoiceSettingParamType paramType) {
         String originalValue = voiceSettingParametersDbHelper.getStringParam(
                 voiceSettingId,
                 paramType.getVoiceSettingParamTypeId());
 
-
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                textView.setText(originalValue, TextView.BufferType.EDITABLE);
-                textView.addTextChangedListener(new TextWatcher() {
+                editText.setText(originalValue, TextView.BufferType.EDITABLE);
+                editText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void afterTextChanged(Editable s) {}
 
-                                                    @Override
-                                                    public void afterTextChanged(Editable s) {
-                                                    }
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
-                                                    @Override
-                                                    public void beforeTextChanged(CharSequence s, int start,
-                                                                                  int count, int after) {
-                                                    }
-
-                                                    @Override
-                                                    public void onTextChanged(CharSequence s, int start,
-                                                                              int before, int count) {
-                                                        if (s.length() != 0)
-                                                            voiceSettingParametersDbHelper.saveStringParam(
-                                                                    voiceSettingId,
-                                                                    paramType.getVoiceSettingParamTypeId(),
-                                                                    s.toString());
-                                                    }
-                                                }
-                );
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        if (s.length() != 0)
+                            voiceSettingParametersDbHelper.saveStringParam(
+                                    voiceSettingId,
+                                    paramType.getVoiceSettingParamTypeId(),
+                                    s.toString());
+                    }
+                });
             }
         });
     }
 
-    private void populateTriggerBtDevices(int spinnerViewId, int checkBoxViewId, VoiceSettingParamType voiceSettingParamType) {
-        MultiSelectionTriggerSpinner btDevicesSpinner = findViewById(spinnerViewId);
-        CheckBox allBtCheckbox = findViewById(checkBoxViewId);
+    private void populateTriggerBtDevices(MultiSelectionTriggerSpinner btDevicesSpinner, CheckBox allBtCheckbox, VoiceSettingParamType voiceSettingParamType) {
         runOnUiThread(new Runnable() {
-                          @Override
-                          public void run() {
-                              btDevicesSpinner.setVoiceSettingId(voiceSettingId);
+            @Override
+            public void run() {
+                btDevicesSpinner.setVoiceSettingId(voiceSettingId);
 
-                              if (!checkExistenceAndBtPermissions()) {
-                                  btDevicesSpinner.setVisibility(View.GONE);
-                                  allBtCheckbox.setVisibility(View.GONE);
-                              } else {
-                                  btDevicesSpinner.setVisibility(View.VISIBLE);
-                                  allBtCheckbox.setVisibility(View.VISIBLE);
-                              }
-                          }
-                      });
+                if (!checkExistenceAndBtPermissions()) {
+                    btDevicesSpinner.setVisibility(View.GONE);
+                    allBtCheckbox.setVisibility(View.GONE);
+                } else {
+                    btDevicesSpinner.setVisibility(View.VISIBLE);
+                    allBtCheckbox.setVisibility(View.VISIBLE);
+                }
+            }
+        });
         BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(getBaseContext());
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH) != PackageManager.PERMISSION_GRANTED) {
             return;
@@ -178,9 +173,9 @@ public class AddVoiceSettingActivity extends BaseActivity {
             public void run() {
                 if ((enabledVoiceDevices != null) && enabledVoiceDevices) {
                     allBtCheckbox.setChecked(true);
-                    findViewById(R.id.trigger_bt_when_devices).setVisibility(View.GONE);
+                    binding.triggerBtWhenDevices.setVisibility(View.GONE);
                 } else {
-                    findViewById(R.id.trigger_bt_when_devices).setVisibility(View.VISIBLE);
+                    binding.triggerBtWhenDevices.setVisibility(View.VISIBLE);
                 }
 
                 if (enabledBtDevices != null) {
@@ -209,11 +204,7 @@ public class AddVoiceSettingActivity extends BaseActivity {
         });
     }
 
-    private void populateBtDevices(int spinnerViewId, int checkBoxViewId, VoiceSettingParamType voiceSettingParamType) {
-        MultiSelectionSpinner btDevicesSpinner = findViewById(spinnerViewId);
-        CheckBox allBtCheckbox = findViewById(checkBoxViewId);
-        View btDevicePanel = findViewById(R.id.tts_bt_device_panel);
-
+    private void populateBtDevices(MultiSelectionSpinner btDevicesSpinner, CheckBox allBtCheckbox, VoiceSettingParamType voiceSettingParamType) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -222,11 +213,11 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 if (!checkExistenceAndBtPermissions()) {
                     btDevicesSpinner.setVisibility(View.GONE);
                     allBtCheckbox.setVisibility(View.GONE);
-                    btDevicePanel.setVisibility(View.GONE);
+                    binding.ttsBtDevicePanel.setVisibility(View.GONE);
                 } else {
                     btDevicesSpinner.setVisibility(View.VISIBLE);
                     allBtCheckbox.setVisibility(View.VISIBLE);
-                    btDevicePanel.setVisibility(View.VISIBLE);
+                    binding.ttsBtDevicePanel.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -252,9 +243,9 @@ public class AddVoiceSettingActivity extends BaseActivity {
             public void run() {
                 if ((enabledVoiceDevices != null) && enabledVoiceDevices) {
                     allBtCheckbox.setChecked(true);
-                    findViewById(R.id.bt_when_devices).setVisibility(View.GONE);
+                    binding.btWhenDevices.setVisibility(View.GONE);
                 } else {
-                    findViewById(R.id.bt_when_devices).setVisibility(View.VISIBLE);
+                    binding.btWhenDevices.setVisibility(View.VISIBLE);
                 }
 
                 if (enabledBtDevices != null) {
@@ -290,9 +281,9 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 VoiceSettingParamType.VOICE_SETTING_ENABLED_WHEN_BT_DEVICES.getVoiceSettingParamTypeId(),
                 checked);
         if (checked) {
-            findViewById(R.id.bt_when_devices).setVisibility(View.GONE);
+            binding.btWhenDevices.setVisibility(View.GONE);
         } else {
-            findViewById(R.id.bt_when_devices).setVisibility(View.VISIBLE);
+            binding.btWhenDevices.setVisibility(View.VISIBLE);
         }
     }
 
@@ -303,9 +294,9 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 VoiceSettingParamType.VOICE_SETTING_TRIGGER_ENABLED_BT_DEVICES.getVoiceSettingParamTypeId(),
                 checked);
         if (checked) {
-            findViewById(R.id.trigger_bt_when_devices).setVisibility(View.GONE);
+            binding.triggerBtWhenDevices.setVisibility(View.GONE);
         } else {
-            findViewById(R.id.trigger_bt_when_devices).setVisibility(View.VISIBLE);
+            binding.triggerBtWhenDevices.setVisibility(View.VISIBLE);
         }
     }
 
@@ -316,9 +307,9 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 VoiceSettingParamType.VOICE_SETTING_LOCATIONS.getVoiceSettingParamTypeId(),
                 checked);
         if (checked) {
-            findViewById(R.id.tts_setting_locations).setVisibility(View.GONE);
+            binding.ttsSettingLocations.setVisibility(View.GONE);
         } else {
-            findViewById(R.id.tts_setting_locations).setVisibility(View.VISIBLE);
+            binding.ttsSettingLocations.setVisibility(View.VISIBLE);
         }
     }
 
@@ -333,13 +324,13 @@ public class AddVoiceSettingActivity extends BaseActivity {
             @Override
             public void run() {
                 if (TimeUtils.isCurrentSettingIndex(enabledVoiceDevices, 2)) {
-                    ((CheckBox) findViewById(R.id.tts_to_speaker_enabled)).setChecked(true);
+                    binding.ttsToSpeakerEnabled.setChecked(true);
                 }
                 if (TimeUtils.isCurrentSettingIndex(enabledVoiceDevices, 1)) {
-                    ((CheckBox) findViewById(R.id.tts_when_wired_enabled)).setChecked(true);
+                    binding.ttsWhenWiredEnabled.setChecked(true);
                 }
                 if (TimeUtils.isCurrentSettingIndex(enabledVoiceDevices, 0)) {
-                    ((CheckBox) findViewById(R.id.tts_when_bt_enabled)).setChecked(true);
+                    binding.ttsWhenBtEnabled.setChecked(true);
                 }
             }
         });
@@ -357,47 +348,41 @@ public class AddVoiceSettingActivity extends BaseActivity {
             public void run() {
                 Calendar calendar = Calendar.getInstance();
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE", applicationLocale);
-                CheckBox triggerCheckBox = findViewById(R.id.voice_trigger_mon);
+
                 calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-                triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
+                binding.voiceTriggerMon.setText(simpleDateFormat.format(calendar.getTime()));
                 if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 6)) {
-                    triggerCheckBox.setChecked(true);
+                    binding.voiceTriggerMon.setChecked(true);
                 }
                 calendar.set(Calendar.DAY_OF_WEEK, Calendar.TUESDAY);
-                triggerCheckBox = findViewById(R.id.voice_trigger_tue);
-                triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
+                binding.voiceTriggerTue.setText(simpleDateFormat.format(calendar.getTime()));
                 if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 5)) {
-                    triggerCheckBox.setChecked(true);
+                    binding.voiceTriggerTue.setChecked(true);
                 }
                 calendar.set(Calendar.DAY_OF_WEEK, Calendar.WEDNESDAY);
-                triggerCheckBox = findViewById(R.id.voice_trigger_wed);
-                triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
+                binding.voiceTriggerWed.setText(simpleDateFormat.format(calendar.getTime()));
                 if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 4)) {
-                    triggerCheckBox.setChecked(true);
+                    binding.voiceTriggerWed.setChecked(true);
                 }
                 calendar.set(Calendar.DAY_OF_WEEK, Calendar.THURSDAY);
-                triggerCheckBox = findViewById(R.id.voice_trigger_thu);
-                triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
+                binding.voiceTriggerThu.setText(simpleDateFormat.format(calendar.getTime()));
                 if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 3)) {
-                    triggerCheckBox.setChecked(true);
+                    binding.voiceTriggerThu.setChecked(true);
                 }
                 calendar.set(Calendar.DAY_OF_WEEK, Calendar.FRIDAY);
-                triggerCheckBox = findViewById(R.id.voice_trigger_fri);
-                triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
+                binding.voiceTriggerFri.setText(simpleDateFormat.format(calendar.getTime()));
                 if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 2)) {
-                    triggerCheckBox.setChecked(true);
+                    binding.voiceTriggerFri.setChecked(true);
                 }
                 calendar.set(Calendar.DAY_OF_WEEK, Calendar.SATURDAY);
-                triggerCheckBox = findViewById(R.id.voice_trigger_sat);
-                triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
+                binding.voiceTriggerSat.setText(simpleDateFormat.format(calendar.getTime()));
                 if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 1)) {
-                    triggerCheckBox.setChecked(true);
+                    binding.voiceTriggerSat.setChecked(true);
                 }
                 calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
-                triggerCheckBox = findViewById(R.id.voice_trigger_sun);
-                triggerCheckBox.setText(simpleDateFormat.format(calendar.getTime()));
+                binding.voiceTriggerSun.setText(simpleDateFormat.format(calendar.getTime()));
                 if (TimeUtils.isCurrentSettingIndex(daysOfWeek, 0)) {
-                    triggerCheckBox.setChecked(true);
+                    binding.voiceTriggerSun.setChecked(true);
                 }
             }
         });
@@ -409,10 +394,8 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 VoiceSettingParamType.VOICE_SETTING_TIME_TO_START.getVoiceSettingParamTypeId());
         String timeStylePreference = AppPreference.getTimeStylePreference(getBaseContext());
 
-        Button voiceSettingButton = findViewById(R.id.button_voice_setting_time);
-
         if (storedHourMinute == null) {
-            voiceSettingButton.setText(getString(R.string.pref_title_tts_time));
+            binding.buttonVoiceSettingTime.setText(getString(R.string.pref_title_tts_time));
             return;
         }
 
@@ -424,12 +407,11 @@ public class AddVoiceSettingActivity extends BaseActivity {
         c.set(Calendar.HOUR_OF_DAY, hour);
         c.set(Calendar.MINUTE, minute);
 
-        voiceSettingButton.setText(AppPreference.getLocalizedTime(this, c.getTime(), timeStylePreference, applicationLocale));
+        binding.buttonVoiceSettingTime.setText(AppPreference.getLocalizedTime(this, c.getTime(), timeStylePreference, applicationLocale));
     }
 
     private void setupActionBar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setSupportActionBar(binding.toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -488,9 +470,11 @@ public class AddVoiceSettingActivity extends BaseActivity {
             c.set(Calendar.HOUR_OF_DAY, hourOfDay);
             c.set(Calendar.MINUTE, minute);
 
-            Button voiceSettingButton = getActivity().findViewById(R.id.button_voice_setting_time);
-            voiceSettingButton.setText(AppPreference.getLocalizedTime(getContext(), c.getTime(), timeStylePreference, applicationLocale));
-            prepareNextTime(getActivity(), voiceSettingId, timeStylePreference, applicationLocale, voiceSettingParametersDbHelper);
+            if (getActivity() instanceof AddVoiceSettingActivity) {
+                AddVoiceSettingActivity act = (AddVoiceSettingActivity) getActivity();
+                act.binding.buttonVoiceSettingTime.setText(AppPreference.getLocalizedTime(getContext(), c.getTime(), timeStylePreference, applicationLocale));
+                prepareNextTime(new java.lang.ref.WeakReference<>(act), voiceSettingId, timeStylePreference, applicationLocale, voiceSettingParametersDbHelper);
+            }
         }
 
         public void setVoiceSettingId(Long voiceSettingId) {
@@ -518,7 +502,6 @@ public class AddVoiceSettingActivity extends BaseActivity {
                 VoiceSettingParamType.VOICE_SETTING_TRIGGER_TYPE.getVoiceSettingParamTypeId());
 
         runOnUiThread(() -> {
-            Spinner spinner = findViewById(R.id.trigger_type);
             ArrayAdapter<CharSequence> adapter;
             if (!btNotPresentOrEnabled) {
                 adapter = ArrayAdapter.createFromResource(this,
@@ -528,17 +511,17 @@ public class AddVoiceSettingActivity extends BaseActivity {
                         R.array.voice_trigger_type, android.R.layout.simple_spinner_item);
             }
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            spinner.setAdapter(adapter);
+            binding.triggerType.setAdapter(adapter);
 
             if (currentTriggerId != null) {
                 int currentTriggerIdInt = currentTriggerId.intValue();
                 if (!btNotPresentOrEnabled && (currentTriggerIdInt == 2)) {
                     currentTriggerIdInt = 1;
                 }
-                spinner.setSelection(currentTriggerIdInt);
+                binding.triggerType.setSelection(currentTriggerIdInt);
                 triggerTypeChanged(currentTriggerIdInt);
             }
-            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            binding.triggerType.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                 @Override
                 public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                     int positionToSave = position;
@@ -552,35 +535,40 @@ public class AddVoiceSettingActivity extends BaseActivity {
 
                     triggerTypeChanged(positionToSave);
                     if (positionToSave == 2) {
-                        prepareNextTime(AddVoiceSettingActivity.this, voiceSettingId, timeStylePreference, applicationLocale, voiceSettingParametersDbHelper);
+                        prepareNextTime(new java.lang.ref.WeakReference<>(AddVoiceSettingActivity.this), voiceSettingId, timeStylePreference, applicationLocale, voiceSettingParametersDbHelper);
                     }
                 }
 
                 @Override
-                public void onNothingSelected(AdapterView<?> parent) {
-
-                }
+                public void onNothingSelected(AdapterView<?> parent) {}
             });
         });
     }
 
     private void triggerTypeChanged(int currentTriggerId) {
         if (currentTriggerId != 2) {
-            findViewById(R.id.button_voice_setting_time).setVisibility(View.GONE);
-            findViewById(R.id.pref_title_tts_trigger_days_panel).setVisibility(View.GONE);
+            binding.buttonVoiceSettingTime.setVisibility(View.GONE);
+            binding.prefTitleTtsTriggerDaysPanel.setVisibility(View.GONE);
         } else {
-            findViewById(R.id.button_voice_setting_time).setVisibility(View.VISIBLE);
-            findViewById(R.id.pref_title_tts_trigger_days_panel).setVisibility(View.VISIBLE);
+            binding.buttonVoiceSettingTime.setVisibility(View.VISIBLE);
+            binding.prefTitleTtsTriggerDaysPanel.setVisibility(View.VISIBLE);
         }
         if (currentTriggerId != 1) {
-            findViewById(R.id.pref_title_tts_bt_trigger_panel).setVisibility(View.GONE);
-            findViewById(R.id.enabled_devices_panel).setVisibility(View.VISIBLE);
+            binding.prefTitleTtsBtTriggerPanel.setVisibility(View.GONE);
+            binding.enabledDevicesPanel.setVisibility(View.VISIBLE);
         } else {
-            findViewById(R.id.pref_title_tts_bt_trigger_panel).setVisibility(View.VISIBLE);
-            findViewById(R.id.enabled_devices_panel).setVisibility(View.GONE);
+            binding.prefTitleTtsBtTriggerPanel.setVisibility(View.VISIBLE);
+            binding.enabledDevicesPanel.setVisibility(View.GONE);
         }
+
+        final java.lang.ref.WeakReference<Activity> activityRef = new java.lang.ref.WeakReference<>(this);
+        final Long settingId = this.voiceSettingId;
+        final String timeStyle = this.timeStylePreference;
+        final Locale appLocale = this.applicationLocale;
+        final VoiceSettingParametersDbHelper dbHelper = this.voiceSettingParametersDbHelper;
+
         YourLocalWeather.executor.submit(() -> {
-            prepareNextTime(this, voiceSettingId, timeStylePreference, applicationLocale, voiceSettingParametersDbHelper);
+            prepareNextTime(activityRef, settingId, timeStyle, appLocale, dbHelper);
         });
     }
 
@@ -602,13 +590,12 @@ public class AddVoiceSettingActivity extends BaseActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                MultiSelectionLocationSpinner btDevicesSpinner = findViewById(R.id.tts_setting_locations);
-                btDevicesSpinner.setVoiceSettingId(voiceSettingId);
+                binding.ttsSettingLocations.setVoiceSettingId(voiceSettingId);
                 if ((enabledVoiceDevices != null) && enabledVoiceDevices) {
-                    ((CheckBox) findViewById(R.id.tts_setting_all_locations)).setChecked(true);
-                    findViewById(R.id.tts_setting_locations).setVisibility(View.GONE);
+                    binding.ttsSettingAllLocations.setChecked(true);
+                    binding.ttsSettingLocations.setVisibility(View.GONE);
                 } else {
-                    findViewById(R.id.tts_setting_locations).setVisibility(View.VISIBLE);
+                    binding.ttsSettingLocations.setVisibility(View.VISIBLE);
                 }
 
                 if (enabledBtDevices != null) {
@@ -626,14 +613,13 @@ public class AddVoiceSettingActivity extends BaseActivity {
                     }
                     items.add(multiselectionItem);
                 }
-                btDevicesSpinner.setItems(items);
-                btDevicesSpinner.setSelection(selection);
+                binding.ttsSettingLocations.setItems(items);
+                binding.ttsSettingLocations.setSelection(selection);
             }
         });
     }
 
     public void onTtsDeviceEnabledButtonClicked(View view) {
-
         Long enabledVoiceDevices = voiceSettingParametersDbHelper.getLongParam(
                 voiceSettingId,
                 VoiceSettingParamType.VOICE_SETTING_ENABLED_VOICE_DEVICES.getVoiceSettingParamTypeId());
@@ -643,28 +629,22 @@ public class AddVoiceSettingActivity extends BaseActivity {
         boolean checked = ((CheckBox) view).isChecked();
         switch(view.getId()) {
             case R.id.tts_to_speaker_enabled:
-                if (checked) {
-                    enabledVoiceDevices += TimeUtils.getTwoPower(2);
-                } else {
-                    enabledVoiceDevices -= TimeUtils.getTwoPower(2);
-                }
+                if (checked) { enabledVoiceDevices += TimeUtils.getTwoPower(2); }
+                else { enabledVoiceDevices -= TimeUtils.getTwoPower(2); }
                 break;
             case R.id.tts_when_wired_enabled:
-                if (checked) {
-                    enabledVoiceDevices += TimeUtils.getTwoPower(1);
-                } else {
-                    enabledVoiceDevices -= TimeUtils.getTwoPower(1);
-                }
+                if (checked) { enabledVoiceDevices += TimeUtils.getTwoPower(1); }
+                else { enabledVoiceDevices -= TimeUtils.getTwoPower(1); }
                 break;
             case R.id.tts_when_bt_enabled:
                 if (checked) {
                     enabledVoiceDevices += TimeUtils.getTwoPower(0);
-                    findViewById(R.id.tts_when_bt_enabled_panel).setVisibility(View.VISIBLE);
-                    findViewById(R.id.bt_all_devices).setVisibility(View.VISIBLE);
+                    binding.ttsWhenBtEnabledPanel.setVisibility(View.VISIBLE);
+                    binding.btAllDevices.setVisibility(View.VISIBLE);
                 } else {
                     enabledVoiceDevices -= TimeUtils.getTwoPower(0);
-                    findViewById(R.id.tts_when_bt_enabled_panel).setVisibility(View.GONE);
-                    findViewById(R.id.bt_all_devices).setVisibility(View.GONE);
+                    binding.ttsWhenBtEnabledPanel.setVisibility(View.GONE);
+                    binding.btAllDevices.setVisibility(View.GONE);
                 }
                 break;
         }
@@ -685,113 +665,106 @@ public class AddVoiceSettingActivity extends BaseActivity {
             @Override
             public void run() {
                 if (TimeUtils.isCurrentSettingIndex(partsToSay, 0)) {
-                    ((CheckBox) findViewById(R.id.tts_say_greeting_enabled)).setChecked(true);
-                    findViewById(R.id.tts_say_greeting_custom_panel).setVisibility(View.VISIBLE);
-                    findViewById(R.id.tts_say_greeting_custom).setVisibility(View.VISIBLE);
+                    binding.ttsSayGreetingEnabled.setChecked(true);
+                    binding.ttsSayGreetingCustomPanel.setVisibility(View.VISIBLE);
+                    binding.ttsSayGreetingCustom.setVisibility(View.VISIBLE);
                 } else {
-                    findViewById(R.id.tts_say_greeting_custom_panel).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_greeting_custom).setVisibility(View.GONE);
+                    binding.ttsSayGreetingCustomPanel.setVisibility(View.GONE);
+                    binding.ttsSayGreetingCustom.setVisibility(View.GONE);
                 }
                 if (TimeUtils.isCurrentSettingIndex(partsToSay, 1)) {
-                    ((CheckBox) findViewById(R.id.tts_say_greeting_custom)).setChecked(true);
-                    EditText customText = findViewById(R.id.tts_say_greeting_custom_text_morning);
-                    customText.setVisibility(View.VISIBLE);
-                    if (TextUtils.isEmpty(customText.getText())) {
-                        customText.setText(getString(R.string.tts_say_greeting_morning));
+                    binding.ttsSayGreetingCustom.setChecked(true);
+                    binding.ttsSayGreetingCustomTextMorning.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(binding.ttsSayGreetingCustomTextMorning.getText())) {
+                        binding.ttsSayGreetingCustomTextMorning.setText(getString(R.string.tts_say_greeting_morning));
                     }
-                    customText = findViewById(R.id.tts_say_greeting_custom_text_day);
-                    customText.setVisibility(View.VISIBLE);
-                    if (TextUtils.isEmpty(customText.getText())) {
-                        customText.setText(getString(R.string.tts_say_greeting_day));
+                    binding.ttsSayGreetingCustomTextDay.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(binding.ttsSayGreetingCustomTextDay.getText())) {
+                        binding.ttsSayGreetingCustomTextDay.setText(getString(R.string.tts_say_greeting_day));
                     }
-                    customText = findViewById(R.id.tts_say_greeting_custom_text_evening);
-                    customText.setVisibility(View.VISIBLE);
-                    if (TextUtils.isEmpty(customText.getText())) {
-                        customText.setText(getString(R.string.tts_say_greeting_evening));
+                    binding.ttsSayGreetingCustomTextEvening.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(binding.ttsSayGreetingCustomTextEvening.getText())) {
+                        binding.ttsSayGreetingCustomTextEvening.setText(getString(R.string.tts_say_greeting_evening));
                     }
                 } else {
-                    findViewById(R.id.tts_say_greeting_custom_text_morning).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_greeting_custom_text_day).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_greeting_custom_text_evening).setVisibility(View.GONE);
+                    binding.ttsSayGreetingCustomTextMorning.setVisibility(View.GONE);
+                    binding.ttsSayGreetingCustomTextDay.setVisibility(View.GONE);
+                    binding.ttsSayGreetingCustomTextEvening.setVisibility(View.GONE);
                 }
                 if (TimeUtils.isCurrentSettingIndex(partsToSay, 2)) {
-                    ((CheckBox) findViewById(R.id.tts_say_location_enabled)).setChecked(true);
-                    findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.VISIBLE);
-                    findViewById(R.id.tts_say_location_custom).setVisibility(View.VISIBLE);
-                    findViewById(R.id.tts_say_weather_description_panel).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.GONE);
+                    binding.ttsSayLocationEnabled.setChecked(true);
+                    binding.ttsSayLocationCustomPanel.setVisibility(View.VISIBLE);
+                    binding.ttsSayLocationCustom.setVisibility(View.VISIBLE);
+                    binding.ttsSayWeatherDescriptionPanel.setVisibility(View.GONE);
+                    binding.ttsSayWeatherDescriptionCustomPanel.setVisibility(View.GONE);
                 } else {
-                    findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_location_custom).setVisibility(View.GONE);
+                    binding.ttsSayLocationCustomPanel.setVisibility(View.GONE);
+                    binding.ttsSayLocationCustom.setVisibility(View.GONE);
                 }
                 if (TimeUtils.isCurrentSettingIndex(partsToSay, 3)) {
-                    ((CheckBox) findViewById(R.id.tts_say_location_custom)).setChecked(true);
-                    EditText customText = findViewById(R.id.tts_say_location_custom_text);
-                    customText.setVisibility(View.VISIBLE);
-                    if (TextUtils.isEmpty(customText.getText())) {
-                        customText.setText(getString(R.string.tts_say_current_weather_with_location));
+                    binding.ttsSayLocationCustom.setChecked(true);
+                    binding.ttsSayLocationCustomText.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(binding.ttsSayLocationCustomText.getText())) {
+                        binding.ttsSayLocationCustomText.setText(getString(R.string.tts_say_current_weather_with_location));
                     }
                 } else {
-                    findViewById(R.id.tts_say_location_custom_text).setVisibility(View.GONE);
+                    binding.ttsSayLocationCustomText.setVisibility(View.GONE);
                 }
                 if (TimeUtils.isCurrentSettingIndex(partsToSay, 4)) {
-                    ((CheckBox) findViewById(R.id.tts_say_weather_description_enabled)).setChecked(true);
-                    findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.VISIBLE);
-                    findViewById(R.id.tts_say_weather_description_custom).setVisibility(View.VISIBLE);
-                    findViewById(R.id.tts_say_location_enabled_panel).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.GONE);
+                    binding.ttsSayWeatherDescriptionEnabled.setChecked(true);
+                    binding.ttsSayWeatherDescriptionCustomPanel.setVisibility(View.VISIBLE);
+                    binding.ttsSayWeatherDescriptionCustom.setVisibility(View.VISIBLE);
+                    binding.ttsSayLocationEnabledPanel.setVisibility(View.GONE);
+                    binding.ttsSayLocationCustomPanel.setVisibility(View.GONE);
                 } else {
-                    findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_weather_description_custom).setVisibility(View.GONE);
+                    binding.ttsSayWeatherDescriptionCustomPanel.setVisibility(View.GONE);
+                    binding.ttsSayWeatherDescriptionCustom.setVisibility(View.GONE);
                 }
                 if (TimeUtils.isCurrentSettingIndex(partsToSay, 5)) {
-                    ((CheckBox) findViewById(R.id.tts_say_weather_description_custom)).setChecked(true);
-                    EditText customText = findViewById(R.id.tts_say_weather_description_custom_text);
-                    customText.setVisibility(View.VISIBLE);
-                    if (TextUtils.isEmpty(customText.getText())) {
-                        customText.setText(getString(R.string.tts_say_current_weather));
+                    binding.ttsSayWeatherDescriptionCustom.setChecked(true);
+                    binding.ttsSayWeatherDescriptionCustomText.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(binding.ttsSayWeatherDescriptionCustomText.getText())) {
+                        binding.ttsSayWeatherDescriptionCustomText.setText(getString(R.string.tts_say_current_weather));
                     }
                 } else {
-                    findViewById(R.id.tts_say_weather_description_custom_text).setVisibility(View.GONE);
+                    binding.ttsSayWeatherDescriptionCustomText.setVisibility(View.GONE);
                 }
                 if (TimeUtils.isCurrentSettingIndex(partsToSay, 6)) {
-                    ((CheckBox) findViewById(R.id.tts_say_temperature_enabled)).setChecked(true);
-                    findViewById(R.id.tts_say_temperature_custom_panel).setVisibility(View.VISIBLE);
-                    findViewById(R.id.tts_say_temperature_custom).setVisibility(View.VISIBLE);
+                    binding.ttsSayTemperatureEnabled.setChecked(true);
+                    binding.ttsSayTemperatureCustomPanel.setVisibility(View.VISIBLE);
+                    binding.ttsSayTemperatureCustom.setVisibility(View.VISIBLE);
                 } else {
-                    findViewById(R.id.tts_say_temperature_custom_panel).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_temperature_custom).setVisibility(View.GONE);
+                    binding.ttsSayTemperatureCustomPanel.setVisibility(View.GONE);
+                    binding.ttsSayTemperatureCustom.setVisibility(View.GONE);
                 }
                 if (TimeUtils.isCurrentSettingIndex(partsToSay, 7)) {
-                    ((CheckBox) findViewById(R.id.tts_say_temperature_custom)).setChecked(true);
-                    EditText customText = findViewById(R.id.tts_say_temperature_custom_text);
-                    customText.setVisibility(View.VISIBLE);
-                    if (TextUtils.isEmpty(customText.getText())) {
-                        customText.setText(getString(R.string.tty_say_temperature));
+                    binding.ttsSayTemperatureCustom.setChecked(true);
+                    binding.ttsSayTemperatureCustomText.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(binding.ttsSayTemperatureCustomText.getText())) {
+                        binding.ttsSayTemperatureCustomText.setText(getString(R.string.tty_say_temperature));
                     }
                 } else {
-                    findViewById(R.id.tts_say_temperature_custom_text).setVisibility(View.GONE);
+                    binding.ttsSayTemperatureCustomText.setVisibility(View.GONE);
                 }
                 if (TimeUtils.isCurrentSettingIndex(partsToSay, 8)) {
-                    ((CheckBox) findViewById(R.id.tts_say_wind_enabled)).setChecked(true);
-                    findViewById(R.id.tts_say_wind_custom_panel).setVisibility(View.VISIBLE);
-                    findViewById(R.id.tts_say_wind_custom).setVisibility(View.VISIBLE);
+                    binding.ttsSayWindEnabled.setChecked(true);
+                    binding.ttsSayWindCustomPanel.setVisibility(View.VISIBLE);
+                    binding.ttsSayWindCustom.setVisibility(View.VISIBLE);
                 } else {
-                    findViewById(R.id.tts_say_wind_custom_panel).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_wind_custom).setVisibility(View.GONE);
+                    binding.ttsSayWindCustomPanel.setVisibility(View.GONE);
+                    binding.ttsSayWindCustom.setVisibility(View.GONE);
                 }
                 if (TimeUtils.isCurrentSettingIndex(partsToSay, 9)) {
-                    ((CheckBox) findViewById(R.id.tts_say_wind_custom)).setChecked(true);
-                    EditText customText = findViewById(R.id.tts_say_wind_custom_text);
-                    customText.setVisibility(View.VISIBLE);
-                    if (TextUtils.isEmpty(customText.getText())) {
-                        customText.setText(getString(R.string.tty_say_wind));
+                    binding.ttsSayWindCustom.setChecked(true);
+                    binding.ttsSayWindCustomText.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(binding.ttsSayWindCustomText.getText())) {
+                        binding.ttsSayWindCustomText.setText(getString(R.string.tty_say_wind));
                     }
                 } else {
-                    findViewById(R.id.tts_say_wind_custom_text).setVisibility(View.GONE);
+                    binding.ttsSayWindCustomText.setVisibility(View.GONE);
                 }
                 if (TimeUtils.isCurrentSettingIndex(partsToSay, 10)) {
-                    ((CheckBox) findViewById(R.id.tts_say_forecast_enabled)).setChecked(true);
+                    binding.ttsSayForecastEnabled.setChecked(true);
                 }
             }
         });
@@ -809,64 +782,54 @@ public class AddVoiceSettingActivity extends BaseActivity {
             case R.id.tts_say_greeting_enabled:
                 if (checked) {
                     partsToSay += TimeUtils.getTwoPower(0);
-                    findViewById(R.id.tts_say_greeting_custom_panel).setVisibility(View.VISIBLE);
-                    findViewById(R.id.tts_say_greeting_custom).setVisibility(View.VISIBLE);
+                    binding.ttsSayGreetingCustomPanel.setVisibility(View.VISIBLE);
+                    binding.ttsSayGreetingCustom.setVisibility(View.VISIBLE);
                 } else {
                     partsToSay -= TimeUtils.getTwoPower(0);
-                    findViewById(R.id.tts_say_greeting_custom_panel).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_greeting_custom).setVisibility(View.GONE);
+                    binding.ttsSayGreetingCustomPanel.setVisibility(View.GONE);
+                    binding.ttsSayGreetingCustom.setVisibility(View.GONE);
                 }
                 break;
             case R.id.tts_say_greeting_custom:
                 if (checked) {
                     partsToSay += TimeUtils.getTwoPower(1);
-                    EditText customText = findViewById(R.id.tts_say_greeting_custom_text_morning);
-                    customText.setVisibility(View.VISIBLE);
-                    if (TextUtils.isEmpty(customText.getText())) {
-                        customText.setText(getString(R.string.tts_say_greeting_morning));
+                    binding.ttsSayGreetingCustomTextMorning.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(binding.ttsSayGreetingCustomTextMorning.getText())) {
+                        binding.ttsSayGreetingCustomTextMorning.setText(getString(R.string.tts_say_greeting_morning));
                     }
-                    customText = findViewById(R.id.tts_say_greeting_custom_text_day);
-                    customText.setVisibility(View.VISIBLE);
-                    if (TextUtils.isEmpty(customText.getText())) {
-                        customText.setText(getString(R.string.tts_say_greeting_day));
+                    binding.ttsSayGreetingCustomTextDay.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(binding.ttsSayGreetingCustomTextDay.getText())) {
+                        binding.ttsSayGreetingCustomTextDay.setText(getString(R.string.tts_say_greeting_day));
                     }
-                    customText = findViewById(R.id.tts_say_greeting_custom_text_evening);
-                    customText.setVisibility(View.VISIBLE);
-                    if (TextUtils.isEmpty(customText.getText())) {
-                        customText.setText(getString(R.string.tts_say_greeting_evening));
+                    binding.ttsSayGreetingCustomTextEvening.setVisibility(View.VISIBLE);
+                    if (TextUtils.isEmpty(binding.ttsSayGreetingCustomTextEvening.getText())) {
+                        binding.ttsSayGreetingCustomTextEvening.setText(getString(R.string.tts_say_greeting_evening));
                     }
-                    TextView originalText = findViewById(R.id.tts_say_greeting_morning_original_text);
-                    originalText.setTextColor(Color.GRAY);
-                    originalText = findViewById(R.id.tts_say_greeting_day_original_text);
-                    originalText.setTextColor(Color.GRAY);
-                    originalText = findViewById(R.id.tts_say_greeting_evening_original_text);
-                    originalText.setTextColor(Color.GRAY);
+                    binding.ttsSayGreetingMorningOriginalText.setTextColor(Color.GRAY);
+                    binding.ttsSayGreetingDayOriginalText.setTextColor(Color.GRAY);
+                    binding.ttsSayGreetingEveningOriginalText.setTextColor(Color.GRAY);
                 } else {
                     partsToSay -= TimeUtils.getTwoPower(1);
-                    findViewById(R.id.tts_say_greeting_custom_text_morning).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_greeting_custom_text_day).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_greeting_custom_text_evening).setVisibility(View.GONE);
-                    TextView originalText = findViewById(R.id.tts_say_greeting_morning_original_text);
-                    originalText.setTextColor(Color.BLACK);
-                    originalText = findViewById(R.id.tts_say_greeting_day_original_text);
-                    originalText.setTextColor(Color.BLACK);
-                    originalText = findViewById(R.id.tts_say_greeting_evening_original_text);
-                    originalText.setTextColor(Color.BLACK);
+                    binding.ttsSayGreetingCustomTextMorning.setVisibility(View.GONE);
+                    binding.ttsSayGreetingCustomTextDay.setVisibility(View.GONE);
+                    binding.ttsSayGreetingCustomTextEvening.setVisibility(View.GONE);
+                    binding.ttsSayGreetingMorningOriginalText.setTextColor(Color.BLACK);
+                    binding.ttsSayGreetingDayOriginalText.setTextColor(Color.BLACK);
+                    binding.ttsSayGreetingEveningOriginalText.setTextColor(Color.BLACK);
                 }
                 break;
             case R.id.tts_say_location_enabled:
                 if (checked) {
                     partsToSay += TimeUtils.getTwoPower(2);
-                    findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.VISIBLE);
-                    findViewById(R.id.tts_say_location_custom).setVisibility(View.VISIBLE);
-                    findViewById(R.id.tts_say_weather_description_panel).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.GONE);
+                    binding.ttsSayLocationCustomPanel.setVisibility(View.VISIBLE);
+                    binding.ttsSayLocationCustom.setVisibility(View.VISIBLE);
+                    binding.ttsSayWeatherDescriptionPanel.setVisibility(View.GONE);
+                    binding.ttsSayWeatherDescriptionCustomPanel.setVisibility(View.GONE);
                 } else {
                     partsToSay -= TimeUtils.getTwoPower(2);
-                    findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_location_custom).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_weather_description_panel).setVisibility(View.VISIBLE);
-                    //findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.VISIBLE);
+                    binding.ttsSayLocationCustomPanel.setVisibility(View.GONE);
+                    binding.ttsSayLocationCustom.setVisibility(View.GONE);
+                    binding.ttsSayWeatherDescriptionPanel.setVisibility(View.VISIBLE);
                 }
                 break;
             case R.id.tts_say_location_custom:
@@ -874,23 +837,22 @@ public class AddVoiceSettingActivity extends BaseActivity {
                         3,
                         checked,
                         partsToSay,
-                        R.id.tts_say_location_custom_text,
+                        binding.ttsSayLocationCustomText,
                         R.string.tts_say_current_weather_with_location,
-                        R.id.tts_say_location_original_text);
+                        binding.ttsSayLocationOriginalText);
                 break;
             case R.id.tts_say_weather_description_enabled:
                 if (checked) {
                     partsToSay += TimeUtils.getTwoPower(4);
-                    findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.VISIBLE);
-                    findViewById(R.id.tts_say_weather_description_custom).setVisibility(View.VISIBLE);
-                    findViewById(R.id.tts_say_location_enabled_panel).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.GONE);
+                    binding.ttsSayWeatherDescriptionCustomPanel.setVisibility(View.VISIBLE);
+                    binding.ttsSayWeatherDescriptionCustom.setVisibility(View.VISIBLE);
+                    binding.ttsSayLocationEnabledPanel.setVisibility(View.GONE);
+                    binding.ttsSayLocationCustomPanel.setVisibility(View.GONE);
                 } else {
                     partsToSay -= TimeUtils.getTwoPower(4);
-                    findViewById(R.id.tts_say_weather_description_custom_panel).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_weather_description_custom).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_location_enabled_panel).setVisibility(View.VISIBLE);
-                    //findViewById(R.id.tts_say_location_custom_panel).setVisibility(View.VISIBLE);
+                    binding.ttsSayWeatherDescriptionCustomPanel.setVisibility(View.GONE);
+                    binding.ttsSayWeatherDescriptionCustom.setVisibility(View.GONE);
+                    binding.ttsSayLocationEnabledPanel.setVisibility(View.VISIBLE);
                 }
                 break;
             case R.id.tts_say_weather_description_custom:
@@ -898,19 +860,19 @@ public class AddVoiceSettingActivity extends BaseActivity {
                         5,
                         checked,
                         partsToSay,
-                        R.id.tts_say_weather_description_custom_text,
+                        binding.ttsSayWeatherDescriptionCustomText,
                         R.string.tts_say_current_weather,
-                        R.id.tts_say_weather_description_original_text);
+                        binding.ttsSayWeatherDescriptionOriginalText);
                 break;
             case R.id.tts_say_temperature_enabled:
                 if (checked) {
                     partsToSay += TimeUtils.getTwoPower(6);
-                    findViewById(R.id.tts_say_temperature_custom_panel).setVisibility(View.VISIBLE);
-                    findViewById(R.id.tts_say_temperature_custom).setVisibility(View.VISIBLE);
+                    binding.ttsSayTemperatureCustomPanel.setVisibility(View.VISIBLE);
+                    binding.ttsSayTemperatureCustom.setVisibility(View.VISIBLE);
                 } else {
                     partsToSay -= TimeUtils.getTwoPower(6);
-                    findViewById(R.id.tts_say_temperature_custom_panel).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_temperature_custom).setVisibility(View.GONE);
+                    binding.ttsSayTemperatureCustomPanel.setVisibility(View.GONE);
+                    binding.ttsSayTemperatureCustom.setVisibility(View.GONE);
                 }
                 break;
             case R.id.tts_say_temperature_custom:
@@ -918,19 +880,19 @@ public class AddVoiceSettingActivity extends BaseActivity {
                         7,
                         checked,
                         partsToSay,
-                        R.id.tts_say_temperature_custom_text,
+                        binding.ttsSayTemperatureCustomText,
                         R.string.tty_say_temperature,
-                        R.id.tts_say_temperature_original_text);
+                        binding.ttsSayTemperatureOriginalText);
                 break;
             case R.id.tts_say_wind_enabled:
                 if (checked) {
                     partsToSay += TimeUtils.getTwoPower(8);
-                    findViewById(R.id.tts_say_wind_custom_panel).setVisibility(View.VISIBLE);
-                    findViewById(R.id.tts_say_wind_custom).setVisibility(View.VISIBLE);
+                    binding.ttsSayWindCustomPanel.setVisibility(View.VISIBLE);
+                    binding.ttsSayWindCustom.setVisibility(View.VISIBLE);
                 } else {
                     partsToSay -= TimeUtils.getTwoPower(8);
-                    findViewById(R.id.tts_say_wind_custom_panel).setVisibility(View.GONE);
-                    findViewById(R.id.tts_say_wind_custom).setVisibility(View.GONE);
+                    binding.ttsSayWindCustomPanel.setVisibility(View.GONE);
+                    binding.ttsSayWindCustom.setVisibility(View.GONE);
                 }
                 break;
             case R.id.tts_say_wind_custom:
@@ -938,9 +900,9 @@ public class AddVoiceSettingActivity extends BaseActivity {
                         9,
                         checked,
                         partsToSay,
-                        R.id.tts_say_wind_custom_text,
+                        binding.ttsSayWindCustomText,
                         R.string.tty_say_wind,
-                        R.id.tts_say_wind_original_text);
+                        binding.ttsSayWindOriginalText);
                 break;
             case R.id.tts_say_forecast_enabled:
                 if (checked) {
@@ -959,104 +921,55 @@ public class AddVoiceSettingActivity extends BaseActivity {
     private Long enableAndFillCustomText(int index,
                                          boolean checked,
                                          Long partsToSay,
-                                         int editTextId,
+                                         EditText customText,
                                          int defaultSayText,
-                                         int originalTextId) {
+                                         TextView originalText) {
         if (checked) {
             partsToSay += TimeUtils.getTwoPower(index);
-            EditText customText = findViewById(editTextId);
             customText.setVisibility(View.VISIBLE);
             if (TextUtils.isEmpty(customText.getText())) {
                 customText.setText(getString(defaultSayText));
             }
-            TextView originalText = findViewById(originalTextId);
             originalText.setTextColor(Color.GRAY);
         } else {
             partsToSay -= TimeUtils.getTwoPower(index);
-            findViewById(editTextId).setVisibility(View.GONE);
-            TextView originalText = findViewById(originalTextId);
+            customText.setVisibility(View.GONE);
             originalText.setTextColor(Color.BLACK);
         }
         return partsToSay;
     }
 
-    public void onRadioButtonClicked(View view) {
-        YourLocalWeather.executor.submit(() -> {
-            Long daysOfWeek = voiceSettingParametersDbHelper.getLongParam(
-                    voiceSettingId,
-                    VoiceSettingParamType.VOICE_SETTING_TRIGGER_DAY_IN_WEEK.getVoiceSettingParamTypeId());
-            String timeStylePreference = AppPreference.getTimeStylePreference(getBaseContext());
-            if (daysOfWeek == null) {
-                daysOfWeek = 0L;
-            }
-            boolean checked = ((CheckBox) view).isChecked();
-            switch (view.getId()) {
-                case R.id.voice_trigger_mon:
-                    if (checked) {
-                        daysOfWeek += TimeUtils.getTwoPower(6);
-                    } else {
-                        daysOfWeek += TimeUtils.getTwoPower(6);
+    private static void prepareNextTime(java.lang.ref.WeakReference<Activity> activityRef, Long voiceSettingId, String timeStylePreference, Locale applicationLocale, VoiceSettingParametersDbHelper voiceSettingParametersDbHelper) {
+        Activity context = activityRef.get();
+        if (!(context instanceof AddVoiceSettingActivity)) {
+            return;
+        }
+        AddVoiceSettingActivity act = (AddVoiceSettingActivity) context;
+        if (act.isFinishing() || act.isDestroyed()) {
+            return;
+        }
+
+        TimeUtils.setupAlarmForVoice(act);
+        Calendar c = Calendar.getInstance();
+        Long nextTimeDate = TimeUtils.setupAlarmForVoiceForVoiceSetting(act, voiceSettingId, voiceSettingParametersDbHelper);
+
+        if (nextTimeDate != null) {
+            c.setTimeInMillis(nextTimeDate);
+            String formattedText = " (-> " + AppPreference.getLocalizedDateTime(act, c.getTime(), false, timeStylePreference, applicationLocale) + ")";
+
+            act.runOnUiThread(() -> {
+                if (act.binding != null && !act.isFinishing() && !act.isDestroyed()) {
+                    if (act.binding.voiceSettingNextTime != null) {
+                        act.binding.voiceSettingNextTime.setText(formattedText);
                     }
-                    break;
-                case R.id.voice_trigger_tue:
-                    if (checked) {
-                        daysOfWeek += TimeUtils.getTwoPower(5);
-                    } else {
-                        daysOfWeek -= TimeUtils.getTwoPower(5);
-                    }
-                    break;
-                case R.id.voice_trigger_wed:
-                    if (checked) {
-                        daysOfWeek += TimeUtils.getTwoPower(4);
-                    } else {
-                        daysOfWeek -= TimeUtils.getTwoPower(4);
-                    }
-                    break;
-                case R.id.voice_trigger_thu:
-                    if (checked) {
-                        daysOfWeek += TimeUtils.getTwoPower(3);
-                    } else {
-                        daysOfWeek -= TimeUtils.getTwoPower(3);
-                    }
-                    break;
-                case R.id.voice_trigger_fri:
-                    if (checked) {
-                        daysOfWeek += TimeUtils.getTwoPower(2);
-                    } else {
-                        daysOfWeek -= TimeUtils.getTwoPower(2);
-                    }
-                    break;
-                case R.id.voice_trigger_sat:
-                    if (checked) {
-                        daysOfWeek += TimeUtils.getTwoPower(1);
-                    } else {
-                        daysOfWeek -= TimeUtils.getTwoPower(1);
-                    }
-                    break;
-                case R.id.voice_trigger_sun:
-                    if (checked) {
-                        daysOfWeek += TimeUtils.getTwoPower(0);
-                    } else {
-                        daysOfWeek -= TimeUtils.getTwoPower(0);
-                    }
-                    break;
-            }
-            voiceSettingParametersDbHelper.saveLongParam(
-                    voiceSettingId,
-                    VoiceSettingParamType.VOICE_SETTING_TRIGGER_DAY_IN_WEEK.getVoiceSettingParamTypeId(),
-                    daysOfWeek);
-            prepareNextTime(this, voiceSettingId, timeStylePreference, applicationLocale, voiceSettingParametersDbHelper);
-        });
+                }
+            });
+        }
     }
 
-    private static void prepareNextTime(Activity context, Long voiceSettingId, String timeStylePreference, Locale applicationLocale, VoiceSettingParametersDbHelper voiceSettingParametersDbHelper) {
-        TimeUtils.setupAlarmForVoice(context);
-        Calendar c  = Calendar.getInstance();
-        Long nextTimeDate = TimeUtils.setupAlarmForVoiceForVoiceSetting(context, voiceSettingId, voiceSettingParametersDbHelper);
-        if (nextTimeDate != null) {
-            TextView nextTimeView = context.findViewById(R.id.voice_setting_next_time);
-            c.setTimeInMillis(nextTimeDate);
-            nextTimeView.setText(" (-> " + AppPreference.getLocalizedDateTime(context, c.getTime(), false, timeStylePreference, applicationLocale) + ")");
-        }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        binding = null;
     }
 }

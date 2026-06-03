@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-    android:id="@+id/main.swipe_refresh"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,172 +8,17 @@
     android:fitsSystemWindows="true"
     tools:context="org.thosp.yourlocalweather.MainActivity">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/main_swipe_refresh"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
-
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/main.app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:fitsSystemWindows="true"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark"
-                app:contentScrim="?attr/colorPrimary"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed"
-                app:titleEnabled="false">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/main.general_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="?attr/actionBarSize"
-                    android:baselineAligned="false"
-                    android:orientation="vertical"
-                    android:paddingBottom="20dp"
-                    android:layout_marginStart="@dimen/activity_horizontal_margin"
-                    android:layout_marginEnd="@dimen/activity_horizontal_margin"
-                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                    android:layout_marginRight="@dimen/activity_horizontal_margin"
-                    app:layout_collapseMode="parallax">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:id="@+id/main.locality.panel"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/main.locality"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:maxLines="2"
-                            android:textColor="@color/textColorPrimary"
-                            android:textSize="20sp"
-                            android:layout_marginEnd="30sp"
-                            android:layout_marginRight="30sp"
-                            app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <ImageButton
-                            android:id="@+id/main.switch_location"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintRight_toRightOf="parent"
-                            android:paddingTop="10sp"
-                            android:background="@android:color/transparent"
-                            android:onClick="switchLocation"
-                            app:srcCompat="@drawable/ic_move_location_white"
-                            android:visibility="gone"/>
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/main.locality.panel">
-
-                        <ImageView
-                            android:id="@+id/main.weather_icon"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/textColorPrimary" />
-
-                        <TextView
-                            android:id="@+id/main.temperature"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:textAlignment="center"
-                            android:textColor="@color/textColorPrimary"
-                            android:textSize="80dp"
-                            tools:text="199"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent">
-
-                        <TextView
-                            android:id="@+id/main.description"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/textColorPrimary"
-                            android:textSize="16sp"
-                            tools:text="Clear sky"/>
-
-                        <TextView
-                            android:id="@+id/main.last_update"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:maxLines="3"
-                            android:textColor="@color/textColorPrimary"
-                            tools:text="Last update: 6:59 am"/>
-                    </LinearLayout>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:navigationIcon="?homeAsUpIndicator"
-                    app:layout_collapseMode="pin"
-                    app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                    app:popupTheme="@style/ThemeOverlay.AppCompat.DayNight">
-
-                    <ProgressBar
-                        android:id="@+id/toolbar_progress_bar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="24dp"
-                        android:layout_gravity="end"
-                        android:indeterminate="true"
-                        android:indeterminateTint="#FFFFFF"
-                        android:indeterminateTintMode="src_in"
-                        android:visibility="gone"/>
-                </androidx.appcompat.widget.Toolbar>
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:tint="@android:color/white"
-            app:layout_anchor="@id/main.app_bar"
-            app:layout_anchorGravity="bottom|end"
-            app:srcCompat="@drawable/ic_share"/>
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <androidx.core.widget.NestedScrollView
             android:id="@+id/main_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            android:paddingTop="@dimen/activity_vertical_margin">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -258,13 +102,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/main.second.temperature_icon"
+                        android:id="@+id/main_second.temperature_icon"
                         style="@style/MainIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"/>
 
                     <TextView
-                        android:id="@+id/main.second.temperature"
+                        android:id="@+id/main_second.temperature"
                         style="@style/MainConditions"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -278,13 +122,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/main.wind_icon"
+                        android:id="@+id/main_wind_icon"
                         style="@style/MainIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"/>
 
                     <TextView
-                        android:id="@+id/main.wind_speed"
+                        android:id="@+id/main_wind_speed"
                         style="@style/MainConditions"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -298,13 +142,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/main.humidity_icon"
+                        android:id="@+id/main_humidity_icon"
                         style="@style/MainIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"/>
 
                     <TextView
-                        android:id="@+id/main.humidity"
+                        android:id="@+id/main_humidity"
                         style="@style/MainConditions"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -318,13 +162,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/main.pressure_icon"
+                        android:id="@+id/main_pressure_icon"
                         style="@style/MainIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"/>
 
                     <TextView
-                        android:id="@+id/main.pressure"
+                        android:id="@+id/main_pressure"
                         style="@style/MainConditions"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -338,13 +182,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/main.cloudiness_icon"
+                        android:id="@+id/main_cloudiness_icon"
                         style="@style/MainIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"/>
 
                     <TextView
-                        android:id="@+id/main.cloudiness"
+                        android:id="@+id/main_cloudiness"
                         style="@style/MainConditions"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -358,13 +202,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/main.dew_point_icon"
+                        android:id="@+id/main_dew_point_icon"
                         style="@style/MainIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"/>
 
                     <TextView
-                        android:id="@+id/main.dew_point"
+                        android:id="@+id/main_dew_point"
                         style="@style/MainConditions"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -385,13 +229,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/main.sunrise_icon"
+                        android:id="@+id/main_sunrise_icon"
                         style="@style/MainIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"/>
 
                     <TextView
-                        android:id="@+id/main.sunrise"
+                        android:id="@+id/main_sunrise"
                         style="@style/MainConditions"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -405,13 +249,13 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/main.sunset_icon"
+                        android:id="@+id/main_sunset_icon"
                         style="@style/MainIcon"
                         android:layout_width="32dp"
                         android:layout_height="32dp"/>
 
                     <TextView
-                        android:id="@+id/main.sunset"
+                        android:id="@+id/main_sunset"
                         style="@style/MainConditions"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -419,6 +263,5 @@
                 </LinearLayout>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

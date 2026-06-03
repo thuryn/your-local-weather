@@ -3,28 +3,19 @@ package org.thosp.yourlocalweather;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Switch;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.cardview.widget.CardView;
 import androidx.core.app.NavUtils;
 import androidx.core.content.ContextCompat;
-import androidx.core.widget.NestedScrollView;
 
-import org.thosp.charting.charts.BarChart;
-import org.thosp.charting.charts.CombinedChart;
-import org.thosp.charting.charts.LineChart;
 import org.thosp.charting.components.Description;
 import org.thosp.charting.components.YAxis;
 import org.thosp.charting.data.BarData;
@@ -34,6 +25,8 @@ import org.thosp.charting.data.Entry;
 import org.thosp.charting.data.LineData;
 import org.thosp.charting.data.LineDataSet;
 import org.thosp.charting.interfaces.datasets.IDataSet;
+import org.thosp.yourlocalweather.databinding.ActivityGraphsBinding;
+import org.thosp.yourlocalweather.databinding.ActivitySettingGraphBinding;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
@@ -54,28 +47,17 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
+
 public class GraphsActivity extends ForecastingActivity {
 
     private static final String TAG = "GraphsActivity";
 
     private volatile boolean inited;
 
-    private CombinedChart combinedChart;
-    private CardView combinedChartCard;
-    private LineChart mTemperatureChart;
-    private CardView temperatureChartCard;
-    private LineChart mWindChart;
-    private CardView windChartCard;
-    private LineChart mRainChart;
-    private CardView rainChartCard;
-    private LineChart mSnowChart;
-    private CardView snowChartCard;
-    private LineChart mPressureChart;
-    private CardView pressureChartCard;
-    private BarChart rainBarChart;
-    private CardView rainBarCard;
-    private BarChart snowBarChart;
-    private CardView snowBarCard;
+    // 1. Hlavní binding pro celou aktivitu
+    private ActivityGraphsBinding binding;
+
     private CustomValueFormatter mValueFormatter;
     private RainSnowYAxisValueFormatter rainSnowYAxisValueFormatter;
     private Set<Integer> visibleGraphs = new HashSet<>();
@@ -86,66 +68,67 @@ public class GraphsActivity extends ForecastingActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initializeWeatherForecastReceiver(UpdateWeatherService.ACTION_GRAPHS_UPDATE_RESULT);
-        setContentView(R.layout.activity_graphs);
-        localityView = findViewById(R.id.graph_locality);
-        Typeface robotoLight = Typeface.createFromAsset(this.getAssets(),
-                "fonts/Roboto-Light.ttf");
+
+        // 2. Inicializace View Bindingu
+        binding = ActivityGraphsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        localityView = binding.graphLocality;
+        switchLocationButton = binding.graphSwitchLocation;
+
+        Typeface robotoLight = Typeface.createFromAsset(this.getAssets(), "fonts/Roboto-Light.ttf");
         localityView.setTypeface(robotoLight);
 
-        combinedChart = findViewById(R.id.combined_chart);
-        combinedChartCard = findViewById(R.id.combined_chart_card);
-        mTemperatureChart = findViewById(R.id.temperature_chart);
-        temperatureChartCard = findViewById(R.id.temperature_chart_card);
-        mWindChart = findViewById(R.id.wind_chart);
-        windChartCard = findViewById(R.id.wind_chart_card);
-        mRainChart = findViewById(R.id.rain_chart);
-        rainChartCard = findViewById(R.id.rain_chart_card);
-        mSnowChart = findViewById(R.id.snow_chart);
-        snowChartCard = findViewById(R.id.snow_chart_card);
-        mPressureChart = findViewById(R.id.pressure_chart);
-        pressureChartCard = findViewById(R.id.pressure_chart_card);
-        rainBarChart = findViewById(R.id.bar_rain_chart);
-        rainBarCard = findViewById(R.id.rain_bar_chart_card);
-        snowBarChart = findViewById(R.id.bar_snow_chart);
-        snowBarCard = findViewById(R.id.snow_bar_chart_card);
-        switchLocationButton = findViewById(R.id.graph_switch_location);
-        YourLocalWeather.executor.submit(() -> {
-                    connectionDetector = new ConnectionDetector(this);
-                    locationsDbHelper = LocationsDbHelper.getInstance(this);
-                    pressureUnitFromPreferences = AppPreference.getPressureUnitFromPreferences(this);
-                    rainSnowUnitFromPreferences = AppPreference.getRainSnowUnitFromPreferences(this);
-                    temperatureUnitFromPreferences = AppPreference.getTemperatureUnitFromPreferences(this);
-                    TextView temperatureLabel = findViewById(R.id.graphs_temperature_label);
-                    temperatureLabel.setText(getString(R.string.label_temperature) +
-                            ", " +
-                            TemperatureUtil.getTemperatureUnit(this, temperatureUnitFromPreferences));
-                    TextView windLabel = findViewById(R.id.graphs_wind_label);
-                    windLabel.setText(getString(R.string.label_wind) + ", " + AppPreference.getWindUnit(this, AppPreference.getWindUnitFromPreferences(this)));
-                    TextView rainLabel = findViewById(R.id.graphs_rain_label);
-                    rainLabel.setText(getString(R.string.label_rain) + ", " + getString(AppPreference.getRainOrSnowUnit(rainSnowUnitFromPreferences)));
-                    TextView snowLabel = findViewById(R.id.graphs_snow_label);
-                    snowLabel.setText(getString(R.string.label_snow) + ", " + getString(AppPreference.getRainOrSnowUnit(rainSnowUnitFromPreferences)));
-                    TextView rainBarLabel = findViewById(R.id.graphs_bar_rain_label);
-                    rainBarLabel.setText(getString(R.string.label_rain) + ", " + getString(AppPreference.getRainOrSnowUnit(rainSnowUnitFromPreferences)));
-                    TextView snowBarLabel = findViewById(R.id.graphs_bar_snow_label);
-                    snowBarLabel.setText(getString(R.string.label_snow) + ", " + getString(AppPreference.getRainOrSnowUnit(rainSnowUnitFromPreferences)));
-                    TextView pressureLabel = findViewById(R.id.graphs_pressure_label);
-                    pressureLabel.setText(getString(R.string.label_pressure) + ", " + AppPreference.getPressureUnit(this, pressureUnitFromPreferences));
-                    visibleGraphs = AppPreference.getGraphsActivityVisibleGraphs(this);
-                    combinedGraphValues = AppPreference.getCombinedGraphValues(this);
-                    //forecastType = (Switch) findViewById(R.id.forecast_forecastType);
+        final Context appContext = this.getApplicationContext();
+        final java.lang.ref.WeakReference<GraphsActivity> activityRef = new java.lang.ref.WeakReference<>(this);
 
-            /*forecastType.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                    AppPreference.setForecastType(getBaseContext(), isChecked ? 2 : 1);
-                    updateUI();
+        YourLocalWeather.executor.submit(() -> {
+            GraphsActivity activity = activityRef.get();
+            if (activity == null || activity.isFinishing() || activity.isDestroyed()) {
+                return;
+            }
+
+            ConnectionDetector detector = new ConnectionDetector(appContext);
+            LocationsDbHelper dbHelper = LocationsDbHelper.getInstance(appContext);
+            String pressUnit = AppPreference.getPressureUnitFromPreferences(appContext);
+            String rainSnowUnit = AppPreference.getRainSnowUnitFromPreferences(appContext);
+            String tempUnit = AppPreference.getTemperatureUnitFromPreferences(appContext);
+
+            Set<Integer> visGraphs = AppPreference.getGraphsActivityVisibleGraphs(appContext);
+            Set<Integer> combGraphVals = AppPreference.getCombinedGraphValues(appContext);
+
+            String tempUnitLabel = TemperatureUtil.getTemperatureUnit(appContext, tempUnit);
+            String windUnitLabel = AppPreference.getWindUnit(appContext, AppPreference.getWindUnitFromPreferences(appContext));
+            int rainOrSnowUnitRes = AppPreference.getRainOrSnowUnit(rainSnowUnit);
+            String pressureUnitLabel = AppPreference.getPressureUnit(appContext, pressUnit);
+
+            activity.runOnUiThread(() -> {
+                GraphsActivity act = activityRef.get();
+                if (act != null && act.binding != null && !act.isFinishing() && !act.isDestroyed()) {
+                    act.connectionDetector = detector;
+                    act.locationsDbHelper = dbHelper;
+                    act.pressureUnitFromPreferences = pressUnit;
+                    act.rainSnowUnitFromPreferences = rainSnowUnit;
+                    act.temperatureUnitFromPreferences = tempUnit;
+                    act.visibleGraphs = visGraphs;
+                    act.combinedGraphValues = combGraphVals;
+
+                    // Bezpečné dosazení textů přímo přes vygenerovanou strukturu bindingu
+                    act.binding.graphsTemperatureLabel.setText(act.getString(R.string.label_temperature) + ", " + tempUnitLabel);
+                    act.binding.graphsWindLabel.setText(act.getString(R.string.label_wind) + ", " + windUnitLabel);
+                    act.binding.graphsRainLabel.setText(act.getString(R.string.label_rain) + ", " + act.getString(rainOrSnowUnitRes));
+                    act.binding.graphsSnowLabel.setText(act.getString(R.string.label_snow) + ", " + act.getString(rainOrSnowUnitRes));
+                    act.binding.graphsBarRainLabel.setText(act.getString(R.string.label_rain) + ", " + act.getString(rainOrSnowUnitRes));
+                    act.binding.graphsBarSnowLabel.setText(act.getString(R.string.label_snow) + ", " + act.getString(rainOrSnowUnitRes));
+                    act.binding.graphsPressureLabel.setText(act.getString(R.string.label_pressure) + ", " + pressureUnitLabel);
+
+                    act.updateUI();
+                    act.inited = true;
                 }
-            });*/
-                    updateUI();
-                    inited = true;
-                });
-        NestedScrollView mRecyclerView = findViewById(R.id.graph_scroll_view);
-        mRecyclerView.setOnTouchListener(new ActivityTransitionTouchListener(
+            });
+        });
+
+        binding.graphScrollView.setOnTouchListener(new ActivityTransitionTouchListener(
                 WeatherForecastActivity.class,
                 null, this));
     }
@@ -154,8 +137,7 @@ public class GraphsActivity extends ForecastingActivity {
     protected void onResume() {
         super.onResume();
         ContextCompat.registerReceiver(this, mWeatherUpdateReceiver,
-                new IntentFilter(
-                        UpdateWeatherService.ACTION_GRAPHS_UPDATE_RESULT),
+                new IntentFilter(UpdateWeatherService.ACTION_GRAPHS_UPDATE_RESULT),
                 ContextCompat.RECEIVER_NOT_EXPORTED);
         if (inited) {
             YourLocalWeather.executor.submit(() -> {
@@ -165,64 +147,66 @@ public class GraphsActivity extends ForecastingActivity {
     }
 
     private void setCombinedChart(long locationId, Locale locale) {
+        if (binding == null) return;
         if (!visibleGraphs.contains(0)) {
-            combinedChartCard.setVisibility(View.GONE);
+            binding.combinedChartCard.setVisibility(View.GONE);
             return;
         } else {
-            combinedChartCard.setVisibility(View.VISIBLE);
+            binding.combinedChartCard.setVisibility(View.VISIBLE);
         }
         String temperatureUnitFromPreferences = AppPreference.getTemperatureUnitFromPreferences(this);
         String pressureUnitFromPreferences = AppPreference.getPressureUnitFromPreferences(this);
         String rainSnowUnitFromPreferences = AppPreference.getRainSnowUnitFromPreferences(this);
         String windUnitFromPreferences = AppPreference.getWindUnitFromPreferences(this);
         GraphUtils.generateCombinedGraph(this,
-                                        combinedChart,
-                                        AppPreference.getCombinedGraphValues(this),
-                                        weatherForecastList.get(locationId),
-                                        locale,
-                                        null,
-                                        8,
-                                        2,
-                                        PreferenceUtil.getTextColor(this),
-                                        PreferenceUtil.getBackgroundColor(this),
-                                        PreferenceUtil.getGraphGridColor(this),
-                            true,
-                                        temperatureUnitFromPreferences,
-                                        pressureUnitFromPreferences,
-                                        rainSnowUnitFromPreferences,
-                                        windUnitFromPreferences
+                binding.combinedChart,
+                AppPreference.getCombinedGraphValues(this),
+                weatherForecastList.get(locationId),
+                locale,
+                null,
+                8,
+                2,
+                PreferenceUtil.getTextColor(this),
+                PreferenceUtil.getBackgroundColor(this),
+                PreferenceUtil.getGraphGridColor(this),
+                true,
+                temperatureUnitFromPreferences,
+                pressureUnitFromPreferences,
+                rainSnowUnitFromPreferences,
+                windUnitFromPreferences
         );
     }
 
     private void setTemperatureChart(long locationId, Locale locale) {
+        if (binding == null) return;
         String temperatureUnitFromPreferences = AppPreference.getTemperatureUnitFromPreferences(this);
         if (!visibleGraphs.contains(1)) {
-            temperatureChartCard.setVisibility(View.GONE);
+            binding.temperatureChartCard.setVisibility(View.GONE);
             return;
         } else {
-            temperatureChartCard.setVisibility(View.VISIBLE);
+            binding.temperatureChartCard.setVisibility(View.VISIBLE);
         }
         Description graphDescription = new Description();
         graphDescription.setText("");
-        mTemperatureChart.setDescription(graphDescription);
-        mTemperatureChart.setDrawGridBackground(false);
-        mTemperatureChart.setTouchEnabled(true);
-        mTemperatureChart.setDragEnabled(true);
-        mTemperatureChart.setMaxHighlightDistance(300);
-        mTemperatureChart.setPinchZoom(true);
-        mTemperatureChart.getLegend().setEnabled(false);
-        mTemperatureChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
-        mTemperatureChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
+        binding.temperatureChart.setDescription(graphDescription);
+        binding.temperatureChart.setDrawGridBackground(false);
+        binding.temperatureChart.setTouchEnabled(true);
+        binding.temperatureChart.setDragEnabled(true);
+        binding.temperatureChart.setMaxHighlightDistance(300);
+        binding.temperatureChart.setPinchZoom(true);
+        binding.temperatureChart.getLegend().setEnabled(false);
+        binding.temperatureChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
+        binding.temperatureChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
         GraphUtils.setupXAxis(
-                mTemperatureChart.getXAxis(),
+                binding.temperatureChart.getXAxis(),
                 weatherForecastList.get(locationId),
                 PreferenceUtil.getTextColor(this),
                 null,
                 PreferenceUtil.getGraphGridColor(this),
                 locale);
 
-        YAxis yLeft = mTemperatureChart.getAxisLeft();
+        YAxis yLeft = binding.temperatureChart.getAxisLeft();
         yLeft.setEnabled(true);
         yLeft.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         yLeft.setDrawAxisLine(false);
@@ -233,25 +217,22 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(new YAxisValueFormatter(locale, 2, TemperatureUtil.getTemperatureUnit(this, temperatureUnitFromPreferences)));
 
-        mTemperatureChart.getAxisRight().setEnabled(false);
+        binding.temperatureChart.getAxisRight().setEnabled(false);
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
-
             DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
-
             if (detailedWeatherForecast == null) {
                 continue;
             }
-
             double temperatureDay = TemperatureUtil.getTemperature(this, temperatureUnitFromPreferences, detailedWeatherForecast);
             entries.add(new Entry(detailedWeatherForecast.getDateTime(), (float) temperatureDay));
         }
 
         LineDataSet set;
-        if (mTemperatureChart.getData() != null) {
-            mTemperatureChart.getData().removeDataSet(mTemperatureChart.getData().getDataSetByIndex(
-                    mTemperatureChart.getData().getDataSetCount() - 1));
+        if (binding.temperatureChart.getData() != null) {
+            binding.temperatureChart.getData().removeDataSet(binding.temperatureChart.getData().getDataSetByIndex(
+                    binding.temperatureChart.getData().getDataSetCount() - 1));
             set = new LineDataSet(entries, getString(R.string.graph_temperature_day_label));
             set.setMode(LineDataSet.Mode.LINEAR);
             set.setCubicIntensity(0.2f);
@@ -268,7 +249,7 @@ public class GraphsActivity extends ForecastingActivity {
             set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
-            mTemperatureChart.setData(data);
+            binding.temperatureChart.setData(data);
         } else {
             set = new LineDataSet(entries, getString(R.string.graph_temperature_day_label));
             set.setMode(LineDataSet.Mode.LINEAR);
@@ -283,39 +264,40 @@ public class GraphsActivity extends ForecastingActivity {
             set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
-            mTemperatureChart.setData(data);
+            binding.temperatureChart.setData(data);
         }
-        mTemperatureChart.invalidate();
+        binding.temperatureChart.invalidate();
     }
-    
+
     private void setWindChart(long locationId, String windUnitFromPreferences, Locale locale) {
+        if (binding == null) return;
         if (!visibleGraphs.contains(2)) {
-            windChartCard.setVisibility(View.GONE);
+            binding.windChartCard.setVisibility(View.GONE);
             return;
         } else {
-            windChartCard.setVisibility(View.VISIBLE);
+            binding.windChartCard.setVisibility(View.VISIBLE);
         }
         Description graphDescription = new Description();
         graphDescription.setText("");
-        mWindChart.setDescription(graphDescription);
-        mWindChart.setDrawGridBackground(false);
-        mWindChart.setTouchEnabled(true);
-        mWindChart.setDragEnabled(true);
-        mWindChart.setMaxHighlightDistance(300);
-        mWindChart.setPinchZoom(true);
-        mWindChart.getLegend().setEnabled(false);
-        mWindChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
-        mWindChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
+        binding.windChart.setDescription(graphDescription);
+        binding.windChart.setDrawGridBackground(false);
+        binding.windChart.setTouchEnabled(true);
+        binding.windChart.setDragEnabled(true);
+        binding.windChart.setMaxHighlightDistance(300);
+        binding.windChart.setPinchZoom(true);
+        binding.windChart.getLegend().setEnabled(false);
+        binding.windChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
+        binding.windChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
         GraphUtils.setupXAxis(
-                mWindChart.getXAxis(),
+                binding.windChart.getXAxis(),
                 weatherForecastList.get(locationId),
                 PreferenceUtil.getTextColor(this),
                 null,
                 PreferenceUtil.getGraphGridColor(this),
                 locale);
 
-        YAxis yLeft = mWindChart.getAxisLeft();
+        YAxis yLeft = binding.windChart.getAxisLeft();
         yLeft.setEnabled(true);
         yLeft.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         yLeft.setDrawAxisLine(false);
@@ -327,24 +309,22 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setValueFormatter(new YAxisValueFormatter(locale, 2, AppPreference.getWindUnit(this, windUnitFromPreferences)));
         yLeft.setZeroLineWidth(10f);
 
-        mWindChart.getAxisRight().setEnabled(false);
+        binding.windChart.getAxisRight().setEnabled(false);
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
             DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
-
             if (detailedWeatherForecast == null) {
                 continue;
             }
-
             double wind = AppPreference.getWind(windUnitFromPreferences, detailedWeatherForecast.getWindSpeed());
             entries.add(new Entry(detailedWeatherForecast.getDateTime(), (float) wind));
         }
 
         LineDataSet set;
-        if (mWindChart.getData() != null) {
-            mWindChart.getData().removeDataSet(mWindChart.getData().getDataSetByIndex(
-                    mWindChart.getData().getDataSetCount() - 1));
+        if (binding.windChart.getData() != null) {
+            binding.windChart.getData().removeDataSet(binding.windChart.getData().getDataSetByIndex(
+                    binding.windChart.getData().getDataSetCount() - 1));
             set = new LineDataSet(entries, getString(R.string.graph_wind_label));
             set.setMode(LineDataSet.Mode.LINEAR);
             set.setCubicIntensity(0.2f);
@@ -358,7 +338,7 @@ public class GraphsActivity extends ForecastingActivity {
             set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
-            mWindChart.setData(data);
+            binding.windChart.setData(data);
         } else {
             set = new LineDataSet(entries, getString(R.string.graph_wind_label));
             set.setMode(LineDataSet.Mode.LINEAR);
@@ -373,39 +353,40 @@ public class GraphsActivity extends ForecastingActivity {
             set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
-            mWindChart.setData(data);
+            binding.windChart.setData(data);
         }
-        mWindChart.invalidate();
+        binding.windChart.invalidate();
     }
 
     private void setRainChart(long locationId, Locale locale) {
+        if (binding == null) return;
         if (!visibleGraphs.contains(3)) {
-            rainChartCard.setVisibility(View.GONE);
+            binding.rainChartCard.setVisibility(View.GONE);
             return;
         } else {
-            rainChartCard.setVisibility(View.VISIBLE);
+            binding.rainChartCard.setVisibility(View.VISIBLE);
         }
         Description graphDescription = new Description();
         graphDescription.setText("");
-        mRainChart.setDescription(graphDescription);
-        mRainChart.setDrawGridBackground(false);
-        mRainChart.setTouchEnabled(true);
-        mRainChart.setDragEnabled(true);
-        mRainChart.setMaxHighlightDistance(300);
-        mRainChart.setPinchZoom(true);
-        mRainChart.getLegend().setEnabled(false);
-        mRainChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
-        mRainChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
+        binding.rainChart.setDescription(graphDescription);
+        binding.rainChart.setDrawGridBackground(false);
+        binding.rainChart.setTouchEnabled(true);
+        binding.rainChart.setDragEnabled(true);
+        binding.rainChart.setMaxHighlightDistance(300);
+        binding.rainChart.setPinchZoom(true);
+        binding.rainChart.getLegend().setEnabled(false);
+        binding.rainChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
+        binding.rainChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
         GraphUtils.setupXAxis(
-                mRainChart.getXAxis(),
+                binding.rainChart.getXAxis(),
                 weatherForecastList.get(locationId),
                 PreferenceUtil.getTextColor(this),
                 null,
                 PreferenceUtil.getGraphGridColor(this),
                 locale);
 
-        YAxis yLeft = mRainChart.getAxisLeft();
+        YAxis yLeft = binding.rainChart.getAxisLeft();
         yLeft.setEnabled(true);
         yLeft.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         yLeft.setDrawAxisLine(false);
@@ -417,28 +398,27 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(rainSnowYAxisValueFormatter);
 
-        mRainChart.getAxisRight().setEnabled(false);
+        binding.rainChart.getAxisRight().setEnabled(false);
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
             DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
-
             if (detailedWeatherForecast == null) {
                 continue;
             }
             entries.add(new Entry(
-                    detailedWeatherForecast.getDateTime(),
-                    (float) AppPreference.getRainOrSnow(
-                            rainSnowUnitFromPreferences,
-                            detailedWeatherForecast.getRain())
+                            detailedWeatherForecast.getDateTime(),
+                            (float) AppPreference.getRainOrSnow(
+                                    rainSnowUnitFromPreferences,
+                                    detailedWeatherForecast.getRain())
                     )
             );
         }
 
         LineDataSet set;
-        if (mRainChart.getData() != null) {
-            mRainChart.getData().removeDataSet(mRainChart.getData().getDataSetByIndex(
-                    mRainChart.getData().getDataSetCount() - 1));
+        if (binding.rainChart.getData() != null) {
+            binding.rainChart.getData().removeDataSet(binding.rainChart.getData().getDataSetByIndex(
+                    binding.rainChart.getData().getDataSetCount() - 1));
             set = new LineDataSet(entries, getString(R.string.graph_rain_label));
             set.setMode(LineDataSet.Mode.LINEAR);
             set.setCubicIntensity(0.2f);
@@ -452,7 +432,7 @@ public class GraphsActivity extends ForecastingActivity {
             set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
-            mRainChart.setData(data);
+            binding.rainChart.setData(data);
         } else {
             set = new LineDataSet(entries, getString(R.string.graph_rain_label));
             set.setMode(LineDataSet.Mode.LINEAR);
@@ -467,39 +447,40 @@ public class GraphsActivity extends ForecastingActivity {
             set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
-            mRainChart.setData(data);
+            binding.rainChart.setData(data);
         }
-        mRainChart.invalidate();
+        binding.rainChart.invalidate();
     }
 
     private void setRainBarChart(long locationId, Locale locale) {
+        if (binding == null) return;
         if (!visibleGraphs.contains(4)) {
-            rainBarCard.setVisibility(View.GONE);
+            binding.rainBarChartCard.setVisibility(View.GONE);
             return;
         } else {
-            rainBarCard.setVisibility(View.VISIBLE);
+            binding.rainBarChartCard.setVisibility(View.VISIBLE);
         }
         Description graphDescription = new Description();
         graphDescription.setText("");
-        rainBarChart.setDescription(graphDescription);
-        rainBarChart.setDrawGridBackground(false);
-        rainBarChart.setTouchEnabled(true);
-        rainBarChart.setDragEnabled(true);
-        rainBarChart.setMaxHighlightDistance(300);
-        rainBarChart.setPinchZoom(true);
-        rainBarChart.getLegend().setEnabled(false);
-        rainBarChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
-        rainBarChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
+        binding.barRainChart.setDescription(graphDescription);
+        binding.barRainChart.setDrawGridBackground(false);
+        binding.barRainChart.setTouchEnabled(true);
+        binding.barRainChart.setDragEnabled(true);
+        binding.barRainChart.setMaxHighlightDistance(300);
+        binding.barRainChart.setPinchZoom(true);
+        binding.barRainChart.getLegend().setEnabled(false);
+        binding.barRainChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
+        binding.barRainChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
         GraphUtils.setupXAxis(
-                rainBarChart.getXAxis(),
+                binding.barRainChart.getXAxis(),
                 weatherForecastList.get(locationId),
                 PreferenceUtil.getTextColor(this),
                 null,
                 PreferenceUtil.getGraphGridColor(this),
                 locale);
 
-        YAxis yLeft = rainBarChart.getAxisLeft();
+        YAxis yLeft = binding.barRainChart.getAxisLeft();
         yLeft.setEnabled(true);
         yLeft.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         yLeft.setDrawAxisLine(false);
@@ -511,17 +492,16 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(rainSnowYAxisValueFormatter);
 
-        rainBarChart.getAxisRight().setEnabled(false);
+        binding.barRainChart.getAxisRight().setEnabled(false);
 
         List<BarEntry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
             DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
-
             if (detailedWeatherForecast == null) {
                 continue;
             }
             entries.add(new BarEntry(
-                    detailedWeatherForecast.getDateTime(),
+                            detailedWeatherForecast.getDateTime(),
                             (float) AppPreference.getRainOrSnow(
                                     rainSnowUnitFromPreferences,
                                     detailedWeatherForecast.getRain())
@@ -530,9 +510,9 @@ public class GraphsActivity extends ForecastingActivity {
         }
 
         BarDataSet set;
-        if (rainBarChart.getData() != null) {
-            rainBarChart.getData().removeDataSet(rainBarChart.getData().getDataSetByIndex(
-                    rainBarChart.getData().getDataSetCount() - 1));
+        if (binding.barRainChart.getData() != null) {
+            binding.barRainChart.getData().removeDataSet(binding.barRainChart.getData().getDataSetByIndex(
+                    binding.barRainChart.getData().getDataSetCount() - 1));
             set = new BarDataSet(entries, getString(R.string.graph_rain_label));
             set.setValueTextSize(0f);
             set.setDrawValues(false);
@@ -543,7 +523,7 @@ public class GraphsActivity extends ForecastingActivity {
 
             BarData data = new BarData(set);
             data.setBarWidth(8000f);
-            rainBarChart.setData(data);
+            binding.barRainChart.setData(data);
         } else {
             set = new BarDataSet(entries, getString(R.string.graph_rain_label));
             set.setValueTextSize(0f);
@@ -555,39 +535,40 @@ public class GraphsActivity extends ForecastingActivity {
 
             BarData data = new BarData(set);
             data.setBarWidth(8000f);
-            rainBarChart.setData(data);
+            binding.barRainChart.setData(data);
         }
-        rainBarChart.invalidate();
+        binding.barRainChart.invalidate();
     }
 
     private void setSnowChart(long locationId, Locale locale) {
+        if (binding == null) return;
         if (!visibleGraphs.contains(5)) {
-            snowChartCard.setVisibility(View.GONE);
+            binding.snowChartCard.setVisibility(View.GONE);
             return;
         } else {
-            snowChartCard.setVisibility(View.VISIBLE);
+            binding.snowChartCard.setVisibility(View.VISIBLE);
         }
         Description graphDescription = new Description();
         graphDescription.setText("");
-        mSnowChart.setDescription(graphDescription);
-        mSnowChart.setDrawGridBackground(false);
-        mSnowChart.setTouchEnabled(true);
-        mSnowChart.setDragEnabled(true);
-        mSnowChart.setMaxHighlightDistance(300);
-        mSnowChart.setPinchZoom(true);
-        mSnowChart.getLegend().setEnabled(false);
-        mSnowChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
-        mSnowChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
+        binding.snowChart.setDescription(graphDescription);
+        binding.snowChart.setDrawGridBackground(false);
+        binding.snowChart.setTouchEnabled(true);
+        binding.snowChart.setDragEnabled(true);
+        binding.snowChart.setMaxHighlightDistance(300);
+        binding.snowChart.setPinchZoom(true);
+        binding.snowChart.getLegend().setEnabled(false);
+        binding.snowChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
+        binding.snowChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
         GraphUtils.setupXAxis(
-                mSnowChart.getXAxis(),
+                binding.snowChart.getXAxis(),
                 weatherForecastList.get(locationId),
                 PreferenceUtil.getTextColor(this),
                 null,
                 PreferenceUtil.getGraphGridColor(this),
                 locale);
 
-        YAxis yLeft = mSnowChart.getAxisLeft();
+        YAxis yLeft = binding.snowChart.getAxisLeft();
         yLeft.setEnabled(true);
         yLeft.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         yLeft.setDrawAxisLine(false);
@@ -599,17 +580,16 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(rainSnowYAxisValueFormatter);
 
-        mSnowChart.getAxisRight().setEnabled(false);
+        binding.snowChart.getAxisRight().setEnabled(false);
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
             DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
-
             if (detailedWeatherForecast == null) {
                 continue;
             }
             entries.add(new Entry(
-                    detailedWeatherForecast.getDateTime(),
+                            detailedWeatherForecast.getDateTime(),
                             (float) AppPreference.getRainOrSnow(
                                     rainSnowUnitFromPreferences,
                                     detailedWeatherForecast.getSnow())
@@ -618,9 +598,9 @@ public class GraphsActivity extends ForecastingActivity {
         }
 
         LineDataSet set;
-        if (mSnowChart.getData() != null) {
-            mSnowChart.getData().removeDataSet(mSnowChart.getData().getDataSetByIndex(
-                    mSnowChart.getData().getDataSetCount() - 1));
+        if (binding.snowChart.getData() != null) {
+            binding.snowChart.getData().removeDataSet(binding.snowChart.getData().getDataSetByIndex(
+                    binding.snowChart.getData().getDataSetCount() - 1));
             set = new LineDataSet(entries, getString(R.string.graph_snow_label));
             set.setMode(LineDataSet.Mode.LINEAR);
             set.setCubicIntensity(0.2f);
@@ -634,7 +614,7 @@ public class GraphsActivity extends ForecastingActivity {
             set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
-            mSnowChart.setData(data);
+            binding.snowChart.setData(data);
         } else {
             set = new LineDataSet(entries, getString(R.string.graph_snow_label));
             set.setMode(LineDataSet.Mode.LINEAR);
@@ -649,39 +629,40 @@ public class GraphsActivity extends ForecastingActivity {
             set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
-            mSnowChart.setData(data);
+            binding.snowChart.setData(data);
         }
-        mSnowChart.invalidate();
+        binding.snowChart.invalidate();
     }
 
     private void setSnowBarChart(long locationId, Locale locale) {
+        if (binding == null) return;
         if (!visibleGraphs.contains(6)) {
-            snowBarCard.setVisibility(View.GONE);
+            binding.snowBarChartCard.setVisibility(View.GONE);
             return;
         } else {
-            snowBarCard.setVisibility(View.VISIBLE);
+            binding.snowBarChartCard.setVisibility(View.VISIBLE);
         }
         Description graphDescription = new Description();
         graphDescription.setText("");
-        snowBarChart.setDescription(graphDescription);
-        snowBarChart.setDrawGridBackground(false);
-        snowBarChart.setTouchEnabled(true);
-        snowBarChart.setDragEnabled(true);
-        snowBarChart.setMaxHighlightDistance(300);
-        snowBarChart.setPinchZoom(true);
-        snowBarChart.getLegend().setEnabled(false);
-        snowBarChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
-        snowBarChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
+        binding.barSnowChart.setDescription(graphDescription);
+        binding.barSnowChart.setDrawGridBackground(false);
+        binding.barSnowChart.setTouchEnabled(true);
+        binding.barSnowChart.setDragEnabled(true);
+        binding.barSnowChart.setMaxHighlightDistance(300);
+        binding.barSnowChart.setPinchZoom(true);
+        binding.barSnowChart.getLegend().setEnabled(false);
+        binding.barSnowChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
+        binding.barSnowChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
         GraphUtils.setupXAxis(
-                snowBarChart.getXAxis(),
+                binding.barSnowChart.getXAxis(),
                 weatherForecastList.get(locationId),
                 PreferenceUtil.getTextColor(this),
                 null,
                 PreferenceUtil.getGraphGridColor(this),
                 locale);
 
-        YAxis yLeft = snowBarChart.getAxisLeft();
+        YAxis yLeft = binding.barSnowChart.getAxisLeft();
         yLeft.setEnabled(true);
         yLeft.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         yLeft.setDrawAxisLine(false);
@@ -693,17 +674,16 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(rainSnowYAxisValueFormatter);
 
-        snowBarChart.getAxisRight().setEnabled(false);
+        binding.barSnowChart.getAxisRight().setEnabled(false);
 
         List<BarEntry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
             DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
-
             if (detailedWeatherForecast == null) {
                 continue;
             }
             entries.add(new BarEntry(
-                    detailedWeatherForecast.getDateTime(),
+                            detailedWeatherForecast.getDateTime(),
                             (float) AppPreference.getRainOrSnow(
                                     rainSnowUnitFromPreferences,
                                     detailedWeatherForecast.getSnow())
@@ -712,9 +692,9 @@ public class GraphsActivity extends ForecastingActivity {
         }
 
         BarDataSet set;
-        if (snowBarChart.getData() != null) {
-            snowBarChart.getData().removeDataSet(snowBarChart.getData().getDataSetByIndex(
-                    snowBarChart.getData().getDataSetCount() - 1));
+        if (binding.barSnowChart.getData() != null) {
+            binding.barSnowChart.getData().removeDataSet(binding.barSnowChart.getData().getDataSetByIndex(
+                    binding.barSnowChart.getData().getDataSetCount() - 1));
             set = new BarDataSet(entries, getString(R.string.graph_snow_label));
             set.setValueTextSize(0f);
             set.setDrawValues(false);
@@ -725,7 +705,7 @@ public class GraphsActivity extends ForecastingActivity {
 
             BarData data = new BarData(set);
             data.setBarWidth(8000f);
-            snowBarChart.setData(data);
+            binding.barSnowChart.setData(data);
         } else {
             set = new BarDataSet(entries, getString(R.string.graph_snow_label));
             set.setValueTextSize(0f);
@@ -737,39 +717,40 @@ public class GraphsActivity extends ForecastingActivity {
 
             BarData data = new BarData(set);
             data.setBarWidth(8000f);
-            snowBarChart.setData(data);
+            binding.barSnowChart.setData(data);
         }
-        snowBarChart.invalidate();
+        binding.barSnowChart.invalidate();
     }
 
     private void setPressureChart(long locationId, String pressureUnitFromPreferences, Locale locale) {
+        if (binding == null) return;
         if (!visibleGraphs.contains(7)) {
-            pressureChartCard.setVisibility(View.GONE);
+            binding.pressureChartCard.setVisibility(View.GONE);
             return;
         } else {
-            pressureChartCard.setVisibility(View.VISIBLE);
+            binding.pressureChartCard.setVisibility(View.VISIBLE);
         }
         Description graphDescription = new Description();
         graphDescription.setText("");
-        mPressureChart.setDescription(graphDescription);
-        mPressureChart.setDrawGridBackground(false);
-        mPressureChart.setTouchEnabled(true);
-        mPressureChart.setDragEnabled(true);
-        mPressureChart.setMaxHighlightDistance(300);
-        mPressureChart.setPinchZoom(true);
-        mPressureChart.getLegend().setEnabled(false);
-        mPressureChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
-        mPressureChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
+        binding.pressureChart.setDescription(graphDescription);
+        binding.pressureChart.setDrawGridBackground(false);
+        binding.pressureChart.setTouchEnabled(true);
+        binding.pressureChart.setDragEnabled(true);
+        binding.pressureChart.setMaxHighlightDistance(300);
+        binding.pressureChart.setPinchZoom(true);
+        binding.pressureChart.getLegend().setEnabled(false);
+        binding.pressureChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
+        binding.pressureChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
         GraphUtils.setupXAxis(
-                mPressureChart.getXAxis(),
+                binding.pressureChart.getXAxis(),
                 weatherForecastList.get(locationId),
                 PreferenceUtil.getTextColor(this),
                 null,
                 PreferenceUtil.getGraphGridColor(this),
                 locale);
 
-        YAxis yLeft = mPressureChart.getAxisLeft();
+        YAxis yLeft = binding.pressureChart.getAxisLeft();
         yLeft.setEnabled(true);
         yLeft.setPosition(YAxis.YAxisLabelPosition.OUTSIDE_CHART);
         yLeft.setDrawAxisLine(false);
@@ -780,12 +761,11 @@ public class GraphsActivity extends ForecastingActivity {
         yLeft.setXOffset(15);
         yLeft.setValueFormatter(new YAxisValueFormatter(locale, 2, AppPreference.getPressureUnit(this, pressureUnitFromPreferences)));
 
-        mPressureChart.getAxisRight().setEnabled(false);
+        binding.pressureChart.getAxisRight().setEnabled(false);
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
             DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
-
             if (detailedWeatherForecast == null) {
                 continue;
             }
@@ -799,9 +779,9 @@ public class GraphsActivity extends ForecastingActivity {
         }
 
         LineDataSet set;
-        if (mPressureChart.getData() != null) {
-            mPressureChart.getData().removeDataSet(mPressureChart.getData().getDataSetByIndex(
-                    mPressureChart.getData().getDataSetCount() - 1));
+        if (binding.pressureChart.getData() != null) {
+            binding.pressureChart.getData().removeDataSet(binding.pressureChart.getData().getDataSetByIndex(
+                    binding.pressureChart.getData().getDataSetCount() - 1));
             set = new LineDataSet(entries, getString(R.string.graph_pressure_label));
             set.setMode(LineDataSet.Mode.LINEAR);
             set.setCubicIntensity(0.2f);
@@ -815,7 +795,7 @@ public class GraphsActivity extends ForecastingActivity {
             set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
-            mPressureChart.setData(data);
+            binding.pressureChart.setData(data);
         } else {
             set = new LineDataSet(entries, getString(R.string.graph_pressure_label));
             set.setMode(LineDataSet.Mode.LINEAR);
@@ -830,9 +810,9 @@ public class GraphsActivity extends ForecastingActivity {
             set.setValueTextColor(PreferenceUtil.getTextColor(this));
 
             LineData data = new LineData(set);
-            mPressureChart.setData(data);
+            binding.pressureChart.setData(data);
         }
-        mPressureChart.invalidate();
+        binding.pressureChart.invalidate();
     }
 
     @Override
@@ -866,128 +846,99 @@ public class GraphsActivity extends ForecastingActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @SuppressLint("MissingInflatedId")
     private void showCombinedGraphSettings() {
         boolean[] checkedItems = new boolean[4];
         for (Integer visibleColumn: combinedGraphValues) {
-            checkedItems[visibleColumn] = true;
+            if (visibleColumn < 4) {
+                checkedItems[visibleColumn] = true;
+            }
         }
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = getLayoutInflater();
-        View forecastSettingView = inflater.inflate(R.layout.activity_setting_graph, null);
-        final Switch temperatureSwitch = forecastSettingView.findViewById(R.id.widget_setting_graph_temperatre_switch);
-        final Switch rainsnowSwitch = forecastSettingView.findViewById(R.id.widget_setting_graph_rain_switch);
-        final Switch windSwitch = forecastSettingView.findViewById(R.id.widget_setting_graph_wind_switch);
-        final Switch pressureSwitch = forecastSettingView.findViewById(R.id.widget_setting_graph_pressure_switch);
-        temperatureSwitch.setChecked(checkedItems[0]);
+        // Použití specifického sub-bindingu pro dialog nastavení grafů
+        ActivitySettingGraphBinding dialogBinding = ActivitySettingGraphBinding.inflate(getLayoutInflater());
+
+        dialogBinding.widgetSettingGraphTemperatreSwitch.setChecked(checkedItems[0]);
         final GraphValuesSwitchListener temperatureSwitchListener = new GraphValuesSwitchListener(checkedItems[0]);
-        temperatureSwitch.setOnCheckedChangeListener(temperatureSwitchListener);
-        rainsnowSwitch.setChecked(checkedItems[1]);
+        dialogBinding.widgetSettingGraphTemperatreSwitch.setOnCheckedChangeListener(temperatureSwitchListener);
+
+        dialogBinding.widgetSettingGraphRainSwitch.setChecked(checkedItems[1]);
         final GraphValuesSwitchListener rainsnowSwitchListener = new GraphValuesSwitchListener(checkedItems[1]);
-        rainsnowSwitch.setOnCheckedChangeListener(rainsnowSwitchListener);
-        windSwitch.setChecked(checkedItems[2]);
-        final GraphValuesSwitchListener windSwitchListener = new GraphValuesSwitchListener(checkedItems[2], pressureSwitch);
-        windSwitch.setOnCheckedChangeListener(windSwitchListener);
-        pressureSwitch.setChecked(checkedItems[3]);
-        final GraphValuesSwitchListener pressureSwitchListener = new GraphValuesSwitchListener(checkedItems[3], windSwitch);
-        pressureSwitch.setOnCheckedChangeListener(pressureSwitchListener);
-        if (windSwitch.isChecked()) {
-            pressureSwitch.setEnabled(false);
-        } else if (pressureSwitch.isChecked()) {
-            windSwitch.setEnabled(false);
+        dialogBinding.widgetSettingGraphRainSwitch.setOnCheckedChangeListener(rainsnowSwitchListener);
+
+        dialogBinding.widgetSettingGraphWindSwitch.setChecked(checkedItems[2]);
+        final GraphValuesSwitchListener windSwitchListener = new GraphValuesSwitchListener(checkedItems[2], dialogBinding.widgetSettingGraphPressureSwitch);
+        dialogBinding.widgetSettingGraphWindSwitch.setOnCheckedChangeListener(windSwitchListener);
+
+        dialogBinding.widgetSettingGraphPressureSwitch.setChecked(checkedItems[3]);
+        final GraphValuesSwitchListener pressureSwitchListener = new GraphValuesSwitchListener(checkedItems[3], dialogBinding.widgetSettingGraphWindSwitch);
+        dialogBinding.widgetSettingGraphPressureSwitch.setOnCheckedChangeListener(pressureSwitchListener);
+
+        if (dialogBinding.widgetSettingGraphWindSwitch.isChecked()) {
+            dialogBinding.widgetSettingGraphPressureSwitch.setEnabled(false);
+        } else if (dialogBinding.widgetSettingGraphPressureSwitch.isChecked()) {
+            dialogBinding.widgetSettingGraphWindSwitch.setEnabled(false);
         }
 
-        builder.setTitle(R.string.forecast_settings_combined_values)
-                .setView(forecastSettingView)
-                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        combinedGraphValues = new HashSet<>();
-                        if (temperatureSwitchListener.isChecked()) {
-                            combinedGraphValues.add(0);
-                        }
-                        if (rainsnowSwitchListener.isChecked()) {
-                            combinedGraphValues.add(1);
-                        }
-                        if (windSwitchListener.isChecked()) {
-                            combinedGraphValues.add(2);
-                        }
-                        if (pressureSwitchListener.isChecked()) {
-                            combinedGraphValues.add(3);
-                        }
-                        AppPreference.setCombinedGraphValues(GraphsActivity.this, combinedGraphValues);
-                        YourLocalWeather.executor.submit(() -> {
-                            updateUI();
-                        });
-                    }
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.forecast_settings_combined_values)
+                .setView(dialogBinding.getRoot())
+                .setPositiveButton(R.string.ok, (dialog, id) -> {
+                    combinedGraphValues = new HashSet<>();
+                    if (temperatureSwitchListener.isChecked()) combinedGraphValues.add(0);
+                    if (rainsnowSwitchListener.isChecked()) combinedGraphValues.add(1);
+                    if (windSwitchListener.isChecked()) combinedGraphValues.add(2);
+                    if (pressureSwitchListener.isChecked()) combinedGraphValues.add(3);
+
+                    AppPreference.setCombinedGraphValues(GraphsActivity.this, combinedGraphValues);
+                    YourLocalWeather.executor.submit(() -> updateUI());
                 })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        finish();
-                    }
-                });
-        AlertDialog dialog = builder.create();
-        dialog.show();
+                .setNegativeButton(R.string.cancel, (dialog, id) -> finish())
+                .show();
     }
 
     private void showSettings() {
         final Set<Integer> mSelectedItems = new HashSet<>();
         boolean[] checkedItems = new boolean[8];
         for (Integer visibleColumn: visibleGraphs) {
-            mSelectedItems.add(visibleColumn);
-            checkedItems[visibleColumn] = true;
+            if (visibleColumn < 8) {
+                mSelectedItems.add(visibleColumn);
+                checkedItems[visibleColumn] = true;
+            }
         }
         final Context context = this;
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.forecast_settings_visible_graphs)
-                .setMultiChoiceItems(R.array.pref_graphs, checkedItems,
-                        new DialogInterface.OnMultiChoiceClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which,
-                                                boolean isChecked) {
-                                // Else, if the item is already in the array, remove it
-                                if (isChecked) {
-                                    // If the user checked the item, add it to the selected items
-                                    mSelectedItems.add(which);
-                                } else mSelectedItems.remove(which);
-                            }
-                        })
-                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        visibleGraphs = new HashSet<>();
-                        for (Integer selectedItem: mSelectedItems) {
-                            visibleGraphs.add(selectedItem);
-                        }
-                        AppPreference.setGraphsActivityVisibleGraphs(context, visibleGraphs);
-                        YourLocalWeather.executor.submit(() -> {
-                            updateUI();
-                        });
-                    }
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.forecast_settings_visible_graphs)
+                .setMultiChoiceItems(R.array.pref_graphs, checkedItems, (dialog, which, isChecked) -> {
+                    if (isChecked) {
+                        mSelectedItems.add(which);
+                    } else mSelectedItems.remove(which);
                 })
-                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
+                .setPositiveButton(R.string.ok, (dialog, id) -> {
+                    visibleGraphs = new HashSet<>();
+                    for (Integer selectedItem: mSelectedItems) {
+                        visibleGraphs.add(selectedItem);
                     }
-                });
-
-        AlertDialog dialog = builder.create();
-        dialog.show();
+                    AppPreference.setGraphsActivityVisibleGraphs(context, visibleGraphs);
+                    YourLocalWeather.executor.submit(() -> updateUI());
+                })
+                .setNegativeButton(R.string.cancel, (dialog, id) -> {})
+                .show();
     }
 
     private void toggleValues() {
-        toggleValuesForGraph(mTemperatureChart.getData());
-        toggleValuesForGraph(mWindChart.getData());
-        toggleValuesForGraph(mRainChart.getData());
-        toggleValuesForGraph(mSnowChart.getData());
-        toggleValuesForGraph(mPressureChart.getData());
-        mTemperatureChart.invalidate();
-        mWindChart.invalidate();
-        mRainChart.invalidate();
-        mSnowChart.invalidate();
-        mPressureChart.invalidate();
+        if (binding == null) return;
+        toggleValuesForGraph(binding.temperatureChart.getData());
+        toggleValuesForGraph(binding.windChart.getData());
+        toggleValuesForGraph(binding.rainChart.getData());
+        toggleValuesForGraph(binding.snowChart.getData());
+        toggleValuesForGraph(binding.pressureChart.getData());
+        binding.temperatureChart.invalidate();
+        binding.windChart.invalidate();
+        binding.rainChart.invalidate();
+        binding.snowChart.invalidate();
+        binding.pressureChart.invalidate();
     }
 
     private void toggleValuesForGraph(LineData lineData) {
@@ -1000,36 +951,34 @@ public class GraphsActivity extends ForecastingActivity {
     }
 
     private void toggleYAxis() {
-        mTemperatureChart.getAxisLeft().setEnabled(!mTemperatureChart.getAxisLeft().isEnabled());
-        mWindChart.getAxisLeft().setEnabled(!mWindChart.getAxisLeft().isEnabled());
-        mRainChart.getAxisLeft().setEnabled(!mRainChart.getAxisLeft().isEnabled());
-        mSnowChart.getAxisLeft().setEnabled(!mSnowChart.getAxisLeft().isEnabled());
-        mPressureChart.getAxisLeft().setEnabled(!mPressureChart.getAxisLeft().isEnabled());
-        mTemperatureChart.invalidate();
-        mWindChart.invalidate();
-        mRainChart.invalidate();
-        rainBarChart.invalidate();
-        mSnowChart.invalidate();
-        snowBarChart.invalidate();
-        mPressureChart.invalidate();
+        if (binding == null) return;
+        binding.temperatureChart.getAxisLeft().setEnabled(!binding.temperatureChart.getAxisLeft().isEnabled());
+        binding.windChart.getAxisLeft().setEnabled(!binding.windChart.getAxisLeft().isEnabled());
+        binding.rainChart.getAxisLeft().setEnabled(!binding.rainChart.getAxisLeft().isEnabled());
+        binding.snowChart.getAxisLeft().setEnabled(!binding.snowChart.getAxisLeft().isEnabled());
+        binding.pressureChart.getAxisLeft().setEnabled(!binding.pressureChart.getAxisLeft().isEnabled());
+        binding.temperatureChart.invalidate();
+        binding.windChart.invalidate();
+        binding.rainChart.invalidate();
+        binding.barRainChart.invalidate();
+        binding.snowChart.invalidate();
+        binding.barSnowChart.invalidate();
+        binding.pressureChart.invalidate();
     }
 
     @Override
     protected void updateUI() {
+        if (binding == null) return;
         int maxOrderId = locationsDbHelper.getMaxOrderId();
-        runOnUiThread(new Runnable() {
-                          @Override
-                          public void run() {
-                              View switchPanel = findViewById(R.id.graph_switch_panel);
-                              switchPanel.setVisibility(View.INVISIBLE);
-                              if ((maxOrderId > 1) ||
-                                      ((maxOrderId == 1) && (locationsDbHelper.getLocationByOrderId(0).isEnabled()))) {
-                                  switchLocationButton.setVisibility(View.VISIBLE);
-                              } else {
-                                  switchLocationButton.setVisibility(View.GONE);
-                              }
-                          }
-                      });
+        runOnUiThread(() -> {
+            if (binding == null) return;
+            binding.graphSwitchPanel.setVisibility(View.INVISIBLE);
+            if ((maxOrderId > 1) || ((maxOrderId == 1) && (locationsDbHelper.getLocationByOrderId(0).isEnabled()))) {
+                switchLocationButton.setVisibility(View.VISIBLE);
+            } else {
+                switchLocationButton.setVisibility(View.GONE);
+            }
+        });
 
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(this);
         long locationId = AppPreference.getCurrentLocationId(GraphsActivity.this);
@@ -1039,28 +988,14 @@ public class GraphsActivity extends ForecastingActivity {
         }
         mValueFormatter = new CustomValueFormatter(currentLocation.getLocale());
         rainSnowYAxisValueFormatter = new RainSnowYAxisValueFormatter(this, currentLocation.getLocale());
-        //forecastType.setChecked(2 == AppPreference.getForecastType(getBaseContext()));
-        //appendLog(getBaseContext(), TAG, "updateUI with forecastType:", forecastType.isChecked());
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId, 1);
         if (weatherForecastRecord != null) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
-                    locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());
-                }
+            runOnUiThread(() -> {
+                weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
+                locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());
             });
         } else {
-            /*if (forecastType.isChecked()) {
-                updateLongWeatherForecastFromNetwork("GRAPHS");
-            } else {*/
-            runOnUiThread(new Runnable() {
-                              @Override
-                              public void run() {
-                                  sendMessageToCurrentWeatherService(currentLocation, "GRAPHS");
-                              }
-                          });
-            //}
+            runOnUiThread(() -> sendMessageToCurrentWeatherService(currentLocation, "GRAPHS"));
             return;
         }
 
@@ -1074,71 +1009,54 @@ public class GraphsActivity extends ForecastingActivity {
         String pressureUnitFromPreferences = AppPreference.getPressureUnitFromPreferences(this);
         String windUnitFromPreferences = AppPreference.getWindUnitFromPreferences(this);
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                TextView temperatureLabel = findViewById(R.id.graphs_temperature_label);
-                temperatureLabel.setBackgroundColor(backgroundColor);
-                temperatureLabel.setTextColor(textColor);
-                TextView windLabel = findViewById(R.id.graphs_wind_label);
-                windLabel.setBackgroundColor(backgroundColor);
-                windLabel.setTextColor(textColor);
-                TextView rainLabel = findViewById(R.id.graphs_rain_label);
-                rainLabel.setBackgroundColor(backgroundColor);
-                rainLabel.setTextColor(textColor);
-                TextView snowLabel = findViewById(R.id.graphs_snow_label);
-                snowLabel.setBackgroundColor(backgroundColor);
-                snowLabel.setTextColor(textColor);
-                TextView rainBarLabel = findViewById(R.id.graphs_bar_rain_label);
-                rainBarLabel.setBackgroundColor(backgroundColor);
-                rainBarLabel.setTextColor(textColor);
-                TextView snowBarLabel = findViewById(R.id.graphs_bar_snow_label);
-                snowBarLabel.setBackgroundColor(backgroundColor);
-                snowBarLabel.setTextColor(textColor);
+        runOnUiThread(() -> {
+            if (binding == null) return;
+            binding.graphsTemperatureLabel.setBackgroundColor(backgroundColor);
+            binding.graphsTemperatureLabel.setTextColor(textColor);
+            binding.graphsWindLabel.setBackgroundColor(backgroundColor);
+            binding.graphsWindLabel.setTextColor(textColor);
+            binding.graphsRainLabel.setBackgroundColor(backgroundColor);
+            binding.graphsRainLabel.setTextColor(textColor);
+            binding.graphsSnowLabel.setBackgroundColor(backgroundColor);
+            binding.graphsSnowLabel.setTextColor(textColor);
+            binding.graphsBarRainLabel.setBackgroundColor(backgroundColor);
+            binding.graphsBarRainLabel.setTextColor(textColor);
+            binding.graphsBarSnowLabel.setBackgroundColor(backgroundColor);
+            binding.graphsBarSnowLabel.setTextColor(textColor);
 
-                TextView combinedLabel = findViewById(R.id.graphs_combined_label);
-                StringBuilder combinedGraphLabel = new StringBuilder();
-                if (combinedGraphValues.contains(0)) {
-                    combinedGraphLabel.append(getString(R.string.label_temperature));
-                    combinedGraphLabel.append(" (");
-                    combinedGraphLabel.append(temperatureUnit);
-                    combinedGraphLabel.append(")");
-                }
-                if (combinedGraphValues.contains(1)) {
-                    combinedGraphLabel.append(", ");
-                    combinedGraphLabel.append(getString(R.string.graph_rain_label));
-                    combinedGraphLabel.append("/");
-                    combinedGraphLabel.append(getString(R.string.graph_snow_label));
-                    combinedGraphLabel.append(" (");
-                    combinedGraphLabel.append(rainSnowUnit);
-                    combinedGraphLabel.append(")");
-                }
-                if (combinedGraphValues.contains(2)) {
-                    combinedGraphLabel.append(", ");
-                    combinedGraphLabel.append(getString(R.string.label_wind));
-                    combinedGraphLabel.append(" (");
-                    combinedGraphLabel.append(windUnit);
-                    combinedGraphLabel.append(")");
-                }
-                if (combinedGraphValues.contains(3)) {
-                    combinedGraphLabel.append(", ");
-                    combinedGraphLabel.append(getString(R.string.label_pressure));
-                    combinedGraphLabel.append(" (");
-                    combinedGraphLabel.append(pressureUnit);
-                    combinedGraphLabel.append(")");
-                }
-                combinedLabel.setText(combinedGraphLabel.toString());
-
-                setCombinedChart(locationId, currentLocation.getLocale());
-                setTemperatureChart(locationId, currentLocation.getLocale());
-                setWindChart(locationId, windUnitFromPreferences, currentLocation.getLocale());
-                setRainChart(locationId, currentLocation.getLocale());
-                setRainBarChart(locationId, currentLocation.getLocale());
-                setSnowChart(locationId, currentLocation.getLocale());
-                setSnowBarChart(locationId, currentLocation.getLocale());
-                setPressureChart(locationId, pressureUnitFromPreferences, currentLocation.getLocale());
-                localityView.setText(cityAndCountry);
+            StringBuilder combinedGraphLabel = new StringBuilder();
+            if (combinedGraphValues.contains(0)) {
+                combinedGraphLabel.append(getString(R.string.label_temperature)).append(" (").append(temperatureUnit).append(")");
             }
+            if (combinedGraphValues.contains(1)) {
+                if (combinedGraphLabel.length() > 0) combinedGraphLabel.append(", ");
+                combinedGraphLabel.append(getString(R.string.graph_rain_label)).append("/").append(getString(R.string.graph_snow_label)).append(" (").append(rainSnowUnit).append(")");
+            }
+            if (combinedGraphValues.contains(2)) {
+                if (combinedGraphLabel.length() > 0) combinedGraphLabel.append(", ");
+                combinedGraphLabel.append(getString(R.string.label_wind)).append(" (").append(windUnit).append(")");
+            }
+            if (combinedGraphValues.contains(3)) {
+                if (combinedGraphLabel.length() > 0) combinedGraphLabel.append(", ");
+                combinedGraphLabel.append(getString(R.string.label_pressure)).append(" (").append(pressureUnit).append(")");
+            }
+            binding.graphsCombinedLabel.setText(combinedGraphLabel.toString());
+
+            setCombinedChart(locationId, currentLocation.getLocale());
+            setTemperatureChart(locationId, currentLocation.getLocale());
+            setWindChart(locationId, windUnitFromPreferences, currentLocation.getLocale());
+            setRainChart(locationId, currentLocation.getLocale());
+            setRainBarChart(locationId, currentLocation.getLocale());
+            setSnowChart(locationId, currentLocation.getLocale());
+            setSnowBarChart(locationId, currentLocation.getLocale());
+            setPressureChart(locationId, pressureUnitFromPreferences, currentLocation.getLocale());
+            localityView.setText(cityAndCountry);
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        binding = null;
     }
 }

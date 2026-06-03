@@ -5,7 +5,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.speech.tts.TextToSpeech;
@@ -15,19 +14,18 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.thosp.yourlocalweather.databinding.ActivityVoiceSettingsBinding;
+import org.thosp.yourlocalweather.databinding.VoiceSettingItemBinding;
 import org.thosp.yourlocalweather.model.VoiceSettingParametersDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.TimeUtils;
@@ -51,8 +49,9 @@ public class VoiceSettingsActivity extends BaseActivity {
 
     private volatile boolean inited;
 
+    // 1. Deklarujeme binding pro aktivitu
+    private ActivityVoiceSettingsBinding binding;
     private VoiceSettingsAdapter voiceSettingsAdapter;
-    private RecyclerView recyclerView;
     private VoiceSettingParametersDbHelper voiceSettingParametersDbHelper;
     private Locale applicationLocale;
     private String timeStylePreference;
@@ -80,13 +79,17 @@ public class VoiceSettingsActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
+
+        // 2. Inicializace bindingu aktivity
+        binding = ActivityVoiceSettingsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
         YourLocalWeather.executor.submit(() -> {
             applicationLocale = new Locale(AppPreference.getInstance().getLanguage(this));
             voiceSettingParametersDbHelper = VoiceSettingParametersDbHelper.getInstance(this);
             timeStylePreference = AppPreference.getTimeStylePreference(this);
             inited = true;
         });
-        setContentView(R.layout.activity_voice_settings);
 
         setupActionBar();
         setupRecyclerView();
@@ -99,7 +102,8 @@ public class VoiceSettingsActivity extends BaseActivity {
             YourLocalWeather.executor.submit(() -> {
                 checkLanguageCompatibility();
                 voiceSettingsAdapter = new VoiceSettingsAdapter(voiceSettingParametersDbHelper.getAllSettingIds());
-                recyclerView.setAdapter(voiceSettingsAdapter);
+                // Přístup k prvkům provádíme bezpečně skrze hlavní UI vlákno
+                runOnUiThread(() -> binding.voiceSettingRecyclerView.setAdapter(voiceSettingsAdapter));
                 checkExistenceAndBtPermissions();
             });
         }
@@ -118,11 +122,9 @@ public class VoiceSettingsActivity extends BaseActivity {
         }
         if ((Utils.getBluetoothAdapter(getBaseContext()) != null) &&
                 ContextCompat.checkSelfPermission(VoiceSettingsActivity.this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                requestPermissions(
+            requestPermissions(
                     new String[] { Manifest.permission.BLUETOOTH_CONNECT},
                     BLUETOOTH_CONNECT_PERMISSION_CODE);
-            }
             AppPreference.getInstance().setVoiceBtPermissionPassed(getBaseContext(), true);
         }
     }
@@ -185,8 +187,8 @@ public class VoiceSettingsActivity extends BaseActivity {
     }
 
     private void setupActionBar() {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        // Použití bindingu místo findViewById
+        setSupportActionBar(binding.toolbar);
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -212,18 +214,14 @@ public class VoiceSettingsActivity extends BaseActivity {
 
     private void checkTtsLanguages() {
         Set<Locale> ttsAvailableLanguages;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            try {
-                ttsAvailableLanguages = tts.getAvailableLanguages();
-                if ((ttsAvailableLanguages == null) || ttsAvailableLanguages.isEmpty()) {
-                    timerHandler.postDelayed(timerRunnable, 1000);
-                    return;
-                }
-            } catch (Exception e) {
-                appendLog(VoiceSettingsActivity.this, TAG, e);
-                ttsAvailableLanguages = getAvailableLanguagesFormLocale();
+        try {
+            ttsAvailableLanguages = tts.getAvailableLanguages();
+            if ((ttsAvailableLanguages == null) || ttsAvailableLanguages.isEmpty()) {
+                timerHandler.postDelayed(timerRunnable, 1000);
+                return;
             }
-        } else {
+        } catch (Exception e) {
+            appendLog(VoiceSettingsActivity.this, TAG, e);
             ttsAvailableLanguages = getAvailableLanguagesFormLocale();
         }
         processTtsLanguages(ttsAvailableLanguages);
@@ -261,13 +259,14 @@ public class VoiceSettingsActivity extends BaseActivity {
     }
 
     private void setupRecyclerView() {
-        recyclerView = findViewById(R.id.voice_setting_recycler_view);
-        recyclerView.setLayoutManager(new LinearLayoutManager(VoiceSettingsActivity.this));
+        // Použití bindingu místo findViewById
+        binding.voiceSettingRecyclerView.setLayoutManager(new LinearLayoutManager(VoiceSettingsActivity.this));
     }
 
     private void deleteVoiceSetting(Long voiceSettingId, int position) {
+        final VoiceSettingParametersDbHelper dbHelper = this.voiceSettingParametersDbHelper;
         YourLocalWeather.executor.submit(() -> {
-            voiceSettingParametersDbHelper.deleteAllSettings(voiceSettingId);
+            dbHelper.deleteAllSettings(voiceSettingId);
         });
         voiceSettingsAdapter.voiceSettingIds.remove(position);
         voiceSettingsAdapter.notifyItemRemoved(position);
@@ -279,35 +278,32 @@ public class VoiceSettingsActivity extends BaseActivity {
     protected void updateUI() {
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        binding = null; // Vyčištění reference při destrukci aktivity
+    }
+
+    // Modernizovaný Holder využívající View Binding
     public class VoiceSettingHolder extends RecyclerView.ViewHolder {
 
         private Long voiceSettingId;
-        private final TextView voiceSettingIdView;
-        private final TextView voiceSettingTypeView;
-        private final TextView voiceSettingAddInfo1View;
-        private final TextView voiceSettingAddInfo2View;
-        private final Button editButton;
-        private final Button deleteButton;
+        private final VoiceSettingItemBinding itemBinding;
 
-        VoiceSettingHolder(View itemView) {
-            super(itemView);
-            voiceSettingIdView = itemView.findViewById(R.id.voice_setting_id);
-            voiceSettingTypeView = itemView.findViewById(R.id.voice_setting_type);
-            voiceSettingAddInfo1View = itemView.findViewById(R.id.voice_setting_add_info_1);
-            voiceSettingAddInfo2View = itemView.findViewById(R.id.voice_setting_add_info_2);
-            editButton = itemView.findViewById(R.id.voice_setting_edit);
-            deleteButton = itemView.findViewById(R.id.voice_setting_delete);
+        VoiceSettingHolder(VoiceSettingItemBinding itemBinding) {
+            super(itemBinding.getRoot());
+            this.itemBinding = itemBinding;
         }
 
         void bindVoiceSetting(Long voiceSettingId, int position) {
             this.voiceSettingId = voiceSettingId;
 
-            editButton.setOnClickListener(new View.OnClickListener() {
+            itemBinding.voiceSettingEdit.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     moveToAddVoiceSettingsActivity(voiceSettingId);
                 }
             });
-            deleteButton.setOnClickListener(new View.OnClickListener() {
+            itemBinding.voiceSettingDelete.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     deleteVoiceSetting(voiceSettingId, position);
                 }
@@ -316,65 +312,82 @@ public class VoiceSettingsActivity extends BaseActivity {
             if (voiceSettingId == null) {
                 return;
             }
+
+            final java.lang.ref.WeakReference<VoiceSettingsActivity> activityRef = new java.lang.ref.WeakReference<>(VoiceSettingsActivity.this);
+            final VoiceSettingParametersDbHelper dbHelper = voiceSettingParametersDbHelper;
+
             YourLocalWeather.executor.submit(() -> {
-                Long triggerType = voiceSettingParametersDbHelper.getLongParam(
+                VoiceSettingsActivity activity = activityRef.get();
+                if (activity == null || activity.isFinishing() || activity.isDestroyed()) {
+                    return;
+                }
+
+                Long triggerType = dbHelper.getLongParam(
                         voiceSettingId,
                         VoiceSettingParamType.VOICE_SETTING_TRIGGER_TYPE.getVoiceSettingParamTypeId());
-                runOnUiThread(new Runnable() {
+
+                activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        voiceSettingIdView.setText(getString(R.string.pref_title_tts_trigger_type_label));
+                        VoiceSettingsActivity act = activityRef.get();
+                        if (act != null && !act.isFinishing() && !act.isDestroyed()) {
+                            itemBinding.voiceSettingId.setText(act.getString(R.string.pref_title_tts_trigger_type_label));
+                        }
                     }
                 });
+
                 if (triggerType != null) {
                     String triggerTypeName = "";
                     String addInfo1 = "";
                     String addInfo2 = "";
-                    BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(getBaseContext());
+
+                    BluetoothAdapter bluetoothAdapter = Utils.getBluetoothAdapter(activity.getBaseContext());
                     Set<BluetoothDevice> bluetoothDeviceSet;
-                    if (ContextCompat.checkSelfPermission(VoiceSettingsActivity.this, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+
+                    if (androidx.core.content.ContextCompat.checkSelfPermission(activity, Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
                         return;
                     }
+
                     if (bluetoothAdapter != null) {
                         bluetoothDeviceSet = bluetoothAdapter.getBondedDevices();
                     } else {
                         bluetoothDeviceSet = new HashSet<>();
                     }
                     if (triggerType == 0) {
-                        triggerTypeName = getString(R.string.voice_setting_trigger_on_weather_update);
+                        triggerTypeName = activity.getString(R.string.voice_setting_trigger_on_weather_update);
 
                         StringBuilder addInfo1Builder = new StringBuilder();
-                        Long enabledVoiceDevices = voiceSettingParametersDbHelper.getLongParam(
+                        Long enabledVoiceDevices = dbHelper.getLongParam(
                                 voiceSettingId,
                                 VoiceSettingParamType.VOICE_SETTING_ENABLED_VOICE_DEVICES.getVoiceSettingParamTypeId());
                         boolean isNotFirst = false;
                         if (enabledVoiceDevices != null) {
                             if (TimeUtils.isCurrentSettingIndex(enabledVoiceDevices, 2)) {
-                                addInfo1Builder.append(getString(R.string.pref_title_tts_speaker_label));
+                                addInfo1Builder.append(activity.getString(R.string.pref_title_tts_speaker_label));
                                 isNotFirst = true;
                             }
                             if (TimeUtils.isCurrentSettingIndex(enabledVoiceDevices, 1)) {
                                 if (isNotFirst) {
                                     addInfo1Builder.append(", ");
                                 }
-                                addInfo1Builder.append(getString(R.string.pref_title_tts_wired_headset_label));
+                                addInfo1Builder.append(activity.getString(R.string.pref_title_tts_wired_headset_label));
                                 isNotFirst = true;
                             }
                             if (TimeUtils.isCurrentSettingIndex(enabledVoiceDevices, 0)) {
                                 if (isNotFirst) {
                                     addInfo1Builder.append(", ");
                                 }
-                                addInfo1Builder.append(getString(R.string.pref_title_tts_bt_label));
+                                addInfo1Builder.append(activity.getString(R.string.pref_title_tts_bt_label));
                                 addInfo1Builder.append(": ");
                             }
 
-                            Boolean enabledBtVoiceDevices = voiceSettingParametersDbHelper.getBooleanParam(
+                            Boolean enabledBtVoiceDevices = dbHelper.getBooleanParam(
                                     voiceSettingId,
                                     VoiceSettingParamType.VOICE_SETTING_ENABLED_WHEN_BT_DEVICES.getVoiceSettingParamTypeId());
                             if ((enabledBtVoiceDevices != null) && enabledBtVoiceDevices) {
-                                addInfo1Builder.append(getString(R.string.pref_title_tts_bt_all));
+                                addInfo1Builder.append(activity.getString(R.string.pref_title_tts_bt_all));
                             } else {
-                                String btDevices = voiceSettingParametersDbHelper.getStringParam(
+                                String btDevices = dbHelper.getStringParam(
                                         voiceSettingId,
                                         VoiceSettingParamType.VOICE_SETTING_ENABLED_WHEN_BT_DEVICES.getVoiceSettingParamTypeId());
                                 boolean notFirst = false;
@@ -395,15 +408,15 @@ public class VoiceSettingsActivity extends BaseActivity {
                             addInfo1 = addInfo1Builder.toString();
                         }
                     } else if (triggerType == 1) {
-                        triggerTypeName = getString(R.string.voice_setting_trigger_when_bt_connected);
+                        triggerTypeName = activity.getString(R.string.voice_setting_trigger_when_bt_connected);
 
-                        Boolean enabledVoiceDevices = voiceSettingParametersDbHelper.getBooleanParam(
+                        Boolean enabledVoiceDevices = dbHelper.getBooleanParam(
                                 voiceSettingId,
                                 VoiceSettingParamType.VOICE_SETTING_TRIGGER_ENABLED_BT_DEVICES.getVoiceSettingParamTypeId());
                         if ((enabledVoiceDevices != null) && enabledVoiceDevices) {
-                            addInfo1 = getString(R.string.pref_title_tts_bt_all);
+                            addInfo1 = activity.getString(R.string.pref_title_tts_bt_all);
                         } else {
-                            String btDevices = voiceSettingParametersDbHelper.getStringParam(
+                            String btDevices = dbHelper.getStringParam(
                                     voiceSettingId,
                                     VoiceSettingParamType.VOICE_SETTING_TRIGGER_ENABLED_BT_DEVICES.getVoiceSettingParamTypeId());
                             StringBuilder addInfo1Builder = new StringBuilder();
@@ -422,8 +435,8 @@ public class VoiceSettingsActivity extends BaseActivity {
                             addInfo1 = addInfo1Builder.toString();
                         }
                     } else if (triggerType == 2) {
-                        triggerTypeName = getString(R.string.voice_setting_trigger_at_time);
-                        Long storedHourMinute = voiceSettingParametersDbHelper.getLongParam(
+                        triggerTypeName = activity.getString(R.string.voice_setting_trigger_at_time);
+                        Long storedHourMinute = dbHelper.getLongParam(
                                 voiceSettingId,
                                 VoiceSettingParamType.VOICE_SETTING_TIME_TO_START.getVoiceSettingParamTypeId());
 
@@ -437,15 +450,9 @@ public class VoiceSettingsActivity extends BaseActivity {
                             c.set(Calendar.HOUR_OF_DAY, hour);
                             c.set(Calendar.MINUTE, minute);
                             addInfo1 = AppPreference.getLocalizedTime(getBaseContext(), c.getTime(), timeStylePreference, applicationLocale);
-
-                            /*Long nextTimeDate = TimeUtils.setupAlarmForVoiceForVoiceSetting(getBaseContext(), voiceSettingId, voiceSettingParametersDbHelper);
-                            if (nextTimeDate != null) {
-                                c.setTimeInMillis(nextTimeDate);
-                                addInfo1 += " (next " + AppPreference.getLocalizedDateTime(getBaseContext(), c.getTime(), false, applicationLocale) + ")";
-                            }*/
                         }
                         Calendar calendar = Calendar.getInstance();
-                        Long daysOfWeek = voiceSettingParametersDbHelper.getLongParam(
+                        Long daysOfWeek = dbHelper.getLongParam(
                                 voiceSettingId,
                                 VoiceSettingParamType.VOICE_SETTING_TRIGGER_DAY_IN_WEEK.getVoiceSettingParamTypeId());
                         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("EEE", applicationLocale);
@@ -513,9 +520,9 @@ public class VoiceSettingsActivity extends BaseActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            voiceSettingTypeView.setText(finalTriggerTypeName);
-                            voiceSettingAddInfo1View.setText(finalAddInfo1);
-                            voiceSettingAddInfo2View.setText(finalAddInfo2);
+                            itemBinding.voiceSettingType.setText(finalTriggerTypeName);
+                            itemBinding.voiceSettingAddInfo1.setText(finalAddInfo1);
+                            itemBinding.voiceSettingAddInfo2.setText(finalAddInfo2);
                         }
                     });
                 }
@@ -539,7 +546,6 @@ public class VoiceSettingsActivity extends BaseActivity {
         public int getItemCount() {
             if (voiceSettingIds != null)
                 return voiceSettingIds.size();
-
             return 0;
         }
 
@@ -550,10 +556,9 @@ public class VoiceSettingsActivity extends BaseActivity {
 
         @Override
         public VoiceSettingHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            LayoutInflater inflater = LayoutInflater.from(VoiceSettingsActivity.this);
-            View v = inflater.inflate(R.layout.voice_setting_item, parent, false);
-            return new VoiceSettingHolder(v);
+            VoiceSettingItemBinding itemBinding = VoiceSettingItemBinding.inflate(
+                    LayoutInflater.from(parent.getContext()), parent, false);
+            return new VoiceSettingHolder(itemBinding);
         }
     }
 }
-
