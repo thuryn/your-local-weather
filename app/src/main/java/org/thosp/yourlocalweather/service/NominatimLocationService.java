@@ -169,10 +169,10 @@ public class NominatimLocationService {
         JSONObject a = result.getJSONObject(WIRE_ADDRESS);
 
         address.setThoroughfare(a.optString(WIRE_THOROUGHFARE));
-        address.setSubLocality(a.optString(WIRE_SUBLOCALITY));
+        address.setSubLocality(a.optString(WIRE_SUBLOCALITY, a.optString("neighbourhood", a.optString("quarter", ""))));
         address.setPostalCode(a.optString(WIRE_POSTALCODE));
-        address.setSubAdminArea(a.optString(WIRE_SUBADMINAREA));
-        address.setAdminArea(a.optString(WIRE_ADMINAREA));
+        address.setSubAdminArea(a.optString(WIRE_SUBADMINAREA, a.optString("district", "")));
+        address.setAdminArea(a.optString(WIRE_ADMINAREA, a.optString("region", a.optString("province", a.optString("state_district", "")))));
         address.setCountryName(a.optString(WIRE_COUNTRYNAME));
         address.setCountryCode(a.optString(WIRE_COUNTRYCODE));
 
@@ -182,6 +182,10 @@ public class NominatimLocationService {
             address.setLocality(a.getString(WIRE_LOCALITY_TOWN));
         } else if (a.has(WIRE_LOCALITY_VILLAGE)) {
             address.setLocality(a.getString(WIRE_LOCALITY_VILLAGE));
+        } else if (a.has("hamlet")) {
+            address.setLocality(a.getString("hamlet"));
+        } else if (a.has("isolated_dwelling")) {
+            address.setLocality(a.getString("isolated_dwelling"));
         }
 
         if (formatter != null) {

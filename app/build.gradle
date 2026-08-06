@@ -8,8 +8,8 @@ android {
         applicationId = "org.thosp.yourlocalweather"
         minSdk = 23
         targetSdk = 36
-        versionCode = 194
-        versionName = "6.5.0"
+        versionCode = 195
+        versionName = "6.5.1"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true

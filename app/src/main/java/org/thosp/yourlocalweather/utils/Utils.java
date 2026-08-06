@@ -702,8 +702,9 @@ public class Utils {
         if (inputLocation.length() < 30) {
             return inputLocation;
         }
-        if (inputLocation.indexOf(",") < 30) {
-            inputLocation.replaceFirst(", ", "\n");
+        int commaIndex = inputLocation.indexOf(", ");
+        if (commaIndex != -1 && commaIndex < 30) {
+            return inputLocation.replaceFirst(", ", "\n");
         }
         return inputLocation;
     }
