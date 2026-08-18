@@ -5,7 +5,7 @@
     xmlns:tools="http://tools.android.com/tools"
     android:id="@+id/main_content_general_panel"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginTop="36dp"
     android:paddingTop="36dp"
     android:paddingBottom="20dp"
