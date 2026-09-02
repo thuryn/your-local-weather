@@ -14,7 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import org.thosp.yourlocalweather.databinding.WidgetSettingActionsBinding;
 import org.thosp.yourlocalweather.databinding.WidgetSettingForecastBinding;
@@ -49,7 +51,7 @@ import java.util.Set;
 
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
-public class WidgetSettingsDialogue extends Activity {
+public class WidgetSettingsDialogue extends AppCompatActivity {
 
     private static final String TAG = "WidgetSettingsDialogue";
 
@@ -58,6 +60,7 @@ public class WidgetSettingsDialogue extends Activity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         getWindow().setBackgroundDrawable(new ColorDrawable(0));
 

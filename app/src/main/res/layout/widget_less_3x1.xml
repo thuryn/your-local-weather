@@ -67,6 +67,10 @@
             android:layout_weight="0"
             android:ellipsize="end"
             android:lines="1"
+            android:paddingStart="4dp"
+            android:paddingLeft="4dp"
+            android:paddingEnd="12dp"
+            android:paddingRight="12dp"
             android:textColor="@color/textColorPrimary"
             android:textSize="@dimen/widget_3x3_text_size"/>
     </LinearLayout>

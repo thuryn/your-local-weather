@@ -266,96 +266,94 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         WidgetActions forecastAction = WidgetActions.getById(widgetSettingsDbHelper.getParamLong(widgetId, "action_forecast"), "action_forecast");
         WidgetActions cityAction = WidgetActions.getById(widgetSettingsDbHelper.getParamLong(widgetId, "action_city"), "action_city");
 
-        ContextCompat.getMainExecutor(context).execute(()  -> {
-            if (showControls) {
-                remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_settings_layout, View.VISIBLE);
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_graph_3x3_settings_layout, View.VISIBLE);
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_3x3_settings_layout, View.VISIBLE);
-                remoteViews.setViewVisibility(R.id.widget_weather_forecast_1x3_settings_layout, View.VISIBLE);
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_settings_layout, View.VISIBLE);
-                remoteViews.setViewVisibility(R.id.widget_less_3x1_settings_layout, View.VISIBLE);
-                remoteViews.setViewVisibility(R.id.widget_more_3x3_settings_layout, View.VISIBLE);
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_graph_3x3_settings_layout, View.VISIBLE);
-            } else {
-                remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_settings_layout, View.GONE);
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_graph_3x3_settings_layout, View.GONE);
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_3x3_settings_layout, View.GONE);
-                remoteViews.setViewVisibility(R.id.widget_weather_forecast_1x3_settings_layout, View.GONE);
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_settings_layout, View.GONE);
-                remoteViews.setViewVisibility(R.id.widget_less_3x1_settings_layout, View.GONE);
-                remoteViews.setViewVisibility(R.id.widget_more_3x3_settings_layout, View.GONE);
-                remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_graph_3x3_settings_layout, View.GONE);
-            }
+        if (showControls) {
+            remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_settings_layout, View.VISIBLE);
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_graph_3x3_settings_layout, View.VISIBLE);
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_3x3_settings_layout, View.VISIBLE);
+            remoteViews.setViewVisibility(R.id.widget_weather_forecast_1x3_settings_layout, View.VISIBLE);
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_settings_layout, View.VISIBLE);
+            remoteViews.setViewVisibility(R.id.widget_less_3x1_settings_layout, View.VISIBLE);
+            remoteViews.setViewVisibility(R.id.widget_more_3x3_settings_layout, View.VISIBLE);
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_graph_3x3_settings_layout, View.VISIBLE);
+        } else {
+            remoteViews.setViewVisibility(R.id.widget_weather_graph_1x3_settings_layout, View.GONE);
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_graph_3x3_settings_layout, View.GONE);
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_3x3_settings_layout, View.GONE);
+            remoteViews.setViewVisibility(R.id.widget_weather_forecast_1x3_settings_layout, View.GONE);
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_3x3_settings_layout, View.GONE);
+            remoteViews.setViewVisibility(R.id.widget_less_3x1_settings_layout, View.GONE);
+            remoteViews.setViewVisibility(R.id.widget_more_3x3_settings_layout, View.GONE);
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_graph_3x3_settings_layout, View.GONE);
+        }
 
-            Intent intentRefreshService = new Intent(context, widgetClass);
-            intentRefreshService.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
-            intentRefreshService.setPackage(context.getPackageName());
-            intentRefreshService.putExtra("widgetId", widgetId);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(context, widgetId,
-                    intentRefreshService, PendingIntent.FLAG_IMMUTABLE);
-            remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_3x3_widget_last_update, pendingIntent);
-            remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_3x3_widget_last_update, pendingIntent);
-            remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_graph_3x3_widget_last_update, pendingIntent);
-            remoteViews.setOnClickPendingIntent(R.id.widget_less_3x1_widget_last_update, pendingIntent);
-            remoteViews.setOnClickPendingIntent(R.id.widget_more_3x3_widget_last_update, pendingIntent);
-            remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_graph_3x3_widget_last_update, pendingIntent);
+        Intent intentRefreshService = new Intent(context, widgetClass);
+        intentRefreshService.setAction(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
+        intentRefreshService.setPackage(context.getPackageName());
+        intentRefreshService.putExtra("widgetId", widgetId);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, widgetId,
+                intentRefreshService, PendingIntent.FLAG_IMMUTABLE);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_3x3_widget_last_update, pendingIntent);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_3x3_widget_last_update, pendingIntent);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_graph_3x3_widget_last_update, pendingIntent);
+        remoteViews.setOnClickPendingIntent(R.id.widget_less_3x1_widget_last_update, pendingIntent);
+        remoteViews.setOnClickPendingIntent(R.id.widget_more_3x3_widget_last_update, pendingIntent);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_graph_3x3_widget_last_update, pendingIntent);
 
-            PendingIntent pendingIntentMainIconAction = getActionIntent(context, mainIconAction, widgetClass, widgetId);
-            remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_3x3_widget_icon, pendingIntentMainIconAction);
-            remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_3x3_widget_icon, pendingIntentMainIconAction);
-            remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_graph_3x3_widget_icon, pendingIntentMainIconAction);
-            remoteViews.setOnClickPendingIntent(R.id.widget_less_3x1_widget_icon, pendingIntentMainIconAction);
-            remoteViews.setOnClickPendingIntent(R.id.widget_more_3x3_widget_icon, pendingIntentMainIconAction);
-            remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_graph_3x3_widget_icon, pendingIntentMainIconAction);
+        PendingIntent pendingIntentMainIconAction = getActionIntent(context, mainIconAction, widgetClass, widgetId);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_3x3_widget_icon, pendingIntentMainIconAction);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_3x3_widget_icon, pendingIntentMainIconAction);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_graph_3x3_widget_icon, pendingIntentMainIconAction);
+        remoteViews.setOnClickPendingIntent(R.id.widget_less_3x1_widget_icon, pendingIntentMainIconAction);
+        remoteViews.setOnClickPendingIntent(R.id.widget_more_3x3_widget_icon, pendingIntentMainIconAction);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_graph_3x3_widget_icon, pendingIntentMainIconAction);
 
-            PendingIntent pendingIntentGraphAction = getActionIntent(context, graphAction, widgetClass, widgetId);
-            remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_graph_3x3_forecast_graph, pendingIntentGraphAction);
-            remoteViews.setOnClickPendingIntent(R.id.widget_weather_graph_1x3_forecast_graph, pendingIntentGraphAction);
-            remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_graph_3x3_forecast_graph, pendingIntentGraphAction);
+        PendingIntent pendingIntentGraphAction = getActionIntent(context, graphAction, widgetClass, widgetId);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_graph_3x3_forecast_graph, pendingIntentGraphAction);
+        remoteViews.setOnClickPendingIntent(R.id.widget_weather_graph_1x3_forecast_graph, pendingIntentGraphAction);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_graph_3x3_forecast_graph, pendingIntentGraphAction);
 
-            PendingIntent pendingIntentForecastAction = getActionIntent(context, forecastAction, widgetClass, widgetId);
-            remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_3x3_forecast_layout, pendingIntentForecastAction);
-            remoteViews.setOnClickPendingIntent(R.id.widget_weather_forecast_1x3_forecast_layout, pendingIntentForecastAction);
-            remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_graph_3x3_forecast_layout, pendingIntentForecastAction);
+        PendingIntent pendingIntentForecastAction = getActionIntent(context, forecastAction, widgetClass, widgetId);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_3x3_forecast_layout, pendingIntentForecastAction);
+        remoteViews.setOnClickPendingIntent(R.id.widget_weather_forecast_1x3_forecast_layout, pendingIntentForecastAction);
+        remoteViews.setOnClickPendingIntent(R.id.widget_ext_loc_forecast_graph_3x3_forecast_layout, pendingIntentForecastAction);
 
-            Integer cityViewId = getCityViewId(widgetClass);
-            if (cityViewId != null) {
-                PendingIntent pendingIntentCityAction = getActionIntent(context, cityAction, widgetClass, widgetId);
-                remoteViews.setOnClickPendingIntent(getCityViewId(widgetClass), pendingIntentCityAction);
-            }
+        Integer cityViewId = getCityViewId(widgetClass);
+        if (cityViewId != null) {
+            PendingIntent pendingIntentCityAction = getActionIntent(context, cityAction, widgetClass, widgetId);
+            remoteViews.setOnClickPendingIntent(getCityViewId(widgetClass), pendingIntentCityAction);
+        }
 
-            setSettingButtonAction(context, widgetId, FORECAST_SETTINGS, R.id.widget_ext_loc_forecast_3x3_button_days_setting, remoteViews, ExtLocationWithForecastWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, FORECAST_SETTINGS, R.id.widget_weather_forecast_1x3_button_days_setting, remoteViews, WeatherForecastWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, FORECAST_SETTINGS, R.id.widget_ext_loc_forecast_graph_3x3_button_days_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, GRAPH_SETTING, R.id.widget_ext_loc_graph_3x3_button_graph_setting, remoteViews, ExtLocationWithGraphWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, GRAPH_SETTING, R.id.widget_weather_graph_1x3_button_graph_setting, remoteViews, WeatherGraphWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, GRAPH_SETTING, R.id.widget_ext_loc_forecast_graph_3x3_button_graph_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, DETAILS_SETTING, R.id.widget_ext_loc_3x3_button_details_setting, remoteViews, ExtLocationWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, DETAILS_SETTING, R.id.widget_ext_loc_forecast_3x3_button_details_setting, remoteViews, ExtLocationWithForecastWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, DETAILS_SETTING, R.id.widget_ext_loc_forecast_graph_3x3_button_details_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, DETAILS_SETTING, R.id.widget_ext_loc_graph_3x3_button_details_setting, remoteViews, ExtLocationWithGraphWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, DETAILS_SETTING, R.id.widget_more_3x3_button_details_setting, remoteViews, MoreWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, FORECAST_SETTINGS, R.id.widget_ext_loc_forecast_3x3_button_days_setting, remoteViews, ExtLocationWithForecastWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, FORECAST_SETTINGS, R.id.widget_weather_forecast_1x3_button_days_setting, remoteViews, WeatherForecastWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, FORECAST_SETTINGS, R.id.widget_ext_loc_forecast_graph_3x3_button_days_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, GRAPH_SETTING, R.id.widget_ext_loc_graph_3x3_button_graph_setting, remoteViews, ExtLocationWithGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, GRAPH_SETTING, R.id.widget_weather_graph_1x3_button_graph_setting, remoteViews, WeatherGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, GRAPH_SETTING, R.id.widget_ext_loc_forecast_graph_3x3_button_graph_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, DETAILS_SETTING, R.id.widget_ext_loc_3x3_button_details_setting, remoteViews, ExtLocationWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, DETAILS_SETTING, R.id.widget_ext_loc_forecast_3x3_button_details_setting, remoteViews, ExtLocationWithForecastWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, DETAILS_SETTING, R.id.widget_ext_loc_forecast_graph_3x3_button_details_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, DETAILS_SETTING, R.id.widget_ext_loc_graph_3x3_button_details_setting, remoteViews, ExtLocationWithGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, DETAILS_SETTING, R.id.widget_more_3x3_button_details_setting, remoteViews, MoreWidgetProvider.class);
 
-            setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_ext_loc_forecast_3x3_button_location_setting, remoteViews, ExtLocationWithForecastWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_weather_forecast_1x3_button_location_setting, remoteViews, WeatherForecastWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_ext_loc_graph_3x3_button_location_setting, remoteViews, ExtLocationWithGraphWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_weather_graph_1x3_button_location_setting, remoteViews, WeatherGraphWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_weather_forecast_1x3_button_location_setting, remoteViews, WeatherForecastWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_ext_loc_3x3_button_location_setting, remoteViews, ExtLocationWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_less_3x1_button_location_setting, remoteViews, LessWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_more_3x3_button_location_setting, remoteViews, MoreWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_ext_loc_forecast_graph_3x3_button_location_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_ext_loc_forecast_3x3_button_location_setting, remoteViews, ExtLocationWithForecastWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_weather_forecast_1x3_button_location_setting, remoteViews, WeatherForecastWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_ext_loc_graph_3x3_button_location_setting, remoteViews, ExtLocationWithGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_weather_graph_1x3_button_location_setting, remoteViews, WeatherGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_weather_forecast_1x3_button_location_setting, remoteViews, WeatherForecastWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_ext_loc_3x3_button_location_setting, remoteViews, ExtLocationWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_less_3x1_button_location_setting, remoteViews, LessWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_more_3x3_button_location_setting, remoteViews, MoreWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, LOCATION_SETTINGS, R.id.widget_ext_loc_forecast_graph_3x3_button_location_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
 
-            setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_ext_loc_forecast_3x3_button_action_setting, remoteViews, ExtLocationWithForecastWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_weather_forecast_1x3_button_action_setting, remoteViews, WeatherForecastWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_ext_loc_graph_3x3_button_action_setting, remoteViews, ExtLocationWithGraphWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_weather_graph_1x3_button_action_setting, remoteViews, WeatherGraphWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_weather_forecast_1x3_button_action_setting, remoteViews, WeatherForecastWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_ext_loc_3x3_button_action_setting, remoteViews, ExtLocationWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_less_3x1_button_action_setting, remoteViews, LessWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_more_3x3_button_action_setting, remoteViews, MoreWidgetProvider.class);
-            setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_ext_loc_forecast_graph_3x3_button_action_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
-        });
+        setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_ext_loc_forecast_3x3_button_action_setting, remoteViews, ExtLocationWithForecastWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_weather_forecast_1x3_button_action_setting, remoteViews, WeatherForecastWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_ext_loc_graph_3x3_button_action_setting, remoteViews, ExtLocationWithGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_weather_graph_1x3_button_action_setting, remoteViews, WeatherGraphWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_weather_forecast_1x3_button_action_setting, remoteViews, WeatherForecastWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_ext_loc_3x3_button_action_setting, remoteViews, ExtLocationWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_less_3x1_button_action_setting, remoteViews, LessWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_more_3x3_button_action_setting, remoteViews, MoreWidgetProvider.class);
+        setSettingButtonAction(context, widgetId, WIDGET_ACTION_SETTINGS, R.id.widget_ext_loc_forecast_graph_3x3_button_action_setting, remoteViews, ExtLocationWithForecastGraphWidgetProvider.class);
     }
 
     private static Integer getCityViewId(Class widgetClass) {
@@ -406,7 +404,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         activityIntent.setAction(Constants.ACTION_APPWIDGET_START_ACTIVITY);
         activityIntent.putExtra("widgetId", widgetId);
         activityIntent.putExtra("widgetAction", widgetActionId);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, widgetId + widgetActionId.intValue(),
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, widgetId * 100 + widgetActionId.intValue(),
                 activityIntent, PendingIntent.FLAG_IMMUTABLE);
         return pendingIntent;
     }
@@ -417,7 +415,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         intentWeatherForecastWidgetProvider.setPackage(context.getPackageName());
         intentWeatherForecastWidgetProvider.putExtra("settingName", settingName.getWidgetSettingName());
         intentWeatherForecastWidgetProvider.putExtra("widgetId", widgetId);
-        PendingIntent pendingWeatherForecastWidgetProvider = PendingIntent.getBroadcast(context, widgetId + settingName.getSettingNameId(),
+        PendingIntent pendingWeatherForecastWidgetProvider = PendingIntent.getBroadcast(context, widgetId * 100 + 50 + settingName.getSettingNameId(),
                 intentWeatherForecastWidgetProvider, PendingIntent.FLAG_IMMUTABLE);
         remoteViews.setOnClickPendingIntent(buttonId, pendingWeatherForecastWidgetProvider);
     }

@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.app.NavUtils;
@@ -50,7 +49,6 @@ public class VoiceLanguageOptionsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
         applicationLocale = new Locale(AppPreference.getInstance().getLanguage(this));
 

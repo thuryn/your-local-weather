@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AppFunctionAppMetadata xmlns:appfn="http://schemas.android.com/apk/androidx.appfunctions"
+    appfn:description="This app is a local weather provider that delivers current weather conditions and multi-day weather forecasts.
+    Operational Patterns:
+    - Use 'getCapabilities' to discover what weather data, metrics, and locations are available.
+    - Use 'getCurrentWeather' to retrieve current temperature, weather condition, humidity, pressure, and wind speed.
+    - Use 'getWeatherForecast' to retrieve daily and hourly weather forecasts for saved locations."
+    appfn:displayDescription="@string/app_name" />

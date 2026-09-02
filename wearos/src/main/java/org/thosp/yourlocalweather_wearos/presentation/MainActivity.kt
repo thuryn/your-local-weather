@@ -85,8 +85,10 @@ fun WearApp() {
     YourlocalweatherTheme {
         val context = LocalContext.current
 
-        val prefs = context.getSharedPreferences("WeatherPrefs", Context.MODE_PRIVATE)
-        val weatherDataJson = prefs.getString("weather_data_json", null)
+        val weatherDataJson = remember {
+            val prefs = context.getSharedPreferences("WeatherPrefs", Context.MODE_PRIVATE)
+            prefs.getString("weather_data_json", null)
+        }
 
         var appStatus by remember { mutableStateOf(CompanionAppStatus.CHECKING) }
 
@@ -191,39 +193,13 @@ fun WearApp() {
             }
 
             CompanionAppStatus.INSTALLED -> {
-                var locationName by remember { mutableStateOf("--") }
-                var currentTemp by remember { mutableStateOf(0) }
-                var apparentTemp by remember { mutableStateOf(0) }
-                var tempUnit by remember { mutableStateOf("°C") }
-                var humidity by remember { mutableStateOf(0) }
-                var weatherDescription by remember { mutableStateOf("--") }
-                var sunrise by remember { mutableStateOf(0L) }
-                var sunset by remember { mutableStateOf(0L) }
-                var windSpeed by remember { mutableStateOf(0.0) }
-                //var windDirection by remember { mutableStateOf(0.0) }
-                var pressure by remember { mutableStateOf(0.0) }
-                var cloudiness by remember { mutableStateOf(0) }
-                var dailyForecasts by remember { mutableStateOf<List<DailyForecast>>(emptyList()) }
-
-                if (weatherDataJson != null) {
+                val weatherData = remember(weatherDataJson) {
+                    if (weatherDataJson == null) return@remember null
                     try {
                         val json = JSONObject(weatherDataJson)
-                        locationName = json.optString("locationName", "--")
-                        currentTemp = json.optDouble("currentTemperature", 0.0).roundToInt()
-                        apparentTemp = json.optDouble("apparentTemperature", 0.0).roundToInt()
-                        tempUnit = json.optString("temperatureUnit", "°C")
-                        humidity = json.optInt("humidity", 0)
-                        weatherDescription = json.optString("weatherDescription", "--")
-                        sunrise = json.optLong("sunrise", 0)
-                        sunset = json.optLong("sunset", 0)
-                        windSpeed = json.optDouble("windSpeed", 0.0)
-                        //windDirection = json.optDouble("windDegree", 0.0)
-                        pressure = json.optDouble("pressure", 0.0)
-                        cloudiness = json.optInt("cloudiness", 0)
-
+                        val forecasts = mutableListOf<DailyForecast>()
                         val dailyForecastJson = json.optJSONArray("dailyForecast")
                         if (dailyForecastJson != null) {
-                            val forecasts = mutableListOf<DailyForecast>()
                             for (i in 0 until dailyForecastJson.length()) {
                                 val forecastJson = dailyForecastJson.getJSONObject(i)
                                 val precipitation =
@@ -242,32 +218,65 @@ fun WearApp() {
                                             forecastJson.optInt("weatherId", 0),
                                             0,
                                             0
-                                        ) //it's forecast
+                                        )
                                     )
                                 )
                             }
-                            dailyForecasts = forecasts.sortedBy { it.dayOfYear }
+                        }
+                        
+                        object {
+                            val locationName = json.optString("locationName", "--")
+                            val currentTemp = json.optDouble("currentTemperature", 0.0).roundToInt()
+                            val apparentTemp = json.optDouble("apparentTemperature", 0.0).roundToInt()
+                            val tempUnit = json.optString("temperatureUnit", "°C")
+                            val humidity = json.optInt("humidity", 0)
+                            val weatherDescription = json.optString("weatherDescription", "--")
+                            val sunrise = json.optLong("sunrise", 0)
+                            val sunset = json.optLong("sunset", 0)
+                            val windSpeed = json.optDouble("windSpeed", 0.0)
+                            val pressure = json.optDouble("pressure", 0.0)
+                            val cloudiness = json.optInt("cloudiness", 0)
+                            val dailyForecasts = forecasts.sortedBy { it.dayOfYear }
                         }
                     } catch (e: Exception) {
-                        Log.e("MainComplicationService", "Error parsing weather data", e)
+                        Log.e("MainActivity", "Error parsing weather data", e)
+                        null
                     }
                 }
 
-                val sdf = SimpleDateFormat("HH:mm", Locale.getDefault())
+                val locationName = weatherData?.locationName ?: "--"
+                val currentTemp = weatherData?.currentTemp ?: 0
+                val apparentTemp = weatherData?.apparentTemp ?: 0
+                val tempUnit = weatherData?.tempUnit ?: "°C"
+                val humidity = weatherData?.humidity ?: 0
+                val weatherDescription = weatherData?.weatherDescription ?: "--"
+                val sunrise = weatherData?.sunrise ?: 0L
+                val sunset = weatherData?.sunset ?: 0L
+                val windSpeed = weatherData?.windSpeed ?: 0.0
+                val pressure = weatherData?.pressure ?: 0.0
+                val cloudiness = weatherData?.cloudiness ?: 0
+                val dailyForecasts = weatherData?.dailyForecasts ?: emptyList()
+
+                val sdf = remember { SimpleDateFormat("HH:mm", Locale.getDefault()) }
+                val itemDateFormat = remember { SimpleDateFormat("EEE, d. MMM", Locale.getDefault()) }
                 val listState = rememberScalingLazyListState()
-                val formattedLocation = StringUtils.formatLocationName(locationName)
+                val formattedLocation = remember(locationName) { StringUtils.formatLocationName(locationName) }
 
-                val cal = Calendar.getInstance()
-                val currentHour = cal.get(Calendar.HOUR_OF_DAY)
-                val todayDayOfYear = cal.get(Calendar.DAY_OF_YEAR)
-                cal.add(Calendar.DAY_OF_YEAR, 1)
-                val tomorrowDayOfYear = cal.get(Calendar.DAY_OF_YEAR)
-                cal.add(Calendar.DAY_OF_YEAR, 1)
-                val dayAfterTomorrowDayOfYear = cal.get(Calendar.DAY_OF_YEAR)
-
-                val filteredForecasts = dailyForecasts.filter { forecast ->
-                    !(currentHour >= 20 && forecast.dayOfYear == todayDayOfYear)
+                val filteredForecasts = remember(dailyForecasts) {
+                    val cal = Calendar.getInstance()
+                    val currentHour = cal.get(Calendar.HOUR_OF_DAY)
+                    val todayDayOfYear = cal.get(Calendar.DAY_OF_YEAR)
+                    dailyForecasts.filter { forecast ->
+                        !(currentHour >= 20 && forecast.dayOfYear == todayDayOfYear)
+                    }
                 }
+
+                val calendarHelper = Calendar.getInstance()
+                val todayDayOfYear = calendarHelper.get(Calendar.DAY_OF_YEAR)
+                calendarHelper.add(Calendar.DAY_OF_YEAR, 1)
+                val tomorrowDayOfYear = calendarHelper.get(Calendar.DAY_OF_YEAR)
+                calendarHelper.add(Calendar.DAY_OF_YEAR, 1)
+                val dayAfterTomorrowDayOfYear = calendarHelper.get(Calendar.DAY_OF_YEAR)
 
                 AppScaffold {
                     ScreenScaffold(
@@ -367,25 +376,21 @@ fun WearApp() {
                             }
 
                             items(filteredForecasts) { forecast ->
-                                val calendar = Calendar.getInstance()
-                                val currentYear = calendar.get(Calendar.YEAR)
-                                calendar.set(Calendar.YEAR, currentYear)
-                                calendar.set(Calendar.DAY_OF_YEAR, forecast.dayOfYear)
-
-                                if (forecast.dayOfYear < Calendar.getInstance()
-                                        .get(Calendar.DAY_OF_YEAR)
-                                ) {
-                                    calendar.add(Calendar.YEAR, 1)
-                                }
-
-                                val dateFormat =
-                                    SimpleDateFormat("EEE, d. MMM", Locale.getDefault())
-
                                 val dateText = when (forecast.dayOfYear) {
                                     todayDayOfYear -> stringResource(R.string.today)
                                     tomorrowDayOfYear -> stringResource(R.string.tomorrow)
                                     dayAfterTomorrowDayOfYear -> stringResource(R.string.day_after_tomorrow)
-                                    else -> dateFormat.format(calendar.time)
+                                    else -> {
+                                        val calendar = Calendar.getInstance()
+                                        val currentYear = calendar.get(Calendar.YEAR)
+                                        calendar.set(Calendar.YEAR, currentYear)
+                                        calendar.set(Calendar.DAY_OF_YEAR, forecast.dayOfYear)
+
+                                        if (forecast.dayOfYear < todayDayOfYear) {
+                                            calendar.add(Calendar.YEAR, 1)
+                                        }
+                                        itemDateFormat.format(calendar.time)
+                                    }
                                 }
 
                                 Column(

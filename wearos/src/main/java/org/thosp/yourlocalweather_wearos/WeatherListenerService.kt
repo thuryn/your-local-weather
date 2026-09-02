@@ -2,11 +2,13 @@ package org.thosp.yourlocalweather_wearos
 
 import android.content.ComponentName
 import android.content.Context
+import android.os.PowerManager
 import android.util.Log
 import androidx.wear.watchface.complications.datasource.ComplicationDataSourceUpdateRequester
 import com.google.android.gms.wearable.MessageEvent
 import com.google.android.gms.wearable.WearableListenerService
 import org.thosp.yourlocalweather_wearos.complication.MainComplicationService
+import org.thosp.yourlocalweather_wearos.complication.NoUnitComplicationService
 import org.thosp.yourlocalweather_wearos.tile.MainTileService
 import androidx.wear.tiles.TileService
 
@@ -28,10 +30,26 @@ class WeatherListenerService : WearableListenerService() {
 
             editor.apply()
 
+            val powerManager = getSystemService(Context.POWER_SERVICE) as PowerManager
+            if (!powerManager.isInteractive) {
+                try {
+                    val wakeLock = powerManager.newWakeLock(
+                        PowerManager.FULL_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP,
+                        "YourLocalWeather:ComplicationUpdate"
+                    )
+                    wakeLock.acquire(1000)
+                    wakeLock.release()
+                } catch (e: Exception) {
+                    Log.e("WeatherSync", "Error waking up display", e)
+                }
+            }
+
             // Update Complication
             val complicationComponentName = ComponentName(this, MainComplicationService::class.java)
-            val complicationRequest = ComplicationDataSourceUpdateRequester.create(applicationContext, complicationComponentName)
-            complicationRequest.requestUpdateAll()
+            ComplicationDataSourceUpdateRequester.create(applicationContext, complicationComponentName).requestUpdateAll()
+
+            val complicationNoUnitComponentName = ComponentName(this, NoUnitComplicationService::class.java)
+            ComplicationDataSourceUpdateRequester.create(applicationContext, complicationNoUnitComponentName).requestUpdateAll()
 
             // Update Tile
             TileService.getUpdater(this).requestUpdate(MainTileService::class.java)

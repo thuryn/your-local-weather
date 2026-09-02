@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -10,8 +10,8 @@
         <item name="android:textViewStyle">@style/TextViewStyle</item>
         <item name="actionBarTheme">@style/AppTheme.Toolbar</item>
         <item name="actionBarPopupTheme">@style/AppTheme.Toolbar</item>
-        
-        <item name="android:forceDarkAllowed">false</item> 
-        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="28">shortEdges</item>
+
+        <item name="android:forceDarkAllowed">false</item>
+        <item name="android:windowLayoutInDisplayCutoutMode">always</item>
     </style>
 </resources>

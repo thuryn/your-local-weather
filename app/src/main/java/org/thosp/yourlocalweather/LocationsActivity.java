@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.app.NavUtils;
@@ -43,7 +42,6 @@ public class LocationsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
 
         // 2. Inicializujeme View Binding

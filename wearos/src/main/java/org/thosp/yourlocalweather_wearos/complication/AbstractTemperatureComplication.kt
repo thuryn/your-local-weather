@@ -44,9 +44,9 @@ abstract class AbstractTemperatureComplication : SuspendingComplicationDataSourc
         val prefs = applicationContext.getSharedPreferences("WeatherPrefs", MODE_PRIVATE)
         val weatherDataJson = prefs.getString("weather_data_json", null)
 
-        var tempText = "--°"
+        var tempText = "--"
         var tempValue = 0f
-        var iconText = getString(R.string.wi_wu_sunny)
+        var iconText = getString(R.string.wi_na)
 
         if (weatherDataJson != null) {
             try {
@@ -154,7 +154,10 @@ abstract class AbstractTemperatureComplication : SuspendingComplicationDataSourc
                 }
                 builder.build()
             }
-            else -> createComplicationData(ComplicationType.SHORT_TEXT, "--", 0f, getString(R.string.wi_wu_sunny), tapIntent)
+            else -> {
+                // Return a basic short text as fallback if the requested type isn't specifically handled
+                createShortTextComplicationData("--", "No Data", StringUtils.createWeatherIcon(applicationContext, getString(R.string.wi_na)), tapIntent)
+            }
         }
 
     private fun createCombinedIcon(iconText: String, tempText: String): Icon {

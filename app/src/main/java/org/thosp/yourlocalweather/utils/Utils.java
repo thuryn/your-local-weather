@@ -10,7 +10,9 @@ import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
@@ -50,6 +52,7 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
+import com.bumptech.glide.Glide;
 
 public class Utils {
 
@@ -60,7 +63,7 @@ public class Utils {
     }
 
     public static Bitmap createWeatherIconWithColor(Context context, String text, int iconColor) {
-        Bitmap bitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_4444);
+        Bitmap bitmap = Bitmap.createBitmap(256, 256, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         Paint paint = new Paint();
         Typeface weatherFont = ResourcesCompat.getFont(context, R.font.weathericons);
@@ -89,9 +92,13 @@ public class Utils {
                                       CurrentWeatherDbHelper.WeatherRecord weatherRecord,
                                       int fontColorId, boolean fontBasedIconSet) {
         if (fontBasedIconSet) {
-            imageView.setImageBitmap(createWeatherIconWithColor(context, getStrIconFromWEatherRecord(context, weatherRecord), fontColorId));
+            Glide.with(context)
+                    .load(createWeatherIconWithColor(context, getStrIconFromWEatherRecord(context, weatherRecord), fontColorId))
+                    .into(imageView);
         } else {
-            imageView.setImageResource(Utils.getWeatherResourceIcon(weatherRecord));
+            Glide.with(context)
+                    .load(Utils.getWeatherResourceIcon(weatherRecord))
+                    .into(imageView);
         }
     }
 
@@ -746,4 +753,42 @@ public class Utils {
         return sharedPreferences.getStringSet(Constants.CONNECTED_BT_DEVICES, new HashSet<String>());
     }
 
+    public static int calculateInSampleSize(
+            BitmapFactory.Options options, int reqWidth, int reqHeight) {
+        // Raw height and width of image
+        final int height = options.outHeight;
+        final int width = options.outWidth;
+        int inSampleSize = 1;
+
+        if (height > reqHeight || width > reqWidth) {
+
+            final int halfHeight = height / 2;
+            final int halfWidth = width / 2;
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while ((halfHeight / inSampleSize) >= reqHeight
+                    && (halfWidth / inSampleSize) >= reqWidth) {
+                inSampleSize *= 2;
+            }
+        }
+
+        return inSampleSize;
+    }
+
+    public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
+                                                         int reqWidth, int reqHeight) {
+
+        // First decode with inJustDecodeBounds=true to check dimensions
+        final BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true;
+        BitmapFactory.decodeResource(res, resId, options);
+
+        // Calculate inSampleSize
+        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
+
+        // Decode bitmap with inSampleSize set
+        options.inJustDecodeBounds = false;
+        return BitmapFactory.decodeResource(res, resId, options);
+    }
 }

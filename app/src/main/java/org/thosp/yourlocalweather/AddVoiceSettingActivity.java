@@ -21,7 +21,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
@@ -57,7 +56,6 @@ public class AddVoiceSettingActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
 
         // 2. Inicializujeme View Binding

@@ -29,7 +29,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
@@ -100,7 +99,6 @@ public class MainActivity extends BaseActivity
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
 
         locationsDbHelper = LocationsDbHelper.getInstance(MainActivity.this);

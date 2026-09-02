@@ -14,7 +14,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
@@ -25,6 +24,8 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.CustomZoomButtonsController;
 import org.osmdroid.views.overlay.MapEventsOverlay;
+import com.bumptech.glide.Glide;
+import org.thosp.yourlocalweather.utils.GlideTileProvider;
 import org.thosp.yourlocalweather.databinding.ActivitySearchBinding;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsContract;
@@ -72,11 +73,11 @@ public class SearchActivity extends BaseActivity {
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        EdgeToEdge.enable(this);
         super.onCreate(savedInstanceState);
 
         Configuration.getInstance().setOsmdroidBasePath(getCacheDir());
         Configuration.getInstance().setOsmdroidTileCache(getCacheDir());
+        Configuration.getInstance().setMapViewHardwareAccelerated(true);
         Configuration.getInstance().setUserAgentValue(String.format("YourLocalWeather/%s (Linux; Android %s)",
                 BuildConfig.VERSION_NAME,
                 Build.VERSION.RELEASE));
@@ -94,6 +95,7 @@ public class SearchActivity extends BaseActivity {
         Location lastLocation = currentLocations.get(currentLocations.size() - 1);
 
         // 3. Přistupujeme k mapě a dalším prvkům bezpečně bez findViewById
+        binding.map.setTileProvider(new GlideTileProvider(this, TileSourceFactory.MAPNIK));
         binding.map.setTileSource(TileSourceFactory.MAPNIK);
         binding.map.getZoomController().setVisibility(CustomZoomButtonsController.Visibility.SHOW_AND_FADEOUT);
         binding.map.setMultiTouchControls(true);

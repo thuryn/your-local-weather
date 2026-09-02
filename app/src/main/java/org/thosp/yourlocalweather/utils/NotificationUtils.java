@@ -9,7 +9,6 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.view.View;
 import android.widget.RemoteViews;
 
@@ -215,7 +214,7 @@ public class NotificationUtils {
                 .setVibrate(isVibrateEnabled(context))
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setAutoCancel(true)
-                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(), Utils.getWeatherResourceIcon(weatherRecord)))
+                .setLargeIcon(Utils.decodeSampledBitmapFromResource(context.getResources(), Utils.getWeatherResourceIcon(weatherRecord), 192, 192))
                 .setOngoing(isOutgoing)
                 .build();
     }

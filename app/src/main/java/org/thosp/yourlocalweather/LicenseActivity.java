@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.view.MenuItem;
 
+import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +26,7 @@ public class LicenseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+        EdgeToEdge.enable(this);
         ((YourLocalWeather) getApplication()).applyTheme(this);
         super.onCreate(savedInstanceState);
 
