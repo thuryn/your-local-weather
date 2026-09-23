@@ -236,6 +236,8 @@
     <string name="forecast_number_of_days_hours_6_hours" tools:ignore="MissingTranslation">6 hours</string>
     <string name="forecast_number_of_days_hours_7_hours" tools:ignore="MissingTranslation">7 hours</string>
     <string name="forecast_number_of_days_hours_8_hours" tools:ignore="MissingTranslation">8 hours</string>
+    <string name="forecast_type_daily" tools:ignore="MissingTranslation">Daily forecast (Days)</string>
+    <string name="forecast_type_hourly" tools:ignore="MissingTranslation">Hourly forecast (Hours)</string>
     <!-- Search Screen strings -->
     <string name="hint_activity_search" tools:ignore="MissingTranslation">Search location</string>
     <!-- Preference Screen strings -->
@@ -517,6 +519,9 @@
     <string name="location_weather_update_status_location_from_network_wifis" tools:ignore="MissingTranslation">w</string>
     <string name="location_weather_update_status_location_from_last_location" tools:ignore="MissingTranslation">l</string>
     <!-- Widgets strings -->
+    <string name="widget_ext_loc_forecast_graph_name" tools:ignore="MissingTranslation">Weather Forecast &amp; Graph</string>
+    <string name="widget_ext_loc_forecast_graph_obsolete_name" tools:ignore="MissingTranslation">Weather Forecast &amp; Graph (Obsolete)</string>
+    <string name="widget_obsolete_notice" tools:ignore="MissingTranslation">This widget is obsolete. Please replace it with the new Weather Forecast &amp; Graph widget.</string>
     <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Current weather icon</string>
     <string name="widget_refresh_button" tools:ignore="MissingTranslation">Widget refresh button</string>
     <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Widget graph settings button</string>
@@ -524,6 +529,7 @@
     <string name="widget_location_settings_button" tools:ignore="MissingTranslation">Widget location settings button</string>
     <string name="widget_action_settings_button" tools:ignore="MissingTranslation">Widget action settings button</string>
     <string name="widget_setting_forecast_day_name_style" tools:ignore="MissingTranslation">Show day by abbreviation</string>
+    <string name="widget_setting_forecast_hours_style" tools:ignore="MissingTranslation">Show hourly forecast</string>
     <string name="widget_setting_forecast_days" tools:ignore="MissingTranslation">Number of days for the forecast</string>
     <string name="widget_setting_location_label" tools:ignore="MissingTranslation">Location setting</string>
     <string name="widget_setting_actions_city_label" tools:ignore="MissingTranslation">City label</string>

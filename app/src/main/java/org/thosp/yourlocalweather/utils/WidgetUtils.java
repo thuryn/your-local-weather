@@ -28,6 +28,7 @@ import org.thosp.yourlocalweather.widget.LessWidgetProvider;
 import org.thosp.yourlocalweather.widget.MoreWidgetProvider;
 import org.thosp.yourlocalweather.widget.WeatherForecastWidgetProvider;
 import org.thosp.yourlocalweather.widget.WeatherGraphWidgetProvider;
+import org.thosp.yourlocalweather.widget.glance.ExtLocationWithForecastGraphGlanceWidgetReceiver;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -998,6 +999,7 @@ public class WidgetUtils {
         updateWidgetForType(context, ExtLocationWithGraphWidgetProvider.class);
         updateWidgetForType(context, WeatherGraphWidgetProvider.class);
         updateWidgetForType(context, ExtLocationWithForecastGraphWidgetProvider.class);
+        updateWidgetForType(context, ExtLocationWithForecastGraphGlanceWidgetReceiver.class);
     }
 
     public static void startBackgroundService(Context context, Intent intent) {

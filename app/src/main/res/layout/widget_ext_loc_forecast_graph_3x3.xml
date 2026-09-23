@@ -456,4 +456,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/widget_ext_loc_forecast_graph_3x3.obsolete_notice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#D32F2F"
+        android:gravity="center"
+        android:padding="2dp"
+        android:text="@string/widget_obsolete_notice"
+        android:textColor="#FFFFFF"
+        android:textSize="10sp"
+        android:textStyle="bold" />
 </RelativeLayout>

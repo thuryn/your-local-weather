@@ -222,7 +222,13 @@
     <string name="label_snow">Sníh</string>
     <string name="dew_point_label">Rosný bod: %s</string>
     <string name="label_dew_point">Rosný bod</string>
+    <string name="forecast_type_daily">Předpověď po dnech</string>
+    <string name="forecast_type_hourly">Předpověď po hodinách</string>
+    <string name="widget_setting_forecast_hours_style">Zobrazit předpověď po hodinách</string>
     <!-- Widgets strings -->
+    <string name="widget_ext_loc_forecast_graph_name">Předpověď počasí a graf</string>
+    <string name="widget_ext_loc_forecast_graph_obsolete_name">Předpověď počasí a graf (Zastaralý)</string>
+    <string name="widget_obsolete_notice">Tento widget je zastaralý. Nahraďte jej prosím novým widgetem Předpověď počasí a graf.</string>
     <string name="widget_weather_icon_description">Aktuální ikona počasí</string>
     <string name="widget_refresh_button">Tlačítko obnovení ve widgetu</string>
     <!-- Donation Bitcoin dialog -->

@@ -6,7 +6,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:background="@color/windowBackground">
+    android:background="@android:color/transparent">
 
     <Switch
         android:id="@+id/widget_setting_forecast.day_name_switch"
@@ -18,16 +18,13 @@
         android:padding="@dimen/cardview_margin"
         app:showText="true"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Switch
+        android:id="@+id/widget_setting_forecast.hours_forecast_switch"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.AppCompat"
-        android:text="@string/widget_setting_forecast_days"
-        android:labelFor="@+id/widget_setting_forecast.number_of_days_hours"/>
-    <Spinner
-        android:id="@+id/widget_setting_forecast.number_of_days_hours"
-        android:theme="@style/Theme.AppCompat"
-        android:layout_width="fill_parent"
+        android:switchTextAppearance="@style/WidgetOptionSwitch"
+        android:text="@string/widget_setting_forecast_hours_style"
         android:padding="@dimen/cardview_margin"
-        android:layout_height="wrap_content"/>
+        app:showText="true"/>
 </LinearLayout>

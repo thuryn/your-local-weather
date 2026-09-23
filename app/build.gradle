@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.github.triplet.play'
 apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'org.jetbrains.kotlin.plugin.compose'
 apply plugin: 'com.google.devtools.ksp'
 
 android {
@@ -9,8 +10,8 @@ android {
         applicationId = "org.thosp.yourlocalweather"
         minSdk = 23
         targetSdk = 36
-        versionCode = 211
-        versionName = "6.5.17"
+        versionCode = 212
+        versionName = "6.6.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
@@ -19,6 +20,7 @@ android {
     buildFeatures {
         buildConfig = true
         viewBinding = true
+        compose = true
     }
 
     buildTypes {
@@ -106,6 +108,10 @@ dependencies {
 // Shared Resources
     implementation project(':shared-resources')
     implementation 'androidx.core:core-ktx:1.15.0'
+
+// Jetpack Glance
+    implementation 'androidx.glance:glance-appwidget:1.1.1'
+    implementation 'androidx.glance:glance-material3:1.1.1'
 
 // AppFunctions (Android 16/17 AI Agent Integration)
     implementation 'androidx.appfunctions:appfunctions:1.0.0-alpha11'

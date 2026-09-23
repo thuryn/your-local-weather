@@ -29,6 +29,10 @@
         <item>@string/forecast_number_of_days_hours_7_hours</item>
         <item>@string/forecast_number_of_days_hours_8_hours</item>
     </string-array>
+    <string-array name="forecast_type_entries">
+        <item>@string/forecast_type_daily</item>
+        <item>@string/forecast_type_hourly</item>
+    </string-array>
     <string-array name="pref_time_style_entries" translatable="false">
         <item>@string/time_style_system</item>
         <item>@string/time_style_12_h</item>

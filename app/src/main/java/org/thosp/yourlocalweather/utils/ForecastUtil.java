@@ -423,6 +423,26 @@ public class ForecastUtil {
             this.year = year;
             this.dayInYear = dayInYear;
         }
+
+        public int getDayIndex() {
+            return dayIndex;
+        }
+
+        public WeatherIdsForDay getWeatherIds() {
+            return weatherIds;
+        }
+
+        public WeatherMaxMinForDay getWeatherMaxMinForDay() {
+            return weatherMaxMinForDay;
+        }
+
+        public int getDayInYear() {
+            return dayInYear;
+        }
+
+        public int getYear() {
+            return year;
+        }
     }
 
     public static class WeatherMaxMinForDay {

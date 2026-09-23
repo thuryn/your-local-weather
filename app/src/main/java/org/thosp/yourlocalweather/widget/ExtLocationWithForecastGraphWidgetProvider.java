@@ -280,8 +280,10 @@ public class ExtLocationWithForecastGraphWidgetProvider extends AbstractWidgetPr
         String lastUpdate = Utils.getLastUpdateTime(context, weatherRecord, weatherForecastRecord, timeStylePreference, currentLocation);
         appendLog(context, TAG, "preLoadWeather:lastUpdate:", lastUpdate);
         ContextCompat.getMainExecutor(context).execute(()  -> {
-                    remoteViews.setTextViewText(R.id.widget_ext_loc_forecast_graph_3x3_widget_last_update, lastUpdate);
-                });
+            remoteViews.setTextViewText(R.id.widget_ext_loc_forecast_graph_3x3_widget_last_update, lastUpdate);
+            remoteViews.setTextViewText(R.id.widget_ext_loc_forecast_graph_3x3_obsolete_notice, context.getString(R.string.widget_obsolete_notice));
+            remoteViews.setViewVisibility(R.id.widget_ext_loc_forecast_graph_3x3_obsolete_notice, View.VISIBLE);
+        });
         appendLog(context, TAG, "preLoadWeather:end");
     }
 

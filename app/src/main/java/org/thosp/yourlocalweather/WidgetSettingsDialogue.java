@@ -41,6 +41,7 @@ import org.thosp.yourlocalweather.widget.MoreWidgetProvider;
 import org.thosp.yourlocalweather.widget.WeatherForecastWidgetProvider;
 import org.thosp.yourlocalweather.widget.WeatherGraphWidgetProvider;
 import org.thosp.yourlocalweather.widget.WidgetActions;
+import org.thosp.yourlocalweather.widget.glance.ExtLocationWithForecastGraphGlanceWidgetReceiver;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -64,29 +65,87 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         getWindow().setBackgroundDrawable(new ColorDrawable(0));
 
-        String settingOption = getIntent().getStringExtra("settings_option");
-        ArrayList<String> widgetActionPlaces = getIntent().getStringArrayListExtra("widget_action_places");
         int widgetId = getIntent().getIntExtra("widgetId", 0);
+        if (widgetId == 0) {
+            widgetId = getIntent().getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, 0);
+        }
+
+        String settingOption = getIntent().getStringExtra("settings_option");
+
+        ArrayList<String> widgetActionPlaces = getIntent().getStringArrayListExtra("widget_action_places");
+        if (widgetActionPlaces == null) {
+            widgetActionPlaces = new ArrayList<>();
+            widgetActionPlaces.add("action_city");
+            widgetActionPlaces.add("action_current_weather_icon");
+            widgetActionPlaces.add("action_forecast");
+            widgetActionPlaces.add("action_graph");
+        }
 
         if (settingOption == null) {
-            finish();
-            return;
+            createMasterSettingsDialog(widgetId, widgetActionPlaces);
+        } else {
+            switch (settingOption) {
+                case "detailsSetting": createDetailsSettingsDialog(widgetId); break;
+                case "graphSetting": createGraphSettingDialog(widgetId); break;
+                case "forecastSettings": createForecastSettingsDialog(widgetId); break;
+                case "locationSettings": createLocationSettingsDialog(widgetId); break;
+                case "widgetActionSettings": createWidgetActionSettingsDialog(widgetId, widgetActionPlaces); break;
+                default: createMasterSettingsDialog(widgetId, widgetActionPlaces); break;
+            }
         }
+    }
 
-        switch (settingOption) {
-            case "detailsSetting": createDetailsSettingsDialog(widgetId); break;
-            case "graphSetting": createGraphSettingDialog(widgetId); break;
-            case "forecastSettings": createForecastSettingsDialog(widgetId); break;
-            case "locationSettings": createLocationSettingsDialog(widgetId); break;
-            case "widgetActionSettings": createWidgetActionSettingsDialog(widgetId, widgetActionPlaces); break;
-            default: finish(); break;
+    private void createMasterSettingsDialog(final int widgetId, final ArrayList<String> widgetActionPlaces) {
+        CharSequence[] items = new CharSequence[] {
+                "📍   " + getString(R.string.widget_location_settings_button),
+                "📈   " + getString(R.string.widget_graph_settings_button),
+                "☀️   " + getString(R.string.widget_details_setting_button),
+                "📅   " + getString(R.string.label_activity_weather_forecast),
+                "⚙️   " + getString(R.string.widget_action_settings_button)
+        };
+
+        AlertDialog dialog = new AlertDialog.Builder(this, R.style.Theme_AppCompat_Dialog_Alert)
+                .setTitle("⚙️   " + getString(R.string.preference_widget_show_controls))
+                .setItems(items, (dialogInterface, which) -> {
+                    switch (which) {
+                        case 0: createLocationSettingsDialog(widgetId); break;
+                        case 1: createGraphSettingDialog(widgetId); break;
+                        case 2: createDetailsSettingsDialog(widgetId); break;
+                        case 3: createForecastSettingsDialog(widgetId); break;
+                        case 4: createWidgetActionSettingsDialog(widgetId, widgetActionPlaces); break;
+                        default: finish(); break;
+                    }
+                })
+                .setOnCancelListener(dialogInterface -> finish())
+                .create();
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_dialog_rounded);
         }
+        dialog.show();
+    }
+
+    private void showStyledDialog(AlertDialog.Builder builder) {
+        AlertDialog dialog = builder.create();
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_dialog_rounded);
+        }
+        dialog.show();
     }
 
     private WidgetDefaultDetailsResult getNumberOfCurrentWeatherDetails(int widgetId) {
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
-        ComponentName widgetComponent = new ComponentName(this, ExtLocationWithForecastGraphWidgetProvider.class);
+        ComponentName widgetComponent = new ComponentName(this, ExtLocationWithForecastGraphGlanceWidgetReceiver.class);
         int[] widgetIds = appWidgetManager.getAppWidgetIds(widgetComponent);
+        for (int currentWidgetId: widgetIds) {
+            if (currentWidgetId == widgetId) {
+                return new WidgetDefaultDetailsResult(
+                        ExtLocationWithForecastGraphWidgetProvider.getNumberOfCurrentWeatherDetails(),
+                        ExtLocationWithForecastGraphWidgetProvider.getDefaultCurrentWeatherDetails());
+            }
+        }
+        widgetComponent = new ComponentName(this, ExtLocationWithForecastGraphWidgetProvider.class);
+        widgetIds = appWidgetManager.getAppWidgetIds(widgetComponent);
         for (int currentWidgetId: widgetIds) {
             if (currentWidgetId == widgetId) {
                 return new WidgetDefaultDetailsResult(
@@ -180,7 +239,7 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
             switches[i].setOnCheckedChangeListener(switchListeners[i]);
         }
 
-        new AlertDialog.Builder(this)
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setTitle(R.string.widget_details_setting_button)
                 .setView(dialogBinding.getRoot())
                 .setPositiveButton(R.string.ok, (dialog, id) -> {
@@ -192,14 +251,16 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                     }
                     widgetSettingsDbHelper.saveParamString(widgetId, "currentWeatherDetails", valuesToStore.toString());
 
+                    WidgetUtils.updateWidgets(getBaseContext());
+
                     Intent refreshWidgetIntent = new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
                     refreshWidgetIntent.setPackage(getBaseContext().getPackageName());
                     sendBroadcast(refreshWidgetIntent);
                     finish();
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) -> finish())
-                .setOnCancelListener(dialog -> finish())
-                .show();
+                .setOnCancelListener(dialog -> finish());
+        showStyledDialog(builder);
     }
 
     @SuppressLint("MissingInflatedId")
@@ -270,7 +331,7 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
             graphActionsListener = null;
         }
 
-        new AlertDialog.Builder(this)
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setView(dialogBinding.getRoot())
                 .setPositiveButton(R.string.ok, (dialog, id) -> {
                     if (cityActionsListener != null) {
@@ -285,6 +346,7 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                     if (graphActionsListener != null) {
                         widgetSettingsDbHelper.saveParamLong(widgetId, "action_graph", graphActionsListener.getWidgetAction().getId());
                     }
+                    WidgetUtils.updateWidgets(getBaseContext());
                     Intent intent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_SETTINGS);
                     intent.setPackage(getBaseContext().getPackageName());
                     intent.putExtra("widgetId", widgetId);
@@ -292,8 +354,8 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                     finish();
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) -> finish())
-                .setOnCancelListener(dialog -> finish())
-                .show();
+                .setOnCancelListener(dialog -> finish());
+        showStyledDialog(builder);
     }
 
     @SuppressLint("MissingInflatedId")
@@ -383,7 +445,7 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
             dialogBinding.widgetSettingShowLocation.setVisibility(View.GONE);
         }
 
-        new AlertDialog.Builder(this)
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setView(dialogBinding.getRoot())
                 .setPositiveButton(R.string.ok, (dialog, id) -> {
                     Location location = locationsDbHelper.getLocationByOrderId(locationListener.getLocationOrderId());
@@ -394,6 +456,7 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                         widgetSettingsDbHelper.saveParamBoolean(widgetId, "showLocation", showLocationSwitchListener.isChecked());
                     }
                     GraphUtils.invalidateGraph();
+                    WidgetUtils.updateWidgets(getBaseContext());
                     Intent intent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_SETTINGS);
                     intent.setPackage(getBaseContext().getPackageName());
                     intent.putExtra("widgetId", widgetId);
@@ -401,8 +464,8 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                     finish();
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) -> finish())
-                .setOnCancelListener(dialog -> finish())
-                .show();
+                .setOnCancelListener(dialog -> finish());
+        showStyledDialog(builder);
     }
 
     @SuppressLint("MissingInflatedId")
@@ -439,35 +502,20 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
         final DayNameSwitchListener dayNameSwitchListener = new DayNameSwitchListener(dayAbbrevChecked, dialogBinding.widgetSettingForecastDayNameSwitch, textOn, textOff);
         dialogBinding.widgetSettingForecastDayNameSwitch.setOnCheckedChangeListener(dayNameSwitchListener);
 
-        int predefinedSelection = 0;
-        Long storedDays = widgetSettingsDbHelper.getParamLong(widgetId, "forecastDaysCount");
         Boolean hoursForecast = widgetSettingsDbHelper.getParamBoolean(widgetId, "hoursForecast");
-        if (hoursForecast == null) {
-            hoursForecast = false;
-        }
-        if (storedDays != null) {
-            int days = storedDays.intValue();
-            if (hoursForecast) {
-                if (days >= 3 && days <= 8) predefinedSelection = days + 3;
-            } else {
-                if (days >= 3 && days <= 8) predefinedSelection = days - 3;
-            }
-        } else {
-            storedDays = 5L;
-        }
-        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.forecast_number_of_days_hours, android.R.layout.simple_spinner_item);
-        dialogBinding.widgetSettingForecastNumberOfDaysHours.setAdapter(adapter);
-        dialogBinding.widgetSettingForecastNumberOfDaysHours.setSelection(predefinedSelection);
-        final NumberOfDaysListener numberOfDaysListener = new NumberOfDaysListener(storedDays);
-        dialogBinding.widgetSettingForecastNumberOfDaysHours.setOnItemSelectedListener(numberOfDaysListener);
+        boolean hoursForecastChecked = (hoursForecast != null) ? hoursForecast : false;
+        dialogBinding.widgetSettingForecastHoursForecastSwitch.setChecked(hoursForecastChecked);
 
-        new AlertDialog.Builder(this)
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setView(dialogBinding.getRoot())
                 .setPositiveButton(R.string.ok, (dialog, id) -> {
+                    boolean isHours = dialogBinding.widgetSettingForecastHoursForecastSwitch.isChecked();
                     widgetSettingsDbHelper.saveParamBoolean(widgetId, "forecast_day_abbrev", dayNameSwitchListener.isChecked());
-                    widgetSettingsDbHelper.saveParamLong(widgetId, "forecastDaysCount", numberOfDaysListener.getNumberOfDays());
-                    widgetSettingsDbHelper.saveParamBoolean(widgetId, "hoursForecast", numberOfDaysListener.isHoursForecast());
+                    widgetSettingsDbHelper.saveParamLong(widgetId, "forecastDaysCount", 5L);
+                    widgetSettingsDbHelper.saveParamBoolean(widgetId, "hoursForecast", isHours);
+
+                    WidgetUtils.updateWidgets(getBaseContext());
+
                     Intent intent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_SETTINGS);
                     intent.setPackage(getBaseContext().getPackageName());
                     intent.putExtra("widgetId", widgetId);
@@ -475,8 +523,8 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                     finish();
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) -> finish())
-                .setOnCancelListener(dialog -> finish())
-                .show();
+                .setOnCancelListener(dialog -> finish());
+        showStyledDialog(builder);
     }
 
     @SuppressLint("MissingInflatedId")
@@ -523,7 +571,7 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
         final GraphValuesSwitchListener showLegendSwitchListener = new GraphValuesSwitchListener(showLegend);
         dialogBinding.widgetSettingGraphShowLegend.setOnCheckedChangeListener(showLegendSwitchListener);
 
-        new AlertDialog.Builder(this)
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setTitle(R.string.forecast_settings_combined_values)
                 .setView(dialogBinding.getRoot())
                 .setPositiveButton(R.string.ok, (dialog, id) -> {
@@ -536,14 +584,15 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                     widgetSettingsDbHelper.saveParamString(widgetId, "combinedGraphValues", valuesToStore.toString());
                     widgetSettingsDbHelper.saveParamBoolean(widgetId, "combinedGraphShowLegend", showLegendSwitchListener.isChecked());
                     GraphUtils.invalidateGraph();
+                    WidgetUtils.updateWidgets(getBaseContext());
                     Intent refreshWidgetIntent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_GRAPH_SCALE);
                     refreshWidgetIntent.setPackage(getBaseContext().getPackageName());
                     sendBroadcast(refreshWidgetIntent);
                     finish();
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) -> finish())
-                .setOnCancelListener(dialog -> finish())
-                .show();
+                .setOnCancelListener(dialog -> finish());
+        showStyledDialog(builder);
     }
 
     public class NumberOfDaysListener implements AdapterView.OnItemSelectedListener {
