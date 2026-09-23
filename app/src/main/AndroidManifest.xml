@@ -175,7 +175,24 @@
                 <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
             </intent-filter>
         </receiver>
+        <receiver android:name=".widget.glance.LessGlanceWidgetReceiver"
+            android:label="@string/widget_less_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
+                <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_less_glance"/>
+        </receiver>
+
         <receiver android:name=".widget.LessWidgetProvider"
+            android:label="@string/widget_less_obsolete_name"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
@@ -192,7 +209,25 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_less"/>
         </receiver>
+
+        <receiver android:name=".widget.glance.MoreGlanceWidgetReceiver"
+            android:label="@string/widget_more_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
+                <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_more_glance"/>
+        </receiver>
+
         <receiver android:name=".widget.MoreWidgetProvider"
+            android:label="@string/widget_more_obsolete_name"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
@@ -209,7 +244,25 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_more"/>
         </receiver>
+
+        <receiver android:name=".widget.glance.ExtLocationGlanceWidgetReceiver"
+            android:label="@string/widget_ext_loc_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
+                <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_ext_loc_glance"/>
+        </receiver>
+
         <receiver android:name=".widget.ExtLocationWidgetProvider"
+            android:label="@string/widget_ext_loc_obsolete_name"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
@@ -226,7 +279,25 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_ext_loc"/>
         </receiver>
+
+        <receiver android:name=".widget.glance.ExtLocationWithForecastGlanceWidgetReceiver"
+            android:label="@string/widget_ext_loc_forecast_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
+                <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_ext_loc_forecast_glance"/>
+        </receiver>
+
         <receiver android:name=".widget.ExtLocationWithForecastWidgetProvider"
+            android:label="@string/widget_ext_loc_forecast_obsolete_name"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
@@ -243,7 +314,25 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_ext_loc_forecast"/>
         </receiver>
+
+        <receiver android:name=".widget.glance.WeatherForecastGlanceWidgetReceiver"
+            android:label="@string/widget_weather_forecast_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
+                <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_weather_forecast_glance"/>
+        </receiver>
+
         <receiver android:name=".widget.WeatherForecastWidgetProvider"
+            android:label="@string/widget_weather_forecast_obsolete_name"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
@@ -260,7 +349,26 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_weather_forecast"/>
         </receiver>
+
+        <receiver android:name=".widget.glance.ExtLocationWithGraphGlanceWidgetReceiver"
+            android:label="@string/widget_ext_loc_graph_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
+                <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_GRAPH_SCALE"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_ext_loc_graph_glance"/>
+        </receiver>
+
         <receiver android:name=".widget.ExtLocationWithGraphWidgetProvider"
+            android:label="@string/widget_ext_loc_graph_obsolete_name"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
@@ -279,21 +387,25 @@
                 android:resource="@xml/widget_provider_ext_loc_graph"/>
         </receiver>
 
-        <receiver android:name=".widget.glance.ExtLocationWithForecastGraphGlanceWidgetReceiver"
-            android:label="@string/widget_ext_loc_forecast_graph_name"
+        <receiver android:name=".widget.glance.WeatherGraphGlanceWidgetReceiver"
+            android:label="@string/widget_weather_graph_name"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 <action android:name="android.intent.action.LOCALE_CHANGED"/>
                 <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
                 <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_GRAPH_SCALE"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
             </intent-filter>
-
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/widget_provider_ext_loc_forecast_graph_glance"/>
+                android:resource="@xml/widget_provider_weather_graph_glance"/>
         </receiver>
+
         <receiver android:name=".widget.WeatherGraphWidgetProvider"
+            android:label="@string/widget_weather_graph_obsolete_name"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
@@ -311,6 +423,25 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/widget_provider_weather_graph"/>
         </receiver>
+
+        <receiver android:name=".widget.glance.ExtLocationWithForecastGraphGlanceWidgetReceiver"
+            android:label="@string/widget_ext_loc_forecast_graph_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
+                <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_GRAPH_SCALE"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_ext_loc_forecast_graph_glance"/>
+        </receiver>
+
         <receiver android:name=".widget.ExtLocationWithForecastGraphWidgetProvider"
             android:label="@string/widget_ext_loc_forecast_graph_obsolete_name"
             android:exported="true">

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/widget_setting_location.root_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/widget_setting_location.root_layout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -12,6 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:theme="@style/Theme.AppCompat"
+        android:textColor="#FFFFFF"
         android:text="@string/widget_setting_location_label"
         android:labelFor="@+id/widget_setting_location.locations"/>
     <Spinner
@@ -27,6 +28,7 @@
         android:layout_height="wrap_content"
         android:theme="@style/Theme.AppCompat"
         android:switchTextAppearance="@style/WidgetOptionSwitch"
+        android:textColor="#FFFFFF"
         android:text="@string/widget_setting_location_show_location"
         android:padding="@dimen/cardview_margin"
         app:showText="true"/>

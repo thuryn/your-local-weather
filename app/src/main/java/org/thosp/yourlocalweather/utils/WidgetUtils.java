@@ -28,7 +28,15 @@ import org.thosp.yourlocalweather.widget.LessWidgetProvider;
 import org.thosp.yourlocalweather.widget.MoreWidgetProvider;
 import org.thosp.yourlocalweather.widget.WeatherForecastWidgetProvider;
 import org.thosp.yourlocalweather.widget.WeatherGraphWidgetProvider;
+import org.thosp.yourlocalweather.widget.glance.ExtLocationGlanceWidgetReceiver;
+import org.thosp.yourlocalweather.widget.glance.ExtLocationWithForecastGlanceWidgetReceiver;
 import org.thosp.yourlocalweather.widget.glance.ExtLocationWithForecastGraphGlanceWidgetReceiver;
+import org.thosp.yourlocalweather.widget.glance.ExtLocationWithGraphGlanceWidgetReceiver;
+import org.thosp.yourlocalweather.widget.glance.GlanceWidgetComponentsKt;
+import org.thosp.yourlocalweather.widget.glance.LessGlanceWidgetReceiver;
+import org.thosp.yourlocalweather.widget.glance.MoreGlanceWidgetReceiver;
+import org.thosp.yourlocalweather.widget.glance.WeatherForecastGlanceWidgetReceiver;
+import org.thosp.yourlocalweather.widget.glance.WeatherGraphGlanceWidgetReceiver;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -999,7 +1007,8 @@ public class WidgetUtils {
         updateWidgetForType(context, ExtLocationWithGraphWidgetProvider.class);
         updateWidgetForType(context, WeatherGraphWidgetProvider.class);
         updateWidgetForType(context, ExtLocationWithForecastGraphWidgetProvider.class);
-        updateWidgetForType(context, ExtLocationWithForecastGraphGlanceWidgetReceiver.class);
+
+        GlanceWidgetComponentsKt.updateAllGlanceWidgets(context);
     }
 
     public static void startBackgroundService(Context context, Intent intent) {

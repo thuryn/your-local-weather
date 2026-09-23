@@ -228,7 +228,21 @@
     <!-- Widgets strings -->
     <string name="widget_ext_loc_forecast_graph_name">Předpověď počasí a graf</string>
     <string name="widget_ext_loc_forecast_graph_obsolete_name">Předpověď počasí a graf (Zastaralý)</string>
-    <string name="widget_obsolete_notice">Tento widget je zastaralý. Nahraďte jej prosím novým widgetem Předpověď počasí a graf.</string>
+    <string name="widget_ext_loc_forecast_name">Předpověď počasí a poloha</string>
+    <string name="widget_ext_loc_forecast_obsolete_name">Předpověď počasí a poloha (Zastaralý)</string>
+    <string name="widget_ext_loc_graph_name">Graf počasí a poloha</string>
+    <string name="widget_ext_loc_graph_obsolete_name">Graf počasí a poloha (Zastaralý)</string>
+    <string name="widget_ext_loc_name">Aktuální počasí a poloha</string>
+    <string name="widget_ext_loc_obsolete_name">Aktuální počasí a poloha (Zastaralý)</string>
+    <string name="widget_weather_forecast_name">Předpověď počasí (1x3)</string>
+    <string name="widget_weather_forecast_obsolete_name">Předpověď počasí (1x3 - Zastaralý)</string>
+    <string name="widget_weather_graph_name">Graf počasí (1x3)</string>
+    <string name="widget_weather_graph_obsolete_name">Graf počasí (1x3 - Zastaralý)</string>
+    <string name="widget_less_name">Počasí kompaktní (3x1)</string>
+    <string name="widget_less_obsolete_name">Počasí kompaktní (3x1 - Zastaralý)</string>
+    <string name="widget_more_name">Detaily aktuálního počasí (3x3)</string>
+    <string name="widget_more_obsolete_name">Detaily aktuálního počasí (3x3 - Zastaralý)</string>
+    <string name="widget_obsolete_notice">Tento widget je zastaralý. Nahraďte jej prosím novým Glance widgetem.</string>
     <string name="widget_weather_icon_description">Aktuální ikona počasí</string>
     <string name="widget_refresh_button">Tlačítko obnovení ve widgetu</string>
     <!-- Donation Bitcoin dialog -->

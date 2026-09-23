@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.appwidget.AppWidgetManager;
+import android.appwidget.AppWidgetProviderInfo;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -72,13 +73,33 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
 
         String settingOption = getIntent().getStringExtra("settings_option");
 
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
+        AppWidgetProviderInfo providerInfo = appWidgetManager.getAppWidgetInfo(widgetId);
+        String providerClassName = (providerInfo != null && providerInfo.provider != null) ? providerInfo.provider.getClassName() : "";
+
         ArrayList<String> widgetActionPlaces = getIntent().getStringArrayListExtra("widget_action_places");
-        if (widgetActionPlaces == null) {
+        if (widgetActionPlaces == null || widgetActionPlaces.isEmpty()) {
             widgetActionPlaces = new ArrayList<>();
             widgetActionPlaces.add("action_city");
-            widgetActionPlaces.add("action_current_weather_icon");
-            widgetActionPlaces.add("action_forecast");
-            widgetActionPlaces.add("action_graph");
+
+            boolean hasWeatherIcon = providerClassName.contains("ExtLocation") || providerClassName.contains("More") || providerClassName.contains("Less");
+            boolean hasForecast = providerClassName.contains("Forecast");
+            boolean hasGraph = providerClassName.contains("Graph");
+            if (providerClassName.isEmpty()) {
+                hasWeatherIcon = true;
+                hasForecast = true;
+                hasGraph = true;
+            }
+
+            if (hasWeatherIcon) {
+                widgetActionPlaces.add("action_current_weather_icon");
+            }
+            if (hasForecast) {
+                widgetActionPlaces.add("action_forecast");
+            }
+            if (hasGraph) {
+                widgetActionPlaces.add("action_graph");
+            }
         }
 
         if (settingOption == null) {
@@ -96,18 +117,50 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
     }
 
     private void createMasterSettingsDialog(final int widgetId, final ArrayList<String> widgetActionPlaces) {
-        CharSequence[] items = new CharSequence[] {
-                "📍   " + getString(R.string.widget_location_settings_button),
-                "📈   " + getString(R.string.widget_graph_settings_button),
-                "☀️   " + getString(R.string.widget_details_setting_button),
-                "📅   " + getString(R.string.label_activity_weather_forecast),
-                "⚙️   " + getString(R.string.widget_action_settings_button)
-        };
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(this);
+        AppWidgetProviderInfo providerInfo = appWidgetManager.getAppWidgetInfo(widgetId);
+        String providerClassName = (providerInfo != null && providerInfo.provider != null) ? providerInfo.provider.getClassName() : "";
+
+        boolean hasGraph = providerClassName.contains("Graph");
+        boolean hasForecast = providerClassName.contains("Forecast");
+        boolean hasDetails = providerClassName.contains("ExtLocation") || providerClassName.contains("More");
+        if (providerClassName.isEmpty()) {
+            hasGraph = true;
+            hasForecast = true;
+            hasDetails = true;
+        }
+
+        List<CharSequence> itemsList = new ArrayList<>();
+        List<Integer> actionsList = new ArrayList<>();
+
+        itemsList.add("📍   " + getString(R.string.widget_location_settings_button));
+        actionsList.add(0);
+
+        if (hasGraph) {
+            itemsList.add("📈   " + getString(R.string.widget_graph_settings_button));
+            actionsList.add(1);
+        }
+
+        if (hasDetails) {
+            itemsList.add("☀️   " + getString(R.string.widget_details_setting_button));
+            actionsList.add(2);
+        }
+
+        if (hasForecast) {
+            itemsList.add("📅   " + getString(R.string.label_activity_weather_forecast));
+            actionsList.add(3);
+        }
+
+        itemsList.add("⚙️   " + getString(R.string.widget_action_settings_button));
+        actionsList.add(4);
+
+        CharSequence[] items = itemsList.toArray(new CharSequence[0]);
 
         AlertDialog dialog = new AlertDialog.Builder(this, R.style.Theme_AppCompat_Dialog_Alert)
                 .setTitle("⚙️   " + getString(R.string.preference_widget_show_controls))
                 .setItems(items, (dialogInterface, which) -> {
-                    switch (which) {
+                    int actionCode = actionsList.get(which);
+                    switch (actionCode) {
                         case 0: createLocationSettingsDialog(widgetId); break;
                         case 1: createGraphSettingDialog(widgetId); break;
                         case 2: createDetailsSettingsDialog(widgetId); break;
@@ -131,6 +184,13 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
             dialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_dialog_rounded);
         }
         dialog.show();
+    }
+
+    private void finishWithSuccess(int widgetId) {
+        Intent resultValue = new Intent();
+        resultValue.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, widgetId);
+        setResult(RESULT_OK, resultValue);
+        finish();
     }
 
     private WidgetDefaultDetailsResult getNumberOfCurrentWeatherDetails(int widgetId) {
@@ -256,7 +316,7 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                     Intent refreshWidgetIntent = new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
                     refreshWidgetIntent.setPackage(getBaseContext().getPackageName());
                     sendBroadcast(refreshWidgetIntent);
-                    finish();
+                    finishWithSuccess(widgetId);
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) -> finish())
                 .setOnCancelListener(dialog -> finish());
@@ -269,7 +329,8 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
         final WidgetSettingsDbHelper widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(this);
 
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.widget_actions, android.R.layout.simple_spinner_item);
+                R.array.widget_actions, R.layout.spinner_item_dark);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_dark);
 
         final WidgetActionListener cityActionsListener;
         if (widgetActionPlaces != null && widgetActionPlaces.contains("action_city")) {
@@ -351,7 +412,7 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                     intent.setPackage(getBaseContext().getPackageName());
                     intent.putExtra("widgetId", widgetId);
                     sendBroadcast(intent);
-                    finish();
+                    finishWithSuccess(widgetId);
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) -> finish())
                 .setOnCancelListener(dialog -> finish());
@@ -397,7 +458,8 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
             locationLabels.add(locationLabel.toString());
         }
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, locationLabels);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item_dark, locationLabels);
+        adapter.setDropDownViewResource(R.layout.spinner_dropdown_item_dark);
         dialogBinding.widgetSettingLocationLocations.setAdapter(adapter);
 
         final LocationsListener locationListener;
@@ -461,7 +523,7 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                     intent.setPackage(getBaseContext().getPackageName());
                     intent.putExtra("widgetId", widgetId);
                     sendBroadcast(intent);
-                    finish();
+                    finishWithSuccess(widgetId);
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) -> finish())
                 .setOnCancelListener(dialog -> finish());
@@ -520,7 +582,7 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                     intent.setPackage(getBaseContext().getPackageName());
                     intent.putExtra("widgetId", widgetId);
                     sendBroadcast(intent);
-                    finish();
+                    finishWithSuccess(widgetId);
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) -> finish())
                 .setOnCancelListener(dialog -> finish());
@@ -588,7 +650,7 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                     Intent refreshWidgetIntent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_GRAPH_SCALE);
                     refreshWidgetIntent.setPackage(getBaseContext().getPackageName());
                     sendBroadcast(refreshWidgetIntent);
-                    finish();
+                    finishWithSuccess(widgetId);
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) -> finish())
                 .setOnCancelListener(dialog -> finish());

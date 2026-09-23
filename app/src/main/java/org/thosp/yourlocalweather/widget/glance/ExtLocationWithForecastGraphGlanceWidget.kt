@@ -231,28 +231,18 @@ class ExtLocationWithForecastGraphGlanceWidget : GlanceAppWidget() {
 
                 // 3. RESPONSIVE Forecast Row (Days vs Hours)
                 if (currentLocation != null) {
-                    if (hoursForecast) {
-                        ResponsiveHourlyForecastRow(
-                            context = context,
-                            weatherForecastRecord = weatherForecastRecord,
-                            currentLocation = currentLocation,
-                            availableWidthDp = availableWidth.value,
-                            temperatureUnit = temperatureUnit,
-                            textColor = textColor,
-                            fontBasedIcons = fontBasedIcons
-                        )
-                    } else if (forecastDays.isNotEmpty()) {
-                        ResponsiveForecastRow(
-                            context = context,
-                            forecastDays = forecastDays,
-                            availableWidthDp = availableWidth.value,
-                            locationLocale = currentLocation.locale,
-                            temperatureUnit = temperatureUnit,
-                            textColor = textColor,
-                            fontBasedIcons = fontBasedIcons,
-                            forecastDayAbbrev = forecastDayAbbrev
-                        )
-                    }
+                    GlanceResponsiveForecastSection(
+                        context = context,
+                        weatherForecastRecord = weatherForecastRecord,
+                        forecastDays = forecastDays,
+                        currentLocation = currentLocation,
+                        availableWidthDp = availableWidth.value,
+                        temperatureUnit = temperatureUnit,
+                        textColor = textColor,
+                        fontBasedIcons = fontBasedIcons,
+                        forecastDayAbbrev = forecastDayAbbrev,
+                        hoursForecast = hoursForecast
+                    )
                 }
 
                 Spacer(modifier = GlanceModifier.height(6.dp))
@@ -401,165 +391,6 @@ class ExtLocationWithForecastGraphGlanceWidget : GlanceAppWidget() {
                         .height(72.dp)
                         .clickable(actionStartActivity(mainIntent))
                 )
-            }
-        }
-    }
-
-    @Composable
-    private fun ResponsiveForecastRow(
-        context: Context,
-        forecastDays: List<ForecastUtil.WeatherForecastPerDay>,
-        availableWidthDp: Float,
-        locationLocale: Locale,
-        temperatureUnit: String,
-        textColor: Color,
-        fontBasedIcons: Boolean,
-        forecastDayAbbrev: Boolean
-    ) {
-        // Dynamic Responsive Calculation:
-        // Estimate ~62dp per column if full day name ("Wednesday"), ~52dp if abbreviated ("Wed").
-        val itemWidthDp = if (forecastDayAbbrev) 52f else 62f
-        val maxCalculatedDays = (availableWidthDp / itemWidthDp).toInt().coerceIn(1, forecastDays.size)
-        val visibleDays = forecastDays.take(maxCalculatedDays)
-
-        val forecastIntent = Intent(context, WeatherForecastActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        }
-
-        val pattern = if (forecastDayAbbrev) "EEE" else "EEEE"
-        val sdfDayOfWeek = SimpleDateFormat(pattern, locationLocale)
-        val tempUnitSymbol = TemperatureUtil.getTemperatureUnit(context, temperatureUnit)
-
-        Row(
-            modifier = GlanceModifier
-                .fillMaxWidth()
-                .clickable(actionStartActivity(forecastIntent))
-                .padding(top = 10.dp, bottom = 4.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            for (day in visibleDays) {
-                val cal = Calendar.getInstance().apply {
-                    set(Calendar.DAY_OF_YEAR, day.dayInYear)
-                    set(Calendar.YEAR, day.year)
-                }
-                val dayName = sdfDayOfWeek.format(cal.time)
-
-                val minTempFormatted = Math.round(
-                    TemperatureUtil.getTemperatureInPreferredUnit(temperatureUnit, day.weatherMaxMinForDay.minTemp)
-                )
-                val maxTempFormatted = Math.round(
-                    TemperatureUtil.getTemperatureInPreferredUnit(temperatureUnit, day.weatherMaxMinForDay.maxTemp)
-                )
-                val tempRangeText = "$minTempFormatted/$maxTempFormatted$tempUnitSymbol"
-
-                // Icon
-                val dayIconProvider: ImageProvider = if (fontBasedIcons) {
-                    val bitmap = GlanceWeatherHelper.getForecastDayIconBitmap(context, day.weatherIds.mainWeatherId)
-                    if (bitmap != null) ImageProvider(bitmap) else ImageProvider(R.drawable.ic_weather_set_1_25)
-                } else {
-                    ImageProvider(GlanceWeatherHelper.getForecastDayIconResId(day.weatherIds.mainWeatherId, day.weatherMaxMinForDay.maxTemp, day.weatherMaxMinForDay.maxWind))
-                }
-
-                Column(
-                    modifier = GlanceModifier
-                        .defaultWeight()
-                        .padding(horizontal = 1.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = dayName,
-                        style = TextStyle(color = ColorProvider(day = textColor, night = textColor), fontSize = 13.sp, fontWeight = FontWeight.Bold)
-                    )
-                    Spacer(modifier = GlanceModifier.height(3.dp))
-                    Image(
-                        provider = dayIconProvider,
-                        contentDescription = dayName,
-                        modifier = GlanceModifier
-                            .width(42.dp)
-                            .height(42.dp)
-                    )
-                    Spacer(modifier = GlanceModifier.height(3.dp))
-                    Text(
-                        text = tempRangeText,
-                        style = TextStyle(color = ColorProvider(day = textColor, night = textColor), fontSize = 13.sp, fontWeight = FontWeight.Bold)
-                    )
-                }
-            }
-        }
-    }
-
-    @Composable
-    private fun ResponsiveHourlyForecastRow(
-        context: Context,
-        weatherForecastRecord: WeatherForecastDbHelper.WeatherForecastRecord?,
-        currentLocation: Location,
-        availableWidthDp: Float,
-        temperatureUnit: String,
-        textColor: Color,
-        fontBasedIcons: Boolean
-    ) {
-        val completeList = weatherForecastRecord?.completeWeatherForecast?.weatherForecastList ?: return
-        val nowSec = System.currentTimeMillis() / 1000
-        val futureList = completeList.filter { (it?.dateTime ?: 0) >= nowSec - 3600 }
-        if (futureList.isEmpty()) return
-
-        val itemWidthDp = 58f
-        val maxCalculatedHours = (availableWidthDp / itemWidthDp).toInt().coerceIn(1, futureList.size)
-        val visibleHours = futureList.take(maxCalculatedHours)
-
-        val forecastIntent = Intent(context, WeatherForecastActivity::class.java).apply {
-            flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        }
-
-        val tempUnitSymbol = TemperatureUtil.getTemperatureUnit(context, temperatureUnit)
-
-        Row(
-            modifier = GlanceModifier
-                .fillMaxWidth()
-                .clickable(actionStartActivity(forecastIntent))
-                .padding(top = 10.dp, bottom = 4.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            for (item in visibleHours) {
-                val forecastDate = Date(item.dateTime * 1000)
-                val hourText = AppPreference.getLocalizedHour(context, forecastDate, currentLocation.locale)
-                val tempFormatted = Math.round(
-                    TemperatureUtil.getTemperatureInPreferredUnit(temperatureUnit, item.temperature)
-                )
-                val tempText = "$tempFormatted$tempUnitSymbol"
-
-                // Icon
-                val dayIconProvider: ImageProvider = if (fontBasedIcons) {
-                    val bitmap = GlanceWeatherHelper.getForecastDayIconBitmap(context, item.weatherId)
-                    if (bitmap != null) ImageProvider(bitmap) else ImageProvider(R.drawable.ic_weather_set_1_25)
-                } else {
-                    ImageProvider(GlanceWeatherHelper.getForecastDayIconResId(item.weatherId, item.temperatureMax, item.windSpeed))
-                }
-
-                Column(
-                    modifier = GlanceModifier
-                        .defaultWeight()
-                        .padding(horizontal = 1.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(
-                        text = hourText,
-                        style = TextStyle(color = ColorProvider(day = textColor, night = textColor), fontSize = 12.sp, fontWeight = FontWeight.Bold)
-                    )
-                    Spacer(modifier = GlanceModifier.height(3.dp))
-                    Image(
-                        provider = dayIconProvider,
-                        contentDescription = hourText,
-                        modifier = GlanceModifier
-                            .width(42.dp)
-                            .height(42.dp)
-                    )
-                    Spacer(modifier = GlanceModifier.height(3.dp))
-                    Text(
-                        text = tempText,
-                        style = TextStyle(color = ColorProvider(day = textColor, night = textColor), fontSize = 13.sp, fontWeight = FontWeight.Bold)
-                    )
-                }
             }
         }
     }

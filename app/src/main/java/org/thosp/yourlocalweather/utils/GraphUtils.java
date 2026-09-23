@@ -91,12 +91,21 @@ public class GraphUtils {
             yAxisValues += 2;
         }
 
+        float chartTextSize = 12f;
+        if (height < 200) {
+            chartTextSize = 8f;
+        } else if (height < 350) {
+            chartTextSize = 9.5f;
+        } else if (height < 500) {
+            chartTextSize = 11f;
+        }
+
         CombinedChart combinedChart = generateCombinedGraph(context,
                                     null,
                                                             combinedGraphValuesFromSettings,
                                                             weatherForecastList,
                                                             locale,
-                                                            18f,
+                                                            chartTextSize,
                                                             yAxisValues,
                                                             0,
                                                             widgetTextColor,
@@ -132,10 +141,10 @@ public class GraphUtils {
 
         AppWidgetProviderInfo providerInfo = appWidgetManager.getAppWidgetInfo(appWidgetId);
 
-        int mWidgetLandWidth = providerInfo.minWidth;
-        int mWidgetPortHeight = providerInfo.minHeight;
-        int mWidgetPortWidth = providerInfo.minWidth;
-        int mWidgetLandHeight = providerInfo.minHeight;
+        int mWidgetLandWidth = (providerInfo != null) ? providerInfo.minWidth : 250;
+        int mWidgetPortHeight = (providerInfo != null) ? providerInfo.minHeight : 150;
+        int mWidgetPortWidth = (providerInfo != null) ? providerInfo.minWidth : 250;
+        int mWidgetLandHeight = (providerInfo != null) ? providerInfo.minHeight : 150;
 
         Bundle mAppWidgetOptions = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -154,7 +163,7 @@ public class GraphUtils {
                     .getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT);
             mWidgetPortHeight = mAppWidgetOptions
                     .getInt(AppWidgetManager.OPTION_APPWIDGET_MAX_HEIGHT);
-        } else {
+        } else if (providerInfo != null) {
             mWidgetLandWidth = providerInfo.minWidth;
             mWidgetPortHeight = providerInfo.minHeight;
             mWidgetPortWidth = providerInfo.minWidth;

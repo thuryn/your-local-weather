@@ -521,7 +521,21 @@
     <!-- Widgets strings -->
     <string name="widget_ext_loc_forecast_graph_name" tools:ignore="MissingTranslation">Weather Forecast &amp; Graph</string>
     <string name="widget_ext_loc_forecast_graph_obsolete_name" tools:ignore="MissingTranslation">Weather Forecast &amp; Graph (Obsolete)</string>
-    <string name="widget_obsolete_notice" tools:ignore="MissingTranslation">This widget is obsolete. Please replace it with the new Weather Forecast &amp; Graph widget.</string>
+    <string name="widget_ext_loc_forecast_name" tools:ignore="MissingTranslation">Weather Forecast &amp; Location</string>
+    <string name="widget_ext_loc_forecast_obsolete_name" tools:ignore="MissingTranslation">Weather Forecast &amp; Location (Obsolete)</string>
+    <string name="widget_ext_loc_graph_name" tools:ignore="MissingTranslation">Weather Graph &amp; Location</string>
+    <string name="widget_ext_loc_graph_obsolete_name" tools:ignore="MissingTranslation">Weather Graph &amp; Location (Obsolete)</string>
+    <string name="widget_ext_loc_name" tools:ignore="MissingTranslation">Current Weather &amp; Location</string>
+    <string name="widget_ext_loc_obsolete_name" tools:ignore="MissingTranslation">Current Weather &amp; Location (Obsolete)</string>
+    <string name="widget_weather_forecast_name" tools:ignore="MissingTranslation">Weather Forecast (1x3)</string>
+    <string name="widget_weather_forecast_obsolete_name" tools:ignore="MissingTranslation">Weather Forecast (1x3 - Obsolete)</string>
+    <string name="widget_weather_graph_name" tools:ignore="MissingTranslation">Weather Graph (1x3)</string>
+    <string name="widget_weather_graph_obsolete_name" tools:ignore="MissingTranslation">Weather Graph (1x3 - Obsolete)</string>
+    <string name="widget_less_name" tools:ignore="MissingTranslation">Weather Compact (3x1)</string>
+    <string name="widget_less_obsolete_name" tools:ignore="MissingTranslation">Weather Compact (3x1 - Obsolete)</string>
+    <string name="widget_more_name" tools:ignore="MissingTranslation">Current Weather Details (3x3)</string>
+    <string name="widget_more_obsolete_name" tools:ignore="MissingTranslation">Current Weather Details (3x3 - Obsolete)</string>
+    <string name="widget_obsolete_notice" tools:ignore="MissingTranslation">This widget is obsolete. Please replace it with the new Glance widget.</string>
     <string name="widget_weather_icon_description" tools:ignore="MissingTranslation">Current weather icon</string>
     <string name="widget_refresh_button" tools:ignore="MissingTranslation">Widget refresh button</string>
     <string name="widget_graph_settings_button" tools:ignore="MissingTranslation">Widget graph settings button</string>
