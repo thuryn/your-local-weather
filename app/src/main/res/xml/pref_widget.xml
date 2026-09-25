@@ -25,10 +25,7 @@
         android:defaultValue="0xff000000"
         android:title="@string/preference_widget_background_color"
         android:summary="@string/preference_widget_background_color_summary" />
-    <CheckBoxPreference
-        android:defaultValue="false"
-        android:key="widget_graphs_native_scale"
-        android:title="@string/preference_widget_graphs_native_scale"/>
+
     <ListPreference
         android:defaultValue="preference_display_update_location_source"
         android:dialogTitle="@string/preference_display_update_title"

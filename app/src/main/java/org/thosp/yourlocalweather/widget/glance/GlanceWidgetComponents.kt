@@ -162,7 +162,7 @@ fun GlanceCurrentWeatherSection(
             if (description.isNotEmpty()) {
                 Text(
                     text = description,
-                    style = TextStyle(color = ColorProvider(day = textColor, night = textColor), fontSize = 12.sp)
+                    style = TextStyle(color = ColorProvider(day = textColor, night = textColor), fontSize = 16.sp, fontWeight = FontWeight.Medium)
                 )
                 Spacer(modifier = GlanceModifier.height(2.dp))
             }
@@ -226,7 +226,8 @@ fun GlanceResponsiveDailyForecastRow(
     fontBasedIcons: Boolean,
     forecastDayAbbrev: Boolean
 ) {
-    val itemWidthDp = if (forecastDayAbbrev) 52f else 62f
+    val itemWidthDp = if (forecastDayAbbrev) 62f else 72f
+
     val maxCalculatedDays = (availableWidthDp / itemWidthDp).toInt().coerceIn(1, forecastDays.size)
     val visibleDays = forecastDays.take(maxCalculatedDays)
 
@@ -275,7 +276,8 @@ fun GlanceResponsiveDailyForecastRow(
             ) {
                 Text(
                     text = dayName,
-                    style = TextStyle(color = ColorProvider(day = textColor, night = textColor), fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                    style = TextStyle(color = ColorProvider(day = textColor, night = textColor), fontSize = 13.sp, fontWeight = FontWeight.Bold),
+                    maxLines = 1
                 )
                 Spacer(modifier = GlanceModifier.height(3.dp))
                 Image(
@@ -288,7 +290,8 @@ fun GlanceResponsiveDailyForecastRow(
                 Spacer(modifier = GlanceModifier.height(3.dp))
                 Text(
                     text = tempRangeText,
-                    style = TextStyle(color = ColorProvider(day = textColor, night = textColor), fontSize = 13.sp, fontWeight = FontWeight.Bold)
+                    style = TextStyle(color = ColorProvider(day = textColor, night = textColor), fontSize = 12.sp, fontWeight = FontWeight.Bold),
+                    maxLines = 1
                 )
             }
         }

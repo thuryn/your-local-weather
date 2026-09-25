@@ -91,13 +91,20 @@ public class GraphUtils {
             yAxisValues += 2;
         }
 
+        float density = context.getResources().getDisplayMetrics().density;
+        float heightDp = (density > 0) ? (height / density) : height;
+
         float chartTextSize = 12f;
-        if (height < 200) {
-            chartTextSize = 8f;
-        } else if (height < 350) {
-            chartTextSize = 9.5f;
-        } else if (height < 500) {
-            chartTextSize = 11f;
+        if (heightDp < 60) {
+            chartTextSize = 8.5f;
+        } else if (heightDp < 100) {
+            chartTextSize = 10.5f;
+        } else if (heightDp < 160) {
+            chartTextSize = 12f;
+        } else if (heightDp < 240) {
+            chartTextSize = 13f;
+        } else {
+            chartTextSize = 14f;
         }
 
         CombinedChart combinedChart = generateCombinedGraph(context,
@@ -566,7 +573,7 @@ public class GraphUtils {
         yLeft.setGridColor(gridColorId.getMainGridColor());
         yLeft.setZeroLineWidth(20f);
         if (textSize != null) {
-            yLeft.setTextSize(textSize);
+            yLeft.setTextSize(textSize + 2.5f);
         }
         yLeft.setXOffset(15);
         if (yAxisValues != null) {
@@ -626,7 +633,7 @@ public class GraphUtils {
         yRight.setGridColor(gridColorId.getMainGridColor());
         yRight.setZeroLineWidth(20f);
         if (textSize != null) {
-            yRight.setTextSize(textSize);
+            yRight.setTextSize(textSize + 2.5f);
         }
         yRight.setXOffset(15);
         if (yAxisValues != null) {
@@ -757,7 +764,7 @@ public class GraphUtils {
         }
 
         if (textSize != null) {
-            x.setTextSize(textSize);
+            x.setTextSize(textSize + 2.5f);
         }
     }
 
