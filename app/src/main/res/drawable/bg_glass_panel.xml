@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Bottom Drop Shadow for 3D Arch Elevation -->
+    <item
+        android:left="2dp"
+        android:top="4dp"
+        android:right="2dp"
+        android:bottom="4dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#60000000" />
+            <corners android:radius="22dp" />
+        </shape>
+    </item>
+
+    <!-- Main Glass Arch Panel Body -->
+    <item
+        android:left="0dp"
+        android:top="0dp"
+        android:right="0dp"
+        android:bottom="2dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="135"
+                android:startColor="#60354A6B"
+                android:centerColor="#40202E46"
+                android:endColor="#2B121D2C"
+                android:type="linear" />
+            <corners android:radius="20dp" />
+            <stroke
+                android:width="2dp"
+                android:color="#A0FFFFFF" />
+        </shape>
+    </item>
+
+    <!-- Top Glossy Inner Bevel Highlight -->
+    <item
+        android:left="3dp"
+        android:top="2dp"
+        android:right="3dp"
+        android:bottom="14dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:angle="270"
+                android:startColor="#40FFFFFF"
+                android:endColor="#00FFFFFF"
+                android:type="linear" />
+            <corners android:radius="18dp" />
+        </shape>
+    </item>
+</layer-list>

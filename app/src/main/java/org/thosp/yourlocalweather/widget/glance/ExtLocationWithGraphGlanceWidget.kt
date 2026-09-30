@@ -31,6 +31,7 @@ import androidx.glance.layout.padding
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import org.thosp.yourlocalweather.GraphsActivity
+import org.thosp.yourlocalweather.R
 import org.thosp.yourlocalweather.WidgetSettingsDialogue
 import org.thosp.yourlocalweather.model.CurrentWeatherDbHelper
 import org.thosp.yourlocalweather.model.Location
@@ -117,9 +118,10 @@ class ExtLocationWithGraphGlanceWidget : GlanceAppWidget() {
         val headerColorInt = AppPreference.getWindowHeaderBackgroundColorId(appContext)
         val fontBasedIcons = "weather_icon_set_fontbased" == AppPreference.getIconSet(appContext)
 
-        val textColor = Color(textColorInt)
-        val backgroundColor = Color(backgroundColorInt)
-        val headerColor = Color(headerColorInt)
+        val isGlass = AppPreference.isGlassTheme(appContext)
+        val textColor = if (isGlass) Color.White else Color(textColorInt)
+        val backgroundColor = if (isGlass) Color(0x1F0F172A) else Color(backgroundColorInt)
+        val headerColor = if (isGlass) Color(0x35FFFFFF) else Color(headerColorInt)
 
         val showLegend = widgetSettingsDbHelper.getParamBoolean(appWidgetId, "combinedGraphShowLegend")
         val combinedGraphValuesFromPreferences = AppPreference.getCombinedGraphValues(appContext)
@@ -172,7 +174,8 @@ class ExtLocationWithGraphGlanceWidget : GlanceAppWidget() {
                     textColor = textColor,
                     backgroundColor = backgroundColor,
                     headerColor = headerColor,
-                    fontBasedIcons = fontBasedIcons
+                    fontBasedIcons = fontBasedIcons,
+                    isGlass = isGlass
                 )
             }
         }
@@ -192,57 +195,67 @@ class ExtLocationWithGraphGlanceWidget : GlanceAppWidget() {
         textColor: Color,
         backgroundColor: Color,
         headerColor: Color,
-        fontBasedIcons: Boolean
+        fontBasedIcons: Boolean,
+        isGlass: Boolean
     ) {
+        val mainBackgroundModifier = if (isGlass) GlanceModifier.background(ImageProvider(R.drawable.bg_glass_outer_container)) else GlanceModifier.background(backgroundColor).cornerRadius(16.dp)
+
         Box(
             modifier = GlanceModifier
                 .fillMaxSize()
                 .appWidgetBackground()
-                .background(backgroundColor)
-                .cornerRadius(16.dp)
+                .then(mainBackgroundModifier)
         ) {
             Column(
                 modifier = GlanceModifier
                     .fillMaxSize()
                     .padding(6.dp)
             ) {
-                GlanceHeaderBar(
-                    context = context,
-                    appWidgetId = appWidgetId,
-                    currentLocation = currentLocation,
-                    weatherRecord = weatherRecord,
-                    weatherForecastRecord = weatherForecastRecord,
-                    timeStyle = timeStyle,
-                    textColor = textColor,
-                    headerColor = headerColor
-                )
+                GlanceGlassPanel(isGlass = isGlass) {
+                    GlanceHeaderBar(
+                        context = context,
+                        appWidgetId = appWidgetId,
+                        currentLocation = currentLocation,
+                        weatherRecord = weatherRecord,
+                        weatherForecastRecord = weatherForecastRecord,
+                        timeStyle = timeStyle,
+                        textColor = textColor,
+                        headerColor = headerColor
+                    )
+                }
 
                 Spacer(modifier = GlanceModifier.height(6.dp))
 
-                GlanceCurrentWeatherSection(
-                    context = context,
-                    currentLocation = currentLocation,
-                    weatherRecord = weatherRecord,
-                    temperatureUnit = temperatureUnit,
-                    windUnit = windUnit,
-                    textColor = textColor,
-                    fontBasedIcons = fontBasedIcons
-                )
+                GlanceGlassPanel(isGlass = isGlass) {
+                    GlanceCurrentWeatherSection(
+                        context = context,
+                        currentLocation = currentLocation,
+                        weatherRecord = weatherRecord,
+                        temperatureUnit = temperatureUnit,
+                        windUnit = windUnit,
+                        textColor = textColor,
+                        fontBasedIcons = fontBasedIcons
+                    )
+                }
 
                 Spacer(modifier = GlanceModifier.height(6.dp))
 
                 if (graphBitmap != null) {
-                    val graphIntent = Intent(context, GraphsActivity::class.java).apply {
-                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    GlanceGlassPanel(
+                        isGlass = isGlass,
+                        modifier = GlanceModifier.defaultWeight()
+                    ) {
+                        val graphIntent = Intent(context, GraphsActivity::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        }
+                        Image(
+                            provider = ImageProvider(graphBitmap),
+                            contentDescription = "Weather Graph",
+                            modifier = GlanceModifier
+                                .fillMaxWidth()
+                                .clickable(actionStartActivity(graphIntent))
+                        )
                     }
-                    Image(
-                        provider = ImageProvider(graphBitmap),
-                        contentDescription = "Weather Graph",
-                        modifier = GlanceModifier
-                            .fillMaxWidth()
-                            .defaultWeight()
-                            .clickable(actionStartActivity(graphIntent))
-                    )
                 }
             }
         }

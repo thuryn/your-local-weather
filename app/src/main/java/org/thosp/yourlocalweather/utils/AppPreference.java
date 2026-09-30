@@ -489,6 +489,10 @@ public class AppPreference {
                 Constants.KEY_PREF_WIDGET_THEME, "dark");
     }
 
+    public static boolean isGlassTheme(Context context) {
+        return "glass".equalsIgnoreCase(getWidgetTheme(context));
+    }
+
     public Set<Integer> getForecastActivityColumns(Context context) {
         if (forecastActivityColumns != null) {
             return forecastActivityColumns;

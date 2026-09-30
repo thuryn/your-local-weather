@@ -95,9 +95,10 @@ class ExtLocationWithForecastGraphGlanceWidget : GlanceAppWidget() {
         val forecastDayAbbrev = widgetSettingsDbHelper.getParamBoolean(appWidgetId, "forecast_day_abbrev") ?: false
         val hoursForecast = widgetSettingsDbHelper.getParamBoolean(appWidgetId, "hoursForecast") ?: false
 
-        val textColor = Color(textColorInt)
-        val backgroundColor = Color(backgroundColorInt)
-        val headerColor = Color(headerColorInt)
+        val isGlass = AppPreference.isGlassTheme(appContext)
+        val textColor = if (isGlass) Color.White else Color(textColorInt)
+        val backgroundColor = if (isGlass) Color(0x1F0F172A) else Color(backgroundColorInt)
+        val headerColor = if (isGlass) Color(0x35FFFFFF) else Color(headerColorInt)
 
         // Graph Bitmap Generation
         val showLegend = widgetSettingsDbHelper.getParamBoolean(appWidgetId, "combinedGraphShowLegend")
@@ -162,7 +163,8 @@ class ExtLocationWithForecastGraphGlanceWidget : GlanceAppWidget() {
                     headerColor = headerColor,
                     fontBasedIcons = fontBasedIcons,
                     forecastDayAbbrev = forecastDayAbbrev,
-                    hoursForecast = hoursForecast
+                    hoursForecast = hoursForecast,
+                    isGlass = isGlass
                 )
             }
         }
@@ -185,81 +187,93 @@ class ExtLocationWithForecastGraphGlanceWidget : GlanceAppWidget() {
         headerColor: Color,
         fontBasedIcons: Boolean,
         forecastDayAbbrev: Boolean,
-        hoursForecast: Boolean
+        hoursForecast: Boolean,
+        isGlass: Boolean
     ) {
         val size = LocalSize.current
         val availableWidth = size.width
+
+        val mainBackgroundModifier = if (isGlass) GlanceModifier.background(ImageProvider(R.drawable.bg_glass_outer_container)) else GlanceModifier.background(backgroundColor).cornerRadius(16.dp)
 
         Box(
             modifier = GlanceModifier
                 .fillMaxSize()
                 .appWidgetBackground()
-                .background(backgroundColor)
-                .cornerRadius(16.dp)
+                .then(mainBackgroundModifier)
         ) {
             Column(
                 modifier = GlanceModifier
                     .fillMaxSize()
                     .padding(6.dp)
             ) {
-                // 1. Header Bar (City Name & Last Update)
-                HeaderBar(
-                    context = context,
-                    appWidgetId = appWidgetId,
-                    currentLocation = currentLocation,
-                    weatherRecord = weatherRecord,
-                    weatherForecastRecord = weatherForecastRecord,
-                    timeStyle = timeStyle,
-                    textColor = textColor,
-                    headerColor = headerColor
-                )
+                // 1. Header Bar
+                GlanceGlassPanel(isGlass = isGlass) {
+                    HeaderBar(
+                        context = context,
+                        appWidgetId = appWidgetId,
+                        currentLocation = currentLocation,
+                        weatherRecord = weatherRecord,
+                        weatherForecastRecord = weatherForecastRecord,
+                        timeStyle = timeStyle,
+                        textColor = textColor,
+                        headerColor = headerColor
+                    )
+                }
 
                 Spacer(modifier = GlanceModifier.height(6.dp))
 
-                // 2. Current Weather Info (Temp, Description, Wind, Humidity, Icon)
-                CurrentWeatherSection(
-                    context = context,
-                    currentLocation = currentLocation,
-                    weatherRecord = weatherRecord,
-                    temperatureUnit = temperatureUnit,
-                    windUnit = windUnit,
-                    textColor = textColor,
-                    fontBasedIcons = fontBasedIcons
-                )
+                // 2. Current Weather Info
+                GlanceGlassPanel(isGlass = isGlass) {
+                    CurrentWeatherSection(
+                        context = context,
+                        currentLocation = currentLocation,
+                        weatherRecord = weatherRecord,
+                        temperatureUnit = temperatureUnit,
+                        windUnit = windUnit,
+                        textColor = textColor,
+                        fontBasedIcons = fontBasedIcons
+                    )
+                }
 
-                Spacer(modifier = GlanceModifier.height(10.dp))
+                Spacer(modifier = GlanceModifier.height(6.dp))
 
                 // 3. RESPONSIVE Forecast Row (Days vs Hours)
                 if (currentLocation != null) {
-                    GlanceResponsiveForecastSection(
-                        context = context,
-                        weatherForecastRecord = weatherForecastRecord,
-                        forecastDays = forecastDays,
-                        currentLocation = currentLocation,
-                        availableWidthDp = availableWidth.value,
-                        temperatureUnit = temperatureUnit,
-                        textColor = textColor,
-                        fontBasedIcons = fontBasedIcons,
-                        forecastDayAbbrev = forecastDayAbbrev,
-                        hoursForecast = hoursForecast
-                    )
+                    GlanceGlassPanel(isGlass = isGlass) {
+                        GlanceResponsiveForecastSection(
+                            context = context,
+                            weatherForecastRecord = weatherForecastRecord,
+                            forecastDays = forecastDays,
+                            currentLocation = currentLocation,
+                            availableWidthDp = availableWidth.value,
+                            temperatureUnit = temperatureUnit,
+                            textColor = textColor,
+                            fontBasedIcons = fontBasedIcons,
+                            forecastDayAbbrev = forecastDayAbbrev,
+                            hoursForecast = hoursForecast
+                        )
+                    }
                 }
 
                 Spacer(modifier = GlanceModifier.height(6.dp))
 
                 // 4. Combined Weather Graph
                 if (graphBitmap != null) {
-                    val graphIntent = Intent(context, GraphsActivity::class.java).apply {
-                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    GlanceGlassPanel(
+                        isGlass = isGlass,
+                        modifier = GlanceModifier.defaultWeight()
+                    ) {
+                        val graphIntent = Intent(context, GraphsActivity::class.java).apply {
+                            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        }
+                        Image(
+                            provider = ImageProvider(graphBitmap),
+                            contentDescription = "Weather Graph",
+                            modifier = GlanceModifier
+                                .fillMaxWidth()
+                                .clickable(actionStartActivity(graphIntent))
+                        )
                     }
-                    Image(
-                        provider = ImageProvider(graphBitmap),
-                        contentDescription = "Weather Graph",
-                        modifier = GlanceModifier
-                            .fillMaxWidth()
-                            .defaultWeight()
-                            .clickable(actionStartActivity(graphIntent))
-                    )
                 }
             }
         }

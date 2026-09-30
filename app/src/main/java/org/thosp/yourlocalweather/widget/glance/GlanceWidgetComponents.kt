@@ -18,9 +18,11 @@ import androidx.glance.appwidget.cornerRadius
 import androidx.glance.background
 import androidx.glance.color.ColorProvider
 import androidx.glance.layout.Alignment
+import androidx.glance.layout.Box
 import androidx.glance.layout.Column
 import androidx.glance.layout.Row
 import androidx.glance.layout.Spacer
+import androidx.glance.layout.fillMaxHeight
 import androidx.glance.layout.fillMaxWidth
 import androidx.glance.layout.height
 import androidx.glance.layout.padding
@@ -47,6 +49,28 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+
+@Composable
+fun GlanceGlassPanel(
+    modifier: GlanceModifier = GlanceModifier,
+    isGlass: Boolean,
+    content: @Composable () -> Unit
+) {
+    if (isGlass) {
+        Box(
+            modifier = modifier
+                .fillMaxWidth()
+                .background(ImageProvider(R.drawable.bg_glass_panel))
+                .padding(6.dp)
+        ) {
+            content()
+        }
+    } else {
+        Box(modifier = modifier.fillMaxWidth()) {
+            content()
+        }
+    }
+}
 
 @Composable
 fun GlanceHeaderBar(

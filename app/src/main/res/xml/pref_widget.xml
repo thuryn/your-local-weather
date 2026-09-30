@@ -3,7 +3,8 @@
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="widget_show_controls"
-        android:title="@string/preference_widget_show_controls"/>
+        android:title="@string/preference_widget_show_controls"
+        android:summary="@string/preference_widget_show_controls_summary"/>
     <CheckBoxPreference
         android:defaultValue="false"
         android:key="widget_show_labels_pref_key"

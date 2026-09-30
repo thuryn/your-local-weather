@@ -297,12 +297,14 @@
     <string name="preference_widget_background_color_summary" tools:ignore="MissingTranslation">Tap to change color</string>
     <string name="preference_widget_graphs_native_scale" tools:ignore="MissingTranslation">Show graph in native resolution (when the graph is too small)</string>
     <string name="preference_widget_show_controls" tools:ignore="MissingTranslation">Show settings on widget</string>
+    <string name="preference_widget_show_controls_summary" tools:ignore="MissingTranslation">(obsolete widgets only)</string>
     <string name="preference_widget_use_geocoder" tools:ignore="MissingTranslation">Use geolocation for displaying</string>
     <string name="preference_widget_theme_title" tools:ignore="MissingTranslation">Widget theme</string>
     <string name="theme_dark" tools:ignore="MissingTranslation">Dark</string>
     <string name="theme_light" tools:ignore="MissingTranslation">Light</string>
     <string name="theme_system" tools:ignore="MissingTranslation">By system</string>
     <string name="theme_transparent" tools:ignore="MissingTranslation">Transparent</string>
+    <string name="theme_glass" tools:ignore="MissingTranslation">Glassmorphism (Frosted Panels)</string>
     <string name="preference_title_category_display" tools:ignore="MissingTranslation">Display</string>
     <string name="preference_title_category_location_weather" tools:ignore="MissingTranslation">Update location and weather</string>
     <string name="preference_title_category_units" tools:ignore="MissingTranslation">Unit settings</string>

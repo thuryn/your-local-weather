@@ -302,11 +302,13 @@
         <item>@string/theme_dark</item>
         <item>@string/theme_light</item>
         <item>@string/theme_transparent</item>
+        <item>@string/theme_glass</item>
     </string-array>
     <string-array name="widget_theme_values" translatable="false">
         <item>dark</item>
         <item>light</item>
         <item>transparent</item>
+        <item>glass</item>
     </string-array>
 
     <!-- Wind directions array -->
