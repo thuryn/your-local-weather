@@ -15,7 +15,7 @@
         android:title="@string/preference_widget_text_color"
         android:summary="@string/preference_widget_text_color_summary" />
     <ListPreference
-        android:defaultValue="dark"
+        android:defaultValue="glass"
         android:dialogTitle="@string/preference_widget_theme_title"
         android:entries="@array/widget_theme_entries"
         android:entryValues="@array/widget_theme_values"

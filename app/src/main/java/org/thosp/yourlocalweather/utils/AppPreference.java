@@ -486,7 +486,7 @@ public class AppPreference {
 
     public static String getWidgetTheme(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
-                Constants.KEY_PREF_WIDGET_THEME, "dark");
+                Constants.KEY_PREF_WIDGET_THEME, "glass");
     }
 
     public static boolean isGlassTheme(Context context) {

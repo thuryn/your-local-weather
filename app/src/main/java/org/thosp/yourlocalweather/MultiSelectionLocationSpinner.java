@@ -41,21 +41,21 @@ public class MultiSelectionLocationSpinner extends AppCompatSpinner implements D
 
     @Override
     public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-        if (selection != null && which < selection.length) {
+        if (selection != null && which >= 0 && which < selection.length) {
             selection[which] = isChecked;
             adapter.clear();
             adapter.add(buildSelectedItemString());
-        } else {
-            throw new IllegalArgumentException(
-                    "Argument 'which' is out of bounds.");
+            writeCurrentSetting();
         }
-        writeCurrentSetting();
     }
 
     private void writeCurrentSetting() {
+        if (selection == null || items == null || voiceSettingId == null) {
+            return;
+        }
         StringBuilder selectedBtDevices = new StringBuilder();
         for (int i = 0; i < selection.length; i++) {
-            if (selection[i]) {
+            if (selection[i] && i < items.size()) {
                 selectedBtDevices.append(items.get(i).getId());
                 selectedBtDevices.append(",");
             }
@@ -69,6 +69,10 @@ public class MultiSelectionLocationSpinner extends AppCompatSpinner implements D
 
     @Override
     public boolean performClick() {
+        if (items == null || items.isEmpty() || selection == null) {
+            return false;
+        }
+
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
         String[] itemNames = new String[items.size()];
@@ -98,20 +102,30 @@ public class MultiSelectionLocationSpinner extends AppCompatSpinner implements D
 
     public void setItems(ArrayList<MultiselectionLocationItem> items) {
         this.items = items;
-        selection = new boolean[this.items.size()];
+        if (this.items != null) {
+            selection = new boolean[this.items.size()];
+            Arrays.fill(selection, false);
+        } else {
+            selection = null;
+        }
         adapter.clear();
         adapter.add("");
-        Arrays.fill(selection, false);
     }
 
     public void setSelection(ArrayList<MultiselectionLocationItem> selection) {
+        if (this.selection == null || items == null || selection == null) {
+            return;
+        }
         for (int i = 0; i < this.selection.length; i++) {
             this.selection[i] = false;
         }
 
         for (MultiselectionLocationItem sel : selection) {
+            if (sel == null || sel.getValue() == null) {
+                continue;
+            }
             for (int j = 0; j < items.size(); ++j) {
-                if (items.get(j).getValue().equals(sel.getValue())) {
+                if (items.get(j) != null && sel.getValue().equals(items.get(j).getValue())) {
                     this.selection[j] = true;
                 }
             }
@@ -122,16 +136,21 @@ public class MultiSelectionLocationSpinner extends AppCompatSpinner implements D
     }
 
     private String buildSelectedItemString() {
+        if (items == null || selection == null) {
+            return "";
+        }
         StringBuilder sb = new StringBuilder();
         boolean foundOne = false;
 
         for (int i = 0; i < items.size(); ++i) {
-            if (selection[i]) {
+            if (i < selection.length && selection[i]) {
                 if (foundOne) {
                     sb.append(", ");
                 }
                 foundOne = true;
-                sb.append(items.get(i).getName());
+                if (items.get(i) != null && items.get(i).getName() != null) {
+                    sb.append(items.get(i).getName());
+                }
             }
         }
         return sb.toString();
@@ -139,8 +158,11 @@ public class MultiSelectionLocationSpinner extends AppCompatSpinner implements D
 
     public ArrayList<MultiselectionLocationItem> getSelectedItems() {
         ArrayList<MultiselectionLocationItem> selectedItems = new ArrayList<>();
+        if (items == null || selection == null) {
+            return selectedItems;
+        }
         for (int i = 0; i < items.size(); ++i) {
-            if (selection[i]) {
+            if (i < selection.length && selection[i]) {
                 selectedItems.add(items.get(i));
             }
         }
