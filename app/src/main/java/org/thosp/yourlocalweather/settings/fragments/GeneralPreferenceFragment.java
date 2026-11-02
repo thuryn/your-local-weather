@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.TypedValue;
@@ -44,6 +45,7 @@ public class GeneralPreferenceFragment extends PreferenceFragmentCompat implemen
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     private static final String TAG = "GeneralPreferenceFragment";
+    private static final int CURRENT_ITERATIONS = 100000;
 
     private final String[] SUMMARIES_TO_UPDATE = {
             Constants.KEY_PREF_HIDE_DESCRIPTION,
@@ -157,8 +159,10 @@ public class GeneralPreferenceFragment extends PreferenceFragmentCompat implemen
             byte[] salt = new byte[16];
             random.nextBytes(salt);
 
-            KeySpec spec = new PBEKeySpec(key.toCharArray(), salt, 65536, 128);
-            SecretKeyFactory factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+            KeySpec spec = new PBEKeySpec(key.toCharArray(), salt,
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? CURRENT_ITERATIONS : 65536, 128);
+            SecretKeyFactory factory = SecretKeyFactory.getInstance(
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.O ? "PBKDF2WithHmacSHA256" : "PBKDF2WithHmacSHA1");
             byte[] hash = factory.generateSecret(spec).getEncoded();
 
             StringBuffer hexString = new StringBuffer();
