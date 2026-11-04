@@ -29,4 +29,36 @@
         android:entryValues="@array/location_geocoder_source_values"
         android:key="location_geocoder_source"
         android:title="@string/location_geocoder_title"/>
+    <ListPreference
+        android:defaultValue="open_meteo"
+        android:dialogTitle="@string/pref_title_weather_provider"
+        android:entries="@array/weather_provider_entries"
+        android:entryValues="@array/weather_provider_values"
+        android:key="weather_provider_pref_key"
+        android:title="@string/pref_title_weather_provider"/>
+    <EditTextPreference
+        android:dependency="weather_provider_pref_key"
+        android:key="custom_weather_url_pref_key"
+        android:title="@string/pref_title_custom_weather_url"
+        android:summary="@string/pref_title_custom_weather_url"/>
+    <Preference
+        android:dependency="custom_weather_url_pref_key"
+        android:key="analyze_custom_url_pref_key"
+        android:title="@string/pref_title_analyze_custom_url"/>
+
+    <PreferenceCategory
+        android:title="@string/pref_title_ai_settings">
+        <Preference
+            android:key="ai_model_status_pref_key"
+            android:title="@string/pref_title_ai_model_status"
+            android:selectable="false"/>
+        <Preference
+            android:key="download_gemma_pref_key"
+            android:title="@string/pref_title_download_gemma"
+            android:summary="@string/pref_summary_gemma_not_downloaded"/>
+        <EditTextPreference
+            android:key="gemini_api_key_pref_key"
+            android:title="@string/pref_title_gemini_api_key"
+            android:summary="@string/pref_summary_gemini_api_key"/>
+    </PreferenceCategory>
 </PreferenceScreen>

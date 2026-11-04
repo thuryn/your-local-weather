@@ -676,4 +676,17 @@
     <string name="wearos_main_activity_missing_connection_info" tools:ignore="MissingTranslation">Install the application on your mobile phone from github.com or Play store.</string>
     <string name="wearos_main_activity_not_connected" tools:ignore="MissingTranslation">The phone is not connected to the watch.</string>
     <string name="wearos_main_activity_checking_connection" tools:ignore="MissingTranslation">Checking connection to phone…</string>
+
+    <string name="pref_title_weather_provider" tools:ignore="MissingTranslation">Weather provider</string>
+    <string name="pref_title_custom_weather_url" tools:ignore="MissingTranslation">Custom weather URL</string>
+    <string name="pref_title_analyze_custom_url" tools:ignore="MissingTranslation">Analyze Custom URL with AI</string>
+    <string name="pref_title_ai_settings" tools:ignore="MissingTranslation">AI Settings</string>
+    <string name="pref_title_ai_model_status" tools:ignore="MissingTranslation">AI Model Status</string>
+    <string name="pref_summary_gemini_nano_available" tools:ignore="MissingTranslation">Gemini Nano is available on this device.</string>
+    <string name="pref_summary_gemini_nano_not_available" tools:ignore="MissingTranslation">Gemini Nano is not available.</string>
+    <string name="pref_title_download_gemma" tools:ignore="MissingTranslation">Download Gemma model (local AI)</string>
+    <string name="pref_summary_gemma_downloaded" tools:ignore="MissingTranslation">Gemma model is downloaded and ready.</string>
+    <string name="pref_summary_gemma_not_downloaded" tools:ignore="MissingTranslation">Gemma model not found. Click to download (approx. 1.5GB).</string>
+    <string name="pref_title_gemini_api_key" tools:ignore="MissingTranslation">Gemini API Key (Online Service)</string>
+    <string name="pref_summary_gemini_api_key" tools:ignore="MissingTranslation">Enter your API key for cloud-based analysis.</string>
 </resources>

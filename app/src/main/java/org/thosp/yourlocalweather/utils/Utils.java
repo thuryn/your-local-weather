@@ -450,7 +450,17 @@ public class Utils {
         String latitude = String.valueOf(location.getLatitude()).replace(",", ".");
         String longitude = String.valueOf(location.getLongitude()).replace(",", ".");
         Object[] params = new Object[]{latitude, longitude};
-        String url = MessageFormat.format(Constants.WEATHER_ENDPOINT, params);
+        String weatherProvider = AppPreference.getWeatherProvider(context);
+        String urlTemplate;
+        if ("custom_url".equals(weatherProvider)) {
+            urlTemplate = AppPreference.getCustomWeatherUrl(context);
+            if (urlTemplate.isEmpty()) {
+                urlTemplate = Constants.WEATHER_ENDPOINT;
+            }
+        } else {
+            urlTemplate = Constants.WEATHER_ENDPOINT;
+        }
+        String url = MessageFormat.format(urlTemplate, params);
         appendLog(context, TAG, url);
         return new URL(url);
     }

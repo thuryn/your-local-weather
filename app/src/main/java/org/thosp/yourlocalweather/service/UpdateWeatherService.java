@@ -364,7 +364,8 @@ public class UpdateWeatherService extends AbstractCommonService {
                                 if (isCurrentWeather(updateType)) {
                                     appendLog(context, TAG, "Current weather type");
                                     JSONObject weatherData = new JSONObject(weatherRaw);
-                                    Weather weather = WeatherJSONParser.getWeather(weatherData);
+                                    String customRules = AppPreference.getCustomWeatherParsingRules(context);
+                                    Weather weather = WeatherJSONParser.getWeather(weatherData, customRules);
                                     saveWeatherAndSendResult(context, weather, currentLocation, updateType);
                                     CompleteWeatherForecast completeWeatherForecast = WeatherJSONParser.getWeatherForecast(context, weatherData);
                                     saveWeatherAndSendResult(context, currentLocation, completeWeatherForecast, WEATHER_FORECAST_TYPE, START_WEATHER_FORECAST_UPDATE);

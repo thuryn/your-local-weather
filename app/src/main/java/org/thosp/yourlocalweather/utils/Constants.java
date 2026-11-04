@@ -68,6 +68,11 @@ public class Constants {
     public static final String PREF_LANGUAGE = "language_pref_key";
     public static final String PREF_OS_LANGUAGE = "os_language_pref_key";
     public static final String KEY_PREF_LOCATION_GEOCODER_SOURCE = "location_geocoder_source";
+    public static final String KEY_PREF_WEATHER_PROVIDER = "weather_provider_pref_key";
+    public static final String KEY_PREF_CUSTOM_WEATHER_URL = "custom_weather_url_pref_key";
+    public static final String KEY_PREF_CUSTOM_WEATHER_PARSING_RULES = "custom_weather_parsing_rules_pref_key";
+    public static final String KEY_PREF_GEMINI_API_KEY = "gemini_api_key_pref_key";
+    public static final String KEY_PREF_GEMMA_DOWNLOAD_ID = "gemma_download_id_pref_key";
     public static final String KEY_PREF_WEATHER_ICON_SET = "weather_icon_set_pref_key";
     public static final String KEY_PREF_LOCATION_UPDATE_STRATEGY = "location_update_strategy";
     public static final String KEY_PREF_LOCATION_GPS_ENABLED = "location_gps_enabled";

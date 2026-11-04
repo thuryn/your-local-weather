@@ -37,6 +37,13 @@ public class WeatherJSONParser {
     }
 
     public static Weather getWeather(JSONObject weatherData) throws JSONException, ParseException {
+        return getWeather(weatherData, null);
+    }
+
+    public static Weather getWeather(JSONObject weatherData, String customRules) throws JSONException, ParseException {
+        if (customRules != null && !customRules.isEmpty()) {
+            return getWeatherFromCustomRules(weatherData, customRules);
+        }
         Weather weather = new Weather();
         if (weatherData.has("current")) {
             JSONObject current = weatherData.getJSONObject("current");
@@ -83,6 +90,71 @@ public class WeatherJSONParser {
         }
 
         return weather;
+    }
+
+    private static Weather getWeatherFromCustomRules(JSONObject weatherData, String customRules) throws JSONException {
+        Weather weather = new Weather();
+        JSONObject rules = new JSONObject(customRules);
+        if (rules.has("temp_path")) {
+            Object val = getJsonValueByPath(weatherData, rules.getString("temp_path"));
+            if (val != null) {
+                weather.setTemperature(Float.parseFloat(val.toString()));
+            }
+        }
+        if (rules.has("hum_path")) {
+            Object val = getJsonValueByPath(weatherData, rules.getString("hum_path"));
+            if (val != null) {
+                weather.setHumidity((int) Double.parseDouble(val.toString()));
+            }
+        }
+        if (rules.has("pres_path")) {
+            Object val = getJsonValueByPath(weatherData, rules.getString("pres_path"));
+            if (val != null) {
+                weather.setPressure(Float.parseFloat(val.toString()));
+            }
+        }
+        if (rules.has("wind_speed_path")) {
+            Object val = getJsonValueByPath(weatherData, rules.getString("wind_speed_path"));
+            if (val != null) {
+                weather.setWindSpeed(Float.parseFloat(val.toString()));
+            }
+        }
+        if (rules.has("wind_dir_path")) {
+            Object val = getJsonValueByPath(weatherData, rules.getString("wind_dir_path"));
+            if (val != null) {
+                weather.setWindDirection(Float.parseFloat(val.toString()));
+            }
+        }
+        return weather;
+    }
+
+    private static Object getJsonValueByPath(JSONObject json, String path) throws JSONException {
+        String[] parts = path.split("\\.");
+        Object current = json;
+        for (String part : parts) {
+            if (current instanceof JSONObject) {
+                JSONObject obj = (JSONObject) current;
+                if (!obj.has(part)) {
+                    return null;
+                }
+                current = obj.get(part);
+            } else if (current instanceof JSONArray) {
+                JSONArray arr = (JSONArray) current;
+                try {
+                    int idx = Integer.parseInt(part);
+                    if (idx >= 0 && idx < arr.length()) {
+                        current = arr.get(idx);
+                    } else {
+                        return null;
+                    }
+                } catch (NumberFormatException e) {
+                    return null;
+                }
+            } else {
+                return null;
+            }
+        }
+        return current;
     }
 
     public static CompleteWeatherForecast getWeatherForecast(Context context, JSONObject weatherForecastResponse) throws JSONException, ParseException {

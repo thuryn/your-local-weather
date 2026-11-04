@@ -708,6 +708,41 @@ public class AppPreference {
                 Constants.CURRENT_LOCATION_ID, 0);
     }
 
+    public static String getWeatherProvider(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_WEATHER_PROVIDER, "open_meteo");
+    }
+
+    public static String getCustomWeatherUrl(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_CUSTOM_WEATHER_URL, "");
+    }
+
+    public static String getCustomWeatherParsingRules(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_CUSTOM_WEATHER_PARSING_RULES, "");
+    }
+
+    public static void setCustomWeatherParsingRules(Context context, String rules) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putString(
+                Constants.KEY_PREF_CUSTOM_WEATHER_PARSING_RULES, rules).apply();
+    }
+
+    public static String getGeminiApiKey(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_GEMINI_API_KEY, "");
+    }
+
+    public static long getGemmaDownloadId(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getLong(
+                Constants.KEY_PREF_GEMMA_DOWNLOAD_ID, 0);
+    }
+
+    public static void setGemmaDownloadId(Context context, long downloadId) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit().putLong(
+                Constants.KEY_PREF_GEMMA_DOWNLOAD_ID, downloadId).apply();
+    }
+
     public static class GraphGridColors {
         private final int mainGridColor;
         private final int secondaryGridColor;
