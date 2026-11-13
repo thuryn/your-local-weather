@@ -1,0 +1,23 @@
+Aplikacioni përdor rrjet celular, WIFI dhe GPS që të marrë vendndodhjen tuaj dhe t’ju shfaqë motin në vendin ku gjendeni aktualisht.
+Nëse e përdorni widget-in në telefonin apo tabletin tuaj, mund të shihni vendndodhjen tuaj dhe motin atë çast në skenën kryesore. Përditësimi i vendndodhjes mund të bëhet sipas një periudhe specifike (p.sh., çdo orë), ose aplikacioni mund të përdorë një akselerometër, që të pikasë lëvizje. Mund ta çaktivizoni përditësimin e vendndodhjes - në këtë rast përditësohet vetëm moti.
+
+Përditësim sipas periudhe kohore specifike:
+Aplikacioni përditëson vendndodhjen dhe motin sipas sasisë së caktuar të kohës. Për shembull, mund ta caktoni periudhën e përditësimit një orë.
+
+Përditësim sipas akselerometri:
+Vendndodhja përditësohet sipas një largësi të njehsuar nga akselerometri. Kur distanca është më e madhe se vlera minimum për përditësim, aplikacioni përditëson vendndodhjen tuaj. Largësia e përftuar nga akselerometri varet nga mënyra se si bartni telefonin tuaj - kur e mbani telefonin tuaj në një xhep, largësia rritet më shpejt - telefoni tundet para-prapa tok me ju teksa ecni. Moti përditësohet menjëherë pas përditësimit të vendndodhjes. Moti përditësohet edhe kur ndizet ekrani - por jo më shpesh se një herë në 15 minuta (dhe kur moti s’është përditësuar 15 minutat e fundit).
+
+Që të merret vendndodhja, përdoren rrjet celular (BTS) dhe WIFIs të kapshëm te vendi. Këto hollësi përdoren për të marrë koordinata vendndodhjeje nga shërbimi Mozilla i vendndodhjeve. Aplikacioni provon të përdorë GPS, kur s’merret dot vendndodhja nga rrjeti celular dhe ata WIFI. Koordinatat e vendndodhjes përdoren për të marrë adresën nga shërbimi Nominatim. Adresa përdoret te aplikacioni, ose widget-is.
+
+Aplikacioni përdor shërbimin open-meteo.com për të marrë motin e çastit.
+
+Veçoritë shtesë përfshijnë:
+    Gjuhë të ndryshme: çekisht, baskisht, bjellorusisht, anglisht, frëngjisht, gjermanisht, japonisht, spanjisht, polonisht, rusisht
+    Mot i çastit
+    Parashikim 7 ditor
+    Mjaft vendndodhje
+    Njoftime
+    Mbulim për njësi të ndryshme matjeje
+    Pa reklama
+
+Do të donit të ndihmoni me përkthim? Ndiqni këtë lidhje: https://hosted.weblate.org/projects/your-local-weather/strings
