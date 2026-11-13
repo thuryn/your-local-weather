@@ -625,4 +625,18 @@
     <string name="wearos_main_activity_missing_connection_info" tools:ignore="MissingTranslation">Instalojeni aplikacionin në telefonin tuaj celular që nga github.com ose “Play store”.</string>
     <string name="wearos_main_activity_not_connected" tools:ignore="MissingTranslation">Telefoni s’është i lidhur me sahatin.</string>
     <string name="wearos_main_activity_checking_connection" tools:ignore="MissingTranslation">Po kontrollohet lidhja me telefonin…</string>
+    <string name="forecast_type_daily" tools:ignore="MissingTranslation">Parashikim i përditshëm (Ditë)</string>
+    <string name="forecast_type_hourly" tools:ignore="MissingTranslation">Parashikim i përorshëm (Orë)</string>
+    <string name="preference_widget_show_controls_summary" tools:ignore="MissingTranslation">(vetëm widget-e të vjetruar)</string>
+    <string name="widget_ext_loc_forecast_graph_name" tools:ignore="MissingTranslation">Parashikim Moti &amp; Grafik</string>
+    <string name="widget_ext_loc_forecast_graph_obsolete_name" tools:ignore="MissingTranslation">Parashikim Moti &amp; Grafik (E vjetruar)</string>
+    <string name="widget_ext_loc_forecast_name" tools:ignore="MissingTranslation">Parashikim Moti &amp; Vendndodhje</string>
+    <string name="widget_ext_loc_forecast_obsolete_name" tools:ignore="MissingTranslation">Parashikim Moti &amp; Vendndodhje (E vjetruar)</string>
+    <string name="widget_ext_loc_graph_name" tools:ignore="MissingTranslation">Grafik Moti &amp; Vendndodhje</string>
+    <string name="widget_ext_loc_graph_obsolete_name" tools:ignore="MissingTranslation">Grafik Moti &amp; Vendndodhje (E vjetruar)</string>
+    <string name="widget_ext_loc_name" tools:ignore="MissingTranslation">Moti Tani &amp; Vendndodhje</string>
+    <string name="widget_ext_loc_obsolete_name" tools:ignore="MissingTranslation">Moti Tani &amp; Vendndodhje (E vjetruar)</string>
+    <string name="widget_weather_forecast_name" tools:ignore="MissingTranslation">Parashikim Moti (1x3)</string>
+    <string name="widget_weather_forecast_obsolete_name" tools:ignore="MissingTranslation">Parashikim Moti (1x3 - E vjetruar)</string>
+    <string name="widget_weather_graph_name" tools:ignore="MissingTranslation">Grafik Moti (1x3)</string>
 </resources>
