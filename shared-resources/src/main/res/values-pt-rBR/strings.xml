@@ -598,4 +598,29 @@
     <string name="help_page_6_wearos_general" tools:ignore="MissingTranslation">O aplicativo mostra o clima atual e a previsão para os próximos dias. Para que a sincronização funcione, ambos os aplicativos devem ser baixados da mesma fonte: Google Play (https://play.google.com/store/apps/details?id=org.thosp.yourlocalweather) ou Github (https://github.com/thuryn/your-local-weather/releases).</string>
     <string name="help_page_6_wearos_main" tools:ignore="MissingTranslation">O aplicativo mostra o clima atual e a previsão para os próximos dias. Após a atualização da previsão do tempo no celular, o aplicativo também envia a atualização para o relógio.</string>
     <string name="help_page_6_wearos_tile" tools:ignore="MissingTranslation">O aplicativo também possui um bloco que mostra o clima atual e a previsão para o dia atual e amanhã, ou a previsão para amanhã e depois de amanhã, caso já tenham sido 20h.</string>
+    <string name="help_page_6_wearos_complication" tools:ignore="MissingTranslation">Existem duas complicações disponíveis: uma mostra a temperatura e a outra mostra a temperatura com o valor da moeda. Ambas as complicações também exibem um ícone de previsão do tempo para o dia (não o tempo atual). A aparência das complicações também depende do mostrador do relógio.</string>
+    <string name="label_activity_wearos" tools:ignore="MissingTranslation">Dispositivos vestíveis</string>
+    <string name="activity_main_wearos_more_info" tools:ignore="MissingTranslation">Mais informações</string>
+    <string name="activity_main_wearos_without_app_title" tools:ignore="MissingTranslation">Assistir aplicativo</string>
+    <string name="activity_main_wearos_without_app_message" tools:ignore="MissingTranslation">Detectamos que você tem um relógio Wear OS conectado! Gostaria de adicionar nosso aplicativo a ele?</string>
+    <string name="activity_main_wearos_with_app_title" tools:ignore="MissingTranslation">Você tem um smartwatch?</string>
+    <string name="activity_main_wearos_with_app_message" tools:ignore="MissingTranslation">Nosso aplicativo também está disponível para relógios Wear OS. Tenha sempre a previsão do tempo no seu pulso!</string>
+    <string name="activity_wearos_title" tools:ignore="MissingTranslation">Dispositivos WearOS</string>
+    <string name="activity_wearos_wearos_device_not_found" tools:ignore="MissingTranslation">Nenhum relógio conectado encontrado.</string>
+    <string name="activity_wearos_error_getting_device_status" tools:ignore="MissingTranslation">Erro ao verificar o status do aplicativo.</string>
+    <string name="activity_wearos_error_on_device_finding" tools:ignore="MissingTranslation">Erro ao procurar o relógio</string>
+    <string name="activity_wearos_connected_devices" tools:ignore="MissingTranslation">Dispositivos atualmente conectados</string>
+    <string name="activity_wearos_search_for_devices" tools:ignore="MissingTranslation">Procurando dispositivos</string>
+    <string name="activity_wearos_app_installed" tools:ignore="MissingTranslation">Instalado ✓</string>
+    <string name="activity_wearos_app_install_from_play" tools:ignore="MissingTranslation">Instalar da Play Store</string>
+    <string name="nav_menu_wearos" tools:ignore="MissingTranslation">Dispositivos WearOs</string>
+    <string name="today" tools:ignore="MissingTranslation">Hoje</string>
+    <string name="tomorrow" tools:ignore="MissingTranslation">Amanhã</string>
+    <string name="day_after_tomorrow" tools:ignore="MissingTranslation">Depois de amanhã</string>
+    <string name="complication_no_unit_label" tools:ignore="MissingTranslation">Temperatura atual sem unidade</string>
+    <string name="complication_with_unit_label" tools:ignore="MissingTranslation">Temperatura atual com unidade</string>
+    <string name="wearos_main_activity_missing_connection_label" tools:ignore="MissingTranslation">Sem conexão com o telefone</string>
+    <string name="wearos_main_activity_missing_connection_info" tools:ignore="MissingTranslation">Instale o aplicativo no seu celular a partir do github.com ou da Play Store.</string>
+    <string name="wearos_main_activity_not_connected" tools:ignore="MissingTranslation">O telefone não está conectado ao relógio.</string>
+    <string name="wearos_main_activity_checking_connection" tools:ignore="MissingTranslation">Verificando a conexão com o telefone…</string>
 </resources>
