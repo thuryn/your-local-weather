@@ -629,14 +629,20 @@
     <string name="forecast_type_hourly" tools:ignore="MissingTranslation">Parashikim i përorshëm (Orë)</string>
     <string name="preference_widget_show_controls_summary" tools:ignore="MissingTranslation">(vetëm widget-e të vjetruar)</string>
     <string name="widget_ext_loc_forecast_graph_name" tools:ignore="MissingTranslation">Parashikim Moti &amp; Grafik</string>
-    <string name="widget_ext_loc_forecast_graph_obsolete_name" tools:ignore="MissingTranslation">Parashikim Moti &amp; Grafik (E vjetruar)</string>
+    <string name="widget_ext_loc_forecast_graph_obsolete_name" tools:ignore="MissingTranslation">Parashikim Moti &amp; Grafik (I vjetruar)</string>
     <string name="widget_ext_loc_forecast_name" tools:ignore="MissingTranslation">Parashikim Moti &amp; Vendndodhje</string>
-    <string name="widget_ext_loc_forecast_obsolete_name" tools:ignore="MissingTranslation">Parashikim Moti &amp; Vendndodhje (E vjetruar)</string>
+    <string name="widget_ext_loc_forecast_obsolete_name" tools:ignore="MissingTranslation">Parashikim Moti &amp; Vendndodhje (I vjetruar)</string>
     <string name="widget_ext_loc_graph_name" tools:ignore="MissingTranslation">Grafik Moti &amp; Vendndodhje</string>
-    <string name="widget_ext_loc_graph_obsolete_name" tools:ignore="MissingTranslation">Grafik Moti &amp; Vendndodhje (E vjetruar)</string>
+    <string name="widget_ext_loc_graph_obsolete_name" tools:ignore="MissingTranslation">Grafik Moti &amp; Vendndodhje (I vjetruar)</string>
     <string name="widget_ext_loc_name" tools:ignore="MissingTranslation">Moti Tani &amp; Vendndodhje</string>
-    <string name="widget_ext_loc_obsolete_name" tools:ignore="MissingTranslation">Moti Tani &amp; Vendndodhje (E vjetruar)</string>
+    <string name="widget_ext_loc_obsolete_name" tools:ignore="MissingTranslation">Moti Tani &amp; Vendndodhje (I vjetruar)</string>
     <string name="widget_weather_forecast_name" tools:ignore="MissingTranslation">Parashikim Moti (1x3)</string>
-    <string name="widget_weather_forecast_obsolete_name" tools:ignore="MissingTranslation">Parashikim Moti (1x3 - E vjetruar)</string>
+    <string name="widget_weather_forecast_obsolete_name" tools:ignore="MissingTranslation">Parashikim Moti (1x3 - I vjetruar)</string>
     <string name="widget_weather_graph_name" tools:ignore="MissingTranslation">Grafik Moti (1x3)</string>
+    <string name="widget_weather_graph_obsolete_name" tools:ignore="MissingTranslation">Grafik Moti (1x3 - I vjetruar)</string>
+    <string name="widget_less_name" tools:ignore="MissingTranslation">Mot Kompakt (3x1)</string>
+    <string name="widget_less_obsolete_name" tools:ignore="MissingTranslation">Mot Kompakt (3x1 - I vjetruar)</string>
+    <string name="widget_more_name" tools:ignore="MissingTranslation">Hollësi Moti Tani (3x3)</string>
+    <string name="widget_more_obsolete_name" tools:ignore="MissingTranslation">Hollësi Moti Tani (3x3 - I vjetruar)</string>
+    <string name="widget_obsolete_notice" tools:ignore="MissingTranslation">Ky “widget” është i vjetruar. Zëvendësojeni me widget-in e ri Vështrim.</string>
 </resources>
