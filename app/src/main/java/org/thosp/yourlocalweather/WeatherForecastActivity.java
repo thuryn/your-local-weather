@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.IntentFilter;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Menu;
@@ -194,12 +193,9 @@ public class WeatherForecastActivity extends ForecastingActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ContextCompat.registerReceiver(
-                this,
-                mWeatherUpdateReceiver,
-                new IntentFilter(UpdateWeatherService.ACTION_FORECAST_UPDATE_RESULT),
-                ContextCompat.RECEIVER_NOT_EXPORTED
-        );
+        if (appEventListener != null) {
+            org.thosp.yourlocalweather.events.AppEventsBus.registerListener(appEventListener);
+        }
         if (inited) {
             YourLocalWeather.executor.submit(() -> {
                 updateUI();

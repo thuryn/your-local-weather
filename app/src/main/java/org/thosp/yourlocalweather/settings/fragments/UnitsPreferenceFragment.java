@@ -1,7 +1,6 @@
 package org.thosp.yourlocalweather.settings.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -65,9 +64,7 @@ public class UnitsPreferenceFragment extends PreferenceFragmentCompat implements
         entrySummary(key);
         if (changing) {
             Context context = requireContext();
-            Intent intent = new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
-            intent.setPackage(context.getPackageName());
-            getActivity().sendBroadcast(intent);
+            org.thosp.yourlocalweather.utils.WidgetUtils.updateWidgets(context);
         }
     }
 

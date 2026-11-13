@@ -1,7 +1,6 @@
 package org.thosp.yourlocalweather.settings.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -63,38 +62,25 @@ public class WidgetPreferenceFragment extends PreferenceFragmentCompat implement
         Context context = requireContext();
         switch (key) {
             case Constants.KEY_PREF_WIDGET_THEME:
-                Intent intent = new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED);
-                intent.setPackage(context.getPackageName());
-                getActivity().sendBroadcast(intent);
+                org.thosp.yourlocalweather.utils.WidgetUtils.updateWidgets(context);
                 setSummary(Constants.KEY_PREF_WIDGET_THEME);
                 break;
             case Constants.KEY_PREF_LOCATION_GPS_ENABLED:
                 break;
             case Constants.KEY_PREF_WIDGET_SHOW_LABELS:
-                intent = new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED);
-                intent.setPackage(context.getPackageName());
-                getActivity().sendBroadcast(intent);
-                break;
             case Constants.KEY_PREF_WIDGET_TEXT_COLOR:
             case Constants.KEY_PREF_WIDGET_TRANSPARENT_BACKGROUND_COLOR:
-                intent = new Intent(Constants.ACTION_APPWIDGET_THEME_CHANGED);
-                intent.setPackage(context.getPackageName());
-                getActivity().sendBroadcast(intent);
+                org.thosp.yourlocalweather.utils.WidgetUtils.updateWidgets(context);
                 break;
             case Constants.KEY_PREF_WIDGET_GRAPH_NATIVE_SCALE:
                 GraphUtils.invalidateGraph();
-                intent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_GRAPH_SCALE);
-                intent.setPackage(context.getPackageName());
-                getActivity().sendBroadcast(intent);
+                org.thosp.yourlocalweather.utils.WidgetUtils.updateWidgets(context);
                 break;
             case Constants.KEY_PREF_WIDGET_SHOW_CONTROLS:
-                intent = new Intent(Constants.ACTION_APPWIDGET_SETTINGS_SHOW_CONTROLS);
-                intent.setPackage(context.getPackageName());
-                getActivity().sendBroadcast(intent);
+                org.thosp.yourlocalweather.utils.WidgetUtils.updateWidgets(context);
+                break;
             case Constants.KEY_PREF_UPDATE_DETAIL:
-                intent = new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
-                intent.setPackage(context.getPackageName());
-                getActivity().sendBroadcast(intent);
+                org.thosp.yourlocalweather.utils.WidgetUtils.updateWidgets(context);
                 setDetailedSummary(Constants.KEY_PREF_UPDATE_DETAIL);
                 break;
         }

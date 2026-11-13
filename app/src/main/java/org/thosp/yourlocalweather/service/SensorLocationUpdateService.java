@@ -11,6 +11,7 @@ import android.hardware.SensorManager;
 import android.os.Build;
 
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.utils.LocationServiceDispatcher;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
 
 import java.util.concurrent.locks.Lock;
@@ -120,6 +121,10 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
                     "startSensorBasedUpdates ", senSensorManager);
             if (senSensorManager != null) {
                 stopForeground(true);
+                return;
+            }
+            if (!LocationServiceDispatcher.canStartLocationFgsNow(getBaseContext())) {
+                appendLog(getBaseContext(), TAG, "Location permission not granted, skipping sensor listener registration.");
                 return;
             }
             LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());

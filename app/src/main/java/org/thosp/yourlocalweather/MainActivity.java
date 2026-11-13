@@ -5,10 +5,12 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import org.thosp.yourlocalweather.events.AppEvent;
+import org.thosp.yourlocalweather.events.AppEventListener;
+import org.thosp.yourlocalweather.events.AppEventsBus;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -51,6 +53,7 @@ import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.LocationServiceDispatcher;
 import org.thosp.yourlocalweather.utils.PressureWithUnit;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -75,7 +78,7 @@ public class MainActivity extends BaseActivity
     private ConnectionDetector connectionDetector;
     public static ProgressDialog mProgressDialog;
     private Menu mToolbarMenu;
-    private BroadcastReceiver mWeatherUpdateReceiver;
+    private AppEventListener appEventListener;
     private CurrentWeatherDbHelper currentWeatherDbHelper;
     private WeatherForecastDbHelper weatherForecastDbHelper;
     private String timeStylePreference;
@@ -191,10 +194,9 @@ public class MainActivity extends BaseActivity
     public void onResume() {
         super.onResume();
         binding.mainAppBar.addOnOffsetChangedListener(this);
-        ContextCompat.registerReceiver(this, mWeatherUpdateReceiver,
-                new IntentFilter(
-                        UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT),
-                ContextCompat.RECEIVER_NOT_EXPORTED);
+        if (appEventListener != null) {
+            AppEventsBus.registerListener(appEventListener);
+        }
         if (inited) {
             YourLocalWeather.executor.submit(() -> {
                 updateActivityOnResume();
@@ -222,12 +224,8 @@ public class MainActivity extends BaseActivity
         if (binding != null) {
             binding.mainAppBar.removeOnOffsetChangedListener(this);
         }
-        if (mWeatherUpdateReceiver != null) {
-            try {
-                unregisterReceiver(mWeatherUpdateReceiver);
-            } catch (Exception e) {
-                //
-            }
+        if (appEventListener != null) {
+            AppEventsBus.unregisterListener(appEventListener);
         }
         inited = true;
     }
@@ -537,59 +535,59 @@ public class MainActivity extends BaseActivity
     private void initializeWeatherReceiver() {
         final java.lang.ref.WeakReference<MainActivity> activityRef = new java.lang.ref.WeakReference<>(this);
 
-        mWeatherUpdateReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                MainActivity activity = activityRef.get();
-                if (activity == null || activity.isFinishing() || activity.isDestroyed()) {
-                    return;
-                }
+        appEventListener = event -> {
+            if (!(event instanceof AppEvent.MainWeatherUpdate)) {
+                return;
+            }
+            MainActivity activity = activityRef.get();
+            if (activity == null || activity.isFinishing() || activity.isDestroyed()) {
+                return;
+            }
 
-                if ((mProgressDialog != null) && (activity.refreshDialogHandler != null)) {
-                    activity.refreshDialogHandler.post(() -> {
-                        if (mProgressDialog != null) {
-                            mProgressDialog.dismiss();
-                        }
-                    });
-                }
-
-                final String actionResult = intent.getStringExtra(UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT);
-
-                YourLocalWeather.executor.submit(() -> {
-                    MainActivity actInside = activityRef.get();
-                    if (actInside == null || !actInside.initialGuideCompleted) {
-                        return;
-                    }
-
-                    if (actionResult == null) return;
-
-                    switch (actionResult) {
-                        case UpdateWeatherService.ACTION_WEATHER_UPDATE_OK:
-                            actInside.runOnUiThread(() -> {
-                                MainActivity act = activityRef.get();
-                                if (act != null && act.binding != null) {
-                                    act.binding.mainContent.mainSwipeRefresh.setRefreshing(false);
-                                    act.setUpdateButtonState(false);
-                                    act.updateLocationCityTimeAndSource();
-                                    YourLocalWeather.executor.submit(() -> act.updateUI());
-                                }
-                            });
-                            break;
-
-                        case UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL:
-                            actInside.runOnUiThread(() -> {
-                                MainActivity act = activityRef.get();
-                                if (act != null && act.binding != null) {
-                                    act.binding.mainContent.mainSwipeRefresh.setRefreshing(false);
-                                    act.setUpdateButtonState(false);
-                                    act.updateLocationCityTimeAndSource();
-                                    Toast.makeText(act, act.getString(R.string.toast_parse_error), Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                            break;
+            if ((mProgressDialog != null) && (activity.refreshDialogHandler != null)) {
+                activity.refreshDialogHandler.post(() -> {
+                    if (mProgressDialog != null) {
+                        mProgressDialog.dismiss();
                     }
                 });
             }
+
+            final String actionResult = ((AppEvent.MainWeatherUpdate) event).getResult();
+
+            YourLocalWeather.executor.submit(() -> {
+                MainActivity actInside = activityRef.get();
+                if (actInside == null || !actInside.initialGuideCompleted) {
+                    return;
+                }
+
+                if (actionResult == null) return;
+
+                switch (actionResult) {
+                    case UpdateWeatherService.ACTION_WEATHER_UPDATE_OK:
+                        actInside.runOnUiThread(() -> {
+                            MainActivity act = activityRef.get();
+                            if (act != null && act.binding != null) {
+                                act.binding.mainContent.mainSwipeRefresh.setRefreshing(false);
+                                act.setUpdateButtonState(false);
+                                act.updateLocationCityTimeAndSource();
+                                YourLocalWeather.executor.submit(() -> act.updateUI());
+                            }
+                        });
+                        break;
+
+                    case UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL:
+                        actInside.runOnUiThread(() -> {
+                            MainActivity act = activityRef.get();
+                            if (act != null && act.binding != null) {
+                                act.binding.mainContent.mainSwipeRefresh.setRefreshing(false);
+                                act.setUpdateButtonState(false);
+                                act.updateLocationCityTimeAndSource();
+                                Toast.makeText(act, act.getString(R.string.toast_parse_error), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        break;
+                }
+            });
         };
     }
 
@@ -1074,7 +1072,14 @@ public class MainActivity extends BaseActivity
         startLocationUpdateIntent.setPackage(getBaseContext().getPackageName());
         startLocationUpdateIntent.putExtra("updateSource", "MAIN");
         startLocationUpdateIntent.putExtra("locationId", currentLocation.getId());
-        ContextCompat.startForegroundService(getBaseContext(), startLocationUpdateIntent);
+        boolean started = LocationServiceDispatcher.startLocationAndWeatherUpdate(this, startLocationUpdateIntent);
+        if (!started) {
+            permissionsAndSettingsRequested = false;
+            checkPermissionsSettingsAndShowAlert();
+            YourLocalWeather.executor.submit(() -> {
+                sendMessageToCurrentWeatherService(currentLocation, "MAIN");
+            });
+        }
     }
 
     private void requestLocation() {

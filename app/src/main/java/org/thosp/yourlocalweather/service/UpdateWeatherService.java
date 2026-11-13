@@ -585,39 +585,19 @@ public class UpdateWeatherService extends AbstractCommonService {
     }
 
     private void sendIntentToForecast(String result) {
-        Intent intent = new Intent(ACTION_FORECAST_UPDATE_RESULT);
-        intent.setPackage(getBaseContext().getPackageName());
         if (result.equals(ACTION_WEATHER_UPDATE_OK)) {
-            intent.putExtra(ACTION_FORECAST_UPDATE_RESULT, ACTION_WEATHER_UPDATE_OK);
+            org.thosp.yourlocalweather.events.AppEventsBus.postForecastWeatherUpdate(ACTION_WEATHER_UPDATE_OK);
         } else if (result.equals(ACTION_WEATHER_UPDATE_FAIL)) {
-            intent.putExtra(ACTION_FORECAST_UPDATE_RESULT, ACTION_WEATHER_UPDATE_FAIL);
+            org.thosp.yourlocalweather.events.AppEventsBus.postForecastWeatherUpdate(ACTION_WEATHER_UPDATE_FAIL);
         }
-        Handler mainHandler = new Handler(Looper.getMainLooper());
-        Runnable myRunnable = new Runnable() {
-            @Override
-            public void run() {
-                sendBroadcast(intent);
-            }
-        };
-        mainHandler.post(myRunnable);
     }
 
     private void sendIntentToGraphs(String result) {
-        Intent intent = new Intent(ACTION_GRAPHS_UPDATE_RESULT);
-        intent.setPackage(getBaseContext().getPackageName());
         if (result.equals(ACTION_WEATHER_UPDATE_OK)) {
-            intent.putExtra(ACTION_GRAPHS_UPDATE_RESULT, ACTION_WEATHER_UPDATE_OK);
+            org.thosp.yourlocalweather.events.AppEventsBus.postGraphsWeatherUpdate(ACTION_WEATHER_UPDATE_OK);
         } else if (result.equals(ACTION_WEATHER_UPDATE_FAIL)) {
-            intent.putExtra(ACTION_GRAPHS_UPDATE_RESULT, ACTION_WEATHER_UPDATE_FAIL);
+            org.thosp.yourlocalweather.events.AppEventsBus.postGraphsWeatherUpdate(ACTION_WEATHER_UPDATE_FAIL);
         }
-        Handler mainHandler = new Handler(Looper.getMainLooper());
-        Runnable myRunnable = new Runnable() {
-            @Override
-            public void run() {
-                sendBroadcast(intent);
-            }
-        };
-        mainHandler.post(myRunnable);
     }
 
     private void resendTheIntentInSeveralSeconds(int seconds) {

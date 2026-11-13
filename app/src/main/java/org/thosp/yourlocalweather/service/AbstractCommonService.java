@@ -4,15 +4,14 @@ import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
 
 import android.app.Service;
 import android.content.Intent;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
 
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.utils.LocationServiceDispatcher;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
@@ -34,12 +33,19 @@ public class AbstractCommonService extends Service {
 
     protected void updateNetworkLocation(boolean byLastLocationOnly) {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-        long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
+        Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
+        if (autoLocation == null) {
+            return;
+        }
+        long locationId = autoLocation.getId();
         Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
         intentToStartUpdate.setPackage(getBaseContext().getPackageName());
         intentToStartUpdate.putExtra("locationId", locationId);
         intentToStartUpdate.putExtra("forceUpdate", byLastLocationOnly);
-        ContextCompat.startForegroundService(getBaseContext(), intentToStartUpdate);
+        boolean started = LocationServiceDispatcher.startLocationAndWeatherUpdate(getBaseContext(), intentToStartUpdate);
+        if (!started) {
+            sendMessageToCurrentWeatherService(autoLocation, AppWakeUpManager.SOURCE_CURRENT_WEATHER, true);
+        }
     }
 
     protected void updateWidgets(String updateSource) {
@@ -62,41 +68,15 @@ public class AbstractCommonService extends Service {
     }
 
     protected void sendIntentToMain() {
-        Intent intent = new Intent(UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT);
-        intent.setPackage(getBaseContext().getPackageName());
-        intent.putExtra(
-                UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT,
-                UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL);
-        Handler mainHandler = new Handler(Looper.getMainLooper());
-        Runnable myRunnable = new Runnable() {
-            @Override
-            public void run() {
-                sendBroadcast(intent);
-            }
-        };
-        mainHandler.post(myRunnable);
+        org.thosp.yourlocalweather.events.AppEventsBus.postMainWeatherUpdate(UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL);
     }
 
     protected void sendIntentToMain(String result) {
-        Intent intent = new Intent(UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT);
-        intent.setPackage(getBaseContext().getPackageName());
         if (result.equals(UpdateWeatherService.ACTION_WEATHER_UPDATE_OK)) {
-            intent.putExtra(
-                    UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT,
-                    UpdateWeatherService.ACTION_WEATHER_UPDATE_OK);
+            org.thosp.yourlocalweather.events.AppEventsBus.postMainWeatherUpdate(UpdateWeatherService.ACTION_WEATHER_UPDATE_OK);
         } else if (result.equals(UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL)) {
-            intent.putExtra(
-                    UpdateWeatherService.ACTION_WEATHER_UPDATE_RESULT,
-                    UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL);
+            org.thosp.yourlocalweather.events.AppEventsBus.postMainWeatherUpdate(UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL);
         }
-        Handler mainHandler = new Handler(Looper.getMainLooper());
-        Runnable myRunnable = new Runnable() {
-            @Override
-            public void run() {
-                sendBroadcast(intent);
-            }
-        };
-        mainHandler.post(myRunnable);
     }
 
     protected void requestWeatherCheck(long locationId, String updateSource, int wakeUpSource, boolean forceUpdate) {

@@ -1,3 +1,6 @@
+6.6.2
+Eliminated internal self-broadcasts in favor of in-process communication for Android 17 QPR2 compatibility.
+
 6.6.1
 Widgets rewritten for the Glance framework; a clear, crystalline frosted glass background added for the widgets.
 

@@ -136,9 +136,9 @@ public class GraphsActivity extends ForecastingActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        ContextCompat.registerReceiver(this, mWeatherUpdateReceiver,
-                new IntentFilter(UpdateWeatherService.ACTION_GRAPHS_UPDATE_RESULT),
-                ContextCompat.RECEIVER_NOT_EXPORTED);
+        if (appEventListener != null) {
+            org.thosp.yourlocalweather.events.AppEventsBus.registerListener(appEventListener);
+        }
         if (inited) {
             YourLocalWeather.executor.submit(() -> {
                 updateUI();

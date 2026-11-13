@@ -26,6 +26,7 @@ import org.thosp.yourlocalweather.service.WeatherRequestDataHolder;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.GraphUtils;
+import org.thosp.yourlocalweather.utils.LocationServiceDispatcher;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
 
 import java.util.ArrayList;
@@ -482,11 +483,16 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
 
     private void startLocationAndWeatherUpdate(Context context) {
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(context);
-        long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
+        Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
+        if (autoLocation == null) return;
+        long locationId = autoLocation.getId();
         Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
         intentToStartUpdate.setPackage(context.getPackageName());
         intentToStartUpdate.putExtra("locationId", locationId);
-        ContextCompat.startForegroundService(context, intentToStartUpdate);
+        boolean started = LocationServiceDispatcher.startLocationAndWeatherUpdate(context, intentToStartUpdate);
+        if (!started) {
+            startWeatherUpdate(context, autoLocation);
+        }
     }
 
     private void startWeatherUpdate(Context context, Location location) {

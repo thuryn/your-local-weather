@@ -13,6 +13,7 @@ import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.LocationServiceDispatcher;
 import org.thosp.yourlocalweather.utils.Utils;
 
 import java.util.Calendar;
@@ -109,11 +110,16 @@ public class AppAlarmService extends AbstractCommonService {
             return;
         }
 
-        long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
+        Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
+        if (autoLocation == null) return;
+        long locationId = autoLocation.getId();
         Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
         intentToStartUpdate.setPackage(getBaseContext().getPackageName());
         intentToStartUpdate.putExtra("locationId", locationId);
-        ContextCompat.startForegroundService(getBaseContext(), intentToStartUpdate);
+        boolean started = LocationServiceDispatcher.startLocationAndWeatherUpdate(getBaseContext(), intentToStartUpdate);
+        if (!started) {
+            sendMessageToCurrentWeatherService(autoLocation, AppWakeUpManager.SOURCE_CURRENT_WEATHER, true);
+        }
     }
 
     public void setAlarm() {

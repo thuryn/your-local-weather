@@ -28,6 +28,7 @@ import android.os.PersistableBundle;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 
+import androidx.core.app.ServiceCompat;
 import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.ConnectionDetector;
@@ -36,6 +37,7 @@ import org.thosp.yourlocalweather.YourLocalWeather;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.LocationServiceDispatcher;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.PermissionUtil;
 import org.thosp.yourlocalweather.utils.Utils;
@@ -79,19 +81,34 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
     public int onStartCommand(Intent intent, int flags, final int startId) {
         int ret = super.onStartCommand(intent, flags, startId);
         if (intent == null) {
-            return ret;
+            stopSelfResult(startId);
+            return START_NOT_STICKY;
         }
-        if ((ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) &&
-                (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
-            return ret;
+        // Kontrola oprávnění a AppOps stavu těsně před přechodem do popředí
+        if (!LocationServiceDispatcher.canStartLocationFgsNow(this)) {
+            appendLog(getBaseContext(), TAG, "Skipping FGS start: location permission or eligible state missing");
+            stopSelfResult(startId);
+            return START_NOT_STICKY;
         }
         forceUpdate = false;
         updateSource = null;
         Notification notification = NotificationUtils.getNotificationForActivity(getBaseContext());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            startForeground(NotificationUtils.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
-        } else {
-            startForeground(NotificationUtils.NOTIFICATION_ID, notification);
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                ServiceCompat.startForeground(
+                        this,
+                        NotificationUtils.NOTIFICATION_ID,
+                        notification,
+                        ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION
+                );
+            } else {
+                startForeground(NotificationUtils.NOTIFICATION_ID, notification);
+            }
+        } catch (SecurityException e) {
+            // Chybí runtime oprávnění k poloze nebo aplikace není v eligible stavu pro FGS typu location
+            appendLog(getBaseContext(), TAG, "Nelze spustit FGS typu location - chybí oprávnění: ", e);
+            stopSelfResult(startId);
+            return START_NOT_STICKY;
         }
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
         switch (intent.getAction()) {

@@ -32,11 +32,8 @@ public class SearchActivityProcessResultFromAddressResolution implements Process
             mProgressDialog = null;
         }
         appendLog(context, TAG, "processUpdateOfLocation:addresses:", addresses);
-        if ((addresses != null) && (!addresses.isEmpty())) {
-            sendIntent.putExtra("addresses", addresses.get(0));
-        }
-        appendLog(context, TAG, "processUpdateOfLocation:sendIntent:", sendIntent);
-        context.sendBroadcast(sendIntent);
+        Address address = ((addresses != null) && (!addresses.isEmpty())) ? addresses.get(0) : null;
+        org.thosp.yourlocalweather.events.AppEventsBus.postAddressResolution(address);
     }
 
     @Override

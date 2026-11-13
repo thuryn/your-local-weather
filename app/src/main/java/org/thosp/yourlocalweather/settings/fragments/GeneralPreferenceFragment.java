@@ -85,9 +85,7 @@ public class GeneralPreferenceFragment extends PreferenceFragmentCompat implemen
         switch (key) {
             case Constants.KEY_PREF_HIDE_DESCRIPTION:
                 if (changing) {
-                    Intent intent = new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
-                    intent.setPackage(context.getPackageName());
-                    getActivity().sendBroadcast(intent);
+                    org.thosp.yourlocalweather.utils.WidgetUtils.updateWidgets(context);
                 }
                 break;
             case Constants.PREF_LANGUAGE:

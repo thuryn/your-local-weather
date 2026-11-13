@@ -2,11 +2,13 @@ package org.thosp.yourlocalweather;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import org.thosp.yourlocalweather.events.AppEvent;
+import org.thosp.yourlocalweather.events.AppEventListener;
+import org.thosp.yourlocalweather.events.AppEventsBus;
 import android.content.IntentFilter;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Address;
@@ -48,7 +50,7 @@ public class SearchActivity extends BaseActivity {
     // 1. Definujeme vygenerovanou třídu bindingu namísto původních UI prvků
     private ActivitySearchBinding binding;
 
-    private BroadcastReceiver mWeatherUpdateReceiver;
+    private AppEventListener appEventListener;
     private double longitude;
     private double latitude;
     private Address address;
@@ -56,17 +58,21 @@ public class SearchActivity extends BaseActivity {
     private ProgressDialog mProgressDialog;
 
     private void initializeWeatherReceiver() {
-        mWeatherUpdateReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                if (intent.hasExtra("addresses")) {
-                    address = intent.getExtras().getParcelable("addresses");
+        appEventListener = event -> {
+            if (!(event instanceof AppEvent.AddressResolution)) {
+                return;
+            }
+            Address resAddress = ((AppEvent.AddressResolution) event).getAddress();
+            runOnUiThread(() -> {
+                if (binding == null) return;
+                if (resAddress != null) {
+                    address = resAddress;
                     binding.resolvedLocationAddress.setText(Utils.getCityAndCountryFromAddress(address));
                 } else {
-                    binding.resolvedLocationAddress.setText(context.getString(R.string.location_not_found));
+                    binding.resolvedLocationAddress.setText(getString(R.string.location_not_found));
                 }
                 binding.searchAddLocationButton.setVisibility(View.VISIBLE);
-            }
+            });
         };
     }
 
@@ -171,10 +177,9 @@ public class SearchActivity extends BaseActivity {
 
     public void onResume(){
         super.onResume();
-        ContextCompat.registerReceiver(this, mWeatherUpdateReceiver,
-                new IntentFilter(
-                        ACTION_ADDRESS_RESOLUTION_RESULT),
-                ContextCompat.RECEIVER_NOT_EXPORTED);
+        if (appEventListener != null) {
+            AppEventsBus.registerListener(appEventListener);
+        }
         binding.map.onResume();
     }
 
@@ -198,7 +203,9 @@ public class SearchActivity extends BaseActivity {
             mProgressDialog.dismiss();
             mProgressDialog = null;
         }
-        unregisterReceiver(mWeatherUpdateReceiver);
+        if (appEventListener != null) {
+            AppEventsBus.unregisterListener(appEventListener);
+        }
         // Vyčistíme referenci na binding, aby mohl Garbage Collector uvolnit celou XML strukturu
         binding = null;
     }

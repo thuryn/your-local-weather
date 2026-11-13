@@ -312,10 +312,6 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                     widgetSettingsDbHelper.saveParamString(widgetId, "currentWeatherDetails", valuesToStore.toString());
 
                     WidgetUtils.updateWidgets(getBaseContext());
-
-                    Intent refreshWidgetIntent = new Intent(Constants.ACTION_FORCED_APPWIDGET_UPDATE);
-                    refreshWidgetIntent.setPackage(getBaseContext().getPackageName());
-                    sendBroadcast(refreshWidgetIntent);
                     finishWithSuccess(widgetId);
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) -> finish())
@@ -408,10 +404,6 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                         widgetSettingsDbHelper.saveParamLong(widgetId, "action_graph", graphActionsListener.getWidgetAction().getId());
                     }
                     WidgetUtils.updateWidgets(getBaseContext());
-                    Intent intent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_SETTINGS);
-                    intent.setPackage(getBaseContext().getPackageName());
-                    intent.putExtra("widgetId", widgetId);
-                    sendBroadcast(intent);
                     finishWithSuccess(widgetId);
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) -> finish())
@@ -519,10 +511,6 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                     }
                     GraphUtils.invalidateGraph();
                     WidgetUtils.updateWidgets(getBaseContext());
-                    Intent intent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_SETTINGS);
-                    intent.setPackage(getBaseContext().getPackageName());
-                    intent.putExtra("widgetId", widgetId);
-                    sendBroadcast(intent);
                     finishWithSuccess(widgetId);
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) -> finish())
@@ -577,11 +565,6 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                     widgetSettingsDbHelper.saveParamBoolean(widgetId, "hoursForecast", isHours);
 
                     WidgetUtils.updateWidgets(getBaseContext());
-
-                    Intent intent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_SETTINGS);
-                    intent.setPackage(getBaseContext().getPackageName());
-                    intent.putExtra("widgetId", widgetId);
-                    sendBroadcast(intent);
                     finishWithSuccess(widgetId);
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) -> finish())
@@ -647,9 +630,6 @@ public class WidgetSettingsDialogue extends AppCompatActivity {
                     widgetSettingsDbHelper.saveParamBoolean(widgetId, "combinedGraphShowLegend", showLegendSwitchListener.isChecked());
                     GraphUtils.invalidateGraph();
                     WidgetUtils.updateWidgets(getBaseContext());
-                    Intent refreshWidgetIntent = new Intent(Constants.ACTION_APPWIDGET_CHANGE_GRAPH_SCALE);
-                    refreshWidgetIntent.setPackage(getBaseContext().getPackageName());
-                    sendBroadcast(refreshWidgetIntent);
                     finishWithSuccess(widgetId);
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) -> finish())

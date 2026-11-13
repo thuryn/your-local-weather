@@ -12,7 +12,9 @@ import android.hardware.SensorEventListener;
 import androidx.core.content.ContextCompat;
 
 import org.thosp.yourlocalweather.YourLocalWeather;
+import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
+import org.thosp.yourlocalweather.utils.LocationServiceDispatcher;
 
 public class SensorLocationUpdater extends AbstractCommonService implements SensorEventListener {
 
@@ -150,11 +152,17 @@ public class SensorLocationUpdater extends AbstractCommonService implements Sens
         clearMeasuredLength();
 
         LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
-        long locationId = locationsDbHelper.getLocationByOrderId(0).getId();
-        Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
-        intentToStartUpdate.setPackage(getBaseContext().getPackageName());
-        intentToStartUpdate.putExtra("locationId", locationId);
-        ContextCompat.startForegroundService(getBaseContext(), intentToStartUpdate);
+        Location autoLocation = locationsDbHelper.getLocationByOrderId(0);
+        if (autoLocation != null) {
+            long locationId = autoLocation.getId();
+            Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_LOCATION_AND_WEATHER_UPDATE");
+            intentToStartUpdate.setPackage(getBaseContext().getPackageName());
+            intentToStartUpdate.putExtra("locationId", locationId);
+            boolean started = LocationServiceDispatcher.startLocationAndWeatherUpdate(getBaseContext(), intentToStartUpdate);
+            if (!started) {
+                sendMessageToCurrentWeatherService(autoLocation, AppWakeUpManager.SOURCE_CURRENT_WEATHER, true);
+            }
+        }
         processLocationUpdate = false;
     }
 

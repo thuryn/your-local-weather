@@ -988,14 +988,19 @@ public class WidgetUtils {
         }
     }
 
-    private static void updateWidgetForType(Context context, Class<?> widgetProvider) {
+    private static void updateWidgetForType(Context context, Class<?> widgetProviderClass) {
         AppWidgetManager widgetManager = AppWidgetManager.getInstance(context);
-        Intent intentToUpdate = new Intent(context, widgetProvider);
-        ComponentName widgetComponent = new ComponentName(context, widgetProvider);
+        ComponentName widgetComponent = new ComponentName(context, widgetProviderClass);
         int[] widgetIds = widgetManager.getAppWidgetIds(widgetComponent);
-        intentToUpdate.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
-        intentToUpdate.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, widgetIds);
-        context.sendBroadcast(intentToUpdate);
+        if (widgetIds == null || widgetIds.length == 0) {
+            return;
+        }
+        try {
+            android.appwidget.AppWidgetProvider provider = (android.appwidget.AppWidgetProvider) widgetProviderClass.getDeclaredConstructor().newInstance();
+            provider.onUpdate(context, widgetManager, widgetIds);
+        } catch (Exception e) {
+            appendLog(context, TAG, "Error updating widget provider directly", e);
+        }
     }
 
     public static void updateWidgets(Context context) {

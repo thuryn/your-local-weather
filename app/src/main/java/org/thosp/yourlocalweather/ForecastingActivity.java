@@ -1,21 +1,18 @@
 package org.thosp.yourlocalweather;
 
 import android.app.ProgressDialog;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.widget.Switch;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatImageButton;
 
+import org.thosp.yourlocalweather.events.AppEvent;
+import org.thosp.yourlocalweather.events.AppEventListener;
+import org.thosp.yourlocalweather.events.AppEventsBus;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
-import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
-import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 
 import java.util.HashMap;
@@ -33,12 +30,11 @@ public abstract class ForecastingActivity extends BaseActivity {
     protected ConnectionDetector connectionDetector;
     private ProgressDialog mGetWeatherProgress;
     private Handler mHandler;
-    protected BroadcastReceiver mWeatherUpdateReceiver;
+    protected AppEventListener appEventListener;
     protected String pressureUnitFromPreferences;
     protected String rainSnowUnitFromPreferences;
     protected String temperatureUnitFromPreferences;
     protected AppCompatImageButton switchLocationButton;
-    //protected Switch forecastType;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -84,7 +80,9 @@ public abstract class ForecastingActivity extends BaseActivity {
         if (mGetWeatherProgress != null) {
             mGetWeatherProgress.dismiss();
         }
-        unregisterReceiver(mWeatherUpdateReceiver);
+        if (appEventListener != null) {
+            AppEventsBus.unregisterListener(appEventListener);
+        }
     }
 
     @Override
@@ -102,32 +100,41 @@ public abstract class ForecastingActivity extends BaseActivity {
         }
     }
 
-    protected void initializeWeatherForecastReceiver(final String actionResult) {
-        mWeatherUpdateReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                YourLocalWeather.executor.submit(() -> {
-                    appendLog(context, TAG, "BroadcastReceiver:", intent);
-                    if ((mGetWeatherProgress != null) && (mHandler != null)) {
-                        mHandler.post(new Runnable() {
-                            public void run() {
-                                if (mGetWeatherProgress != null) {
-                                    mGetWeatherProgress.dismiss();
-                                }
-                            }
-                        });
-                    }
-                    switch (intent.getStringExtra(actionResult)) {
-                        case UpdateWeatherService.ACTION_WEATHER_UPDATE_OK:
-                            updateUI();
-                            break;
-                        case UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL:
-                            Toast.makeText(ForecastingActivity.this,
-                                    getString(R.string.toast_parse_error),
-                                    Toast.LENGTH_SHORT).show();
-                    }
-                });
+    protected void initializeWeatherForecastReceiver(final String targetAction) {
+        appEventListener = event -> {
+            boolean isMatch = false;
+            String result = null;
+            if (event instanceof AppEvent.ForecastWeatherUpdate && UpdateWeatherService.ACTION_FORECAST_UPDATE_RESULT.equals(targetAction)) {
+                isMatch = true;
+                result = ((AppEvent.ForecastWeatherUpdate) event).getResult();
+            } else if (event instanceof AppEvent.GraphsWeatherUpdate && UpdateWeatherService.ACTION_GRAPHS_UPDATE_RESULT.equals(targetAction)) {
+                isMatch = true;
+                result = ((AppEvent.GraphsWeatherUpdate) event).getResult();
             }
+            if (!isMatch || result == null) {
+                return;
+            }
+            final String finalResult = result;
+            YourLocalWeather.executor.submit(() -> {
+                appendLog(ForecastingActivity.this, TAG, "AppEvent received: ", finalResult);
+                if ((mGetWeatherProgress != null) && (mHandler != null)) {
+                    mHandler.post(() -> {
+                        if (mGetWeatherProgress != null) {
+                            mGetWeatherProgress.dismiss();
+                        }
+                    });
+                }
+                switch (finalResult) {
+                    case UpdateWeatherService.ACTION_WEATHER_UPDATE_OK:
+                        updateUI();
+                        break;
+                    case UpdateWeatherService.ACTION_WEATHER_UPDATE_FAIL:
+                        Toast.makeText(ForecastingActivity.this,
+                                getString(R.string.toast_parse_error),
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            });
         };
     }
 }
