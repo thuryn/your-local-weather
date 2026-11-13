@@ -43,6 +43,8 @@ public class WeatherByVoiceService extends Service {
 
     private static final String TAG = "WeatherByVoiceService";
 
+    private static volatile Long pendingBtVoiceSettingId = null;
+
     private TextToSpeech tts;
     final private static String TTS_DELAY_BETWEEN_ITEM = "...---...";
     final private static String TTS_END = "_________";
@@ -161,7 +163,8 @@ public class WeatherByVoiceService extends Service {
             Long triggerType = voiceSettingParametersDbHelper.getLongParam(
                     voiceSettingId,
                     VoiceSettingParamType.VOICE_SETTING_TRIGGER_TYPE.getVoiceSettingParamTypeId());
-            if (triggerType != 0) {
+            boolean isPendingBt = (pendingBtVoiceSettingId != null && pendingBtVoiceSettingId.equals(voiceSettingId));
+            if (triggerType != 0 && !isPendingBt) {
                 continue;
             }
             Boolean locations = allLocations.get(voiceSettingId);
@@ -171,7 +174,10 @@ public class WeatherByVoiceService extends Service {
                         updateRequest.getLocation(),
                         updateRequest.getTimestamp(),
                         voiceSettingId,
-                        false);
+                        isPendingBt);
+                if (isPendingBt) {
+                    pendingBtVoiceSettingId = null;
+                }
                 return;
             }
             String enabledLocationIds = voiceSettingParametersDbHelper.getStringParam(
@@ -188,14 +194,17 @@ public class WeatherByVoiceService extends Service {
                         updateRequest.getLocation(),
                         updateRequest.getTimestamp(),
                         voiceSettingId,
-                        false);
+                        isPendingBt);
+                if (isPendingBt) {
+                    pendingBtVoiceSettingId = null;
+                }
                 return;
             }
         }
         startVoiceCommand();
     }
 
-    private void sayForLocation(Long voiceSettingId, boolean initiatedFromBtDEvice) {
+    private void sayForLocation(Long voiceSettingId, boolean initiatedFromBtDevice) {
         VoiceSettingParametersDbHelper voiceSettingParametersDbHelper = VoiceSettingParametersDbHelper.getInstance(getBaseContext());
         final CurrentWeatherDbHelper currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(getBaseContext());
         final LocationsDbHelper locationsDbHelper = LocationsDbHelper.getInstance(getBaseContext());
@@ -204,39 +213,71 @@ public class WeatherByVoiceService extends Service {
                 voiceSettingId,
                 VoiceSettingParamType.VOICE_SETTING_LOCATIONS.getVoiceSettingParamTypeId());
         appendLog(getBaseContext(), TAG, "sayForLocation:allLocations:" + allLocations);
+
+        List<Location> targetLocations = new java.util.ArrayList<>();
         if ((allLocations != null) && allLocations) {
-            for (Location location: locationsDbHelper.getAllRows()) {
-                CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(location.getId());
-                sayCurrentWeather(
-                        weatherRecord.getWeather(),
-                        location,
-                        weatherRecord.getLastUpdatedTime(),
-                        voiceSettingId,
-                        initiatedFromBtDEvice);
-            }
-            return;
-        }
-        String enabledLocationIds = voiceSettingParametersDbHelper.getStringParam(
-                voiceSettingId,
-                VoiceSettingParamType.VOICE_SETTING_LOCATIONS.getVoiceSettingParamTypeId());
-        appendLog(getBaseContext(), TAG, "sayForLocation:enabledLocationIds:" + enabledLocationIds);
-        List<Location> locations = locationsDbHelper.getAllRows();
-        if (locations.isEmpty()) {
-            return;
-        }
-        for (Location location: locations) {
-            if (enabledLocationIds.contains(location.getId().toString())) {
-                CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(location.getId());
-                if (weatherRecord == null) {
-                    continue;
+            targetLocations.addAll(locationsDbHelper.getAllRows());
+        } else {
+            String enabledLocationIds = voiceSettingParametersDbHelper.getStringParam(
+                    voiceSettingId,
+                    VoiceSettingParamType.VOICE_SETTING_LOCATIONS.getVoiceSettingParamTypeId());
+            List<Location> locations = locationsDbHelper.getAllRows();
+            for (Location location: locations) {
+                if ((enabledLocationIds != null) && enabledLocationIds.contains(location.getId().toString())) {
+                    targetLocations.add(location);
                 }
-                sayCurrentWeather(
-                        weatherRecord.getWeather(),
-                        location,
-                        weatherRecord.getLastUpdatedTime(),
-                        voiceSettingId,
-                        initiatedFromBtDEvice);
             }
+        }
+
+        if (targetLocations.isEmpty()) {
+            startVoiceCommand();
+            return;
+        }
+
+        long now = System.currentTimeMillis();
+        boolean needsUpdate = false;
+        for (Location location : targetLocations) {
+            CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(location.getId());
+            if (weatherRecord == null || (now - weatherRecord.getLastUpdatedTime()) > 15 * 60 * 1000L) {
+                needsUpdate = true;
+                break;
+            }
+        }
+
+        if (initiatedFromBtDevice && needsUpdate) {
+            appendLog(getBaseContext(), TAG, "BT trigger: Weather data stale or missing, requesting fresh weather update first.");
+            pendingBtVoiceSettingId = voiceSettingId;
+            for (Location location : targetLocations) {
+                Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.START_WEATHER_UPDATE");
+                intentToStartUpdate.setPackage(getBaseContext().getPackageName());
+                intentToStartUpdate.putExtra("weatherRequest", new WeatherRequestDataHolder(location.getId(), "BT_TRIGGER", false, true, UpdateWeatherService.START_CURRENT_WEATHER_UPDATE));
+                androidx.core.content.ContextCompat.startForegroundService(getBaseContext(), intentToStartUpdate);
+            }
+            timerHandler.postDelayed(() -> {
+                if (pendingBtVoiceSettingId != null && pendingBtVoiceSettingId.equals(voiceSettingId)) {
+                    appendLog(getBaseContext(), TAG, "BT trigger fallback timer fired");
+                    pendingBtVoiceSettingId = null;
+                    speakCachedLocations(voiceSettingId, targetLocations, currentWeatherDbHelper, initiatedFromBtDevice);
+                }
+            }, 10000L);
+            return;
+        }
+
+        speakCachedLocations(voiceSettingId, targetLocations, currentWeatherDbHelper, initiatedFromBtDevice);
+    }
+
+    private void speakCachedLocations(Long voiceSettingId, List<Location> targetLocations, CurrentWeatherDbHelper currentWeatherDbHelper, boolean initiatedFromBtDevice) {
+        for (Location location : targetLocations) {
+            CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(location.getId());
+            if (weatherRecord == null || weatherRecord.getWeather() == null) {
+                continue;
+            }
+            sayCurrentWeather(
+                    weatherRecord.getWeather(),
+                    location,
+                    weatherRecord.getLastUpdatedTime(),
+                    voiceSettingId,
+                    initiatedFromBtDevice);
         }
         startVoiceCommand();
     }
