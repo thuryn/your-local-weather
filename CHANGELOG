@@ -1,3 +1,7 @@
+6.7.0
+Added option to export and import app settings and saved locations to/from a JSON file.
+Added Android Adaptive Icon support for API 26+ and themed app icons.
+
 6.6.2
 Eliminated internal self-broadcasts in favor of in-process communication for Android 17 QPR2 compatibility.
 
