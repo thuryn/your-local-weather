@@ -14,9 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.DialogFragment;
 import androidx.preference.EditTextPreference;
 import androidx.preference.ListPreference;
+import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
 import org.thosp.yourlocalweather.R;
@@ -28,6 +31,7 @@ import org.thosp.yourlocalweather.utils.ApiKeys;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.LanguageUtil;
+import org.thosp.yourlocalweather.utils.SettingsBackupManager;
 import org.thosp.yourlocalweather.utils.WidgetUtils;
 
 import java.security.MessageDigest;
@@ -45,6 +49,38 @@ public class GeneralPreferenceFragment extends PreferenceFragmentCompat implemen
 
     private static final String TAG = "GeneralPreferenceFragment";
 
+    private ActivityResultLauncher<String> exportLauncher;
+    private ActivityResultLauncher<String[]> importLauncher;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        exportLauncher = registerForActivityResult(
+                new ActivityResultContracts.CreateDocument("application/json"),
+                uri -> {
+                    if (uri != null) {
+                        boolean success = SettingsBackupManager.exportSettings(requireContext(), uri);
+                        Toast.makeText(requireContext(),
+                                success ? R.string.export_settings_success : R.string.export_settings_error,
+                                Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+
+        importLauncher = registerForActivityResult(
+                new ActivityResultContracts.OpenDocument(),
+                uri -> {
+                    if (uri != null) {
+                        boolean success = SettingsBackupManager.importSettings(requireContext(), uri);
+                        Toast.makeText(requireContext(),
+                                success ? R.string.import_settings_success : R.string.import_settings_error,
+                                Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+    }
+
     private final String[] SUMMARIES_TO_UPDATE = {
             Constants.KEY_PREF_HIDE_DESCRIPTION,
             Constants.PREF_LANGUAGE,
@@ -57,6 +93,18 @@ public class GeneralPreferenceFragment extends PreferenceFragmentCompat implemen
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.pref_general, rootKey);
+    }
+
+    @Override
+    public boolean onPreferenceTreeClick(Preference preference) {
+        if ("pref_export_settings".equals(preference.getKey())) {
+            exportLauncher.launch("your_local_weather_backup.json");
+            return true;
+        } else if ("pref_import_settings".equals(preference.getKey())) {
+            importLauncher.launch(new String[]{"application/json", "*/*"});
+            return true;
+        }
+        return super.onPreferenceTreeClick(preference);
     }
 
     @Override

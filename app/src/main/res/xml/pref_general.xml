@@ -53,4 +53,16 @@
             android:key="open_weather_map_api_key"
             android:title="@string/open_weather_map_api_key" />
     </PreferenceCategory>
+    <PreferenceCategory
+        android:key="backup_restore_category_pref_key"
+        android:title="@string/preference_title_category_backup_restore">
+        <Preference
+            android:key="pref_export_settings"
+            android:title="@string/pref_title_export_settings"
+            android:summary="@string/pref_summary_export_settings" />
+        <Preference
+            android:key="pref_import_settings"
+            android:title="@string/pref_title_import_settings"
+            android:summary="@string/pref_summary_import_settings" />
+    </PreferenceCategory>
 </PreferenceScreen>

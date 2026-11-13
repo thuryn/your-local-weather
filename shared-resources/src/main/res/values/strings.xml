@@ -676,4 +676,14 @@
     <string name="wearos_main_activity_missing_connection_info" tools:ignore="MissingTranslation">Install the application on your mobile phone from github.com or Play store.</string>
     <string name="wearos_main_activity_not_connected" tools:ignore="MissingTranslation">The phone is not connected to the watch.</string>
     <string name="wearos_main_activity_checking_connection" tools:ignore="MissingTranslation">Checking connection to phone…</string>
+
+    <string name="preference_title_category_backup_restore" tools:ignore="MissingTranslation">Backup and restore</string>
+    <string name="pref_title_export_settings" tools:ignore="MissingTranslation">Export settings</string>
+    <string name="pref_summary_export_settings" tools:ignore="MissingTranslation">Export settings and locations to a JSON file</string>
+    <string name="pref_title_import_settings" tools:ignore="MissingTranslation">Import settings</string>
+    <string name="pref_summary_import_settings" tools:ignore="MissingTranslation">Import settings and locations from a JSON file</string>
+    <string name="export_settings_success" tools:ignore="MissingTranslation">Settings exported successfully</string>
+    <string name="export_settings_error" tools:ignore="MissingTranslation">Error exporting settings</string>
+    <string name="import_settings_success" tools:ignore="MissingTranslation">Settings imported successfully</string>
+    <string name="import_settings_error" tools:ignore="MissingTranslation">Error importing settings</string>
 </resources>

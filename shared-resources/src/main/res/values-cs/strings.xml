@@ -646,4 +646,14 @@
     <string name="wearos_main_activity_missing_connection_info" tools:ignore="MissingTranslation">Nainstalujte si aplikaci i do mobilu z github.com nebo Play store.</string>
     <string name="wearos_main_activity_not_connected" tools:ignore="MissingTranslation">Telefon není připojen k hodinkám.</string>
     <string name="wearos_main_activity_checking_connection" tools:ignore="MissingTranslation">Kontrola připojení k telefonu…</string>
+
+    <string name="preference_title_category_backup_restore" tools:ignore="MissingTranslation">Záloha a obnovení</string>
+    <string name="pref_title_export_settings" tools:ignore="MissingTranslation">Exportovat nastavení</string>
+    <string name="pref_summary_export_settings" tools:ignore="MissingTranslation">Uložit nastavení a lokality do souboru JSON</string>
+    <string name="pref_title_import_settings" tools:ignore="MissingTranslation">Obnovit nastavení</string>
+    <string name="pref_summary_import_settings" tools:ignore="MissingTranslation">Načíst nastavení a lokality ze souboru JSON</string>
+    <string name="export_settings_success" tools:ignore="MissingTranslation">Nastavení byla úspěšně exportována</string>
+    <string name="export_settings_error" tools:ignore="MissingTranslation">Chyba při exportu nastavení</string>
+    <string name="import_settings_success" tools:ignore="MissingTranslation">Nastavení byla úspěšně obnovena</string>
+    <string name="import_settings_error" tools:ignore="MissingTranslation">Chyba při obnovení nastavení</string>
 </resources>
