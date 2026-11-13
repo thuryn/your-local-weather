@@ -29,7 +29,7 @@ Application uses Open-Meteo service to get current and forecast weather.
 Additional features include:
 * Multilingual
 * Current weather
-* 5 day forecast
+* 7-day forecast (up to 16 days)
 * Many locations
 * Notifications
 * Support different measuring units
