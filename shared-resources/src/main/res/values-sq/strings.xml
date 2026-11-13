@@ -645,4 +645,14 @@
     <string name="widget_more_name" tools:ignore="MissingTranslation">Hollësi Moti Tani (3x3)</string>
     <string name="widget_more_obsolete_name" tools:ignore="MissingTranslation">Hollësi Moti Tani (3x3 - I vjetruar)</string>
     <string name="widget_obsolete_notice" tools:ignore="MissingTranslation">Ky “widget” është i vjetruar. Zëvendësojeni me widget-in e ri Vështrim.</string>
+    <string name="widget_setting_forecast_hours_style" tools:ignore="MissingTranslation">Shfaq motin një herë në orë</string>
+    <string name="preference_title_category_backup_restore" tools:ignore="MissingTranslation">Kopjeruajeni dhe rikthejeni</string>
+    <string name="pref_title_export_settings" tools:ignore="MissingTranslation">Eksportoni rregullime</string>
+    <string name="pref_summary_export_settings" tools:ignore="MissingTranslation">Eksportoni rregullime dhe vendndodhje te një kartelë JSON</string>
+    <string name="pref_title_import_settings" tools:ignore="MissingTranslation">Importoni rregullime</string>
+    <string name="pref_summary_import_settings" tools:ignore="MissingTranslation">Importoni rregullime dhe vendndodhje nga një kartelë JSON</string>
+    <string name="export_settings_success" tools:ignore="MissingTranslation">Rregullimet u eksportuan me sukses</string>
+    <string name="export_settings_error" tools:ignore="MissingTranslation">Gabim në eksportim rregullimesh</string>
+    <string name="import_settings_success" tools:ignore="MissingTranslation">Rregullimet u importuan me sukses</string>
+    <string name="import_settings_error" tools:ignore="MissingTranslation">Gabim në importim rregullimesh</string>
 </resources>
