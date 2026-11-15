@@ -129,6 +129,8 @@ public class SettingsBackupManager {
 
                     if (val instanceof Boolean) {
                         editor.putBoolean(key, (Boolean) val);
+                    } else if (Constants.CURRENT_LOCATION_ID.equals(key) && val instanceof Number) {
+                        editor.putLong(key, ((Number) val).longValue());
                     } else if (val instanceof Integer) {
                         editor.putInt(key, (Integer) val);
                     } else if (val instanceof Long) {

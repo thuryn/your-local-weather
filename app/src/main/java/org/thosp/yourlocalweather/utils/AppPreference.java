@@ -704,8 +704,17 @@ public class AppPreference {
     }
 
     public static long getCurrentLocationId(Context context) {
-        return PreferenceManager.getDefaultSharedPreferences(context).getLong(
-                Constants.CURRENT_LOCATION_ID, 0);
+        try {
+            return PreferenceManager.getDefaultSharedPreferences(context).getLong(
+                    Constants.CURRENT_LOCATION_ID, 0);
+        } catch (Exception e) {
+            try {
+                return PreferenceManager.getDefaultSharedPreferences(context).getInt(
+                        Constants.CURRENT_LOCATION_ID, 0);
+            } catch (Exception ex) {
+                return 0;
+            }
+        }
     }
 
     public static class GraphGridColors {
