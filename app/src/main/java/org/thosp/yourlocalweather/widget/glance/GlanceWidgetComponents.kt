@@ -410,6 +410,7 @@ fun updateAllGlanceWidgets(context: Context) {
             manager.getGlanceIds(LessGlanceWidget::class.java).forEach { LessGlanceWidget().update(context, it) }
             manager.getGlanceIds(MoreGlanceWidget::class.java).forEach { MoreGlanceWidget().update(context, it) }
             manager.getGlanceIds(CompactGlanceWidget::class.java).forEach { CompactGlanceWidget().update(context, it) }
+            manager.getGlanceIds(TemperatureGlanceWidget::class.java).forEach { TemperatureGlanceWidget().update(context, it) }
         } catch (e: Exception) {
             // ignore
         }

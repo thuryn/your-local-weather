@@ -688,4 +688,5 @@
     <string name="import_settings_error" tools:ignore="MissingTranslation">Error importing settings</string>
 
     <string name="widget_compact_name" tools:ignore="MissingTranslation">Compact 1x1 Widget</string>
+    <string name="widget_temperature_only_name" tools:ignore="MissingTranslation">Temperature Only 1x1 Widget</string>
 </resources>

@@ -8,7 +8,7 @@
     android:minWidth="40dp"
     android:targetCellWidth="1"
     android:targetCellHeight="1"
-    android:previewImage="@drawable/preview_less_widget"
+    android:previewImage="@drawable/preview_compact_widget"
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen|keyguard">
 </appwidget-provider>
