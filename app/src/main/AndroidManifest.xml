@@ -176,6 +176,22 @@
                 <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
             </intent-filter>
         </receiver>
+        <receiver android:name=".widget.glance.CompactGlanceWidgetReceiver"
+            android:label="@string/widget_compact_name"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.intent.action.LOCALE_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.FORCED_APPWIDGET_UPDATE"/>
+                <action android:name="org.thosp.yourlocalweather.action.APPWIDGET_THEME_CHANGED"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_SETTINGS"/>
+                <action android:name="org.thosp.yourlocalweather.action.ACTION_APPWIDGET_CHANGE_LOCATION"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider_compact_glance"/>
+        </receiver>
+
         <receiver android:name=".widget.glance.LessGlanceWidgetReceiver"
             android:label="@string/widget_less_name"
             android:exported="true">

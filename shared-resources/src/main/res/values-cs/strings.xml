@@ -656,4 +656,6 @@
     <string name="export_settings_error" tools:ignore="MissingTranslation">Chyba při exportu nastavení</string>
     <string name="import_settings_success" tools:ignore="MissingTranslation">Nastavení byla úspěšně obnovena</string>
     <string name="import_settings_error" tools:ignore="MissingTranslation">Chyba při obnovení nastavení</string>
+
+    <string name="widget_compact_name" tools:ignore="MissingTranslation">Kompaktní 1x1 Widget</string>
 </resources>

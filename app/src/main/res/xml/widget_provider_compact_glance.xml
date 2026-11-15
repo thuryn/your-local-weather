@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialLayout="@layout/glance_default_loading_layout"
+    android:configure="org.thosp.yourlocalweather.WidgetSettingsDialogue"
+    android:widgetFeatures="reconfigurable|configuration_optional"
+    android:minHeight="40dp"
+    android:minWidth="40dp"
+    android:targetCellWidth="1"
+    android:targetCellHeight="1"
+    android:previewImage="@drawable/preview_less_widget"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen|keyguard">
+</appwidget-provider>

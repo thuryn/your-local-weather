@@ -686,4 +686,6 @@
     <string name="export_settings_error" tools:ignore="MissingTranslation">Error exporting settings</string>
     <string name="import_settings_success" tools:ignore="MissingTranslation">Settings imported successfully</string>
     <string name="import_settings_error" tools:ignore="MissingTranslation">Error importing settings</string>
+
+    <string name="widget_compact_name" tools:ignore="MissingTranslation">Compact 1x1 Widget</string>
 </resources>
