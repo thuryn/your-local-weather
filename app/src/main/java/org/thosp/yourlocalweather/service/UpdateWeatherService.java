@@ -252,7 +252,9 @@ public class UpdateWeatherService extends AbstractCommonService {
                     lastUpdateTimeInMilis,
                     ", nextAllowedAttemptToUpdateTime=",
                     nextAllowedAttemptToUpdateTime);
-            readyForUpdate = (now > (lastUpdateTimeInMilis + updatePeriodForLocation)) && (now > nextAllowedAttemptToUpdateTime);
+            readyForUpdate = updateRequest.isForceUpdate() ||
+                             (weatherRecord == null || weatherRecord.getWeather() == null) ||
+                             ((now > (lastUpdateTimeInMilis + updatePeriodForLocation)) && (now > nextAllowedAttemptToUpdateTime));
         } else {
             readyForUpdate = false;
         }
