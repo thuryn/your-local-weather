@@ -95,8 +95,7 @@ class ExtLocationWithForecastGlanceWidget : GlanceAppWidget() {
         val currentLocation: Location? = if (locationId != null) {
             locationsDbHelper.getLocationById(locationId)
         } else {
-            val loc0 = locationsDbHelper.getLocationByOrderId(0)
-            if (loc0 != null && !loc0.isEnabled) locationsDbHelper.getLocationByOrderId(1) else loc0
+            locationsDbHelper.getLocationWithFallback(0)
         }
 
         val weatherRecord = currentLocation?.let { currentWeatherDbHelper.getWeather(it.id) }

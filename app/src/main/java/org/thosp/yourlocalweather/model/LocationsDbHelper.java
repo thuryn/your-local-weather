@@ -340,6 +340,32 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         }
     }
 
+    public static boolean isLocationValid(Location loc) {
+        if (loc == null || !loc.isEnabled()) {
+            return false;
+        }
+        if (!loc.isAddressFound() || (loc.getLatitude() == 0.0 && loc.getLongitude() == 0.0)) {
+            return false;
+        }
+        return true;
+    }
+
+    public Location getLocationWithFallback(int requestedOrderId) {
+        Location loc = getLocationByOrderId(requestedOrderId);
+        if (isLocationValid(loc)) {
+            return loc;
+        }
+
+        if (requestedOrderId == 0) {
+            Location fallback = getLocationByOrderId(1);
+            if (isLocationValid(fallback)) {
+                return fallback;
+            }
+        }
+
+        return loc;
+    }
+
     public Location getLocationById(long id) {
         SQLiteDatabase db = getReadableDatabase();
 

@@ -61,15 +61,12 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
                     int currentWidget = widgetIds[0];
                     Long locationId = widgetSettingsDbHelper.getParamLong(currentWidget, "locationId");
                     if (locationId == null) {
-                        currentLocation = locationsDbHelper.getLocationByOrderId(0);
+                        currentLocation = locationsDbHelper.getLocationWithFallback(0);
                     } else {
                         currentLocation = locationsDbHelper.getLocationById(locationId);
                     }
                     if (currentLocation == null) {
                         return;
-                    }
-                    if (!currentLocation.isEnabled()) {
-                        currentLocation = locationsDbHelper.getLocationByOrderId(1);
                     }
                 });
         appendLog(context, TAG, "onEnabled:end");
@@ -436,10 +433,7 @@ public abstract class AbstractWidgetProvider extends AppWidgetProvider {
         Long locationId = widgetSettingsDbHelper.getParamLong(appWidgetId, "locationId");
 
         if (locationId == null) {
-            currentLocation = locationsDbHelper.getLocationByOrderId(0);
-            if ((currentLocation != null) && !currentLocation.isEnabled()) {
-                currentLocation = locationsDbHelper.getLocationByOrderId(1);
-            }
+            currentLocation = locationsDbHelper.getLocationWithFallback(0);
         } else {
             currentLocation = locationsDbHelper.getLocationById(locationId);
         }
