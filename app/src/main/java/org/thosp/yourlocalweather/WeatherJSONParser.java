@@ -61,6 +61,9 @@ public class WeatherJSONParser {
             if (current.has("cloud_cover")) {
                 weather.setClouds(current.getInt("cloud_cover"));
             }
+            if (current.has("uv_index")) {
+                weather.setUvIndex(Float.parseFloat(current.getString("uv_index")));
+            }
         }
 
         if (weatherData.has("daily")) {
@@ -99,6 +102,7 @@ public class WeatherJSONParser {
         JSONArray cloudList = hourly.getJSONArray("cloud_cover");
         JSONArray windSpeedList = hourly.getJSONArray("wind_speed_10m");
         JSONArray windDirectionList = hourly.getJSONArray("wind_direction_10m");
+        JSONArray uvIndexList = hourly.has("uv_index") ? hourly.getJSONArray("uv_index") : null;
 
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm dd.MM.yyyy");
 
@@ -118,6 +122,9 @@ public class WeatherJSONParser {
             weatherForecast.setWindSpeed(getDoubleValue(windSpeedList, weatherForecastCounter) / 3.6);
             weatherForecast.setWindDegree(getDoubleValue(windDirectionList, weatherForecastCounter));
             weatherForecast.setCloudiness(getIntegerValue(cloudList, weatherForecastCounter));
+            if (uvIndexList != null) {
+                weatherForecast.setUvIndex(getDoubleValue(uvIndexList, weatherForecastCounter));
+            }
             double rain = getDoubleValue(rainList, weatherForecastCounter);
             weatherForecast.setRain(rain);
             double snow = 10 * getDoubleValue(snowfallList, weatherForecastCounter);

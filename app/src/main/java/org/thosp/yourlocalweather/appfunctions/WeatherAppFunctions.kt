@@ -80,6 +80,7 @@ abstract class BaseWeatherAppFunctionService : AppFunctionService() {
             windSpeed = weather?.windSpeed?.toDouble() ?: 0.0,
             windDirection = weather?.windDirection?.toDouble() ?: 0.0,
             cloudiness = weather?.clouds ?: 0,
+            uvIndex = weather?.uvIndex?.toDouble() ?: 0.0,
             timestampEpochSeconds = if (record != null && record.lastUpdatedTime > 0) {
                 record.lastUpdatedTime / 1000
             } else {

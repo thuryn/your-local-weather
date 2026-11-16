@@ -23,9 +23,18 @@ public class Weather implements Parcelable {
     private long sunrise;
     private long sunset;
     private int weatherId;
+    private float uvIndex;
 
     public Weather() {
         super();
+    }
+
+    public float getUvIndex() {
+        return uvIndex;
+    }
+
+    public void setUvIndex(float uvIndex) {
+        this.uvIndex = uvIndex;
     }
 
     public int getWeatherId() {
@@ -134,6 +143,7 @@ public class Weather implements Parcelable {
         parcel.writeLong(sunrise);
         parcel.writeLong(sunset);
         parcel.writeInt(weatherId);
+        parcel.writeFloat(uvIndex);
     }
 
     public static final Parcelable.Creator<Weather> CREATOR
@@ -159,5 +169,6 @@ public class Weather implements Parcelable {
         sunrise = in.readLong();
         sunset = in.readLong();
         weatherId = in.readInt();
+        uvIndex = in.readFloat();
     }
 }

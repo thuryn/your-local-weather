@@ -18,9 +18,18 @@ public class DetailedWeatherForecast implements Parcelable {
     protected double rain;
     protected double snow;
     protected int weatherId;
+    protected double uvIndex;
 
     public DetailedWeatherForecast() {
         super();
+    }
+
+    public double getUvIndex() {
+        return uvIndex;
+    }
+
+    public void setUvIndex(double uvIndex) {
+        this.uvIndex = uvIndex;
     }
 
     public long getDateTime() {
@@ -138,6 +147,7 @@ public class DetailedWeatherForecast implements Parcelable {
         parcel.writeDouble(rain);
         parcel.writeDouble(snow);
         parcel.writeInt(weatherId);
+        parcel.writeDouble(uvIndex);
     }
 
     public static final Parcelable.Creator<DetailedWeatherForecast> CREATOR
@@ -164,5 +174,6 @@ public class DetailedWeatherForecast implements Parcelable {
         rain = in.readDouble();
         snow = in.readDouble();
         weatherId = in.readInt();
+        uvIndex = in.readDouble();
     }
 }

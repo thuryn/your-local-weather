@@ -40,6 +40,8 @@ data class CurrentWeatherResult(
     val windDirection: Double,
     /** Cloudiness percentage (0 to 100). */
     val cloudiness: Int,
+    /** Ultraviolet index (UV Index) level. */
+    val uvIndex: Double = 0.0,
     /** Timestamp in epoch seconds when weather data was recorded. */
     val timestampEpochSeconds: Long
 )

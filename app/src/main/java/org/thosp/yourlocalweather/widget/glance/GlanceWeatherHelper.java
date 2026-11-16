@@ -55,6 +55,13 @@ public class GlanceWeatherHelper {
         return "%: " + weather.getHumidity() + "%";
     }
 
+    public static String getUvIndexText(Context context, Weather weather) {
+        if (weather == null) {
+            return null;
+        }
+        return "UV: " + String.format(Locale.ROOT, "%.1f", weather.getUvIndex());
+    }
+
     public static String getWeatherDescription(Context context, Weather weather) {
         if (weather == null) {
             return "";
