@@ -145,7 +145,19 @@ public class MainActivity extends BaseActivity
         // 2. Nafoukneme layout pomocí bindingu a nastavíme Root View
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        //setTitle(R.string.label_activity_main);
+
+        Intent launchIntent = getIntent();
+        if (savedInstanceState == null && launchIntent != null && Intent.ACTION_MAIN.equals(launchIntent.getAction()) && launchIntent.hasCategory(Intent.CATEGORY_LAUNCHER)) {
+            String startScreen = PreferenceManager.getDefaultSharedPreferences(this).getString(Constants.KEY_PREF_START_SCREEN, "main_screen");
+            if ("forecast_screen".equals(startScreen)) {
+                Intent intent = new Intent(this, WeatherForecastActivity.class);
+                startActivity(intent);
+            } else if ("graphs_screen".equals(startScreen)) {
+                Intent intent = new Intent(this, GraphsActivity.class);
+                startActivity(intent);
+            }
+        }
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }

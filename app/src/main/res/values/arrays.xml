@@ -311,6 +311,17 @@
         <item>glass</item>
     </string-array>
 
+    <string-array name="start_screen_entries">
+        <item>@string/label_activity_main</item>
+        <item>@string/label_activity_weather_forecast</item>
+        <item>@string/label_activity_graphs</item>
+    </string-array>
+    <string-array name="start_screen_values" translatable="false">
+        <item>main_screen</item>
+        <item>forecast_screen</item>
+        <item>graphs_screen</item>
+    </string-array>
+
     <!-- Wind directions array -->
     <string-array name="wind_directions">
         <item>@string/wind_direction_north</item>

@@ -51,6 +51,7 @@ public class Constants {
     public static final String KEY_PREF_RAIN_SNOW_UNITS = "rain_snow_units_pref_key";
     public static final String KEY_PREF_PRESSURE_UNITS = "pressure_units_pref_key";
     public static final String KEY_PREF_HIDE_DESCRIPTION = "hide_desc_pref_key";
+    public static final String KEY_PREF_START_SCREEN = "start_screen_pref_key";
     public static final String KEY_PREF_INTERVAL_NOTIFICATION = "notification_interval_pref_key";
     public static final String KEY_PREF_NOTIFICATION_PRESENCE = "notification_presence_pref_key";
     public static final String KEY_PREF_NOTIFICATION_STATUS_ICON = "notification_status_icon_pref_key";

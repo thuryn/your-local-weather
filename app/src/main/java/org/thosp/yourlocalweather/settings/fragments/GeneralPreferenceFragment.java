@@ -85,6 +85,7 @@ public class GeneralPreferenceFragment extends PreferenceFragmentCompat implemen
             Constants.KEY_PREF_HIDE_DESCRIPTION,
             Constants.PREF_LANGUAGE,
             Constants.PREF_THEME,
+            Constants.KEY_PREF_START_SCREEN,
             Constants.KEY_PREF_WEATHER_ICON_SET,
             Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY,
             Constants.KEY_PREF_WEATHER_FORECAST_FEATURES
@@ -155,6 +156,9 @@ public class GeneralPreferenceFragment extends PreferenceFragmentCompat implemen
                     YourLocalWeather app = (YourLocalWeather) getActivity().getApplication();
                     app.applyTheme(getActivity());
                 }
+                break;
+            case Constants.KEY_PREF_START_SCREEN:
+                entrySummary(key);
                 break;
             case Constants.KEY_PREF_WEATHER_ICON_SET:
                 entrySummary(key);
