@@ -660,4 +660,5 @@
     <string name="widget_compact_name" tools:ignore="MissingTranslation">Kompaktní 1x1 Widget</string>
     <string name="widget_temperature_only_name" tools:ignore="MissingTranslation">Teplota 1x1 Widget</string>
     <string name="pref_title_start_screen" tools:ignore="MissingTranslation">Výchozí obrazovka po spuštění</string>
+    <string name="uv_index_label" tools:ignore="MissingTranslation">UV Index: %1$.1f</string>
 </resources>

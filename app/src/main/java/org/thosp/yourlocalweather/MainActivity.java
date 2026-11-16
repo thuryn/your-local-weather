@@ -96,6 +96,7 @@ public class MainActivity extends BaseActivity
     private String mIconSunrise;
     private String mIconSunset;
     private String mIconDewPoint;
+    private String mIconUvIndex;
     private String mPercentSign;
     public Context storedContext;
     private Handler refreshDialogHandler;
@@ -437,6 +438,7 @@ public class MainActivity extends BaseActivity
                         mPercentSign));
                 binding.mainContent.mainSunrise.setText(MainActivity.this.getString(R.string.sunrise_label, sunrise));
                 binding.mainContent.mainSunset.setText(MainActivity.this.getString(R.string.sunset_label, sunset));
+                binding.mainContent.mainUvIndex.setText(MainActivity.this.getString(R.string.uv_index_label, (double) weather.getUvIndex()));
                 localityView.setText(cityAndCountry);
             } catch (Exception e) {
                 appendLog(MainActivity.this, TAG, e);
@@ -472,6 +474,7 @@ public class MainActivity extends BaseActivity
                 binding.mainContent.mainCloudiness.setText(MainActivity.this.getString(R.string.cloudiness_label, "", ""));
                 binding.mainContent.mainSunrise.setText(MainActivity.this.getString(R.string.sunrise_label, ""));
                 binding.mainContent.mainSunset.setText(MainActivity.this.getString(R.string.sunset_label, ""));
+                binding.mainContent.mainUvIndex.setText(MainActivity.this.getString(R.string.uv_index_label, 0.0));
             }
         });
     }
@@ -492,6 +495,7 @@ public class MainActivity extends BaseActivity
         binding.mainContent.mainCloudiness.setTypeface(robotoLight);
         binding.mainContent.mainSunrise.setTypeface(robotoLight);
         binding.mainContent.mainSunset.setTypeface(robotoLight);
+        binding.mainContent.mainUvIndex.setTypeface(robotoLight);
         localityView.setTypeface(robotoLight);
 
         binding.mainContent.mainSecondTemperatureIcon.setTypeface(weatherFontIcon);
@@ -517,6 +521,9 @@ public class MainActivity extends BaseActivity
 
         binding.mainContent.mainDewPointIcon.setTypeface(weatherFontIcon);
         binding.mainContent.mainDewPointIcon.setText(mIconDewPoint);
+
+        binding.mainContent.mainUvIndexIcon.setTypeface(weatherFontIcon);
+        binding.mainContent.mainUvIndexIcon.setText(mIconUvIndex);
     }
 
     private void weatherConditionsIcons() {
@@ -529,6 +536,7 @@ public class MainActivity extends BaseActivity
         mIconSunset = getString(R.string.wi_sunset);
         iconSecondTemperature = getString(R.string.wi_thermometer);
         mIconDewPoint = getString(R.string.wi_raindrop);
+        mIconUvIndex = getString(R.string.wi_day_sunny);
     }
 
     private void setUpdateButtonState(boolean isUpdate) {

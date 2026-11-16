@@ -690,4 +690,5 @@
     <string name="widget_compact_name" tools:ignore="MissingTranslation">Compact 1x1 Widget</string>
     <string name="widget_temperature_only_name" tools:ignore="MissingTranslation">Temperature Only 1x1 Widget</string>
     <string name="pref_title_start_screen" tools:ignore="MissingTranslation">Default start screen</string>
+    <string name="uv_index_label" tools:ignore="MissingTranslation">UV Index: %1$.1f</string>
 </resources>
