@@ -93,8 +93,10 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         forceUpdate = false;
         updateSource = null;
         Notification notification = NotificationUtils.getNotificationForActivity(getBaseContext());
+        boolean hasLocationPermission = androidx.core.content.ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == android.content.pm.PackageManager.PERMISSION_GRANTED ||
+                androidx.core.content.ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == android.content.pm.PackageManager.PERMISSION_GRANTED;
         try {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && hasLocationPermission) {
                 ServiceCompat.startForeground(
                         this,
                         NotificationUtils.NOTIFICATION_ID,
@@ -826,6 +828,26 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         }
     }
 
+    private Location getBestLastKnownLocation() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return null;
+        }
+        Location bestLocation = null;
+        for (String provider : locationManager.getAllProviders()) {
+            try {
+                Location l = locationManager.getLastKnownLocation(provider);
+                if (l == null) continue;
+                if (bestLocation == null || (l.getAccuracy() > 0 && l.getAccuracy() < bestLocation.getAccuracy())) {
+                    bestLocation = l;
+                }
+            } catch (Exception e) {
+                // ignore
+            }
+        }
+        return bestLocation;
+    }
+
     private void detectLocationByNetAndGPS() {
         appendLog(getBaseContext(), TAG, "detectLocation:lastLocationUpdateTime=", lastLocationUpdateTime);
         if ((lastLocationUpdateTime > 0) && ((System.currentTimeMillis() - (2 * LOCATION_TIMEOUT_IN_MS)) < lastLocationUpdateTime)) {
@@ -844,14 +866,15 @@ public class LocationUpdateService extends AbstractCommonService implements Proc
         if ((ContextCompat.checkSelfPermission(LocationUpdateService.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) ||
                 (ContextCompat.checkSelfPermission(LocationUpdateService.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
             appendLog(getBaseContext(), TAG, "detectLocation:check GPS enabled");
-            Location lastNetworkLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            //Location lastGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (lastNetworkLocation != null) {
-                appendLog(getBaseContext(), TAG, "detectLocation:using last network location:", lastNetworkLocation);
+            Location bestLastLocation = getBestLastKnownLocation();
+            if (bestLastLocation != null) {
+                appendLog(getBaseContext(), TAG, "detectLocation:using best last location:", bestLastLocation);
                 locationsDbHelper.updateLocationSource(currentLocation.getId(),
                         getString(R.string.location_weather_update_status_location_from_network) + getString(R.string.location_weather_update_status_location_from_last_location));
-                onLocationChanged(lastNetworkLocation);
-            } else if (AppPreference.isGpsEnabledByPreferences(getBaseContext()) &&
+                onLocationChanged(bestLastLocation);
+                return;
+            }
+            if (AppPreference.isGpsEnabledByPreferences(getBaseContext()) &&
                     (ContextCompat.checkSelfPermission(getBaseContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)) {
                 appendLog(getBaseContext(), TAG, "detectLocation:request GPS location");
                 if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.R) {

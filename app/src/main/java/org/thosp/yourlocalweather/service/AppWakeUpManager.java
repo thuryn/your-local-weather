@@ -88,10 +88,16 @@ public class AppWakeUpManager extends Service {
         }
 
         Notification notification = NotificationUtils.getNotificationForActivity(getBaseContext());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            startForeground(NotificationUtils.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
-        } else {
-            startForeground(NotificationUtils.NOTIFICATION_ID, notification);
+        boolean hasLocationPermission = androidx.core.content.ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == android.content.pm.PackageManager.PERMISSION_GRANTED ||
+                androidx.core.content.ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == android.content.pm.PackageManager.PERMISSION_GRANTED;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && hasLocationPermission) {
+                startForeground(NotificationUtils.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
+            } else {
+                startForeground(NotificationUtils.NOTIFICATION_ID, notification);
+            }
+        } catch (SecurityException e) {
+            appendLog(getBaseContext(), TAG, "Failed to start FGS location service: ", e);
         }
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
 

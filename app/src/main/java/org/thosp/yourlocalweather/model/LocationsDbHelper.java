@@ -344,7 +344,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
         if (loc == null || !loc.isEnabled()) {
             return false;
         }
-        if (!loc.isAddressFound() || (loc.getLatitude() == 0.0 && loc.getLongitude() == 0.0)) {
+        if (!loc.isAddressFound() && (loc.getLatitude() == 0.0 && loc.getLongitude() == 0.0)) {
             return false;
         }
         return true;
@@ -534,6 +534,7 @@ public class LocationsDbHelper extends SQLiteOpenHelper {
                         null,
                         SQLiteDatabase.CONFLICT_IGNORE);
                 SensorLocationUpdater.autolocationForSensorEventAddressFound = true;
+                org.thosp.yourlocalweather.events.AppEventsBus.postAddressResolution(address);
                 appendLog(context,
                           TAG,
                          "updateAutoLocationAddress:autolocationForSensorEventAddressFound=",

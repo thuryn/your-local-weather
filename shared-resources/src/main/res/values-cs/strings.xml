@@ -664,4 +664,19 @@
     <string name="search_location_query" tools:ignore="MissingTranslation">Hledat</string>
     <string name="search_location_select_title" tools:ignore="MissingTranslation">Vyberte lokalitu</string>
     <string name="preference_update_on_resume" tools:ignore="MissingTranslation">Aktualizovat počasí při otevření aplikace</string>
+    <string name="startup_welcome_title" tools:ignore="MissingTranslation">Vítejte v Your Local Weather</string>
+    <string name="startup_welcome_subtitle" tools:ignore="MissingTranslation">Pro poskytování přesných předpovědí a widgetů prosím dokončete prvotní nastavení.</string>
+    <string name="startup_btn_location" tools:ignore="MissingTranslation">Povolit přístup k poloze</string>
+    <string name="startup_btn_notifications" tools:ignore="MissingTranslation">Povolit notifikace</string>
+    <string name="startup_btn_battery" tools:ignore="MissingTranslation">Nastavení optimalizace baterie</string>
+    <string name="startup_btn_finish" tools:ignore="MissingTranslation">Začít používat aplikaci</string>
+    <string name="startup_location_granted" tools:ignore="MissingTranslation">Přístup k poloze udělen</string>
+    <string name="startup_notifications_granted" tools:ignore="MissingTranslation">Notifikace povoleny</string>
+    <string name="startup_btn_location_fg" tools:ignore="MissingTranslation">1. Povolit přístup k poloze</string>
+    <string name="startup_btn_location_bg" tools:ignore="MissingTranslation">2. Povolit polohu na pozadí</string>
+    <string name="startup_bg_location_granted" tools:ignore="MissingTranslation">Poloha na pozadí povolena</string>
+    <string name="startup_grant_foreground_first" tools:ignore="MissingTranslation">Nejprve prosím povolte přístup k poloze</string>
+    <string name="startup_battery_granted" tools:ignore="MissingTranslation">Optimalizace baterie vypnuta</string>
+    <string name="startup_disclaimer_title" tools:ignore="MissingTranslation">Zdroj dat a aktualizace na pozadí</string>
+    <string name="startup_disclaimer_body" tools:ignore="MissingTranslation">Předpověď počasí poskytuje Open-Meteo. Poloha na pozadí a výjimka z optimalizace baterie slouží k automatickým aktualizacím widgetů na ploše.</string>
 </resources>

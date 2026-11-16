@@ -487,11 +487,17 @@ public class Utils {
         if ("E".equals(location.getLocationSource())) {
             return context.getString(R.string.subscription_expired);
         }
-        if (!location.isAddressFound()) {
-            return context.getString(R.string.location_not_found);
+        if (location.isAddressFound() && location.getAddress() != null) {
+            String cityAndCountry = getCityAndCountryFromAddress(location.getAddress());
+            if (cityAndCountry != null && !cityAndCountry.trim().isEmpty()) {
+                return cityAndCountry;
+            }
+        }
+        if (location.getLatitude() != 0.0 || location.getLongitude() != 0.0) {
+            return String.format(java.util.Locale.US, "%.2f°, %.2f°", location.getLatitude(), location.getLongitude());
         }
 
-        return getCityAndCountryFromAddress(location.getAddress());
+        return context.getString(R.string.location_not_found);
     }
 
     public static String getWeatherDescription(Context context, Weather weather) {

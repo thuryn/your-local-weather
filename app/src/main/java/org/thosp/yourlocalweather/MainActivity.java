@@ -105,6 +105,14 @@ public class MainActivity extends BaseActivity
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        int guideVersion = PreferenceManager.getDefaultSharedPreferences(this).getInt(Constants.APP_INITIAL_GUIDE_VERSION, 0);
+        if (guideVersion < 7) {
+            Intent startupIntent = new Intent(this, StartupActivity.class);
+            startActivity(startupIntent);
+            finish();
+            return;
+        }
+
         locationsDbHelper = LocationsDbHelper.getInstance(MainActivity.this);
         weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(MainActivity.this);
         currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(MainActivity.this);
@@ -341,7 +349,10 @@ public class MainActivity extends BaseActivity
         if (currentLocation == null) {
             return;
         }
-        currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
+        currentLocation = locationsDbHelper.getLocationWithFallback(currentLocation.getOrderId());
+        if (currentLocation == null) {
+            return;
+        }
         String lastUpdate = Utils.getLastUpdateTime(
                 MainActivity.this,
                 currentWeatherDbHelper.getWeather(currentLocation.getId()),
@@ -363,7 +374,11 @@ public class MainActivity extends BaseActivity
             appendLog(MainActivity.this, TAG, "updateUI skipping - view template not ready or no currentLocation");
             return;
         }
-        currentLocation = locationsDbHelper.getLocationById(currentLocation.getId());
+        currentLocation = locationsDbHelper.getLocationWithFallback(currentLocation.getOrderId());
+        if (currentLocation == null) {
+            renderTextsWithNoWeather();
+            return;
+        }
         CurrentWeatherDbHelper.WeatherRecord weatherRecord = currentWeatherDbHelper.getWeather(currentLocation.getId());
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(currentLocation.getId());
 
@@ -472,7 +487,12 @@ public class MainActivity extends BaseActivity
                     binding.mainContent.mainSecondTemperatureIcon.setVisibility(View.VISIBLE);
                     binding.mainContent.mainSecondTemperature.setText(MainActivity.this.getString(R.string.label_apparent_temperature, ""));
                 }
-                binding.mainHeader.mainDescription.setText(R.string.location_not_found);
+                if (currentLocation != null && (currentLocation.getLatitude() != 0.0 || currentLocation.getLongitude() != 0.0)) {
+                    binding.mainHeader.mainDescription.setText(R.string.progressDialog_gps_locate);
+                    localityView.setText(Utils.getCityAndCountry(MainActivity.this, currentLocation));
+                } else {
+                    binding.mainHeader.mainDescription.setText(R.string.location_not_found);
+                }
                 binding.mainHeader.mainLastUpdate.setText(MainActivity.this.getString(R.string.last_update_label, ""));
                 binding.mainContent.mainHumidity.setText(MainActivity.this.getString(R.string.humidity_label, "", ""));
                 binding.mainContent.mainPressure.setText(MainActivity.this.getString(R.string.pressure_label, "", ""));
@@ -562,6 +582,15 @@ public class MainActivity extends BaseActivity
         final java.lang.ref.WeakReference<MainActivity> activityRef = new java.lang.ref.WeakReference<>(this);
 
         appEventListener = event -> {
+            if (event instanceof AppEvent.AddressResolution) {
+                YourLocalWeather.executor.submit(() -> {
+                    MainActivity actInside = activityRef.get();
+                    if (actInside != null) {
+                        actInside.updateLocationCityTimeAndSource();
+                    }
+                });
+                return;
+            }
             if (!(event instanceof AppEvent.MainWeatherUpdate)) {
                 return;
             }

@@ -35,16 +35,18 @@ public class SensorLocationUpdateService extends SensorLocationUpdater {
             return ret;
         }
         Notification notification = NotificationUtils.getNotificationForActivity(getBaseContext());
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-            try {
+        boolean hasLocationPermission = androidx.core.content.ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == android.content.pm.PackageManager.PERMISSION_GRANTED ||
+                androidx.core.content.ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == android.content.pm.PackageManager.PERMISSION_GRANTED;
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && hasLocationPermission) {
                 startForeground(NotificationUtils.NOTIFICATION_ID, notification, ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION);
-            } catch (Exception e) {
-                appendLog(getBaseContext(), TAG, "Failed to start foreground service", e);
-                stopSelf();
-                return START_NOT_STICKY;
+            } else {
+                startForeground(NotificationUtils.NOTIFICATION_ID, notification);
             }
-        } else {
-            startForeground(NotificationUtils.NOTIFICATION_ID, notification);
+        } catch (Exception e) {
+            appendLog(getBaseContext(), TAG, "Failed to start foreground service", e);
+            stopSelf();
+            return START_NOT_STICKY;
         }
         appendLog(getBaseContext(), TAG, "onStartCommand:intent.getAction():", intent.getAction());
 

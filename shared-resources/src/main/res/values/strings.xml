@@ -694,4 +694,19 @@
     <string name="search_location_query" tools:ignore="MissingTranslation">Search</string>
     <string name="search_location_select_title" tools:ignore="MissingTranslation">Select location</string>
     <string name="preference_update_on_resume" tools:ignore="MissingTranslation">Update weather when app opens</string>
+    <string name="startup_welcome_title" tools:ignore="MissingTranslation">Welcome to Your Local Weather</string>
+    <string name="startup_welcome_subtitle" tools:ignore="MissingTranslation">To provide accurate weather forecasts and widgets, please complete the initial setup.</string>
+    <string name="startup_btn_location" tools:ignore="MissingTranslation">Grant Location Permission</string>
+    <string name="startup_btn_notifications" tools:ignore="MissingTranslation">Allow Notifications</string>
+    <string name="startup_btn_battery" tools:ignore="MissingTranslation">Battery Optimization Settings</string>
+    <string name="startup_btn_finish" tools:ignore="MissingTranslation">Get Started</string>
+    <string name="startup_location_granted" tools:ignore="MissingTranslation">Location permission granted</string>
+    <string name="startup_notifications_granted" tools:ignore="MissingTranslation">Notifications allowed</string>
+    <string name="startup_btn_location_fg" tools:ignore="MissingTranslation">1. Grant Location Permission</string>
+    <string name="startup_btn_location_bg" tools:ignore="MissingTranslation">2. Grant Background Location Permission</string>
+    <string name="startup_bg_location_granted" tools:ignore="MissingTranslation">Background location granted</string>
+    <string name="startup_grant_foreground_first" tools:ignore="MissingTranslation">Please grant location permission first</string>
+    <string name="startup_battery_granted" tools:ignore="MissingTranslation">Battery optimization disabled</string>
+    <string name="startup_disclaimer_title" tools:ignore="MissingTranslation">Data Source &amp; Background Updates</string>
+    <string name="startup_disclaimer_body" tools:ignore="MissingTranslation">Weather data is provided by Open-Meteo. Background location and battery exemptions enable automatic weather updates on widgets.</string>
 </resources>

@@ -73,6 +73,11 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".StartupActivity"
+            android:label="@string/startup_welcome_title"
+            android:theme="@style/AppTheme"
+            android:exported="false" />
+        <activity
             android:name=".SettingsActivity"
             android:label="@string/nav_menu_settings"
             android:parentActivityName=".MainActivity">
