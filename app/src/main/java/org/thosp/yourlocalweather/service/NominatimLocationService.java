@@ -84,6 +84,90 @@ public class NominatimLocationService {
     private static final String WIRE_COUNTRYCODE = "country_code";
     private static Formatter formatter;
 
+    public interface AddressSearchCallback {
+        void onSearchResult(List<Address> addresses);
+    }
+
+    public void searchLocation(final Context context,
+                               final String query,
+                               final String locale,
+                               final AddressSearchCallback callback) {
+        if (query == null || query.trim().isEmpty()) {
+            if (callback != null) callback.onSearchResult(new ArrayList<>());
+            return;
+        }
+
+        try {
+            String encodedQuery = java.net.URLEncoder.encode(query.trim(), "UTF-8");
+            String searchUrl = String.format(Locale.US,
+                    "%s/search?format=json&accept-language=%s&q=%s&addressdetails=1&limit=5",
+                    SERVICE_URL_OSM, locale.split("_")[0], encodedQuery);
+
+            appendLog(context, TAG, "searchLocation URL: ", searchUrl);
+
+            client.get(searchUrl, null, new AsyncHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+                    try {
+                        String jsonString = new String(responseBody, java.nio.charset.StandardCharsets.UTF_8);
+                        org.json.JSONArray array = new org.json.JSONArray(jsonString);
+                        List<Address> addresses = new ArrayList<>();
+                        for (int i = 0; i < array.length(); i++) {
+                            org.json.JSONObject obj = array.getJSONObject(i);
+                            double lat = Double.parseDouble(obj.getString("lat"));
+                            double lon = Double.parseDouble(obj.getString("lon"));
+                            Address addr = new Address(new Locale(locale));
+                            addr.setLatitude(lat);
+                            addr.setLongitude(lon);
+                            if (obj.has("address")) {
+                                org.json.JSONObject addrObj = obj.getJSONObject("address");
+                                if (addrObj.has("city")) addr.setLocality(addrObj.getString("city"));
+                                else if (addrObj.has("town")) addr.setLocality(addrObj.getString("town"));
+                                else if (addrObj.has("village")) addr.setLocality(addrObj.getString("village"));
+                                if (addrObj.has("state")) addr.setAdminArea(addrObj.getString("state"));
+                                if (addrObj.has("country")) addr.setCountryName(addrObj.getString("country"));
+                                if (addrObj.has("country_code")) addr.setCountryCode(addrObj.getString("country_code"));
+                                if (addrObj.has("postcode")) addr.setPostalCode(addrObj.getString("postcode"));
+                            }
+                            addresses.add(addr);
+                        }
+
+                        // Determine target country from locale to prioritize local search results
+                        String userCountry = locale != null && locale.contains("_") ? locale.split("_")[1].toLowerCase(Locale.ROOT) : (locale != null ? locale.toLowerCase(Locale.ROOT) : "");
+                        if ("cs".equals(userCountry) || "cz".equals(userCountry)) {
+                            userCountry = "cz";
+                        }
+                        final String targetCountry = userCountry;
+
+                        java.util.Collections.sort(addresses, (a1, a2) -> {
+                            boolean m1 = targetCountry.equalsIgnoreCase(a1.getCountryCode());
+                            boolean m2 = targetCountry.equalsIgnoreCase(a2.getCountryCode());
+                            if (m1 && !m2) return -1;
+                            if (!m1 && m2) return 1;
+                            return 0;
+                        });
+
+                        if (callback != null) {
+                            callback.onSearchResult(addresses);
+                        }
+                    } catch (Exception e) {
+                        appendLog(context, TAG, "Error parsing search results", e);
+                        if (callback != null) callback.onSearchResult(new ArrayList<>());
+                    }
+                }
+
+                @Override
+                public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+                    appendLog(context, TAG, "Failed to search location", error);
+                    if (callback != null) callback.onSearchResult(new ArrayList<>());
+                }
+            });
+        } catch (Exception e) {
+            appendLog(context, TAG, "Error encoding search query", e);
+            if (callback != null) callback.onSearchResult(new ArrayList<>());
+        }
+    }
+
     public void getFromLocation(final Context context,
                                 final double latitude,
                                 final double longitude,

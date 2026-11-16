@@ -172,7 +172,128 @@ public class SearchActivity extends BaseActivity {
         MapEventsOverlay overlayEvents = new MapEventsOverlay(mReceive);
         binding.map.getOverlays().add(overlayEvents);
 
+        binding.searchQueryButton.setOnClickListener(v -> performSearchQuery());
+        binding.searchTextInput.setOnEditorActionListener((v, actionId, event) -> {
+            if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH || actionId == android.view.inputmethod.EditorInfo.IME_ACTION_DONE) {
+                performSearchQuery();
+                return true;
+            }
+            return false;
+        });
+
         initializeWeatherReceiver();
+    }
+
+    private void performSearchQuery() {
+        String query = binding.searchTextInput.getText().toString();
+        if (query.trim().isEmpty()) {
+            return;
+        }
+
+        mProgressDialog = new ProgressDialog(SearchActivity.this);
+        mProgressDialog.setMessage(getString(R.string.progressDialog_gps_locate));
+        mProgressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        mProgressDialog.setIndeterminate(true);
+        mProgressDialog.setCancelable(true);
+        mProgressDialog.show();
+
+        String currentLocale = AppPreference.getInstance().getLanguage(getApplicationContext());
+
+        NominatimLocationService.getInstance().searchLocation(
+                getApplicationContext(),
+                query,
+                currentLocale,
+                addresses -> runOnUiThread(() -> {
+                    if (mProgressDialog != null && mProgressDialog.isShowing()) {
+                        try {
+                            mProgressDialog.dismiss();
+                        } catch (Exception e) {
+                            // ignore
+                        }
+                    }
+
+                    if (addresses == null || addresses.isEmpty()) {
+                        binding.resolvedLocationAddress.setText(getString(R.string.location_not_found));
+                        binding.searchAddLocationButton.setVisibility(View.GONE);
+                        return;
+                    }
+
+                    if (addresses.size() == 1) {
+                        selectSearchResult(addresses.get(0));
+                    } else {
+                        String[] items = new String[addresses.size()];
+                        for (int i = 0; i < addresses.size(); i++) {
+                            Address a = addresses.get(i);
+                            String name = Utils.getCityAndCountryFromAddress(a);
+                            if (name == null || name.trim().isEmpty()) {
+                                name = a.getFeatureName() != null ? a.getFeatureName() : (a.getCountryName() != null ? a.getCountryName() : "");
+                            }
+                            if (a.getPostalCode() != null && !name.contains(a.getPostalCode())) {
+                                name += " (" + a.getPostalCode() + ")";
+                            }
+                            items[i] = name;
+                        }
+
+                        new androidx.appcompat.app.AlertDialog.Builder(SearchActivity.this)
+                                .setTitle(R.string.search_location_select_title)
+                                .setItems(items, (dialog, which) -> {
+                                    selectSearchResult(addresses.get(which));
+                                })
+                                .setNegativeButton(android.R.string.cancel, null)
+                                .show();
+                    }
+                })
+        );
+    }
+
+    private void selectSearchResult(Address selectedAddress) {
+        address = selectedAddress;
+        latitude = selectedAddress.getLatitude();
+        longitude = selectedAddress.getLongitude();
+
+        GeoPoint point = new GeoPoint(latitude, longitude);
+        binding.map.getController().setCenter(point);
+        binding.map.getController().setZoom(12.0);
+
+        org.osmdroid.views.overlay.Marker marker = new org.osmdroid.views.overlay.Marker(binding.map);
+        marker.setPosition(point);
+        marker.setAnchor(org.osmdroid.views.overlay.Marker.ANCHOR_CENTER, org.osmdroid.views.overlay.Marker.ANCHOR_BOTTOM);
+        marker.setTitle(Utils.getCityAndCountryFromAddress(address));
+
+        binding.map.getOverlays().clear();
+        MapEventsReceiver mReceive = new MapEventsReceiver() {
+            @Override
+            public boolean singleTapConfirmedHelper(GeoPoint p) {
+                latitude = p.getLatitude();
+                longitude = p.getLongitude();
+                locale = AppPreference.getInstance().getLanguage(getApplicationContext());
+                final Intent resultionResult = new Intent(ACTION_ADDRESS_RESOLUTION_RESULT);
+                resultionResult.setPackage(getApplicationContext().getPackageName());
+                Thread thread = new Thread(() -> {
+                    NominatimLocationService.getInstance().getFromLocation(
+                            getApplicationContext(),
+                            p.getLatitude(),
+                            p.getLongitude(),
+                            1,
+                            locale,
+                            new SearchActivityProcessResultFromAddressResolution(getApplicationContext(), resultionResult, mProgressDialog),
+                            null);
+                });
+                thread.start();
+                return false;
+            }
+
+            @Override
+            public boolean longPressHelper(GeoPoint p) {
+                return false;
+            }
+        };
+        binding.map.getOverlays().add(new MapEventsOverlay(mReceive));
+        binding.map.getOverlays().add(marker);
+        binding.map.invalidate();
+
+        binding.resolvedLocationAddress.setText(Utils.getCityAndCountryFromAddress(address));
+        binding.searchAddLocationButton.setVisibility(View.VISIBLE);
     }
 
     public void onResume(){
