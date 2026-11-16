@@ -222,6 +222,12 @@ public class MainActivity extends BaseActivity
         checkSettingsAndPermisions();
         if (inited) {
             updateUI();
+            boolean updateOnResume = PreferenceManager.getDefaultSharedPreferences(this).getBoolean(Constants.KEY_PREF_UPDATE_ON_RESUME, false);
+            if (updateOnResume && connectionDetector != null && connectionDetector.isNetworkAvailableAndConnected() && currentLocation != null) {
+                YourLocalWeather.executor.submit(() -> {
+                    sendMessageToCurrentWeatherService(currentLocation, "MAIN");
+                });
+            }
         }
         wearServiceManager.checkWearables();
     }

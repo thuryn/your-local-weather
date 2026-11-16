@@ -32,7 +32,8 @@ public class UpdatesPreferenceFragment extends PreferenceFragmentCompat implemen
     private final String[] SUMMARIES_TO_UPDATE = {
             Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD,
             Constants.KEY_PREF_LOCATION_UPDATE_PERIOD,
-            Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE
+            Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE,
+            Constants.KEY_PREF_UPDATE_ON_RESUME
     };
     private final SensorEventListener sensorListener = new SensorEventListener() {
 
@@ -114,13 +115,15 @@ public class UpdatesPreferenceFragment extends PreferenceFragmentCompat implemen
 
     private void entrySummary(String key) {
         if (Constants.KEY_PREF_LOCATION_AUTO_UPDATE_NIGHT.equals(key) ||
-                Constants.KEY_PREF_LOCATION_UPDATE_NIGHT.equals(key)) {
+                Constants.KEY_PREF_LOCATION_UPDATE_NIGHT.equals(key) ||
+                Constants.KEY_PREF_UPDATE_ON_RESUME.equals(key)) {
             return;
         }
-        ListPreference preference = (ListPreference) findPreference(key);
-        if (preference == null) {
+        Preference pref = findPreference(key);
+        if (!(pref instanceof ListPreference)) {
             return;
         }
+        ListPreference preference = (ListPreference) pref;
         preference.setSummary(preference.getEntry());
         if (Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD.equals(key)) {
             if ("0".equals(preference.getValue())) {

@@ -693,4 +693,5 @@
     <string name="uv_index_label" tools:ignore="MissingTranslation">UV Index: %1$.1f</string>
     <string name="search_location_query" tools:ignore="MissingTranslation">Search</string>
     <string name="search_location_select_title" tools:ignore="MissingTranslation">Select location</string>
+    <string name="preference_update_on_resume" tools:ignore="MissingTranslation">Update weather when app opens</string>
 </resources>

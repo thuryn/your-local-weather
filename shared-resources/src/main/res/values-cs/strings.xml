@@ -663,4 +663,5 @@
     <string name="uv_index_label" tools:ignore="MissingTranslation">UV Index: %1$.1f</string>
     <string name="search_location_query" tools:ignore="MissingTranslation">Hledat</string>
     <string name="search_location_select_title" tools:ignore="MissingTranslation">Vyberte lokalitu</string>
+    <string name="preference_update_on_resume" tools:ignore="MissingTranslation">Aktualizovat počasí při otevření aplikace</string>
 </resources>
