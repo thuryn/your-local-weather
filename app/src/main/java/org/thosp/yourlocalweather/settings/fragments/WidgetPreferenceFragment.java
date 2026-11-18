@@ -79,6 +79,11 @@ public class WidgetPreferenceFragment extends PreferenceFragmentCompat implement
             case Constants.KEY_PREF_WIDGET_SHOW_CONTROLS:
                 org.thosp.yourlocalweather.utils.WidgetUtils.updateWidgets(context);
                 break;
+            case Constants.KEY_PREF_WIDGET_GRAPH_PAST_DAYS:
+                GraphUtils.invalidateGraph();
+                org.thosp.yourlocalweather.utils.WidgetUtils.updateWidgets(context);
+                setSummary(Constants.KEY_PREF_WIDGET_GRAPH_PAST_DAYS);
+                break;
             case Constants.KEY_PREF_UPDATE_DETAIL:
                 org.thosp.yourlocalweather.utils.WidgetUtils.updateWidgets(context);
                 setDetailedSummary(Constants.KEY_PREF_UPDATE_DETAIL);
@@ -92,6 +97,7 @@ public class WidgetPreferenceFragment extends PreferenceFragmentCompat implement
         getPreferenceScreen().getSharedPreferences()
                 .registerOnSharedPreferenceChangeListener(this);
         setSummary(Constants.KEY_PREF_WIDGET_THEME);
+        setSummary(Constants.KEY_PREF_WIDGET_GRAPH_PAST_DAYS);
         setDetailedSummary(Constants.KEY_PREF_UPDATE_DETAIL);
     }
 

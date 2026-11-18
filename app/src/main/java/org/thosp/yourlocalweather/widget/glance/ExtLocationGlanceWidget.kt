@@ -9,13 +9,16 @@ import androidx.glance.GlanceId
 import androidx.glance.GlanceModifier
 import androidx.glance.GlanceTheme
 import androidx.glance.ImageProvider
+import androidx.glance.LocalState
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.GlanceAppWidgetManager
 import androidx.glance.appwidget.GlanceAppWidgetReceiver
+import androidx.glance.appwidget.LocalAppWidgetOptions
 import androidx.glance.appwidget.SizeMode
 import androidx.glance.appwidget.appWidgetBackground
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.appwidget.provideContent
+import androidx.glance.state.GlanceStateDefinition
 import androidx.glance.background
 import androidx.glance.layout.Box
 import androidx.glance.layout.Column
@@ -79,40 +82,46 @@ class ExtLocationGlanceWidgetReceiver : GlanceAppWidgetReceiver() {
 class ExtLocationGlanceWidget : GlanceAppWidget() {
 
     override val sizeMode: SizeMode = SizeMode.Exact
+    override val stateDefinition: GlanceStateDefinition<*> = RefreshableGlanceStateDefinition
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         val appContext = context.applicationContext
         val appWidgetId = GlanceAppWidgetManager(appContext).getAppWidgetId(id)
 
-        val widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(appContext)
-        val locationsDbHelper = LocationsDbHelper.getInstance(appContext)
-        val currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(appContext)
-        val weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(appContext)
-
-        val locationId = widgetSettingsDbHelper.getParamLong(appWidgetId, "locationId")
-        val currentLocation: Location? = if (locationId != null) {
-            locationsDbHelper.getLocationById(locationId)
-        } else {
-            locationsDbHelper.getLocationWithFallback(0)
-        }
-
-        val weatherRecord = currentLocation?.let { currentWeatherDbHelper.getWeather(it.id) }
-        val weatherForecastRecord = currentLocation?.let { weatherForecastDbHelper.getWeatherForecast(it.id) }
-
-        val temperatureUnit = AppPreference.getTemperatureUnitFromPreferences(appContext)
-        val windUnit = AppPreference.getWindUnitFromPreferences(appContext)
-        val timeStyle = AppPreference.getTimeStylePreference(appContext)
-        val textColorInt = AppPreference.getWidgetTextColor(appContext)
-        val backgroundColorInt = AppPreference.getWidgetBackgroundColor(appContext)
-        val headerColorInt = AppPreference.getWindowHeaderBackgroundColorId(appContext)
-        val fontBasedIcons = "weather_icon_set_fontbased" == AppPreference.getIconSet(appContext)
-
-        val isGlass = AppPreference.isGlassTheme(appContext)
-        val textColor = if (isGlass) Color.White else Color(textColorInt)
-        val backgroundColor = if (isGlass) Color(0x1F0F172A) else Color(backgroundColorInt)
-        val headerColor = if (isGlass) Color(0x35FFFFFF) else Color(headerColorInt)
-
         provideContent {
+            @Suppress("UNUSED_VARIABLE")
+            val glanceState = LocalState.current
+            @Suppress("UNUSED_VARIABLE")
+            val appWidgetOptions = LocalAppWidgetOptions.current
+
+            val widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(appContext)
+            val locationsDbHelper = LocationsDbHelper.getInstance(appContext)
+            val currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(appContext)
+            val weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(appContext)
+
+            val locationId = widgetSettingsDbHelper.getParamLong(appWidgetId, "locationId")
+            val currentLocation: Location? = if (locationId != null) {
+                locationsDbHelper.getLocationById(locationId)
+            } else {
+                locationsDbHelper.getLocationWithFallback(0)
+            }
+
+            val weatherRecord = currentLocation?.let { currentWeatherDbHelper.getWeather(it.id) }
+            val weatherForecastRecord = currentLocation?.let { weatherForecastDbHelper.getWeatherForecast(it.id) }
+
+            val temperatureUnit = AppPreference.getTemperatureUnitFromPreferences(appContext)
+            val windUnit = AppPreference.getWindUnitFromPreferences(appContext)
+            val timeStyle = AppPreference.getTimeStylePreference(appContext)
+            val textColorInt = AppPreference.getWidgetTextColor(appContext)
+            val backgroundColorInt = AppPreference.getWidgetBackgroundColor(appContext)
+            val headerColorInt = AppPreference.getWindowHeaderBackgroundColorId(appContext)
+            val fontBasedIcons = "weather_icon_set_fontbased" == AppPreference.getIconSet(appContext)
+
+            val isGlass = AppPreference.isGlassTheme(appContext)
+            val textColor = if (isGlass) Color.White else Color(textColorInt)
+            val backgroundColor = if (isGlass) Color(0x1F0F172A) else Color(backgroundColorInt)
+            val headerColor = if (isGlass) Color(0x35FFFFFF) else Color(headerColorInt)
+
             GlanceTheme {
                 WidgetContent(
                     context = appContext,

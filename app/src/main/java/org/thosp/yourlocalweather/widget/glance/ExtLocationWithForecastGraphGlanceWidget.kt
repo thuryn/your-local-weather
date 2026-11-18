@@ -13,15 +13,18 @@ import androidx.glance.GlanceTheme
 import androidx.glance.Image
 import androidx.glance.ImageProvider
 import androidx.glance.LocalSize
+import androidx.glance.LocalState
 import androidx.glance.action.clickable
 import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.GlanceAppWidgetManager
+import androidx.glance.appwidget.LocalAppWidgetOptions
 import androidx.glance.appwidget.SizeMode
 import androidx.glance.appwidget.action.actionSendBroadcast
 import androidx.glance.appwidget.action.actionStartActivity
 import androidx.glance.appwidget.appWidgetBackground
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.appwidget.provideContent
+import androidx.glance.state.GlanceStateDefinition
 import androidx.glance.background
 import androidx.glance.color.ColorProvider
 import androidx.glance.layout.Alignment
@@ -60,91 +63,97 @@ import java.util.Locale
 class ExtLocationWithForecastGraphGlanceWidget : GlanceAppWidget() {
 
     override val sizeMode: SizeMode = SizeMode.Exact
+    override val stateDefinition: GlanceStateDefinition<*> = RefreshableGlanceStateDefinition
 
     override suspend fun provideGlance(context: Context, id: GlanceId) {
         val appContext = context.applicationContext
         val appWidgetId = GlanceAppWidgetManager(appContext).getAppWidgetId(id)
 
-        // Load data from DBs and preferences
-        val widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(appContext)
-        val locationsDbHelper = LocationsDbHelper.getInstance(appContext)
-        val currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(appContext)
-        val weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(appContext)
-
-        val locationId = widgetSettingsDbHelper.getParamLong(appWidgetId, "locationId")
-        val currentLocation: Location? = if (locationId != null) {
-            locationsDbHelper.getLocationById(locationId)
-        } else {
-            locationsDbHelper.getLocationWithFallback(0)
-        }
-
-        val weatherRecord = currentLocation?.let { currentWeatherDbHelper.getWeather(it.id) }
-        val weatherForecastRecord = currentLocation?.let { weatherForecastDbHelper.getWeatherForecast(it.id) }
-
-        // Preferences
-        val temperatureUnit = AppPreference.getTemperatureUnitFromPreferences(appContext)
-        val pressureUnit = AppPreference.getPressureUnitFromPreferences(appContext)
-        val windUnit = AppPreference.getWindUnitFromPreferences(appContext)
-        val rainSnowUnit = AppPreference.getRainSnowUnitFromPreferences(appContext)
-        val timeStyle = AppPreference.getTimeStylePreference(appContext)
-        val textColorInt = AppPreference.getWidgetTextColor(appContext)
-        val backgroundColorInt = AppPreference.getWidgetBackgroundColor(appContext)
-        val headerColorInt = AppPreference.getWindowHeaderBackgroundColorId(appContext)
-        val fontBasedIcons = "weather_icon_set_fontbased" == AppPreference.getIconSet(appContext)
-        val forecastDayAbbrev = widgetSettingsDbHelper.getParamBoolean(appWidgetId, "forecast_day_abbrev") ?: false
-        val hoursForecast = widgetSettingsDbHelper.getParamBoolean(appWidgetId, "hoursForecast") ?: false
-
-        val isGlass = AppPreference.isGlassTheme(appContext)
-        val textColor = if (isGlass) Color.White else Color(textColorInt)
-        val backgroundColor = if (isGlass) Color(0x1F0F172A) else Color(backgroundColorInt)
-        val headerColor = if (isGlass) Color(0x35FFFFFF) else Color(headerColorInt)
-
-        // Graph Bitmap Generation
-        val showLegend = widgetSettingsDbHelper.getParamBoolean(appWidgetId, "combinedGraphShowLegend")
-        val combinedGraphValuesFromPreferences = AppPreference.getCombinedGraphValues(appContext)
-        val combinedGraphValuesFromSettings = GraphUtils.getCombinedGraphValuesFromSettings(
-            combinedGraphValuesFromPreferences,
-            widgetSettingsDbHelper,
-            appWidgetId
-        )
-        val gridColor = AppPreference.getWidgetGraphGridColor(appContext)
-        val nativeScaled = AppPreference.isWidgetGraphNativeScaled(appContext)
-
-        var graphBitmap: Bitmap? = null
-        if (currentLocation != null && weatherForecastRecord?.completeWeatherForecast != null) {
-            try {
-                graphBitmap = GraphUtils.getCombinedChart(
-                    appContext,
-                    appWidgetId,
-                    0.4f,
-                    weatherForecastRecord.completeWeatherForecast.weatherForecastList,
-                    currentLocation.id,
-                    currentLocation.locale,
-                    showLegend,
-                    combinedGraphValuesFromSettings,
-                    textColorInt,
-                    backgroundColorInt,
-                    gridColor,
-                    temperatureUnit,
-                    pressureUnit,
-                    rainSnowUnit,
-                    nativeScaled,
-                    windUnit
-                )
-            } catch (e: Exception) {
-                // Ignore graph errors
-            }
-        }
-
-        // Daily Forecast Calculation
-        val forecastDays = if (currentLocation != null && weatherForecastRecord != null) {
-            ForecastUtil.calculateWeatherForDays(appContext, weatherForecastRecord)
-                ?.sortedBy { it.dayIndex } ?: emptyList()
-        } else {
-            emptyList()
-        }
-
         provideContent {
+            @Suppress("UNUSED_VARIABLE")
+            val glanceState = LocalState.current
+            @Suppress("UNUSED_VARIABLE")
+            val appWidgetOptions = LocalAppWidgetOptions.current
+
+            // Load data from DBs and preferences
+            val widgetSettingsDbHelper = WidgetSettingsDbHelper.getInstance(appContext)
+            val locationsDbHelper = LocationsDbHelper.getInstance(appContext)
+            val currentWeatherDbHelper = CurrentWeatherDbHelper.getInstance(appContext)
+            val weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(appContext)
+
+            val locationId = widgetSettingsDbHelper.getParamLong(appWidgetId, "locationId")
+            val currentLocation: Location? = if (locationId != null) {
+                locationsDbHelper.getLocationById(locationId)
+            } else {
+                locationsDbHelper.getLocationWithFallback(0)
+            }
+
+            val weatherRecord = currentLocation?.let { currentWeatherDbHelper.getWeather(it.id) }
+            val weatherForecastRecord = currentLocation?.let { weatherForecastDbHelper.getWeatherForecast(it.id) }
+
+            // Preferences
+            val temperatureUnit = AppPreference.getTemperatureUnitFromPreferences(appContext)
+            val pressureUnit = AppPreference.getPressureUnitFromPreferences(appContext)
+            val windUnit = AppPreference.getWindUnitFromPreferences(appContext)
+            val rainSnowUnit = AppPreference.getRainSnowUnitFromPreferences(appContext)
+            val timeStyle = AppPreference.getTimeStylePreference(appContext)
+            val textColorInt = AppPreference.getWidgetTextColor(appContext)
+            val backgroundColorInt = AppPreference.getWidgetBackgroundColor(appContext)
+            val headerColorInt = AppPreference.getWindowHeaderBackgroundColorId(appContext)
+            val fontBasedIcons = "weather_icon_set_fontbased" == AppPreference.getIconSet(appContext)
+            val forecastDayAbbrev = widgetSettingsDbHelper.getParamBoolean(appWidgetId, "forecast_day_abbrev") ?: false
+            val hoursForecast = widgetSettingsDbHelper.getParamBoolean(appWidgetId, "hoursForecast") ?: false
+
+            val isGlass = AppPreference.isGlassTheme(appContext)
+            val textColor = if (isGlass) Color.White else Color(textColorInt)
+            val backgroundColor = if (isGlass) Color(0x1F0F172A) else Color(backgroundColorInt)
+            val headerColor = if (isGlass) Color(0x35FFFFFF) else Color(headerColorInt)
+
+            // Graph Bitmap Generation
+            val showLegend = widgetSettingsDbHelper.getParamBoolean(appWidgetId, "combinedGraphShowLegend")
+            val combinedGraphValuesFromPreferences = AppPreference.getCombinedGraphValues(appContext)
+            val combinedGraphValuesFromSettings = GraphUtils.getCombinedGraphValuesFromSettings(
+                combinedGraphValuesFromPreferences,
+                widgetSettingsDbHelper,
+                appWidgetId
+            )
+            val gridColor = AppPreference.getWidgetGraphGridColor(appContext)
+            val nativeScaled = AppPreference.isWidgetGraphNativeScaled(appContext)
+
+            var graphBitmap: Bitmap? = null
+            if (currentLocation != null && weatherForecastRecord?.completeWeatherForecast != null) {
+                try {
+                    graphBitmap = GraphUtils.getCombinedChart(
+                        appContext,
+                        appWidgetId,
+                        0.4f,
+                        weatherForecastRecord.completeWeatherForecast.weatherForecastList,
+                        currentLocation.id,
+                        currentLocation.locale,
+                        showLegend,
+                        combinedGraphValuesFromSettings,
+                        textColorInt,
+                        backgroundColorInt,
+                        gridColor,
+                        temperatureUnit,
+                        pressureUnit,
+                        rainSnowUnit,
+                        nativeScaled,
+                        windUnit
+                    )
+                } catch (e: Exception) {
+                    // Ignore graph errors
+                }
+            }
+
+            // Daily Forecast Calculation
+            val forecastDays = if (currentLocation != null && weatherForecastRecord != null) {
+                ForecastUtil.calculateWeatherForDays(appContext, weatherForecastRecord)
+                    ?.sortedBy { it.dayIndex } ?: emptyList()
+            } else {
+                emptyList()
+            }
+
             GlanceTheme {
                 WidgetContent(
                     context = appContext,

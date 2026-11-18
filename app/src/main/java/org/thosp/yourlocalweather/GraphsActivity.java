@@ -188,6 +188,7 @@ public class GraphsActivity extends ForecastingActivity {
         }
         Description graphDescription = new Description();
         graphDescription.setText("");
+        binding.temperatureChart.clear();
         binding.temperatureChart.setDescription(graphDescription);
         binding.temperatureChart.setDrawGridBackground(false);
         binding.temperatureChart.setTouchEnabled(true);
@@ -198,9 +199,11 @@ public class GraphsActivity extends ForecastingActivity {
         binding.temperatureChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         binding.temperatureChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
+        List<DetailedWeatherForecast> forecastList = GraphUtils.filterWeatherForecastListForGraph(weatherForecastList.get(locationId), AppPreference.getGraphPastDays(this));
+
         GraphUtils.setupXAxis(
-                binding.temperatureChart.getXAxis(),
-                weatherForecastList.get(locationId),
+                binding.temperatureChart,
+                forecastList,
                 PreferenceUtil.getTextColor(this),
                 null,
                 PreferenceUtil.getGraphGridColor(this),
@@ -220,8 +223,8 @@ public class GraphsActivity extends ForecastingActivity {
         binding.temperatureChart.getAxisRight().setEnabled(false);
 
         List<Entry> entries = new ArrayList<>();
-        for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
-            DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
+        for (int i = 0; i < forecastList.size(); i++) {
+            DetailedWeatherForecast detailedWeatherForecast = forecastList.get(i);
             if (detailedWeatherForecast == null) {
                 continue;
             }
@@ -279,6 +282,7 @@ public class GraphsActivity extends ForecastingActivity {
         }
         Description graphDescription = new Description();
         graphDescription.setText("");
+        binding.windChart.clear();
         binding.windChart.setDescription(graphDescription);
         binding.windChart.setDrawGridBackground(false);
         binding.windChart.setTouchEnabled(true);
@@ -289,9 +293,11 @@ public class GraphsActivity extends ForecastingActivity {
         binding.windChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         binding.windChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
+        List<DetailedWeatherForecast> forecastList = GraphUtils.filterWeatherForecastListForGraph(weatherForecastList.get(locationId), AppPreference.getGraphPastDays(this));
+
         GraphUtils.setupXAxis(
-                binding.windChart.getXAxis(),
-                weatherForecastList.get(locationId),
+                binding.windChart,
+                forecastList,
                 PreferenceUtil.getTextColor(this),
                 null,
                 PreferenceUtil.getGraphGridColor(this),
@@ -312,8 +318,8 @@ public class GraphsActivity extends ForecastingActivity {
         binding.windChart.getAxisRight().setEnabled(false);
 
         List<Entry> entries = new ArrayList<>();
-        for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
-            DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
+        for (int i = 0; i < forecastList.size(); i++) {
+            DetailedWeatherForecast detailedWeatherForecast = forecastList.get(i);
             if (detailedWeatherForecast == null) {
                 continue;
             }
@@ -368,6 +374,7 @@ public class GraphsActivity extends ForecastingActivity {
         }
         Description graphDescription = new Description();
         graphDescription.setText("");
+        binding.rainChart.clear();
         binding.rainChart.setDescription(graphDescription);
         binding.rainChart.setDrawGridBackground(false);
         binding.rainChart.setTouchEnabled(true);
@@ -378,9 +385,11 @@ public class GraphsActivity extends ForecastingActivity {
         binding.rainChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         binding.rainChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
+        List<DetailedWeatherForecast> forecastList = GraphUtils.filterWeatherForecastListForGraph(weatherForecastList.get(locationId), AppPreference.getGraphPastDays(this));
+
         GraphUtils.setupXAxis(
-                binding.rainChart.getXAxis(),
-                weatherForecastList.get(locationId),
+                binding.rainChart,
+                forecastList,
                 PreferenceUtil.getTextColor(this),
                 null,
                 PreferenceUtil.getGraphGridColor(this),
@@ -401,8 +410,8 @@ public class GraphsActivity extends ForecastingActivity {
         binding.rainChart.getAxisRight().setEnabled(false);
 
         List<Entry> entries = new ArrayList<>();
-        for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
-            DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
+        for (int i = 0; i < forecastList.size(); i++) {
+            DetailedWeatherForecast detailedWeatherForecast = forecastList.get(i);
             if (detailedWeatherForecast == null) {
                 continue;
             }
@@ -462,6 +471,7 @@ public class GraphsActivity extends ForecastingActivity {
         }
         Description graphDescription = new Description();
         graphDescription.setText("");
+        binding.barRainChart.clear();
         binding.barRainChart.setDescription(graphDescription);
         binding.barRainChart.setDrawGridBackground(false);
         binding.barRainChart.setTouchEnabled(true);
@@ -472,9 +482,11 @@ public class GraphsActivity extends ForecastingActivity {
         binding.barRainChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         binding.barRainChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
+        List<DetailedWeatherForecast> forecastList = GraphUtils.filterWeatherForecastListForGraph(weatherForecastList.get(locationId), AppPreference.getGraphPastDays(this));
+
         GraphUtils.setupXAxis(
-                binding.barRainChart.getXAxis(),
-                weatherForecastList.get(locationId),
+                binding.barRainChart,
+                forecastList,
                 PreferenceUtil.getTextColor(this),
                 null,
                 PreferenceUtil.getGraphGridColor(this),
@@ -495,8 +507,8 @@ public class GraphsActivity extends ForecastingActivity {
         binding.barRainChart.getAxisRight().setEnabled(false);
 
         List<BarEntry> entries = new ArrayList<>();
-        for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
-            DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
+        for (int i = 0; i < forecastList.size(); i++) {
+            DetailedWeatherForecast detailedWeatherForecast = forecastList.get(i);
             if (detailedWeatherForecast == null) {
                 continue;
             }
@@ -550,6 +562,7 @@ public class GraphsActivity extends ForecastingActivity {
         }
         Description graphDescription = new Description();
         graphDescription.setText("");
+        binding.snowChart.clear();
         binding.snowChart.setDescription(graphDescription);
         binding.snowChart.setDrawGridBackground(false);
         binding.snowChart.setTouchEnabled(true);
@@ -560,9 +573,11 @@ public class GraphsActivity extends ForecastingActivity {
         binding.snowChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         binding.snowChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
+        List<DetailedWeatherForecast> forecastList = GraphUtils.filterWeatherForecastListForGraph(weatherForecastList.get(locationId), AppPreference.getGraphPastDays(this));
+
         GraphUtils.setupXAxis(
-                binding.snowChart.getXAxis(),
-                weatherForecastList.get(locationId),
+                binding.snowChart,
+                forecastList,
                 PreferenceUtil.getTextColor(this),
                 null,
                 PreferenceUtil.getGraphGridColor(this),
@@ -583,8 +598,8 @@ public class GraphsActivity extends ForecastingActivity {
         binding.snowChart.getAxisRight().setEnabled(false);
 
         List<Entry> entries = new ArrayList<>();
-        for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
-            DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
+        for (int i = 0; i < forecastList.size(); i++) {
+            DetailedWeatherForecast detailedWeatherForecast = forecastList.get(i);
             if (detailedWeatherForecast == null) {
                 continue;
             }
@@ -644,6 +659,7 @@ public class GraphsActivity extends ForecastingActivity {
         }
         Description graphDescription = new Description();
         graphDescription.setText("");
+        binding.barSnowChart.clear();
         binding.barSnowChart.setDescription(graphDescription);
         binding.barSnowChart.setDrawGridBackground(false);
         binding.barSnowChart.setTouchEnabled(true);
@@ -654,9 +670,11 @@ public class GraphsActivity extends ForecastingActivity {
         binding.barSnowChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         binding.barSnowChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
+        List<DetailedWeatherForecast> forecastList = GraphUtils.filterWeatherForecastListForGraph(weatherForecastList.get(locationId), AppPreference.getGraphPastDays(this));
+
         GraphUtils.setupXAxis(
-                binding.barSnowChart.getXAxis(),
-                weatherForecastList.get(locationId),
+                binding.barSnowChart,
+                forecastList,
                 PreferenceUtil.getTextColor(this),
                 null,
                 PreferenceUtil.getGraphGridColor(this),
@@ -677,8 +695,8 @@ public class GraphsActivity extends ForecastingActivity {
         binding.barSnowChart.getAxisRight().setEnabled(false);
 
         List<BarEntry> entries = new ArrayList<>();
-        for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
-            DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
+        for (int i = 0; i < forecastList.size(); i++) {
+            DetailedWeatherForecast detailedWeatherForecast = forecastList.get(i);
             if (detailedWeatherForecast == null) {
                 continue;
             }
@@ -732,6 +750,7 @@ public class GraphsActivity extends ForecastingActivity {
         }
         Description graphDescription = new Description();
         graphDescription.setText("");
+        binding.pressureChart.clear();
         binding.pressureChart.setDescription(graphDescription);
         binding.pressureChart.setDrawGridBackground(false);
         binding.pressureChart.setTouchEnabled(true);
@@ -742,9 +761,11 @@ public class GraphsActivity extends ForecastingActivity {
         binding.pressureChart.setBackgroundColor(PreferenceUtil.getBackgroundColor(this));
         binding.pressureChart.setGridBackgroundColor(PreferenceUtil.getTextColor(this));
 
+        List<DetailedWeatherForecast> forecastList = GraphUtils.filterWeatherForecastListForGraph(weatherForecastList.get(locationId), AppPreference.getGraphPastDays(this));
+
         GraphUtils.setupXAxis(
-                binding.pressureChart.getXAxis(),
-                weatherForecastList.get(locationId),
+                binding.pressureChart,
+                forecastList,
                 PreferenceUtil.getTextColor(this),
                 null,
                 PreferenceUtil.getGraphGridColor(this),
@@ -764,8 +785,8 @@ public class GraphsActivity extends ForecastingActivity {
         binding.pressureChart.getAxisRight().setEnabled(false);
 
         List<Entry> entries = new ArrayList<>();
-        for (int i = 0; i < weatherForecastList.get(locationId).size(); i++) {
-            DetailedWeatherForecast detailedWeatherForecast = weatherForecastList.get(locationId).get(i);
+        for (int i = 0; i < forecastList.size(); i++) {
+            DetailedWeatherForecast detailedWeatherForecast = forecastList.get(i);
             if (detailedWeatherForecast == null) {
                 continue;
             }
@@ -840,6 +861,9 @@ public class GraphsActivity extends ForecastingActivity {
             case R.id.action_graph_combined_settings:
                 showCombinedGraphSettings();
                 return true;
+            case R.id.action_graph_past_days:
+                showPastDaysDialog();
+                return true;
             case android.R.id.home:
                 NavUtils.navigateUpFromSameTask(this);
                 return true;
@@ -895,6 +919,31 @@ public class GraphsActivity extends ForecastingActivity {
                     YourLocalWeather.executor.submit(() -> updateUI());
                 })
                 .setNegativeButton(R.string.cancel, (dialog, id) -> finish())
+                .show();
+    }
+
+    private void showPastDaysDialog() {
+        int currentDays = AppPreference.getGraphPastDays(this);
+        String[] entries = getResources().getStringArray(R.array.graph_past_days_entries);
+        String[] values = getResources().getStringArray(R.array.graph_past_days_values);
+
+        int selectedIndex = 1;
+        for (int i = 0; i < values.length; i++) {
+            if (String.valueOf(currentDays).equals(values[i])) {
+                selectedIndex = i;
+                break;
+            }
+        }
+
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.graph_past_days_title)
+                .setSingleChoiceItems(entries, selectedIndex, (dialog, which) -> {
+                    int days = Integer.parseInt(values[which]);
+                    AppPreference.setGraphPastDays(GraphsActivity.this, days);
+                    dialog.dismiss();
+                    YourLocalWeather.executor.submit(() -> updateUI());
+                })
+                .setNegativeButton(android.R.string.cancel, null)
                 .show();
     }
 
@@ -989,11 +1038,9 @@ public class GraphsActivity extends ForecastingActivity {
         mValueFormatter = new CustomValueFormatter(currentLocation.getLocale());
         rainSnowYAxisValueFormatter = new RainSnowYAxisValueFormatter(this, currentLocation.getLocale());
         WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord = weatherForecastDbHelper.getWeatherForecast(locationId, 1);
-        if (weatherForecastRecord != null) {
-            runOnUiThread(() -> {
-                weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
-                locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());
-            });
+        if (weatherForecastRecord != null && weatherForecastRecord.getCompleteWeatherForecast() != null) {
+            weatherForecastList.put(locationId, weatherForecastRecord.getCompleteWeatherForecast().getWeatherForecastList());
+            locationWeatherForecastLastUpdate.put(locationId, weatherForecastRecord.getLastUpdatedTime());
         } else {
             runOnUiThread(() -> sendMessageToCurrentWeatherService(currentLocation, "GRAPHS"));
             return;

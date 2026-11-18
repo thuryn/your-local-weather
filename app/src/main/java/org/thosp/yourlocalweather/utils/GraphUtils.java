@@ -16,6 +16,7 @@ import android.view.WindowManager;
 
 import androidx.core.content.ContextCompat;
 
+import org.thosp.charting.charts.BarLineChartBase;
 import org.thosp.charting.charts.CombinedChart;
 import org.thosp.charting.components.Description;
 import org.thosp.charting.components.Legend;
@@ -64,10 +65,6 @@ public class GraphUtils {
                                           String rainSnowUnitFromPreferences,
                                           boolean widgetGraphNativeScaled,
                                           String windUnitFromPreferences) {
-
-        if (combinedGraphs.get(widgetId) != null) {
-            return combinedGraphs.get(widgetId);
-        }
 
         if (showLegend == null) {
             showLegend = true;
@@ -241,6 +238,27 @@ public class GraphUtils {
         combinedGraphs = new HashMap<>();
     }
 
+    public static List<DetailedWeatherForecast> filterWeatherForecastListForGraph(List<DetailedWeatherForecast> inputList, int pastDays) {
+        if (inputList == null) {
+            return new ArrayList<>();
+        }
+        List<DetailedWeatherForecast> result = new ArrayList<>();
+        long nowSeconds = System.currentTimeMillis() / 1000;
+        long cutoffSeconds = nowSeconds - (pastDays * 86400L);
+        long futureCutoffSeconds = nowSeconds + (5 * 86400L);
+
+        for (DetailedWeatherForecast detailedWeatherForecast : inputList) {
+            if (detailedWeatherForecast == null) continue;
+            long itemTime = detailedWeatherForecast.getDateTime();
+            if (pastDays == 0 && itemTime < nowSeconds) continue;
+            if (pastDays > 0 && itemTime < cutoffSeconds) continue;
+            if (itemTime > futureCutoffSeconds) continue;
+
+            result.add(detailedWeatherForecast);
+        }
+        return result;
+    }
+
     public static CombinedChart generateCombinedGraph(Context context,
                                                       CombinedChart combinedChartFromLayout,
                                                       Set<Integer> combinedGraphValues,
@@ -317,23 +335,11 @@ public class GraphUtils {
         }
         combinedChart.setGridBackgroundColor(textColorId);
 
-        List<DetailedWeatherForecast> weatherForecastList = new ArrayList();
+        boolean isWidget = (combinedChartFromLayout == null);
+        int pastDays = isWidget ? AppPreference.getWidgetGraphPastDays(context) : AppPreference.getGraphPastDays(context);
+        List<DetailedWeatherForecast> weatherForecastList = filterWeatherForecastListForGraph(weatherForecastListInput, pastDays);
 
-        long now = Calendar.getInstance().getTimeInMillis();
-
-        int graphDaysCounter = 120;
-        for(DetailedWeatherForecast detailedWeatherForecast: weatherForecastListInput) {
-            if ((detailedWeatherForecast != null) && (graphDaysCounter >= 0)) {
-                long forecastDateTimeInMs = detailedWeatherForecast.getDateTime()*1000;
-                if (forecastDateTimeInMs < now) {
-                    continue;
-                }
-                weatherForecastList.add(detailedWeatherForecast);
-                graphDaysCounter--;
-            }
-        }
-
-        setupXAxis(combinedChart.getXAxis(), weatherForecastList, textColorId, textSize, gridColorId, locale);
+        setupXAxis(combinedChart, weatherForecastList, textColorId, textSize, gridColorId, locale);
 
         int temperatureListSize = weatherForecastList.size();
         double[] temperatures = new double[temperatureListSize];
@@ -704,34 +710,71 @@ public class GraphUtils {
         return combinedChart;
     }
 
+    public static void setupXAxis(BarLineChartBase<?> chart,
+                                  List<DetailedWeatherForecast> weatherForecastList,
+                                  int textColorId,
+                                  Float textSize,
+                                  AppPreference.GraphGridColors gridColor,
+                                  Locale locale) {
+        if (chart == null) {
+            return;
+        }
+        Set<Long> labelTimestamps = configureXAxis(chart.getXAxis(), weatherForecastList, textColorId, textSize, gridColor, locale);
+        chart.setXAxisRenderer(new CustomXAxisRenderer(
+                chart.getViewPortHandler(),
+                chart.getXAxis(),
+                chart.getTransformer(YAxis.AxisDependency.LEFT),
+                labelTimestamps));
+    }
+
     public static void setupXAxis(XAxis x,
                                   List<DetailedWeatherForecast> weatherForecastList,
                                   int textColorId,
                                   Float textSize,
                                   AppPreference.GraphGridColors gridColor,
                                   Locale locale) {
+        configureXAxis(x, weatherForecastList, textColorId, textSize, gridColor, locale);
+    }
+
+    private static Set<Long> configureXAxis(XAxis x,
+                                            List<DetailedWeatherForecast> weatherForecastList,
+                                            int textColorId,
+                                            Float textSize,
+                                            AppPreference.GraphGridColors gridColor,
+                                            Locale locale) {
         x.removeAllLimitLines();
 
         if ((weatherForecastList == null) || weatherForecastList.isEmpty()) {
-            return;
+            return new HashSet<>();
         }
 
         List<String> passedDays = new ArrayList<>();
-        for (int i = 0; i < weatherForecastList.size(); i++) {
+        Map<Integer, DetailedWeatherForecast> closestToMiddayMap = new HashMap<>();
+        Map<Integer, Long> minDiffMap = new HashMap<>();
 
-            if (weatherForecastList.get(i) == null) {
+        for (int i = 0; i < weatherForecastList.size(); i++) {
+            DetailedWeatherForecast item = weatherForecastList.get(i);
+            if (item == null) {
                 continue;
             }
 
             Calendar cal = Calendar.getInstance();
-            cal.setTimeInMillis(weatherForecastList.get(i).getDateTime() * 1000);
+            cal.setTimeInMillis(item.getDateTime() * 1000);
+            int dayKey = cal.get(Calendar.DAY_OF_YEAR) + (cal.get(Calendar.YEAR) * 1000);
+            int hour = cal.get(Calendar.HOUR_OF_DAY);
+            long diff = Math.abs(hour - 12);
+
+            if (!closestToMiddayMap.containsKey(dayKey) || minDiffMap.get(dayKey) == null || diff < minDiffMap.get(dayKey)) {
+                closestToMiddayMap.put(dayKey, item);
+                minDiffMap.put(dayKey, diff);
+            }
 
             Calendar cal24InDay = Calendar.getInstance();
-            cal24InDay.setTimeInMillis(weatherForecastList.get(i).getDateTime() * 1000);
+            cal24InDay.setTimeInMillis(item.getDateTime() * 1000);
             cal24InDay.set(Calendar.HOUR_OF_DAY, 0);
 
             Calendar cal12InDay = Calendar.getInstance();
-            cal12InDay.setTimeInMillis(weatherForecastList.get(i).getDateTime() * 1000);
+            cal12InDay.setTimeInMillis(item.getDateTime() * 1000);
             cal12InDay.set(Calendar.HOUR_OF_DAY, 12);
 
             if (!passedDays.contains(cal12InDay.get(Calendar.DAY_OF_YEAR) + "12") && cal12InDay.after(cal)) {
@@ -751,21 +794,29 @@ public class GraphUtils {
             }
         }
 
+        Set<Long> labelTimestamps = new HashSet<>();
+        for (DetailedWeatherForecast targetItem : closestToMiddayMap.values()) {
+            labelTimestamps.add(targetItem.getDateTime());
+        }
+
         x.setEnabled(true);
         x.setPosition(XAxis.XAxisPosition.BOTTOM);
         x.setDrawGridLines(false);
+        x.setAxisMaxLabels(Math.max(weatherForecastList.size(), 2));
         x.setLabelCount(weatherForecastList.size(), true);
         x.setTextColor(textColorId);
         x.setGridColor(gridColor.getMainGridColor());
-        x.setValueFormatter(new XAxisValueFormatter(locale));
+        x.setValueFormatter(new XAxisValueFormatter(locale, labelTimestamps));
         x.setDrawLimitLinesBehindData(true);
         if (!weatherForecastList.isEmpty()) {
             x.setAxisMinimum(weatherForecastList.get(0).getDateTime());
+            x.setAxisMaximum(weatherForecastList.get(weatherForecastList.size() - 1).getDateTime());
         }
 
         if (textSize != null) {
             x.setTextSize(textSize + 2.5f);
         }
+        return labelTimestamps;
     }
 
     public static String[] getRainSnowLabelForCombinedGraph(Context context, Locale locale, boolean isRain, boolean isSnow) {

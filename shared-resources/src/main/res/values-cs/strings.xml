@@ -679,4 +679,17 @@
     <string name="startup_battery_granted" tools:ignore="MissingTranslation">Optimalizace baterie vypnuta</string>
     <string name="startup_disclaimer_title" tools:ignore="MissingTranslation">Zdroj dat a aktualizace na pozadí</string>
     <string name="startup_disclaimer_body" tools:ignore="MissingTranslation">Předpověď počasí poskytuje Open-Meteo. Poloha na pozadí a výjimka z optimalizace baterie slouží k automatickým aktualizacím widgetů na ploše.</string>
+    <string name="pref_title_history_retention" tools:ignore="MissingTranslation">Uchovávat historii počasí</string>
+    <string name="history_retention_1_day" tools:ignore="MissingTranslation">1 den (výchozí)</string>
+    <string name="history_retention_7_days" tools:ignore="MissingTranslation">1 týden</string>
+    <string name="history_retention_30_days" tools:ignore="MissingTranslation">1 měsíc</string>
+    <string name="history_retention_90_days" tools:ignore="MissingTranslation">3 měsíce</string>
+    <string name="history_retention_365_days" tools:ignore="MissingTranslation">1 rok</string>
+    <string name="pref_title_widget_graph_past_days" tools:ignore="MissingTranslation">Počet dní historie v grafu widgetu</string>
+    <string name="graph_past_days_title" tools:ignore="MissingTranslation">Dní historie v grafu</string>
+    <string name="graph_past_days_0" tools:ignore="MissingTranslation">0 dní (Dnes)</string>
+    <string name="graph_past_days_1" tools:ignore="MissingTranslation">1 den</string>
+    <string name="graph_past_days_2" tools:ignore="MissingTranslation">2 dny</string>
+    <string name="graph_past_days_3" tools:ignore="MissingTranslation">3 dny</string>
+    <string name="graph_past_days_7" tools:ignore="MissingTranslation">7 dní</string>
 </resources>

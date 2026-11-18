@@ -1013,6 +1013,10 @@ public class WidgetUtils {
         updateWidgetForType(context, WeatherGraphWidgetProvider.class);
         updateWidgetForType(context, ExtLocationWithForecastGraphWidgetProvider.class);
 
+        Intent updateIntent = new Intent(android.appwidget.AppWidgetManager.ACTION_APPWIDGET_UPDATE);
+        updateIntent.setPackage(context.getPackageName());
+        context.sendBroadcast(updateIntent);
+
         GlanceWidgetComponentsKt.updateAllGlanceWidgets(context);
     }
 

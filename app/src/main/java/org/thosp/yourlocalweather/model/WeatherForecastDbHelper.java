@@ -10,6 +10,8 @@ import android.os.Parcel;
 
 import java.util.concurrent.ExecutionException;
 
+import org.thosp.yourlocalweather.utils.AppPreference;
+
 import static org.thosp.yourlocalweather.model.WeatherForecastContract.SQL_CREATE_TABLE_WEATHER_FORECAST;
 import static org.thosp.yourlocalweather.model.WeatherForecastContract.SQL_DELETE_TABLE_WEATHER_FORECAST;
 import static org.thosp.yourlocalweather.utils.LogToFile.appendLog;
@@ -69,9 +71,41 @@ public class WeatherForecastDbHelper extends SQLiteOpenHelper {
 
                 appendLog(context, TAG, "saveWeatherForecast: oldWeatherForecast:", oldWeatherForecast);
 
+                CompleteWeatherForecast mergedForecast = new CompleteWeatherForecast();
+                java.util.Map<Long, DetailedWeatherForecast> forecastMap = new java.util.HashMap<>();
+
+                if (oldWeatherForecast != null && oldWeatherForecast.getCompleteWeatherForecast() != null) {
+                    for (DetailedWeatherForecast item : oldWeatherForecast.getCompleteWeatherForecast().getWeatherForecastList()) {
+                        forecastMap.put(item.getDateTime(), item);
+                    }
+                }
+
+                if (completeWeatherForecast != null && completeWeatherForecast.getWeatherForecastList() != null) {
+                    for (DetailedWeatherForecast item : completeWeatherForecast.getWeatherForecastList()) {
+                        forecastMap.put(item.getDateTime(), item);
+                    }
+                }
+
+                // Always retain up to 365 days (1 year) of historical weather data in the database
+                int retentionDays = 365;
+                long cutoffEpochSeconds = (System.currentTimeMillis() / 1000) - (retentionDays * 86400L);
+
+                java.util.List<DetailedWeatherForecast> mergedList = new java.util.ArrayList<>();
+                for (DetailedWeatherForecast item : forecastMap.values()) {
+                    if (item.getDateTime() >= cutoffEpochSeconds) {
+                        mergedList.add(item);
+                    }
+                }
+
+                java.util.Collections.sort(mergedList, (a, b) -> Long.compare(a.getDateTime(), b.getDateTime()));
+
+                for (DetailedWeatherForecast item : mergedList) {
+                    mergedForecast.addDetailedWeatherForecast(item);
+                }
+
                 ContentValues values = new ContentValues();
                 values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_WEATHER_FORECAST,
-                        getCompleteWeatherForecastAsBytes(completeWeatherForecast));
+                        getCompleteWeatherForecastAsBytes(mergedForecast));
                 values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_LOCATION_ID, locationId);
                 values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_LAST_UPDATED_IN_MS, weatherUpdateTime);
                 values.put(WeatherForecastContract.WeatherForecast.COLUMN_NAME_NEXT_ALLOWED_ATTEMPT_TO_UPDATE_TIME_IN_MS, nextAllowedAttemptToUpdateTime);

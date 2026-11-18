@@ -31,8 +31,14 @@ import androidx.glance.text.FontWeight
 import androidx.glance.text.Text
 import androidx.glance.text.TextStyle
 import androidx.glance.appwidget.GlanceAppWidgetManager
+import androidx.glance.state.GlanceStateDefinition
+import androidx.datastore.core.DataStore
 import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import java.io.File
+import java.util.concurrent.atomic.AtomicLong
 import org.thosp.yourlocalweather.GraphsActivity
 import org.thosp.yourlocalweather.MainActivity
 import org.thosp.yourlocalweather.R
@@ -397,20 +403,42 @@ fun GlanceResponsiveHourlyForecastRow(
     }
 }
 
+object RefreshableGlanceStateDefinition : GlanceStateDefinition<Long> {
+    private val counter = AtomicLong(0L)
+    private val dataStore = object : DataStore<Long> {
+        override val data: Flow<Long>
+            get() = flow { emit(counter.incrementAndGet()) }
+
+        override suspend fun updateData(transform: suspend (t: Long) -> Long): Long {
+            val current = counter.get()
+            val updated = transform(current)
+            counter.set(updated)
+            return updated
+        }
+    }
+
+    override fun getLocation(context: Context, fileKey: String): File =
+        File(context.filesDir, "glance_refresh_$fileKey")
+
+    override suspend fun getDataStore(context: Context, fileKey: String): DataStore<Long> =
+        dataStore
+}
+
 fun updateAllGlanceWidgets(context: Context) {
-    MainScope().launch {
+    val appContext = context.applicationContext
+    kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.Default).launch {
         try {
-            val manager = GlanceAppWidgetManager(context)
-            manager.getGlanceIds(ExtLocationWithForecastGraphGlanceWidget::class.java).forEach { ExtLocationWithForecastGraphGlanceWidget().update(context, it) }
-            manager.getGlanceIds(ExtLocationWithForecastGlanceWidget::class.java).forEach { ExtLocationWithForecastGlanceWidget().update(context, it) }
-            manager.getGlanceIds(ExtLocationWithGraphGlanceWidget::class.java).forEach { ExtLocationWithGraphGlanceWidget().update(context, it) }
-            manager.getGlanceIds(ExtLocationGlanceWidget::class.java).forEach { ExtLocationGlanceWidget().update(context, it) }
-            manager.getGlanceIds(WeatherForecastGlanceWidget::class.java).forEach { WeatherForecastGlanceWidget().update(context, it) }
-            manager.getGlanceIds(WeatherGraphGlanceWidget::class.java).forEach { WeatherGraphGlanceWidget().update(context, it) }
-            manager.getGlanceIds(LessGlanceWidget::class.java).forEach { LessGlanceWidget().update(context, it) }
-            manager.getGlanceIds(MoreGlanceWidget::class.java).forEach { MoreGlanceWidget().update(context, it) }
-            manager.getGlanceIds(CompactGlanceWidget::class.java).forEach { CompactGlanceWidget().update(context, it) }
-            manager.getGlanceIds(TemperatureGlanceWidget::class.java).forEach { TemperatureGlanceWidget().update(context, it) }
+            val manager = GlanceAppWidgetManager(appContext)
+            manager.getGlanceIds(ExtLocationWithForecastGraphGlanceWidget::class.java).forEach { ExtLocationWithForecastGraphGlanceWidget().update(appContext, it) }
+            manager.getGlanceIds(ExtLocationWithForecastGlanceWidget::class.java).forEach { ExtLocationWithForecastGlanceWidget().update(appContext, it) }
+            manager.getGlanceIds(ExtLocationWithGraphGlanceWidget::class.java).forEach { ExtLocationWithGraphGlanceWidget().update(appContext, it) }
+            manager.getGlanceIds(ExtLocationGlanceWidget::class.java).forEach { ExtLocationGlanceWidget().update(appContext, it) }
+            manager.getGlanceIds(WeatherForecastGlanceWidget::class.java).forEach { WeatherForecastGlanceWidget().update(appContext, it) }
+            manager.getGlanceIds(WeatherGraphGlanceWidget::class.java).forEach { WeatherGraphGlanceWidget().update(appContext, it) }
+            manager.getGlanceIds(LessGlanceWidget::class.java).forEach { LessGlanceWidget().update(appContext, it) }
+            manager.getGlanceIds(MoreGlanceWidget::class.java).forEach { MoreGlanceWidget().update(appContext, it) }
+            manager.getGlanceIds(CompactGlanceWidget::class.java).forEach { CompactGlanceWidget().update(appContext, it) }
+            manager.getGlanceIds(TemperatureGlanceWidget::class.java).forEach { TemperatureGlanceWidget().update(appContext, it) }
         } catch (e: Exception) {
             // ignore
         }

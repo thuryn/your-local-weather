@@ -709,4 +709,17 @@
     <string name="startup_battery_granted" tools:ignore="MissingTranslation">Battery optimization disabled</string>
     <string name="startup_disclaimer_title" tools:ignore="MissingTranslation">Data Source &amp; Background Updates</string>
     <string name="startup_disclaimer_body" tools:ignore="MissingTranslation">Weather data is provided by Open-Meteo. Background location and battery exemptions enable automatic weather updates on widgets.</string>
+    <string name="pref_title_history_retention" tools:ignore="MissingTranslation">Weather history retention</string>
+    <string name="history_retention_1_day" tools:ignore="MissingTranslation">1 day (default)</string>
+    <string name="history_retention_7_days" tools:ignore="MissingTranslation">1 week</string>
+    <string name="history_retention_30_days" tools:ignore="MissingTranslation">1 month</string>
+    <string name="history_retention_90_days" tools:ignore="MissingTranslation">3 months</string>
+    <string name="history_retention_365_days" tools:ignore="MissingTranslation">1 year</string>
+    <string name="pref_title_widget_graph_past_days" tools:ignore="MissingTranslation">History days in graph widgets</string>
+    <string name="graph_past_days_title" tools:ignore="MissingTranslation">Past days on chart</string>
+    <string name="graph_past_days_0" tools:ignore="MissingTranslation">0 days (Today)</string>
+    <string name="graph_past_days_1" tools:ignore="MissingTranslation">1 day</string>
+    <string name="graph_past_days_2" tools:ignore="MissingTranslation">2 days</string>
+    <string name="graph_past_days_3" tools:ignore="MissingTranslation">3 days</string>
+    <string name="graph_past_days_7" tools:ignore="MissingTranslation">7 days</string>
 </resources>

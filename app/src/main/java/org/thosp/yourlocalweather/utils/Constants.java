@@ -53,6 +53,9 @@ public class Constants {
     public static final String KEY_PREF_HIDE_DESCRIPTION = "hide_desc_pref_key";
     public static final String KEY_PREF_START_SCREEN = "start_screen_pref_key";
     public static final String KEY_PREF_UPDATE_ON_RESUME = "update_on_resume_pref_key";
+    public static final String KEY_PREF_HISTORY_RETENTION = "history_retention_pref_key";
+    public static final String KEY_PREF_GRAPH_PAST_DAYS = "graph_past_days_pref_key";
+    public static final String KEY_PREF_WIDGET_GRAPH_PAST_DAYS = "widget_graph_past_days_pref_key";
     public static final String KEY_PREF_INTERVAL_NOTIFICATION = "notification_interval_pref_key";
     public static final String KEY_PREF_NOTIFICATION_PRESENCE = "notification_presence_pref_key";
     public static final String KEY_PREF_NOTIFICATION_STATUS_ICON = "notification_status_icon_pref_key";
@@ -141,7 +144,7 @@ public class Constants {
     public static final String GOOGLE_PLAY_WEB_URI =
             "https://play.google.com/store/apps/details?id=%s";
     public static final String F_DROID_WEB_URI = "https://f-droid.org/repository/browse/?fdid=%s";
-    public static final String WEATHER_ENDPOINT = "https://api.open-meteo.com/v1/forecast?latitude={0}&longitude={1}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m,uv_index&hourly=temperature_2m,relative_humidity_2m,rain,snowfall,weather_code,pressure_msl,cloud_cover,wind_speed_10m,wind_direction_10m,uv_index&daily=sunrise,sunset,uv_index_max&timezone=auto&forecast_days=16";
+    public static final String WEATHER_ENDPOINT = "https://api.open-meteo.com/v1/forecast?latitude={0}&longitude={1}&current=temperature_2m,relative_humidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,weather_code,cloud_cover,pressure_msl,surface_pressure,wind_speed_10m,wind_direction_10m,wind_gusts_10m,uv_index&hourly=temperature_2m,relative_humidity_2m,rain,snowfall,weather_code,pressure_msl,cloud_cover,wind_speed_10m,wind_direction_10m,uv_index&daily=sunrise,sunset,uv_index_max&timezone=auto&past_days=7&forecast_days=16";
 
     public static final int PARSE_RESULT_SUCCESS = 0;
     public static final int TASK_RESULT_ERROR = -1;

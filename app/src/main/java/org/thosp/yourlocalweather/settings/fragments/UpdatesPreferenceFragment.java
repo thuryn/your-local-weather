@@ -23,6 +23,7 @@ import org.thosp.yourlocalweather.model.Location;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.GraphUtils;
 
 import java.util.List;
 
@@ -33,7 +34,8 @@ public class UpdatesPreferenceFragment extends PreferenceFragmentCompat implemen
             Constants.KEY_PREF_LOCATION_AUTO_UPDATE_PERIOD,
             Constants.KEY_PREF_LOCATION_UPDATE_PERIOD,
             Constants.KEY_PREF_LOCATION_GEOCODER_SOURCE,
-            Constants.KEY_PREF_UPDATE_ON_RESUME
+            Constants.KEY_PREF_UPDATE_ON_RESUME,
+            Constants.KEY_PREF_HISTORY_RETENTION
     };
     private final SensorEventListener sensorListener = new SensorEventListener() {
 
@@ -158,6 +160,12 @@ public class UpdatesPreferenceFragment extends PreferenceFragmentCompat implemen
                     Intent intentToStartUpdate = new Intent("org.thosp.yourlocalweather.action.RESTART_ALARM_SERVICE");
                     intentToStartUpdate.setPackage(context.getPackageName());
                     getActivity().startService(intentToStartUpdate);
+                }
+                break;
+            case Constants.KEY_PREF_WIDGET_GRAPH_PAST_DAYS:
+                if (changing) {
+                    GraphUtils.invalidateGraph();
+                    org.thosp.yourlocalweather.utils.WidgetUtils.updateWidgets(context);
                 }
                 break;
             default:

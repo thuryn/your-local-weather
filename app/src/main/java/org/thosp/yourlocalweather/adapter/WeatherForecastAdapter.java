@@ -59,18 +59,14 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
 
         mWeatherList = new HashMap<>();
         keys = new ArrayList<>();
-        long now = System.currentTimeMillis();
         Calendar forecastCalendar = Calendar.getInstance();
         for (DetailedWeatherForecast forecast: weatherForecastList) {
             if (forecast == null) {
                 continue;
             }
             long forecastDateTimeInMs = forecast.getDateTime() * 1000;
-            if (forecastDateTimeInMs < now) {
-                continue;
-            }
             forecastCalendar.setTimeInMillis(forecastDateTimeInMs);
-            int forecastDay = forecastCalendar.get(Calendar.DAY_OF_YEAR);
+            int forecastDay = forecastCalendar.get(Calendar.DAY_OF_YEAR) + (forecastCalendar.get(Calendar.YEAR) * 1000);
             if (!mWeatherList.containsKey(forecastDay)) {
                 List<DetailedWeatherForecast> dayForecastList = new ArrayList<>();
                 mWeatherList.put(forecastDay, dayForecastList);
@@ -81,6 +77,24 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
                 listForDay.add(forecast);
             }
         }
+    }
+
+    public int getTodayPosition() {
+        if (keys == null || keys.isEmpty()) {
+            return 0;
+        }
+        Calendar todayCalendar = Calendar.getInstance();
+        int todayKey = todayCalendar.get(Calendar.DAY_OF_YEAR) + (todayCalendar.get(Calendar.YEAR) * 1000);
+        int exactIndex = keys.indexOf(todayKey);
+        if (exactIndex >= 0) {
+            return exactIndex;
+        }
+        for (int i = 0; i < keys.size(); i++) {
+            if (keys.get(i) >= todayKey) {
+                return i;
+            }
+        }
+        return keys.size() - 1;
     }
 
     @NonNull

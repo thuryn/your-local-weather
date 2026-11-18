@@ -28,6 +28,14 @@
         android:summary="@string/preference_widget_background_color_summary" />
 
     <ListPreference
+        android:defaultValue="0"
+        android:key="widget_graph_past_days_pref_key"
+        android:dialogTitle="@string/pref_title_widget_graph_past_days"
+        android:title="@string/pref_title_widget_graph_past_days"
+        android:entries="@array/graph_past_days_entries"
+        android:entryValues="@array/graph_past_days_values"/>
+
+    <ListPreference
         android:defaultValue="preference_display_update_location_source"
         android:dialogTitle="@string/preference_display_update_title"
         android:entries="@array/preference_display_update_entries"

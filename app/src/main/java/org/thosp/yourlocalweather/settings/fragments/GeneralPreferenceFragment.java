@@ -158,6 +158,7 @@ public class GeneralPreferenceFragment extends PreferenceFragmentCompat implemen
                 }
                 break;
             case Constants.KEY_PREF_START_SCREEN:
+            case Constants.KEY_PREF_HISTORY_RETENTION:
                 entrySummary(key);
                 break;
             case Constants.KEY_PREF_WEATHER_ICON_SET:

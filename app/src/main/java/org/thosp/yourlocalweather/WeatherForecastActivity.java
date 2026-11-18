@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import org.thosp.yourlocalweather.adapter.WeatherForecastAdapter;
 import org.thosp.yourlocalweather.databinding.ActivityWeatherForecastBinding;
+import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.model.LocationsDbHelper;
 import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
@@ -23,6 +24,7 @@ import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Utils;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static org.thosp.yourlocalweather.utils.AppPreference.getForecastMinMaxOnly;
@@ -185,6 +187,19 @@ public class WeatherForecastActivity extends ForecastingActivity {
                         visibleColumns,
                         showMinMaxOnly);
                 binding.forecastRecyclerView.setAdapter(adapter);
+                final int targetPos = adapter.getTodayPosition();
+                if (targetPos > 0) {
+                    binding.forecastRecyclerView.post(() -> {
+                        if (binding == null) return;
+                        androidx.recyclerview.widget.RecyclerView.LayoutManager lm =
+                                binding.forecastRecyclerView.getLayoutManager();
+                        if (lm instanceof LinearLayoutManager) {
+                            ((LinearLayoutManager) lm).scrollToPositionWithOffset(targetPos, 0);
+                        } else {
+                            binding.forecastRecyclerView.scrollToPosition(targetPos);
+                        }
+                    });
+                }
             }
         });
         appendLog(getBaseContext(), TAG, "UpdateUI finished processing");

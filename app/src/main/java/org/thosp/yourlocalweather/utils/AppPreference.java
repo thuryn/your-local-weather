@@ -461,6 +461,42 @@ public class AppPreference {
     public static boolean isUpdateLocationEnabled(Context context, Location currentLocation) {
         return (currentLocation != null) && (currentLocation.getOrderId() == 0) && currentLocation.isEnabled();
     }
+
+    public static int getHistoryRetentionDays(Context context) {
+        String daysStr = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(Constants.KEY_PREF_HISTORY_RETENTION, "1");
+        try {
+            return Integer.parseInt(daysStr);
+        } catch (Exception e) {
+            return 1;
+        }
+    }
+
+    public static int getGraphPastDays(Context context) {
+        String daysStr = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(Constants.KEY_PREF_GRAPH_PAST_DAYS, "1");
+        try {
+            return Integer.parseInt(daysStr);
+        } catch (Exception e) {
+            return 1;
+        }
+    }
+
+    public static void setGraphPastDays(Context context, int days) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putString(Constants.KEY_PREF_GRAPH_PAST_DAYS, String.valueOf(days))
+                .apply();
+    }
+
+    public static int getWidgetGraphPastDays(Context context) {
+        String daysStr = PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(Constants.KEY_PREF_WIDGET_GRAPH_PAST_DAYS, "0");
+        try {
+            return Integer.parseInt(daysStr);
+        } catch (Exception e) {
+            return 0;
+        }
+    }
         
     public static String getLocationGeocoderSource(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getString(
