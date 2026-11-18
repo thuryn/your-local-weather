@@ -18,6 +18,54 @@
         app:layout_constraintRight_toRightOf="parent"
         android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/forecast.summary_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="?attr/listPreferredItemPaddingLeft"
+        android:paddingLeft="?attr/listPreferredItemPaddingLeft"
+        android:paddingEnd="?attr/listPreferredItemPaddingLeft"
+        android:paddingRight="?attr/listPreferredItemPaddingLeft"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/forecast.summary_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            tools:text="Wed, 31 September" />
+
+        <ImageView
+            android:id="@+id/forecast.summary_icon"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:contentDescription="@null" />
+
+        <TextView
+            android:id="@+id/forecast.summary_temps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:layout_marginRight="12dp"
+            android:textSize="16sp"
+            tools:text="9/18°C" />
+
+        <TextView
+            android:id="@+id/forecast.summary_expand_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            tools:text="▼" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/forecast.date"
         android:layout_width="match_parent"

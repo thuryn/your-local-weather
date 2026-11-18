@@ -86,6 +86,7 @@ public class GeneralPreferenceFragment extends PreferenceFragmentCompat implemen
             Constants.PREF_LANGUAGE,
             Constants.PREF_THEME,
             Constants.KEY_PREF_START_SCREEN,
+            Constants.KEY_PREF_MAIN_SCREEN_FORECAST,
             Constants.KEY_PREF_WEATHER_ICON_SET,
             Constants.KEY_PREF_OPEN_WEATHER_MAP_API_KEY,
             Constants.KEY_PREF_WEATHER_FORECAST_FEATURES
@@ -158,6 +159,7 @@ public class GeneralPreferenceFragment extends PreferenceFragmentCompat implemen
                 }
                 break;
             case Constants.KEY_PREF_START_SCREEN:
+            case Constants.KEY_PREF_MAIN_SCREEN_FORECAST:
             case Constants.KEY_PREF_HISTORY_RETENTION:
                 entrySummary(key);
                 break;

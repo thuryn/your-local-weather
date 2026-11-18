@@ -443,6 +443,17 @@
         <item>graphs_screen</item>
     </string-array>
 
+    <string-array name="main_screen_forecast_entries">
+        <item>@string/main_screen_forecast_none</item>
+        <item>@string/main_screen_forecast_above_details</item>
+        <item>@string/main_screen_forecast_replace_details</item>
+    </string-array>
+    <string-array name="main_screen_forecast_values" translatable="false">
+        <item>none</item>
+        <item>above_details</item>
+        <item>replace_details</item>
+    </string-array>
+
     <string-array name="history_retention_entries">
         <item>@string/history_retention_1_day</item>
         <item>@string/history_retention_7_days</item>

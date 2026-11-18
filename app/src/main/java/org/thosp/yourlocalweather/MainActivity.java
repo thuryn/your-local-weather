@@ -25,10 +25,13 @@ import android.os.Looper;
 import android.os.PowerManager;
 import androidx.preference.PreferenceManager;
 import android.provider.Settings;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -53,14 +56,20 @@ import org.thosp.yourlocalweather.model.WeatherForecastDbHelper;
 import org.thosp.yourlocalweather.service.UpdateWeatherService;
 import org.thosp.yourlocalweather.utils.AppPreference;
 import org.thosp.yourlocalweather.utils.Constants;
+import org.thosp.yourlocalweather.utils.ForecastUtil;
 import org.thosp.yourlocalweather.utils.LocationServiceDispatcher;
 import org.thosp.yourlocalweather.utils.PressureWithUnit;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 import org.thosp.yourlocalweather.utils.WindWithUnit;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 public class MainActivity extends BaseActivity
         implements AppBarLayout.OnOffsetChangedListener,
@@ -71,6 +80,7 @@ public class MainActivity extends BaseActivity
     private WearActivityManager wearServiceManager = new WearActivityManagerImpl(MainActivity.this);
 
     private volatile boolean inited;
+    private volatile long lastForecastRequestLocationId = -1;
 
     // 1. Definujeme vygenerovanou třídu bindingu
     private ActivityMainBinding binding;
@@ -189,6 +199,8 @@ public class MainActivity extends BaseActivity
         binding.mainContent.mainScrollView.setOnTouchListener(new ActivityTransitionTouchListener(
                 null,
                 WeatherForecastActivity.class, this));
+        binding.mainContent.mainForecastContainer.setOnClickListener(v ->
+                startActivity(new Intent(MainActivity.this, WeatherForecastActivity.class)));
 
         this.storedContext = this;
         binding.fab.setOnClickListener(fabListener);
@@ -427,18 +439,29 @@ public class MainActivity extends BaseActivity
         String cityAndCountry = Utils.getCityAndCountry(MainActivity.this, currentLocation);
         boolean fontBasedIconSet = "weather_icon_set_fontbased".equals(AppPreference.getIconSet(MainActivity.this));
         int textColor = AppPreference.getTextColor(MainActivity.this);
+        String mainScreenForecastMode = AppPreference.getMainScreenForecast(MainActivity.this);
+        List<ForecastUtil.WeatherForecastPerDay> forecastDays = prepareMainScreenForecastDays(
+                mainScreenForecastMode,
+                weatherForecastRecord);
 
         runOnUiThread(() -> {
             if (binding == null) return;
             try {
+                renderMainScreenForecast(
+                        mainScreenForecastMode,
+                        forecastDays,
+                        temperatureUnitFromPreferences,
+                        fontBasedIconSet);
                 Utils.setWeatherIcon(binding.mainHeader.mainWeatherIcon, MainActivity.this, weatherRecord, textColor, fontBasedIconSet);
                 binding.mainHeader.mainTemperature.setText(MainActivity.this.getString(R.string.temperature_with_degree, temperatureWithUnit));
                 binding.mainContent.mainDewPoint.setText(MainActivity.this.getString(R.string.dew_point_label, dewPointWithUnit));
                 if (secondTemperature != null) {
                     binding.mainContent.mainSecondTemperature.setText(secondTemperature);
+                    binding.mainContent.mainSecondTemperatureContainer.setVisibility(View.VISIBLE);
                     binding.mainContent.mainSecondTemperature.setVisibility(View.VISIBLE);
                     binding.mainContent.mainSecondTemperatureIcon.setVisibility(View.VISIBLE);
                 } else {
+                    binding.mainContent.mainSecondTemperatureContainer.setVisibility(View.GONE);
                     binding.mainContent.mainSecondTemperature.setVisibility(View.GONE);
                     binding.mainContent.mainSecondTemperatureIcon.setVisibility(View.GONE);
                 }
@@ -467,6 +490,93 @@ public class MainActivity extends BaseActivity
         });
     }
 
+    private List<ForecastUtil.WeatherForecastPerDay> prepareMainScreenForecastDays(
+            String mainScreenForecastMode,
+            WeatherForecastDbHelper.WeatherForecastRecord weatherForecastRecord) {
+        if ("none".equals(mainScreenForecastMode)) {
+            return Collections.emptyList();
+        }
+        if (weatherForecastRecord == null) {
+            if (currentLocation != null && lastForecastRequestLocationId != currentLocation.getId()) {
+                lastForecastRequestLocationId = currentLocation.getId();
+                sendMessageToCurrentWeatherService(currentLocation, "FORECAST");
+            }
+            return Collections.emptyList();
+        }
+        Set<ForecastUtil.WeatherForecastPerDay> forecastSet =
+                ForecastUtil.calculateWeatherForDays(MainActivity.this, weatherForecastRecord);
+        if (forecastSet == null || forecastSet.isEmpty()) {
+            return Collections.emptyList();
+        }
+        List<ForecastUtil.WeatherForecastPerDay> days = new ArrayList<>(forecastSet);
+        days.sort(Comparator.comparingInt(day -> day.getYear() * 1000 + day.getDayInYear()));
+        if (days.size() > 5) {
+            return days.subList(0, 5);
+        }
+        return days;
+    }
+
+    private void renderMainScreenForecast(
+            String mode,
+            List<ForecastUtil.WeatherForecastPerDay> forecastDays,
+            String temperatureUnit,
+            boolean fontBasedIconSet) {
+        if (binding == null) {
+            return;
+        }
+        if ("none".equals(mode)) {
+            binding.mainContent.mainForecastContainer.setVisibility(View.GONE);
+            binding.mainContent.mainForecastDivider.setVisibility(View.GONE);
+            binding.mainContent.mainDetailsContainer.setVisibility(View.VISIBLE);
+            return;
+        }
+
+        boolean replaceDetails = "replace_details".equals(mode);
+        binding.mainContent.mainDetailsContainer.setVisibility(replaceDetails ? View.GONE : View.VISIBLE);
+
+        if (forecastDays == null || forecastDays.isEmpty()) {
+            binding.mainContent.mainForecastContainer.setVisibility(View.GONE);
+            binding.mainContent.mainForecastDivider.setVisibility(View.GONE);
+            return;
+        }
+
+        binding.mainContent.mainForecastContainer.setVisibility(View.VISIBLE);
+        binding.mainContent.mainForecastDivider.setVisibility(replaceDetails ? View.GONE : View.VISIBLE);
+        binding.mainContent.mainForecastDaysRow.removeAllViews();
+
+        LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+        SimpleDateFormat sdfDay = new SimpleDateFormat("EEE", currentLocation.getLocale());
+        String tempUnitSymbol = TemperatureUtil.getTemperatureUnit(MainActivity.this, temperatureUnit);
+        int primaryTextColor = ContextCompat.getColor(MainActivity.this, R.color.my_text_primary);
+        Calendar cal = Calendar.getInstance();
+
+        for (ForecastUtil.WeatherForecastPerDay day : forecastDays) {
+            View dayView = inflater.inflate(R.layout.main_forecast_day_item, binding.mainContent.mainForecastDaysRow, false);
+            TextView dayNameView = dayView.findViewById(R.id.main_forecast_day_name);
+            ImageView iconView = dayView.findViewById(R.id.main_forecast_day_icon);
+            TextView tempsView = dayView.findViewById(R.id.main_forecast_day_temps);
+
+            cal.set(Calendar.YEAR, day.getYear());
+            cal.set(Calendar.DAY_OF_YEAR, day.getDayInYear());
+            dayNameView.setText(sdfDay.format(cal.getTime()));
+
+            ForecastUtil.WeatherMaxMinForDay maxMin = day.getWeatherMaxMinForDay();
+            long minTemp = Math.round(TemperatureUtil.getTemperatureInPreferredUnit(temperatureUnit, maxMin.minTemp));
+            long maxTemp = Math.round(TemperatureUtil.getTemperatureInPreferredUnit(temperatureUnit, maxMin.maxTemp));
+            tempsView.setText(minTemp + "/" + maxTemp + tempUnitSymbol);
+
+            Integer weatherId = day.getWeatherIds() != null ? day.getWeatherIds().mainWeatherId : null;
+            if (fontBasedIconSet) {
+                String iconStr = org.thosp.shared_resources.Utils.getStrIcon(MainActivity.this, weatherId, 0, 0);
+                iconView.setImageBitmap(Utils.createWeatherIconWithColor(MainActivity.this, iconStr, primaryTextColor));
+            } else {
+                iconView.setImageResource(Utils.getWeatherResourceIcon(weatherId, maxMin.maxTemp, maxMin.maxWind));
+            }
+
+            binding.mainContent.mainForecastDaysRow.addView(dayView);
+        }
+    }
+
     private void renderTextsWithNoWeather() {
         sendMessageToCurrentWeatherService(currentLocation, "MAIN");
         String temperatureTypeFromPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this).getString(
@@ -480,9 +590,11 @@ public class MainActivity extends BaseActivity
 
                 if ("measured_only".equals(temperatureTypeFromPreferences) ||
                         "appearance_only".equals(temperatureTypeFromPreferences)) {
+                    binding.mainContent.mainSecondTemperatureContainer.setVisibility(View.GONE);
                     binding.mainContent.mainSecondTemperature.setVisibility(View.GONE);
                     binding.mainContent.mainSecondTemperatureIcon.setVisibility(View.GONE);
                 } else {
+                    binding.mainContent.mainSecondTemperatureContainer.setVisibility(View.VISIBLE);
                     binding.mainContent.mainSecondTemperature.setVisibility(View.VISIBLE);
                     binding.mainContent.mainSecondTemperatureIcon.setVisibility(View.VISIBLE);
                     binding.mainContent.mainSecondTemperature.setText(MainActivity.this.getString(R.string.label_apparent_temperature, ""));
@@ -589,6 +701,18 @@ public class MainActivity extends BaseActivity
                         actInside.updateLocationCityTimeAndSource();
                     }
                 });
+                return;
+            }
+            if (event instanceof AppEvent.ForecastWeatherUpdate) {
+                String forecastResult = ((AppEvent.ForecastWeatherUpdate) event).getResult();
+                if (UpdateWeatherService.ACTION_WEATHER_UPDATE_OK.equals(forecastResult)) {
+                    YourLocalWeather.executor.submit(() -> {
+                        MainActivity actInside = activityRef.get();
+                        if (actInside != null && actInside.initialGuideCompleted) {
+                            actInside.updateUI();
+                        }
+                    });
+                }
                 return;
             }
             if (!(event instanceof AppEvent.MainWeatherUpdate)) {

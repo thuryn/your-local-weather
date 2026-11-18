@@ -10,10 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
+import org.thosp.yourlocalweather.utils.ForecastUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -25,6 +27,7 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
     private final Set<Integer> visibleColumns;
 
     private final boolean showMinMaxOnly;
+    private final Set<Integer> expandedDays = new HashSet<>();
     private final Map<Integer, List<DetailedWeatherForecast>> mWeatherList;
     double latitude;
     Locale locale;
@@ -114,29 +117,36 @@ public class WeatherForecastAdapter extends RecyclerView.Adapter<WeatherForecast
 
     @Override
     public void onBindViewHolder(WeatherForecastViewHolder holder, int position) {
-        List<DetailedWeatherForecast> weather = mWeatherList.get(keys.get(position));
+        int dayKey = keys.get(position);
+        List<DetailedWeatherForecast> weather = mWeatherList.get(dayKey);
 
         if (showMinMaxOnly) {
-            double minTemp = Integer.MAX_VALUE;
-            int minTempIndex = 0;
-            double maxTemp = Integer.MIN_VALUE;
-            int maxTempIndex = 0;
-            for(DetailedWeatherForecast item : weather){
-                double temp = item.getTemperature();
-                if(temp > maxTemp) {
-                    maxTempIndex = weather.indexOf(item);
-                    maxTemp = temp;
-                }
-                if(temp < minTemp) {
-                    minTempIndex = weather.indexOf(item);
-                    minTemp = temp;
-                }
-            }
-            List<DetailedWeatherForecast> minMaxWeather =
-                    (maxTempIndex > minTempIndex) ?
-                            List.of(weather.get(minTempIndex), weather.get(maxTempIndex)) :
-                            List.of(weather.get(maxTempIndex), weather.get(minTempIndex));
-            holder.bindWeather(mContext, latitude, locale, windUnitFromPreferences, minMaxWeather);
+            ForecastUtil.WeatherMaxMinForDay maxMin = ForecastUtil.calculateWeatherMaxMinForDay(weather);
+            ForecastUtil.WeatherIdsForDay weatherIds = maxMin != null
+                    ? ForecastUtil.getWeatherIdForDay(mContext, weather, maxMin)
+                    : null;
+            boolean isExpanded = expandedDays.contains(dayKey);
+            holder.bindSummaryAndWeather(
+                    mContext,
+                    latitude,
+                    locale,
+                    windUnitFromPreferences,
+                    weather,
+                    maxMin,
+                    weatherIds,
+                    isExpanded,
+                    v -> {
+                        int adapterPos = holder.getBindingAdapterPosition();
+                        if (adapterPos == RecyclerView.NO_POSITION) {
+                            return;
+                        }
+                        if (expandedDays.contains(dayKey)) {
+                            expandedDays.remove(dayKey);
+                        } else {
+                            expandedDays.add(dayKey);
+                        }
+                        notifyItemChanged(adapterPos);
+                    });
         } else {
             holder.bindWeather(mContext, latitude, locale, windUnitFromPreferences, weather);
         }

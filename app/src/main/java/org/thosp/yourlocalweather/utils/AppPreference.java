@@ -94,6 +94,11 @@ public class AppPreference {
                 Constants.KEY_PREF_FORECAST_ACTIVITY_SHOW_MIN_MAX, false);
     }
 
+    public static String getMainScreenForecast(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_MAIN_SCREEN_FORECAST, "none");
+    }
+
     public static String getLocalizedTime(Context context, Date inputTime, String timeStylePreference, Locale locale) {
         if ("system".equals(timeStylePreference)) {
             return DateFormat.getTimeFormat(context).format(inputTime);

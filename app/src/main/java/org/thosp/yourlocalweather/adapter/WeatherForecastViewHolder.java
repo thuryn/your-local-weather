@@ -4,8 +4,10 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.thosp.yourlocalweather.R;
 import org.thosp.yourlocalweather.model.DetailedWeatherForecast;
 import org.thosp.yourlocalweather.utils.AppPreference;
+import org.thosp.yourlocalweather.utils.ForecastUtil;
+import org.thosp.yourlocalweather.utils.TemperatureUtil;
 import org.thosp.yourlocalweather.utils.Utils;
 
 import java.text.SimpleDateFormat;
@@ -35,6 +39,12 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
     private final String temperatureUnitFromPreferences;
     private final String timeStylePreference;
 
+    private final View summaryRow;
+    private final TextView summaryDate;
+    private final ImageView summaryIcon;
+    private final TextView summaryTemps;
+    private final TextView summaryExpandIndicator;
+    private final View headerWithUnit;
     private final TextView mDate;
     private final TextView headerTime;
     private final TextView headerIcon;
@@ -75,6 +85,12 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
         this.temperatureUnitFromPreferences = temperatureUnitFromPreferences;
         this.timeStylePreference = timeStylePreference;
 
+        summaryRow = itemView.findViewById(R.id.forecast_summary_row);
+        summaryDate = itemView.findViewById(R.id.forecast_summary_date);
+        summaryIcon = itemView.findViewById(R.id.forecast_summary_icon);
+        summaryTemps = itemView.findViewById(R.id.forecast_summary_temps);
+        summaryExpandIndicator = itemView.findViewById(R.id.forecast_summary_expand_indicator);
+        headerWithUnit = itemView.findViewById(R.id.forecast_item_header_with_unit);
         mDate = itemView.findViewById(R.id.forecast_date);
         headerTime = itemView.findViewById(R.id.forecast_header_time);
         headerIcon = itemView.findViewById(R.id.forecast_header_icon);
@@ -102,10 +118,72 @@ public class WeatherForecastViewHolder extends RecyclerView.ViewHolder {
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
     }
 
+    void bindSummaryAndWeather(Context context,
+                               double latitude,
+                               Locale locale,
+                               String windUnitFromPreferences,
+                               List<DetailedWeatherForecast> weather,
+                               ForecastUtil.WeatherMaxMinForDay maxMin,
+                               ForecastUtil.WeatherIdsForDay weatherIds,
+                               boolean isExpanded,
+                               View.OnClickListener toggleListener) {
+        if (weather == null || weather.isEmpty()) {
+            return;
+        }
+        summaryRow.setVisibility(View.VISIBLE);
+        summaryRow.setOnClickListener(toggleListener);
+        mDate.setVisibility(View.GONE);
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMMM", locale);
+        Date date = new Date(weather.get(0).getDateTime() * 1000);
+        summaryDate.setText(dateFormat.format(date));
+
+        if (maxMin != null) {
+            long minTemp = Math.round(TemperatureUtil.getTemperatureInPreferredUnit(temperatureUnitFromPreferences, maxMin.minTemp));
+            long maxTemp = Math.round(TemperatureUtil.getTemperatureInPreferredUnit(temperatureUnitFromPreferences, maxMin.maxTemp));
+            String tempUnitSymbol = TemperatureUtil.getTemperatureUnit(context, temperatureUnitFromPreferences);
+            summaryTemps.setText(minTemp + "/" + maxTemp + tempUnitSymbol);
+        } else {
+            summaryTemps.setText("");
+        }
+
+        Integer weatherId = weatherIds != null ? weatherIds.mainWeatherId : null;
+        boolean fontBasedIconSet = "weather_icon_set_fontbased".equals(AppPreference.getIconSet(context));
+        if (fontBasedIconSet) {
+            int primaryTextColor = ContextCompat.getColor(context, R.color.my_text_primary);
+            String iconStr = org.thosp.shared_resources.Utils.getStrIcon(context, weatherId, 0, 0);
+            summaryIcon.setImageBitmap(Utils.createWeatherIconWithColor(context, iconStr, primaryTextColor));
+        } else {
+            double maxTemp = maxMin != null ? maxMin.maxTemp : 0;
+            double maxWind = maxMin != null ? maxMin.maxWind : 0;
+            summaryIcon.setImageResource(Utils.getWeatherResourceIcon(weatherId, maxTemp, maxWind));
+        }
+
+        summaryExpandIndicator.setText(isExpanded ? "▲" : "▼");
+
+        if (isExpanded) {
+            headerWithUnit.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.VISIBLE);
+            bindWeatherDetails(context, latitude, locale, windUnitFromPreferences, weather);
+        } else {
+            headerWithUnit.setVisibility(View.GONE);
+            mRecyclerView.setVisibility(View.GONE);
+        }
+    }
+
     void bindWeather(Context context, double latitude, Locale locale, String windUnitFromPreferences, List<DetailedWeatherForecast> weather) {
         if (weather == null) {
             return;
         }
+        summaryRow.setVisibility(View.GONE);
+        summaryRow.setOnClickListener(null);
+        mDate.setVisibility(View.VISIBLE);
+        headerWithUnit.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+        bindWeatherDetails(context, latitude, locale, windUnitFromPreferences, weather);
+    }
+
+    private void bindWeatherDetails(Context context, double latitude, Locale locale, String windUnitFromPreferences, List<DetailedWeatherForecast> weather) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, dd MMMM", locale);
         Date date = new Date(weather.get(0).getDateTime() * 1000);
         Calendar currentRowDate = Calendar.getInstance();

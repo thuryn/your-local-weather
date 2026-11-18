@@ -29,6 +29,13 @@
             android:entries="@array/start_screen_entries"
             android:entryValues="@array/start_screen_values"/>
         <ListPreference
+            android:defaultValue="none"
+            android:key="main_screen_forecast_pref_key"
+            android:dialogTitle="@string/pref_title_main_screen_forecast"
+            android:title="@string/pref_title_main_screen_forecast"
+            android:entries="@array/main_screen_forecast_entries"
+            android:entryValues="@array/main_screen_forecast_values"/>
+        <ListPreference
             android:defaultValue="weather_icon_set_merlinTheRed"
             android:dialogTitle="@string/preference_weather_icon_set_title"
             android:entries="@array/weather_icon_set_entries"
