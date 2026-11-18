@@ -521,6 +521,14 @@ public class Utils {
         return ((weatherId >= 70) && (weatherId < 80)) || ((weatherId >= 85) && (weatherId < 90));
     }
 
+    public static boolean isWeatherDescriptionWithThunderstorm(int weatherId) {
+        return (weatherId == 95) || (weatherId == 96) || (weatherId == 99);
+    }
+
+    public static boolean isWeatherDescriptionWithFog(int weatherId) {
+        return (weatherId == 45) || (weatherId == 48);
+    }
+
     private static int getWeatherDescriptionResourceId(int weatherId) {
         switch (weatherId) {
             case 96:

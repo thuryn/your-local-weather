@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.preference.ListPreference;
+import androidx.preference.MultiSelectListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreference;
@@ -22,6 +23,10 @@ import org.thosp.yourlocalweather.utils.Constants;
 import org.thosp.yourlocalweather.utils.NotificationUtils;
 import org.thosp.yourlocalweather.utils.TemperatureUtil;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 public class NotificationPreferenceFragment extends PreferenceFragmentCompat implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
@@ -30,7 +35,15 @@ public class NotificationPreferenceFragment extends PreferenceFragmentCompat imp
             Constants.KEY_PREF_INTERVAL_NOTIFICATION,
             Constants.KEY_PREF_NOTIFICATION_PRESENCE,
             Constants.KEY_PREF_NOTIFICATION_STATUS_ICON,
-            Constants.KEY_PREF_NOTIFICATION_VISUAL_STYLE
+            Constants.KEY_PREF_NOTIFICATION_VISUAL_STYLE,
+            Constants.KEY_PREF_NOTIFICATION_FORECAST_CONDITION_ENABLED,
+            Constants.KEY_PREF_NOTIFICATION_FORECAST_CONDITIONS,
+            Constants.KEY_PREF_NOTIFICATION_FORECAST_LOOKAHEAD_HOURS,
+            Constants.KEY_PREF_NOTIFICATION_FORECAST_WIND_THRESHOLD,
+            Constants.KEY_PREF_NOTIFICATION_FORECAST_COOLDOWN_MINUTES,
+            Constants.KEY_PREF_NOTIFICATION_FORECAST_QUIET_HOURS_ENABLED,
+            Constants.KEY_PREF_NOTIFICATION_FORECAST_QUIET_HOURS_START,
+            Constants.KEY_PREF_NOTIFICATION_FORECAST_QUIET_HOURS_END
     };
     private final String[] ENABLED_TO_UPDATE = {
             Constants.KEY_PREF_INTERVAL_NOTIFICATION,
@@ -156,7 +169,90 @@ public class NotificationPreferenceFragment extends PreferenceFragmentCompat imp
             case Constants.KEY_PREF_NOTIFICATION_STATUS_ICON:
             case Constants.KEY_PREF_NOTIFICATION_VISUAL_STYLE:
                 entrySummary(key, changing);
+                updateForecastFilterState();
+                break;
+            case Constants.KEY_PREF_NOTIFICATION_FORECAST_CONDITION_ENABLED:
+            case Constants.KEY_PREF_NOTIFICATION_FORECAST_CONDITIONS:
+            case Constants.KEY_PREF_NOTIFICATION_FORECAST_LOOKAHEAD_HOURS:
+            case Constants.KEY_PREF_NOTIFICATION_FORECAST_WIND_THRESHOLD:
+            case Constants.KEY_PREF_NOTIFICATION_FORECAST_COOLDOWN_MINUTES:
+            case Constants.KEY_PREF_NOTIFICATION_FORECAST_QUIET_HOURS_ENABLED:
+            case Constants.KEY_PREF_NOTIFICATION_FORECAST_QUIET_HOURS_START:
+            case Constants.KEY_PREF_NOTIFICATION_FORECAST_QUIET_HOURS_END:
+                updateForecastFilterState();
+                break;
         }
+    }
+
+    private void updateForecastFilterState() {
+        SwitchPreference notificationSwitch = (SwitchPreference) findPreference(Constants.KEY_PREF_IS_NOTIFICATION_ENABLED);
+        ListPreference presencePref = (ListPreference) findPreference(Constants.KEY_PREF_NOTIFICATION_PRESENCE);
+        SwitchPreference forecastEnabledPref = (SwitchPreference) findPreference(Constants.KEY_PREF_NOTIFICATION_FORECAST_CONDITION_ENABLED);
+        MultiSelectListPreference conditionsPref = (MultiSelectListPreference) findPreference(Constants.KEY_PREF_NOTIFICATION_FORECAST_CONDITIONS);
+        ListPreference lookaheadPref = (ListPreference) findPreference(Constants.KEY_PREF_NOTIFICATION_FORECAST_LOOKAHEAD_HOURS);
+        ListPreference windThresholdPref = (ListPreference) findPreference(Constants.KEY_PREF_NOTIFICATION_FORECAST_WIND_THRESHOLD);
+        ListPreference cooldownPref = (ListPreference) findPreference(Constants.KEY_PREF_NOTIFICATION_FORECAST_COOLDOWN_MINUTES);
+        SwitchPreference quietHoursEnabledPref = (SwitchPreference) findPreference(Constants.KEY_PREF_NOTIFICATION_FORECAST_QUIET_HOURS_ENABLED);
+        ListPreference quietStartPref = (ListPreference) findPreference(Constants.KEY_PREF_NOTIFICATION_FORECAST_QUIET_HOURS_START);
+        ListPreference quietEndPref = (ListPreference) findPreference(Constants.KEY_PREF_NOTIFICATION_FORECAST_QUIET_HOURS_END);
+
+        boolean notificationActive = notificationSwitch != null && notificationSwitch.isChecked() && !updateBySensor;
+        boolean notPermanent = presencePref == null || !"permanent".equals(presencePref.getValue());
+        boolean canEnableFilter = notificationActive && notPermanent;
+
+        if (forecastEnabledPref != null) {
+            forecastEnabledPref.setEnabled(canEnableFilter);
+        }
+        boolean filterActive = canEnableFilter && forecastEnabledPref != null && forecastEnabledPref.isChecked();
+
+        if (conditionsPref != null) {
+            conditionsPref.setEnabled(filterActive);
+            Set<String> selectedValues = conditionsPref.getValues();
+            conditionsPref.setSummary(buildConditionsSummary(conditionsPref, selectedValues));
+            boolean windSelected = selectedValues != null && selectedValues.contains("wind");
+            if (windThresholdPref != null) {
+                windThresholdPref.setEnabled(filterActive && windSelected);
+                windThresholdPref.setSummary(windThresholdPref.getEntry());
+            }
+        }
+        if (lookaheadPref != null) {
+            lookaheadPref.setEnabled(filterActive);
+            lookaheadPref.setSummary(lookaheadPref.getEntry());
+        }
+        if (cooldownPref != null) {
+            cooldownPref.setEnabled(filterActive);
+            cooldownPref.setSummary(cooldownPref.getEntry());
+        }
+        if (quietHoursEnabledPref != null) {
+            quietHoursEnabledPref.setEnabled(filterActive);
+        }
+        boolean quietActive = filterActive && quietHoursEnabledPref != null && quietHoursEnabledPref.isChecked();
+        if (quietStartPref != null) {
+            quietStartPref.setEnabled(quietActive);
+            quietStartPref.setSummary(quietStartPref.getEntry());
+        }
+        if (quietEndPref != null) {
+            quietEndPref.setEnabled(quietActive);
+            quietEndPref.setSummary(quietEndPref.getEntry());
+        }
+    }
+
+    private String buildConditionsSummary(MultiSelectListPreference preference, Set<String> selectedValues) {
+        if (selectedValues == null || selectedValues.isEmpty()) {
+            return getString(R.string.pref_summary_notification_forecast_conditions_none);
+        }
+        CharSequence[] entries = preference.getEntries();
+        CharSequence[] entryValues = preference.getEntryValues();
+        List<CharSequence> selectedLabels = new ArrayList<>();
+        for (int i = 0; i < entryValues.length; i++) {
+            if (selectedValues.contains(entryValues[i].toString())) {
+                selectedLabels.add(entries[i]);
+            }
+        }
+        if (selectedLabels.isEmpty()) {
+            return getString(R.string.pref_summary_notification_forecast_conditions_none);
+        }
+        return android.text.TextUtils.join(", ", selectedLabels);
     }
 
     @Override
@@ -220,5 +316,6 @@ public class NotificationPreferenceFragment extends PreferenceFragmentCompat imp
                 preference.setEnabled(true);
             }
         }
+        updateForecastFilterState();
     }
 }

@@ -373,9 +373,10 @@ public class UpdateWeatherService extends AbstractCommonService {
                                     appendLog(context, TAG, "Current weather type");
                                     JSONObject weatherData = new JSONObject(weatherRaw);
                                     Weather weather = WeatherJSONParser.getWeather(weatherData);
-                                    saveWeatherAndSendResult(context, weather, currentLocation, updateType);
                                     CompleteWeatherForecast completeWeatherForecast = WeatherJSONParser.getWeatherForecast(context, weatherData);
-                                    saveWeatherAndSendResult(context, currentLocation, completeWeatherForecast, WEATHER_FORECAST_TYPE, START_WEATHER_FORECAST_UPDATE);
+                                    saveWeatherForecastToDb(context, currentLocation, completeWeatherForecast, WEATHER_FORECAST_TYPE);
+                                    saveWeatherAndSendResult(context, weather, currentLocation, updateType);
+                                    sendResult(ACTION_WEATHER_UPDATE_OK, context, currentLocation.getId(), START_WEATHER_FORECAST_UPDATE);
                                     broadcastWeatherUpdate(currentLocation, weather, completeWeatherForecast);
                                 } else {
                                     sendResult(ACTION_WEATHER_UPDATE_FAIL, context, currentLocation.getId(), updateType);
@@ -566,7 +567,7 @@ public class UpdateWeatherService extends AbstractCommonService {
         sendResult(ACTION_WEATHER_UPDATE_OK, context, location.getId(), updateType);
     }
 
-    private void saveWeatherAndSendResult(Context context, Location location, CompleteWeatherForecast completeWeatherForecast, int forecastType, int updateType) {
+    private void saveWeatherForecastToDb(Context context, Location location, CompleteWeatherForecast completeWeatherForecast, int forecastType) {
         WeatherForecastDbHelper weatherForecastDbHelper = WeatherForecastDbHelper.getInstance(context);
         long lastUpdate = System.currentTimeMillis();
         appendLog(context,
@@ -585,6 +586,10 @@ public class UpdateWeatherService extends AbstractCommonService {
         appendLog(context,
                 TAG,
                 "Graphs invalidated");
+    }
+
+    private void saveWeatherAndSendResult(Context context, Location location, CompleteWeatherForecast completeWeatherForecast, int forecastType, int updateType) {
+        saveWeatherForecastToDb(context, location, completeWeatherForecast, forecastType);
         sendResult(ACTION_WEATHER_UPDATE_OK, context, location.getId(), updateType);
 
         appendLog(context,

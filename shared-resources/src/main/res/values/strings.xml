@@ -96,6 +96,9 @@
     <string name="help_page_3_content_notifications" tools:ignore="MissingTranslation">
         <b>Notifications</b>
 \nWhen you selects notifications option, application updates current weather periodically. Current weather is put into notifications area then. You can enable vibration also - application vibrate when updated.</string>
+    <string name="help_page_3_content_notifications_forecast_filter" tools:ignore="MissingTranslation">
+        <b>Forecast condition alerts</b>
+\nWhen <b>Notify only for specific forecast</b> is enabled (and notification presence is not set to <i>Permanent</i>), the application checks the upcoming hourly forecast within the selected <b>Forecast time window</b> and shows a notification only if at least one selected condition (rain, snow, thunderstorm, fog, or strong wind exceeding the configured <b>Wind speed threshold</b>) is expected. To avoid repeated alerts for the same forecast, you can set a <b>Minimum interval between alerts</b> (cooldown) and <b>Quiet hours</b>. Forecast alerts use a separate system notification channel (<i>Forecast alerts</i>), so you can configure sound and importance independently.</string>
     <string name="help_page_3_content_cache_locations" tools:ignore="MissingTranslation">To save network traffic and speed-up location update you can switch <b>Cache locations</b> on. This cache stores geographic coordinates and an address. The application has to call network resolution service regardless of this setting. But the call to Nominatim address resolution takes place just in the case the address is not in cache. When you switch the Cache locations option on, addresses that you\'ve visited, are stored in the application. No information from the cache is sent outside of the application.</string>
     <string name="help_page_3_content_cache_locations_1" tools:ignore="MissingTranslation">Next to the cache location option (checkbox) there is a setting for <b>The age of cached values</b>. Every stored address has a timestamp. When the timestamp is older then value set in The age of cached values, the app calls Nominatim to refresh the record.</string>
     <string name="help_page_3_content_cache_locations_2" tools:ignore="MissingTranslation">You can clear the cache of addresses with the <b>Clear cache</b> button.</string>
@@ -722,4 +725,30 @@
     <string name="graph_past_days_2" tools:ignore="MissingTranslation">2 days</string>
     <string name="graph_past_days_3" tools:ignore="MissingTranslation">3 days</string>
     <string name="graph_past_days_7" tools:ignore="MissingTranslation">7 days</string>
+    <string name="notification_alert_channel_name" tools:ignore="MissingTranslation">Forecast alerts</string>
+    <string name="notification_alert_channel_description" tools:ignore="MissingTranslation">Notifications triggered by forecast conditions</string>
+    <string name="pref_category_notification_forecast_filter" tools:ignore="MissingTranslation">Forecast condition alerts</string>
+    <string name="pref_title_notification_forecast_condition_enabled" tools:ignore="MissingTranslation">Notify only for specific forecast</string>
+    <string name="pref_summary_notification_forecast_condition_enabled" tools:ignore="MissingTranslation">Show notification only when selected conditions are forecasted</string>
+    <string name="pref_title_notification_forecast_conditions" tools:ignore="MissingTranslation">Weather conditions</string>
+    <string name="pref_summary_notification_forecast_conditions_none" tools:ignore="MissingTranslation">No conditions selected</string>
+    <string name="notification_forecast_condition_rain" tools:ignore="MissingTranslation">Rain / Drizzle</string>
+    <string name="notification_forecast_condition_snow" tools:ignore="MissingTranslation">Snow</string>
+    <string name="notification_forecast_condition_thunderstorm" tools:ignore="MissingTranslation">Thunderstorm</string>
+    <string name="notification_forecast_condition_fog" tools:ignore="MissingTranslation">Fog</string>
+    <string name="notification_forecast_condition_wind" tools:ignore="MissingTranslation">Strong wind</string>
+    <string name="pref_title_notification_forecast_lookahead" tools:ignore="MissingTranslation">Forecast time window</string>
+    <string name="notification_forecast_lookahead_1h" tools:ignore="MissingTranslation">Next 1 hour</string>
+    <string name="notification_forecast_lookahead_3h" tools:ignore="MissingTranslation">Next 3 hours</string>
+    <string name="notification_forecast_lookahead_6h" tools:ignore="MissingTranslation">Next 6 hours</string>
+    <string name="notification_forecast_lookahead_12h" tools:ignore="MissingTranslation">Next 12 hours</string>
+    <string name="notification_forecast_lookahead_24h" tools:ignore="MissingTranslation">Next 24 hours</string>
+    <string name="pref_title_notification_forecast_wind_threshold" tools:ignore="MissingTranslation">Wind speed threshold</string>
+    <string name="pref_title_notification_forecast_cooldown" tools:ignore="MissingTranslation">Minimum interval between alerts</string>
+    <string name="notification_forecast_cooldown_0" tools:ignore="MissingTranslation">No limit</string>
+    <string name="pref_title_notification_forecast_quiet_hours_enabled" tools:ignore="MissingTranslation">Quiet hours</string>
+    <string name="pref_summary_notification_forecast_quiet_hours_enabled" tools:ignore="MissingTranslation">Suppress forecast alerts during selected hours</string>
+    <string name="pref_title_notification_forecast_quiet_hours_start" tools:ignore="MissingTranslation">Quiet hours start</string>
+    <string name="pref_title_notification_forecast_quiet_hours_end" tools:ignore="MissingTranslation">Quiet hours end</string>
+    <string name="notification_forecast_alert_summary" tools:ignore="MissingTranslation">Forecast (%1$s): %2$s</string>
 </resources>

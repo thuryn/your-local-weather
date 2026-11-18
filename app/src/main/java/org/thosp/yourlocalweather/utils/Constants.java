@@ -61,6 +61,16 @@ public class Constants {
     public static final String KEY_PREF_NOTIFICATION_STATUS_ICON = "notification_status_icon_pref_key";
     public static final String KEY_PREF_NOTIFICATION_VISUAL_STYLE = "notification_visual_style_pref_key";
     public static final String KEY_PREF_VIBRATE = "notification_vibrate_pref_key";
+    public static final String KEY_PREF_NOTIFICATION_FORECAST_CONDITION_ENABLED = "notification_forecast_condition_enabled_pref_key";
+    public static final String KEY_PREF_NOTIFICATION_FORECAST_CONDITIONS = "notification_forecast_conditions_pref_key";
+    public static final String KEY_PREF_NOTIFICATION_FORECAST_LOOKAHEAD_HOURS = "notification_forecast_lookahead_hours_pref_key";
+    public static final String KEY_PREF_NOTIFICATION_FORECAST_WIND_THRESHOLD = "notification_forecast_wind_threshold_pref_key";
+    public static final String KEY_PREF_NOTIFICATION_FORECAST_COOLDOWN_MINUTES = "notification_forecast_cooldown_minutes_pref_key";
+    public static final String KEY_PREF_NOTIFICATION_FORECAST_QUIET_HOURS_ENABLED = "notification_forecast_quiet_hours_enabled_pref_key";
+    public static final String KEY_PREF_NOTIFICATION_FORECAST_QUIET_HOURS_START = "notification_forecast_quiet_hours_start_pref_key";
+    public static final String KEY_PREF_NOTIFICATION_FORECAST_QUIET_HOURS_END = "notification_forecast_quiet_hours_end_pref_key";
+    public static final String NOTIFICATION_FORECAST_LAST_ALERT_TIME_MS = "notification_forecast_last_alert_time_ms";
+    public static final String NOTIFICATION_FORECAST_LAST_ALERT_CONDITIONS = "notification_forecast_last_alert_conditions";
     public static final String KEY_PREF_WIDGET_SHOW_LABELS = "widget_show_labels_pref_key";
     public static final String KEY_PREF_WIDGET_TEXT_COLOR = "widget_text_color_pref_key";
     public static final String KEY_PREF_WIDGET_THEME = "widget_theme_pref_key";

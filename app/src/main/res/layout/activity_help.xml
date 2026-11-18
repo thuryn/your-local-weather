@@ -137,6 +137,10 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="@string/help_page_3_content_notifications_forecast_filter" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:text="@string/help_page_3_content_hide_update_location_1" />
                 <TextView
                     android:layout_width="match_parent"

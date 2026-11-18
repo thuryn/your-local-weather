@@ -227,6 +227,127 @@
         <item>1440</item>
     </string-array>
 
+    <string-array name="notification_forecast_conditions_entries">
+        <item>@string/notification_forecast_condition_rain</item>
+        <item>@string/notification_forecast_condition_snow</item>
+        <item>@string/notification_forecast_condition_thunderstorm</item>
+        <item>@string/notification_forecast_condition_fog</item>
+        <item>@string/notification_forecast_condition_wind</item>
+    </string-array>
+    <string-array name="notification_forecast_conditions_values" translatable="false">
+        <item>rain</item>
+        <item>snow</item>
+        <item>thunderstorm</item>
+        <item>fog</item>
+        <item>wind</item>
+    </string-array>
+    <string-array name="notification_forecast_conditions_defaults" translatable="false">
+        <item>rain</item>
+        <item>thunderstorm</item>
+    </string-array>
+
+    <string-array name="notification_forecast_lookahead_entries">
+        <item>@string/notification_forecast_lookahead_1h</item>
+        <item>@string/notification_forecast_lookahead_3h</item>
+        <item>@string/notification_forecast_lookahead_6h</item>
+        <item>@string/notification_forecast_lookahead_12h</item>
+        <item>@string/notification_forecast_lookahead_24h</item>
+    </string-array>
+    <string-array name="notification_forecast_lookahead_values" translatable="false">
+        <item>1</item>
+        <item>3</item>
+        <item>6</item>
+        <item>12</item>
+        <item>24</item>
+    </string-array>
+
+    <string-array name="notification_forecast_wind_threshold_entries" translatable="false">
+        <item>5 m/s (18 km/h)</item>
+        <item>8 m/s (29 km/h)</item>
+        <item>10 m/s (36 km/h)</item>
+        <item>14 m/s (50 km/h)</item>
+        <item>17 m/s (61 km/h)</item>
+        <item>20 m/s (72 km/h)</item>
+    </string-array>
+    <string-array name="notification_forecast_wind_threshold_values" translatable="false">
+        <item>5</item>
+        <item>8</item>
+        <item>10</item>
+        <item>14</item>
+        <item>17</item>
+        <item>20</item>
+    </string-array>
+
+    <string-array name="notification_forecast_cooldown_entries">
+        <item>@string/notification_forecast_cooldown_0</item>
+        <item>@string/update_period_1hour</item>
+        <item>@string/update_period_2hours</item>
+        <item>@string/update_period_3hours</item>
+        <item>@string/update_period_6hours</item>
+        <item>@string/update_period_12hours</item>
+    </string-array>
+    <string-array name="notification_forecast_cooldown_values" translatable="false">
+        <item>0</item>
+        <item>60</item>
+        <item>120</item>
+        <item>180</item>
+        <item>360</item>
+        <item>720</item>
+    </string-array>
+
+    <string-array name="notification_forecast_quiet_hours_entries" translatable="false">
+        <item>00:00</item>
+        <item>01:00</item>
+        <item>02:00</item>
+        <item>03:00</item>
+        <item>04:00</item>
+        <item>05:00</item>
+        <item>06:00</item>
+        <item>07:00</item>
+        <item>08:00</item>
+        <item>09:00</item>
+        <item>10:00</item>
+        <item>11:00</item>
+        <item>12:00</item>
+        <item>13:00</item>
+        <item>14:00</item>
+        <item>15:00</item>
+        <item>16:00</item>
+        <item>17:00</item>
+        <item>18:00</item>
+        <item>19:00</item>
+        <item>20:00</item>
+        <item>21:00</item>
+        <item>22:00</item>
+        <item>23:00</item>
+    </string-array>
+    <string-array name="notification_forecast_quiet_hours_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+        <item>13</item>
+        <item>14</item>
+        <item>15</item>
+        <item>16</item>
+        <item>17</item>
+        <item>18</item>
+        <item>19</item>
+        <item>20</item>
+        <item>21</item>
+        <item>22</item>
+        <item>23</item>
+    </string-array>
+
     <string-array name="location_auto_update_period_entries">
         <item>@string/update_period_nothing</item>
         <item>@string/update_period_by_sensors</item>

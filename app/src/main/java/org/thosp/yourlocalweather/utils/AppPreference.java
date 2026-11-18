@@ -448,6 +448,91 @@ public class AppPreference {
                 Constants.KEY_PREF_NOTIFICATION_STATUS_ICON, iconStyle).apply();
     }
 
+    public static boolean isNotificationForecastConditionEnabled(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+                Constants.KEY_PREF_NOTIFICATION_FORECAST_CONDITION_ENABLED, false);
+    }
+
+    public static Set<String> getNotificationForecastConditions(Context context) {
+        Set<String> defaultConditions = new HashSet<>();
+        defaultConditions.add("rain");
+        defaultConditions.add("thunderstorm");
+        return PreferenceManager.getDefaultSharedPreferences(context).getStringSet(
+                Constants.KEY_PREF_NOTIFICATION_FORECAST_CONDITIONS, defaultConditions);
+    }
+
+    public static int getNotificationForecastLookaheadHours(Context context) {
+        String value = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_NOTIFICATION_FORECAST_LOOKAHEAD_HOURS, "6");
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 6;
+        }
+    }
+
+    public static double getNotificationForecastWindThresholdMs(Context context) {
+        String value = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_NOTIFICATION_FORECAST_WIND_THRESHOLD, "10");
+        try {
+            return Double.parseDouble(value);
+        } catch (NumberFormatException e) {
+            return 10.0;
+        }
+    }
+
+    public static int getNotificationForecastCooldownMinutes(Context context) {
+        String value = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_NOTIFICATION_FORECAST_COOLDOWN_MINUTES, "180");
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 180;
+        }
+    }
+
+    public static boolean isNotificationForecastQuietHoursEnabled(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
+                Constants.KEY_PREF_NOTIFICATION_FORECAST_QUIET_HOURS_ENABLED, false);
+    }
+
+    public static int getNotificationForecastQuietHoursStart(Context context) {
+        String value = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_NOTIFICATION_FORECAST_QUIET_HOURS_START, "22");
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 22;
+        }
+    }
+
+    public static int getNotificationForecastQuietHoursEnd(Context context) {
+        String value = PreferenceManager.getDefaultSharedPreferences(context).getString(
+                Constants.KEY_PREF_NOTIFICATION_FORECAST_QUIET_HOURS_END, "7");
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 7;
+        }
+    }
+
+    public static long getNotificationForecastLastAlertTimeMs(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getLong(Constants.NOTIFICATION_FORECAST_LAST_ALERT_TIME_MS, 0);
+    }
+
+    public static String getNotificationForecastLastAlertConditions(Context context) {
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getString(Constants.NOTIFICATION_FORECAST_LAST_ALERT_CONDITIONS, "");
+    }
+
+    public static void setNotificationForecastLastAlert(Context context, long timeMs, String serializedConditions) {
+        PreferenceManager.getDefaultSharedPreferences(context).edit()
+                .putLong(Constants.NOTIFICATION_FORECAST_LAST_ALERT_TIME_MS, timeMs)
+                .putString(Constants.NOTIFICATION_FORECAST_LAST_ALERT_CONDITIONS, serializedConditions)
+                .apply();
+    }
+
     public static boolean isWidgetGraphNativeScaled(Context context) {
         return PreferenceManager.getDefaultSharedPreferences(context).getBoolean(
                 Constants.KEY_PREF_WIDGET_GRAPH_NATIVE_SCALE, false);
