@@ -655,4 +655,22 @@
     <string name="export_settings_error" tools:ignore="MissingTranslation">Gabim në eksportim rregullimesh</string>
     <string name="import_settings_success" tools:ignore="MissingTranslation">Rregullimet u importuan me sukses</string>
     <string name="import_settings_error" tools:ignore="MissingTranslation">Gabim në importim rregullimesh</string>
+    <string name="widget_compact_name" tools:ignore="MissingTranslation">Widget Kompakt 1x1</string>
+    <string name="widget_temperature_only_name" tools:ignore="MissingTranslation">Widget Vetëm Temperaturë 1x1</string>
+    <string name="pref_title_start_screen" tools:ignore="MissingTranslation">Skenë parazgjedhje nisjeje</string>
+    <string name="uv_index_label" tools:ignore="MissingTranslation">Tregues UV: %1$.1f</string>
+    <string name="search_location_query" tools:ignore="MissingTranslation">Kërko</string>
+    <string name="search_location_select_title" tools:ignore="MissingTranslation">Përzgjidhni vendndodhje</string>
+    <string name="preference_update_on_resume" tools:ignore="MissingTranslation">Përditëso motin, kur hapet aplikacioni</string>
+    <string name="startup_welcome_title" tools:ignore="MissingTranslation">Mirë se vini te Moti Juaj Vendor</string>
+    <string name="startup_welcome_subtitle" tools:ignore="MissingTranslation">Që të jepen parashikime dhe widget-e të përpiktë moti, ju lutemi, plotësoni ujdisjen fillestare.</string>
+    <string name="startup_btn_location" tools:ignore="MissingTranslation">Akordoni Leje Vendore</string>
+    <string name="startup_btn_notifications" tools:ignore="MissingTranslation">Lejo Njoftime</string>
+    <string name="startup_btn_battery" tools:ignore="MissingTranslation">Rregullime Optimizimi Baterie</string>
+    <string name="startup_btn_finish" tools:ignore="MissingTranslation">Fillojani</string>
+    <string name="startup_location_granted" tools:ignore="MissingTranslation">U akordua leje vendore</string>
+    <string name="startup_notifications_granted" tools:ignore="MissingTranslation">U lejuan njoftime</string>
+    <string name="startup_btn_location_fg" tools:ignore="MissingTranslation">1. Akordoni Leje Vendore</string>
+    <string name="startup_grant_foreground_first" tools:ignore="MissingTranslation">Ju lutemi, akordoni së pari leje</string>
+    <string name="startup_battery_granted" tools:ignore="MissingTranslation">Optimizimi i baterisë u çaktivizua</string>
 </resources>
