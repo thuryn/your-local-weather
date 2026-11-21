@@ -82,3 +82,8 @@
 # android-async-http
 -keep class com.loopj.android.http.** { *; }
 -keeppackagenames com.loopj.android.http.**
+
+# Keep onClick handlers defined in XML layout files for R8
+-keepclassmembers class * extends android.app.Activity {
+   public void *(android.view.View);
+}
