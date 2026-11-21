@@ -10,7 +10,7 @@ android {
         applicationId = "org.thosp.yourlocalweather"
         minSdk = 23
         targetSdk = 36
-        versionCode = 215
+        versionCode = 216
         versionName = "6.7.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
